@@ -2,13 +2,21 @@
 
 ## Status
 
-Dataset source is **unverified**. Local SWaT-like CSV files are present, but their source kind, edition, terms-of-use status, and official train/test semantics have not been confirmed.
+Dataset source is **partially identified but unverified**. The researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system` as the current local data source. Local SWaT-like CSV files are present, but exact file provenance, edition, terms-of-use status, and official train/test semantics have not been confirmed.
 
 Resolved TASK-000 decisions classify these files as `local_unverified_smoke_test`. Do not use these files for scientific claims or final evaluation.
 
 ## Local files inspected
 
 Root: `dataset/swat`
+
+Claimed source:
+
+- Source kind: Kaggle mirror
+- Source reference: `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`
+- Public page title observed: `SWaT Dataset: Secure Water Treatment System | Kaggle`
+- Terms-of-use status: unverified
+- Dataset edition/version: unverified
 
 | File | Bytes | Rows excluding header | SHA-256 |
 |---|---:|---:|---|
@@ -64,7 +72,7 @@ P501, P502, PIT501, PIT502, PIT503, FIT601, P601, P602, P603
 
 ## Blocking issues
 
-1. Source kind is unverified: official iTrust, Kaggle mirror, or other.
+1. Source kind is recorded as a researcher-supplied Kaggle mirror, but file-level provenance is still unverified.
 2. Terms-of-use acknowledgement is not recorded.
 3. Dataset edition/version is unverified.
 4. The current files appear label-filtered, so official split semantics are not established.

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "dataset_name": "SYNTHETIC",
+  "variables": [
+    {
+      "name": "SENSOR_A",
+      "role": "sensor",
+      "value_type": "continuous",
+      "physical_type": "flow",
+      "subsystem": "demo_stage",
+      "stage": "demo",
+      "unit": null,
+      "allowed_states": null,
+      "source_method": "manual_review",
+      "source_reference": "synthetic fixture",
+      "confidence": 1.0,
+      "review_status": "reviewed",
+      "schema_version": "1.0"
+    },
+    {
+      "name": "ACTUATOR_A",
+      "role": "actuator",
+      "value_type": "binary",
+      "physical_type": "valve",
+      "subsystem": "demo_stage",
+      "stage": "demo",
+      "unit": null,
+      "allowed_states": ["closed", "open"],
+      "source_method": "manual_review",
+      "source_reference": "synthetic fixture",
+      "confidence": 1.0,
+      "review_status": "reviewed",
+      "schema_version": "1.0"
+    }
+  ]
+}
+

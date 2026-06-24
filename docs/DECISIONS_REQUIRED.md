@@ -96,14 +96,14 @@
 - Status: open
 - Owner: researcher
 - Needed before: final evaluation / TASK-014
-- Question: When official SWaT files or confirmed provenance are available, what exact manifest and split policy replaces the local smoke-test manifest?
+- Question: When official SWaT files or confirmed Kaggle/iTrust provenance are available, what exact manifest and split policy replaces the local smoke-test manifest?
 - Why it matters scientifically: Final claims require approved source, terms, edition/version, and split semantics.
 - Options:
   1. Official iTrust files with documented edition and terms.
-  2. Kaggle mirror with documented provenance and terms.
+  2. Researcher-supplied Kaggle mirror with documented file list, edition/version, and terms.
   3. Continue using local smoke-test files only for non-claim implementation checks.
-- Evidence available: Current files are fingerprinted and marked `local_unverified_smoke_test`.
-- Recommendation from implementation agent: Keep current files smoke-test-only until provenance is confirmed.
+- Evidence available: Current files are fingerprinted and marked `local_unverified_smoke_test`; researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`.
+- Recommendation from implementation agent: Keep current files smoke-test-only until Kaggle terms, file list, and split semantics are confirmed.
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:
