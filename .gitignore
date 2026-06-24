@@ -1,0 +1,38 @@
+# Local raw and derived data
+dataset/
+data/raw/
+data/swat/
+*.csv
+*.xlsx
+
+# Parquet is blocked by default. Allow only explicitly approved artifact paths.
+*.parquet
+!artifacts/approved/**/*.parquet
+
+# Generated runtime artifacts and model outputs
+artifacts/
+results/
+outputs/
+checkpoints/
+pretrained/
+
+# Read-only upstream reference clones
+external/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+
+# OS/editor files
+.DS_Store
+Thumbs.db

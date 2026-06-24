@@ -1,0 +1,122 @@
+[
+  {
+    "path": "AGENTS.md",
+    "bytes": 14510,
+    "sha256": "fdcfdc8fb35641c97d7a45c9915c85881ad1f971d0e452cf0df03ac9aab145d4"
+  },
+  {
+    "path": "IMPLEMENTATION_PLAN.md",
+    "bytes": 9743,
+    "sha256": "ac908bf7b60167d81eb609a92734bf20a486d8191429ba0d7c5538d04f307a02"
+  },
+  {
+    "path": "README.md",
+    "bytes": 3157,
+    "sha256": "53ce8564775df447530304b7925972842e9b4f451efba0b8813a7910adaad678"
+  },
+  {
+    "path": "REVISION_NOTES.md",
+    "bytes": 2154,
+    "sha256": "2f6f0c2425b7ca707823b3e68f5c58af9d6a2fe16258f47466e4ada9618557f5"
+  },
+  {
+    "path": "TASKS/TASK-000_REPOSITORY_AUDIT.md",
+    "bytes": 5064,
+    "sha256": "4988e6da98231532c31bb80068864ed84c5d6dda93fe5f753d987cc5596f4266"
+  },
+  {
+    "path": "TASKS/TASK-001_DATA_CONTRACTS_AND_SPLITS.md",
+    "bytes": 4889,
+    "sha256": "36c38ffccb17b336725a7fd15144660950f4809297a62c972ab7576942b2718b"
+  },
+  {
+    "path": "TASKS/TASK-002_VARIABLE_METADATA_SCHEMA.md",
+    "bytes": 3296,
+    "sha256": "d5476e85c5a7b4ca4a2f1c0cb35a783124d058fd77b4e1a2dd5e4f5177b39dd6"
+  },
+  {
+    "path": "TASKS/TASK-003_CANDIDATE_UNIVERSE_BUILDER.md",
+    "bytes": 3191,
+    "sha256": "254b303956903ca62fe7cefea0a9a439444e70bc6bb206375d355a2f152261a1"
+  },
+  {
+    "path": "TASKS/TASK-004_GDN_CANDIDATE_EXTRACTION.md",
+    "bytes": 3669,
+    "sha256": "cf65c1965e2c0e6df6ad2b751fca6fb1e9daedd1c678df37e51fec5160a9f59b"
+  },
+  {
+    "path": "TASKS/TASK-005_KILL_TEST_CANDIDATE_FEASIBILITY.md",
+    "bytes": 2604,
+    "sha256": "20a29f670e3b092952fc3a619106010272681ad2b65dd410b11290d775a69273"
+  },
+  {
+    "path": "TASKS/TASK-006_RELATION_PROFILING_AND_CALIBRATION.md",
+    "bytes": 4907,
+    "sha256": "46a0ba3afd4e5de53a607bc173cd6bf9af8390938e7f0aeb8725d00846b6fde7"
+  },
+  {
+    "path": "TASKS/TASK-007_MINIMAL_DSL_AND_SCHEMA_REGISTRY.md",
+    "bytes": 3588,
+    "sha256": "fe2ee74e04ad71a7028725dd42de288b9bcae5bb76cee64d51e9b723797a0ac7"
+  },
+  {
+    "path": "TASKS/TASK-008_TEMPLATE_RULE_BUILDER.md",
+    "bytes": 2218,
+    "sha256": "47ae5860d67e05e626f6733c7904f883a07c84dc44c281250ebfbf967102df3c"
+  },
+  {
+    "path": "TASKS/TASK-009_DETERMINISTIC_VERIFIER.md",
+    "bytes": 3084,
+    "sha256": "f345202c4f24c374a99f8233385fceb12b0bc9ff642f1a8052a2f1d909958999"
+  },
+  {
+    "path": "TASKS/TASK-010_RUNTIME_RULE_ENGINE.md",
+    "bytes": 2934,
+    "sha256": "3269ba4dbc3ac146b0946c429498d1e19a2d0325076ef3f3fa1eef49fe01b035"
+  },
+  {
+    "path": "TASKS/TASK-011_END_TO_END_TEMPLATE_FEASIBILITY.md",
+    "bytes": 2711,
+    "sha256": "1077e5832ceadc1b4a384cb28271193e557f90daedb7202e0b68f1b4652ced33"
+  },
+  {
+    "path": "TASKS/TASK-012_LLM_RULE_PLANNER.md",
+    "bytes": 3786,
+    "sha256": "8b235081fa6bf55cdea7f51a44cfeea1233ce847d670a2998bcf9afac001afc6"
+  },
+  {
+    "path": "TASKS/TASK-013_VERIFIER_FEEDBACK_REFINER_LOOP.md",
+    "bytes": 3341,
+    "sha256": "2e8fd806be60d52e43389ded763698b113b97e628be977aea04e4f411c6f7afb"
+  },
+  {
+    "path": "TASKS/TASK-014_EVALUATION_AND_OPTIONAL_FUSION.md",
+    "bytes": 3411,
+    "sha256": "7a13169448a579b8b7396848a66ba7f1113acb96a2127ed82a93d42fcdd7089e"
+  },
+  {
+    "path": "TASKS/TASK_TEMPLATE.md",
+    "bytes": 2179,
+    "sha256": "8e5c2d42f12c93905eea21041eaeeebbd165a4d6d9030d371986354b53d2278d"
+  },
+  {
+    "path": "TEMPLATES/DATASET_MANIFEST_TEMPLATE.md",
+    "bytes": 1035,
+    "sha256": "4786b4912db05859c8d9506c287488c3d4f9d8cbd319cdf99291a507e3e15bf4"
+  },
+  {
+    "path": "TEMPLATES/DECISIONS_REQUIRED_TEMPLATE.md",
+    "bytes": 334,
+    "sha256": "e8023814b99ea402b1caa7ef5f1a43e104af85a5a02e396d1ab418a5c2b0bc15"
+  },
+  {
+    "path": "TEMPLATES/THIRD_PARTY_NOTICES_TEMPLATE.md",
+    "bytes": 552,
+    "sha256": "03824de73a0486df3df4e3c18413ba3a8519e71b9eeb53af10b2d19f60f3a84c"
+  },
+  {
+    "path": "TEMPLATES/UPSTREAM_SOURCES_TEMPLATE.md",
+    "bytes": 1349,
+    "sha256": "2b5f89acf598693026b1f76deeb8c696c49bd62d153ac8944484bc7923f40769"
+  }
+]
