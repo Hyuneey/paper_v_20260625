@@ -1,6 +1,6 @@
-# Data Contracts Proposal
+# Data Contracts
 
-This is a design proposal for TASK-001. No production code is implemented in TASK-000.
+TASK-001 implements the initial local-only data contracts under `src/paperworks/data`.
 
 ## Core principles
 
@@ -21,6 +21,14 @@ This is a design proposal for TASK-001. No production code is implemented in TAS
 | `test` | final evaluation only |
 
 ## Proposed schemas
+
+Implemented modules:
+
+- `paperworks.data.contracts`
+- `paperworks.data.files`
+- `paperworks.data.splits`
+
+The initial implementation is stdlib-only and uses dataclasses plus explicit validation.
 
 ```python
 class SplitRole(str, Enum):
@@ -67,6 +75,19 @@ class SplitManifest:
     random_seed: int | None
 ```
 
+Additional implemented helpers:
+
+```python
+def resolve_data_root(env_var: str = "SWAT_DATA_ROOT") -> Path: ...
+def sha256_file(path: Path) -> str: ...
+def validate_local_files(manifest: DatasetManifest, root: Path) -> None: ...
+def inspect_csv_metadata(...) -> CsvMetadata: ...
+def build_data_view_manifest(...) -> DataViewManifest: ...
+def build_sequential_split_manifests(...) -> tuple[SplitManifest, ...]: ...
+def generate_split_windows(...) -> tuple[WindowSpec, ...]: ...
+def required_purge_gap(window_size: int, max_lag_samples: int = 0) -> int: ...
+```
+
 ## Required guards
 
 ```python
@@ -76,11 +97,35 @@ def assert_split_permitted(role: SplitRole, operation: str) -> None: ...
 Initial operation mapping:
 
 - `train_candidate_learner`: `train_normal`
+- `fit_scaler`: `train_normal`
 - `profile_relation`: `calibration_normal`
 - `calibrate_rule_parameters`: `calibration_normal`
+- `refine_rule`: `validation`
 - `verify_rule`: `validation`
 - `final_evaluate`: `test`
 
 ## Current dataset contract warning
 
 The local `normal.csv` and `attack.csv` files appear to be label-filtered subsets of `merged.csv`. TASK-001 must not infer official split roles from file names alone.
+
+## Test coverage
+
+Implemented synthetic-only unittest coverage includes:
+
+- manifest round trip,
+- hash-change detection,
+- unknown edition handling,
+- irregular timestamp rejection,
+- raw-range overlap rejection,
+- split-before-window window generation,
+- purge-gap calculation,
+- split-role negative tests,
+- view sampling/provenance,
+- synthetic fixture guard.
+
+Run:
+
+```powershell
+$env:PYTHONPATH="C:\Users\hyun\Desktop\paperworks\260625\src"
+& "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m unittest discover -s tests -v
+```

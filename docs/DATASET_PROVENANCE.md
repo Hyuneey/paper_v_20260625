@@ -69,3 +69,15 @@ P501, P502, PIT501, PIT502, PIT503, FIT601, P601, P602, P603
 3. Dataset edition/version is unverified.
 4. The current files appear label-filtered, so official split semantics are not established.
 5. `attack.csv` is not a complete attack-period evaluation timeline because it contains no normal-context rows.
+
+## TASK-001 implementation status
+
+The TASK-001 data-contract implementation supports these files only as local smoke-test inputs:
+
+- `DatasetManifest.dataset_status` may be set to `local_unverified_smoke_test`.
+- `resolve_data_root()` requires `SWAT_DATA_ROOT`.
+- `validate_local_files()` verifies local fingerprints without copying data.
+- `inspect_csv_metadata()` records schema, label counts, and regular sampling metadata without printing rows.
+- Split manifests and data-view manifests reference the dataset manifest by stable hash.
+
+Final evaluation remains blocked until DEC-007 is resolved with approved SWaT provenance and split semantics.
