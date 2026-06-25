@@ -11,6 +11,11 @@ from paperworks.gdn.masked import (
     fit_deterministic_embedding_checkpoint,
     message_passing_self_loops,
 )
+from paperworks.gdn.torch_backend import (
+    TorchGDNEmbeddingModel,
+    TorchGDNTrainingConfig,
+    fit_torch_gdn_embedding_checkpoint,
+)
 
 __all__ = [
     "EmbeddingCheckpoint",
@@ -22,4 +27,7 @@ __all__ = [
     "extract_masked_topk_edges",
     "fit_deterministic_embedding_checkpoint",
     "message_passing_self_loops",
+    "TorchGDNEmbeddingModel",
+    "TorchGDNTrainingConfig",
+    "fit_torch_gdn_embedding_checkpoint",
 ]

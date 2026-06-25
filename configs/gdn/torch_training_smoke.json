@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "config_type": "gdn_torch_training_smoke",
+  "backend": "torch_pyg_cpu",
+  "seed": 11,
+  "embedding_dim": 4,
+  "hidden_dim": 8,
+  "epochs": 5,
+  "learning_rate": 0.02,
+  "weight_decay": 0.0,
+  "source_view": "canonical_rule_view",
+  "sampling_period_seconds": 1.0,
+  "notes": [
+    "Synthetic-only CPU PyTorch/PyG smoke trainer for TASK-004.",
+    "Training uses train_normal split guards and no attack/test labels.",
+    "Learned node embeddings feed the same CandidateUniverse-masked Top-K edge exporter."
+  ]
+}

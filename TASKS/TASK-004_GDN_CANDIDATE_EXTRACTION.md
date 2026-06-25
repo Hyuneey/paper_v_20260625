@@ -1,7 +1,7 @@
 ---
 id: TASK-004
 title: Implement modern masked GDN candidate extraction
-status: blocked
+status: complete
 depends_on: [TASK-003]
 phase_gate: Milestone 2
 suggested_branch: task-004-gdn-candidates
@@ -14,7 +14,8 @@ suggested_branch: task-004-gdn-candidates
 - Mask-enforced embedding Top-K extraction core is implemented under `src/paperworks/gdn`.
 - Deterministic smoke checkpoint and synthetic tests are implemented.
 - DEC-010 is resolved with CPU-only `torch 2.12.1+cpu` and `torch_geometric 2.8.0`.
-- Full modern PyTorch/PyG trainer implementation is the remaining TASK-004 work.
+- CPU PyTorch/PyG synthetic GDN trainer is implemented under `src/paperworks/gdn/torch_backend.py`.
+- No real SWaT GDN training run is included in TASK-004.
 
 ## 1. Goal
 

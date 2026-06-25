@@ -42,6 +42,9 @@ This project requires:
 - `paperworks.gdn.extract_masked_topk_edges()`
 - `paperworks.gdn.message_passing_self_loops()`
 - `paperworks.gdn.fit_deterministic_embedding_checkpoint()`
+- `paperworks.gdn.TorchGDNTrainingConfig`
+- `paperworks.gdn.TorchGDNEmbeddingModel`
+- `paperworks.gdn.fit_torch_gdn_embedding_checkpoint()`
 
 ## Edge Artifact Contract
 
@@ -80,9 +83,19 @@ DEC-010 resolved the first modern backend as CPU-only PyTorch/PyG:
 - `torch_geometric 2.8.0`
 - CUDA unavailable in the current environment
 
-This step already implements and tests a deterministic embedding smoke backend. It validates split guards, checkpoint provenance, mask enforcement, Top-K export, and artifact schemas.
+This step implements and tests both a deterministic embedding smoke backend and a CPU PyTorch/PyG synthetic trainer. Both paths validate split guards, checkpoint provenance, mask enforcement, Top-K export, and artifact schemas.
 
-The next TASK-004 implementation step is to add the real CPU PyTorch/PyG GDN trainer behind the same masked edge-export contract.
+## CPU PyTorch/PyG Trainer
+
+`fit_torch_gdn_embedding_checkpoint()` trains a small synthetic GDN-style graph forecaster:
+
+- PyTorch `nn.Embedding` stores node embeddings.
+- PyG `MessagePassing` performs mean neighbor aggregation over candidate edges plus internal self-loops.
+- A small MLP predicts the next time step from current value, neighbor aggregate, and node embedding.
+- Learned node embeddings are exported through `EmbeddingCheckpoint`.
+- `extract_masked_topk_edges()` remains the only candidate-edge exporter.
+
+The trainer is intentionally minimal. It validates the modern PyTorch/PyG environment, split guards, deterministic seeds, and embedding-to-mask export flow without adopting the legacy upstream environment.
 
 ## Test Coverage
 
@@ -105,4 +118,4 @@ The next TASK-004 implementation step is to add the real CPU PyTorch/PyG GDN tra
 - No final GDN checkpoint from real data.
 - No test-label threshold selection.
 - No upstream `report=best`.
-- No real PyTorch/PyG training backend yet.
+- No real SWaT training run.

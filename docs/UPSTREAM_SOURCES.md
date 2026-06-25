@@ -116,5 +116,8 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   - `CandidateUniverse` mask is applied before Top-K,
   - persisted candidate self-edges are rejected,
   - candidate edges include `candidate_universe_id`, `feature_order_hash`, `checkpoint_id`, source view, sampling period, K, seed, rank, and candidate origins.
-- Current limitation:
-  - local PyTorch/PyG dependencies are unavailable, so TASK-004 currently provides a deterministic embedding smoke backend plus masked extraction core, not the final modern PyTorch/PyG trainer.
+- TASK-004 implementation:
+  - added a project-owned CPU PyTorch/PyG synthetic trainer in `src/paperworks/gdn/torch_backend.py`,
+  - uses PyG `MessagePassing` for mean neighbor aggregation,
+  - keeps learned embedding export and masked candidate-edge export under project-owned schemas,
+  - does not copy upstream modules.

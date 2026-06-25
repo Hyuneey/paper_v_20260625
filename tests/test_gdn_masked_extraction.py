@@ -10,9 +10,11 @@ from paperworks.gdn import (
     EmbeddingCheckpoint,
     GDNExtractionConfig,
     GDNExtractionError,
+    TorchGDNTrainingConfig,
     cosine_similarity_matrix,
     extract_masked_topk_edges,
     fit_deterministic_embedding_checkpoint,
+    fit_torch_gdn_embedding_checkpoint,
     message_passing_self_loops,
 )
 from paperworks.metadata import (
@@ -141,6 +143,23 @@ def extract(policy: CandidatePolicy | None = None, config: GDNExtractionConfig |
     )
 
 
+def synthetic_sequence() -> list[dict[str, float]]:
+    rows: list[dict[str, float]] = []
+    for index in range(8):
+        a1 = float(index % 2)
+        a2 = float((index + 1) % 2)
+        rows.append(
+            {
+                "A1": a1,
+                "A2": a2,
+                "S1": a1,
+                "S2": a2,
+                "S3": (a1 + a2) / 2.0,
+            }
+        )
+    return rows
+
+
 class MaskedGDNExtractionTests(unittest.TestCase):
     def test_candidate_mask_enforcement(self) -> None:
         artifact = extract()
@@ -229,6 +248,59 @@ class MaskedGDNExtractionTests(unittest.TestCase):
         )
         self.assertEqual(trained.split_name, SplitRole.TRAIN_NORMAL.value)
         self.assertTrue(artifact.edges)
+
+    def test_torch_pyg_training_smoke_exports_checkpoint(self) -> None:
+        config = TorchGDNTrainingConfig(seed=11, embedding_dim=4, hidden_dim=8, epochs=5, learning_rate=0.02)
+        trained = fit_torch_gdn_embedding_checkpoint(
+            normal_windows=synthetic_sequence(),
+            candidate_universe=candidate_universe(),
+            split=split(),
+            data_view=data_view(),
+            config=config,
+        )
+        self.assertEqual(trained.training_config["backend"], "torch_pyg_cpu")
+        self.assertEqual(trained.training_config["candidate_edge_count"], 6)
+        self.assertEqual(len(trained.embeddings["A1"]), 4)
+        self.assertEqual(trained.split_name, SplitRole.TRAIN_NORMAL.value)
+
+        artifact = extract_masked_topk_edges(
+            candidate_universe=candidate_universe(),
+            checkpoint=trained,
+            config=GDNExtractionConfig(top_k=1, seed=11, backend="torch_pyg_cpu"),
+            split=split(),
+            data_view=data_view(),
+        )
+        self.assertTrue(artifact.edges)
+        self.assertTrue(all(edge.source != edge.target for edge in artifact.edges))
+
+    def test_torch_pyg_training_is_deterministic_for_same_seed(self) -> None:
+        config = TorchGDNTrainingConfig(seed=13, embedding_dim=4, hidden_dim=8, epochs=3, learning_rate=0.02)
+        first = fit_torch_gdn_embedding_checkpoint(
+            normal_windows=synthetic_sequence(),
+            candidate_universe=candidate_universe(),
+            split=split(),
+            data_view=data_view(),
+            config=config,
+        )
+        second = fit_torch_gdn_embedding_checkpoint(
+            normal_windows=synthetic_sequence(),
+            candidate_universe=candidate_universe(),
+            split=split(),
+            data_view=data_view(),
+            config=config,
+        )
+        self.assertEqual(first.to_dict(), second.to_dict())
+        self.assertEqual(first.checkpoint_id, second.checkpoint_id)
+
+    def test_torch_pyg_training_rejects_test_split(self) -> None:
+        with self.assertRaises(SplitPermissionError):
+            fit_torch_gdn_embedding_checkpoint(
+                normal_windows=synthetic_sequence(),
+                candidate_universe=candidate_universe(),
+                split=split(SplitRole.TEST),
+                data_view=data_view(),
+                config=TorchGDNTrainingConfig(seed=11, epochs=2),
+            )
 
     def test_no_test_split_guard(self) -> None:
         with self.assertRaises(SplitPermissionError):
