@@ -1,7 +1,7 @@
 ---
 id: TASK-009
 title: Implement deterministic rule verifier and structured feedback
-status: blocked
+status: complete
 depends_on: [TASK-008]
 phase_gate: Milestone 4
 suggested_branch: task-009-rule-verifier
@@ -118,3 +118,12 @@ Thresholds must be configured and documented, not invented inside code.
 ## 11. Stop conditions
 
 Stop if empirical pass thresholds or duplicate thresholds have not been approved.
+
+## 12. Completion notes
+
+- Implemented deterministic verifier under `src/paperworks/verification/`.
+- Added synthetic-smoke verifier thresholds in `configs/verification/task009_synthetic_smoke.json`.
+- Recorded DEC-012 to limit those thresholds to implementation smoke tests only.
+- Verifier accepts parsed `RuleAst` or serialized JSON DSL and returns structured `VerificationReport`.
+- Added checks for schema validity, variables, type compatibility, calibration integrity, support, normal false firing, validation coverage, structural duplicates, and firing-overlap duplicates.
+- Test split use is rejected.

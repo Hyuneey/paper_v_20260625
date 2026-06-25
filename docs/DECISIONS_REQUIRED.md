@@ -177,6 +177,29 @@
   4. Calibration must use `calibration_normal` and `canonical_rule_view` only.
 - Consequences for claims/evaluation: TASK-006 can validate deterministic profiling and provenance behavior without deciding final research calibration thresholds.
 
+### DEC-012: TASK-009 synthetic-smoke verifier thresholds
+
+- Status: resolved
+- Owner: implementation agent
+- Needed before: TASK-009 synthetic verifier completion
+- Final decision: For TASK-009 implementation tests only, use an explicit `task009_synthetic_smoke` verifier configuration.
+- Decision date: 2026-06-25
+- Required config behavior:
+  - `normal_false_firing` split: `calibration_normal`
+  - `validation_coverage` split: `validation`
+  - test split: prohibited
+  - `max_normal_false_fire_rate: 0.0`
+  - `min_validation_coverage: 0.5`
+  - `firing_overlap_jaccard_threshold: 0.8`
+  - `min_calibration_support_count: 2`
+  - `parameter_neighborhood_relative_tolerance: 0.0`
+- Constraints:
+  1. This policy is only a synthetic smoke-test implementation contract.
+  2. It must not be used as a final SWaT verifier, rule-selection, or performance threshold without researcher approval.
+  3. Reports must contain aggregate metrics and feedback codes only, not raw time-series rows.
+  4. Final test data remains prohibited.
+- Consequences for claims/evaluation: TASK-009 can validate deterministic verifier mechanics without deciding final research acceptance thresholds.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade

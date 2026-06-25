@@ -1,0 +1,22 @@
+{
+  "config_version": "1.0",
+  "verification_policy_name": "task009_synthetic_smoke",
+  "scope_note": "Synthetic smoke verifier configuration only; not a final SWaT rule-selection or performance threshold.",
+  "splits": {
+    "normal_false_firing": "calibration_normal",
+    "validation_coverage": "validation",
+    "test": "prohibited"
+  },
+  "thresholds": {
+    "max_normal_false_fire_rate": 0.0,
+    "min_validation_coverage": 0.5,
+    "firing_overlap_jaccard_threshold": 0.8,
+    "min_calibration_support_count": 2,
+    "parameter_neighborhood_relative_tolerance": 0.0
+  },
+  "duplicate_policy": {
+    "structural_signature": true,
+    "same_pair_family_parameter_neighborhood": true,
+    "validation_firing_jaccard": true
+  }
+}
