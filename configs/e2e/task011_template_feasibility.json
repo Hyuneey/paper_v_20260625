@@ -1,0 +1,29 @@
+{
+  "config_version": "1.0",
+  "workflow_name": "task011_template_feasibility_smoke",
+  "scope_note": "Synthetic deterministic end-to-end feasibility gate only; not a final SWaT performance claim.",
+  "pipeline": [
+    "dataset_manifest",
+    "canonical_rule_view",
+    "train_normal_candidate_universe",
+    "masked_gdn_candidate_edges",
+    "calibration_normal_relation_profile",
+    "calibration_records",
+    "template_dsl_rule",
+    "deterministic_verification",
+    "verified_rule_library",
+    "validation_runtime_alarm"
+  ],
+  "constraints": {
+    "llm_free": true,
+    "final_test_access": "prohibited",
+    "raw_swat_rows": "not_loaded",
+    "candidate_edges_must_obey_C_i": true,
+    "runtime_view": "canonical_rule_view"
+  },
+  "phase_gate": {
+    "name": "Phase Gate B",
+    "recommendation_on_pass": "proceed_to_phase_gate_b_review",
+    "do_not_start_task_012_without_review": true
+  }
+}

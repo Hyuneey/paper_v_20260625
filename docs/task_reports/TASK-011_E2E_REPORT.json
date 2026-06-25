@@ -1,0 +1,125 @@
+{
+  "artifact_graph": {
+    "calibration_split": "641a60263de9b914afcb4652a0745798b0a5cbbca679ffe8ded68b229188af1d",
+    "candidate_universe": "4033e9f3ac6af15f215651a516ec8d670ff90f0bacaaa5f822f4d2d1707f1a01",
+    "data_view": "c9886f5e6fd2f5ff1cb6a8f4323eb88f6e31b121d54839e508865e496dcd9a2f",
+    "dataset_manifest": "8e768e60aae95a4e1c4fda49868b146b4eebd4cec9e7f71de18d75cde1cae54d",
+    "gdn_candidate_edges": "6ae8200c5546765cbec4ba2047643f746e845304ff4bef13de22f4366c08ca19",
+    "gdn_checkpoint": "c15d148fc54cd2eff47f8fcf08b3016b2cc67de533e37327c971ba147a3fd6fd",
+    "train_split": "fea1886b5b3d800b2ed42e917abf26d7cc2485308741ccfcdb17d5417af3dfad"
+  },
+  "artifact_type": "task011_e2e_template_feasibility_report",
+  "attempted_pairs": [
+    {
+      "candidate_edge_id": "474dacf014a6182a4bd07663e059769ba37cd876d01e9ae9c0c439b47e0f1577",
+      "evidence_pack_id": "3903783e8656a35bc0de64d3a0e5d31c106ed5cba59ac90918c4a656f6410ba7",
+      "reason": "passed_verifier",
+      "relation_profile_id": "4ef43af03b0b4152130171da20a8957a8698e37ca59fc8a3380b603db937f2bc",
+      "rule_id": "rule.template.71cb8313b90c7181",
+      "runtime_firing_count": 1,
+      "source": "A1",
+      "status": "verified",
+      "target": "S1",
+      "verification_report_id": "8fc3d05a82988dbe5617331149c73983baaa1a71af4a179a6b34ff5088a4c2d5"
+    },
+    {
+      "candidate_edge_id": "f21f2bb580f9f95ed2e0d66bc70f3956074e5cd830f7528a1e9f68662e086330",
+      "evidence_pack_id": null,
+      "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+      "relation_profile_id": "64d62d9c0c707978e38a7c4d9eb9f3205b17b6fc35b4fa74b8abfcc410ad74af",
+      "rule_id": null,
+      "runtime_firing_count": 0,
+      "source": "A2",
+      "status": "unsupported",
+      "target": "S2",
+      "verification_report_id": null
+    }
+  ],
+  "checks": {
+    "at_least_one_verified_rule": true,
+    "candidate_edges_obey_C_i": true,
+    "final_test_sealed": true,
+    "no_llm_call": true,
+    "no_raw_restricted_data_tracked": true,
+    "pipeline_ran_without_hard_coded_pair_selection": true,
+    "runtime_alarm_generated": true
+  },
+  "detailed_case_study": {
+    "alarm_end_seconds": 2.0,
+    "alarm_start_seconds": 1.0,
+    "explanation": {
+      "alarm_end": 2.0,
+      "alarm_start": 1.0,
+      "calibration_basis": {
+        "max_response_delay_seconds": "7dafed0a18555950f8a74cd061410d858d8032c0f1c55a10a5f850cae8223fcb",
+        "min_response_magnitude": "09ac150a42e6e6bc7bba5d7fdf4e98d89e99bd339b913f0bda28a69bc3d24d7b"
+      },
+      "candidate_provenance": [
+        "3903783e8656a35bc0de64d3a0e5d31c106ed5cba59ac90918c4a656f6410ba7",
+        "4033e9f3ac6af15f215651a516ec8d670ff90f0bacaaa5f822f4d2d1707f1a01",
+        "6ae8200c5546765cbec4ba2047643f746e845304ff4bef13de22f4366c08ca19"
+      ],
+      "expected_relation": "IF A1 changed from 0 to 1 AND S1 fails to increase by at least 1 within 1 seconds THEN anomaly",
+      "observed_violation": "S1 increased by 0, below required 1 within 1 seconds",
+      "rule_id": "rule.template.71cb8313b90c7181",
+      "sampling_period_seconds": 1.0,
+      "source_view": "canonical_rule_view",
+      "variables": [
+        "A1",
+        "S1"
+      ]
+    },
+    "observed_delta": 0.0,
+    "required_delay_seconds": 1.0,
+    "required_magnitude": 1.0,
+    "rule_id": "rule.template.71cb8313b90c7181"
+  },
+  "limitations": [
+    "Synthetic canonical-view fixture was used; raw SWaT rows were not loaded.",
+    "This validates deterministic wiring and provenance, not detection performance.",
+    "Phase Gate B still requires researcher review before TASK-012."
+  ],
+  "normal_summary": {
+    "max": 0.0,
+    "mean": 0.0,
+    "min": 0.0,
+    "rule_count": 1
+  },
+  "passed": true,
+  "phase_gate_recommendation": "proceed_to_phase_gate_b_review",
+  "report_questions": {
+    "candidate_edges_obey_C_i": "True",
+    "deterministic_pipeline_runs_without_library_level_hard_coded_pairs": "True",
+    "final_test_still_sealed": "True",
+    "llm_integration_scientifically_justified_next": "not yet; review Phase Gate B first",
+    "normal_and_validation_behavior_differs": "True",
+    "runtime_explanations_from_fired_dsl_rules": "True",
+    "temporal_parameters_from_canonical_calibration": "true; calibration split and canonical_rule_view artifacts are referenced",
+    "unsupported_or_rejected_candidates": "A2->S2:INSUFFICIENT_NORMAL_SUPPORT"
+  },
+  "required_statements": [
+    "This is a deterministic synthetic feasibility smoke result.",
+    "This is not a final SWaT performance claim.",
+    "No final test data was accessed.",
+    "No LLM was used."
+  ],
+  "restricted_data_audit": {
+    "external_service_called": false,
+    "final_test_accessed": false,
+    "llm_called": false,
+    "raw_swat_rows_loaded": false,
+    "tracked_report_contains_raw_sequence": false
+  },
+  "runtime_summary": {
+    "aggregate_rule_score": 1.0,
+    "alarm_interval_count": 1,
+    "firing_count": 1
+  },
+  "schema_version": "1.0",
+  "validation_summary": {
+    "max": 0.5,
+    "mean": 0.5,
+    "min": 0.5,
+    "rule_count": 1
+  }
+}

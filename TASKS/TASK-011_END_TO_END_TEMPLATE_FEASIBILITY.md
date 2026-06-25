@@ -1,7 +1,7 @@
 ---
 id: TASK-011
 title: Run validation-only deterministic end-to-end feasibility gate
-status: blocked
+status: complete
 depends_on: [TASK-010]
 phase_gate: Phase Gate B
 suggested_branch: task-011-e2e-template-kill-test
@@ -87,3 +87,12 @@ dataset/view/split manifests
 ## 9. Stop condition
 
 Do not start TASK-012 until Phase Gate B is reviewed and approved.
+
+## 10. Completion notes
+
+- Implemented deterministic end-to-end template feasibility workflow under `src/paperworks/e2e/`.
+- Added tracked workflow config at `configs/e2e/task011_template_feasibility.json`.
+- Generated machine-readable smoke report at `docs/task_reports/TASK-011_E2E_REPORT.json`.
+- Added human-readable workflow notes in `docs/END_TO_END_TEMPLATE_FEASIBILITY.md`.
+- Smoke path covers candidate universe, masked GDN edge extraction, profiling/calibration, template rule build, deterministic verification, verified library loading, and runtime alarm/explanation.
+- Phase Gate B recommendation is `proceed_to_phase_gate_b_review`; TASK-012 must not start until reviewed and approved.
