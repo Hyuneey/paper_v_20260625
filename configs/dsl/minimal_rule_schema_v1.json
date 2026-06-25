@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paperworks.minimal_rule_schema.v1",
+  "title": "Paperworks Minimal Rule DSL v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rule_id",
+    "schema_version",
+    "rule_family",
+    "source",
+    "target",
+    "relation_type",
+    "trigger_predicate",
+    "response_predicate",
+    "calibration_references",
+    "candidate_pair_artifact_id",
+    "metadata_artifact_id",
+    "planner_provenance",
+    "description_template"
+  ],
+  "properties": {
+    "rule_id": { "type": "string" },
+    "schema_version": { "const": "1.0" },
+    "rule_family": { "const": "changed_to_increase_within_response_missing" },
+    "source": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$" },
+    "target": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$" },
+    "relation_type": { "const": "binary_actuator_to_continuous_sensor" },
+    "trigger_predicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["predicate", "variable", "from_state", "to_state"],
+      "properties": {
+        "predicate": { "const": "changed_to" },
+        "variable": { "type": "string" },
+        "from_state": { "type": "number" },
+        "to_state": { "type": "number" }
+      }
+    },
+    "response_predicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["predicate", "expected_response"],
+      "properties": {
+        "predicate": { "const": "response_missing" },
+        "expected_response": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["predicate", "variable", "min_magnitude", "max_delay_seconds"],
+          "properties": {
+            "predicate": { "const": "increase_within" },
+            "variable": { "type": "string" },
+            "min_magnitude": { "$ref": "#/$defs/calibrationValueRef" },
+            "max_delay_seconds": { "$ref": "#/$defs/calibrationValueRef" }
+          }
+        }
+      }
+    },
+    "calibration_references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_response_delay_seconds", "min_response_magnitude"],
+      "properties": {
+        "max_response_delay_seconds": { "$ref": "#/$defs/calibrationValueRef" },
+        "min_response_magnitude": { "$ref": "#/$defs/calibrationValueRef" }
+      }
+    },
+    "candidate_pair_artifact_id": { "$ref": "#/$defs/sha256" },
+    "metadata_artifact_id": { "$ref": "#/$defs/sha256" },
+    "planner_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planner_type", "planner_version", "source_artifact_ids"],
+      "properties": {
+        "planner_type": { "enum": ["deterministic_template", "llm_json_dsl"] },
+        "planner_version": { "type": "string" },
+        "source_artifact_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sha256" }
+        }
+      }
+    },
+    "description_template": { "type": "string" }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "calibrationValueRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parameter_name", "calibration_record_id", "field_name", "resolved_value", "unit"],
+      "properties": {
+        "parameter_name": { "type": "string" },
+        "calibration_record_id": { "$ref": "#/$defs/sha256" },
+        "field_name": { "const": "value" },
+        "resolved_value": { "type": "number" },
+        "unit": { "type": "string" }
+      }
+    }
+  }
+}

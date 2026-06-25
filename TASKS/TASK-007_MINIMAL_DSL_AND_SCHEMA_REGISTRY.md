@@ -1,7 +1,7 @@
 ---
 id: TASK-007
 title: Implement safe minimal JSON/AST DSL and schema registry
-status: blocked
+status: complete
 depends_on: [TASK-006]
 phase_gate: Milestone 4
 suggested_branch: task-007-minimal-dsl
@@ -135,3 +135,12 @@ class RuleEvaluator(Protocol):
 ## 12. Stop conditions
 
 Stop if DSL semantics or calibration-reference rules require an unapproved choice.
+
+## 13. Completion notes
+
+- Implemented the minimal JSON/AST DSL under `src/paperworks/dsl/`.
+- Added a versioned JSON schema at `configs/dsl/minimal_rule_schema_v1.json`.
+- Added a schema registry for family compatibility and calibration-reference validation.
+- Added a deterministic evaluator for the initial `response_missing` rule family.
+- Added AST-derived human-readable formatting.
+- Covered round-trip, schema, safety, type, numeric-mutation, and synthetic evaluator behavior in tests.
