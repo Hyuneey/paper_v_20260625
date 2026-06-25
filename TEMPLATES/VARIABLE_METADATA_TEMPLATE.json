@@ -11,6 +11,7 @@
       "stage": "demo",
       "unit": null,
       "allowed_states": null,
+      "description": "Synthetic continuous sensor used in metadata schema tests.",
       "source_method": "manual_review",
       "source_reference": "synthetic fixture",
       "confidence": 1.0,
@@ -26,6 +27,7 @@
       "stage": "demo",
       "unit": null,
       "allowed_states": ["closed", "open"],
+      "description": "Synthetic binary actuator used in metadata schema tests.",
       "source_method": "manual_review",
       "source_reference": "synthetic fixture",
       "confidence": 1.0,
@@ -34,4 +36,3 @@
     }
   ]
 }
-

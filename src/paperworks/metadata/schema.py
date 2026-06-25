@@ -65,6 +65,7 @@ class VariableMetadata:
     stage: str | None = None
     unit: str | None = None
     allowed_states: tuple[str, ...] | None = None
+    description: str | None = None
     source_method: MetadataSourceMethod = MetadataSourceMethod.UNKNOWN
     source_reference: str | None = None
     confidence: float | None = None
@@ -91,6 +92,8 @@ class VariableMetadata:
                 )
         if self.allowed_states is not None and len(self.allowed_states) == 0:
             raise MetadataValidationError("allowed_states must be omitted or non-empty")
+        if self.description is not None and not self.description.strip():
+            raise MetadataValidationError("description must be omitted or non-empty")
         if self.source_method == MetadataSourceMethod.MANUAL_REVIEW and self.review_status != ReviewStatus.REVIEWED:
             raise MetadataValidationError("manual_review metadata must have review_status=reviewed")
 
@@ -116,6 +119,7 @@ class VariableMetadata:
             stage=data.get("stage"),
             unit=data.get("unit"),
             allowed_states=tuple(str(item) for item in allowed_states) if allowed_states is not None else None,
+            description=data.get("description"),
             source_method=MetadataSourceMethod(str(data.get("source_method", MetadataSourceMethod.UNKNOWN.value))),
             source_reference=data.get("source_reference"),
             confidence=float(data["confidence"]) if data.get("confidence") is not None else None,
@@ -305,4 +309,3 @@ def suggest_metadata_from_name(
         confidence=0.6 if role != VariableRole.UNKNOWN else 0.2,
         review_status=ReviewStatus.UNREVIEWED,
     )
-

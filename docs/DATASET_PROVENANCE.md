@@ -15,8 +15,21 @@ Claimed source:
 - Source kind: Kaggle mirror
 - Source reference: `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`
 - Public page title observed: `SWaT Dataset: Secure Water Treatment System | Kaggle`
+- Notebook/version sync note: researcher reports the dataset will not continually sync with new notebook versions
 - Terms-of-use status: unverified
 - Dataset edition/version: unverified
+
+## Researcher-supplied Kaggle notes
+
+The researcher supplied the following non-row dataset description for provenance and metadata drafting:
+
+- The dataset contains sensor and actuator measurements collected from the Secure Water Treatment (SWaT) testbed.
+- It includes normal operational data and controlled cyber-attack scenarios.
+- Measurements are timestamped and labeled with a `Normal/Attack` field.
+- Collection was continuous from the SWaT testbed under normal operation and attack scenarios, with real-time logs for flow rates, tank levels, pump status, valve positions, analyzer measurements, and other process parameters.
+- The supplied source description states that the data was sourced directly from the Secure Water Treatment industrial testbed operated by the contributing organization.
+
+This information is sufficient for the current metadata draft and smoke-test data contract. It is not sufficient to mark the local files as official iTrust SWaT files, approve final evaluation claims, or mark terms of use as verified.
 
 | File | Bytes | Rows excluding header | SHA-256 |
 |---|---:|---:|---|

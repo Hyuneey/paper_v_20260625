@@ -82,6 +82,7 @@ def synthetic_sensor(name: str = "SENSOR_A") -> VariableMetadata:
         physical_type=PhysicalType.FLOW,
         source_method=MetadataSourceMethod.MANUAL_REVIEW,
         source_reference="synthetic fixture",
+        description="Synthetic flow sensor fixture.",
         confidence=1.0,
         review_status=ReviewStatus.REVIEWED,
     )
@@ -98,6 +99,7 @@ class MetadataSchemaTests(unittest.TestCase):
                     value_type=ValueType.BINARY,
                     physical_type=PhysicalType.VALVE,
                     allowed_states=("closed", "open"),
+                    description="Synthetic valve actuator fixture.",
                     source_method=MetadataSourceMethod.NAME_PATTERN,
                     source_reference="synthetic fixture",
                     confidence=0.6,
@@ -109,6 +111,7 @@ class MetadataSchemaTests(unittest.TestCase):
         self.assertEqual(restored.get("ACTUATOR_A").source_method, MetadataSourceMethod.NAME_PATTERN)
         self.assertEqual(restored.get("ACTUATOR_A").review_status, ReviewStatus.UNREVIEWED)
         self.assertEqual(restored.get("ACTUATOR_A").allowed_states, ("closed", "open"))
+        self.assertEqual(restored.get("ACTUATOR_A").description, "Synthetic valve actuator fixture.")
 
     def test_duplicate_name_rejection(self) -> None:
         with self.assertRaises(MetadataValidationError):
@@ -128,6 +131,12 @@ class MetadataSchemaTests(unittest.TestCase):
                 value_type=ValueType.CONTINUOUS,
                 physical_type=PhysicalType.VALVE,
             )
+
+    def test_blank_description_rejection(self) -> None:
+        payload = synthetic_sensor().to_dict()
+        payload["description"] = " "
+        with self.assertRaises(MetadataValidationError):
+            VariableMetadata.from_dict(payload)
 
     def test_unknown_value_handling_and_coverage_report(self) -> None:
         registry = MetadataRegistry(
@@ -171,6 +180,7 @@ class MetadataSchemaTests(unittest.TestCase):
         self.assertEqual(report.review_status_counts["unreviewed"], 51)
         self.assertEqual(report.unknown_field_counts["role"], 0)
         self.assertEqual(report.unknown_field_counts["value_type"], 0)
+        self.assertEqual(registry.get("FIT101").description, "Measures the flow rate of raw water entering the system.")
 
     def test_loader_accepts_project_local_metadata_format(self) -> None:
         source = Path("TEMPLATES/VARIABLE_METADATA_TEMPLATE.json")
@@ -184,4 +194,3 @@ class MetadataSchemaTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

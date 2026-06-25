@@ -26,6 +26,7 @@ class VariableMetadata:
     stage: str | None
     unit: str | None
     allowed_states: tuple[str, ...] | None
+    description: str | None
     source_method: MetadataSourceMethod
     source_reference: str | None
     confidence: float | None
@@ -49,6 +50,11 @@ The source is recorded as the researcher-supplied Kaggle page:
 
 `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`
 
+The first documented column subset now includes researcher-supplied descriptions from the Kaggle page notes:
+
+- `FIT101`, `LIT101`, `MV101`, `P101`, `P102`
+- `AIT201`, `AIT202`, `AIT203`, `FIT201`
+
 The metadata remains:
 
 - `dataset_status: local_unverified_smoke_test`
@@ -71,6 +77,7 @@ Implemented validation includes:
 - invalid actuator/continuous combinations,
 - invalid sensor pump/valve combinations,
 - invalid actuator flow/level/pressure/quality combinations,
+- blank description rejection,
 - confidence range checking,
 - manual-review status consistency,
 - feature coverage mismatch detection.
@@ -95,4 +102,3 @@ TASK-002 tests verify that the SWaT metadata draft covers all 51 current feature
 - No causal claims.
 - No attack-label-derived metadata inference.
 - No hard-coded rule conclusions.
-
