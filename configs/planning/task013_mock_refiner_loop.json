@@ -1,7 +1,7 @@
 {
   "config_version": "1.0",
-  "planner_name": "task012_mock_llm_planner",
-  "scope_note": "Mock-only provider-neutral planner configuration. Real provider and network calls are not approved.",
+  "planner_name": "task013_mock_refiner_loop",
+  "scope_note": "Mock-only verifier-feedback refinement loop. Real provider and network calls are not approved.",
   "provider": {
     "name": "mock",
     "type": "mock",
@@ -21,7 +21,14 @@
     "store_hashes": true,
     "store_redacted_summaries": true
   },
+  "refinement_policy": {
+    "max_iterations": 2,
+    "provider_failure_limit": 1,
+    "stop_on_repeated_rule": true,
+    "stop_on_no_improvement": true
+  },
   "prompt_template_id": "mock_rule_planner_v1",
+  "allowed_feedback_source": "deterministic_verifier_feedback_codes",
   "retention": {
     "store_full_prompt": false,
     "store_full_raw_response": false,
@@ -29,12 +36,8 @@
     "store_redacted_summaries": true,
     "private_debug_dir": "artifacts/private_llm_debug/"
   },
-  "allowed_predicates": [
-    "changed_to",
-    "increase_within",
-    "response_missing"
-  ],
   "network_allowed": false,
   "runtime_llm": false,
-  "final_test_access": "prohibited"
+  "final_test_access": "prohibited",
+  "llm_self_approval": false
 }

@@ -28,6 +28,9 @@ PROMPT_TEMPLATE_ID = "mock_rule_planner_v1"
 ALLOWED_PREDICATES = ("changed_to", "increase_within", "response_missing")
 FORBIDDEN_PROMPT_KEYS = ("raw", "row", "rows", "window", "windows", "series", "sequence", "test_label", "test_interval")
 FORBIDDEN_PROMPT_TEXT = ("normal.csv", "attack.csv", "merged.csv", "timestamp,", "normal/attack")
+TIMESTAMP_LIKE_RAW_RE = re.compile(
+    r"\b\d{4}[-/]\d{1,2}[-/]\d{1,2}[ tT]\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?\s*,"
+)
 
 
 class LLMPlanningError(ValueError):
@@ -71,6 +74,32 @@ class ProviderConfig:
 
 
 @dataclass(frozen=True)
+class PlannerConfig:
+    planner_name: str = "mock_rule_planner"
+    planner_version: str = "1.0"
+    store_full_prompt: bool = False
+    store_full_raw_response: bool = False
+    store_hashes: bool = True
+    store_redacted_summaries: bool = True
+    config_version: str = "1.0"
+
+    def __post_init__(self) -> None:
+        if self.store_full_prompt:
+            raise LLMPlanningError("full prompt retention is prohibited by default")
+        if self.store_full_raw_response:
+            raise LLMPlanningError("full raw response retention is prohibited by default")
+        if not self.store_hashes or not self.store_redacted_summaries:
+            raise LLMPlanningError("TASK-012/TASK-013 require hashes and redacted summaries")
+
+    @property
+    def config_hash(self) -> str:
+        return stable_hash(self.to_dict())
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
 class PromptTemplate:
     template_id: str
     template_text: str
@@ -84,6 +113,7 @@ class PromptTemplate:
 @dataclass(frozen=True)
 class RulePlanningRequest:
     provider_config: ProviderConfig
+    planner_config_hash: str
     prompt_template_id: str
     prompt_template_hash: str
     prompt_text: str
@@ -101,6 +131,7 @@ class RulePlanningRequest:
         return stable_hash(
             {
                 "provider_config": self.provider_config.to_dict(),
+                "planner_config_hash": self.planner_config_hash,
                 "prompt_template_hash": self.prompt_template_hash,
                 "prompt_text": self.prompt_text,
                 "evidence_hash": self.evidence_hash,
@@ -115,6 +146,8 @@ class RulePlanningRequest:
     def to_redacted_dict(self) -> dict[str, Any]:
         return {
             "provider_config": self.provider_config.to_dict(),
+            "provider_config_hash": self.provider_config.config_hash,
+            "planner_config_hash": self.planner_config_hash,
             "prompt_template_id": self.prompt_template_id,
             "prompt_template_hash": self.prompt_template_hash,
             "redacted_prompt_summary": dict(self.redacted_prompt_summary),
@@ -177,6 +210,8 @@ class LLMPlannerResult:
     calibration_artifact_ids: tuple[str, ...]
     candidate_artifact_ids: tuple[str, ...]
     verifier_feedback_ids: tuple[str, ...]
+    provider_config_hash: str
+    planner_config_hash: str
     config_hash: str
     code_commit: str | None
     created_at: str
@@ -225,6 +260,8 @@ class LLMPlannerResult:
             "calibration_artifact_ids": list(self.calibration_artifact_ids),
             "candidate_artifact_ids": list(self.candidate_artifact_ids),
             "verifier_feedback_ids": list(self.verifier_feedback_ids),
+            "provider_config_hash": self.provider_config_hash,
+            "planner_config_hash": self.planner_config_hash,
             "config_hash": self.config_hash,
             "code_commit": self.code_commit,
             "created_at": self.created_at,
@@ -237,20 +274,32 @@ class LLMPlannerResult:
 class MockLLMProvider:
     """Offline mock provider used by TASK-012 tests and CI."""
 
-    def __init__(self, *, response_text: str | None = None, raise_error: bool = False) -> None:
+    def __init__(
+        self,
+        *,
+        response_text: str | None = None,
+        response_texts: Sequence[str] = (),
+        raise_error: bool = False,
+    ) -> None:
         self._response_text = response_text
+        self._response_texts = tuple(response_texts)
         self._raise_error = raise_error
         self.calls = 0
 
     def generate_rule(self, request: RulePlanningRequest) -> RulePlanningResponse:
+        call_index = self.calls
         self.calls += 1
         if self._raise_error:
             raise LLMPlanningError("mock provider error")
+        if self._response_texts:
+            response_text = self._response_texts[min(call_index, len(self._response_texts) - 1)]
+        else:
+            response_text = self._response_text or _default_mock_response(request)
         return RulePlanningResponse(
             provider_name=request.provider_config.provider_name,
             model_or_deployment=request.provider_config.model_or_deployment,
             api_version=request.provider_config.api_version,
-            raw_response_text=self._response_text or _default_mock_response(request),
+            raw_response_text=response_text,
             response_metadata={"mock": True, "network_used": False},
         )
 
@@ -270,11 +319,13 @@ def build_rule_planning_request(
     evidence: RelationEvidencePack,
     registry: RuleSchemaRegistry,
     provider_config: ProviderConfig | None = None,
+    planner_config: PlannerConfig | None = None,
     prompt_template: PromptTemplate | None = None,
     verifier_feedback_ids: Sequence[str] = (),
     prompt_extras: Mapping[str, Any] | None = None,
 ) -> RulePlanningRequest:
     config = provider_config or ProviderConfig()
+    planning_config = planner_config or PlannerConfig()
     template = prompt_template or default_prompt_template()
     source_meta = registry.metadata_for(evidence.source)
     target_meta = registry.metadata_for(evidence.target)
@@ -301,6 +352,11 @@ def build_rule_planning_request(
     audit_prompt_payload({"prompt_text": prompt_text})
     return RulePlanningRequest(
         provider_config=config,
+        planner_config_hash=_planner_config_hash(
+            planner_config=planning_config,
+            prompt_template=template,
+            allowed_predicates=ALLOWED_PREDICATES,
+        ),
         prompt_template_id=template.template_id,
         prompt_template_hash=template.template_hash,
         prompt_text=prompt_text,
@@ -321,6 +377,7 @@ def plan_rule_with_provider(
     registry: RuleSchemaRegistry,
     provider: LLMProvider,
     provider_config: ProviderConfig | None = None,
+    planner_config: PlannerConfig | None = None,
     prompt_template: PromptTemplate | None = None,
     verifier_feedback_ids: Sequence[str] = (),
     prompt_extras: Mapping[str, Any] | None = None,
@@ -331,6 +388,7 @@ def plan_rule_with_provider(
         evidence=evidence,
         registry=registry,
         provider_config=provider_config,
+        planner_config=planner_config,
         prompt_template=prompt_template,
         verifier_feedback_ids=verifier_feedback_ids,
         prompt_extras=prompt_extras,
@@ -434,7 +492,14 @@ def _result(
         calibration_artifact_ids=request.calibration_artifact_ids,
         candidate_artifact_ids=request.candidate_artifact_ids,
         verifier_feedback_ids=request.verifier_feedback_ids,
-        config_hash=request.provider_config.config_hash,
+        provider_config_hash=request.provider_config.config_hash,
+        planner_config_hash=request.planner_config_hash,
+        config_hash=stable_hash(
+            {
+                "provider_config_hash": request.provider_config.config_hash,
+                "planner_config_hash": request.planner_config_hash,
+            }
+        ),
         code_commit=code_commit,
         created_at=created_at,
         network_allowed=request.provider_config.allow_network,
@@ -445,6 +510,23 @@ def _result(
 
 def _render_prompt(template: PromptTemplate, payload: Mapping[str, Any]) -> str:
     return template.template_text + "\n" + json.dumps(payload, sort_keys=True, ensure_ascii=True)
+
+
+def _planner_config_hash(
+    *,
+    planner_config: PlannerConfig,
+    prompt_template: PromptTemplate,
+    allowed_predicates: Sequence[str],
+) -> str:
+    return stable_hash(
+        {
+            "planner_config": planner_config.to_dict(),
+            "prompt_template_id": prompt_template.template_id,
+            "prompt_template_hash": prompt_template.template_hash,
+            "allowed_predicates": list(allowed_predicates),
+            "dsl_schema_version": DSL_SCHEMA_VERSION,
+        }
+    )
 
 
 def _default_mock_response(request: RulePlanningRequest) -> str:
@@ -538,6 +620,8 @@ def _scan_payload(value: Any, path: str, violations: list[str]) -> None:
     if isinstance(value, str):
         lowered = value.lower()
         if any(token in lowered for token in FORBIDDEN_PROMPT_TEXT):
+            violations.append(path)
+        if TIMESTAMP_LIKE_RAW_RE.search(value):
             violations.append(path)
         if re.search(r"\[\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?", value):
             violations.append(path)

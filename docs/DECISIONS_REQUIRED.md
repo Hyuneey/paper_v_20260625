@@ -361,6 +361,40 @@
   - `api_version: none`
 - Consequences for claims/evaluation: TASK-012 planner artifacts remain auditable before real provider approval.
 
+### DEC-019: TASK-013 verifier-feedback refiner scope
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-013
+- Final decision: TASK-013 may start under a mock-only verifier-feedback refinement scope after TASK-012 approval.
+- Decision date: 2026-06-25
+- Approved scope:
+  - implement a bounded verifier-feedback refiner loop,
+  - use `MockLLMProvider` only,
+  - consume structured deterministic verifier feedback codes,
+  - re-plan candidate DSL JSON,
+  - re-run JSON DSL parsing and `RuleSchemaRegistry` validation,
+  - preserve deterministic verifier authority,
+  - record iteration provenance,
+  - stop after configured maximum iterations,
+  - test safe failure modes.
+- Not approved:
+  - real provider calls,
+  - network execution,
+  - API key use,
+  - raw SWaT rows/windows/sequences in prompts,
+  - final test access,
+  - runtime LLM,
+  - LLM self-approval,
+  - replacing the deterministic verifier,
+  - benchmark or SWaT performance claims.
+- Required implementation confirmations:
+  - `planner_config_hash` is recorded separately from `provider_config_hash`.
+  - Redaction tests reject `test_label`, `test_interval`, `normal.csv`, `attack.csv`, `merged.csv`, and timestamp-like raw payloads.
+  - Refinement artifacts include explicit `max_iterations` and `stop_reason` fields.
+  - Iteration provenance records `iteration_index`, `previous_rule_hash`, `verifier_feedback_ids`, `feedback_codes`, `revised_rule_hash`, `parse_status`, `schema_validation_status`, and `stop_reason`.
+- Consequences for claims/evaluation: TASK-013 validates bounded feedback-loop mechanics only. It does not validate LLM value, SWaT performance, benchmark quality, or explanation quality.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade

@@ -21,8 +21,11 @@ Not approved:
 - API key use,
 - raw SWaT transfer,
 - final test access,
-- runtime LLM execution,
-- TASK-013 refiner loop.
+- runtime LLM execution.
+
+TASK-013 is separately approved for a mock-only verifier-feedback refinement
+loop. That approval does not permit real providers, network calls, runtime LLM
+execution, final test access, or benchmark claims.
 
 ## Default Provider
 
@@ -45,6 +48,8 @@ api_version: none
 
 Tracked planner results store:
 
+- provider config hash,
+- planner config hash,
 - prompt template ID/hash,
 - evidence hash,
 - request hash,

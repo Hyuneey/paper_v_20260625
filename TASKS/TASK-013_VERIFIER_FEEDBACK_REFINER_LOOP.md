@@ -1,7 +1,7 @@
 ---
 id: TASK-013
 title: Implement bounded verifier-feedback LLM rule refinement loop
-status: blocked
+status: complete
 depends_on: [TASK-012]
 phase_gate: Phase Gate C
 suggested_branch: task-013-agentic-refiner-loop
@@ -137,3 +137,23 @@ LLM + verifier feedback
 ```
 
 Do not claim LLM value without evidence. Report cost, failure rate, verification pass rate, rule complexity, and explanation quality where available.
+
+## 11. Completion notes
+
+- Implemented bounded mock-only verifier-feedback loop under `src/paperworks/planning/refiner.py`.
+- Added `RefinementPolicy`, `RefinementIteration`, and `RefinementSessionResult` artifacts.
+- Added separate `planner_config_hash` and `provider_config_hash` fields to planner/refiner artifacts.
+- Added explicit `max_iterations` and `stop_reason` fields to refinement sessions.
+- Recorded iteration provenance:
+  - `iteration_index`,
+  - `previous_rule_hash`,
+  - `verifier_feedback_ids`,
+  - `feedback_codes`,
+  - `revised_rule_hash`,
+  - `parse_status`,
+  - `schema_validation_status`,
+  - `verification_status`,
+  - `stop_reason`.
+- Added safe stop handling for verifier pass, non-recoverable feedback, provider failure, schema validation failure, repeated rule, no improvement, and max iterations.
+- Added tests for successful refinement, safe failure modes, deterministic history, redaction, and test-role rejection.
+- Real provider calls, network calls, API keys, raw data transfer, runtime LLM, LLM self-approval, final test access, and performance claims remain prohibited.
