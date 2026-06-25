@@ -430,6 +430,41 @@
 - Constraint while DEC-007 remains unresolved: TASK-014 must produce only evaluation harness code, documentation, configs, and synthetic tests.
 - Consequences for claims/evaluation: TASK-014 can prepare reproducible evaluation machinery but cannot generate final SWaT claims until official provenance, terms, dataset edition/version, split protocol, sealed-test access policy, metric list, and Git-trackable artifact policy are resolved.
 
+### DEC-021: TASK-015 official SWaT provenance resolution package scope
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-015
+- Final decision: DEC-007 precheck package is approved, but DEC-007 remains unresolved. TASK-015 may prepare the official SWaT provenance resolution package using the official iTrust request route as the preferred final-evaluation source.
+- Decision date: 2026-06-25
+- Approved TASK-015 scope:
+  - prepare official iTrust request/approval record checklist,
+  - record terms acknowledgement status,
+  - define local-only official SWaT file manifest schema,
+  - implement or document SHA-256 hashing procedure for approved local files,
+  - record exact dataset edition/version/file names,
+  - freeze final split protocol before opening sealed test,
+  - freeze final metric protocol,
+  - document allowed Git-tracked aggregate artifacts,
+  - prepare sealed-test one-way execution log template.
+- Not approved:
+  - opening sealed final test,
+  - running final SWaT benchmark,
+  - using Kaggle/local CSV files for final claims,
+  - changing thresholds, K, prompts, rules, or fusion weights after test access,
+  - reporting point-adjusted metrics as primary,
+  - committing raw rows, windows, raw sequence plots, or downloadable derived samples.
+- DEC-007 resolution criteria:
+  1. official source or explicitly approved alternative source is selected,
+  2. terms are acknowledged,
+  3. exact edition/version/file list is recorded,
+  4. approved files are hashed locally,
+  5. split protocol is frozen,
+  6. metric protocol is frozen,
+  7. sealed-test access policy is approved,
+  8. Git artifact policy is approved.
+- Consequences for claims/evaluation: Current local/Kaggle CSV files remain `local_unverified_smoke_test` and cannot be used for final SWaT performance claims.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
@@ -451,7 +486,7 @@
   - Public iTrust terms require credit to iTrust/SUTD, publication notice to iTrust, and no dataset sharing.
   - Public iTrust summary lists SWaT `A1 & A2 Dec 2015` among available datasets.
   - See `docs/DEC007_SWAT_PROVENANCE_PRECHECK.md`.
-- Recommendation from implementation agent: Keep current files smoke-test-only until an official iTrust request/approval record or researcher-approved Kaggle mirror policy is recorded with terms acknowledgement, exact file list, hashes, edition/version, split protocol, sealed-test access policy, and allowed tracked artifacts.
+- Recommendation from implementation agent: Use the official iTrust request route as the preferred final-evaluation source. Keep current local/Kaggle files smoke-test-only until an official request/approval record is recorded with terms acknowledgement, exact file list, hashes, edition/version, split protocol, sealed-test access policy, and allowed tracked artifacts.
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:

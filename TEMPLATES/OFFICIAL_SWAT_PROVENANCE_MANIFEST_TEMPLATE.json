@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "official_swat_provenance_manifest",
+  "dataset_name": "SWaT",
+  "source_route": "official_iTrust_request",
+  "request_record_reference": "pending_private_record_reference",
+  "approval_record_reference": "pending_private_record_reference",
+  "terms_acknowledged": false,
+  "terms_acknowledged_by": "pending",
+  "terms_acknowledged_date": "pending",
+  "terms_source_url": "https://www.sutd.edu.sg/itrust/itrust-labs/datasets/terms-of-usage/",
+  "dataset_edition": "pending",
+  "dataset_version": "pending",
+  "files": [
+    {
+      "logical_role": "official_train_normal",
+      "relative_path": "pending_relative_path_under_SWAT_DATA_ROOT",
+      "sha256": "pending_64_character_sha256",
+      "bytes": 0,
+      "rows_excluding_header": null,
+      "file_version_note": "pending_manual_confirmation"
+    },
+    {
+      "logical_role": "official_final_test",
+      "relative_path": "pending_relative_path_under_SWAT_DATA_ROOT",
+      "sha256": "pending_64_character_sha256",
+      "bytes": 0,
+      "rows_excluding_header": null,
+      "file_version_note": "pending_manual_confirmation"
+    }
+  ],
+  "split_protocol_frozen": false,
+  "metric_protocol_frozen": false,
+  "sealed_test_access_policy_approved": false,
+  "git_artifact_policy_approved": false,
+  "final_test_opened": false
+}

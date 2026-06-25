@@ -1,0 +1,72 @@
+{
+  "config_version": "1.0",
+  "config_name": "task015_dec007_resolution_freeze_template",
+  "status": "template_not_approved_for_execution",
+  "source_policy": {
+    "preferred_source": "official_iTrust_request",
+    "alternative_source_allowed": false,
+    "current_local_kaggle_csv_status": "local_unverified_smoke_test",
+    "current_local_kaggle_csv_final_claims_allowed": false
+  },
+  "resolution_requirements": {
+    "official_or_approved_source_selected": false,
+    "terms_acknowledged": false,
+    "exact_edition_version_file_list_recorded": false,
+    "approved_files_hashed_locally": false,
+    "split_protocol_frozen": false,
+    "metric_protocol_frozen": false,
+    "sealed_test_access_policy_approved": false,
+    "git_artifact_policy_approved": false
+  },
+  "split_protocol": {
+    "split_before_windowing": true,
+    "train_normal": "candidate_learning_only",
+    "calibration_normal": "relation_profiling_and_rule_parameter_calibration",
+    "validation": "verification_refinement_and_selection",
+    "test": "final_evaluation_only",
+    "purge_gap_samples": "pending",
+    "timestamp_or_index_ranges": "pending",
+    "post_test_threshold_tuning_allowed": false
+  },
+  "metric_protocol": {
+    "primary": [
+      "pa_free_precision",
+      "pa_free_recall",
+      "pa_free_f1",
+      "auroc",
+      "auprc"
+    ],
+    "supplementary": [
+      "point_adjusted_precision",
+      "point_adjusted_recall",
+      "point_adjusted_f1",
+      "range_iou"
+    ],
+    "point_adjusted_primary_allowed": false,
+    "point_adjusted_selection_allowed": false
+  },
+  "frozen_choices": {
+    "thresholds_frozen": false,
+    "candidate_k_frozen": false,
+    "prompt_config_frozen": false,
+    "rules_frozen": false,
+    "fusion_weights_frozen": true
+  },
+  "git_artifact_policy": {
+    "raw_rows_allowed": false,
+    "extracted_windows_allowed": false,
+    "raw_sequence_plots_allowed": false,
+    "downloadable_derived_samples_allowed": false,
+    "aggregate_reports_allowed": true,
+    "hashes_manifests_and_config_snapshots_allowed": true
+  },
+  "sealed_test_access": {
+    "approved": false,
+    "one_way_execution_log_template": "docs/templates/SEALED_TEST_EXECUTION_LOG_TEMPLATE.md",
+    "post_test_changes_primary_run_allowed": false
+  },
+  "runtime_llm": false,
+  "real_provider_calls": false,
+  "network_allowed": false,
+  "benchmark_claims_allowed_before_resolution": false
+}
