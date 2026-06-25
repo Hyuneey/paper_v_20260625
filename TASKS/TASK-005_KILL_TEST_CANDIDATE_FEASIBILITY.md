@@ -1,7 +1,7 @@
 ---
 id: TASK-005
 title: Run pre-registered candidate feasibility smoke test
-status: blocked
+status: complete
 depends_on: [TASK-004]
 phase_gate: Phase Gate A
 suggested_branch: task-005-candidate-kill-test
