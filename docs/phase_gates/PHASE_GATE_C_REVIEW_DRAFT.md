@@ -1,8 +1,9 @@
-# Phase Gate C Review Draft
+# Phase Gate C Review
 
 ## Status
 
-Prepared for researcher review after TASK-013 implementation.
+Approved by researcher on 2026-06-25 as a mock-only synthetic feasibility
+review.
 
 This document is a synthetic mock-only feasibility review draft. It is not a
 benchmark report and does not validate SWaT anomaly detection performance,
@@ -63,8 +64,17 @@ Explanation quality is not validated in TASK-013. Runtime explanations remain
 derived from deterministic rule AST fields and observed aggregate violation
 values.
 
-## Recommendation
+## Decision
 
-Review TASK-013 artifacts and tests before deciding whether to open TASK-014 or
-additional real-provider planning work. Do not use TASK-013 as a benchmark or
-SWaT performance claim.
+TASK-013 is approved. TASK-014 may start only under a restricted
+evaluation-harness scope.
+
+This approval does not allow:
+
+- sealed final test access,
+- final SWaT benchmark evaluation,
+- real provider calls,
+- benchmark claims,
+- thesis-result claims.
+
+DEC-007 must be resolved before any final SWaT evaluation run.

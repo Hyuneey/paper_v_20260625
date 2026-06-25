@@ -395,6 +395,41 @@
   - Iteration provenance records `iteration_index`, `previous_rule_hash`, `verifier_feedback_ids`, `feedback_codes`, `revised_rule_hash`, `parse_status`, `schema_validation_status`, and `stop_reason`.
 - Consequences for claims/evaluation: TASK-013 validates bounded feedback-loop mechanics only. It does not validate LLM value, SWaT performance, benchmark quality, or explanation quality.
 
+### DEC-020: Phase Gate C and TASK-014 evaluation-harness scope
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-014
+- Final decision: TASK-013 is approved and Phase Gate C is approved as a mock-only synthetic feasibility review. TASK-014 may start only under a restricted evaluation-harness scope.
+- Decision date: 2026-06-25
+- Phase Gate C confirms:
+  - template-only deterministic pipeline exists,
+  - one-shot mock planner exists,
+  - mock planner plus verifier-feedback loop exists,
+  - loop mechanics are bounded and reproducible,
+  - safety, redaction, and provenance checks are implemented.
+- Approved TASK-014 scope:
+  - implement evaluation report structure,
+  - implement metric interfaces,
+  - implement PA-free primary metric reporting,
+  - implement supplementary point-adjusted metric support only if clearly labeled,
+  - implement sealed-test access guards,
+  - implement config-freezing checks,
+  - implement provenance and manifest checks,
+  - implement synthetic or toy fixture tests for evaluation code,
+  - document final evaluation protocol requirements.
+- Not approved:
+  - opening sealed final test data,
+  - running final SWaT benchmark evaluation,
+  - using unverified local SWaT files for final claims,
+  - tuning thresholds or K using final test labels,
+  - reporting point-adjusted metrics as primary,
+  - detector fusion as a headline result,
+  - real LLM provider calls,
+  - benchmark or thesis-result claims.
+- Constraint while DEC-007 remains unresolved: TASK-014 must produce only evaluation harness code, documentation, configs, and synthetic tests.
+- Consequences for claims/evaluation: TASK-014 can prepare reproducible evaluation machinery but cannot generate final SWaT claims until official provenance, terms, dataset edition/version, split protocol, sealed-test access policy, metric list, and Git-trackable artifact policy are resolved.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade

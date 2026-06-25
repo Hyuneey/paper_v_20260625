@@ -1,0 +1,54 @@
+{
+  "config_version": "1.0",
+  "config_name": "task014_restricted_harness",
+  "scope_note": "Evaluation harness only. Final SWaT benchmark execution is not approved while DEC-007 remains unresolved.",
+  "dataset_policy": {
+    "dataset": "SWaT",
+    "dec007_resolved": false,
+    "allowed_inputs": [
+      "synthetic_fixture",
+      "toy_fixture",
+      "validation_or_non-test_aggregate_artifacts"
+    ],
+    "not_allowed": [
+      "sealed_final_test_access",
+      "unverified_local_swat_final_claims",
+      "test_label_threshold_tuning"
+    ]
+  },
+  "config_freezing": {
+    "thresholds_frozen": true,
+    "candidate_k_frozen": true,
+    "prompt_config_frozen": true,
+    "fusion_weights_frozen": true
+  },
+  "primary_metrics": [
+    "pa_free_precision",
+    "pa_free_recall",
+    "pa_free_f1",
+    "auroc",
+    "auprc"
+  ],
+  "supplementary_metrics": [
+    "point_adjusted_precision",
+    "point_adjusted_recall",
+    "point_adjusted_f1",
+    "range_iou"
+  ],
+  "point_adjustment": {
+    "enabled_as_primary": false,
+    "enabled_as_supplementary": true,
+    "selection_allowed": false,
+    "headline_claim_allowed": false
+  },
+  "final_test_access": {
+    "approved": false,
+    "requires_dec007_resolved": true,
+    "requires_frozen_config": true,
+    "one_way_execution_log_required": true
+  },
+  "runtime_llm": false,
+  "real_provider_calls": false,
+  "network_allowed": false,
+  "benchmark_claims_allowed": false
+}

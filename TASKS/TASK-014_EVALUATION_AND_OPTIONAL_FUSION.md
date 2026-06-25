@@ -1,23 +1,27 @@
 ---
 id: TASK-014
-title: Run sealed evaluation protocol and optional detector fusion
-status: blocked
+title: Implement restricted evaluation harness
+status: complete
 depends_on: [TASK-013]
 phase_gate: Milestone 6
 suggested_branch: task-014-evaluation
 ---
 
-# TASK-014: Sealed Evaluation and Optional Fusion
+# TASK-014: Restricted Evaluation Harness
 
 ## 1. Goal
 
-Implement and run a reproducible, pre-configured final evaluation for candidate discovery, rule quality, explanation output, and optional detector fusion while keeping the final test sealed until execution.
+Implement the restricted evaluation harness, report structures, metric
+interfaces, sealed-test access guards, config-freezing checks, provenance
+checks, and synthetic tests needed before any final evaluation run.
+
+Running a final SWaT benchmark is not approved while DEC-007 remains unresolved.
 
 ## 2. Preconditions
 
 - Phase Gate C approved.
 - Evaluation protocol and configs are frozen.
-- Final test access procedure is approved.
+- Final test access procedure is approved before any final run.
 - No pending decision changes candidate, rule, threshold, or verifier behavior.
 
 ## 3. Required comparisons
@@ -119,3 +123,39 @@ Reports must not include raw redistributable SWaT sequences.
 ## 10. Stop conditions
 
 Stop before opening final test if any evaluation choice remains unfrozen or if the run would require test-based tuning.
+
+## 11. Restricted TASK-014 scope
+
+Approved:
+
+- evaluation report structure,
+- metric interfaces,
+- PA-free primary metric reporting,
+- supplementary point-adjusted metric support only when clearly labeled,
+- sealed-test access guards,
+- config-freezing checks,
+- provenance and manifest checks,
+- synthetic or toy fixture tests,
+- final evaluation protocol documentation.
+
+Not approved:
+
+- opening sealed final test data,
+- running final SWaT benchmark evaluation,
+- using unverified local SWaT files for final claims,
+- tuning thresholds or K using final test labels,
+- reporting point-adjusted metrics as primary,
+- detector fusion as a headline result,
+- real LLM provider calls,
+- benchmark or thesis-result claims.
+
+## 12. Completion notes
+
+- Implemented restricted evaluation harness under `src/paperworks/evaluation/`.
+- Added PA-free point metrics, AUROC, AUPRC, range IoU, and supplementary point-adjusted metrics.
+- Added `EvaluationConfig`, `EvaluationProtocol`, `SealedTestAudit`, and `EvaluationReport`.
+- Added final-test access guard requiring DEC-007 resolution, explicit final-test approval, and frozen config.
+- Added config-freezing and artifact-provenance checks.
+- Added synthetic fixture tests for metrics, report determinism, no-raw-data scans, PA policy, and sealed-test guard behavior.
+- Added harness-only config and final evaluation protocol documentation.
+- No final SWaT evaluation was run.
