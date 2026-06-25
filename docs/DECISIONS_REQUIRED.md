@@ -239,3 +239,24 @@
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:
+
+### DEC-014: Phase Gate B approval and TASK-012 LLM policy
+
+- Status: open
+- Owner: researcher
+- Needed before: TASK-012
+- Question: Should TASK-012 start, and under what LLM-provider/data-retention policy?
+- Why it matters scientifically: TASK-012 introduces an LLM planner. Without explicit policy, provider choice, prompt contents, retention, and reproducibility settings can change privacy risk and the scientific comparison against the deterministic baseline.
+- Evidence available:
+  - `docs/phase_gates/PHASE_GATE_B_REVIEW.md`
+  - `docs/task_reports/TASK-011_E2E_REPORT.json`
+  - TASK-011 passed the deterministic synthetic feasibility smoke gate.
+  - TASK-011 did not access final test data, raw SWaT rows, or LLM services.
+- Options:
+  1. Approve TASK-012 with mock provider only; no network provider calls.
+  2. Approve TASK-012 with mock provider plus optional provider adapter interfaces, but no real external calls.
+  3. Hold TASK-012 until real SWaT provenance and prompt-retention policy are approved.
+- Recommendation from implementation agent: Choose option 2 for implementation, with tests using only `MockLLMProvider` and no network calls. Store prompt/response hashes plus redacted summaries unless full prompt retention is explicitly approved.
+- Final decision:
+- Decision date:
+- Consequences for claims/evaluation:
