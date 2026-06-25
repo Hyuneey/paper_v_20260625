@@ -221,6 +221,146 @@
   4. Runtime artifacts may contain row/timestamp ranges, but tracked reports must not contain reconstructive raw sequences.
 - Consequences for claims/evaluation: TASK-010 can validate runtime determinism and provenance without deciding final alarm scoring semantics.
 
+### DEC-014: Phase Gate B approval and TASK-012 LLM policy
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-012
+- Final decision: TASK-012 may start under a mock-only provider-neutral LLM planner scope.
+- Decision date: 2026-06-25
+- Approved scope:
+  - `LLMProvider` protocol/interface,
+  - `MockLLMProvider`,
+  - provider-neutral request/response schemas,
+  - prompt template assembly from approved aggregate evidence,
+  - JSON DSL parsing,
+  - schema validation,
+  - provenance recording,
+  - redaction checks,
+  - tests proving invented variables, invented parameters, raw rows, and malformed DSL outputs are rejected.
+- Not approved:
+  - real provider calls,
+  - network execution,
+  - API key use,
+  - raw data transfer,
+  - LLM-based final rule approval,
+  - runtime LLM execution,
+  - TASK-013 refiner loop.
+- Consequences for claims/evaluation: TASK-012 can validate planner plumbing and safety constraints only. It does not validate LLM value, final rule quality, or SWaT performance.
+
+### DEC-015: TASK-012 provider scope
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-012
+- Alias from researcher decision: DEC-010 - Provider Scope
+- Final decision: Use `MockLLMProvider` only for TASK-012 implementation and tests.
+- Decision date: 2026-06-25
+- Default provider config:
+  - `provider.name: mock`
+  - `provider.allow_network: false`
+  - `provider.require_api_key: false`
+  - `provider.temperature: 0`
+- Optional real provider adapter skeletons may be added only in a future approved task if disabled by default, offline in CI, no API keys required, no network calls performed, and execution requires separate approval.
+- Consequences for claims/evaluation: TASK-012 validates interfaces, parsing, safety, and provenance, not real LLM behavior.
+
+### DEC-016: TASK-012 data-transfer policy
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-012
+- Alias from researcher decision: DEC-011 - Data Transfer Policy
+- Final decision: Prompts may contain aggregate evidence only.
+- Decision date: 2026-06-25
+- Allowed prompt inputs:
+  - variable names,
+  - variable metadata,
+  - candidate provenance,
+  - relation profile summaries,
+  - calibration IDs,
+  - calibrated parameter values,
+  - normal support counts,
+  - allowed DSL predicates,
+  - allowed rule families,
+  - verifier feedback codes,
+  - synthetic fixture summaries.
+- Forbidden prompt inputs:
+  - raw SWaT rows,
+  - raw SWaT windows,
+  - full time-series sequences,
+  - downloadable derived SWaT samples,
+  - final test intervals,
+  - final test labels,
+  - sealed test metrics,
+  - any restricted data artifact that can reconstruct raw sequences.
+- Consequences for claims/evaluation: LLM planning uses calibrated evidence summaries only.
+
+### DEC-017: TASK-012 prompt and response retention policy
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-012
+- Alias from researcher decision: DEC-012 - Prompt and Response Retention Policy
+- Final decision: Store prompt templates and hashes, but do not store full per-run prompts or raw provider responses by default.
+- Decision date: 2026-06-25
+- Allowed tracked fields:
+  - prompt template file,
+  - prompt template hash,
+  - evidence hash,
+  - request hash,
+  - raw response hash,
+  - redacted prompt summary,
+  - redacted response summary,
+  - parse status,
+  - DSL schema version,
+  - validation result,
+  - provider metadata.
+- Do not store by default:
+  - full assembled prompt,
+  - full raw LLM response,
+  - raw evidence payload,
+  - raw SWaT-derived sequence data.
+- Debug exception: Full prompt/response capture requires separate explicit approval and must be local-only under an ignored directory such as `artifacts/private_llm_debug/`.
+- Consequences for claims/evaluation: Reproducibility uses templates, hashes, schema versions, and redacted summaries without creating data-governance risk.
+
+### DEC-018: TASK-012 reproducibility and provenance fields
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-012
+- Alias from researcher decision: DEC-013 - Reproducibility and Provenance Fields
+- Final decision: TASK-012 artifacts must record provider, model, prompt, evidence, parser, schema, calibration, candidate, verifier, config, code, and network provenance.
+- Decision date: 2026-06-25
+- Required fields:
+  - `provider_name`
+  - `provider_type`
+  - `model_or_deployment`
+  - `api_version`
+  - `temperature`
+  - `seed`
+  - `seed_supported`
+  - `prompt_template_id`
+  - `prompt_template_hash`
+  - `evidence_hash`
+  - `request_hash`
+  - `raw_response_hash`
+  - `redaction_status`
+  - `parse_status`
+  - `dsl_schema_version`
+  - `allowed_rule_families`
+  - `allowed_predicates`
+  - `calibration_artifact_ids`
+  - `candidate_artifact_ids`
+  - `verifier_feedback_ids`
+  - `config_hash`
+  - `code_commit`
+  - `created_at`
+  - `network_allowed: false`
+- Mock provider defaults:
+  - `model_or_deployment: mock-llm-provider`
+  - `api_version: none`
+- Consequences for claims/evaluation: TASK-012 planner artifacts remain auditable before real provider approval.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
@@ -236,27 +376,6 @@
   3. Continue using local smoke-test files only for non-claim implementation checks.
 - Evidence available: Current files are fingerprinted and marked `local_unverified_smoke_test`; researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`.
 - Recommendation from implementation agent: Keep current files smoke-test-only until Kaggle terms, file list, and split semantics are confirmed.
-- Final decision:
-- Decision date:
-- Consequences for claims/evaluation:
-
-### DEC-014: Phase Gate B approval and TASK-012 LLM policy
-
-- Status: open
-- Owner: researcher
-- Needed before: TASK-012
-- Question: Should TASK-012 start, and under what LLM-provider/data-retention policy?
-- Why it matters scientifically: TASK-012 introduces an LLM planner. Without explicit policy, provider choice, prompt contents, retention, and reproducibility settings can change privacy risk and the scientific comparison against the deterministic baseline.
-- Evidence available:
-  - `docs/phase_gates/PHASE_GATE_B_REVIEW.md`
-  - `docs/task_reports/TASK-011_E2E_REPORT.json`
-  - TASK-011 passed the deterministic synthetic feasibility smoke gate.
-  - TASK-011 did not access final test data, raw SWaT rows, or LLM services.
-- Options:
-  1. Approve TASK-012 with mock provider only; no network provider calls.
-  2. Approve TASK-012 with mock provider plus optional provider adapter interfaces, but no real external calls.
-  3. Hold TASK-012 until real SWaT provenance and prompt-retention policy are approved.
-- Recommendation from implementation agent: Choose option 2 for implementation, with tests using only `MockLLMProvider` and no network calls. Store prompt/response hashes plus redacted summaries unless full prompt retention is explicitly approved.
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:

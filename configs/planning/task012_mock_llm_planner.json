@@ -1,0 +1,32 @@
+{
+  "config_version": "1.0",
+  "planner_name": "task012_mock_llm_planner",
+  "scope_note": "Mock-only provider-neutral planner configuration. Real provider and network calls are not approved.",
+  "provider": {
+    "name": "mock",
+    "type": "mock",
+    "model_or_deployment": "mock-llm-provider",
+    "api_version": "none",
+    "allow_network": false,
+    "require_api_key": false,
+    "temperature": 0,
+    "seed": 0,
+    "seed_supported": true
+  },
+  "prompt_template_id": "mock_rule_planner_v1",
+  "retention": {
+    "store_full_prompt": false,
+    "store_full_raw_response": false,
+    "store_hashes": true,
+    "store_redacted_summaries": true,
+    "private_debug_dir": "artifacts/private_llm_debug/"
+  },
+  "allowed_predicates": [
+    "changed_to",
+    "increase_within",
+    "response_missing"
+  ],
+  "network_allowed": false,
+  "runtime_llm": false,
+  "final_test_access": "prohibited"
+}

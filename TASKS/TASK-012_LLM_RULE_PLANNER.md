@@ -1,7 +1,7 @@
 ---
 id: TASK-012
 title: Implement provider-neutral schema-constrained LLM rule planner
-status: blocked
+status: complete
 depends_on: [TASK-011]
 phase_gate: Milestone 5
 suggested_branch: task-012-llm-rule-planner
@@ -157,3 +157,14 @@ Only parsed DSL JSON may proceed.
 ## 12. Stop conditions
 
 Stop if provider/model choice, data-transfer policy, prompt retention, or reproducibility settings are unapproved.
+
+## 13. Completion notes
+
+- Implemented mock-only provider-neutral planner under `src/paperworks/planning/llm.py`.
+- Added `LLMProvider` protocol and `MockLLMProvider`.
+- Added request/response/result schemas with retention-safe `to_dict()` output.
+- Added prompt redaction audit and aggregate-evidence prompt assembly.
+- Added JSON DSL parsing and `RuleSchemaRegistry` validation.
+- Added config `configs/planning/task012_mock_llm_planner.json`.
+- Added prompt template `prompts/mock_rule_planner_v1.md`.
+- Real provider calls, network calls, API keys, raw data transfer, runtime LLM, and TASK-013 remain prohibited.

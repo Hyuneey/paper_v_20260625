@@ -21,12 +21,14 @@ approve deterministic Phase Gate B smoke result for researcher review
 TASK-012 status:
 
 ```text
-not approved to start yet
+approved to start under mock-only restricted scope
 ```
 
-Reason: TASK-011 passed the deterministic synthetic feasibility gate, but
-TASK-012 introduces LLM planning. Provider/model choice, data-transfer policy,
-prompt retention, and reproducibility settings still need explicit approval.
+Reason: TASK-011 passed the deterministic synthetic feasibility gate. TASK-012
+is approved only for provider-neutral planner interfaces, `MockLLMProvider`,
+safe prompt assembly, JSON DSL parsing, schema validation, provenance, and
+redaction tests. Real provider calls, network calls, API key use, raw data
+transfer, runtime LLM execution, and TASK-013 are not approved.
 
 ## Gate Evidence
 
