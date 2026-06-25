@@ -1,7 +1,7 @@
 ---
 id: TASK-008
 title: Implement deterministic template rule builder
-status: blocked
+status: complete
 depends_on: [TASK-007]
 phase_gate: Milestone 4
 suggested_branch: task-008-template-rules
@@ -87,3 +87,12 @@ def build_template_rule(
 ## 10. Stop conditions
 
 Stop if a new rule family is needed beyond the approved minimal DSL.
+
+## 11. Completion notes
+
+- Implemented deterministic template rule builder under `src/paperworks/planning/`.
+- Added read-only metadata and calibration lookup helpers to `RuleSchemaRegistry`.
+- Builder consumes only `RelationEvidencePack` and `RuleSchemaRegistry`.
+- Builder emits a DSL `RuleAst` with deterministic-template planner provenance.
+- Unsupported inputs return explicit status and machine-readable issue codes.
+- Covered success, calibration missing, unsupported relation, type mismatch, deterministic output, numeric provenance, and no raw/test input interface tests.

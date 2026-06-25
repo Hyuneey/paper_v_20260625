@@ -426,6 +426,12 @@ class RuleSchemaRegistry:
             return (RULE_FAMILY,)
         return ()
 
+    def metadata_for(self, name: str) -> VariableMetadata:
+        return self._metadata.get(name)
+
+    def calibration_record_for(self, calibration_record_id: str) -> CalibrationRecord | None:
+        return self._calibration_records.get(calibration_record_id)
+
     def validate(self, rule: RuleAst) -> list[SchemaIssue]:
         issues: list[SchemaIssue] = []
         source_meta = _metadata_or_issue(self._metadata, rule.source, issues, "source")
