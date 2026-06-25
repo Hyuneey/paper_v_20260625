@@ -5,6 +5,7 @@
   "source_policy": {
     "preferred_source": "official_iTrust_request",
     "alternative_source_allowed": false,
+    "dec007_primary_benchmark_resolution_source": "official_iTrust_request_only",
     "current_local_kaggle_csv_status": "local_unverified_smoke_test",
     "current_local_kaggle_csv_final_claims_allowed": false
   },

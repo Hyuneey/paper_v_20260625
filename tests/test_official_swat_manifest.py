@@ -24,6 +24,10 @@ class OfficialSwatManifestTests(unittest.TestCase):
         self.assertFalse(manifest.dec007_resolution_ready)
         self.assertIn("request_record_missing", manifest.resolution_blockers())
         self.assertIn("terms_not_acknowledged", manifest.resolution_blockers())
+        self.assertIn("terms_source_url_missing", manifest.resolution_blockers())
+        self.assertIn("required_credit_statement_missing", manifest.resolution_blockers())
+        self.assertIn("no_sharing_not_acknowledged", manifest.resolution_blockers())
+        self.assertIn("publication_notification_not_acknowledged", manifest.resolution_blockers())
         self.assertEqual(len(manifest.manifest_id), 64)
 
     def test_resolution_ready_manifest(self) -> None:
@@ -41,6 +45,10 @@ class OfficialSwatManifestTests(unittest.TestCase):
             terms_acknowledged=True,
             terms_acknowledged_by="researcher",
             terms_acknowledged_date="2026-06-25",
+            terms_source_url="https://www.sutd.edu.sg/itrust/itrust-labs/datasets/terms-of-usage/",
+            required_credit_statement="Credit iTrust/SUTD when publishing work using the dataset.",
+            no_sharing_acknowledged=True,
+            publication_notification_acknowledged=True,
             dataset_edition="SWaT A1 and A2 Dec 2015",
             dataset_version="official_iTrust_download",
             files=(file_record,),
@@ -53,6 +61,10 @@ class OfficialSwatManifestTests(unittest.TestCase):
         self.assertTrue(manifest.dec007_resolution_ready)
         self.assertEqual(manifest.resolution_blockers(), ())
         self.assertEqual(OfficialSwatProvenanceManifest.from_json(manifest.to_json()).to_dict(), manifest.to_dict())
+
+    def test_rejects_non_official_source_route_for_primary_resolution(self) -> None:
+        with self.assertRaisesRegex(OfficialSwatManifestError, "official_iTrust_request"):
+            OfficialSwatProvenanceManifest(source_route="explicitly_approved_alternative")
 
     def test_final_test_opened_is_not_allowed_in_task015_manifest(self) -> None:
         with self.assertRaisesRegex(OfficialSwatManifestError, "final test"):

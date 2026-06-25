@@ -465,6 +465,31 @@
   8. Git artifact policy is approved.
 - Consequences for claims/evaluation: Current local/Kaggle CSV files remain `local_unverified_smoke_test` and cannot be used for final SWaT performance claims.
 
+### DEC-022: TASK-015A DEC-007 manifest tightening
+
+- Status: resolved
+- Owner: researcher
+- Needed before: DEC-007 resolution
+- Final decision: Tighten the official SWaT provenance manifest schema before DEC-007 can be marked resolved.
+- Decision date: 2026-06-25
+- Required changes:
+  - track `terms_source_url`,
+  - track `required_credit_statement`,
+  - track `no_sharing_acknowledged`,
+  - track `publication_notification_acknowledged`,
+  - block DEC-007 readiness if no-sharing acknowledgement is false,
+  - block DEC-007 readiness if publication notification acknowledgement is false,
+  - block DEC-007 readiness if terms source URL is missing,
+  - block DEC-007 readiness if required credit statement is missing.
+- Source-route policy:
+  - DEC-007 final primary benchmark resolution is official iTrust only.
+  - Current local/Kaggle CSV files remain smoke-test-only.
+- Not approved:
+  - opening sealed final test,
+  - running final SWaT benchmark,
+  - reading, copying, or tracking raw SWaT data.
+- Consequences for claims/evaluation: DEC-007 cannot be resolved with an alternative source for the final primary benchmark unless a future decision explicitly replaces this policy.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
@@ -485,8 +510,9 @@
   - Public iTrust request form includes SWaT and requires agreement to iTrust dataset terms.
   - Public iTrust terms require credit to iTrust/SUTD, publication notice to iTrust, and no dataset sharing.
   - Public iTrust summary lists SWaT `A1 & A2 Dec 2015` among available datasets.
+  - DEC-022 sets the final primary benchmark source route to official iTrust only.
   - See `docs/DEC007_SWAT_PROVENANCE_PRECHECK.md`.
-- Recommendation from implementation agent: Use the official iTrust request route as the preferred final-evaluation source. Keep current local/Kaggle files smoke-test-only until an official request/approval record is recorded with terms acknowledgement, exact file list, hashes, edition/version, split protocol, sealed-test access policy, and allowed tracked artifacts.
+- Recommendation from implementation agent: Use the official iTrust request route as the required final primary benchmark source. Keep current local/Kaggle files smoke-test-only until an official request/approval record is recorded with terms acknowledgement, exact file list, hashes, edition/version, split protocol, sealed-test access policy, and allowed tracked artifacts.
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:

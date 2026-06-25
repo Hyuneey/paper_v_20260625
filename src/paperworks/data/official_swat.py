@@ -65,6 +65,10 @@ class OfficialSwatProvenanceManifest:
     terms_acknowledged: bool = False
     terms_acknowledged_by: str = "pending"
     terms_acknowledged_date: str = "pending"
+    terms_source_url: str = "pending"
+    required_credit_statement: str = "pending"
+    no_sharing_acknowledged: bool = False
+    publication_notification_acknowledged: bool = False
     dataset_edition: str = "pending"
     dataset_version: str = "pending"
     files: tuple[OfficialSwatFileRecord, ...] = field(default_factory=tuple)
@@ -79,8 +83,8 @@ class OfficialSwatProvenanceManifest:
     def __post_init__(self) -> None:
         if self.dataset_name != "SWaT":
             raise OfficialSwatManifestError("dataset_name must be SWaT")
-        if self.source_route not in {"official_iTrust_request", "explicitly_approved_alternative"}:
-            raise OfficialSwatManifestError("unsupported source_route")
+        if self.source_route != "official_iTrust_request":
+            raise OfficialSwatManifestError("DEC-007 final primary benchmark requires official_iTrust_request")
         if self.final_test_opened:
             raise OfficialSwatManifestError("TASK-015 does not approve final test access")
         if self.schema_version != SCHEMA_VERSION:
@@ -106,6 +110,14 @@ class OfficialSwatProvenanceManifest:
             blockers.append("terms_not_acknowledged")
         if self.terms_acknowledged_by == "pending" or self.terms_acknowledged_date == "pending":
             blockers.append("terms_acknowledgement_metadata_missing")
+        if self.terms_source_url == "pending" or not self.terms_source_url:
+            blockers.append("terms_source_url_missing")
+        if self.required_credit_statement == "pending" or not self.required_credit_statement:
+            blockers.append("required_credit_statement_missing")
+        if not self.no_sharing_acknowledged:
+            blockers.append("no_sharing_not_acknowledged")
+        if not self.publication_notification_acknowledged:
+            blockers.append("publication_notification_not_acknowledged")
         if self.dataset_edition == "pending" or self.dataset_version == "pending":
             blockers.append("dataset_edition_or_version_missing")
         if not self.files:
@@ -131,6 +143,10 @@ class OfficialSwatProvenanceManifest:
             "terms_acknowledged": self.terms_acknowledged,
             "terms_acknowledged_by": self.terms_acknowledged_by,
             "terms_acknowledged_date": self.terms_acknowledged_date,
+            "terms_source_url": self.terms_source_url,
+            "required_credit_statement": self.required_credit_statement,
+            "no_sharing_acknowledged": self.no_sharing_acknowledged,
+            "publication_notification_acknowledged": self.publication_notification_acknowledged,
             "dataset_edition": self.dataset_edition,
             "dataset_version": self.dataset_version,
             "files": [file.to_dict() for file in self.files],
@@ -154,6 +170,10 @@ class OfficialSwatProvenanceManifest:
             terms_acknowledged=bool(data.get("terms_acknowledged", False)),
             terms_acknowledged_by=str(data.get("terms_acknowledged_by", "pending")),
             terms_acknowledged_date=str(data.get("terms_acknowledged_date", "pending")),
+            terms_source_url=str(data.get("terms_source_url", "pending")),
+            required_credit_statement=str(data.get("required_credit_statement", "pending")),
+            no_sharing_acknowledged=bool(data.get("no_sharing_acknowledged", False)),
+            publication_notification_acknowledged=bool(data.get("publication_notification_acknowledged", False)),
             dataset_edition=str(data.get("dataset_edition", "pending")),
             dataset_version=str(data.get("dataset_version", "pending")),
             files=tuple(OfficialSwatFileRecord.from_dict(item) for item in data.get("files", ())),

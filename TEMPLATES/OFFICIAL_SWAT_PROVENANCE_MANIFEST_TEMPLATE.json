@@ -9,6 +9,9 @@
   "terms_acknowledged_by": "pending",
   "terms_acknowledged_date": "pending",
   "terms_source_url": "https://www.sutd.edu.sg/itrust/itrust-labs/datasets/terms-of-usage/",
+  "required_credit_statement": "pending_required_credit_statement",
+  "no_sharing_acknowledged": false,
+  "publication_notification_acknowledged": false,
   "dataset_edition": "pending",
   "dataset_version": "pending",
   "files": [

@@ -9,11 +9,12 @@ be used for final SWaT performance claims.
 
 ## Resolution Gate
 
-DEC-007 may be marked resolved only after all items below are complete:
+DEC-007 for the final primary benchmark may be marked resolved only after all
+items below are complete. The source route is official iTrust only.
 
 | Requirement | Status |
 |---|---|
-| Official source or explicitly approved alternative selected | pending |
+| Official iTrust source selected | pending |
 | Terms acknowledged | pending |
 | Exact edition/version/file list recorded | pending |
 | Approved files hashed locally | pending |
@@ -49,8 +50,9 @@ Record in tracked manifest:
 - `terms_acknowledged_by`,
 - `terms_acknowledged_date`,
 - `terms_source_url`,
-- required credit statement,
-- no-sharing acknowledgement.
+- `required_credit_statement`,
+- `no_sharing_acknowledged`,
+- `publication_notification_acknowledged`.
 
 Do not mark terms as acknowledged until the researcher confirms compliance with
 the iTrust dataset terms for this project.
@@ -68,6 +70,10 @@ Required tracked fields:
 - `terms_acknowledged`,
 - `terms_acknowledged_by`,
 - `terms_acknowledged_date`,
+- `terms_source_url`,
+- `required_credit_statement`,
+- `no_sharing_acknowledged`,
+- `publication_notification_acknowledged`,
 - `dataset_edition`,
 - `dataset_version`,
 - `files`,
