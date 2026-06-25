@@ -2,7 +2,24 @@
 
 ## Current state
 
-No root Python package or project environment exists yet. The root has no `pyproject.toml`, `requirements.txt`, `pytest.ini`, `tox.ini`, or CI workflow.
+The root repository now defines a minimal `pyproject.toml` package.
+
+Installed local bundled Python:
+
+- Python: `3.12.13`
+- pip: `26.0.1`
+- PyTorch: `2.12.1+cpu`
+- PyG / torch-geometric: `2.8.0`
+- CUDA availability: `False`
+
+Installation commands used:
+
+```powershell
+& "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+& "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m pip install torch_geometric
+```
+
+Verification commands confirmed `torch`, `torch_geometric`, PyG `MessagePassing`, and PyG self-loop utilities import successfully.
 
 The only environment files found are inside read-only upstream references:
 
@@ -46,7 +63,12 @@ For TASK-001 through TASK-003, start with a small modern Python environment:
 - `ruff` for linting.
 - `mypy` or `pyright` for type checks if already standard in the target repo.
 
-For TASK-004, choose a modern supported PyTorch/PyG matrix after target hardware is known. GDN parity tests must use synthetic fixtures and must not depend on final test labels.
+For TASK-004, the approved first backend is CPU-only PyTorch/PyG:
+
+- `torch==2.12.1` installed as `2.12.1+cpu` from the official PyTorch CPU wheel index.
+- `torch-geometric==2.8.0` installed from PyPI.
+
+GDN parity tests must use synthetic fixtures and must not depend on final test labels. GPU/CUDA support is deferred until a CPU path is reproducible.
 
 ## Git ownership note
 

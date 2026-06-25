@@ -74,14 +74,15 @@ Self-loops are represented only by `message_passing_self_loops(feature_order)` a
 
 ## Current Backend Status
 
-The local bundled Python environment does not currently provide:
+DEC-010 resolved the first modern backend as CPU-only PyTorch/PyG:
 
-- `torch`
-- `torch_geometric`
+- `torch 2.12.1+cpu`
+- `torch_geometric 2.8.0`
+- CUDA unavailable in the current environment
 
-Therefore this step implements and tests a deterministic embedding smoke backend. It validates split guards, checkpoint provenance, mask enforcement, Top-K export, and artifact schemas without installing heavy ML dependencies.
+This step already implements and tests a deterministic embedding smoke backend. It validates split guards, checkpoint provenance, mask enforcement, Top-K export, and artifact schemas.
 
-The final modern PyTorch/PyG GDN trainer remains blocked until the dependency environment is approved and installed.
+The next TASK-004 implementation step is to add the real CPU PyTorch/PyG GDN trainer behind the same masked edge-export contract.
 
 ## Test Coverage
 
@@ -104,4 +105,4 @@ The final modern PyTorch/PyG GDN trainer remains blocked until the dependency en
 - No final GDN checkpoint from real data.
 - No test-label threshold selection.
 - No upstream `report=best`.
-- No PyTorch/PyG training backend until dependencies are approved.
+- No real PyTorch/PyG training backend yet.

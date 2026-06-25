@@ -13,7 +13,8 @@ suggested_branch: task-004-gdn-candidates
 
 - Mask-enforced embedding Top-K extraction core is implemented under `src/paperworks/gdn`.
 - Deterministic smoke checkpoint and synthetic tests are implemented.
-- Full modern PyTorch/PyG trainer remains blocked by DEC-010 because the current bundled Python environment lacks `torch` and `torch_geometric`.
+- DEC-010 is resolved with CPU-only `torch 2.12.1+cpu` and `torch_geometric 2.8.0`.
+- Full modern PyTorch/PyG trainer implementation is the remaining TASK-004 work.
 
 ## 1. Goal
 

@@ -4,7 +4,7 @@
 
 Implemented the mask-enforced GDN candidate-edge extraction core. The new module computes embedding cosine similarity, applies the `CandidateUniverse` mask before Top-K, rejects persisted self-edges, and exports provenance-rich GDN candidate-edge artifacts.
 
-TASK-004 is not fully closed because the local bundled Python environment does not include `torch` or `torch_geometric`. The final modern PyTorch/PyG GDN training backend is blocked on DEC-010.
+TASK-004 is not fully closed yet. DEC-010 has been resolved by installing CPU-only PyTorch/PyG, so the remaining work is the real modern PyTorch/PyG GDN training backend.
 
 ## Changed files
 
@@ -44,7 +44,7 @@ Changed:
 - Rejected self-edges from persisted candidate artifacts.
 - Kept message-passing self-loops separate via `message_passing_self_loops()`.
 - Added deterministic embedding smoke checkpoint support to test provenance and masking without unavailable ML dependencies.
-- Recorded DEC-010 because the final PyTorch/PyG trainer cannot be completed in the current environment.
+- Recorded and then resolved DEC-010 with a CPU-only PyTorch/PyG environment.
 
 ## Commands run
 
@@ -55,6 +55,8 @@ $env:PYTHONPATH="C:\Users\hyun\Desktop\paperworks\260625\src"
 & "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m unittest discover -s tests -v
 & "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m json.tool configs\gdn\masked_extraction_smoke.json
 git ls-files dataset external
+& "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+& "C:\Users\hyun\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m pip install torch_geometric
 ```
 
 ## Test, lint, and type-check results
@@ -75,11 +77,14 @@ OK
 
 `compileall` passed. JSON validation passed for the GDN smoke config. Dedicated lint/type-check commands are not configured yet.
 
-Dependency check:
+Dependency check after installation:
 
 ```text
-torch unavailable: ModuleNotFoundError No module named 'torch'
-torch_geometric unavailable: ModuleNotFoundError No module named 'torch_geometric'
+torch 2.12.1+cpu
+torch cuda available False
+torch cuda version None
+torch_geometric 2.8.0
+MessagePassing MessagePassing
 ```
 
 ## Artifacts produced
@@ -102,7 +107,6 @@ No raw SWaT rows, real GDN checkpoints, or real-data candidate edge artifacts we
 
 ## Known limitations
 
-- TASK-004 is blocked for full closure by missing modern PyTorch/PyG dependencies.
 - The deterministic smoke backend is not a replacement for trained GDN.
 - No real SWaT GDN-view preprocessing or training was run.
 - No model checkpoint from a neural GDN trainer was produced.
@@ -111,10 +115,9 @@ No raw SWaT rows, real GDN checkpoints, or real-data candidate edge artifacts we
 
 Open decisions:
 
-- DEC-010: Modern PyTorch/PyG GDN backend environment.
 - DEC-008: Candidate feasibility gate criteria before TASK-005.
 - DEC-009: Real-data candidate policy for statistical and fallback origins.
 
 Recommended next action:
 
-- Resolve DEC-010, install/approve a modern PyTorch/PyG environment, then complete the real GDN training backend for TASK-004.
+- Complete the real CPU PyTorch/PyG GDN training backend for TASK-004.
