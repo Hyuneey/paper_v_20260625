@@ -108,6 +108,51 @@
   - `torch.cuda.is_available() == False`
 - Consequences for claims/evaluation: TASK-004 can proceed to a CPU synthetic GDN trainer without relying on the legacy upstream GDN environment. Performance claims remain out of scope until real-data protocol and Phase Gate A are approved.
 
+### DEC-008: Candidate feasibility gate criteria
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-005 / Phase Gate A
+- Final decision: Use smoke feasibility as the TASK-005 pass/fail gate.
+- Decision date: 2026-06-25
+- Pass criteria:
+  1. Candidate artifacts are generated successfully from the approved configuration.
+  2. Every exported GDN candidate edge belongs to the precomputed CandidateUniverse `C_i`.
+  3. No self-edge is exported as a candidate relation.
+  4. Message-passing self-loops, if used internally, are not persisted as relation candidates.
+  5. The same config and seed produce identical or hash-stable candidate artifacts.
+  6. Required provenance fields are present: candidate origin, source variable, target variable, rank, score if available, seed, K, config hash, and data manifest reference.
+  7. No sealed test labels or attack labels are used for candidate generation, filtering, thresholding, or pass/fail decisions.
+  8. The final report clearly states: "This is a smoke feasibility result.", "This is not a final performance claim.", and "This does not validate anomaly detection performance."
+- Explicitly out of scope:
+  - benchmark-style candidate recall,
+  - final SWaT attack-variable coverage,
+  - strict relation checklist coverage,
+  - point-adjusted or detection metrics,
+  - K tuning based on observed smoke results,
+  - enabling fallback candidates after seeing results.
+- Consequences for claims/evaluation: TASK-005 verifies implementation correctness, reproducibility, mask enforcement, and data-leakage prevention only. Seed/K stability may be logged descriptively but is not a pass/fail gate.
+
+### DEC-009: Real-data candidate policy for statistical and fallback origins
+
+- Status: resolved
+- Owner: researcher
+- Needed before: enabling statistical or fallback origins on SWaT smoke runs
+- Final decision: For the first TASK-005 smoke run, use metadata same-stage candidates only.
+- Decision date: 2026-06-25
+- Required config behavior:
+  - `candidate_policy_name: metadata_same_stage_only_smoke`
+  - `candidate_origins.metadata_same_stage: true`
+  - `candidate_origins.normal_statistical_top_m: false`
+  - `candidate_origins.type_compatible_fallback: false`
+- Constraints:
+  1. Do not enable statistical candidates after seeing the first smoke result.
+  2. Do not enable fallback candidates to fix empty or weak outputs after observing the result.
+  3. If statistical or fallback candidates are tested later, create a separate pre-registered config before running.
+  4. The TASK-005 report must clearly state which candidate origins were enabled.
+  5. If some targets have no metadata same-stage candidates, report them as empty-target cases rather than silently filling them with fallback candidates.
+- Consequences for claims/evaluation: The first smoke run remains conservative, auditable, and free of hidden data-dependent tuning.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
@@ -123,40 +168,6 @@
   3. Continue using local smoke-test files only for non-claim implementation checks.
 - Evidence available: Current files are fingerprinted and marked `local_unverified_smoke_test`; researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`.
 - Recommendation from implementation agent: Keep current files smoke-test-only until Kaggle terms, file list, and split semantics are confirmed.
-- Final decision:
-- Decision date:
-- Consequences for claims/evaluation:
-
-### DEC-008: Candidate feasibility gate criteria
-
-- Status: open
-- Owner: researcher
-- Needed before: TASK-005 / Phase Gate A
-- Question: What pre-registered candidate recall, stability, and coverage criteria are sufficient to proceed from candidate extraction to relation profiling?
-- Why it matters scientifically: A pass threshold must not be invented after seeing candidate results. The decision affects whether GDN/candidate-universe outputs justify downstream profiling.
-- Options:
-  1. Require only deterministic reproducibility and mask correctness for the first feasibility pass.
-  2. Require minimum stability across seeds/K plus coverage of a small pre-registered relation checklist.
-  3. Require a stricter benchmark-style candidate recall protocol after official SWaT provenance is confirmed.
-- Evidence available: TASK-003 implements deterministic candidate masks and explicit empty-target reports, but has not run a real SWaT candidate feasibility study.
-- Recommendation from implementation agent: Use option 2 for TASK-005 if the researcher can pre-register the relation checklist without using test outcomes; otherwise use option 1 for smoke-test feasibility only and label it non-claim.
-- Final decision:
-- Decision date:
-- Consequences for claims/evaluation:
-
-### DEC-009: Real-data candidate policy for statistical and fallback origins
-
-- Status: open
-- Owner: researcher
-- Needed before: enabling statistical or fallback origins on SWaT smoke runs
-- Question: Should TASK-003/TASK-004 real-data runs enable normal-only statistical candidates, configured fallback candidates, or metadata-domain candidates only?
-- Why it matters scientifically: Statistical Top-M, lag range, and fallback minimum count change the candidate search space and downstream GDN mask. These must be configured before inspecting results that could influence claims.
-- Options:
-  1. Metadata same-stage only for the first smoke run.
-  2. Metadata same-stage plus normal-only statistical Top-M with pre-registered `M` and max lag.
-  3. Metadata plus configured type-compatible fallback for empty targets only.
-- Evidence available: TASK-003 implements all three mechanisms with synthetic tests. `configs/candidates/swat_candidate_policy.json` defaults to option 1.
-- Recommendation from implementation agent: Keep option 1 as the default until TASK-004 GDN mask enforcement is stable; then approve option 2 for a labeled smoke run if needed.
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:

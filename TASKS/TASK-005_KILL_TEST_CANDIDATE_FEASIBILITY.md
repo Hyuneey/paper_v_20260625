@@ -1,25 +1,31 @@
 ---
 id: TASK-005
-title: Run pre-registered candidate feasibility kill-test
+title: Run pre-registered candidate feasibility smoke test
 status: blocked
 depends_on: [TASK-004]
 phase_gate: Phase Gate A
 suggested_branch: task-005-candidate-kill-test
 ---
 
-# TASK-005: Candidate Discovery Feasibility Kill-Test
+# TASK-005: Candidate Discovery Feasibility Smoke Test
 
 ## 1. Goal
 
-Evaluate whether masked GDN candidate extraction produces stable and scientifically useful candidate pairs before relation profiling work begins.
+Verify that the candidate-universe and masked GDN extraction pipeline produces reproducible, provenance-rich candidate artifacts without mask violations or test-label leakage.
 
 ## 2. Architecture context
 
-If candidate discovery is unstable or fails to recover pre-registered plausible relations, downstream rule construction is not justified. This is a kill-test, not a performance showcase.
+This is a smoke feasibility check, not a benchmark evaluation and not evidence of final detection or explanation performance.
+
+The TASK-005 report must state:
+
+- "This is a smoke feasibility result."
+- "This is not a final performance claim."
+- "This does not validate anomaly detection performance."
 
 ## 3. Ground-reference policy
 
-Known relation pairs used for evaluation must be pre-registered from:
+No benchmark-style relation recall or strict relation checklist coverage is required for TASK-005. If known relation pairs are inspected later, they must be pre-registered from:
 
 - process documentation,
 - dataset documentation,
@@ -30,29 +36,29 @@ Do not construct the reference set from final test attack outcomes or post-hoc s
 
 ## 4. Inputs
 
-- candidate-edge artifacts across approved K values and seeds,
+- `configs/candidates/task005_metadata_same_stage_only_smoke.json`,
+- candidate-edge artifacts from the approved smoke config,
 - CandidateUniverse artifacts,
-- pre-registered reference relation set,
 - metadata.
 
 No final test labels are permitted.
 
 ## 5. Required analyses
 
-- Recall@K against the pre-registered relation set,
+- candidate artifact generation success,
+- mask membership for every exported candidate edge,
+- self-edge exclusion,
+- message-passing self-loop separation,
+- same-config/same-seed hash stability,
+- required provenance-field completeness,
 - per-target candidate coverage,
-- edge frequency across seeds,
-- edge persistence across K,
 - candidate-origin distribution,
-- unsupported/empty targets,
-- sensitivity to domain/stat/fallback candidate sources,
-- failure cases.
+- unsupported/empty targets.
 
 ## 6. Required outputs
 
-- machine-readable metrics,
-- stability table,
-- all evaluated candidates, not only successes,
+- machine-readable smoke report,
+- all emitted candidates,
 - negative-result section,
 - artifact provenance index,
 - explicit Phase Gate A recommendation:
@@ -62,20 +68,39 @@ No final test labels are permitted.
 
 ## 7. Acceptance criteria
 
-1. Evaluation reference is documented and pre-registered.
-2. Results include every configured seed and K.
-3. No threshold is selected using final test data.
-4. No successful pair is cherry-picked without reporting selection criteria.
-5. Candidate artifacts are traceable to masks, checkpoints, views, and manifests.
-6. Gate recommendation is explicit and evidence-based.
+1. Candidate artifacts are generated successfully from the approved configuration.
+2. Every exported GDN candidate edge belongs to the precomputed CandidateUniverse `C_i`.
+3. No self-edge is exported as a candidate relation.
+4. Message-passing self-loops, if used internally, are not persisted as relation candidates.
+5. The same config and seed produce identical or hash-stable candidate artifacts.
+6. Required provenance fields are present:
+   - candidate origin,
+   - source variable,
+   - target variable,
+   - rank,
+   - score, if available,
+   - seed,
+   - K,
+   - config hash,
+   - data manifest reference.
+7. No sealed test labels or attack labels are used for candidate generation, filtering, thresholding, or pass/fail decisions.
+8. Candidate origins match `metadata_same_stage_only_smoke`.
 
-A numerical pass threshold must not be invented by Codex. If none is approved, report results and request a decision.
+Seed/K stability may be logged descriptively, but it is not a pass/fail gate in TASK-005.
+
+Out of scope:
+
+- benchmark-style candidate recall,
+- final SWaT attack-variable coverage,
+- strict relation checklist coverage,
+- point-adjusted or detection metrics,
+- K tuning based on observed smoke results,
+- enabling fallback candidates after seeing results.
 
 ## 8. Required tests
 
-- metric fixture,
-- stability-frequency fixture,
-- reference-set provenance validation,
+- smoke-report fixture,
+- provenance completeness fixture,
 - deterministic report generation,
 - missing-run detection,
 - no-test-role guard.

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "config_type": "task005_candidate_feasibility_smoke",
+  "candidate_policy_name": "metadata_same_stage_only_smoke",
+  "dataset_name": "SWaT",
+  "dataset_status": "local_unverified_smoke_test",
+  "source_view": "canonical_rule_view",
+  "sampling_period_seconds": 1.0,
+  "candidate_origins": {
+    "metadata_same_stage": true,
+    "normal_statistical_top_m": false,
+    "type_compatible_fallback": false
+  },
+  "candidate_policy": {
+    "policy_version": "1.0",
+    "source_roles": ["actuator"],
+    "source_value_types": ["binary"],
+    "target_roles": ["sensor"],
+    "target_value_types": ["continuous"],
+    "domain_same_stage": true,
+    "statistical_top_m": 0,
+    "statistical_max_lag_samples": 0,
+    "fallback_min_candidates_per_target": 0
+  },
+  "gdn_extraction": {
+    "backend": "torch_pyg_cpu",
+    "top_k": 3,
+    "seed": 11,
+    "run_index": 0
+  },
+  "pass_fail_gate": {
+    "name": "smoke_feasibility",
+    "benchmark_recall_required": false,
+    "detection_metrics_required": false,
+    "seed_k_stability_required_for_pass": false,
+    "required_report_statements": [
+      "This is a smoke feasibility result.",
+      "This is not a final performance claim.",
+      "This does not validate anomaly detection performance."
+    ],
+    "required_checks": [
+      "candidate_artifacts_generated",
+      "all_exported_edges_in_candidate_universe",
+      "no_candidate_self_edges",
+      "message_passing_self_loops_not_persisted_as_candidates",
+      "same_seed_config_hash_stable",
+      "required_provenance_fields_present",
+      "no_test_or_attack_labels_used"
+    ]
+  },
+  "constraints": [
+    "Do not enable statistical candidates after seeing the first smoke result.",
+    "Do not enable fallback candidates to fix empty or weak outputs after observing the result.",
+    "Report empty targets rather than silently filling them with fallback candidates.",
+    "Any later statistical or fallback smoke run requires a separate pre-registered config."
+  ]
+}
