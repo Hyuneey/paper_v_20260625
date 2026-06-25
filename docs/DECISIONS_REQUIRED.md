@@ -107,3 +107,37 @@
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:
+
+### DEC-008: Candidate feasibility gate criteria
+
+- Status: open
+- Owner: researcher
+- Needed before: TASK-005 / Phase Gate A
+- Question: What pre-registered candidate recall, stability, and coverage criteria are sufficient to proceed from candidate extraction to relation profiling?
+- Why it matters scientifically: A pass threshold must not be invented after seeing candidate results. The decision affects whether GDN/candidate-universe outputs justify downstream profiling.
+- Options:
+  1. Require only deterministic reproducibility and mask correctness for the first feasibility pass.
+  2. Require minimum stability across seeds/K plus coverage of a small pre-registered relation checklist.
+  3. Require a stricter benchmark-style candidate recall protocol after official SWaT provenance is confirmed.
+- Evidence available: TASK-003 implements deterministic candidate masks and explicit empty-target reports, but has not run a real SWaT candidate feasibility study.
+- Recommendation from implementation agent: Use option 2 for TASK-005 if the researcher can pre-register the relation checklist without using test outcomes; otherwise use option 1 for smoke-test feasibility only and label it non-claim.
+- Final decision:
+- Decision date:
+- Consequences for claims/evaluation:
+
+### DEC-009: Real-data candidate policy for statistical and fallback origins
+
+- Status: open
+- Owner: researcher
+- Needed before: enabling statistical or fallback origins on SWaT smoke runs
+- Question: Should TASK-003/TASK-004 real-data runs enable normal-only statistical candidates, configured fallback candidates, or metadata-domain candidates only?
+- Why it matters scientifically: Statistical Top-M, lag range, and fallback minimum count change the candidate search space and downstream GDN mask. These must be configured before inspecting results that could influence claims.
+- Options:
+  1. Metadata same-stage only for the first smoke run.
+  2. Metadata same-stage plus normal-only statistical Top-M with pre-registered `M` and max lag.
+  3. Metadata plus configured type-compatible fallback for empty targets only.
+- Evidence available: TASK-003 implements all three mechanisms with synthetic tests. `configs/candidates/swat_candidate_policy.json` defaults to option 1.
+- Recommendation from implementation agent: Keep option 1 as the default until TASK-004 GDN mask enforcement is stable; then approve option 2 for a labeled smoke run if needed.
+- Final decision:
+- Decision date:
+- Consequences for claims/evaluation:

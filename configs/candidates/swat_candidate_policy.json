@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "dataset_name": "SWaT",
+  "policy_version": "1.0",
+  "source_roles": ["actuator"],
+  "source_value_types": ["binary"],
+  "target_roles": ["sensor"],
+  "target_value_types": ["continuous"],
+  "domain_same_stage": true,
+  "statistical_top_m": 0,
+  "statistical_max_lag_samples": 0,
+  "fallback_min_candidates_per_target": 0,
+  "source_view": "canonical_rule_view",
+  "sampling_period_seconds": 1.0,
+  "notes": [
+    "Default TASK-003 policy uses metadata same-stage candidates only.",
+    "Statistical candidates are implemented but disabled here until an approved smoke-run policy enables them.",
+    "Fallback candidates are implemented but disabled here to avoid silent all-to-all expansion.",
+    "GDN Top-K in TASK-004 must apply the exported CandidateUniverse mask before selection."
+  ]
+}

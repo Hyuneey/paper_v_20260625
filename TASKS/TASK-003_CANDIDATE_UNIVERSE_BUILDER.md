@@ -1,7 +1,7 @@
 ---
 id: TASK-003
 title: Implement candidate universe builder and explicit relation mask
-status: blocked
+status: complete
 depends_on: [TASK-002]
 phase_gate: Milestone 2
 suggested_branch: task-003-candidate-universe
