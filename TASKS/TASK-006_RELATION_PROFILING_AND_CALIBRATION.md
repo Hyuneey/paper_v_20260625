@@ -1,7 +1,7 @@
 ---
 id: TASK-006
 title: Implement high-resolution relation profiling and normal-data calibration
-status: blocked
+status: complete
 depends_on: [TASK-005]
 phase_gate: Milestone 3
 suggested_branch: task-006-relation-profiling
@@ -166,3 +166,12 @@ Do not include raw SWaT rows or long raw sequences in Git-tracked evidence packs
 ## 15. Stop conditions
 
 Stop if trigger encoding, response definition, quantile choice, or support threshold requires an unapproved scientific decision.
+
+## 16. Completion notes
+
+- Implemented narrow binary-actuator to continuous-sensor profiling under `src/paperworks/profiling/`.
+- Added `task006_synthetic_smoke` config for implementation tests only.
+- Enforced `calibration_normal` split and `canonical_rule_view` use.
+- Added explicit unsupported status for insufficient matched normal responses.
+- Added calibration records and aggregate evidence packs with provenance.
+- Verified behavior with synthetic tests only; no raw SWaT rows were loaded or persisted.

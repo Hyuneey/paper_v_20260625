@@ -1,0 +1,26 @@
+{
+  "config_version": "1.0",
+  "profile_policy_name": "task006_synthetic_smoke",
+  "relation_type": "binary_actuator_to_continuous_sensor",
+  "source_view": "canonical_rule_view",
+  "trigger": {
+    "operator": "changed_to",
+    "from": 0.0,
+    "to": 1.0
+  },
+  "response": {
+    "operator": "increase_within",
+    "max_response_delay_samples": 4,
+    "response_delta_floor": 0.0
+  },
+  "calibration": {
+    "min_matched_response_count": 2,
+    "delay_parameter": "max_response_delay_seconds",
+    "delay_quantile": 1.0,
+    "magnitude_parameter": "min_response_magnitude",
+    "magnitude_quantile": 0.0,
+    "method": "empirical_linear_quantile"
+  },
+  "irregular_sampling_policy": "reject",
+  "scope_note": "Synthetic smoke configuration only; not a final SWaT calibration or performance claim."
+}

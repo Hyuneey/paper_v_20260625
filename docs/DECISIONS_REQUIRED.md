@@ -153,6 +153,30 @@
   5. If some targets have no metadata same-stage candidates, report them as empty-target cases rather than silently filling them with fallback candidates.
 - Consequences for claims/evaluation: The first smoke run remains conservative, auditable, and free of hidden data-dependent tuning.
 
+### DEC-011: TASK-006 synthetic-smoke calibration policy
+
+- Status: resolved
+- Owner: implementation agent
+- Needed before: TASK-006 synthetic fixture completion
+- Final decision: For TASK-006 implementation tests only, use an explicit `task006_synthetic_smoke` profiling configuration.
+- Decision date: 2026-06-25
+- Required config behavior:
+  - `relation_type: binary_actuator_to_continuous_sensor`
+  - `source_view: canonical_rule_view`
+  - trigger operator: `changed_to` from `0.0` to `1.0`
+  - response operator: `increase_within`
+  - `max_response_delay_samples: 4`
+  - `min_matched_response_count: 2`
+  - `delay_quantile: 1.0`
+  - `magnitude_quantile: 0.0`
+  - `irregular_sampling_policy: reject`
+- Constraints:
+  1. This policy is only a synthetic smoke-test implementation contract.
+  2. It must not be used as a final SWaT calibration policy or benchmark claim without researcher approval.
+  3. Unsupported pairs must produce explicit `INSUFFICIENT_NORMAL_SUPPORT` status and must not fabricate calibration values.
+  4. Calibration must use `calibration_normal` and `canonical_rule_view` only.
+- Consequences for claims/evaluation: TASK-006 can validate deterministic profiling and provenance behavior without deciding final research calibration thresholds.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
