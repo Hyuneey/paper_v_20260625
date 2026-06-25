@@ -103,3 +103,18 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 ### Findings
 
 GDN's `models/GDN.py` computes cosine similarity over all node embeddings and calls `torch.topk` over the full similarity matrix. It does not apply this project's per-target candidate mask before Top-K. `models/graph_layer.py` removes and then adds self-loops for message passing, so candidate relation export must explicitly distinguish relation artifacts from internal self-loops.
+
+### TASK-004 adaptation notes
+
+- Code copied: none.
+- Code adapted: none.
+- Conceptually reimplemented:
+  - node-embedding cosine similarity,
+  - Top-K graph extraction,
+  - self-loop separation for message passing.
+- Project-specific changes:
+  - `CandidateUniverse` mask is applied before Top-K,
+  - persisted candidate self-edges are rejected,
+  - candidate edges include `candidate_universe_id`, `feature_order_hash`, `checkpoint_id`, source view, sampling period, K, seed, rank, and candidate origins.
+- Current limitation:
+  - local PyTorch/PyG dependencies are unavailable, so TASK-004 currently provides a deterministic embedding smoke backend plus masked extraction core, not the final modern PyTorch/PyG trainer.

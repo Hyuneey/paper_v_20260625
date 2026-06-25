@@ -9,6 +9,12 @@ suggested_branch: task-004-gdn-candidates
 
 # TASK-004: Modern Masked GDN Candidate Extraction
 
+## Current progress
+
+- Mask-enforced embedding Top-K extraction core is implemented under `src/paperworks/gdn`.
+- Deterministic smoke checkpoint and synthetic tests are implemented.
+- Full modern PyTorch/PyG trainer remains blocked by DEC-010 because the current bundled Python environment lacks `torch` and `torch_geometric`.
+
 ## 1. Goal
 
 Implement or adapt a modern, reproducible GDN relation learner that trains only on approved normal data and exports Top-K candidate edges strictly inside the CandidateUniverse mask.

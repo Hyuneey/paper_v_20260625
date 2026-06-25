@@ -1,3 +1,3 @@
 """Project package for verified rule construction experiments."""
 
-__all__ = ["candidates", "data", "metadata"]
+__all__ = ["candidates", "data", "gdn", "metadata"]

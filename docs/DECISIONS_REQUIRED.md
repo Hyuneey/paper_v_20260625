@@ -141,3 +141,20 @@
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:
+
+### DEC-010: Modern PyTorch/PyG GDN backend environment
+
+- Status: open
+- Owner: researcher
+- Needed before: closing TASK-004 with real GDN training
+- Question: Which modern supported PyTorch and PyG environment should be installed and used for the project-owned GDN trainer?
+- Why it matters scientifically: TASK-004 requires a modern GDN port and synthetic training smoke test. The current bundled Python environment has neither `torch` nor `torch_geometric`, so only the masked extraction core can be validated locally without dependency approval.
+- Options:
+  1. Add and install a current CPU-only PyTorch/PyG environment for local smoke tests.
+  2. Add a GPU-capable environment with documented CUDA compatibility.
+  3. Keep the current stdlib-only extraction core and defer full GDN training until a separate environment setup task.
+- Evidence available: `torch` and `torch_geometric` imports fail in the bundled Python runtime. TASK-004 progress implements deterministic embedding checkpoint smoke tests and mask-enforced edge extraction without these dependencies.
+- Recommendation from implementation agent: Approve option 1 for the first real TASK-004 closure, then add GPU support only after the CPU path is reproducible.
+- Final decision:
+- Decision date:
+- Consequences for claims/evaluation:

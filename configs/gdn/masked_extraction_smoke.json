@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "config_type": "gdn_masked_extraction_smoke",
+  "top_k": 1,
+  "seed": 7,
+  "run_index": 0,
+  "backend": "deterministic_embedding_smoke",
+  "source_view": "canonical_rule_view",
+  "sampling_period_seconds": 1.0,
+  "notes": [
+    "This config validates CandidateUniverse mask enforcement and edge artifact export.",
+    "It is not the final PyTorch/PyG GDN training backend.",
+    "Final GDN training remains blocked until modern torch and torch_geometric dependencies are approved and installed."
+  ]
+}
