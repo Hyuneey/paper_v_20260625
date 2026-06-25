@@ -1,0 +1,19 @@
+{
+  "config_version": "1.0",
+  "runtime_policy_name": "task010_synthetic_smoke",
+  "scope_note": "Synthetic smoke runtime configuration only; not a final SWaT severity or alarm-merge policy.",
+  "source_view": "canonical_rule_view",
+  "severity": {
+    "mode": "binary",
+    "binary_severity": 1.0
+  },
+  "aggregation": {
+    "rule_score": "max_fired_rule_severity",
+    "merge_adjacent_intervals": true
+  },
+  "constraints": {
+    "llm_free": true,
+    "dynamic_code_execution": "prohibited",
+    "test_data_access": "prohibited"
+  }
+}

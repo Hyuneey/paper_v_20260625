@@ -1,7 +1,7 @@
 ---
 id: TASK-010
 title: Implement LLM-free deterministic runtime rule engine
-status: blocked
+status: complete
 depends_on: [TASK-009]
 phase_gate: Milestone 4
 suggested_branch: task-010-runtime-engine
@@ -106,3 +106,12 @@ class RuntimeRuleEngine:
 ## 11. Stop conditions
 
 Stop if severity/aggregation semantics or alarm-interval merging policy requires an unapproved decision.
+
+## 12. Completion notes
+
+- Implemented LLM-free runtime engine under `src/paperworks/runtime/`.
+- Added synthetic-smoke runtime policy in `configs/runtime/task010_synthetic_smoke.json`.
+- Recorded DEC-013 to limit runtime severity and merge semantics to implementation smoke tests.
+- Runtime validates verified libraries through `RuleSchemaRegistry` before execution.
+- Runtime accepts canonical rule-view batches only.
+- Runtime emits firing records, merged alarm intervals, deterministic explanations, aggregate score, and provenance statistics.

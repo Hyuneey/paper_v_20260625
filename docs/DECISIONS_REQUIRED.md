@@ -200,6 +200,27 @@
   4. Final test data remains prohibited.
 - Consequences for claims/evaluation: TASK-009 can validate deterministic verifier mechanics without deciding final research acceptance thresholds.
 
+### DEC-013: TASK-010 synthetic-smoke runtime aggregation policy
+
+- Status: resolved
+- Owner: implementation agent
+- Needed before: TASK-010 synthetic runtime completion
+- Final decision: For TASK-010 implementation tests only, use an explicit `task010_synthetic_smoke` runtime configuration.
+- Decision date: 2026-06-25
+- Required config behavior:
+  - source view: `canonical_rule_view`
+  - severity mode: binary
+  - binary severity: `1.0`
+  - aggregate rule score: max fired-rule severity
+  - alarm interval merge policy: merge overlapping or adjacent intervals within one sampling period
+  - LLM calls, dynamic code execution, and test-data access: prohibited
+- Constraints:
+  1. This policy is only a synthetic smoke-test implementation contract.
+  2. It must not be used as a final SWaT severity, scoring, or alarm-merge policy without researcher approval.
+  3. Runtime explanations must be derived from rule AST fields and observed aggregate violation values.
+  4. Runtime artifacts may contain row/timestamp ranges, but tracked reports must not contain reconstructive raw sequences.
+- Consequences for claims/evaluation: TASK-010 can validate runtime determinism and provenance without deciding final alarm scoring semantics.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
