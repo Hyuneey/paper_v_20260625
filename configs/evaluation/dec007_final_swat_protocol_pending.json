@@ -1,0 +1,58 @@
+{
+  "config_version": "1.0",
+  "config_name": "dec007_final_swat_protocol_pending",
+  "status": "pending_dec007_resolution",
+  "scope_note": "Placeholder protocol for final SWaT evaluation readiness. This config does not approve final test access.",
+  "source_policy": {
+    "preferred_source": "official_iTrust_request",
+    "alternative_source": "researcher_approved_kaggle_mirror",
+    "current_local_files_status": "local_unverified_smoke_test",
+    "official_request_recorded": false,
+    "terms_acknowledged": false,
+    "dataset_edition_verified": false,
+    "file_hashes_verified": false
+  },
+  "sealed_test_policy": {
+    "final_test_access_approved": false,
+    "dec007_resolved": false,
+    "one_way_execution_log_required": true,
+    "post_test_changes_are_exploratory": true
+  },
+  "split_policy": {
+    "split_before_windowing": true,
+    "train_normal_use": "candidate_learning_only",
+    "calibration_normal_use": "relation_profiling_and_rule_parameter_calibration",
+    "validation_use": "verification_refinement_and_selection",
+    "test_use": "final_evaluation_only",
+    "final_test_threshold_tuning_allowed": false
+  },
+  "metric_policy": {
+    "primary": [
+      "pa_free_precision",
+      "pa_free_recall",
+      "pa_free_f1",
+      "auroc",
+      "auprc"
+    ],
+    "supplementary": [
+      "point_adjusted_precision",
+      "point_adjusted_recall",
+      "point_adjusted_f1",
+      "range_iou"
+    ],
+    "point_adjusted_primary_allowed": false,
+    "point_adjusted_selection_allowed": false
+  },
+  "artifact_policy": {
+    "track_raw_swat_rows": false,
+    "track_extracted_windows": false,
+    "track_raw_sequence_plots": false,
+    "track_downloadable_derived_samples": false,
+    "track_aggregate_reports": true,
+    "track_hashes_and_manifests": true
+  },
+  "runtime_llm": false,
+  "real_provider_calls": false,
+  "network_allowed": false,
+  "benchmark_claims_allowed": false
+}

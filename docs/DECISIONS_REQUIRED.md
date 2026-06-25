@@ -443,8 +443,15 @@
   1. Official iTrust files with documented edition and terms.
   2. Researcher-supplied Kaggle mirror with documented file list, edition/version, and terms.
   3. Continue using local smoke-test files only for non-claim implementation checks.
-- Evidence available: Current files are fingerprinted and marked `local_unverified_smoke_test`; researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`.
-- Recommendation from implementation agent: Keep current files smoke-test-only until Kaggle terms, file list, and split semantics are confirmed.
+- Evidence available:
+  - Current files are fingerprinted and marked `local_unverified_smoke_test`.
+  - Researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system`.
+  - Public iTrust dataset page confirms that SWaT is an available dataset and says dataset requests may take up to three working days.
+  - Public iTrust request form includes SWaT and requires agreement to iTrust dataset terms.
+  - Public iTrust terms require credit to iTrust/SUTD, publication notice to iTrust, and no dataset sharing.
+  - Public iTrust summary lists SWaT `A1 & A2 Dec 2015` among available datasets.
+  - See `docs/DEC007_SWAT_PROVENANCE_PRECHECK.md`.
+- Recommendation from implementation agent: Keep current files smoke-test-only until an official iTrust request/approval record or researcher-approved Kaggle mirror policy is recorded with terms acknowledgement, exact file list, hashes, edition/version, split protocol, sealed-test access policy, and allowed tracked artifacts.
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:
