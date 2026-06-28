@@ -4,7 +4,11 @@
 
 Dataset source is **partially identified but unverified**. The researcher supplied the Kaggle page `https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system` as the current local data source. Local SWaT-like CSV files are present, but exact file provenance, edition, terms-of-use status, and official train/test semantics have not been confirmed.
 
-Resolved TASK-000 decisions classify these files as `local_unverified_smoke_test`. Do not use these files for scientific claims or final evaluation.
+Resolved TASK-000 decisions classify these files as `local_unverified_smoke_test`. TASK-016 adds a separate staging-only path that treats the same local/Kaggle files as `kaggle_mirror_staging` for implementation debugging. Do not use these files for scientific claims or final evaluation.
+
+TASK-016 required report statement:
+
+> This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.
 
 ## Local files inspected
 
@@ -102,3 +106,21 @@ The TASK-001 data-contract implementation supports these files only as local smo
 - Split manifests and data-view manifests reference the dataset manifest by stable hash.
 
 Final evaluation remains blocked until DEC-007 is resolved with approved SWaT provenance and split semantics.
+
+## TASK-016 staging implementation status
+
+The TASK-016 staging adapter supports these files only as Kaggle/local staging
+inputs:
+
+- `StagingSwatMirrorManifest.source_kind` is fixed to `kaggle_mirror`.
+- `StagingSwatMirrorManifest.dataset_status` is fixed to `staging_only`.
+- `OfficialSwatProvenanceManifest` is not used.
+- `SWAT_DATA_ROOT` is required for local access.
+- Header whitespace is normalized before row parsing.
+- The aggregate development report is stored at
+  `docs/task_reports/TASK-016_STAGING_REPORT.json`.
+
+The report contains file names, SHA-256 hashes, row counts, column names, label
+counts, timestamp/label columns, inferred sampled intervals, metadata coverage,
+and known limitations. It does not contain raw rows, windows, raw sequence
+plots, or final benchmark metrics.

@@ -1,0 +1,52 @@
+{
+  "config_version": "1.0",
+  "config_name": "task016_kaggle_staging",
+  "status": "staging_only_approved_for_implementation_debugging",
+  "source_policy": {
+    "staging_source_label": "kaggle_mirror_staging",
+    "source_kind": "kaggle_mirror",
+    "dataset_status": "staging_only",
+    "local_root_env": "SWAT_DATA_ROOT",
+    "official_swat_manifest_allowed": false,
+    "dec007_resolution_allowed": false,
+    "final_claims_allowed": false,
+    "required_report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+  },
+  "input_files": [
+    "normal.csv",
+    "attack.csv",
+    "merged.csv"
+  ],
+  "schema": {
+    "timestamp_column": "Timestamp",
+    "index_columns": [],
+    "label_column": "Normal/Attack",
+    "timestamp_formats": [
+      "%d/%m/%Y %I:%M:%S %p",
+      "%Y-%m-%d %H:%M:%S"
+    ],
+    "column_normalization": "strip_header_whitespace",
+    "sampling_sample_limit": 100
+  },
+  "development_run": {
+    "pipeline_stage": "staging_schema_metadata_smoke",
+    "metadata_file": "configs/metadata/swat_variables.json",
+    "output_report": "docs/task_reports/TASK-016_STAGING_REPORT.json",
+    "aggregate_metrics_allowed": true,
+    "final_metrics_allowed": false
+  },
+  "governance": {
+    "commit_raw_csv": false,
+    "commit_raw_rows": false,
+    "commit_windows": false,
+    "commit_raw_sequence_plots": false,
+    "official_sealed_test_access": false,
+    "threshold_or_k_tuning_from_staging_performance": "not_performed"
+  },
+  "known_limitations": [
+    "This config is for implementation debugging only.",
+    "The current local/Kaggle CSV files do not resolve DEC-007.",
+    "The current local/Kaggle CSV files must not be used for final SWaT benchmark claims.",
+    "Aggregate row and label counts may double-count when merged.csv is listed together with label-filtered files."
+  ]
+}

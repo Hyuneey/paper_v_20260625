@@ -490,6 +490,36 @@
   - reading, copying, or tracking raw SWaT data.
 - Consequences for claims/evaluation: DEC-007 cannot be resolved with an alternative source for the final primary benchmark unless a future decision explicitly replaces this policy.
 
+### DEC-023: TASK-016 Kaggle/local staging path
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-016
+- Final decision: Treat current local/Kaggle CSV files as `kaggle_mirror_staging` for implementation debugging only.
+- Decision date: 2026-06-28
+- Required behavior:
+  - Use a separate `StagingSwatMirrorManifest`.
+  - Do not use `OfficialSwatProvenanceManifest`.
+  - Record `source_kind: kaggle_mirror` and `dataset_status: staging_only`.
+  - Access local files through `SWAT_DATA_ROOT`.
+  - Record file names, hashes, row counts, column names, label schema, timestamp/index columns, inferred sampling interval, and known limitations.
+  - Include the required report statement: "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+- Allowed:
+  - schema inspection,
+  - data loading,
+  - column normalization,
+  - metadata mapping,
+  - staging-only smoke reports,
+  - aggregate non-final metrics.
+- Not approved:
+  - resolving DEC-007,
+  - opening official sealed final test,
+  - final SWaT benchmark claims,
+  - using Kaggle/local results as final thesis results,
+  - committing raw rows, windows, plots, or redistributable derived samples,
+  - tuning thresholds, K, prompts, or rules from staging performance without recording the run as exploratory.
+- Consequences for claims/evaluation: TASK-016 can debug implementation paths with local/Kaggle files, but all outputs remain staging-only and non-final.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade

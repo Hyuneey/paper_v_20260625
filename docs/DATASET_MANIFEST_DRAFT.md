@@ -2,6 +2,12 @@
 
 This draft records the current local CSV files as unverified smoke-test inputs. It is not an approved final SWaT provenance manifest.
 
+TASK-016 additionally provides a separate `StagingSwatMirrorManifest` for
+`kaggle_mirror_staging` implementation debugging. That staging manifest does
+not resolve DEC-007 and must include this statement in every report:
+
+"This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+
 ```yaml
 schema_version: "1.0"
 artifact_type: "dataset_manifest"
