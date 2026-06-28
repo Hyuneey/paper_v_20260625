@@ -116,6 +116,25 @@ parameters, rule AST summaries, verifier aggregate metrics, runtime firing
 counts, and blank human-review notes fields. They are implementation-debugging
 artifacts only and are not performance or explanation-quality claims.
 
+## TASK-020 Robustness and Synthetic Replay
+
+TASK-020 scans additional fixed-stride support-aware staging slices and replays
+the audited rules on synthetic non-SWaT mini-series.
+
+The generated reports are:
+
+- `docs/task_reports/TASK-020_RULE_ROBUSTNESS_REPORT.json`
+- `docs/task_reports/TASK-020_SYNTHETIC_VIOLATION_REPLAY.json`
+
+The robustness scan used only `merged.csv`, scanned 2,810 slices, and found 464
+support-aware passing slices. Synthetic replay confirmed that both audited rules
+fire on generated missing-response cases and do not fire when the generated
+expected response occurs.
+
+This is still staging implementation evidence only. It is not an official SWaT
+benchmark result, final anomaly-detection performance, or explanation-quality
+claim.
+
 ## Limitations
 
 - DEC-007 remains unresolved.

@@ -1,0 +1,867 @@
+{
+  "report": {
+    "artifact_type": "task020_rule_robustness_report",
+    "checks": {
+      "dec007_unresolved": true,
+      "labels_not_used_for_slice_selection": true,
+      "no_anomaly_performance_slice_selection": true,
+      "no_final_test_access": true,
+      "no_raw_rows_windows_or_plots_tracked": true,
+      "official_manifest_not_used": true,
+      "required_report_statement_present": true,
+      "runtime_llm_free": true,
+      "staging_only": true,
+      "used_only_merged_csv": true
+    },
+    "config_hash": "328b431e5c2d5d388cabc8aed5e7297b79801a1c5c0f95574c37c55f86ead822",
+    "created_at": "2026-06-29T00:00:00+09:00",
+    "labels_used_for_selection": false,
+    "limitations": [
+      "This is a Kaggle/local staging run for implementation debugging only.",
+      "It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+      "Rule stability is evaluated on predeclared support-aware staging slices, not final test data.",
+      "Synthetic replay uses non-SWaT mini-series and validates runtime plumbing only.",
+      "DEC-007 remains unresolved.",
+      "No raw rows, windows, raw sequence plots, or downloadable derived samples are persisted."
+    ],
+    "pair_summaries": [
+      {
+        "first_supported_start_indices": [
+          383488,
+          384000,
+          384512,
+          385024,
+          1391104,
+          1391616,
+          1392128,
+          1392640,
+          1393664,
+          1432576
+        ],
+        "matched_response_count_total": 10,
+        "missing_response_count_total": 464,
+        "right_censored_count_total": 14,
+        "scanned_slice_count": 2810,
+        "source": "MV101",
+        "support_rate": 0.0035587188612099642,
+        "supported_slice_count": 10,
+        "target": "FIT101",
+        "trigger_count_total": 488
+      },
+      {
+        "first_supported_start_indices": [
+          0,
+          512,
+          4608,
+          5120,
+          5632,
+          6144,
+          6656,
+          7168,
+          7680,
+          8192
+        ],
+        "matched_response_count_total": 474,
+        "missing_response_count_total": 14,
+        "right_censored_count_total": 0,
+        "scanned_slice_count": 2810,
+        "source": "MV101",
+        "support_rate": 0.15693950177935942,
+        "supported_slice_count": 441,
+        "target": "LIT101",
+        "trigger_count_total": 488
+      },
+      {
+        "first_supported_start_indices": [
+          3072,
+          3584,
+          4096,
+          4608,
+          174592,
+          175104,
+          175616,
+          176128,
+          186368,
+          186880
+        ],
+        "matched_response_count_total": 131,
+        "missing_response_count_total": 1395,
+        "right_censored_count_total": 39,
+        "scanned_slice_count": 2810,
+        "source": "P101",
+        "support_rate": 0.038434163701067614,
+        "supported_slice_count": 108,
+        "target": "FIT101",
+        "trigger_count_total": 1565
+      },
+      {
+        "first_supported_start_indices": [
+          0,
+          512,
+          1024,
+          1536,
+          2048,
+          2560,
+          3072,
+          3584,
+          4096,
+          4608
+        ],
+        "matched_response_count_total": 1285,
+        "missing_response_count_total": 272,
+        "right_censored_count_total": 8,
+        "scanned_slice_count": 2810,
+        "source": "P101",
+        "support_rate": 0.4359430604982206,
+        "supported_slice_count": 1225,
+        "target": "LIT101",
+        "trigger_count_total": 1565
+      },
+      {
+        "first_supported_start_indices": [
+          0,
+          512,
+          1024,
+          1536,
+          185856,
+          186368,
+          186880,
+          187392,
+          229888,
+          230400
+        ],
+        "matched_response_count_total": 20,
+        "missing_response_count_total": 11,
+        "right_censored_count_total": 1,
+        "scanned_slice_count": 2810,
+        "source": "P102",
+        "support_rate": 0.0071174377224199285,
+        "supported_slice_count": 20,
+        "target": "FIT101",
+        "trigger_count_total": 32
+      },
+      {
+        "first_supported_start_indices": [
+          318976,
+          319488,
+          320000,
+          320512,
+          1432576,
+          1433088,
+          1433600,
+          1434112,
+          1435136,
+          1435648
+        ],
+        "matched_response_count_total": 12,
+        "missing_response_count_total": 19,
+        "right_censored_count_total": 1,
+        "scanned_slice_count": 2810,
+        "source": "P102",
+        "support_rate": 0.004270462633451958,
+        "supported_slice_count": 12,
+        "target": "LIT101",
+        "trigger_count_total": 32
+      },
+      {
+        "first_supported_start_indices": [
+          0,
+          1024,
+          1536,
+          2048,
+          2560,
+          3072,
+          3584,
+          4096,
+          4608,
+          5120
+        ],
+        "matched_response_count_total": 227,
+        "missing_response_count_total": 258,
+        "right_censored_count_total": 18,
+        "scanned_slice_count": 2810,
+        "source": "MV201",
+        "support_rate": 0.07508896797153025,
+        "supported_slice_count": 211,
+        "target": "AIT201",
+        "trigger_count_total": 503
+      },
+      {
+        "first_supported_start_indices": [
+          0,
+          1024,
+          1536,
+          2048,
+          2560,
+          3072,
+          3584,
+          4096,
+          4608,
+          5120
+        ],
+        "matched_response_count_total": 497,
+        "missing_response_count_total": 6,
+        "right_censored_count_total": 0,
+        "scanned_slice_count": 2810,
+        "source": "MV201",
+        "support_rate": 0.1597864768683274,
+        "supported_slice_count": 449,
+        "target": "AIT202",
+        "trigger_count_total": 503
+      }
+    ],
+    "passing_slice_count": 464,
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "scan_policy": {
+      "labels_policy": "ignored_for_selection_audit_only",
+      "max_scan_slices": null,
+      "max_stability_rebuild_slices": 8,
+      "maximum_slice_length": 4096,
+      "search_step": 512,
+      "selection_uses_anomaly_performance": false,
+      "stability_rebuild_strategy": "selected_slice_then_first_passing_starts_by_index",
+      "timeline_source": "merged.csv"
+    },
+    "scanned_slice_count": 2810,
+    "schema_version": "1.0",
+    "selected_timeline_start_index": 12800,
+    "stability_observations": [
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 36.0,
+          "min_response_magnitude": 0.16030000000000655
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.4037660c59cbd7f4",
+        "rule_id_matches_audited": true,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT201",
+        "timeline_start_index": 12800,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "a277520aed7ee4ff97ff22847b2d96456dd18090b8aa5d81733d22766b2098da",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.00576800000000155
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.ae3f2f7ac58acb79",
+        "rule_id_matches_audited": true,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT202",
+        "timeline_start_index": 12800,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "01753ba404118a03b5d599ba1839200b80efbf8fd831a8468e84ef60a3d42e98",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 0.7850999999999431
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.3691ae690f4d7459",
+        "rule_id_matches_audited": false,
+        "source": "MV101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 13312,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "e9f3c8f8fc43caff9896ac9f87e410c542a624241c95638d57aef96808b3ec92",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 36.0,
+          "min_response_magnitude": 0.16030000000000655
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.c1840cfa634f09de",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT201",
+        "timeline_start_index": 13312,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "19d8383cf3a577f7fb2c449f0e73968846c9fb36d53f6c973c708d2a07379302",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.00576800000000155
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.0052f6312c43dd63",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT202",
+        "timeline_start_index": 13312,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "7e659102a7daee33547b0c25d5f7314993b2d17e687589f2d0e9e36029130161",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 0.7850999999999431
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.19a978b055075539",
+        "rule_id_matches_audited": false,
+        "source": "MV101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 13824,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "b7828e6420ca80db1236c4d09f9ea6e4ee4bb949880a353021cfd0a5ab42a3ed",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 36.0,
+          "min_response_magnitude": 0.16030000000000655
+        },
+        "normal_false_fire_rate": 0.030303030303030304,
+        "rule_id": "rule.template.2f7aa5ec5041a3a3",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT201",
+        "timeline_start_index": 13824,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "d7df95300b8179f55a0dabc9e4732c25660c0d288ba108054eabdb899e135ac7",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.00576800000000155
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.3b97a34c9bfdb53c",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT202",
+        "timeline_start_index": 13824,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "7a33087cb6e580b6f83c473d2ce4e17e1c6065d84f019dba328a82cc4859c0db",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 0.7850999999999431
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.4e5e7e1d59fc3c94",
+        "rule_id_matches_audited": false,
+        "source": "MV101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 14336,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "d5e4e8ab49488afbf6badf48f1b4591dd8e937eeed3e60e21d38d0df2fb3e1f2",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 36.0,
+          "min_response_magnitude": 0.16030000000000655
+        },
+        "normal_false_fire_rate": 0.030303030303030304,
+        "rule_id": "rule.template.163d13640e383b43",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT201",
+        "timeline_start_index": 14336,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "fd1e3328dd39277a6eb0efeb2e8e926e9ce6a69cc7bdb6bb31bfa66a04f69db4",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.00576800000000155
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.163d0ada01e3282e",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT202",
+        "timeline_start_index": 14336,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "84a601e479d202c1a094468b2b6c003c6bcaf909089444623fbb7884ea26cf02",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 0.7850999999999431
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.65024433b0bab551",
+        "rule_id_matches_audited": false,
+        "source": "MV101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 14848,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "d3604e000de677d584dee058afa99d4432972af1374057ed038395aae948c66a",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 15.0,
+          "min_response_magnitude": 0.32049999999998136
+        },
+        "normal_false_fire_rate": 0.030303030303030304,
+        "rule_id": "rule.template.eb008b7198cc6e73",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT201",
+        "timeline_start_index": 17408,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "72b9a1dde7129584bdcb81ee7301712de16a6e7df47ee7685f0e23044d2be278",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.006086999999999065
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.5f1a62b4bcbe65ed",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT202",
+        "timeline_start_index": 17408,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "d5db543866bc4ef6e459bbbe40f6b44f4a50c1cc5db42d0f24ef62389778e736",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 0.5494999999999663
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.286e84d4918f1d6b",
+        "rule_id_matches_audited": false,
+        "source": "MV101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 17920,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "b5412ebe501f087250964851c2e17766fc5195d8f8a9b4a8926a9297a0f33694",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 1.0597999999999956
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.3cfb57f32fac1316",
+        "rule_id_matches_audited": false,
+        "source": "P101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 17920,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "83b66dc93bf277e2c74c1f531877c0674c48a2c428c3b59af2f18fec1d86975d",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 15.0,
+          "min_response_magnitude": 0.32049999999998136
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.4c35a308475de83e",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT201",
+        "timeline_start_index": 17920,
+        "validation_coverage": 0.125,
+        "verifier_report_id": "17b3dee912561192dd4dfb33f1f6a1b0cda969647cb1b2de75c690a8070b68de",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.006086999999999065
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.cadcafc7503592af",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "AIT202",
+        "timeline_start_index": 17920,
+        "validation_coverage": 0.125,
+        "verifier_report_id": "5ad38d635d359e6e58c58caa867107e623723c82ddb12ef23d6b96cfced01a1c",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 0.5494999999999663
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.554c0d4b7d73c492",
+        "rule_id_matches_audited": false,
+        "source": "MV101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 18432,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "0fbe2e8ff03fa1501d2fbb87390835a241b03b14ac2a63d027148053fdae4c61",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": null,
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 1,
+          "min_response_magnitude": 1
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 0.0,
+          "min_response_magnitude": 1.0597999999999956
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.3edde6135ccdf2eb",
+        "rule_id_matches_audited": false,
+        "source": "P101",
+        "support_counts": {
+          "matched_response_count": 1,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 1
+        },
+        "target": "LIT101",
+        "timeline_start_index": 18432,
+        "validation_coverage": 0.125,
+        "verifier_report_id": "dd1a66dac99d7a6dc025c3be014a575983772b414bff0bc281df7dbae64eb0c0",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.4037660c59cbd7f4",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 2,
+          "min_response_magnitude": 2
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 31.0,
+          "min_response_magnitude": 0.16020000000003165
+        },
+        "normal_false_fire_rate": 0.030303030303030304,
+        "rule_id": "rule.template.dfc37ceb676555e5",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 2,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 2
+        },
+        "target": "AIT201",
+        "timeline_start_index": 18432,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "916a9c23d9fdcd2df78e8615370104a42501d48fbab91337bedb396654180b11",
+        "verifier_status": "passed"
+      },
+      {
+        "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+        "calibration_support_counts": {
+          "max_response_delay_seconds": 2,
+          "min_response_magnitude": 2
+        },
+        "calibration_values": {
+          "max_response_delay_seconds": 3.0,
+          "min_response_magnitude": 0.0022430000000017714
+        },
+        "normal_false_fire_rate": 0.0,
+        "rule_id": "rule.template.6f2ba12937ce8084",
+        "rule_id_matches_audited": false,
+        "source": "MV201",
+        "support_counts": {
+          "matched_response_count": 2,
+          "missing_response_count": 0,
+          "right_censored_count": 0,
+          "trigger_count": 2
+        },
+        "target": "AIT202",
+        "timeline_start_index": 18432,
+        "validation_coverage": 0.0,
+        "verifier_report_id": "41500bdc3078d143f92a18587451b02a77533a3a909c5d98c696e4252c94cd56",
+        "verifier_status": "passed"
+      }
+    ],
+    "stability_summary": {
+      "audited_pair_count": 2,
+      "interpretation": "staging stability audit only; not a benchmark or performance claim",
+      "pair_summary": {
+        "MV201->AIT201": {
+          "audited_rule_id": "rule.template.4037660c59cbd7f4",
+          "audited_rule_id_seen": true,
+          "calibration_value_ranges": {
+            "max_response_delay_seconds": {
+              "max": 36.0,
+              "min": 15.0
+            },
+            "min_response_magnitude": {
+              "max": 0.32049999999998136,
+              "min": 0.16020000000003165
+            }
+          },
+          "passed_verifier_count": 7,
+          "rebuilt_observation_count": 7,
+          "unique_rule_ids": [
+            "rule.template.163d13640e383b43",
+            "rule.template.2f7aa5ec5041a3a3",
+            "rule.template.4037660c59cbd7f4",
+            "rule.template.4c35a308475de83e",
+            "rule.template.c1840cfa634f09de",
+            "rule.template.dfc37ceb676555e5",
+            "rule.template.eb008b7198cc6e73"
+          ]
+        },
+        "MV201->AIT202": {
+          "audited_rule_id": "rule.template.ae3f2f7ac58acb79",
+          "audited_rule_id_seen": true,
+          "calibration_value_ranges": {
+            "max_response_delay_seconds": {
+              "max": 3.0,
+              "min": 3.0
+            },
+            "min_response_magnitude": {
+              "max": 0.006086999999999065,
+              "min": 0.0022430000000017714
+            }
+          },
+          "passed_verifier_count": 7,
+          "rebuilt_observation_count": 7,
+          "unique_rule_ids": [
+            "rule.template.0052f6312c43dd63",
+            "rule.template.163d0ada01e3282e",
+            "rule.template.3b97a34c9bfdb53c",
+            "rule.template.5f1a62b4bcbe65ed",
+            "rule.template.6f2ba12937ce8084",
+            "rule.template.ae3f2f7ac58acb79",
+            "rule.template.cadcafc7503592af"
+          ]
+        }
+      },
+      "rebuilt_observation_count": 22
+    },
+    "task018_dry_run_report_id": "6abb1b90de744a0dfe8f07520f53f66ee2ffd4da967294f8558ff51472f5ba6e",
+    "task018_support_scan_report_id": "490f741e61409672d42aa5fa784b364053f2d5dc246f2e5f120eb815cc3d5b0d",
+    "task019_audit_report_id": "e6507dcac0c377e60ef55832af31f9b1f8c8543c9950fcce3badcd1b078b7f2e",
+    "used_source_files": [
+      "merged.csv"
+    ]
+  },
+  "report_id": "cb9e57f1feb524cfdf5e88284799fd493faa6dda6ba6178e15f012734b5b286c"
+}

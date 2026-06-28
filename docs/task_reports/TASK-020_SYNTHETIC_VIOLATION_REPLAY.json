@@ -1,0 +1,54 @@
+{
+  "report": {
+    "artifact_type": "task020_synthetic_violation_replay",
+    "case_count": 2,
+    "cases": [
+      {
+        "expected_response_firing_count": 0,
+        "expected_response_suppressed": true,
+        "max_response_delay_seconds": 36.0,
+        "min_response_magnitude": 0.16030000000000655,
+        "missing_response_fired": true,
+        "missing_response_firing_count": 1,
+        "rule_id": "rule.template.4037660c59cbd7f4",
+        "source": "MV201",
+        "synthetic_policy": "non_swat_constant_baseline_with_single_trigger",
+        "synthetic_sample_count": 39,
+        "target": "AIT201"
+      },
+      {
+        "expected_response_firing_count": 0,
+        "expected_response_suppressed": true,
+        "max_response_delay_seconds": 3.0,
+        "min_response_magnitude": 0.00576800000000155,
+        "missing_response_fired": true,
+        "missing_response_firing_count": 1,
+        "rule_id": "rule.template.ae3f2f7ac58acb79",
+        "source": "MV201",
+        "synthetic_policy": "non_swat_constant_baseline_with_single_trigger",
+        "synthetic_sample_count": 6,
+        "target": "AIT202"
+      }
+    ],
+    "checks": {
+      "expected_response_cases_do_not_fire": true,
+      "missing_response_cases_fire": true,
+      "no_staging_source_files_used": true,
+      "required_report_statement_present": true,
+      "runtime_llm_free": true,
+      "staging_only": true,
+      "uses_synthetic_non_swat_series_only": true
+    },
+    "created_at": "2026-06-29T00:00:00+09:00",
+    "limitations": [
+      "Synthetic replay uses non-SWaT mini time-series generated from DSL/calibration values.",
+      "This verifies runtime plumbing for expected missing-response semantics only.",
+      "It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+    ],
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "schema_version": "1.0",
+    "task019_audit_report_id": "e6507dcac0c377e60ef55832af31f9b1f8c8543c9950fcce3badcd1b078b7f2e",
+    "used_source_files": []
+  },
+  "report_id": "a981a95f6b44795700f2359383b74bfb435d7ed9a18f91a1976c6dec55d0227f"
+}

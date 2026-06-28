@@ -161,3 +161,21 @@ rules on predeclared pairs.
 This is a Kaggle/local staging run for implementation debugging only. It is not
 an official SWaT benchmark result and must not be used as a final thesis
 performance claim. DEC-007 remains unresolved.
+
+## TASK-020 staging robustness status
+
+TASK-020 keeps the same Kaggle/local staging policy and uses only `merged.csv`
+as the staging timeline source.
+
+The robustness report is
+`docs/task_reports/TASK-020_RULE_ROBUSTNESS_REPORT.json`, and the synthetic
+replay report is
+`docs/task_reports/TASK-020_SYNTHETIC_VIOLATION_REPLAY.json`.
+
+The robustness scan records aggregate support counts and rule-stability
+summaries only. Synthetic replay uses generated non-SWaT mini time-series from
+rule AST/calibration values and does not persist raw SWaT rows, windows, raw
+sequence plots, or downloadable derived samples.
+
+This remains implementation debugging evidence only. It does not resolve
+DEC-007 and must not be used as a final thesis performance claim.

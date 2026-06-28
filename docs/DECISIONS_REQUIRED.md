@@ -594,6 +594,33 @@
   - real provider or network calls.
 - Consequences for claims/evaluation: TASK-018 may identify a better staging slice for implementation debugging, but it remains non-final and cannot support benchmark or thesis performance claims.
 
+### DEC-026: TASK-020 staging rule robustness and synthetic replay
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-020
+- Final decision: Assess TASK-018/TASK-019 staging verified rules with fixed support-aware slice scanning, sampled rule rebuild stability, and synthetic non-SWaT runtime replay.
+- Decision date: 2026-06-29
+- Required behavior:
+  - Use `SWAT_DATA_ROOT`.
+  - Use `merged.csv` as the only staging timeline source.
+  - Use predeclared TASK-018 support-aware criteria.
+  - Do not use labels for slice selection.
+  - Do not select slices based on anomaly performance.
+  - Compare rule IDs, calibration values, support counts, and verifier status across predeclared support-aware slices.
+  - Use generated non-SWaT mini time-series for synthetic violation replay.
+  - Include the required report statement: "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+- Not approved:
+  - final SWaT benchmark,
+  - official sealed final test access,
+  - DEC-007 resolution,
+  - using Kaggle/local results as thesis final results,
+  - threshold/K/prompt/rule/verifier tuning based on staging performance,
+  - committing raw rows, raw windows, raw sequence plots, or downloadable samples,
+  - real provider or network calls,
+  - runtime LLM.
+- Consequences for claims/evaluation: TASK-020 may support whether staging evidence candidates are worth keeping for further implementation review, but it remains non-final and cannot support benchmark or thesis performance claims.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade
