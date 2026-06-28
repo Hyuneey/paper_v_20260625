@@ -1,0 +1,224 @@
+{
+  "report": {
+    "artifact_graph": {
+      "candidate_universe": "4f295c6744520a0414edd7fb27398a7221e938546b91aeb3461beaa642505fa2",
+      "data_view": "dd92c5ad6c96c436daf58cfce903f012fa9fc4057a5465feb888b69197ee936b",
+      "dataset_manifest": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+      "gdn_candidate_edges": "51f7442c986b6de7987959101a135c68576659ae5f78171a98897268a2b19da5",
+      "gdn_checkpoint": "fc54563b83fc342f679ab8592cd265b7133aa8dae4574386eefe92bdc0c37ca5",
+      "runtime_evaluation": "3296a7aa32bb16da70f17b8994867af8498212ff60bb37a5a2d91e066172a4a4",
+      "split_manifest": "714d7d25fa7f9c7104bc2ca7989a94a1c1f49d2443eed799e12e0d700e6c438c",
+      "staging_manifest": "0532a28a87351f740ad59f456521cba085f55d1ba974380e948dd8861143f6cb"
+    },
+    "artifact_type": "task017_kaggle_staging_pipeline_dry_run_report",
+    "attempts": [
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "e882b2747af8ede51acba8378cb942604b496a9f88778fbe1b3470c8d6004a26",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "MV101",
+        "status": "unsupported",
+        "target": "FIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "db8537e0ac9008c582726599d5b155977e72ad6cd1c4b57c2bc25f7942f24f79",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "MV101",
+        "status": "unsupported",
+        "target": "LIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "3ea2b4c5949812c662d0a53aa4ba3aac49958aa86dd871b90f697e89b34c4ee8",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P101",
+        "status": "unsupported",
+        "target": "FIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "c4c83d3cc229ceee5a145df302fb48b7027970ad7baadd7dd6202c8712ac3896",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P101",
+        "status": "unsupported",
+        "target": "LIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "b674f47b3080ef6db29bcae33cc4ddeb20447a11c82faa4f93561f32da25f28a",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P102",
+        "status": "unsupported",
+        "target": "FIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "94370c2d2fcef33b2613a47e83d54af981b87335a25446b6b264c3824cd960f9",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P102",
+        "status": "unsupported",
+        "target": "LIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "711d12e78f2bf79639b8eccb816d2a8e471692524643ce58647e19209b548f65",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "MV201",
+        "status": "unsupported",
+        "target": "AIT201",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "4ed173d24142507038edb57f2d7b51ddb8d21be11e978b5d04b0c2c4cf3eb758",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "MV201",
+        "status": "unsupported",
+        "target": "AIT202",
+        "verification_report_id": null
+      }
+    ],
+    "candidate_summary": {
+      "candidate_pair_count": 10,
+      "empty_target_count": 4,
+      "feature_count": 10,
+      "gdn_emitted_edge_count": 6
+    },
+    "checks": {
+      "candidate_discovery_ran": true,
+      "dec007_unresolved": true,
+      "deterministic_runtime_executed_on_validation_split": true,
+      "metadata_coverage_complete": true,
+      "no_final_test_access": true,
+      "no_raw_rows_windows_or_plots_tracked": true,
+      "no_real_provider_or_network_call": true,
+      "normal_attack_merged_not_combined": true,
+      "official_manifest_not_used": true,
+      "only_one_pipeline_timeline_source_used": true,
+      "profile_attempts_completed": true,
+      "profile_subset_predeclared": true,
+      "required_report_statement_present": true,
+      "runtime_llm_free": true,
+      "split_manifest_built": true,
+      "staging_manifest_used": true,
+      "template_rules_built_when_supported": true
+    },
+    "config_hash": "ac1e6bc1002669746b6d8f861e49e5f6718a508521bc140de051624be0340339",
+    "data_view_id": "dd92c5ad6c96c436daf58cfce903f012fa9fc4057a5465feb888b69197ee936b",
+    "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+    "dataset_status": "staging_only",
+    "limitations": [
+      "This is a Kaggle/local staging run for implementation debugging only.",
+      "It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+      "DEC-007 remains unresolved.",
+      "Only merged.csv is used as the pipeline timeline source.",
+      "Label counts are recorded for audit only and are not used for tuning or final claims.",
+      "No point-adjusted metric is reported as primary."
+    ],
+    "metadata_summary": {
+      "expected_count": 51,
+      "extra_metadata_count": 0,
+      "metadata_count": 51,
+      "missing_feature_count": 0,
+      "pipeline_feature_count": 10
+    },
+    "only_one_pipeline_timeline_source_used": true,
+    "pipeline_timeline_source": "merged.csv",
+    "profiling_summary": {
+      "attempt_count": 8,
+      "predeclared_pair_count": 8,
+      "rejected_count": 0,
+      "unsupported_count": 8,
+      "verified_rule_count": 0
+    },
+    "raw_data_audit": {
+      "downloadable_derived_samples_tracked": false,
+      "official_sealed_test_accessed": false,
+      "raw_csv_tracked": false,
+      "raw_rows_tracked": false,
+      "raw_sequence_plots_tracked": false,
+      "windows_tracked": false
+    },
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "runtime_summary": {
+      "aggregate_rule_score": 0.0,
+      "alarm_interval_count": 0,
+      "firing_count": 0,
+      "rule_count": 0,
+      "runtime_executed": true
+    },
+    "schema_cross_check_files": [],
+    "schema_version": "1.0",
+    "source_kind": "kaggle_mirror",
+    "split_ids": {
+      "calibration_normal": "eb4c42eda64644b58e6fd1e29494ab075a771203228511c8f68917abed41efe2",
+      "train_normal": "0136636895a0c14e8712893218136006aa7044cfac9f921878d0b88bb1889b24",
+      "validation": "0fe729d333aa461804887c28ddff1e7f593a0fcb6589da52130194791bb33a04"
+    },
+    "split_manifest_id": "714d7d25fa7f9c7104bc2ca7989a94a1c1f49d2443eed799e12e0d700e6c438c",
+    "split_summary": {
+      "binary_state_mappings": {
+        "MV101": {
+          "observed_state_count": 1.0
+        },
+        "MV201": {
+          "observed_state_count": 3.0
+        },
+        "P101": {
+          "1.0": 0.0,
+          "2.0": 1.0
+        },
+        "P102": {
+          "observed_state_count": 1.0
+        }
+      },
+      "label_counts_audit_only": {
+        "loaded_slice": {
+          "Normal": 776
+        }
+      },
+      "required_loaded_rows": 776,
+      "sampling_period_seconds": 1.0
+    },
+    "staging_manifest_id": "0532a28a87351f740ad59f456521cba085f55d1ba974380e948dd8861143f6cb",
+    "used_source_files": [
+      "merged.csv"
+    ],
+    "verification_summary": {
+      "verification_config_hash": "293dca8da912d1e140e679cc4d19255636744bc28e315c09721bd68cef588064",
+      "verified_rule_count": 0
+    }
+  },
+  "report_id": "0c9d64da762366021e2fe72e3babbf46b204f6fb75b2fbbca0d790895e5c8736"
+}

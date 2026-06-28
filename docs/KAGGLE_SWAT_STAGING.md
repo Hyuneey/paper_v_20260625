@@ -53,6 +53,24 @@ The aggregate staging report is:
 It records aggregate metadata only. It does not contain raw time-series rows,
 extracted windows, or final benchmark metrics.
 
+## TASK-017 Pipeline Dry-Run
+
+TASK-017 runs a staging-only deterministic pipeline dry-run with exactly one
+timeline source:
+
+- `merged.csv`
+
+It does not combine `normal.csv`, `attack.csv`, and `merged.csv`. The split
+manifest and dry-run report are:
+
+- `docs/task_reports/TASK-017_STAGING_SPLIT_MANIFEST.json`
+- `docs/task_reports/TASK-017_DRY_RUN_REPORT.json`
+
+The configured TASK-017 run produced candidate artifacts and completed
+predeclared profiling attempts, but the attempted pairs had insufficient normal
+support in the configured staging slice and produced zero verified rules. That
+is a staging debug result only, not a performance claim.
+
 ## Limitations
 
 - DEC-007 remains unresolved.

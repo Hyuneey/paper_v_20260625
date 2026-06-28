@@ -1,0 +1,59 @@
+{
+  "split_manifest": {
+    "artifact_type": "task017_staging_split_manifest",
+    "data_view_id": "dd92c5ad6c96c436daf58cfce903f012fa9fc4057a5465feb888b69197ee936b",
+    "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+    "final_test_accessed": false,
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "schema_version": "1.0",
+    "splits": {
+      "calibration_normal": {
+        "data_view_id": "dd92c5ad6c96c436daf58cfce903f012fa9fc4057a5465feb888b69197ee936b",
+        "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+        "purge_gap_samples": 4,
+        "raw_index_ranges": [
+          [
+            260,
+            516
+          ]
+        ],
+        "role": "calibration_normal",
+        "schema_version": "1.0",
+        "seed": 17
+      },
+      "train_normal": {
+        "data_view_id": "dd92c5ad6c96c436daf58cfce903f012fa9fc4057a5465feb888b69197ee936b",
+        "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+        "purge_gap_samples": 4,
+        "raw_index_ranges": [
+          [
+            0,
+            256
+          ]
+        ],
+        "role": "train_normal",
+        "schema_version": "1.0",
+        "seed": 17
+      },
+      "validation": {
+        "data_view_id": "dd92c5ad6c96c436daf58cfce903f012fa9fc4057a5465feb888b69197ee936b",
+        "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+        "purge_gap_samples": 4,
+        "raw_index_ranges": [
+          [
+            520,
+            776
+          ]
+        ],
+        "role": "validation",
+        "schema_version": "1.0",
+        "seed": 17
+      }
+    },
+    "timeline_source": "merged.csv",
+    "used_source_files": [
+      "merged.csv"
+    ]
+  },
+  "split_manifest_id": "714d7d25fa7f9c7104bc2ca7989a94a1c1f49d2443eed799e12e0d700e6c438c"
+}

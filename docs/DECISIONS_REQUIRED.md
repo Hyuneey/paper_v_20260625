@@ -520,6 +520,41 @@
   - tuning thresholds, K, prompts, or rules from staging performance without recording the run as exploratory.
 - Consequences for claims/evaluation: TASK-016 can debug implementation paths with local/Kaggle files, but all outputs remain staging-only and non-final.
 
+### DEC-024: TASK-017 single-source Kaggle staging dry-run
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-017
+- Final decision: Run the staging pipeline dry-run using exactly one declared staging timeline source, defaulting to `merged.csv`.
+- Decision date: 2026-06-28
+- Required behavior:
+  - Use `SWAT_DATA_ROOT`.
+  - Use `StagingSwatMirrorManifest`, not `OfficialSwatProvenanceManifest`.
+  - Keep DEC-007 unresolved.
+  - Do not combine `normal.csv`, `attack.csv`, and `merged.csv` into one timeline.
+  - Allow `normal.csv` and `attack.csv` only for schema cross-checking unless separately configured.
+  - Include the required report statement: "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+- Allowed:
+  - load `merged.csv` as a staging timeline,
+  - normalize headers,
+  - infer timestamp sampling,
+  - build staging split manifest,
+  - run metadata coverage,
+  - run candidate discovery smoke,
+  - run relation profiling smoke on a small predeclared subset,
+  - run deterministic runtime on the staging validation split,
+  - write aggregate staging artifacts and reports.
+- Not approved:
+  - final SWaT benchmark,
+  - official sealed final test access,
+  - DEC-007 resolution,
+  - real provider or network calls,
+  - runtime LLM,
+  - point-adjusted primary metrics,
+  - threshold/K/prompt/rule tuning from staging performance,
+  - committing raw rows, windows, raw sequence plots, or downloadable derived samples.
+- Consequences for claims/evaluation: TASK-017 may expose implementation issues and negative staging outcomes, but all results remain non-final debugging artifacts.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade

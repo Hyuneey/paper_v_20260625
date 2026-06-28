@@ -124,3 +124,17 @@ The report contains file names, SHA-256 hashes, row counts, column names, label
 counts, timestamp/label columns, inferred sampled intervals, metadata coverage,
 and known limitations. It does not contain raw rows, windows, raw sequence
 plots, or final benchmark metrics.
+
+## TASK-017 staging pipeline dry-run status
+
+TASK-017 uses `merged.csv` as the only pipeline timeline source. It does not
+combine `normal.csv`, `attack.csv`, and `merged.csv`.
+
+The generated split manifest is
+`docs/task_reports/TASK-017_STAGING_SPLIT_MANIFEST.json`, and the aggregate
+dry-run report is `docs/task_reports/TASK-017_DRY_RUN_REPORT.json`.
+
+The run is for implementation debugging only. It yielded zero verified rules in
+the configured staging slice because all predeclared profiling attempts had
+`INSUFFICIENT_NORMAL_SUPPORT`. This is not an official benchmark result and
+must not be used as a final thesis performance claim.
