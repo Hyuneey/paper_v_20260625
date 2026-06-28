@@ -555,6 +555,45 @@
   - committing raw rows, windows, raw sequence plots, or downloadable derived samples.
 - Consequences for claims/evaluation: TASK-017 may expose implementation issues and negative staging outcomes, but all results remain non-final debugging artifacts.
 
+### DEC-025: TASK-018 support-aware Kaggle staging slice selection
+
+- Status: resolved
+- Owner: researcher
+- Needed before: TASK-018
+- Final decision: Find a support-aware Kaggle/local staging calibration slice using only aggregate transition support on predeclared actuator-sensor pairs.
+- Decision date: 2026-06-28
+- Required behavior:
+  - Use `SWAT_DATA_ROOT`.
+  - Use `merged.csv` as the only staging timeline source.
+  - Use `StagingSwatMirrorManifest`, not `OfficialSwatProvenanceManifest`.
+  - Keep DEC-007 unresolved.
+  - Do not combine `normal.csv`, `attack.csv`, and `merged.csv`.
+  - Do not use labels for support-based slice selection.
+  - Define selection criteria in config before scanning.
+  - Persist only aggregate support summaries and selected index ranges.
+  - Include the required report statement: "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim."
+- Fixed selection policy:
+  - minimum trigger count: 1,
+  - minimum matched response count: 1,
+  - maximum right-censored ratio: 0.5,
+  - allowed source variables: `MV101`, `P101`, `P102`, `MV201`,
+  - allowed target variables: `FIT101`, `LIT101`, `AIT201`, `AIT202`,
+  - maximum slice length: 4096 rows,
+  - search step: 512 rows,
+  - labels policy: `ignored_for_selection_audit_only`,
+  - require complete configured pipeline features,
+  - require regular timestamp sampling.
+- Not approved:
+  - final SWaT benchmark,
+  - official sealed final test access,
+  - DEC-007 resolution,
+  - threshold/K/prompt/rule tuning based on staging performance,
+  - using attack labels for support-based slice selection,
+  - committing raw rows, raw windows, raw sequence plots, or downloadable samples,
+  - point-adjusted primary metrics,
+  - real provider or network calls.
+- Consequences for claims/evaluation: TASK-018 may identify a better staging slice for implementation debugging, but it remains non-final and cannot support benchmark or thesis performance claims.
+
 ## Open Decisions
 
 ### DEC-007: Official SWaT provenance upgrade

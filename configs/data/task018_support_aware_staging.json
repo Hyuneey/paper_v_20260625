@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "config_name": "task018_support_aware_staging",
+  "required_report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+  "timeline_source": "merged.csv",
+  "timestamp_column": "Timestamp",
+  "label_column": "Normal/Attack",
+  "timestamp_formats": [
+    "%d/%m/%Y %I:%M:%S %p",
+    "%Y-%m-%d %H:%M:%S"
+  ],
+  "selection_policy": {
+    "minimum_trigger_count": 1,
+    "minimum_matched_response_count": 1,
+    "maximum_right_censored_ratio": 0.5,
+    "allowed_source_variables": [
+      "MV101",
+      "P101",
+      "P102",
+      "MV201"
+    ],
+    "allowed_target_variables": [
+      "FIT101",
+      "LIT101",
+      "AIT201",
+      "AIT202"
+    ],
+    "maximum_slice_length": 4096,
+    "search_step": 512,
+    "require_complete_pipeline_features": true,
+    "require_regular_sampling": true,
+    "labels_policy": "ignored_for_selection_audit_only",
+    "selection_strategy": "first_passing_slice_by_start_index"
+  },
+  "dry_run": {
+    "schema_version": "1.0",
+    "config_name": "task017_kaggle_staging_pipeline_dry_run",
+    "required_report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "timeline_sources": [
+      "merged.csv"
+    ],
+    "schema_cross_check_sources": [],
+    "require_exactly_one_timeline_source": true,
+    "pipeline_feature_subset": [
+      "FIT101",
+      "LIT101",
+      "MV101",
+      "P101",
+      "P102",
+      "AIT201",
+      "AIT202",
+      "AIT203",
+      "FIT201",
+      "MV201"
+    ],
+    "split_lengths": {
+      "train_normal": 512,
+      "calibration_normal": 2048,
+      "validation": 512
+    },
+    "purge_gap_samples": 20,
+    "timeline_start_index": 0,
+    "seed": 18,
+    "timestamp_column": "Timestamp",
+    "label_column": "Normal/Attack",
+    "timestamp_formats": [
+      "%d/%m/%Y %I:%M:%S %p",
+      "%Y-%m-%d %H:%M:%S"
+    ],
+    "binary_actuator_normalization": "map_two_observed_states_to_0_1",
+    "candidate_policy": {
+      "policy_version": "1.0",
+      "source_roles": [
+        "actuator"
+      ],
+      "source_value_types": [
+        "binary"
+      ],
+      "target_roles": [
+        "sensor"
+      ],
+      "target_value_types": [
+        "continuous"
+      ],
+      "domain_same_stage": true,
+      "statistical_top_m": 0,
+      "statistical_max_lag_samples": 0,
+      "fallback_min_candidates_per_target": 0
+    },
+    "gdn_extraction": {
+      "top_k": 1,
+      "seed": 18,
+      "run_index": 0,
+      "embedding_dim": null,
+      "backend": "deterministic_embedding_task018",
+      "config_version": "1.0"
+    },
+    "profile_pairs": [
+      {
+        "source": "MV101",
+        "target": "FIT101"
+      },
+      {
+        "source": "MV101",
+        "target": "LIT101"
+      },
+      {
+        "source": "P101",
+        "target": "FIT101"
+      },
+      {
+        "source": "P101",
+        "target": "LIT101"
+      },
+      {
+        "source": "P102",
+        "target": "FIT101"
+      },
+      {
+        "source": "P102",
+        "target": "LIT101"
+      },
+      {
+        "source": "MV201",
+        "target": "AIT201"
+      },
+      {
+        "source": "MV201",
+        "target": "AIT202"
+      }
+    ],
+    "profiling": {
+      "config_version": "1.0",
+      "max_response_delay_samples": 60,
+      "min_matched_response_count": 1,
+      "trigger_from": 0.0,
+      "trigger_to": 1.0,
+      "response_delta_floor": 0.0,
+      "delay_quantile": 1.0,
+      "magnitude_quantile": 0.0,
+      "irregular_sampling_policy": "reject",
+      "timestamp_tolerance_seconds": 0.000001
+    },
+    "verification": {
+      "config_version": "1.0",
+      "max_normal_false_fire_rate": 1.0,
+      "min_validation_coverage": 0.0,
+      "firing_overlap_jaccard_threshold": 1.0,
+      "min_calibration_support_count": 1,
+      "parameter_neighborhood_relative_tolerance": 0.0
+    },
+    "runtime": {
+      "config_version": "1.0",
+      "severity_mode": "binary",
+      "binary_severity": 1.0,
+      "merge_adjacent_intervals": true
+    }
+  },
+  "governance": {
+    "source_kind": "kaggle_mirror",
+    "dataset_status": "staging_only",
+    "local_root_env": "SWAT_DATA_ROOT",
+    "use_staging_manifest": true,
+    "official_swat_manifest_allowed": false,
+    "dec007_resolution_allowed": false,
+    "final_claims_allowed": false,
+    "labels_used_for_selection": false,
+    "real_provider_network_calls": false,
+    "runtime_llm": false,
+    "commit_raw_rows_windows_or_plots": false
+  }
+}

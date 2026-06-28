@@ -71,6 +71,31 @@ predeclared profiling attempts, but the attempted pairs had insufficient normal
 support in the configured staging slice and produced zero verified rules. That
 is a staging debug result only, not a performance claim.
 
+## TASK-018 Support-Aware Slice Selection
+
+TASK-018 scans `merged.csv` for aggregate transition support on the same
+predeclared actuator-sensor pairs, without using labels for selection.
+
+The selection policy is fixed in
+`configs/data/task018_support_aware_staging.json` before scanning. It requires
+minimum trigger and matched-response support, a maximum right-censored ratio,
+complete configured pipeline features, regular timestamp sampling, and a fixed
+search step.
+
+The generated reports are:
+
+- `docs/task_reports/TASK-018_SUPPORT_SCAN_REPORT.json`
+- `docs/task_reports/TASK-018_DRY_RUN_REPORT.json`
+
+The selected loaded range was `[12800, 15912]`, and the selected calibration
+range was `[13332, 15380]`. The selected slice had 2 supported predeclared
+pairs by aggregate support criteria. The staging dry-run on that slice produced
+2 verified template rules and 0 runtime firings.
+
+This remains a Kaggle/local staging implementation-debugging result only. It is
+not an official SWaT benchmark result and must not be used as a final thesis
+performance claim.
+
 ## Limitations
 
 - DEC-007 remains unresolved.

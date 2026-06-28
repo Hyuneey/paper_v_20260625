@@ -138,3 +138,26 @@ The run is for implementation debugging only. It yielded zero verified rules in
 the configured staging slice because all predeclared profiling attempts had
 `INSUFFICIENT_NORMAL_SUPPORT`. This is not an official benchmark result and
 must not be used as a final thesis performance claim.
+
+## TASK-018 support-aware staging slice status
+
+TASK-018 keeps the same Kaggle/local staging policy and still uses only
+`merged.csv` as the pipeline timeline source. It does not combine
+`normal.csv`, `attack.csv`, and `merged.csv`.
+
+The support-aware scan records aggregate transition support only. It stores
+support counts, target variance summaries, missing-value counts, timestamp
+regularity flags, and selected index ranges. It does not store raw rows,
+windows, raw sequence plots, or downloadable derived samples.
+
+The generated reports are
+`docs/task_reports/TASK-018_SUPPORT_SCAN_REPORT.json` and
+`docs/task_reports/TASK-018_DRY_RUN_REPORT.json`.
+
+The selected loaded range was `[12800, 15912]`, and the selected calibration
+range was `[13332, 15380]`. The staging dry-run produced 2 verified template
+rules on predeclared pairs.
+
+This is a Kaggle/local staging run for implementation debugging only. It is not
+an official SWaT benchmark result and must not be used as a final thesis
+performance claim. DEC-007 remains unresolved.

@@ -71,6 +71,7 @@ class StagingPipelineConfig:
         }
     )
     purge_gap_samples: int = 4
+    timeline_start_index: int = 0
     seed: int = 17
     timestamp_column: str = "Timestamp"
     label_column: str = "Normal/Attack"
@@ -124,6 +125,8 @@ class StagingPipelineConfig:
             raise StagingPipelineDryRunError("split lengths must be positive")
         if self.purge_gap_samples < 0:
             raise StagingPipelineDryRunError("purge_gap_samples must be non-negative")
+        if self.timeline_start_index < 0:
+            raise StagingPipelineDryRunError("timeline_start_index must be non-negative")
         for source, target in self.profile_pairs:
             if source == target:
                 raise StagingPipelineDryRunError("profile self-pairs are prohibited")
@@ -153,6 +156,7 @@ class StagingPipelineConfig:
             "pipeline_feature_subset": list(self.pipeline_feature_subset),
             "split_lengths": {role.value: self.split_lengths[role] for role in sorted(self.split_lengths, key=lambda item: item.value)},
             "purge_gap_samples": self.purge_gap_samples,
+            "timeline_start_index": self.timeline_start_index,
             "seed": self.seed,
             "timestamp_column": self.timestamp_column,
             "label_column": self.label_column,
@@ -187,6 +191,7 @@ class StagingPipelineConfig:
             pipeline_feature_subset=tuple(str(item) for item in data.get("pipeline_feature_subset", ())),
             split_lengths=split_lengths,
             purge_gap_samples=int(data.get("purge_gap_samples", 4)),
+            timeline_start_index=int(data.get("timeline_start_index", 0)),
             seed=int(data.get("seed", 17)),
             timestamp_column=str(data.get("timestamp_column", "Timestamp")),
             label_column=str(data.get("label_column", "Normal/Attack")),
@@ -379,6 +384,7 @@ def run_task017_staging_pipeline_dry_run(
             "task": "TASK-017",
             "source": DEFAULT_TIMELINE_SOURCE,
             "binary_actuator_normalization": config.binary_actuator_normalization,
+            "timeline_start_index": config.timeline_start_index,
         },
         source_view="canonical_rule_view",
     )
@@ -402,6 +408,7 @@ def run_task017_staging_pipeline_dry_run(
         timestamp_column=config.timestamp_column,
         label_column=config.label_column,
         timestamp_formats=config.timestamp_formats,
+        start_index=config.timeline_start_index,
         row_count=config.required_loaded_rows,
     )
     normalized = _normalize_binary_actuators(timeline.series, metadata, feature_order)
@@ -600,6 +607,14 @@ def run_task017_staging_pipeline_dry_run(
         "data_view_id": data_view.view_id,
         "timeline_source": config.timeline_sources[0],
         "used_source_files": list(config.timeline_sources),
+        "timeline_start_index": config.timeline_start_index,
+        "global_raw_index_ranges": {
+            split.role.value: [
+                [start + config.timeline_start_index, end + config.timeline_start_index]
+                for start, end in split.raw_index_ranges
+            ]
+            for split in splits
+        },
         "splits": {split.role.value: split.to_dict() for split in splits},
         "final_test_accessed": False,
     }
@@ -654,6 +669,11 @@ def run_task017_staging_pipeline_dry_run(
         },
         split_summary={
             "required_loaded_rows": config.required_loaded_rows,
+            "timeline_start_index": config.timeline_start_index,
+            "global_loaded_range": [
+                config.timeline_start_index,
+                config.timeline_start_index + config.required_loaded_rows,
+            ],
             "sampling_period_seconds": data_view.sampling_period_seconds,
             "label_counts_audit_only": timeline.label_counts_by_split,
             "binary_state_mappings": normalized.binary_state_mappings,
@@ -779,6 +799,7 @@ def _load_timeline_slice(
     label_column: str,
     timestamp_formats: Sequence[str],
     row_count: int,
+    start_index: int = 0,
 ) -> _TimelineSlice:
     path = root / relative_path
     if not path.exists() or not path.is_file():
@@ -797,7 +818,9 @@ def _load_timeline_slice(
         if missing:
             raise StagingPipelineDryRunError(f"timeline CSV missing columns: {missing}")
         for index, row in enumerate(reader):
-            if index >= row_count:
+            if index < start_index:
+                continue
+            if index >= start_index + row_count:
                 break
             timestamps.append(parse_timestamp(row[timestamp_column], timestamp_formats))
             labels.append(row[label_column].strip())

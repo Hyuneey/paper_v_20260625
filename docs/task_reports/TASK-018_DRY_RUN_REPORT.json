@@ -1,0 +1,306 @@
+{
+  "report": {
+    "artifact_graph": {
+      "candidate_universe": "4f295c6744520a0414edd7fb27398a7221e938546b91aeb3461beaa642505fa2",
+      "data_view": "6f061b075a775ea395cd8b7ac23e43ded0f0c46db503c96f725b8c34d9f84a55",
+      "dataset_manifest": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+      "gdn_candidate_edges": "0be3d0961a444fa2bea988b73eb82b750828c59bc77c0eefd3ca5c8fce16d716",
+      "gdn_checkpoint": "ac1cfc2fc99830e6af7bf288cc49b78ba715871ec7e410733377b4b59752a02d",
+      "runtime_evaluation": "0e8f34b0182bb07bf08403cb434e5818cf43c1e38b156072ec178e16b7220a4f",
+      "split_manifest": "3ca7eaf0688ec5a228f76842be90c639f2e156321e60544d17321c0a51d39a0e",
+      "staging_manifest": "0532a28a87351f740ad59f456521cba085f55d1ba974380e948dd8861143f6cb"
+    },
+    "artifact_type": "task017_kaggle_staging_pipeline_dry_run_report",
+    "attempts": [
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "e75f9d6ad05865932676a1e6e6bc94eac930f7b7341bc878719b018407877cb0",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "MV101",
+        "status": "unsupported",
+        "target": "FIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "a3e85cce288e787013211943829ff3d30049f8de33c3b5a782a4cedfbde20a1c",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "MV101",
+        "status": "unsupported",
+        "target": "LIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "c275df454750de8bcc1964cd671090e93461c4337bec1a92419cd3db50707447",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P101",
+        "status": "unsupported",
+        "target": "FIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "45897c8430943bdb2df868f9bcb3bebb2e56d369762d627927e6a9634dcbadea",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P101",
+        "status": "unsupported",
+        "target": "LIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "5efe75ebb5f7f054f82fabd4a7bc218dd87b4697fdd0e3fb7f5b3e342699e477",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P102",
+        "status": "unsupported",
+        "target": "FIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": null,
+        "reason": "INSUFFICIENT_NORMAL_SUPPORT",
+        "relation_profile_id": "30d9f7195958df684e7c2c038c127fe6e3c6110d4a4d3628e432ccd2ca0b3390",
+        "rule_id": null,
+        "runtime_firing_count": 0,
+        "source": "P102",
+        "status": "unsupported",
+        "target": "LIT101",
+        "verification_report_id": null
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": "1ac973303e656fd9a921b8626bd83f510228951e415e2c053d63ffe6a31732b2",
+        "reason": "passed_verifier",
+        "relation_profile_id": "2b056f41e59f2d2a423cdad5824870b5745539f3a722b565fcff68b8e56a7a9a",
+        "rule_id": "rule.template.4037660c59cbd7f4",
+        "runtime_firing_count": 0,
+        "source": "MV201",
+        "status": "verified",
+        "target": "AIT201",
+        "verification_report_id": "a277520aed7ee4ff97ff22847b2d96456dd18090b8aa5d81733d22766b2098da"
+      },
+      {
+        "candidate_pair_allowed": true,
+        "evidence_pack_id": "7e8fafc2e5c0ef56180cf039602e250a30e10456bb2ce446fd27ceccdbb4f071",
+        "reason": "passed_verifier",
+        "relation_profile_id": "f067cea365dece6128f344712395e93874636b5586eb032b5d4b5270ac19186a",
+        "rule_id": "rule.template.ae3f2f7ac58acb79",
+        "runtime_firing_count": 0,
+        "source": "MV201",
+        "status": "verified",
+        "target": "AIT202",
+        "verification_report_id": "01753ba404118a03b5d599ba1839200b80efbf8fd831a8468e84ef60a3d42e98"
+      }
+    ],
+    "candidate_summary": {
+      "candidate_pair_count": 10,
+      "empty_target_count": 4,
+      "feature_count": 10,
+      "gdn_emitted_edge_count": 6
+    },
+    "checks": {
+      "candidate_discovery_ran": true,
+      "dec007_unresolved": true,
+      "deterministic_runtime_executed_on_validation_split": true,
+      "metadata_coverage_complete": true,
+      "no_final_test_access": true,
+      "no_raw_rows_windows_or_plots_tracked": true,
+      "no_real_provider_or_network_call": true,
+      "normal_attack_merged_not_combined": true,
+      "official_manifest_not_used": true,
+      "only_one_pipeline_timeline_source_used": true,
+      "profile_attempts_completed": true,
+      "profile_subset_predeclared": true,
+      "required_report_statement_present": true,
+      "runtime_llm_free": true,
+      "split_manifest_built": true,
+      "staging_manifest_used": true,
+      "template_rules_built_when_supported": true
+    },
+    "config_hash": "83ee84fc6e629cf4226409d71c311ed7af9db15bc004d9193cb6fbb1a431aaa7",
+    "data_view_id": "6f061b075a775ea395cd8b7ac23e43ded0f0c46db503c96f725b8c34d9f84a55",
+    "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+    "dataset_status": "staging_only",
+    "limitations": [
+      "This is a Kaggle/local staging run for implementation debugging only.",
+      "It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+      "DEC-007 remains unresolved.",
+      "Only merged.csv is used as the pipeline timeline source.",
+      "Label counts are recorded for audit only and are not used for tuning or final claims.",
+      "No point-adjusted metric is reported as primary."
+    ],
+    "metadata_summary": {
+      "expected_count": 51,
+      "extra_metadata_count": 0,
+      "metadata_count": 51,
+      "missing_feature_count": 0,
+      "pipeline_feature_count": 10
+    },
+    "only_one_pipeline_timeline_source_used": true,
+    "pipeline_timeline_source": "merged.csv",
+    "profiling_summary": {
+      "attempt_count": 8,
+      "predeclared_pair_count": 8,
+      "rejected_count": 0,
+      "unsupported_count": 6,
+      "verified_rule_count": 2
+    },
+    "raw_data_audit": {
+      "downloadable_derived_samples_tracked": false,
+      "official_sealed_test_accessed": false,
+      "raw_csv_tracked": false,
+      "raw_rows_tracked": false,
+      "raw_sequence_plots_tracked": false,
+      "windows_tracked": false
+    },
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "runtime_summary": {
+      "aggregate_rule_score": 0.0,
+      "alarm_interval_count": 0,
+      "firing_count": 0,
+      "rule_count": 2,
+      "runtime_executed": true
+    },
+    "schema_cross_check_files": [],
+    "schema_version": "1.0",
+    "source_kind": "kaggle_mirror",
+    "split_ids": {
+      "calibration_normal": "1ad4211f58ee199b19b1a5cd69cd487199f954f18f0154fcd6b52b6cbcb406a2",
+      "train_normal": "c86cd19c52fb2ab302d93084db5d9a00cbc73ff378b826fd6802e1a9abcfb756",
+      "validation": "2a68e5c30d5bd4f7ac231f0ec90a036dcec0fd2f657c89da478ab1c003552036"
+    },
+    "split_manifest_id": "3ca7eaf0688ec5a228f76842be90c639f2e156321e60544d17321c0a51d39a0e",
+    "split_summary": {
+      "binary_state_mappings": {
+        "MV101": {
+          "observed_state_count": 3.0
+        },
+        "MV201": {
+          "observed_state_count": 3.0
+        },
+        "P101": {
+          "1.0": 0.0,
+          "2.0": 1.0
+        },
+        "P102": {
+          "observed_state_count": 1.0
+        }
+      },
+      "global_loaded_range": [
+        12800,
+        15912
+      ],
+      "label_counts_audit_only": {
+        "loaded_slice": {
+          "Normal": 3112
+        }
+      },
+      "required_loaded_rows": 3112,
+      "sampling_period_seconds": 1.0,
+      "timeline_start_index": 12800
+    },
+    "staging_manifest_id": "0532a28a87351f740ad59f456521cba085f55d1ba974380e948dd8861143f6cb",
+    "used_source_files": [
+      "merged.csv"
+    ],
+    "verification_summary": {
+      "verification_config_hash": "293dca8da912d1e140e679cc4d19255636744bc28e315c09721bd68cef588064",
+      "verified_rule_count": 2
+    }
+  },
+  "report_id": "6abb1b90de744a0dfe8f07520f53f66ee2ffd4da967294f8558ff51472f5ba6e",
+  "split_manifest": {
+    "artifact_type": "task017_staging_split_manifest",
+    "data_view_id": "6f061b075a775ea395cd8b7ac23e43ded0f0c46db503c96f725b8c34d9f84a55",
+    "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+    "final_test_accessed": false,
+    "global_raw_index_ranges": {
+      "calibration_normal": [
+        [
+          13332,
+          15380
+        ]
+      ],
+      "train_normal": [
+        [
+          12800,
+          13312
+        ]
+      ],
+      "validation": [
+        [
+          15400,
+          15912
+        ]
+      ]
+    },
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "schema_version": "1.0",
+    "splits": {
+      "calibration_normal": {
+        "data_view_id": "6f061b075a775ea395cd8b7ac23e43ded0f0c46db503c96f725b8c34d9f84a55",
+        "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+        "purge_gap_samples": 20,
+        "raw_index_ranges": [
+          [
+            532,
+            2580
+          ]
+        ],
+        "role": "calibration_normal",
+        "schema_version": "1.0",
+        "seed": 18
+      },
+      "train_normal": {
+        "data_view_id": "6f061b075a775ea395cd8b7ac23e43ded0f0c46db503c96f725b8c34d9f84a55",
+        "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+        "purge_gap_samples": 20,
+        "raw_index_ranges": [
+          [
+            0,
+            512
+          ]
+        ],
+        "role": "train_normal",
+        "schema_version": "1.0",
+        "seed": 18
+      },
+      "validation": {
+        "data_view_id": "6f061b075a775ea395cd8b7ac23e43ded0f0c46db503c96f725b8c34d9f84a55",
+        "dataset_manifest_id": "e4ec8cc1ca9f925adf7a02a5c6e0efad6f67266a8fe57e181c19c87f7b479035",
+        "purge_gap_samples": 20,
+        "raw_index_ranges": [
+          [
+            2600,
+            3112
+          ]
+        ],
+        "role": "validation",
+        "schema_version": "1.0",
+        "seed": 18
+      }
+    },
+    "timeline_source": "merged.csv",
+    "timeline_start_index": 12800,
+    "used_source_files": [
+      "merged.csv"
+    ]
+  }
+}
