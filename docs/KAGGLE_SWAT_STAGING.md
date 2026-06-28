@@ -96,6 +96,26 @@ This remains a Kaggle/local staging implementation-debugging result only. It is
 not an official SWaT benchmark result and must not be used as a final thesis
 performance claim.
 
+## TASK-019 Rule Evidence Audit
+
+TASK-019 reconstructs the two verified rules from TASK-018 as staging-only
+evidence cards for human review.
+
+The generated reports are:
+
+- `docs/task_reports/TASK-019_RULE_EVIDENCE_AUDIT.json`
+- `docs/task_reports/TASK-019_RULE_EVIDENCE_AUDIT.md`
+
+Audited pairs:
+
+- `MV201 -> AIT201`
+- `MV201 -> AIT202`
+
+The cards include source/target metadata, relation support counts, calibration
+parameters, rule AST summaries, verifier aggregate metrics, runtime firing
+counts, and blank human-review notes fields. They are implementation-debugging
+artifacts only and are not performance or explanation-quality claims.
+
 ## Limitations
 
 - DEC-007 remains unresolved.

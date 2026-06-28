@@ -1,0 +1,314 @@
+{
+  "report": {
+    "artifact_type": "task019_rule_evidence_audit",
+    "checks": {
+      "dec007_unresolved": true,
+      "human_review_notes_fields_blank": true,
+      "no_final_test_access": true,
+      "no_raw_rows_windows_or_plots_tracked": true,
+      "no_threshold_k_prompt_rule_tuning": true,
+      "official_manifest_not_used": true,
+      "required_report_statement_present": true,
+      "runtime_llm_free": true,
+      "staging_plumbing_artifact_only": true,
+      "support_scan_labels_not_used": true,
+      "used_only_merged_csv": true,
+      "verification_report_ids_match_task018": true,
+      "verified_rule_ids_match_task018": true
+    },
+    "created_at": "2026-06-29T00:00:00+09:00",
+    "evidence_cards": [
+      {
+        "calibration_parameters": {
+          "max_response_delay_seconds": {
+            "calibration_record_id": "f1fdd5179a0aa041a5655bd6d9728aedd9c49db357e0463d46feeed6d0fb3f27",
+            "calibration_split_id": "1ad4211f58ee199b19b1a5cd69cd487199f954f18f0154fcd6b52b6cbcb406a2",
+            "method": "empirical_linear_quantile",
+            "normal_support_count": 1,
+            "quantile_or_config": {
+              "max_response_delay_samples": 60,
+              "quantile": 1.0
+            },
+            "relation_profile_id": "2b056f41e59f2d2a423cdad5824870b5745539f3a722b565fcff68b8e56a7a9a",
+            "unit": "seconds",
+            "value": 36.0
+          },
+          "min_response_magnitude": {
+            "calibration_record_id": "bd90c435c026c8e53368c1fb838caaba3a6e43931224a1f9e380e286147dd658",
+            "calibration_split_id": "1ad4211f58ee199b19b1a5cd69cd487199f954f18f0154fcd6b52b6cbcb406a2",
+            "method": "empirical_linear_quantile",
+            "normal_support_count": 1,
+            "quantile_or_config": {
+              "quantile": 0.0,
+              "response_delta_floor": 0.0
+            },
+            "relation_profile_id": "2b056f41e59f2d2a423cdad5824870b5745539f3a722b565fcff68b8e56a7a9a",
+            "unit": "target_units",
+            "value": 0.16030000000000655
+          }
+        },
+        "card_id": "7dbb4d95d9cdde2fb2dfe3700aa4991a1dba9eb8adce747fa1cbfb5b7aa8baf5",
+        "evidence_pack_id": "1ac973303e656fd9a921b8626bd83f510228951e415e2c053d63ffe6a31732b2",
+        "human_review_notes": "",
+        "matched_response_count": 1,
+        "missing_response_count": 0,
+        "normal_false_fire_summary": {
+          "max_allowed_normal_false_fire_rate": 1.0,
+          "normal_false_fire_count": 0,
+          "normal_false_fire_rate": 0.0,
+          "normal_window_count": 33
+        },
+        "relation_profile_id": "2b056f41e59f2d2a423cdad5824870b5745539f3a722b565fcff68b8e56a7a9a",
+        "relation_type": "binary_actuator_to_continuous_sensor",
+        "right_censored_count": 0,
+        "rule_ast_summary": {
+          "calibrated_values": {
+            "max_response_delay_seconds": 36.0,
+            "min_response_magnitude": 0.16030000000000655
+          },
+          "calibration_reference_ids": {
+            "max_response_delay_seconds": "f1fdd5179a0aa041a5655bd6d9728aedd9c49db357e0463d46feeed6d0fb3f27",
+            "min_response_magnitude": "bd90c435c026c8e53368c1fb838caaba3a6e43931224a1f9e380e286147dd658"
+          },
+          "candidate_pair_artifact_id": "4f295c6744520a0414edd7fb27398a7221e938546b91aeb3461beaa642505fa2",
+          "description_template": "deterministic response-missing template",
+          "metadata_artifact_id": "15853b02e95e529dfaf9ab0bc7f181690dffbfea4824be64f4a77732265334b0",
+          "planner_provenance": {
+            "planner_type": "deterministic_template",
+            "planner_version": "1.0",
+            "source_artifact_ids": [
+              "0be3d0961a444fa2bea988b73eb82b750828c59bc77c0eefd3ca5c8fce16d716",
+              "15853b02e95e529dfaf9ab0bc7f181690dffbfea4824be64f4a77732265334b0",
+              "1ac973303e656fd9a921b8626bd83f510228951e415e2c053d63ffe6a31732b2",
+              "4f295c6744520a0414edd7fb27398a7221e938546b91aeb3461beaa642505fa2"
+            ]
+          },
+          "relation_type": "binary_actuator_to_continuous_sensor",
+          "response_predicate": {
+            "expected_response": {
+              "max_delay_seconds_parameter": "max_response_delay_seconds",
+              "min_magnitude_parameter": "min_response_magnitude",
+              "predicate": "increase_within",
+              "variable": "AIT201"
+            },
+            "predicate": "response_missing"
+          },
+          "rule_family": "changed_to_increase_within_response_missing",
+          "schema_version": "1.0",
+          "source": "MV201",
+          "target": "AIT201",
+          "trigger_predicate": {
+            "from_state": 0.0,
+            "predicate": "changed_to",
+            "to_state": 1.0,
+            "variable": "MV201"
+          }
+        },
+        "rule_id": "rule.template.4037660c59cbd7f4",
+        "runtime_firing_count": 0,
+        "source_metadata": {
+          "allowed_states": null,
+          "confidence": 0.75,
+          "description": null,
+          "name": "MV201",
+          "physical_type": "valve",
+          "review_status": "unreviewed",
+          "role": "actuator",
+          "schema_version": "1.0",
+          "source_method": "dataset_documentation",
+          "source_reference": "https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system",
+          "stage": "2",
+          "subsystem": "stage_2",
+          "unit": null,
+          "value_type": "binary"
+        },
+        "source_variable": "MV201",
+        "staging_plumbing_artifact_only": true,
+        "target_metadata": {
+          "allowed_states": null,
+          "confidence": 0.75,
+          "description": "Measures the pH level of water.",
+          "name": "AIT201",
+          "physical_type": "quality",
+          "review_status": "unreviewed",
+          "role": "sensor",
+          "schema_version": "1.0",
+          "source_method": "dataset_documentation",
+          "source_reference": "https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system",
+          "stage": "2",
+          "subsystem": "stage_2",
+          "unit": null,
+          "value_type": "continuous"
+        },
+        "target_variable": "AIT201",
+        "trigger_count": 1,
+        "validation_coverage_summary": {
+          "min_required_validation_coverage": 0.0,
+          "validation_coverage": 0.0,
+          "validation_fire_count": 0,
+          "validation_window_count": 8
+        },
+        "verifier_report_id": "a277520aed7ee4ff97ff22847b2d96456dd18090b8aa5d81733d22766b2098da"
+      },
+      {
+        "calibration_parameters": {
+          "max_response_delay_seconds": {
+            "calibration_record_id": "5f6cb653122de9c539b8a816dde74695a012a7f23f1e4b68d49d7011dad30fba",
+            "calibration_split_id": "1ad4211f58ee199b19b1a5cd69cd487199f954f18f0154fcd6b52b6cbcb406a2",
+            "method": "empirical_linear_quantile",
+            "normal_support_count": 1,
+            "quantile_or_config": {
+              "max_response_delay_samples": 60,
+              "quantile": 1.0
+            },
+            "relation_profile_id": "f067cea365dece6128f344712395e93874636b5586eb032b5d4b5270ac19186a",
+            "unit": "seconds",
+            "value": 3.0
+          },
+          "min_response_magnitude": {
+            "calibration_record_id": "713b0aa7cdc8b21e92be34ae7573d72ff91837712eea85ea8f1ddc82bbd06a78",
+            "calibration_split_id": "1ad4211f58ee199b19b1a5cd69cd487199f954f18f0154fcd6b52b6cbcb406a2",
+            "method": "empirical_linear_quantile",
+            "normal_support_count": 1,
+            "quantile_or_config": {
+              "quantile": 0.0,
+              "response_delta_floor": 0.0
+            },
+            "relation_profile_id": "f067cea365dece6128f344712395e93874636b5586eb032b5d4b5270ac19186a",
+            "unit": "target_units",
+            "value": 0.00576800000000155
+          }
+        },
+        "card_id": "5994387eac62caf4a315f39a4b44fff401268885bb6e0e61b880f42c8e8bcca1",
+        "evidence_pack_id": "7e8fafc2e5c0ef56180cf039602e250a30e10456bb2ce446fd27ceccdbb4f071",
+        "human_review_notes": "",
+        "matched_response_count": 1,
+        "missing_response_count": 0,
+        "normal_false_fire_summary": {
+          "max_allowed_normal_false_fire_rate": 1.0,
+          "normal_false_fire_count": 0,
+          "normal_false_fire_rate": 0.0,
+          "normal_window_count": 33
+        },
+        "relation_profile_id": "f067cea365dece6128f344712395e93874636b5586eb032b5d4b5270ac19186a",
+        "relation_type": "binary_actuator_to_continuous_sensor",
+        "right_censored_count": 0,
+        "rule_ast_summary": {
+          "calibrated_values": {
+            "max_response_delay_seconds": 3.0,
+            "min_response_magnitude": 0.00576800000000155
+          },
+          "calibration_reference_ids": {
+            "max_response_delay_seconds": "5f6cb653122de9c539b8a816dde74695a012a7f23f1e4b68d49d7011dad30fba",
+            "min_response_magnitude": "713b0aa7cdc8b21e92be34ae7573d72ff91837712eea85ea8f1ddc82bbd06a78"
+          },
+          "candidate_pair_artifact_id": "4f295c6744520a0414edd7fb27398a7221e938546b91aeb3461beaa642505fa2",
+          "description_template": "deterministic response-missing template",
+          "metadata_artifact_id": "15853b02e95e529dfaf9ab0bc7f181690dffbfea4824be64f4a77732265334b0",
+          "planner_provenance": {
+            "planner_type": "deterministic_template",
+            "planner_version": "1.0",
+            "source_artifact_ids": [
+              "0be3d0961a444fa2bea988b73eb82b750828c59bc77c0eefd3ca5c8fce16d716",
+              "15853b02e95e529dfaf9ab0bc7f181690dffbfea4824be64f4a77732265334b0",
+              "4f295c6744520a0414edd7fb27398a7221e938546b91aeb3461beaa642505fa2",
+              "7e8fafc2e5c0ef56180cf039602e250a30e10456bb2ce446fd27ceccdbb4f071"
+            ]
+          },
+          "relation_type": "binary_actuator_to_continuous_sensor",
+          "response_predicate": {
+            "expected_response": {
+              "max_delay_seconds_parameter": "max_response_delay_seconds",
+              "min_magnitude_parameter": "min_response_magnitude",
+              "predicate": "increase_within",
+              "variable": "AIT202"
+            },
+            "predicate": "response_missing"
+          },
+          "rule_family": "changed_to_increase_within_response_missing",
+          "schema_version": "1.0",
+          "source": "MV201",
+          "target": "AIT202",
+          "trigger_predicate": {
+            "from_state": 0.0,
+            "predicate": "changed_to",
+            "to_state": 1.0,
+            "variable": "MV201"
+          }
+        },
+        "rule_id": "rule.template.ae3f2f7ac58acb79",
+        "runtime_firing_count": 0,
+        "source_metadata": {
+          "allowed_states": null,
+          "confidence": 0.75,
+          "description": null,
+          "name": "MV201",
+          "physical_type": "valve",
+          "review_status": "unreviewed",
+          "role": "actuator",
+          "schema_version": "1.0",
+          "source_method": "dataset_documentation",
+          "source_reference": "https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system",
+          "stage": "2",
+          "subsystem": "stage_2",
+          "unit": null,
+          "value_type": "binary"
+        },
+        "source_variable": "MV201",
+        "staging_plumbing_artifact_only": true,
+        "target_metadata": {
+          "allowed_states": null,
+          "confidence": 0.75,
+          "description": "Measures electrical conductivity, indicating dissolved solid levels.",
+          "name": "AIT202",
+          "physical_type": "quality",
+          "review_status": "unreviewed",
+          "role": "sensor",
+          "schema_version": "1.0",
+          "source_method": "dataset_documentation",
+          "source_reference": "https://www.kaggle.com/datasets/vishala28/swat-dataset-secure-water-treatment-system",
+          "stage": "2",
+          "subsystem": "stage_2",
+          "unit": null,
+          "value_type": "continuous"
+        },
+        "target_variable": "AIT202",
+        "trigger_count": 1,
+        "validation_coverage_summary": {
+          "min_required_validation_coverage": 0.0,
+          "validation_coverage": 0.0,
+          "validation_fire_count": 0,
+          "validation_window_count": 8
+        },
+        "verifier_report_id": "01753ba404118a03b5d599ba1839200b80efbf8fd831a8468e84ef60a3d42e98"
+      }
+    ],
+    "limitations": [
+      "This is a Kaggle/local staging run for implementation debugging only.",
+      "It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+      "Evidence cards are aggregate human-review aids, not performance or explanation-quality claims.",
+      "DEC-007 remains unresolved.",
+      "No raw rows, windows, raw sequence plots, or downloadable derived samples are persisted."
+    ],
+    "reconstructed_task018_created_at": "2026-06-28T00:00:00+09:00",
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "schema_version": "1.0",
+    "selected_calibration_range": [
+      13332,
+      15380
+    ],
+    "selected_loaded_range": [
+      12800,
+      15912
+    ],
+    "selected_timeline_start_index": 12800,
+    "task018_config_hash": "328b431e5c2d5d388cabc8aed5e7297b79801a1c5c0f95574c37c55f86ead822",
+    "task018_dry_run_report_id": "6abb1b90de744a0dfe8f07520f53f66ee2ffd4da967294f8558ff51472f5ba6e",
+    "task018_support_scan_report_id": "490f741e61409672d42aa5fa784b364053f2d5dc246f2e5f120eb815cc3d5b0d",
+    "used_source_files": [
+      "merged.csv"
+    ],
+    "verified_rule_count": 2
+  },
+  "report_id": "e6507dcac0c377e60ef55832af31f9b1f8c8543c9950fcce3badcd1b078b7f2e"
+}
