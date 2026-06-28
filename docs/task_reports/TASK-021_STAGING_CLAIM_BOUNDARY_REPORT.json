@@ -1,0 +1,188 @@
+{
+  "report": {
+    "artifact_type": "task021_staging_claim_boundary_report",
+    "checks": {
+      "dec007_unresolved": true,
+      "no_final_benchmark_claims": true,
+      "no_new_experiments_run": true,
+      "no_point_adjusted_primary_metrics": true,
+      "no_real_llm_provider_or_network_call": true,
+      "official_sealed_final_test_not_opened": true,
+      "raw_swat_rows_not_read": true,
+      "required_report_statement_present": true,
+      "used_existing_aggregate_reports_only": true
+    },
+    "claim_boundary": {
+      "allowed_implementation_feasibility_claims": [
+        "The pipeline runs end-to-end on Kaggle/local staging data.",
+        "The implementation uses a staging manifest, candidate universe, GDN edge extraction, relation profiling, calibration, template rule generation, deterministic verification, runtime execution, evidence audit, and synthetic replay path.",
+        "Runtime response-missing behavior passes synthetic sanity replay for the two audited staging rules."
+      ],
+      "allowed_staging_only_evidence_claims": [
+        "Support-aware slice selection resolves the initial support bottleneck for at least some predeclared pairs.",
+        "Two staging verified rules were audited as evidence cards.",
+        "TASK-020 found additional support-aware staging slices for the audited pair family, but this remains staging-only evidence."
+      ],
+      "prohibited_final_claims": [
+        "Official SWaT benchmark performance.",
+        "Anomaly detection performance.",
+        "Explanation quality.",
+        "Final physical invariant discovery.",
+        "Thesis final result.",
+        "Any claim that Kaggle/local staging results replace official iTrust evaluation."
+      ]
+    },
+    "created_at": "2026-06-29T00:00:00+09:00",
+    "input_report_ids": {
+      "task017_dry_run": "0c9d64da762366021e2fe72e3babbf46b204f6fb75b2fbbca0d790895e5c8736",
+      "task018_dry_run": "6abb1b90de744a0dfe8f07520f53f66ee2ffd4da967294f8558ff51472f5ba6e",
+      "task018_support_scan": "490f741e61409672d42aa5fa784b364053f2d5dc246f2e5f120eb815cc3d5b0d",
+      "task019_rule_evidence_audit": "e6507dcac0c377e60ef55832af31f9b1f8c8543c9950fcce3badcd1b078b7f2e",
+      "task020_rule_robustness": "cb9e57f1feb524cfdf5e88284799fd493faa6dda6ba6178e15f012734b5b286c",
+      "task020_synthetic_replay": "a981a95f6b44795700f2359383b74bfb435d7ed9a18f91a1976c6dec55d0227f"
+    },
+    "inputs": {
+      "task017_dry_run": {
+        "path": "docs/task_reports/TASK-017_DRY_RUN_REPORT.json"
+      },
+      "task017_report_md": {
+        "path": "docs/task_reports/TASK-017_REPORT.md"
+      },
+      "task018_dry_run": {
+        "path": "docs/task_reports/TASK-018_DRY_RUN_REPORT.json"
+      },
+      "task018_support_scan": {
+        "path": "docs/task_reports/TASK-018_SUPPORT_SCAN_REPORT.json"
+      },
+      "task019_audit": {
+        "path": "docs/task_reports/TASK-019_RULE_EVIDENCE_AUDIT.json"
+      },
+      "task019_audit_md": {
+        "path": "docs/task_reports/TASK-019_RULE_EVIDENCE_AUDIT.md"
+      },
+      "task020_report_md": {
+        "path": "docs/task_reports/TASK-020_REPORT.md"
+      },
+      "task020_robustness": {
+        "path": "docs/task_reports/TASK-020_RULE_ROBUSTNESS_REPORT.json"
+      },
+      "task020_synthetic_replay": {
+        "path": "docs/task_reports/TASK-020_SYNTHETIC_VIOLATION_REPLAY.json"
+      }
+    },
+    "milestone_summary": {
+      "task017": {
+        "runtime_firing_count": 0,
+        "summary": "Initial single-source Kaggle/local staging dry-run completed with zero verified rules due to normal-support bottleneck.",
+        "unsupported_count": 8,
+        "verified_rule_count": 0
+      },
+      "task018": {
+        "runtime_firing_count": 0,
+        "selected_calibration_range": [
+          13332,
+          15380
+        ],
+        "selected_loaded_range": [
+          12800,
+          15912
+        ],
+        "selected_timeline_start_index": 12800,
+        "summary": "Support-aware slice selection found a staging slice that produced two verified template rules.",
+        "support_scan_supported_pair_count": 2,
+        "verified_rule_count": 2
+      },
+      "task019": {
+        "pairs": [
+          [
+            "MV201",
+            "AIT201"
+          ],
+          [
+            "MV201",
+            "AIT202"
+          ]
+        ],
+        "rule_ids": [
+          "rule.template.4037660c59cbd7f4",
+          "rule.template.ae3f2f7ac58acb79"
+        ],
+        "summary": "The two verified staging rules were reconstructed as evidence cards for human review.",
+        "verified_rule_count": 2
+      },
+      "task020": {
+        "passing_slice_count": 464,
+        "scanned_slice_count": 2810,
+        "stability_observation_count": 22,
+        "summary": "Robustness scan and synthetic replay found additional support-aware staging slices and validated runtime missing-response behavior on non-SWaT synthetic mini-series.",
+        "synthetic_replay_case_count": 2,
+        "synthetic_replay_checks": {
+          "expected_response_cases_do_not_fire": true,
+          "missing_response_cases_fire": true,
+          "no_staging_source_files_used": true,
+          "required_report_statement_present": true,
+          "runtime_llm_free": true,
+          "staging_only": true,
+          "uses_synthetic_non_swat_series_only": true
+        }
+      }
+    },
+    "next_recommended_path": [
+      "Resolve DEC-007 with official iTrust data before any final benchmark or thesis performance claim.",
+      "Alternatively, prepare a professor-facing review package that clearly marks all current results as staging-only before final official data access."
+    ],
+    "report_statement": "This is a Kaggle/local staging run for implementation debugging only. It is not an official SWaT benchmark result and must not be used as a final thesis performance claim.",
+    "risk_register": [
+      {
+        "mitigation": "Resolve DEC-007 before final evaluation claims.",
+        "risk": "Kaggle/local source is not official iTrust.",
+        "status": "open"
+      },
+      {
+        "mitigation": "Use official iTrust route or professor-approved alternative before final benchmark.",
+        "risk": "DEC-007 unresolved.",
+        "status": "open"
+      },
+      {
+        "mitigation": "Perform manual metadata review before final reporting.",
+        "risk": "Metadata review_status remains unreviewed for relevant variables.",
+        "status": "open"
+      },
+      {
+        "mitigation": "Treat cards as staging evidence only; require official data and broader support before claims.",
+        "risk": "Support counts are still small in audited cards.",
+        "status": "open"
+      },
+      {
+        "mitigation": "Report stability by pair, calibration ranges, and verifier status rather than assuming one fixed rule ID.",
+        "risk": "Rule IDs vary across slices due to calibration/provenance.",
+        "status": "observed"
+      },
+      {
+        "mitigation": "Do not claim anomaly detection performance from staging validation.",
+        "risk": "Validation runtime firing on staging data is zero.",
+        "status": "observed"
+      },
+      {
+        "mitigation": "Use replay only as runtime semantics sanity check.",
+        "risk": "Synthetic replay is non-SWaT plumbing only.",
+        "status": "observed"
+      }
+    ],
+    "schema_version": "1.0",
+    "verified_implementation_path": [
+      "Kaggle/local merged.csv staging source",
+      "StagingSwatMirrorManifest only",
+      "Candidate universe",
+      "GDN candidate edge extraction",
+      "Relation profiling",
+      "Calibration",
+      "Deterministic template rule generation",
+      "Deterministic verification",
+      "Runtime evaluation",
+      "Evidence card audit",
+      "Synthetic non-SWaT violation replay"
+    ]
+  },
+  "report_id": "f7acde8406952406cbdcdf86741ed31e84a9dcc9fd05043bc0c849b11d0b0d39"
+}
