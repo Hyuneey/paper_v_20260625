@@ -647,3 +647,36 @@
 - Final decision:
 - Decision date:
 - Consequences for claims/evaluation:
+
+### DEC-027: ARGOS paper-code reproduction alignment
+
+- Status: open
+- Owner: researcher
+- Needed before: any real ARGOS reproduction run / ARGOS_REPRODUCTION_GATE_B
+- Question: Which ARGOS source path and safety model should be used for the first paper-faithful reproduction attempt?
+- Why it matters scientifically: The paper emphasizes detector-plus-rule aggregation, but the pinned README documents only `train-LLM-only`, `train-LLM-only-parallel`, and `train-evolution`, while combined FN/FP code paths remain present but underdocumented. Running the wrong path would blur rule-only, detector-only, and detector-plus-rule claims.
+- Evidence available:
+  - ARGOS paper `https://arxiv.org/abs/2501.14170` describes training-time LLM rules, Detection/Repair/Review agents, top-k selection, and detector-plus-rule aggregation.
+  - Local ARGOS reference is pinned at `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+  - ARGOS license is MIT.
+  - Current ARGOS README documents `train-LLM-only`, `train-LLM-only-parallel`, and `train-evolution`.
+  - Current `driver.py` still exposes `train-combined-fn`, `train-combined-fp`, and `eval-combined`.
+  - Current `common/common.py` implements combined label behavior with `np.maximum` for FN compensation and `np.minimum` for FP compensation.
+  - Current `datasets/dataset.py`, `agent/prompts/detection.py`, `agent/prompts/review.py`, `agent/review_agent.py`, and `runtime/engine.py` contain combined-mode support.
+  - Historical README blob inspection is unresolved because `external/argos` is a partial clone and older blobs require remote fetch.
+- Options:
+  1. Start with current pinned commit rule-only reproduction, then separately audit combined mode.
+  2. Use current pinned commit combined FN/FP paths as the first detector-plus-rule reproduction candidate.
+  3. Fetch/inspect historical ARGOS commits or upstream release guidance before choosing a reproduction commit.
+  4. Build a minimal paper-faithful adapter around the pinned combined paths to standardize base-detector outputs, artifacts, and run manifests.
+- Not approved until resolved:
+  - real LLM calls,
+  - API key use,
+  - execution of LLM-generated Python,
+  - full ARGOS experiment,
+  - changing the `paperworks` proposed-method pipeline,
+  - benchmark or thesis performance claims.
+- Recommendation from implementation agent: First fetch or otherwise inspect complete ARGOS history/release guidance, then run a rule-only reproduction before attempting detector-plus-rule aggregation. If combined mode is selected, define base-detector output artifacts and an isolated generated-Python sandbox before execution.
+- Final decision:
+- Decision date:
+- Consequences for claims/evaluation:

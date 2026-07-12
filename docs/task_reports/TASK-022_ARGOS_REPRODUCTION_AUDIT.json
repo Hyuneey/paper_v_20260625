@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task022_argos_reproduction_audit",
+  "task_id": "TASK-022",
+  "report_id": "task-022-argos-reproduction-audit-v1",
+  "created_at": "2026-07-13T00:00:00+09:00",
+  "starting_commit": "5ce6647",
+  "scope_statement": "TASK-022 is an audit/protocol task only. It does not approve real LLM calls, execution of LLM-generated Python, full ARGOS experiments, or changes to the paperworks proposed-method pipeline.",
+  "sources": {
+    "argos_repository": "https://github.com/microsoft/ARGOS",
+    "argos_local_path": "external/argos",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "argos_commit_summary": "6b24161 Add rule mutation implementation, parallel training, and OpenEvolve baseline (#13)",
+    "argos_license": "MIT",
+    "argos_paper": "https://arxiv.org/abs/2501.14170",
+    "argos_paper_html": "https://arxiv.org/html/2501.14170",
+    "current_repository": "https://github.com/Hyuneey/paper_v_20260625"
+  },
+  "files_inspected": [
+    "external/argos/LICENSE",
+    "external/argos/README.md",
+    "external/argos/driver.py",
+    "external/argos/common/common.py",
+    "external/argos/datasets/dataset.py",
+    "external/argos/runtime/engine.py",
+    "external/argos/agent/detection_agent.py",
+    "external/argos/agent/repair_agent.py",
+    "external/argos/agent/review_agent.py",
+    "external/argos/agent/agent.py",
+    "external/argos/agent/prompts/detection.py",
+    "external/argos/agent/prompts/review.py",
+    "external/argos/requirements.txt"
+  ],
+  "paper_summary": {
+    "training_time_llm": true,
+    "runtime_rules": true,
+    "detection_repair_review_loop": true,
+    "top_k_rule_selection": true,
+    "detector_plus_rule_aggregation": true,
+    "false_negative_rule_training": true,
+    "false_positive_rule_training": true,
+    "event_pa_primary_metric_in_paper": true
+  },
+  "code_findings": {
+    "readme_documented_modes": [
+      "train-LLM-only",
+      "train-LLM-only-parallel",
+      "train-evolution"
+    ],
+    "driver_exposed_combined_modes": [
+      "train-combined-fn",
+      "train-combined-fp",
+      "eval-combined"
+    ],
+    "combined_paths_present": true,
+    "combined_prompt_templates_present": true,
+    "combined_review_prompt_present": true,
+    "base_detector_model_res_path_required": true,
+    "incorrect_indices_train_json_required": true,
+    "llm_generated_python_exec_present": true,
+    "azure_openai_env_coupling_present": true,
+    "historical_readme_audit_status": "blocked_by_partial_clone_remote_blob_fetch"
+  },
+  "alignment_assessment": {
+    "best_offline_candidate_for_paper_rule_only": "current pinned commit 6b24161 train-LLM-only path",
+    "best_offline_candidate_for_paper_detector_plus_rule": "current pinned commit 6b24161 train-combined-fn/train-combined-fp plus combined_inference paths",
+    "paper_faithful_aggregator_runnable_status": "not proven",
+    "historical_commit_needed_status": "unresolved",
+    "minimal_paper_faithful_adapter_needed_status": "likely for safe local reproduction and artifact capture",
+    "exact_reproduction_status": "not approved and not established",
+    "behavioral_reproduction_status": "protocol-defined only"
+  },
+  "safety_checks": {
+    "real_llm_provider_called": false,
+    "api_key_required": false,
+    "llm_generated_python_executed": false,
+    "full_argos_experiment_run": false,
+    "paperworks_pipeline_modified": false,
+    "raw_swat_rows_read": false,
+    "official_sealed_test_opened": false,
+    "benchmark_claim_made": false
+  },
+  "open_decisions": [
+    {
+      "id": "DEC-027",
+      "title": "ARGOS paper-code reproduction alignment",
+      "status": "open",
+      "needed_before": "any real ARGOS reproduction run"
+    }
+  ],
+  "outputs": [
+    "docs/ARGOS_REPRODUCTION_PROTOCOL.md",
+    "docs/phase_gates/ARGOS_REPRODUCTION_GATE_A.md",
+    "docs/task_reports/TASK-022_ARGOS_REPRODUCTION_AUDIT.json",
+    "docs/task_reports/TASK-022_REPORT.md"
+  ]
+}

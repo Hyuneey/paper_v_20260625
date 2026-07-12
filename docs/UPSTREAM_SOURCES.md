@@ -51,6 +51,24 @@
 
 ARGOS is useful as an architectural reference, but it directly conflicts with this project's safety and split policies. This project must parse LLM output as JSON DSL, then evaluate only through deterministic DSL/runtime code.
 
+### TASK-022 reproduction-audit notes
+
+- Code copied: none.
+- Code adapted: none.
+- Additional files inspected:
+  - `common/common.py`
+  - `datasets/dataset.py`
+  - `runtime/engine.py`
+  - `agent/agent.py`
+  - `agent/prompts/detection.py`
+  - `agent/prompts/review.py`
+- Paper reference inspected: `https://arxiv.org/abs/2501.14170`
+- Current README documents `train-LLM-only`, `train-LLM-only-parallel`, and `train-evolution`.
+- Current code still exposes `train-combined-fn`, `train-combined-fp`, and `eval-combined`.
+- Detector-plus-rule Aggregator reproduction remains an alignment issue because combined code paths are present but underdocumented in the pinned README.
+- Historical README inspection is unresolved because the local ARGOS clone is partial and older blobs require remote fetch.
+- No real provider was called, no generated Python was executed, and no full ARGOS experiment was run in TASK-022.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN
