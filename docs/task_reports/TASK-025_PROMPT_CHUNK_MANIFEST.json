@@ -1,0 +1,48 @@
+{
+  "artifact_type": "task025_prompt_chunk_manifest",
+  "chunk": {
+    "chunk_hash": "550f47a55f37a18337c097ae4033808ef591d75407581c2e9b3cf8da1ed42015",
+    "end_index_inclusive": 999,
+    "end_position_exclusive": 1000,
+    "label_counts": {
+      "0": 996,
+      "1": 4
+    },
+    "private_chunk_artifact": "artifacts/private_argos_reproduction/task025/chunks/selected_chunk.json",
+    "row_count": 1000,
+    "start_index": 0,
+    "start_position": 0
+  },
+  "created_at": "2026-07-12T23:09:39.332752+00:00",
+  "frozen_inputs": {
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "combined_mode_status": "deferred",
+    "converted_csv_sha256": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
+    "kpi_source_commit": "d06bda15d511d930cbf4e6a6de14bd94d790f0f2",
+    "mode": "train-LLM-only",
+    "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa"
+  },
+  "manifest_hash": "8321ea9416a7ec7dc424c1915163a52b81ed8b3cc983a33e1c0eb6f407911ac2",
+  "performance_selection_used": false,
+  "raw_rows_tracked": false,
+  "schema_version": "1.0",
+  "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa",
+  "selection_policy": {
+    "chunk_size": 1000,
+    "chunk_size_source": "pinned ARGOS driver.py --chunk_size default=1000 and runtime/engine.py Engine(chunk_size=1000)",
+    "minimum_anomaly_count": 1,
+    "minimum_normal_count": 1,
+    "partition": "argos_train_df",
+    "scan_order": "increasing_start_position",
+    "selection_rule": "first eligible chunk with at least one normal and one anomaly label",
+    "source": "selected_kpi_converted_argos_csv",
+    "train_test_split": 0.7,
+    "uses_detector_performance": false,
+    "uses_generated_rule_performance": false,
+    "val_split": 0.2
+  },
+  "selection_policy_hash": "6e36b229e05834547771c81c9f6c763d58c8c2bda50752dac0440560bf8d3b3c",
+  "source_converted_csv_hash": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
+  "statement": "This is an ARGOS rule-only prompt-capture smoke. It is not a benchmark result and must not be used as a thesis performance claim.",
+  "task_id": "TASK-025"
+}

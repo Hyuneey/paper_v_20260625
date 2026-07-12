@@ -699,8 +699,17 @@
 - Fixed-rule sandbox subdecision:
   - Status: fixed repository-owned mock rule smoke completed in TASK-024
   - Docker/Podman status in local run: unavailable; restricted subprocess fallback used
+  - TASK-025 correction: restricted subprocess is not treated as a secure sandbox and does not claim network, repository-write, CPU, or memory isolation.
   - Actual LLM-generated Python execution: still not approved
   - Future requirement: approve and verify Docker/Podman sandbox before executing any actual LLM-generated Python.
+- Prompt-capture subdecision:
+  - Status: mock provider-ready prompt capture completed in TASK-025
+  - Pinned prompt source: `external/argos/agent/prompts/detection.py::DETECTION_AGENT_V3_DEFAULT_PROMPT_TEMPLATE`
+  - Chunk size source: pinned ARGOS `driver.py` and `runtime/engine.py` default `chunk_size=1000`
+  - Selected prompt chunk: positions `[0, 1000)`, label counts `0=996`, `1=4`
+  - Provider approval artifact: template only, `approved: false`
+  - Real provider calls: still not approved
+  - Generated Python execution: still not approved
 - Final decision: DEC-027 remains open for real provider approval, actual LLM-generated Python execution approval, Docker/Podman sandbox run approval, detector-plus-rule execution approval, and benchmark/thesis claim approval.
 - Decision date: 2026-07-13
 - Consequences for claims/evaluation: First ARGOS reproduction may target only mock/offline or future approved rule-only `train-LLM-only` behavior at the pinned commit. Detector-plus-rule claims, real provider claims, generated-code execution claims, and benchmark claims remain prohibited.

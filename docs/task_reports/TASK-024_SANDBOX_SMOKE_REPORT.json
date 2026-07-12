@@ -15,7 +15,7 @@
     "thesis_claims": false
   },
   "combined_mode_status": "deferred",
-  "created_at": "2026-07-12T22:53:50.471748+00:00",
+  "created_at": "2026-07-12T23:09:18.353274+00:00",
   "input": {
     "converted_csv_hash": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
     "input_slice_hash": "428548f89ba886aa71e317e04ec830e8e0ff088c8e94dd3e8d5a4a73353e6e23",
@@ -35,7 +35,7 @@
     "positive_count": 36,
     "shape_valid": true
   },
-  "report_hash": "374f7f6726bf88b860a774f78aea11e5d0a821caec07dc4965ada7e7845f8ca4",
+  "report_hash": "bad749330cdcc8a3a0852839144088d6341c0b61313d0ea24dc16c788c6e0ef3",
   "rule": {
     "actual_llm_generated_rule": false,
     "origin": "task023_repository_owned_fixed_mock_rule",
@@ -83,14 +83,15 @@
       "container_runtime": null,
       "container_runtime_available": false,
       "cpu_limit": "not_enforced_without_container",
+      "cpu_limit_enforced": false,
       "docker_or_podman_unavailable": true,
-      "duration_seconds": 0.12895470001967624,
+      "duration_seconds": 0.1425261000113096,
       "exit_code": 0,
       "isolation_method": "restricted_python_subprocess",
-      "main_repository_write_access": false,
+      "memory_limit_enforced": false,
       "memory_limit_mb": "not_enforced_without_container",
-      "network_disabled": true,
-      "network_disabled_method": "static_import_allowlist_and_sanitized_subprocess_environment",
+      "network_isolation_enforced": false,
+      "network_observed_used": false,
       "output_hash": "8103b40219aafadd947779b4fa013b7f674c3ea683e1f623ee9e1b30282624f4",
       "output_payload": {
         "binary_domain": true,
@@ -102,18 +103,22 @@
         ]
       },
       "output_size_bytes": 104,
-      "provider_credentials_available": false,
+      "provider_credentials_present": false,
       "quarantine_record": {
         "actual_llm_generated_rule": false,
         "rule_hash_recorded_in_report": true,
-        "rule_path": "artifacts/private_argos_reproduction/task024/sandbox_runs/20260712T225350Z/fixed_rule.py"
+        "rule_path": "artifacts/private_argos_reproduction/task024/sandbox_runs/20260712T230918Z/fixed_rule.py"
       },
-      "read_only_rule_and_input_mount": "emulated_by_private_run_directory_and_static_write_prohibitions",
-      "run_directory": "artifacts/private_argos_reproduction/task024/sandbox_runs/20260712T225350Z",
+      "read_only_rule_and_input_mount": "not_enforced_for_restricted_subprocess",
+      "repository_write_isolation_enforced": false,
+      "run_directory": "artifacts/private_argos_reproduction/task024/sandbox_runs/20260712T230918Z",
+      "static_rule_policy_enforced": true,
       "stderr": "",
       "stdout": "",
       "temporary_writable_output_only": true,
-      "timeout_seconds": 2
+      "timeout_enforced": true,
+      "timeout_seconds": 2,
+      "write_scope_observed": "ignored_private_run_directory_only"
     }
   },
   "schema_version": "1.0",

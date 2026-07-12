@@ -68,9 +68,24 @@ fallback:
 - writes only a bounded output JSON;
 - records hashes of input, rule, output, and sandbox config.
 
-The fallback does not enforce kernel-level CPU or memory limits. Before any
-actual LLM-generated Python can be executed, a Docker/Podman sandbox run must be
-approved and verified separately.
+The fallback does not enforce kernel-level network isolation, repository-write
+isolation, CPU limits, or memory limits. TASK-025 corrects the report semantics
+accordingly:
+
+```yaml
+network_isolation_enforced: false
+network_observed_used: false
+provider_credentials_present: false
+repository_write_isolation_enforced: false
+write_scope_observed: ignored_private_run_directory_only
+cpu_limit_enforced: false
+memory_limit_enforced: false
+timeout_enforced: true
+static_rule_policy_enforced: true
+```
+
+Before any actual LLM-generated Python can be executed, a Docker/Podman sandbox
+run must be approved and verified separately.
 
 ## Smoke Result Boundary
 

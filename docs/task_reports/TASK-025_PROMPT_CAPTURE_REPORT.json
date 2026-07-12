@@ -1,0 +1,148 @@
+{
+  "artifact_type": "task025_prompt_capture_report",
+  "boundaries": {
+    "actual_llm_generated_python_execution": false,
+    "api_key_use": false,
+    "benchmark_claims": false,
+    "combined_detector_plus_rule_path": false,
+    "full_argos_training": false,
+    "kpi_benchmark_evaluation": false,
+    "real_provider_calls": false,
+    "repair_agent_execution": false,
+    "review_agent_execution": false,
+    "src_paperworks_changes": false,
+    "swat_access": false,
+    "thesis_claims": false
+  },
+  "created_at": "2026-07-12T23:09:39.332752+00:00",
+  "frozen_inputs": {
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "combined_mode_status": "deferred",
+    "converted_csv_sha256": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
+    "kpi_source_commit": "d06bda15d511d930cbf4e6a6de14bd94d790f0f2",
+    "mode": "train-LLM-only",
+    "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa"
+  },
+  "hashes": {
+    "chunk_hash": "550f47a55f37a18337c097ae4033808ef591d75407581c2e9b3cf8da1ed42015",
+    "complete_request_hash": "14af5d91248f3ca579a445527768264f148497d58d85b49b96b39b8873918aca",
+    "config_hash": "391f8e840e7cf26cb7b1240b8b0966a48ea862694c6b0a886f6d254488318c30",
+    "raw_response_hash": "a39d9ae0573e686ad1281e19b6e930e8a817a8dad28f538b5854ccdaf5f0878f",
+    "rule_hash": "a16fe0779e01ab7a161a64455f00d59ea118608f1478e317c6a5c170a75a06ed",
+    "system_prompt_hash": "6e1cb2dd4997199005ced237110471d53623cbcfe89d0de83af6fdc797bfa6bc",
+    "system_prompt_template_hash": "0634807b251873af606d0dd08be07c841a79f10a291bd6305cf6db3c961d26ad",
+    "user_prompt_hash": "58182b3bb1c35eaf16857ef71eddbf5ba791981bf84223bb9a2e81bd51a34536"
+  },
+  "private_artifacts": {
+    "captured_response_path": "artifacts/private_argos_reproduction/task025/responses/captured_response.md",
+    "complete_request_path": "artifacts/private_argos_reproduction/task025/requests/complete_request.json",
+    "quarantined_rule_path": "artifacts/private_argos_reproduction/task025/quarantine/a16fe0779e01ab7a161a64455f00d59ea118608f1478e317c6a5c170a75a06ed.py",
+    "selected_chunk_path": "artifacts/private_argos_reproduction/task025/chunks/selected_chunk.json"
+  },
+  "prompt_fidelity": {
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "mapping": [
+      {
+        "ARGOS component": "Detection Agent system prompt",
+        "Deviation": "Template literal is read by AST instead of importing ARGOS to avoid provider/client side effects.",
+        "Pinned file/function": "agent/prompts/detection.py::build_detection_agent_v3_prompt",
+        "Reproduced field": "system_prompt"
+      },
+      {
+        "ARGOS component": "train-LLM-only mode selection",
+        "Deviation": "Only the first DetectionAgentV3 request is reconstructed; RepairAgent and ReviewAgent are not run.",
+        "Pinned file/function": "driver.py --mode default and runtime/engine.py::Engine(... mode='train-LLM-only')",
+        "Reproduced field": "mode"
+      },
+      {
+        "ARGOS component": "sample serialization",
+        "Deviation": "Chunk selection is deterministic first eligible chunk, not np.random.randint(0, 1000).",
+        "Pinned file/function": "agent/detection_agent.py::DetectionAgentV3.run curr_df.to_string(index=False, header=False)",
+        "Reproduced field": "user_prompt"
+      },
+      {
+        "ARGOS component": "chunk-size resolution",
+        "Deviation": "No CLI override is used in TASK-025.",
+        "Pinned file/function": "driver.py --chunk_size default=1000 and runtime/engine.py::Engine(chunk_size=1000)",
+        "Reproduced field": "chunk_selection.chunk_size"
+      },
+      {
+        "ARGOS component": "expected Python code fence",
+        "Deviation": "Captured response is validated but never executed.",
+        "Pinned file/function": "agent/prompts/detection.py DETECTION_AGENT_V3_DEFAULT_PROMPT_TEMPLATE",
+        "Reproduced field": "static_validation.code_fence_extracted"
+      },
+      {
+        "ARGOS component": "required inference signature",
+        "Deviation": "TASK-025 validates exactly one inference function with AST.",
+        "Pinned file/function": "agent/agent.py::Agent.extract_code and prompt text",
+        "Reproduced field": "static_validation.signature"
+      },
+      {
+        "ARGOS component": "normal-rule comments",
+        "Deviation": "No deviation.",
+        "Pinned file/function": "agent/prompts/detection.py default V3 prompt",
+        "Reproduced field": "system_prompt"
+      },
+      {
+        "ARGOS component": "abnormal-rule conditions",
+        "Deviation": "No deviation.",
+        "Pinned file/function": "agent/prompts/detection.py default V3 prompt",
+        "Reproduced field": "system_prompt"
+      },
+      {
+        "ARGOS component": "iteration history behavior",
+        "Deviation": "First capture uses no previous rule, so no history block is appended.",
+        "Pinned file/function": "agent/detection_agent.py::DetectionAgentV3.run appends CODE FROM LAST ITERATION",
+        "Reproduced field": "iteration_history"
+      }
+    ],
+    "system_prompt_source": "external/argos/agent/prompts/detection.py",
+    "system_prompt_template_name": "DETECTION_AGENT_V3_DEFAULT_PROMPT_TEMPLATE"
+  },
+  "prompt_retention": {
+    "credential_audit": {
+      "matches": [],
+      "passed": true
+    },
+    "full_prompt_tracked": false,
+    "ignored_private_only": true,
+    "raw_response_tracked": false,
+    "raw_rows_tracked": false
+  },
+  "provider": {
+    "default_mode": "mock",
+    "mode": "mock",
+    "provider_gate": {
+      "blockers": [],
+      "real_provider_call_allowed": false,
+      "real_provider_call_requested": false
+    },
+    "real_provider_call_allowed": false,
+    "real_provider_call_requested": false
+  },
+  "report_hash": "7f811af91716fb771a2ec1bc2031698c3128e107914d0c6bf9c43dc338802212",
+  "response_capture": {
+    "code_extracted": true,
+    "execution_performed": false,
+    "performance_metric_reported": false,
+    "signature_valid": true,
+    "static_safety": {
+      "passed": true,
+      "signature": {
+        "arg_annotation": "np.ndarray",
+        "arg_count": 1,
+        "arg_name": "sample",
+        "function_name": "inference",
+        "return_annotation": "np.ndarray",
+        "signature_valid": true
+      },
+      "violations": []
+    },
+    "static_safety_passed": true,
+    "status": "captured"
+  },
+  "schema_version": "1.0",
+  "statement": "This is an ARGOS rule-only prompt-capture smoke. It is not a benchmark result and must not be used as a thesis performance claim.",
+  "task_id": "TASK-025"
+}

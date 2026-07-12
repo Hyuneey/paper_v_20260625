@@ -10,7 +10,6 @@ import os
 import shutil
 import subprocess
 import sys
-import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -160,11 +159,16 @@ def run_restricted_subprocess(
         "container_runtime": None,
         "container_runtime_available": False,
         "docker_or_podman_unavailable": True,
-        "network_disabled": True,
-        "network_disabled_method": "static_import_allowlist_and_sanitized_subprocess_environment",
-        "provider_credentials_available": False,
-        "main_repository_write_access": False,
-        "read_only_rule_and_input_mount": "emulated_by_private_run_directory_and_static_write_prohibitions",
+        "network_isolation_enforced": False,
+        "network_observed_used": False,
+        "provider_credentials_present": False,
+        "repository_write_isolation_enforced": False,
+        "write_scope_observed": "ignored_private_run_directory_only",
+        "cpu_limit_enforced": False,
+        "memory_limit_enforced": False,
+        "timeout_enforced": True,
+        "static_rule_policy_enforced": True,
+        "read_only_rule_and_input_mount": "not_enforced_for_restricted_subprocess",
         "temporary_writable_output_only": True,
         "cpu_limit": "not_enforced_without_container",
         "memory_limit_mb": "not_enforced_without_container",
@@ -255,10 +259,16 @@ def run_containerized(
         "container_runtime_available": True,
         "container_image": sandbox_config["container_image"],
         "docker_or_podman_unavailable": False,
-        "network_disabled": True,
-        "network_disabled_method": "--network none",
-        "provider_credentials_available": False,
-        "main_repository_write_access": False,
+        "network_isolation_enforced": True,
+        "network_isolation_method": "--network none",
+        "network_observed_used": False,
+        "provider_credentials_present": False,
+        "repository_write_isolation_enforced": True,
+        "write_scope_observed": "container_output_mount_only",
+        "cpu_limit_enforced": True,
+        "memory_limit_enforced": True,
+        "timeout_enforced": True,
+        "static_rule_policy_enforced": True,
         "read_only_rule_and_input_mount": True,
         "temporary_writable_output_only": True,
         "cpu_limit": sandbox_config["cpu_limit"],

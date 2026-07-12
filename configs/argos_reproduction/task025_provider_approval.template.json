@@ -1,0 +1,15 @@
+{
+  "approved": false,
+  "approved_by": null,
+  "approval_date": null,
+  "provider": null,
+  "model": null,
+  "max_calls": 1,
+  "max_input_tokens": null,
+  "max_output_tokens": null,
+  "max_cost_usd": null,
+  "temperature": null,
+  "raw_prompt_retention": "ignored_private_only",
+  "raw_response_retention": "ignored_private_only",
+  "tracked_artifacts": "hashes_and_redacted_metadata_only"
+}

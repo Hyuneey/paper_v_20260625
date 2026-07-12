@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task025_prompt_capture_config",
+  "task_id": "TASK-025",
+  "mode": "train-LLM-only",
+  "combined_mode_status": "deferred",
+  "private_artifact_root": "artifacts/private_argos_reproduction/task025",
+  "task024_manifest_path": "docs/task_reports/TASK-024_KPI_DATASET_MANIFEST.json",
+  "frozen_inputs": {
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "mode": "train-LLM-only",
+    "combined_mode_status": "deferred",
+    "kpi_source_commit": "d06bda15d511d930cbf4e6a6de14bd94d790f0f2",
+    "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa",
+    "converted_csv_sha256": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55"
+  },
+  "chunk_selection": {
+    "source": "selected_kpi_converted_argos_csv",
+    "partition": "argos_train_df",
+    "chunk_size": 1000,
+    "chunk_size_source": "pinned ARGOS driver.py --chunk_size default=1000 and runtime/engine.py Engine(chunk_size=1000)",
+    "train_test_split": 0.7,
+    "val_split": 0.2,
+    "minimum_normal_count": 1,
+    "minimum_anomaly_count": 1,
+    "scan_order": "increasing_start_position",
+    "selection_rule": "first eligible chunk with at least one normal and one anomaly label",
+    "uses_generated_rule_performance": false,
+    "uses_detector_performance": false,
+    "notes": "This intentionally avoids the first 512 normal-only rows used by TASK-024."
+  },
+  "provider": {
+    "mode": "mock",
+    "default_mode": "mock",
+    "allow_network": false,
+    "approval_path": "configs/argos_reproduction/task025_provider_approval.template.json",
+    "required_credential_env": [
+      "OPENAI_AZURE_API_KEY",
+      "OPENAI_AZURE_ENDPOINT",
+      "OPENAI_AZURE_API_VERSION"
+    ],
+    "manual_response_path": "artifacts/private_argos_reproduction/task025/manual/manual_response.md"
+  },
+  "mock_response_origin": "repository_owned_mock_response_for_prompt_capture",
+  "mock_response": "```python\nimport numpy as np\n\ndef inference(sample: np.ndarray) -> np.ndarray:\n    values = sample[:, 0]\n    labels = np.zeros(sample.shape[0], dtype=int)\n    center = np.median(values)\n    spread = np.std(values)\n    if spread == 0:\n        return labels\n    labels[values > center + 3.0 * spread] = 1\n    return labels\n```",
+  "allowed_imports": [
+    "numpy"
+  ],
+  "boundaries": {
+    "real_provider_calls": false,
+    "api_key_use": false,
+    "actual_llm_generated_python_execution": false,
+    "full_argos_training": false,
+    "repair_agent_execution": false,
+    "review_agent_execution": false,
+    "combined_detector_plus_rule_path": false,
+    "kpi_benchmark_evaluation": false,
+    "swat_access": false,
+    "src_paperworks_changes": false,
+    "benchmark_claims": false,
+    "thesis_claims": false
+  },
+  "output_chunk_manifest_path": "docs/task_reports/TASK-025_PROMPT_CHUNK_MANIFEST.json",
+  "output_capture_report_path": "docs/task_reports/TASK-025_PROMPT_CAPTURE_REPORT.json"
+}

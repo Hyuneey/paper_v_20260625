@@ -67,10 +67,14 @@ The converted CSV is private and ignored by Git.
 | Output shape check | passed |
 
 Docker/Podman were unavailable in the local environment, so the executed smoke
-used the restricted Python subprocess fallback. The fallback is adequate for
-the fixed repository-owned mock rule smoke, but actual LLM-generated Python
-execution remains gated until a Docker/Podman sandbox run is approved and
-verified.
+used the restricted Python subprocess fallback. TASK-025 corrected the evidence
+semantics: this fallback is not a secure sandbox and does not enforce
+kernel-level network isolation, repository-write isolation, CPU limits, or
+memory limits. It only records that no network use was observed, no provider
+credentials were present, writes stayed in the ignored private run directory,
+the timeout was enforced, and static fixed-rule policy checks ran. Actual
+LLM-generated Python execution remains gated until a Docker/Podman sandbox run
+is approved and verified.
 
 ## Boundary Checks
 

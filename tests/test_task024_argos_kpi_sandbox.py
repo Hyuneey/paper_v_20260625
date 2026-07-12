@@ -81,6 +81,16 @@ class Task024KpiSandboxTests(unittest.TestCase):
         self.assertEqual(report["output_payload"]["positive_count"], 1)
         self.assertNotIn("labels", report["output_payload"])
         self.assertIsNotNone(report["output_hash"])
+        self.assertFalse(report["network_isolation_enforced"])
+        self.assertFalse(report["network_observed_used"])
+        self.assertFalse(report["provider_credentials_present"])
+        self.assertFalse(report["repository_write_isolation_enforced"])
+        self.assertEqual(report["write_scope_observed"], "ignored_private_run_directory_only")
+        self.assertFalse(report["cpu_limit_enforced"])
+        self.assertFalse(report["memory_limit_enforced"])
+        self.assertTrue(report["timeout_enforced"])
+        self.assertTrue(report["static_rule_policy_enforced"])
+        self.assertNotEqual(report.get("read_only_rule_and_input_mount"), True)
 
 
 if __name__ == "__main__":

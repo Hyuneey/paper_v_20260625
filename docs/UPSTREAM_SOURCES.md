@@ -110,6 +110,26 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - TASK-024 executed only the repository-owned fixed mock rule from TASK-023.
   No real provider was called and no actual LLM-generated Python was executed.
 
+### TASK-025 prompt-fidelity notes
+
+- Code copied from ARGOS: none.
+- Code adapted from ARGOS: none.
+- Prompt template referenced:
+  `external/argos/agent/prompts/detection.py::DETECTION_AGENT_V3_DEFAULT_PROMPT_TEMPLATE`.
+- Mode-selection files inspected:
+  - `external/argos/driver.py`,
+  - `external/argos/runtime/engine.py`.
+- Runtime prompt assembly file inspected:
+  `external/argos/agent/detection_agent.py`.
+- Code-fence extraction reference inspected:
+  `external/argos/agent/agent.py::Agent.extract_code`.
+- Dataset chunking reference inspected:
+  `external/argos/datasets/dataset.py`.
+- TASK-025 reconstructs the first DetectionAgentV3 prompt request by reading
+  ARGOS prompt source as text/AST, not by importing upstream ARGOS.
+- TASK-025 does not run RepairAgent, ReviewAgent, full ARGOS training,
+  detector-plus-rule combined mode, real provider calls, or generated Python.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN
