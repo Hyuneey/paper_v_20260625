@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task023_offline_harness_config",
+  "task_id": "TASK-023",
+  "mode": "train-LLM-only",
+  "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+  "combined_mode_status": "deferred",
+  "provider": {
+    "name": "mock",
+    "allow_network": false,
+    "require_api_key": false,
+    "temperature": 0
+  },
+  "fixture": {
+    "fixture_id": "task023_synthetic_argos_value_label_index_v1",
+    "fixture_kind": "synthetic_non_argos_non_swat",
+    "columns": [
+      "value",
+      "label",
+      "index"
+    ],
+    "rows": [
+      {
+        "value": 1.0,
+        "label": 0,
+        "index": 0
+      },
+      {
+        "value": 1.1,
+        "label": 0,
+        "index": 1
+      },
+      {
+        "value": 8.5,
+        "label": 1,
+        "index": 2
+      },
+      {
+        "value": 1.2,
+        "label": 0,
+        "index": 3
+      }
+    ]
+  },
+  "prompt": "You are the ARGOS Detection Agent. Write a Python function inference(sample: np.ndarray) -> np.ndarray for a tiny synthetic value/index time-series fixture. Return labels where unusually high values are marked abnormal. Do not hard-code indices.",
+  "mock_response_origin": "repository_owned_fixed_mock_response",
+  "mock_response": "```python\nimport numpy as np\n\ndef inference(sample: np.ndarray) -> np.ndarray:\n    values = sample[:, 0]\n    labels = np.zeros(sample.shape[0], dtype=int)\n    baseline = np.median(values)\n    labels[values > baseline + 3.0] = 1\n    return labels\n```",
+  "allowed_imports": [
+    "numpy"
+  ],
+  "sandbox": {
+    "enabled": false,
+    "execute_generated_code": false,
+    "actual_llm_generated_rule_execution_allowed": false,
+    "requires_future_approval": true,
+    "network_disabled_required": true,
+    "read_only_input_required": true,
+    "temporary_output_directory_required": true,
+    "provider_credentials_forbidden": true,
+    "cpu_time_limit_seconds": 2,
+    "memory_limit_mb": 256,
+    "output_file_size_limit_kb": 64,
+    "subprocess_prohibited": true,
+    "path_traversal_prevention_required": true,
+    "import_allowlist": [
+      "numpy"
+    ],
+    "execution_timeout_seconds": 2,
+    "generated_code_quarantine_required": true
+  },
+  "output_report_path": "docs/task_reports/TASK-023_OFFLINE_HARNESS_REPORT.json"
+}

@@ -1,0 +1,65 @@
+{
+  "artifact_type": "task023_offline_harness_report",
+  "checks": {
+    "actual_llm_generated_python_executed": false,
+    "api_key_required": false,
+    "network_used": false,
+    "paperworks_imported": false,
+    "provider_called": false,
+    "required_signature_valid": true,
+    "static_safety_passed": true,
+    "upstream_argos_imported": false
+  },
+  "config_path": "configs/argos_reproduction/task023_offline_harness.json",
+  "created_at": "2026-07-12T22:25:33.826599+00:00",
+  "execution": {
+    "actual_llm_generated_rule_execution_allowed": false,
+    "generated_code_executed": false,
+    "sandbox_enabled": false,
+    "stop_reason": "generated_code_execution_not_enabled"
+  },
+  "fixture": {
+    "columns": [
+      "value",
+      "label",
+      "index"
+    ],
+    "fixture_id": "task023_synthetic_argos_value_label_index_v1",
+    "fixture_kind": "synthetic_non_argos_non_swat",
+    "row_count": 4
+  },
+  "hashes": {
+    "config_hash": "78e16034695c180e0e89e7564e28ad4164b99891eb93e9038c0c0485e8175d84",
+    "fixture_hash": "b6992c25b80ce0d944f766dbb53082f5de5832cd3c77d0770da022057cc59ad5",
+    "mock_response_hash": "61b32ee7a370574b2bb1321edd664267f85b324a29e566bd105a0dfd31ff8162",
+    "prompt_hash": "f1102e53d7c1db2666566147cd86a472f8de38abb14a8125b3ad1946996fcf50",
+    "rule_hash": "2820e2af449647e2e6aa9f9a74cf85e2cb393902525f0fa998a08be136f4bf35"
+  },
+  "mode": "train-LLM-only",
+  "provider": {
+    "allow_network": false,
+    "name": "mock",
+    "require_api_key": false,
+    "temperature": 0
+  },
+  "rule": {
+    "extracted": true,
+    "hash": "2820e2af449647e2e6aa9f9a74cf85e2cb393902525f0fa998a08be136f4bf35",
+    "origin": "repository_owned_fixed_mock_response",
+    "static_safety": {
+      "passed": true,
+      "signature": {
+        "arg_annotation": "np.ndarray",
+        "arg_count": 1,
+        "arg_name": "sample",
+        "function_name": "inference",
+        "return_annotation": "np.ndarray",
+        "signature_valid": true
+      },
+      "violations": []
+    }
+  },
+  "schema_version": "1.0",
+  "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+  "task_id": "TASK-023"
+}

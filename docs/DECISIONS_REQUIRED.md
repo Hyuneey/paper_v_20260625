@@ -658,12 +658,15 @@
 - Evidence available:
   - ARGOS paper `https://arxiv.org/abs/2501.14170` describes training-time LLM rules, Detection/Repair/Review agents, top-k selection, and detector-plus-rule aggregation.
   - Local ARGOS reference is pinned at `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+  - TASK-023 fetched ARGOS upstream refs/tags and confirmed current upstream `origin/main` is `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+  - No ARGOS git tags were found during TASK-023.
   - ARGOS license is MIT.
   - Current ARGOS README documents `train-LLM-only`, `train-LLM-only-parallel`, and `train-evolution`.
+  - Historical README docs at `5209273`, `c3c28af`, and `c03427f` document `Argos w/o Aggregator` and `Argos w/ Aggregator`, including a `train-combined-fp` example and a TODO for base-detector incorrect-example artifacts.
   - Current `driver.py` still exposes `train-combined-fn`, `train-combined-fp`, and `eval-combined`.
   - Current `common/common.py` implements combined label behavior with `np.maximum` for FN compensation and `np.minimum` for FP compensation.
   - Current `datasets/dataset.py`, `agent/prompts/detection.py`, `agent/prompts/review.py`, `agent/review_agent.py`, and `runtime/engine.py` contain combined-mode support.
-  - Historical README blob inspection is unresolved because `external/argos` is a partial clone and older blobs require remote fetch.
+  - TASK-023 added an offline mock-only harness under `experiments/argos_reproduction/`.
 - Options:
   1. Start with current pinned commit rule-only reproduction, then separately audit combined mode.
   2. Use current pinned commit combined FN/FP paths as the first detector-plus-rule reproduction candidate.
@@ -677,6 +680,19 @@
   - changing the `paperworks` proposed-method pipeline,
   - benchmark or thesis performance claims.
 - Recommendation from implementation agent: First fetch or otherwise inspect complete ARGOS history/release guidance, then run a rule-only reproduction before attempting detector-plus-rule aggregation. If combined mode is selected, define base-detector output artifacts and an isolated generated-Python sandbox before execution.
-- Final decision:
+- Source-alignment subdecision:
+  - Status: resolved for first rule-only reproduction stage
+  - Decision date: 2026-07-13
+  - `initial_reproduction_mode`: `train-LLM-only`
+  - `initial_source_commit`: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`
+  - `combined_mode_status`: deferred
+  - Best detector-plus-rule candidate for future audit: `c03427f`, because it is the latest inspected historical README commit retaining Aggregator-oriented documentation.
+  - Minimal paper-faithful adapter: not approved now; build only if pinned combined paths cannot be executed reproducibly with explicit base-detector artifacts.
+- Dataset subdecision:
+  - Status: recommended for future reproduction, not downloaded in TASK-023
+  - Dataset: KPI public GitHub dataset from `https://github.com/NetManAIOps/KPI-Anomaly-Detection`
+  - Initial package: `Finals_dataset/phase2_train.csv.zip` with Git blob SHA `f07375e9ec10789d9f473301734c9cb00e9b6279`; paired ground truth `Finals_dataset/phase2_ground_truth.hdf.zip` with Git blob SHA `41397b55ae955849357eb7006334f2c11a32bca6`
+  - Future subset policy: one-by-one single KPI series after approved download and preprocessing.
+- Final decision: DEC-027 remains open for real provider approval, generated-Python sandbox approval, dataset download/preprocessing approval, and detector-plus-rule execution approval.
 - Decision date:
-- Consequences for claims/evaluation:
+- Consequences for claims/evaluation: First ARGOS reproduction may target only mock/offline or future approved rule-only `train-LLM-only` behavior at the pinned commit. Detector-plus-rule claims, real provider claims, generated-code execution claims, and benchmark claims remain prohibited.

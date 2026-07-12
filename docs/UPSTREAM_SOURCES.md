@@ -69,6 +69,26 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - Historical README inspection is unresolved because the local ARGOS clone is partial and older blobs require remote fetch.
 - No real provider was called, no generated Python was executed, and no full ARGOS experiment was run in TASK-022.
 
+### TASK-023 historical-alignment notes
+
+- Code copied: none.
+- Code adapted: none.
+- Current upstream HEAD inspected: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Local pinned commit retained: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Git tags found: none.
+- Historical README commits inspected:
+  - `1cfa6d3` initial template README,
+  - `5209273` core README with `Argos w/o Aggregator` and `Argos w/ Aggregator`,
+  - `c3c28af` RAI README update retaining Aggregator docs,
+  - `c03427f` release-name README update retaining Aggregator docs,
+  - `6b24161` current README documenting `train-LLM-only`, `train-LLM-only-parallel`, and `train-evolution`.
+- Initial rule-only reproduction target selected:
+  - mode: `train-LLM-only`,
+  - commit: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Combined detector-plus-rule reproduction remains deferred.
+- Historical detector-plus-rule documentation candidate: `c03427f`.
+- TASK-023 added an offline mock-only harness under `experiments/argos_reproduction/`; it does not import upstream ARGOS into production runtime and does not execute actual LLM-generated Python.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN
