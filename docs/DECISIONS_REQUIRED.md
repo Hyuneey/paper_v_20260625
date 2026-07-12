@@ -689,10 +689,18 @@
   - Best detector-plus-rule candidate for future audit: `c03427f`, because it is the latest inspected historical README commit retaining Aggregator-oriented documentation.
   - Minimal paper-faithful adapter: not approved now; build only if pinned combined paths cannot be executed reproducibly with explicit base-detector artifacts.
 - Dataset subdecision:
-  - Status: recommended for future reproduction, not downloaded in TASK-023
+  - Status: prepared for fixed-rule smoke in TASK-024; not approved for benchmark claims
   - Dataset: KPI public GitHub dataset from `https://github.com/NetManAIOps/KPI-Anomaly-Detection`
   - Initial package: `Finals_dataset/phase2_train.csv.zip` with Git blob SHA `f07375e9ec10789d9f473301734c9cb00e9b6279`; paired ground truth `Finals_dataset/phase2_ground_truth.hdf.zip` with Git blob SHA `41397b55ae955849357eb7006334f2c11a32bca6`
-  - Future subset policy: one-by-one single KPI series after approved download and preprocessing.
-- Final decision: DEC-027 remains open for real provider approval, generated-Python sandbox approval, dataset download/preprocessing approval, and detector-plus-rule execution approval.
-- Decision date:
+  - TASK-024 source repository commit: `d06bda15d511d930cbf4e6a6de14bd94d790f0f2`
+  - TASK-024 selected KPI ID: `05f10d3a-239c-3bef-9bdc-a2feeb0037aa`
+  - TASK-024 converted CSV SHA-256: `f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55`
+  - TASK-024 package and converted CSV files remain under ignored `artifacts/` paths and are not tracked.
+- Fixed-rule sandbox subdecision:
+  - Status: fixed repository-owned mock rule smoke completed in TASK-024
+  - Docker/Podman status in local run: unavailable; restricted subprocess fallback used
+  - Actual LLM-generated Python execution: still not approved
+  - Future requirement: approve and verify Docker/Podman sandbox before executing any actual LLM-generated Python.
+- Final decision: DEC-027 remains open for real provider approval, actual LLM-generated Python execution approval, Docker/Podman sandbox run approval, detector-plus-rule execution approval, and benchmark/thesis claim approval.
+- Decision date: 2026-07-13
 - Consequences for claims/evaluation: First ARGOS reproduction may target only mock/offline or future approved rule-only `train-LLM-only` behavior at the pinned commit. Detector-plus-rule claims, real provider claims, generated-code execution claims, and benchmark claims remain prohibited.

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task024_kpi_sandbox_smoke_config",
+  "task_id": "TASK-024",
+  "mode": "train-LLM-only",
+  "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+  "combined_mode_status": "deferred",
+  "future_aggregator_candidate_commit": "c03427f",
+  "source_repository": "https://github.com/NetManAIOps/KPI-Anomaly-Detection",
+  "source_repository_commit": "d06bda15d511d930cbf4e6a6de14bd94d790f0f2",
+  "source_repository_commit_date": "2022-08-08T06:48:01Z",
+  "private_artifact_root": "artifacts/private_argos_reproduction/task024",
+  "packages": {
+    "train": {
+      "source_url": "https://raw.githubusercontent.com/NetManAIOps/KPI-Anomaly-Detection/master/Finals_dataset/phase2_train.csv.zip",
+      "git_blob_sha": "f07375e9ec10789d9f473301734c9cb00e9b6279",
+      "local_path": "artifacts/private_argos_reproduction/task024/packages/phase2_train.csv.zip"
+    },
+    "ground_truth": {
+      "source_url": "https://raw.githubusercontent.com/NetManAIOps/KPI-Anomaly-Detection/master/Finals_dataset/phase2_ground_truth.hdf.zip",
+      "git_blob_sha": "41397b55ae955849357eb7006334f2c11a32bca6",
+      "local_path": "artifacts/private_argos_reproduction/task024/packages/phase2_ground_truth.hdf.zip"
+    }
+  },
+  "selection_policy": {
+    "valid_train_records_required": true,
+    "ground_truth_package_presence_required": true,
+    "no_malformed_timestamps": true,
+    "minimum_row_count": 100,
+    "both_normal_and_anomaly_labels_required": true,
+    "selection_order": "lexicographically_smallest_eligible_kpi_id",
+    "not_based_on_argos_performance": true
+  },
+  "fixed_rule": {
+    "task023_config_path": "configs/argos_reproduction/task023_offline_harness.json",
+    "origin": "repository_owned_fixed_mock_rule_from_TASK_023"
+  },
+  "input_slice": {
+    "row_limit": 512,
+    "selection": "first_512_rows_of_selected_converted_kpi_series",
+    "metric_policy": "plumbing_diagnostic_only"
+  },
+  "sandbox": {
+    "container_image": "paperworks-task024-argos-sandbox:local",
+    "preferred_runtime_order": [
+      "docker",
+      "podman",
+      "restricted_python_subprocess"
+    ],
+    "network_disabled_required": true,
+    "provider_credentials_forbidden": true,
+    "read_only_rule_and_input_required": true,
+    "temporary_writable_output_only": true,
+    "cpu_limit": "1",
+    "memory_limit_mb": 256,
+    "execution_timeout_seconds": 2,
+    "output_file_size_limit_kb": 64,
+    "import_allowlist": [
+      "numpy"
+    ],
+    "subprocess_prohibited": true,
+    "path_traversal_prevention_required": true,
+    "main_repository_write_access": false,
+    "generated_code_quarantine_required": true,
+    "execute_actual_llm_generated_rule": false
+  },
+  "boundaries": {
+    "real_provider_calls": false,
+    "api_key_use": false,
+    "actual_llm_generated_python_execution": false,
+    "full_argos_training": false,
+    "combined_detector_plus_rule_path": false,
+    "swat_access": false,
+    "src_paperworks_changes": false,
+    "benchmark_claims": false,
+    "thesis_claims": false
+  },
+  "output_manifest_path": "docs/task_reports/TASK-024_KPI_DATASET_MANIFEST.json",
+  "output_sandbox_report_path": "docs/task_reports/TASK-024_SANDBOX_SMOKE_REPORT.json"
+}

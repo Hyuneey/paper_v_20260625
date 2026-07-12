@@ -89,6 +89,27 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - Historical detector-plus-rule documentation candidate: `c03427f`.
 - TASK-023 added an offline mock-only harness under `experiments/argos_reproduction/`; it does not import upstream ARGOS into production runtime and does not execute actual LLM-generated Python.
 
+### TASK-024 KPI preparation and sandbox-smoke notes
+
+- Code copied from ARGOS: none.
+- Code adapted from ARGOS: none.
+- Pinned ARGOS README references `utility/generate_csv.py`, but TASK-024 did
+  not find a compatible `generate_csv.py` preprocessing script in the inspected
+  ARGOS history.
+- TASK-024 therefore added a minimal KPI-to-ARGOS adapter under
+  `experiments/argos_reproduction/`, not under `src/paperworks`.
+- External KPI dataset source:
+  - repository: `https://github.com/NetManAIOps/KPI-Anomaly-Detection`,
+  - source commit: `d06bda15d511d930cbf4e6a6de14bd94d790f0f2`,
+  - train package: `Finals_dataset/phase2_train.csv.zip`,
+  - ground-truth package: `Finals_dataset/phase2_ground_truth.hdf.zip`.
+- Selected KPI ID for fixed-rule smoke:
+  `05f10d3a-239c-3bef-9bdc-a2feeb0037aa`.
+- Downloaded packages, extracted files, and converted ARGOS CSVs are local
+  ignored artifacts only and are not tracked.
+- TASK-024 executed only the repository-owned fixed mock rule from TASK-023.
+  No real provider was called and no actual LLM-generated Python was executed.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN

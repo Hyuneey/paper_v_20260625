@@ -1,0 +1,123 @@
+{
+  "artifact_type": "task024_fixed_rule_sandbox_smoke_report",
+  "checks": {
+    "actual_llm_generated_python_execution": false,
+    "api_key_use": false,
+    "benchmark_claims": false,
+    "binary_domain_valid": true,
+    "combined_detector_plus_rule_path": false,
+    "fixed_repository_owned_mock_rule_only": true,
+    "full_argos_training": false,
+    "output_shape_valid": true,
+    "real_provider_calls": false,
+    "src_paperworks_changes_required": false,
+    "swat_access": false,
+    "thesis_claims": false
+  },
+  "combined_mode_status": "deferred",
+  "created_at": "2026-07-12T22:53:50.471748+00:00",
+  "input": {
+    "converted_csv_hash": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
+    "input_slice_hash": "428548f89ba886aa71e317e04ec830e8e0ff088c8e94dd3e8d5a4a73353e6e23",
+    "row_count": 512,
+    "schema_valid": true,
+    "source_label_counts": {
+      "0": 512,
+      "1": 0
+    }
+  },
+  "mode": "train-LLM-only",
+  "output": {
+    "binary_domain_valid": true,
+    "label_count": 512,
+    "negative_count": 476,
+    "output_hash": "8103b40219aafadd947779b4fa013b7f674c3ea683e1f623ee9e1b30282624f4",
+    "positive_count": 36,
+    "shape_valid": true
+  },
+  "report_hash": "374f7f6726bf88b860a774f78aea11e5d0a821caec07dc4965ada7e7845f8ca4",
+  "rule": {
+    "actual_llm_generated_rule": false,
+    "origin": "task023_repository_owned_fixed_mock_rule",
+    "rule_hash": "2820e2af449647e2e6aa9f9a74cf85e2cb393902525f0fa998a08be136f4bf35",
+    "static_safety": {
+      "passed": true,
+      "signature": {
+        "arg_annotation": "np.ndarray",
+        "arg_count": 1,
+        "arg_name": "sample",
+        "function_name": "inference",
+        "return_annotation": "np.ndarray",
+        "signature_valid": true
+      },
+      "violations": []
+    }
+  },
+  "sandbox": {
+    "config": {
+      "container_image": "paperworks-task024-argos-sandbox:local",
+      "cpu_limit": "1",
+      "execute_actual_llm_generated_rule": false,
+      "execution_timeout_seconds": 2,
+      "generated_code_quarantine_required": true,
+      "import_allowlist": [
+        "numpy"
+      ],
+      "main_repository_write_access": false,
+      "memory_limit_mb": 256,
+      "network_disabled_required": true,
+      "output_file_size_limit_kb": 64,
+      "path_traversal_prevention_required": true,
+      "preferred_runtime_order": [
+        "docker",
+        "podman",
+        "restricted_python_subprocess"
+      ],
+      "provider_credentials_forbidden": true,
+      "read_only_rule_and_input_required": true,
+      "subprocess_prohibited": true,
+      "temporary_writable_output_only": true
+    },
+    "config_hash": "b27b1017d85e47fdd807c897151f92e0cae3a13e10989a98d74c23d79140976c",
+    "execution": {
+      "container_runtime": null,
+      "container_runtime_available": false,
+      "cpu_limit": "not_enforced_without_container",
+      "docker_or_podman_unavailable": true,
+      "duration_seconds": 0.12895470001967624,
+      "exit_code": 0,
+      "isolation_method": "restricted_python_subprocess",
+      "main_repository_write_access": false,
+      "memory_limit_mb": "not_enforced_without_container",
+      "network_disabled": true,
+      "network_disabled_method": "static_import_allowlist_and_sanitized_subprocess_environment",
+      "output_hash": "8103b40219aafadd947779b4fa013b7f674c3ea683e1f623ee9e1b30282624f4",
+      "output_payload": {
+        "binary_domain": true,
+        "label_count": 512,
+        "negative_count": 476,
+        "positive_count": 36,
+        "shape": [
+          512
+        ]
+      },
+      "output_size_bytes": 104,
+      "provider_credentials_available": false,
+      "quarantine_record": {
+        "actual_llm_generated_rule": false,
+        "rule_hash_recorded_in_report": true,
+        "rule_path": "artifacts/private_argos_reproduction/task024/sandbox_runs/20260712T225350Z/fixed_rule.py"
+      },
+      "read_only_rule_and_input_mount": "emulated_by_private_run_directory_and_static_write_prohibitions",
+      "run_directory": "artifacts/private_argos_reproduction/task024/sandbox_runs/20260712T225350Z",
+      "stderr": "",
+      "stdout": "",
+      "temporary_writable_output_only": true,
+      "timeout_seconds": 2
+    }
+  },
+  "schema_version": "1.0",
+  "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa",
+  "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+  "task_id": "TASK-024"
+}
