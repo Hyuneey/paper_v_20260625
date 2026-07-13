@@ -1,12 +1,12 @@
 ---
 id: TASK-025
-title: ARGOS Rule-Only Prompt Fidelity and Provider-Ready Generation Capture
+title: ARGOS Rule-Only Prompt Fidelity and Provider-Gated Generation Capture
 status: completed
 depends_on: [TASK-024]
 phase_gate: ARGOS_REPRODUCTION_GATE_C
 ---
 
-# TASK-025: ARGOS Rule-Only Prompt Fidelity and Provider-Ready Generation Capture
+# TASK-025: ARGOS Rule-Only Prompt Fidelity and Provider-Gated Generation Capture
 
 ## Scope
 

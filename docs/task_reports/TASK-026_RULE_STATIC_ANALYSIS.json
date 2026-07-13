@@ -1,0 +1,14 @@
+{
+  "analysis_status": "not_available_provider_error_or_empty_response",
+  "artifact_type": "task026_rule_static_analysis",
+  "created_at": "2026-07-13T13:54:49.659908+00:00",
+  "execution_performed": false,
+  "performance_metric_reported": false,
+  "report_hash": "5fc10c84819e1502149e44dd40e5eaacd5408197870c4245e6cbd27b41d0e623",
+  "response_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rule_hash": null,
+  "schema_version": "1.0",
+  "statement": "This is a one-shot ARGOS real-LLM response capture protocol. It evaluates response format and static rule structure only; it is not a benchmark result and must not be used as a thesis performance claim.",
+  "structural_diagnostics_only": true,
+  "task_id": "TASK-026"
+}

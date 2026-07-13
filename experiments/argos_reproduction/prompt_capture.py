@@ -1,4 +1,4 @@
-"""TASK-025 ARGOS prompt-fidelity and provider-ready capture harness.
+"""TASK-025 ARGOS prompt-fidelity and provider-gated capture harness.
 
 This module reconstructs the pinned ARGOS DetectionAgentV3 prompt path without
 importing ARGOS. It captures prompts and mock/manual responses, validates
@@ -135,6 +135,8 @@ def load_argos_rows(csv_path: Path) -> list[dict[str, Any]]:
 
 def select_prompt_chunk(rows: list[dict[str, Any]], policy: dict[str, Any]) -> dict[str, Any]:
     chunk_size = int(policy["chunk_size"])
+    minimum_normal_count = int(policy.get("minimum_normal_count", 1))
+    minimum_anomaly_count = int(policy.get("minimum_anomaly_count", 1))
     full_train_end = int(len(rows) * float(policy["train_test_split"]))
     train_end = int(full_train_end * (1.0 - float(policy["val_split"])))
     if train_end <= 0:
@@ -146,8 +148,8 @@ def select_prompt_chunk(rows: list[dict[str, Any]], policy: dict[str, Any]) -> d
         labels = Counter(str(row["label"]) for row in chunk_rows)
         if (
             len(chunk_rows) > 0
-            and labels.get("0", 0) > 0
-            and labels.get("1", 0) > 0
+            and labels.get("0", 0) >= minimum_normal_count
+            and labels.get("1", 0) >= minimum_anomaly_count
             and all(set(row) == {"value", "label", "index"} for row in chunk_rows)
         ):
             return {
@@ -160,7 +162,7 @@ def select_prompt_chunk(rows: list[dict[str, Any]], policy: dict[str, Any]) -> d
                 "rows": chunk_rows,
                 "chunk_hash": sha256_json({"columns": ["value", "label", "index"], "rows": chunk_rows}),
             }
-    raise ValueError("No eligible train chunk with both normal and anomaly labels")
+    raise ValueError("No eligible train chunk satisfying the minimum normal/anomaly label counts")
 
 
 def serialize_chunk_like_argos(chunk_rows: list[dict[str, Any]]) -> str:

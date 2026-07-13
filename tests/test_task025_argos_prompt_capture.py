@@ -42,6 +42,30 @@ class Task025ArgosPromptCaptureTests(unittest.TestCase):
         self.assertEqual(chunk["end_position_exclusive"], 8)
         self.assertEqual(chunk["label_counts"], {"0": 3, "1": 1})
 
+    def test_chunk_selection_enforces_minimum_counts_greater_than_one(self):
+        rows = [
+            {"value": 1.0, "label": 0, "index": 0},
+            {"value": 9.0, "label": 1, "index": 1},
+            {"value": 1.1, "label": 0, "index": 2},
+            {"value": 1.2, "label": 0, "index": 3},
+            {"value": 1.0, "label": 0, "index": 4},
+            {"value": 9.0, "label": 1, "index": 5},
+            {"value": 9.5, "label": 1, "index": 6},
+            {"value": 1.3, "label": 0, "index": 7},
+        ]
+        policy = {
+            "chunk_size": 4,
+            "train_test_split": 1.0,
+            "val_split": 0.0,
+            "minimum_normal_count": 2,
+            "minimum_anomaly_count": 2,
+        }
+
+        chunk = prompt_capture.select_prompt_chunk(rows, policy)
+
+        self.assertEqual(chunk["start_position"], 4)
+        self.assertEqual(chunk["label_counts"], {"0": 2, "1": 2})
+
     def test_provider_mode_refuses_without_approval_and_cli_flag(self):
         config = {
             "provider": {

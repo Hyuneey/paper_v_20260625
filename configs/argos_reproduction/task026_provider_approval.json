@@ -1,0 +1,33 @@
+{
+    "schema_version":  "1.0",
+    "artifact_type":  "task026_provider_approval",
+    "decision_id":  "DEC-028",
+    "decision_status":  "consumed_provider_error",
+    "approved":  false,
+    "approved_by":  "Hyuneey",
+    "approval_date":  "2026-07-13",
+    "provider":  "openai_responses",
+    "model":  "gpt-5.6-luna",
+    "model_version_identifier":  "gpt-5.6-luna",
+    "temperature":  0,
+    "max_calls":  1,
+    "max_input_tokens":  20000,
+    "max_output_tokens":  2000,
+    "max_cost_usd":  1.0,
+    "credential_env_vars":  [
+                                "OPENAI_API_KEY"
+                            ],
+    "prompt_response_retention":  {
+                                      "raw_prompt_retention":  "ignored_private_only",
+                                      "raw_response_retention":  "ignored_private_only",
+                                      "tracked_artifacts":  "hashes_and_redacted_metadata_only"
+                                  },
+    "api_capture_allowed":  true,
+    "manual_capture_allowed":  true,
+    "api_client_supported_provider":  "openai_responses",
+    "notes":  [
+                  "Second approved TASK-026 API attempt after the first approved attempt returned Model not found for gpt-oss-120b.",
+                  "The second approved attempt used gpt-5.6-luna and returned Unsupported parameter: temperature is not supported with this model.",
+                  "Approval is now consumed. A further provider call requires a separate approval update."
+              ]
+}

@@ -130,6 +130,30 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - TASK-025 does not run RepairAgent, ReviewAgent, full ARGOS training,
   detector-plus-rule combined mode, real provider calls, or generated Python.
 
+### TASK-026 one-shot capture notes
+
+- Code copied from ARGOS: none.
+- Code adapted from ARGOS: none.
+- Frozen prompt request source: TASK-025 private request hash
+  `14af5d91248f3ca579a445527768264f148497d58d85b49b96b39b8873918aca`.
+- TASK-026 adds a provider-gated capture harness under
+  `experiments/argos_reproduction/`.
+- The harness may inspect one captured provider response or one manual response,
+  extract a Python code fence, and run static AST diagnostics.
+- TASK-026 does not execute generated Python, run RepairAgent or ReviewAgent,
+  run ARGOS training, run detector-plus-rule combined mode, evaluate KPI
+  performance, or access SWaT.
+- TASK-026 made two approved provider requests, both rejected during provider
+  validation before a rule response was produced.
+- DEC-029 separately approves one TASK-026R compatibility-remediation request
+  with the frozen request hash and `temperature` omitted.
+- TASK-026R uses a private one-shot call receipt and does not execute captured
+  Python or modify upstream ARGOS.
+- TASK-026Q made one post-quota-remediation request with the same frozen ARGOS
+  prompt request and captured one response from `gpt-5.6-luna`.
+- The captured code was statically analyzed and quarantined only. It was not
+  executed, and no ARGOS benchmark or KPI performance evaluation was run.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN

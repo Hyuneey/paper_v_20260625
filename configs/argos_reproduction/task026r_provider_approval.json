@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task026r_provider_approval",
+  "decision_id": "DEC-029",
+  "decision_status": "consumed_provider_error",
+  "approved": false,
+  "approved_by": "Hyuneey",
+  "approval_date": "2026-07-13",
+  "provider": "openai_responses",
+  "model": "gpt-5.6-luna",
+  "model_version_identifier": "gpt-5.6-luna",
+  "temperature": null,
+  "max_calls": 1,
+  "max_input_tokens": 20000,
+  "max_output_tokens": 2000,
+  "max_cost_usd": 1.0,
+  "credential_env_vars": [
+    "OPENAI_API_KEY"
+  ],
+  "prompt_response_retention": {
+    "raw_prompt_retention": "ignored_private_only",
+    "raw_response_retention": "ignored_private_only",
+    "tracked_artifacts": "hashes_and_redacted_metadata_only"
+  },
+  "api_capture_allowed": true,
+  "manual_capture_allowed": false,
+  "api_client_supported_provider": "openai_responses",
+  "remediation_reason": "The previous Luna request was rejected before generation because the model does not accept the temperature parameter.",
+  "frozen_request_changed": false,
+  "response_driven_prompt_tuning": false,
+  "notes": [
+    "This approval permits exactly one TASK-026R compatibility-remediation request.",
+    "The request must omit the temperature parameter entirely.",
+    "The original TASK-026 provider-error records remain unchanged.",
+    "The approved request was made and returned HTTP 429 insufficient_quota before any rule response was generated.",
+    "This approval is consumed and must not be re-enabled.",
+    "No generated Python was captured or executed."
+  ]
+}

@@ -1,6 +1,6 @@
 # Provider and Retention Policy for ARGOS Prompt Capture
 
-TASK-025 is provider-ready but provider-disabled by default.
+TASK-025 is provider-gated and provider-disabled by default.
 
 ## Default Mode
 

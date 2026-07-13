@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task026q_provider_approval",
+  "decision_id": "DEC-030",
+  "decision_status": "consumed_success",
+  "approved": false,
+  "approved_by": "Hyuneey",
+  "approval_date": "2026-07-13",
+  "provider": "openai_responses",
+  "model": "gpt-5.6-luna",
+  "model_version_identifier": "gpt-5.6-luna",
+  "temperature": null,
+  "max_calls": 1,
+  "max_input_tokens": 20000,
+  "max_output_tokens": 2000,
+  "max_cost_usd": 1.0,
+  "credential_env_vars": [
+    "OPENAI_API_KEY"
+  ],
+  "prompt_response_retention": {
+    "raw_prompt_retention": "ignored_private_only",
+    "raw_response_retention": "ignored_private_only",
+    "tracked_artifacts": "hashes_and_redacted_metadata_only"
+  },
+  "api_capture_allowed": true,
+  "manual_capture_allowed": false,
+  "api_client_supported_provider": "openai_responses",
+  "remediation_reason": "The researcher confirmed that API billing/quota was repaired after TASK-026R returned insufficient_quota.",
+  "frozen_request_changed": false,
+  "response_driven_prompt_tuning": false,
+  "notes": [
+    "This approval permits exactly one TASK-026Q post-quota-remediation request.",
+    "The request omits the temperature parameter.",
+    "TASK-026 and TASK-026R records remain unchanged.",
+    "The approved request completed with HTTP 200 and one rule response was captured.",
+    "The captured rule passed static syntax, signature, import, and prohibited-call checks.",
+    "This approval is consumed and must not be re-enabled.",
+    "The captured Python remains quarantined and was not executed."
+  ]
+}

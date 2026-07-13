@@ -625,7 +625,7 @@
 
 ### DEC-007: Official SWaT provenance upgrade
 
-- Status: open
+- Status: resolved for one approved TASK-026 API attempt
 - Owner: researcher
 - Needed before: final evaluation / TASK-014
 - Question: When official SWaT files or confirmed Kaggle/iTrust provenance are available, what exact manifest and split policy replaces the local smoke-test manifest?
@@ -650,7 +650,7 @@
 
 ### DEC-027: ARGOS paper-code reproduction alignment
 
-- Status: open
+- Status: resolved for second approved TASK-026 API attempt
 - Owner: researcher
 - Needed before: any real ARGOS reproduction run / ARGOS_REPRODUCTION_GATE_B
 - Question: Which ARGOS source path and safety model should be used for the first paper-faithful reproduction attempt?
@@ -703,7 +703,7 @@
   - Actual LLM-generated Python execution: still not approved
   - Future requirement: approve and verify Docker/Podman sandbox before executing any actual LLM-generated Python.
 - Prompt-capture subdecision:
-  - Status: mock provider-ready prompt capture completed in TASK-025
+  - Status: mock provider-gated prompt capture completed in TASK-025
   - Pinned prompt source: `external/argos/agent/prompts/detection.py::DETECTION_AGENT_V3_DEFAULT_PROMPT_TEMPLATE`
   - Chunk size source: pinned ARGOS `driver.py` and `runtime/engine.py` default `chunk_size=1000`
   - Selected prompt chunk: positions `[0, 1000)`, label counts `0=996`, `1=4`
@@ -713,3 +713,180 @@
 - Final decision: DEC-027 remains open for real provider approval, actual LLM-generated Python execution approval, Docker/Podman sandbox run approval, detector-plus-rule execution approval, and benchmark/thesis claim approval.
 - Decision date: 2026-07-13
 - Consequences for claims/evaluation: First ARGOS reproduction may target only mock/offline or future approved rule-only `train-LLM-only` behavior at the pinned commit. Detector-plus-rule claims, real provider claims, generated-code execution claims, and benchmark claims remain prohibited.
+
+### DEC-028: Initial ARGOS real-LLM capture provider
+
+- Status: consumed_provider_error
+- Owner: researcher
+- Needed before: TASK-026 approved API capture
+- Question: Which provider/model/budget can be used for exactly one frozen ARGOS `train-LLM-only` prompt response capture?
+- Why it matters scientifically: TASK-026 is the first step that may contact a real provider. The provider, model/version, budget, retention, and approval owner must be explicit before any request is made.
+- Required fields before resolution:
+  - provider,
+  - model,
+  - model/version identifier,
+  - temperature,
+  - maximum calls: exactly `1`,
+  - maximum input tokens,
+  - maximum output tokens,
+  - maximum cost,
+  - credential environment variable names,
+  - prompt/response retention policy,
+  - approval owner,
+  - approval date.
+- Current approval artifact:
+  `configs/argos_reproduction/task026_provider_approval.json`
+- First approved configuration:
+  - provider: `openai_responses`,
+  - model: `gpt-oss-120b`,
+  - model/version identifier: `gpt-oss-120b`,
+  - temperature: `0`,
+  - maximum calls: exactly `1`,
+  - maximum input tokens: `20000`,
+  - maximum output tokens: `2000`,
+  - maximum cost: `1.0` USD,
+  - credential environment variable name: `OPENAI_API_KEY`,
+  - prompt/response retention: ignored private raw prompt/response, tracked hashes and redacted metadata only,
+  - approval owner: `Hyuneey`,
+  - approval date: `2026-07-13`.
+- Execution outcome:
+  - one API request was made,
+  - provider returned HTTP `404`,
+  - provider error: `Model not found gpt-oss-120b`,
+  - no rule response text was captured,
+  - generated Python was not executed,
+  - no performance metric was computed.
+- Second approved configuration:
+  - provider: `openai_responses`,
+  - model: `gpt-5.6-luna`,
+  - model/version identifier: `gpt-5.6-luna`,
+  - temperature: `0`,
+  - maximum calls: exactly `1`,
+  - maximum input tokens: `20000`,
+  - maximum output tokens: `2000`,
+  - maximum cost: `1.0` USD,
+  - credential environment variable name: `OPENAI_API_KEY`,
+  - prompt/response retention: ignored private raw prompt/response, tracked hashes and redacted metadata only,
+  - approval owner: `Hyuneey`,
+  - approval date: `2026-07-13`.
+- Second attempt status:
+  - one API request was made,
+  - provider returned HTTP `400`,
+  - provider error: `Unsupported parameter: 'temperature' is not supported with this model.`,
+  - no rule response text was captured,
+  - generated Python was not executed,
+  - no performance metric was computed.
+- API client policy:
+  - TASK-026 currently supports only the explicit `openai_responses` route.
+  - Unsupported provider names must block rather than being routed implicitly.
+- Still not approved:
+  - any additional provider call under TASK-026 without a separate approval update,
+  - retries,
+  - prompt tuning after seeing a response,
+  - generated Python execution,
+  - RepairAgent or ReviewAgent execution,
+  - KPI benchmark evaluation,
+  - detector-plus-rule mode,
+  - benchmark or thesis claims.
+- Final decision: Approve exactly one additional API request for TASK-026 using `gpt-5.6-luna`, after the first approved one-call attempt with `gpt-oss-120b` returned `Model not found`.
+- Decision date: 2026-07-13
+- Consequences for claims/evaluation: TASK-026 records two provider-error attempts, not a successful real LLM rule capture. Generated Python execution, performance metrics, retries, and benchmark claims remain prohibited. A further provider call requires a separate approval update.
+
+### DEC-029: TASK-026R Luna compatibility-remediation capture
+
+- Status: consumed_provider_error
+- Owner: researcher
+- Needed before: one TASK-026R API compatibility-remediation request
+- Decision: Approve exactly one additional request using `openai_responses` and
+  `gpt-5.6-luna`, with the `temperature` parameter omitted entirely.
+- Approval artifact:
+  `configs/argos_reproduction/task026r_provider_approval.json`
+- Execution config:
+  `configs/argos_reproduction/task026r_real_capture.json`
+- Approval owner: `Hyuneey`
+- Approval date: `2026-07-13`
+- Maximum calls: exactly `1`
+- Maximum input tokens: `20000`
+- Maximum output tokens: `2000`
+- Maximum cost: `1.0` USD
+- Credential environment variable name: `OPENAI_API_KEY`
+- Frozen request hash:
+  `14af5d91248f3ca579a445527768264f148497d58d85b49b96b39b8873918aca`
+- Scientific rationale: the second TASK-026 request was rejected during request
+  validation because `gpt-5.6-luna` does not accept the submitted
+  `temperature` parameter. TASK-026R changes only provider-request
+  compatibility; it does not change the prompt, chunk, selection policy, or
+  evaluation behavior.
+- One-shot enforcement: the harness writes an ignored private call receipt
+  before network execution and blocks the same config after any attempted
+  request, including transport or provider failures.
+- Still prohibited:
+  - a second TASK-026R provider request,
+  - response-driven prompt tuning,
+  - execution of generated Python,
+  - RepairAgent or ReviewAgent execution,
+  - KPI performance evaluation,
+  - detector-plus-rule mode,
+  - SWaT access,
+  - benchmark or thesis claims.
+- Consequences for claims/evaluation: TASK-026R can establish only whether one
+  frozen request yields a capturable, statically analyzable response. It cannot
+  establish rule quality or anomaly-detection performance.
+- Execution outcome:
+  - one approved request was made,
+  - `temperature` was omitted,
+  - provider returned HTTP `429`,
+  - provider error code: `insufficient_quota`,
+  - no rule response was generated,
+  - no generated Python was captured or executed,
+  - no performance metric was computed,
+  - the one-shot private receipt blocks another TASK-026R request.
+- Final status: DEC-029 is consumed. Any later call after billing/quota repair
+  requires a separate task and approval; this artifact must not be re-enabled.
+
+### DEC-030: TASK-026Q post-quota-remediation capture
+
+- Status: consumed_success
+- Owner: researcher
+- Needed before: one TASK-026Q API request after quota repair
+- Decision: Approve exactly one request using `openai_responses` and
+  `gpt-5.6-luna` after the researcher confirmed billing remediation.
+- Approval artifact:
+  `configs/argos_reproduction/task026q_provider_approval.json`
+- Execution config:
+  `configs/argos_reproduction/task026q_real_capture.json`
+- Approval owner: `Hyuneey`
+- Approval date: `2026-07-13`
+- Maximum calls: exactly `1`
+- Maximum input tokens: `20000`
+- Maximum output tokens: `2000`
+- Maximum cost: `1.0` USD
+- Temperature parameter: omitted
+- Frozen request hash:
+  `14af5d91248f3ca579a445527768264f148497d58d85b49b96b39b8873918aca`
+- Scientific rationale: this call changes only external billing/quota state.
+  The prompt, chunk, model, token budget, selection policy, and static-analysis
+  policy remain unchanged.
+- Still prohibited:
+  - a second TASK-026Q request,
+  - response-driven prompt tuning,
+  - execution of generated Python,
+  - RepairAgent or ReviewAgent execution,
+  - KPI performance evaluation,
+  - detector-plus-rule mode,
+  - SWaT access,
+  - benchmark or thesis claims.
+- Execution outcome:
+  - one approved request was made,
+  - provider returned HTTP `200`,
+  - one response and one Python code fence were captured,
+  - response hash:
+    `f7a1241323c98b716c651dac797cd502c0fd2c7b3c2a7b6142f34e8bbb418810`,
+  - rule hash:
+    `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659`,
+  - required `inference` signature was valid,
+  - static safety checks passed,
+  - generated Python was not executed,
+  - no performance metric was computed.
+- Final status: DEC-030 is consumed successfully. No additional TASK-026Q
+  request is approved.

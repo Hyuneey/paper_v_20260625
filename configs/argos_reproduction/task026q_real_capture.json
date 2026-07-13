@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task026q_real_capture_config",
+  "task_id": "TASK-026Q",
+  "artifact_namespace": "task026q",
+  "report_statement": "This is a one-shot ARGOS real-LLM post-quota-remediation capture. It evaluates response format and static rule structure only; generated Python is not executed, and this is not a benchmark or thesis performance result.",
+  "capture_mode": "api_capture",
+  "approval_path": "configs/argos_reproduction/task026q_provider_approval.json",
+  "task025_capture_report_path": "docs/task_reports/TASK-025_PROMPT_CAPTURE_REPORT.json",
+  "private_artifact_root": "artifacts/private_argos_reproduction/task026q",
+  "provider_call_receipt_path": "artifacts/private_argos_reproduction/task026q/metadata/provider_call_receipt.json",
+  "manual_capture": {
+    "response_path": "artifacts/private_argos_reproduction/task026q/manual_response.md",
+    "metadata_path": "artifacts/private_argos_reproduction/task026q/manual_response_metadata.json"
+  },
+  "request_timeout_seconds": 120,
+  "allowed_imports": [
+    "numpy"
+  ],
+  "frozen_inputs": {
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "mode": "train-LLM-only",
+    "combined_mode_status": "deferred",
+    "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa",
+    "converted_csv_sha256": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
+    "chunk_start_position": 0,
+    "chunk_end_position_exclusive": 1000,
+    "chunk_hash": "550f47a55f37a18337c097ae4033808ef591d75407581c2e9b3cf8da1ed42015",
+    "complete_request_hash": "14af5d91248f3ca579a445527768264f148497d58d85b49b96b39b8873918aca"
+  },
+  "boundaries": {
+    "real_provider_calls": true,
+    "maximum_calls_in_this_remediation": 1,
+    "api_key_use": true,
+    "temperature_parameter_sent": false,
+    "generated_python_execution": false,
+    "restricted_subprocess_execution_of_captured_rule": false,
+    "docker_or_podman_execution": false,
+    "repair_agent_execution": false,
+    "review_agent_execution": false,
+    "retry_to_improve_rule_quality": false,
+    "prompt_tuning_based_on_response": false,
+    "frozen_request_changed": false,
+    "kpi_performance_evaluation": false,
+    "detector_plus_rule_mode": false,
+    "swat_access": false,
+    "src_paperworks_changes": false,
+    "benchmark_claims": false,
+    "thesis_claims": false
+  },
+  "output_capture_report_path": "docs/task_reports/TASK-026Q_REAL_LLM_CAPTURE_REPORT.json",
+  "output_static_analysis_path": "docs/task_reports/TASK-026Q_RULE_STATIC_ANALYSIS.json"
+}
