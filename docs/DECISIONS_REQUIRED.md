@@ -910,3 +910,9 @@
 - Restricted subprocess fallback: prohibited for captured rules.
 - KPI performance evaluation: prohibited by the current template.
 - TASK-027 did not execute the rule and does not resolve DEC-031.
+- TASK-028 environment precheck on `2026-07-14` found neither Docker nor
+  Podman. The task stopped before activating a non-template approval artifact,
+  preparing synthetic inputs, or accessing the private rule.
+- TASK-028 launch attempts: `0`; approval-consumption count: `0`.
+- DEC-031 therefore remains `open_not_approved` until a verified Docker or
+  Podman runtime is available and TASK-028 is resumed under its one-shot gate.
