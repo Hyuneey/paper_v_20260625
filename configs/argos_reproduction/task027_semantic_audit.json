@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task027_semantic_audit_config",
+  "task_id": "TASK-027",
+  "code_commit": "6558f13605e0150933730950f5b699fcce417708",
+  "random_seed": null,
+  "report_statement": "TASK-027 is a non-executing semantic and safety audit of one fixed-hash captured ARGOS rule. It reports no anomaly-detection performance and makes no benchmark or thesis claim.",
+  "private_rule_path": "artifacts/private_argos_reproduction/task026q/quarantine/e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659.py",
+  "frozen_artifacts": {
+    "task_id": "TASK-026Q",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "request_hash": "14af5d91248f3ca579a445527768264f148497d58d85b49b96b39b8873918aca",
+    "response_hash": "f7a1241323c98b716c651dac797cd502c0fd2c7b3c2a7b6142f34e8bbb418810",
+    "rule_hash": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659",
+    "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa"
+  },
+  "frozen_static_policy": {
+    "allowed_imports": [
+      "numpy"
+    ],
+    "allowed_calls": [
+      "max",
+      "min",
+      "numpy.abs",
+      "numpy.any",
+      "numpy.asarray",
+      "numpy.empty",
+      "numpy.flatnonzero",
+      "numpy.isfinite",
+      "numpy.maximum",
+      "numpy.median",
+      "numpy.nanmedian",
+      "numpy.zeros",
+      "range"
+    ],
+    "allowed_attributes": [
+      "neighborhood.size",
+      "numpy.abs",
+      "numpy.any",
+      "numpy.asarray",
+      "numpy.empty",
+      "numpy.flatnonzero",
+      "numpy.int64",
+      "numpy.isfinite",
+      "numpy.maximum",
+      "numpy.median",
+      "numpy.nanmedian",
+      "numpy.ndarray",
+      "numpy.zeros",
+      "x.shape"
+    ],
+    "dangerous_capabilities_rejected": [
+      "new_imports",
+      "calls_outside_frozen_allowlist",
+      "getattr_setattr_delattr",
+      "dunder_attribute_access",
+      "file_access",
+      "environment_access",
+      "network_access",
+      "subprocess_or_shell_access",
+      "dynamic_import",
+      "compile_eval_exec",
+      "unsafe_module_level_execution"
+    ]
+  },
+  "container_policy": {
+    "runtime_allowlist": [
+      "docker",
+      "podman"
+    ],
+    "image_reference": "paperworks-task027-captured-rule:local",
+    "non_root_user_required": true,
+    "network_mode": "none",
+    "read_only_root_filesystem": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pid_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "execution_timeout_seconds": 2,
+    "tmpfs_spec": "/tmp:rw,noexec,nosuid,size=16m",
+    "main_repository_mount_allowed": false,
+    "rule_mount_mode": "read_only",
+    "input_mount_mode": "read_only",
+    "input_kind": "synthetic_non_kpi_only",
+    "output_mount_mode": "bounded_write_only",
+    "output_size_limit_bytes": 65536,
+    "host_environment_propagation_allowed": false,
+    "provider_credentials_allowed": false,
+    "output_schema_validation_required": true,
+    "image_digest_required_before_execution": true,
+    "command_hash_required_before_execution": true,
+    "restricted_subprocess_fallback_allowed": false
+  },
+  "execution_approval_template_path": "configs/argos_reproduction/task027_captured_rule_execution_approval.template.json",
+  "api_lineage": {
+    "task026_provider_error_requests": 2,
+    "task026r_provider_error_requests": 1,
+    "task026q_successful_requests": 1,
+    "task026q_request_count": 1,
+    "total_separately_approved_provider_requests": 4,
+    "response_driven_prompt_tuning": false
+  },
+  "output_semantic_report_path": "docs/task_reports/TASK-027_RULE_SEMANTIC_AUDIT.json",
+  "output_container_preflight_path": "docs/task_reports/TASK-027_CONTAINER_PREFLIGHT.json",
+  "boundaries": {
+    "real_provider_calls": false,
+    "api_key_use": false,
+    "network_calls_for_provider": false,
+    "prompt_tuning": false,
+    "new_response_capture": false,
+    "captured_rule_execution": false,
+    "restricted_subprocess_execution": false,
+    "kpi_performance_evaluation": false,
+    "repair_agent_execution": false,
+    "review_agent_execution": false,
+    "detector_plus_rule_mode": false,
+    "swat_access": false,
+    "src_paperworks_changes": false,
+    "benchmark_claims": false,
+    "thesis_claims": false
+  }
+}

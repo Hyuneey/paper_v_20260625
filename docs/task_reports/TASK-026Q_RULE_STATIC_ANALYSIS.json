@@ -1,13 +1,1093 @@
 {
   "analysis": {
     "abnormal_rule_comments_exist": true,
+    "assignments_with_redacted_expression": [
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "sample",
+              "node": "Name"
+            }
+          ],
+          "function": "np.asarray",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "x",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "node": "Subscript",
+          "slice": {
+            "node": "Constant",
+            "value": 0,
+            "value_type": "int"
+          },
+          "value": {
+            "attr": "shape",
+            "node": "Attribute",
+            "value": {
+              "id": "x",
+              "node": "Name"
+            }
+          }
+        },
+        "targets": [
+          {
+            "id": "n",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            }
+          ],
+          "function": "np.zeros",
+          "keywords": [
+            {
+              "name": "dtype",
+              "value": {
+                "attr": "int64",
+                "node": "Attribute",
+                "value": {
+                  "id": "np",
+                  "node": "Name"
+                }
+              }
+            }
+          ],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "labels",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "node": "Subscript",
+              "slice": {
+                "elements": [
+                  {
+                    "lower": null,
+                    "node": "Slice",
+                    "step": null,
+                    "upper": null
+                  },
+                  {
+                    "node": "Constant",
+                    "value": 0,
+                    "value_type": "int"
+                  }
+                ],
+                "node": "Tuple"
+              },
+              "value": {
+                "id": "x",
+                "node": "Name"
+              }
+            }
+          ],
+          "function": "np.asarray",
+          "keywords": [
+            {
+              "name": "dtype",
+              "value": {
+                "id": "float",
+                "node": "Name"
+              }
+            }
+          ],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "values",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "values",
+              "node": "Name"
+            }
+          ],
+          "function": "np.isfinite",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "finite",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            }
+          ],
+          "function": "np.empty",
+          "keywords": [
+            {
+              "name": "dtype",
+              "value": {
+                "id": "float",
+                "node": "Name"
+              }
+            }
+          ],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "baseline",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            }
+          ],
+          "function": "np.empty",
+          "keywords": [
+            {
+              "name": "dtype",
+              "value": {
+                "id": "float",
+                "node": "Name"
+              }
+            }
+          ],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "scale",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "node": "Constant",
+          "value": 5,
+          "value_type": "int"
+        },
+        "targets": [
+          {
+            "id": "half_window",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "values",
+              "node": "Name"
+            }
+          ],
+          "function": "np.nanmedian",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "global_median",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "args": [
+                {
+                  "left": {
+                    "node": "Subscript",
+                    "slice": {
+                      "id": "finite",
+                      "node": "Name"
+                    },
+                    "value": {
+                      "id": "values",
+                      "node": "Name"
+                    }
+                  },
+                  "node": "BinOp",
+                  "operator": "Sub",
+                  "right": {
+                    "id": "global_median",
+                    "node": "Name"
+                  }
+                }
+              ],
+              "function": "np.abs",
+              "keywords": [],
+              "node": "Call"
+            }
+          ],
+          "function": "np.nanmedian",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "global_mad",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "left": {
+                "node": "Constant",
+                "value": 1.4826,
+                "value_type": "float"
+              },
+              "node": "BinOp",
+              "operator": "Mult",
+              "right": {
+                "id": "global_mad",
+                "node": "Name"
+              }
+            },
+            {
+              "node": "Constant",
+              "value": 1e-06,
+              "value_type": "float"
+            }
+          ],
+          "function": "max",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "global_scale",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "left": {
+            "id": "values",
+            "node": "Name"
+          },
+          "node": "BinOp",
+          "operator": "Sub",
+          "right": {
+            "id": "baseline",
+            "node": "Name"
+          }
+        },
+        "targets": [
+          {
+            "id": "excursion",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "left": {
+            "id": "finite",
+            "node": "Name"
+          },
+          "node": "BinOp",
+          "operator": "BitAnd",
+          "right": {
+            "comparators": [
+              {
+                "args": [
+                  {
+                    "node": "Constant",
+                    "value": 8.0,
+                    "value_type": "float"
+                  },
+                  {
+                    "left": {
+                      "node": "Constant",
+                      "value": 6.0,
+                      "value_type": "float"
+                    },
+                    "node": "BinOp",
+                    "operator": "Mult",
+                    "right": {
+                      "id": "scale",
+                      "node": "Name"
+                    }
+                  }
+                ],
+                "function": "np.maximum",
+                "keywords": [],
+                "node": "Call"
+              }
+            ],
+            "left": {
+              "id": "excursion",
+              "node": "Name"
+            },
+            "node": "Compare",
+            "operators": [
+              "Gt"
+            ]
+          }
+        },
+        "targets": [
+          {
+            "id": "spike",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "spike",
+              "node": "Name"
+            }
+          ],
+          "function": "np.flatnonzero",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "spike_positions",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "node": "Constant",
+              "value": 0,
+              "value_type": "int"
+            },
+            {
+              "left": {
+                "id": "i",
+                "node": "Name"
+              },
+              "node": "BinOp",
+              "operator": "Sub",
+              "right": {
+                "id": "half_window",
+                "node": "Name"
+              }
+            }
+          ],
+          "function": "max",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "lo",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            },
+            {
+              "left": {
+                "left": {
+                  "id": "i",
+                  "node": "Name"
+                },
+                "node": "BinOp",
+                "operator": "Add",
+                "right": {
+                  "id": "half_window",
+                  "node": "Name"
+                }
+              },
+              "node": "BinOp",
+              "operator": "Add",
+              "right": {
+                "node": "Constant",
+                "value": 1,
+                "value_type": "int"
+              }
+            }
+          ],
+          "function": "min",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "hi",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "node": "Subscript",
+          "slice": {
+            "lower": {
+              "id": "lo",
+              "node": "Name"
+            },
+            "node": "Slice",
+            "step": null,
+            "upper": {
+              "id": "hi",
+              "node": "Name"
+            }
+          },
+          "value": {
+            "id": "values",
+            "node": "Name"
+          }
+        },
+        "targets": [
+          {
+            "id": "neighborhood",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "node": "Subscript",
+          "slice": {
+            "args": [
+              {
+                "id": "neighborhood",
+                "node": "Name"
+              }
+            ],
+            "function": "np.isfinite",
+            "keywords": [],
+            "node": "Call"
+          },
+          "value": {
+            "id": "neighborhood",
+            "node": "Name"
+          }
+        },
+        "targets": [
+          {
+            "id": "neighborhood",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "node": "Constant",
+              "value": 0,
+              "value_type": "int"
+            },
+            {
+              "left": {
+                "id": "p",
+                "node": "Name"
+              },
+              "node": "BinOp",
+              "operator": "Sub",
+              "right": {
+                "node": "Constant",
+                "value": 1,
+                "value_type": "int"
+              }
+            }
+          ],
+          "function": "max",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "start",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            },
+            {
+              "left": {
+                "id": "p",
+                "node": "Name"
+              },
+              "node": "BinOp",
+              "operator": "Add",
+              "right": {
+                "node": "Constant",
+                "value": 3,
+                "value_type": "int"
+              }
+            }
+          ],
+          "function": "min",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "end",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "node": "Constant",
+          "value": 1,
+          "value_type": "int"
+        },
+        "targets": [
+          {
+            "node": "Subscript",
+            "slice": {
+              "lower": {
+                "id": "start",
+                "node": "Name"
+              },
+              "node": "Slice",
+              "step": null,
+              "upper": {
+                "id": "end",
+                "node": "Name"
+              }
+            },
+            "value": {
+              "id": "labels",
+              "node": "Name"
+            }
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "id": "global_median",
+          "node": "Name"
+        },
+        "targets": [
+          {
+            "node": "Subscript",
+            "slice": {
+              "id": "i",
+              "node": "Name"
+            },
+            "value": {
+              "id": "baseline",
+              "node": "Name"
+            }
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "id": "global_scale",
+          "node": "Name"
+        },
+        "targets": [
+          {
+            "node": "Subscript",
+            "slice": {
+              "id": "i",
+              "node": "Name"
+            },
+            "value": {
+              "id": "scale",
+              "node": "Name"
+            }
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "id": "neighborhood",
+              "node": "Name"
+            }
+          ],
+          "function": "np.median",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "med",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "args": [
+                {
+                  "left": {
+                    "id": "neighborhood",
+                    "node": "Name"
+                  },
+                  "node": "BinOp",
+                  "operator": "Sub",
+                  "right": {
+                    "id": "med",
+                    "node": "Name"
+                  }
+                }
+              ],
+              "function": "np.abs",
+              "keywords": [],
+              "node": "Call"
+            }
+          ],
+          "function": "np.median",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "id": "mad",
+            "node": "Name"
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "id": "med",
+          "node": "Name"
+        },
+        "targets": [
+          {
+            "node": "Subscript",
+            "slice": {
+              "id": "i",
+              "node": "Name"
+            },
+            "value": {
+              "id": "baseline",
+              "node": "Name"
+            }
+          }
+        ]
+      },
+      {
+        "assignment_type": "Assign",
+        "expression": {
+          "args": [
+            {
+              "left": {
+                "node": "Constant",
+                "value": 1.4826,
+                "value_type": "float"
+              },
+              "node": "BinOp",
+              "operator": "Mult",
+              "right": {
+                "id": "mad",
+                "node": "Name"
+              }
+            },
+            {
+              "left": {
+                "id": "global_scale",
+                "node": "Name"
+              },
+              "node": "BinOp",
+              "operator": "Mult",
+              "right": {
+                "node": "Constant",
+                "value": 0.25,
+                "value_type": "float"
+              }
+            },
+            {
+              "node": "Constant",
+              "value": 1e-06,
+              "value_type": "float"
+            }
+          ],
+          "function": "max",
+          "keywords": [],
+          "node": "Call"
+        },
+        "targets": [
+          {
+            "node": "Subscript",
+            "slice": {
+              "id": "i",
+              "node": "Name"
+            },
+            "value": {
+              "id": "scale",
+              "node": "Name"
+            }
+          }
+        ]
+      }
+    ],
     "code_extraction_status": "code_extracted",
     "code_fence_count": 1,
     "comparison_operators_used": [
       "Eq",
       "Gt"
     ],
+    "comparisons_with_redacted_expression": [
+      {
+        "expression": {
+          "comparators": [
+            {
+              "node": "Constant",
+              "value": 0,
+              "value_type": "int"
+            }
+          ],
+          "left": {
+            "id": "n",
+            "node": "Name"
+          },
+          "node": "Compare",
+          "operators": [
+            "Eq"
+          ]
+        },
+        "operators": [
+          "Eq"
+        ]
+      },
+      {
+        "expression": {
+          "comparators": [
+            {
+              "node": "Constant",
+              "value": 0,
+              "value_type": "int"
+            }
+          ],
+          "left": {
+            "attr": "size",
+            "node": "Attribute",
+            "value": {
+              "id": "neighborhood",
+              "node": "Name"
+            }
+          },
+          "node": "Compare",
+          "operators": [
+            "Eq"
+          ]
+        },
+        "operators": [
+          "Eq"
+        ]
+      },
+      {
+        "expression": {
+          "comparators": [
+            {
+              "args": [
+                {
+                  "node": "Constant",
+                  "value": 8.0,
+                  "value_type": "float"
+                },
+                {
+                  "left": {
+                    "node": "Constant",
+                    "value": 6.0,
+                    "value_type": "float"
+                  },
+                  "node": "BinOp",
+                  "operator": "Mult",
+                  "right": {
+                    "id": "scale",
+                    "node": "Name"
+                  }
+                }
+              ],
+              "function": "np.maximum",
+              "keywords": [],
+              "node": "Call"
+            }
+          ],
+          "left": {
+            "id": "excursion",
+            "node": "Name"
+          },
+          "node": "Compare",
+          "operators": [
+            "Gt"
+          ]
+        },
+        "operators": [
+          "Gt"
+        ]
+      }
+    ],
     "condition_count": 6,
+    "derived_threshold_expressions": [
+      {
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            }
+          ],
+          "function": "np.empty",
+          "keywords": [
+            {
+              "name": "dtype",
+              "value": {
+                "id": "float",
+                "node": "Name"
+              }
+            }
+          ],
+          "node": "Call"
+        },
+        "kind": "named_threshold_dependency",
+        "targets": [
+          "baseline"
+        ]
+      },
+      {
+        "expression": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            }
+          ],
+          "function": "np.empty",
+          "keywords": [
+            {
+              "name": "dtype",
+              "value": {
+                "id": "float",
+                "node": "Name"
+              }
+            }
+          ],
+          "node": "Call"
+        },
+        "kind": "named_threshold_dependency",
+        "targets": [
+          "scale"
+        ]
+      },
+      {
+        "expression": {
+          "args": [
+            {
+              "args": [
+                {
+                  "left": {
+                    "node": "Subscript",
+                    "slice": {
+                      "id": "finite",
+                      "node": "Name"
+                    },
+                    "value": {
+                      "id": "values",
+                      "node": "Name"
+                    }
+                  },
+                  "node": "BinOp",
+                  "operator": "Sub",
+                  "right": {
+                    "id": "global_median",
+                    "node": "Name"
+                  }
+                }
+              ],
+              "function": "np.abs",
+              "keywords": [],
+              "node": "Call"
+            }
+          ],
+          "function": "np.nanmedian",
+          "keywords": [],
+          "node": "Call"
+        },
+        "kind": "named_threshold_dependency",
+        "targets": [
+          "global_mad"
+        ]
+      },
+      {
+        "expression": {
+          "args": [
+            {
+              "left": {
+                "node": "Constant",
+                "value": 1.4826,
+                "value_type": "float"
+              },
+              "node": "BinOp",
+              "operator": "Mult",
+              "right": {
+                "id": "global_mad",
+                "node": "Name"
+              }
+            },
+            {
+              "node": "Constant",
+              "value": 1e-06,
+              "value_type": "float"
+            }
+          ],
+          "function": "max",
+          "keywords": [],
+          "node": "Call"
+        },
+        "kind": "named_threshold_dependency",
+        "targets": [
+          "global_scale"
+        ]
+      },
+      {
+        "expression": {
+          "args": [
+            {
+              "args": [
+                {
+                  "left": {
+                    "id": "neighborhood",
+                    "node": "Name"
+                  },
+                  "node": "BinOp",
+                  "operator": "Sub",
+                  "right": {
+                    "id": "med",
+                    "node": "Name"
+                  }
+                }
+              ],
+              "function": "np.abs",
+              "keywords": [],
+              "node": "Call"
+            }
+          ],
+          "function": "np.median",
+          "keywords": [],
+          "node": "Call"
+        },
+        "kind": "named_threshold_dependency",
+        "targets": [
+          "mad"
+        ]
+      },
+      {
+        "expression": {
+          "args": [
+            {
+              "node": "Constant",
+              "value": 8.0,
+              "value_type": "float"
+            },
+            {
+              "left": {
+                "node": "Constant",
+                "value": 6.0,
+                "value_type": "float"
+              },
+              "node": "BinOp",
+              "operator": "Mult",
+              "right": {
+                "id": "scale",
+                "node": "Name"
+              }
+            }
+          ],
+          "function": "np.maximum",
+          "keywords": [],
+          "node": "Call"
+        },
+        "kind": "comparison_boundary",
+        "operators": [
+          "Gt"
+        ]
+      }
+    ],
+    "dunder_attribute_access": [],
+    "dynamic_attribute_access": [],
     "estimated_cyclomatic_complexity": 6,
     "execution_performed": false,
     "function_calls": {
@@ -25,6 +1105,7 @@
       "np.zeros": 1,
       "range": 1
     },
+    "global_state_mutations": [],
     "imported_modules": [
       "numpy"
     ],
@@ -32,8 +1113,214 @@
     "indices_or_labels_hardcoded_suspected": false,
     "inference_definition_count": 1,
     "label_keyword_present": true,
+    "loop_bound_sources": [
+      {
+        "iterator": {
+          "args": [
+            {
+              "id": "n",
+              "node": "Name"
+            }
+          ],
+          "function": "range",
+          "keywords": [],
+          "node": "Call"
+        },
+        "loop_type": "For",
+        "source_names": [
+          "n",
+          "range"
+        ],
+        "target": {
+          "id": "i",
+          "node": "Name"
+        }
+      },
+      {
+        "iterator": {
+          "id": "spike_positions",
+          "node": "Name"
+        },
+        "loop_type": "For",
+        "source_names": [
+          "spike_positions"
+        ],
+        "target": {
+          "id": "p",
+          "node": "Name"
+        }
+      }
+    ],
     "normal_rule_comments_exist": true,
+    "normalized_attribute_set": [
+      "neighborhood.size",
+      "numpy.abs",
+      "numpy.any",
+      "numpy.asarray",
+      "numpy.empty",
+      "numpy.flatnonzero",
+      "numpy.int64",
+      "numpy.isfinite",
+      "numpy.maximum",
+      "numpy.median",
+      "numpy.nanmedian",
+      "numpy.ndarray",
+      "numpy.zeros",
+      "x.shape"
+    ],
+    "normalized_call_set": [
+      "max",
+      "min",
+      "numpy.abs",
+      "numpy.any",
+      "numpy.asarray",
+      "numpy.empty",
+      "numpy.flatnonzero",
+      "numpy.isfinite",
+      "numpy.maximum",
+      "numpy.median",
+      "numpy.nanmedian",
+      "numpy.zeros",
+      "range"
+    ],
     "numeric_constant_count": 18,
+    "numeric_constants_with_context": [
+      {
+        "assignment_targets": [
+          {
+            "id": "half_window",
+            "node": "Name"
+          }
+        ],
+        "context_node": "Assign",
+        "value": 5,
+        "value_type": "int"
+      },
+      {
+        "context_node": "Subscript",
+        "value": 0,
+        "value_type": "int"
+      },
+      {
+        "comparison_operators": [
+          "Eq"
+        ],
+        "context_node": "Compare",
+        "value": 0,
+        "value_type": "int"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 1e-06,
+        "value_type": "float"
+      },
+      {
+        "assignment_targets": [
+          {
+            "node": "Subscript",
+            "slice": {
+              "lower": {
+                "id": "start",
+                "node": "Name"
+              },
+              "node": "Slice",
+              "step": null,
+              "upper": {
+                "id": "end",
+                "node": "Name"
+              }
+            },
+            "value": {
+              "id": "labels",
+              "node": "Name"
+            }
+          }
+        ],
+        "context_node": "Assign",
+        "value": 1,
+        "value_type": "int"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 1.4826,
+        "value_type": "float"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 0,
+        "value_type": "int"
+      },
+      {
+        "comparison_operators": [
+          "Eq"
+        ],
+        "context_node": "Compare",
+        "value": 0,
+        "value_type": "int"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 0,
+        "value_type": "int"
+      },
+      {
+        "context_node": "Subscript",
+        "value": 0,
+        "value_type": "int"
+      },
+      {
+        "call": "min",
+        "context_node": "Call",
+        "value": 1,
+        "value_type": "int"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 1e-06,
+        "value_type": "float"
+      },
+      {
+        "call": "np.maximum",
+        "context_node": "Call",
+        "value": 8.0,
+        "value_type": "float"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 1,
+        "value_type": "int"
+      },
+      {
+        "call": "min",
+        "context_node": "Call",
+        "value": 3,
+        "value_type": "int"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 1.4826,
+        "value_type": "float"
+      },
+      {
+        "call": "max",
+        "context_node": "Call",
+        "value": 0.25,
+        "value_type": "float"
+      },
+      {
+        "call": "np.maximum",
+        "context_node": "Call",
+        "value": 6.0,
+        "value_type": "float"
+      }
+    ],
     "prohibited_calls": [],
     "required_signature_status": "valid",
     "signature": {
@@ -47,24 +1334,172 @@
     "source_code_line_count": 49,
     "static_safety_passed": true,
     "structural_diagnostics_only": true,
+    "subscript_patterns": [
+      {
+        "base": {
+          "attr": "shape",
+          "node": "Attribute",
+          "value": {
+            "id": "x",
+            "node": "Name"
+          }
+        },
+        "slice": {
+          "node": "Constant",
+          "value": 0,
+          "value_type": "int"
+        }
+      },
+      {
+        "base": {
+          "id": "x",
+          "node": "Name"
+        },
+        "slice": {
+          "elements": [
+            {
+              "lower": null,
+              "node": "Slice",
+              "step": null,
+              "upper": null
+            },
+            {
+              "node": "Constant",
+              "value": 0,
+              "value_type": "int"
+            }
+          ],
+          "node": "Tuple"
+        }
+      },
+      {
+        "base": {
+          "id": "values",
+          "node": "Name"
+        },
+        "slice": {
+          "lower": {
+            "id": "lo",
+            "node": "Name"
+          },
+          "node": "Slice",
+          "step": null,
+          "upper": {
+            "id": "hi",
+            "node": "Name"
+          }
+        }
+      },
+      {
+        "base": {
+          "id": "neighborhood",
+          "node": "Name"
+        },
+        "slice": {
+          "args": [
+            {
+              "id": "neighborhood",
+              "node": "Name"
+            }
+          ],
+          "function": "np.isfinite",
+          "keywords": [],
+          "node": "Call"
+        }
+      },
+      {
+        "base": {
+          "id": "labels",
+          "node": "Name"
+        },
+        "slice": {
+          "lower": {
+            "id": "start",
+            "node": "Name"
+          },
+          "node": "Slice",
+          "step": null,
+          "upper": {
+            "id": "end",
+            "node": "Name"
+          }
+        }
+      },
+      {
+        "base": {
+          "id": "baseline",
+          "node": "Name"
+        },
+        "slice": {
+          "id": "i",
+          "node": "Name"
+        }
+      },
+      {
+        "base": {
+          "id": "scale",
+          "node": "Name"
+        },
+        "slice": {
+          "id": "i",
+          "node": "Name"
+        }
+      },
+      {
+        "base": {
+          "id": "baseline",
+          "node": "Name"
+        },
+        "slice": {
+          "id": "i",
+          "node": "Name"
+        }
+      },
+      {
+        "base": {
+          "id": "scale",
+          "node": "Name"
+        },
+        "slice": {
+          "id": "i",
+          "node": "Name"
+        }
+      },
+      {
+        "base": {
+          "id": "values",
+          "node": "Name"
+        },
+        "slice": {
+          "id": "finite",
+          "node": "Name"
+        }
+      }
+    ],
     "suspicious_index_constants": [],
     "suspicious_label_constants": [],
     "syntax_error": null,
     "syntax_parse_status": "parsed",
     "threshold_like_numeric_constants": [
-      0
-    ]
+      0,
+      1e-06,
+      1.4826,
+      6.0,
+      8.0
+    ],
+    "top_level_executable_statements": []
   },
   "analysis_status": "completed",
   "artifact_type": "task026q_rule_static_analysis",
   "created_at": "2026-07-13T14:19:29.252524+00:00",
   "execution_performed": false,
   "performance_metric_reported": false,
-  "report_hash": "4ee7528529838d03030694d25b6e1a2a9ca31423ed332c9489aec31de643e1c9",
+  "report_hash": "d9a9440fefaca77d90d6afdfcddcbde7c848cbc370e676fe3048f7b54d523aad",
   "response_hash": "f7a1241323c98b716c651dac797cd502c0fd2c7b3c2a7b6142f34e8bbb418810",
   "rule_hash": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659",
   "schema_version": "1.0",
   "statement": "This is a one-shot ARGOS real-LLM post-quota-remediation capture. It evaluates response format and static rule structure only; generated Python is not executed, and this is not a benchmark or thesis performance result.",
   "structural_diagnostics_only": true,
-  "task_id": "TASK-026Q"
+  "task_id": "TASK-026Q",
+  "updated_by_task": "TASK-027"
 }

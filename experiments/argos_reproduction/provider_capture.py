@@ -169,6 +169,66 @@ def response_text_from_openai_response(response: dict[str, Any]) -> str:
     return "\n".join(texts)
 
 
+def provider_reproducibility_fields(
+    approval: dict[str, Any], provider_result: dict[str, Any]
+) -> dict[str, Any]:
+    requested_model = approval.get("model")
+    provider_reported_model = provider_result.get("model_reported")
+    cost_total = provider_result.get("cost_total_usd")
+    usage = provider_result.get("usage") or {}
+    max_calls = approval.get("max_calls")
+    max_input_tokens = approval.get("max_input_tokens")
+    max_output_tokens = approval.get("max_output_tokens")
+    max_cost_usd = approval.get("max_cost_usd")
+    observed_violations: list[str] = []
+    if (
+        isinstance(max_calls, (int, float))
+        and provider_result.get("request_count", 0) > max_calls
+    ):
+        observed_violations.append("request_count")
+    if (
+        isinstance(max_input_tokens, (int, float))
+        and usage.get("input_tokens") is not None
+        and usage["input_tokens"] > max_input_tokens
+    ):
+        observed_violations.append("input_tokens")
+    if (
+        isinstance(max_output_tokens, (int, float))
+        and usage.get("output_tokens") is not None
+        and usage["output_tokens"] > max_output_tokens
+    ):
+        observed_violations.append("output_tokens")
+    if (
+        isinstance(max_cost_usd, (int, float))
+        and cost_total is not None
+        and cost_total > max_cost_usd
+    ):
+        observed_violations.append("cost_total_usd")
+    return {
+        "requested_model": requested_model,
+        "provider_reported_model": provider_reported_model,
+        "model_match": (
+            requested_model == provider_reported_model
+            if requested_model is not None and provider_reported_model is not None
+            else None
+        ),
+        "cost_status": "reported" if cost_total is not None else "unavailable_not_reported",
+        "cost_total_usd": cost_total,
+        "budget_violation_observed": bool(observed_violations),
+        "budget_violation_fields": observed_violations,
+        "budget_compliance_fully_verified": (
+            provider_reported_model is not None
+            and usage.get("input_tokens") is not None
+            and usage.get("output_tokens") is not None
+            and cost_total is not None
+            and all(
+                isinstance(value, (int, float))
+                for value in (max_calls, max_input_tokens, max_output_tokens, max_cost_usd)
+            )
+        ),
+    }
+
+
 def _to_openai_responses_input(messages: list[dict[str, str]]) -> list[dict[str, Any]]:
     return [
         {
@@ -425,6 +485,7 @@ def run_capture(config_path: Path, allow_real_provider_call: bool = False) -> di
                     "provider_error_message": provider_error.get("message") if isinstance(provider_error, dict) else None,
                     "real_provider_call_performed": True,
                     "manual_capture_performed": False,
+                    **provider_reproducibility_fields(approval, provider_result),
                 },
                 "private_artifacts": {
                     **private_paths,
@@ -539,6 +600,7 @@ def run_capture(config_path: Path, allow_real_provider_call: bool = False) -> di
             "request_id": provider_result.get("request_id"),
             "real_provider_call_performed": real_provider_call_performed,
             "manual_capture_performed": manual_capture_performed,
+            **provider_reproducibility_fields(approval, provider_result),
         },
         "private_artifacts": {
             "raw_response_path": private_paths["raw_response_path"],

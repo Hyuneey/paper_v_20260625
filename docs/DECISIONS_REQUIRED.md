@@ -890,3 +890,23 @@
   - no performance metric was computed.
 - Final status: DEC-030 is consumed successfully. No additional TASK-026Q
   request is approved.
+
+### DEC-031: Captured ARGOS rule container execution approval
+
+- Status: open_not_approved
+- Owner: researcher
+- Needed before: any execution of the TASK-026Q captured rule
+- Frozen rule hash:
+  `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659`
+- Current approval template:
+  `configs/argos_reproduction/task027_captured_rule_execution_approval.template.json`
+- Current approval value: `false`
+- Current container preflight: `unavailable`
+- Required decision:
+  - explicitly approve exactly one synthetic non-KPI execution,
+  - name Docker or Podman as the runtime,
+  - record the immutable image digest,
+  - preserve all TASK-027 static and runtime controls.
+- Restricted subprocess fallback: prohibited for captured rules.
+- KPI performance evaluation: prohibited by the current template.
+- TASK-027 did not execute the rule and does not resolve DEC-031.

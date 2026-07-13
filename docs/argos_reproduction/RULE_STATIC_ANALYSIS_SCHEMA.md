@@ -36,6 +36,23 @@ claim.
 - `suspicious_label_constants`: binary constants observed while label keywords
   are present.
 - `estimated_cyclomatic_complexity`: simple branch-count estimate.
+- `numeric_constants_with_context`: numeric values paired with redacted AST
+  assignment, call, comparison, or slicing context.
+- `assignments_with_redacted_expression`: assignment targets and expressions as
+  structured AST data without source excerpts.
+- `comparisons_with_redacted_expression`: comparison operators and operands as
+  structured AST data.
+- `derived_threshold_expressions`: named scale, deviation, baseline, boundary,
+  and comparison-boundary expressions.
+- `subscript_patterns`: redacted array base and slice structures.
+- `loop_bound_sources`: loop iterators or conditions and their source names.
+- `top_level_executable_statements`: module statements outside approved imports,
+  literal constants, and function definitions.
+- `global_state_mutations`: module mutations and `global` or `nonlocal` use.
+- `dunder_attribute_access`: normalized dunder attribute references.
+- `dynamic_attribute_access`: dynamic attribute operations such as `getattr`.
+- `normalized_call_set`: imported aliases normalized to full module names.
+- `normalized_attribute_set`: normalized attributes used by the rule.
 - `execution_performed`: always `false` for TASK-026.
 - `structural_diagnostics_only`: always `true` for TASK-026.
 

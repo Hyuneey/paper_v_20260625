@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task027_captured_rule_execution_approval_template",
+  "task_id": "TASK-027",
+  "approved": false,
+  "approved_by": null,
+  "approval_date": null,
+  "rule_hash": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659",
+  "allowed_execution_count": 1,
+  "allowed_input_kind": "synthetic_non_kpi_only",
+  "container_runtime_required": true,
+  "network_disabled_required": true,
+  "performance_evaluation_allowed": false
+}

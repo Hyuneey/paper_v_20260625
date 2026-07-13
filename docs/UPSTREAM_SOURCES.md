@@ -154,6 +154,18 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - The captured code was statically analyzed and quarantined only. It was not
   executed, and no ARGOS benchmark or KPI performance evaluation was run.
 
+### TASK-027 semantic-audit notes
+
+- Upstream snapshot remains pinned at
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`; no upstream file was modified.
+- TASK-027 audits only the fixed TASK-026Q rule hash
+  `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659`.
+- The audit uses Python AST parsing and redacted expressions. It does not import
+  or execute the captured rule.
+- No ARGOS module was copied or adapted into `src/paperworks`.
+- The future execution boundary is container-only, remains unapproved, and has
+  no restricted-subprocess fallback.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN
