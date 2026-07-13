@@ -916,3 +916,23 @@
 - TASK-028 launch attempts: `0`; approval-consumption count: `0`.
 - DEC-031 therefore remains `open_not_approved` until a verified Docker or
   Podman runtime is available and TASK-028 is resumed under its one-shot gate.
+
+### DEC-032: Windows container runtime remediation after TASK-028I
+
+- Status: open_environment_remediation_required
+- Owner: researcher
+- Selected runtime: Docker Desktop, per-user, WSL 2, Linux containers
+- Installer verification: passed
+- Installer version: `4.82.0.233772`
+- Installer SHA-256:
+  `a5b5837542f2f57fadbb09db90a60c84f8efc0a65f8d6dcd2e5b9fca3a2b87e6`
+- Installation outcome: timed out without progress after `900` seconds.
+- Partial state: per-user files exist, but no uninstall registration, Start
+  menu shortcut, Docker command, Docker WSL distribution, or daemon exists.
+- Restart pending: false
+- Podman fallback attempted: false
+- Required next decision: approve a bounded cleanup/retry procedure for the
+  partial Docker Desktop per-user installation, or document a policy reason to
+  select Podman Desktop.
+- TASK-028 resume allowed: false
+- Captured rule access/execution: false

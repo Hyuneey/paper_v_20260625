@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028i_security_control_report",
+  "task_id": "TASK-028I",
+  "created_at": "2026-07-14T08:44:03.3195262+09:00",
+  "config_hash": "dd35d979403e69edd9ecb3e5990ec43b4fe4e2e5621cd2c62d5fe1c9c0bc7b9d",
+  "lineage": {
+    "captured_rule_source_commit": "6558f13605e0150933730950f5b699fcce417708",
+    "semantic_audit_commit": "a9860c52daea97ccf6258cf44a75f571fdb46e6b",
+    "blocked_task028_commit": "f84055a2a0f769b0f3a3074dfb2544f88bd199e7",
+    "captured_rule_hash_recorded_only": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659"
+  },
+  "task_status": "blocked_environment",
+  "runtime": "Docker Desktop",
+  "runtime_daemon_healthy": false,
+  "harmless_container_test": {
+    "attempted": false,
+    "image_reference": "hello-world",
+    "image_digest": null,
+    "command_hash": null,
+    "exit_code": null,
+    "cleanup_status": "not_required_no_container_created"
+  },
+  "controls": [
+    {
+      "control": "network_none",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "read_only_root_filesystem",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "cap_drop_all",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "no_new_privileges",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "pid_limit",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "cpu_limit",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "memory_limit",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "read_only_bind_mount",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "bounded_writable_output_mount",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    },
+    {
+      "control": "tmpfs_noexec_nosuid",
+      "supported": false,
+      "verification_status": "not_verified_no_healthy_runtime",
+      "verified_by_command_hash": null
+    }
+  ],
+  "required_security_controls_supported": false,
+  "task028_resume_allowed": false,
+  "captured_rule_execution_allowed": false,
+  "repository_mounted": false,
+  "private_artifact_mounted": false,
+  "credentials_mounted": false,
+  "kpi_or_swat_data_mounted": false,
+  "captured_rule_accessed": false,
+  "captured_rule_executed": false,
+  "provider_call_performed": false,
+  "report_hash": "cb6cd5208fee4d15b06cf55383a41d4a69bda1ec9fc88bc48248d1b02717226e"
+}

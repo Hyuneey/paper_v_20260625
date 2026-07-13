@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028i_runtime_setup_config",
+  "task_id": "TASK-028I",
+  "primary_runtime": {
+    "name": "Docker Desktop",
+    "installation_scope_preference": "per_user",
+    "backend": "wsl_2",
+    "container_mode": "linux"
+  },
+  "fallback_runtime": {
+    "name": "Podman Desktop",
+    "backend": "wsl_2",
+    "allowed_only_when_primary_blocked": true
+  },
+  "selected_runtime": "Docker Desktop",
+  "selected_runtime_status": "selected_pending_installation",
+  "lineage": {
+    "captured_rule_source_commit": "6558f13605e0150933730950f5b699fcce417708",
+    "semantic_audit_commit": "a9860c52daea97ccf6258cf44a75f571fdb46e6b",
+    "blocked_task028_commit": "f84055a2a0f769b0f3a3074dfb2544f88bd199e7",
+    "captured_rule_hash_lineage_only": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659"
+  },
+  "harmless_test": {
+    "image": "hello-world",
+    "network": "none",
+    "read_only": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pid_limit": 16,
+    "cpu_limit": 0.5,
+    "memory_limit": "128m",
+    "repository_mount_allowed": false,
+    "private_artifact_mount_allowed": false,
+    "credentials_allowed": false
+  },
+  "required_security_controls": [
+    "network_none",
+    "read_only_root_filesystem",
+    "cap_drop_all",
+    "no_new_privileges",
+    "pid_limit",
+    "cpu_limit",
+    "memory_limit",
+    "read_only_bind_mount",
+    "bounded_writable_output_mount",
+    "tmpfs_noexec_nosuid"
+  ],
+  "boundaries": {
+    "captured_rule_access": false,
+    "captured_rule_execution": false,
+    "task028_synthetic_fixture_creation": false,
+    "execution_approval_activation": false,
+    "provider_calls": false,
+    "api_key_use": false,
+    "kpi_access": false,
+    "swat_access": false,
+    "src_paperworks_changes": false,
+    "benchmark_claims": false,
+    "thesis_claims": false
+  },
+  "outputs": {
+    "host_preflight": "docs/task_reports/TASK-028I_HOST_PREFLIGHT.json",
+    "runtime_install": "docs/task_reports/TASK-028I_RUNTIME_INSTALL_REPORT.json",
+    "security_controls": "docs/task_reports/TASK-028I_SECURITY_CONTROL_REPORT.json",
+    "task_report": "docs/task_reports/TASK-028I_REPORT.md"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028i_runtime_install_report",
+  "task_id": "TASK-028I",
+  "created_at": "2026-07-14T08:44:03.3195262+09:00",
+  "config_hash": "dd35d979403e69edd9ecb3e5990ec43b4fe4e2e5621cd2c62d5fe1c9c0bc7b9d",
+  "task_status": "blocked_environment",
+  "lineage": {
+    "captured_rule_source_commit": "6558f13605e0150933730950f5b699fcce417708",
+    "semantic_audit_commit": "a9860c52daea97ccf6258cf44a75f571fdb46e6b",
+    "blocked_task028_commit": "f84055a2a0f769b0f3a3074dfb2544f88bd199e7",
+    "captured_rule_hash_recorded_only": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659"
+  },
+  "runtime_selection": {
+    "selected_runtime": "Docker Desktop",
+    "fallback_runtime_selected": false,
+    "runtimes_install_attempted": 1,
+    "installation_scope": "per_user",
+    "backend": "wsl_2",
+    "intended_container_mode": "linux"
+  },
+  "installer": {
+    "source_url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
+    "source_domain": "desktop.docker.com",
+    "http_status": 200,
+    "content_type": "application/octet-stream",
+    "file_name": "Docker Desktop Installer.exe",
+    "product_name": "Docker Desktop Installer",
+    "product_version": "4.82.0.233772",
+    "byte_size": 638124464,
+    "sha256": "a5b5837542f2f57fadbb09db90a60c84f8efc0a65f8d6dcd2e5b9fca3a2b87e6",
+    "authenticode_status": "Valid",
+    "signer_subject": "Docker Inc.",
+    "signer_issuer": "DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1",
+    "temporary_untracked_storage": true,
+    "tracked_installer": false
+  },
+  "installation_attempt": {
+    "attempt_count": 1,
+    "arguments": [
+      "install",
+      "--user",
+      "--backend=wsl-2"
+    ],
+    "accept_license_flag_used": false,
+    "quiet_flag_used": false,
+    "license_screen_reached": false,
+    "duration_limit_seconds": 900,
+    "completion_status": "timed_out_no_log_progress",
+    "exit_code": null,
+    "installer_processes_stopped_after_timeout": 2,
+    "remaining_installer_processes": 0
+  },
+  "post_attempt_state": {
+    "partial_install_directory_present": true,
+    "desktop_executable_file_present": true,
+    "cli_file_present_but_not_available_as_command": true,
+    "uninstall_registration_present": false,
+    "start_menu_shortcut_present": false,
+    "docker_desktop_process_running": false,
+    "docker_wsl_distribution_present": false,
+    "docker_cli_available": false,
+    "docker_server_available": false,
+    "restart_pending": false
+  },
+  "runtime_installed": false,
+  "runtime_daemon_healthy": false,
+  "linux_container_mode": false,
+  "wsl2_backend_verified": false,
+  "harmless_container_test_passed": false,
+  "required_security_controls_supported": false,
+  "task028_resume_allowed": false,
+  "captured_rule_execution_allowed": false,
+  "captured_rule_accessed": false,
+  "captured_rule_executed": false,
+  "task028_synthetic_inputs_prepared": false,
+  "execution_approval_activated": false,
+  "provider_call_performed": false,
+  "api_key_use": false,
+  "report_hash": "bb5a5991438dbd94bfa6bcc077ec6f4e3532a2a15aed4898853b538a35e9bd4b"
+}
