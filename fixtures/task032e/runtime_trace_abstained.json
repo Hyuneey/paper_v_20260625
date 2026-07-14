@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0.0",
+  "execution_id": "EXEC-E7F126F13B11DBF71B58",
+  "artifact_hash": "643bfce3629065a69c0addef797f20ff5d071efccd5a60a09f24570b0de2d666",
+  "rule_id": "RULE-ACTUATORA-SENSORB-032D",
+  "rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+  "verifier_result_ref": "VERIFY-F9A592F3693B450C48A0",
+  "input_window_id": "WIN-MULTIPLE-TRIGGERS-032E",
+  "status": "abstained",
+  "trigger_satisfied": true,
+  "expected_effect_satisfied": null,
+  "violation_detected": false,
+  "violation_score": 0.0,
+  "abstained": true,
+  "satisfaction_trace": [
+    {
+      "step": 1,
+      "operator": "regime_check",
+      "result": "satisfied",
+      "parameter_refs": [],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    },
+    {
+      "step": 2,
+      "operator": "trigger_check",
+      "result": "abstained",
+      "parameter_refs": [],
+      "variable_refs": [
+        "ActuatorA"
+      ]
+    },
+    {
+      "step": 3,
+      "operator": "lag_check",
+      "result": "not_applicable",
+      "parameter_refs": [
+        "PARAM-LAG-032"
+      ],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    },
+    {
+      "step": 4,
+      "operator": "window_check",
+      "result": "not_applicable",
+      "parameter_refs": [
+        "PARAM-DURATION-032"
+      ],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    },
+    {
+      "step": 5,
+      "operator": "relation_check",
+      "result": "not_applicable",
+      "parameter_refs": [
+        "PARAM-LAG-032",
+        "PARAM-TOL-032"
+      ],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    },
+    {
+      "step": 6,
+      "operator": "tolerance_check",
+      "result": "not_applicable",
+      "parameter_refs": [
+        "PARAM-TOL-032"
+      ],
+      "variable_refs": [
+        "SensorB"
+      ]
+    },
+    {
+      "step": 7,
+      "operator": "persistence_check",
+      "result": "not_applicable",
+      "parameter_refs": [
+        "PARAM-DURATION-032"
+      ],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    },
+    {
+      "step": 8,
+      "operator": "abstention_check",
+      "result": "abstained",
+      "parameter_refs": [],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    },
+    {
+      "step": 9,
+      "operator": "output",
+      "result": "not_applicable",
+      "parameter_refs": [],
+      "variable_refs": [
+        "ActuatorA",
+        "SensorB"
+      ]
+    }
+  ],
+  "parameter_values_used": [
+    {
+      "parameter_id": "PARAM-DURATION-032",
+      "parameter_hash": "9df3d6241b7ebeeabebee817270ee11c13402571595641816a69e5e40d83c91b",
+      "value": 5,
+      "unit": "seconds"
+    },
+    {
+      "parameter_id": "PARAM-LAG-032",
+      "parameter_hash": "e1cdca4c9b334008fcd7b918c91de129e085c4cecff3cb046cadff63aed2a09e",
+      "value": 5,
+      "unit": "seconds"
+    },
+    {
+      "parameter_id": "PARAM-SEVERITY-032",
+      "parameter_hash": "128304e60f9f13738cc33652919c39fbfc68e73daae5837d253251ef1b08aaac",
+      "value": 0.75,
+      "unit": "score"
+    },
+    {
+      "parameter_id": "PARAM-SUPPORT-032",
+      "parameter_hash": "86fd41093f6e6148efc83077dbc1d32397f6c548459559971e75b0200e210a7d",
+      "value": 5,
+      "unit": "events"
+    },
+    {
+      "parameter_id": "PARAM-TOL-032",
+      "parameter_hash": "5335fa3fd60588d90e96932a96afeb15ef881203c7177ccb5304d627b85f34cf",
+      "value": 0.5,
+      "unit": "units"
+    }
+  ],
+  "input_output_alignment_preserved": true,
+  "created_at": "2026-07-14T19:03:00Z"
+}

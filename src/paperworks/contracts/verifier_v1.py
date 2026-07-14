@@ -268,6 +268,59 @@ def canonical_verifier_result_sha256(result: VerifierResultV1) -> str:
     return canonical_contract_artifact_sha256(verifier_result_to_dict(result))
 
 
+def canonical_verifier_binding_id(
+    rule: DelayedResponseRuleV1,
+    artifacts: DelayedResponseArtifactCollectionV1,
+    *,
+    policy: DelayedResponseVerifierPolicyV1,
+    status: str,
+    violations: Sequence[VerifierIssueV1],
+) -> str:
+    """Recompute the deterministic verifier-result identifier."""
+
+    binding = {
+        "subject_hash": canonical_rule_verification_subject_sha256(rule),
+        "status": status,
+        "graph_hash": artifacts.graph.artifact_hash,
+        "evidence_hash": artifacts.evidence.artifact_hash,
+        "parameter_hashes": sorted(item.artifact_hash for item in artifacts.parameters),
+        "policy": policy.to_dict(),
+        "issues": [_issue_to_document(item) for item in violations],
+    }
+    payload = json.dumps(binding, sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False)
+    return f"VERIFY-{hashlib.sha256(payload.encode('utf-8')).hexdigest()[:20].upper()}"
+
+
+def verify_verifier_result_binding(
+    rule: DelayedResponseRuleV1,
+    result: VerifierResultV1,
+    artifacts: DelayedResponseArtifactCollectionV1,
+    *,
+    policy: DelayedResponseVerifierPolicyV1,
+) -> str:
+    """Fail closed unless a result is the canonical binding for these inputs."""
+
+    try:
+        verify_contract_artifact_hash(verifier_result_to_dict(result))
+    except ContractArtifactHashError as exc:
+        raise VerifierV1Error("VERIFIER_RESULT_HASH_MISMATCH", "verifier-result self-hash failed") from exc
+    subject_hash = canonical_rule_verification_subject_sha256(rule)
+    if result.rule_id != rule.rule_id or result.rule_hash != subject_hash:
+        raise VerifierV1Error("VERIFIER_RULE_BINDING_MISMATCH", "verifier result does not bind the supplied rule")
+    if result.verifier_version != policy.verifier_version:
+        raise VerifierV1Error("VERIFIER_POLICY_MISMATCH", "verifier version differs from policy")
+    expected = canonical_verifier_binding_id(
+        rule,
+        artifacts,
+        policy=policy,
+        status=result.status,
+        violations=result.violations,
+    )
+    if result.verifier_result_id != expected:
+        raise VerifierV1Error("VERIFIER_RESULT_ID_MISMATCH", "verifier-result identifier does not recompute")
+    return expected
+
+
 def verify_delayed_response_rule(
     rule: DelayedResponseRuleV1,
     artifacts: DelayedResponseArtifactCollectionV1,
@@ -313,7 +366,9 @@ def verify_delayed_response_rule(
     verified_normal = tuple(rule.normal_reference_refs) if {13, 14}.issubset(passed) else ()
     verified_parameters = tuple(sorted(rule.parameter_refs)) if {7, 8, 9, 10, 11, 12, 14}.issubset(passed) else ()
     complexity_score = _complexity_score(rule)
-    result_id = _verifier_result_id(context, subject_hash, status, violations)
+    result_id = canonical_verifier_binding_id(
+        rule, artifacts, policy=policy, status=status, violations=violations
+    )
     provisional = {
         "schema_version": "1.0.0", "verifier_result_id": result_id, "artifact_hash": "0" * 64,
         "rule_id": rule.rule_id, "rule_hash": subject_hash, "verifier_version": policy.verifier_version,
@@ -761,21 +816,3 @@ def _conflict_key(rule: DelayedResponseRuleV1) -> tuple[Any, ...]:
 def _relation_record_id(prefix: str, first_rule: str, second_rule: str) -> str:
     payload = f"{prefix}:{first_rule}:{second_rule}".encode("utf-8")
     return f"{prefix}-{hashlib.sha256(payload).hexdigest()[:16].upper()}"
-
-
-def _verifier_result_id(
-    context: _VerificationContext,
-    subject_hash: str,
-    status: str,
-    issues: Sequence[VerifierIssueV1],
-) -> str:
-    binding = {
-        "subject_hash": subject_hash, "status": status,
-        "graph_hash": context.artifacts.graph.artifact_hash,
-        "evidence_hash": context.artifacts.evidence.artifact_hash,
-        "parameter_hashes": sorted(item.artifact_hash for item in context.artifacts.parameters),
-        "policy": context.policy.to_dict(),
-        "issues": [_issue_to_document(item) for item in issues],
-    }
-    payload = json.dumps(binding, sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False)
-    return f"VERIFY-{hashlib.sha256(payload.encode('utf-8')).hexdigest()[:20].upper()}"

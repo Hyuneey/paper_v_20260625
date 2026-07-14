@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "explanation_id": "EXPLAIN-0B3782C1DF57EC37CBB4",
+  "artifact_hash": "6c3c4a534644f4d9c8c2f9ea850c9e829f38e762913e83c181e03f3c38265624",
+  "execution_id": "EXEC-E4873C47B07CFD99EDCB",
+  "rule_id": "RULE-ACTUATORA-SENSORB-032D",
+  "rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+  "subsystem": "synthetic_subsystem",
+  "time_interval": {
+    "input_window_id": "WIN-NO-TRIGGER-032E",
+    "start_offset": 0,
+    "end_offset": 8,
+    "unit": "samples"
+  },
+  "source_variables": [
+    "ActuatorA"
+  ],
+  "target_variables": [
+    "SensorB"
+  ],
+  "relation_type": "delayed_response",
+  "expected_behavior": "After ActuatorA changes to 1, SensorB is expected to increase by the approved tolerance within the approved lag interval.",
+  "observed_behavior": "The trigger condition was not observed.",
+  "violation_type": "missing_expected_response",
+  "lag": {
+    "observed": null,
+    "expected_minimum": 1,
+    "expected_maximum": 5,
+    "unit": "seconds"
+  },
+  "parameter_refs": [
+    "PARAM-LAG-032",
+    "PARAM-TOL-032",
+    "PARAM-DURATION-032",
+    "PARAM-SUPPORT-032",
+    "PARAM-SEVERITY-032"
+  ],
+  "evidence_refs": [
+    "EVID-SYNTHETIC-032C"
+  ],
+  "normal_reference_refs": [
+    "NREF-SYNTHETIC-032C"
+  ],
+  "graph_edge_refs": [
+    "EDGE-ACTUATORA-SENSORB"
+  ],
+  "verifier_result_ref": "VERIFY-F9A592F3693B450C48A0",
+  "detector_result": {
+    "available": false,
+    "binary_label": null,
+    "score": null,
+    "artifact_ref": null,
+    "abstained": false
+  },
+  "rule_result": {
+    "available": true,
+    "binary_label": 0,
+    "score": 0.0,
+    "artifact_ref": "EXEC-E4873C47B07CFD99EDCB",
+    "abstained": false
+  },
+  "fusion_result": {
+    "available": false,
+    "binary_label": null,
+    "score": null,
+    "artifact_ref": null,
+    "abstained": false
+  },
+  "natural_language_text": "After ActuatorA changes to 1, SensorB is expected to increase by the approved tolerance within the approved lag interval. The trigger condition was not observed.",
+  "renderer_version": "task032e-renderer-1.0.0",
+  "causal_claim_made": false,
+  "root_cause_claim_made": false
+}

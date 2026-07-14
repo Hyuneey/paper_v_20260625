@@ -1147,3 +1147,46 @@
 - Milliseconds, seconds, and minutes are converted deterministically before
   comparison. A lone `lag_minimum` is insufficient.
 - Severity support does not implement runtime severity calculation.
+
+### DEC-043: Accepted-rule runtime authorization
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Only a successfully constructed `RuntimeAuthorizationBundleV1` exposes the
+  non-serialized property `runtime_authorized: true`.
+- Accepted rules, verifier results, artifact collections, and TASK-032D
+  outcomes remain individually unauthorized.
+- Authorization binds and rechecks the accepted rule hash, verifier-result ID
+  and self-hash, verifier policy, graph/evidence hashes, exact parameter hashes,
+  and verified reference sets.
+- The receipt hash excludes only `authorization_hash`; `created_at` is supplied
+  explicitly and runtime scope is `synthetic_only`.
+- Receipt and verifier bindings are revalidated before every execution.
+
+### DEC-044: Delayed-response MVP operational semantics
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Input: uniformly sampled one-source/one-target synthetic windows only.
+- Trigger: transition into the configured state; none is evaluated normal,
+  exactly one is evaluated, multiple or first-sample trigger abstains.
+- Baseline: target immediately before trigger.
+- Response: first target increase reaching approved tolerance inside the
+  inclusive approved lag interval.
+- Missing response: binary violation with score `1.0`; all other scores `0.0`.
+- Persistence is a coverage requirement only. Severity and minimum support are
+  bound context and do not alter runtime output.
+- Abstention is not an anomaly.
+
+### DEC-045: Deterministic explanation grounding
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Explanation inputs are limited to accepted rule, accepted verifier result,
+  authorized runtime trace, bound artifact references, and window offsets.
+- Raw arrays, new variables, new thresholds, causal claims, root-cause claims,
+  and universal-invariant claims are prohibited.
+- `lag.observed` remains null because the canonical trace does not carry a
+  grounded observed numeric lag.
+- Natural language uses deterministic bounded templates only.
+- Detector and fusion results remain unavailable.

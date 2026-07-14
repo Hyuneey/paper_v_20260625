@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0", "verifier_result_id": "VERIFY-F9A592F3693B450C48A0", "artifact_hash": "1efeb258886e46a4f311e039d1fb28528ad56d224f4a9498ad459f08a739eaef",
+  "rule_id": "RULE-ACTUATORA-SENSORB-032D", "rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2", "verifier_version": "task032d-verifier-1.0.0", "status": "accepted",
+  "violations": [], "warnings": [], "repairable_fields": [], "non_repairable_fields": [], "verified_graph_edges": ["EDGE-ACTUATORA-SENSORB"],
+  "verified_parameters": ["PARAM-DURATION-032", "PARAM-LAG-032", "PARAM-SEVERITY-032", "PARAM-SUPPORT-032", "PARAM-TOL-032"],
+  "verified_evidence": ["EVID-SYNTHETIC-032C"], "verified_normal_references": ["NREF-SYNTHETIC-032C"], "complexity_score": 50,
+  "conflict_records": [], "duplicate_records": [], "created_at": "2026-07-14T18:30:00Z"
+}

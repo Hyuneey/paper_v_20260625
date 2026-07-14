@@ -1,0 +1,39 @@
+{
+  "artifact_type": "task032e_explanation_report",
+  "claim_boundary": {
+    "causal_claims": false,
+    "detector_result_available": false,
+    "fusion_result_available": false,
+    "observed_numeric_lag_recorded": false,
+    "raw_arrays_in_report": false,
+    "root_cause_claims": false
+  },
+  "grounding": {
+    "accepted_rule": true,
+    "authorized_runtime_trace": true,
+    "bound_artifact_references": true,
+    "deterministic_template_only": true,
+    "input_window_offsets": true,
+    "verifier_result": true
+  },
+  "renderer_version": "task032e-renderer-1.0.0",
+  "representative_explanations": {
+    "abstained": {
+      "explanation_hash": "8ee909a217df2c60809e043fc445878db5128eb836f59a38880350d847e7aecb",
+      "explanation_id": "EXPLAIN-9153269C6149843E7E5D"
+    },
+    "no_trigger": {
+      "explanation_hash": "6c3c4a534644f4d9c8c2f9ea850c9e829f38e762913e83c181e03f3c38265624",
+      "explanation_id": "EXPLAIN-0B3782C1DF57EC37CBB4"
+    },
+    "response_missing": {
+      "explanation_hash": "4f3002445715cfa200aa96638d2dff0a3e651e6bf91e8d667e1ea4b7cbe5033a",
+      "explanation_id": "EXPLAIN-BEA045BF902A477B028E"
+    },
+    "response_present": {
+      "explanation_hash": "48bfdd2bee31a8e0bee7f1285466f8aecfb3647d3ba9814361b808a6de432953",
+      "explanation_id": "EXPLAIN-A4B09EDA9417C3C17C83"
+    }
+  },
+  "status": "deterministic_trace_grounded_explanation_complete"
+}

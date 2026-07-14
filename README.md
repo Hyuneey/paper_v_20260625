@@ -155,3 +155,16 @@ Acceptance is not runtime authorization. TASK-032D does not execute rules,
 produce runtime traces or explanations, modify the legacy Phase 1 verifier or
 runtime, access datasets, call providers, or establish experimental method
 performance. See `docs/method/DELAYED_RESPONSE_VERIFIER_V1.md`.
+
+## Authorized synthetic runtime foundation
+
+TASK-032E implements an authorized synthetic delayed-response runtime and
+deterministic trace-grounded explanation only. Execution requires a receipt
+that revalidates the TASK-032D accepted rule, verifier result, verifier policy,
+and exact graph/evidence/parameter bindings.
+
+The runtime emits a canonical nine-step satisfaction trace and deterministic
+explanation without an LLM. This does not imply real SWaT execution, anomaly-
+detection performance, calibrated severity quality, detector fusion, complete
+method implementation, or thesis-result completion. See
+`docs/method/RUNTIME_AUTHORIZATION_BINDING.md`.

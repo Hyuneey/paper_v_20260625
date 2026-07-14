@@ -1,0 +1,60 @@
+{
+  "artifact_type": "task032e_runtime_report",
+  "authorization": {
+    "authorization_hash": "ebfbfcd147fa078577f77c8a0fd0cbfbf508c0afaf77d27e71f5c5a918032ef9",
+    "authorization_id": "AUTH-7EE803AB1BB62089AB89",
+    "runtime_scope": "synthetic_only",
+    "verifier_policy_hash": "a743cfc3aa545f7bd40bda70fd8ea2e6451bc8973d073be7ab5bc49f744af8f4"
+  },
+  "bound_authority": {
+    "accepted_rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+    "graph_hash": "cccf8002811031e4b0f531b09d115b930905ca48de3f252563096eef390ccc2b",
+    "evidence_hash": "d27475c218f82693083884d18f8ef6edd5e080f86e91ba78c1ded608a3ce833e",
+    "verifier_result_hash": "1efeb258886e46a4f311e039d1fb28528ad56d224f4a9498ad459f08a739eaef",
+    "verifier_result_id": "VERIFY-F9A592F3693B450C48A0"
+  },
+  "execution_scope": {
+    "dataset_access": false,
+    "detector_execution": false,
+    "generated_python_execution": false,
+    "performance_evaluation": false,
+    "provider_calls": false,
+    "raw_arrays_in_report": false,
+    "runtime_llm": false,
+    "severity_grading": false,
+    "synthetic_only": true
+  },
+  "representative_traces": {
+    "abstained": {
+      "abstention_reason": "multiple_triggers",
+      "execution_id": "EXEC-E7F126F13B11DBF71B58",
+      "status": "abstained",
+      "trace_hash": "643bfce3629065a69c0addef797f20ff5d071efccd5a60a09f24570b0de2d666",
+      "violation_detected": false
+    },
+    "no_trigger": {
+      "execution_id": "EXEC-E4873C47B07CFD99EDCB",
+      "status": "evaluated",
+      "trace_hash": "43b4e8904c4146d67951177ddc2eb9afeb9be689bb8b0ad79a9a24f57316cddb",
+      "violation_detected": false
+    },
+    "response_missing": {
+      "execution_id": "EXEC-FA55BE5FE04128149300",
+      "status": "evaluated",
+      "trace_hash": "3cce2ac4105db143d9dddfba3e3149454a1ef60e728f54136c93272435e520f7",
+      "violation_detected": true
+    },
+    "response_present": {
+      "execution_id": "EXEC-D0FB0C42F86100B5DCAD",
+      "status": "evaluated",
+      "trace_hash": "5ec3815e6946f63ddd0f1f8960ce66479fa3d51a6e83ec2a3251e4e166dc08af",
+      "violation_detected": false
+    }
+  },
+  "runtime_version": "task032e-runtime-1.0.0",
+  "satisfaction_trace": {
+    "ordered_steps": 9,
+    "raw_measured_values_included": false
+  },
+  "status": "authorized_synthetic_runtime_complete"
+}
