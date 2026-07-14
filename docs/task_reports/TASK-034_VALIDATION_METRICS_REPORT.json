@@ -1,0 +1,98 @@
+{
+  "agents_executed": false,
+  "argos_label_aware_validation_diagnostics": {
+    "event_f1_pa": {
+      "f1": 0.6666666666666661,
+      "name": "event-based f1 under pa with mode squeeze",
+      "precision": 0.9999999999999999,
+      "recall": 0.49999999999999994,
+      "threshold": 2.6666666666666665
+    },
+    "metric_group": "argos_label_aware_validation_diagnostics",
+    "point_f1": {
+      "f1": 0.36799999999999994,
+      "name": "point-wise f1",
+      "precision": 0.6133333333333333,
+      "recall": 0.26285714285714284,
+      "threshold": -1.0
+    },
+    "point_f1_pa": {
+      "f1": 0.5537190082644624,
+      "name": "best f1 under pa",
+      "precision": 1.0,
+      "recall": 0.38285714285714284,
+      "threshold": 2.6666666666666665
+    },
+    "score_source": "smooth_labels_window_3",
+    "selection_split": "validation",
+    "smoothing_window": 3,
+    "source_blobs": {
+      "agent/review_agent.py": "83936fdfc2875d245f79cd556b9ded96c6d1af25",
+      "common/common.py": "2c1bd7546df4c547770b6055eea49ea169ea64a4",
+      "eval_metrics/event_f1pa.py": "ef7c77ab087500b70ada062f81d75d0125258348",
+      "eval_metrics/point_f1.py": "a96440baf55a0859a7d08831eeaee6871d170bf1",
+      "eval_metrics/point_f1pa.py": "ec4b57072086fb907b23b6cce73cb50585c17c42"
+    },
+    "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "supplementary_only": true,
+    "tie_breaking_policy": "stable descending score order; strict f1 improvement retains the first encountered optimum"
+  },
+  "artifact_type": "task034_validation_metrics_report",
+  "benchmark_claim": false,
+  "captured_rule_sha256": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659",
+  "detector_executed": false,
+  "direct_binary_validation_diagnostics": {
+    "confusion_counts": {
+      "false_negative": 142,
+      "false_positive": 6,
+      "true_negative": 20295,
+      "true_positive": 33
+    },
+    "metric_group": "direct_binary_validation_diagnostics",
+    "point_adjustment": "disabled",
+    "point_f1": 0.3084112149532711,
+    "precision": 0.8461538461538461,
+    "predicted_negative_count": 20437,
+    "predicted_positive_count": 39,
+    "recall": 0.18857142857142858,
+    "threshold_optimization": "none",
+    "validation_negative_count": 20301,
+    "validation_positive_count": 175,
+    "zero_division": 0.0
+  },
+  "direct_metric_protocol_hash": "d415af6b19ea696ed82cfcec389468a90be52d7ec3f71c004c1c5ae003d3da95",
+  "execution_code_commit": "b81468c4da9eaa52596088e6b0768e11739c8072",
+  "fusion_executed": false,
+  "metric_fidelity": {
+    "checks": {
+      "event_f1_pa": true,
+      "event_threshold": true,
+      "point_f1": true,
+      "point_f1_pa": true,
+      "smooth_labels": true
+    },
+    "expected_values_frozen": true,
+    "fixture_id": "task034_metric_fidelity_single_event_v1",
+    "source_blobs": {
+      "agent/review_agent.py": "83936fdfc2875d245f79cd556b9ded96c6d1af25",
+      "common/common.py": "2c1bd7546df4c547770b6055eea49ea169ea64a4",
+      "eval_metrics/event_f1pa.py": "ef7c77ab087500b70ada062f81d75d0125258348",
+      "eval_metrics/point_f1.py": "a96440baf55a0859a7d08831eeaee6871d170bf1",
+      "eval_metrics/point_f1pa.py": "ec4b57072086fb907b23b6cce73cb50585c17c42"
+    },
+    "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "status": "passed"
+  },
+  "paper_faithful_metric_protocol_hash": "71efe1064e6f7db388a4d9b984834704b76350cc091a29f0c6c7c6572aa0af59",
+  "private_paths_included": false,
+  "provider_calls": 0,
+  "report_hash": "001a90c17c27ccc5c270da00a7ae854069af0b4e2e6bae1ef105f89ca699e9a2",
+  "schema_version": "1.0",
+  "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa",
+  "smoothed_score_sha256": "386271368743187f20536e33fb828dd264d0f9447e7fe0a11148d053823fbdbd",
+  "statement": "TASK-034 is a validation-only ARGOS rule feasibility run. It is not a benchmark or thesis-performance result.",
+  "task_id": "TASK-034",
+  "test_metrics_computed": false,
+  "validation_label_sha256": "a82c2837f69cf1e37a912ddf1495e9d418f9cfe3fd58f03d1dd4852a1a117f51",
+  "validation_prediction_sha256": "911acaac45a1c7b6a40f60ddb114e6be74993be4687c9c7f94031be9ef671824"
+}

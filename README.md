@@ -205,8 +205,10 @@ rootless-container execution harness, PA-free array diagnostics, and separately
 labeled source-faithful ARGOS metric adapter. The held-out test boundary is
 sealed by a prefix reader and the container can receive validation values only.
 
-The final E2 result must be produced from a clean committed Commit A and added
-as aggregate-only Commit B reports. Until that run completes, E2 remains
-pending. E3 remains `not_run`, `sealed_not_accessed`, and `not_authorized`.
-Neither stage is a benchmark or thesis-performance claim. See
+E2 ran from clean execution commit `b81468c4` and passed the validation
+feasibility gate with identical prediction hashes from two fresh containers.
+Its direct metrics are PA-free validation diagnostics and the source-faithful
+ARGOS metrics are supplementary validation diagnostics. E3 remains `not_run`,
+`sealed_not_accessed`, and `not_authorized`. Neither stage is a benchmark or
+thesis-performance claim. See
 `docs/argos_reproduction/ARGOS_E2_KPI_VALIDATION_PROTOCOL.md`.

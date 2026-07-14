@@ -1274,6 +1274,10 @@
   detector/fusion path.
 - Pass/fail is protocol completion and contract validity; metric magnitude is
   not a pass criterion.
+- E2 result: `passed_validation_feasibility` from clean execution commit
+  `b81468c4da9eaa52596088e6b0768e11739c8072`.
+- Two fresh validation-container runs produced the same prediction hash; no
+  response-driven repair or rule change occurred.
 
 ### DEC-051: KPI chronological split and E3 test seal
 
@@ -1290,3 +1294,5 @@
 - Separate competition ground-truth package access: prohibited.
 - E3 status during TASK-034: `not_run`, `sealed_not_accessed`, and
   `not_authorized`.
+- Frozen validation Event-F1-PA evaluator threshold:
+  `2.6666666666666665`, with `smooth_labels(window_size=3)`.

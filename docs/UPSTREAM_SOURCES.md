@@ -235,8 +235,10 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - Project-owned reproduction code is isolated under
   `experiments/argos_reproduction/` and preserves validation-only split,
   smoothing, metric-search, and tie behavior.
-- Upstream ARGOS, agents, provider paths, detector paths, and test evaluation
-  are not executed by TASK-034 Commit A.
+- Upstream ARGOS modules, agents, provider paths, detector paths, and test
+  evaluation were not executed. TASK-034 executed only the frozen captured rule
+  in the dedicated validation container; host metric code reproduced the pinned
+  source behavior from the recorded blobs.
 
 ### TASK-032A schema validation dependency
 

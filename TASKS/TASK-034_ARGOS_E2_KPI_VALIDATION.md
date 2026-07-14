@@ -1,6 +1,6 @@
 # TASK-034: ARGOS E2 Frozen Rule-Only KPI Validation
 
-Status: execution-ready (Commit A); aggregate result pending Commit B.
+Status: completed (`passed_validation_feasibility`).
 
 ## Scope
 
@@ -24,3 +24,8 @@ metrics, and one frozen Event-F1-PA operating point for a future sealed E3 run.
 Commit A contains implementation, configuration, protocols, and tests. E2 must
 run from that clean commit. Commit B may contain only aggregate reports and
 status/freeze documentation updates.
+
+The final execution ran from clean commit
+`b81468c4da9eaa52596088e6b0768e11739c8072`. Two fresh validation-container
+runs produced the same prediction hash. E3 remains sealed, not run, and not
+authorized.
