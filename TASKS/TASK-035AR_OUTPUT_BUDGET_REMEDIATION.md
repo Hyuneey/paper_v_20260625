@@ -1,6 +1,6 @@
 # TASK-035AR: Output-Budget Remediation
 
-Status: pre-registered, execution pending Commit A-R
+Status: completed, `passed_balanced_generation_cohort`
 
 ## Scope
 
@@ -24,3 +24,8 @@ The frozen adequacy criteria are declared in
 `configs/argos_reproduction/task035ar_output_budget_remediation.json` and may
 not be lowered after execution. Only `passed_balanced_generation_cohort`
 authorizes TASK-035B.
+
+Execution produced 100 non-empty, extracted, and static-valid rules; 91 passed
+the isolated runtime contract. The combined immutable cohort contains 146
+executable rules and passed every frozen balance threshold. No performance
+evaluation occurred.

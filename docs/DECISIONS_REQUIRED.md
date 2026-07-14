@@ -1361,3 +1361,11 @@
   retry. All anchors receive two calls regardless of prior outcome.
 - TASK-035A remains immutable and `insufficient_rule_yield`.
 - Only the frozen combined adequacy gate may authorize TASK-035B.
+- Execution result: all 100 remediation requests completed once with zero
+  provider or transport errors. All 100 responses were non-empty and produced
+  one static-valid rule; 91 rules passed the isolated runtime contract.
+- Combined result: 146 executable rules, minimum 12 executable and 12 distinct
+  rules per KPI, all 10 KPIs at 10 or more executable rules, and 48 anchors at
+  two or more executable rules.
+- Gate result: `passed_balanced_generation_cohort`; TASK-035B may start only
+  under a separately frozen selection/evaluation scope.

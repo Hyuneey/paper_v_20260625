@@ -242,7 +242,11 @@ receives replicate IDs 3 and 4. The only generation change is increasing
 `max_output_tokens` from 2,000 to 6,000; provider, model, prompt, static audit,
 and rootless-container runtime policies remain unchanged.
 
-This is a generation-operability and cohort-balance study only. It does not
+The clean Commit A-R execution completed all 100 one-shot calls: all responses
+were non-empty and static-valid, and 91 rules passed the isolated runtime
+contract. Combined with the immutable TASK-035A cohort, 146 rules were
+executable and every frozen balance threshold passed.
+
+This is a generation-operability and cohort-balance result only. It does not
 compute validation or test performance, perform selection, repair rules, run a
 detector or fusion path, or alter TASK-035A's `insufficient_rule_yield` status.
-Execution results are recorded only after clean Commit A-R.
