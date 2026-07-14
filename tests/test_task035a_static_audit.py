@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+import tempfile
 import unittest
 from experiments.argos_reproduction.multi_rule_static_audit import audit_response
 
@@ -17,6 +20,13 @@ class Task035aStaticAuditTests(unittest.TestCase):
     def test_hardcoded_label_array_fails(self):
         report, _ = audit_response("```python\nimport numpy as np\ndef inference(sample):\n    return [0,1,0,1]\n```")
         self.assertTrue(report["hardcoded_index_or_label_suspicion"])
+
+    def test_quarantine_policy_can_preserve_lf_hash_bytes(self):
+        report, code = audit_response("```python\nimport numpy as np\ndef inference(sample):\n    return np.zeros(len(sample), dtype=int)\n```")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "rule.py"
+            path.write_bytes(code.encode("utf-8"))
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), report["rule_sha256"])
 
 
 if __name__ == "__main__": unittest.main()

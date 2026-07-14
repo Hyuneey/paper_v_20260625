@@ -123,7 +123,7 @@ def audit_all(config_path: Path) -> dict[str, Any]:
             rule_path.parent.mkdir(parents=True, exist_ok=True)
             if rule_path.exists() and rule_path.read_text(encoding="utf-8") != code:
                 raise RuntimeError("TASK035A_RULE_HASH_COLLISION")
-            rule_path.write_text(code, encoding="utf-8")
+            rule_path.write_bytes(code.encode("utf-8"))
         private_audit = private_root / "static_audits" / f"{slot['slot_id']}.json"
         write_json(private_audit, audit)
         terminal = "response_without_rule" if not audit["rule_extracted"] else ("static_invalid" if audit["static_status"] != "static_valid" else "provider_response_captured")
