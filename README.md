@@ -259,3 +259,9 @@ selection, frozen outer-validation runner, and paired KPI bootstrap. Execution
 uses the required Commit A / Commit B / Commit C separation. The held-out test
 remains sealed, and no provider, rule-generation, detector, repair, review, or
 fusion path is authorized.
+
+The frozen outer run completed for all ten KPI series. Coverage-3 OR showed
+higher macro recall than Best-1 but lower point F1 and precision with a much
+higher false-positive rate. This is a validation tradeoff, not evidence of
+multi-rule superiority or a benchmark/thesis result. E2X-T remains sealed and
+unauthorized.

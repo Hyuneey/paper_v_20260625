@@ -1393,3 +1393,8 @@
 - Exactly four arms are selected on inner data: Best-1, Top-3 OR, Coverage-3 OR, and All-10 OR.
 - Coverage-3 uses the predeclared greedy event-coverage and metric tie policy.
 - No weighted vote, majority vote, post-hoc arm, or outer-based change is allowed.
+- Execution result: all four arms were frozen for ten KPIs before outer access;
+  all 100 panel rules replayed deterministically on outer validation.
+- Primary comparison result: Coverage-3 OR increased macro recall but reduced
+  macro point F1 and precision and substantially increased false positives.
+  No superiority claim is authorized.
