@@ -919,7 +919,7 @@
 
 ### DEC-032: Windows container runtime remediation after TASK-028I
 
-- Status: open_environment_remediation_required
+- Status: resolved_retry_in_progress_manual_user_action_required
 - Owner: researcher
 - Selected runtime: Docker Desktop, per-user, WSL 2, Linux containers
 - Installer verification: passed
@@ -927,12 +927,23 @@
 - Installer SHA-256:
   `a5b5837542f2f57fadbb09db90a60c84f8efc0a65f8d6dcd2e5b9fca3a2b87e6`
 - Installation outcome: timed out without progress after `900` seconds.
-- Partial state: per-user files exist, but no uninstall registration, Start
-  menu shortcut, Docker command, Docker WSL distribution, or daemon exists.
+- Selected option: `bounded_docker_cleanup_and_one_retry`
+- Docker retry count allowed: `1`
+- Podman fallback: deferred; it may be selected only after the clean Docker
+  retry fails.
+- Official uninstaller: attempted once with `uninstall`; it timed out after
+  `300` seconds and removed registration and most program files.
+- Bounded residual cleanup: completed for deletion-manifested TASK-028I and
+  official-uninstaller paths only. Existing `Ubuntu-22.04` was preserved.
+- Clean Docker retry: launched exactly once with `install --user`; no quiet or
+  automatic license-acceptance flag was used.
+- Current blocker: the official installer displayed a user-facing prompt that
+  requires researcher review and any license/subscription acceptance.
 - Restart pending: false
 - Podman fallback attempted: false
-- Required next decision: approve a bounded cleanup/retry procedure for the
-  partial Docker Desktop per-user installation, or document a policy reason to
-  select Podman Desktop.
+- Additional Docker retry allowed: false
+- Required next action: the researcher must complete or cancel the currently
+  displayed installer prompt. Runtime verification resumes afterward without
+  starting another installer attempt.
 - TASK-028 resume allowed: false
 - Captured rule access/execution: false

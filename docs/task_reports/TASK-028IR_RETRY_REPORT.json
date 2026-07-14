@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028ir_retry_report",
+  "task_id": "TASK-028IR",
+  "created_at": "2026-07-14T09:10:02.7120584+09:00",
+  "config_hash": "0335dfecde8f1857bb9be83b6b6b73eafe9b83d15ed6e8bbc780e6ec2e153724",
+  "task_status": "manual_user_action_required",
+  "decision_id": "DEC-032",
+  "retry": {
+    "private_receipt_written_before_launch": true,
+    "docker_retry_count": 1,
+    "docker_retry_count_allowed": 1,
+    "additional_docker_retry_allowed": false,
+    "started_at": "2026-07-14T09:09:31.3510918+09:00",
+    "arguments": [
+      "install",
+      "--user"
+    ],
+    "backend_argument_omitted": true,
+    "controlled_difference_from_task028i": "WSL 2 selection is left to the official interactive installer UI.",
+    "installer_sha256": "a5b5837542f2f57fadbb09db90a60c84f8efc0a65f8d6dcd2e5b9fca3a2b87e6",
+    "installer_signature_verified_before_launch": true,
+    "automatic_license_acceptance": false,
+    "quiet_installation": false,
+    "installer_process_running": true,
+    "user_facing_prompt_observed": true,
+    "prompt_category": "docker_installer_prompt",
+    "prompt_content_captured": false,
+    "researcher_review_required": true,
+    "installation_completion_verified": false
+  },
+  "post_install_runtime_verification": {
+    "attempted": false,
+    "docker_cli_available": false,
+    "docker_server_available": false,
+    "docker_desktop_wsl_distribution_present": false,
+    "linux_container_mode": false,
+    "wsl2_backend_verified": false,
+    "daemon_healthy": false,
+    "status": "not_run_waiting_for_researcher_installer_action"
+  },
+  "harmless_container_test_attempted": false,
+  "task028_resume_allowed": false,
+  "captured_rule_execution_allowed": false,
+  "captured_rule_accessed": false,
+  "captured_rule_executed": false,
+  "task028_synthetic_inputs_prepared": false,
+  "execution_approval_activated": false,
+  "provider_call_performed": false,
+  "api_key_use": false,
+  "report_hash": "0566444b645aee8e3d8ab33ae3e3c635b287694699a464780ae55ecc349e45f6"
+}

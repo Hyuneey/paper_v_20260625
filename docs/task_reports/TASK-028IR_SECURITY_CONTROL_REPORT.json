@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028ir_security_control_report",
+  "task_id": "TASK-028IR",
+  "created_at": "2026-07-14T09:10:02.7120584+09:00",
+  "config_hash": "0335dfecde8f1857bb9be83b6b6b73eafe9b83d15ed6e8bbc780e6ec2e153724",
+  "task_status": "manual_user_action_required",
+  "runtime_daemon_healthy": false,
+  "harmless_container_test": {
+    "attempted": false,
+    "image": "hello-world",
+    "status": "not_run_waiting_for_researcher_installer_action",
+    "research_mounts_used": false,
+    "credentials_mounted": false
+  },
+  "controls": [
+    {
+      "control": "network_none",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "read_only_root_filesystem",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "cap_drop_all",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "no_new_privileges",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "pid_limit",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "cpu_limit",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "memory_limit",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "read_only_bind_mount",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "bounded_writable_output_mount",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    },
+    {
+      "control": "tmpfs_noexec_nosuid",
+      "supported": false,
+      "verification_status": "not_verified_waiting_for_runtime"
+    }
+  ],
+  "required_security_controls_supported": false,
+  "task028_resume_allowed": false,
+  "captured_rule_execution_allowed": false,
+  "captured_rule_accessed": false,
+  "captured_rule_executed": false,
+  "provider_call_performed": false,
+  "report_hash": "3bda0a1d96e1179de6732077d6f841842788ff4a34050b5699f99a9f9e7c03ae"
+}

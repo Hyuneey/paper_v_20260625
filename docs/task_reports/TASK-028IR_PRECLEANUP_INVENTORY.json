@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028ir_precleanup_inventory",
+  "task_id": "TASK-028IR",
+  "created_at": "2026-07-14T08:56:49.7314721+09:00",
+  "config_hash": "0335dfecde8f1857bb9be83b6b6b73eafe9b83d15ed6e8bbc780e6ec2e153724",
+  "inventory_completed_before_cleanup": true,
+  "host_changes_performed_before_report": false,
+  "decision": {
+    "decision_id": "DEC-032",
+    "selected_option": "bounded_docker_cleanup_and_one_retry",
+    "docker_retry_count_allowed": 1,
+    "podman_fallback_status": "deferred"
+  },
+  "lineage": {
+    "blocked_task028i_commit": "6d6447a513043296fd01360fdd55d5d67f601bb8",
+    "captured_rule_hash_recorded_only": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659"
+  },
+  "processes": {
+    "docker_or_desktop_running": false,
+    "installer_running": false
+  },
+  "commands": {
+    "docker_available": false,
+    "podman_available": false
+  },
+  "windows_registration": {
+    "docker_services": [],
+    "uninstall_registration": {
+      "present": true,
+      "scope": "current_user",
+      "display_name": "Docker Desktop",
+      "display_version": "4.82.0",
+      "install_location_label": "local_program_docker_desktop",
+      "uninstall_action": "Docker Desktop Installer.exe uninstall"
+    },
+    "start_menu_shortcuts": [],
+    "restart_pending": false
+  },
+  "wsl": {
+    "docker_related_distributions": [],
+    "unrelated_distributions_to_preserve": [
+      "Ubuntu-22.04"
+    ]
+  },
+  "paths": [
+    {
+      "label": "local_program_docker_desktop",
+      "exists": true,
+      "created_at": "2026-07-14T08:28:30+09:00",
+      "file_count": 189,
+      "aggregate_size_bytes": 3545862580,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": true,
+      "safe_to_remove": true
+    },
+    {
+      "label": "local_docker_state",
+      "exists": true,
+      "created_at": "2026-07-14T08:28:11+09:00",
+      "file_count": 3,
+      "aggregate_size_bytes": 10155,
+      "observed_content": "installer_logs_only",
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": true,
+      "safe_to_remove": true
+    },
+    {
+      "label": "roaming_docker_state",
+      "exists": true,
+      "created_at": "2026-07-14T08:28:12+09:00",
+      "file_count": 1,
+      "aggregate_size_bytes": 36,
+      "observed_content": "track_id_only",
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": true,
+      "safe_to_remove": true
+    },
+    {
+      "label": "roaming_docker_desktop_state",
+      "exists": false,
+      "file_count": 0,
+      "aggregate_size_bytes": 0,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": false,
+      "safe_to_remove": false
+    },
+    {
+      "label": "user_docker_config",
+      "exists": true,
+      "created_at": "2026-07-14T08:28:30+09:00",
+      "file_count": 15,
+      "aggregate_size_bytes": 676557136,
+      "observed_top_level_entries": [
+        "cli-plugins",
+        "modules"
+      ],
+      "config_json_present": false,
+      "contexts_present": false,
+      "credential_files_present": false,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": true,
+      "safe_to_remove": true
+    },
+    {
+      "label": "programdata_docker",
+      "exists": false,
+      "file_count": 0,
+      "aggregate_size_bytes": 0,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": false,
+      "safe_to_remove": false
+    },
+    {
+      "label": "programdata_docker_desktop",
+      "exists": false,
+      "file_count": 0,
+      "aggregate_size_bytes": 0,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": false,
+      "safe_to_remove": false
+    },
+    {
+      "label": "program_files_docker",
+      "exists": false,
+      "file_count": 0,
+      "aggregate_size_bytes": 0,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": false,
+      "safe_to_remove": false
+    },
+    {
+      "label": "task028i_installer_temp",
+      "exists": true,
+      "created_at": "2026-07-14T08:20:13+09:00",
+      "file_count": 1,
+      "aggregate_size_bytes": 638124464,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": true,
+      "safe_to_remove": true,
+      "preserve_until_retry": true
+    },
+    {
+      "label": "docker_installer_temp",
+      "exists": true,
+      "created_at": "2026-07-14T08:28:11+09:00",
+      "file_count": 3,
+      "aggregate_size_bytes": 624140198,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": true,
+      "safe_to_remove": true
+    },
+    {
+      "label": "docker_uninstall_temp",
+      "exists": false,
+      "file_count": 0,
+      "aggregate_size_bytes": 0,
+      "existed_before_task028i": false,
+      "created_or_modified_by_failed_attempt": false,
+      "safe_to_remove": true,
+      "note": "This path was created later by the official TASK-028IR uninstall attempt and is recorded in the cleanup report."
+    }
+  ],
+  "verified_files": {
+    "official_downloaded_installer": {
+      "byte_size": 638124464,
+      "sha256": "a5b5837542f2f57fadbb09db90a60c84f8efc0a65f8d6dcd2e5b9fca3a2b87e6",
+      "authenticode_status": "Valid",
+      "signer_subject": "Docker Inc."
+    },
+    "installed_official_uninstaller": {
+      "byte_size": 6872496,
+      "sha256": "2e97b26ab716c0645ae6268f96935afbe63ec70fdeb2c5b1f60de82f21600655",
+      "authenticode_status": "Valid",
+      "signer_subject": "Docker Inc."
+    },
+    "installed_app_json_sha256": "e9df720cbd948a7809aaf03457cf1ef16a7003f20c9c4b52d3679f988f73ce64",
+    "installed_uninstaller_config_sha256": "a3926cc02ad5f513f2820af65b362278b435af6eadcb7093f0f3c1044047160a",
+    "installed_service_config_sha256": "d6a60f4d1591e30000b888adac7cfcf2b5d3b2cbcb014fb548a07f321249d794",
+    "roaming_track_id_sha256": "f437ba5a4fd58129479a91cced44c2ec557329f3fae52900d4c5381ac3230012"
+  },
+  "prior_user_data_assessment": {
+    "prior_installation_detected": false,
+    "containers_detected": false,
+    "images_detected": false,
+    "volumes_detected": false,
+    "contexts_detected": false,
+    "credentials_detected": false,
+    "manual_review_required_before_cleanup": false
+  },
+  "planned_deletion_manifest": [
+    {
+      "label": "local_program_docker_desktop",
+      "file_count_before_uninstall": 189,
+      "size_bytes_before_uninstall": 3545862580,
+      "cleanup_order": "official_uninstaller_first_then_verified_residual_only"
+    },
+    {
+      "label": "local_docker_state",
+      "file_count_before_uninstall": 3,
+      "size_bytes_before_uninstall": 10155,
+      "cleanup_order": "verified_residual_only"
+    },
+    {
+      "label": "roaming_docker_state",
+      "file_count_before_uninstall": 1,
+      "size_bytes_before_uninstall": 36,
+      "cleanup_order": "verified_residual_only"
+    },
+    {
+      "label": "user_docker_config",
+      "file_count_before_uninstall": 15,
+      "size_bytes_before_uninstall": 676557136,
+      "cleanup_order": "verified_residual_only"
+    },
+    {
+      "label": "docker_installer_temp",
+      "file_count_before_uninstall": 3,
+      "size_bytes_before_uninstall": 624140198,
+      "cleanup_order": "verified_residual_only"
+    },
+    {
+      "label": "docker_uninstall_temp",
+      "file_count_before_uninstall": 0,
+      "size_bytes_before_uninstall": 0,
+      "cleanup_order": "remove_only_if_created_by_official_uninstaller"
+    }
+  ],
+  "preserved_for_verified_retry": [
+    "task028i_installer_temp"
+  ],
+  "excluded_from_cleanup": [
+    "Ubuntu-22.04",
+    "research_repository",
+    "captured_rule_artifacts",
+    "KPI_data",
+    "SWaT_data",
+    "provider_artifacts",
+    "user_credentials",
+    "unrelated_WSL_and_Windows_state"
+  ],
+  "captured_rule_accessed": false,
+  "captured_rule_executed": false,
+  "task028_synthetic_inputs_prepared": false,
+  "execution_approval_activated": false,
+  "provider_call_performed": false,
+  "report_hash": "c8e3f282360fa3cab3ce4ccab243b0f92325c2c83474337741d419794eb1d9df"
+}

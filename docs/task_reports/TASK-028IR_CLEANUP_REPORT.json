@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task028ir_cleanup_report",
+  "task_id": "TASK-028IR",
+  "created_at": "2026-07-14T09:04:30+09:00",
+  "decision_id": "DEC-032",
+  "config_hash": "0335dfecde8f1857bb9be83b6b6b73eafe9b83d15ed6e8bbc780e6ec2e153724",
+  "cleanup_status": "completed_bounded_cleanup",
+  "official_uninstaller_attempt": {
+    "attempt_count": 1,
+    "signature_status": "Valid",
+    "signer_subject": "Docker Inc.",
+    "sha256": "2e97b26ab716c0645ae6268f96935afbe63ec70fdeb2c5b1f60de82f21600655",
+    "arguments": [
+      "uninstall"
+    ],
+    "undocumented_arguments_supplied_by_task": false,
+    "started_at": "2026-07-14T08:58:49.8741468+09:00",
+    "ended_at": "2026-07-14T09:03:50.1775948+09:00",
+    "duration_seconds": 300.303,
+    "timeout_seconds": 300,
+    "exited_within_timeout": false,
+    "exit_code": null,
+    "initial_processes_stopped_after_timeout": 1,
+    "relaunch_process": {
+      "created_by_official_uninstaller": true,
+      "path_scope": "docker_uninstall_temp",
+      "command_category": "uninstall_relaunch_from_temp",
+      "stopped_after_scope_verification": true
+    }
+  },
+  "post_uninstaller_state": {
+    "docker_process_count": 0,
+    "uninstall_registration_present": false,
+    "docker_service_count": 0,
+    "restart_pending": false,
+    "prior_user_data_detected": false
+  },
+  "deletion_manifest_written_before_deletion": true,
+  "deletion_manifest": [
+    {
+      "label": "local_program_docker_desktop",
+      "file_count": 4,
+      "size_bytes": 8750784,
+      "provenance": "TASK-028I partial installation residual",
+      "approved_for_removal": true
+    },
+    {
+      "label": "local_docker_state",
+      "file_count": 6,
+      "size_bytes": 22246,
+      "provenance": "TASK-028I and official uninstaller logs only",
+      "approved_for_removal": true
+    },
+    {
+      "label": "roaming_docker_state",
+      "file_count": 1,
+      "size_bytes": 36,
+      "provenance": "TASK-028I track identifier only",
+      "approved_for_removal": true
+    },
+    {
+      "label": "user_docker_config",
+      "file_count": 0,
+      "size_bytes": 0,
+      "provenance": "TASK-028I empty cli-plugins and modules directories",
+      "approved_for_removal": true
+    },
+    {
+      "label": "docker_installer_temp",
+      "file_count": 3,
+      "size_bytes": 624140198,
+      "provenance": "TASK-028I installer extraction temporary files",
+      "approved_for_removal": true,
+      "executable_hashes": [
+        "d961a4b32b406a57d46e8c3074f660be80864dea7e957977f46b4bc14b13ca6d",
+        "2e97b26ab716c0645ae6268f96935afbe63ec70fdeb2c5b1f60de82f21600655"
+      ]
+    },
+    {
+      "label": "docker_uninstall_temp",
+      "file_count": 1,
+      "size_bytes": 6872496,
+      "provenance": "official TASK-028IR uninstaller relaunch temporary file",
+      "approved_for_removal": true,
+      "executable_hashes": [
+        "2e97b26ab716c0645ae6268f96935afbe63ec70fdeb2c5b1f60de82f21600655"
+      ]
+    }
+  ],
+  "preserved_paths": [
+    {
+      "label": "task028i_installer_temp",
+      "reason": "verified official installer retained for the single clean retry"
+    },
+    {
+      "label": "Ubuntu-22.04",
+      "reason": "unrelated pre-existing WSL distribution"
+    }
+  ],
+  "removed_paths": [
+    "local_program_docker_desktop",
+    "local_docker_state",
+    "roaming_docker_state",
+    "user_docker_config",
+    "docker_installer_temp",
+    "docker_uninstall_temp"
+  ],
+  "post_cleanup_verification": {
+    "all_manifested_residual_paths_absent": true,
+    "verified_retry_installer_preserved": true,
+    "retry_installer_sha256": "a5b5837542f2f57fadbb09db90a60c84f8efc0a65f8d6dcd2e5b9fca3a2b87e6",
+    "retry_installer_signature_status": "Valid",
+    "uninstall_registration_present": false,
+    "docker_process_count": 0,
+    "docker_command_available": false,
+    "restart_pending": false,
+    "completed_at": "2026-07-14T09:07:49.5932339+09:00"
+  },
+  "cleanup_executed": true,
+  "captured_rule_accessed": false,
+  "captured_rule_executed": false,
+  "task028_synthetic_inputs_prepared": false,
+  "execution_approval_activated": false,
+  "provider_call_performed": false,
+  "report_hash": "17275b68cf9013711a023fdf09550771ad10587b04943609d2e5f2fa3574a65c"
+}
