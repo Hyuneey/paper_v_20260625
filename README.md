@@ -212,3 +212,18 @@ ARGOS metrics are supplementary validation diagnostics. E3 remains `not_run`,
 `sealed_not_accessed`, and `not_authorized`. Neither stage is a benchmark or
 thesis-performance claim. See
 `docs/argos_reproduction/ARGOS_E2_KPI_VALIDATION_PROTOCOL.md`.
+
+## ARGOS E2X-G expanded generation cohort
+
+TASK-035A implements the pre-registered E2X-G preparation and execution gate:
+10 eligible KPI series, five deterministic anomaly-anchored generation chunks
+per series, and two identical one-shot provider requests per anchor. The
+implementation freezes all 100 requests before network access, consumes each
+slot at most once, performs deterministic static checks, and permits only
+rootless-container runtime-contract checks on generation values.
+
+TASK-035A does not compute KPI validation performance. Inner selection,
+outer validation, ensemble evaluation, detector/fusion experiments, and sealed
+test access remain deferred or unauthorized. Raw prompts, responses, rules,
+arrays, and outputs remain ignored private artifacts. See
+`docs/argos_reproduction/EXPANDED_KPI_COHORT_PROTOCOL.md`.

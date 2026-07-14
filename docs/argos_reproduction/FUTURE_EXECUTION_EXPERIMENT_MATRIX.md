@@ -10,6 +10,9 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 |---|---|---|---|---|---|---|---|---|
 | E1 Rule candidate runtime smoke (`executed`, TASK-033) | Synthetic non-KPI only | Shape, binary domain, exceptions | Fixed in fixture manifest | `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659` | Not applicable | None | None | Container/runtime plumbing only; `passed_runtime_smoke` |
 | E2 Rule-only KPI validation (`executed`, TASK-034) | KPI validation | Prediction-label artifact; PA-free diagnostics plus separately labeled paper-faithful metrics | Deterministic frozen rule | `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659` | Not applicable | Validation only | None; test sealed | `passed_validation_feasibility`; validation feasibility only |
+| E2X-G Expanded generation cohort (`approved`, TASK-035A) | KPI generation prefixes only | Response, static, runtime-contract, yield, and diversity statuses; no performance metric | Provider seed unsupported | 100 frozen slots | Not applicable | Generation labels in pre-registered anchors only | None | Cohort construction and runtime plumbing only |
+| E2X-S/V Inner selection and outer validation (`not_run`) | KPI inner then outer | Requires a later frozen selection/evaluation protocol | Required before run | TASK-035A cohort hashes | Not applicable | Inner only | Outer only | Deferred; no claim authorized |
+| E2X-T Expanded sealed test (`not_run`, sealed, unauthorized) | Sealed KPI test | Not approved | Not approved | Not frozen for test | Not applicable | Frozen future selection only | Sealed one-way | No claim authorized |
 | E3 Rule-only KPI test (`not_run`, sealed, unauthorized) | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same deterministic rule and E2 freeze | E2 frozen hash | Not applicable | E2 validation freeze record | Sealed test, one-way | Rule-only result for the declared series only |
 | E4 Detector-only baseline | Same KPI train/validation/test protocol | Frozen detector prediction labels | Required before detector run | Not applicable | Required before fusion | Train/validation only | Same sealed test | Detector baseline under the frozen protocol |
 | E5 FN fusion | Validation then sealed test | `max(detector, rule)` predictions and predeclared metrics | Inherited frozen artifacts | Required | Required | Validation only | Same sealed test | FN-composition result, no universal superiority claim |
@@ -42,3 +45,7 @@ feasibility gate with deterministic fresh-container predictions. The direct
 metrics are PA-free validation diagnostics; ARGOS label-aware metrics are
 supplementary validation diagnostics. E3 remains sealed, unexecuted, and
 unauthorized.
+
+TASK-035A authorizes E2X-G only. E2X-S and E2X-V remain unexecuted, E2X-T and
+E3 remain sealed and unauthorized, and E4 remains deferred until a separate
+review of E2X-S/V. TASK-035A reports no KPI validation performance.

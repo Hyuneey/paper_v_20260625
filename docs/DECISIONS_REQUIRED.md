@@ -1296,3 +1296,32 @@
   `not_authorized`.
 - Frozen validation Event-F1-PA evaluator threshold:
   `2.6666666666666665`, with `smooth_labels(window_size=3)`.
+
+### DEC-054: Expanded ARGOS KPI rule-generation cohort
+
+- Status: resolved_pre_registered
+- Owner: researcher
+- Experiment: E2X-G
+- Frozen design: 10 eligible KPI series, five deterministic anomaly anchors
+  per KPI, two independent one-shot identical requests per anchor, 100 slots.
+- Agent path: DetectionAgent V3 prompt only; previous-rule history absent.
+- RepairAgent, ReviewAgent, mutation, response-based prompt changes, inner
+  selection, outer validation, sealed test, and performance metrics are
+  prohibited.
+- Allowed claim is limited to generation and audit of the pre-registered
+  multi-KPI, multi-anchor, replicated one-shot rule cohort.
+
+### DEC-055: Bounded TASK-035A provider execution
+
+- Status: resolved_exact_slot_budget
+- Owner: researcher
+- Provider/model: OpenAI Responses API / `gpt-5.6-luna`
+- Maximum requests: 100 total and one per frozen slot.
+- Maximum tokens: 20,000 input and 2,000 output per call; declared maxima of
+  2,000,000 input and 200,000 output tokens in total.
+- Temperature and seed are not sent.
+- Every attempt consumes its slot after a private receipt is persisted.
+- Automatic retry, manual replacement, provider/model switching, repair,
+  review, and response-driven prompt tuning are prohibited.
+- A global credential, permission, model, quota, billing, or provider-wide
+  block stops the sequence and leaves remaining slots explicitly unattempted.

@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-035A",
+  "experiment_family": "E2X",
+  "experiment_name": "expanded_multi_kpi_multi_rule_validation_preparation",
+  "frozen_lineage": {
+    "task024_kpi_source_commit": "90a5c7a",
+    "task026q_one_shot_commit": "6558f13605e0150933730950f5b699fcce417708",
+    "task029_argos_audit_commit": "b773b528872835e11641498d82acce1daf18a871",
+    "task033_container_runtime_commit": "175e6bf4bfaf88d85d1dc4f47a83f1ab928f9a1e",
+    "task034_validation_result_commit": "f59cb953039b9b85a6217337266bf04e34e11b83",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "kpi_source_commit": "d06bda15d511d930cbf4e6a6de14bd94d790f0f2"
+  },
+  "source": {
+    "private_train_csv": "artifacts/private_argos_reproduction/task024/extracted/phase2_train.csv",
+    "allowed_package": "phase2_train.csv.zip",
+    "ground_truth_access_allowed": false,
+    "competition_test_access_allowed": false
+  },
+  "design": {
+    "kpi_count": 10,
+    "anchors_per_kpi": 5,
+    "replicates_per_anchor": 2,
+    "total_slots": 100,
+    "chunk_size": 1000
+  },
+  "eligibility": {
+    "minimum_total_rows": 10000,
+    "generation_minimum_events": 5,
+    "inner_minimum_events": 1,
+    "outer_minimum_events": 1
+  },
+  "provider": {
+    "provider": "openai_responses",
+    "model": "gpt-5.6-luna",
+    "approval_path": "configs/argos_reproduction/task035a_provider_approval.json",
+    "timeout_seconds": 180,
+    "inter_call_delay_seconds": 1.0,
+    "automatic_retry": false,
+    "temperature_parameter_sent": false,
+    "provider_seed_sent": false
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+    "output_limit_bytes": 65536
+  },
+  "adequacy": {
+    "minimum_provider_responses": 80,
+    "minimum_executable_rules_total": 70,
+    "minimum_executable_rules_per_kpi": 5,
+    "minimum_kpis_with_at_least_7_executable_rules": 8,
+    "minimum_distinct_rule_hashes_per_kpi": 3
+  },
+  "private_root": "artifacts/private_argos_reproduction/task035a",
+  "reports": {
+    "cohort": "docs/task_reports/TASK-035A_KPI_COHORT_MANIFEST.json",
+    "anchors": "docs/task_reports/TASK-035A_ANCHOR_MANIFEST.json",
+    "requests": "docs/task_reports/TASK-035A_REQUEST_MANIFEST.json",
+    "provider": "docs/task_reports/TASK-035A_PROVIDER_REPORT.json",
+    "static": "docs/task_reports/TASK-035A_STATIC_AUDIT_REPORT.json",
+    "runtime": "docs/task_reports/TASK-035A_RUNTIME_REPORT.json",
+    "adequacy": "docs/task_reports/TASK-035A_COHORT_ADEQUACY_REPORT.json"
+  },
+  "boundaries": {
+    "kpi_validation_performance": false,
+    "inner_selection": false,
+    "outer_validation": false,
+    "sealed_test": false,
+    "repair_review_calls": false,
+    "detector_fusion": false
+  }
+}

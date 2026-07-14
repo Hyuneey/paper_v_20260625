@@ -323,3 +323,23 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   - uses PyG `MessagePassing` for mean neighbor aggregation,
   - keeps learned embedding export and masked candidate-edge export under project-owned schemas,
   - does not copy upstream modules.
+
+## TASK-035A upstream alignment
+
+- ARGOS reference commit:
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1` (MIT, read-only).
+- Prompt source: `agent/prompts/detection.py`,
+  `DETECTION_AGENT_V3_DEFAULT_PROMPT_TEMPLATE`, and
+  `build_detection_agent_v3_prompt` semantics.
+- Sample serialization source: `agent/detection_agent.py`,
+  `curr_df.to_string(index=False, header=False)`.
+- Intentional deviation: deterministic pre-registered anomaly-anchor coverage
+  replaces seeded random chunk selection; all requests are independent first
+  iterations without prior rule history, RepairAgent, or ReviewAgent.
+- KPI source repository: `https://github.com/NetManAIOps/KPI-Anomaly-Detection`
+  at `d06bda15d511d930cbf4e6a6de14bd94d790f0f2`.
+- TASK-035A permits only the previously acquired public
+  `Finals_dataset/phase2_train.csv.zip` package. Ground-truth and competition
+  test packages are prohibited.
+- Code copied: none. Prompt text is reconstructed from the pinned read-only
+  source by the existing AST-based fidelity helper.
