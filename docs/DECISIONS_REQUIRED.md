@@ -1222,3 +1222,41 @@
   adapter-generated.
 - Raw source/target arrays, dataset rows, provider prompts, generated Python,
   and host-private paths are prohibited.
+
+### DEC-048: Full-experiment container runtime re-entry
+
+- Status: resolved_bounded_reentry
+- Owner: researcher
+- Previous TASK-028 resume: prohibited
+- Docker Desktop retry: prohibited
+- Selected runtime: WSL-native rootless Podman
+- Selected runtime version: `4.9.3`
+- WSL distribution: dedicated Ubuntu 24.04.4 LTS, WSL 2
+- WSL-native Docker Engine: not installed or selected
+- Exactly one runtime selected: true
+- Host generated-rule execution: prohibited
+- Synthetic harmless-container smoke before rule access: required and passed
+- Rootless, Linux-container, network-none, read-only-root, capability,
+  no-new-privileges, CPU, memory, PID, timeout, and bounded-tmpfs controls were
+  verified before the private rule was accessed.
+- This is a new experiment-phase authorization and does not reopen or complete
+  TASK-028.
+
+### DEC-049: ARGOS E1 captured-rule runtime smoke
+
+- Status: resolved_synthetic_container_only
+- Owner: researcher
+- Frozen rule SHA-256:
+  `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659`
+- Allowed input: repository-owned synthetic non-KPI arrays only
+- Execution boundary: selected rootless Podman runtime only
+- Host execution: prohibited
+- In-container network: disabled
+- Rule modification or regeneration: prohibited
+- KPI, SWaT, WADI, and Kaggle access: prohibited
+- Provider, RepairAgent, ReviewAgent, detector, and fusion execution: prohibited
+- Performance metrics and benchmark claims: prohibited
+- E1 result: `passed_runtime_smoke` for three required non-empty fixtures; the
+  empty edge-case fixture also returned a valid deterministic empty output.
+- Allowed claim: the frozen rule loaded and satisfied the declared runtime
+  shape/domain/determinism contract on predeclared synthetic inputs.

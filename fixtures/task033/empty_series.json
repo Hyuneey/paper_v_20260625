@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "empty_series",
+  "input_kind": "synthetic_non_kpi",
+  "derivation": "repository_owned_empty_edge_case",
+  "shape": [
+    0,
+    1
+  ],
+  "values": []
+}

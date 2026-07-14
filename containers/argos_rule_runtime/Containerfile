@@ -1,0 +1,13 @@
+FROM docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317
+
+COPY requirements.lock /tmp/requirements.lock
+RUN python -m pip install --no-cache-dir --require-hashes -r /tmp/requirements.lock \
+    && rm -f /tmp/requirements.lock \
+    && groupadd --gid 65532 task033 \
+    && useradd --uid 65532 --gid 65532 --no-create-home --shell /usr/sbin/nologin task033
+
+WORKDIR /runtime
+COPY --chown=65532:65532 container_entrypoint.py /runtime/container_entrypoint.py
+
+USER 65532:65532
+ENTRYPOINT ["python", "/runtime/container_entrypoint.py"]

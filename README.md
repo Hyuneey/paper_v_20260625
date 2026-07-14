@@ -181,3 +181,19 @@ This does not establish real dataset execution, learned graph quality,
 rule-generation quality, calibration validity, detection performance,
 explanation usefulness, complete method implementation, or thesis completion.
 See `docs/method/SYNTHETIC_DELAYED_RESPONSE_VERTICAL_SLICE.md`.
+
+## ARGOS E1 isolated runtime smoke
+
+TASK-033 re-enters the deferred container track through a new WSL-native
+rootless Podman decision; it does not resume TASK-028 or retry Docker Desktop.
+One frozen captured ARGOS rule was executed only inside network-disabled,
+read-only, resource-bounded Linux containers against four repository-owned
+synthetic non-KPI fixtures.
+
+The three required non-empty fixtures satisfied the output length, finite
+binary-domain, and fresh-container replay checks; the empty diagnostic fixture
+also returned a deterministic empty output. This establishes container/runtime
+plumbing only. It does not establish anomaly-detection performance, KPI or SWaT
+behavior, RepairAgent or ReviewAgent effects, detector fusion, benchmark
+reproduction, or thesis results. See
+`docs/argos_reproduction/ARGOS_E1_RUNTIME_PROTOCOL.md`.

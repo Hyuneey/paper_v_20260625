@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task033_environment_report",
+  "task_id": "TASK-033",
+  "created_on": "2026-07-14",
+  "execution_base_commit": "7943a8fd35f528725fe06cad3d2b2abfdee85346",
+  "task_status": "completed_runtime_ready",
+  "statement": "TASK-033 uses a new WSL-native rootless Podman track. Docker Desktop was not retried and TASK-028 was not resumed.",
+  "runtime_selection": {
+    "selected": "wsl_native_rootless_podman",
+    "exactly_one_runtime_selected": true,
+    "docker_desktop_retry": false,
+    "wsl_native_docker_engine": {
+      "selected": false,
+      "installed_for_task": false,
+      "reason": "Rootless Podman satisfied the predeclared controls first."
+    },
+    "wsl_native_rootless_podman": {
+      "selected": true,
+      "version": "4.9.3",
+      "package": "podman 4.9.3+ds1-1ubuntu0.2",
+      "source": "Ubuntu 24.04 official archive packages",
+      "rootless": true,
+      "linux_containers": true,
+      "cgroup_manager": "systemd",
+      "cgroup_version": "v2",
+      "oci_runtime": "crun 1.14.1"
+    }
+  },
+  "wsl_environment": {
+    "distribution": "UbuntuTask033Local",
+    "distribution_source": "official Ubuntu WSL image",
+    "distribution_source_url": "https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-wsl-amd64.wsl",
+    "distribution_source_sha256": "9b2f7730dc68227dd04a9f3e5eab86ad85caf556b8606ad94f1f29ff5c4fd3f5",
+    "distribution_source_size_bytes": 391541571,
+    "os": "Ubuntu 24.04.4 LTS",
+    "architecture": "x86_64",
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "wsl_version": "2.6.3.0",
+    "wsl_generation": 2
+  },
+  "runtime_packages": {
+    "podman": "4.9.3+ds1-1ubuntu0.2",
+    "crun": "1.14.1-1",
+    "slirp4netns": "1.2.1-1build2",
+    "fuse-overlayfs": "1.13-1",
+    "uidmap": "1:4.13+dfsg1-4ubuntu3.2"
+  },
+  "rootless_configuration": {
+    "user": "task033",
+    "uid": 1000,
+    "subuid_range": "100000:65536",
+    "subgid_range": "100000:65536",
+    "user_service_active": true,
+    "seccomp_enabled": true,
+    "container_socket_exposed": false
+  },
+  "image": {
+    "base_reference": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "base_digest": "sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "built_reference": "localhost/paperworks-task033-argos-rule-runtime:1.0.0",
+    "built_image_id": "02a2b4397084734af5d26273f710e7a56d50b053ab2a50c30716f1f78d98d6de",
+    "built_image_digest": "sha256:804b8062e8fadf2607e5f09c9b52a4ef77284164316500ab805d652a722e5751",
+    "configured_user": "65532:65532",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4",
+    "numpy_wheel_sha256": "666dbfb6ec68962c033a450943ded891bed2d54e6755e35e5835d63f4f6931d5",
+    "containerfile_sha256": "7f370c5317999275971d2a6625791fc869254582212f954d541f9b1d09cf836a",
+    "requirements_sha256": "d6d0ad27c9c211a11d68337a73d7f4d7725ddf0de1ff5c194ae5fe40482ebf6b",
+    "argos_repository_copied": false,
+    "captured_rule_in_image": false
+  },
+  "harmless_isolation_smoke": {
+    "status": "passed",
+    "probe_command_hash": "06fc993aea6ccacf04fb016dd96ca3c6cb80625ba10fe1709543cb0d4e7cffe8",
+    "timeout_probe_command_hash": "0d7696bab2befe1e9004ea36acf03233e8500434932830f0efb2a3e358f4cfb9",
+    "network_none_verified": true,
+    "visible_network_interfaces": [
+      "lo"
+    ],
+    "non_root_uid_verified": 65532,
+    "read_only_root_verified": true,
+    "cpu_limit_verified": true,
+    "memory_limit_verified": true,
+    "process_limit_verified": true,
+    "timeout_wait_seconds": 2,
+    "timeout_verified": true,
+    "bounded_cleanup_verified": true,
+    "research_mounts_present": false,
+    "captured_rule_accessed_during_preflight": false
+  },
+  "security_controls": {
+    "network_none": true,
+    "read_only_root": true,
+    "cap_drop_all": true,
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "tmpfs_noexec_nosuid": true,
+    "single_file_read_only_rule_mount": true,
+    "single_file_read_only_fixture_mount": true,
+    "bounded_ephemeral_output": true,
+    "main_repository_mount": false,
+    "host_home_mount": false,
+    "container_socket_mount": false,
+    "credential_mount": false,
+    "host_environment_propagation": false
+  },
+  "boundaries": {
+    "task028_resumed": false,
+    "docker_desktop_retried": false,
+    "host_rule_execution": false,
+    "provider_calls": false,
+    "dataset_access": false,
+    "captured_rule_committed": false,
+    "raw_output_arrays_committed": false
+  }
+}
