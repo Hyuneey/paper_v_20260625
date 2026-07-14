@@ -1,0 +1,27 @@
+{
+  "source_schema_identifier": "minimal_rule_schema_v1",
+  "source_artifact_type": "rule_candidate",
+  "assessment_context": {
+    "source_type": "binary_actuator",
+    "target_type": "continuous_sensor"
+  },
+  "payload": {
+    "schema_version": "1.0",
+    "rule_family": "changed_to_increase_within_response_missing",
+    "source": "A1",
+    "target": "S1",
+    "relation_type": "binary_actuator_to_continuous_sensor",
+    "trigger_predicate": {
+      "predicate": "changed_to",
+      "variable": "A2"
+    },
+    "response_predicate": {
+      "predicate": "response_missing",
+      "expected_response": {
+        "predicate": "increase_within",
+        "variable": "S1"
+      }
+    },
+    "calibration_references": {}
+  }
+}

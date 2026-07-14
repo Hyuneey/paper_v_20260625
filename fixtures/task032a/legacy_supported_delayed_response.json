@@ -1,0 +1,69 @@
+{
+  "source_schema_identifier": "minimal_rule_schema_v1",
+  "source_artifact_type": "rule_candidate",
+  "assessment_context": {
+    "source_type": "binary_actuator",
+    "target_type": "continuous_sensor"
+  },
+  "payload": {
+    "rule_id": "RULE-LEGACY-SYNTHETIC-001",
+    "schema_version": "1.0",
+    "rule_family": "changed_to_increase_within_response_missing",
+    "source": "A1",
+    "target": "S1",
+    "relation_type": "binary_actuator_to_continuous_sensor",
+    "trigger_predicate": {
+      "predicate": "changed_to",
+      "variable": "A1",
+      "from_state": 0,
+      "to_state": 1
+    },
+    "response_predicate": {
+      "predicate": "response_missing",
+      "expected_response": {
+        "predicate": "increase_within",
+        "variable": "S1",
+        "min_magnitude": {
+          "parameter_name": "min_response_magnitude",
+          "calibration_record_id": "1111111111111111111111111111111111111111111111111111111111111111",
+          "field_name": "value",
+          "resolved_value": 0.5,
+          "unit": "units"
+        },
+        "max_delay_seconds": {
+          "parameter_name": "max_response_delay_seconds",
+          "calibration_record_id": "2222222222222222222222222222222222222222222222222222222222222222",
+          "field_name": "value",
+          "resolved_value": 5,
+          "unit": "seconds"
+        }
+      }
+    },
+    "calibration_references": {
+      "max_response_delay_seconds": {
+        "parameter_name": "max_response_delay_seconds",
+        "calibration_record_id": "2222222222222222222222222222222222222222222222222222222222222222",
+        "field_name": "value",
+        "resolved_value": 5,
+        "unit": "seconds"
+      },
+      "min_response_magnitude": {
+        "parameter_name": "min_response_magnitude",
+        "calibration_record_id": "1111111111111111111111111111111111111111111111111111111111111111",
+        "field_name": "value",
+        "resolved_value": 0.5,
+        "unit": "units"
+      }
+    },
+    "candidate_pair_artifact_id": "3333333333333333333333333333333333333333333333333333333333333333",
+    "metadata_artifact_id": "4444444444444444444444444444444444444444444444444444444444444444",
+    "planner_provenance": {
+      "planner_type": "deterministic_template",
+      "planner_version": "task032a-synthetic",
+      "source_artifact_ids": [
+        "5555555555555555555555555555555555555555555555555555555555555555"
+      ]
+    },
+    "description_template": "Synthetic delayed response fixture"
+  }
+}

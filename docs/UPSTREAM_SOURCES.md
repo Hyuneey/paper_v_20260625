@@ -221,6 +221,19 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - TASK-030 accessed no upstream checkout, captured rule, provider, detector,
   KPI, SWaT, WADI, or Kaggle data.
 
+### TASK-032A schema validation dependency
+
+- Package source: https://github.com/python-jsonschema/jsonschema
+- Direct package: `jsonschema[format-nongpl]==4.26.0`
+- License: MIT
+- Validator: `jsonschema.validators.Draft202012Validator`
+- Role: structural validation of the seven canonical TASK-030 schemas.
+- Format validation: explicitly enabled for `date` and `date-time`.
+- Canonical schema source: existing files under `schemas/`; no schema copy was
+  created and no TASK-030 schema was modified.
+- Code copied or adapted: none; the project uses the public package API.
+- Semantic checks remain project-owned and are not implemented by TASK-032A.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN

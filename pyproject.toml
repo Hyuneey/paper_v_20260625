@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Feasibility-first verified rule construction prototype scaffolding."
 requires-python = ">=3.11"
 dependencies = [
+    "jsonschema[format-nongpl]==4.26.0",
     "torch==2.12.1",
     "torch-geometric==2.8.0",
 ]

@@ -1008,22 +1008,26 @@
 
 ### DEC-035: Production JSON Schema validator
 
-- Status: proposed_not_installed
+- Status: resolved_implemented
 - Owner: researcher
-- Needed before: TASK-032A production schema-registry implementation
-- Recommended option: `python-jsonschema` using
-  `jsonschema.validators.Draft202012Validator`.
+- Approved dependency:
+  - package: `jsonschema`
+  - extra: `format-nongpl`
+  - version: `4.26.0`
+- Validator class: `jsonschema.validators.Draft202012Validator`.
+- Schema meta-validation: enabled through `check_schema()`.
+- Format validation: enabled and fail-closed for `date` and `date-time`.
 - Structural role: validate TASK-030 JSON artifacts against Draft 2020-12
   schemas.
 - Project-owned semantic role remains mandatory for cross-artifact references,
   units, graph endpoints, split provenance, relation compatibility, and
   status/hash consistency.
-- Current fixture validator: limited synthetic test helper, not a complete
-  Draft 2020-12 implementation.
-- Current dependency status: `jsonschema` is not declared in `pyproject.toml`;
-  TASK-031 did not install or add it.
-- Approval effect: resolving this decision may authorize a separately scoped
-  TASK-032A dependency and schema-registry change only.
+- Semantic validation owner: paperworks deterministic verifier.
+- Semantic validation status: not implemented by TASK-032A.
+- The TASK-030 fixture validator remains a limited synthetic helper and is not
+  presented as a complete Draft 2020-12 implementation.
+- Implementation boundary: structural registry and reports only; no v1 DSL,
+  semantic verifier, runtime, migration conversion, provider, or dataset work.
 
 ### DEC-036: First TASK-030 contract implementation slice
 
@@ -1041,6 +1045,8 @@
   streaming, free-form expressions, and causal claims.
 - Consequence: this is the direct contract-compatible successor to Phase 1
   `changed_to`, `increase_within`, and `response_missing` semantics.
+- TASK-032A preservation record: relation scope remained frozen; no v1
+  delayed-response object was implemented.
 
 ### DEC-037: Legacy Phase 1 artifact compatibility
 
@@ -1057,3 +1063,6 @@
   `unsupported_legacy_artifact`; partial conversion is prohibited.
 - Synthetic-smoke calibration records cannot be promoted to approved research
   parameters through migration.
+- TASK-032A preservation record: only compatibility assessment was implemented;
+  no target artifact, silent conversion, partial conversion, or parameter
+  promotion occurred.

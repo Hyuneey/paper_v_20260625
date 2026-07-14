@@ -1,0 +1,158 @@
+{
+  "adapter_version": "task032a-assessment-v1",
+  "artifact_type": "task032a_legacy_assessment_report",
+  "assessments": [
+    {
+      "adapter_version": "task032a-assessment-v1",
+      "assessment_id": "d069bc97e98027fc40c0b9103a0c811b7c94c0159dd3872018f0728eac9a22a1",
+      "detected_relation_family": null,
+      "field_mappings": [],
+      "fixture": "fixtures/task032a/legacy_invalid_structure.json",
+      "information_loss": [],
+      "required_external_context": [],
+      "source_artifact_type": "rule_candidate",
+      "source_schema_identifier": "minimal_rule_schema_v1",
+      "source_sha256": "aeba137b0caee8a4d49047c96e6febbc257be3af52300dda167b1427b1d1d23d",
+      "status": "invalid_legacy_artifact",
+      "target_artifact_created": false,
+      "target_artifact_type": "rule_dsl",
+      "target_schema_version": "1.0.0",
+      "unsupported_reasons": [
+        "trigger_variable_contradicts_source"
+      ],
+      "warnings": [
+        "assessment_only_no_conversion_performed"
+      ]
+    },
+    {
+      "adapter_version": "task032a-assessment-v1",
+      "assessment_id": "6deb893a1bcb7ee780e0ee899f94a13c76556c1d1bfc3ee9ffa70a4b758ead44",
+      "detected_relation_family": "delayed_response",
+      "field_mappings": [
+        {
+          "legacy_field": "source",
+          "mapping": "renamed_singleton",
+          "target_field": "source_variables[0]"
+        },
+        {
+          "legacy_field": "target",
+          "mapping": "renamed_singleton",
+          "target_field": "target_variables[0]"
+        },
+        {
+          "legacy_field": "trigger_predicate",
+          "mapping": "typed_mapping_pending",
+          "target_field": "trigger"
+        },
+        {
+          "legacy_field": "response_predicate.expected_response",
+          "mapping": "split_mapping_pending",
+          "target_field": "expected_effect"
+        },
+        {
+          "legacy_field": "response_predicate",
+          "mapping": "renamed_pending",
+          "target_field": "output_semantics.violation_direction"
+        },
+        {
+          "legacy_field": "calibration_references",
+          "mapping": "external_registry_mapping_required",
+          "target_field": "parameter_refs"
+        },
+        {
+          "legacy_field": "candidate_pair_artifact_id",
+          "mapping": "external_context_required",
+          "target_field": "graph_edge_refs"
+        }
+      ],
+      "fixture": "fixtures/task032a/legacy_supported_delayed_response.json",
+      "information_loss": [
+        "legacy_description_template_is_renderer_input_not_v1_rule_semantics",
+        "resolved_legacy_numeric_values_cannot_be_promoted_to_approved_parameters"
+      ],
+      "required_external_context": [
+        "approved_verifier_policy",
+        "dataset_version",
+        "evidence_package_id",
+        "graph_edge_id",
+        "matched_normal_reference_id",
+        "operating_regime_id",
+        "parameter_record_ids"
+      ],
+      "source_artifact_type": "rule_candidate",
+      "source_schema_identifier": "minimal_rule_schema_v1",
+      "source_sha256": "6daa1c583c53fce0b1f907e346e66e7f27cad5659b0249394148cb15b0005eaa",
+      "status": "convertible_delayed_response_pending_context",
+      "target_artifact_created": false,
+      "target_artifact_type": "rule_dsl",
+      "target_schema_version": "1.0.0",
+      "unsupported_reasons": [],
+      "warnings": [
+        "assessment_only_no_conversion_performed",
+        "synthetic_smoke_calibration_must_not_be_promoted",
+        "semantic_verification_is_required_in_a_later_task"
+      ]
+    },
+    {
+      "adapter_version": "task032a-assessment-v1",
+      "assessment_id": "e1bc2de867c7c69f12f735ac6c91a88a0a4f4b27c93addaad9b628ccf2ff44b2",
+      "detected_relation_family": "changed_to_increase_within_response_missing",
+      "field_mappings": [],
+      "fixture": "fixtures/task032a/legacy_unsupported_multivariate.json",
+      "information_loss": [],
+      "required_external_context": [],
+      "source_artifact_type": "rule_candidate",
+      "source_schema_identifier": "minimal_rule_schema_v1",
+      "source_sha256": "f419e738c9ec1177d6754d2372f9fd2325164d6a5464de8b50d2294bc4866b1b",
+      "status": "unsupported_legacy_artifact",
+      "target_artifact_created": false,
+      "target_artifact_type": "rule_dsl",
+      "target_schema_version": "1.0.0",
+      "unsupported_reasons": [
+        "multiple_sources_or_targets_are_outside_the_mvp"
+      ],
+      "warnings": [
+        "assessment_only_no_conversion_performed"
+      ]
+    },
+    {
+      "adapter_version": "task032a-assessment-v1",
+      "assessment_id": "3e88c9ac0dd233b423728e6829e63b0c6516c0f9e1db9d4693a022541745c70f",
+      "detected_relation_family": "changed_to_decrease_within_response_missing",
+      "field_mappings": [],
+      "fixture": "fixtures/task032a/legacy_unsupported_relation.json",
+      "information_loss": [],
+      "required_external_context": [],
+      "source_artifact_type": "rule_candidate",
+      "source_schema_identifier": "minimal_rule_schema_v1",
+      "source_sha256": "135e42593dc8e6dbc384487cd3e8124aba75b7034d27ebac1e89b51940884715",
+      "status": "unsupported_legacy_artifact",
+      "target_artifact_created": false,
+      "target_artifact_type": "rule_dsl",
+      "target_schema_version": "1.0.0",
+      "unsupported_reasons": [
+        "relation_or_type_combination_is_not_supported_by_task032a"
+      ],
+      "warnings": [
+        "assessment_only_no_conversion_performed"
+      ]
+    }
+  ],
+  "conversion_performed": false,
+  "counts": {
+    "convertible_pending_context": 1,
+    "fixtures": 4,
+    "invalid": 1,
+    "target_artifacts_created": 0,
+    "unsupported": 2
+  },
+  "dataset_accessed": false,
+  "generated_code_executed": false,
+  "partial_conversion_allowed": false,
+  "report_hash": "aec8d4204a3608769eed0b3fe513c4fae86667bff9db7eb8bcb5e96d8f20acd2",
+  "schema_version": "1.0.0",
+  "silent_conversion_allowed": false,
+  "status": "assessment_only",
+  "synthetic_calibration_promoted": false,
+  "task_id": "TASK-032A"
+}

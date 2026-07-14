@@ -1,0 +1,272 @@
+{
+  "artifact_type": "task032a_schema_registry_report",
+  "canonical_schemas_modified": false,
+  "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+  "counts": {
+    "canonical_schemas": 7,
+    "invalid_scenarios": 10,
+    "semantic_invalid_structurally_valid_scenarios": 5,
+    "structural_invalid_scenarios": 5,
+    "valid_fixtures": 11
+  },
+  "format_validation": {
+    "enabled": true,
+    "required_formats": [
+      "date",
+      "date-time"
+    ]
+  },
+  "invalid_scenario_classification": [
+    {
+      "classification": "structural",
+      "expected_structural_result": "invalid",
+      "issue_codes": [
+        "SCHEMA_MAXIMUM"
+      ],
+      "observed_structural_result": "invalid",
+      "reason": "numeric maximum is encoded in the canonical schema",
+      "scenario": "excessive_complexity",
+      "semantic_verifier_required": false
+    },
+    {
+      "classification": "structural",
+      "expected_structural_result": "invalid",
+      "issue_codes": [
+        "SCHEMA_ADDITIONALPROPERTIES"
+      ],
+      "observed_structural_result": "invalid",
+      "reason": "closed object rejects the executable field",
+      "scenario": "executable_code_field",
+      "semantic_verifier_required": false
+    },
+    {
+      "classification": "semantic",
+      "expected_structural_result": "valid",
+      "issue_codes": [],
+      "observed_structural_result": "valid",
+      "reason": "rule existence requires cross-artifact resolution",
+      "scenario": "explanation_nonexistent_rule",
+      "semantic_verifier_required": true
+    },
+    {
+      "classification": "structural",
+      "expected_structural_result": "invalid",
+      "issue_codes": [
+        "SCHEMA_PATTERN"
+      ],
+      "observed_structural_result": "invalid",
+      "reason": "unit violates the canonical pattern",
+      "scenario": "invalid_unit",
+      "semantic_verifier_required": false
+    },
+    {
+      "classification": "semantic",
+      "expected_structural_result": "valid",
+      "issue_codes": [],
+      "observed_structural_result": "valid",
+      "reason": "parameter existence requires registry resolution",
+      "scenario": "missing_parameter",
+      "semantic_verifier_required": true
+    },
+    {
+      "classification": "structural",
+      "expected_structural_result": "invalid",
+      "issue_codes": [
+        "SCHEMA_CONST"
+      ],
+      "observed_structural_result": "invalid",
+      "reason": "canonical schema requires calibration split",
+      "scenario": "test_split_parameter_provenance",
+      "semantic_verifier_required": false
+    },
+    {
+      "classification": "semantic",
+      "expected_structural_result": "valid",
+      "issue_codes": [],
+      "observed_structural_result": "valid",
+      "reason": "approval status requires deterministic policy",
+      "scenario": "unapproved_parameter",
+      "semantic_verifier_required": true
+    },
+    {
+      "classification": "semantic",
+      "expected_structural_result": "valid",
+      "issue_codes": [],
+      "observed_structural_result": "valid",
+      "reason": "edge membership requires graph resolution",
+      "scenario": "unknown_edge",
+      "semantic_verifier_required": true
+    },
+    {
+      "classification": "semantic",
+      "expected_structural_result": "valid",
+      "issue_codes": [],
+      "observed_structural_result": "valid",
+      "reason": "variable membership requires graph or metadata resolution",
+      "scenario": "unknown_variable",
+      "semantic_verifier_required": true
+    },
+    {
+      "classification": "structural",
+      "expected_structural_result": "invalid",
+      "issue_codes": [
+        "SCHEMA_ENUM"
+      ],
+      "observed_structural_result": "invalid",
+      "reason": "canonical relation enumeration rejects the value",
+      "scenario": "unsupported_relation_type",
+      "semantic_verifier_required": false
+    }
+  ],
+  "jsonschema_version": "4.26.0",
+  "meta_schema_validation": true,
+  "registrations": [
+    {
+      "artifact_type": "evidence_package",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/evidence_package_schema.json",
+      "schema_id": "https://paperworks.local/schemas/evidence_package_schema.json",
+      "schema_sha256": "efe7037c44b7b7ca8525fed352f10202d6e3ce5bc4e4a07c8e70bc08d2cc40d7",
+      "schema_version": "1.0.0"
+    },
+    {
+      "artifact_type": "explanation_record",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/explanation_record_schema.json",
+      "schema_id": "https://paperworks.local/schemas/explanation_record_schema.json",
+      "schema_sha256": "bf72609ca7b2d6f03b0ea16a31ff2cfdf111a5545ce62c3c3514e599acc06081",
+      "schema_version": "1.0.0"
+    },
+    {
+      "artifact_type": "graph",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/graph_schema.json",
+      "schema_id": "https://paperworks.local/schemas/graph_schema.json",
+      "schema_sha256": "a26fe5c7ca02629f2c57a37a6edf3efa4bad8712951a15740b7787fa7d96d271",
+      "schema_version": "1.0.0"
+    },
+    {
+      "artifact_type": "parameter_registry",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/parameter_registry_schema.json",
+      "schema_id": "https://paperworks.local/schemas/parameter_registry_schema.json",
+      "schema_sha256": "1d2cd55385bead2ef8563ca06f6e548e3c49b3f3f7bf06bb23f2fae10ff03065",
+      "schema_version": "1.0.0"
+    },
+    {
+      "artifact_type": "rule_dsl",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/rule_dsl_schema.json",
+      "schema_id": "https://paperworks.local/schemas/rule_dsl_schema.json",
+      "schema_sha256": "67d50b9b3fd229c6fa6294f3106339c4ba2c093edb48a8be2100817379f7fa8a",
+      "schema_version": "1.0.0"
+    },
+    {
+      "artifact_type": "runtime_trace",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/runtime_trace_schema.json",
+      "schema_id": "https://paperworks.local/schemas/runtime_trace_schema.json",
+      "schema_sha256": "cc90b512bbf36370f3ec041a6f5747c5f9c087b7deaf7160285c7a5c476a17e6",
+      "schema_version": "1.0.0"
+    },
+    {
+      "artifact_type": "verifier_result",
+      "contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "format_validation": true,
+      "registry_version": "1.0.0",
+      "schema_file": "schemas/verifier_result_schema.json",
+      "schema_id": "https://paperworks.local/schemas/verifier_result_schema.json",
+      "schema_sha256": "9d1325a0832c6a0886f8438e1459373a2dd1db3791d88b454055056578002ae4",
+      "schema_version": "1.0.0"
+    }
+  ],
+  "registry_version": "1.0.0",
+  "report_hash": "ee7b6c7a8273af75a037a7b78e30ca0bce3e4cc70be150770adaa8bd324e4aa7",
+  "schema_copies_created": false,
+  "schema_version": "1.0.0",
+  "semantic_validation_implemented_by_task032a": false,
+  "status": "implemented_structural_validation_only",
+  "task031_gap_audit_commit": "030c102bcf0e17028fa3abe4c5db1efcc2300641",
+  "task_id": "TASK-032A",
+  "valid_fixture_results": [
+    {
+      "artifact_type": "evidence_package",
+      "fixture": "fixtures/task030/valid/evidence_package.json",
+      "instance_sha256": "9e107256986e11fd7583685d2411b0e53b10d8a73fc7a8adc0c8e2dd232781eb",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "explanation_record",
+      "fixture": "fixtures/task030/valid/explanation_record.json",
+      "instance_sha256": "99fc5036f969bef4ef02b32d9c658e6fb81d74766b451f62f127ea54a0e3e018",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "graph",
+      "fixture": "fixtures/task030/valid/graph.json",
+      "instance_sha256": "a4012d4f208cbe7c74985fc56ab764f8230eda5bdff76a770b55c208931b8da5",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "parameter_registry",
+      "fixture": "fixtures/task030/valid/parameter_duration.json",
+      "instance_sha256": "a40fc5a7526eb13e0703145d23d199f20038597da4cf376c86361410510b089f",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "parameter_registry",
+      "fixture": "fixtures/task030/valid/parameter_lag.json",
+      "instance_sha256": "b5c206d9117fcebda0ea3d187efd46dff1dae245012abecff2c8e218a6112649",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "parameter_registry",
+      "fixture": "fixtures/task030/valid/parameter_severity.json",
+      "instance_sha256": "7531e843ea667721967f2d7dbf03df9ef5a9115152adfae10ce147fd721991de",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "parameter_registry",
+      "fixture": "fixtures/task030/valid/parameter_tolerance.json",
+      "instance_sha256": "15a527648b23889d62e5f60a32a3ab40b3c4daf60be5afc4f62c71c9b5082524",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "rule_dsl",
+      "fixture": "fixtures/task030/valid/rule_dsl.json",
+      "instance_sha256": "3fb57009ada541fdb18e69632550751967e8074281e0ffc82af568ce2cd7f63f",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "runtime_trace",
+      "fixture": "fixtures/task030/valid/runtime_trace.json",
+      "instance_sha256": "c9386aa6d00b5699ed60fb982f28fe3941975af311eeae82e05a194d0e3ed744",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "verifier_result",
+      "fixture": "fixtures/task030/valid/verifier_acceptance.json",
+      "instance_sha256": "42642dca9a64cb750c3bdec9fd4d956099dc3d99de0102d478e0d463884bb903",
+      "status": "valid"
+    },
+    {
+      "artifact_type": "verifier_result",
+      "fixture": "fixtures/task030/valid/verifier_rejection.json",
+      "instance_sha256": "d9540ea12833c1bac09b762c55075be025a25f10e7d1d34d7bf7fe6368f9bcc1",
+      "status": "valid"
+    }
+  ],
+  "validator": "jsonschema.validators.Draft202012Validator"
+}

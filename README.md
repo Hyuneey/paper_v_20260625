@@ -107,3 +107,16 @@ This is a **migration-planning milestone only**. No TASK-030 production method
 code, dependency, dataset experiment, provider integration, generated-code
 execution, or performance result was added. See
 `docs/method/CONTRACT_TO_CODE_GAP_MATRIX.md`.
+
+## Structural contract foundation
+
+TASK-032A implements Draft 2020-12 structural schema validation for the seven
+canonical TASK-030 schemas and an explicit assessment-only legacy compatibility
+layer. Schema files remain in `schemas/`, are pinned by exact-byte hashes, and
+are validated with active date/date-time format checking.
+
+TASK-032A implements structural schema validation and legacy migration
+assessment only. It does not implement delayed-response v1 DSL objects, actual
+legacy conversion, parameter adapters, semantic verifier completion, runtime
+behavior, method completion, or experimental validation. See
+`docs/method/STANDARD_SCHEMA_REGISTRY.md`.

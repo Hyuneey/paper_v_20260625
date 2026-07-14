@@ -29,3 +29,20 @@ Licensed under the MIT License.
 - Code copied into production: none
 
 If GDN code is copied or adapted in a future task, preserve the upstream copyright and include the relevant MIT license notice.
+
+## jsonschema
+
+Copyright (c) 2013 Julian Berman.
+
+Licensed under the MIT License.
+
+- Package: `jsonschema[format-nongpl]`
+- Pinned direct version: `4.26.0`
+- Source: https://github.com/python-jsonschema/jsonschema
+- Use: Draft 2020-12 structural validation and explicit format checking
+- Code copied into this repository: none
+
+The `format-nongpl` extra installs optional format-checking dependencies under
+their respective upstream licenses. Resolved versions for the TASK-032A test
+environment are recorded in
+`docs/task_reports/TASK-032A_DEPENDENCY_REPORT.json`.
