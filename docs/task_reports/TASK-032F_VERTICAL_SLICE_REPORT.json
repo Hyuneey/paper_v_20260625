@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "TASK-032F",
+  "pipeline_version": "task032f-vertical-slice-1.0.0",
+  "created_at": "2026-07-14T20:30:00Z",
+  "execution_scope": "synthetic_only",
+  "status": "completed_synthetic_contract_gate",
+  "claim_boundary": "The complete delayed-response contract pipeline is connected and deterministically replayable on predeclared synthetic fixtures.",
+  "config_hash": "cf81e464a9d538a4ecfe59e1d6a2e8e58a08b0edb27458096a7aa2bb28067c1e",
+  "integration_code_version": "task032f-vertical-slice-1.0.0",
+  "adapters": {
+    "source_fixture_hashes": {
+      "calibration_delay": "e3a142350c1a47096155805a6bc4f28115622b5d314a5dda6757a0c96879bfda",
+      "calibration_duration": "00322cffd25e4e209029dfcb4dbef63d5f8e0005c4ab600effa6bb53c6b9e8d2",
+      "calibration_support": "53a50f11947e7298f03e484829b269f3e8f77ee9b78bd4f7bd54284ef4c4b9c2",
+      "calibration_tolerance": "6be2fbcc8ff7d81f14d7aaef5e2071a3f9ef28aa5cd675afd618f3cd4d835ddc",
+      "candidate_universe": "1eb5b8026a7e7ad7f8c67581f6015f4318380f20253e48e06441b6d855e79ce2",
+      "gdn_edges": "61758c1ec796a463dda137826341e1abc58d7b073a874b49e80bb237b0b2fbce",
+      "relation_evidence_pack": "da4c3be0ded94b2449fef428b59f7d44edea1e036d5ebbb2b35d4d721ba2765c",
+      "relation_profile": "b5166f4f18122a6eb6c051bd3d939f95ff10a0d725a221b2b36a2ba3388ae490"
+    },
+    "statuses": {
+      "calibration_delay": "created",
+      "calibration_duration": "created",
+      "calibration_support": "created",
+      "calibration_tolerance": "created",
+      "evidence": "created",
+      "graph": "created"
+    },
+    "source_hashes": {
+      "calibration_delay": "0df10d3a74cb1f534027639d475f34759e4984b0156d7ace2e34600eaca67a9e",
+      "calibration_duration": "bb3e338e9a96113c3dc03deddcfe3ccd792b188bb945c1143e4b3c37a4214929",
+      "calibration_support": "f7f750cfef5e8ab1d214bf0dc101916ba49a343dcd190d2ef7798a7e5255ba1a",
+      "calibration_tolerance": "6bcbee9fbcb38cd7c8185d80a54544bf1d376c03897caa01cb827fc7d95a610f",
+      "evidence": "e72f9e613bb12969f50d44bb25e96aa0843c635489787770f9093b93ba7c3bc6",
+      "graph": "2b56d6206ae91aa09674b739067b3a434dd80f1da76282d84791349e29146d01"
+    },
+    "target_hashes": {
+      "calibration_delay": "b148af50a880d95259586be8114b251c4a7af65e91d3e335d960ada40ce7bc53",
+      "calibration_duration": "5136bcb2d31490512aa2ccf5d8d5134912798c39f68d27867d245552f0260843",
+      "calibration_support": "b9816d1ab650d423a73931f8982259e79a7fc197e7f79854fb5ed1624463c98a",
+      "calibration_tolerance": "60930d76283082cad53ed236ead7019a45acc8ff11e7937ac61c869d2ae4186b",
+      "evidence": "d27475c218f82693083884d18f8ef6edd5e080f86e91ba78c1ded608a3ce833e",
+      "graph": "15a61ee5b30d190ebf0955719b96cc6fed67c616c936f692781013e7bfcbaf09"
+    },
+    "parameter_lineage_matches": {
+      "PARAM-DURATION-032": true,
+      "PARAM-LAG-032": true,
+      "PARAM-SUPPORT-032": true,
+      "PARAM-TOL-032": true
+    },
+    "approved_parameter_hashes": {
+      "PARAM-DURATION-032": "9df3d6241b7ebeeabebee817270ee11c13402571595641816a69e5e40d83c91b",
+      "PARAM-LAG-032": "e1cdca4c9b334008fcd7b918c91de129e085c4cecff3cb046cadff63aed2a09e",
+      "PARAM-SEVERITY-032": "128304e60f9f13738cc33652919c39fbfc68e73daae5837d253251ef1b08aaac",
+      "PARAM-SUPPORT-032": "86fd41093f6e6148efc83077dbc1d32397f6c548459559971e75b0200e210a7d",
+      "PARAM-TOL-032": "5335fa3fd60588d90e96932a96afeb15ef881203c7177ccb5304d627b85f34cf"
+    },
+    "severity_parameter_hash": "128304e60f9f13738cc33652919c39fbfc68e73daae5837d253251ef1b08aaac"
+  },
+  "verification": {
+    "candidate_rule_id": "RULE-ACTUATORA-SENSORB-032D",
+    "candidate_transport_hash": "5f00a446a59d18a35636a9655f9c3881750823700ace8a9a7ff48dd87cb9384b",
+    "verification_subject_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+    "accepted_rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+    "verifier_result_id": "VERIFY-D728B6CD1F9378AC01C1",
+    "verifier_result_hash": "828bb431a9058490569979dc9db24cc35f9d89772750983e064466ab1c12433f",
+    "all_twenty_stages_passed": true,
+    "stage_statuses": [
+      {"stage": 1, "name": "structural_schema_validation", "status": "passed"},
+      {"stage": 2, "name": "type_validation", "status": "passed"},
+      {"stage": 3, "name": "variable_allowlist", "status": "passed"},
+      {"stage": 4, "name": "subsystem_compatibility", "status": "passed"},
+      {"stage": 5, "name": "graph_edge_validation", "status": "passed"},
+      {"stage": 6, "name": "relation_family_compatibility", "status": "passed"},
+      {"stage": 7, "name": "unit_compatibility", "status": "passed"},
+      {"stage": 8, "name": "lag_bound_validation", "status": "passed"},
+      {"stage": 9, "name": "window_and_persistence_validation", "status": "passed"},
+      {"stage": 10, "name": "parameter_existence_and_approval", "status": "passed"},
+      {"stage": 11, "name": "parameter_provenance", "status": "passed"},
+      {"stage": 12, "name": "split_policy_validation", "status": "passed"},
+      {"stage": 13, "name": "evidence_reference_validation", "status": "passed"},
+      {"stage": 14, "name": "normal_reference_validation", "status": "passed"},
+      {"stage": 15, "name": "conflict_detection", "status": "passed"},
+      {"stage": 16, "name": "duplicate_and_subsumption_detection", "status": "passed"},
+      {"stage": 17, "name": "complexity_budget_validation", "status": "passed"},
+      {"stage": 18, "name": "output_contract_validation", "status": "passed"},
+      {"stage": 19, "name": "explanation_provenance_validation", "status": "passed"},
+      {"stage": 20, "name": "claim_and_authority_boundary", "status": "passed"}
+    ],
+    "runtime_authorized": false
+  },
+  "runtime": {
+    "authorization_id": "AUTH-4C3255CFD63B16DFB641",
+    "authorization_hash": "0add9cf80b58ec43fa64942c8a69889da298a949c059fa7ad399ba04c6a6ae2a",
+    "verifier_policy_hash": "a743cfc3aa545f7bd40bda70fd8ea2e6451bc8973d073be7ab5bc49f744af8f4",
+    "bound_rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+    "bound_verifier_result_hash": "828bb431a9058490569979dc9db24cc35f9d89772750983e064466ab1c12433f",
+    "bound_graph_hash": "15a61ee5b30d190ebf0955719b96cc6fed67c616c936f692781013e7bfcbaf09",
+    "bound_evidence_hash": "d27475c218f82693083884d18f8ef6edd5e080f86e91ba78c1ded608a3ce833e",
+    "bound_parameter_hashes": {
+      "PARAM-DURATION-032": "9df3d6241b7ebeeabebee817270ee11c13402571595641816a69e5e40d83c91b",
+      "PARAM-LAG-032": "e1cdca4c9b334008fcd7b918c91de129e085c4cecff3cb046cadff63aed2a09e",
+      "PARAM-SEVERITY-032": "128304e60f9f13738cc33652919c39fbfc68e73daae5837d253251ef1b08aaac",
+      "PARAM-SUPPORT-032": "86fd41093f6e6148efc83077dbc1d32397f6c548459559971e75b0200e210a7d",
+      "PARAM-TOL-032": "5335fa3fd60588d90e96932a96afeb15ef881203c7177ccb5304d627b85f34cf"
+    },
+    "scenarios": [
+      {"scenario_id": "response_present", "input_window_hash": "13e5ff39b511a8860da1d49ae03ef9010268bf16ce9f2336c8327b3df0445db1", "execution_id": "EXEC-78BABECDB38919EDF2CB", "trace_hash": "94b4cc71f8e40b9cafc2c85def37da1e3fb69fd223f8ff0cf6ee53347e7371a4", "explanation_id": "EXPLAIN-9520AE23EC4D9447EC1E", "explanation_hash": "d8e55ee9777ebaa78593e6797c95343d37219d41e67489b561d7311dabfe0344", "status": "evaluated", "trigger_satisfied": true, "expected_effect_satisfied": true, "violation_detected": false, "abstention_reason": null, "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "response_missing", "input_window_hash": "8fbf47f1c937637338c2884b9665f9e395abad5fc2217f7360b8bf4e778c49f4", "execution_id": "EXEC-E18B1C90D7B5427E1DA1", "trace_hash": "55ec547cbea92ee758e6aee55a752f677b9298786ce76aecca598007410087d5", "explanation_id": "EXPLAIN-307467D14710B9691DF4", "explanation_hash": "ec7130930717d5f42b307b43f9c039ff189c555723523e5d66b9af8df78062c7", "status": "evaluated", "trigger_satisfied": true, "expected_effect_satisfied": false, "violation_detected": true, "abstention_reason": null, "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "no_trigger", "input_window_hash": "0f699553bbdc365bc38ded661167f9b301ecaa66548dac290c5edfd8e86820d9", "execution_id": "EXEC-E05773D2604A6C8D49E1", "trace_hash": "a0fb376098e873753e3b282a698cc70082f7f31218d3b2864a3f3ed4091b024f", "explanation_id": "EXPLAIN-03CBD13C6A25971200FE", "explanation_hash": "9c290de43c0e6e6f5b19e121e97893413d05fcd63d01833554e5fb8bf7105547", "status": "evaluated", "trigger_satisfied": false, "expected_effect_satisfied": null, "violation_detected": false, "abstention_reason": null, "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "multiple_triggers", "input_window_hash": "ed81275611236412403ed3f7cf1ae298a5bbb4301ec1b98cf9d518a96bf9dd1c", "execution_id": "EXEC-072575C04FC6C939CE9A", "trace_hash": "6da34e079973b1f20dc0bf8b6c8254e38140a9bf264fd3c8b2f8b333f9f63a6d", "explanation_id": "EXPLAIN-AD96D1E92C45AF40827A", "explanation_hash": "1d34bbd2351271c804335cf3b3a2560d4201aa010375555befe6231161df17cf", "status": "abstained", "trigger_satisfied": true, "expected_effect_satisfied": null, "violation_detected": false, "abstention_reason": "multiple_triggers", "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "regime_mismatch", "input_window_hash": "2b407489f3abb2f5d60a625377ab4d73315b8ab0d7bcc2703db420f933014ef8", "execution_id": "EXEC-31FDFE53D17CDDF641EC", "trace_hash": "e85b89ee0e355f36677c08699aefc661fff4adf6272485d1d5621cd984d934ce", "explanation_id": "EXPLAIN-18E5CF4B4BFB11B85AC1", "explanation_hash": "e013ab5d1ff7bb58cabb315a56f2db45b5bdd645f7e26fa9a68aa938c486ec05", "status": "abstained", "trigger_satisfied": false, "expected_effect_satisfied": null, "violation_detected": false, "abstention_reason": "regime_mismatch", "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "missing_input", "input_window_hash": "fa882eb2253d09e906631ed9e4722a9cc05f1a5e31cc886ea67321a58e21e989", "execution_id": "EXEC-C949B9F84DEA29298082", "trace_hash": "8139d8ab648f3fa4869c24727e362dc7e4403e54a1b343bbc9aec3b44297ee06", "explanation_id": "EXPLAIN-B202B78D79C43F707F40", "explanation_hash": "233fd7e25161c46f7060d74b9c5ee2de28ac10334a01c9bb1971304ff774d2db", "status": "abstained", "trigger_satisfied": false, "expected_effect_satisfied": null, "violation_detected": false, "abstention_reason": "missing_input", "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "first_sample_trigger", "input_window_hash": "1b3aa224f4eeb41dfcfa19f210d581ab73d5943a729053b1e3c0b7e2ea25b55e", "execution_id": "EXEC-844F72841825893316EC", "trace_hash": "7fdc66f83916ecc0287f67da38606d73dc90e744c1b7b84018121885915597d1", "explanation_id": "EXPLAIN-7F56D55D91E1EEA3A1E4", "explanation_hash": "5c979f3b79659c59ea6ddb9fea6b4daf1ec0470ffc34163dbaa9dc12e485f491", "status": "abstained", "trigger_satisfied": true, "expected_effect_satisfied": null, "violation_detected": false, "abstention_reason": "missing_pre_trigger_baseline", "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true},
+      {"scenario_id": "insufficient_coverage", "input_window_hash": "19c964270f7568d6ddb76d5fa6234ee3245578ec468e9a7af43360cb247f266f", "execution_id": "EXEC-58291FFAFCDD3EA7FB38", "trace_hash": "a9b72933fe4446410eb71d39ff6e1ca726a80cafcf926a3f88f4a54d3fe6cea1", "explanation_id": "EXPLAIN-3B09F11B62F9FE8798DC", "explanation_hash": "5f83f8ab378bea10125adcdc20a27580f54b73f844d8ea955f93820cd2fff397", "status": "abstained", "trigger_satisfied": true, "expected_effect_satisfied": null, "violation_detected": false, "abstention_reason": "insufficient_post_trigger_coverage", "nine_steps_verified": true, "trace_binding_verified": true, "explanation_binding_verified": true, "contract_expectation_matched": true}
+    ]
+  },
+  "report_hash": "d9474108994708c553fe558ff8dca493ab3d57adfff934de4a42fdccd3d3fa35"
+}

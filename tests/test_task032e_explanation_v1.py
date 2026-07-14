@@ -92,6 +92,44 @@ class Task032EExplanationV1Tests(unittest.TestCase):
             render_delayed_response_explanation(bundle, execution, other)
         self.assertEqual(caught.exception.issue_code, "EXPLANATION_TRACE_BINDING_MISMATCH")
 
+    def test_rendering_revalidates_authorization_and_execution_id(self) -> None:
+        bundle, window, execution, expected = rendered("window_response_present")
+        self.assertEqual(render_delayed_response_explanation(bundle, execution, window), expected)
+
+        changed_receipt = dataclasses.replace(bundle.receipt, graph_hash="f" * 64)
+        with self.assertRaises(ExplanationV1Error) as changed_receipt_error:
+            render_delayed_response_explanation(
+                dataclasses.replace(bundle, receipt=changed_receipt), execution, window
+            )
+        self.assertEqual(
+            changed_receipt_error.exception.issue_code,
+            "EXPLANATION_AUTHORIZATION_INVALID",
+        )
+
+        changed_artifacts = dataclasses.replace(
+            bundle.artifacts,
+            graph=dataclasses.replace(bundle.artifacts.graph, artifact_hash="f" * 64),
+        )
+        with self.assertRaises(ExplanationV1Error) as retained_capability_error:
+            render_delayed_response_explanation(
+                dataclasses.replace(bundle, artifacts=changed_artifacts), execution, window
+            )
+        self.assertEqual(
+            retained_capability_error.exception.issue_code,
+            "EXPLANATION_AUTHORIZATION_INVALID",
+        )
+
+        with self.assertRaises(ExplanationV1Error) as execution_id_error:
+            render_delayed_response_explanation(
+                bundle,
+                dataclasses.replace(execution, authorization_id="AUTH-AAAAAAAAAAAAAAAAAAAA"),
+                window,
+            )
+        self.assertEqual(
+            execution_id_error.exception.issue_code,
+            "EXPLANATION_AUTHORIZATION_ID_MISMATCH",
+        )
+
     def test_tracked_explanation_fixtures_match_rendering(self) -> None:
         mapping = {
             "response_present": "window_response_present",

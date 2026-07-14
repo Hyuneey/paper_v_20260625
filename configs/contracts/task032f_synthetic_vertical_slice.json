@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "TASK-032F",
+  "pipeline_version": "task032f-vertical-slice-1.0.0",
+  "created_at": "2026-07-14T20:30:00Z",
+  "source_artifacts": {
+    "candidate_universe": "fixtures/task032c/phase1_candidate_universe.json",
+    "gdn_edges": "fixtures/task032c/phase1_gdn_edges.json",
+    "relation_profile": "fixtures/task032c/phase1_relation_profile.json",
+    "relation_evidence_pack": "fixtures/task032c/phase1_relation_evidence_pack.json",
+    "calibration_delay": "fixtures/task032c/phase1_calibration_delay.json",
+    "calibration_tolerance": "fixtures/task032c/phase1_calibration_magnitude.json",
+    "calibration_duration": "fixtures/task032f/phase1_calibration_duration.json",
+    "calibration_support": "fixtures/task032f/phase1_calibration_support.json"
+  },
+  "adapter_contexts": {
+    "graph": {
+      "dataset_version": "synthetic-task032c-v1",
+      "graph_id": "GRAPH-SYNTHETIC-032C",
+      "candidate_universe_id": "CU-SYNTHETIC-032C",
+      "node_metadata": {
+        "ActuatorA": {
+          "node_id": "NODE-ACT-032C", "variable_name": "ActuatorA", "display_name": "Synthetic binary actuator", "node_type": "actuator", "subsystem": "synthetic_subsystem", "physical_unit": "state", "data_type": "binary", "allowed_operating_states": [0, 1],
+          "sampling_interval": {"value": 1, "unit": "seconds"},
+          "metadata_provenance": {"source_kind": "manual_review", "source_reference": "TASK-032C synthetic metadata", "review_status": "reviewed", "artifact_hash": "1111111111111111111111111111111111111111111111111111111111111111"}
+        },
+        "SensorB": {
+          "node_id": "NODE-SEN-032C", "variable_name": "SensorB", "display_name": "Synthetic continuous sensor", "node_type": "sensor", "subsystem": "synthetic_subsystem", "physical_unit": "units", "data_type": "continuous", "allowed_operating_states": [],
+          "sampling_interval": {"value": 1, "unit": "seconds"},
+          "metadata_provenance": {"source_kind": "manual_review", "source_reference": "TASK-032C synthetic metadata", "review_status": "reviewed", "artifact_hash": "2222222222222222222222222222222222222222222222222222222222222222"}
+        }
+      },
+      "operating_regimes": ["REGIME-SYNTHETIC-032C"],
+      "edge_semantics": "learned_graph_candidate",
+      "provenance": {"created_by": "synthetic_fixture", "method_version": "1.0.0", "source_artifact_ids": ["CU-SYNTHETIC-032C"], "code_commit": "4180142"},
+      "lag_candidate_range": {"minimum": 1, "maximum": 5, "unit": "seconds"},
+      "support": {"event_count": 12, "normal_reference_count": 12},
+      "confidence": 0.7,
+      "uncertainty": {"method": "stability_scan", "lower": 0.5, "upper": 0.8}
+    },
+    "evidence": {
+      "evidence_id": "EVID-SYNTHETIC-032C",
+      "dataset_version": "synthetic-task032c-v1",
+      "event_anchor": {"window_id": "WIN-ANCHOR-032C", "start_offset": 10, "end_offset": 10, "unit": "samples", "artifact_hash": "3333333333333333333333333333333333333333333333333333333333333333"},
+      "event_window": {"window_id": "WIN-EVENT-032C", "start_offset": 5, "end_offset": 20, "unit": "samples", "artifact_hash": "4444444444444444444444444444444444444444444444444444444444444444"},
+      "pre_event_context": {"window_id": "WIN-PRE-032C", "start_offset": 0, "end_offset": 9, "unit": "samples", "artifact_hash": "5555555555555555555555555555555555555555555555555555555555555555"},
+      "post_event_context": {"window_id": "WIN-POST-032C", "start_offset": 11, "end_offset": 25, "unit": "samples", "artifact_hash": "6666666666666666666666666666666666666666666666666666666666666666"},
+      "matched_normal_reference": {"reference_id": "NREF-SYNTHETIC-032C", "operating_regime": "REGIME-SYNTHETIC-032C", "subsystem": "synthetic_subsystem", "matching_method": "exact_regime_subsystem", "tie_breaker": "lowest_window_id", "artifact_hash": "7777777777777777777777777777777777777777777777777777777777777777"},
+      "operating_regime": "REGIME-SYNTHETIC-032C",
+      "candidate_lag_range": {"minimum": 1, "maximum": 5, "unit": "seconds"},
+      "selection_policy": {"policy_id": "POLICY-SYNTHETIC-032C", "policy_version": "1.0.0", "regime_match_required": true, "subsystem_match_required": true, "label_performance_used": false, "deterministic_tie_breaking": true, "pre_registered": true},
+      "selection_policy_hash": "8888888888888888888888888888888888888888888888888888888888888888",
+      "supported_claims": ["temporal_association", "state_conditioned_response", "typical_lag"]
+    },
+    "parameters": {
+      "calibration_delay": {
+        "source_parameter_name": "delay_p95_seconds", "source_method": "empirical_delay_quantile", "target_parameter_id": "PARAM-LAG-032", "target_parameter_role": "lag_maximum", "calibration_method": "event_delay_distribution", "calibrator_version": "task032d-lag-1.0.0"
+      },
+      "calibration_tolerance": {
+        "source_parameter_name": "minimum_response_magnitude", "source_method": "empirical_magnitude_quantile", "target_parameter_id": "PARAM-TOL-032", "target_parameter_role": "tolerance", "calibration_method": "median_absolute_deviation", "calibrator_version": "task032d-tolerance-1.0.0"
+      },
+      "calibration_duration": {
+        "source_parameter_name": "persistence_duration_seconds", "source_method": "run_length_quantile", "target_parameter_id": "PARAM-DURATION-032", "target_parameter_role": "persistence_duration", "calibration_method": "run_length_quantile", "calibrator_version": "task032d-duration-1.0.0"
+      },
+      "calibration_support": {
+        "source_parameter_name": "minimum_support_events", "source_method": "predeclared_minimum_count", "target_parameter_id": "PARAM-SUPPORT-032", "target_parameter_role": "minimum_support", "calibration_method": "predeclared_minimum_count", "calibrator_version": "task032d-support-1.0.0"
+      },
+      "common": {
+        "relation_family": "delayed_response", "source_variables": ["ActuatorA"], "target_variables": ["SensorB"], "operating_regime": "REGIME-SYNTHETIC-032C", "calibration_window_refs": ["WIN-EVENT-032C"], "normal_reference_refs": ["NREF-SYNTHETIC-032C"], "dataset_version": "synthetic-task032c-v1", "code_commit": "0f3d27f",
+        "sample_support": {"event_count": 12, "matched_count": 10, "normal_reference_count": 12, "minimum_required": 5},
+        "target_approval_status": "calibrated", "source_context_status": "calibration_normal"
+      },
+      "details": {
+        "calibration_delay": {"stability_summary": {"status": "stable", "method": "bootstrap", "replicate_count": 20, "variation_measure": 0.2}, "confidence_interval": {"level": 0.95, "lower": 4, "upper": 6, "method": "bootstrap_percentile"}, "uncertainty": {"status": "bounded", "sources": ["sampling"]}},
+        "calibration_tolerance": {"stability_summary": {"status": "stable", "method": "bootstrap", "replicate_count": 20, "variation_measure": 0.05}, "confidence_interval": {"level": 0.95, "lower": 0.4, "upper": 0.6, "method": "bootstrap_percentile"}, "uncertainty": {"status": "bounded", "sources": ["sensor_noise"]}},
+        "calibration_duration": {"stability_summary": {"status": "stable", "method": "slice_stability", "replicate_count": 10, "variation_measure": 0.1}, "confidence_interval": {"level": 0.95, "lower": 4, "upper": 6, "method": "robust_quantile"}, "uncertainty": {"status": "bounded", "sources": ["regime_variation"]}},
+        "calibration_support": {"stability_summary": {"status": "stable", "method": "slice_stability", "replicate_count": 10, "variation_measure": 0}, "confidence_interval": {"level": 0.95, "lower": 5, "upper": 5, "method": "robust_quantile"}, "uncertainty": {"status": "bounded", "sources": ["limited_support"]}}
+      }
+    }
+  },
+  "canonical_artifacts": {
+    "approved_parameters": {
+      "PARAM-LAG-032": "fixtures/task032d/parameter_lag.json",
+      "PARAM-TOL-032": "fixtures/task032d/parameter_tolerance.json",
+      "PARAM-DURATION-032": "fixtures/task032d/parameter_duration.json",
+      "PARAM-SUPPORT-032": "fixtures/task032d/parameter_support.json"
+    },
+    "severity_parameter": "fixtures/task032d/parameter_severity.json"
+  },
+  "candidate_rule": "fixtures/task032d/rule_candidate.json",
+  "verifier_policy": "fixtures/task032d/verifier_policy.json",
+  "runtime_authorization": {"created_at": "2026-07-14T20:31:00Z", "runtime_scope": "synthetic_only"},
+  "scenarios": [
+    {"scenario_id": "response_present", "window_file": "fixtures/task032e/window_response_present.json", "expected_status": "evaluated", "expected_trigger_satisfied": true, "expected_effect_satisfied": true, "expected_violation": false, "expected_abstention_reason": null},
+    {"scenario_id": "response_missing", "window_file": "fixtures/task032e/window_response_missing.json", "expected_status": "evaluated", "expected_trigger_satisfied": true, "expected_effect_satisfied": false, "expected_violation": true, "expected_abstention_reason": null},
+    {"scenario_id": "no_trigger", "window_file": "fixtures/task032e/window_no_trigger.json", "expected_status": "evaluated", "expected_trigger_satisfied": false, "expected_effect_satisfied": null, "expected_violation": false, "expected_abstention_reason": null},
+    {"scenario_id": "multiple_triggers", "window_file": "fixtures/task032e/window_multiple_triggers.json", "expected_status": "abstained", "expected_trigger_satisfied": true, "expected_effect_satisfied": null, "expected_violation": false, "expected_abstention_reason": "multiple_triggers"},
+    {"scenario_id": "regime_mismatch", "window_file": "fixtures/task032e/window_regime_mismatch.json", "expected_status": "abstained", "expected_trigger_satisfied": false, "expected_effect_satisfied": null, "expected_violation": false, "expected_abstention_reason": "regime_mismatch"},
+    {"scenario_id": "missing_input", "window_file": "fixtures/task032e/window_missing_value.json", "expected_status": "abstained", "expected_trigger_satisfied": false, "expected_effect_satisfied": null, "expected_violation": false, "expected_abstention_reason": "missing_input"},
+    {"scenario_id": "first_sample_trigger", "window_file": "fixtures/task032f/window_first_sample_trigger.json", "expected_status": "abstained", "expected_trigger_satisfied": true, "expected_effect_satisfied": null, "expected_violation": false, "expected_abstention_reason": "missing_pre_trigger_baseline"},
+    {"scenario_id": "insufficient_coverage", "window_file": "fixtures/task032f/window_insufficient_coverage.json", "expected_status": "abstained", "expected_trigger_satisfied": true, "expected_effect_satisfied": null, "expected_violation": false, "expected_abstention_reason": "insufficient_post_trigger_coverage"}
+  ],
+  "report_output": "docs/task_reports/TASK-032F_VERTICAL_SLICE_REPORT.json"
+}

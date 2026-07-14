@@ -1,0 +1,17 @@
+{
+  "accepted_rule_hash_equal": true,
+  "adapter_target_hashes_equal": true,
+  "authorization_binding_equal": true,
+  "candidate_transport_hash_equal": true,
+  "first_report_hash": "d9474108994708c553fe558ff8dca493ab3d57adfff934de4a42fdccd3d3fa35",
+  "fixture_hashes_unchanged": true,
+  "fresh_runs": 2,
+  "reports_byte_equivalent": true,
+  "scenario_bindings_equal": true,
+  "schema_version": "1.0.0",
+  "second_report_hash": "d9474108994708c553fe558ff8dca493ab3d57adfff934de4a42fdccd3d3fa35",
+  "status": "deterministic_replay_verified",
+  "task_id": "TASK-032F",
+  "verification_subject_hash_equal": true,
+  "verifier_result_binding_equal": true
+}

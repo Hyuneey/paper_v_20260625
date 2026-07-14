@@ -14,7 +14,11 @@ from paperworks.contracts.artifact_hashing import (
     verify_contract_artifact_hash,
     with_computed_artifact_hash,
 )
-from paperworks.contracts.runtime_authority import RuntimeAuthorizationBundleV1
+from paperworks.contracts.runtime_authority import (
+    RuntimeAuthorizationBundleV1,
+    RuntimeAuthorizationError,
+    verify_runtime_authorization_bundle,
+)
 from paperworks.contracts.runtime_v1 import (
     DelayedResponseRuntimeWindowV1,
     RuntimeExecutionOutcomeV1,
@@ -182,6 +186,18 @@ def render_delayed_response_explanation(
 ) -> ExplanationRecordV1:
     if not isinstance(authorization, RuntimeAuthorizationBundleV1) or not authorization.runtime_authorized:
         raise ExplanationV1Error("EXPLANATION_RUNTIME_NOT_AUTHORIZED", "authorized runtime bundle is required")
+    try:
+        verify_runtime_authorization_bundle(authorization)
+    except RuntimeAuthorizationError as exc:
+        raise ExplanationV1Error(
+            "EXPLANATION_AUTHORIZATION_INVALID",
+            "runtime authorization failed binding revalidation",
+        ) from exc
+    if execution.authorization_id != authorization.receipt.authorization_id:
+        raise ExplanationV1Error(
+            "EXPLANATION_AUTHORIZATION_ID_MISMATCH",
+            "execution authorization ID differs from the bound receipt",
+        )
     try:
         trace = parse_runtime_trace(runtime_trace_to_dict(execution.trace))
     except RuntimeV1Error as exc:

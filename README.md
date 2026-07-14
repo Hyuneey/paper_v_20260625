@@ -168,3 +168,16 @@ explanation without an LLM. This does not imply real SWaT execution, anomaly-
 detection performance, calibrated severity quality, detector fusion, complete
 method implementation, or thesis-result completion. See
 `docs/method/RUNTIME_AUTHORIZATION_BINDING.md`.
+
+## Deterministic synthetic vertical-slice gate
+
+TASK-032F completes a deterministic synthetic delayed-response contract
+vertical slice. It starts from serialized synthetic Phase 1 mappings, uses the
+explicit adapters, verifies a predeclared candidate through all twenty stages,
+creates a fresh runtime authorization, and reproduces eight canonical
+trace/explanation outcomes with identical hashes across two fresh runs.
+
+This does not establish real dataset execution, learned graph quality,
+rule-generation quality, calibration validity, detection performance,
+explanation usefulness, complete method implementation, or thesis completion.
+See `docs/method/SYNTHETIC_DELAYED_RESPONSE_VERTICAL_SLICE.md`.

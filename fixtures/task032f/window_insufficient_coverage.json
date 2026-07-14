@@ -1,0 +1,15 @@
+{
+  "input_window_id": "WIN-INSUFFICIENT-COVERAGE-032F",
+  "dataset_version": "synthetic-task032c-v1",
+  "subsystem": "synthetic_subsystem",
+  "operating_regime": "REGIME-SYNTHETIC-032C",
+  "source_variable": "ActuatorA",
+  "target_variable": "SensorB",
+  "sampling_interval": {"value": 1, "unit": "seconds"},
+  "start_offset": 0,
+  "end_offset": 4,
+  "offset_unit": "samples",
+  "source_values": [0, 0, 1, 1, 1],
+  "target_values": [10.0, 10.0, 10.1, 10.2, 10.3],
+  "created_at": "2026-07-14T20:07:00Z"
+}

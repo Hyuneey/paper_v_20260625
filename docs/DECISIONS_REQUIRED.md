@@ -1190,3 +1190,35 @@
   grounded observed numeric lag.
 - Natural language uses deterministic bounded templates only.
 - Detector and fusion results remain unavailable.
+
+### DEC-046: Complete synthetic contract vertical slice
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Source scope: synthetic serialized artifacts only.
+- Explicit graph, evidence, and non-severity parameter adapters are required.
+- Rule generation is replaced by one predeclared candidate fixture.
+- Twenty-stage verification and runtime authorization are mandatory.
+- Runtime scope: `synthetic_only`.
+- Deterministic full-pipeline replay is required.
+- Raw arrays and performance metrics are prohibited in reports.
+- Allowed claim: the complete delayed-response contract pipeline is connected
+  and deterministically replayable on predeclared synthetic fixtures.
+- No real-data, graph-quality, rule-generation, calibration, detection,
+  explanation-usefulness, causal, method-completion, or thesis claim follows.
+
+### DEC-047: Synthetic vertical-slice lineage ledger
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- The ledger records hashes and status for Phase 1 sources, adapter inputs and
+  outputs, candidate and accepted rules, verifier result, authorization
+  receipt, runtime windows, traces, explanations, configuration, and pipeline
+  version.
+- Adapter-produced parameter authority remains capped at `calibrated` under
+  DEC-039. TASK-032F binds those outputs to existing explicit TASK-032D
+  approved synthetic records only after non-authority fields match exactly.
+- Severity is loaded from an explicit canonical approved artifact and is never
+  adapter-generated.
+- Raw source/target arrays, dataset rows, provider prompts, generated Python,
+  and host-private paths are prohibited.
