@@ -1077,7 +1077,9 @@
 - Serialized `verified_rule_hash` is untrusted until deterministic verifier
   binding: true.
 - TASK-032B rule runtime authorized: false.
-- Runtime requires a future TASK-032D verifier result: true.
+- Runtime requires a TASK-032D verifier result: true; the verifier-result
+  prerequisite is now implemented, while runtime binding remains deferred to
+  TASK-032E.
 - A parsed document carrying `status: accepted` receives no additional
   authority.
 - The canonical document SHA-256 is a transport/reproducibility hash only and
@@ -1112,3 +1114,36 @@
 - NaN and infinity: prohibited.
 - The policy is deterministic, input-preserving, and integrity-only.
 - TASK-032B full-document rule transport hashing remains unchanged.
+
+### DEC-041: Deterministic verification hash and authority binding
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Verification subject: canonical Rule v1 document excluding only top-level
+  `status` and `verified_rule_hash`.
+- Encoding: UTF-8, sorted keys, compact separators, ASCII escaping, finite JSON
+  numbers, SHA-256.
+- The TASK-032B full-document hash remains transport/integrity evidence only.
+- Accepted materialization deep-copies the candidate, writes `accepted` and the
+  verification-subject hash, and reparses through TASK-032B.
+- Required binding: accepted-rule hash, verifier-result `rule_hash`, and
+  verification-subject hash are identical.
+- Verifier-result `artifact_hash` is a separate integrity self-hash.
+- Candidate authority preclaims are prohibited.
+- TASK-032D runtime authorization: false. TASK-032E binding remains required.
+
+### DEC-042: Delayed-response parameter and lag-binding closure
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Added typed MVP support for `PARAM-SEVERITY-*` / `severity_boundary` without
+  changing the canonical parameter schema.
+- Phase 1 adapters may not generate severity parameters.
+- Accepted rules require approved, stable lag, tolerance, duration, support,
+  and severity records with matching provenance.
+- Fixed lag binds to an approved `response_delay` value.
+- Interval lag binds either to approved `lag_maximum` plus graph/evidence
+  minima, or to an approved response-delay confidence interval.
+- Milliseconds, seconds, and minutes are converted deterministically before
+  comparison. A lone `lag_minimum` is insufficient.
+- Severity support does not implement runtime severity calculation.

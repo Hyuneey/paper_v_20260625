@@ -1,0 +1,10 @@
+{
+  "verifier_version": "task032d-verifier-1.0.0",
+  "created_at": "2026-07-14T18:30:00Z",
+  "maximum_operator_count": 10,
+  "maximum_variable_count": 4,
+  "maximum_depth": 5,
+  "allowed_parameter_uncertainty": ["bounded"],
+  "time_comparison_tolerance": 1e-09,
+  "accepted_rule_library_policy": "reject_structural_duplicates"
+}

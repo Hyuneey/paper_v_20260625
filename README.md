@@ -143,3 +143,15 @@ and a non-authoritative lookup collection.
 TASK-032C does not bind or approve rules, complete the deterministic verifier,
 authorize runtime execution, complete the proposed method, or provide
 experimental validation. See `docs/method/CONTRACT_ARTIFACT_HASH_POLICY.md`.
+
+## Deterministic delayed-response binding foundation
+
+TASK-032D implements the twenty-stage deterministic MVP binding verifier. It
+can bind a delayed-response candidate to one candidate graph, one evidence
+package, and approved stable parameters, then materialize an accepted Rule v1
+document with a non-circular authority hash.
+
+Acceptance is not runtime authorization. TASK-032D does not execute rules,
+produce runtime traces or explanations, modify the legacy Phase 1 verifier or
+runtime, access datasets, call providers, or establish experimental method
+performance. See `docs/method/DELAYED_RESPONSE_VERIFIER_V1.md`.

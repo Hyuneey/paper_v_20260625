@@ -242,6 +242,8 @@ def adapt_phase1_calibration_parameter(
         return _result(source_type, source_hash, "parameter_registry", "pending_context", field_mappings, required=missing)
     if mapping["source_parameter_name"] != calibration_record.get("parameter_name") or mapping["source_method"] != calibration_record.get("method"):
         return _result(source_type, source_hash, "parameter_registry", "unsupported_source", field_mappings, reasons=("explicit source mapping does not match calibration record",))
+    if mapping["target_parameter_role"] == "severity_boundary" or str(mapping["target_parameter_id"]).startswith("PARAM-SEVERITY-"):
+        return _result(source_type, source_hash, "parameter_registry", "unsupported_source", field_mappings, reasons=("adapter-generated severity parameters are prohibited",))
     status = mapping["target_approval_status"]
     if status not in {"proposed", "calibrated", "unstable", "rejected"}:
         return _result(source_type, source_hash, "parameter_registry", "unsupported_source", field_mappings, reasons=("adapter-generated approved status is prohibited",))

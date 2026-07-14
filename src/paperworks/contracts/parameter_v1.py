@@ -16,8 +16,22 @@ from paperworks.contracts.artifact_hashing import (
 from paperworks.contracts.schema_registry import SchemaRegistry, load_schema_registry
 
 
-SUPPORTED_PARAMETER_ROLES = frozenset({"lag_minimum", "lag_maximum", "response_delay", "tolerance", "persistence_duration", "minimum_support"})
-SUPPORTED_PARAMETER_PREFIXES = ("PARAM-LAG-", "PARAM-TOL-", "PARAM-DURATION-", "PARAM-SUPPORT-")
+SUPPORTED_PARAMETER_ROLES = frozenset({
+    "lag_minimum",
+    "lag_maximum",
+    "response_delay",
+    "tolerance",
+    "persistence_duration",
+    "minimum_support",
+    "severity_boundary",
+})
+SUPPORTED_PARAMETER_PREFIXES = (
+    "PARAM-LAG-",
+    "PARAM-TOL-",
+    "PARAM-DURATION-",
+    "PARAM-SUPPORT-",
+    "PARAM-SEVERITY-",
+)
 
 
 class ParameterV1ModelError(ValueError):

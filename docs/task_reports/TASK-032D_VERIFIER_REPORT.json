@@ -1,0 +1,80 @@
+{
+  "artifact_type": "task032d_verifier_report",
+  "authority": {
+    "accepted_rule_materialized": true,
+    "runtime_authorized": false,
+    "rule_executed": false,
+    "verifier_has_final_binding_authority": true
+  },
+  "frozen_lineage": {
+    "relation_family": "delayed_response",
+    "schema_version": "1.0.0",
+    "task030_contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+    "task031_gap_audit_commit": "030c102bcf0e17028fa3abe4c5db1efcc2300641",
+    "task032a_registry_commit": "755fdd72ed73f0de93f29130f246bc5913c51802",
+    "task032b_rule_model_commit": "4180142faa635674cea3142cb0a51d8bd152999f",
+    "task032c_external_artifact_commit": "0f3d27fd0e0b4ab57a994102ff1d84af8713d1af"
+  },
+  "hash_policy": {
+    "accepted_rule_hash_equals_subject_hash": true,
+    "candidate_transport_hash": "5f00a446a59d18a35636a9655f9c3881750823700ace8a9a7ff48dd87cb9384b",
+    "subject_excludes": [
+      "status",
+      "verified_rule_hash"
+    ],
+    "verification_subject_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+    "verifier_result_hash": "1efeb258886e46a4f311e039d1fb28528ad56d224f4a9498ad459f08a739eaef",
+    "verifier_result_self_hash_verified": true
+  },
+  "parameter_binding": {
+    "adapter_generated_severity_allowed": false,
+    "lag_binding": "interval_lag_maximum",
+    "required_roles": [
+      "lag_maximum_or_response_delay",
+      "tolerance",
+      "persistence_duration",
+      "minimum_support",
+      "severity_boundary"
+    ],
+    "severity_parameter_supported": true,
+    "time_units": [
+      "milliseconds",
+      "seconds",
+      "minutes"
+    ]
+  },
+  "synthetic_acceptance": {
+    "all_twenty_stages_passed": true,
+    "rule_hash": "1b3b5d7f7e059028c2ec83c64c82f7627c9623330ea75f0b37668b64c00d44a2",
+    "status": "accepted",
+    "verified_evidence": [
+      "EVID-SYNTHETIC-032C"
+    ],
+    "verified_graph_edges": [
+      "EDGE-ACTUATORA-SENSORB"
+    ],
+    "verified_normal_references": [
+      "NREF-SYNTHETIC-032C"
+    ],
+    "verified_parameters": [
+      "PARAM-DURATION-032",
+      "PARAM-LAG-032",
+      "PARAM-SEVERITY-032",
+      "PARAM-SUPPORT-032",
+      "PARAM-TOL-032"
+    ],
+    "verifier_result_id": "VERIFY-F9A592F3693B450C48A0"
+  },
+  "status": "implemented_deterministic_binding_only",
+  "verification": {
+    "broad_discovery": {
+      "errors": 8,
+      "passed": 250,
+      "status": "known_environment_boundary",
+      "tests_discovered": 258,
+      "torch_missing_collection_errors": 8
+    },
+    "relevant_regression_tests_passed": 128,
+    "targeted_tests_passed": 17
+  }
+}
