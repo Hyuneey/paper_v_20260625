@@ -6,9 +6,14 @@ import argparse
 from collections import defaultdict
 import json
 from pathlib import Path
+import sys
 from typing import Any, Mapping, Sequence
 
 import numpy as np
+
+REPO_ROOT_BOOTSTRAP = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT_BOOTSTRAP) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT_BOOTSTRAP))
 
 from experiments.argos_reproduction.direct_event_metrics import direct_pa_free_metrics, metric_distribution
 from experiments.argos_reproduction.expanded_kpi_cohort import REPO_ROOT, git_clean_commit, read_json, sha256_file, sha256_json, write_json

@@ -7,9 +7,14 @@ from collections import defaultdict
 import json
 from pathlib import Path
 import shutil
+import sys
 from typing import Any, Mapping, Sequence
 
 import numpy as np
+
+REPO_ROOT_BOOTSTRAP = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT_BOOTSTRAP) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT_BOOTSTRAP))
 
 from experiments.argos_reproduction.direct_event_metrics import compose_or, contiguous_events, direct_pa_free_metrics, intervals_overlap
 from experiments.argos_reproduction.balanced_rule_panel import select_balanced_panel
