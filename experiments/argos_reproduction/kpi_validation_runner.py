@@ -16,6 +16,10 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from experiments.argos_reproduction.argos_source_faithful_metrics import (
     argos_label_aware_validation_diagnostics,
     source_faithful_metric_protocol_hash,
@@ -33,7 +37,6 @@ from experiments.argos_reproduction.kpi_validation_metrics import (
 )
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
 FROZEN_RULE_HASH = "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659"
 STDIO_LIMIT_BYTES = 65_536
 
