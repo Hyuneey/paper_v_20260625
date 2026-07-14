@@ -1,0 +1,107 @@
+{
+  "artifact_type": "task032b_model_report",
+  "boundaries": {
+    "actual_legacy_conversion": false,
+    "argos_execution": false,
+    "dataset_access": false,
+    "external_artifact_resolution": false,
+    "generated_python_execution": false,
+    "parameter_approval": false,
+    "provider_calls": false,
+    "runtime_execution": false,
+    "semantic_verifier_expansion": false
+  },
+  "canonical_policy": {
+    "allow_nan": false,
+    "document_hash_authority": "transport_and_reproducibility_only",
+    "encoding": "UTF-8",
+    "ensure_ascii": true,
+    "item_separator": ",",
+    "key_separator": ":",
+    "sort_keys": true
+  },
+  "counts": {
+    "frozen_nested_model_types": 12,
+    "synthetic_fixtures": 3,
+    "top_level_rule_fields": 27
+  },
+  "fixtures": [
+    {
+      "canonical_document_sha256": "a85d34a78f95fb8aa149280d9101ace7a73ee29632360f570ded9a8fba9a4de3",
+      "file": "fixtures/task032b/delayed_response_candidate.json",
+      "file_sha256": "985b5f722b763ee8b84f2d3c052423df6621a1a7405bcfc91a0cddfac641a8b6",
+      "lag_type": "interval",
+      "status": "candidate",
+      "verified_rule_hash": null
+    },
+    {
+      "canonical_document_sha256": "2aed3aaabc815a27efe8ff16df6c2dc655bed498bbfe9a0d9458c879da9ddb22",
+      "file": "fixtures/task032b/delayed_response_fixed_lag.json",
+      "file_sha256": "0f1b96b21a558632d53696545e5df28fe2de82ca9050f5f7b38e07fe778ebae7",
+      "lag_type": "fixed",
+      "status": "candidate",
+      "verified_rule_hash": null
+    },
+    {
+      "canonical_document_sha256": "c95736eb70786568998e4cff5524f56c1db625ecceecb412171b911d2fc966af",
+      "file": "fixtures/task032b/delayed_response_interval_lag.json",
+      "file_sha256": "205065b750cfe6f84148fb76d887d16c5faa0ea9850bf65289c9fe86c76ed2c5",
+      "lag_type": "interval",
+      "status": "candidate",
+      "verified_rule_hash": null
+    }
+  ],
+  "frozen_lineage": {
+    "schema_version": "1.0.0",
+    "task030_contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+    "task031_gap_audit_commit": "030c102bcf0e17028fa3abe4c5db1efcc2300641",
+    "task032a_registry_commit": "755fdd72ed73f0de93f29130f246bc5913c51802"
+  },
+  "mvp": {
+    "effect_direction": "increase",
+    "effect_type": "delayed_change",
+    "lag_types": [
+      "fixed",
+      "interval"
+    ],
+    "output_type": "binary_anomaly",
+    "relation_family": "delayed_response",
+    "source_cardinality": 1,
+    "target_cardinality": 1,
+    "trigger_type": "state_changes_to",
+    "violation_direction": "missing_expected_response",
+    "window_types": [
+      "event_relative",
+      "persistence"
+    ]
+  },
+  "model_module": "src/paperworks/contracts/rule_v1.py",
+  "parser": {
+    "external_references_resolved": false,
+    "registry_artifact_type": "rule_dsl",
+    "registry_first": true,
+    "runtime_authorized": false,
+    "structural_validation_is_approval": false,
+    "successful_parsing_is_approval": false
+  },
+  "schema_artifact_type": "rule_dsl",
+  "status": "implemented_document_model_only",
+  "verification": {
+    "broad_discovery": {
+      "errors": 8,
+      "passed": 209,
+      "status": "known_environment_boundary",
+      "tests_discovered": 217,
+      "torch_missing_collection_errors": 8
+    },
+    "compileall": "passed",
+    "git_diff_check": "passed",
+    "json_files_parsed": 4,
+    "pip_check": "passed",
+    "protected_modules_modified": false,
+    "relevant_regression_tests_passed": 77,
+    "schemas_modified": false,
+    "targeted_tests_passed": 14,
+    "tracked_restricted_paths": []
+  }
+}

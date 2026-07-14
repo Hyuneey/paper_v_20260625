@@ -120,3 +120,15 @@ assessment only. It does not implement delayed-response v1 DSL objects, actual
 legacy conversion, parameter adapters, semantic verifier completion, runtime
 behavior, method completion, or experimental validation. See
 `docs/method/STANDARD_SCHEMA_REGISTRY.md`.
+
+## Typed delayed-response document foundation
+
+TASK-032B implements typed delayed-response rule documents and deterministic
+serialization only. Parsing begins with the TASK-032A structural registry and
+then enforces the frozen one-source/one-target delayed-response document shape.
+
+Successful parsing, `status: accepted`, and document hashes do not provide
+semantic verification or runtime authority. TASK-032B does not complete
+parameter approval, graph/evidence binding, legacy migration, verifier stages,
+runtime execution, the proposed method, or experimental validation. See
+`docs/method/DELAYED_RESPONSE_RULE_V1_MODEL.md`.

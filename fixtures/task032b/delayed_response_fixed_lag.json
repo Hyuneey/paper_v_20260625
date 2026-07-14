@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "rule_id": "RULE-SYNTH-A2-S2-FIXED",
+  "rule_version": "1.0.0",
+  "status": "candidate",
+  "subsystem": "synthetic_stage",
+  "dataset_version": "synthetic-task032b-v1",
+  "source_variables": ["A2"],
+  "target_variables": ["S2"],
+  "operating_regime": {
+    "regime_id": "REGIME-SYNTHETIC-002",
+    "condition_refs": []
+  },
+  "trigger": {
+    "trigger_type": "state_changes_to",
+    "variable": "A2",
+    "state_value": true,
+    "threshold_parameter_ref": null,
+    "range_parameter_ref": null,
+    "duration_parameter_ref": null
+  },
+  "relation_type": "delayed_response",
+  "expected_effect": {
+    "effect_type": "delayed_change",
+    "direction": "increase",
+    "target_variables": ["S2"],
+    "parameter_refs": ["PARAM-TOL-102"]
+  },
+  "lag": {
+    "lag_type": "fixed",
+    "minimum": 3,
+    "maximum": 3,
+    "unit": "seconds",
+    "parameter_ref": "PARAM-LAG-102"
+  },
+  "window": {
+    "window_type": "persistence",
+    "length": 8,
+    "unit": "seconds",
+    "alignment": "trigger_relative",
+    "parameter_ref": "PARAM-DURATION-102"
+  },
+  "persistence": {
+    "enabled": true,
+    "duration_parameter_ref": "PARAM-DURATION-102"
+  },
+  "parameter_refs": [
+    "PARAM-LAG-102",
+    "PARAM-TOL-102",
+    "PARAM-DURATION-102",
+    "PARAM-SEVERITY-102"
+  ],
+  "tolerance_ref": "PARAM-TOL-102",
+  "normal_reference_refs": ["NREF-SYNTH-A2-S2-001"],
+  "evidence_refs": ["EVID-SYNTH-A2-S2-001"],
+  "graph_edge_refs": ["EDGE-SYNTH-A2-S2"],
+  "output_semantics": {
+    "output_type": "binary_anomaly",
+    "violation_direction": "missing_expected_response"
+  },
+  "severity_policy": {
+    "policy_id": "SEVERITY-SYNTHETIC-002",
+    "levels": ["info", "low"],
+    "parameter_ref": "PARAM-SEVERITY-102"
+  },
+  "abstention_policy": {
+    "policy_id": "ABSTAIN-SYNTHETIC-002",
+    "abstain_on_missing_inputs": true,
+    "abstain_on_regime_mismatch": true,
+    "abstain_on_parameter_uncertainty": false
+  },
+  "complexity": {
+    "operator_count": 5,
+    "variable_count": 2,
+    "max_depth": 3
+  },
+  "provenance": {
+    "created_by": "synthetic_fixture",
+    "planner_version": "task032b-model-1.0.0",
+    "candidate_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "created_at": "2026-07-14T15:05:00Z"
+  },
+  "review_history": [],
+  "verified_rule_hash": null
+}

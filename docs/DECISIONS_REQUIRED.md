@@ -1066,3 +1066,21 @@
 - TASK-032A preservation record: only compatibility assessment was implemented;
   no target artifact, silent conversion, partial conversion, or parameter
   promotion occurred.
+
+### DEC-038: Typed rule document authorization boundary
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Structural validation is not rule approval: true.
+- Successful parsing is not rule approval: true.
+- Serialized `status` is untrusted until deterministic verifier binding: true.
+- Serialized `verified_rule_hash` is untrusted until deterministic verifier
+  binding: true.
+- TASK-032B rule runtime authorized: false.
+- Runtime requires a future TASK-032D verifier result: true.
+- A parsed document carrying `status: accepted` receives no additional
+  authority.
+- The canonical document SHA-256 is a transport/reproducibility hash only and
+  is not an accepted-rule hash.
+- DEC-035 structural/semantic separation, DEC-036 delayed-response scope, and
+  DEC-037 explicit non-silent migration policy remain unchanged.

@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "rule_id": "RULE-SYNTH-A3-S3-INTERVAL",
+  "rule_version": "1.0.0",
+  "status": "candidate",
+  "subsystem": "synthetic_stage",
+  "dataset_version": "synthetic-task032b-v1",
+  "source_variables": ["A3"],
+  "target_variables": ["S3"],
+  "operating_regime": {
+    "regime_id": "REGIME-SYNTHETIC-003",
+    "condition_refs": ["COND-SYNTHETIC-003"]
+  },
+  "trigger": {
+    "trigger_type": "state_changes_to",
+    "variable": "A3",
+    "state_value": "on",
+    "threshold_parameter_ref": null,
+    "range_parameter_ref": null,
+    "duration_parameter_ref": null
+  },
+  "relation_type": "delayed_response",
+  "expected_effect": {
+    "effect_type": "delayed_change",
+    "direction": "increase",
+    "target_variables": ["S3"],
+    "parameter_refs": ["PARAM-TOL-103"]
+  },
+  "lag": {
+    "lag_type": "interval",
+    "minimum": 0.5,
+    "maximum": 2.5,
+    "unit": "seconds",
+    "parameter_ref": "PARAM-LAG-103"
+  },
+  "window": {
+    "window_type": "event_relative",
+    "length": 6,
+    "unit": "seconds",
+    "alignment": "trigger_relative",
+    "parameter_ref": "PARAM-DURATION-103"
+  },
+  "persistence": {
+    "enabled": false,
+    "duration_parameter_ref": null
+  },
+  "parameter_refs": [
+    "PARAM-LAG-103",
+    "PARAM-TOL-103",
+    "PARAM-DURATION-103",
+    "PARAM-SEVERITY-103"
+  ],
+  "tolerance_ref": "PARAM-TOL-103",
+  "normal_reference_refs": ["NREF-SYNTH-A3-S3-001"],
+  "evidence_refs": ["EVID-SYNTH-A3-S3-001"],
+  "graph_edge_refs": ["EDGE-SYNTH-A3-S3"],
+  "output_semantics": {
+    "output_type": "binary_anomaly",
+    "violation_direction": "missing_expected_response"
+  },
+  "severity_policy": {
+    "policy_id": "SEVERITY-SYNTHETIC-003",
+    "levels": ["medium", "high", "critical"],
+    "parameter_ref": "PARAM-SEVERITY-103"
+  },
+  "abstention_policy": {
+    "policy_id": "ABSTAIN-SYNTHETIC-003",
+    "abstain_on_missing_inputs": true,
+    "abstain_on_regime_mismatch": true,
+    "abstain_on_parameter_uncertainty": true
+  },
+  "complexity": {
+    "operator_count": 5,
+    "variable_count": 2,
+    "max_depth": 3
+  },
+  "provenance": {
+    "created_by": "synthetic_fixture",
+    "planner_version": "task032b-model-1.0.0",
+    "candidate_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "created_at": "2026-07-14T15:10:00Z"
+  },
+  "review_history": [
+    {
+      "iteration": 0,
+      "verifier_result_ref": "VERIFY-SYNTHETIC-003",
+      "changed_fields": ["lag"],
+      "candidate_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "verified_rule_hash": null
+}
