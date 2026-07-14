@@ -12,7 +12,7 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E2 Rule-only KPI validation (`executed`, TASK-034) | KPI validation | Prediction-label artifact; PA-free diagnostics plus separately labeled paper-faithful metrics | Deterministic frozen rule | `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659` | Not applicable | Validation only | None; test sealed | `passed_validation_feasibility`; validation feasibility only |
 | E2X-G Expanded generation cohort (`executed`, insufficient yield, TASK-035A) | KPI generation prefixes only | Response, static, runtime-contract, yield, and diversity statuses; no performance metric | Provider seed unsupported | 100 frozen slots; 55 executable | Not applicable | Generation labels in pre-registered anchors only | None | Cohort construction and runtime plumbing only |
 | E2X-GR Balanced output-budget remediation (`executed`, passed, TASK-035AR) | Same KPI generation prefixes and anchors | Response, extraction, runtime-contract yield, balance, and duplicate hashes; no performance metric | Provider seed unsupported | 100 new frozen slots; 91 executable | Not applicable | Same pre-registered anchors only | None | Output-budget generation-operability comparison only |
-| E2X-S/V Inner selection and outer validation (`not_run`) | KPI inner then outer | Requires a later frozen selection/evaluation protocol | Required before run | TASK-035A cohort hashes | Not applicable | Inner only | Outer only | Deferred; no claim authorized |
+| E2X-S/V Inner selection and outer validation (`pre-registered`, TASK-035B Commit A) | KPI inner then outer | Direct PA-free point/event metrics and paired KPI bootstrap | `20260715` for bootstrap | 146 frozen executable rules; 100-rule balanced panel before labels | Not applicable | Inner only | Outer only after committed arm freeze | Frozen compositions may be evaluated once on outer validation; no test claim |
 | E2X-T Expanded sealed test (`not_run`, sealed, unauthorized) | Sealed KPI test | Not approved | Not approved | Not frozen for test | Not applicable | Frozen future selection only | Sealed one-way | No claim authorized |
 | E3 Rule-only KPI test (`not_run`, sealed, unauthorized) | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same deterministic rule and E2 freeze | E2 frozen hash | Not applicable | E2 validation freeze record | Sealed test, one-way | Rule-only result for the declared series only |
 | E4 Detector-only baseline | Same KPI train/validation/test protocol | Frozen detector prediction labels | Required before detector run | Not applicable | Required before fusion | Train/validation only | Same sealed test | Detector baseline under the frozen protocol |
@@ -61,3 +61,7 @@ for every original anchor. Its only provider change was the 6,000-token output
 budget. All 100 responses were non-empty and static-valid, 91 passed the
 runtime contract, and the combined 146-rule cohort passed the frozen balance
 gate. This authorizes TASK-035B planning only; it is not a performance result.
+
+TASK-035B pre-registers E2X-S and E2X-V with a label-independent ten-rule panel
+per KPI, direct PA-free metrics, four fixed inner-selected OR arms, and a
+commit-separated one-way outer run. E2X-T remains sealed and unauthorized.

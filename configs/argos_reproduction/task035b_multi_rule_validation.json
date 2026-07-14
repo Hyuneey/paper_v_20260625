@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-035B",
+  "experiment_family": "E2X",
+  "created_at": "2026-07-15T00:00:00+09:00",
+  "lineage": {
+    "task035a_implementation_commit": "c3d3933f2ed1b0fbe8a9851731a4b020e9a7ebc9",
+    "task035a_result_commit": "d8dbc8e157a2b3ce212f2bc69911189638b75e82",
+    "task035ar_implementation_commit": "7933b2df14db0743536aef307839d1b68944ed94",
+    "task035ar_result_commit": "dda1384e3da9d2d466c6c159f5baa1de50283bf0",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "sources": {
+    "task035a_runtime": "docs/task_reports/TASK-035A_RUNTIME_REPORT.json",
+    "task035ar_runtime": "docs/task_reports/TASK-035AR_RUNTIME_REPORT.json",
+    "task035a_private_root": "artifacts/private_argos_reproduction/task035a",
+    "task035ar_private_root": "artifacts/private_argos_reproduction/task035ar",
+    "cohort_private_root": "artifacts/private_argos_reproduction/task035a/cohort",
+    "kpi_manifest": "docs/task_reports/TASK-035A_KPI_COHORT_MANIFEST.json",
+    "anchor_manifest": "docs/task_reports/TASK-035A_ANCHOR_MANIFEST.json"
+  },
+  "private_root": "artifacts/private_argos_reproduction/task035b",
+  "design": {
+    "selected_kpi_count": 10,
+    "registered_generation_slots": 200,
+    "executable_rule_count": 146,
+    "generation_anchor_count": 50,
+    "primary_panel_rules_per_kpi": 10,
+    "total_primary_rules": 100,
+    "minimum_full_inner_executable_rules_per_kpi": 10,
+    "near_all_positive_rate": 0.95
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+    "output_limit_bytes": 65536
+  },
+  "metrics": {
+    "direct_binary_outputs": true,
+    "point_adjustment": false,
+    "label_optimized_threshold": false,
+    "event_matching": "maximum_cardinality_one_to_one_interval_overlap",
+    "zero_division": 0.0
+  },
+  "bootstrap": {
+    "seed": 20260715,
+    "resamples": 10000,
+    "confidence_level": 0.95,
+    "method": "percentile_paired_bootstrap",
+    "resampling_unit": "kpi"
+  },
+  "reports": {
+    "full_inner_runtime": "docs/task_reports/TASK-035B_FULL_INNER_RUNTIME_REPORT.json",
+    "primary_panel_freeze": "docs/task_reports/TASK-035B_PRIMARY_PANEL_FREEZE.json",
+    "inner_rule_metrics": "docs/task_reports/TASK-035B_INNER_RULE_METRICS.json",
+    "diversity": "docs/task_reports/TASK-035B_DIVERSITY_REPORT.json",
+    "inner_selection": "docs/task_reports/TASK-035B_INNER_SELECTION_REPORT.json",
+    "selection_freeze": "docs/task_reports/TASK-035B_SELECTION_FREEZE.json",
+    "outer_runtime": "docs/task_reports/TASK-035B_OUTER_RUNTIME_REPORT.json",
+    "outer_validation": "docs/task_reports/TASK-035B_OUTER_VALIDATION_REPORT.json",
+    "bootstrap": "docs/task_reports/TASK-035B_BOOTSTRAP_REPORT.json"
+  },
+  "boundaries": {
+    "provider_calls": false,
+    "new_rule_generation": false,
+    "repair_or_review": false,
+    "detector_or_fusion": false,
+    "test_value_access": false,
+    "test_label_access": false,
+    "outer_based_selection": false,
+    "raw_predictions_tracked": false
+  }
+}

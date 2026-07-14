@@ -1369,3 +1369,27 @@
   two or more executable rules.
 - Gate result: `passed_balanced_generation_cohort`; TASK-035B may start only
   under a separately frozen selection/evaluation scope.
+
+### DEC-058: Balanced primary candidate panel
+
+- Status: resolved_before_metric_access
+- Owner: researcher
+- Exactly ten full-inner-executable rules are selected per KPI without labels or performance metrics.
+- Selection groups by frozen anchor, sorts by rule SHA-256, and performs frozen-anchor round-robin passes.
+- All 146 cohort rules must first pass the values-only full-inner runtime gate; fewer than ten eligible rules for any KPI stops before labels.
+
+### DEC-059: Direct PA-free validation metrics
+
+- Status: resolved_before_inner_metrics
+- Owner: researcher
+- Point and event metrics use direct binary outputs without smoothing, point adjustment, or label-optimized thresholds.
+- Events are maximal contiguous positive runs and use deterministic maximum-cardinality one-to-one overlap matching.
+- Undefined precision, recall, and F1 are zero.
+
+### DEC-060: Frozen inner-selection arms
+
+- Status: resolved_before_inner_metrics
+- Owner: researcher
+- Exactly four arms are selected on inner data: Best-1, Top-3 OR, Coverage-3 OR, and All-10 OR.
+- Coverage-3 uses the predeclared greedy event-coverage and metric tie policy.
+- No weighted vote, majority vote, post-hoc arm, or outer-based change is allowed.

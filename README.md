@@ -250,3 +250,12 @@ executable and every frozen balance threshold passed.
 This is a generation-operability and cohort-balance result only. It does not
 compute validation or test performance, perform selection, repair rules, run a
 detector or fusion path, or alter TASK-035A's `insufficient_rule_yield` status.
+
+## ARGOS E2X-S/V balanced multi-rule validation
+
+TASK-035B implements the predeclared values-only full-inner runtime gate,
+label-independent balanced panel, direct PA-free metrics, four-arm inner
+selection, frozen outer-validation runner, and paired KPI bootstrap. Execution
+uses the required Commit A / Commit B / Commit C separation. The held-out test
+remains sealed, and no provider, rule-generation, detector, repair, review, or
+fusion path is authorized.
