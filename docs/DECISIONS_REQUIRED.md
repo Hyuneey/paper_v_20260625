@@ -1325,3 +1325,9 @@
   review, and response-driven prompt tuning are prohibited.
 - A global credential, permission, model, quota, billing, or provider-wide
   block stops the sequence and leaves remaining slots explicitly unattempted.
+- Execution result: all 100 slots were consumed exactly once; 84 non-empty
+  responses were captured with zero provider or transport errors. No retry,
+  repair, review, provider switch, or model switch occurred.
+- Cohort result: 61 rules passed static checks and 55 passed the isolated
+  runtime output contract. The frozen adequacy result is
+  `insufficient_rule_yield`; TASK-035B is not authorized by this decision.

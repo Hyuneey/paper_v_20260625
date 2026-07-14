@@ -227,3 +227,9 @@ outer validation, ensemble evaluation, detector/fusion experiments, and sealed
 test access remain deferred or unauthorized. Raw prompts, responses, rules,
 arrays, and outputs remain ignored private artifacts. See
 `docs/argos_reproduction/EXPANDED_KPI_COHORT_PROTOCOL.md`.
+
+The bounded E2X-G run completed all 100 slots but ended
+`insufficient_rule_yield`: 84 responses contained text, 61 rules passed static
+checks, and 55 rules passed isolated shape/domain runtime checks. These are
+generation and plumbing yields, not anomaly-detection metrics. No retry,
+repair, inner/outer validation, or sealed-test access followed.
