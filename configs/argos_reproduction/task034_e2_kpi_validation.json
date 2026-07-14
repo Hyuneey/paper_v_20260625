@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-034",
+  "statement": "TASK-034 is a validation-only ARGOS rule feasibility run. It is not a benchmark or thesis-performance result.",
+  "frozen_lineage": {
+    "task024_kpi_preparation_commit": "90a5c7a",
+    "task026q_rule_capture_commit": "6558f13",
+    "task027_rule_audit_commit": "a9860c5",
+    "task029_argos_audit_commit": "b773b528872835e11641498d82acce1daf18a871",
+    "task033_e1_commit": "175e6bf4bfaf88d85d1dc4f47a83f1ab928f9a1e",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "captured_rule_sha256": "e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659",
+  "selected_kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa",
+  "converted_csv": {
+    "private_relative_path": "artifacts/private_argos_reproduction/task024/converted/05f10d3a-239c-3bef-9bdc-a2feeb0037aa_argos.csv",
+    "sha256": "f6a6d834e23417da5cd0e87af227ae62f0c12a73f080afa08b08a2d332aa5d55",
+    "row_count": 146255,
+    "dataset_manifest_sha256": "6fd47e3c7ed27793c5a71a0c474a6deb01d38f69cf5254a0ff79b68df708fc7c"
+  },
+  "split": {
+    "train_test_split": 0.7,
+    "validation_split": 0.2,
+    "source_file": "datasets/dataset.py",
+    "source_blob_hash": "6a018dddd0a50d2498706e11fad25febb25ba438",
+    "chronological": true,
+    "shuffle": false,
+    "purge_or_gap": false
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "base_reference": "docker.io/library/python:3.11.9-slim-bookworm",
+    "base_digest": "sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task034-argos-rule-validation:1.0.0",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "512m",
+    "timeout_seconds": 120,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+    "output_limit_bytes": 65536
+  },
+  "metric": {
+    "smoothing_window": 3,
+    "operating_point_metric": "Event-F1-PA",
+    "operating_point_split": "validation",
+    "source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "private_output_root": "artifacts/private_argos_reproduction/task034",
+  "reports": {
+    "split": "docs/task_reports/TASK-034_SPLIT_MANIFEST.json",
+    "runtime": "docs/task_reports/TASK-034_RUNTIME_REPORT.json",
+    "metrics": "docs/task_reports/TASK-034_VALIDATION_METRICS_REPORT.json",
+    "freeze": "docs/task_reports/TASK-034_E3_FREEZE_RECORD.json"
+  },
+  "boundaries": {
+    "test_partition_parsing": false,
+    "phase2_ground_truth_package_access": false,
+    "provider_calls": false,
+    "agent_execution": false,
+    "detector_execution": false,
+    "fusion_execution": false,
+    "host_generated_rule_execution": false,
+    "benchmark_claims": false
+  }
+}

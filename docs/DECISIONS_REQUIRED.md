@@ -1260,3 +1260,33 @@
   empty edge-case fixture also returned a valid deterministic empty output.
 - Allowed claim: the frozen rule loaded and satisfied the declared runtime
   shape/domain/determinism contract on predeclared synthetic inputs.
+
+### DEC-050: ARGOS E2 rule-only KPI validation
+
+- Status: resolved_validation_only
+- Owner: researcher
+- Allowed: verify the frozen converted CSV identity, reproduce pinned split
+  boundaries, parse train/validation prefix rows, execute the frozen rule on
+  validation values, compute validation diagnostics, and freeze one
+  validation-selected paper-faithful operating point.
+- Prohibited: parse or execute the held-out test, compute test metrics, change
+  or repair the rule, choose another KPI ID, call a provider or agent, or run a
+  detector/fusion path.
+- Pass/fail is protocol completion and contract validity; metric magnitude is
+  not a pass criterion.
+
+### DEC-051: KPI chronological split and E3 test seal
+
+- Status: resolved_split_frozen
+- Owner: researcher
+- Split source: pinned ARGOS `datasets/dataset.py` at commit
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Boundary algorithm: `train_pool_end = int(N * 0.7)`, then
+  `train_end = int(train_pool_end * 0.8)`.
+- Order: chronological; shuffle, sampling, purge, and gap are disabled for this
+  reproduction.
+- TASK-034 permits whole-file byte hashing and frozen manifest row count use,
+  but its guarded reader stops at the validation end/test start.
+- Separate competition ground-truth package access: prohibited.
+- E3 status during TASK-034: `not_run`, `sealed_not_accessed`, and
+  `not_authorized`.

@@ -9,8 +9,8 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | Experiment | Dataset split | Metric or output | Random seed | Rule hash | Detector artifact hash | Selection data | Final evaluation data | Allowed claim |
 |---|---|---|---|---|---|---|---|---|
 | E1 Rule candidate runtime smoke (`executed`, TASK-033) | Synthetic non-KPI only | Shape, binary domain, exceptions | Fixed in fixture manifest | `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659` | Not applicable | None | None | Container/runtime plumbing only; `passed_runtime_smoke` |
-| E2 Rule-only KPI validation | KPI validation | Prediction-label artifact; PA-free diagnostics plus separately labeled paper-faithful metrics | Required before run | Frozen after E1 | Not applicable | Train and validation only | None | Validation feasibility only |
-| E3 Rule-only KPI test | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same frozen seed as selected E2 run | E2-selected frozen hash | Not applicable | E2 train/validation record | Sealed test, one-way | Rule-only result for the declared series only |
+| E2 Rule-only KPI validation (`implementation ready`, TASK-034 Commit A) | KPI validation | Prediction-label artifact; PA-free diagnostics plus separately labeled paper-faithful metrics | Deterministic frozen rule | `e4855fd898efecf5b8cd542c05e12af2153384634ab6201146c92d8fdf2e0659` | Not applicable | Validation only | None; test sealed | Validation feasibility only |
+| E3 Rule-only KPI test (`not_run`, sealed, unauthorized) | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same deterministic rule and E2 freeze | E2 frozen hash | Not applicable | E2 validation freeze record | Sealed test, one-way | Rule-only result for the declared series only |
 | E4 Detector-only baseline | Same KPI train/validation/test protocol | Frozen detector prediction labels | Required before detector run | Not applicable | Required before fusion | Train/validation only | Same sealed test | Detector baseline under the frozen protocol |
 | E5 FN fusion | Validation then sealed test | `max(detector, rule)` predictions and predeclared metrics | Inherited frozen artifacts | Required | Required | Validation only | Same sealed test | FN-composition result, no universal superiority claim |
 | E6 FP fusion | Validation then sealed test | `min(detector, rule)` predictions and predeclared metrics | Inherited frozen artifacts | Required | Required | Validation only | Same sealed test | FP-composition result, no universal superiority claim |
@@ -36,3 +36,7 @@ E1 was executed under TASK-033 with synthetic non-KPI inputs only and passed its
 runtime-plumbing gate. E2-E10 remain `not_run`. TASK-033 reports no anomaly-
 detection performance and does not authorize KPI, detector, fusion, RepairAgent,
 ReviewAgent, or provider execution.
+
+TASK-034 Commit A prepares E2 validation-only execution. E2 remains `not_run`
+until the clean committed container run produces the aggregate Commit B
+reports. E3 remains sealed, unexecuted, and unauthorized.

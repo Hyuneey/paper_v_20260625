@@ -197,3 +197,16 @@ plumbing only. It does not establish anomaly-detection performance, KPI or SWaT
 behavior, RepairAgent or ReviewAgent effects, detector fusion, benchmark
 reproduction, or thesis results. See
 `docs/argos_reproduction/ARGOS_E1_RUNTIME_PROTOCOL.md`.
+
+## ARGOS E2 validation-only gate
+
+TASK-034 Commit A implements the guarded KPI validation split, dedicated
+rootless-container execution harness, PA-free array diagnostics, and separately
+labeled source-faithful ARGOS metric adapter. The held-out test boundary is
+sealed by a prefix reader and the container can receive validation values only.
+
+The final E2 result must be produced from a clean committed Commit A and added
+as aggregate-only Commit B reports. Until that run completes, E2 remains
+pending. E3 remains `not_run`, `sealed_not_accessed`, and `not_authorized`.
+Neither stage is a benchmark or thesis-performance claim. See
+`docs/argos_reproduction/ARGOS_E2_KPI_VALIDATION_PROTOCOL.md`.

@@ -221,6 +221,23 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - TASK-030 accessed no upstream checkout, captured rule, provider, detector,
   KPI, SWaT, WADI, or Kaggle data.
 
+### TASK-034 ARGOS split and metric fidelity references
+
+- Reference commit: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Read-only files and Git blob hashes:
+  - `datasets/dataset.py`: `6a018dddd0a50d2498706e11fad25febb25ba438`
+  - `common/common.py`: `2c1bd7546df4c547770b6055eea49ea169ea64a4`
+  - `eval_metrics/point_f1.py`: `a96440baf55a0859a7d08831eeaee6871d170bf1`
+  - `eval_metrics/point_f1pa.py`: `ec4b57072086fb907b23b6cce73cb50585c17c42`
+  - `eval_metrics/event_f1pa.py`: `ef7c77ab087500b70ada062f81d75d0125258348`
+  - `agent/review_agent.py`: `83936fdfc2875d245f79cd556b9ded96c6d1af25`
+- Code copied into `src/paperworks`: none.
+- Project-owned reproduction code is isolated under
+  `experiments/argos_reproduction/` and preserves validation-only split,
+  smoothing, metric-search, and tie behavior.
+- Upstream ARGOS, agents, provider paths, detector paths, and test evaluation
+  are not executed by TASK-034 Commit A.
+
 ### TASK-032A schema validation dependency
 
 - Package source: https://github.com/python-jsonschema/jsonschema
