@@ -1005,3 +1005,55 @@
 - Current approval: specification and synthetic schema tests only.
 - Not approved: method implementation, provider calls, dataset access,
   experiments, benchmark claims, or TASK-028 resume.
+
+### DEC-035: Production JSON Schema validator
+
+- Status: proposed_not_installed
+- Owner: researcher
+- Needed before: TASK-032A production schema-registry implementation
+- Recommended option: `python-jsonschema` using
+  `jsonschema.validators.Draft202012Validator`.
+- Structural role: validate TASK-030 JSON artifacts against Draft 2020-12
+  schemas.
+- Project-owned semantic role remains mandatory for cross-artifact references,
+  units, graph endpoints, split provenance, relation compatibility, and
+  status/hash consistency.
+- Current fixture validator: limited synthetic test helper, not a complete
+  Draft 2020-12 implementation.
+- Current dependency status: `jsonschema` is not declared in `pyproject.toml`;
+  TASK-031 did not install or add it.
+- Approval effect: resolving this decision may authorize a separately scoped
+  TASK-032A dependency and schema-registry change only.
+
+### DEC-036: First TASK-030 contract implementation slice
+
+- Status: resolved_scope_frozen
+- Owner: researcher
+- Selected relation family: `delayed_response`.
+- Source/target: one binary actuator to one continuous sensor.
+- Trigger: `state_changes_to`.
+- Expected effect: delayed positive change.
+- Violation: `missing_expected_response`.
+- Output: binary anomaly.
+- Allowed lag types: fixed and interval.
+- Allowed window types: event-relative and persistence.
+- Excluded: the other thirteen relation families, multi-source/target rules,
+  streaming, free-form expressions, and causal claims.
+- Consequence: this is the direct contract-compatible successor to Phase 1
+  `changed_to`, `increase_within`, and `response_missing` semantics.
+
+### DEC-037: Legacy Phase 1 artifact compatibility
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Policy: deterministic explicit adapter.
+- Legacy identifier: `minimal_rule_schema_v1`.
+- Legacy status after v1 implementation: read-only; new legacy rule creation is
+  prohibited.
+- Silent or in-place conversion: prohibited.
+- Required migration evidence: source hash, target hash, adapter version, field
+  mappings, information-loss declaration, and migration report.
+- Unsupported legacy artifact behavior: return
+  `unsupported_legacy_artifact`; partial conversion is prohibited.
+- Synthetic-smoke calibration records cannot be promoted to approved research
+  parameters through migration.

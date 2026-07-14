@@ -95,3 +95,15 @@ method, LLM planner, deterministic calibrators, verifier, runtime interpreter,
 detector fusion, or official SWaT experiment has been implemented or
 experimentally verified. See
 `docs/method/GRAPH_GUIDED_RULE_CONSTRUCTION_CONTRACT.md`.
+
+## Current migration-planning milestone
+
+TASK-031 maps the existing Phase 1 deterministic implementation to the frozen
+TASK-030 contracts and freezes a delayed-response-only MVP migration path. It
+also separates standard JSON Schema validation from project-owned semantic
+verification and requires explicit, hash-recorded legacy adapters.
+
+This is a **migration-planning milestone only**. No TASK-030 production method
+code, dependency, dataset experiment, provider integration, generated-code
+execution, or performance result was added. See
+`docs/method/CONTRACT_TO_CODE_GAP_MATRIX.md`.

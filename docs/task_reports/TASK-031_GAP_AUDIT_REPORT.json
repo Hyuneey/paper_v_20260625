@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "contract_to_code_gap_audit",
+  "task_id": "TASK-031",
+  "status": "completed_static_audit",
+  "frozen_contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+  "audit_method": "python_ast_and_source_text_only",
+  "artifact_contracts_mapped": [
+    "graph",
+    "evidence_package",
+    "parameter_registry",
+    "rule_dsl",
+    "verifier_result",
+    "runtime_trace",
+    "explanation_record"
+  ],
+  "classification_counts": {
+    "reuse_as_is": 0,
+    "reuse_with_wrapper": 6,
+    "adapt_in_place_later": 1,
+    "replace_later": 1,
+    "deprecate": 2,
+    "new_implementation_required": 1
+  },
+  "verifier_stage_counts": {
+    "complete_for_legacy_scope": 1,
+    "partial": 10,
+    "missing": 9
+  },
+  "mvp_relation_family": "delayed_response",
+  "legacy_schema_status": "legacy_read_only",
+  "silent_conversion_prohibited": true,
+  "synthetic_smoke_parameter_promotion_prohibited": true,
+  "decisions": {
+    "DEC-035": "proposed_not_installed",
+    "DEC-036": "resolved_scope_frozen",
+    "DEC-037": "resolved_policy_frozen"
+  },
+  "recommended_next_task": "TASK-032A",
+  "next_task_automatically_authorized": false,
+  "verification": {
+    "targeted_task031_tests": "5_passed",
+    "related_contract_and_phase1_tests": "90_passed",
+    "json_documents_validated": 3,
+    "full_suite_observation": "178_passed_8_collection_errors_missing_torch_in_bundled_python",
+    "dependency_installed_to_resolve_environment": false
+  },
+  "boundaries_observed": {
+    "src_paperworks_changed": false,
+    "dependencies_changed": false,
+    "datasets_accessed": false,
+    "provider_calls": false,
+    "generated_code_loaded_or_executed": false,
+    "experiments_rerun": false
+  },
+  "claim_status": "migration_planning_only"
+}

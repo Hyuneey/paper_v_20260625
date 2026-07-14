@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "TASK-031",
+  "artifact_type": "migration_scope_freeze",
+  "frozen_contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+  "mvp": {
+    "relation_family": "delayed_response",
+    "source_cardinality": 1,
+    "target_cardinality": 1,
+    "source_type": "binary_actuator",
+    "target_type": "continuous_sensor",
+    "trigger_type": "state_changes_to",
+    "effect_type": "delayed_change",
+    "effect_direction": "increase",
+    "violation_direction": "missing_expected_response",
+    "output_type": "binary_anomaly",
+    "allowed_lag_types": ["fixed", "interval"],
+    "allowed_window_types": ["event_relative", "persistence"],
+    "parameter_roles": ["LAG", "TOL", "DURATION", "SUPPORT"]
+  },
+  "version_policy": {
+    "legacy_identifier": "minimal_rule_schema_v1",
+    "legacy_status": "legacy_read_only",
+    "legacy_new_rule_creation_after_v1": false,
+    "target_schema_version": "1.0.0",
+    "automatic_silent_conversion": false,
+    "deterministic_adapter_allowed": true,
+    "source_and_target_hashes_required": true,
+    "migration_report_required": true,
+    "unsupported_status": "unsupported_legacy_artifact"
+  },
+  "schema_validation": {
+    "decision_id": "DEC-035",
+    "recommended_validator": "python-jsonschema Draft202012Validator",
+    "dependency_installed_by_task031": false,
+    "semantic_checks_remain_project_owned": true
+  },
+  "next_task": {
+    "recommended": "TASK-032A",
+    "automatically_authorized": false,
+    "blocked_on": ["DEC-035 approval"]
+  },
+  "boundaries": {
+    "src_paperworks_changes": false,
+    "dependency_changes": false,
+    "provider_calls": false,
+    "generated_python_execution": false,
+    "dataset_access": false,
+    "experiments_rerun": false,
+    "performance_claims": false,
+    "causal_claims": false
+  }
+}
