@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-UNKNOWN-EDGE",
+  "base_fixture": "rule_dsl.json",
+  "target_schema": "rule_dsl_schema.json",
+  "expected_error": "UNKNOWN_EDGE",
+  "patches": [
+    {"operation": "replace", "path": "/graph_edge_refs/0", "value": "EDGE-NOT-REGISTERED"}
+  ]
+}

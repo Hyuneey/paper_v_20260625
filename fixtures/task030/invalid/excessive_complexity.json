@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-EXCESSIVE-COMPLEXITY",
+  "base_fixture": "rule_dsl.json",
+  "target_schema": "rule_dsl_schema.json",
+  "expected_error": "SCHEMA_MAXIMUM",
+  "patches": [
+    {"operation": "replace", "path": "/complexity/operator_count", "value": 100}
+  ]
+}

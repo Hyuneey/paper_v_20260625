@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-EXPLANATION-RULE",
+  "base_fixture": "explanation_record.json",
+  "target_schema": "explanation_record_schema.json",
+  "expected_error": "EXPLANATION_RULE_NOT_FOUND",
+  "patches": [
+    {"operation": "replace", "path": "/rule_id", "value": "RULE-NOT-FOUND"}
+  ]
+}

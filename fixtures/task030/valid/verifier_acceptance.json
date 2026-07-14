@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "verifier_result_id": "VERIFY-A1-S1-ACCEPTED",
+  "artifact_hash": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+  "rule_id": "RULE-A1-S1-001",
+  "rule_hash": "dededededededededededededededededededededededededededededededede",
+  "verifier_version": "task030-verifier-contract-1.0.0",
+  "status": "accepted",
+  "violations": [],
+  "warnings": [],
+  "repairable_fields": [],
+  "non_repairable_fields": ["rule_id", "schema_version", "dataset_version", "evidence_refs", "graph_edge_refs", "verified_parameter_values", "final_test_boundaries"],
+  "verified_graph_edges": ["EDGE-A1-S1"],
+  "verified_parameters": ["PARAM-LAG-001", "PARAM-TOL-002", "PARAM-DURATION-005", "PARAM-SEVERITY-001"],
+  "verified_evidence": ["EVID-A1-S1-001"],
+  "verified_normal_references": ["NREF-A1-S1-001"],
+  "complexity_score": 20,
+  "conflict_records": [],
+  "duplicate_records": [],
+  "created_at": "2026-07-14T12:01:00+09:00"
+}

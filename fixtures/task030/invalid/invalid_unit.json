@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-UNIT",
+  "base_fixture": "parameter_tolerance.json",
+  "target_schema": "parameter_registry_schema.json",
+  "expected_error": "SCHEMA_PATTERN",
+  "patches": [
+    {"operation": "replace", "path": "/unit", "value": "units<script>"}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "verifier_result_id": "VERIFY-SYNTHETIC-REJECTED",
+  "artifact_hash": "f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+  "rule_id": "RULE-REJECTED-001",
+  "rule_hash": "1212121212121212121212121212121212121212121212121212121212121212",
+  "verifier_version": "task030-verifier-contract-1.0.0",
+  "status": "rejected",
+  "violations": [{"code": "VARIABLE_NOT_FOUND", "stage": 3, "field": "source_variables", "message": "A referenced variable is absent from the approved graph."}],
+  "warnings": [],
+  "repairable_fields": [],
+  "non_repairable_fields": ["evidence_refs", "graph_edge_refs"],
+  "verified_graph_edges": [],
+  "verified_parameters": [],
+  "verified_evidence": [],
+  "verified_normal_references": [],
+  "complexity_score": 0,
+  "conflict_records": [],
+  "duplicate_records": [],
+  "created_at": "2026-07-14T12:02:00+09:00"
+}

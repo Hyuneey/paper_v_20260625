@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/evidence_package_schema.json",
+  "title": "Anomaly-Anchored Evidence Package",
+  "description": "Hash-only evidence references and matched normal context for relational rule construction.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evidence_id", "artifact_hash", "event_anchor", "event_window", "pre_event_context", "post_event_context", "matched_normal_reference", "source_variables", "target_variables", "operating_regime", "candidate_lag_range", "data_split", "dataset_version", "selection_policy", "selection_policy_hash", "supported_claims", "prohibited_claims", "raw_values_included"],
+  "properties": {
+    "schema_version": {"const": "1.0.0", "description": "Evidence schema version."},
+    "evidence_id": {"type": "string", "pattern": "^EVID-[A-Z0-9-]{3,64}$"},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "event_anchor": {"$ref": "#/$defs/window_ref"},
+    "event_window": {"$ref": "#/$defs/window_ref"},
+    "pre_event_context": {"$ref": "#/$defs/window_ref"},
+    "post_event_context": {"$ref": "#/$defs/window_ref"},
+    "matched_normal_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_id", "operating_regime", "subsystem", "matching_method", "tie_breaker", "artifact_hash"],
+      "properties": {
+        "reference_id": {"type": "string", "pattern": "^NREF-[A-Z0-9-]{3,64}$"},
+        "operating_regime": {"$ref": "#/$defs/id"},
+        "subsystem": {"type": "string", "minLength": 1, "maxLength": 64},
+        "matching_method": {"enum": ["exact_regime_subsystem", "compatible_regime_subsystem", "predeclared_nearest_profile"]},
+        "tie_breaker": {"enum": ["lowest_window_id", "earliest_timestamp", "lowest_profile_distance_then_id"]},
+        "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "source_variables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "target_variables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "operating_regime": {"$ref": "#/$defs/id"},
+    "candidate_lag_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "maximum", "unit"],
+      "properties": {
+        "minimum": {"type": "number", "minimum": 0},
+        "maximum": {"type": "number", "minimum": 0},
+        "unit": {"enum": ["milliseconds", "seconds", "minutes"]}
+      }
+    },
+    "data_split": {"enum": ["train", "calibration"], "description": "Final test and validation are excluded from evidence curation."},
+    "dataset_version": {"type": "string", "minLength": 1, "maxLength": 128},
+    "selection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "policy_version", "regime_match_required", "subsystem_match_required", "label_performance_used", "deterministic_tie_breaking", "pre_registered"],
+      "properties": {
+        "policy_id": {"type": "string", "pattern": "^POLICY-[A-Z0-9-]{3,64}$"},
+        "policy_version": {"type": "string", "minLength": 1, "maxLength": 32},
+        "regime_match_required": {"const": true},
+        "subsystem_match_required": {"const": true},
+        "label_performance_used": {"const": false},
+        "deterministic_tie_breaking": {"const": true},
+        "pre_registered": {"const": true}
+      }
+    },
+    "selection_policy_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "supported_claims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["temporal_association", "state_conditioned_response", "typical_lag", "typical_direction", "typical_magnitude", "normal_variability"]}},
+    "prohibited_claims": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"enum": ["physical_causality", "root_cause", "universal_invariant"]}},
+    "raw_values_included": {"const": false}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]{2,64}$"},
+    "variable": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+    "window_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["window_id", "start_offset", "end_offset", "unit", "artifact_hash"],
+      "properties": {
+        "window_id": {"type": "string", "pattern": "^WIN-[A-Z0-9-]{3,64}$"},
+        "start_offset": {"type": "integer"},
+        "end_offset": {"type": "integer"},
+        "unit": {"enum": ["samples", "milliseconds", "seconds"]},
+        "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}

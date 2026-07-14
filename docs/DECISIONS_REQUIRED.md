@@ -976,3 +976,32 @@
 - Fusion superiority claim: prohibited until frozen experiments are run.
 - TASK-029 changes the source audit and experiment protocol only; it does not
   resolve DEC-031 or permit TASK-028 resume.
+
+### DEC-034: ARGOS-informed multivariate method contract
+
+- Status: resolved_specification_frozen
+- Owner: researcher
+- Method representation: project-owned typed JSON DSL; arbitrary generated
+  Python and free-form expression execution are prohibited.
+- Candidate boundary: pre-scoring CandidateUniverse followed by graph ranking;
+  no unregistered variables or candidate edges may be introduced.
+- Evidence term: `anomaly-anchored evidence curation`.
+- Relation registry: 14 versioned families; runtime additions require a schema
+  version and separate decision.
+- Numeric authority: deterministic calibration artifacts only; an LLM cannot
+  approve values, confidence intervals, splits, or stability conclusions.
+- Rule authority: deterministic verifier, non-overridable.
+- Repair policy: maximum 3 iterations, one repeated violation allowed, terminate
+  on no change, and immutable evidence/graph/value/test-boundary fields.
+- Runtime: deterministic, LLM-free, accepted DSL only.
+- Fusion: rule-only, detector-only, ARGOS FN union, ARGOS FP intersection,
+  confidence-gated, and abstention-aware arms are predeclared without a
+  superiority claim.
+- Proposed-method primary metrics: PA-free precision, recall, point F1, range
+  F1, event recall, and event precision. Point adjustment and ARGOS Event-PA
+  are supplementary only.
+- Test policy: one-way evaluation; no rule, parameter, threshold, candidate, or
+  fusion selection after access.
+- Current approval: specification and synthetic schema tests only.
+- Not approved: method implementation, provider calls, dataset access,
+  experiments, benchmark claims, or TASK-028 resume.

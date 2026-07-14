@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/explanation_record_schema.json",
+  "title": "Provenance-Traceable Relational Anomaly Explanation",
+  "description": "Rendering record grounded only in accepted rule, runtime trace, graph, evidence, parameters, and verifier results.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "explanation_id", "artifact_hash", "execution_id", "rule_id", "rule_hash", "subsystem", "time_interval", "source_variables", "target_variables", "relation_type", "expected_behavior", "observed_behavior", "violation_type", "lag", "parameter_refs", "evidence_refs", "normal_reference_refs", "graph_edge_refs", "verifier_result_ref", "detector_result", "rule_result", "fusion_result", "natural_language_text", "renderer_version", "causal_claim_made", "root_cause_claim_made"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "explanation_id": {"type": "string", "pattern": "^EXPLAIN-[A-Z0-9-]{3,64}$"},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "execution_id": {"type": "string", "pattern": "^EXEC-[A-Z0-9-]{3,64}$"},
+    "rule_id": {"type": "string", "pattern": "^RULE-[A-Z0-9-]{3,64}$"},
+    "rule_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "subsystem": {"type": "string", "minLength": 1, "maxLength": 64},
+    "time_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_window_id", "start_offset", "end_offset", "unit"],
+      "properties": {
+        "input_window_id": {"type": "string", "pattern": "^WIN-[A-Z0-9-]{3,64}$"},
+        "start_offset": {"type": "integer"},
+        "end_offset": {"type": "integer"},
+        "unit": {"enum": ["samples", "milliseconds", "seconds"]}
+      }
+    },
+    "source_variables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "target_variables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "relation_type": {"$ref": "#/$defs/relation_family"},
+    "expected_behavior": {"type": "string", "minLength": 1, "maxLength": 512},
+    "observed_behavior": {"type": "string", "minLength": 1, "maxLength": 512},
+    "violation_type": {"enum": ["missing_expected_response", "excessive_response", "unexpected_response", "delayed_response", "early_response", "inconsistent_trajectory", "invariant_violation"]},
+    "lag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed", "expected_minimum", "expected_maximum", "unit"],
+      "properties": {
+        "observed": {"type": ["number", "null"], "minimum": 0},
+        "expected_minimum": {"type": "number", "minimum": 0},
+        "expected_maximum": {"type": "number", "minimum": 0},
+        "unit": {"enum": ["milliseconds", "seconds", "minutes"]}
+      }
+    },
+    "parameter_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/parameter_id"}},
+    "evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^EVID-[A-Z0-9-]{3,64}$"}},
+    "normal_reference_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^NREF-[A-Z0-9-]{3,64}$"}},
+    "graph_edge_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^EDGE-[A-Z0-9-]{3,64}$"}},
+    "verifier_result_ref": {"type": "string", "pattern": "^VERIFY-[A-Z0-9-]{3,64}$"},
+    "detector_result": {"$ref": "#/$defs/result"},
+    "rule_result": {"$ref": "#/$defs/result"},
+    "fusion_result": {"$ref": "#/$defs/result"},
+    "natural_language_text": {"type": ["string", "null"], "maxLength": 1000},
+    "renderer_version": {"type": "string", "minLength": 1, "maxLength": 64},
+    "causal_claim_made": {"const": false},
+    "root_cause_claim_made": {"const": false}
+  },
+  "$defs": {
+    "variable": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+    "parameter_id": {"type": "string", "pattern": "^PARAM-(LAG|TOL|RATE|RANGE|DURATION|BASELINE|TRAJECTORY|SUPPORT|SEVERITY)-[0-9]{3,6}$"},
+    "relation_family": {"enum": ["range", "monotonic_increase", "monotonic_decrease", "rate_of_change", "delayed_response", "persistence", "co_movement", "inverse_co_movement", "ratio", "difference", "state_transition", "conditional_invariant", "trajectory_similarity", "recovery_to_baseline"]},
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["available", "binary_label", "score", "artifact_ref", "abstained"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "binary_label": {"type": ["integer", "null"], "minimum": 0, "maximum": 1},
+        "score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "artifact_ref": {"type": ["string", "null"], "pattern": "^[A-Z][A-Z0-9-]{2,64}$"},
+        "abstained": {"type": "boolean"}
+      }
+    }
+  }
+}

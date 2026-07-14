@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/parameter_registry_schema.json",
+  "title": "Deterministic Calibration Parameter Record",
+  "description": "Numeric value and provenance record. LLM roles cannot approve numeric values or stability conclusions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "parameter_id", "parameter_version", "parameter_role", "value", "unit", "relation_family", "source_variables", "target_variables", "operating_regime", "calibration_method", "calibration_split", "calibration_window_refs", "normal_reference_refs", "sample_support", "stability_summary", "confidence_interval", "uncertainty", "dataset_version", "code_commit", "calibrator_version", "artifact_hash", "approval_status", "approved_by", "approval_date"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "parameter_id": {"$ref": "#/$defs/parameter_id"},
+    "parameter_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "parameter_role": {"enum": ["lag_minimum", "lag_maximum", "response_delay", "baseline_level", "tolerance", "rate_boundary", "trajectory_distance", "persistence_duration", "range_minimum", "range_maximum", "minimum_support", "severity_boundary"]},
+    "value": {"type": "number"},
+    "unit": {"$ref": "#/$defs/unit"},
+    "relation_family": {"$ref": "#/$defs/relation_family"},
+    "source_variables": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "target_variables": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "operating_regime": {"$ref": "#/$defs/id"},
+    "calibration_method": {"enum": ["empirical_quantile", "bootstrap_interval", "median_absolute_deviation", "robust_range", "cross_correlation_peak", "event_delay_distribution", "dynamic_time_warping_distance", "run_length_quantile", "predeclared_minimum_count"]},
+    "calibration_split": {"const": "calibration", "description": "Numeric fitting is restricted to the calibration split."},
+    "calibration_window_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^WIN-[A-Z0-9-]{3,64}$"}},
+    "normal_reference_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^NREF-[A-Z0-9-]{3,64}$"}},
+    "sample_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_count", "matched_count", "normal_reference_count", "minimum_required"],
+      "properties": {
+        "event_count": {"type": "integer", "minimum": 0},
+        "matched_count": {"type": "integer", "minimum": 0},
+        "normal_reference_count": {"type": "integer", "minimum": 0},
+        "minimum_required": {"type": "integer", "minimum": 1}
+      }
+    },
+    "stability_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "method", "replicate_count", "variation_measure"],
+      "properties": {
+        "status": {"enum": ["stable", "unstable", "not_estimated"]},
+        "method": {"enum": ["bootstrap", "slice_stability", "not_estimated"]},
+        "replicate_count": {"type": "integer", "minimum": 0},
+        "variation_measure": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "confidence_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "lower", "upper", "method"],
+      "properties": {
+        "level": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "lower": {"type": "number"},
+        "upper": {"type": "number"},
+        "method": {"enum": ["bootstrap_percentile", "robust_quantile", "not_estimated"]}
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "sources"],
+      "properties": {
+        "status": {"enum": ["bounded", "high", "unknown"]},
+        "sources": {"type": "array", "uniqueItems": true, "items": {"enum": ["sampling", "missingness", "regime_variation", "sensor_noise", "limited_support"]}}
+      }
+    },
+    "dataset_version": {"type": "string", "minLength": 1, "maxLength": 128},
+    "code_commit": {"type": "string", "pattern": "^[a-f0-9]{7,40}$"},
+    "calibrator_version": {"type": "string", "minLength": 1, "maxLength": 64},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "approval_status": {"enum": ["proposed", "calibrated", "rejected", "unstable", "approved"]},
+    "approved_by": {"type": ["string", "null"], "maxLength": 128},
+    "approval_date": {"type": ["string", "null"], "format": "date"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]{2,64}$"},
+    "variable": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+    "unit": {"type": "string", "pattern": "^[A-Za-z0-9_%./*^ -]{1,32}$"},
+    "parameter_id": {"type": "string", "pattern": "^PARAM-(LAG|TOL|RATE|RANGE|DURATION|BASELINE|TRAJECTORY|SUPPORT|SEVERITY)-[0-9]{3,6}$"},
+    "relation_family": {"enum": ["range", "monotonic_increase", "monotonic_decrease", "rate_of_change", "delayed_response", "persistence", "co_movement", "inverse_co_movement", "ratio", "difference", "state_transition", "conditional_invariant", "trajectory_similarity", "recovery_to_baseline"]}
+  }
+}

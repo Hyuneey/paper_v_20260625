@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-UNSUPPORTED-RELATION",
+  "base_fixture": "rule_dsl.json",
+  "target_schema": "rule_dsl_schema.json",
+  "expected_error": "SCHEMA_ENUM",
+  "patches": [
+    {"operation": "replace", "path": "/relation_type", "value": "invented_relation"}
+  ]
+}

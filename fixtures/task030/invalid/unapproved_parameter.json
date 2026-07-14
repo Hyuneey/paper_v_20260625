@@ -1,0 +1,11 @@
+{
+  "fixture_id": "INVALID-UNAPPROVED-PARAMETER",
+  "base_fixture": "parameter_lag.json",
+  "target_schema": "parameter_registry_schema.json",
+  "expected_error": "PARAMETER_NOT_APPROVED",
+  "patches": [
+    {"operation": "replace", "path": "/approval_status", "value": "calibrated"},
+    {"operation": "replace", "path": "/approved_by", "value": null},
+    {"operation": "replace", "path": "/approval_date", "value": null}
+  ]
+}

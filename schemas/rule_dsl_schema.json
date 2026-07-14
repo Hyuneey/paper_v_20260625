@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/rule_dsl_schema.json",
+  "title": "Project-Owned Relational Rule JSON DSL",
+  "description": "Typed, non-executable rule representation. Unknown fields and free-form expressions are rejected.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "rule_id", "rule_version", "status", "subsystem", "dataset_version", "source_variables", "target_variables", "operating_regime", "trigger", "relation_type", "expected_effect", "lag", "window", "persistence", "parameter_refs", "tolerance_ref", "normal_reference_refs", "evidence_refs", "graph_edge_refs", "output_semantics", "severity_policy", "abstention_policy", "complexity", "provenance", "review_history", "verified_rule_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "rule_id": {"type": "string", "pattern": "^RULE-[A-Z0-9-]{3,64}$"},
+    "rule_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["candidate", "accepted", "rejected", "needs_repair"]},
+    "subsystem": {"type": "string", "minLength": 1, "maxLength": 64},
+    "dataset_version": {"type": "string", "minLength": 1, "maxLength": 128},
+    "source_variables": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "target_variables": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+    "operating_regime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["regime_id", "condition_refs"],
+      "properties": {
+        "regime_id": {"$ref": "#/$defs/id"},
+        "condition_refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trigger_type", "variable", "state_value", "threshold_parameter_ref", "range_parameter_ref", "duration_parameter_ref"],
+      "properties": {
+        "trigger_type": {"enum": ["state_equals", "state_changes_to", "crosses_above", "crosses_below", "enters_range", "exits_range", "sustained_condition"]},
+        "variable": {"$ref": "#/$defs/variable"},
+        "state_value": {"type": ["string", "number", "boolean", "null"]},
+        "threshold_parameter_ref": {"anyOf": [{"$ref": "#/$defs/parameter_id"}, {"type": "null"}]},
+        "range_parameter_ref": {"anyOf": [{"$ref": "#/$defs/parameter_id"}, {"type": "null"}]},
+        "duration_parameter_ref": {"anyOf": [{"$ref": "#/$defs/parameter_id"}, {"type": "null"}]}
+      }
+    },
+    "relation_type": {"$ref": "#/$defs/relation_family"},
+    "expected_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["effect_type", "direction", "target_variables", "parameter_refs"],
+      "properties": {
+        "effect_type": {"enum": ["range_membership", "directional_change", "bounded_rate", "delayed_change", "persistent_state", "paired_movement", "bounded_ratio", "bounded_difference", "state_change", "bounded_invariant", "trajectory_match", "baseline_recovery"]},
+        "direction": {"enum": ["increase", "decrease", "stable", "same", "opposite", "transition", "recover"]},
+        "target_variables": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/variable"}},
+        "parameter_refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/parameter_id"}}
+      }
+    },
+    "lag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lag_type", "minimum", "maximum", "unit", "parameter_ref"],
+      "properties": {
+        "lag_type": {"enum": ["fixed", "interval", "calibrated_distribution"]},
+        "minimum": {"type": "number", "minimum": 0},
+        "maximum": {"type": "number", "minimum": 0},
+        "unit": {"enum": ["milliseconds", "seconds", "minutes"]},
+        "parameter_ref": {"$ref": "#/$defs/parameter_id"}
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["window_type", "length", "unit", "alignment", "parameter_ref"],
+      "properties": {
+        "window_type": {"enum": ["rolling", "event_relative", "persistence", "recovery"]},
+        "length": {"type": "number", "exclusiveMinimum": 0},
+        "unit": {"enum": ["samples", "milliseconds", "seconds", "minutes"]},
+        "alignment": {"enum": ["left", "center", "right", "trigger_relative"]},
+        "parameter_ref": {"$ref": "#/$defs/parameter_id"}
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "duration_parameter_ref"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "duration_parameter_ref": {"anyOf": [{"$ref": "#/$defs/parameter_id"}, {"type": "null"}]}
+      }
+    },
+    "parameter_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/parameter_id"}},
+    "tolerance_ref": {"$ref": "#/$defs/parameter_id"},
+    "normal_reference_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^NREF-[A-Z0-9-]{3,64}$"}},
+    "evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^EVID-[A-Z0-9-]{3,64}$"}},
+    "graph_edge_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^EDGE-[A-Z0-9-]{3,64}$"}},
+    "output_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["output_type", "violation_direction"],
+      "properties": {
+        "output_type": {"enum": ["binary_anomaly", "violation_score", "abstain"]},
+        "violation_direction": {"enum": ["missing_expected_response", "excessive_response", "unexpected_response", "delayed_response", "early_response", "inconsistent_trajectory", "invariant_violation"]}
+      }
+    },
+    "severity_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "levels", "parameter_ref"],
+      "properties": {
+        "policy_id": {"$ref": "#/$defs/id"},
+        "levels": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["info", "low", "medium", "high", "critical"]}},
+        "parameter_ref": {"$ref": "#/$defs/parameter_id"}
+      }
+    },
+    "abstention_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "abstain_on_missing_inputs", "abstain_on_regime_mismatch", "abstain_on_parameter_uncertainty"],
+      "properties": {
+        "policy_id": {"$ref": "#/$defs/id"},
+        "abstain_on_missing_inputs": {"type": "boolean"},
+        "abstain_on_regime_mismatch": {"type": "boolean"},
+        "abstain_on_parameter_uncertainty": {"type": "boolean"}
+      }
+    },
+    "complexity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operator_count", "variable_count", "max_depth"],
+      "properties": {
+        "operator_count": {"type": "integer", "minimum": 1, "maximum": 12},
+        "variable_count": {"type": "integer", "minimum": 2, "maximum": 8},
+        "max_depth": {"type": "integer", "minimum": 1, "maximum": 6}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "planner_version", "candidate_hash", "created_at"],
+      "properties": {
+        "created_by": {"enum": ["deterministic_template", "constrained_rule_planner", "bounded_rule_reviewer", "synthetic_fixture"]},
+        "planner_version": {"type": "string", "minLength": 1, "maxLength": 64},
+        "candidate_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "created_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "review_history": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["iteration", "verifier_result_ref", "changed_fields", "candidate_hash"],
+        "properties": {
+          "iteration": {"type": "integer", "minimum": 0, "maximum": 3},
+          "verifier_result_ref": {"type": "string", "pattern": "^VERIFY-[A-Z0-9-]{3,64}$"},
+          "changed_fields": {"type": "array", "uniqueItems": true, "items": {"enum": ["trigger", "relation_type", "expected_effect", "lag", "window", "persistence", "parameter_refs", "tolerance_ref", "output_semantics", "severity_policy", "abstention_policy"]}},
+          "candidate_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "verified_rule_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]{2,64}$"},
+    "variable": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+    "parameter_id": {"type": "string", "pattern": "^PARAM-(LAG|TOL|RATE|RANGE|DURATION|BASELINE|TRAJECTORY|SUPPORT|SEVERITY)-[0-9]{3,6}$"},
+    "relation_family": {"enum": ["range", "monotonic_increase", "monotonic_decrease", "rate_of_change", "delayed_response", "persistence", "co_movement", "inverse_co_movement", "ratio", "difference", "state_transition", "conditional_invariant", "trajectory_similarity", "recovery_to_baseline"]}
+  }
+}

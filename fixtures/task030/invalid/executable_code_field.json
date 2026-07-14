@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-EXECUTABLE-CODE-FIELD",
+  "base_fixture": "rule_dsl.json",
+  "target_schema": "rule_dsl_schema.json",
+  "expected_error": "EXECUTABLE_FIELD",
+  "patches": [
+    {"operation": "add", "path": "/python", "value": "prohibited fixture marker"}
+  ]
+}

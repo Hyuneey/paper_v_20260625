@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task030_method_specification_report",
+  "task_id": "TASK-030",
+  "created_at": "2026-07-14T15:00:00+09:00",
+  "task_status": "complete_specification_only",
+  "method_title": "Graph-Guided Agentic Construction of Verified Relational Rules for Explainable Multivariate Time-Series Anomaly Detection",
+  "frozen_argos_sources": {
+    "rule_only_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "historical_aggregator_commit": "c03427f2ab16e377946d4c1176585156ddae7254",
+    "findings_are_audit_not_benchmark": true,
+    "performance_reproduction_complete": false
+  },
+  "contracts": {
+    "method_documents": 13,
+    "json_schemas": 7,
+    "valid_fixture_files": 11,
+    "invalid_fixture_scenarios": 10,
+    "relation_families": 14,
+    "verifier_stages": 20,
+    "maximum_repair_iterations": 3,
+    "runtime_llm": false,
+    "generated_python_execution": false,
+    "deterministic_verifier_final_authority": true
+  },
+  "schemas": [
+    "schemas/graph_schema.json",
+    "schemas/evidence_package_schema.json",
+    "schemas/rule_dsl_schema.json",
+    "schemas/parameter_registry_schema.json",
+    "schemas/verifier_result_schema.json",
+    "schemas/runtime_trace_schema.json",
+    "schemas/explanation_record_schema.json"
+  ],
+  "invalid_fixture_expectations": [
+    "UNKNOWN_VARIABLE",
+    "UNKNOWN_EDGE",
+    "SCHEMA_ENUM",
+    "MISSING_PARAMETER",
+    "PARAMETER_NOT_APPROVED",
+    "SCHEMA_PATTERN",
+    "SCHEMA_CONST",
+    "EXECUTABLE_FIELD",
+    "SCHEMA_MAXIMUM",
+    "EXPLANATION_RULE_NOT_FOUND"
+  ],
+  "dataset_boundary": {
+    "kpi_status": "prepared_only_not_accessed",
+    "official_itrust_swat_status": "not_accessed_dec007_unresolved",
+    "kaggle_merged_status": "staging_only_not_accessed",
+    "wadi_status": "not_started",
+    "full_swat_p2_p6_status": "not_started"
+  },
+  "claim_boundary": {
+    "specification_complete": true,
+    "production_implementation_complete": false,
+    "experiments_run": false,
+    "benchmark_claim": false,
+    "thesis_performance_claim": false,
+    "fusion_superiority_claim": false,
+    "causal_claim": false
+  },
+  "boundaries": {
+    "docker_or_podman_work": false,
+    "provider_calls": false,
+    "llm_rule_generation": false,
+    "generated_python_loaded": false,
+    "generated_python_executed": false,
+    "argos_agent_executed": false,
+    "dataset_accessed": false,
+    "private_artifact_accessed": false,
+    "src_paperworks_changed": false,
+    "phase1_decisions_changed": false,
+    "phase1_evaluation_rerun": false,
+    "phase1_sensitivity_rerun": false
+  },
+  "verification": {
+    "targeted_test_module": "tests.test_task030_method_schemas",
+    "targeted_tests_passed": 6,
+    "task029_task030_non_executing_tests_passed": 15,
+    "json_files_validated": 29,
+    "json_validation_status": "passed",
+    "compile_status": "passed",
+    "git_diff_check": "passed",
+    "git_boundary_status": "passed",
+    "professor_brief_word_count": 547
+  },
+  "report_hash": "4833a844e2a2db52afb18fe97888cf92ba1c8dd109d83953b3ac02d4148f9316"
+}

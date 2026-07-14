@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/graph_schema.json",
+  "title": "Graph-Guided Candidate Relation Graph",
+  "description": "Directed attributed candidate graph. Edges are candidates and never causal claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "graph_id", "artifact_hash", "dataset_version", "candidate_universe_id", "candidate_generation_stage", "nodes", "edges", "provenance"],
+  "properties": {
+    "schema_version": {"const": "1.0.0", "description": "Graph schema version."},
+    "graph_id": {"type": "string", "pattern": "^GRAPH-[A-Z0-9-]{3,64}$", "description": "Stable graph artifact ID."},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$", "description": "Canonical SHA-256 of the graph artifact."},
+    "dataset_version": {"type": "string", "minLength": 1, "maxLength": 128, "description": "Dataset version without raw data."},
+    "candidate_universe_id": {"type": "string", "pattern": "^CU-[A-Z0-9-]{3,64}$", "description": "Pre-scoring candidate universe artifact ID."},
+    "candidate_generation_stage": {"const": "pre_scoring", "description": "Candidates are registered before graph scoring."},
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/node"},
+      "description": "Registered variables and project-owned derived states."
+    },
+    "edges": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/edge"},
+      "description": "Directed candidate relations restricted to registered nodes."
+    },
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]{2,64}$"},
+    "variable": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+    "unit": {"type": "string", "pattern": "^[A-Za-z0-9_%./*^ -]{1,32}$"},
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node_id", "variable_name", "display_name", "node_type", "subsystem", "physical_unit", "data_type", "allowed_operating_states", "sampling_interval", "metadata_provenance"],
+      "properties": {
+        "node_id": {"$ref": "#/$defs/id"},
+        "variable_name": {"$ref": "#/$defs/variable"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 128},
+        "node_type": {"enum": ["sensor", "actuator", "derived_state", "subsystem_state"]},
+        "subsystem": {"type": "string", "minLength": 1, "maxLength": 64},
+        "physical_unit": {"$ref": "#/$defs/unit"},
+        "data_type": {"enum": ["binary", "categorical", "integer", "continuous", "boolean"]},
+        "allowed_operating_states": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": ["string", "number", "boolean"]}
+        },
+        "sampling_interval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["value", "unit"],
+          "properties": {
+            "value": {"type": "number", "exclusiveMinimum": 0},
+            "unit": {"enum": ["milliseconds", "seconds", "minutes"]}
+          }
+        },
+        "metadata_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_kind", "source_reference", "review_status", "artifact_hash"],
+          "properties": {
+            "source_kind": {"enum": ["manual_review", "dataset_schema", "system_documentation", "derived_project_state"]},
+            "source_reference": {"type": "string", "minLength": 1, "maxLength": 256},
+            "review_status": {"enum": ["unreviewed", "reviewed", "approved"]},
+            "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          }
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edge_id", "source_node", "target_node", "direction", "relation_family_candidates", "lag_candidate_range", "operating_regimes", "evidence_sources", "support", "confidence", "uncertainty", "edge_semantics", "physical", "documented", "statistical", "weakly_supervised", "causal_claim_allowed", "provenance"],
+      "properties": {
+        "edge_id": {"type": "string", "pattern": "^EDGE-[A-Z0-9-]{3,64}$"},
+        "source_node": {"$ref": "#/$defs/id"},
+        "target_node": {"$ref": "#/$defs/id"},
+        "direction": {"const": "directed"},
+        "relation_family_candidates": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/relation_family"}
+        },
+        "lag_candidate_range": {"$ref": "#/$defs/range"},
+        "operating_regimes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "evidence_sources": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["physical_topology", "documented_dependency", "subsystem_membership", "type_compatibility", "temporal_association", "gdn_score", "statistical_screening", "attack_metadata_weak_prior"]}},
+        "support": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["event_count", "normal_reference_count"],
+          "properties": {
+            "event_count": {"type": "integer", "minimum": 0},
+            "normal_reference_count": {"type": "integer", "minimum": 0}
+          }
+        },
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "uncertainty": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "lower", "upper"],
+          "properties": {
+            "method": {"enum": ["not_estimated", "bootstrap", "stability_scan", "expert_range"]},
+            "lower": {"type": "number", "minimum": 0, "maximum": 1},
+            "upper": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        },
+        "edge_semantics": {"enum": ["physical_topology", "documented_dependency", "temporal_association", "statistical_dependency", "attack_metadata_weak_prior", "subsystem_prior", "learned_graph_candidate"]},
+        "physical": {"type": "boolean"},
+        "documented": {"type": "boolean"},
+        "statistical": {"type": "boolean"},
+        "weakly_supervised": {"type": "boolean"},
+        "causal_claim_allowed": {"const": false},
+        "provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "maximum", "unit"],
+      "properties": {
+        "minimum": {"type": "number", "minimum": 0},
+        "maximum": {"type": "number", "minimum": 0},
+        "unit": {"enum": ["milliseconds", "seconds", "minutes"]}
+      }
+    },
+    "relation_family": {"enum": ["range", "monotonic_increase", "monotonic_decrease", "rate_of_change", "delayed_response", "persistence", "co_movement", "inverse_co_movement", "ratio", "difference", "state_transition", "conditional_invariant", "trajectory_similarity", "recovery_to_baseline"]},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "method_version", "source_artifact_ids", "code_commit"],
+      "properties": {
+        "created_by": {"enum": ["metadata_registry", "candidate_universe_builder", "graph_ranker", "synthetic_fixture"]},
+        "method_version": {"type": "string", "minLength": 1, "maxLength": 64},
+        "source_artifact_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "code_commit": {"type": "string", "pattern": "^[a-f0-9]{7,40}$"}
+      }
+    }
+  }
+}

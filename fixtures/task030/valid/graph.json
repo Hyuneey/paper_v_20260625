@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "graph_id": "GRAPH-SYNTHETIC-001",
+  "artifact_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "dataset_version": "synthetic-contract-v1",
+  "candidate_universe_id": "CU-SYNTHETIC-001",
+  "candidate_generation_stage": "pre_scoring",
+  "nodes": [
+    {
+      "node_id": "NODE-ACT-001",
+      "variable_name": "A1",
+      "display_name": "Synthetic actuator",
+      "node_type": "actuator",
+      "subsystem": "synthetic_stage_1",
+      "physical_unit": "state",
+      "data_type": "binary",
+      "allowed_operating_states": [0, 1],
+      "sampling_interval": {"value": 1, "unit": "seconds"},
+      "metadata_provenance": {
+        "source_kind": "manual_review",
+        "source_reference": "TASK-030 synthetic fixture",
+        "review_status": "approved",
+        "artifact_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    },
+    {
+      "node_id": "NODE-SEN-001",
+      "variable_name": "S1",
+      "display_name": "Synthetic flow sensor",
+      "node_type": "sensor",
+      "subsystem": "synthetic_stage_1",
+      "physical_unit": "units",
+      "data_type": "continuous",
+      "allowed_operating_states": [],
+      "sampling_interval": {"value": 1, "unit": "seconds"},
+      "metadata_provenance": {
+        "source_kind": "manual_review",
+        "source_reference": "TASK-030 synthetic fixture",
+        "review_status": "approved",
+        "artifact_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "EDGE-A1-S1",
+      "source_node": "NODE-ACT-001",
+      "target_node": "NODE-SEN-001",
+      "direction": "directed",
+      "relation_family_candidates": ["delayed_response", "monotonic_increase"],
+      "lag_candidate_range": {"minimum": 1, "maximum": 5, "unit": "seconds"},
+      "operating_regimes": ["REGIME-NOMINAL-001"],
+      "evidence_sources": ["subsystem_membership", "type_compatibility"],
+      "support": {"event_count": 20, "normal_reference_count": 20},
+      "confidence": 0.8,
+      "uncertainty": {"method": "expert_range", "lower": 0.6, "upper": 0.9},
+      "edge_semantics": "subsystem_prior",
+      "physical": false,
+      "documented": false,
+      "statistical": false,
+      "weakly_supervised": false,
+      "causal_claim_allowed": false,
+      "provenance": {
+        "created_by": "synthetic_fixture",
+        "method_version": "1.0.0",
+        "source_artifact_ids": ["CU-SYNTHETIC-001"],
+        "code_commit": "b773b52"
+      }
+    }
+  ],
+  "provenance": {
+    "created_by": "synthetic_fixture",
+    "method_version": "1.0.0",
+    "source_artifact_ids": ["CU-SYNTHETIC-001"],
+    "code_commit": "b773b52"
+  }
+}

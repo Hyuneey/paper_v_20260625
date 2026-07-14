@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/verifier_result_schema.json",
+  "title": "Deterministic Rule Verifier Result",
+  "description": "Final non-overridable acceptance decision and structured repair feedback.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "verifier_result_id", "artifact_hash", "rule_id", "rule_hash", "verifier_version", "status", "violations", "warnings", "repairable_fields", "non_repairable_fields", "verified_graph_edges", "verified_parameters", "verified_evidence", "verified_normal_references", "complexity_score", "conflict_records", "duplicate_records", "created_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "verifier_result_id": {"type": "string", "pattern": "^VERIFY-[A-Z0-9-]{3,64}$"},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rule_id": {"type": "string", "pattern": "^RULE-[A-Z0-9-]{3,64}$"},
+    "rule_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "verifier_version": {"type": "string", "minLength": 1, "maxLength": 64},
+    "status": {"enum": ["accepted", "rejected", "needs_repair"]},
+    "violations": {"type": "array", "items": {"$ref": "#/$defs/issue"}},
+    "warnings": {"type": "array", "items": {"$ref": "#/$defs/issue"}},
+    "repairable_fields": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/field"}},
+    "non_repairable_fields": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/field"}},
+    "verified_graph_edges": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EDGE-[A-Z0-9-]{3,64}$"}},
+    "verified_parameters": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/parameter_id"}},
+    "verified_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EVID-[A-Z0-9-]{3,64}$"}},
+    "verified_normal_references": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^NREF-[A-Z0-9-]{3,64}$"}},
+    "complexity_score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "conflict_records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "duplicate_records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "parameter_id": {"type": "string", "pattern": "^PARAM-(LAG|TOL|RATE|RANGE|DURATION|BASELINE|TRAJECTORY|SUPPORT|SEVERITY)-[0-9]{3,6}$"},
+    "field": {"enum": ["trigger", "relation_type", "expected_effect", "lag", "window", "persistence", "parameter_refs", "tolerance_ref", "output_semantics", "severity_policy", "abstention_policy", "rule_id", "schema_version", "dataset_version", "evidence_refs", "graph_edge_refs", "verified_parameter_values", "final_test_boundaries"]},
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "stage", "field", "message"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,64}$"},
+        "stage": {"type": "integer", "minimum": 1, "maximum": 20},
+        "field": {"type": "string", "minLength": 1, "maxLength": 128},
+        "message": {"type": "string", "minLength": 1, "maxLength": 512}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_id", "related_rule_id", "relation"],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]{2,64}$"},
+        "related_rule_id": {"type": "string", "pattern": "^RULE-[A-Z0-9-]{3,64}$"},
+        "relation": {"enum": ["conflict", "structural_duplicate", "behavioral_duplicate", "subsumes", "subsumed_by"]}
+      }
+    }
+  }
+}

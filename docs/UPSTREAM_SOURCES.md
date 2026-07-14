@@ -204,6 +204,23 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
   imports or executes upstream generated rules.
 - No provider, agent, detector, KPI, SWaT, or generated-code execution occurred.
 
+### TASK-030 proposed-method contract notes
+
+- No new ARGOS or GDN source file was inspected or executed.
+- Frozen ARGOS audit commits remain:
+  - rule-only: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`,
+  - historical Aggregator: `c03427f2ab16e377946d4c1176585156ddae7254`.
+- ARGOS code copied: none.
+- ARGOS code adapted into `src/paperworks`: none.
+- ARGOS remains prior work, a reproduction target, and rule/fusion baseline;
+  it is not a production dependency.
+- The proposed contract replaces unrestricted Python with a project-owned JSON
+  DSL, deterministic calibration records, a non-overridable verifier, and an
+  LLM-free runtime.
+- ARGOS min/max fusion semantics are retained only as predeclared baselines.
+- TASK-030 accessed no upstream checkout, captured rule, provider, detector,
+  KPI, SWaT, WADI, or Kaggle data.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN

@@ -82,3 +82,16 @@ TASK-014  Sealed evaluation and optional fusion
 ```
 
 The first command to Codex should use `TASK-000`.
+
+## Current specification milestone
+
+TASK-030 defines the implementation contract for the ARGOS-informed
+multivariate CPS extension. The milestone includes versioned graph, evidence,
+rule DSL, parameter, verifier, runtime, and explanation schemas with synthetic
+validation fixtures.
+
+This is a **specification milestone only**. It does not mean that the complete
+method, LLM planner, deterministic calibrators, verifier, runtime interpreter,
+detector fusion, or official SWaT experiment has been implemented or
+experimentally verified. See
+`docs/method/GRAPH_GUIDED_RULE_CONSTRUCTION_CONTRACT.md`.

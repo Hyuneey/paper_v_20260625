@@ -1,0 +1,10 @@
+{
+  "fixture_id": "INVALID-UNKNOWN-VARIABLE",
+  "base_fixture": "rule_dsl.json",
+  "target_schema": "rule_dsl_schema.json",
+  "expected_error": "UNKNOWN_VARIABLE",
+  "patches": [
+    {"operation": "replace", "path": "/source_variables/0", "value": "X9"},
+    {"operation": "replace", "path": "/trigger/variable", "value": "X9"}
+  ]
+}

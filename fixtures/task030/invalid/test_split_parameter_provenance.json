@@ -1,0 +1,9 @@
+{
+  "fixture_id": "INVALID-TEST-SPLIT-PARAMETER",
+  "base_fixture": "parameter_lag.json",
+  "target_schema": "parameter_registry_schema.json",
+  "expected_error": "SCHEMA_CONST",
+  "patches": [
+    {"operation": "replace", "path": "/calibration_split", "value": "test"}
+  ]
+}
