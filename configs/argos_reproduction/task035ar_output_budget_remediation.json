@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-035AR",
+  "experiment_family": "E2X-GR",
+  "experiment_name": "balanced_output_budget_remediation",
+  "frozen_lineage": {
+    "task035a_implementation_commit": "c3d3933f2ed1b0fbe8a9851731a4b020e9a7ebc9",
+    "task035a_lf_hash_fix_commit": "7b03bfd",
+    "task035a_result_commit": "d8dbc8e157a2b3ce212f2bc69911189638b75e82",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "task035a": {
+    "private_root": "artifacts/private_argos_reproduction/task035a",
+    "anchor_report": "docs/task_reports/TASK-035A_ANCHOR_MANIFEST.json",
+    "request_report": "docs/task_reports/TASK-035A_REQUEST_MANIFEST.json",
+    "provider_report": "docs/task_reports/TASK-035A_PROVIDER_REPORT.json",
+    "static_report": "docs/task_reports/TASK-035A_STATIC_AUDIT_REPORT.json",
+    "runtime_report": "docs/task_reports/TASK-035A_RUNTIME_REPORT.json",
+    "adequacy_report": "docs/task_reports/TASK-035A_COHORT_ADEQUACY_REPORT.json"
+  },
+  "design": {
+    "kpi_count": 10,
+    "anchor_count": 50,
+    "new_replicates_per_anchor": 2,
+    "replicate_ids": [3, 4],
+    "new_slot_count": 100,
+    "combined_slot_count": 200
+  },
+  "provider": {
+    "provider": "openai_responses",
+    "model": "gpt-5.6-luna",
+    "approval_path": "configs/argos_reproduction/task035ar_provider_approval.json",
+    "timeout_seconds": 180,
+    "inter_call_delay_seconds": 1.0,
+    "automatic_retry": false,
+    "manual_retry": false,
+    "temperature_parameter_sent": false,
+    "provider_seed_sent": false,
+    "reasoning_parameter_added": false,
+    "max_output_tokens": 6000
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+    "output_limit_bytes": 65536
+  },
+  "adequacy": {
+    "minimum_remediation_non_empty_responses": 90,
+    "minimum_remediation_executable_rules": 75,
+    "minimum_cumulative_executable_rules": 120,
+    "minimum_cumulative_executable_rules_per_kpi": 8,
+    "minimum_cumulative_distinct_rules_per_kpi": 6,
+    "minimum_kpis_with_at_least_10_executable_rules": 8,
+    "minimum_anchors_with_at_least_2_executable_rules": 35
+  },
+  "private_root": "artifacts/private_argos_reproduction/task035ar",
+  "reports": {
+    "taxonomy": "docs/task_reports/TASK-035AR_FAILURE_TAXONOMY_REPORT.json",
+    "requests": "docs/task_reports/TASK-035AR_REQUEST_MANIFEST.json",
+    "provider": "docs/task_reports/TASK-035AR_PROVIDER_REPORT.json",
+    "static": "docs/task_reports/TASK-035AR_STATIC_AUDIT_REPORT.json",
+    "runtime": "docs/task_reports/TASK-035AR_RUNTIME_REPORT.json",
+    "combined": "docs/task_reports/TASK-035AR_COMBINED_COHORT_REPORT.json",
+    "adequacy": "docs/task_reports/TASK-035AR_ADEQUACY_REPORT.json"
+  },
+  "boundaries": {
+    "task035a_status_change": false,
+    "task035a_slot_retry": false,
+    "prompt_text_change": false,
+    "provider_change": false,
+    "model_change": false,
+    "reasoning_parameter_change": false,
+    "structured_output_change": false,
+    "inner_selection": false,
+    "outer_validation": false,
+    "test_value_access": false,
+    "test_label_access": false,
+    "performance_metrics": false
+  }
+}

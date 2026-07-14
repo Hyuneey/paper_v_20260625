@@ -343,3 +343,12 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   test packages are prohibited.
 - Code copied: none. Prompt text is reconstructed from the pinned read-only
   source by the existing AST-based fidelity helper.
+
+## TASK-035AR upstream alignment
+
+- ARGOS and KPI upstream revisions remain identical to TASK-035A.
+- The same 50 private anchor artifacts and exact TASK-035A prompt bytes are
+  hash-verified before use.
+- No upstream source or prompt text is changed. The only execution difference
+  is the provider maximum output-token budget, increased from 2,000 to 6,000.
+- No upstream code is copied or adapted by TASK-035AR.

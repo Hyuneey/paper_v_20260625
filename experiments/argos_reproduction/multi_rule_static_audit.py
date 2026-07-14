@@ -146,7 +146,7 @@ def audit_all(config_path: Path) -> dict[str, Any]:
         rules = [item.get("rule_sha256") for item in items]
         per_anchor.append({"anchor_id": anchor_id, "kpi_id": items[0]["kpi_id"], "replicate_response_same": len(responses) == 2 and None not in responses and len(set(responses)) == 1, "replicate_rule_same": len(rules) == 2 and None not in rules and len(set(rules)) == 1, "comparison_status": "available" if None not in responses else "unavailable_due_to_failure"})
     report = {
-        "schema_version": "1.0", "task_id": "TASK-035A", "artifact_type": "static_audit_report",
+        "schema_version": "1.0", "task_id": config.get("task_id", "TASK-035A"), "artifact_type": "static_audit_report",
         "rules_extracted": sum(bool(item.get("rule_extracted")) for item in records),
         "static_valid": len(valid), "distinct_response_hashes": len({item.get("response_sha256") for item in records if item.get("response_sha256")}),
         "distinct_rule_hashes": len(rule_groups), "duplicate_rule_groups": [slots for slots in rule_groups.values() if len(slots) > 1],

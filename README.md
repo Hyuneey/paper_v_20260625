@@ -233,3 +233,16 @@ The bounded E2X-G run completed all 100 slots but ended
 checks, and 55 rules passed isolated shape/domain runtime checks. These are
 generation and plumbing yields, not anomaly-detection metrics. No retry,
 repair, inner/outer validation, or sealed-test access followed.
+
+## ARGOS E2X-GR output-budget remediation
+
+TASK-035AR pre-registers a separate balanced 100-slot remediation cohort using
+the same ten KPIs, fifty anchors, and exact TASK-035A prompt bytes. Every anchor
+receives replicate IDs 3 and 4. The only generation change is increasing
+`max_output_tokens` from 2,000 to 6,000; provider, model, prompt, static audit,
+and rootless-container runtime policies remain unchanged.
+
+This is a generation-operability and cohort-balance study only. It does not
+compute validation or test performance, perform selection, repair rules, run a
+detector or fusion path, or alter TASK-035A's `insufficient_rule_yield` status.
+Execution results are recorded only after clean Commit A-R.

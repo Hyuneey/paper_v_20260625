@@ -1331,3 +1331,33 @@
 - Cohort result: 61 rules passed static checks and 55 passed the isolated
   runtime output contract. The frozen adequacy result is
   `insufficient_rule_yield`; TASK-035B is not authorized by this decision.
+
+### DEC-056: TASK-035A provider-output yield diagnosis
+
+- Status: resolved_before_remediation
+- Owner: researcher
+- Frozen counts: 100 registered slots, 84 non-empty responses, 16 empty
+  visible responses, 61 extracted rules, and 55 runtime-executable rules.
+- Provider and transport errors: zero.
+- Primary diagnosed mode: `max_output_tokens = 2000`, reasoning tokens equal
+  2,000, and no visible response.
+- Secondary mode: visible response without one extractable Python rule.
+- Tertiary mode: statically valid rule with isolated runtime failure.
+- The diagnosis excludes KPI validation, outer validation, test data, and all
+  anomaly-performance evidence.
+
+### DEC-057: Balanced output-budget remediation cohort
+
+- Status: resolved_pre_registered
+- Owner: researcher
+- Design: the same 10 KPIs and 50 anchors, with new replicate IDs 3 and 4,
+  producing exactly 100 new balanced slots.
+- Provider/model remain OpenAI Responses API / `gpt-5.6-luna`.
+- Prompt, chunk, anchor, extraction, static-audit, and container policies are
+  frozen unchanged from TASK-035A.
+- The sole generation change is `max_output_tokens: 6000`; temperature and
+  seed remain omitted and no reasoning parameter is added.
+- Exactly one request is allowed per new slot, with no automatic or manual
+  retry. All anchors receive two calls regardless of prior outcome.
+- TASK-035A remains immutable and `insufficient_rule_yield`.
+- Only the frozen combined adequacy gate may authorize TASK-035B.
