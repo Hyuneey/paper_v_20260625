@@ -1,0 +1,45 @@
+{
+  "adapter_version": "1.0.0",
+  "artifact_type": "task032c_adapter_report",
+  "boundaries": {
+    "adapter_generated_approved_parameter": false,
+    "causal_edge_promotion": false,
+    "dataset_access": false,
+    "gdn_module_imported": false,
+    "partial_target_creation": false,
+    "raw_event_or_sequence_persistence": false,
+    "rule_approval": false,
+    "rule_binding": false,
+    "runtime_authorized": false
+  },
+  "created_smoke_results": [
+    {
+      "source": "CandidateUniverseArtifact plus GDNEdgeArtifact serialized mappings",
+      "status": "created",
+      "target": "graph"
+    },
+    {
+      "source": "RelationProfile plus RelationEvidencePack serialized mappings",
+      "status": "created",
+      "target": "evidence_package"
+    },
+    {
+      "approval_status": "calibrated",
+      "source": "CalibrationRecord serialized mapping",
+      "status": "created",
+      "target": "parameter_registry"
+    }
+  ],
+  "input_policy": {
+    "external_context_required": true,
+    "free_form_parameter_inference": false,
+    "serialized_mappings_only": true,
+    "source_inputs_mutated": false
+  },
+  "status_values": ["created", "pending_context", "unsupported_source", "invalid_source"],
+  "target_validation": {
+    "canonical_self_hash_verified": true,
+    "registry_first": true,
+    "structural_validation_required_before_created": true
+  }
+}

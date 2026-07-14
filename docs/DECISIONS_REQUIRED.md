@@ -1084,3 +1084,31 @@
   is not an accepted-rule hash.
 - DEC-035 structural/semantic separation, DEC-036 delayed-response scope, and
   DEC-037 explicit non-silent migration policy remain unchanged.
+
+### DEC-039: External contract artifact integrity and authority
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Structural validity is scientific approval: false.
+- Artifact hashes provide integrity only: true.
+- Adapter output is rule binding: false.
+- Adapter output is verifier acceptance: false.
+- Graph edges remain candidate relations: true.
+- Causal claims from adapters: prohibited.
+- Legacy parameter approval ceiling: `calibrated`.
+- Synthetic-smoke parameter promotion: prohibited.
+- Runtime authorized: false.
+
+### DEC-040: Canonical external artifact self-hash policy
+
+- Status: resolved_policy_frozen
+- Owner: researcher
+- Graph, evidence, and parameter hashes exclude only the top-level
+  `artifact_hash` field.
+- Nested hashes remain included.
+- Encoding: UTF-8.
+- Keys: sorted.
+- ASCII escaping: enabled.
+- NaN and infinity: prohibited.
+- The policy is deterministic, input-preserving, and integrity-only.
+- TASK-032B full-document rule transport hashing remains unchanged.

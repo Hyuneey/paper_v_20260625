@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0", "artifact_type": "relation_evidence_pack", "source": "ActuatorA", "target": "SensorB",
+  "relation_type": "binary_actuator_to_continuous_sensor", "recommended_rule_family": "delayed_response",
+  "relation_profile_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "support_counts": {"trigger_count": 12, "matched_response_count": 10}
+}

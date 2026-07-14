@@ -132,3 +132,14 @@ semantic verification or runtime authority. TASK-032B does not complete
 parameter approval, graph/evidence binding, legacy migration, verifier stages,
 runtime execution, the proposed method, or experimental validation. See
 `docs/method/DELAYED_RESPONSE_RULE_V1_MODEL.md`.
+
+## Typed external contract artifact foundation
+
+TASK-032C implements typed external contract artifacts and explicit synthetic
+Phase 1 adapters only. It adds immutable graph, evidence-package, and parameter
+records, integrity-only canonical self-hashes, fail-closed explicit adapters,
+and a non-authoritative lookup collection.
+
+TASK-032C does not bind or approve rules, complete the deterministic verifier,
+authorize runtime execution, complete the proposed method, or provide
+experimental validation. See `docs/method/CONTRACT_ARTIFACT_HASH_POLICY.md`.

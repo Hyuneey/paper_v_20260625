@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0", "artifact_type": "relation_profile", "profile_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "source": "ActuatorA", "target": "SensorB", "relation_type": "binary_actuator_to_continuous_sensor", "split_name": "calibration_normal",
+  "trigger_count": 12, "matched_response_count": 10, "missing_response_count": 1, "right_censored_count": 1,
+  "trigger_events": [{"trigger_index": 3, "state_before": 0, "state_after": 1}],
+  "response_events": [{"trigger_index": 3, "response_index": 5, "delay_seconds": 2, "magnitude": 0.7}]
+}

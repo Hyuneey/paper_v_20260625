@@ -1,0 +1,70 @@
+{
+  "artifact_type": "task032c_model_report",
+  "authority": {
+    "artifact_hash_is_integrity_only": true,
+    "causal_authority": false,
+    "rule_binding_verified": false,
+    "runtime_authorized": false,
+    "scientific_approval": false
+  },
+  "canonical_self_hash_policy": {
+    "allow_nan": false,
+    "encoding": "UTF-8",
+    "ensure_ascii": true,
+    "excludes": ["top_level.artifact_hash"],
+    "nested_hashes_excluded": false,
+    "sort_keys": true
+  },
+  "frozen_lineage": {
+    "schema_version": "1.0.0",
+    "task030_contract_commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+    "task031_gap_audit_commit": "030c102bcf0e17028fa3abe4c5db1efcc2300641",
+    "task032a_registry_commit": "755fdd72ed73f0de93f29130f246bc5913c51802",
+    "task032b_rule_model_commit": "4180142faa635674cea3142cb0a51d8bd152999f"
+  },
+  "models": {
+    "evidence_package": {
+      "artifact_hash": "d27475c218f82693083884d18f8ef6edd5e080f86e91ba78c1ded608a3ce833e",
+      "model": "EvidencePackageV1",
+      "registry_artifact_type": "evidence_package",
+      "typed_nested_records": 4
+    },
+    "graph": {
+      "artifact_hash": "cccf8002811031e4b0f531b09d115b930905ca48de3f252563096eef390ccc2b",
+      "model": "CandidateGraphV1",
+      "registry_artifact_type": "graph",
+      "typed_nested_records": 8
+    },
+    "parameter_registry": {
+      "artifact_hashes": {
+        "duration": "dfb3efda90c2d08a60e924d732232753348a6c5c262b4313eccf2efb7404b866",
+        "lag_maximum": "e883bbc108e6f700d3b7e5a207d0c9d188e0cc841322dff030dd4a9dedadda3e",
+        "support": "365cb1221d743edc41f5a68a9ccb3e8d1c717ab01389c4c7796c5bbe04efbe30",
+        "tolerance": "6878055125ee4aa9a63023d9e959a47ca0ca97cdcb1cf2f2c8f4627299621488"
+      },
+      "model": "CalibrationParameterV1",
+      "registry_artifact_type": "parameter_registry",
+      "typed_nested_records": 4
+    }
+  },
+  "schemas_modified": false,
+  "status": "implemented_external_artifact_models_only",
+  "verification": {
+    "broad_discovery": {
+      "errors": 8,
+      "passed": 233,
+      "status": "known_environment_boundary",
+      "tests_discovered": 241,
+      "torch_missing_collection_errors": 8
+    },
+    "compileall": "passed",
+    "git_diff_check": "passed",
+    "json_files_parsed": 14,
+    "pip_check": "passed",
+    "protected_modules_modified": false,
+    "relevant_regression_tests_passed": 111,
+    "schemas_modified": false,
+    "targeted_tests_passed": 24,
+    "tracked_restricted_paths": []
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0", "artifact_type": "calibration_record", "parameter_name": "minimum_response_magnitude", "value": 0.5,
+  "unit": "units", "method": "empirical_magnitude_quantile", "normal_support_count": 10,
+  "relation_profile_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "calibration_split_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

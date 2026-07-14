@@ -1,0 +1,4 @@
+{
+  "schema_version": "1.0.0", "artifact_type": "candidate_universe", "feature_order": ["ActuatorA", "SensorB"],
+  "pairs": [{"source": "ActuatorA", "target": "SensorB", "allowed": true, "origins": ["domain"], "origin_scores": {}}]
+}

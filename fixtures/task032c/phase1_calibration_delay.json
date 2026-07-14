@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0", "artifact_type": "calibration_record", "parameter_name": "delay_p95_seconds", "value": 5,
+  "unit": "seconds", "method": "empirical_delay_quantile", "normal_support_count": 10,
+  "relation_profile_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "calibration_split_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

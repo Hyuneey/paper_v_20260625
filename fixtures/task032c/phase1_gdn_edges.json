@@ -1,0 +1,4 @@
+{
+  "schema_version": "1.0.0", "artifact_type": "gdn_candidate_edges",
+  "edges": [{"source": "ActuatorA", "target": "SensorB", "embedding_similarity": 0.91, "rank": 1, "K": 1, "seed": 7}]
+}

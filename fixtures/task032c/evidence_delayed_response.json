@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "EVID-SYNTHETIC-032C",
+  "artifact_hash": "d27475c218f82693083884d18f8ef6edd5e080f86e91ba78c1ded608a3ce833e",
+  "event_anchor": {"window_id": "WIN-ANCHOR-032C", "start_offset": 10, "end_offset": 10, "unit": "samples", "artifact_hash": "3333333333333333333333333333333333333333333333333333333333333333"},
+  "event_window": {"window_id": "WIN-EVENT-032C", "start_offset": 5, "end_offset": 20, "unit": "samples", "artifact_hash": "4444444444444444444444444444444444444444444444444444444444444444"},
+  "pre_event_context": {"window_id": "WIN-PRE-032C", "start_offset": 0, "end_offset": 9, "unit": "samples", "artifact_hash": "5555555555555555555555555555555555555555555555555555555555555555"},
+  "post_event_context": {"window_id": "WIN-POST-032C", "start_offset": 11, "end_offset": 25, "unit": "samples", "artifact_hash": "6666666666666666666666666666666666666666666666666666666666666666"},
+  "matched_normal_reference": {"reference_id": "NREF-SYNTHETIC-032C", "operating_regime": "REGIME-SYNTHETIC-032C", "subsystem": "synthetic_subsystem", "matching_method": "exact_regime_subsystem", "tie_breaker": "lowest_window_id", "artifact_hash": "7777777777777777777777777777777777777777777777777777777777777777"},
+  "source_variables": ["ActuatorA"],
+  "target_variables": ["SensorB"],
+  "operating_regime": "REGIME-SYNTHETIC-032C",
+  "candidate_lag_range": {"minimum": 1, "maximum": 5, "unit": "seconds"},
+  "data_split": "calibration",
+  "dataset_version": "synthetic-task032c-v1",
+  "selection_policy": {"policy_id": "POLICY-SYNTHETIC-032C", "policy_version": "1.0.0", "regime_match_required": true, "subsystem_match_required": true, "label_performance_used": false, "deterministic_tie_breaking": true, "pre_registered": true},
+  "selection_policy_hash": "8888888888888888888888888888888888888888888888888888888888888888",
+  "supported_claims": ["temporal_association", "state_conditioned_response", "typical_lag"],
+  "prohibited_claims": ["physical_causality", "root_cause", "universal_invariant"],
+  "raw_values_included": false
+}
