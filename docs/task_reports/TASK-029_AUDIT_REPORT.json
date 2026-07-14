@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task029_argos_non_executing_audit_report",
+  "task_id": "TASK-029",
+  "created_at": "2026-07-14T00:00:00+09:00",
+  "task_status": "complete_non_executing_audit",
+  "source_alignment": {
+    "paper_url": "https://arxiv.org/abs/2501.14170",
+    "rule_only_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "historical_aggregator_candidate": "c03427f2ab16e377946d4c1176585156ddae7254",
+    "historical_and_pinned_paths_conflated": false
+  },
+  "pinned_files_inspected": [
+    "runtime/engine.py",
+    "agent/agent.py",
+    "agent/detection_agent.py",
+    "agent/repair_agent.py",
+    "agent/review_agent.py",
+    "agent/prompts/detection.py",
+    "agent/prompts/review.py",
+    "selector/train_perf_selector.py",
+    "datasets/dataset.py",
+    "common/common.py",
+    "driver.py"
+  ],
+  "training_loop": {
+    "mapped_end_to_end": true,
+    "rule_extraction_uses_python_fence": true,
+    "repair_executes_generated_python_upstream": true,
+    "review_feedback_split_in_pinned_rule_only": "train",
+    "selector_split_in_pinned_rule_only": "validation",
+    "selector_metric": "event_f1_pa_f1",
+    "test_evaluation_occurs_during_iterations": true,
+    "sealed_final_test_protocol_present": false
+  },
+  "threshold_audit": {
+    "llm_written_rule_thresholds": "provider_generated_not_argos_optimized",
+    "point_f1_threshold": "label_aware_precision_recall_search",
+    "point_f1_pa_threshold": "label_aware_search_on_evaluated_split",
+    "event_f1_pa_threshold": "label_aware_search_on_evaluated_split",
+    "detector_threshold": "external_detector_artifact_provenance_required",
+    "automatic_chunk_size_calibration_in_pinned_path": false
+  },
+  "fusion_audit": {
+    "fn_compensation": "elementwise_max_detector_rule",
+    "fp_correction": "elementwise_min_detector_rule",
+    "detector_artifact_generation_in_driver": false,
+    "pinned_combined_validation_uses_validation_split": false,
+    "pinned_eval_combined_exposes_complete_dual_rule_aggregator": false,
+    "paper_faithful_adapter_likely_required": true,
+    "fusion_superiority_verified": false
+  },
+  "docker_deferral": {
+    "decision_id": "DEC-032",
+    "docker_installation_decision": "deferred_by_researcher",
+    "deferred_until": "full_experiment_execution_phase",
+    "installer_retry_consumed": true,
+    "installer_processes_terminated_without_relaunch": 2,
+    "additional_docker_retry_allowed": false,
+    "task028_resume_allowed": false,
+    "captured_rule_execution_allowed": false,
+    "partial_state_recorded_as_environment_debt": true
+  },
+  "outputs": {
+    "training_loop_audit": "docs/argos_reproduction/ARGOS_TRAINING_LOOP_AUDIT.md",
+    "threshold_audit": "docs/argos_reproduction/ARGOS_THRESHOLD_AND_PARAMETER_AUDIT.md",
+    "controllability_audit": "docs/argos_reproduction/ARGOS_RULE_CONTROLLABILITY_AUDIT.md",
+    "fusion_audit": "docs/argos_reproduction/ARGOS_FUSION_PATH_AUDIT.md",
+    "discrepancy_matrix": "docs/argos_reproduction/ARGOS_PAPER_CODE_DISCREPANCY_MATRIX.md",
+    "future_experiments": "docs/argos_reproduction/FUTURE_EXECUTION_EXPERIMENT_MATRIX.md",
+    "professor_response": "docs/professor_feedback/ARGOS_FEEDBACK_RESPONSE.md"
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "generated_code_loaded": false,
+    "generated_code_executed": false,
+    "captured_rule_accessed": false,
+    "repair_agent_executed": false,
+    "review_agent_executed": false,
+    "detector_executed": false,
+    "kpi_accessed": false,
+    "swat_accessed": false,
+    "src_paperworks_changed": false,
+    "benchmark_claim": false,
+    "thesis_performance_claim": false
+  },
+  "report_hash": "4cab201e7ba8c5c2988a076228dece4cfaef45355975ccbb9b11623b2ebfeb5c"
+}

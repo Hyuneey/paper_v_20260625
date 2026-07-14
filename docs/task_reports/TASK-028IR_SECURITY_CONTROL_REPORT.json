@@ -4,12 +4,12 @@
   "task_id": "TASK-028IR",
   "created_at": "2026-07-14T09:10:02.7120584+09:00",
   "config_hash": "0335dfecde8f1857bb9be83b6b6b73eafe9b83d15ed6e8bbc780e6ec2e153724",
-  "task_status": "manual_user_action_required",
+  "task_status": "deferred_by_researcher",
   "runtime_daemon_healthy": false,
   "harmless_container_test": {
     "attempted": false,
     "image": "hello-world",
-    "status": "not_run_waiting_for_researcher_installer_action",
+    "status": "not_run_installation_deferred",
     "research_mounts_used": false,
     "credentials_mounted": false
   },
@@ -71,5 +71,7 @@
   "captured_rule_accessed": false,
   "captured_rule_executed": false,
   "provider_call_performed": false,
-  "report_hash": "3bda0a1d96e1179de6732077d6f841842788ff4a34050b5699f99a9f9e7c03ae"
+  "docker_installation_decision": "deferred_by_researcher",
+  "deferred_until": "full_experiment_execution_phase",
+  "report_hash": "0efbebe5065e2bd51af6df4b534952e78c93ee8463765b5cfabfe898654a4b68"
 }

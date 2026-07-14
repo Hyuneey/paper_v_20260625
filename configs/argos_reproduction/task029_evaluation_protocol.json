@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task029_evaluation_protocol",
+  "task_id": "TASK-029",
+  "protocol_id": "task029_prediction_arrays_only_v1",
+  "report_created_at": "2026-07-14T10:00:00+09:00",
+  "source_alignment": {
+    "rule_only_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "historical_aggregator_candidate": "c03427f2ab16e377946d4c1176585156ddae7254"
+  },
+  "compositions": [
+    "rule_only",
+    "detector_only",
+    "combined_fn_max",
+    "combined_fp_min"
+  ],
+  "diagnostic_metrics": [
+    "confusion_counts",
+    "precision",
+    "recall",
+    "point_f1"
+  ],
+  "paper_faithful_pa_metrics_implemented": false,
+  "synthetic_fixture": {
+    "fixture_id": "task029_synthetic_fusion_plumbing_v1",
+    "ground_truth_labels": [0, 1, 0, 1, 0, 0],
+    "rule_prediction_labels": [0, 1, 1, 0, 0, 0],
+    "detector_prediction_labels": [0, 0, 0, 1, 1, 0]
+  },
+  "output_report": "docs/task_reports/TASK-029_EVALUATION_HARNESS_REPORT.json",
+  "boundaries": {
+    "prediction_arrays_only": true,
+    "generated_code_loading": false,
+    "generated_code_execution": false,
+    "captured_rule_access": false,
+    "provider_calls": false,
+    "detector_execution": false,
+    "kpi_access": false,
+    "swat_access": false,
+    "benchmark_claims": false,
+    "thesis_performance_claims": false
+  }
+}

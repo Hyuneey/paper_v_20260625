@@ -1,0 +1,97 @@
+{
+  "artifact_type": "task029_evaluation_harness_report",
+  "boundaries": {
+    "benchmark_claim": false,
+    "captured_rule_accessed": false,
+    "detector_executed": false,
+    "generated_code_executed": false,
+    "generated_code_loaded": false,
+    "kpi_accessed": false,
+    "provider_called": false,
+    "swat_accessed": false
+  },
+  "config_hash": "5cb8d9d6fac28fdb85c9912d837b12454fb47c97217cd742a1c82e165c71889d",
+  "created_at": "2026-07-14T10:00:00+09:00",
+  "evaluation": {
+    "compositions": {
+      "combined_fn_max": {
+        "confusion_counts": {
+          "false_negative": 0,
+          "false_positive": 2,
+          "true_negative": 2,
+          "true_positive": 2
+        },
+        "metrics": {
+          "point_f1": 0.6666666666666666,
+          "precision": 0.5,
+          "recall": 1.0
+        },
+        "prediction_count": 6,
+        "prediction_hash": "a77b133aa6c3ebf369a658159c6f10ec33ce32a7f383b0c809b6a590ba9100e0"
+      },
+      "combined_fp_min": {
+        "confusion_counts": {
+          "false_negative": 2,
+          "false_positive": 0,
+          "true_negative": 4,
+          "true_positive": 0
+        },
+        "metrics": {
+          "point_f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "prediction_count": 6,
+        "prediction_hash": "9577fdf7d1e750a6e3727af5ab9affc8ff926c9d13b711f5c4112eedaacab321"
+      },
+      "detector_only": {
+        "confusion_counts": {
+          "false_negative": 1,
+          "false_positive": 1,
+          "true_negative": 3,
+          "true_positive": 1
+        },
+        "metrics": {
+          "point_f1": 0.5,
+          "precision": 0.5,
+          "recall": 0.5
+        },
+        "prediction_count": 6,
+        "prediction_hash": "a7b026194c7ce99003af8c1c3fe4cc0fa7ff5467ea2134366ef4f6544571c1c8"
+      },
+      "rule_only": {
+        "confusion_counts": {
+          "false_negative": 1,
+          "false_positive": 1,
+          "true_negative": 3,
+          "true_positive": 1
+        },
+        "metrics": {
+          "point_f1": 0.5,
+          "precision": 0.5,
+          "recall": 0.5
+        },
+        "prediction_count": 6,
+        "prediction_hash": "377a4666585a14fcf2761f57c6e1bf5a0d79ce31ab6a0438b98705143305d23c"
+      }
+    },
+    "detector_prediction_hash": "a7b026194c7ce99003af8c1c3fe4cc0fa7ff5467ea2134366ef4f6544571c1c8",
+    "ground_truth_hash": "8bfc58f6beb1111b03b8570813de8bde55e030f89a38fb8d7afada5315ca8ea5",
+    "input_count": 6,
+    "rule_prediction_hash": "377a4666585a14fcf2761f57c6e1bf5a0d79ce31ab6a0438b98705143305d23c"
+  },
+  "fixture": {
+    "fixture_id": "task029_synthetic_fusion_plumbing_v1",
+    "fixture_kind": "synthetic_non_kpi_non_swat",
+    "label_count": 6
+  },
+  "harness_sha256": "1d94c8126bd9bb69adca7e09fc87ff513c74b464306482932a45a5102266b685",
+  "metrics": {
+    "pa_free_point_metrics": true,
+    "paper_faithful_pa_metrics_implemented": false
+  },
+  "protocol_id": "task029_prediction_arrays_only_v1",
+  "report_hash": "eee9dcd445b6261f69a37770a1cb16013a1e172d4d6cb194ada7153897ed80c6",
+  "schema_version": "1.0",
+  "task_id": "TASK-029"
+}

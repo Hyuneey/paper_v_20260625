@@ -166,6 +166,44 @@ ARGOS is useful as an architectural reference, but it directly conflicts with th
 - The future execution boundary is container-only, remains unapproved, and has
   no restricted-subprocess fallback.
 
+### TASK-029 Review, Repair, selection, and fusion audit notes
+
+- Code copied from ARGOS: none.
+- Code adapted from ARGOS: none.
+- Production imports from ARGOS: none.
+- Pinned rule-only commit inspected:
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Historical Aggregator candidate inspected:
+  `c03427f2ab16e377946d4c1176585156ddae7254`.
+- Pinned files inspected:
+  - `runtime/engine.py`,
+  - `agent/agent.py`,
+  - `agent/detection_agent.py`,
+  - `agent/repair_agent.py`,
+  - `agent/review_agent.py`,
+  - `agent/prompts/detection.py`,
+  - `agent/prompts/review.py`,
+  - `selector/train_perf_selector.py`,
+  - `datasets/dataset.py`,
+  - `common/common.py`,
+  - `driver.py`,
+  - evaluation metric implementations used by `ReviewAgent`.
+- Historical artifacts inspected through Git object history:
+  - `README.md`,
+  - `runtime/engine.py`,
+  - `agent/review_agent.py`,
+  - `selector/train_perf_selector.py`,
+  - `eval_metrics/point_f1.py`.
+- Paper inspected: `https://arxiv.org/abs/2501.14170`.
+- The pinned selector ranks rule-only candidates on validation Event-F1-PA,
+  while the historical candidate ranks on train point F1.
+- Combined FN/FP code remains identifiable, but the pinned README no longer
+  documents it and detector artifact generation is external and incomplete.
+- TASK-029's prediction evaluation harness reimplements only the elementary
+  binary `max`/`min` composition semantics outside `src/paperworks`; it never
+  imports or executes upstream generated rules.
+- No provider, agent, detector, KPI, SWaT, or generated-code execution occurred.
+
 ## d-ailin/GDN
 
 - Repository: https://github.com/d-ailin/GDN

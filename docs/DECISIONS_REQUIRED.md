@@ -919,7 +919,7 @@
 
 ### DEC-032: Windows container runtime remediation after TASK-028I
 
-- Status: resolved_retry_in_progress_manual_user_action_required
+- Status: resolved_deferred_by_researcher
 - Owner: researcher
 - Selected runtime: Docker Desktop, per-user, WSL 2, Linux containers
 - Installer verification: passed
@@ -937,13 +937,42 @@
   official-uninstaller paths only. Existing `Ubuntu-22.04` was preserved.
 - Clean Docker retry: launched exactly once with `install --user`; no quiet or
   automatic license-acceptance flag was used.
-- Current blocker: the official installer displayed a user-facing prompt that
-  requires researcher review and any license/subscription acceptance.
+- Docker installation decision: `deferred_by_researcher`
+- Deferred until: `full_experiment_execution_phase`
+- Installer retry consumed: true
+- TASK-029 terminated the two remaining installer processes without relaunch.
+- Remaining partial per-user Docker files are recorded as environment debt and
+  were not deleted by TASK-029.
 - Restart pending: false
 - Podman fallback attempted: false
 - Additional Docker retry allowed: false
-- Required next action: the researcher must complete or cancel the currently
-  displayed installer prompt. Runtime verification resumes afterward without
-  starting another installer attempt.
 - TASK-028 resume allowed: false
+- Captured-rule execution allowed: false
+- Required future action: create a new explicit environment decision during the
+  full experiment execution phase. DEC-032 does not permit another Docker retry.
 - Captured rule access/execution: false
+
+### DEC-033: ARGOS non-executing audit closure and future execution order
+
+- Status: resolved_non_executing_audit_complete
+- Owner: researcher
+- Pinned rule-only source:
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`
+- Historical Aggregator reference:
+  `c03427f2ab16e377946d4c1176585156ddae7254`
+- Confirmed without execution:
+  - Detection, Repair, Review, validation selection, and iteration control flow;
+  - LLM-written rule thresholds are distinct from label-aware evaluation
+    thresholds;
+  - FN fusion is elementwise maximum;
+  - FP fusion is elementwise minimum;
+  - the complete paper Aggregator path is not directly runnable from the pinned
+    driver without explicit detector artifacts and a paper-faithful adapter.
+- Initial future execution order: E1 rule runtime smoke, E2 rule-only validation,
+  E3 frozen rule-only test, E4 detector baseline, E5/E6 fusion, E7/E8 agent
+  effects, E9 seed sensitivity, then E10 multivariate readiness.
+- Generated-code execution approval: not granted.
+- ARGOS performance reproduction: not complete.
+- Fusion superiority claim: prohibited until frozen experiments are run.
+- TASK-029 changes the source audit and experiment protocol only; it does not
+  resolve DEC-031 or permit TASK-028 resume.

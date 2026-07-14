@@ -52,7 +52,13 @@ class Task028IRRuntimeRemediationReportTests(unittest.TestCase):
         self.assertFalse(retry["automatic_license_acceptance"])
         self.assertFalse(retry["quiet_installation"])
         self.assertTrue(retry["user_facing_prompt_observed"])
-        self.assertEqual(report["task_status"], "manual_user_action_required")
+        self.assertTrue(retry["retry_cancelled_by_researcher_decision"])
+        self.assertFalse(retry["installer_process_running"])
+        self.assertEqual(report["task_status"], "deferred_by_researcher")
+        self.assertEqual(
+            report["deferred_until"], "full_experiment_execution_phase"
+        )
+        self.assertTrue(report["installer_retry_consumed"])
         self._assert_report_hash(report)
 
     def test_security_claims_remain_unverified(self):
@@ -62,6 +68,7 @@ class Task028IRRuntimeRemediationReportTests(unittest.TestCase):
         self.assertFalse(report["runtime_daemon_healthy"])
         self.assertFalse(report["harmless_container_test"]["attempted"])
         self.assertFalse(report["required_security_controls_supported"])
+        self.assertEqual(report["task_status"], "deferred_by_researcher")
         self.assertTrue(all(not item["supported"] for item in report["controls"]))
         self._assert_report_hash(report)
 

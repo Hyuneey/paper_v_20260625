@@ -1,7 +1,7 @@
 ---
 id: TASK-028IR
 title: Bounded Docker Partial Cleanup and One Interactive Retry
-status: manual_user_action_required
+status: deferred_by_researcher
 depends_on: [TASK-028I]
 phase_gate: ARGOS_REPRODUCTION_ENVIRONMENT_GATE
 ---
@@ -44,6 +44,23 @@ additional_docker_retry_allowed: false
 task028_resume_allowed: false
 captured_rule_execution_allowed: false
 ```
+
+## Deferred decision
+
+TASK-029 closes this environment track without another installation attempt:
+
+```yaml
+docker_installation_decision: deferred_by_researcher
+deferred_until: full_experiment_execution_phase
+installer_retry_consumed: true
+additional_docker_retry_allowed: false
+task028_resume_allowed: false
+captured_rule_execution_allowed: false
+```
+
+The two installer processes started by the single retry were terminated without
+relaunch. Partial per-user Docker files remain as environment debt. No further
+files were deleted, and Docker/Podman was not installed or verified.
 
 Captured rule access, research data access, provider calls, synthetic TASK-028
 fixture preparation, and execution approval activation remain prohibited.

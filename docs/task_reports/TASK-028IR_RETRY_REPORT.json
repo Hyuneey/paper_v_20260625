@@ -4,7 +4,7 @@
   "task_id": "TASK-028IR",
   "created_at": "2026-07-14T09:10:02.7120584+09:00",
   "config_hash": "0335dfecde8f1857bb9be83b6b6b73eafe9b83d15ed6e8bbc780e6ec2e153724",
-  "task_status": "manual_user_action_required",
+  "task_status": "deferred_by_researcher",
   "decision_id": "DEC-032",
   "retry": {
     "private_receipt_written_before_launch": true,
@@ -22,12 +22,14 @@
     "installer_signature_verified_before_launch": true,
     "automatic_license_acceptance": false,
     "quiet_installation": false,
-    "installer_process_running": true,
+    "installer_process_running": false,
     "user_facing_prompt_observed": true,
     "prompt_category": "docker_installer_prompt",
     "prompt_content_captured": false,
     "researcher_review_required": true,
-    "installation_completion_verified": false
+    "installation_completion_verified": false,
+    "installer_processes_terminated_without_relaunch": 2,
+    "retry_cancelled_by_researcher_decision": true
   },
   "post_install_runtime_verification": {
     "attempted": false,
@@ -37,9 +39,24 @@
     "linux_container_mode": false,
     "wsl2_backend_verified": false,
     "daemon_healthy": false,
-    "status": "not_run_waiting_for_researcher_installer_action"
+    "status": "not_run_installation_deferred"
   },
   "harmless_container_test_attempted": false,
+  "docker_installation_decision": "deferred_by_researcher",
+  "deferred_until": "full_experiment_execution_phase",
+  "installer_retry_consumed": true,
+  "additional_docker_retry_allowed": false,
+  "environment_debt": {
+    "partial_per_user_program_files_present": true,
+    "partial_local_state_present": true,
+    "partial_roaming_state_present": true,
+    "partial_user_cli_files_present": true,
+    "installer_source_retained": true,
+    "installer_extraction_files_present": true,
+    "docker_cli_available": false,
+    "docker_service_present": false,
+    "additional_cleanup_performed_in_task029": false
+  },
   "task028_resume_allowed": false,
   "captured_rule_execution_allowed": false,
   "captured_rule_accessed": false,
@@ -48,5 +65,5 @@
   "execution_approval_activated": false,
   "provider_call_performed": false,
   "api_key_use": false,
-  "report_hash": "0566444b645aee8e3d8ab33ae3e3c635b287694699a464780ae55ecc349e45f6"
+  "report_hash": "4b9ab52f605ff97aecbf138823f4553c5ded772b61178b5ffd60e9f23e446694"
 }
