@@ -265,3 +265,6 @@ higher macro recall than Best-1 but lower point F1 and precision with a much
 higher false-positive rate. This is a validation tradeoff, not evidence of
 multi-rule superiority or a benchmark/thesis result. E2X-T remains sealed and
 unauthorized.
+
+Professor-facing prototype evidence package:
+[Prototype Progress Report](docs/professor_feedback/PROTOTYPE_PROGRESS_REPORT.md).
