@@ -99,3 +99,39 @@ def segment_manifest_hash(
     }
     encoded = json.dumps(subject, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()
     return hashlib.sha256(encoded).hexdigest()
+
+
+def segment_counts(
+    grouped: Mapping[str, Sequence[tuple[int, int]]]
+) -> dict[str, dict[str, int]]:
+    return {
+        category: {
+            "segment_count": len(grouped.get(category, ())),
+            "point_count": sum(end - start for start, end in grouped.get(category, ())),
+        }
+        for category in CATEGORIES
+    }
+
+
+def private_segment_manifest(
+    grouped: Mapping[str, Sequence[tuple[int, int]]],
+    *,
+    kpi_id: str,
+    variant: str,
+    prediction_hash: str,
+    threshold_hash: str,
+) -> dict[str, object]:
+    return {
+        "schema_version": "1.0",
+        "kpi_id": kpi_id,
+        "detector_variant": variant,
+        "interval_semantics": "half_open",
+        "prediction_hash": prediction_hash,
+        "threshold_hash": threshold_hash,
+        "segments": {
+            key: [list(item) for item in grouped.get(key, ())] for key in CATEGORIES
+        },
+        "segment_manifest_hash": segment_manifest_hash(
+            grouped, prediction_hash=prediction_hash, threshold_hash=threshold_hash
+        ),
+    }

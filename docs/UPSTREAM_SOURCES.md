@@ -375,3 +375,17 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   are unchanged.
 - Primary paper source: https://arxiv.org/abs/2501.14170
 - Official package metadata: https://pypi.org/project/EasyTSAD/
+
+## TASK-037B EasyTSAD execution alignment
+
+- Reuses unchanged EasyTSAD `0.2.0.2` commit
+  `55eff2c6d62f9c792bf6253c046dcc04636efe5a` and the source hashes frozen by
+  TASK-037A.
+- Executes official `LSTMADalpha` and `LSTMADbeta` classes with their official
+  default configs in the pinned TASK-037A image.
+- Project-owned adapters provide split guarding, deterministic seeding,
+  checkpoint loading, full-length score alignment, artifact hashing and
+  container orchestration. No upstream source is modified or vendored into
+  `src/paperworks`.
+- The `naive` schema choice and explicit zero-prefix alignment remain documented
+  closest-reproducible compatibility decisions, not recovered ARGOS settings.

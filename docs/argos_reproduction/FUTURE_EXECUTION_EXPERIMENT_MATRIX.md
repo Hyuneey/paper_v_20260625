@@ -80,3 +80,9 @@ EasyTSAD `LSTMADalpha` and `LSTMADbeta`; both are retained as non-selected
 co-primary provenance arms. Their isolated synthetic smoke passed. Real KPI
 training, outer validation, fusion, and test remain `not_run`; the test remains
 sealed.
+
+TASK-037B registers E4 as a dual-arm detector-only execution using both frozen
+official LSTMAD variants. Commit A freezes implementation and protocol; E4 is
+not marked executed until all twenty units, inner threshold freezes and one-way
+outer validation complete. E5/E6 remain frozen but `not_run`, and all test
+partitions remain sealed.

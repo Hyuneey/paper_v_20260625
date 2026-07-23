@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037B",
+  "experiment_id": "E4",
+  "experiment_name": "dual_lstm_detector_only_validation",
+  "created_at": "2026-07-23T00:00:00+09:00",
+  "lineage": {
+    "task037a_commit": "ebacb6b3d3674c98c9716e080e457476305c753e",
+    "task035b_result_commit": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "task036p_commit": "19c57a428c115c820b67a12100f2e2b075f3bac3",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "easytsad_commit": "55eff2c6d62f9c792bf6253c046dcc04636efe5a",
+    "easytsad_version": "0.2.0.2"
+  },
+  "detector_arms": [
+    {"detector_id": "LSTMADalpha", "role": "paper_aligned_family_sensitivity"},
+    {"detector_id": "LSTMADbeta", "role": "paper_aligned_family_sensitivity"}
+  ],
+  "execution": {
+    "kpi_count": 10,
+    "seeds": [20260723],
+    "execution_unit_count": 20,
+    "variant_selection": false,
+    "headline_winner_selection": false,
+    "hyperparameter_search": false
+  },
+  "detector_configurations": {
+    "LSTMADalpha": {
+      "model_class": "EasyTSAD.Methods.LSTMADalpha.LSTMADalpha",
+      "architecture": "seq2seq_lstm_encoder_autoregressive_lstm_decoder",
+      "training_schema": "naive_project_owned_closest_reproducible",
+      "input_window": 100,
+      "prediction_horizon": 3,
+      "hidden_size": 20,
+      "layer_count": 2,
+      "dropout": null,
+      "batch_size": 128,
+      "epochs": 100,
+      "optimizer": "Adam",
+      "learning_rate": 0.0008,
+      "loss": "MSE",
+      "scheduler": "StepLR(step_size=5,gamma=0.75)",
+      "early_stopping": "validation_loss_patience_3",
+      "checkpoint_rule": "official_EarlyStoppingTorch_best_network",
+      "seed": 20260723,
+      "internal_validation_proportion": 0.2,
+      "normalization": "train_subpartition_fitted_min_max_clip_-2_3",
+      "score_formula": "overlapping_horizon_squared_errors_mean",
+      "score_direction": "higher_is_more_anomalous",
+      "score_alignment": "right_aligned_to_input",
+      "missing_prefix_policy": "explicit_zero_left_pad_frozen_task037a"
+    },
+    "LSTMADbeta": {
+      "model_class": "EasyTSAD.Methods.LSTMADbeta.LSTMADbeta",
+      "architecture": "lstm_encoder_linear_multi_step_head",
+      "training_schema": "naive_project_owned_closest_reproducible",
+      "input_window": 100,
+      "prediction_horizon": 3,
+      "hidden_size": 20,
+      "layer_count": 2,
+      "dropout": null,
+      "batch_size": 128,
+      "epochs": 100,
+      "optimizer": "Adam",
+      "learning_rate": 0.0005,
+      "loss": "MSE",
+      "scheduler": "StepLR(step_size=5,gamma=0.75)",
+      "early_stopping": "validation_loss_patience_3",
+      "checkpoint_rule": "official_EarlyStoppingTorch_best_network",
+      "seed": 20260723,
+      "internal_validation_proportion": 0.2,
+      "normalization": "train_subpartition_fitted_min_max_clip_-2_3",
+      "score_formula": "overlapping_horizon_squared_errors_mean",
+      "score_direction": "higher_is_more_anomalous",
+      "score_alignment": "right_aligned_to_input",
+      "missing_prefix_policy": "explicit_zero_left_pad_frozen_task037a"
+    }
+  },
+  "split_policy": {
+    "detector_fit_split": "generation",
+    "normalization_fit_split": "generation",
+    "training_label_policy": "contaminated_training",
+    "inner_threshold_selection": true,
+    "inner_hyperparameter_selection": false,
+    "inner_variant_selection": false,
+    "outer_one_way_evaluation": true,
+    "outer_reconfiguration": false,
+    "test_status": "sealed_not_accessed"
+  },
+  "threshold": {
+    "score_split": "inner",
+    "metric": "direct_PA_free_point_F1",
+    "candidate_thresholds": "unique_finite_inner_scores",
+    "comparison_operator": ">=",
+    "point_adjustment": false,
+    "tie_breaking": ["maximum_point_F1", "highest_threshold", "stable_original_order"]
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "local_reference": "localhost/paperworks-task037a-easytsad-lstm:1.0.0",
+    "expected_image_id": "sha256:56107080f05c7bae0ad7fb95cb9af6e499ec8a31ecac9d084c13272c0f3e7b73",
+    "expected_image_digest": "sha256:65659c6ccbf6fb469ae091125ffee58faa5fbbf093a77bc7eafb16b919277bd5",
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "python_version": "3.11.9",
+    "torch_version": "2.2.2+cpu",
+    "numpy_version": "1.26.4",
+    "scikit_learn_version": "1.4.2"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "1g",
+    "timeout_seconds": 300,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=128m"
+  },
+  "sources": {
+    "task037a_readiness": "docs/task_reports/TASK-037A_READINESS_REPORT.json",
+    "task037a_source_alignment": "docs/task_reports/TASK-037A_SOURCE_ALIGNMENT_REPORT.json",
+    "task037a_environment": "docs/task_reports/TASK-037A_ENVIRONMENT_PREFLIGHT_REPORT.json",
+    "task037a_smoke": "docs/task_reports/TASK-037A_SYNTHETIC_SMOKE_REPORT.json",
+    "kpi_manifest": "docs/task_reports/TASK-035A_KPI_COHORT_MANIFEST.json",
+    "cohort_private_root": "artifacts/private_argos_reproduction/task035a/cohort"
+  },
+  "source_file_hashes": {
+    "EasyTSAD/Methods/LSTMADalpha/LSTMADalpha.py": "9aeb074de968b338650dadb96e3abdf1a55b207df9530895f182f7777dd1a1f8",
+    "EasyTSAD/Methods/LSTMADalpha/TSDataset.py": "e613eaa9aea57cb7e9a2439b1134a5437ab1494e21f59904d7ce3766d4ef809f",
+    "EasyTSAD/Methods/LSTMADalpha/config.toml": "36108658662face05df6615fa332e3822669c7cb7c2c7d042e9e124dc3fbe6ce",
+    "EasyTSAD/Methods/LSTMADbeta/LSTMADbeta.py": "599905caafa3e35db2fcb5998138bd073ce9fdb2c48a3cf9f5762bd9607e9e6d",
+    "EasyTSAD/Methods/LSTMADbeta/TSDataset.py": "e613eaa9aea57cb7e9a2439b1134a5437ab1494e21f59904d7ce3766d4ef809f",
+    "EasyTSAD/Methods/LSTMADbeta/config.toml": "d48c44c938582f97ce62bfd149cf2b36a591ce177fec5bc75e7507b1016cbf29",
+    "EasyTSAD/DataFactory/TSData.py": "73234bc5611a20fe2c8bc14e098b28abc34c629a588a966ee1dd0d539bee4bab",
+    "EasyTSAD/TrainingSchema/Naive.py": "165334fa6ab34901cb17425e879e676576986386dabd3cfbab384515d1eb1c99"
+  },
+  "frozen_kpi_splits": [
+    {"kpi_id": "05f10d3a-239c-3bef-9bdc-a2feeb0037aa", "split_manifest_hash": "83c5f3d0a5d888ed5bc7d9c9f5558b8e6b0cb41679c1d3f571e0f080ec1076cd"},
+    {"kpi_id": "1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0", "split_manifest_hash": "af272fb19a12922e7e8467747edd4a9e1e47f8bcc955739cffdeb177b93a49b2"},
+    {"kpi_id": "42d6616d-c9c5-370a-a8ba-17ead74f3114", "split_manifest_hash": "09ba9687c5e34a67bff6bbc9081331e7486b858f6106019e6508f695c76c064a"},
+    {"kpi_id": "43115f2a-baeb-3b01-96f7-4ea14188343c", "split_manifest_hash": "ab3c55e29a166c9c6b878ec029128c2b10c2de911f203518c753be08c28cf0f1"},
+    {"kpi_id": "431a8542-c468-3988-a508-3afd06a218da", "split_manifest_hash": "f69c6d5fe8e3e17e055a043aace254492b4a789aa98fb8df9a71a5ef4b729b56"},
+    {"kpi_id": "4d2af31a-9916-3d9f-8a8e-8a268a48c095", "split_manifest_hash": "77d216c080a9389305fd15a61566c49a7eb6108359020aa9c4ce680850d864c0"},
+    {"kpi_id": "55f8b8b8-b659-38df-b3df-e4a5a8a54bc9", "split_manifest_hash": "a0f0dfd9283d4ce4cdc8dfd778619af6c39ce639347ff76f3bc87350db952afd"},
+    {"kpi_id": "6efa3a07-4544-34a0-b921-a155bd1a05e8", "split_manifest_hash": "abf56d81ce5e9e8905e64ddf081c2d173b2753b8088c87c64c657fb63c75597c"},
+    {"kpi_id": "7103fa0f-cac4-314f-addc-866190247439", "split_manifest_hash": "5d4fe7d981734acbaa5813abd60ed66e248972d808671a47a87a6c6fa55f099b"},
+    {"kpi_id": "847e8ecc-f8d2-3a93-9107-f367a0aab37d", "split_manifest_hash": "ed2c1cada1d3b4ac0c895e57b50bd2792d1bf1f6c5d091f6484c1934ee440714"}
+  ],
+  "private_root": "artifacts/private_argos_reproduction/task037b",
+  "reports": {
+    "training": "docs/task_reports/TASK-037B_TRAINING_REPORT.json",
+    "threshold_freeze": "docs/task_reports/TASK-037B_INNER_THRESHOLD_FREEZE.json",
+    "artifact_manifest": "docs/task_reports/TASK-037B_DETECTOR_ARTIFACT_MANIFEST.json",
+    "error_segments": "docs/task_reports/TASK-037B_ERROR_SEGMENT_REPORT.json",
+    "outer_runtime": "docs/task_reports/TASK-037B_OUTER_RUNTIME_REPORT.json",
+    "outer_validation": "docs/task_reports/TASK-037B_OUTER_VALIDATION_REPORT.json",
+    "task_report": "docs/task_reports/TASK-037B_REPORT.md"
+  },
+  "boundaries": {
+    "provider_calls": false,
+    "new_rule_generation": false,
+    "agent_execution": false,
+    "fusion_execution": false,
+    "test_value_access": false,
+    "test_label_access": false,
+    "test_score_generation": false,
+    "testlabels_creation": false
+  }
+}

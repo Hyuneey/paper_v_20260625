@@ -1435,3 +1435,17 @@
 - Primary metrics are PA-free point/event metrics plus AUROC/AUPRC. EasyTSAD or
   ARGOS point-adjusted metrics are supplementary only.
 - Outer/test labels cannot select detector thresholds.
+
+### DEC-065: Dual-arm LSTMAD detector-only execution
+
+- Status: resolved_before_real_training
+- Owner: researcher
+- Exactly ten frozen KPI series are authorized for `LSTMADalpha` and
+  `LSTMADbeta` under seed `20260723`, producing twenty execution units.
+- Both arms use official EasyTSAD defaults, the project-owned closest-
+  reproducible `naive` schema, generation-only fit/normalization,
+  `contaminated_training`, and the frozen inner threshold protocol.
+- Detector-family substitution, hyperparameter search, KPI replacement,
+  variant selection, outer tuning and headline-winner selection are prohibited.
+- E4 execution does not authorize E5/E6, fusion, provider/agent activity, or
+  sealed-test access.
