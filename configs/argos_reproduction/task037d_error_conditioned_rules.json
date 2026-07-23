@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037D",
+  "experiment_family": "ARGOS_ERROR_CONDITIONED_RULES",
+  "experiment_id": "E5E6_RULE_GENERATION",
+  "created_at": "2026-07-23T00:00:00+09:00",
+  "lineage": {
+    "task035b_result_commit": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "task037b_execution_commit": "00e64837e2544cb9295b9d2430b087448fdfdd26",
+    "task037b_freeze_commit": "aa6c769c1d023d4f273af5ca92e02406d9265aab",
+    "task037b_result_commit": "e183eddc1a70ca37033d3acbe8710885590b9f3c",
+    "task037c_result_commit": "b0f1103a4443e02eda14ba1fabe1571f1adecb07",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "easytsad_commit": "55eff2c6d62f9c792bf6253c046dcc04636efe5a"
+  },
+  "detector_variants": ["LSTMADalpha", "LSTMADbeta"],
+  "directions": ["FN", "FP"],
+  "design": {
+    "kpi_count": 10,
+    "chunk_size": 1000,
+    "maximum_target_chunks_per_cell": 3,
+    "provider_replicates_per_target": 1,
+    "maximum_total_provider_calls": 120,
+    "exact_frozen_slot_count": 96
+  },
+  "source_hashes": {
+    "kpi_manifest": "5b2b5d556cf852d18ec62c6386a6d9cd690a1481586ee9bb229a7748d2ca0107",
+    "detector_artifact_manifest": "e8aa26803eb578ae0ce2c29f82049513b8c2bce9f78e9befba248f3d32f8c756",
+    "detector_error_report": "7af6c5619cce528dda10b3b88ef34e579cb4a16bc416dfa30c6f5129009e5d61",
+    "detector_threshold_freeze": "9ba91f4acaeddbc9304978d5f60d9653593e72ac03196dba07a5c2e673d89299"
+  },
+  "sources": {
+    "task037b_config": "configs/argos_reproduction/task037b_dual_lstm_detector_validation.json",
+    "kpi_manifest": "docs/task_reports/TASK-035A_KPI_COHORT_MANIFEST.json",
+    "detector_artifact_manifest": "docs/task_reports/TASK-037B_DETECTOR_ARTIFACT_MANIFEST.json",
+    "detector_error_report": "docs/task_reports/TASK-037B_ERROR_SEGMENT_REPORT.json",
+    "detector_threshold_freeze": "docs/task_reports/TASK-037B_INNER_THRESHOLD_FREEZE.json",
+    "cohort_private_root": "artifacts/private_argos_reproduction/task035a/cohort",
+    "detector_private_root": "artifacts/private_argos_reproduction/task037b/detectors",
+    "prompt_source": "external/argos/agent/prompts/detection.py",
+    "detection_agent_source": "external/argos/agent/detection_agent.py",
+    "dataset_source": "external/argos/datasets/dataset.py",
+    "engine_source": "external/argos/runtime/engine.py"
+  },
+  "pinned_source_hashes": {
+    "external/argos/agent/prompts/detection.py": "df351b236fb9f404c03c27c443cb75968707436b5470a249fddb54b7aeaa1fe2",
+    "external/argos/agent/detection_agent.py": "082a09caabb03da3e1a887077b5d8cba583acca8216aa2372d1603e8018c88ec",
+    "external/argos/datasets/dataset.py": "d4db1ea24757122183d119768b233a0fa7fa71140232b88d66be4d86be5bb7b5",
+    "external/argos/runtime/engine.py": "428c21331026b195bf967d700504289670e1c280ab5c56b983246f30a798ad0a"
+  },
+  "provider": {
+    "provider": "openai_responses",
+    "model": "gpt-5.6-luna",
+    "approval_path": "configs/argos_reproduction/task037d_provider_approval.json",
+    "max_output_tokens": 6000,
+    "timeout_seconds": 180,
+    "inter_call_delay_seconds": 1.0,
+    "automatic_retry": false,
+    "manual_retry": false,
+    "temperature_parameter_sent": false,
+    "provider_seed_sent": false,
+    "reasoning_parameter_added": false
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m"
+  },
+  "adequacy": {
+    "minimum_overall_executable_rule_yield": 0.70,
+    "minimum_eligible_cells_with_one_executable_fraction": 1.0,
+    "minimum_multi_slot_cells_with_two_executable_fraction": 0.80
+  },
+  "private_root": "artifacts/private_argos_reproduction/task037d",
+  "reports": {
+    "support": "docs/task_reports/TASK-037D_SUPPORT_REPORT.json",
+    "targets": "docs/task_reports/TASK-037D_TARGET_CONTRAST_MANIFEST.json",
+    "requests": "docs/task_reports/TASK-037D_REQUEST_MANIFEST.json",
+    "provider": "docs/task_reports/TASK-037D_PROVIDER_REPORT.json",
+    "static": "docs/task_reports/TASK-037D_STATIC_AUDIT_REPORT.json",
+    "runtime": "docs/task_reports/TASK-037D_RUNTIME_REPORT.json",
+    "adequacy": "docs/task_reports/TASK-037D_ADEQUACY_REPORT.json"
+  },
+  "boundaries": {
+    "inner_rule_evaluation": false,
+    "outer_rule_evaluation": false,
+    "fusion_execution": false,
+    "detector_retraining": false,
+    "threshold_reselection": false,
+    "repair_agent": false,
+    "review_agent": false,
+    "test_value_access": false,
+    "test_label_access": false
+  }
+}

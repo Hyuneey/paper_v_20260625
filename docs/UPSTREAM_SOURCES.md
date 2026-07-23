@@ -389,3 +389,21 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   `src/paperworks`.
 - The `naive` schema choice and explicit zero-prefix alignment remain documented
   closest-reproducible compatibility decisions, not recovered ARGOS settings.
+
+## TASK-037D ARGOS combined-prompt alignment
+
+- ARGOS reference commit:
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1` (MIT, read-only).
+- Inspected and hash-pinned:
+  `agent/prompts/detection.py`, `agent/detection_agent.py`,
+  `datasets/dataset.py`, and `runtime/engine.py`.
+- Reconstructed system templates:
+  `DETECTION_AGENT_V3_COMBINED_FN_PROMPT_TEMPLATE` and
+  `DETECTION_AGENT_V3_COMBINED_FP_PROMPT_TEMPLATE`.
+- Reconstructed user sections preserve `##### DATA 0`, FN
+  `##### NORMAL DATA 0 `, FP `##### ABNORMAL DATA 0`, and pandas
+  `to_string(index=False, header=False)` serialization.
+- Upstream code copied or modified: none. Prompt text is extracted from the
+  pinned source by the existing AST-based helper.
+- Project-owned deviation: deterministic matched contrast replaces random or
+  iteration-dependent contrast sampling for reproducibility.

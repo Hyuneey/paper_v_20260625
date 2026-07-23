@@ -94,3 +94,9 @@ were retained across ten KPI series, and all inner and outer prediction hashes
 were frozen before label access. No fusion arm or detector variant was
 selected. The result remains diagnostic and does not constitute paper-faithful
 error-conditioned ARGOS reproduction.
+
+TASK-037D freezes the paper-aligned error-conditioned generation stage for both
+LSTMAD variants. It uses generation FN/TN evidence for FN rules and generation
+FP/TP evidence for FP rules, with 96 independent one-shot requests. Rule
+selection, inner/outer Aggregator evaluation and all sealed tests remain
+unrun and unauthorized.

@@ -1464,3 +1464,30 @@
   labels are loaded.
 - TASK-037C is generic-rule complementarity diagnostics, not paper-faithful
   error-conditioned ARGOS rule generation or full Aggregator reproduction.
+
+### DEC-067: Detector-error-conditioned FN/FP rule cohort
+
+- Status: resolved_before_target_or_prompt_inspection
+- Owner: researcher
+- Both frozen LSTMAD variants and all ten KPI series are retained.
+- FN and FP are audited independently for all forty potential cells.
+- Each eligible cell may contribute at most three distinct generation-only
+  target chunks, with one one-shot provider request per target.
+- The exact request count is frozen after support analysis and before provider
+  execution, with an absolute upper bound of 120.
+- RepairAgent, ReviewAgent, previous-rule history, retry, replacement
+  generation, inner/outer evaluation, fusion and sealed-test access are
+  prohibited.
+
+### DEC-068: TASK-037D bounded provider authorization
+
+- Status: resolved_before_provider_execution
+- Owner: researcher
+- Provider/model: OpenAI Responses API / `gpt-5.6-luna`.
+- `max_output_tokens` is 6,000; temperature and seed are omitted and no
+  reasoning parameter is added.
+- The exact request count and total declared token budgets must equal the
+  frozen eligible-slot manifest and may not exceed 120 calls, 20,000 input
+  tokens per call or 6,000 output tokens per call.
+- Each private receipt permanently consumes one slot. Automatic retry, manual
+  retry and replacement generation are prohibited.

@@ -306,3 +306,15 @@ detector-error-conditioned ARGOS rule generation or full Aggregator
 reproduction. Fusion superiority and sealed-test claims remain unauthorized.
 See
 [`GENERIC_RULE_DIAGNOSTIC_FUSION_PROTOCOL.md`](docs/argos_reproduction/GENERIC_RULE_DIAGNOSTIC_FUSION_PROTOCOL.md).
+
+## ARGOS detector-error-conditioned rule cohort
+
+TASK-037D freezes a paper-aligned one-shot FN/FP rule-generation cohort from
+the TASK-037B generation error artifacts. Both LSTMAD variants remain
+co-primary, and exact source-backed combined prompts are paired with
+deterministic generation-only target and contrast chunks.
+
+This stage audits generation operability only. It does not select rules,
+evaluate inner or outer performance, execute detector-rule fusion, run
+RepairAgent or ReviewAgent, or access a sealed test. See
+[`ERROR_CONDITIONED_RULE_PROTOCOL.md`](docs/argos_reproduction/ERROR_CONDITIONED_RULE_PROTOCOL.md).
