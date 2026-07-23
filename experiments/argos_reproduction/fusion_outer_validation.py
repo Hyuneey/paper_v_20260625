@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from collections import defaultdict
+import hashlib
 import json
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -300,8 +301,6 @@ def _load_labels_after_complete_freeze(
         path = label_root / f"{kpi}.npy"
         if not path.is_file():
             raise FusionOuterValidationError("TASK037C_FROZEN_LABEL_MISSING")
-        if split == "inner" and sha256_file(path) != expected_inner_hashes.get(kpi):
-            raise FusionOuterValidationError("TASK037C_INNER_LABEL_HASH_MISMATCH")
         value = np.asarray(np.load(path, allow_pickle=False))
         if (
             value.ndim != 1
@@ -309,12 +308,19 @@ def _load_labels_after_complete_freeze(
             or not np.all(np.isin(value, (0, 1)))
         ):
             raise FusionOuterValidationError("TASK037C_FROZEN_LABEL_INVALID")
+        value = value.astype(np.int8, copy=False)
+        if (
+            split == "inner"
+            and hashlib.sha256(value.tobytes()).hexdigest()
+            != expected_inner_hashes.get(kpi)
+        ):
+            raise FusionOuterValidationError("TASK037C_INNER_LABEL_HASH_MISMATCH")
         expected_length = len(
             inputs.detector_predictions[(split, DETECTOR_VARIANTS[0], kpi)]
         )
         if len(value) != expected_length:
             raise FusionOuterValidationError("TASK037C_LABEL_LENGTH_MISMATCH")
-        labels[kpi] = value.astype(np.int8, copy=True)
+        labels[kpi] = value.copy()
     return labels
 
 
