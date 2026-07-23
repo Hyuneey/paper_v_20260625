@@ -16,8 +16,8 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E2X-T Expanded sealed test (`not_run`, sealed, unauthorized) | Sealed KPI test | Not approved | Not approved | Not frozen for test | Not applicable | Frozen future selection only | Sealed one-way | No claim authorized |
 | E3 Rule-only KPI test (`not_run`, sealed, unauthorized) | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same deterministic rule and E2 freeze | E2 frozen hash | Not applicable | E2 validation freeze record | Sealed test, one-way | Rule-only result for the declared series only |
 | E4 Detector-only baseline (`executed`, TASK-037B) | Generation fit, inner threshold, outer one-way; test sealed | Frozen detector scores/predictions for both LSTMAD variants | `20260723` | Not applicable | Frozen variant-specific artifacts; test absent | Inner threshold only | Outer executed once; test sealed | Detector provenance sensitivity, no winner selection |
-| E5 FN fusion (`diagnostic TASK-037C frozen_pending; paper-faithful not_prepared`) | Inner then outer; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer pending; test sealed | FN recovery and added-FP accounting, no superiority claim |
-| E6 FP fusion (`diagnostic TASK-037C frozen_pending; paper-faithful not_prepared`) | Inner then outer; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer pending; test sealed | FP removal and removed-TP accounting, no superiority claim |
+| E5 FN fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FN recovery and added-FP accounting, no superiority claim |
+| E6 FP fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FP removal and removed-TP accounting, no superiority claim |
 | E7 RepairAgent effect | KPI train/validation; no test during repair | Before/after syntax, runtime, and frozen validation comparison | Required before run | Both hashes required | Not applicable | Train error plus validation protocol | None until candidate frozen | Repair effect on the approved fixture only |
 | E8 ReviewAgent selection effect | KPI train/validation | Candidate versus selected validation result | Required before run | Candidate and selected hashes | Optional only for predeclared combined arm | Validation only | None until selection frozen | Selection behavior, not test improvement |
 | E9 Random-seed sensitivity | Train/validation first; test only after one predeclared aggregation policy | Distribution across frozen seeds | Seed list required before run | Hash per seed | Hash per detector run | Train/validation only | One sealed protocol after freeze | Sensitivity under declared seeds |
@@ -85,10 +85,12 @@ TASK-037B executed E4 as a dual-arm detector-only experiment using both frozen
 official LSTMAD variants. All twenty units completed generation-only fitting,
 inner threshold freezing, deterministic outer replay and one-way outer
 validation. Neither variant was selected as the ARGOS detector. E5/E6 remain
-frozen but `not_run`, and all test partitions remain sealed.
+frozen as non-selective diagnostics; TASK-037C subsequently executed their
+inner and outer matrices, while all test partitions remain sealed.
 
-TASK-037C freezes the complete diagnostic E5/E6 matrix: two detector variants,
+TASK-037C executed the complete diagnostic E5/E6 matrix: two detector variants,
 four existing rule arms and exact binary max/min operators. All sixteen arms
-must be retained, prediction hashes must be frozen before label access, and no
-fusion arm or detector variant may be selected. Execution remains diagnostic
-and does not constitute paper-faithful error-conditioned ARGOS reproduction.
+were retained across ten KPI series, and all inner and outer prediction hashes
+were frozen before label access. No fusion arm or detector variant was
+selected. The result remains diagnostic and does not constitute paper-faithful
+error-conditioned ARGOS reproduction.

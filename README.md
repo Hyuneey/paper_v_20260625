@@ -278,7 +278,8 @@ synthetic-only rootless-container smoke.
 
 TASK-037A itself performed no real KPI detector training, scoring, threshold
 selection, outer validation, fusion, or sealed-test access. Its E4 protocol was
-subsequently executed by TASK-037B; E5/E6 and every sealed test remain unrun.
+subsequently executed by TASK-037B, and the frozen diagnostic E5/E6 matrix was
+subsequently executed by TASK-037C. Every sealed test remains unrun.
 See
 [`ARGOS_KPI_BASE_DETECTOR_AUDIT.md`](docs/argos_reproduction/ARGOS_KPI_BASE_DETECTOR_AUDIT.md).
 
@@ -294,10 +295,11 @@ unauthorized. See
 
 ## ARGOS E5/E6 frozen diagnostic fusion
 
-TASK-037C freezes an exhaustive diagnostic matrix pairing both TASK-037B
+TASK-037C completed the exhaustive diagnostic matrix pairing both TASK-037B
 LSTMAD variants with all four TASK-035B rule arms through exact binary maximum
-and minimum. No detector, rule, or fusion arm is selected, and all prediction
-hashes must be frozen before label access.
+and minimum. All 16 arms were evaluated across the ten frozen KPI series after
+all prediction hashes were frozen. No detector, rule, or fusion arm was
+selected.
 
 This is generic-rule complementarity analysis, not paper-faithful
 detector-error-conditioned ARGOS rule generation or full Aggregator
