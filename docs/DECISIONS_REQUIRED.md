@@ -1493,3 +1493,21 @@
   retry and replacement generation are prohibited.
 - Execution consumed all 96 frozen slots exactly once with no provider or
   transport error and no retry or replacement call.
+
+### DEC-069: Error-conditioned FN/FP rule selection
+
+- Status: resolved_before_inner_metric_access
+- Owner: researcher
+- Selection unit: one detector variant, one KPI, and one direction.
+- Every unit contains all matching TASK-037D executable rules plus one explicit
+  no-op candidate.
+- At most one FN and one FP rule may be selected per detector/KPI. FN and FP
+  selection are independent; joint pair search and within-direction ensembles
+  are prohibited.
+- FN ranking: point F1, event F1, FN recovery, added FP/10k, added false-alarm
+  events, then rule hash.
+- FP ranking: point F1, event F1, FP removal, retained TP points, retained true
+  events, then rule hash.
+- Exact complete ties with no-op resolve to no-op.
+- The decision is frozen before inner label access and cannot change from
+  outer results.

@@ -102,3 +102,10 @@ requests. All 96 responses produced static-valid rules, 83 passed both
 value-only runtime contracts, and the frozen cohort adequacy gate passed.
 Rule selection, inner/outer Aggregator evaluation, TASK-037E execution, and all
 sealed tests remain unrun and unauthorized.
+
+TASK-037E freezes the follow-up error-conditioned selection and full Aggregator
+protocol. Its Commit A contains the exact 83-rule candidate registry,
+independent FN/FP no-op-aware selection policy, selected-rule replay guards,
+and FP-then-FN composition. Inner execution, selection freeze, and outer
+validation remain pending at this milestone. The shared outer partition is
+previously exposed; every sealed test remains unauthorized.

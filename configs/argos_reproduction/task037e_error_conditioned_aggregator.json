@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037E",
+  "experiment_family": "ARGOS_ERROR_CONDITIONED_AGGREGATOR",
+  "experiment_id": "E5E6_ERROR_CONDITIONED_SELECTION_AND_OUTER",
+  "created_at": "2026-07-23T00:00:00+09:00",
+  "lineage": {
+    "task035b_rule_result_commit": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "task037b_detector_execution_commit": "00e64837e2544cb9295b9d2430b087448fdfdd26",
+    "task037b_detector_freeze_commit": "aa6c769c1d023d4f273af5ca92e02406d9265aab",
+    "task037b_detector_result_commit": "e183eddc1a70ca37033d3acbe8710885590b9f3c",
+    "task037c_generic_fusion_result_commit": "b0f1103a4443e02eda14ba1fabe1571f1adecb07",
+    "task037d_implementation_commit": "664857f1df5115f186b578ea3f434be8e7f6db77",
+    "task037d_cohort_result_commit": "3c9ed2420611197cef5ea6b34f956a03616ce03e",
+    "argos_source_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "detector_variants": [
+    "LSTMADalpha",
+    "LSTMADbeta"
+  ],
+  "directions": [
+    "FN",
+    "FP"
+  ],
+  "kpi_count": 10,
+  "expected_executable_rule_count": 83,
+  "candidate_registry": "docs/task_reports/TASK-037E_CANDIDATE_REGISTRY.json",
+  "sources": {
+    "task037d_runtime_report": "docs/task_reports/TASK-037D_RUNTIME_REPORT.json",
+    "task037d_static_report": "docs/task_reports/TASK-037D_STATIC_AUDIT_REPORT.json",
+    "task037d_adequacy_report": "docs/task_reports/TASK-037D_ADEQUACY_REPORT.json",
+    "task037b_detector_manifest": "docs/task_reports/TASK-037B_DETECTOR_ARTIFACT_MANIFEST.json",
+    "task037b_threshold_freeze": "docs/task_reports/TASK-037B_INNER_THRESHOLD_FREEZE.json",
+    "task037b_outer_runtime_report": "docs/task_reports/TASK-037B_OUTER_RUNTIME_REPORT.json",
+    "task037b_outer_validation_report": "docs/task_reports/TASK-037B_OUTER_VALIDATION_REPORT.json",
+    "task037c_outer_report": "docs/task_reports/TASK-037C_OUTER_FUSION_REPORT.json",
+    "task035b_selection_freeze": "docs/task_reports/TASK-035B_SELECTION_FREEZE.json",
+    "task035b_outer_report": "docs/task_reports/TASK-035B_OUTER_VALIDATION_REPORT.json"
+  },
+  "private_roots": {
+    "task037d": "artifacts/private_argos_reproduction/task037d",
+    "task037b": "artifacts/private_argos_reproduction/task037b",
+    "task035b": "artifacts/private_argos_reproduction/task035b",
+    "task037e": "artifacts/private_argos_reproduction/task037e"
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "expected_image_id": "sha256:25b42f3d74d9402965d8ec47767c47618ad0ff9417861abe588a0a67dd391a84",
+    "expected_image_digest": "sha256:dec0b11bbc3bae954121d0f3b6ea0ebe0f47abae82c7cccdff22abdcd0975cfe",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+    "output_limit_bytes": 4194304
+  },
+  "selection_policy": {
+    "decision_id": "DEC-069",
+    "status": "resolved_before_inner_metric_access",
+    "maximum_rules_per_direction_unit": 1,
+    "no_op_candidate_required": true,
+    "joint_pair_search": false,
+    "fn_operator": "elementwise_max",
+    "fp_operator": "elementwise_min",
+    "point_adjustment": false,
+    "threshold_optimization": false
+  },
+  "aggregator_policy": {
+    "order": [
+      "fp_correction",
+      "fn_compensation"
+    ],
+    "formula": "max(min(detector, selected_fp), selected_fn)",
+    "additional_arms": false
+  },
+  "bootstrap": {
+    "unit": "KPI",
+    "seed": 20260725,
+    "resamples": 10000,
+    "confidence_level": 0.95,
+    "method": "percentile_paired_bootstrap",
+    "formal_significance_claim": false
+  },
+  "outer_exposure_limitation": "The TASK-037E outer partition is a previously exposed follow-up validation partition. Rule generation used only the generation partition and rule selection used only the inner partition, but the broader experiment design followed prior inspection of outer results. Therefore TASK-037E does not support an untouched confirmatory superiority claim.",
+  "reports": {
+    "inner_runtime": "docs/task_reports/TASK-037E_INNER_RUNTIME_REPORT.json",
+    "inner_predictions": "docs/task_reports/TASK-037E_INNER_PREDICTION_MANIFEST.json",
+    "fn_selection": "docs/task_reports/TASK-037E_FN_SELECTION_FREEZE.json",
+    "fp_selection": "docs/task_reports/TASK-037E_FP_SELECTION_FREEZE.json",
+    "selection_markdown": "docs/task_reports/TASK-037E_SELECTION_REPORT.md",
+    "outer_runtime": "docs/task_reports/TASK-037E_OUTER_RUNTIME_REPORT.json",
+    "outer_predictions": "docs/task_reports/TASK-037E_OUTER_PREDICTION_MANIFEST.json",
+    "outer_aggregator": "docs/task_reports/TASK-037E_OUTER_AGGREGATOR_REPORT.json",
+    "contribution": "docs/task_reports/TASK-037E_CONTRIBUTION_REPORT.json",
+    "bootstrap": "docs/task_reports/TASK-037E_BOOTSTRAP_REPORT.json",
+    "variant_consistency": "docs/task_reports/TASK-037E_VARIANT_CONSISTENCY_REPORT.json",
+    "generic_comparison": "docs/task_reports/TASK-037E_GENERIC_COMPARISON_REPORT.json"
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_training": false,
+    "threshold_selection": false,
+    "detector_variant_selection": false,
+    "joint_fn_fp_pair_search": false,
+    "outer_based_reselection": false,
+    "test_access": false
+  }
+}

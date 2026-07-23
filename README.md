@@ -320,3 +320,16 @@ This is generation-operability and runtime-contract evidence only. It does not s
 evaluate inner or outer performance, execute detector-rule fusion, run
 RepairAgent or ReviewAgent, or access a sealed test. See
 [`ERROR_CONDITIONED_RULE_PROTOCOL.md`](docs/argos_reproduction/ERROR_CONDITIONED_RULE_PROTOCOL.md).
+
+## ARGOS error-conditioned Aggregator validation
+
+TASK-037E freezes the 83-rule TASK-037D candidate registry, inner-only
+direction-specific selection with an explicit no-op candidate, and the
+source-aligned FP-then-FN Aggregator protocol. Inner and outer execution remain
+commit-separated, and selected rules cannot be substituted after outer access.
+
+This is a previously exposed follow-up outer-validation design, not exact
+ARGOS reproduction or untouched confirmation. Provider/agent activity,
+detector retraining, threshold reselection, sealed-test access, and final
+superiority claims remain prohibited. See
+[`FULL_AGGREGATOR_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/FULL_AGGREGATOR_EXECUTION_PROTOCOL.md).
