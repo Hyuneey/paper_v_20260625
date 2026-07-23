@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037C",
+  "experiment_family": "ARGOS_KPI_COMPLEMENTARITY",
+  "created_at": "2026-07-23T00:00:00+09:00",
+  "lineage": {
+    "task035b_result_commit": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "task037a_commit": "ebacb6b3d3674c98c9716e080e457476305c753e",
+    "task037b_execution_commit_a": "00e64837e2544cb9295b9d2430b087448fdfdd26",
+    "task037b_freeze_commit_b": "aa6c769c1d023d4f273af5ca92e02406d9265aab",
+    "task037b_result_commit_c": "e183eddc1a70ca37033d3acbe8710885590b9f3c"
+  },
+  "matrix": {
+    "detector_variants": [
+      "LSTMADalpha",
+      "LSTMADbeta"
+    ],
+    "rule_arms": [
+      "best_1",
+      "top_3_or",
+      "coverage_3_or",
+      "all_10_or"
+    ],
+    "operators": [
+      "fn_union_max",
+      "fp_intersection_min"
+    ],
+    "fusion_arm_count": 16,
+    "kpi_count_per_arm": 10
+  },
+  "selection_policy": {
+    "fusion_arm_selection": false,
+    "detector_variant_selection": false,
+    "rule_arm_selection": false,
+    "headline_winner_selection": false,
+    "outer_based_configuration_change": false
+  },
+  "sources": {
+    "kpi_manifest": "docs/task_reports/TASK-035A_KPI_COHORT_MANIFEST.json",
+    "primary_panel_freeze": "docs/task_reports/TASK-035B_PRIMARY_PANEL_FREEZE.json",
+    "selection_freeze": "docs/task_reports/TASK-035B_SELECTION_FREEZE.json",
+    "task035b_outer_validation": "docs/task_reports/TASK-035B_OUTER_VALIDATION_REPORT.json",
+    "detector_artifact_manifest": "docs/task_reports/TASK-037B_DETECTOR_ARTIFACT_MANIFEST.json",
+    "detector_threshold_freeze": "docs/task_reports/TASK-037B_INNER_THRESHOLD_FREEZE.json",
+    "task037b_outer_validation": "docs/task_reports/TASK-037B_OUTER_VALIDATION_REPORT.json",
+    "task035b_private_root": "artifacts/private_argos_reproduction/task035b",
+    "task037b_private_root": "artifacts/private_argos_reproduction/task037b"
+  },
+  "report_hashes": {
+    "kpi_manifest": "5b2b5d556cf852d18ec62c6386a6d9cd690a1481586ee9bb229a7748d2ca0107",
+    "primary_panel_freeze": "f5a6297d6f6b28d161e38496b845b580ee6fdee8620e647b88eca2d4dbce0373",
+    "selection_freeze": "d14d938bd915887364d93983b219b6f5e5a27333bd5a282dcb23b553008f6325",
+    "task035b_outer_validation": "283c2b0b34e3be259880e1ed4266fe5b89c857fd05a01f864fbc419afaef923b",
+    "detector_artifact_manifest": "e8aa26803eb578ae0ce2c29f82049513b8c2bce9f78e9befba248f3d32f8c756",
+    "detector_threshold_freeze": "9ba91f4acaeddbc9304978d5f60d9653593e72ac03196dba07a5c2e673d89299",
+    "task037b_outer_validation": "7726db5c184a8630f067f0e27cf71410b3dfef365b98bce30120b5f66fa1bf34"
+  },
+  "detector_seed": 20260723,
+  "fusion": {
+    "fn_union_max": "elementwise_max",
+    "fp_intersection_min": "elementwise_min",
+    "binary_only": true,
+    "score_level_fusion": false,
+    "point_adjustment": false,
+    "threshold_optimization": false
+  },
+  "inner_rule_recovery": {
+    "policy": "exact_or_of_hash_verified_frozen_inner_rule_predictions",
+    "inference_required": false,
+    "labels_allowed": false,
+    "selection_change_allowed": false
+  },
+  "bootstrap": {
+    "seed": 20260724,
+    "resamples": 10000,
+    "confidence_level": 0.95,
+    "method": "percentile_paired_bootstrap",
+    "resampling_unit": "kpi"
+  },
+  "private_root": "artifacts/private_argos_reproduction/task037c",
+  "reports": {
+    "input_manifest": "docs/task_reports/TASK-037C_INPUT_MANIFEST.json",
+    "inner_diagnostic": "docs/task_reports/TASK-037C_INNER_DIAGNOSTIC_REPORT.json",
+    "outer_fusion": "docs/task_reports/TASK-037C_OUTER_FUSION_REPORT.json",
+    "fn_contribution": "docs/task_reports/TASK-037C_FN_CONTRIBUTION_REPORT.json",
+    "fp_contribution": "docs/task_reports/TASK-037C_FP_CONTRIBUTION_REPORT.json",
+    "variant_consistency": "docs/task_reports/TASK-037C_VARIANT_CONSISTENCY_REPORT.json",
+    "bootstrap": "docs/task_reports/TASK-037C_BOOTSTRAP_REPORT.json",
+    "task_report": "docs/task_reports/TASK-037C_REPORT.md"
+  },
+  "boundaries": {
+    "detector_retraining": false,
+    "threshold_reselection": false,
+    "new_rule_generation": false,
+    "provider_calls": false,
+    "fusion_arm_selection": false,
+    "detector_variant_selection": false,
+    "rule_arm_selection": false,
+    "test_value_access": false,
+    "test_label_access": false,
+    "raw_prediction_tracking": false,
+    "paper_faithful_aggregator_claim": false
+  }
+}

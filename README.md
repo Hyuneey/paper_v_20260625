@@ -291,3 +291,16 @@ one-way outer replay. The variants remain co-primary provenance-sensitivity
 arms; no winner was selected. Detector-rule fusion and every sealed test remain
 unauthorized. See
 [`LSTM_DETECTOR_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/LSTM_DETECTOR_EXECUTION_PROTOCOL.md).
+
+## ARGOS E5/E6 frozen diagnostic fusion
+
+TASK-037C freezes an exhaustive diagnostic matrix pairing both TASK-037B
+LSTMAD variants with all four TASK-035B rule arms through exact binary maximum
+and minimum. No detector, rule, or fusion arm is selected, and all prediction
+hashes must be frozen before label access.
+
+This is generic-rule complementarity analysis, not paper-faithful
+detector-error-conditioned ARGOS rule generation or full Aggregator
+reproduction. Fusion superiority and sealed-test claims remain unauthorized.
+See
+[`GENERIC_RULE_DIAGNOSTIC_FUSION_PROTOCOL.md`](docs/argos_reproduction/GENERIC_RULE_DIAGNOSTIC_FUSION_PROTOCOL.md).

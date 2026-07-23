@@ -1449,3 +1449,18 @@
   variant selection, outer tuning and headline-winner selection are prohibited.
 - E4 execution does not authorize E5/E6, fusion, provider/agent activity, or
   sealed-test access.
+
+### DEC-066: Exhaustive frozen diagnostic fusion matrix
+
+- Status: resolved_before_fusion_metric_access
+- Owner: researcher
+- Exactly two detector variants, four frozen rule arms, and two binary
+  operators form sixteen diagnostic arms.
+- `fn_union_max` is elementwise maximum and `fp_intersection_min` is
+  elementwise minimum.
+- Fusion-arm, detector-variant, rule-arm, headline-winner, and outer-based
+  configuration selection are prohibited.
+- All inner and outer fusion prediction hashes must be frozen before outer
+  labels are loaded.
+- TASK-037C is generic-rule complementarity diagnostics, not paper-faithful
+  error-conditioned ARGOS rule generation or full Aggregator reproduction.
