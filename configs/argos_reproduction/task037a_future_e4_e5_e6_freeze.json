@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037A",
+  "authorization": "protocol_frozen_execution_not_authorized",
+  "detector_arms": ["LSTMADalpha", "LSTMADbeta"],
+  "variant_selection": "prohibited",
+  "kpi_count": 10,
+  "rule_arms": ["best_1", "top_3_or", "coverage_3_or", "all_10_or"],
+  "split_sequence": ["generation_detector_fit", "inner_threshold", "outer_one_way", "sealed_test"],
+  "e4": {
+    "name": "detector_only",
+    "audit_and_protocol": "TASK-037A",
+    "real_training": "not_run",
+    "outer_validation": "not_run",
+    "test": "sealed"
+  },
+  "e5": {
+    "name": "fn_fusion",
+    "diagnostic_track": "frozen_not_run",
+    "diagnostic_formula": "max(detector_binary, frozen_rule_arm_binary)",
+    "paper_faithful_track": "not_prepared",
+    "test": "sealed"
+  },
+  "e6": {
+    "name": "fp_fusion",
+    "diagnostic_track": "frozen_not_run",
+    "diagnostic_formula": "min(detector_binary, frozen_rule_arm_binary)",
+    "paper_faithful_track": "not_prepared",
+    "test": "sealed"
+  },
+  "paper_faithful_aggregator": {
+    "fn_rules_from": "detector_generation_false_negative_segments",
+    "fp_rules_from": "detector_generation_false_positive_segments",
+    "selection_data": "inner_only",
+    "outer": "one_way_only",
+    "test": "joint_freeze_required"
+  },
+  "prohibited": {
+    "automatic_e4_authorization": true,
+    "automatic_e5_authorization": true,
+    "automatic_e6_authorization": true,
+    "outer_reconfiguration": true,
+    "test_parsing": true,
+    "superiority_claim": true
+  }
+}

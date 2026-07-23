@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037A",
+  "execution_scope": "synthetic_only",
+  "sources": {
+    "easytsad_checkout": "external/easytsad",
+    "easytsad_source_commit": "55eff2c6d62f9c792bf6253c046dcc04636efe5a"
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000",
+    "docker_desktop_retry": false,
+    "source": "Ubuntu 24.04 official archive package",
+    "package_version": "4.9.3+ds1-1ubuntu0.2",
+    "candidates": {
+      "wsl_native_rootless_podman": {
+        "availability": "available_selected",
+        "rootless": true,
+        "linux_containers": true,
+        "network_none": true,
+        "read_only": true,
+        "resource_limits": true,
+        "image_digest": true
+      },
+      "wsl_native_docker_engine": {
+        "availability": "not_installed_in_selected_wsl_distribution",
+        "docker_desktop_bridge_not_selected": true
+      }
+    }
+  },
+  "image": {
+    "base_reference": "docker.io/library/python:3.11.9-slim-bookworm",
+    "base_digest": "sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "local_reference": "localhost/paperworks-task037a-easytsad-lstm:1.0.0",
+    "python_version": "3.11.9",
+    "torch_version": "2.2.2+cpu",
+    "numpy_version": "1.26.4",
+    "scikit_learn_version": "1.4.2"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "cpu_max_expected": "100000 100000",
+    "memory_limit": "1g",
+    "memory_limit_bytes": 1073741824,
+    "timeout_seconds": 300,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=128m",
+    "host_mounts": false,
+    "runtime_network": false
+  },
+  "build_timeout_seconds": 1200,
+  "private_build_context": "artifacts/private_argos_reproduction/task037a/build_context",
+  "reports": {
+    "environment": "docs/task_reports/TASK-037A_ENVIRONMENT_PREFLIGHT_REPORT.json",
+    "smoke": "docs/task_reports/TASK-037A_SYNTHETIC_SMOKE_REPORT.json"
+  },
+  "boundaries": {
+    "kpi_mount": false,
+    "rule_artifact_mount": false,
+    "repository_mount": false,
+    "provider_credentials": false,
+    "performance_metrics": false
+  }
+}

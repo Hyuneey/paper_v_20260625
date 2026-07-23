@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-037A",
+  "purpose": "Primary-source detector identity audit and non-performance experiment freeze.",
+  "frozen_lineage": {
+    "project_head_before_task": "19c57a428c115c820b67a12100f2e2b075f3bac3",
+    "argos_rule_only_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1",
+    "historical_aggregator_candidate": "c03427f2ab16e377946d4c1176585156ddae7254",
+    "kpi_source_commit": "d06bda15d511d930cbf4e6a6de14bd94d790f0f2",
+    "task035b_result_commit": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "task036p_report_commit": "19c57a428c115c820b67a12100f2e2b075f3bac3"
+  },
+  "sources": {
+    "argos_checkout": "external/argos",
+    "easytsad_checkout": "external/easytsad",
+    "easytsad_source_commit": "55eff2c6d62f9c792bf6253c046dcc04636efe5a",
+    "easytsad_package_version": "0.2.0.2",
+    "argos_paper": "https://arxiv.org/abs/2501.14170",
+    "easytsad_repository": "https://github.com/dawnvince/EasyTSAD",
+    "easytsad_pypi": "https://pypi.org/project/EasyTSAD/"
+  },
+  "variant_policy": {
+    "identity_status": "detector_family_recovered_variant_ambiguous",
+    "retained_variants": ["LSTMADalpha", "LSTMADbeta"],
+    "selection_between_variants": "prohibited",
+    "detector_role": "paper_aligned_family_sensitivity"
+  },
+  "split_policy": {
+    "detector_fit_split": "generation",
+    "normalization_fit_split": "generation",
+    "training_label_policy": "contaminated_training",
+    "inner_threshold_selection": "allowed_later",
+    "inner_hyperparameter_search": "prohibited",
+    "inner_variant_selection": "prohibited",
+    "outer_validation": "one_way_allowed_later",
+    "test": "sealed_not_accessed"
+  },
+  "threshold_policy": {
+    "score_split": "inner",
+    "selection_metric": "PA_free_point_F1",
+    "point_adjustment": false,
+    "candidate_thresholds": "unique_finite_inner_scores",
+    "tie_breaking": ["maximum_point_F1", "highest_threshold", "stable_original_order"]
+  },
+  "frozen_rule_panel": {
+    "selected_kpi_count": 10,
+    "rules_per_kpi": 10,
+    "total_panel_rules": 100,
+    "panel_report": "docs/task_reports/TASK-035B_PRIMARY_PANEL_FREEZE.json",
+    "selection_report": "docs/task_reports/TASK-035B_SELECTION_FREEZE.json",
+    "panel_report_hash": "f5a6297d6f6b28d161e38496b845b580ee6fdee8620e647b88eca2d4dbce0373",
+    "selection_report_hash": "d14d938bd915887364d93983b219b6f5e5a27333bd5a282dcb23b553008f6325"
+  },
+  "reports": {
+    "identity": "docs/task_reports/TASK-037A_DETECTOR_IDENTITY_REPORT.json",
+    "source_alignment": "docs/task_reports/TASK-037A_SOURCE_ALIGNMENT_REPORT.json",
+    "environment": "docs/task_reports/TASK-037A_ENVIRONMENT_PREFLIGHT_REPORT.json",
+    "smoke": "docs/task_reports/TASK-037A_SYNTHETIC_SMOKE_REPORT.json",
+    "readiness": "docs/task_reports/TASK-037A_READINESS_REPORT.json"
+  },
+  "boundaries": {
+    "real_kpi_detector_training": false,
+    "real_kpi_detector_scoring": false,
+    "test_access": false,
+    "provider_calls": false,
+    "argos_agent_execution": false,
+    "generated_rule_execution": false,
+    "fusion_execution": false,
+    "performance_metrics": false
+  }
+}

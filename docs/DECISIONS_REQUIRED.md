@@ -1398,3 +1398,40 @@
 - Primary comparison result: Coverage-3 OR increased macro recall but reduced
   macro point F1 and precision and substantially increased false positives.
   No superiority claim is authorized.
+
+### DEC-061: ARGOS KPI base-detector identity
+
+- Status: resolved_by_source_audit
+- Identity status: `detector_family_recovered_variant_ambiguous`
+- The ARGOS paper and repository identify generic LSTMAD for KPI but do not
+  identify EasyTSAD `LSTMADalpha` versus `LSTMADbeta`, the winning config, or
+  the training schema.
+- EasyTSAD `0.2.0.2` commit `55eff2c6d62f9c792bf6253c046dcc04636efe5a`
+  is the time-bounded closest official source, not a claimed exact ARGOS lock.
+
+### DEC-062: Non-performance detector variant policy
+
+- Status: resolved_before_detector_execution
+- Both `LSTMADalpha` and `LSTMADbeta` are frozen as co-primary
+  `paper_aligned_family_sensitivity` arms.
+- Selection, headline-winner selection, or arm removal based on inner, outer,
+  or test performance is prohibited.
+- TASK-037B execution remains separately gated.
+
+### DEC-063: Detector split and training-label policy
+
+- Status: resolved_before_real_detector_run
+- Generation fits detector and normalization; inner may select the threshold
+  but not hyperparameters or variants; outer is one-way; test remains sealed.
+- `contaminated_training` is frozen because the official EasyTSAD LSTMAD path
+  uses training values without label filtering. Switching policies after
+  results is prohibited.
+
+### DEC-064: Detector threshold and metric policy
+
+- Status: resolved_before_real_detector_run
+- Primary threshold: unique finite inner scores maximizing direct PA-free point
+  F1, tied by highest threshold then stable original order.
+- Primary metrics are PA-free point/event metrics plus AUROC/AUPRC. EasyTSAD or
+  ARGOS point-adjusted metrics are supplementary only.
+- Outer/test labels cannot select detector thresholds.

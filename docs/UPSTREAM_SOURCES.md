@@ -352,3 +352,26 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
 - No upstream source or prompt text is changed. The only execution difference
   is the provider maximum output-token budget, increased from 2,000 to 6,000.
 - No upstream code is copied or adapted by TASK-035AR.
+
+## TASK-037A EasyTSAD detector audit
+
+- Official repository: https://github.com/dawnvince/EasyTSAD
+- Ignored local reference: `external/easytsad`
+- Frozen commit: `55eff2c6d62f9c792bf6253c046dcc04636efe5a`
+- Commit date: `2024-08-23T11:57:57+08:00`
+- Package version at commit: `0.2.0.2`
+- License: GPL-3.0
+- Selection rationale: last official repository revision before the January
+  2025 ARGOS paper release. This is a time-bounded closest source, not proof of
+  the exact ARGOS experiment revision.
+- Inspected: both LSTMAD method/config/dataset directories, Naive/BaseSchema,
+  data loading/normalization, PointF1PA/EventF1PA, package metadata and license.
+- Exact file hashes: `TASK-037A_SOURCE_ALIGNMENT_REPORT.json`.
+- Code copied into production: none. The source is copied only into an ignored
+  ephemeral detector-image build context for synthetic preflight.
+- Compatibility deviation: the synthetic wrapper supplies the unused
+  `PathManager` import boundary without loading plotting/controller modules and
+  explicitly left-pads source scores for full input alignment. Upstream files
+  are unchanged.
+- Primary paper source: https://arxiv.org/abs/2501.14170
+- Official package metadata: https://pypi.org/project/EasyTSAD/

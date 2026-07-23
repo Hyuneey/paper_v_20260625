@@ -15,9 +15,9 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E2X-S/V Inner selection and outer validation (`executed`, TASK-035B) | KPI inner then outer | Direct PA-free point/event metrics and paired KPI bootstrap | `20260715` for bootstrap | 146 frozen executable rules; 100-rule balanced panel before labels | Not applicable | Inner only | Outer only after committed arm freeze | `passed_multi_rule_outer_validation`; frozen compositions evaluated once on outer validation, no test claim |
 | E2X-T Expanded sealed test (`not_run`, sealed, unauthorized) | Sealed KPI test | Not approved | Not approved | Not frozen for test | Not applicable | Frozen future selection only | Sealed one-way | No claim authorized |
 | E3 Rule-only KPI test (`not_run`, sealed, unauthorized) | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same deterministic rule and E2 freeze | E2 frozen hash | Not applicable | E2 validation freeze record | Sealed test, one-way | Rule-only result for the declared series only |
-| E4 Detector-only baseline | Same KPI train/validation/test protocol | Frozen detector prediction labels | Required before detector run | Not applicable | Required before fusion | Train/validation only | Same sealed test | Detector baseline under the frozen protocol |
-| E5 FN fusion | Validation then sealed test | `max(detector, rule)` predictions and predeclared metrics | Inherited frozen artifacts | Required | Required | Validation only | Same sealed test | FN-composition result, no universal superiority claim |
-| E6 FP fusion | Validation then sealed test | `min(detector, rule)` predictions and predeclared metrics | Inherited frozen artifacts | Required | Required | Validation only | Same sealed test | FP-composition result, no universal superiority claim |
+| E4 Detector-only baseline (`audit/protocol TASK-037A; real run not_run`) | Generation fit, inner threshold, outer one-way; test sealed | Frozen detector scores/predictions for both LSTMAD variants | Required before detector run | Not applicable | Required before fusion | Inner threshold only | Outer later; test sealed | Detector provenance sensitivity, no winner selection |
+| E5 FN fusion (`diagnostic frozen_not_run; paper-faithful not_prepared`) | Inner then outer; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | Required | Required | Inner only | Outer later; test sealed | FN contribution accounting, no superiority claim |
+| E6 FP fusion (`diagnostic frozen_not_run; paper-faithful not_prepared`) | Inner then outer; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | Required | Required | Inner only | Outer later; test sealed | FP contribution accounting, no superiority claim |
 | E7 RepairAgent effect | KPI train/validation; no test during repair | Before/after syntax, runtime, and frozen validation comparison | Required before run | Both hashes required | Not applicable | Train error plus validation protocol | None until candidate frozen | Repair effect on the approved fixture only |
 | E8 ReviewAgent selection effect | KPI train/validation | Candidate versus selected validation result | Required before run | Candidate and selected hashes | Optional only for predeclared combined arm | Validation only | None until selection frozen | Selection behavior, not test improvement |
 | E9 Random-seed sensitivity | Train/validation first; test only after one predeclared aggregation policy | Distribution across frozen seeds | Seed list required before run | Hash per seed | Hash per detector run | Train/validation only | One sealed protocol after freeze | Sensitivity under declared seeds |
@@ -73,3 +73,10 @@ deterministically on inner and outer partitions. Coverage-3 OR increased macro
 recall relative to Best-1 but decreased point F1 and precision and raised the
 false-positive burden. This is outer-validation evidence only and does not
 authorize E2X-T, a benchmark claim, or a superiority claim.
+
+TASK-037A audited E4 detector provenance and froze E4/E5/E6 protocols without
+running them. ARGOS identifies generic LSTMAD but does not disambiguate official
+EasyTSAD `LSTMADalpha` and `LSTMADbeta`; both are retained as non-selected
+co-primary provenance arms. Their isolated synthetic smoke passed. Real KPI
+training, outer validation, fusion, and test remain `not_run`; the test remains
+sealed.

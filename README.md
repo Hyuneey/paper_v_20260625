@@ -268,3 +268,15 @@ unauthorized.
 
 Professor-facing prototype evidence package:
 [Prototype Progress Report](docs/professor_feedback/PROTOTYPE_PROGRESS_REPORT.md).
+
+## ARGOS detector provenance freeze
+
+TASK-037A identifies ARGOS's KPI detector family as LSTMAD but preserves the
+unresolved official EasyTSAD `LSTMADalpha`/`LSTMADbeta` variant ambiguity as a
+dual-arm, non-selected sensitivity design. Both variants passed an isolated
+synthetic-only rootless-container smoke.
+
+No real KPI detector training, scoring, threshold selection, outer validation,
+fusion, or sealed-test access was performed. E4/E5/E6 remain protocol-frozen
+and unauthorized. See
+[`ARGOS_KPI_BASE_DETECTOR_AUDIT.md`](docs/argos_reproduction/ARGOS_KPI_BASE_DETECTOR_AUDIT.md).
