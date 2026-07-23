@@ -276,16 +276,18 @@ unresolved official EasyTSAD `LSTMADalpha`/`LSTMADbeta` variant ambiguity as a
 dual-arm, non-selected sensitivity design. Both variants passed an isolated
 synthetic-only rootless-container smoke.
 
-No real KPI detector training, scoring, threshold selection, outer validation,
-fusion, or sealed-test access was performed. E4/E5/E6 remain protocol-frozen
-and unauthorized. See
+TASK-037A itself performed no real KPI detector training, scoring, threshold
+selection, outer validation, fusion, or sealed-test access. Its E4 protocol was
+subsequently executed by TASK-037B; E5/E6 and every sealed test remain unrun.
+See
 [`ARGOS_KPI_BASE_DETECTOR_AUDIT.md`](docs/argos_reproduction/ARGOS_KPI_BASE_DETECTOR_AUDIT.md).
 
 ## ARGOS E4 dual LSTM detector validation
 
-TASK-037B freezes a commit-separated detector-only run for both official
-EasyTSAD LSTMAD variants across the existing ten KPI series. It uses
-generation-only fitting, inner-only threshold selection and one-way outer
-validation without selecting a variant. Detector-rule fusion and every sealed
-test remain unauthorized. See
+TASK-037B completed the commit-separated detector-only run for both official
+EasyTSAD LSTMAD variants across the existing ten KPI series. All twenty units
+used generation-only fitting, inner-only threshold selection and deterministic
+one-way outer replay. The variants remain co-primary provenance-sensitivity
+arms; no winner was selected. Detector-rule fusion and every sealed test remain
+unauthorized. See
 [`LSTM_DETECTOR_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/LSTM_DETECTOR_EXECUTION_PROTOCOL.md).

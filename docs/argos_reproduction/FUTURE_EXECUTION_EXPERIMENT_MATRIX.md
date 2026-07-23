@@ -15,7 +15,7 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E2X-S/V Inner selection and outer validation (`executed`, TASK-035B) | KPI inner then outer | Direct PA-free point/event metrics and paired KPI bootstrap | `20260715` for bootstrap | 146 frozen executable rules; 100-rule balanced panel before labels | Not applicable | Inner only | Outer only after committed arm freeze | `passed_multi_rule_outer_validation`; frozen compositions evaluated once on outer validation, no test claim |
 | E2X-T Expanded sealed test (`not_run`, sealed, unauthorized) | Sealed KPI test | Not approved | Not approved | Not frozen for test | Not applicable | Frozen future selection only | Sealed one-way | No claim authorized |
 | E3 Rule-only KPI test (`not_run`, sealed, unauthorized) | Sealed KPI test | Frozen rule predictions and predeclared metrics | Same deterministic rule and E2 freeze | E2 frozen hash | Not applicable | E2 validation freeze record | Sealed test, one-way | Rule-only result for the declared series only |
-| E4 Detector-only baseline (`audit/protocol TASK-037A; real run not_run`) | Generation fit, inner threshold, outer one-way; test sealed | Frozen detector scores/predictions for both LSTMAD variants | Required before detector run | Not applicable | Required before fusion | Inner threshold only | Outer later; test sealed | Detector provenance sensitivity, no winner selection |
+| E4 Detector-only baseline (`executed`, TASK-037B) | Generation fit, inner threshold, outer one-way; test sealed | Frozen detector scores/predictions for both LSTMAD variants | `20260723` | Not applicable | Frozen variant-specific artifacts; test absent | Inner threshold only | Outer executed once; test sealed | Detector provenance sensitivity, no winner selection |
 | E5 FN fusion (`diagnostic frozen_not_run; paper-faithful not_prepared`) | Inner then outer; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | Required | Required | Inner only | Outer later; test sealed | FN contribution accounting, no superiority claim |
 | E6 FP fusion (`diagnostic frozen_not_run; paper-faithful not_prepared`) | Inner then outer; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | Required | Required | Inner only | Outer later; test sealed | FP contribution accounting, no superiority claim |
 | E7 RepairAgent effect | KPI train/validation; no test during repair | Before/after syntax, runtime, and frozen validation comparison | Required before run | Both hashes required | Not applicable | Train error plus validation protocol | None until candidate frozen | Repair effect on the approved fixture only |
@@ -77,12 +77,12 @@ authorize E2X-T, a benchmark claim, or a superiority claim.
 TASK-037A audited E4 detector provenance and froze E4/E5/E6 protocols without
 running them. ARGOS identifies generic LSTMAD but does not disambiguate official
 EasyTSAD `LSTMADalpha` and `LSTMADbeta`; both are retained as non-selected
-co-primary provenance arms. Their isolated synthetic smoke passed. Real KPI
-training, outer validation, fusion, and test remain `not_run`; the test remains
-sealed.
+co-primary provenance arms. Their isolated synthetic smoke passed. At the
+TASK-037A milestone, real KPI training, outer validation, fusion and test were
+all `not_run`.
 
-TASK-037B registers E4 as a dual-arm detector-only execution using both frozen
-official LSTMAD variants. Commit A freezes implementation and protocol; E4 is
-not marked executed until all twenty units, inner threshold freezes and one-way
-outer validation complete. E5/E6 remain frozen but `not_run`, and all test
-partitions remain sealed.
+TASK-037B executed E4 as a dual-arm detector-only experiment using both frozen
+official LSTMAD variants. All twenty units completed generation-only fitting,
+inner threshold freezing, deterministic outer replay and one-way outer
+validation. Neither variant was selected as the ARGOS detector. E5/E6 remain
+frozen but `not_run`, and all test partitions remain sealed.

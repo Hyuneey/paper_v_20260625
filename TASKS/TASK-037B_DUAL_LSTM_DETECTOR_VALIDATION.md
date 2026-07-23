@@ -1,6 +1,6 @@
 # TASK-037B: Dual LSTM Detector Validation
 
-Status at Commit A: implementation and execution protocol frozen.
+Final status at Commit C: `passed_dual_arm_detector_outer_validation`.
 
 The task executes E4 using both `LSTMADalpha` and `LSTMADbeta` as non-selected
 co-primary provenance arms. Generation-only fit/normalization, inner-only
@@ -16,3 +16,8 @@ Commit boundaries:
 
 No provider, rule, agent, fusion, sealed-test access, raw tracked artifact,
 variant selection or hyperparameter search is permitted.
+
+All twenty frozen variant/KPI units completed. Checkpoints and inner thresholds
+were frozen in Commit B before label-isolated outer inference. Outer inference
+was replayed deterministically, after which the predeclared detector-only
+metrics were computed once. E5/E6 and sealed-test execution remain unrun.

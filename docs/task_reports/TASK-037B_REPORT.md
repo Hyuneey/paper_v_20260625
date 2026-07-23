@@ -1,18 +1,17 @@
 # TASK-037B Report
 
-Current status: `inner_frozen_outer_pending`.
+Final status: `passed_dual_arm_detector_outer_validation`.
 
-Commit A defines the dual-arm LSTMAD runner, exact ten-KPI split guards,
-generation-only fit and normalization, inner-only threshold selection,
-deterministic inference replay, private detector artifacts, generation error
-segments, and one-way outer validation.
+Both frozen official EasyTSAD variants, `LSTMADalpha` and `LSTMADbeta`, were
+fit independently for all ten frozen KPI series. Generation-only fitting and
+normalization, inner-only threshold selection, and one-way outer validation
+followed the pre-registered protocol. No detector variant was selected.
 
-Commit B freezes twenty checkpoints and normalization artifacts, generation
-and inner replay scores, twenty inner operating points, generation and inner
-binary predictions, and generation TP/FN/FP/TN segment manifests. Both variants
-completed all ten KPI series. No outer value or label was accessed before this
-freeze.
+Outer inference received values only and was replayed exactly from frozen
+checkpoints. Direct PA-free point/event metrics, AUROC and AUPRC were computed
+after the outer score and prediction freeze. Generation TP/FN/FP/TN segments
+were prepared privately but were not used for rule generation.
 
-`LSTMADalpha` and `LSTMADbeta` remain co-primary provenance-sensitivity arms.
-Variant selection, provider or agent activity, rule execution, fusion and
-sealed-test access are prohibited.
+No provider, ARGOS agent, generated rule, detector-rule fusion, sealed-test
+value, sealed-test label, or `TestLabels` artifact was used or created. Metric
+magnitude was not a completion criterion.
