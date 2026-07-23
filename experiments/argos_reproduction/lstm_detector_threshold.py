@@ -51,20 +51,40 @@ def select_inner_threshold(scores: object, labels: object) -> dict[str, Any]:
     candidates = np.unique(score_array)
     if len(candidates) == 0:
         raise DetectorThresholdError("TASK037B_THRESHOLD_CANDIDATES_EMPTY")
-    best: tuple[tuple[float, float, int], dict[str, Any]] | None = None
-    for order, threshold in enumerate(candidates.tolist()):
-        prediction = binary_predictions(score_array, threshold)
-        metrics = direct_pa_free_metrics(label_array, prediction)
-        key = (float(metrics["point_f1"]), float(threshold), -order)
-        record = {"threshold": float(threshold), "metrics": metrics}
-        if best is None or key > best[0]:
-            best = (key, record)
-    assert best is not None
-    selected = best[1]
-    metrics = selected["metrics"]
+    order = np.argsort(-score_array, kind="mergesort")
+    sorted_scores = score_array[order]
+    sorted_labels = label_array[order].astype(np.int8, copy=False)
+    total_positive = int(np.sum(sorted_labels == 1))
+    tp = 0
+    fp = 0
+    best_key: tuple[float, float, int] | None = None
+    selected_threshold = float(sorted_scores[0])
+    start = 0
+    group_order = 0
+    while start < len(sorted_scores):
+        end = start + 1
+        while end < len(sorted_scores) and sorted_scores[end] == sorted_scores[start]:
+            end += 1
+        group = sorted_labels[start:end]
+        tp += int(np.sum(group == 1))
+        fp += int(np.sum(group == 0))
+        fn = total_positive - tp
+        precision = tp / (tp + fp) if tp + fp else 0.0
+        recall = tp / (tp + fn) if tp + fn else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+        threshold = float(sorted_scores[start])
+        key = (f1, threshold, -group_order)
+        if best_key is None or key > best_key:
+            best_key = key
+            selected_threshold = threshold
+        start = end
+        group_order += 1
+    metrics = direct_pa_free_metrics(
+        label_array, binary_predictions(score_array, selected_threshold)
+    )
     return {
         "candidate_threshold_count": int(len(candidates)),
-        "selected_threshold": selected["threshold"],
+        "selected_threshold": selected_threshold,
         "selected_confusion_counts": {
             key: int(metrics[key])
             for key in ("true_positive", "false_positive", "true_negative", "false_negative")
