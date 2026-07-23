@@ -323,13 +323,16 @@ RepairAgent or ReviewAgent, or access a sealed test. See
 
 ## ARGOS error-conditioned Aggregator validation
 
-TASK-037E freezes the 83-rule TASK-037D candidate registry, inner-only
-direction-specific selection with an explicit no-op candidate, and the
-source-aligned FP-then-FN Aggregator protocol. Inner and outer execution remain
-commit-separated, and selected rules cannot be substituted after outer access.
+TASK-037E completed the frozen 83-rule inner replay, independent no-op-aware FN
+and FP selection, selected-rule outer replay, and source-aligned FP-then-FN
+Aggregator validation. All 83 inner predictions were deterministic. Selection
+retained 19 FN rules and one FN no-op, plus two FP rules and 18 FP no-ops.
+Outer execution used only the committed selections and froze every Aggregator
+prediction before label access.
 
 This is a previously exposed follow-up outer-validation design, not exact
 ARGOS reproduction or untouched confirmation. Provider/agent activity,
 detector retraining, threshold reselection, sealed-test access, and final
 superiority claims remain prohibited. See
+[`TASK-037E_REPORT.md`](docs/task_reports/TASK-037E_REPORT.md) and
 [`FULL_AGGREGATOR_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/FULL_AGGREGATOR_EXECUTION_PROTOCOL.md).

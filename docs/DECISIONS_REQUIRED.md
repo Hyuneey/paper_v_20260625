@@ -1511,3 +1511,7 @@
 - Exact complete ties with no-op resolve to no-op.
 - The decision is frozen before inner label access and cannot change from
   outer results.
+- Execution outcome: all 83 candidate rules completed deterministic inner
+  replay. The frozen selections retained 19 FN rules and one FN no-op, plus two
+  FP rules and 18 FP no-ops. No joint FN/FP search or outer reselection was
+  performed.
