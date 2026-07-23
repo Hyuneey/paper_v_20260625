@@ -1481,7 +1481,7 @@
 
 ### DEC-068: TASK-037D bounded provider authorization
 
-- Status: resolved_before_provider_execution
+- Status: resolved_executed
 - Owner: researcher
 - Provider/model: OpenAI Responses API / `gpt-5.6-luna`.
 - `max_output_tokens` is 6,000; temperature and seed are omitted and no
@@ -1491,3 +1491,5 @@
   tokens per call or 6,000 output tokens per call.
 - Each private receipt permanently consumes one slot. Automatic retry, manual
   retry and replacement generation are prohibited.
+- Execution consumed all 96 frozen slots exactly once with no provider or
+  transport error and no retry or replacement call.

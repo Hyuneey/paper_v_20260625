@@ -95,8 +95,10 @@ were frozen before label access. No fusion arm or detector variant was
 selected. The result remains diagnostic and does not constitute paper-faithful
 error-conditioned ARGOS reproduction.
 
-TASK-037D freezes the paper-aligned error-conditioned generation stage for both
-LSTMAD variants. It uses generation FN/TN evidence for FN rules and generation
-FP/TP evidence for FP rules, with 96 independent one-shot requests. Rule
-selection, inner/outer Aggregator evaluation and all sealed tests remain
-unrun and unauthorized.
+TASK-037D completed the paper-aligned error-conditioned generation stage for
+both LSTMAD variants. It used generation FN/TN evidence for FN rules and
+generation FP/TP evidence for FP rules through 96 independent one-shot
+requests. All 96 responses produced static-valid rules, 83 passed both
+value-only runtime contracts, and the frozen cohort adequacy gate passed.
+Rule selection, inner/outer Aggregator evaluation, TASK-037E execution, and all
+sealed tests remain unrun and unauthorized.

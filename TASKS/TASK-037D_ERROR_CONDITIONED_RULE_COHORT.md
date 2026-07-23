@@ -1,7 +1,11 @@
 # TASK-037D: Detector-Error-Conditioned Rule Cohort
 
-Status at Commit A: implementation, support audit and 96-slot provider manifest
-frozen; provider execution pending.
+Status: `passed_error_conditioned_rule_cohort`.
+
+Commit A froze the implementation, support audit, and 96-slot provider
+manifest. Execution consumed every slot exactly once, captured 96 responses,
+extracted 96 static-valid rules, and found 83 rules executable on both their
+target and contrast value chunks. No retry or replacement call occurred.
 
 TASK-037D retains both LSTMAD variants, all ten KPI series and both FN/FP
 directions. It selects generation-only target/contrast pairs deterministically,
