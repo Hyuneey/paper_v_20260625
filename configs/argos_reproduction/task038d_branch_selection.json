@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-038D",
+  "experiment_id": "ARGOS_A0_A3_INNER_SELECTION",
+  "created_at": "2026-07-24T00:00:00+09:00",
+  "lineage": {
+    "task037b_result_commit": "e183eddc1a70ca37033d3acbe8710885590b9f3c",
+    "task037d_result_commit": "3c9ed2420611197cef5ea6b34f956a03616ce03e",
+    "task037e_result_commit": "0bae6c96d6e8c1eca0a17ac864d04ea4e325121e",
+    "task038a_protocol_commit": "71e393292a7b0bcbfa725e47be730abedaba0d1e",
+    "task038b_result_commit": "ac9da32c743627a473c3e9515a0e2950b0b63119",
+    "task038c_implementation_commit": "d627283e11e4f43f8273dafaa7a4dd0430d47c29",
+    "task038c_call_freeze_commit": "c468db02efd8478eaa407323410f3e6149f85eea",
+    "task038c_result_commit": "9ea91c071f770208ec0c707e85ca17df5de5a6b7"
+  },
+  "source_hashes": {
+    "task038a_initial_registry": "c0d2f92807fb7e876319fab0c300973d8c62fdb45e499ee69c1f12786f2e750d",
+    "task038b_runtime": "d8dfacc106382f133ad8732fb798d36a973eb5afe683f0f133f77fbde080874d",
+    "task038b_branch_update": "2d8bbe2d3d162e547a2d7600f4e26e283547f36527561e55e02968b684ae63c9",
+    "task038c_parent_registry": "3c40fe84c293571dc09badd598cca56395554175054ea5eeabb1739367fa7edb",
+    "task038c_parent_predictions": "d24f5fcda0dd11f51b737e18a9930e5989c4abec1ea12ef472488914e7385980",
+    "task038c_branch_update": "e2d65ca37266ef2773b70fe0879703dc863daaa80e78dda7ded2ba5fe4b42402",
+    "task038c_reviewed_predictions": "bdd0ad2c2a4d588cf6655831226e47e16547234825107316fe90ab357e7bbdc5",
+    "task038c_stochastic": "2720fdea722a14c7ad57c40e836f657fd01074b965c1a47b2312f7e5025ef0dd",
+    "task038c_effect": "20587920f047fb7975c66fbe6b65513693bc02465990a1535d48ba7dd0043bcd",
+    "task037e_inner_predictions": "48a2ca981cca015aea0af1a29dd0e7b3c8d05eb29f4e5d12387269cd19ba9197",
+    "task037e_fn_selection": "e9cf45a768db0eadf4f17308fda36101ba60ff583369e5f9891941404264eaf5",
+    "task037e_fp_selection": "1b9b6d4c0ff19d6b07fba1ec972e9ebe3259e69b3cd2a6452273162c4cf8338f",
+    "task037b_detector_manifest": "e8aa26803eb578ae0ce2c29f82049513b8c2bce9f78e9befba248f3d32f8c756",
+    "task037b_threshold_freeze": "9ba91f4acaeddbc9304978d5f60d9653593e72ac03196dba07a5c2e673d89299"
+  },
+  "counts": {
+    "A0": 83,
+    "A1": 96,
+    "A2": 82,
+    "A3": 96,
+    "branch_executable_outputs": 357,
+    "detector_variants": 2,
+    "kpis": 10,
+    "directions": 2,
+    "selection_units": 160
+  },
+  "selection_policy": {
+    "decision_id": "DEC-075",
+    "status": "resolved_before_inner_label_access",
+    "branches": ["A0", "A1", "A2", "A3"],
+    "detector_variants": ["LSTMADalpha", "LSTMADbeta"],
+    "directions": ["FN", "FP"],
+    "maximum_selected_rules_per_unit": 1,
+    "explicit_no_op": true,
+    "joint_FN_FP_pair_search": false,
+    "rule_ensembles": false,
+    "point_adjustment": false,
+    "outer_based_selection": false,
+    "detector_variant_selection": false,
+    "task037e_policy_reused": true
+  },
+  "sources": {
+    "task038a_initial_registry": "docs/task_reports/TASK-038A_INITIAL_RULE_REGISTRY.json",
+    "task038b_runtime": "docs/task_reports/TASK-038B_RUNTIME_REPORT.json",
+    "task038b_branch_update": "docs/task_reports/TASK-038B_BRANCH_UPDATE.json",
+    "task038c_parent_registry": "docs/task_reports/TASK-038C_PARENT_REGISTRY.json",
+    "task038c_parent_predictions": "docs/task_reports/TASK-038C_PARENT_PREDICTION_MANIFEST.json",
+    "task038c_branch_update": "docs/task_reports/TASK-038C_BRANCH_UPDATE.json",
+    "task038c_reviewed_predictions": "docs/task_reports/TASK-038C_REVIEWED_PREDICTION_MANIFEST.json",
+    "task038c_stochastic": "docs/task_reports/TASK-038C_STOCHASTIC_REPLICATE_REPORT.json",
+    "task038c_effect": "docs/task_reports/TASK-038C_EFFECT_REPORT.json",
+    "task037e_inner_predictions": "docs/task_reports/TASK-037E_INNER_PREDICTION_MANIFEST.json",
+    "task037e_fn_selection": "docs/task_reports/TASK-037E_FN_SELECTION_FREEZE.json",
+    "task037e_fp_selection": "docs/task_reports/TASK-037E_FP_SELECTION_FREEZE.json",
+    "task037e_config": "configs/argos_reproduction/task037e_error_conditioned_aggregator.json",
+    "task037b_detector_manifest": "docs/task_reports/TASK-037B_DETECTOR_ARTIFACT_MANIFEST.json",
+    "task037b_threshold_freeze": "docs/task_reports/TASK-037B_INNER_THRESHOLD_FREEZE.json"
+  },
+  "private_roots": {
+    "task035b": "artifacts/private_argos_reproduction/task035b",
+    "task037b": "artifacts/private_argos_reproduction/task037b",
+    "task037e": "artifacts/private_argos_reproduction/task037e",
+    "task038c": "artifacts/private_argos_reproduction/task038c",
+    "task038d": "artifacts/private_argos_reproduction/task038d"
+  },
+  "reports": {
+    "branch_registry": "docs/task_reports/TASK-038D_BRANCH_OUTPUT_REGISTRY.json",
+    "candidate_predictions": "docs/task_reports/TASK-038D_CANDIDATE_PREDICTION_MANIFEST.json",
+    "a0_reproduction": "docs/task_reports/TASK-038D_A0_REPRODUCTION_REPORT.json",
+    "selection_freeze": "docs/task_reports/TASK-038D_SELECTION_FREEZE.json",
+    "selection_origin": "docs/task_reports/TASK-038D_SELECTION_ORIGIN_REPORT.json",
+    "selection_change": "docs/task_reports/TASK-038D_SELECTION_CHANGE_REPORT.json",
+    "inner_diagnostics": "docs/task_reports/TASK-038D_INNER_DIAGNOSTIC_REPORT.json"
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "outer_access": false,
+    "sealed_test_access": false,
+    "prediction_recovery_only": true,
+    "raw_private_artifacts_tracked": false
+  }
+}

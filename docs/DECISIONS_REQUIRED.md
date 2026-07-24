@@ -1617,3 +1617,22 @@
   static-valid rule; 76 revisions passed deterministic generation and
   full-inner runtime. No retry, replacement, RepairAgent call, DetectionAgent
   call, outer access or sealed-test access occurred.
+
+### DEC-075: A0-A3 branch-specific no-op-aware selection
+
+- Status: resolved_before_inner_label_access
+- Owner: researcher
+- The immutable executable-output populations are `A0=83`, `A1=96`, `A2=82`
+  and `A3=96`, for 357 logical branch records.
+- Exactly 160 branch/detector/KPI/direction units are required. Every unit
+  contains all matching executable branch outputs and one explicit no-op.
+- FN and FP use the exact TASK-037E direct PA-free ranking and are selected
+  independently. At most one rule may be selected per unit; ensembles and
+  joint FN/FP pair search are prohibited.
+- Complete scientific ties with no-op select no-op. Duplicate rule hashes
+  remain separate slot records and use the original slot ID as the final
+  deterministic tie-breaker.
+- Candidate predictions must freeze before inner-label access. A0 must
+  reproduce all forty TASK-037E selections exactly.
+- Provider and agent calls, outer access, detector changes, and sealed-test
+  access are prohibited.
