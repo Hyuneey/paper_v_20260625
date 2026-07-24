@@ -359,7 +359,13 @@ each failure, commits the exact eligible call manifest before provider access,
 permits one no-retry Repair revision, and requires frozen static auditing plus
 two-run target and contrast rootless-container checks.
 
+The completed experiment reproduced all thirteen failures and recovered all
+thirteen as deterministic contract-valid executables after one Repair revision
+each. This is `substantial_operability_support` for this bounded cohort only;
+it does not establish semantic preservation or detection improvement.
+
 This experiment concerns executable-rule recovery only. It does not evaluate
 ReviewAgent, detection performance, outer generalization, fusion, or sealed
 test. See
-[`REPAIR_PROVIDER_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/REPAIR_PROVIDER_EXECUTION_PROTOCOL.md).
+[`REPAIR_PROVIDER_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/REPAIR_PROVIDER_EXECUTION_PROTOCOL.md)
+and [`TASK-038B_REPORT.md`](docs/task_reports/TASK-038B_REPORT.md).

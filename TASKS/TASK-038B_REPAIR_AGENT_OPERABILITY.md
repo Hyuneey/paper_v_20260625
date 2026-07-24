@@ -14,3 +14,9 @@ runtime files remain under ignored private storage.
 
 ReviewAgent, detection metrics, inner execution, outer access, fusion, and
 sealed-test access are prohibited.
+
+Final status: `passed_repair_agent_operability_experiment`
+
+All thirteen initial failures were reproducible. Thirteen one-shot Repair calls
+produced thirteen static-valid revisions, and all thirteen passed deterministic
+target and contrast runtime contracts. This is an operability result only.

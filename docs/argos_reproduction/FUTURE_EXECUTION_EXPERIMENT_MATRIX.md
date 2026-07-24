@@ -128,3 +128,10 @@ Its immutable denominator is the thirteen TASK-037D static-valid runtime
 failures. Failure replay and the exact no-retry call manifest must be committed
 before provider access. Review, detection metrics, inner/outer execution,
 fusion, and every sealed test remain prohibited.
+
+TASK-038B completed E7 with status
+`passed_repair_agent_operability_experiment`. All 13 original failures were
+reproduced, all 13 one-shot Repair responses were extracted and statically
+valid, and all 13 repaired rules passed deterministic two-run target and
+contrast contracts. E8 Review remains not run; inner/outer detection metrics,
+fusion, and all sealed tests remain prohibited and unexecuted.
