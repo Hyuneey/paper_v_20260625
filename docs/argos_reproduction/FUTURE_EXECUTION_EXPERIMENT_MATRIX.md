@@ -19,7 +19,7 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E5 FN fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FN recovery and added-FP accounting, no superiority claim |
 | E6 FP fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FP removal and removed-TP accounting, no superiority claim |
 | E7 RepairAgent effect (`executed`, TASK-038B) | Generation runtime evidence only for Repair; no outer/test | Before/after extraction, static and runtime-contract recovery | Inherited frozen inputs | Initial and repaired hashes frozen | Matching frozen detector lineage only | Generation value-only runtime errors | None until later committed freeze | Repair operability and cost only |
-| E8 ReviewAgent component effect (`executed`, TASK-038C; outer follow-up frozen in TASK-038E) | Inner-only Review followed by pre-registered, previously exposed outer validation; test sealed | Direct PA-free paired branch diagnostics under frozen max/min semantics | Inherited frozen inputs; TASK-038E bootstrap `20260726` | Initial/repaired/reviewed hashes frozen | Matching frozen TASK-037B detector prediction | Inner-only TASK-038D selection | TASK-038E outer authorized after exact registry; sealed test not run | Component-wise descriptive outer transfer, not superiority or confirmation |
+| E8 ReviewAgent component effect (`executed`, TASK-038C; outer follow-up executed in TASK-038E) | Inner-only Review followed by pre-registered, previously exposed outer validation; test sealed | Direct PA-free paired branch diagnostics under frozen max/min semantics | Inherited frozen inputs; TASK-038E bootstrap `20260726` | Initial/repaired/reviewed hashes frozen | Matching frozen TASK-037B detector prediction | Inner-only TASK-038D selection | TASK-038E outer completed after exact registry; sealed test not run | Component-wise descriptive outer transfer, not superiority or confirmation |
 | E9 Random-seed sensitivity | Train/validation first; test only after one predeclared aggregation policy | Distribution across frozen seeds | Seed list required before run | Hash per seed | Hash per detector run | Train/validation only | One sealed protocol after freeze | Sensitivity under declared seeds |
 | E10 Multivariate extension readiness | Approved multivariate train/calibration/validation | Interface and feasibility checks | Required before run | DSL artifact hashes | Candidate/detector hashes as applicable | No final test | No final test until separate gate | Readiness only after E1-E8 evidence |
 
@@ -155,5 +155,14 @@ TASK-038D completed the branch-specific inner selection freeze with status
 `passed_four_branch_selection_freeze`. The immutable A0-A3 executable-output
 counts were 83, 96, 82 and 96. All 357 prediction references froze before
 inner-label access, and the 160 no-op-aware FN/FP units terminated. A0
-reproduced TASK-037E exactly. TASK-038E outer comparison is prepared but not
-executed; every sealed test remains unauthorized.
+reproduced TASK-037E exactly.
+
+TASK-038E completed the previously exposed one-way branch comparison with
+status `passed_four_branch_outer_comparison`. The pre-registered 249 logical
+records mapped to 146 physical units; 125 new units completed exact two-run
+rootless-container replay and 21 exact TASK-037E predictions were reused.
+All 320 branch arms, 76 Review pairs and 13 Repair utility predictions froze
+before outer-label access. A0 reproduced TASK-037E exactly. No provider/agent
+call, fallback, reselection, detector change, or sealed-test access occurred.
+The results are descriptive component evidence only; every sealed test remains
+unauthorized.

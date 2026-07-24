@@ -404,3 +404,11 @@ does not access outer or sealed-test data, and does not establish outer
 generalization or ARGOS methodological validity. See
 [`TASK-038D_REPORT.md`](docs/task_reports/TASK-038D_REPORT.md) and
 [`FOUR_BRANCH_SELECTION_PROTOCOL.md`](docs/argos_reproduction/FOUR_BRANCH_SELECTION_PROTOCOL.md).
+
+## ARGOS four-branch outer follow-up
+
+TASK-038E completed the pre-registered, previously exposed outer comparison of
+the frozen A0-A3 branches, including all branch arms, Review parent/revision
+pairs, and repaired-rule utility records. The results are descriptive
+component evidence, not untouched confirmation or final ARGOS superiority.
+See [`TASK-038E_REPORT.md`](docs/task_reports/TASK-038E_REPORT.md).

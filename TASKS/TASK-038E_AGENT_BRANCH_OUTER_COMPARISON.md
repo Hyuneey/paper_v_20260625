@@ -16,4 +16,13 @@ TASK-037E exactly. No provider or agent call, detector training, threshold
 change, outer reselection, selected-rule fallback, or sealed-test access is
 authorized.
 
-Planned passing status: `passed_four_branch_outer_comparison`
+Final status: `passed_four_branch_outer_comparison`
+
+The exact registry contained 249 logical records and 146 deduplicated physical
+execution units. All physical predictions replayed deterministically. The 320
+branch-arm, 76 Review-transfer, and 13 Repair-utility predictions froze before
+outer-label access, and A0 reproduced all 80 TASK-037E arm/KPI controls.
+
+The outer partition was previously exposed. Results are descriptive
+component-wise evidence, not untouched confirmation, benchmark performance,
+or a superiority claim. Every sealed test remains unrun and unauthorized.

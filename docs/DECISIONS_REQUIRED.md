@@ -1662,3 +1662,7 @@
   prohibited.
 - The outer partition is previously exposed follow-up validation. Results are
   descriptive component evidence, not untouched confirmation or superiority.
+- Execution outcome: 146 physical units completed deterministic replay, all
+  320 branch arms, 76 Review pairs, and 13 Repair utility predictions froze
+  before labels, and A0 reproduced TASK-037E exactly. No provider/agent call,
+  reselection, fallback, detector change, or sealed-test access occurred.
