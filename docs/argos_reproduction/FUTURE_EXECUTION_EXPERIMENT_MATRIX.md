@@ -18,7 +18,7 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E4 Detector-only baseline (`executed`, TASK-037B) | Generation fit, inner threshold, outer one-way; test sealed | Frozen detector scores/predictions for both LSTMAD variants | `20260723` | Not applicable | Frozen variant-specific artifacts; test absent | Inner threshold only | Outer executed once; test sealed | Detector provenance sensitivity, no winner selection |
 | E5 FN fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FN recovery and added-FP accounting, no superiority claim |
 | E6 FP fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FP removal and removed-TP accounting, no superiority claim |
-| E7 RepairAgent effect (`protocol_frozen`, TASK-038A; real execution not run) | Generation runtime evidence only for Repair; no outer/test | Before/after extraction, static and runtime-contract recovery | Inherited frozen inputs | Initial and repaired hashes required | Matching frozen detector lineage only | Generation value-only runtime errors | None until later committed freeze | Repair operability and cost only |
+| E7 RepairAgent effect (`execution_authorized`, TASK-038B; results pending Commit B) | Generation runtime evidence only for Repair; no outer/test | Before/after extraction, static and runtime-contract recovery | Inherited frozen inputs | Initial and repaired hashes required | Matching frozen detector lineage only | Generation value-only runtime errors | None until later committed freeze | Repair operability and cost only |
 | E8 ReviewAgent component effect (`protocol_frozen`, TASK-038A; real execution not run) | Inner-only Review; no outer/test | Direct PA-free paired branch diagnostics under frozen max/min semantics | Inherited frozen inputs | Initial/repaired/reviewed hashes required | Matching frozen TASK-037B detector prediction | Inner only | None until later committed freeze | Review component behavior, not generalization or superiority |
 | E9 Random-seed sensitivity | Train/validation first; test only after one predeclared aggregation policy | Distribution across frozen seeds | Seed list required before run | Hash per seed | Hash per detector run | Train/validation only | One sealed protocol after freeze | Sensitivity under declared seeds |
 | E10 Multivariate extension readiness | Approved multivariate train/calibration/validation | Interface and feasibility checks | Required before run | DSL artifact hashes | Candidate/detector hashes as applicable | No final test | No final test until separate gate | Readiness only after E1-E8 evidence |
@@ -122,3 +122,9 @@ transformation is bounded to one call without retry. Real provider calls,
 generated-code execution, outer access, and sealed-test access all remain
 unperformed and unauthorized. TASK-038B requires a separate execution
 authorization.
+
+TASK-038B separately authorizes the bounded E7 Repair operability experiment.
+Its immutable denominator is the thirteen TASK-037D static-valid runtime
+failures. Failure replay and the exact no-retry call manifest must be committed
+before provider access. Review, detection metrics, inner/outer execution,
+fusion, and every sealed test remain prohibited.

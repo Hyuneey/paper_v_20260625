@@ -1565,3 +1565,24 @@
 - TASK-038A authorizes zero real provider calls, zero real Repair executions,
   zero real Review executions, no host generated-code execution, no outer
   access, and no sealed-test access.
+
+### DEC-073: Bounded RepairAgent operability execution
+
+- Status: resolved_before_provider_execution
+- Owner: researcher
+- The complete Repair denominator is the thirteen TASK-037D static-valid
+  runtime failures frozen by TASK-038A.
+- Every initial failure is replayed twice in the unchanged rootless-container
+  boundary before request construction. Only reproducibly failed rules receive
+  a call slot; non-reproducible failures remain in the primary denominator.
+- Provider/model are OpenAI Responses API / `gpt-5.6-luna`, with
+  `max_output_tokens=6000`, omitted temperature and provider seed, at most one
+  call per initial rule, and no automatic retry, manual retry, or replacement.
+- The exact call count, bounded above by thirteen, must be committed before any
+  provider access. Every attempted call is receipt-first and permanently
+  consumes its slot.
+- Returned rules require extraction, frozen static audit, and two fresh
+  target plus two fresh contrast container executions. Generated source is
+  never imported or executed on the host.
+- ReviewAgent calls, inner labels or metrics, outer access, fusion, and sealed
+  test are prohibited.

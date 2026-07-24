@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-038B",
+  "experiment_id": "ARGOS_REPAIR_OPERABILITY",
+  "created_at": "2026-07-24T00:00:00+09:00",
+  "lineage": {
+    "task037d_implementation_commit": "664857f1df5115f186b578ea3f434be8e7f6db77",
+    "task037d_result_commit": "3c9ed2420611197cef5ea6b34f956a03616ce03e",
+    "task037e_implementation_commit": "95351d560d3659dedb7b1783f84783c65a7b7eff",
+    "task037e_selection_freeze_commit": "06560b06f636e2a69d7ad1c92b976cc513c310d7",
+    "task037e_result_commit": "0bae6c96d6e8c1eca0a17ac864d04ea4e325121e",
+    "task038a_protocol_freeze_commit": "71e393292a7b0bcbfa725e47be730abedaba0d1e",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "task038a_hashes": {
+    "initial_registry_hash": "c0d2f92807fb7e876319fab0c300973d8c62fdb45e499ee69c1f12786f2e750d",
+    "branch_registry_hash": "6865af148258682a67aab9702fc795216cd4af119333539808c93d9e425b8390",
+    "provider_budget_hash": "c6194be08967ac0e03ac88eb15bc1f05fcffc600dc1bc64f87187a507631f9a1",
+    "protocol_freeze_hash": "972fa2d17f8280245c8c4467b10f57015959c1406fb3705495e939d0410c5bc4"
+  },
+  "task037d_hashes": {
+    "request_manifest_hash": "91b1490add3fca103816f2ed76f7df489dada048bb6c67df09b3400c9cb3bd86",
+    "static_audit_hash": "21d81ffcc6c8302e3b8d3f6199234029a42486026f0bfffaee9c74870954e82b",
+    "runtime_report_hash": "76b5cbdd5aeb3a67e845206c1e802ce0d52e12a0ad9cd18a79544eda0fc05ca5"
+  },
+  "population": {
+    "initial_rule_slots": 96,
+    "initial_static_valid": 96,
+    "initial_executable": 83,
+    "repair_candidates": 13,
+    "allowed_initial_runtime_statuses": [
+      "target_runtime_failed",
+      "contrast_runtime_failed",
+      "output_contract_failed"
+    ]
+  },
+  "sources": {
+    "initial_registry": "docs/task_reports/TASK-038A_INITIAL_RULE_REGISTRY.json",
+    "branch_registry": "docs/task_reports/TASK-038A_BRANCH_REGISTRY.json",
+    "protocol_freeze": "docs/task_reports/TASK-038A_PROTOCOL_FREEZE.json",
+    "task037d_requests": "docs/task_reports/TASK-037D_REQUEST_MANIFEST.json",
+    "task037d_static": "docs/task_reports/TASK-037D_STATIC_AUDIT_REPORT.json",
+    "task037d_runtime": "docs/task_reports/TASK-037D_RUNTIME_REPORT.json",
+    "task037d_private_root": "artifacts/private_argos_reproduction/task037d"
+  },
+  "private_root": "artifacts/private_argos_reproduction/task038b",
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "expected_image_id": "sha256:25b42f3d74d9402965d8ec47767c47618ad0ff9417861abe588a0a67dd391a84",
+    "expected_image_digest": "sha256:dec0b11bbc3bae954121d0f3b6ea0ebe0f47abae82c7cccdff22abdcd0975cfe",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m"
+  },
+  "provider": {
+    "provider": "openai_responses",
+    "model": "gpt-5.6-luna",
+    "approval_path": "configs/argos_reproduction/task038b_repair_provider_authorization.json",
+    "max_output_tokens": 6000,
+    "timeout_seconds": 180,
+    "inter_call_delay_seconds": 1.0
+  },
+  "reports": {
+    "failure_replay": "docs/task_reports/TASK-038B_FAILURE_REPLAY_REPORT.json",
+    "call_manifest": "docs/task_reports/TASK-038B_REPAIR_CALL_MANIFEST.json",
+    "provider": "docs/task_reports/TASK-038B_PROVIDER_REPORT.json",
+    "static": "docs/task_reports/TASK-038B_STATIC_AUDIT_REPORT.json",
+    "runtime": "docs/task_reports/TASK-038B_RUNTIME_REPORT.json",
+    "semantic_drift": "docs/task_reports/TASK-038B_SEMANTIC_DRIFT_REPORT.json",
+    "branch_update": "docs/task_reports/TASK-038B_BRANCH_UPDATE.json",
+    "operability": "docs/task_reports/TASK-038B_OPERABILITY_REPORT.json"
+  },
+  "boundaries": {
+    "review_agent_calls": 0,
+    "inner_value_execution": false,
+    "inner_label_access": false,
+    "inner_metrics": false,
+    "outer_access": false,
+    "sealed_test_access": false,
+    "host_generated_code_execution": false
+  }
+}

@@ -434,3 +434,17 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   remains container-only; Review uses inner-only direct PA-free metrics; outer
   and sealed-test feedback are prohibited; provider access is disabled in
   TASK-038A.
+
+## TASK-038B ARGOS Repair execution alignment
+
+- Reuses unchanged ARGOS commit
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Repair prompt source remains `agent/prompts/repair.py`, SHA-256
+  `f7dc354ee862bf4b6433eff247999be51596be1325743ef002b9c1ddd180eb3d`.
+- Repair behavior source remains `agent/repair_agent.py`, SHA-256
+  `c6aad9764623ad36515e9d1844b2d15331b1151f378f301de2d5342f3f04550e`.
+- The project adapter parses the prompt constant without importing or
+  executing upstream source. No ARGOS source is copied or modified.
+- Intentional deviation: the upstream iterative loop is replaced by one
+  pre-registered Repair call per reproducibly failed rule, with receipt-first
+  no-retry execution and rootless-container-only revised-code checks.

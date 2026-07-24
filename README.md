@@ -350,3 +350,16 @@ repaired or reviewed no real rule, computed no new inner or outer metric, and
 accessed no outer or sealed-test artifact. See
 [`ARGOS_AGENT_FACTORIAL_PROTOCOL.md`](docs/argos_reproduction/ARGOS_AGENT_FACTORIAL_PROTOCOL.md)
 and [`TASK-038A_REPORT.md`](docs/task_reports/TASK-038A_REPORT.md).
+
+## ARGOS bounded RepairAgent experiment
+
+TASK-038B implements the separately authorized E7 Repair operability protocol
+over the thirteen frozen TASK-037D runtime failures. It independently replays
+each failure, commits the exact eligible call manifest before provider access,
+permits one no-retry Repair revision, and requires frozen static auditing plus
+two-run target and contrast rootless-container checks.
+
+This experiment concerns executable-rule recovery only. It does not evaluate
+ReviewAgent, detection performance, outer generalization, fusion, or sealed
+test. See
+[`REPAIR_PROVIDER_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/REPAIR_PROVIDER_EXECUTION_PROTOCOL.md).
