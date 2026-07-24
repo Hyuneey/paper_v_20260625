@@ -1640,3 +1640,25 @@
   before inner-label access. A0 reproduced all forty TASK-037E selections.
   All 160 branch units terminated under the frozen independent FN/FP policy;
   no provider, agent, outer, or sealed-test access occurred.
+
+### DEC-076: A0-A3 one-way outer comparison
+
+- Status: resolved_before_outer_value_access
+- Owner: researcher
+- Exactly four branches, two frozen LSTMAD variants, ten KPI series, and the
+  frozen TASK-038D FN/FP selections are authorized.
+- Primary logical arms are detector-only, detector-plus-FN,
+  detector-plus-FP, and FP-then-FN Full Aggregator. No branch, variant, KPI,
+  direction, selected rule, or no-op may be removed after execution starts.
+- Three evidence blocks are frozen before outer-value access: 320 logical
+  branch arms, 76 Review parent/revision pairs, and 13 repaired-rule utility
+  records.
+- Physical executions are deduplicated only on full rule, detector, KPI,
+  direction, outer-input, and runtime lineage. New predictions require exact
+  two-run replay in fresh rootless containers.
+- All predictions must freeze before outer-label access. A0 must reproduce
+  TASK-037E exactly; selected-rule fallback, outer reselection, detector or
+  threshold changes, provider/agent calls, and sealed-test access are
+  prohibited.
+- The outer partition is previously exposed follow-up validation. Results are
+  descriptive component evidence, not untouched confirmation or superiority.
