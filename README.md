@@ -390,3 +390,17 @@ access outer or sealed-test data, or establish outer generalization or full
 ARGOS methodological validity. See
 [`TASK-038C_REPORT.md`](docs/task_reports/TASK-038C_REPORT.md) and
 [`REVIEW_TRIGGER_AND_EVIDENCE_PROTOCOL.md`](docs/argos_reproduction/REVIEW_TRIGGER_AND_EVIDENCE_PROTOCOL.md).
+
+## ARGOS four-branch inner selection freeze
+
+TASK-038D freezes no-op-aware FN and FP selections for the A0 one-shot, A1
+Repair-only, A2 Review-only, and A3 Repair-plus-Review branches. It verifies
+357 frozen branch prediction references before inner-label access, reproduces
+all forty TASK-037E A0 selections, and completes 160 independent
+branch/detector/KPI/direction units.
+
+This is an inner-selection freeze only. It makes no provider or agent call,
+does not access outer or sealed-test data, and does not establish outer
+generalization or ARGOS methodological validity. See
+[`TASK-038D_REPORT.md`](docs/task_reports/TASK-038D_REPORT.md) and
+[`FOUR_BRANCH_SELECTION_PROTOCOL.md`](docs/argos_reproduction/FOUR_BRANCH_SELECTION_PROTOCOL.md).

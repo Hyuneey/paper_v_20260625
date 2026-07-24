@@ -1636,3 +1636,7 @@
   reproduce all forty TASK-037E selections exactly.
 - Provider and agent calls, outer access, detector changes, and sealed-test
   access are prohibited.
+- Execution outcome: all 357 branch prediction references were hash-verified
+  before inner-label access. A0 reproduced all forty TASK-037E selections.
+  All 160 branch units terminated under the frozen independent FN/FP policy;
+  no provider, agent, outer, or sealed-test access occurred.

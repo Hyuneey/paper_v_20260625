@@ -12,3 +12,9 @@ The task uses two commits:
 
 Provider and agent calls, outer access, detector changes, joint FN/FP search,
 rule ensembles, and sealed-test access are prohibited.
+
+Final status: `passed_four_branch_selection_freeze`
+
+The frozen branch counts are `A0=83`, `A1=96`, `A2=82`, and `A3=96`.
+All 160 units terminated with one independently selected FN or FP candidate,
+including explicit no-op outcomes. A0 reproduced TASK-037E exactly.

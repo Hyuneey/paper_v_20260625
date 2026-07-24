@@ -150,3 +150,10 @@ were static-valid and 76 revisions completed deterministic generation and
 full-inner replay. The reported effects are inner-only. Branch selection,
 outer execution, Full Aggregator comparison and every sealed test remain
 unperformed and unauthorized.
+
+TASK-038D completed the branch-specific inner selection freeze with status
+`passed_four_branch_selection_freeze`. The immutable A0-A3 executable-output
+counts were 83, 96, 82 and 96. All 357 prediction references froze before
+inner-label access, and the 160 no-op-aware FN/FP units terminated. A0
+reproduced TASK-037E exactly. TASK-038E outer comparison is prepared but not
+executed; every sealed test remains unauthorized.
