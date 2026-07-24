@@ -369,3 +369,19 @@ ReviewAgent, detection performance, outer generalization, fusion, or sealed
 test. See
 [`REPAIR_PROVIDER_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/REPAIR_PROVIDER_EXECUTION_PROTOCOL.md)
 and [`TASK-038B_REPORT.md`](docs/task_reports/TASK-038B_REPORT.md).
+
+## ARGOS inner-only ReviewAgent experiment
+
+TASK-038C implements the separately authorized E8 Review protocol over the
+frozen `A2` and `A3` branch-parent population. It freezes all parent
+predictions before inner-label access, triggers Review only when the
+direction-specific detector-rule composition falls below the detector-only
+direct PA-free inner point F1, and bounds each triggered branch to one
+independent no-retry revision.
+
+Reviewed rules must pass frozen static auditing, generation target and contrast
+replay, and deterministic full-inner replay. Invalid and harmful revisions
+remain visible outcomes. This is an inner-only component experiment; it does
+not select branch rules, access outer or sealed-test data, or establish outer
+generalization or full ARGOS methodological validity. See
+[`REVIEW_TRIGGER_AND_EVIDENCE_PROTOCOL.md`](docs/argos_reproduction/REVIEW_TRIGGER_AND_EVIDENCE_PROTOCOL.md).

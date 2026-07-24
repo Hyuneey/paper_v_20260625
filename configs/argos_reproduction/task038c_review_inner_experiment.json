@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-038C",
+  "experiment_id": "ARGOS_REVIEW_INNER_BRANCH",
+  "created_at": "2026-07-24T00:00:00+09:00",
+  "lineage": {
+    "task037b_result_commit": "e183eddc1a70ca37033d3acbe8710885590b9f3c",
+    "task037d_implementation_commit": "664857f1df5115f186b578ea3f434be8e7f6db77",
+    "task037d_result_commit": "3c9ed2420611197cef5ea6b34f956a03616ce03e",
+    "task037e_result_commit": "0bae6c96d6e8c1eca0a17ac864d04ea4e325121e",
+    "task038a_protocol_commit": "71e393292a7b0bcbfa725e47be730abedaba0d1e",
+    "task038b_freeze_commit": "7057aba76b9da65c058b6ccdc47f31846878020a",
+    "task038b_result_commit": "ac9da32c743627a473c3e9515a0e2950b0b63119",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "source_hashes": {
+    "task038a_initial_registry": "c0d2f92807fb7e876319fab0c300973d8c62fdb45e499ee69c1f12786f2e750d",
+    "task038a_branch_registry": "6865af148258682a67aab9702fc795216cd4af119333539808c93d9e425b8390",
+    "task038b_branch_update": "2d8bbe2d3d162e547a2d7600f4e26e283547f36527561e55e02968b684ae63c9",
+    "task037e_inner_prediction_manifest": "48a2ca981cca015aea0af1a29dd0e7b3c8d05eb29f4e5d12387269cd19ba9197",
+    "task037b_detector_manifest": "e8aa26803eb578ae0ce2c29f82049513b8c2bce9f78e9befba248f3d32f8c756",
+    "task037b_threshold_freeze": "9ba91f4acaeddbc9304978d5f60d9653593e72ac03196dba07a5c2e673d89299",
+    "review_prompt_source": "155015f2d34f6c940a48cd9357ec2e68f9d08e3d888ccaf0acb388204547746f",
+    "review_agent_source": "c7b12990f8cfce7691db6cc7521831432bd23a126221deeb8ce0ee6d6d1b84d7"
+  },
+  "counts": {
+    "initial_slots": 96,
+    "initial_executable": 83,
+    "initial_failed": 13,
+    "repaired_executable": 13,
+    "A2_executable_parents": 83,
+    "A2_nonapplicable": 13,
+    "A3_executable_parents": 96,
+    "unique_parent_rules": 96,
+    "logical_executable_parents": 179,
+    "all_branch_records": 192
+  },
+  "sources": {
+    "task038a_initial_registry": "docs/task_reports/TASK-038A_INITIAL_RULE_REGISTRY.json",
+    "task038a_branch_registry": "docs/task_reports/TASK-038A_BRANCH_REGISTRY.json",
+    "task038b_branch_update": "docs/task_reports/TASK-038B_BRANCH_UPDATE.json",
+    "task038b_runtime": "docs/task_reports/TASK-038B_RUNTIME_REPORT.json",
+    "task037e_inner_predictions": "docs/task_reports/TASK-037E_INNER_PREDICTION_MANIFEST.json",
+    "task037b_detector_manifest": "docs/task_reports/TASK-037B_DETECTOR_ARTIFACT_MANIFEST.json",
+    "task037b_threshold_freeze": "docs/task_reports/TASK-037B_INNER_THRESHOLD_FREEZE.json"
+  },
+  "private_roots": {
+    "task035b": "artifacts/private_argos_reproduction/task035b",
+    "task037b": "artifacts/private_argos_reproduction/task037b",
+    "task037d": "artifacts/private_argos_reproduction/task037d",
+    "task037e": "artifacts/private_argos_reproduction/task037e",
+    "task038b": "artifacts/private_argos_reproduction/task038b",
+    "task038c": "artifacts/private_argos_reproduction/task038c"
+  },
+  "runtime": {
+    "selected": "wsl_native_rootless_podman",
+    "wsl_distribution": "UbuntuTask033Local",
+    "rootless_user": "task033",
+    "xdg_runtime_dir": "/run/user/1000"
+  },
+  "image": {
+    "local_reference": "localhost/paperworks-task035a-argos-multi-rule:1.0.0",
+    "pinned_from": "docker.io/library/python@sha256:8fb099199b9f2d70342674bd9dbccd3ed03a258f26bbd1d556822c6dfc60c317",
+    "expected_image_id": "sha256:25b42f3d74d9402965d8ec47767c47618ad0ff9417861abe588a0a67dd391a84",
+    "expected_image_digest": "sha256:dec0b11bbc3bae954121d0f3b6ea0ebe0f47abae82c7cccdff22abdcd0975cfe",
+    "python_version": "3.11.9",
+    "numpy_version": "1.26.4"
+  },
+  "isolation": {
+    "network": "none",
+    "read_only_root": true,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 64,
+    "cpu_limit": 1,
+    "memory_limit": "256m",
+    "timeout_seconds": 30,
+    "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+    "output_limit_bytes": 4194304
+  },
+  "review_policy": {
+    "decision_id": "DEC-074",
+    "split": "inner",
+    "point_adjustment": false,
+    "trigger": "parent_combined_point_f1_below_detector_point_f1",
+    "maximum_regression_windows": 3,
+    "maximum_points_per_window": 20,
+    "request_order": "A2_then_A3_initial_slot_id_lexicographic",
+    "automatic_retry": false,
+    "manual_retry": false,
+    "replacement_generation": false,
+    "harmful_revision_revert": false
+  },
+  "provider": {
+    "provider": "openai_responses",
+    "model": "gpt-5.6-luna",
+    "max_output_tokens": 6000,
+    "timeout_seconds": 300,
+    "inter_call_delay_seconds": 0.25,
+    "approval_path": "configs/argos_reproduction/task038c_review_provider_authorization.json"
+  },
+  "reports": {
+    "parent_registry": "docs/task_reports/TASK-038C_PARENT_REGISTRY.json",
+    "parent_predictions": "docs/task_reports/TASK-038C_PARENT_PREDICTION_MANIFEST.json",
+    "trigger": "docs/task_reports/TASK-038C_TRIGGER_REPORT.json",
+    "call_manifest": "docs/task_reports/TASK-038C_REVIEW_CALL_MANIFEST.json",
+    "provider": "docs/task_reports/TASK-038C_PROVIDER_REPORT.json",
+    "static": "docs/task_reports/TASK-038C_STATIC_AUDIT_REPORT.json",
+    "runtime": "docs/task_reports/TASK-038C_RUNTIME_REPORT.json",
+    "reviewed_predictions": "docs/task_reports/TASK-038C_REVIEWED_PREDICTION_MANIFEST.json",
+    "branch_update": "docs/task_reports/TASK-038C_BRANCH_UPDATE.json",
+    "effect": "docs/task_reports/TASK-038C_EFFECT_REPORT.json",
+    "stochastic": "docs/task_reports/TASK-038C_STOCHASTIC_REPLICATE_REPORT.json"
+  },
+  "boundaries": {
+    "repair_agent_calls": 0,
+    "detection_agent_calls": 0,
+    "outer_access": false,
+    "sealed_test_access": false,
+    "host_generated_code_execution": false
+  }
+}

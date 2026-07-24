@@ -448,3 +448,18 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
 - Intentional deviation: the upstream iterative loop is replaced by one
   pre-registered Repair call per reproducibly failed rule, with receipt-first
   no-retry execution and rootless-container-only revised-code checks.
+
+## TASK-038C ARGOS Review execution alignment
+
+- Reuses unchanged ARGOS commit
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`.
+- Review prompt source remains `agent/prompts/review.py`, SHA-256
+  `155015f2d34f6c940a48cd9357ec2e68f9d08e3d888ccaf0acb388204547746f`.
+- Review behavior source remains `agent/review_agent.py`, SHA-256
+  `c7b12990f8cfce7691db6cc7521831432bd23a126221deeb8ce0ee6d6d1b84d7`.
+- The project adapter parses the prompt constant without importing or
+  executing upstream source. No ARGOS source is copied or modified.
+- Intentional deviations correct validation leakage and bound execution:
+  direct PA-free inner-only triggering, at most three bounded regression
+  windows, one request per triggered branch, no retry, and container-only
+  revised-code checks. Outer and sealed-test feedback are prohibited.

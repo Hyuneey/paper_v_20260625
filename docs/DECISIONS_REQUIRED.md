@@ -1586,3 +1586,29 @@
   never imported or executed on the host.
 - ReviewAgent calls, inner labels or metrics, outer access, fusion, and sealed
   test are prohibited.
+
+### DEC-074: Bounded leakage-corrected ReviewAgent inner execution
+
+- Status: resolved_before_inner_label_access
+- Owner: researcher
+- The frozen population is 83 executable `A2` parents, 13 non-applicable `A2`
+  records and 96 executable `A3` parents. The 179 executable logical branch
+  parents bind to 96 unique executable rules.
+- Every parent prediction must be hash-verified or replayed deterministically
+  and frozen before inner labels are loaded.
+- FN parents compose with the detector by binary maximum; FP parents compose
+  by binary minimum. Review is authorized only when the direct PA-free
+  combined inner point F1 is below the matching detector-only point F1.
+- Provider/model are OpenAI Responses API / `gpt-5.6-luna`, with
+  `max_output_tokens=6000`, omitted temperature and seed, at most one call per
+  triggered `A2` or `A3` branch, and no retry or replacement.
+- Regression evidence is limited to three chronological, non-overlapping inner
+  windows of at most 20 points. Outer and sealed-test artifacts are prohibited.
+- `A2` and `A3` are independent Review transformations even when their prompt
+  payloads match. Their initially executable subgroup measures generation
+  variability, not a Repair effect.
+- Every revision requires extraction, static audit, generation target and
+  contrast replay, and deterministic full-inner replay. Invalid or harmful
+  revisions cannot revert to their parent.
+- RepairAgent and DetectionAgent calls, branch selection, outer access,
+  sealed-test access and host generated-code execution are prohibited.
