@@ -1666,3 +1666,28 @@
   320 branch arms, 76 Review pairs, and 13 Repair utility predictions froze
   before labels, and A0 reproduced TASK-037E exactly. No provider/agent call,
   reselection, fallback, detector change, or sealed-test access occurred.
+
+### DEC-077: ARGOS methodological validity and reference-track freeze
+
+- Status: resolved_by_committed_evidence_synthesis
+- Owner: researcher
+- The seven component judgments are frozen as:
+  - one-shot generation: `partial_component_support`;
+  - Repair operability: `strong_component_support`;
+  - Repair detection utility: `partial_component_support`;
+  - Review inner effectiveness: `strong_component_support`;
+  - Review outer transfer: `strong_component_support` with the
+    `descriptive_previously_exposed_outer` qualifier;
+  - end-to-end A3 robustness: `partial_component_support`;
+  - safety and efficiency: `partial_component_support`.
+- Overall ARGOS validity is `partial_methodological_support`. Exact
+  reproduction, final superiority, proposed-method validation, and sealed
+  confirmation remain false.
+- The reference-track recommendation is `freeze_ARGOS_reference_track`.
+  Freeze prohibits more prompt/model tuning on the exposed outer partition,
+  new branch selection, detector-variant choice, or attempts to improve the
+  reported outer results.
+- The default next step is to preserve the sealed ARGOS test and prioritize
+  official SWaT evidence for the proposed graph-guided, verifier-governed
+  multivariate method. A joint sealed ARGOS confirmation requires separate
+  explicit professor/researcher approval and preregistration.

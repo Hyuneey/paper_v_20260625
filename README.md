@@ -412,3 +412,19 @@ the frozen A0-A3 branches, including all branch arms, Review parent/revision
 pairs, and repaired-rule utility records. The results are descriptive
 component evidence, not untouched confirmation or final ARGOS superiority.
 See [`TASK-038E_REPORT.md`](docs/task_reports/TASK-038E_REPORT.md).
+
+## ARGOS methodological-validity synthesis
+
+TASK-038F synthesizes committed aggregate evidence from TASK-033 through
+TASK-038E without running a provider, agent, detector, rule, outer reader, or
+sealed-test reader. It assigns `partial_methodological_support`: bounded Repair
+has strong runtime-recovery support, Review has strong inner and descriptive
+selected-rule outer-transfer support, but Repair detection utility is mixed,
+the complete A3 branch is not robust across LSTMAD variants, and FP correction
+requires explicit TP/event-removal guards.
+
+The ARGOS reference track is recommended for freeze. The next primary effort
+should move to the graph-guided, verifier-governed multivariate SWaT method.
+See
+[`ARGOS_METHODOLOGICAL_VALIDITY_REPORT.md`](docs/argos_reproduction/ARGOS_METHODOLOGICAL_VALIDITY_REPORT.md)
+and [`TASK-038F_REPORT.md`](docs/task_reports/TASK-038F_REPORT.md).

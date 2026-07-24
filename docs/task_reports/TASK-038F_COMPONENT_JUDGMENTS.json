@@ -1,0 +1,88 @@
+{
+  "artifact_type": "argos_component_methodological_validity_judgments",
+  "dimensions": {
+    "V1_one_shot_generation_operability": {
+      "evidence_claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C09"
+      ],
+      "evidence_status": "direct_operability_and_descriptive_validation",
+      "judgment": "Generation and deterministic execution are viable, but yield depends on output budget and filtering, content is stochastic, and rule-only coverage is limited.",
+      "support_label": "partial_component_support"
+    },
+    "V2_repair_agent_operational_validity": {
+      "evidence_claim_ids": [
+        "C11"
+      ],
+      "evidence_status": "direct_bounded_component_experiment",
+      "judgment": "One bounded Repair revision recovered all thirteen reproducible static-valid runtime failures without retry and preserved deterministic runtime contracts.",
+      "scope_limit": "Runtime recovery for this frozen cohort only; semantic equivalence and detection improvement are not established.",
+      "support_label": "strong_component_support"
+    },
+    "V3_repair_agent_detection_utility": {
+      "evidence_claim_ids": [
+        "C14",
+        "C17",
+        "C19"
+      ],
+      "evidence_status": "descriptive_previously_exposed_outer",
+      "judgment": "Repaired-rule utility was mixed, only two repairs survived A1 selection, and A1 versus A0 was negative for Alpha and near-zero positive for Beta.",
+      "support_label": "partial_component_support"
+    },
+    "V4_review_agent_inner_effectiveness": {
+      "evidence_claim_ids": [
+        "C12"
+      ],
+      "evidence_status": "direct_inner_only_component_experiment",
+      "judgment": "Seventy-two of 77 attempted Review calls improved inner point F1, with one equal, three regressive, and one invalid outcome; 76 revisions were deterministic executables.",
+      "scope_limit": "The strong label applies to inner-only refinement under the frozen trigger and one-revision budget.",
+      "support_label": "strong_component_support"
+    },
+    "V5_review_agent_outer_transfer": {
+      "evidence_claim_ids": [
+        "C16",
+        "C18",
+        "C22"
+      ],
+      "evidence_status": "descriptive_previously_exposed_outer",
+      "judgment": "All 19 selected reviewed rules transferred positively relative to their parent, and A2 improved over A0 for both variants; non-selected revisions still included negative and no-transfer cases.",
+      "support_label": "strong_component_support"
+    },
+    "V6_end_to_end_agentic_aggregator_robustness": {
+      "evidence_claim_ids": [
+        "C15",
+        "C17",
+        "C22"
+      ],
+      "evidence_status": "descriptive_previously_exposed_outer",
+      "judgment": "A3 versus A0 was negative for Alpha and positive for Beta, so the complete bounded branch was not robust to the unresolved detector variant.",
+      "support_label": "partial_component_support"
+    },
+    "V7_safety_and_efficiency": {
+      "evidence_claim_ids": [
+        "C11",
+        "C12",
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ],
+      "evidence_status": "direct_runtime_safety_and_descriptive_outer_cost",
+      "judgment": "Execution containment and bounded calls were strong, but 14 of 19 selected FP rules were harmful by the frozen overlapping classification and the study consumed 90 calls and 404,399 tokens.",
+      "support_label": "partial_component_support"
+    }
+  },
+  "label_enum": [
+    "strong_component_support",
+    "partial_component_support",
+    "no_component_support",
+    "unresolved"
+  ],
+  "report_hash": "664e8117c6c3be09181885ddc13c45466090a45d4d45ad2e9a55ebd478e9639b",
+  "schema_version": "1.0",
+  "task_id": "TASK-038F"
+}

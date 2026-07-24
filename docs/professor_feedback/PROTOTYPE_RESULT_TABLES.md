@@ -1,69 +1,80 @@
 # Prototype Result Tables
 
-## Evidence ledger
+## Evidence Ledger
 
-| Evidence block | Frozen source | Evidence type | Not established |
+| Evidence block | Frozen task | Evidence type | Not established |
 |---|---|---|---|
-| Proposed contract vertical slice | TASK-032F | Synthetic implementation and deterministic replay | Real-data performance or explanation usefulness |
-| ARGOS E1 | TASK-033 | Isolated frozen-rule runtime plumbing | Detection performance |
-| Initial rule validation | TASK-034 | One-rule public-KPI validation | Test or benchmark performance |
-| Generation cohort | TASK-035A / TASK-035AR | Response, extraction, and executable yields | Rule accuracy |
-| Multi-rule validation | TASK-035B | Ten-KPI frozen outer-validation comparison | Sealed-test or universal superiority |
+| Proposed contract vertical slice | TASK-032F | Synthetic deterministic implementation | Real-data effectiveness |
+| One-shot generation and runtime | TASK-033 to TASK-035AR | Operability and public-KPI validation | General rule quality |
+| Rule-only panel | TASK-035B | Ten-KPI follow-up outer validation | Sealed superiority |
+| Detector and generic fusion | TASK-037A to TASK-037C | Dual LSTMAD sensitivity and diagnostic fusion | Exact ARGOS detector identity |
+| Error-conditioned Aggregator | TASK-037D/E | FN/FP generation, selection, and Full composition | Universal aggregation benefit |
+| Repair/Review components | TASK-038A to TASK-038E | Bounded component ablation and descriptive transfer | Exact reproduction or sealed confirmation |
 
-## Generation-operability results
+## Generation Operability
 
-| Cohort | Slots | Output budget | Response | Extracted | Executable |
+| Cohort | Calls | Output budget | Responses | Static-valid | Executable |
 |---|---:|---:|---:|---:|---:|
-| TASK-035A original | 100 | 2,000 | 84 (84%) | 61 (61%) | 55 (55%) |
-| TASK-035AR remediation | 100 | 6,000 | 100 (100%) | 100 (100%) | 91 (91%) |
-| Combined frozen cohort | 200 | Mixed frozen cohorts | See separate cohorts | See separate cohorts | 146 |
+| TASK-035A | 100 | 2,000 | 84 | 61 | 55 |
+| TASK-035AR | 100 | 6,000 | 100 | 100 | 91 |
+| Combined executable cohort | 200 | Frozen separate cohorts | - | - | 146 |
 
-The original TASK-035A status remains `insufficient_rule_yield`. TASK-035AR is
-a separate balanced remediation cohort and does not rewrite that result.
+## Rule-Only Validation
 
-## Initial one-rule public-KPI validation
+| Arm | Precision | Recall | Point F1 | FP / 10k normal |
+|---|---:|---:|---:|---:|
+| Best-1 | 0.7178 | 0.4589 | 0.4801 | 22.08 |
+| Top-3 OR | 0.5820 | 0.5975 | 0.5360 | 105.56 |
+| Coverage-3 OR | 0.3982 | 0.6968 | 0.3320 | 2084.04 |
+| All-10 OR | 0.3181 | 0.6993 | 0.3156 | 2242.19 |
 
-Metric group: direct binary validation diagnostics, PA-free, no threshold
-optimization.
+## Component Evidence
 
-| TP | FP | TN | FN | Precision | Recall | Point F1 |
-|---:|---:|---:|---:|---:|---:|---:|
-| 33 | 6 | 20,295 | 142 | 0.8462 | 0.1886 | 0.3084 |
+| Component | Key evidence | Judgment |
+|---|---|---|
+| One-shot generation | Yield depends on output budget; frozen execution deterministic | Partial |
+| Repair operability | 13/13 recovered | Strong |
+| Repair performance | Useful 4, equal 4, regressive 5 | Partial |
+| Review inner effect | 72 improvements among 77 calls; one equal, three regressions, one invalid | Strong |
+| Review outer transfer | All 19 selected reviewed rules positive relative to parent | Strong descriptive |
+| Full A3 robustness | Alpha negative, Beta positive versus A0 | Partial |
+| FP safety | 14 harmful classifications among 19 selected FP rules | Partial; unsafe without guards |
+| Overall ARGOS | Components valid; full superiority unproven | Partial methodological support |
 
-ARGOS label-aware and point-adjusted validation diagnostics exist in the
-source-faithful reproduction report but are supplementary and are not mixed
-with this direct PA-free result block.
+## Four-Branch Outer Results
 
-## Ten-KPI frozen outer validation
+Macro direct PA-free point F1 on the previously exposed outer partition:
 
-Metric group: equal-KPI macro averages from direct binary PA-free outputs.
+| Variant | Detector | A0 Full | A1 Full | A2 Full | A3 Full |
+|---|---:|---:|---:|---:|---:|
+| LSTMADalpha | 0.3541 | 0.4884 | 0.4544 | 0.5047 | 0.4666 |
+| LSTMADbeta | 0.4233 | 0.3880 | 0.3895 | 0.4215 | 0.4245 |
 
-| Arm | Precision | Recall | Point F1 | Event recall | FP / 10k normal | False-alarm events / 10k points |
-|---|---:|---:|---:|---:|---:|---:|
-| Best-1 | 0.7178 | 0.4589 | 0.4801 | 0.7034 | 22.08 | 4.14 |
-| Top-3 OR | 0.5820 | 0.5975 | 0.5360 | 0.7856 | 105.56 | 6.97 |
-| Coverage-3 OR | 0.3982 | 0.6968 | 0.3320 | 0.8057 | 2084.04 | 8.09 |
-| All-10 OR | 0.3181 | 0.6993 | 0.3156 | 0.7724 | 2242.19 | 8.82 |
+| Comparison | Alpha Full F1 delta | Beta Full F1 delta | Direction |
+|---|---:|---:|---|
+| A1 - A0 | -0.0340 | +0.0015 | Mixed |
+| A2 - A0 | +0.0163 | +0.0335 | Same positive |
+| A3 - A0 | -0.0218 | +0.0364 | Mixed |
 
-## Primary comparison
+## FP Safety and Agent Cost
 
-Coverage-3 OR minus Best-1:
+| Item | Result |
+|---|---:|
+| Selected A2/A3 FP rules | 19 |
+| Safe classifications | 4 |
+| Costly classifications | 14 |
+| Harmful classifications | 14 |
+| Ineffective classifications | 1 |
+| Unique Repair calls | 13 |
+| Unique Review calls | 77 |
+| Total unique agent calls | 90 |
+| Provider-reported tokens | 404,399 |
 
-| Endpoint | Observed macro difference | Paired bootstrap 95% percentile interval |
-|---|---:|---:|
-| Recall | +0.2379 | [0.0944, 0.4014] |
-| Point F1 | -0.1481 | [-0.3616, 0.0607] |
-| Precision | -0.3196 | [-0.5164, -0.1275] |
-| FP / 10k normal | +2061.96 | [108.84, 4822.87] |
+FP classifications overlap. A rule can be both costly and harmful. Monetary
+cost is not computed because no pricing artifact was frozen before execution.
 
-The bootstrap is descriptive with KPI as the resampling unit. It is not a
-formal population-level significance test.
+## Boundary
 
-## Split and claim boundary
-
-| Stage | Labels allowed | Selection allowed | Result status |
-|---|---|---|---|
-| Generation | Predeclared prompt chunks only | No performance selection | Completed |
-| Inner selection | Yes, after label-free panel freeze | Four arms frozen | Completed |
-| Outer validation | Loaded only after prediction and arm freeze | Prohibited | Completed once |
-| Held-out test | No access | Prohibited | Sealed and unauthorized |
+The outer partition was previously exposed, no sealed test was accessed, and
+no Alpha/Beta or branch winner was selected. These tables do not establish
+final performance, exact ARGOS reproduction, or proposed-method validity.

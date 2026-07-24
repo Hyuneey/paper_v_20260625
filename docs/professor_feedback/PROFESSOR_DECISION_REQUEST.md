@@ -1,61 +1,68 @@
 # Professor Decision Request
 
-## Context
+## Current Position
 
-The ARGOS reference track now includes source alignment, prompt reconstruction,
-one-shot real rule capture, static/semantic audit, isolated deterministic rule
-execution, a 200-slot generation cohort, inner selection, and one frozen
-ten-KPI outer-validation run. The proposed-method track has a deterministic
-synthetic contract vertical slice but no real SWaT experiment.
+The ARGOS reference track now covers one-shot generation, deterministic
+execution, rule-only validation, dual LSTMAD baselines, generic and
+error-conditioned fusion, bounded Repair, bounded Review, no-op-aware branch
+selection, and A0-A3 outer follow-up. The resulting classification is
+`partial_methodological_support`.
 
-## Decision 1: Is ARGOS reference experimentation sufficient?
+Repair is strongly supported as an operability mechanism. Review is strongly
+supported for inner refinement and has strong descriptive selected-rule outer
+transfer. The complete A3 branch is not robust across LSTMAD variants, and FP
+correction remains unsafe without TP/event guards.
 
-Please confirm whether the completed rule-only evidence is sufficient to move
-the main effort to the proposed method.
+## Decision 1: Freeze the ARGOS Reference Track?
 
-- Continue ARGOS: execute RepairAgent/ReviewAgent studies or broader prompt/
-  model comparisons.
-- Freeze ARGOS reference work: retain current evidence as the rule-only
-  reproduction baseline.
+Recommended: **approve `freeze_ARGOS_reference_track`**.
 
-## Decision 2: Run detector and fusion validation first?
+Freeze means preserving the track while prohibiting further prompt/model
+tuning on the exposed outer partition, new branch selection, detector-variant
+choice, or attempts to improve the reported outer values.
 
-Please decide whether detector-only and ARGOS-style detector-rule fusion should
-be evaluated before the proposed SWaT experiment.
+Reason: the component questions needed for thesis design have been answered,
+and further upstream-fidelity work has diminishing value relative to the
+multivariate SWaT contribution.
 
-- Detector/fusion first: directly addresses ARGOS's complementarity claim but
-  delays the proposed contribution.
-- Defer detector/fusion: advances the proposed relational-rule method sooner,
-  while leaving baseline completeness pending.
+## Decision 2: Sealed ARGOS Confirmation?
 
-## Decision 3: Prioritize the SWaT relational-rule experiment?
+### Option A: Professor-Approved Joint Confirmation
 
-Please confirm whether the next primary experiment should implement and run the
-graph-guided delayed-response MVP on approved official iTrust SWaT data.
+Pre-register both LSTMAD variants and detector-only, A0, A1, A2, and A3.
+Execute the sealed partition once without branch selection, fallback, or
+policy change. Interpret it as component confirmation, not exact ARGOS
+reproduction.
 
-This would move from univariate public-KPI rules to the intended multivariate
-CPS setting. It requires explicit official-data approval and a separate frozen
-split/calibration/evaluation protocol.
+### Option B: Preserve the Sealed Test and Move to SWaT
 
-## Decision 4: Contribution emphasis
+Recommended when thesis time is limited. Existing outer evidence is adequate
+for design decisions, while official SWaT evidence directly addresses the
+proposed multivariate method.
 
-Please indicate the preferred thesis framing:
+Please choose A or B. No recommendation is based on unseen sealed performance.
 
-1. Deterministic verification of generated rule structures and provenance.
-2. Anomaly-anchored evidence curation for multivariate relational rules.
-3. False-positive-constrained rule composition.
-4. Combined system framing integrating all three.
+## Decision 3: Approve v5 Proposed-Method Controls?
 
-The current evidence supports the combined motivation: unrestricted generation
-has operational failure modes, individual rules have narrow coverage, and
-unconstrained OR composition can sharply increase false alarms. It does not yet
-show which component contributes most on real multivariate CPS data.
+Requested approval to prioritize:
 
-## Boundaries for the decision
+1. graph-guided variable-pair candidate restriction;
+2. typed relational DSL instead of unrestricted Python;
+3. deterministic numeric calibration and verifier authority;
+4. matched normal and detector-error-conditioned evidence;
+5. explicit FN and FP direction;
+6. mandatory no-op/abstain states;
+7. TP-removal and true-event-removal guards for FP correction;
+8. composition verification, satisfaction traces, and provenance-bound
+   explanations.
 
-- Public-KPI validation is not SWaT benchmark evidence.
-- Top-3 OR is the best observed trade-off among four frozen arms, not proven
-  superior.
-- No detector, fusion, RepairAgent, ReviewAgent, or sealed-test result is
-  available.
-- No causal, final benchmark, or thesis headline claim is requested.
+Repair would be retained only for bounded contract recovery. Review would be
+retained as a bounded training-time candidate-refinement mechanism, never as
+final authority.
+
+## Evidence Boundary
+
+- Public KPI evidence is not SWaT evidence.
+- The TASK-038E outer partition was previously exposed.
+- No exact ARGOS reproduction or final branch winner is claimed.
+- No sealed-test or proposed-method superiority is established.

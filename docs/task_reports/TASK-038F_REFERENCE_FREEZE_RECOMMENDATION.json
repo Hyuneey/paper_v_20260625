@@ -1,0 +1,30 @@
+{
+  "artifact_type": "argos_reference_track_freeze_recommendation",
+  "continuing_prohibitions": [
+    "no_more_prompt_or_model_tuning_on_exposed_outer",
+    "no_new_branch_selection",
+    "no_detector_variant_choice",
+    "no_attempt_to_improve_reported_outer_results",
+    "no_sealed_test_without_explicit_professor_or_researcher_authorization"
+  ],
+  "core_questions_answered": {
+    "complete_branch_comparison_measured": true,
+    "detector_baseline_established": true,
+    "generic_and_error_conditioned_fusion_measured": true,
+    "one_shot_generation_and_runtime_verified": true,
+    "repair_effect_measured": true,
+    "review_inner_and_outer_transfer_measured": true,
+    "rule_only_limitation_measured": true
+  },
+  "default_next_step": "preserve_sealed_ARGOS_test_and_prioritize_official_SWaT_proposed_method_evidence",
+  "reason": "core_reference_questions_answered_and_remaining_upstream_fidelity_work_has_diminishing_thesis_value",
+  "recommendation": "freeze_ARGOS_reference_track",
+  "report_hash": "d138af31d41dcf2be954ab13759bd2821d8f071e2e069028ee7fc14356c8084d",
+  "schema_version": "1.0",
+  "sealed_test_options": {
+    "option_A": "professor_approved_joint_sealed_confirmation",
+    "option_B": "preserve_sealed_test_and_move_to_proposed_method",
+    "recommended_default": "option_B"
+  },
+  "task_id": "TASK-038F"
+}

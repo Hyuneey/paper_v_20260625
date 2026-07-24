@@ -166,3 +166,14 @@ before outer-label access. A0 reproduced TASK-037E exactly. No provider/agent
 call, fallback, reselection, detector change, or sealed-test access occurred.
 The results are descriptive component evidence only; every sealed test remains
 unauthorized.
+
+TASK-038F synthesized committed aggregate evidence only and completed with
+status `passed_argos_methodological_validity_synthesis`. The overall
+classification is `partial_methodological_support`, and the recommendation is
+`freeze_ARGOS_reference_track`. No new experiment, provider/agent call,
+detector/rule execution, private artifact read, outer access, or sealed-test
+access occurred. The reference track is frozen against prompt/model tuning,
+new branch selection, detector-variant choice, and exposed-outer result
+improvement. A professor-approved joint sealed confirmation remains a separate
+optional preregistration; the recommended default is to preserve it and move
+the primary effort to the proposed SWaT method.

@@ -1,158 +1,116 @@
 # Prototype Progress Report
 
-## Scope and claim boundary
+## Scope and Claim Boundary
 
-This package summarizes completed, frozen evidence through TASK-035B. It uses
-committed aggregate reports only. No new experiment, metric, rule selection,
-provider call, detector/fusion run, private-array access, or test access was
-performed for this report.
+This package summarizes committed aggregate evidence through TASK-038E. No new
+experiment, metric, provider call, agent action, detector/rule execution,
+private-array access, outer read, or sealed-test access was performed for this
+synthesis.
 
-The results are public-KPI validation evidence and synthetic implementation
-evidence. They are not SWaT benchmark results, sealed-test results, or thesis
-headline results.
+The ARGOS outer partition is previously exposed follow-up validation. These
+results are component-wise descriptive evidence, not an untouched
+confirmatory result, exact ARGOS reproduction, final benchmark, or validation
+of the proposed multivariate method.
 
-## 1. Research question
+## Research Direction
 
-The working hypothesis is that LLM-generated rules can provide interpretable
-anomaly evidence, but unrestricted code generation is not sufficiently
-reliable or controllable for the proposed CPS method. Individual rules may be
-precise yet cover only a narrow subset of anomalies. Combining rules can widen
-coverage, but naive OR composition can create severe false alarms.
+The proposed contribution remains graph-guided, training-time agentic verified
+rule construction for multivariate CPS anomaly detection. ARGOS was extended
+as a reference track to answer which parts of one-shot generation, Repair,
+Review, detector correction, and aggregation are scientifically useful.
 
-The resulting research direction is therefore not “accumulate more generated
-rules.” It is to construct bounded relational rules whose evidence,
-parameters, acceptance, runtime behavior, and composition are controlled by
-deterministic project-owned mechanisms.
-
-## 2. Prototype implementation
-
-The proposed-method skeleton now connects this synthetic path:
+The intended v5 architecture is:
 
 ```text
-graph / evidence / parameter contracts
--> typed delayed-response rule
--> deterministic 20-stage verifier
--> accepted rule and authority hash
--> authorized LLM-free runtime
--> nine-step satisfaction trace
--> deterministic provenance-bound explanation
+graph-constrained candidate pairs
+-> matched normal and detector-error evidence
+-> typed relational DSL candidate
+-> deterministic calibration registry
+-> bounded Repair/Review suggestion
+-> deterministic verifier authority
+-> accepted / rejected / no-op / abstain
+-> LLM-free runtime with satisfaction trace
 ```
 
-The complete path replays deterministically on predeclared synthetic fixtures.
-This establishes contract and runtime plumbing only. It does not establish
-learned-graph quality, calibration validity, real-data effectiveness, or
-explanation usefulness.
+## Completed ARGOS Evidence
 
-This skeleton is separate from the ARGOS public-KPI experiments. ARGOS remains
-a prior-work reproduction target and rule-only baseline; its unrestricted
-generated Python is not inherited into the proposed runtime.
+1. TASK-033 verified deterministic isolated execution of a frozen rule.
+2. TASK-034 measured one-rule narrow coverage.
+3. TASK-035A/AR showed output-budget-sensitive generation yield.
+4. TASK-035B measured rule-only coverage and false-positive trade-offs.
+5. TASK-037A/B established the LSTMAD family and dual Alpha/Beta baselines.
+6. TASK-037C measured generic max/min complementarity.
+7. TASK-037D/E generated error-conditioned FN/FP rules and evaluated the
+   no-agent Full Aggregator.
+8. TASK-038A-D froze and executed bounded Repair/Review component protocols and
+   no-op-aware branch selection.
+9. TASK-038E compared A0-A3 on the previously exposed outer partition.
 
-## 3. ARGOS execution evidence
+## Generation and Rule-Only Findings
 
-One frozen captured ARGOS rule was executed only inside a WSL-native rootless
-Podman container. The boundary used a non-root user, disabled container
-networking, a read-only root filesystem, dropped capabilities, resource
-limits, and values-only mounts. The host wrapper did not import or execute the
-generated source.
-
-Four synthetic non-KPI fixtures were run twice in fresh containers. Their
-output hashes were deterministic and the E1 runtime gate passed. This is
-execution and isolation evidence, not anomaly-detection evidence.
-
-## 4. Generation cohort
-
-The generation study used the OpenAI Responses API with `gpt-5.6-luna` across
-10 public KPI series, 50 predeclared anomaly anchors, and 200 independent
-one-shot generation slots. It produced 146 container-executable rule artifacts.
-
-| Output budget | Visible response | Rule extraction | Executable rule |
+| Output budget | Visible responses | Static-valid rules | Executable rules |
 |---|---:|---:|---:|
-| 2,000 tokens | 84% | 61% | 55% |
-| 6,000 tokens | 100% | 100% | 91% |
+| 2,000 tokens | 84/100 | 61/100 | 55/100 |
+| 6,000 tokens | 100/100 | 100/100 | 91/100 |
 
-The 6,000-token cohort used the same KPI series, anchors, prompts, provider,
-model, static policy, and runtime policy. The change was output budget only.
-These percentages measure generation operability. They do not measure rule
-accuracy or establish a causal model-quality effect of token budget.
+The one-rule result had precision 0.8462, recall 0.1886, and point F1 0.3084.
+In the ten-KPI rule-only study, Best-1 reached F1 0.4801 at 22.08 FP/10k;
+Top-3 OR reached F1 0.5360 at 105.56 FP/10k. Coverage-heavy arms exceeded
+2,000 FP/10k. One-shot generation is viable, but rules have variable yield
+and limited coverage, while naive accumulation can create severe false alarms.
 
-## 5. Validation results
+## Detector and Agent Findings
 
-### Initial one-rule validation
+The exact ARGOS KPI LSTMAD variant remains unresolved, so LSTMADalpha and
+LSTMADbeta remain co-primary.
 
-One frozen rule on one public KPI validation partition produced direct,
-PA-free binary diagnostics:
+Repair recovered all 13 frozen runtime failures in one no-retry revision each.
+Detection utility was mixed: four repaired rules were useful, four equal, and
+five regressive; only two survived A1 selection.
 
-| Precision | Recall | PA-free point F1 |
-|---:|---:|---:|
-| 0.846 | 0.189 | 0.308 |
+Review made 77 calls. Seventy-two revisions improved inner point F1, one was
+equal, three regressed, and one was invalid. Seventy-six revisions were
+deterministic executables. All 19 reviewed rules selected for A2/A3 had
+positive parent-relative outer transfer, although non-selected revisions
+included negative and no-transfer outcomes.
 
-This rule was precision-oriented and had narrow anomaly coverage. The held-out
-test was not accessed.
+## Branch Outer Results
 
-### Ten-KPI outer validation
+Macro direct PA-free point F1:
 
-Ten rules per KPI were frozen without label access. Four compositions were
-selected on inner data and evaluated once on frozen outer-validation
-partitions. Values below are equal-KPI macro averages of direct PA-free
-outputs.
+| Variant | Detector | A0 Full | A1 Full | A2 Full | A3 Full |
+|---|---:|---:|---:|---:|---:|
+| LSTMADalpha | 0.3541 | 0.4884 | 0.4544 | 0.5047 | 0.4666 |
+| LSTMADbeta | 0.4233 | 0.3880 | 0.3895 | 0.4215 | 0.4245 |
 
-| Arm | Precision | Recall | Point F1 | FP / 10k normal points |
-|---|---:|---:|---:|---:|
-| Best-1 | 0.7178 | 0.4589 | 0.4801 | 22.08 |
-| Top-3 OR | 0.5820 | 0.5975 | 0.5360 | 105.56 |
-| Coverage-3 OR | 0.3982 | 0.6968 | 0.3320 | 2084.04 |
-| All-10 OR | 0.3181 | 0.6993 | 0.3156 | 2242.19 |
+A2 improved over A0 for both variants. A1 was mixed and largely unchanged or
+worse. A3 was mixed relative to A0. No branch or detector variant is selected
+as a final winner.
 
-Top-3 OR was the best observed trade-off among the four frozen arms: compared
-with Best-1 it showed higher recall and F1, with a higher false-positive cost.
-This is a descriptive result on one frozen outer-validation design, not proven
-superiority.
+FP correction remains the principal safety issue. Of 19 selected A2/A3 FP
+rules, four were safe, 14 costly, 14 harmful, and one ineffective under
+overlapping descriptive classifications. Review did not remove the need for
+TP and true-event-removal guards.
 
-Coverage-3 exposed the central failure mode. It increased recall but produced
-approximately 2,084 false-positive points per 10,000 normal points and reduced
-F1. All-10 added little recall beyond Coverage-3 while worsening precision and
-F1 further.
+## Methodological Assessment
 
-## 6. Main interpretation
+The overall classification is `partial_methodological_support`.
 
-1. Individual generated rules tend to be narrow and precision-oriented.
-2. A small multi-rule composition can improve anomaly coverage.
-3. Coverage-maximizing selection can catastrophically increase false alarms.
-4. Increasing the composition from three to ten rules provided little
-   additional recall and worsened precision and F1.
-5. Generation reproducibility and execution reproducibility are different:
-   generated rule content is stochastic, while a frozen rule executes
-   deterministically under the isolated runtime.
-6. The evidence motivates verifier-governed, false-positive-constrained rule
-   construction rather than naive rule accumulation.
+- Strong component support: bounded Repair runtime recovery; Review inner
+  effectiveness; descriptive selected-Review outer transfer.
+- Partial component support: one-shot generation, Repair detection utility,
+  complete A3 robustness, safety, and efficiency.
+- Not established: exact ARGOS reproduction, universal Full Aggregator
+  superiority, sealed confirmation, or proposed-method effectiveness.
 
-These findings do not establish multi-rule superiority.
+## Recommended Next Step
 
-## 7. Limitations
+Freeze the ARGOS reference track. Do not perform more prompt/model tuning,
+branch selection, or detector-variant choice against the exposed outer
+partition. Preserve the sealed ARGOS test unless the professor explicitly
+requests one joint pre-registered confirmation.
 
-- The experimental data are public KPI series, not SWaT.
-- The ARGOS experiment is univariate.
-- Outer validation covers ten KPI series.
-- Only one provider/model and one prompt family were studied.
-- RepairAgent and ReviewAgent effects were not executed.
-- No detector baseline was run.
-- No detector-rule fusion was run.
-- The held-out test remains sealed and unauthorized.
-- No physical causality or root-cause claim is supported.
-- These are not thesis headline or final benchmark results.
-
-## 8. Decisions requested
-
-Professor direction is requested on four points:
-
-1. Is the current ARGOS reference experimentation sufficient to proceed?
-2. Should detector-only and detector-rule fusion validation precede the
-   proposed-method experiment?
-3. Should the next primary experiment prioritize graph-guided relational rules
-   on official SWaT data?
-4. Should the contribution emphasize deterministic verification, anomaly-
-   anchored evidence curation, false-positive-constrained composition, or the
-   combined system framing?
-
-The detailed decision sheet is in
-`docs/professor_feedback/PROFESSOR_DECISION_REQUEST.md`.
+Direct the primary effort to the proposed multivariate SWaT method with typed
+DSL authority, deterministic calibration and verification, graph-constrained
+candidates, detector-error-conditioned evidence, no-op/abstain states, and
+explicit FP/TP/event budgets.

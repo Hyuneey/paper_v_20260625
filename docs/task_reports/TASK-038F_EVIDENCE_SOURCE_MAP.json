@@ -1,0 +1,387 @@
+{
+  "artifact_type": "argos_methodological_validity_evidence_source_map",
+  "claim_count": 25,
+  "claims": [
+    {
+      "claim_id": "C01",
+      "claim_text": "Frozen ARGOS rules executed deterministically in the isolated synthetic runtime smoke.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "e1_status",
+        "execution_count",
+        "fixtures",
+        "performance_metrics_computed"
+      ],
+      "source_report": "docs/task_reports/TASK-033_E1_RUNTIME_REPORT.json",
+      "source_report_hash": "5a1fee5232dcb01e0041d90381ab2940a9d688d374d0630844968c772ea6c59f",
+      "source_task": "TASK-033"
+    },
+    {
+      "claim_id": "C02",
+      "claim_text": "The original 2,000-token one-shot cohort produced 84 responses, 61 extracted static-valid rules, and 55 runtime-executable rules from 100 calls.",
+      "derived_calculation_or_direct": "direct across three committed aggregate reports",
+      "source_fields": [
+        "TASK-035A_PROVIDER_REPORT.requests_sent",
+        "TASK-035A_PROVIDER_REPORT.responses_captured",
+        "TASK-035A_STATIC_AUDIT_REPORT.rules_extracted",
+        "TASK-035A_STATIC_AUDIT_REPORT.static_valid",
+        "TASK-035A_RUNTIME_REPORT.runtime_executable"
+      ],
+      "source_report": "docs/task_reports/TASK-035A_PROVIDER_REPORT.json; docs/task_reports/TASK-035A_STATIC_AUDIT_REPORT.json; docs/task_reports/TASK-035A_RUNTIME_REPORT.json",
+      "source_report_hash": "fb24f8265d3a2ab84e7626c70c5a24ff8c37da367e9b084eeedbf1c780dbca0f; 6fd2dddef1df2fdfeb393d21c666549233f6c82b4c868dfab33b279f8d65658e; cb7ada5044812be3ecb44355506809f0e9b58155e1542fc96bef5cee370f2184",
+      "source_task": "TASK-035A"
+    },
+    {
+      "claim_id": "C03",
+      "claim_text": "The frozen one-rule validation had precision 0.8461538462, recall 0.1885714286, and direct PA-free point F1 0.3084112150.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "direct_binary_validation_diagnostics.precision",
+        "direct_binary_validation_diagnostics.recall",
+        "direct_binary_validation_diagnostics.point_f1"
+      ],
+      "source_report": "docs/task_reports/TASK-034_VALIDATION_METRICS_REPORT.json",
+      "source_report_hash": "001a90c17c27ccc5c270da00a7ae854069af0b4e2e6bae1ef105f89ca699e9a2",
+      "source_task": "TASK-034"
+    },
+    {
+      "claim_id": "C04",
+      "claim_text": "The 6,000-token remediation cohort produced 100 non-empty responses, 100 static-valid rules, and 91 runtime-executable rules; the combined executable cohort reached 146.",
+      "derived_calculation_or_direct": "direct across four committed aggregate reports",
+      "source_fields": [
+        "TASK-035AR_PROVIDER_REPORT.non_empty_responses",
+        "TASK-035AR_STATIC_AUDIT_REPORT.static_valid",
+        "TASK-035AR_RUNTIME_REPORT.runtime_executable_rules",
+        "TASK-035AR_ADEQUACY_REPORT.cumulative_executable_rules"
+      ],
+      "source_report": "docs/task_reports/TASK-035AR_PROVIDER_REPORT.json; docs/task_reports/TASK-035AR_STATIC_AUDIT_REPORT.json; docs/task_reports/TASK-035AR_RUNTIME_REPORT.json; docs/task_reports/TASK-035AR_ADEQUACY_REPORT.json",
+      "source_report_hash": "a8e0cb6c62b4e4ca1c875316cd5db7b7cc3a92b9325c039106e11dc5cda1b432; 1e9c7c6ecd906d64cd326a25877c0ea6cb9f0c787d6a8d8ebf79c639c11faca4; 480e8198c1d8d76e0fdda3cbd4d02d71cf5ce87036dfb84c53ff291a0e98e94b; fe5cbfc7245c0240e040805c07671943607462e2c091169d7ad80760a2b6b711",
+      "source_task": "TASK-035AR"
+    },
+    {
+      "claim_id": "C05",
+      "claim_text": "Rule-only coverage was limited: Best-1 macro point F1 was 0.4800975329, while Top-3 OR reached 0.5359921339 with FP/10k 105.5606897; coverage-heavy arms exceeded 2,000 FP/10k.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "summaries.best_1.macro.point_f1",
+        "summaries.top_3_or.macro.point_f1",
+        "summaries.top_3_or.macro.false_positive_points_per_10000_normal_points",
+        "summaries.coverage_3_or.macro.false_positive_points_per_10000_normal_points",
+        "summaries.all_10_or.macro.false_positive_points_per_10000_normal_points"
+      ],
+      "source_report": "docs/task_reports/TASK-035B_OUTER_VALIDATION_REPORT.json",
+      "source_report_hash": "283c2b0b34e3be259880e1ed4266fe5b89c857fd05a01f864fbc419afaef923b",
+      "source_task": "TASK-035B"
+    },
+    {
+      "claim_id": "C06",
+      "claim_text": "ARGOS identifies the KPI detector family as LSTMAD but does not disambiguate LSTMADalpha from LSTMADbeta; both remain co-primary and variant selection is prohibited.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "detector_family",
+        "status",
+        "argos_exact_variant_identified",
+        "retained_variants",
+        "selection_between_variants"
+      ],
+      "source_report": "docs/task_reports/TASK-037A_DETECTOR_IDENTITY_REPORT.json",
+      "source_report_hash": "af00d49edc631c71951444934553ff8d3d326322595789324b9ecca1d635441e",
+      "source_task": "TASK-037A"
+    },
+    {
+      "claim_id": "C07",
+      "claim_text": "Detector-only outer macro point F1 was 0.3541453239 for LSTMADalpha and 0.4232947191 for LSTMADbeta.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "per_variant.LSTMADalpha.summary.macro.point_f1",
+        "per_variant.LSTMADbeta.summary.macro.point_f1"
+      ],
+      "source_report": "docs/task_reports/TASK-037B_OUTER_VALIDATION_REPORT.json",
+      "source_report_hash": "7726db5c184a8630f067f0e27cf71410b3dfef365b98bce30120b5f66fa1bf34",
+      "source_task": "TASK-037B"
+    },
+    {
+      "claim_id": "C08",
+      "claim_text": "Generic Best-1 and Top-3 FN-union fusion increased macro point F1 relative to detector-only for both LSTMAD variants, while preserving a non-selective diagnostic claim boundary.",
+      "derived_calculation_or_direct": "direct comparison to C07",
+      "source_fields": [
+        "fusion_arms[detector_variant=LSTMADalpha,rule_arm=best_1,operator=fn_union_max].summary.macro.point_f1",
+        "fusion_arms[detector_variant=LSTMADalpha,rule_arm=top_3_or,operator=fn_union_max].summary.macro.point_f1",
+        "fusion_arms[detector_variant=LSTMADbeta,rule_arm=best_1,operator=fn_union_max].summary.macro.point_f1",
+        "fusion_arms[detector_variant=LSTMADbeta,rule_arm=top_3_or,operator=fn_union_max].summary.macro.point_f1",
+        "fusion_arm_selection_performed"
+      ],
+      "source_report": "docs/task_reports/TASK-037C_OUTER_FUSION_REPORT.json",
+      "source_report_hash": "70f92ef076f30478508c76036069f61849c04dbace212adc0405192b3222977d",
+      "source_task": "TASK-037C"
+    },
+    {
+      "claim_id": "C09",
+      "claim_text": "The detector-error-conditioned cohort registered 96 rules; 83 were executable, comprising 51 FN and 32 FP rules.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "registered_slot_count",
+        "executable_rule_count",
+        "FN_executable_rules",
+        "FP_executable_rules"
+      ],
+      "source_report": "docs/task_reports/TASK-037D_ADEQUACY_REPORT.json",
+      "source_report_hash": "e1e5af11be388f1239df919001ce230927f90007505124613ebba94d35794a07",
+      "source_task": "TASK-037D"
+    },
+    {
+      "claim_id": "C10",
+      "claim_text": "The no-agent A0 Full Aggregator reached macro point F1 0.4883548477 for LSTMADalpha and 0.3880429715 for LSTMADbeta.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "per_variant.LSTMADalpha.summaries.full_aggregator.macro.point_f1",
+        "per_variant.LSTMADbeta.summaries.full_aggregator.macro.point_f1"
+      ],
+      "source_report": "docs/task_reports/TASK-037E_OUTER_AGGREGATOR_REPORT.json",
+      "source_report_hash": "d1af6941b94884eae6a1b7041867b148b8310b2ef6accc2d095f2d16b3778103",
+      "source_task": "TASK-037E"
+    },
+    {
+      "claim_id": "C11",
+      "claim_text": "Bounded Repair recovered 13 of 13 reproducible runtime failures as deterministic executables in 13 one-shot calls with no retry.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "frozen_repair_population",
+        "reproducible_failure_count",
+        "calls_attempted",
+        "static_valid_revisions",
+        "repaired_executable_count",
+        "deterministic_replay_count",
+        "primary_repair_recovery_rate",
+        "completion_gate.automatic_retries"
+      ],
+      "source_report": "docs/task_reports/TASK-038B_OPERABILITY_REPORT.json",
+      "source_report_hash": "be2b82d9753e1e82d3b215334a2126770c4574040c707373227b565f46f24e60",
+      "source_task": "TASK-038B"
+    },
+    {
+      "claim_id": "C12",
+      "claim_text": "Review made 77 calls and produced 76 deterministic executable revisions: A2 had 34 improvements, one equal result, and one invalid result; A3 had 38 improvements and three regressions.",
+      "derived_calculation_or_direct": "direct across effect and provider reports",
+      "source_fields": [
+        "TASK-038C_PROVIDER_REPORT.calls_attempted",
+        "TASK-038C_EFFECT_REPORT.A2.reviewed_executable_count",
+        "TASK-038C_EFFECT_REPORT.A2.reviewed_executable_and_inner_F1_improved",
+        "TASK-038C_EFFECT_REPORT.A2.reviewed_executable_and_inner_F1_equal",
+        "TASK-038C_EFFECT_REPORT.A2.invalid_or_nonexecutable_revision",
+        "TASK-038C_EFFECT_REPORT.A3.reviewed_executable_count",
+        "TASK-038C_EFFECT_REPORT.A3.reviewed_executable_and_inner_F1_improved",
+        "TASK-038C_EFFECT_REPORT.A3.reviewed_executable_and_inner_F1_regressed"
+      ],
+      "source_report": "docs/task_reports/TASK-038C_EFFECT_REPORT.json; docs/task_reports/TASK-038C_PROVIDER_REPORT.json",
+      "source_report_hash": "20587920f047fb7975c66fbe6b65513693bc02465990a1535d48ba7dd0043bcd; af84e0dfdd12c5eeb482b1769681f3772d21ae816bed8fb075830a9bf33380e7",
+      "source_task": "TASK-038C"
+    },
+    {
+      "claim_id": "C13",
+      "claim_text": "No-op-aware selection retained A0 19 FN/2 FP, A1 20 FN/2 FP, A2 20 FN/10 FP, and A3 20 FN/9 FP rules.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "branch_summaries.A0",
+        "branch_summaries.A1",
+        "branch_summaries.A2",
+        "branch_summaries.A3"
+      ],
+      "source_report": "docs/task_reports/TASK-038D_SELECTION_FREEZE.json",
+      "source_report_hash": "152f9c2c5fd2953a934173943e4b738a88935a29d5cf85acb915cf397cf92d86",
+      "source_task": "TASK-038D"
+    },
+    {
+      "claim_id": "C14",
+      "claim_text": "Only two repaired candidates survived A1 selection; 19 reviewed candidates survived A2/A3 selection.",
+      "derived_calculation_or_direct": "sum of direct branch-origin counts",
+      "source_fields": [
+        "repair_survival.A1_repaired_rule_selected_count",
+        "review_survival.A2_reviewed_rule_selected_count",
+        "review_survival.A3_reviewed_rule_selected_count"
+      ],
+      "source_report": "docs/task_reports/TASK-038D_SELECTION_ORIGIN_REPORT.json",
+      "source_report_hash": "13dc4bd48304c236eca27e73e51413abd145e5176acd0bf977cae12f3290eb04",
+      "source_task": "TASK-038D"
+    },
+    {
+      "claim_id": "C15",
+      "claim_text": "TASK-038E Full Aggregator macro point F1 values were Alpha: A0 0.4883548477, A1 0.4543542336, A2 0.5046571806, A3 0.4665607110; Beta: A0 0.3880429715, A1 0.3894947432, A2 0.4215235151, A3 0.4244783864.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "per_branch_variant_arm.A0.LSTMADalpha.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A1.LSTMADalpha.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A2.LSTMADalpha.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A3.LSTMADalpha.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A0.LSTMADbeta.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A1.LSTMADbeta.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A2.LSTMADbeta.full_aggregator.macro.point_f1",
+        "per_branch_variant_arm.A3.LSTMADbeta.full_aggregator.macro.point_f1"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_BRANCH_OUTER_REPORT.json",
+      "source_report_hash": "396c53be38564378d1d155d08ac74dec508e5aa3f22a1853d3ae4abc7173d91a",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C16",
+      "claim_text": "A2 minus A0 Full macro point F1 was positive for both variants: +0.0163023329 for Alpha and +0.0334805436 for Beta.",
+      "derived_calculation_or_direct": "direct precomputed difference",
+      "source_fields": [
+        "full_aggregator_comparisons[comparison=A2_minus_A0,detector_variant=LSTMADalpha].macro_differences.point_f1",
+        "full_aggregator_comparisons[comparison=A2_minus_A0,detector_variant=LSTMADbeta].macro_differences.point_f1"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_BRANCH_OUTER_REPORT.json",
+      "source_report_hash": "396c53be38564378d1d155d08ac74dec508e5aa3f22a1853d3ae4abc7173d91a",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C17",
+      "claim_text": "A3 minus A0 Full macro point F1 was mixed: -0.0217941366 for Alpha and +0.0364354148 for Beta.",
+      "derived_calculation_or_direct": "direct precomputed difference",
+      "source_fields": [
+        "full_aggregator_comparisons[comparison=A3_minus_A0,detector_variant=LSTMADalpha].macro_differences.point_f1",
+        "full_aggregator_comparisons[comparison=A3_minus_A0,detector_variant=LSTMADbeta].macro_differences.point_f1"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_BRANCH_OUTER_REPORT.json",
+      "source_report_hash": "396c53be38564378d1d155d08ac74dec508e5aa3f22a1853d3ae4abc7173d91a",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C18",
+      "claim_text": "All 19 reviewed rules selected by TASK-038D had positive parent-relative outer transfer; non-selected revisions included negative and no-transfer cases.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "selected_review_survival.selected_reviewed_rules",
+        "selected_review_survival.selected_reviewed_positive_transfer",
+        "selected_review_survival.selected_reviewed_negative_transfer",
+        "branch_summaries.A2.not_selected",
+        "branch_summaries.A3.not_selected"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_REVIEW_TRANSFER_REPORT.json",
+      "source_report_hash": "d49dcbbe25089a638c389cce8d808a094e3ded66373b77c9912356296605e4a2",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C19",
+      "claim_text": "Of 13 repaired executable rules, four were outer-useful, four equal, and five regressive; the two selected A1 repairs comprised one useful and one regressive rule.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "summary.repaired_rule_count",
+        "summary.outer_useful_count",
+        "summary.outer_equal_count",
+        "summary.outer_regressive_count",
+        "summary.selected_A1_useful_count",
+        "summary.selected_A1_regressive_count"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_REPAIR_UTILITY_REPORT.json",
+      "source_report_hash": "e4b3fe1fe0b7f142e313fc82e01d2def09f240e4dc970cc238483157d4c1b953",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C20",
+      "claim_text": "Among 19 selected A2/A3 FP rules, four were classified safe, 14 costly, 14 harmful, and one ineffective; classifications overlap by design.",
+      "derived_calculation_or_direct": "counts of records[].classifications",
+      "source_fields": [
+        "selected_FP_rule_count",
+        "records[].classifications"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_FP_SAFETY_REPORT.json",
+      "source_report_hash": "bf03a84433c940401be5bc12d313d7a9f86c8adb2af145dd4e26d4946b6fc1f8",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C21",
+      "claim_text": "The agent study used 90 unique provider calls and 404,399 provider-reported tokens, with shared Repair calls counted once.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "unique_Repair_calls",
+        "unique_Review_calls",
+        "total_unique_agent_calls",
+        "Repair_tokens",
+        "Review_tokens",
+        "total_provider_tokens",
+        "shared_Repair_calls_double_counted"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_AGENT_COST_REPORT.json",
+      "source_report_hash": "14da7a1513a0d0b9c45b61df67e39f1bb908e9248851c9b9ac4ed255e428c51d",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C22",
+      "claim_text": "The TASK-038E outer evidence is previously exposed descriptive follow-up validation, not untouched confirmation.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "outer_exposure_limitation",
+        "sealed_test_access",
+        "outer_reselection"
+      ],
+      "source_report": "docs/task_reports/TASK-038E_BRANCH_OUTER_REPORT.json",
+      "source_report_hash": "396c53be38564378d1d155d08ac74dec508e5aa3f22a1853d3ae4abc7173d91a",
+      "source_task": "TASK-038E"
+    },
+    {
+      "claim_id": "C23",
+      "claim_text": "The frozen agent protocol required container-only generated-code execution, inner-only Review, zero real TASK-038A calls, and no outer or sealed-test access.",
+      "derived_calculation_or_direct": "direct",
+      "source_fields": [
+        "container_execution_only",
+        "host_generated_code_execution",
+        "inner_only_review",
+        "real_provider_calls",
+        "outer_access",
+        "sealed_test_access"
+      ],
+      "source_report": "docs/task_reports/TASK-038A_PROTOCOL_FREEZE.json",
+      "source_report_hash": "972fa2d17f8280245c8c4467b10f57015959c1406fb3705495e939d0410c5bc4",
+      "source_task": "TASK-038A"
+    },
+    {
+      "claim_id": "C24",
+      "claim_text": "TASK-038F assigns partial methodological support because component effects are meaningful but A3 is not variant-robust, FP safety is mixed, and no sealed confirmation exists.",
+      "derived_calculation_or_direct": "categorical application of the predeclared TASK-038F decision rule to C11, C12, C17, C20, C22, and C23",
+      "source_fields": [
+        "C11",
+        "C12",
+        "C17",
+        "C20",
+        "C22",
+        "C23"
+      ],
+      "source_report": "docs/task_reports/TASK-038F_COMPONENT_JUDGMENTS.json",
+      "source_report_hash": "664e8117c6c3be09181885ddc13c45466090a45d4d45ad2e9a55ebd478e9639b",
+      "source_task": "TASK-038F"
+    },
+    {
+      "claim_id": "C25",
+      "claim_text": "The ARGOS reference track should freeze because its component questions are answered and remaining thesis value lies in multivariate SWaT evidence.",
+      "derived_calculation_or_direct": "categorical recommendation based on C01-C24; no performance-based winner selection",
+      "source_fields": [
+        "C01-C24"
+      ],
+      "source_report": "docs/task_reports/TASK-038F_REFERENCE_FREEZE_RECOMMENDATION.json",
+      "source_report_hash": "d138af31d41dcf2be954ab13759bd2821d8f071e2e069028ee7fc14356c8084d",
+      "source_task": "TASK-038F"
+    }
+  ],
+  "lineage": {
+    "TASK-033": "175e6bf4bfaf88d85d1dc4f47a83f1ab928f9a1e",
+    "TASK-034": "f59cb953039b9b85a6217337266bf04e34e11b83",
+    "TASK-035A": "d8dbc8e157a2b3ce212f2bc69911189638b75e82",
+    "TASK-035AR": "dda1384e3da9d2d466c6c159f5baa1de50283bf0",
+    "TASK-035B": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "TASK-037A": "ebacb6b3d3674c98c9716e080e457476305c753e",
+    "TASK-037B": "e183eddc1a70ca37033d3acbe8710885590b9f3c",
+    "TASK-037C": "b0f1103a4443e02eda14ba1fabe1571f1adecb07",
+    "TASK-037D": "3c9ed2420611197cef5ea6b34f956a03616ce03e",
+    "TASK-037E": "0bae6c96d6e8c1eca0a17ac864d04ea4e325121e",
+    "TASK-038A": "71e393292a7b0bcbfa725e47be730abedaba0d1e",
+    "TASK-038B": "ac9da32c743627a473c3e9515a0e2950b0b63119",
+    "TASK-038C": "9ea91c071f770208ec0c707e85ca17df5de5a6b7",
+    "TASK-038D": "edc6cc77a17b95f1ec3dfb2b338d64387389643f",
+    "TASK-038E": "5874b585214fa9d6ab014984883516b703cb25f6"
+  },
+  "private_artifact_access": false,
+  "report_hash": "fe0703f1f3d1a00495cc2bf66d57f470c82ec97291439d410e36b6739f35a0c0",
+  "schema_version": "1.0",
+  "task_id": "TASK-038F"
+}

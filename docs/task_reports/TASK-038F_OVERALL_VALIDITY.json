@@ -1,0 +1,39 @@
+{
+  "artifact_type": "argos_overall_methodological_validity",
+  "classification": "partial_methodological_support",
+  "classification_basis": {
+    "meaningful_core_component_effects": true,
+    "complete_A3_variant_robust": false,
+    "FP_safety_consistently_bounded": false,
+    "sealed_confirmation_complete": false
+  },
+  "component_judgments": {
+    "end_to_end_agentic_aggregator": "partial_component_support",
+    "one_shot_generation": "partial_component_support",
+    "repair_detection_utility": "partial_component_support",
+    "repair_operability": "strong_component_support",
+    "review_inner_effectiveness": "strong_component_support",
+    "review_outer_transfer": "strong_component_support",
+    "safety_and_efficiency": "partial_component_support"
+  },
+  "evidence_status": "descriptive_previously_exposed_outer_pending_sealed_confirmation",
+  "exact_ARGOS_reproduction": false,
+  "new_experiments": 0,
+  "outer_access": false,
+  "private_artifact_access": false,
+  "proposed_method_validated": false,
+  "provider_calls": 0,
+  "reference_track_recommendation": "freeze_ARGOS_reference_track",
+  "report_hash": "b76f1a0dcf298eac20fa7f2c87bb3edd6e5ff22be70e193f2dac9c3d39c7e960",
+  "schema_version": "1.0",
+  "sealed_test_access": false,
+  "strong_methodological_support_gate": {
+    "A3_improves_over_A0_for_both_variants": false,
+    "FP_TP_removal_costs_acceptably_bounded": false,
+    "Repair_operationally_effective": true,
+    "Review_improves_outer_performance": true,
+    "effect_survives_sealed_test_confirmation": false,
+    "gate_passed": false
+  },
+  "task_id": "TASK-038F"
+}

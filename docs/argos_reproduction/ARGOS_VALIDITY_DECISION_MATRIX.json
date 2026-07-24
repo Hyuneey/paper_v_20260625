@@ -1,0 +1,25 @@
+{
+  "artifact_type": "argos_validity_decision_matrix",
+  "component_labels": {
+    "V1_one_shot_generation_operability": "partial_component_support",
+    "V2_repair_agent_operational_validity": "strong_component_support",
+    "V3_repair_agent_detection_utility": "partial_component_support",
+    "V4_review_agent_inner_effectiveness": "strong_component_support",
+    "V5_review_agent_outer_transfer": "strong_component_support",
+    "V6_end_to_end_agentic_aggregator_robustness": "partial_component_support",
+    "V7_safety_and_efficiency": "partial_component_support"
+  },
+  "decision_rules": {
+    "methodology_not_supported": "core components fail, the full pipeline is consistently regressive, or improvement requires leakage or unsafe execution",
+    "partial_methodological_support": "multiple core components show meaningful effects but the complete pipeline is not variant-robust, important safety or cost limits remain, or evidence lacks sealed confirmation",
+    "strong_methodological_support": "Repair is operationally effective, Review improves outer performance, A3 improves over A0 for both variants, A3 is not materially worse than detector-only, FP and TP-removal costs are bounded, and sealed confirmation passes",
+    "unresolved_methodological_validity": "essential component evidence is unavailable"
+  },
+  "evidence_status": "descriptive_previously_exposed_outer_pending_sealed_confirmation",
+  "exact_reproduction": false,
+  "overall_classification": "partial_methodological_support",
+  "report_hash": "702036bb5775744513955a37c1049420c7e04d30d4e94c5d471555709175462a",
+  "schema_version": "1.0",
+  "selection_performed": false,
+  "task_id": "TASK-038F"
+}
