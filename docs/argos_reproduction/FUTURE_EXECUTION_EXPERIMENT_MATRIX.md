@@ -19,7 +19,7 @@ data cannot be used for rule, detector, threshold, or candidate selection.
 | E5 FN fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `max(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FN recovery and added-FP accounting, no superiority claim |
 | E6 FP fusion (`diagnostic TASK-037C executed; paper-faithful not_prepared`) | Inner and outer executed; test sealed | `min(detector, rule)` for diagnostic track | Inherited frozen artifacts | TASK-035B frozen arms | TASK-037B frozen detector predictions | No selection | Outer executed once; test sealed | FP removal and removed-TP accounting, no superiority claim |
 | E7 RepairAgent effect (`executed`, TASK-038B) | Generation runtime evidence only for Repair; no outer/test | Before/after extraction, static and runtime-contract recovery | Inherited frozen inputs | Initial and repaired hashes frozen | Matching frozen detector lineage only | Generation value-only runtime errors | None until later committed freeze | Repair operability and cost only |
-| E8 ReviewAgent component effect (`execution_authorized`, TASK-038C; results not run) | Inner-only Review; no outer/test | Direct PA-free paired branch diagnostics under frozen max/min semantics | Inherited frozen inputs | Initial/repaired/reviewed hashes required | Matching frozen TASK-037B detector prediction | Inner only | None until later committed freeze | Review component behavior, not generalization or superiority |
+| E8 ReviewAgent component effect (`executed`, TASK-038C) | Inner-only Review; no outer/test | Direct PA-free paired branch diagnostics under frozen max/min semantics | Inherited frozen inputs | Initial/repaired/reviewed hashes frozen | Matching frozen TASK-037B detector prediction | Inner only | None until later committed freeze | Review component behavior, not generalization or superiority |
 | E9 Random-seed sensitivity | Train/validation first; test only after one predeclared aggregation policy | Distribution across frozen seeds | Seed list required before run | Hash per seed | Hash per detector run | Train/validation only | One sealed protocol after freeze | Sensitivity under declared seeds |
 | E10 Multivariate extension readiness | Approved multivariate train/calibration/validation | Interface and feasibility checks | Required before run | DSL artifact hashes | Candidate/detector hashes as applicable | No final test | No final test until separate gate | Readiness only after E1-E8 evidence |
 
@@ -142,3 +142,11 @@ direct PA-free triggers, bounded regression evidence and the exact call
 manifest must freeze before provider access. Each triggered branch receives at
 most one independent Review call. Outer access, sealed-test access, branch
 selection, RepairAgent calls and DetectionAgent calls remain prohibited.
+
+TASK-038C completed E8 with status
+`passed_review_agent_inner_branch_experiment`. The direct PA-free trigger
+authorized 77 calls and froze 102 `no_review_needed` identities. All responses
+were static-valid and 76 revisions completed deterministic generation and
+full-inner replay. The reported effects are inner-only. Branch selection,
+outer execution, Full Aggregator comparison and every sealed test remain
+unperformed and unauthorized.

@@ -379,9 +379,14 @@ direction-specific detector-rule composition falls below the detector-only
 direct PA-free inner point F1, and bounds each triggered branch to one
 independent no-retry revision.
 
-Reviewed rules must pass frozen static auditing, generation target and contrast
-replay, and deterministic full-inner replay. Invalid and harmful revisions
-remain visible outcomes. This is an inner-only component experiment; it does
-not select branch rules, access outer or sealed-test data, or establish outer
-generalization or full ARGOS methodological validity. See
+The completed experiment authorized 77 calls among 179 executable logical
+parents and froze 102 `no_review_needed` identities. All 77 responses were
+static-valid; 76 revisions passed generation target, generation contrast and
+deterministic full-inner runtime. Invalid and harmful revisions remain visible
+outcomes.
+
+This is an inner-only component experiment. It does not select branch rules,
+access outer or sealed-test data, or establish outer generalization or full
+ARGOS methodological validity. See
+[`TASK-038C_REPORT.md`](docs/task_reports/TASK-038C_REPORT.md) and
 [`REVIEW_TRIGGER_AND_EVIDENCE_PROTOCOL.md`](docs/argos_reproduction/REVIEW_TRIGGER_AND_EVIDENCE_PROTOCOL.md).

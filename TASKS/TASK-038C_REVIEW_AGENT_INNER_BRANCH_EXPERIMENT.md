@@ -21,4 +21,11 @@ outputs remain terminal outcomes. Outer access, sealed-test access, branch
 selection, RepairAgent calls, DetectionAgent calls and host generated-code
 execution are prohibited.
 
-Pre-execution status: `implementation_frozen_results_not_run`
+Final status: `passed_review_agent_inner_branch_experiment`
+
+Execution retained 179 executable Review branch parents. The frozen direct
+PA-free trigger authorized 77 one-shot calls and prohibited 102 calls as
+`no_review_needed`. All 77 responses produced static-valid rules; 76 completed
+the deterministic generation and inner runtime contracts. Inner-only effects,
+invalid and harmful revisions, A2/A3 stochastic variability and the
+post-Repair subgroup are recorded without outer or sealed-test access.

@@ -1612,3 +1612,8 @@
   revisions cannot revert to their parent.
 - RepairAgent and DetectionAgent calls, branch selection, outer access,
   sealed-test access and host generated-code execution are prohibited.
+- Execution outcome: 77 of 179 executable logical parents required Review and
+  102 were frozen as `no_review_needed`. All 77 one-shot calls returned a
+  static-valid rule; 76 revisions passed deterministic generation and
+  full-inner runtime. No retry, replacement, RepairAgent call, DetectionAgent
+  call, outer access or sealed-test access occurred.
