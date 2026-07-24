@@ -407,3 +407,30 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   pinned source by the existing AST-based helper.
 - Project-owned deviation: deterministic matched contrast replaces random or
   iteration-dependent contrast sampling for reproducibility.
+
+## TASK-038A ARGOS Repair/Review alignment
+
+- ARGOS reference commit:
+  `6b24161ff08de069840a1fb4fbaecf7bf8e393f1` (MIT, read-only).
+- Repair prompt source:
+  `agent/prompts/repair.py`,
+  SHA-256
+  `f7dc354ee862bf4b6433eff247999be51596be1325743ef002b9c1ddd180eb3d`.
+- Review prompt source:
+  `agent/prompts/review.py`,
+  SHA-256
+  `155015f2d34f6c940a48cd9357ec2e68f9d08e3d888ccaf0acb388204547746f`.
+- Agent behavior sources:
+  `agent/repair_agent.py`,
+  SHA-256
+  `c6aad9764623ad36515e9d1844b2d15331b1151f378f301de2d5342f3f04550e`,
+  and `agent/review_agent.py`,
+  SHA-256
+  `c7b12990f8cfce7691db6cc7521831432bd23a126221deeb8ce0ee6d6d1b84d7`.
+- Project-owned adapters parse the pinned prompt constants without importing
+  ARGOS modules. Upstream code is neither copied nor modified.
+- Intentional safety and scientific deviations:
+  one bounded revision replaces the upstream time-bounded loop; generated code
+  remains container-only; Review uses inner-only direct PA-free metrics; outer
+  and sealed-test feedback are prohibited; provider access is disabled in
+  TASK-038A.

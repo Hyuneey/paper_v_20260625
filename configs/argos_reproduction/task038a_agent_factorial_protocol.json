@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-038A",
+  "status": "protocol_freeze_only",
+  "created_at": "2026-07-24T00:00:00+09:00",
+  "experiment_description": "paper-aligned, leakage-corrected ARGOS component reproduction",
+  "lineage": {
+    "task035b_result_commit": "8c90f0afb26db9fb244d7c00642b66976fc96ede",
+    "task037b_result_commit": "e183eddc1a70ca37033d3acbe8710885590b9f3c",
+    "task037c_result_commit": "b0f1103a4443e02eda14ba1fabe1571f1adecb07",
+    "task037d_implementation_commit": "664857f1df5115f186b578ea3f434be8e7f6db77",
+    "task037d_result_commit": "3c9ed2420611197cef5ea6b34f956a03616ce03e",
+    "task037e_implementation_commit": "95351d560d3659dedb7b1783f84783c65a7b7eff",
+    "task037e_selection_freeze_commit": "06560b06f636e2a69d7ad1c92b976cc513c310d7",
+    "task037e_result_commit": "0bae6c96d6e8c1eca0a17ac864d04ea4e325121e",
+    "argos_commit": "6b24161ff08de069840a1fb4fbaecf7bf8e393f1"
+  },
+  "population": {
+    "initial_rule_slots": 96,
+    "initial_static_valid": 96,
+    "initial_executable": 83,
+    "initial_runtime_failed": 13,
+    "repair_population": 13,
+    "branches_per_slot": 4,
+    "branch_count": 384
+  },
+  "branches": [
+    "A0",
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "detector_variants": [
+    "LSTMADalpha",
+    "LSTMADbeta"
+  ],
+  "directions": [
+    "FN",
+    "FP"
+  ],
+  "sources": {
+    "task037d_request_manifest": "docs/task_reports/TASK-037D_REQUEST_MANIFEST.json",
+    "task037d_static_report": "docs/task_reports/TASK-037D_STATIC_AUDIT_REPORT.json",
+    "task037d_runtime_report": "docs/task_reports/TASK-037D_RUNTIME_REPORT.json",
+    "task037d_adequacy_report": "docs/task_reports/TASK-037D_ADEQUACY_REPORT.json",
+    "repair_prompt_source": "external/argos/agent/prompts/repair.py",
+    "review_prompt_source": "external/argos/agent/prompts/review.py",
+    "repair_agent_source": "external/argos/agent/repair_agent.py",
+    "review_agent_source": "external/argos/agent/review_agent.py"
+  },
+  "source_report_hashes": {
+    "task037d_request_manifest": "91b1490add3fca103816f2ed76f7df489dada048bb6c67df09b3400c9cb3bd86",
+    "task037d_static_report": "21d81ffcc6c8302e3b8d3f6199234029a42486026f0bfffaee9c74870954e82b",
+    "task037d_runtime_report": "76b5cbdd5aeb3a67e845206c1e802ce0d52e12a0ad9cd18a79544eda0fc05ca5",
+    "task037d_adequacy_report": "e1e5af11be388f1239df919001ce230927f90007505124613ebba94d35794a07"
+  },
+  "pinned_source_hashes": {
+    "external/argos/agent/prompts/repair.py": "f7dc354ee862bf4b6433eff247999be51596be1325743ef002b9c1ddd180eb3d",
+    "external/argos/agent/prompts/review.py": "155015f2d34f6c940a48cd9357ec2e68f9d08e3d888ccaf0acb388204547746f",
+    "external/argos/agent/repair_agent.py": "c6aad9764623ad36515e9d1844b2d15331b1151f378f301de2d5342f3f04550e",
+    "external/argos/agent/review_agent.py": "c7b12990f8cfce7691db6cc7521831432bd23a126221deeb8ce0ee6d6d1b84d7"
+  },
+  "repair_policy": {
+    "eligible_statuses": [
+      "target_runtime_failed",
+      "contrast_runtime_failed",
+      "output_contract_failed"
+    ],
+    "maximum_provider_calls_per_failed_rule": 1,
+    "reuse_between_A1_and_A3": true,
+    "labels_in_prompt": false,
+    "real_execution_in_task038a": false
+  },
+  "review_policy": {
+    "eligible_input": "executable_rule_only",
+    "split": "inner",
+    "trigger": "combined_point_f1_below_detector_point_f1",
+    "point_adjustment": false,
+    "maximum_provider_calls_per_branch": 1,
+    "maximum_regression_samples": 3,
+    "maximum_window_length_per_sample": 20,
+    "regression_sample_order": "chronological",
+    "overlap": "prohibited",
+    "harmful_revision_revert": false,
+    "real_execution_in_task038a": false
+  },
+  "future_aggregator": {
+    "order": [
+      "fp_correction",
+      "fn_compensation"
+    ],
+    "fp": "min(detector, selected_fp_rule)",
+    "full": "max(after_fp, selected_fn_rule)",
+    "joint_pair_search": false,
+    "explicit_no_op_required": true
+  },
+  "split_policy": {
+    "generation": [
+      "repair_runtime_reproduction",
+      "repair_error_generation",
+      "repair_runtime_verification"
+    ],
+    "inner": [
+      "review_trigger",
+      "regression_sample_extraction",
+      "branch_metrics",
+      "future_branch_selection"
+    ],
+    "outer": "prohibited_in_task038a",
+    "sealed_test": "prohibited"
+  },
+  "runtime_interface": {
+    "container_only": true,
+    "host_generated_code_execution": false,
+    "network": "none",
+    "non_root": true,
+    "read_only_root": true,
+    "cap_drop_all": true,
+    "no_new_privileges": true,
+    "bounded_cpu": true,
+    "bounded_memory": true,
+    "bounded_pids": true,
+    "bounded_timeout": true,
+    "labels_mounted": false
+  },
+  "reports": {
+    "initial_registry": "docs/task_reports/TASK-038A_INITIAL_RULE_REGISTRY.json",
+    "branch_registry": "docs/task_reports/TASK-038A_BRANCH_REGISTRY.json",
+    "provider_budget": "docs/task_reports/TASK-038A_PROVIDER_BUDGET.json",
+    "protocol_freeze": "docs/task_reports/TASK-038A_PROTOCOL_FREEZE.json"
+  },
+  "boundaries": {
+    "real_provider_calls": 0,
+    "real_repair_execution": 0,
+    "real_review_execution": 0,
+    "inner_label_access": false,
+    "outer_access": false,
+    "sealed_test_access": false,
+    "detector_variant_selection": false
+  }
+}

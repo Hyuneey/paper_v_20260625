@@ -336,3 +336,17 @@ detector retraining, threshold reselection, sealed-test access, and final
 superiority claims remain prohibited. See
 [`TASK-037E_REPORT.md`](docs/task_reports/TASK-037E_REPORT.md) and
 [`FULL_AGGREGATOR_EXECUTION_PROTOCOL.md`](docs/argos_reproduction/FULL_AGGREGATOR_EXECUTION_PROTOCOL.md).
+
+## ARGOS Repair/Review factorial protocol freeze
+
+TASK-038A freezes a leakage-corrected four-branch experiment for comparing
+one-shot rules, Repair-only, Review-only, and Repair-plus-Review over the
+complete immutable 96-slot TASK-037D cohort. It records 384 logical branches,
+limits each eligible agent transformation to one revision, preserves both
+LSTMAD variants, and requires container-only generated-code execution.
+
+TASK-038A is protocol and safety readiness only. It made no real provider call,
+repaired or reviewed no real rule, computed no new inner or outer metric, and
+accessed no outer or sealed-test artifact. See
+[`ARGOS_AGENT_FACTORIAL_PROTOCOL.md`](docs/argos_reproduction/ARGOS_AGENT_FACTORIAL_PROTOCOL.md)
+and [`TASK-038A_REPORT.md`](docs/task_reports/TASK-038A_REPORT.md).

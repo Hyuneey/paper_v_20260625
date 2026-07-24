@@ -1515,3 +1515,53 @@
   replay. The frozen selections retained 19 FN rules and one FN no-op, plus two
   FP rules and 18 FP no-ops. No joint FN/FP search or outer reselection was
   performed.
+
+### DEC-070: ARGOS Repair/Review factorial design
+
+- Status: resolved_before_agent_execution
+- Owner: researcher
+- The complete immutable TASK-037D population of 96 initial slots is expanded
+  into exactly four logical branches per slot: `A0` one-shot, `A1` Repair-only,
+  `A2` Review-only, and `A3` Repair plus Review.
+- A new DetectionAgent rule is prohibited. Every branch retains the same
+  initial rule hash, detector variant, KPI, FN/FP direction, and target/contrast
+  lineage.
+- One Repair transformation is shared by `A1` and `A3` for each initially
+  runtime-failed rule. Initially executable `A1` branches are identity
+  branches, and non-executable `A2` branches cannot invoke Review.
+- Harmful or invalid Review results remain the terminal branch output and
+  cannot be silently replaced by the pre-review rule.
+
+### DEC-071: Leakage-corrected ReviewAgent boundary
+
+- Status: resolved_before_agent_execution
+- Owner: researcher
+- Review is permitted only for executable rules and uses the matching frozen
+  TASK-037B detector prediction plus direct PA-free metrics on the inner split.
+- A Review provider call is authorized only when the current FN-max or FP-min
+  combined inner point F1 is below the detector-only inner point F1.
+- Review may receive at most three chronological, non-overlapping inner
+  regression windows of at most 20 points each. Outer values, outer labels,
+  sealed-test artifacts, other KPI data, and other detector-variant data are
+  prohibited.
+- Future outer execution requires a separately committed branch-selection
+  freeze. TASK-038A performs no real Review or metric computation.
+
+### DEC-072: Bounded agent provider and execution safety
+
+- Status: resolved_protocol_frozen
+- Owner: researcher
+- Provider/model are frozen as OpenAI Responses API / `gpt-5.6-luna`, with
+  `max_output_tokens=6000`, omitted temperature and seed, one revision per
+  eligible transformation, and no retry or replacement generation.
+- The maximum logical primary-study budget is 192 unique calls: 13 Repair,
+  83 `A2` Review, 83 initially executable `A3` Review, and 13 post-repair
+  `A3` Review calls. The exact future eligible-call manifest must be frozen
+  before any provider execution.
+- Generated or revised Python may execute only in the established WSL-native
+  rootless Podman boundary with no network, non-root execution, read-only root,
+  dropped capabilities, no new privileges, and bounded CPU, memory, PIDs, and
+  time.
+- TASK-038A authorizes zero real provider calls, zero real Repair executions,
+  zero real Review executions, no host generated-code execution, no outer
+  access, and no sealed-test access.

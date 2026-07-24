@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-038A",
+  "status": "frozen_not_authorized",
+  "provider": "openai_responses",
+  "model": "gpt-5.6-luna",
+  "temperature_parameter": "omitted",
+  "provider_seed": "not_sent",
+  "max_output_tokens": 6000,
+  "automatic_retry": false,
+  "manual_retry": false,
+  "replacement_generation": false,
+  "maximum_repair_calls": 13,
+  "maximum_review_A2_calls": 83,
+  "maximum_review_A3_initial_executable_calls": 83,
+  "maximum_review_A3_repaired_calls": 13,
+  "maximum_unique_primary_study_calls": 192,
+  "exact_eligible_call_manifest_required_before_execution": true,
+  "real_provider_execution_authorized": false,
+  "calls_made": 0
+}
