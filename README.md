@@ -4,7 +4,7 @@ This package contains revised implementation instructions for:
 
 > **Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.**
 
-## Current state: data, evidence, and outcome foundations
+## Current state: canonical v6 contract foundation
 
 TASK-039P0 freezes the repository migration at commit
 `337769066f62b8f4fcd8e48a9a8f8d3651e3818a`.
@@ -12,8 +12,10 @@ TASK-039P1A adds dataset-neutral data/view/split contracts, explicit v6 split
 permissions, purge-aware range-local windows, and loss-reporting data
 adapters. TASK-039P1B adds normal relation evidence, optional detector-error
 context, explicit construction/governance outcomes, and a typed runtime
-disposition projection. Existing v1 behavior and scientific consumers remain
-unchanged.
+disposition projection. TASK-039P1C binds those artifacts to the canonical
+Rule v1-Verifier v1-runtime authority path through explicit EVID/NREF,
+construction, governance, and deployment receipts. Historical TASK-032
+behavior remains unchanged.
 
 - HAI 23.05 is the current primary dataset candidate; no HAI readiness or
   experimental result is claimed.
@@ -29,8 +31,8 @@ unchanged.
   correction is supplementary.
 
 See [`docs/v6/V6_CANONICAL_ARCHITECTURE.md`](docs/v6/V6_CANONICAL_ARCHITECTURE.md)
-and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). P1A and P1B are
-foundation contracts only. P1C/P1D remain pending, so parent TASK-039P1 is not
+and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). P1A, P1B, and P1C are
+foundation contracts only. P1D remains pending, so parent TASK-039P1 is not
 complete. No HAI readiness, process feasibility, real rule construction,
 detector validation, or proposed-method result is claimed.
 

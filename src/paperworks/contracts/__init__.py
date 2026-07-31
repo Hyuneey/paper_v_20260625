@@ -100,6 +100,33 @@ from paperworks.contracts.phase1_adapters import (
     adapt_phase1_candidate_graph,
     adapt_phase1_evidence_package,
 )
+from paperworks.contracts.normal_evidence_binding_v1 import (
+    NormalReferenceSetBindingV1,
+    RuleEvidenceBindingV1,
+    SourceIdentifierBindingV1,
+    derive_normal_reference_id_v1,
+)
+from paperworks.contracts.context_protocol_v1 import (
+    DelayedResponseArtifactCollectionProtocolV1,
+    NormalizedEvidenceViewV1,
+    NormalizedNormalReferenceViewV1,
+    bound_evidence_to_dict_v1,
+    normalize_evidence_v1,
+    normalize_normal_reference_v1,
+    reparse_bound_evidence_v1,
+)
+from paperworks.contracts.canonical_collection_v1 import (
+    CanonicalBindingPolicyV1,
+    CanonicalContextBuildResultV1,
+    CanonicalContextMappingsV1,
+    CanonicalDelayedResponseArtifactCollectionV1,
+    build_canonical_delayed_response_context_v1,
+    canonical_graph_edge_sha256_v1,
+)
+from paperworks.contracts.collection_adapters_v1 import (
+    LegacyDelayedResponseCollectionAdapterV1,
+    adapt_legacy_delayed_response_collection_v1,
+)
 from paperworks.contracts.accepted_rule import (
     AcceptedRuleError,
     canonical_rule_verification_subject_bytes,
@@ -127,12 +154,22 @@ from paperworks.contracts.runtime_authority import (
     RuntimeAuthorizationBundleV1,
     RuntimeAuthorizationError,
     RuntimeAuthorizationReceiptV1,
+    V6RuntimeAuthorizationBundleV1,
     authorization_receipt_to_dict,
     authorize_delayed_response_runtime,
+    authorize_v6_delayed_response_runtime,
     canonical_runtime_authorization_bytes,
     canonical_runtime_authorization_sha256,
     canonical_verifier_policy_sha256,
     verify_runtime_authorization_bundle,
+)
+from paperworks.contracts.outcome_binding_v1 import (
+    ConstructionCandidateBindingReceiptV1,
+    GovernanceAuthorityBindingReceiptV1,
+    V6DeploymentAuthorizationReceiptV1,
+    bind_construction_candidate_v1,
+    bind_governance_authority_v1,
+    bind_v6_deployment_authority_v1,
 )
 from paperworks.contracts.runtime_v1 import (
     RUNTIME_VERSION,
@@ -184,6 +221,33 @@ from paperworks.contracts.vertical_slice_v1 import (
 )
 
 __all__ = [
+    "CanonicalBindingPolicyV1",
+    "CanonicalContextBuildResultV1",
+    "CanonicalContextMappingsV1",
+    "CanonicalDelayedResponseArtifactCollectionV1",
+    "ConstructionCandidateBindingReceiptV1",
+    "DelayedResponseArtifactCollectionProtocolV1",
+    "GovernanceAuthorityBindingReceiptV1",
+    "LegacyDelayedResponseCollectionAdapterV1",
+    "NormalReferenceSetBindingV1",
+    "NormalizedEvidenceViewV1",
+    "NormalizedNormalReferenceViewV1",
+    "RuleEvidenceBindingV1",
+    "SourceIdentifierBindingV1",
+    "V6DeploymentAuthorizationReceiptV1",
+    "V6RuntimeAuthorizationBundleV1",
+    "adapt_legacy_delayed_response_collection_v1",
+    "authorize_v6_delayed_response_runtime",
+    "bind_construction_candidate_v1",
+    "bind_governance_authority_v1",
+    "bind_v6_deployment_authority_v1",
+    "bound_evidence_to_dict_v1",
+    "build_canonical_delayed_response_context_v1",
+    "canonical_graph_edge_sha256_v1",
+    "derive_normal_reference_id_v1",
+    "normalize_evidence_v1",
+    "normalize_normal_reference_v1",
+    "reparse_bound_evidence_v1",
     "ADAPTER_VERSION",
     "AUTHORIZATION_VERSION",
     "AbstentionPolicySpec",

@@ -12,6 +12,12 @@ from typing import Any, Mapping
 V6_SCHEMA_REGISTRY_VERSION = "1.0.0"
 V6_META_SCHEMA = "https://json-schema.org/draft/2020-12/schema"
 V6_SCHEMA_FILES: Mapping[str, str] = {
+    "canonical_context_build_result": (
+        "schemas/v6/canonical_context_build_result_v1_schema.json"
+    ),
+    "construction_candidate_binding_receipt": (
+        "schemas/v6/construction_candidate_binding_receipt_v1_schema.json"
+    ),
     "normal_relation_evidence": (
         "schemas/v6/normal_relation_evidence_v1_schema.json"
     ),
@@ -23,6 +29,18 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     ),
     "rule_governance_outcome": (
         "schemas/v6/rule_governance_outcome_v1_schema.json"
+    ),
+    "governance_authority_binding_receipt": (
+        "schemas/v6/governance_authority_binding_receipt_v1_schema.json"
+    ),
+    "normal_reference_set_binding": (
+        "schemas/v6/normal_reference_set_binding_v1_schema.json"
+    ),
+    "rule_evidence_binding": (
+        "schemas/v6/rule_evidence_binding_v1_schema.json"
+    ),
+    "v6_deployment_authorization_receipt": (
+        "schemas/v6/v6_deployment_authorization_receipt_v1_schema.json"
     ),
     "v6_evidence_adapter_result": (
         "schemas/v6/v6_evidence_adapter_result_v1_schema.json"
@@ -78,7 +96,7 @@ class V6SchemaRegistryV1:
 def load_v6_schema_registry_v1(
     *, repository_root: str | Path | None = None
 ) -> V6SchemaRegistryV1:
-    """Load only the five P1B schemas and verify their declared identities."""
+    """Load the independent v6 schemas and verify declared identities."""
 
     root = (
         Path(repository_root).resolve()

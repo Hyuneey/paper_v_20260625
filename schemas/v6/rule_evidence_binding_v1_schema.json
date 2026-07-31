@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/rule_evidence_binding_v1_schema.json",
+  "title": "RuleEvidenceBindingV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "evidence_id",
+    "artifact_hash",
+    "normal_relation_evidence_id",
+    "normal_relation_evidence_hash",
+    "dataset_manifest_id",
+    "data_view_id",
+    "split_manifest_id",
+    "dataset_version",
+    "process_scope",
+    "subsystem",
+    "source_variables",
+    "target_variables",
+    "operating_regime_id",
+    "operating_regime_condition_bindings",
+    "graph_edge_refs",
+    "graph_edge_source_bindings",
+    "normal_reference_binding_ref",
+    "normal_reference_binding_hash",
+    "parameter_artifact_refs",
+    "parameter_source_bindings",
+    "candidate_lag_range",
+    "supported_claims",
+    "prohibited_claims",
+    "selection_policy",
+    "data_split",
+    "raw_values_included",
+    "label_performance_used",
+    "detector_context_used",
+    "creation_metadata",
+    "validity_authority_granted",
+    "runtime_authority_granted"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "rule_evidence_binding"},
+    "evidence_id": {"pattern": "^EVID-V6-[A-F0-9]{20}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "normal_relation_evidence_id": {"type": "string", "minLength": 1},
+    "normal_relation_evidence_hash": {"$ref": "#/$defs/hash"},
+    "dataset_manifest_id": {"$ref": "#/$defs/hash"},
+    "data_view_id": {"$ref": "#/$defs/hash"},
+    "split_manifest_id": {"$ref": "#/$defs/hash"},
+    "dataset_version": {"type": "string", "minLength": 1},
+    "process_scope": {"$ref": "#/$defs/nonemptyStrings"},
+    "subsystem": {"type": "string", "minLength": 1},
+    "source_variables": {"$ref": "#/$defs/oneString"},
+    "target_variables": {"$ref": "#/$defs/oneString"},
+    "operating_regime_id": {"type": "string", "minLength": 1},
+    "operating_regime_condition_bindings": {"type": "array", "items": {"$ref": "#/$defs/sourceBinding"}},
+    "graph_edge_refs": {"$ref": "#/$defs/oneString"},
+    "graph_edge_source_bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceBinding"}},
+    "normal_reference_binding_ref": {"pattern": "^NREF-V6-[A-F0-9]{20}$"},
+    "normal_reference_binding_hash": {"$ref": "#/$defs/hash"},
+    "parameter_artifact_refs": {"$ref": "#/$defs/nonemptyStrings"},
+    "parameter_source_bindings": {"type": "array", "items": {"$ref": "#/$defs/sourceBinding"}},
+    "candidate_lag_range": {"$ref": "#/$defs/range"},
+    "supported_claims": {"$ref": "#/$defs/nonemptyStrings"},
+    "prohibited_claims": {"$ref": "#/$defs/nonemptyStrings"},
+    "selection_policy": {"$ref": "#/$defs/selectionPolicy"},
+    "data_split": {"const": "normal_relation_calibration"},
+    "raw_values_included": {"const": false},
+    "label_performance_used": {"const": false},
+    "detector_context_used": {"const": false},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"},
+    "validity_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nonemptyStrings": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "oneString": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"type": "string", "minLength": 1}},
+    "sourceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_artifact_hash", "canonical_id", "canonical_artifact_hash"],
+      "properties": {
+        "source_artifact_hash": {"$ref": "#/$defs/hash"},
+        "canonical_id": {"type": "string", "minLength": 1},
+        "canonical_artifact_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "maximum", "unit"],
+      "properties": {
+        "minimum": {"type": "number"},
+        "maximum": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1}
+      }
+    },
+    "selectionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "policy_version", "regime_match_required", "subsystem_match_required", "label_performance_used", "deterministic_tie_breaking", "pre_registered"],
+      "properties": {
+        "policy_id": {"type": "string", "minLength": 1},
+        "policy_version": {"type": "string", "minLength": 1},
+        "regime_match_required": {"const": true},
+        "subsystem_match_required": {"const": true},
+        "label_performance_used": {"const": false},
+        "deterministic_tie_breaking": {"const": true},
+        "pre_registered": {"const": true}
+      }
+    },
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {"type": "string", "minLength": 7},
+        "config_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}
+      }
+    }
+  }
+}

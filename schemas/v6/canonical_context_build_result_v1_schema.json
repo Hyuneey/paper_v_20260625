@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/canonical_context_build_result_v1_schema.json",
+  "title": "CanonicalContextBuildResultV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "build_result_id",
+    "artifact_hash",
+    "status",
+    "collection",
+    "normal_reference_binding",
+    "rule_evidence_binding",
+    "missing_context",
+    "information_loss",
+    "issue_codes",
+    "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "canonical_context_build_result"},
+    "build_result_id": {"pattern": "^CTXBUILD-V1-[A-F0-9]{20}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "status": {"enum": ["created", "pending_context", "unsupported_source", "invalid_source"]},
+    "collection": {"anyOf": [{"type": "object"}, {"type": "null"}]},
+    "normal_reference_binding": {"anyOf": [{"type": "object"}, {"type": "null"}]},
+    "rule_evidence_binding": {"anyOf": [{"type": "object"}, {"type": "null"}]},
+    "missing_context": {"$ref": "#/$defs/stringArray"},
+    "information_loss": {"$ref": "#/$defs/stringArray"},
+    "issue_codes": {"$ref": "#/$defs/stringArray"},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "created"}}},
+      "then": {
+        "properties": {
+          "collection": {"type": "object"},
+          "normal_reference_binding": {"type": "object"},
+          "rule_evidence_binding": {"type": "object"}
+        }
+      },
+      "else": {
+        "properties": {
+          "collection": {"type": "null"},
+          "normal_reference_binding": {"type": "null"},
+          "rule_evidence_binding": {"type": "null"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "stringArray": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {"type": "string", "minLength": 7},
+        "config_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}
+      }
+    }
+  }
+}

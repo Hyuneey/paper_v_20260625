@@ -51,9 +51,19 @@ The authoritative path is `src/paperworks/contracts/`, specifically:
 - `runtime_authority.py`
 - `runtime_v1.py`
 - `explanation_v1.py`
+- `context_protocol_v1.py`
+- `normal_evidence_binding_v1.py`
+- `canonical_collection_v1.py`
+- `outcome_binding_v1.py`
 
 New v6 work must extend or adapt this contract path. Do not create a competing
 RuleAst authority.
+
+TASK-039P1C binds P1B evidence and outcomes into this path. Evidence,
+construction, governance, verifier acceptance, runtime authorization, and
+deployment receipts remain separate authority layers. The v6 delayed-response
+bridge supports increase relations only; decrease support remains a future
+rule-family or version decision.
 
 ### Reusable producers
 

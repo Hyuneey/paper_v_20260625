@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1c_canonical_binding_freeze",
+  "task_id": "TASK-039P1C",
+  "status": "passed_canonical_context_binding_and_decoupling",
+  "starting_commit": "ebe5e9a48a16e1a7008bf62acb59e256d267650b",
+  "rule_version": "Rule v1 unchanged",
+  "bridge": {
+    "relation_family": "delayed_response",
+    "supported_response_direction": "increase",
+    "decrease_status": "unsupported_source",
+    "process_count": 1,
+    "split_role": "normal_relation_calibration",
+    "explicit_edge_mapping": true,
+    "explicit_condition_mapping": true,
+    "explicit_parameter_mapping": true,
+    "parameter_creation": false
+  },
+  "authority": {
+    "evidence_binding_grants_validity": false,
+    "collection_grants_runtime": false,
+    "construction_candidate_grants_validity": false,
+    "governance_decisions": [
+      "selected_rule",
+      "no_op"
+    ],
+    "no_op_deployable": false,
+    "runtime_scope": "synthetic_only",
+    "rule_execution": false
+  },
+  "compatibility": {
+    "legacy_collection_changed": false,
+    "verifier_stage_count": 20,
+    "phase1_direct_import_in_verifier": false,
+    "phase1_direct_import_in_runtime_authority": false
+  },
+  "scope": {
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_execution": false,
+    "dataset_access": false,
+    "private_artifact_access": false,
+    "outer_access": false,
+    "sealed_access": false,
+    "consumer_migration": false,
+    "rule_v2_created": false
+  },
+  "config_hash": "d625032fe25f89848c1ac8bdc00348648817f6b1dc5128ab19d9e70fbf981544"
+}

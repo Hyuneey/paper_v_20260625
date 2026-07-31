@@ -31,16 +31,19 @@ correction is supplementary and requires true-positive and event safeguards.
 `EvidencePackageV1` remains anomaly/event-anchored. It must not be silently
 reused as `NormalRelationEvidence`.
 
-Canonical verifier and runtime-authority modules currently depend on
-`contracts.phase1_adapters`. TASK-039P1 must replace that dependency through a
-dataset-neutral artifact boundary without changing historical behavior.
-
 TASK-039P1B adds a lightweight `paperworks.v6` foundation for normal evidence,
 optional detector context, construction/governance outcomes, and runtime
-disposition projection. These artifacts grant no validity or runtime
-authority and are not yet exported through the canonical contract collection.
-TASK-039P1C must perform that binding without creating a competing Rule DSL or
-verifier.
+disposition projection. TASK-039P1C binds these artifacts through
+`paperworks.contracts` without creating a competing Rule DSL or verifier.
+The canonical verifier and runtime-authority modules now consume a bounded
+collection protocol rather than the concrete Phase-1 collection.
+
+The canonical v6 context contains dataset/view/split v2 manifests, normal
+evidence, explicit Rule v1 evidence and normal-reference bindings, the graph,
+and approved parameters. Evidence and construction grant no authority.
+Deployment requires accepted validity, a selected-rule governance receipt,
+and synthetic-only runtime authorization. The first bridge supports increase
+relations only; decrease remains explicitly unsupported.
 
 ## Reusable, Legacy, and Frozen Paths
 

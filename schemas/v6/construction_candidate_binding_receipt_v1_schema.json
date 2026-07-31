@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/construction_candidate_binding_receipt_v1_schema.json",
+  "title": "ConstructionCandidateBindingReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "receipt_id", "artifact_hash",
+    "construction_id", "construction_outcome_hash", "construction_arm",
+    "action_history_hash", "normal_relation_evidence_id",
+    "normal_relation_evidence_hash", "rule_evidence_binding_id",
+    "rule_evidence_binding_hash", "candidate_rule_id",
+    "candidate_rule_transport_hash", "validity_authority_granted",
+    "runtime_authority_granted", "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "construction_candidate_binding_receipt"},
+    "receipt_id": {"pattern": "^CONSTRUCT-BIND-V1-[A-F0-9]{20}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "construction_id": {"type": "string", "minLength": 1},
+    "construction_outcome_hash": {"$ref": "#/$defs/hash"},
+    "construction_arm": {"enum": ["T0", "T1", "T1_B", "T2"]},
+    "action_history_hash": {"$ref": "#/$defs/hash"},
+    "normal_relation_evidence_id": {"type": "string", "minLength": 1},
+    "normal_relation_evidence_hash": {"$ref": "#/$defs/hash"},
+    "rule_evidence_binding_id": {"pattern": "^EVID-V6-[A-F0-9]{20}$"},
+    "rule_evidence_binding_hash": {"$ref": "#/$defs/hash"},
+    "candidate_rule_id": {"type": "string", "minLength": 1},
+    "candidate_rule_transport_hash": {"$ref": "#/$defs/hash"},
+    "validity_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "creationMetadata": {
+      "type": "object", "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {"type": "string", "minLength": 7},
+        "config_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}
+      }
+    }
+  }
+}

@@ -1830,4 +1830,28 @@
   `selected_rule` or `no_op` without reassessing validity.
 - Runtime disposition is a pure projection of canonical trace state and grants
   no authority.
-- Canonical collection and authority binding remain deferred to TASK-039P1C.
+- Canonical collection and authority binding were deferred by P1B and are
+  resolved separately by TASK-039P1C in DEC-091.
+
+### DEC-091: Canonical v6 context and authority binding
+
+- Status: resolved_foundation_TASK039P1C
+- Owner: researcher
+- `NormalRelationEvidenceV1` remains the scientific source. Deterministic
+  `EVID-V6-*` and `NREF-V6-*` artifacts provide Rule v1-compatible identifiers
+  without converting normal evidence into `EvidencePackageV1`.
+- The first canonical bridge accepts one-process delayed-response increase
+  evidence only. Decrease evidence is `unsupported_source`; it is not
+  inverted, renamed, or treated as an increase.
+- Graph edge, regime condition, and parameter mappings require explicit IDs
+  and exact source/canonical hashes. Missing severity or persistence context
+  is `pending_context`; no parameter defaults are invented.
+- Verifier and runtime authority consume
+  `DelayedResponseArtifactCollectionProtocolV1`, while the historical
+  TASK-032 collection remains unchanged behind an exact delegation adapter.
+- Construction candidate, deterministic verifier acceptance, inner
+  governance, runtime authorization, and deployment authorization are
+  separate receipts. Evidence and construction grant no authority.
+- `no_op` is non-deployable. P1C runtime authorization is synthetic-only and
+  does not execute a rule.
+- P1A, P1B, and P1C are complete. P1D and parent P1 remain incomplete.

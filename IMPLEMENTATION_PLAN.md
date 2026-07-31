@@ -46,16 +46,19 @@ TASK-039P1 is decomposed and is not complete:
    - validity/utility separation;
    - typed `no_rule`, `no_op`, and `abstain`.
 3. **TASK-039P1C: canonical collection and decoupling**
-   - Status: pending.
-   - canonical contract exports;
-   - verifier/runtime removal of Phase-1 adapter dependence.
+   - Status: completed.
+   - explicit `EVID-V6-*` and `NREF-V6-*` bindings;
+   - dataset-neutral canonical delayed-response collection;
+   - verifier/runtime collection protocol and normalized evidence boundary;
+   - legacy TASK-032 hash-compatible collection adapter;
+   - separate construction, governance, and synthetic deployment receipts.
 4. **TASK-039P1D: GDN import and fidelity support**
    - Status: pending.
    - optional-import boundary;
    - pinned-source fidelity evidence and unresolved-decision support.
 
-P1A and P1B are complete, but parent TASK-039P1 remains incomplete until P1C
-and P1D pass. Do not load HAI merely to implement schemas and adapters.
+P1A, P1B, and P1C are complete, but parent TASK-039P1 remains incomplete until
+P1D passes. Do not load HAI merely to implement schemas and adapters.
 
 ## TASK-039A: HAI Source and Provenance
 

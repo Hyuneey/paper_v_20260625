@@ -17,11 +17,14 @@ TASK-039P1 is decomposed and remains incomplete:
    standard-library contracts, schemas, and a serialized aggregate-only
    legacy evidence adapter.
 3. **TASK-039P1C**: canonical contract collection and verifier/runtime
-   decoupling from Phase-1 adapters.
+   decoupling from Phase-1 adapters. Completed with explicit normal-evidence
+   bindings, the canonical collection protocol, legacy hash preservation, and
+   separate governance/deployment receipts.
 4. **TASK-039P1D**: GDN package import boundary and fidelity decision support.
 
-P1A and P1B do not authorize data access or consumer migration. Parent
-TASK-039P1 remains incomplete until P1C and P1D pass.
+P1A, P1B, and P1C do not authorize data access or scientific consumer
+migration. P1D remains pending. Parent TASK-039P1 remains incomplete until
+P1D passes.
 
 ## TASK-039A
 

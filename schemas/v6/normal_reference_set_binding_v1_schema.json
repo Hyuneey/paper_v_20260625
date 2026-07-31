@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/normal_reference_set_binding_v1_schema.json",
+  "title": "NormalReferenceSetBindingV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "normal_reference_id",
+    "artifact_hash",
+    "normal_relation_evidence_id",
+    "normal_relation_evidence_hash",
+    "source_normal_reference_hashes",
+    "dataset_manifest_id",
+    "data_view_id",
+    "split_manifest_id",
+    "dataset_version",
+    "process_scope",
+    "subsystem",
+    "operating_regime_id",
+    "matching_policy_id",
+    "matching_policy_version",
+    "matching_method",
+    "deterministic_tie_breaking",
+    "label_performance_used",
+    "raw_values_included",
+    "creation_metadata",
+    "authority_granted"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "normal_reference_set_binding"},
+    "normal_reference_id": {"pattern": "^NREF-V6-[A-F0-9]{20}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "normal_relation_evidence_id": {"type": "string", "minLength": 1},
+    "normal_relation_evidence_hash": {"$ref": "#/$defs/hash"},
+    "source_normal_reference_hashes": {"$ref": "#/$defs/nonemptyHashes"},
+    "dataset_manifest_id": {"$ref": "#/$defs/hash"},
+    "data_view_id": {"$ref": "#/$defs/hash"},
+    "split_manifest_id": {"$ref": "#/$defs/hash"},
+    "dataset_version": {"type": "string", "minLength": 1},
+    "process_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "subsystem": {"type": "string", "minLength": 1},
+    "operating_regime_id": {"type": "string", "minLength": 1},
+    "matching_policy_id": {"type": "string", "minLength": 1},
+    "matching_policy_version": {"type": "string", "minLength": 1},
+    "matching_method": {"type": "string", "minLength": 1},
+    "deterministic_tie_breaking": {"const": true},
+    "label_performance_used": {"const": false},
+    "raw_values_included": {"const": false},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"},
+    "authority_granted": {"const": false}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nonemptyHashes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/hash"}},
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {"type": "string", "minLength": 7},
+        "config_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}
+      }
+    }
+  }
+}

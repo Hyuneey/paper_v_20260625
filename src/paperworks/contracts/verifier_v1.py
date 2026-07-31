@@ -18,10 +18,12 @@ from paperworks.contracts.artifact_hashing import (
     verify_contract_artifact_hash,
     with_computed_artifact_hash,
 )
-from paperworks.contracts.evidence_v1 import (
-    EvidencePackageV1,
-    evidence_package_to_dict,
-    parse_evidence_package,
+from paperworks.contracts.context_protocol_v1 import (
+    DelayedResponseArtifactCollectionProtocolV1,
+    NormalizedEvidenceViewV1,
+    normalize_evidence_v1,
+    normalize_normal_reference_v1,
+    reparse_bound_evidence_v1,
 )
 from paperworks.contracts.graph_v1 import (
     CandidateGraphV1,
@@ -35,7 +37,6 @@ from paperworks.contracts.parameter_v1 import (
     calibration_parameter_to_dict,
     parse_calibration_parameter,
 )
-from paperworks.contracts.phase1_adapters import DelayedResponseArtifactCollectionV1
 from paperworks.contracts.rule_v1 import (
     DelayedResponseRuleV1,
     canonical_rule_document_sha256,
@@ -187,7 +188,7 @@ class RuleVerificationOutcomeV1:
 @dataclass
 class _VerificationContext:
     rule: DelayedResponseRuleV1
-    artifacts: DelayedResponseArtifactCollectionV1
+    artifacts: DelayedResponseArtifactCollectionProtocolV1
     policy: DelayedResponseVerifierPolicyV1
     accepted_library: Sequence[RuleVerificationOutcomeV1]
     registry: SchemaRegistry
@@ -210,6 +211,10 @@ class _VerificationContext:
     @property
     def parameters(self) -> Mapping[str, CalibrationParameterV1]:
         return self.artifacts.parameter_by_id
+
+    @property
+    def evidence(self) -> NormalizedEvidenceViewV1:
+        return normalize_evidence_v1(self.artifacts.evidence)
 
 
 def parse_verifier_result(
@@ -270,7 +275,7 @@ def canonical_verifier_result_sha256(result: VerifierResultV1) -> str:
 
 def canonical_verifier_binding_id(
     rule: DelayedResponseRuleV1,
-    artifacts: DelayedResponseArtifactCollectionV1,
+    artifacts: DelayedResponseArtifactCollectionProtocolV1,
     *,
     policy: DelayedResponseVerifierPolicyV1,
     status: str,
@@ -294,7 +299,7 @@ def canonical_verifier_binding_id(
 def verify_verifier_result_binding(
     rule: DelayedResponseRuleV1,
     result: VerifierResultV1,
-    artifacts: DelayedResponseArtifactCollectionV1,
+    artifacts: DelayedResponseArtifactCollectionProtocolV1,
     *,
     policy: DelayedResponseVerifierPolicyV1,
 ) -> str:
@@ -323,7 +328,7 @@ def verify_verifier_result_binding(
 
 def verify_delayed_response_rule(
     rule: DelayedResponseRuleV1,
-    artifacts: DelayedResponseArtifactCollectionV1,
+    artifacts: DelayedResponseArtifactCollectionProtocolV1,
     *,
     policy: DelayedResponseVerifierPolicyV1,
     accepted_library: Sequence[RuleVerificationOutcomeV1] = (),
@@ -398,7 +403,7 @@ def _stage_1(context: _VerificationContext) -> list[VerifierIssueV1]:
     checks: tuple[Callable[[], Any], ...] = (
         lambda: _require_structural_rule(context),
         lambda: parse_candidate_graph(candidate_graph_to_dict(context.artifacts.graph), registry=context.registry),
-        lambda: parse_evidence_package(evidence_package_to_dict(context.artifacts.evidence), registry=context.registry),
+        lambda: reparse_bound_evidence_v1(context.artifacts.evidence),
         *(lambda parameter=parameter: parse_calibration_parameter(calibration_parameter_to_dict(parameter), registry=context.registry)
           for parameter in context.artifacts.parameters),
     )
@@ -439,7 +444,7 @@ def _stage_3(context: _VerificationContext) -> list[VerifierIssueV1]:
 def _stage_4(context: _VerificationContext) -> list[VerifierIssueV1]:
     source = _single_node(context, context.rule.source_variables[0])
     target = _single_node(context, context.rule.target_variables[0])
-    values = {context.rule.subsystem, context.artifacts.evidence.matched_normal_reference.subsystem}
+    values = {context.rule.subsystem, context.evidence.subsystem}
     if source is not None:
         values.add(source.subsystem)
     if target is not None:
@@ -477,7 +482,7 @@ def _stage_6(context: _VerificationContext) -> list[VerifierIssueV1]:
         if parameter is not None and parameter.relation_family != "delayed_response":
             issues.append(_issue("PARAMETER_RELATION_MISMATCH", 6, "verified_parameter_values", "parameter relation family disagrees", "non_repairable"))
     required_claims = {"state_conditioned_response", "typical_lag"}
-    if not required_claims.issubset(context.artifacts.evidence.supported_claims):
+    if not required_claims.issubset(context.evidence.supported_claims):
         issues.append(_issue("EVIDENCE_CLAIMS_INSUFFICIENT", 6, "evidence_refs", "evidence lacks required delayed-response claims", "non_repairable"))
     return issues
 
@@ -507,7 +512,7 @@ def _stage_7(context: _VerificationContext) -> list[VerifierIssueV1]:
 def _stage_8(context: _VerificationContext) -> list[VerifierIssueV1]:
     parameter = context.parameters.get(context.rule.lag.parameter_ref)
     edge = context.edge
-    evidence = context.artifacts.evidence
+    evidence = context.evidence
     if parameter is None or edge is None:
         return []
     tolerance = context.policy.time_comparison_tolerance
@@ -623,7 +628,11 @@ def _stage_11(context: _VerificationContext) -> list[VerifierIssueV1]:
 
 def _stage_12(context: _VerificationContext) -> list[VerifierIssueV1]:
     issues = []
-    if context.artifacts.evidence.data_split not in {"train", "calibration"}:
+    if context.evidence.data_split not in {
+        "train",
+        "calibration",
+        "normal_relation_calibration",
+    }:
         issues.append(_issue("EVIDENCE_SPLIT_PROHIBITED", 12, "final_test_boundaries", "evidence split is prohibited", "non_repairable"))
     if any(item.calibration_split != "calibration" for item in context.artifacts.parameters):
         issues.append(_issue("PARAMETER_SPLIT_PROHIBITED", 12, "final_test_boundaries", "numeric parameter split must be calibration", "non_repairable"))
@@ -631,7 +640,7 @@ def _stage_12(context: _VerificationContext) -> list[VerifierIssueV1]:
 
 
 def _stage_13(context: _VerificationContext) -> list[VerifierIssueV1]:
-    evidence = context.artifacts.evidence
+    evidence = context.evidence
     issues = []
     if len(context.rule.evidence_refs) != 1 or context.rule.evidence_refs[0] != evidence.evidence_id:
         issues.append(_issue("EVIDENCE_REFERENCE_INVALID", 13, "evidence_refs", "exactly one existing evidence reference is required", "non_repairable"))
@@ -650,15 +659,40 @@ def _stage_13(context: _VerificationContext) -> list[VerifierIssueV1]:
 
 
 def _stage_14(context: _VerificationContext) -> list[VerifierIssueV1]:
-    normal = context.artifacts.evidence.matched_normal_reference
+    evidence = context.evidence
     issues = []
-    if len(context.rule.normal_reference_refs) != 1 or context.rule.normal_reference_refs[0] != normal.reference_id:
+    if (
+        len(context.rule.normal_reference_refs) != 1
+        or context.rule.normal_reference_refs[0]
+        not in evidence.normal_reference_ids
+    ):
         issues.append(_issue("NORMAL_REFERENCE_INVALID", 14, "evidence_refs", "rule normal reference is absent from evidence", "non_repairable"))
+        return issues
+    normal_value = context.artifacts.normal_reference_by_id.get(
+        context.rule.normal_reference_refs[0]
+    )
+    if normal_value is None:
+        issues.append(_issue("NORMAL_REFERENCE_INVALID", 14, "evidence_refs", "rule normal reference is absent from collection", "non_repairable"))
+        return issues
+    try:
+        normal = normalize_normal_reference_v1(normal_value)
+    except TypeError:
+        issues.append(_issue("NORMAL_REFERENCE_INVALID", 14, "evidence_refs", "normal reference cannot be normalized", "non_repairable"))
+        return issues
     for parameter_id in context.rule.parameter_refs:
         parameter = context.parameters.get(parameter_id)
         if parameter is not None and normal.reference_id not in parameter.normal_reference_refs:
             issues.append(_issue("PARAMETER_NORMAL_REFERENCE_MISMATCH", 14, "verified_parameter_values", "parameter omits the rule normal reference", "non_repairable"))
-    if normal.matching_method == "exact_regime_subsystem" and normal.operating_regime != context.artifacts.evidence.operating_regime:
+    if normal.label_performance_used or not normal.deterministic_tie_breaking:
+        issues.append(_issue("NORMAL_REFERENCE_POLICY_INVALID", 14, "evidence_refs", "normal reference policy must be deterministic and label-free", "non_repairable"))
+    if context.evidence.evidence_kind == "v6_rule_evidence_binding" and (
+        normal.binding_artifact_hash
+        != evidence.normal_reference_binding_hash
+        or normal.normal_relation_evidence_hash
+        != evidence.normal_relation_evidence_hash
+    ):
+        issues.append(_issue("NORMAL_REFERENCE_BINDING_MISMATCH", 14, "evidence_refs", "v6 normal reference does not bind the evidence source", "non_repairable"))
+    if normal.matching_method == "exact_regime_subsystem" and normal.operating_regime != evidence.operating_regime:
         issues.append(_issue("NORMAL_REGIME_MISMATCH", 14, "evidence_refs", "exact-regime normal reference is inconsistent", "non_repairable"))
     return issues
 
@@ -723,12 +757,13 @@ def _stage_18(context: _VerificationContext) -> list[VerifierIssueV1]:
 
 
 def _stage_19(context: _VerificationContext) -> list[VerifierIssueV1]:
+    evidence = context.evidence
     issues = []
     if context.edge is None:
         issues.append(_issue("EXPLANATION_EDGE_MISSING", 19, "graph_edge_refs", "future explanation cannot reference an edge", "non_repairable"))
-    if context.rule.evidence_refs != (context.artifacts.evidence.evidence_id,):
+    if context.rule.evidence_refs != (evidence.evidence_id,):
         issues.append(_issue("EXPLANATION_EVIDENCE_MISSING", 19, "evidence_refs", "future explanation cannot reference evidence", "non_repairable"))
-    if context.rule.normal_reference_refs != (context.artifacts.evidence.matched_normal_reference.reference_id,):
+    if context.rule.normal_reference_refs != evidence.normal_reference_ids:
         issues.append(_issue("EXPLANATION_NORMAL_REFERENCE_MISSING", 19, "evidence_refs", "future explanation cannot reference normal evidence", "non_repairable"))
     if any(parameter_id not in context.parameters for parameter_id in context.rule.parameter_refs):
         issues.append(_issue("EXPLANATION_PARAMETER_MISSING", 19, "parameter_refs", "future explanation cannot reference every parameter", "repairable"))
@@ -742,11 +777,17 @@ def _stage_20(context: _VerificationContext) -> list[VerifierIssueV1]:
     edge = context.edge
     if edge is not None and edge.causal_claim_allowed:
         issues.append(_issue("CAUSAL_CLAIM_PROHIBITED", 20, "graph_edge_refs", "candidate edge cannot authorize causality", "non_repairable"))
-    evidence = context.artifacts.evidence
+    evidence = context.evidence
     if not _REQUIRED_PROHIBITED_CLAIMS.issubset(evidence.prohibited_claims):
         issues.append(_issue("CLAIM_BOUNDARY_INCOMPLETE", 20, "evidence_refs", "evidence claim boundary is incomplete", "non_repairable"))
     if evidence.raw_values_included:
         issues.append(_issue("RAW_VALUES_PROHIBITED", 20, "evidence_refs", "raw values are prohibited", "non_repairable"))
+    if (
+        evidence.label_performance_used
+        or evidence.validity_authority_granted
+        or evidence.runtime_authority_granted
+    ):
+        issues.append(_issue("EVIDENCE_AUTHORITY_BOUNDARY", 20, "evidence_refs", "evidence cannot use label performance or grant authority", "non_repairable"))
     if context.rule.runtime_authorized or context.artifacts.runtime_authorized:
         issues.append(_issue("RUNTIME_AUTHORITY_PROHIBITED", 20, "final_test_boundaries", "TASK-032D cannot authorize runtime", "non_repairable"))
     return issues

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1c_contract_report",
+  "task_id": "TASK-039P1C",
+  "status": "passed_canonical_context_binding_and_decoupling",
+  "starting_commit": "ebe5e9a48a16e1a7008bf62acb59e256d267650b",
+  "implementation": {
+    "new_contract_module_count": 5,
+    "new_schema_count": 6,
+    "canonical_collection": "CanonicalDelayedResponseArtifactCollectionV1",
+    "collection_protocol": "DelayedResponseArtifactCollectionProtocolV1",
+    "normal_reference_binding": "NormalReferenceSetBindingV1",
+    "rule_evidence_binding": "RuleEvidenceBindingV1",
+    "construction_receipt": "ConstructionCandidateBindingReceiptV1",
+    "governance_receipt": "GovernanceAuthorityBindingReceiptV1",
+    "deployment_receipt": "V6DeploymentAuthorizationReceiptV1"
+  },
+  "legacy_compatibility": {
+    "verifier_stage_count": 20,
+    "accepted_rule_hash_unchanged": true,
+    "verifier_result_hash_unchanged": true,
+    "runtime_authorization_hash_unchanged": true,
+    "TASK032F_replay_hash_unchanged": true,
+    "phase1_direct_imports_removed_from_verifier_and_runtime": true
+  },
+  "scope": {
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_execution": false,
+    "dataset_access": false,
+    "private_artifact_access": false,
+    "outer_access": false,
+    "sealed_access": false,
+    "consumer_migration": false,
+    "Rule_v2_created": false,
+    "GDN_fidelity_resolved": false,
+    "primary_detector_selected": false
+  },
+  "verification": {
+    "targeted_test_count": 28,
+    "targeted_test_failures": 0,
+    "TASK032_regression_test_count": 106,
+    "TASK032_regression_failures": 0,
+    "P1A_P1B_P0_regression_test_count": 110,
+    "P1A_P1B_P0_regression_failures": 0,
+    "guarded_unittest_module_count": 132,
+    "guarded_unittest_tests_run": 286,
+    "guarded_unittest_assertion_failures": 0,
+    "guarded_unittest_import_errors": 21,
+    "guarded_import_error_breakdown": {
+      "torch": 8,
+      "jsonschema": 13
+    },
+    "guarded_known_optional_modules_preclassified": true,
+    "pytest_only_modules_excluded_from_unittest_loader": true,
+    "restricted_path_modules_excluded_before_source_import": true,
+    "new_import_errors_vs_P1B": 0,
+    "canonical_test_interpreter": "CPython 3.14 with jsonschema 4.26.0",
+    "canonical_format_validation": "process-local standard-library date and date-time checkers; no package installation",
+    "tracked_public_python_compiled": 269,
+    "allowlisted_JSON_parsed": 326,
+    "v6_schema_JSON_parsed": 15,
+    "self_hashed_reports_verified": 145,
+    "pip_check": "passed in bundled and canonical test interpreters",
+    "dependency_installation": false
+  },
+  "parent_task": {
+    "TASK-039P1A": "completed",
+    "TASK-039P1B": "completed",
+    "TASK-039P1C": "completed",
+    "TASK-039P1D": "pending",
+    "TASK-039P1": "incomplete"
+  },
+  "claim_boundary": "Canonical synthetic contract integration only; no real Agent, generation experiment, utility selection, detector correction, rule execution, HAI readiness, or thesis performance.",
+  "report_hash": "ef94fdd4845ada30b1c37c18adf8ac1fffd88e3d234659e549fbf5560a3e85c9"
+}

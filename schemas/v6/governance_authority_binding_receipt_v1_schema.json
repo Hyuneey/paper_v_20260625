@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/governance_authority_binding_receipt_v1_schema.json",
+  "title": "GovernanceAuthorityBindingReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "receipt_id", "artifact_hash",
+    "governance_id", "governance_outcome_hash", "accepted_rule_id",
+    "accepted_rule_transport_hash", "accepted_rule_hash",
+    "verifier_result_id", "verifier_result_hash", "collection_id",
+    "collection_hash", "normal_guard_assessment_ref",
+    "inner_utility_assessment_ref", "governance_policy_ref", "decision",
+    "deployable", "runtime_authority_granted", "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "governance_authority_binding_receipt"},
+    "receipt_id": {"pattern": "^GOV-BIND-V1-[A-F0-9]{20}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "governance_id": {"type": "string", "minLength": 1},
+    "governance_outcome_hash": {"$ref": "#/$defs/hash"},
+    "accepted_rule_id": {"type": "string", "minLength": 1},
+    "accepted_rule_transport_hash": {"$ref": "#/$defs/hash"},
+    "accepted_rule_hash": {"$ref": "#/$defs/hash"},
+    "verifier_result_id": {"type": "string", "minLength": 1},
+    "verifier_result_hash": {"$ref": "#/$defs/hash"},
+    "collection_id": {"pattern": "^COLL-V6-[A-F0-9]{20}$"},
+    "collection_hash": {"$ref": "#/$defs/hash"},
+    "normal_guard_assessment_ref": {"$ref": "#/$defs/hash"},
+    "inner_utility_assessment_ref": {"$ref": "#/$defs/hash"},
+    "governance_policy_ref": {"$ref": "#/$defs/hash"},
+    "decision": {"enum": ["selected_rule", "no_op"]},
+    "deployable": {"type": "boolean"},
+    "runtime_authority_granted": {"const": false},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "creationMetadata": {
+      "type": "object", "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {"type": "string", "minLength": 7},
+        "config_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}
+      }
+    }
+  }
+}

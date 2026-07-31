@@ -8,14 +8,17 @@ import json
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 
 from paperworks.contracts.accepted_rule import canonical_rule_verification_subject_sha256
 from paperworks.contracts.artifact_hashing import ContractArtifactHashError, verify_contract_artifact_hash
-from paperworks.contracts.evidence_v1 import evidence_package_to_dict, parse_evidence_package
+from paperworks.contracts.context_protocol_v1 import (
+    DelayedResponseArtifactCollectionProtocolV1,
+    normalize_evidence_v1,
+    reparse_bound_evidence_v1,
+)
 from paperworks.contracts.graph_v1 import candidate_graph_to_dict, parse_candidate_graph
 from paperworks.contracts.parameter_v1 import calibration_parameter_to_dict, parse_calibration_parameter
-from paperworks.contracts.phase1_adapters import DelayedResponseArtifactCollectionV1
 from paperworks.contracts.rule_v1 import DelayedResponseRuleV1, delayed_response_rule_to_dict, parse_delayed_response_rule
 from paperworks.contracts.verifier_v1 import (
     DelayedResponseVerifierPolicyV1,
@@ -24,6 +27,16 @@ from paperworks.contracts.verifier_v1 import (
     verifier_result_to_dict,
     verify_verifier_result_binding,
 )
+
+if TYPE_CHECKING:
+    from paperworks.contracts.canonical_collection_v1 import (
+        CanonicalDelayedResponseArtifactCollectionV1,
+    )
+    from paperworks.contracts.outcome_binding_v1 import (
+        GovernanceAuthorityBindingReceiptV1,
+        V6DeploymentAuthorizationReceiptV1,
+    )
+    from paperworks.v6.common import CreationMetadataV1
 
 
 AUTHORIZATION_VERSION = "1.0.0"
@@ -61,7 +74,7 @@ class RuntimeAuthorizationReceiptV1:
 class RuntimeAuthorizationBundleV1:
     accepted_rule: DelayedResponseRuleV1
     verifier_result: VerifierResultV1
-    artifacts: DelayedResponseArtifactCollectionV1
+    artifacts: DelayedResponseArtifactCollectionProtocolV1
     verifier_policy: DelayedResponseVerifierPolicyV1
     receipt: RuntimeAuthorizationReceiptV1
     _capability: object | None = field(default=None, repr=False, compare=False)
@@ -69,6 +82,21 @@ class RuntimeAuthorizationBundleV1:
     @property
     def runtime_authorized(self) -> bool:
         return self._capability is _AUTHORIZATION_CAPABILITY
+
+
+@dataclass(frozen=True)
+class V6RuntimeAuthorizationBundleV1:
+    """V6 deployment bundle requiring both governance and runtime receipts."""
+
+    runtime_bundle: RuntimeAuthorizationBundleV1
+    deployment_receipt: "V6DeploymentAuthorizationReceiptV1"
+
+    @property
+    def runtime_authorized(self) -> bool:
+        return (
+            self.runtime_bundle.runtime_authorized
+            and self.deployment_receipt.deployable
+        )
 
 
 def authorization_receipt_to_dict(receipt: RuntimeAuthorizationReceiptV1) -> dict[str, Any]:
@@ -110,7 +138,35 @@ def canonical_verifier_policy_sha256(policy: DelayedResponseVerifierPolicyV1) ->
 def authorize_delayed_response_runtime(
     accepted_rule: DelayedResponseRuleV1 | None,
     verifier_result: VerifierResultV1,
-    artifacts: DelayedResponseArtifactCollectionV1,
+    artifacts: DelayedResponseArtifactCollectionProtocolV1,
+    *,
+    verifier_policy: DelayedResponseVerifierPolicyV1,
+    created_at: str,
+    runtime_scope: str = "synthetic_only",
+) -> RuntimeAuthorizationBundleV1:
+    """Preserve the historical TASK-032 authorization entry point."""
+
+    if normalize_evidence_v1(artifacts.evidence).evidence_kind.startswith(
+        "v6_"
+    ):
+        _fail(
+            "V6_GOVERNANCE_AUTHORITY_REQUIRED",
+            "v6 runtime authorization requires a selected governance binding",
+        )
+    return _authorize_delayed_response_runtime_core(
+        accepted_rule,
+        verifier_result,
+        artifacts,
+        verifier_policy=verifier_policy,
+        created_at=created_at,
+        runtime_scope=runtime_scope,
+    )
+
+
+def _authorize_delayed_response_runtime_core(
+    accepted_rule: DelayedResponseRuleV1 | None,
+    verifier_result: VerifierResultV1,
+    artifacts: DelayedResponseArtifactCollectionProtocolV1,
     *,
     verifier_policy: DelayedResponseVerifierPolicyV1,
     created_at: str,
@@ -148,7 +204,8 @@ def authorize_delayed_response_runtime(
         _fail(exc.issue_code, exc.message)
 
     rule = accepted_rule
-    evidence = artifacts.evidence
+    bound_evidence = artifacts.evidence
+    evidence = normalize_evidence_v1(bound_evidence)
     parameter_ids = tuple(sorted(item.parameter_id for item in artifacts.parameters))
     if parameter_ids != tuple(sorted(rule.parameter_refs)):
         _fail("RUNTIME_PARAMETER_SET_MISMATCH", "parameter artifacts do not exactly match rule references")
@@ -190,8 +247,8 @@ def authorize_delayed_response_runtime(
         "verifier_version": verifier_result.verifier_version,
         "graph_id": artifacts.graph.graph_id,
         "graph_hash": artifacts.graph.artifact_hash,
-        "evidence_id": evidence.evidence_id,
-        "evidence_hash": evidence.artifact_hash,
+        "evidence_id": bound_evidence.evidence_id,
+        "evidence_hash": bound_evidence.artifact_hash,
         "parameter_hashes": dict(parameter_hashes),
         "verifier_policy_hash": canonical_verifier_policy_sha256(verifier_policy),
         "runtime_scope": runtime_scope,
@@ -207,6 +264,56 @@ def authorize_delayed_response_runtime(
     )
     verify_runtime_authorization_bundle(bundle)
     return bundle
+
+
+def authorize_v6_delayed_response_runtime(
+    accepted_rule: DelayedResponseRuleV1 | None,
+    verifier_result: VerifierResultV1,
+    artifacts: "CanonicalDelayedResponseArtifactCollectionV1",
+    governance_binding: "GovernanceAuthorityBindingReceiptV1",
+    *,
+    verifier_policy: DelayedResponseVerifierPolicyV1,
+    created_at: str,
+    creation_metadata: "CreationMetadataV1",
+    runtime_scope: str = "synthetic_only",
+) -> V6RuntimeAuthorizationBundleV1:
+    """Authorize synthetic v6 runtime only after selected-rule governance."""
+
+    if (
+        governance_binding.decision != "selected_rule"
+        or not governance_binding.deployable
+    ):
+        _fail(
+            "V6_GOVERNANCE_NOT_DEPLOYABLE",
+            "no_op or unbound governance cannot authorize deployment",
+        )
+    if (
+        governance_binding.collection_id != artifacts.collection_id
+        or governance_binding.collection_hash != artifacts.artifact_hash
+    ):
+        _fail(
+            "V6_GOVERNANCE_COLLECTION_MISMATCH",
+            "governance binding does not match the canonical collection",
+        )
+    runtime_bundle = _authorize_delayed_response_runtime_core(
+        accepted_rule,
+        verifier_result,
+        artifacts,
+        verifier_policy=verifier_policy,
+        created_at=created_at,
+        runtime_scope=runtime_scope,
+    )
+    from paperworks.contracts.outcome_binding_v1 import (
+        bind_v6_deployment_authority_v1,
+    )
+
+    deployment = bind_v6_deployment_authority_v1(
+        governance_binding=governance_binding,
+        runtime_authorization_receipt=runtime_bundle.receipt,
+        collection=artifacts,
+        creation_metadata=creation_metadata,
+    )
+    return V6RuntimeAuthorizationBundleV1(runtime_bundle, deployment)
 
 
 def verify_runtime_authorization_bundle(bundle: RuntimeAuthorizationBundleV1) -> str:
@@ -245,11 +352,14 @@ def verify_runtime_authorization_bundle(bundle: RuntimeAuthorizationBundleV1) ->
     return receipt.authorization_id
 
 
-def _reparse_inputs(rule: DelayedResponseRuleV1, artifacts: DelayedResponseArtifactCollectionV1) -> None:
+def _reparse_inputs(
+    rule: DelayedResponseRuleV1,
+    artifacts: DelayedResponseArtifactCollectionProtocolV1,
+) -> None:
     try:
         parse_delayed_response_rule(delayed_response_rule_to_dict(rule))
         parse_candidate_graph(candidate_graph_to_dict(artifacts.graph))
-        parse_evidence_package(evidence_package_to_dict(artifacts.evidence))
+        reparse_bound_evidence_v1(artifacts.evidence)
         for parameter in artifacts.parameters:
             parse_calibration_parameter(calibration_parameter_to_dict(parameter))
     except ValueError as exc:
