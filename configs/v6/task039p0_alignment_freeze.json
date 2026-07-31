@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-039P0",
+  "artifact_type": "v6_codebase_alignment_freeze",
+  "repository": {
+    "url": "https://github.com/Hyuneey/paper_v_20260625",
+    "branch": "main",
+    "expected_head": "337769066f62b8f4fcd8e48a9a8f8d3651e3818a",
+    "origin_main_equal": true,
+    "clean_worktree_before_rerun": true
+  },
+  "status": "passed_v6_codebase_alignment_freeze",
+  "filesystem_policy": {
+    "candidate_source": "git_ls_files_only",
+    "public_root_allowlist": true,
+    "prohibited_path_check_before_read": true,
+    "untracked_json_parsing": false,
+    "workspace_recursive_scan": false
+  },
+  "architecture": {
+    "primary_dataset_candidate": "HAI_23.05",
+    "process_scope": "one_process_after_P1_P3_feasibility",
+    "relation_family": "pairwise_delayed_response",
+    "core_construction_data": "normal_only",
+    "primary_downstream_role": "detector_false_negative_correction",
+    "fp_correction_role": "supplementary",
+    "runtime_llm": false
+  },
+  "experiment_arms": [
+    "T0",
+    "T1",
+    "T1-B",
+    "T2"
+  ],
+  "inventory": {
+    "production_modules": 51,
+    "production_public_symbols": 727,
+    "schemas": 7,
+    "contract_fixtures": 67
+  },
+  "environment_preflight": {
+    "python": "3.12.13",
+    "pip": "26.0.1",
+    "pytest_importable": false,
+    "jsonschema_importable": false,
+    "torch_importable": false,
+    "torch_geometric_importable": false,
+    "pip_check": "passed",
+    "dependency_install_or_upgrade_performed": false
+  },
+  "verification": {
+    "task039p0_tests_passed": 13,
+    "guarded_unittest_tests_run": 161,
+    "guarded_unittest_assertion_failures": 0,
+    "baseline_missing_dependency_import_errors": 21,
+    "tracked_public_python_compiled": 231,
+    "compile_failures": 0,
+    "tracked_allowlisted_json_parsed": 306,
+    "json_parse_failures": 0,
+    "self_hashed_reports_verified": 142,
+    "self_hash_failures": 0
+  },
+  "activity": {
+    "scientific_source_behavior_change": false,
+    "dataset_access": false,
+    "restricted_file_access": false,
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "generated_python_execution": false,
+    "detector_or_rule_runtime": false,
+    "outer_access": false,
+    "sealed_test_access": false,
+    "new_scientific_experiments": 0
+  },
+  "config_hash": "3670c4b246e2c8dfe5ff5f6106a4b8720387c5086806a77f550d79f1340f7f15"
+}

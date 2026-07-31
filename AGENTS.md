@@ -1,484 +1,317 @@
 # AGENTS.md
 
-## 1. Project mission
-
-This repository implements a feasibility-first research prototype for:
-
-> **Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.**
-
-The system should:
-
-1. discover plausible variable-pair candidates from normal multivariate time-series data,
-2. profile their normal temporal relations,
-3. construct executable rules,
-4. verify those rules deterministically, and
-5. execute only verified rules at runtime without calling an LLM.
-
-The central contribution is **training-time agentic verified rule construction**, not a new state-of-the-art detector.
+## 1. Project Mission
 
----
-
-## 2. Reviewed external references
+This repository implements:
 
-The following upstream projects are references, not drop-in dependencies:
+> Graph-guided, training-time agentic verified rule construction for
+> explainable multivariate time-series anomaly detection.
 
-- ARGOS: `https://github.com/microsoft/ARGOS`
-  - reviewed snapshot: `6b24161ff08de069840a1fb4fbaecf7bf8e393f1`
-  - license: MIT
-  - intended reuse: agent-loop architecture, rule-generation concepts, repair/review workflow
-- GDN: `https://github.com/d-ailin/GDN`
-  - reviewed snapshot: `9853899da860682669a134e4af315d036aab4eca`
-  - license: MIT
-  - intended reuse: model architecture and relation-candidate idea
-- SWaT:
-  - preferred source: official iTrust request/download
-  - optional local mirror under review: Kaggle URL supplied by the researcher
+The v6 architecture has five stages:
 
-TASK-000 must verify and pin exact upstream commits before any code reuse. Do not track a moving `main` branch in reproducibility records.
+1. data readiness and normal relation evidence construction;
+2. bounded Rule Construction Agent;
+3. deterministic rule validity and separate rule governance;
+4. LLM-free verified-rule runtime;
+5. detector FN correction and trace-grounded explanation.
 
-## Upstream repositories
+The research contribution is verified rule construction and governance, not a
+new detector.
 
-- `external/argos` and `external/gdn` are read-only references.
-- Never edit, commit, format, or run automatic migrations inside them.
-- Do not import upstream packages directly into production code unless a task
-  explicitly approves it.
-- Record inspected upstream files and commit SHAs in
-  `docs/UPSTREAM_SOURCES.md`.
-- Reimplement only the approved minimal interfaces under `src/`.
+## 2. Current V6 Scope
 
----
+- Primary dataset candidate: **HAI 23.05**.
+- Process scope: exactly one process, selected only after P1/P3 feasibility.
+- Relation family: pairwise delayed response.
+- Source: binary or explicitly normalized discrete control/actuator signal.
+- Target: continuous process sensor.
+- Core construction evidence: normal-only.
+- Primary rule role: detector false-negative correction.
+- FP correction: supplementary and guarded.
+- Runtime LLM: prohibited.
 
-## 3. Current implementation scope
+SWaT and WADI are future external-validation datasets. They are not blockers
+for the first HAI MVP.
 
-Unless a task explicitly expands scope, the current milestone supports only:
+Raw HAI, SWaT, WADI, KPI, and other restricted research data is local-only and
+untracked. Never upload it to GitHub, CI artifacts, provider prompts, issue
+attachments, or reports.
 
-- dataset: **SWaT**
-- relation-learning source: normal data only
-- initial relation type: **binary actuator → continuous sensor**
-- candidate discovery: metadata/statistical universe + GDN Top-K relations
-- relation profile: trigger events, response delay, response magnitude
-- minimal DSL:
-  - `changed_to`
-  - `increase_within`
-  - `response_missing`
-- construction order:
-  1. deterministic template baseline,
-  2. deterministic verifier,
-  3. runtime rule engine,
-  4. LLM planner only after the deterministic path passes its gate
-- runtime: **LLM-free**
+## 3. Canonical, Legacy, and Reference Paths
 
-### Out of scope unless explicitly requested
+### Canonical scientific contracts
 
-- WADI support
-- full DyGraphAD implementation
-- causal discovery or root-cause proof
-- broad multi-type DSL coverage
-- composite rule synthesis
-- production deployment
-- online retraining
-- detector fusion before deterministic feasibility is proven
+The authoritative path is `src/paperworks/contracts/`, specifically:
 
----
+- `rule_v1.py`
+- `graph_v1.py`
+- `evidence_v1.py`, retained only for its original scope
+- `parameter_v1.py`
+- `verifier_v1.py`
+- `runtime_authority.py`
+- `runtime_v1.py`
+- `explanation_v1.py`
 
-## 4. Research invariants
+New v6 work must extend or adapt this contract path. Do not create a competing
+RuleAst authority.
 
-These rules are non-negotiable.
+### Reusable producers
 
-### 4.1 No test leakage
+Reuse through explicit v2 adapters:
 
-- Never use held-out test attack labels, intervals, outcomes, or plots for:
-  - candidate discovery,
-  - model training,
-  - preprocessing choice,
-  - relation profiling,
-  - calibration,
-  - rule generation,
-  - rule refinement,
-  - threshold selection,
-  - checkpoint selection,
-  - verifier tuning, or
-  - hyperparameter selection.
-- The final test split is evaluation-only.
+- `src/paperworks/data/*`
+- `src/paperworks/metadata/*`
+- `src/paperworks/candidates/*`
+- `src/paperworks/gdn/masked.py`
+- selected `gdn/torch_backend.py` code only after fidelity approval
+- selected `profiling/relations.py` code
 
-### 4.2 GDN relations are candidates, not causes
+Current SWaT defaults and split semantics are not canonical HAI contracts.
 
-- Never label a GDN edge as causal, physical ground truth, or root cause.
-- Use `candidate relation`, `predictive relation`, or `data-guided pair`.
+### Legacy read-only compatibility
 
-### 4.3 LLM authority is constrained
+The following paths remain importable for historical tests and artifacts but
+must not be dependencies of future HAI/v6 modules:
 
-- An LLM may use only the supplied candidate variables.
-- An LLM may not invent or modify `Delta t`, thresholds, durations, or magnitudes.
-- Numeric rule parameters must reference normal-data calibration artifacts.
-- An LLM may not approve its own rule.
+- `src/paperworks/dsl/*`
+- `src/paperworks/verification/*`
+- `src/paperworks/runtime/*`
+- `src/paperworks/planning/refiner.py`
+- legacy template/LLM planners that produce `RuleAst`
+- historical `src/paperworks/e2e/*` orchestration
 
-### 4.4 Runtime must be LLM-free
+Do not delete, rename, warn, reformat, or behaviorally modify these paths
+without an explicit compatibility task.
 
-- Runtime detection and explanation execute deterministic verified DSL rules only.
-- Runtime packages must not import LLM providers or planning modules.
+### Frozen reference track
 
-### 4.5 Synthetic anomalies are auxiliary only
+`experiments/argos_reproduction/*` and TASK-022 through TASK-038F are frozen
+reference-only. ARGOS is classified as `partial_methodological_support`.
 
-- Synthetic violations may be used for stress testing or auxiliary validation.
-- They must not be final test data.
-- They must not be exposed as a hidden answer that an LLM can copy.
+Do not:
 
-### 4.6 Reproducibility is mandatory
+- tune ARGOS prompts or models on its exposed outer partition;
+- create a branch or detector winner;
+- modify historical reports, configs, metrics, rules, or predictions;
+- continue ARGOS execution without a new explicit authorization.
 
-Store:
+## 4. Scientific Separations
 
-- random seeds,
-- config snapshots,
-- split manifests,
-- code commit,
-- data fingerprints,
-- upstream source revisions,
-- package versions,
-- artifact provenance.
+### Rule validity
 
-### 4.7 No hard-coded scientific conclusions
+Deterministic validity covers:
 
-- Do not hard-code SWaT relation pairs in library logic.
-- Explicit pairs are allowed only in clearly labeled tests, examples, or pre-registered evaluation sets.
+- structural correctness;
+- source/target compatibility;
+- graph/evidence binding;
+- parameter provenance;
+- split compliance;
+- operational contract;
+- claim boundary.
 
-### 4.8 Do not silently decide research questions
+### Rule utility
 
-- Record alternatives and required decisions in `docs/DECISIONS_REQUIRED.md`.
-- Stop when a decision materially changes a scientific claim or evaluation protocol.
+Label-aware utility covers:
 
-### 4.9 Do not weaken tests
+- normal false-fire;
+- inner attack coverage;
+- detector FN recovery;
+- added false positives;
+- duplicate firing;
+- no-op-aware selection.
 
-- Never delete, skip, or relax relevant tests merely to make code pass.
+Attack-label performance must not decide deterministic validity acceptance.
+Validity and utility artifacts, statuses, and tests must remain separate.
 
----
+### Evidence types
 
-## 5. SWaT data-governance policy
+Core construction requires a new normal-only `NormalRelationEvidence` contract
+containing support, response direction, lag/magnitude summaries, stability,
+operating regime, matched normal references, and parameter references.
 
-SWaT data is user-provided, local-only research data.
+Optional `DetectorErrorContext` may contain authorized development/inner FN or
+FP context and detector prediction references. It cannot replace or mutate
+normal relation evidence.
 
-### 5.1 Storage rules
+The anomaly-anchored `EvidencePackageV1` remains valid only for its original
+scope. Do not silently reinterpret it as the v6 normal-only input.
 
-- Never commit raw SWaT files.
-- Never commit extracted real rows, real windows, or redistributable derived copies.
-- Do not use Git LFS, GitHub Releases, Actions artifacts, PR attachments, or issue attachments for SWaT data.
-- Do not embed raw SWaT sequences in prompts, logs, screenshots, test fixtures, or reports committed to Git.
-- Access SWaT through a local path such as `SWAT_DATA_ROOT`.
-- CI must use synthetic fixtures only.
+### Outcome states
 
-### 5.2 What may be committed
+- `no_rule`: construction terminates because evidence is insufficient.
+- `no_op`: a valid rule exists but governance does not select it.
+- `abstain`: an authorized rule cannot evaluate the runtime window.
 
-- schemas,
-- metadata templates,
-- preprocessing configs,
-- file hashes,
-- aggregate statistics,
-- experiment configs,
-- aggregate metrics,
-- non-reconstructive plots approved by the researcher.
+Provider failure, invalid JSON, verifier rejection, and budget exhaustion are
+explicit failures, not `no_rule`.
 
-### 5.3 Dataset manifest requirements
+## 5. Agentic Comparison
 
-Every SWaT run must record:
+Freeze these future arms:
 
-- source kind: official iTrust / Kaggle mirror / other,
-- source URL or request reference,
-- dataset edition,
-- normal-data version if known,
-- local filenames,
-- SHA-256 hashes,
-- feature count and names hash,
-- timestamp column and format,
-- sampling interval,
-- label column and label encoding,
-- preprocessing steps,
-- terms-of-use acknowledgement,
-- manifest schema version.
+- `T0`: deterministic template construction.
+- `T1`: one-shot constrained LLM construction.
+- `T1-B`: independent generations using the same total provider-call budget
+  as T2, without verifier feedback.
+- `T2`: bounded verifier-feedback construction with
+  `revise`/`retrieve`/`no_rule`.
 
-If edition or version cannot be verified, mark it `unverified`; do not infer silently.
+Where scientifically applicable, use the same candidate, evidence, parameter
+strategy, DSL, verifier, model/provider policy, and total call budget.
 
----
+An LLM may propose only structured, bounded contract data. It may not:
 
-## 6. Data-view and split policy
+- invent variables outside the candidate;
+- author uncontrolled numeric parameters;
+- approve its own output;
+- receive outer or sealed-test feedback;
+- execute at runtime.
 
-This project enforces **split-before-windowing** and uses a versioned `CandidateUniverse` artifact downstream.
+## 6. Data and Split Governance
 
-### 6.1 Canonical views
+Split the raw timeline before windowing. Purge boundary context by at least
+`window_size - 1`, plus required lag.
 
-Maintain separate views when needed:
+V6 must define dataset-neutral roles for:
 
-1. **canonical rule view**
-   - highest approved time resolution,
-   - used for response-delay profiling, calibration, verification, and runtime rule execution.
-2. **optional GDN view**
-   - may be downsampled for GDN training,
-   - used only for candidate extraction.
+- normal candidate learning;
+- normal relation profiling and calibration;
+- deterministic validity;
+- label-aware inner utility;
+- one-way outer validation;
+- sealed evaluation.
 
-Every artifact must include:
+Every API must validate its permitted split role. Outer data cannot select,
+tune, repair, revise, or govern a rule. Sealed data is evaluation-only after
+preregistration and explicit approval.
 
-- `source_view`,
-- `sampling_period_seconds`,
-- aggregation method, if any,
-- upstream manifest ID.
+For HAI, store locally:
 
-Do not calibrate second-level temporal rules from an implicitly downsampled GDN view.
+- source and edition;
+- local filenames and SHA-256 hashes;
+- feature names hash and types;
+- timestamp, sampling, labels, and encoding;
+- preprocessing;
+- terms acknowledgement;
+- manifest and split schema versions.
 
-### 6.2 Split-before-windowing
+If an edition or field is unknown, record `unverified`; do not infer it.
 
-Always split the raw timeline before generating sliding windows.
+## 7. Candidate and GDN Policy
 
-```text
-raw timeline
-→ train/calibration/validation/test ranges
-→ purge boundary context
-→ generate windows independently within each split
-```
+GDN edges are candidate or predictive relations, never causes or root causes.
 
-The purge gap must be at least `window_size - 1`; add maximum supported lag when necessary.
+Candidate extraction must:
 
-### 6.3 Split roles
+1. apply the approved candidate mask before Top-K;
+2. exclude persisted self-relations;
+3. handle empty sets;
+4. distinguish candidate edges from message-passing self-loops;
+5. assert every exported edge belongs to the candidate universe.
 
-| Split | Permitted use |
-|---|---|
-| `train_normal` | GDN or candidate learner training |
-| `calibration_normal` | relation profiling and numeric calibration |
-| `validation` | deterministic verification and refinement feedback |
-| `test` | final evaluation only |
+`gdn/torch_backend.py` remains unresolved pending pinned-source fidelity,
+modern-stack parity, and optional-import evidence. Until then, import
+`paperworks.gdn.masked` directly rather than relying on package-level GDN
+imports.
 
-Any API receiving a split must validate its permitted use.
+## 8. Rule, Verifier, Governance, and Runtime
 
----
+Numeric parameters must reference deterministic normal-data calibration
+artifacts. Rule validity must be machine-readable and deterministic.
 
-## 7. GDN adaptation policy
+Accepted runtime rules require:
 
-The upstream GDN repository targets a legacy stack. Do not add the original PyTorch 1.5.1 / PyG 1.5.0 environment as the main project dependency unless explicitly approved.
+- graph and evidence binding;
+- parameter provenance;
+- accepted verifier result;
+- immutable rule hash;
+- explicit runtime authority.
 
-### 7.1 Preferred strategy
+Runtime is LLM-free. Do not execute generated Python through `exec`, `eval`,
+`compile`, dynamic import, subprocess Python files, or host callbacks.
 
-- Implement a minimal modern PyTorch/PyG port of the required GDN components.
-- Keep upstream code as a pinned reference.
-- Add parity or behavioral tests on synthetic data.
+Explanations must bind to observed runtime facts, satisfaction traces, parameter
+references, and provenance. Do not claim causality.
 
-### 7.2 Candidate-universe enforcement
+FP correction is supplementary. It requires:
 
-The upstream implementation computes Top-K over a full embedding similarity matrix. This project must explicitly:
+- FP removal evidence;
+- frozen TP-removal guard;
+- zero or frozen true-event-removal guard;
+- non-regression policy;
+- cross-split directional stability;
+- mandatory no-op candidate.
 
-1. apply the approved `C_i` mask before Top-K,
-2. exclude target `i` from persisted candidate relations,
-3. handle empty candidate sets explicitly,
-4. distinguish candidate edges from self-loops added only for message passing,
-5. assert that every exported edge belongs to `C_i`.
+## 9. Provider and Privacy
 
-### 7.3 Upstream evaluation code is not authoritative
+- Use a provider interface and mock provider in tests.
+- External calls are forbidden in CI.
+- Secrets come from environment variables or approved secret stores.
+- Prompts contain structured aggregate evidence, not raw time-series rows,
+  private paths, credentials, outer data, or sealed data.
+- Record model, provider, template hash, evidence hash, response hash, token
+  usage, and redaction status.
+- Every real call requires an exact, precommitted budget and receipt-first
+  one-call enforcement.
 
-- Do not reuse `report=best`, test-label threshold selection, or test-tuned checkpoint logic.
-- Do not tune K, windows, thresholds, or preprocessing on final test labels.
-- Do not reuse upstream train/validation window splitting if windows can overlap across boundaries.
+## 10. Reproducibility
 
----
+Every scientific artifact records:
 
-## 8. ARGOS adaptation and code-execution safety
+- schema and artifact version;
+- dataset and split manifest IDs;
+- source view and sampling period;
+- data fingerprint;
+- config hash;
+- code commit;
+- upstream revisions;
+- random seed;
+- creation timestamp;
+- upstream artifact IDs.
 
-ARGOS is a structural reference, not the project runtime.
+Do not hard-code HAI, SWaT, WADI, or KPI scientific conclusions in library
+logic.
 
-### 8.1 Reuse conceptually
+## 11. Coding and Testing
 
-- Detection/Planning Agent idea,
-- Repair/Refiner idea,
-- Review/Verifier loop,
-- training-time LLM and runtime deterministic rules,
-- rule-selection concepts.
-
-### 8.2 Do not directly reuse
-
-- ARGOS univariate `value,label,index` dataset contract,
-- test-evaluation behavior inside rule-generation iterations,
-- point-adjustment as an unqualified default,
-- arbitrary LLM-generated Python execution.
-
-### 8.3 LLM-generated code is prohibited
-
-Never execute LLM output with:
-
-- `exec`,
-- `eval`,
-- `compile`,
-- `importlib`,
-- subprocess-created Python files,
-- dynamic module loading.
-
-LLM output must be parsed as structured JSON into a versioned DSL schema. Only the deterministic DSL evaluator may execute rule semantics.
-
----
-
-## 9. LLM provider and privacy policy
-
-- Define an `LLMProvider` interface.
-- Support a mock provider for all tests.
-- External API calls are forbidden in CI.
-- Secrets must come from environment variables or approved secret stores.
-- Never commit keys or provider responses containing raw SWaT data.
-- Prompts should contain structured aggregate evidence, not raw time-series rows.
-- Default planning temperature should be deterministic when supported.
-
-Record:
-
-- provider,
-- model/deployment,
-- API version,
-- temperature,
-- seed if supported,
-- prompt template hash,
-- evidence artifact hash,
-- response hash,
-- redaction status.
-
----
-
-## 10. Artifact and provenance policy
-
-Every persisted research artifact must include:
-
-- `schema_version`,
-- `artifact_type`,
-- `dataset_manifest_id`,
-- `split_name`,
-- `source_view`,
-- `sampling_period_seconds`,
-- `data_fingerprint`,
-- config or config hash,
-- code commit,
-- upstream revisions where relevant,
-- random seed,
-- creation timestamp,
-- upstream artifact identifiers.
-
-Primary artifact types:
-
-1. `dataset_manifest`
-2. `split_manifest`
-3. `variable_metadata`
-4. `candidate_universe`
-5. `gdn_candidate_edges`
-6. `candidate_stability_report`
-7. `relation_profile`
-8. `calibration_record`
-9. `rule_candidate`
-10. `verification_report`
-11. `verified_rule_library`
-12. `runtime_alarm`
-13. `evaluation_report`
-
----
-
-## 11. Initial module boundaries
-
-Adapt to the repository, but preserve these conceptual boundaries:
-
-```text
-src/<package>/
-  data/           # local-only data access, manifests, splits, views
-  metadata/       # variable metadata schemas and validation
-  candidates/     # candidate universe and provenance
-  gdn/            # modern GDN port, training, masked edge extraction
-  profiling/      # relation profiling and normal-data calibration
-  dsl/            # schemas, parser, deterministic evaluator, type rules
-  planning/       # template planner and later LLM planner
-  verification/   # deterministic checks and feedback codes
-  runtime/        # LLM-free rule execution and explanations
-  evaluation/     # metrics, reports, case studies
-```
-
-Runtime code must not depend on planning or LLM provider modules.
-
----
-
-## 12. Coding and testing standards
-
-- Use Python type hints for public APIs.
-- Prefer dataclasses, Pydantic models, or the repository's established schema system.
+- Use type hints for public APIs.
 - Validate external inputs at module boundaries.
 - Separate pure computation from I/O.
-- Use structured logging in library code.
-- Do not embed secrets, absolute local paths, or raw restricted data.
-- Make CLIs non-interactive by default and fail with non-zero exit codes.
 - Keep scientific choices in versioned configs.
-- Unit tests and CI use synthetic fixtures only.
-- Add negative tests for leakage, candidate masks, type errors, and prohibited LLM behavior.
+- Unit and CI tests use synthetic fixtures only.
+- Add negative tests for leakage, masks, types, authority, and prohibited LLM
+  behavior.
+- Never delete, skip, or weaken a relevant test to pass a task.
+- Do not import optional torch modules during static inventory work.
 
----
-
-## 13. Evaluation policy
-
-- Final test remains sealed until the approved final evaluation task.
-- Point adjustment is disabled by default.
-- PA-free, event-level, and range-aware metrics must be reported according to an approved protocol.
-- If point-adjusted metrics are included, label them supplementary and report the exact adjustment.
-- Separate detection performance from explanation quality.
-- Negative and unsupported cases must be reported.
-
----
-
-## 14. Verification feedback codes
-
-Verifier failures must be machine-readable. Initial stable codes include:
-
-- `DSL_SCHEMA_INVALID`
-- `VARIABLE_NOT_FOUND`
-- `TYPE_MISMATCH`
-- `CALIBRATION_MISSING`
-- `CALIBRATION_PROVENANCE_INVALID`
-- `NORMAL_FP_TOO_HIGH`
-- `VALIDATION_COVERAGE_TOO_LOW`
-- `INSUFFICIENT_NORMAL_SUPPORT`
-- `RELATION_PROFILE_UNSUPPORTED`
-- `STRUCTURAL_DUPLICATE`
-- `FIRING_OVERLAP_DUPLICATE`
-- `PROHIBITED_VARIABLE_ADDITION`
-- `PROHIBITED_NUMERIC_MUTATION`
-- `MAX_REFINEMENT_REACHED`
-
-Deterministic logic must not depend on free-text feedback.
-
----
-
-## 15. Third-party notices
-
-- Preserve copyright and license notices for reused or adapted upstream code.
-- Maintain `docs/UPSTREAM_SOURCES.md` and `THIRD_PARTY_NOTICES.md`.
-- Record whether code was copied, adapted, or only referenced.
-
----
-
-## 16. Required work discipline
+## 12. Work Discipline
 
 Before coding:
 
-1. Read this file and the active task.
-2. Inspect existing code, tests, and configs.
-3. Confirm in-scope and out-of-scope items.
-4. Identify affected data contracts and artifacts.
-5. Confirm required data exists locally without copying it into Git.
+1. read this file and the active task;
+2. verify branch, HEAD, origin equality, and worktree state;
+3. inspect existing contracts, tests, configs, and open decisions;
+4. confirm required local data without copying it;
+5. identify claim, split, and artifact boundaries.
 
-Before completing:
+Before completion:
 
-1. Run relevant tests, lint, and type checks.
-2. Verify no research invariant is violated.
-3. Verify no restricted data entered Git-tracked files.
-4. Verify artifacts include provenance and schema version.
-5. Report exact commands and outcomes.
+1. run applicable tests, compile, JSON, self-hash, dependency, diff, and safety
+   checks;
+2. verify no restricted data or private artifact entered Git;
+3. verify historical frozen paths remain unchanged;
+4. document optional dependency boundaries exactly;
+5. commit and push only a complete, verified task when the task requires it.
 
----
+## 13. Stop Conditions
 
-## 17. Stop conditions
+Stop and record the issue when:
 
-Stop and document the issue when:
-
-- required data or schema is unavailable,
-- dataset edition/version cannot be determined and the task depends on it,
-- repository conventions conflict with the task,
-- a research decision has multiple scientifically meaningful alternatives,
-- implementation would require test labels,
-- upstream code cannot be ported without changing semantics,
-- raw SWaT data would need to enter Git or an external API,
-- a requested LLM operation would require executing generated code.
+- required data, schema, lineage, or private hash is unavailable;
+- implementation would require outer/test feedback or data leakage;
+- a scientific choice has multiple material alternatives;
+- GDN fidelity, detector identity, or Rule v2 scope is required but unresolved;
+- raw data would enter Git or an external provider;
+- generated code would need host execution;
+- a requested change would modify frozen ARGOS or legacy compatibility
+  behavior without explicit authorization.

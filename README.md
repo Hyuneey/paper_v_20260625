@@ -4,6 +4,28 @@ This package contains revised implementation instructions for:
 
 > **Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.**
 
+## Current state: v6 migration freeze
+
+TASK-039P0 freezes the repository migration at commit
+`337769066f62b8f4fcd8e48a9a8f8d3651e3818a`.
+
+- HAI 23.05 is the current primary dataset candidate; no HAI readiness or
+  experimental result is claimed.
+- The canonical scientific path is `src/paperworks/contracts/`.
+- Phase-1 `dsl/`, `verification/`, `runtime/`, and RuleAst planning paths are
+  legacy read-only compatibility code.
+- ARGOS TASK-022 through TASK-038F is a frozen reference track with
+  `partial_methodological_support`.
+- Core v6 rule construction is normal-only; rule validity and label-aware rule
+  utility are separate.
+- The future Agentic comparison is T0/T1/T1-B/T2.
+- Runtime remains LLM-free, detector FN correction is primary, and FP
+  correction is supplementary.
+
+See [`docs/v6/V6_CANONICAL_ARCHITECTURE.md`](docs/v6/V6_CANONICAL_ARCHITECTURE.md)
+and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). This is a static
+migration freeze, not implementation or validation of the proposed method.
+
 ## What changed in v2
 
 This revision incorporates the actual upstream repositories and SWaT constraints:

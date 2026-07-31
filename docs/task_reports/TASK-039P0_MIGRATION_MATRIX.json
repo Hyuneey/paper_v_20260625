@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "v6_migration_matrix",
+  "task_id": "TASK-039P0",
+  "repository_head": "337769066f62b8f4fcd8e48a9a8f8d3651e3818a",
+  "path_groups": [
+    {
+      "classification": "canonical_v6_core",
+      "paths": [
+        "src/paperworks/contracts/rule_v1.py",
+        "src/paperworks/contracts/graph_v1.py",
+        "src/paperworks/contracts/evidence_v1.py",
+        "src/paperworks/contracts/parameter_v1.py",
+        "src/paperworks/contracts/verifier_v1.py",
+        "src/paperworks/contracts/runtime_authority.py",
+        "src/paperworks/contracts/runtime_v1.py",
+        "src/paperworks/contracts/explanation_v1.py"
+      ],
+      "action": "retain_authority_and_decouple_phase1_adapters"
+    },
+    {
+      "classification": "reusable_with_v2_adapter",
+      "paths": [
+        "src/paperworks/data/*",
+        "src/paperworks/metadata/*",
+        "src/paperworks/candidates/universe.py",
+        "src/paperworks/gdn/masked.py",
+        "src/paperworks/profiling/relations.py",
+        "src/paperworks/evaluation/harness.py"
+      ],
+      "action": "bind_to_dataset_neutral_v2_artifacts"
+    },
+    {
+      "classification": "legacy_read_only",
+      "paths": [
+        "src/paperworks/dsl/*",
+        "src/paperworks/verification/*",
+        "src/paperworks/runtime/*",
+        "src/paperworks/planning/refiner.py",
+        "legacy_RuleAst_planners",
+        "src/paperworks/e2e/*"
+      ],
+      "action": "preserve_importability_and_prohibit_future_v6_dependencies"
+    },
+    {
+      "classification": "frozen_reference_only",
+      "paths": [
+        "experiments/argos_reproduction/*",
+        "TASK-022_through_TASK-038F_outputs"
+      ],
+      "action": "no_new_execution_tuning_or_reinterpretation"
+    },
+    {
+      "classification": "unresolved_research_decision",
+      "paths": [
+        "src/paperworks/gdn/torch_backend.py",
+        "src/paperworks/gdn/__init__.py"
+      ],
+      "action": "complete_fidelity_and_optional_import_audit"
+    }
+  ],
+  "decisions": [
+    "DEC-078",
+    "DEC-079",
+    "DEC-080",
+    "DEC-081",
+    "DEC-082",
+    "DEC-083",
+    "DEC-084",
+    "DEC-085",
+    "DEC-086",
+    "DEC-087",
+    "DEC-088",
+    "DEC-089"
+  ],
+  "dependency_debt": [
+    {
+      "module": "paperworks.contracts.verifier_v1",
+      "dependency": "paperworks.contracts.phase1_adapters"
+    },
+    {
+      "module": "paperworks.contracts.runtime_authority",
+      "dependency": "paperworks.contracts.phase1_adapters"
+    }
+  ],
+  "static_boundaries": {
+    "canonical_primary_legacy_imports": [],
+    "unconditional_torch_modules": [
+      "paperworks.gdn.torch_backend"
+    ],
+    "package_imports_torch_backend_unconditionally": [
+      "paperworks.gdn"
+    ],
+    "legacy_import_module_count": 12,
+    "dataset_specific_module_count": 12,
+    "WADI_marker_count": 0,
+    "HAI_marker_count": 0
+  },
+  "migration_sequence": [
+    "TASK-039P1",
+    "TASK-039A",
+    "TASK-039B",
+    "TASK-039C",
+    "TASK-039D",
+    "TASK-039E",
+    "TASK-039F",
+    "TASK-039G",
+    "TASK-039H",
+    "TASK-039I",
+    "TASK-039J",
+    "TASK-039K",
+    "TASK-039L"
+  ],
+  "report_hash": "1ee7730be38fb0386f6449f4aeaa10afe66d0fd8d9962c4db3295579171e66f2"
+}

@@ -1,356 +1,92 @@
-# IMPLEMENTATION_PLAN.md
+# V6 Implementation Plan
 
-## 1. Objective
+## Objective
 
-Build a feasibility-first prototype for graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.
-
-The deterministic scientific path must be proven before adding an LLM:
-
-```text
-local SWaT data + metadata
-→ leakage-safe views and splits
-→ candidate universe
-→ masked GDN Top-K candidate pairs
-→ normal relation profile and calibrated parameters
-→ template DSL rule
-→ deterministic verification
-→ runtime LLM-free execution and explanation
-```
-
-Only after this path passes its gate may the LLM planner and verifier-feedback loop be implemented.
-
----
-
-## 2. External references and dataset strategy
-
-### ARGOS
-
-- repo: `https://github.com/microsoft/ARGOS`
-- role: architectural reference for planning/repair/review and runtime deterministic rules
-- do not reuse:
-  - univariate dataset contract,
-  - test evaluation inside training loops,
-  - arbitrary Python execution.
-
-### GDN
-
-- repo: `https://github.com/d-ailin/GDN`
-- role: architecture reference for candidate-relation learning
-- strategy: modern minimal port, not the legacy environment as the main dependency
-- required change: candidate-universe mask before Top-K and candidate self-edge exclusion
-
-### SWaT
-
-- preferred data source: official iTrust distribution
-- optional local mirror: researcher-provided Kaggle download
-- raw data remains local-only under `SWAT_DATA_ROOT`
-- TASK-000 must establish edition, version, schema, sampling period, and hashes
-
----
-
-## 3. MVP assumptions
-
-- primary dataset: SWaT
-- first relation class: binary actuator → continuous sensor
-- first trigger: actuator transition, initially `closed → open`
-- first response: positive target change
-- calibrated values:
-  - maximum response delay,
-  - minimum response magnitude
-- minimal DSL:
-  - `changed_to`,
-  - `increase_within`,
-  - `response_missing`
-- runtime LLM calls: prohibited
-- canonical rule view: highest approved resolution
-- optional GDN view: independently configured and traceable
-
----
-
-## 4. Recommended repository structure
+Build a project-owned method for graph-guided, training-time agentic verified
+rule construction in multivariate CPS anomaly detection.
 
 ```text
-project/
-├── AGENTS.md
-├── IMPLEMENTATION_PLAN.md
-├── README.md
-├── THIRD_PARTY_NOTICES.md
-├── configs/
-│   ├── data/
-│   ├── candidates/
-│   ├── profiling/
-│   └── experiments/
-├── docs/
-│   ├── tasks/
-│   ├── ARCHITECTURE.md
-│   ├── DATA_CONTRACTS.md
-│   ├── DATASET_PROVENANCE.md
-│   ├── UPSTREAM_SOURCES.md
-│   ├── RESEARCH_INVARIANTS.md
-│   ├── DECISIONS_REQUIRED.md
-│   └── EXPERIMENT_PROTOCOL.md
-├── external/                 # optional pinned references; no SWaT data
-│   ├── argos/
-│   └── gdn/
-├── src/<package>/
-│   ├── data/
-│   ├── metadata/
-│   ├── candidates/
-│   ├── gdn/
-│   ├── profiling/
-│   ├── dsl/
-│   ├── planning/
-│   ├── verification/
-│   ├── runtime/
-│   └── evaluation/
-├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── fixtures/             # synthetic only
-├── scripts/
-└── artifacts/                # local/generated; raw data never copied here
+local HAI 23.05 candidate data
+-> dataset-neutral provenance and leakage-safe splits
+-> one-process feasibility freeze
+-> masked candidate relations
+-> normal-only delayed-response evidence
+-> bounded T0/T1/T1-B/T2 construction
+-> deterministic validity
+-> separate no-op-aware utility governance
+-> LLM-free runtime
+-> detector FN correction
+-> trace-grounded explanation
+-> one-way outer and one-time sealed evaluation
 ```
 
-TASK-000 must adapt this to the actual repository rather than creating a competing layout.
+HAI is a candidate until TASK-039A/B establish provenance and feasibility.
+SWaT and WADI remain future external validation and are not blockers.
 
----
+## TASK-039P0: Codebase Alignment
 
-## 5. Dependency graph
+Freeze the AST module/public-symbol inventory, canonical and legacy boundaries,
+scientific separations, open decisions, and source migration order without
+changing scientific behavior or accessing research data.
 
-```text
-TASK-000
-  └── TASK-001
-      └── TASK-002
-          └── TASK-003
-              └── TASK-004
-                  └── TASK-005 [Phase Gate A]
-                      └── TASK-006
-                          ├── TASK-007
-                          │   └── TASK-008
-                          │       └── TASK-009
-                          │           └── TASK-010
-                          │               └── TASK-011 [Phase Gate B]
-                          │                   └── TASK-012
-                          │                       └── TASK-013 [Phase Gate C]
-                          │                           └── TASK-014
-```
+## TASK-039P1: Canonical Foundation Migration
 
----
+Implement:
 
-## 6. Milestones and gates
+- dataset-neutral manifest and split v2 contracts;
+- `NormalRelationEvidence`;
+- optional `DetectorErrorContext`;
+- validity/utility artifact separation;
+- typed `no_rule`, `no_op`, and `abstain`;
+- v1 compatibility adapters;
+- removal of canonical dependence on Phase-1 adapters;
+- GDN fidelity and optional-import decision support.
 
-### Milestone 0 — Repository, upstream, and dataset readiness
+Do not load HAI merely to implement schemas and adapters.
 
-**Ticket:** TASK-000
+## TASK-039A: HAI Source and Provenance
 
-Deliverables:
+Audit official HAI 23.05 edition, terms, files, hashes, timestamps, sampling,
+features, labels, local-only storage, and reproducible manifest. Commit no raw
+rows or windows.
 
-- repository audit,
-- exact install/test commands,
-- upstream source and license register,
-- GDN modern-port decision,
-- ARGOS reuse boundary,
-- SWaT dataset provenance and hash report,
-- data-governance check,
-- unresolved decisions register.
+## TASK-039B: P1/P3 Feasibility and Process Freeze
 
-**Gate 0:** No source implementation begins until:
+Using authorized normal data only, type control and sensor variables, audit
+P1/P3 support, test delayed-response feasibility, and freeze exactly one
+process plus canonical and optional GDN views.
 
-1. the target repository is understood,
-2. SWaT is available locally or explicitly unavailable,
-3. dataset edition/version status is recorded,
-4. upstream commits and licenses are pinned,
-5. environment strategy is approved.
+## TASK-039C Onward
 
----
+1. TASK-039C: candidate-universe and graph evidence construction.
+2. TASK-039D: normal relation profiling and deterministic calibration.
+3. TASK-039E: T0 deterministic template baseline.
+4. TASK-039F: common T1/T1-B/T2 bounded construction protocol.
+5. TASK-039G: deterministic validity and no-op-aware utility governance.
+6. TASK-039H: primary detector and FN-correction protocol.
+7. TASK-039I: LLM-free runtime and trace-grounded explanation.
+8. TASK-039J: outer prediction freeze and one-way validation.
+9. TASK-039K: joint sealed-test preregistration.
+10. TASK-039L: one-time sealed execution after explicit approval.
 
-### Milestone 1 — Leakage-safe data foundation
+## Construction Arms
 
-**Tickets:** TASK-001, TASK-002
+- `T0`: deterministic template construction.
+- `T1`: one-shot constrained LLM construction.
+- `T1-B`: independent generations with T2's total call budget and no feedback.
+- `T2`: bounded verifier-feedback `revise`/`retrieve`/`no_rule`.
 
-Deliverables:
+Where applicable, all arms share candidates, evidence, parameter strategy, DSL,
+verifier, model/provider policy, and total call budget. Generated Python is
+prohibited.
 
-- `DatasetManifest`,
-- canonical rule view,
-- optional GDN view,
-- raw-timeline split manifests,
-- purge-gap windowing,
-- variable metadata schema,
-- synthetic test fixtures.
+## Global Gates
 
-Acceptance:
+Every task must preserve split-before-windowing and sealed isolation, keep raw
+data and private artifacts untracked, distinguish validity from utility and
+runtime outcomes, retain unsupported cases, use synthetic CI fixtures, and
+record configs, hashes, commits, seeds, and environments.
 
-- same input/config produces identical manifests,
-- raw data is never copied into Git,
-- split-before-windowing is enforced,
-- test is rejected by training/calibration APIs,
-- view and sampling period are explicit,
-- invalid or unverified dataset assumptions are surfaced.
-
----
-
-### Milestone 2 — Candidate universe and modern GDN extraction
-
-**Tickets:** TASK-003, TASK-004, TASK-005
-
-Deliverables:
-
-- candidate universe with provenance,
-- explicit candidate mask,
-- modern GDN implementation or approved adapter,
-- masked Top-K extraction,
-- candidate self-edge exclusion,
-- K/seed stability report,
-- feasibility report.
-
-#### Phase Gate A — Candidate feasibility
-
-Proceed only if:
-
-1. the pipeline runs reproducibly on normal data,
-2. every candidate edge is proven to belong to `C_i`,
-3. no persisted relation is a candidate self-edge,
-4. candidate artifacts record source view and sampling period,
-5. pre-registered relation recall/stability results justify further profiling,
-6. no threshold was chosen on final test data.
-
-A pass threshold must not be invented silently.
-
----
-
-### Milestone 3 — High-resolution relation profiling and calibration
-
-**Ticket:** TASK-006
-
-Deliverables:
-
-- trigger extraction,
-- response detection,
-- response-delay distribution in seconds,
-- response-magnitude distribution,
-- calibration records,
-- structured evidence packs.
-
-Acceptance:
-
-- profiling uses canonical rule view,
-- time conversion references `sampling_period_seconds`,
-- calibration uses `calibration_normal`,
-- insufficient support returns an explicit unsupported status,
-- synthetic fixtures verify delays exactly,
-- no test information is used.
-
----
-
-### Milestone 4 — Deterministic rule path
-
-**Tickets:** TASK-007, TASK-008, TASK-009, TASK-010, TASK-011
-
-Deliverables:
-
-- JSON/AST DSL and schema registry,
-- no arbitrary code execution,
-- deterministic template planner,
-- deterministic verifier feedback,
-- runtime LLM-free engine,
-- validation-only end-to-end feasibility report.
-
-#### Phase Gate B — Deterministic feasibility
-
-Proceed to LLM integration only if:
-
-1. candidate → profile → rule → verification → runtime alarm works,
-2. runtime has no LLM or dynamic-code dependency,
-3. numeric parameters trace to calibration artifacts,
-4. normal firing and validation coverage are measurable,
-5. restricted data never enters Git or prompts,
-6. the final test remains sealed.
-
----
-
-### Milestone 5 — Agentic LLM rule construction
-
-**Tickets:** TASK-012, TASK-013
-
-Deliverables:
-
-- provider-neutral LLM interface,
-- mock provider for tests,
-- structured JSON planning output,
-- prompt/model provenance,
-- bounded verifier-feedback refiner loop,
-- revision history,
-- template/one-shot/refined comparison.
-
-#### Phase Gate C — Demonstrated LLM value
-
-Proceed to broad evaluation only if the experiment can distinguish:
-
-```text
-Template-only
-vs
-One-shot LLM
-vs
-LLM + verifier feedback
-```
-
-The report must state when LLM use adds no material value.
-
----
-
-### Milestone 6 — Sealed evaluation and optional fusion
-
-**Ticket:** TASK-014
-
-Deliverables:
-
-- pre-registered evaluation config,
-- one-way final test execution,
-- PA-free/range/event metrics,
-- candidate and explanation metrics,
-- optional detector fusion isolated from the primary method,
-- case study and limitations.
-
-Acceptance:
-
-- no test-tuned choices,
-- point adjustment is off by default,
-- any supplementary point-adjusted result is clearly labeled,
-- detector performance and explanation quality are reported separately,
-- failed and unsupported cases are included.
-
----
-
-## 7. Key decisions that TASK-000 must resolve
-
-1. **GDN strategy**
-   - preferred: modern PyTorch/PyG port with behavioral tests,
-   - alternative: legacy isolated container for reference only.
-2. **SWaT source**
-   - official iTrust preferred,
-   - Kaggle mirror permitted only after provenance verification.
-3. **Sampling strategy**
-   - canonical high-resolution rule view,
-   - optional downsampled GDN view.
-4. **ARGOS reuse scope**
-   - architecture and agent concepts only,
-   - no univariate dataset contract or arbitrary Python execution.
-5. **Evaluation protocol**
-   - final test sealing,
-   - approved PA-free/range/event metrics.
-
----
-
-## 8. Definition of done for every ticket
-
-A ticket is complete only when:
-
-1. acceptance criteria are met,
-2. relevant tests pass,
-3. lint/type checks pass where configured,
-4. artifacts include required provenance,
-5. no restricted data is tracked,
-6. no research invariant is violated,
-7. exact commands and results are reported,
-8. unresolved decisions are documented,
-9. the next ticket is recommended or explicitly blocked.
+ARGOS is frozen reference-only after TASK-038F. GDN remains a pinned
+architecture reference pending fidelity audit. Neither reference silently
+defines v6 splits, evaluation, rule authority, or runtime policy.

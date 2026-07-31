@@ -1691,3 +1691,117 @@
   official SWaT evidence for the proposed graph-guided, verifier-governed
   multivariate method. A joint sealed ARGOS confirmation requires separate
   explicit professor/researcher approval and preregistration.
+
+### DEC-078: Canonical TASK-032 contract path
+
+- Status: resolved_migration_direction
+- Owner: researcher
+- `contracts/rule_v1.py`, `graph_v1.py`, `evidence_v1.py`,
+  `parameter_v1.py`, `verifier_v1.py`, `runtime_authority.py`,
+  `runtime_v1.py`, and `explanation_v1.py` are the canonical v6 scientific
+  contract path.
+- `EvidencePackageV1` remains limited to its original anomaly/event-anchored
+  scope. TASK-039P1 must remove canonical dependence on Phase-1 adapters
+  through a dataset-neutral compatibility boundary.
+
+### DEC-079: Legacy Phase-1 compatibility boundary
+
+- Status: resolved_migration_direction
+- Owner: researcher
+- `dsl/*`, `verification/*`, `runtime/*`, `planning/refiner.py`, legacy
+  RuleAst planners, and historical `e2e/*` orchestration are
+  `legacy_read_only`.
+- They remain importable for historical artifacts. Future HAI/v6 modules may
+  not depend on them.
+
+### DEC-080: Dataset-neutral HAI data and split v2 contracts
+
+- Status: implementation_deferred_TASK039P1
+- Owner: researcher
+- Existing data and split modules are reusable producers, not canonical HAI
+  contracts. TASK-039P1 must separate normal construction, validity, inner
+  utility, one-way outer validation, and sealed evaluation.
+- HAI 23.05 remains a candidate until TASK-039A/B provenance and feasibility.
+
+### DEC-081: Normal evidence and detector-error context
+
+- Status: resolved_separation
+- Owner: researcher
+- Core construction requires `NormalRelationEvidence`. Optional
+  `DetectorErrorContext` may contain authorized development/inner FN or FP
+  context.
+- Detector-error context cannot replace, mutate, or masquerade as normal
+  relation evidence. `EvidencePackageV1` is not silently reinterpreted.
+
+### DEC-082: Rule validity and rule utility
+
+- Status: resolved_separation
+- Owner: researcher
+- Deterministic validity covers structure, types, graph/evidence binding,
+  parameter provenance, split compliance, operational contracts, and claim
+  boundaries.
+- Utility covers normal false-fire, inner attack coverage, detector FN
+  recovery, added FP, duplicate firing, and no-op-aware selection.
+- Attack-label performance may not decide deterministic validity acceptance.
+
+### DEC-083: T0/T1/T1-B/T2 common experiment contract
+
+- Status: resolved_protocol_direction
+- Owner: researcher
+- Future arms are T0 deterministic template, T1 one-shot constrained LLM,
+  T1-B independent budget-matched generation without feedback, and T2 bounded
+  verifier-feedback revise/retrieve/no_rule.
+- Where applicable, all arms share candidates, evidence, parameter strategy,
+  DSL, verifier, provider/model policy, and total call budget.
+
+### DEC-084: no_rule, no_op, and abstain semantics
+
+- Status: resolved_semantics
+- Owner: researcher
+- `no_rule` means evidence-insufficient construction termination.
+- `no_op` means a valid rule was not selected by governance.
+- `abstain` means an authorized rule cannot evaluate the runtime window.
+- Provider failure, invalid JSON, verifier rejection, and budget exhaustion
+  are explicit failures, not `no_rule`.
+
+### DEC-085: Real-runtime facts and explanations
+
+- Status: resolved_protocol_direction
+- Owner: researcher
+- Runtime remains LLM-free and accepts only provenance-bound rules.
+- Explanations bind to observed facts, satisfaction traces, parameter
+  references, and provenance. They may not infer causality.
+
+### DEC-086: GDN implementation fidelity
+
+- Status: open_requires_evidence
+- Owner: researcher
+- Decide which `gdn/torch_backend.py` components are source-faithful and how
+  package import avoids unconditional torch.
+- Require pinned-source mapping, synthetic parity, masked Top-K and self-edge
+  evidence, and an optional-import design.
+
+### DEC-087: Primary detector selection policy
+
+- Status: open_requires_predeclared_protocol
+- Owner: researcher
+- Detector family, training, threshold, development, and selection boundaries
+  remain open. ARGOS LSTMAD alpha/beta results cannot select the v6 detector.
+
+### DEC-088: Rule v1 severity and persistence scope
+
+- Status: open_retain_simplify_or_defer
+- Owner: researcher
+- Retain Rule v1 fields, simplify through a versioned Rule v2, or defer them
+  only after HAI feasibility, runtime need, provenance, and compatibility
+  evidence. TASK-039P0 creates no Rule v2.
+
+### DEC-089: Dataset-neutral evaluation and sealed-test policy
+
+- Status: direction_resolved_details_open
+- Owner: researcher
+- Governance is inner-only, outer evaluation is one-way after prediction
+  freeze, and sealed execution occurs once after preregistration and approval.
+- FN correction is primary. FP correction is supplementary and requires
+  TP-removal, true-event-removal, non-regression, and no-op guards.
+- Numeric budgets and final endpoints remain open.
