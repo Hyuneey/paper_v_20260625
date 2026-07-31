@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/gdn_dependency_status_v1_schema.json",
+  "title": "GDN Dependency Status V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "torch_available",
+    "torch_geometric_available",
+    "torch_version",
+    "torch_geometric_version",
+    "backend_importable",
+    "missing_packages",
+    "inspection_method",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "gdn_dependency_status"},
+    "torch_available": {"type": "boolean"},
+    "torch_geometric_available": {"type": "boolean"},
+    "torch_version": {"type": ["string", "null"], "minLength": 1},
+    "torch_geometric_version": {"type": ["string", "null"], "minLength": 1},
+    "backend_importable": {"type": "boolean"},
+    "missing_packages": {
+      "type": "array",
+      "items": {"enum": ["torch", "torch-geometric"]},
+      "uniqueItems": true,
+      "maxItems": 2
+    },
+    "inspection_method": {
+      "const": "importlib.util.find_spec+importlib.metadata.version"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

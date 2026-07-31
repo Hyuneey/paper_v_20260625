@@ -31,7 +31,7 @@ changing scientific behavior or accessing research data.
 
 ## TASK-039P1: Canonical Foundation Migration
 
-TASK-039P1 is decomposed and is not complete:
+TASK-039P1 is decomposed and complete:
 
 1. **TASK-039P1A: data and split foundation**
    - Status: completed.
@@ -53,12 +53,15 @@ TASK-039P1 is decomposed and is not complete:
    - legacy TASK-032 hash-compatible collection adapter;
    - separate construction, governance, and synthetic deployment receipts.
 4. **TASK-039P1D: GDN import and fidelity support**
-   - Status: pending.
-   - optional-import boundary;
-   - pinned-source fidelity evidence and unresolved-decision support.
+   - Status: completed.
+   - Torch/PyG optional-import boundary and stable dependency error;
+   - exact pinned-source fidelity mapping;
+   - current trainers frozen as smoke-only and masked extraction frozen as a
+     reusable component, not a complete GDN backend.
 
-P1A, P1B, and P1C are complete, but parent TASK-039P1 remains incomplete until
-P1D passes. Do not load HAI merely to implement schemas and adapters.
+P1A, P1B, P1C, P1D, and parent TASK-039P1 are complete. This does not establish
+HAI readiness or a production GDN backend. TASK-039A is next. Do not load HAI
+outside its explicit provenance-audit authorization.
 
 ## TASK-039A: HAI Source and Provenance
 
@@ -103,6 +106,7 @@ data and private artifacts untracked, distinguish validity from utility and
 runtime outcomes, retain unsupported cases, use synthetic CI fixtures, and
 record configs, hashes, commits, seeds, and environments.
 
-ARGOS is frozen reference-only after TASK-038F. GDN remains a pinned
-architecture reference pending fidelity audit. Neither reference silently
-defines v6 splits, evaluation, rule authority, or runtime policy.
+ARGOS is frozen reference-only after TASK-038F. The current GDN trainers are
+synthetic smoke-only; the exact production graph-ranking backend remains open
+until HAI feasibility evidence exists. Neither reference silently defines v6
+splits, evaluation, rule authority, or runtime policy.

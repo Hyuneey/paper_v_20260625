@@ -78,7 +78,8 @@ class Task039P1CReportTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("**TASK-039P1C: canonical collection", plan)
         self.assertIn("Status: completed.", plan)
-        self.assertIn("P1D remains pending", sequence)
+        self.assertIn("TASK-039P1 is complete", sequence)
+        self.assertIn("next task is TASK-039A", sequence)
 
 
 if __name__ == "__main__":

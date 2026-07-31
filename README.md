@@ -15,7 +15,10 @@ context, explicit construction/governance outcomes, and a typed runtime
 disposition projection. TASK-039P1C binds those artifacts to the canonical
 Rule v1-Verifier v1-runtime authority path through explicit EVID/NREF,
 construction, governance, and deployment receipts. Historical TASK-032
-behavior remains unchanged.
+behavior remains unchanged. TASK-039P1D makes Torch/PyG optional for
+lightweight imports and freezes the current GDN trainers as synthetic
+smoke-only implementations. The masked extractor remains a reusable component,
+not a complete GDN model.
 
 - HAI 23.05 is the current primary dataset candidate; no HAI readiness or
   experimental result is claimed.
@@ -31,10 +34,17 @@ behavior remains unchanged.
   correction is supplementary.
 
 See [`docs/v6/V6_CANONICAL_ARCHITECTURE.md`](docs/v6/V6_CANONICAL_ARCHITECTURE.md)
-and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). P1A, P1B, and P1C are
-foundation contracts only. P1D remains pending, so parent TASK-039P1 is not
-complete. No HAI readiness, process feasibility, real rule construction,
-detector validation, or proposed-method result is claimed.
+and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). P1A through P1D and
+parent TASK-039P1 are complete foundations. TASK-039A is next. This does not
+establish HAI readiness, process feasibility, a production GDN backend, real
+rule construction, detector validation, or a proposed-method result.
+
+Torch and Torch Geometric are optional. Install the frozen GDN dependency set
+only when the optional backend is required:
+
+```bash
+pip install -e ".[gdn]"
+```
 
 ## What changed in v2
 
@@ -42,7 +52,8 @@ This revision incorporates the actual upstream repositories and SWaT constraints
 
 - ARGOS is used as an architectural reference, not as the SWaT data/runtime layer.
 - LLM-generated Python execution is prohibited.
-- GDN is treated as a modernized, masked candidate-relation learner.
+- The current masked extractor is a project-owned candidate component; only a
+  future validated backend may be identified as GDN in a scientific arm.
 - Candidate Top-K must be computed inside `C_i`, with candidate self-edges excluded.
 - Upstream GDN test-tuned evaluation logic is not reused.
 - SWaT remains local-only and is never committed or uploaded through GitHub.

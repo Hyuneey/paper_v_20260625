@@ -7,7 +7,7 @@ execution.
 
 ## TASK-039P1
 
-TASK-039P1 is decomposed and remains incomplete:
+TASK-039P1 is decomposed and complete:
 
 1. **TASK-039P1A**: dataset-neutral data and split foundation. Completed with
    additive v2 contracts, explicit split permissions, purge/window rules,
@@ -20,11 +20,12 @@ TASK-039P1 is decomposed and remains incomplete:
    decoupling from Phase-1 adapters. Completed with explicit normal-evidence
    bindings, the canonical collection protocol, legacy hash preservation, and
    separate governance/deployment receipts.
-4. **TASK-039P1D**: GDN package import boundary and fidelity decision support.
+4. **TASK-039P1D**: completed Torch/PyG optional-import boundary, exact pinned
+   source audit, and smoke-only/reusable-component claim freeze.
 
-P1A, P1B, and P1C do not authorize data access or scientific consumer
-migration. P1D remains pending. Parent TASK-039P1 remains incomplete until
-P1D passes.
+TASK-039P1 is complete: P1A through P1D passed. This does not authorize data
+access or scientific consumer migration and does not establish HAI readiness
+or a production GDN backend. The next task is TASK-039A.
 
 ## TASK-039A
 

@@ -33,6 +33,15 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "governance_authority_binding_receipt": (
         "schemas/v6/governance_authority_binding_receipt_v1_schema.json"
     ),
+    "gdn_backend_fidelity_record": (
+        "schemas/v6/gdn_backend_fidelity_record_v1_schema.json"
+    ),
+    "gdn_dependency_status": (
+        "schemas/v6/gdn_dependency_status_v1_schema.json"
+    ),
+    "gdn_fidelity_freeze": (
+        "schemas/v6/gdn_fidelity_freeze_v1_schema.json"
+    ),
     "normal_reference_set_binding": (
         "schemas/v6/normal_reference_set_binding_v1_schema.json"
     ),

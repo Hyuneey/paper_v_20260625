@@ -34,14 +34,20 @@ P1C_TYPES = {
     "governance_authority_binding_receipt",
     "v6_deployment_authorization_receipt",
 }
+P1D_TYPES = {
+    "gdn_backend_fidelity_record",
+    "gdn_dependency_status",
+    "gdn_fidelity_freeze",
+}
 
 
 class Task039P1CSchemaBoundaryTests(unittest.TestCase):
-    def test_six_p1c_schemas_are_registered_and_meta_valid(self) -> None:
+    def test_p1c_and_p1d_schemas_are_registered_and_meta_valid(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
         self.assertTrue(P1C_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 11)
-        for artifact_type in P1C_TYPES:
+        self.assertTrue(P1D_TYPES.issubset(registry.artifact_types))
+        self.assertEqual(len(registry.artifact_types), 14)
+        for artifact_type in P1C_TYPES | P1D_TYPES:
             Draft202012Validator.check_schema(
                 registry.schema_for(artifact_type)
             )

@@ -1,11 +1,14 @@
 # V6 Open Decisions
 
-## GDN Fidelity
+## Production Graph-Ranking Backend
 
-Decide which torch-backend parts are source-faithful and reusable and how
-package import remains usable without unconditional torch. Require pinned
-source mapping, synthetic parity, masked Top-K, self-edge, and modern-stack
-evidence.
+TASK-039P1D resolved the current import and claim boundary: the trainers are
+synthetic smoke-only and the masked extractor is a reusable project component,
+not a complete GDN model. The production backend remains open until TASK-039A/B
+establish HAI schema and process feasibility. TASK-039C must choose either a
+source-aligned minimal GDN port or a clearly named alternative learned graph
+ranker. Only a validated source-aligned backend may be identified as GDN in the
+future RQ1 arm.
 
 ## Primary Detector
 

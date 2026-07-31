@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1d_import_report",
+  "task_id": "TASK-039P1D",
+  "status": "passed_gdn_optional_import_and_fidelity_freeze",
+  "starting_commit": "b386ffefc6ea825fe9f67c1cb6aa6eec9aab1caa",
+  "direct_heavy_import_modules": {
+    "torch": [
+      "paperworks.gdn.torch_backend"
+    ],
+    "torch_geometric": [
+      "paperworks.gdn.torch_backend"
+    ]
+  },
+  "package_initializer_audit": [
+    {
+      "module": "paperworks.gdn",
+      "pre_TASK039P1D_transitively_reached_heavy_backend": true,
+      "post_TASK039P1D_transitively_reaches_heavy_backend": false,
+      "boundary": "lazy_optional_public_symbols"
+    },
+    {
+      "module": "paperworks.candidates",
+      "pre_TASK039P1D_transitively_reached_heavy_backend": true,
+      "post_TASK039P1D_transitively_reaches_heavy_backend": false,
+      "boundary": "lazy_historical_smoke_exports"
+    },
+    {
+      "module": "paperworks.e2e",
+      "pre_TASK039P1D_transitively_reached_heavy_backend": true,
+      "post_TASK039P1D_transitively_reaches_heavy_backend": false,
+      "boundary": "eager_lightweight_workflows_only"
+    }
+  ],
+  "optional_public_symbols": {
+    "paperworks.gdn": [
+      "TorchGDNEmbeddingModel",
+      "TorchGDNTrainingConfig",
+      "fit_torch_gdn_embedding_checkpoint"
+    ],
+    "paperworks.gdn.torch_backend": [
+      "MeanGraphLayer",
+      "TorchGDNEmbeddingModel",
+      "TorchGDNTrainingConfig",
+      "fit_torch_gdn_embedding_checkpoint"
+    ]
+  },
+  "lightweight_modules_verified": [
+    "paperworks",
+    "paperworks.gdn",
+    "paperworks.gdn.dependencies",
+    "paperworks.gdn.fidelity_v1",
+    "paperworks.gdn.masked",
+    "paperworks.candidates",
+    "paperworks.candidates.universe",
+    "paperworks.e2e"
+  ],
+  "interpreters": [
+    {
+      "interpreter": "bundled_CP3.12.13",
+      "dependency_status_hash": "7a4963748b330eb1ca275268224e5bf96f38ec5e676ffd69b277f22aca6f0d96",
+      "torch_available": false,
+      "torch_geometric_available": false,
+      "torch_version": null,
+      "torch_geometric_version": null,
+      "backend_importable": false,
+      "lightweight_package_imports": "passed",
+      "direct_backend_import": "GDN_OPTIONAL_DEPENDENCY_UNAVAILABLE"
+    },
+    {
+      "interpreter": "canonical_CP3.14.2",
+      "dependency_status_hash": "42beb0ddba77f8e2bd72c4ff9ba4851af666da8add69841090a66f71d64225b3",
+      "torch_available": true,
+      "torch_geometric_available": false,
+      "torch_version": "2.11.0+cu128",
+      "torch_geometric_version": null,
+      "backend_importable": false,
+      "lightweight_package_imports": "passed",
+      "direct_backend_import": "GDN_OPTIONAL_DEPENDENCY_UNAVAILABLE"
+    }
+  ],
+  "project_metadata": {
+    "core_dependencies": [
+      "jsonschema[format-nongpl]==4.26.0"
+    ],
+    "gdn_optional_dependencies": [
+      "torch==2.12.1",
+      "torch-geometric==2.8.0"
+    ],
+    "documented_install": "pip install -e \".[gdn]\"",
+    "dependency_installation_or_upgrade": false
+  },
+  "guarded_discovery": {
+    "tracked_test_modules_only": true,
+    "preclassified_import_boundaries": {
+      "torch_or_torch_geometric": 2,
+      "jsonschema": 19,
+      "pytest": 16,
+      "unexplained": 0
+    },
+    "tests_run": 406,
+    "assertion_failures": 0,
+    "unexpected_import_errors": 0
+  },
+  "boundary": {
+    "issue_code": "GDN_OPTIONAL_DEPENDENCY_UNAVAILABLE",
+    "uncontrolled_ModuleNotFoundError_for_public_optional_access": false,
+    "package_initializer_heavy_import": false,
+    "dependency_status_grants_fidelity": false,
+    "dependency_status_grants_execution": false
+  },
+  "scope": {
+    "dataset_access": false,
+    "private_artifact_access": false,
+    "outer_access": false,
+    "sealed_access": false,
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_execution": false,
+    "model_training": false
+  },
+  "report_hash": "f2d18b64fdffb00b3be4a17df2d73ae9d1458e7233239b793b768a7fd22e4b35"
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1d_fidelity_report",
+  "task_id": "TASK-039P1D",
+  "status": "passed_gdn_optional_import_and_fidelity_freeze",
+  "starting_commit": "b386ffefc6ea825fe9f67c1cb6aa6eec9aab1caa",
+  "upstream": {
+    "repository": "https://github.com/d-ailin/GDN",
+    "commit": "9853899da860682669a134e4af315d036aab4eca",
+    "license": "MIT",
+    "local_read_only_source_verified": true,
+    "file_record_count": 7,
+    "git_blob_and_sha256_verified": true
+  },
+  "fidelity_freeze": {
+    "artifact_hash": "f6d9eaca8d7eebe64b60a49a57d5612a558e6ee562d5a4b47a7e14184311dab4",
+    "record_count": 3,
+    "record_hashes": {
+      "deterministic_embedding_smoke": "7dee6ddcbe6d8cd2007f50a0f31a0f1ff3f6d137279c57ba18b7dd5030c2d131",
+      "torch_pyg_cpu_smoke": "6292e390c1911ee253eb4bacda864529a3ee113788a1c52c2acabe5f7c75d3ae",
+      "masked_candidate_extraction": "984ce66b8dff9fa49f9ea4848c3d2298013ed7bb8a64af0fa20cfe09b3dfe767"
+    }
+  },
+  "classifications": {
+    "paperworks.gdn.masked": "project_owned_masked_candidate_extraction",
+    "fit_deterministic_embedding_checkpoint": "synthetic_smoke_only",
+    "TorchGDNEmbeddingModel": "synthetic_gdn_style_smoke_only",
+    "fit_torch_gdn_embedding_checkpoint": "synthetic_gdn_style_smoke_only",
+    "source_faithful_current_backend": false,
+    "upstream_aligned_validated_record_created": false
+  },
+  "comparison": {
+    "input_shape": {
+      "upstream": "sliding window per node: batch by node by slide_win",
+      "current_torch_backend": "adjacent scalar rows: batch by node"
+    },
+    "training_target": {
+      "upstream": "next value per node after each window",
+      "current_torch_backend": "next scalar row per node"
+    },
+    "node_embeddings": {
+      "upstream": "cosine graph, attention conditioning, and output gating",
+      "current_torch_backend": "decoder input and exported embedding checkpoint"
+    },
+    "learned_graph": {
+      "upstream": "dynamic embedding-cosine Top-K in every forward pass",
+      "current_torch_backend": "fixed CandidateUniverse graph"
+    },
+    "candidate_mask": {
+      "upstream": "absent",
+      "current_project": "required before masked extraction Top-K"
+    },
+    "graph_layer": {
+      "upstream": "custom additive attention GraphLayer",
+      "current_torch_backend": "mean aggregation MessagePassing layer"
+    },
+    "embedding_conditioned_attention": {
+      "upstream": true,
+      "current_torch_backend": false
+    },
+    "self_loop_handling": {
+      "upstream": "remove then add self-loops inside GraphLayer",
+      "current_torch_backend": "append explicit message-passing self-loops"
+    },
+    "output_gating": {
+      "upstream": "GNN output multiplied by node embedding",
+      "current_torch_backend": "node value, mean neighbor value, and embedding concatenated"
+    },
+    "batch_normalization_dropout": {
+      "upstream": "GNN and output batch normalization plus dropout 0.2",
+      "current_torch_backend": "absent"
+    },
+    "objective": {
+      "upstream": "mean squared next-value prediction error",
+      "current_torch_backend": "mean squared next-row prediction error"
+    },
+    "checkpoint_selection": {
+      "upstream": "validation-loss early stopping and saved state dict",
+      "current_torch_backend": "fixed epochs and final embedding export"
+    },
+    "split_window_policy": {
+      "upstream": "TimeDataset constructs sliding windows; train stride differs from evaluation",
+      "current_torch_backend": "caller supplies rows; legacy train_normal guard; no backend windows"
+    }
+  },
+  "intentional_extraction_deviations": [
+    "CandidateUniverse mask before Top-K",
+    "persisted self-edge exclusion",
+    "message-passing self-loop separation",
+    "project-owned edge provenance"
+  ],
+  "historical_compatibility": {
+    "torch_backend_behavior_AST_sha256": "21989ea5de8459259514ef35784a55123082c9a6bf078e8ec878655e3f29723c",
+    "torch_backend_behavior_AST_unchanged": true,
+    "masked_source_sha256": "84847639853996f7c9dfd3804a83fab58f12efea73641c4caca564c69caf0a68",
+    "masked_source_unchanged": true,
+    "TASK005_report_file_sha256": "b282b6a4867cfecac4162a19f38d9413e8f5dd10095ed2d3fee67f4934fca852",
+    "TASK005_checkpoint_id": "ce6392a33c27f7d72382301827f9fd86051349e766befc7e56156d4af4605288",
+    "TASK005_edge_artifact_id": "3a28cefa6033500658b56d519a96f8220612a95f5c7e676ce30896c17fd95ce0",
+    "complete_Torch_PyG_backend_available": false,
+    "numerical_replay_executed": false
+  },
+  "future_policy": {
+    "RQ1_required_fidelity_class": "upstream_aligned_validated",
+    "production_backend_status": "pending_TASK039A_B_feasibility",
+    "allowed_future_options": [
+      "project-owned source-aligned minimal GDN port",
+      "another learned graph ranker explicitly named as such"
+    ],
+    "existing_smoke_backend_may_be_called_GDN_in_RQ1": false
+  },
+  "scope": {
+    "data_accessed": false,
+    "model_trained": false,
+    "scientific_candidate_experiment": false,
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_execution": false
+  },
+  "report_hash": "ee6a332346ee85cf264f23d00f884a9b3ad5d66951affba85cfc300897356370"
+}

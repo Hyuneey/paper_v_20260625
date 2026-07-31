@@ -5,9 +5,21 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any, Mapping, Sequence
 
-import torch
-from torch import nn
-from torch_geometric.nn.conv import MessagePassing
+from paperworks.gdn.dependencies import (
+    require_gdn_optional_dependencies,
+    wrap_gdn_backend_import_error,
+)
+
+
+_DEPENDENCY_STATUS = require_gdn_optional_dependencies()
+try:
+    import torch
+    from torch import nn
+    from torch_geometric.nn.conv import MessagePassing
+except Exception as exc:
+    raise wrap_gdn_backend_import_error(
+        exc, status=_DEPENDENCY_STATUS
+    ) from exc
 
 from paperworks.candidates import CandidateUniverseArtifact
 from paperworks.data import DataViewManifest, SplitManifest, assert_split_permitted

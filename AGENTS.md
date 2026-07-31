@@ -219,10 +219,19 @@ Candidate extraction must:
 4. distinguish candidate edges from message-passing self-loops;
 5. assert every exported edge belongs to the candidate universe.
 
-`gdn/torch_backend.py` remains unresolved pending pinned-source fidelity,
-modern-stack parity, and optional-import evidence. Until then, import
-`paperworks.gdn.masked` directly rather than relying on package-level GDN
-imports.
+TASK-039P1D freezes the current GDN import and claim boundary:
+
+- `paperworks.gdn.masked` is a project-owned masked candidate-extraction
+  component, not a complete GDN model;
+- the deterministic and Torch/PyG trainers are synthetic smoke-only backends;
+- only an `upstream_aligned_validated` backend may be called GDN in a future
+  RQ1 experiment;
+- the production graph-ranking backend remains open until TASK-039A/B establish
+  HAI schema and process feasibility.
+
+Torch and Torch Geometric are optional dependencies. Lightweight package
+imports must remain usable without them, and optional backend access must fail
+through the project-owned dependency error.
 
 ## 8. Rule, Verifier, Governance, and Runtime
 

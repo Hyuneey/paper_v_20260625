@@ -1784,12 +1784,17 @@
 
 ### DEC-086: GDN implementation fidelity
 
-- Status: open_requires_evidence
+- Status: resolved_current_boundary_production_backend_open
 - Owner: researcher
-- Decide which `gdn/torch_backend.py` components are source-faithful and how
-  package import avoids unconditional torch.
-- Require pinned-source mapping, synthetic parity, masked Top-K and self-edge
-  evidence, and an optional-import design.
+- TASK-039P1D freezes `gdn/torch_backend.py` and the deterministic trainer as
+  synthetic smoke-only. They are not source-faithful production GDN backends.
+- `gdn/masked.py` is a project-owned masked candidate-extraction component,
+  not a complete GDN model.
+- Lightweight imports are independent of Torch/PyG and optional symbol access
+  fails through `GDN_OPTIONAL_DEPENDENCY_UNAVAILABLE`.
+- Only an `upstream_aligned_validated` backend may be called GDN in a future
+  RQ1 arm. TASK-039C must select a source-aligned minimal GDN port or a clearly
+  named alternative learned graph ranker after TASK-039A/B feasibility.
 
 ### DEC-087: Primary detector selection policy
 
@@ -1854,4 +1859,16 @@
   separate receipts. Evidence and construction grant no authority.
 - `no_op` is non-deployable. P1C runtime authorization is synthetic-only and
   does not execute a rule.
-- P1A, P1B, and P1C are complete. P1D and parent P1 remain incomplete.
+- P1A, P1B, P1C, P1D, and parent P1 are complete. TASK-039A is next; HAI
+  readiness and the production graph-ranking backend remain unresolved.
+
+### DEC-092: GDN optional dependency and claim ceiling
+
+- Status: resolved_foundation_TASK039P1D
+- Owner: researcher
+- `jsonschema` remains a core dependency. Torch `2.12.1` and Torch Geometric
+  `2.8.0` are the explicit optional `gdn` dependency group.
+- Smoke backends are limited to unit tests, artifact plumbing, synthetic shape
+  checks, and historical TASK-004/005 regression.
+- Smoke backends are prohibited for HAI ranking, RQ1 GDN results, process
+  selection, thesis performance, and scientific edge-stability claims.

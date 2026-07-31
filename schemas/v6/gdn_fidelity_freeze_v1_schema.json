@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/gdn_fidelity_freeze_v1_schema.json",
+  "title": "GDN Fidelity Freeze V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "upstream_repository",
+    "upstream_commit",
+    "upstream_license",
+    "upstream_license_blob_sha",
+    "upstream_license_sha256",
+    "upstream_file_records",
+    "backend_records",
+    "required_rq1_fidelity_class",
+    "production_backend_decision",
+    "future_backend_options",
+    "data_accessed",
+    "model_trained",
+    "created_at",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "gdn_fidelity_freeze"},
+    "task_id": {"const": "TASK-039P1D"},
+    "status": {"const": "passed_gdn_optional_import_and_fidelity_freeze"},
+    "upstream_repository": {"const": "https://github.com/d-ailin/GDN"},
+    "upstream_commit": {"const": "9853899da860682669a134e4af315d036aab4eca"},
+    "upstream_license": {"const": "MIT"},
+    "upstream_license_blob_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "upstream_license_sha256": {"$ref": "#/$defs/sha256"},
+    "upstream_file_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/upstreamFile"},
+      "minItems": 7
+    },
+    "backend_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/backendRecord"},
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "required_rq1_fidelity_class": {"const": "upstream_aligned_validated"},
+    "production_backend_decision": {"const": "pending_TASK039A_B_feasibility"},
+    "future_backend_options": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "data_accessed": {"const": false},
+    "model_trained": {"const": false},
+    "created_at": {"type": "string", "format": "date-time"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "stringSet": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "upstreamFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "git_blob_sha", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "git_blob_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "backendRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "artifact_type",
+        "backend_id",
+        "backend_version",
+        "implementation_module",
+        "implementation_symbols",
+        "implementation_behavior_hash",
+        "fidelity_class",
+        "scientific_gdn_claim_allowed",
+        "production_candidate_ranking_allowed",
+        "upstream_repository",
+        "upstream_commit",
+        "upstream_file_records",
+        "mapped_upstream_features",
+        "missing_upstream_features",
+        "intentional_project_deviations",
+        "input_contract",
+        "training_objective",
+        "learned_graph_behavior",
+        "candidate_mask_policy",
+        "self_edge_policy",
+        "split_policy",
+        "dependency_requirements",
+        "data_accessed",
+        "model_trained",
+        "created_at",
+        "artifact_hash"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "artifact_type": {"const": "gdn_backend_fidelity_record"},
+        "backend_id": {"type": "string", "minLength": 1},
+        "backend_version": {"type": "string", "minLength": 1},
+        "implementation_module": {"type": "string", "minLength": 1},
+        "implementation_symbols": {"$ref": "#/$defs/stringSet"},
+        "implementation_behavior_hash": {"$ref": "#/$defs/sha256"},
+        "fidelity_class": {
+          "enum": [
+            "project_owned_extraction_component",
+            "synthetic_smoke_only",
+            "upstream_aligned_unverified"
+          ]
+        },
+        "scientific_gdn_claim_allowed": {"const": false},
+        "production_candidate_ranking_allowed": {"const": false},
+        "upstream_repository": {"const": "https://github.com/d-ailin/GDN"},
+        "upstream_commit": {"const": "9853899da860682669a134e4af315d036aab4eca"},
+        "upstream_file_records": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/upstreamFile"},
+          "minItems": 1
+        },
+        "mapped_upstream_features": {"$ref": "#/$defs/stringSet"},
+        "missing_upstream_features": {"$ref": "#/$defs/stringSet"},
+        "intentional_project_deviations": {"$ref": "#/$defs/stringSet"},
+        "input_contract": {"type": "string", "minLength": 1},
+        "training_objective": {"type": "string", "minLength": 1},
+        "learned_graph_behavior": {"type": "string", "minLength": 1},
+        "candidate_mask_policy": {"type": "string", "minLength": 1},
+        "self_edge_policy": {"type": "string", "minLength": 1},
+        "split_policy": {"type": "string", "minLength": 1},
+        "dependency_requirements": {"$ref": "#/$defs/stringSet"},
+        "data_accessed": {"const": false},
+        "model_trained": {"const": false},
+        "created_at": {"type": "string", "format": "date-time"},
+        "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

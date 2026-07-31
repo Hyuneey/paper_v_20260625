@@ -9,6 +9,10 @@ description = "Feasibility-first verified rule construction prototype scaffoldin
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema[format-nongpl]==4.26.0",
+]
+
+[project.optional-dependencies]
+gdn = [
     "torch==2.12.1",
     "torch-geometric==2.8.0",
 ]
