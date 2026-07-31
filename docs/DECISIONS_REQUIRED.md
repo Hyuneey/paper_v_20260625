@@ -1815,3 +1815,19 @@
 - FN correction is primary. FP correction is supplementary and requires
   TP-removal, true-event-removal, non-regression, and no-op guards.
 - Numeric budgets and final endpoints remain open.
+
+### DEC-090: P1B evidence and outcome foundation boundary
+
+- Status: resolved_foundation_only
+- Owner: researcher
+- `NormalRelationEvidenceV1` is the only core construction evidence and is
+  restricted to `normal_relation_calibration`.
+- `DetectorErrorContextV1` is optional, reference-only, and restricted to
+  development or inner utility. FP context is supplementary.
+- Construction outcomes return only a candidate or explicit construction
+  terminal state. They do not accept a rule.
+- Governance outcomes consume an accepted-rule reference and decide
+  `selected_rule` or `no_op` without reassessing validity.
+- Runtime disposition is a pure projection of canonical trace state and grants
+  no authority.
+- Canonical collection and authority binding remain deferred to TASK-039P1C.

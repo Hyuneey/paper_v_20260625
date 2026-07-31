@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/rule_governance_outcome_v1_schema.json",
+  "title": "RuleGovernanceOutcomeV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "governance_id",
+    "artifact_hash",
+    "accepted_rule_ref",
+    "verifier_result_ref",
+    "normal_guard_assessment_ref",
+    "inner_utility_assessment_ref",
+    "governance_policy_ref",
+    "detector_error_context_refs",
+    "decision",
+    "decision_reason_codes",
+    "applied_rule_ref",
+    "label_performance_used",
+    "outer_data_used",
+    "sealed_data_used",
+    "authority_binding_verified",
+    "validity_reassessed",
+    "utility_assessment_only",
+    "provenance_references",
+    "creation_metadata",
+    "runtime_authority_granted",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "rule_governance_outcome"},
+    "governance_id": {"pattern": "^RGO-V1:[a-f0-9]{64}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "accepted_rule_ref": {"$ref": "#/$defs/hash"},
+    "verifier_result_ref": {"$ref": "#/$defs/hash"},
+    "normal_guard_assessment_ref": {"$ref": "#/$defs/hash"},
+    "inner_utility_assessment_ref": {"$ref": "#/$defs/hash"},
+    "governance_policy_ref": {"$ref": "#/$defs/hash"},
+    "detector_error_context_refs": {"$ref": "#/$defs/hashArray"},
+    "decision": {"enum": ["selected_rule", "no_op"]},
+    "decision_reason_codes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "applied_rule_ref": {
+      "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+    },
+    "label_performance_used": {"const": true},
+    "outer_data_used": {"const": false},
+    "sealed_data_used": {"const": false},
+    "authority_binding_verified": {"const": false},
+    "validity_reassessed": {"const": false},
+    "utility_assessment_only": {"const": true},
+    "provenance_references": {"$ref": "#/$defs/nonemptyHashArray"},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"},
+    "runtime_authority_granted": {"const": false},
+    "claim_boundary": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "no_op"}}},
+      "then": {
+        "properties": {
+          "applied_rule_ref": {"type": "null"},
+          "decision_reason_codes": {
+            "items": {
+              "enum": [
+                "identity_not_worse",
+                "tie_prefers_no_op",
+                "insufficient_inner_utility",
+                "safety_budget_exceeded",
+                "duplicate_or_redundant",
+                "unstable_inner_utility",
+                "correction_direction_not_authorized"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "hashArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "nonemptyHashArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+        }
+      }
+    }
+  }
+}

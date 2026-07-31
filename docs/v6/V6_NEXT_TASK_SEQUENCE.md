@@ -13,12 +13,15 @@ TASK-039P1 is decomposed and remains incomplete:
    additive v2 contracts, explicit split permissions, purge/window rules,
    legacy adapters, and independent schemas.
 2. **TASK-039P1B**: normal evidence, optional detector-error context, and typed
-   construction/governance/runtime outcomes.
+   construction/governance/runtime outcomes. Completed with independent
+   standard-library contracts, schemas, and a serialized aggregate-only
+   legacy evidence adapter.
 3. **TASK-039P1C**: canonical contract collection and verifier/runtime
    decoupling from Phase-1 adapters.
 4. **TASK-039P1D**: GDN package import boundary and fidelity decision support.
 
-P1A does not authorize data access or consumer migration.
+P1A and P1B do not authorize data access or consumer migration. Parent
+TASK-039P1 remains incomplete until P1C and P1D pass.
 
 ## TASK-039A
 

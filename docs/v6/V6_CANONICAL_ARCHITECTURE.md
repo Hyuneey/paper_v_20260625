@@ -35,6 +35,13 @@ Canonical verifier and runtime-authority modules currently depend on
 `contracts.phase1_adapters`. TASK-039P1 must replace that dependency through a
 dataset-neutral artifact boundary without changing historical behavior.
 
+TASK-039P1B adds a lightweight `paperworks.v6` foundation for normal evidence,
+optional detector context, construction/governance outcomes, and runtime
+disposition projection. These artifacts grant no validity or runtime
+authority and are not yet exported through the canonical contract collection.
+TASK-039P1C must perform that binding without creating a competing Rule DSL or
+verifier.
+
 ## Reusable, Legacy, and Frozen Paths
 
 Data, metadata, candidate-universe, masked-GDN, relation-profile, and evaluation
@@ -55,4 +62,4 @@ track with `partial_methodological_support`.
 - `T1-B`: independent budget-matched generations without verifier feedback.
 - `T2`: bounded verifier-feedback with `revise`, `retrieve`, and `no_rule`.
 
-No arm is executed in TASK-039P0.
+No construction arm is executed by the P1A/P1B foundation tasks.

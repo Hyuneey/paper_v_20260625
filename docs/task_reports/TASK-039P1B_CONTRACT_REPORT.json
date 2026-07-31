@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1b_contract_report",
+  "task_id": "TASK-039P1B",
+  "status": "passed_normal_evidence_and_outcome_foundation",
+  "starting_commit": "59715458d1635cb3a673a640262d3343ddaeb3cb",
+  "implementation": {
+    "foundation_module_count": 7,
+    "new_schema_count": 5,
+    "normal_evidence_contract": "NormalRelationEvidenceV1",
+    "detector_context_contract": "DetectorErrorContextV1",
+    "construction_outcome_contract": "RuleConstructionOutcomeV1",
+    "governance_outcome_contract": "RuleGovernanceOutcomeV1",
+    "runtime_projection_contract": "RuntimeDispositionV1",
+    "adapter_result_contract": "V6EvidenceAdapterResultV1"
+  },
+  "semantic_separation": {
+    "no_rule_is_construction_termination": true,
+    "no_op_is_governance_decision": true,
+    "abstain_is_runtime_disposition": true,
+    "construction_grants_validity": false,
+    "governance_reassesses_validity": false,
+    "evidence_grants_runtime_authority": false,
+    "attack_label_performance_decides_validity": false
+  },
+  "scope": {
+    "consumer_migration": false,
+    "Rule_v1_behavior_changed": false,
+    "verifier_v1_behavior_changed": false,
+    "runtime_v1_behavior_changed": false,
+    "explanation_v1_behavior_changed": false,
+    "Rule_v2_created": false,
+    "GDN_fidelity_resolved": false,
+    "primary_detector_selected": false,
+    "dataset_access": false,
+    "private_artifact_access": false,
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_execution": false,
+    "outer_access": false,
+    "sealed_access": false
+  },
+  "verification": {
+    "targeted_test_count": 56,
+    "targeted_test_failures": 0,
+    "P1A_and_P0_regression_failures": 0,
+    "existing_v1_data_test_failures": 0,
+    "guarded_unittest_tests_run": 241,
+    "guarded_unittest_assertion_failures": 0,
+    "guarded_unittest_import_errors": 21,
+    "guarded_import_error_breakdown": {
+      "torch": 8,
+      "jsonschema": 13
+    },
+    "new_import_errors_vs_P1A": 0,
+    "tracked_public_python_compiled": 256,
+    "allowlisted_JSON_parsed": 318,
+    "new_v6_schema_JSON_parsed": 5,
+    "self_hashed_reports_verified": 144,
+    "dependency_installation": false
+  },
+  "parent_task": {
+    "TASK-039P1A": "completed",
+    "TASK-039P1B": "completed",
+    "TASK-039P1C": "pending",
+    "TASK-039P1D": "pending",
+    "TASK-039P1": "incomplete"
+  },
+  "claim_boundary": "Evidence, context, outcome, projection, and serialized adapter contracts only; no real Agent, construction, verification, governance, correction, runtime, HAI readiness, or experimental validation.",
+  "report_hash": "fbc05e6aa18fb654e842a50bdade84a5031df9ac3dc2bcb9eff85396fb9397b9"
+}

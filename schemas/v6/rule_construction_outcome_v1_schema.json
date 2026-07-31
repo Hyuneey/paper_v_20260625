@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/rule_construction_outcome_v1_schema.json",
+  "title": "RuleConstructionOutcomeV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "construction_id",
+    "artifact_hash",
+    "construction_arm",
+    "normal_relation_evidence_ref",
+    "normal_evidence_status",
+    "parameter_strategy_ref",
+    "candidate_rule_ref",
+    "verifier_result_refs",
+    "action_history",
+    "provider_call_budget",
+    "provider_calls_used",
+    "token_budget",
+    "tokens_used",
+    "independent_generation",
+    "terminal_status",
+    "reason_codes",
+    "provider_failure",
+    "invalid_output_detected",
+    "provenance_references",
+    "creation_metadata",
+    "outer_data_used",
+    "sealed_data_used",
+    "validity_authority_granted",
+    "runtime_authority_granted",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "rule_construction_outcome"},
+    "construction_id": {"pattern": "^RCO-V1:[a-f0-9]{64}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "construction_arm": {"enum": ["T0", "T1", "T1_B", "T2"]},
+    "normal_relation_evidence_ref": {"$ref": "#/$defs/hash"},
+    "normal_evidence_status": {
+      "enum": ["supported", "insufficient_support", "unstable"]
+    },
+    "parameter_strategy_ref": {"$ref": "#/$defs/hash"},
+    "candidate_rule_ref": {
+      "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+    },
+    "verifier_result_refs": {"$ref": "#/$defs/hashArray"},
+    "action_history": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/actionRecord"}
+    },
+    "provider_call_budget": {"type": "integer", "minimum": 0},
+    "provider_calls_used": {"type": "integer", "minimum": 0},
+    "token_budget": {"type": "integer", "minimum": 0},
+    "tokens_used": {"type": "integer", "minimum": 0},
+    "independent_generation": {"type": "boolean"},
+    "terminal_status": {
+      "enum": [
+        "rule_candidate",
+        "no_rule",
+        "provider_error",
+        "invalid_output",
+        "non_repairable_rejection",
+        "budget_exhausted"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "provider_failure": {"type": "boolean"},
+    "invalid_output_detected": {"type": "boolean"},
+    "provenance_references": {"$ref": "#/$defs/nonemptyHashArray"},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"},
+    "outer_data_used": {"const": false},
+    "sealed_data_used": {"const": false},
+    "validity_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "claim_boundary": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"terminal_status": {"const": "rule_candidate"}}},
+      "then": {"properties": {"candidate_rule_ref": {"$ref": "#/$defs/hash"}}},
+      "else": {"properties": {"candidate_rule_ref": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"terminal_status": {"const": "no_rule"}}},
+      "then": {
+        "properties": {
+          "normal_evidence_status": {
+            "enum": ["insufficient_support", "unstable"]
+          },
+          "provider_failure": {"const": false},
+          "invalid_output_detected": {"const": false},
+          "reason_codes": {
+            "items": {"$ref": "#/$defs/noRuleReason"}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"construction_arm": {"const": "T0"}}},
+      "then": {
+        "properties": {
+          "provider_call_budget": {"const": 0},
+          "provider_calls_used": {"const": 0},
+          "independent_generation": {"const": false}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"construction_arm": {"const": "T1_B"}}},
+      "then": {"properties": {"independent_generation": {"const": true}}}
+    }
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "hashArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "nonemptyHashArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "actionRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_index",
+        "action_type",
+        "input_artifact_refs",
+        "output_artifact_refs",
+        "verifier_feedback_refs",
+        "changed_fields",
+        "reason_code",
+        "provider_call_index"
+      ],
+      "properties": {
+        "action_index": {"type": "integer", "minimum": 0},
+        "action_type": {
+          "enum": ["inspect", "plan", "retrieve", "revise", "no_rule", "terminate"]
+        },
+        "input_artifact_refs": {"$ref": "#/$defs/hashArray"},
+        "output_artifact_refs": {"$ref": "#/$defs/hashArray"},
+        "verifier_feedback_refs": {"$ref": "#/$defs/hashArray"},
+        "changed_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "reason_code": {"type": "string", "minLength": 1},
+        "provider_call_index": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "noRuleReason": {
+      "enum": [
+        "insufficient_trigger_support",
+        "insufficient_matched_response_support",
+        "unstable_response_direction",
+        "unstable_lag",
+        "unstable_magnitude",
+        "missing_matched_normal_reference",
+        "missing_calibration_parameter",
+        "relation_not_reproducible"
+      ]
+    },
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+        }
+      }
+    }
+  }
+}

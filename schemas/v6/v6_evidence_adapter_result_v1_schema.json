@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/v6_evidence_adapter_result_v1_schema.json",
+  "title": "V6EvidenceAdapterResultV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "adapter_result_id",
+    "artifact_hash",
+    "source_artifact_types",
+    "source_artifact_hashes",
+    "requested_target_split_role",
+    "status",
+    "target_artifact_type",
+    "target_evidence_id",
+    "target_artifact_hash",
+    "information_loss",
+    "rule_validity_granted",
+    "runtime_authority_granted",
+    "provenance_references",
+    "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "v6_evidence_adapter_result"},
+    "adapter_result_id": {"pattern": "^VEAR-V1:[a-f0-9]{64}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "source_artifact_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "source_artifact_hashes": {"$ref": "#/$defs/nonemptyHashArray"},
+    "requested_target_split_role": {"type": ["string", "null"]},
+    "status": {
+      "enum": ["created", "pending_context", "unsupported_source", "invalid_source"]
+    },
+    "target_artifact_type": {
+      "anyOf": [{"const": "normal_relation_evidence"}, {"type": "null"}]
+    },
+    "target_evidence_id": {
+      "anyOf": [
+        {"type": "string", "pattern": "^NRE-V1:[a-f0-9]{64}$"},
+        {"type": "null"}
+      ]
+    },
+    "target_artifact_hash": {
+      "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+    },
+    "information_loss": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "rule_validity_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "provenance_references": {"$ref": "#/$defs/nonemptyHashArray"},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "created"}}},
+      "then": {
+        "properties": {
+          "target_artifact_type": {"const": "normal_relation_evidence"},
+          "target_evidence_id": {
+            "type": "string",
+            "pattern": "^NRE-V1:[a-f0-9]{64}$"
+          },
+          "target_artifact_hash": {"$ref": "#/$defs/hash"}
+        }
+      },
+      "else": {
+        "properties": {
+          "target_artifact_type": {"type": "null"},
+          "target_evidence_id": {"type": "null"},
+          "target_artifact_hash": {"type": "null"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nonemptyHashArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+        }
+      }
+    }
+  }
+}

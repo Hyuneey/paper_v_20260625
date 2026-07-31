@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1b_evidence_outcome_freeze",
+  "task_id": "TASK-039P1B",
+  "status": "passed_normal_evidence_and_outcome_foundation",
+  "starting_commit": "59715458d1635cb3a673a640262d3343ddaeb3cb",
+  "foundation_schema_version": "1.0.0",
+  "normal_evidence": {
+    "artifact_type": "normal_relation_evidence",
+    "relation_family": "delayed_response",
+    "split_role": "normal_relation_calibration",
+    "response_directions": ["increase", "decrease"],
+    "evidence_states": ["supported", "insufficient_support", "unstable"],
+    "raw_values_included": false,
+    "label_performance_used": false,
+    "detector_context_used": false
+  },
+  "detector_context": {
+    "artifact_type": "detector_error_context",
+    "allowed_split_roles": ["development", "inner_utility"],
+    "error_directions": ["false_negative", "false_positive"],
+    "false_positive_supplementary_only": true,
+    "replaces_normal_evidence": false
+  },
+  "construction": {
+    "arms": ["T0", "T1", "T1_B", "T2"],
+    "terminal_states": [
+      "rule_candidate",
+      "no_rule",
+      "provider_error",
+      "invalid_output",
+      "non_repairable_rejection",
+      "budget_exhausted"
+    ],
+    "candidate_is_accepted_rule": false
+  },
+  "governance": {
+    "decisions": ["selected_rule", "no_op"],
+    "label_performance_scope": "inner_utility_only",
+    "validity_reassessed": false,
+    "authority_binding_verified": false
+  },
+  "runtime_projection": {
+    "dispositions": ["evaluated", "abstain"],
+    "canonical_runtime_replaced": false,
+    "runtime_authority_validated": false
+  },
+  "adapter": {
+    "source_types": ["relation_profile", "relation_evidence_pack"],
+    "serialized_mappings_only": true,
+    "raw_events_copied": false,
+    "numeric_parameters_copied": false,
+    "partial_target_emitted": false,
+    "evidence_package_v1_auto_adapter": false
+  },
+  "scope": {
+    "consumer_migration": false,
+    "rule_v2_created": false,
+    "canonical_contract_exports_changed": false,
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_execution": false,
+    "dataset_access": false,
+    "private_artifact_access": false,
+    "outer_access": false,
+    "sealed_access": false
+  },
+  "config_hash": "aedbbd991178f50cfb781d392ac3d7142421b48ab2c1450d65fafb91651ac183"
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/detector_error_context_v1_schema.json",
+  "title": "DetectorErrorContextV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "context_id",
+    "artifact_hash",
+    "dataset_manifest_id",
+    "data_view_id",
+    "split_manifest_id",
+    "split_role",
+    "process_scope",
+    "normal_relation_evidence_ref",
+    "error_direction",
+    "detector_artifact_ref",
+    "detector_config_ref",
+    "detector_prediction_ref",
+    "event_refs",
+    "context_window_refs",
+    "purpose",
+    "supplementary_only",
+    "primary_correction_direction",
+    "provenance_references",
+    "creation_metadata",
+    "raw_values_included",
+    "outer_data_used",
+    "sealed_data_used",
+    "replaces_normal_evidence",
+    "validity_authority_granted",
+    "runtime_authority_granted",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "detector_error_context"},
+    "context_id": {"pattern": "^DEC-V1:[a-f0-9]{64}$"},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "dataset_manifest_id": {"$ref": "#/$defs/hash"},
+    "data_view_id": {"$ref": "#/$defs/hash"},
+    "split_manifest_id": {"$ref": "#/$defs/hash"},
+    "split_role": {"enum": ["development", "inner_utility"]},
+    "process_scope": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "normal_relation_evidence_ref": {"$ref": "#/$defs/hash"},
+    "error_direction": {"enum": ["false_negative", "false_positive"]},
+    "detector_artifact_ref": {"$ref": "#/$defs/hash"},
+    "detector_config_ref": {"$ref": "#/$defs/hash"},
+    "detector_prediction_ref": {"$ref": "#/$defs/hash"},
+    "event_refs": {"$ref": "#/$defs/hashArray"},
+    "context_window_refs": {"$ref": "#/$defs/hashArray"},
+    "purpose": {
+      "enum": ["development_diagnostic", "inner_utility_assessment"]
+    },
+    "supplementary_only": {"type": "boolean"},
+    "primary_correction_direction": {"type": "boolean"},
+    "provenance_references": {"$ref": "#/$defs/nonemptyHashArray"},
+    "creation_metadata": {"$ref": "#/$defs/creationMetadata"},
+    "raw_values_included": {"const": false},
+    "outer_data_used": {"const": false},
+    "sealed_data_used": {"const": false},
+    "replaces_normal_evidence": {"const": false},
+    "validity_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "claim_boundary": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"split_role": {"const": "development"}}},
+      "then": {
+        "properties": {"purpose": {"const": "development_diagnostic"}}
+      }
+    },
+    {
+      "if": {"properties": {"split_role": {"const": "inner_utility"}}},
+      "then": {
+        "properties": {"purpose": {"const": "inner_utility_assessment"}}
+      }
+    },
+    {
+      "if": {"properties": {"error_direction": {"const": "false_positive"}}},
+      "then": {
+        "properties": {
+          "supplementary_only": {"const": true},
+          "primary_correction_direction": {"const": false}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "hashArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "nonemptyHashArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hash"}
+    },
+    "creationMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+        }
+      }
+    }
+  }
+}

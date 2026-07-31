@@ -13,6 +13,7 @@ from tests.test_task039p0_alignment_audit import (
 
 
 STARTING_COMMIT = "1c8a7f40b1ee46e0f819afe1b8b43904e3927e53"
+P1A_RESULT_COMMIT = "59715458d1635cb3a673a640262d3343ddaeb3cb"
 REPORT_PATH = ROOT / "docs/task_reports/TASK-039P1A_CONTRACT_REPORT.json"
 
 
@@ -49,7 +50,15 @@ class Task039P1AReportTests(unittest.TestCase):
 
     def test_source_changes_are_confined_to_data_foundation(self) -> None:
         output = subprocess.check_output(
-            ["git", "diff", "--name-only", STARTING_COMMIT, "--", "src"],
+            [
+                "git",
+                "diff",
+                "--name-only",
+                STARTING_COMMIT,
+                P1A_RESULT_COMMIT,
+                "--",
+                "src",
+            ],
             cwd=ROOT,
             text=True,
         )
