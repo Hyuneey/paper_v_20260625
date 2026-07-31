@@ -31,16 +31,24 @@ changing scientific behavior or accessing research data.
 
 ## TASK-039P1: Canonical Foundation Migration
 
-Implement:
+TASK-039P1 is decomposed and is not complete:
 
-- dataset-neutral manifest and split v2 contracts;
-- `NormalRelationEvidence`;
-- optional `DetectorErrorContext`;
-- validity/utility artifact separation;
-- typed `no_rule`, `no_op`, and `abstain`;
-- v1 compatibility adapters;
-- removal of canonical dependence on Phase-1 adapters;
-- GDN fidelity and optional-import decision support.
+1. **TASK-039P1A: data and split foundation**
+   - dataset-neutral manifest/view/split v2 contracts;
+   - explicit v6 role permissions;
+   - purge and split-before-windowing enforcement;
+   - v1 data adapters and independent v2 schemas.
+2. **TASK-039P1B: evidence and construction outcomes**
+   - `NormalRelationEvidence`;
+   - optional `DetectorErrorContext`;
+   - validity/utility separation;
+   - typed `no_rule`, `no_op`, and `abstain`.
+3. **TASK-039P1C: canonical collection and decoupling**
+   - canonical contract exports;
+   - verifier/runtime removal of Phase-1 adapter dependence.
+4. **TASK-039P1D: GDN import and fidelity support**
+   - optional-import boundary;
+   - pinned-source fidelity evidence and unresolved-decision support.
 
 Do not load HAI merely to implement schemas and adapters.
 

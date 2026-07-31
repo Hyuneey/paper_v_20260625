@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/dataset_manifest_v2_schema.json",
+  "title": "Dataset-Neutral Dataset Manifest V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_hash",
+    "dataset_name",
+    "dataset_version_or_edition",
+    "source_kind",
+    "source_reference",
+    "license_or_terms_reference",
+    "citation_reference",
+    "local_only_storage",
+    "files",
+    "feature_count",
+    "feature_names_hash",
+    "timestamp_specification",
+    "nominal_sampling_interval_seconds",
+    "label_specification",
+    "available_process_ids",
+    "metadata_artifact_references",
+    "provenance_status",
+    "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "artifact_type": {"const": "dataset_manifest_v2"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"},
+    "dataset_name": {"$ref": "#/$defs/nonempty"},
+    "dataset_version_or_edition": {"$ref": "#/$defs/nonempty"},
+    "source_kind": {"$ref": "#/$defs/nonempty"},
+    "source_reference": {"$ref": "#/$defs/nonempty"},
+    "license_or_terms_reference": {"$ref": "#/$defs/nonempty"},
+    "citation_reference": {"$ref": "#/$defs/nonempty"},
+    "local_only_storage": {"const": true},
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/file"}
+    },
+    "feature_count": {
+      "oneOf": [
+        {"type": "integer", "minimum": 1},
+        {"type": "null"}
+      ]
+    },
+    "feature_names_hash": {
+      "oneOf": [
+        {"$ref": "#/$defs/sha256"},
+        {"type": "null"}
+      ]
+    },
+    "timestamp_specification": {"$ref": "#/$defs/timestamp_specification"},
+    "nominal_sampling_interval_seconds": {
+      "oneOf": [
+        {"type": "number", "exclusiveMinimum": 0},
+        {"type": "null"}
+      ]
+    },
+    "label_specification": {
+      "oneOf": [
+        {"$ref": "#/$defs/label_specification"},
+        {"type": "null"}
+      ]
+    },
+    "available_process_ids": {
+      "oneOf": [
+        {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/nonempty"}
+        },
+        {"type": "null"}
+      ]
+    },
+    "metadata_artifact_references": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/nonempty"}
+    },
+    "provenance_status": {"$ref": "#/$defs/provenance_status"},
+    "creation_metadata": {"$ref": "#/$defs/creation_metadata"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nonempty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance_status": {
+      "enum": ["verified", "unverified", "unknown"]
+    },
+    "time_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "string", "format": "date-time"},
+        "end": {"type": "string", "format": "date-time"}
+      }
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logical_file_role",
+        "relative_local_path",
+        "sha256",
+        "byte_size",
+        "row_count",
+        "compression",
+        "time_range",
+        "process_ids",
+        "label_availability",
+        "provenance_status"
+      ],
+      "properties": {
+        "logical_file_role": {"$ref": "#/$defs/nonempty"},
+        "relative_local_path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+        },
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "byte_size": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0},
+            {"type": "null"}
+          ]
+        },
+        "row_count": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0},
+            {"type": "null"}
+          ]
+        },
+        "compression": {
+          "enum": ["none", "gzip", "zip", "bzip2", "xz", "other", "unknown"]
+        },
+        "time_range": {
+          "oneOf": [
+            {"$ref": "#/$defs/time_range"},
+            {"type": "null"}
+          ]
+        },
+        "process_ids": {
+          "oneOf": [
+            {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/nonempty"}
+            },
+            {"type": "null"}
+          ]
+        },
+        "label_availability": {
+          "oneOf": [
+            {"enum": ["available", "unavailable", "partial", "unknown"]},
+            {"type": "null"}
+          ]
+        },
+        "provenance_status": {"$ref": "#/$defs/provenance_status"}
+      }
+    },
+    "timestamp_specification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_name", "format", "timezone", "provenance_status"],
+      "properties": {
+        "field_name": {
+          "oneOf": [
+            {"$ref": "#/$defs/nonempty"},
+            {"type": "null"}
+          ]
+        },
+        "format": {
+          "oneOf": [
+            {"$ref": "#/$defs/nonempty"},
+            {"type": "null"}
+          ]
+        },
+        "timezone": {
+          "oneOf": [
+            {"$ref": "#/$defs/nonempty"},
+            {"type": "null"}
+          ]
+        },
+        "provenance_status": {"$ref": "#/$defs/provenance_status"}
+      }
+    },
+    "label_specification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_name", "encoding", "provenance_status"],
+      "properties": {
+        "field_name": {
+          "oneOf": [
+            {"$ref": "#/$defs/nonempty"},
+            {"type": "null"}
+          ]
+        },
+        "encoding": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "integer", "boolean", "null"]
+          }
+        },
+        "provenance_status": {"$ref": "#/$defs/provenance_status"}
+      }
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"$ref": "#/$defs/nonempty"},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        }
+      }
+    }
+  }
+}

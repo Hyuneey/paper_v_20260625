@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/data_adapter_result_v2_schema.json",
+  "title": "Legacy Data Adapter Result V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_hash",
+    "source_artifact_type",
+    "source_artifact_hash",
+    "requested_target_role",
+    "status",
+    "target_artifact_type",
+    "target_artifact_hash",
+    "information_loss",
+    "sealed_access_granted"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "artifact_type": {"const": "data_adapter_result_v2"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"},
+    "source_artifact_type": {"type": "string", "minLength": 1},
+    "source_artifact_hash": {"$ref": "#/$defs/sha256"},
+    "requested_target_role": {
+      "oneOf": [
+        {
+          "enum": [
+            "normal_candidate_fit",
+            "normal_relation_calibration",
+            "normal_guard",
+            "development",
+            "inner_utility",
+            "outer_validation",
+            "sealed_evaluation"
+          ]
+        },
+        {"type": "null"}
+      ]
+    },
+    "status": {
+      "enum": ["created", "pending_context", "unsupported_source", "invalid_source"]
+    },
+    "target_artifact_type": {
+      "oneOf": [
+        {"type": "string", "minLength": 1},
+        {"type": "null"}
+      ]
+    },
+    "target_artifact_hash": {
+      "oneOf": [
+        {"$ref": "#/$defs/sha256"},
+        {"type": "null"}
+      ]
+    },
+    "information_loss": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "sealed_access_granted": {"const": false}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

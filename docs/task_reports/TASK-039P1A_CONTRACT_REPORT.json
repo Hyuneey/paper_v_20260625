@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "task039p1a_contract_report",
+  "task_id": "TASK-039P1A",
+  "status": "passed_dataset_neutral_data_split_foundation",
+  "starting_commit": "1c8a7f40b1ee46e0f819afe1b8b43904e3927e53",
+  "implementation": {
+    "dataset_file_contract": "DatasetFileV2",
+    "dataset_manifest_contract": "DatasetManifestV2",
+    "data_view_contract": "DataViewManifestV2",
+    "split_manifest_contract": "SplitManifestV2",
+    "split_role_count": 7,
+    "typed_operation_count": 11,
+    "adapter_source_count": 3,
+    "adapter_status_count": 4,
+    "v2_schema_count": 4,
+    "v1_schema_count_unchanged": 7
+  },
+  "split_roles": [
+    "normal_candidate_fit",
+    "normal_relation_calibration",
+    "normal_guard",
+    "development",
+    "inner_utility",
+    "outer_validation",
+    "sealed_evaluation"
+  ],
+  "policies": {
+    "unknown_operation_fails_closed": true,
+    "split_before_windowing": true,
+    "minimum_purge_formula": "window_size - 1 + maximum_required_lag",
+    "cross_boundary_windows": false,
+    "outer_training_revision_selection": false,
+    "sealed_access_requires_approval": true,
+    "legacy_validation_silent_mapping": false,
+    "legacy_test_silent_sealed_mapping": false,
+    "adapter_grants_sealed_access": false,
+    "adapter_infers_process_scope": false
+  },
+  "scope": {
+    "consumer_migration": false,
+    "normal_relation_evidence_implemented": false,
+    "rule_v2_created": false,
+    "GDN_fidelity_resolved": false,
+    "primary_detector_resolved": false,
+    "dataset_access": false,
+    "private_artifact_access": false,
+    "provider_calls": 0,
+    "agent_calls": 0,
+    "detector_execution": false,
+    "rule_runtime_execution": false,
+    "outer_access": false,
+    "sealed_access": false
+  },
+  "verification": {
+    "targeted_test_count": 32,
+    "targeted_test_failures": 0,
+    "existing_v1_data_test_count": 9,
+    "existing_v1_data_test_failures": 0,
+    "P0_audit_test_count": 13,
+    "P0_audit_test_failures": 0,
+    "guarded_unittest_tests_run": 185,
+    "guarded_unittest_assertion_failures": 0,
+    "guarded_unittest_import_errors": 21,
+    "guarded_import_error_breakdown": {
+      "torch": 8,
+      "jsonschema": 13
+    },
+    "new_import_errors_vs_P0": 0,
+    "tracked_public_python_compiled": 241,
+    "allowlisted_JSON_parsed": 311,
+    "new_v2_schema_JSON_parsed": 4,
+    "self_hashed_reports_verified": 143,
+    "dependency_installation": false
+  },
+  "claim_boundary": "Dataset-neutral contracts and split governance only; no HAI readiness, process feasibility, rule construction, detector performance, Agentic value, or thesis result.",
+  "report_hash": "13fbbae74bffb70dad141dc66361310dd80f6b50a4069645aed6cb62e2b73eaa"
+}

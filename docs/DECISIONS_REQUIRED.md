@@ -1716,12 +1716,22 @@
 
 ### DEC-080: Dataset-neutral HAI data and split v2 contracts
 
-- Status: implementation_deferred_TASK039P1
+- Status: foundation_resolved_TASK039P1A
 - Owner: researcher
-- Existing data and split modules are reusable producers, not canonical HAI
-  contracts. TASK-039P1 must separate normal construction, validity, inner
-  utility, one-way outer validation, and sealed evaluation.
+- Existing v1 data and split modules remain reusable producers with unchanged
+  behavior. Dataset-neutral v2 contracts are additive under `paperworks.data`.
+- The seven roles are `normal_candidate_fit`,
+  `normal_relation_calibration`, `normal_guard`, `development`,
+  `inner_utility`, `outer_validation`, and `sealed_evaluation`.
+- Every operation is guarded by an explicit one-role permission matrix.
+  Unknown operations fail closed, and sealed execution requires separate
+  approval.
+- Legacy `validation` and `test` roles are never silently reinterpreted.
+  Adapters report information loss, require explicit process scope, and cannot
+  grant sealed access.
 - HAI 23.05 remains a candidate until TASK-039A/B provenance and feasibility.
+- Consumer migration and the remaining P1B/P1C/P1D work are not completed by
+  TASK-039P1A.
 
 ### DEC-081: Normal evidence and detector-error context
 

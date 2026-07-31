@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/split_manifest_v2_schema.json",
+  "title": "Dataset-Neutral Split Manifest V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_hash",
+    "dataset_manifest_id",
+    "data_view_id",
+    "role",
+    "raw_ranges",
+    "event_ids",
+    "purge_gap_samples",
+    "process_scope",
+    "seed",
+    "creation_policy",
+    "provenance_status",
+    "sealed_access_status",
+    "split_before_windowing",
+    "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "artifact_type": {"const": "split_manifest_v2"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"},
+    "dataset_manifest_id": {"$ref": "#/$defs/sha256"},
+    "data_view_id": {"$ref": "#/$defs/sha256"},
+    "role": {
+      "enum": [
+        "normal_candidate_fit",
+        "normal_relation_calibration",
+        "normal_guard",
+        "development",
+        "inner_utility",
+        "outer_validation",
+        "sealed_evaluation"
+      ]
+    },
+    "raw_ranges": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/raw_range"}
+    },
+    "event_ids": {
+      "oneOf": [
+        {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        {"type": "null"}
+      ]
+    },
+    "purge_gap_samples": {"type": "integer", "minimum": 0},
+    "process_scope": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        {"type": "null"}
+      ]
+    },
+    "seed": {
+      "oneOf": [
+        {"type": "integer"},
+        {"type": "null"}
+      ]
+    },
+    "creation_policy": {"type": "string", "minLength": 1},
+    "provenance_status": {
+      "enum": ["verified", "unverified", "unknown"]
+    },
+    "sealed_access_status": {
+      "enum": ["not_applicable", "approval_required", "approved"]
+    },
+    "split_before_windowing": {"const": true},
+    "creation_metadata": {"$ref": "#/$defs/creation_metadata"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "raw_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 1}
+      }
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        }
+      }
+    }
+  }
+}

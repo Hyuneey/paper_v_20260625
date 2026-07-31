@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/data_view_manifest_v2_schema.json",
+  "title": "Dataset-Neutral Data View Manifest V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_hash",
+    "view_kind",
+    "source_dataset_manifest_id",
+    "process_scope",
+    "sampling_interval_seconds",
+    "preprocessing_config",
+    "aggregation",
+    "feature_order_hash",
+    "second_level_rule_calibration_allowed",
+    "provenance_status",
+    "creation_metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "artifact_type": {"const": "data_view_manifest_v2"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"},
+    "view_kind": {
+      "enum": ["canonical_rule", "candidate_learning", "gdn"]
+    },
+    "source_dataset_manifest_id": {"$ref": "#/$defs/sha256"},
+    "process_scope": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        {"type": "null"}
+      ]
+    },
+    "sampling_interval_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "preprocessing_config": {
+      "type": "object"
+    },
+    "aggregation": {
+      "$ref": "#/$defs/aggregation"
+    },
+    "feature_order_hash": {"$ref": "#/$defs/sha256"},
+    "second_level_rule_calibration_allowed": {"type": "boolean"},
+    "provenance_status": {
+      "enum": ["verified", "unverified", "unknown"]
+    },
+    "creation_metadata": {"$ref": "#/$defs/creation_metadata"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "aggregation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "source_sampling_interval_seconds",
+        "output_sampling_interval_seconds",
+        "explicit",
+        "description"
+      ],
+      "properties": {
+        "method": {"type": "string", "minLength": 1},
+        "source_sampling_interval_seconds": {
+          "oneOf": [
+            {"type": "number", "exclusiveMinimum": 0},
+            {"type": "null"}
+          ]
+        },
+        "output_sampling_interval_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "explicit": {"type": "boolean"},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "created_by", "code_commit", "config_hash"],
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string", "minLength": 1},
+        "code_commit": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{7,40}|unverified)$"
+        },
+        "config_hash": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        }
+      }
+    }
+  }
+}

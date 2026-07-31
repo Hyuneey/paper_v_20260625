@@ -13,6 +13,7 @@ from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_HEAD = "337769066f62b8f4fcd8e48a9a8f8d3651e3818a"
+P0_FREEZE_COMMIT = "1c8a7f40b1ee46e0f819afe1b8b43904e3927e53"
 INVENTORY_PATH = ROOT / "docs/task_reports/TASK-039P0_PUBLIC_SYMBOL_INVENTORY.json"
 MATRIX_PATH = ROOT / "docs/task_reports/TASK-039P0_MIGRATION_MATRIX.json"
 CONFIG_PATH = ROOT / "configs/v6/task039p0_alignment_freeze.json"
@@ -262,6 +263,46 @@ def read_public_bytes(path: Path) -> bytes:
     return path.read_bytes()
 
 
+def tracked_public_paths_at_commit(
+    commit: str,
+    predicate: Any,
+    *,
+    skip_prohibited_paths: bool = False,
+) -> list[Path]:
+    """Return public paths from a pinned Git tree without workspace traversal."""
+
+    raw = _git("ls-tree", "-r", "-z", "--name-only", commit)
+    paths = []
+    for item in raw.decode("utf-8").split("\0"):
+        if not item or not predicate(item):
+            continue
+        candidate = ROOT / item
+        try:
+            assert_public_tracked_path(candidate)
+        except ValueError as exc:
+            if skip_prohibited_paths and str(exc) in {
+                "prohibited root",
+                "prohibited cache path",
+                "prohibited token",
+            }:
+                continue
+            raise
+        paths.append(candidate)
+    return sorted(paths)
+
+
+def read_public_bytes_at_commit(path: Path, commit: str) -> bytes:
+    """Read a currently tracked public path from a pinned Git object."""
+
+    assert_public_tracked_path(path)
+    relative = path.resolve().relative_to(ROOT.resolve()).as_posix()
+    return _git("show", f"{commit}:{relative}")
+
+
+def read_public_text_at_commit(path: Path, commit: str) -> str:
+    return read_public_bytes_at_commit(path, commit).decode("utf-8")
+
+
 def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
@@ -451,18 +492,16 @@ def module_reason(classification: str) -> str:
     }[classification]
 
 
-def build_inventory() -> dict[str, Any]:
-    source_paths = tracked_paths(
-        (
-            ":(glob)src/paperworks/*.py",
-            ":(glob)src/paperworks/**/*.py",
-        )
+def build_inventory(snapshot_commit: str = P0_FREEZE_COMMIT) -> dict[str, Any]:
+    source_paths = tracked_public_paths_at_commit(
+        snapshot_commit,
+        lambda item: item.startswith("src/paperworks/") and item.endswith(".py"),
     )
     modules = []
     all_symbols = []
     source_hash_records = []
     for path in source_paths:
-        text = read_public_text(path)
+        text = read_public_text_at_commit(path, snapshot_commit)
         tree = ast.parse(text, filename=str(path))
         module_name = module_name_for(path)
         classification = classify_module(module_name)
@@ -474,7 +513,7 @@ def build_inventory() -> dict[str, Any]:
                 if marker in line:
                     markers.append({"marker": marker, "line": line_number})
         relative = path.relative_to(ROOT).as_posix()
-        file_hash = sha256_bytes(read_public_bytes(path))
+        file_hash = sha256_bytes(read_public_bytes_at_commit(path, snapshot_commit))
         modules.append(
             {
                 "path": relative,
@@ -512,7 +551,14 @@ def build_inventory() -> dict[str, Any]:
         )
 
     schemas = []
-    for path in tracked_paths((":(glob)schemas/*.json",)):
+    for path in tracked_public_paths_at_commit(
+        snapshot_commit,
+        lambda item: (
+            item.startswith("schemas/")
+            and item.endswith(".json")
+            and item.count("/") == 1
+        ),
+    ):
         schemas.append(
             {
                 "path": path.relative_to(ROOT).as_posix(),
@@ -525,11 +571,15 @@ def build_inventory() -> dict[str, Any]:
             }
         )
 
-    fixture_paths = tracked_paths(
-        (
-            ":(glob)fixtures/task030/**/*.json",
-            ":(glob)fixtures/task032*/**/*.json",
-        )
+    fixture_paths = tracked_public_paths_at_commit(
+        snapshot_commit,
+        lambda item: (
+            item.endswith(".json")
+            and (
+                item.startswith("fixtures/task030/")
+                or item.startswith("fixtures/task032")
+            )
+        ),
     )
     fixture_records = [
         {
@@ -539,16 +589,17 @@ def build_inventory() -> dict[str, Any]:
         for path in fixture_paths
     ]
 
-    test_paths = tracked_paths(
-        (
-            ":(glob)tests/*.py",
-            ":(glob)tests/**/*.py",
-        ),
+    test_paths = tracked_public_paths_at_commit(
+        snapshot_commit,
+        lambda item: item.startswith("tests/") and item.endswith(".py"),
         skip_prohibited_paths=True,
     )
     test_records = []
     for path in test_paths:
-        text = read_public_text(path)
+        if path.resolve() == Path(__file__).resolve():
+            text = read_public_text_at_commit(path, snapshot_commit)
+        else:
+            text = read_public_text(path)
         tree = ast.parse(text, filename=str(path))
         imports = imported_modules(tree, "tests")
         name = path.name.lower()
