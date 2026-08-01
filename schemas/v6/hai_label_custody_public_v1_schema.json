@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_label_custody_public_v1_schema.json",
+  "title": "HAI Public Label Custody Record V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "label_relative_path",
+    "label_file_sha256", "label_byte_size", "label_header_sha256",
+    "label_row_count", "timestamp_alignment_status", "label_domain_valid",
+    "summary_relative_path", "summary_file_sha256", "summary_byte_size",
+    "summary_format_valid", "event_record_count", "expected_event_record_count",
+    "custody_status", "private_custody_artifact_hash",
+    "label_content_accessed_for_provenance_only",
+    "label_content_used_for_scientific_selection",
+    "attack_event_details_publicly_exposed", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_label_custody_public"},
+    "label_relative_path": {"type": "string", "pattern": "^hai-23\\.05/label-test[12]\\.csv$"},
+    "label_file_sha256": {"$ref": "#/$defs/sha256"},
+    "label_byte_size": {"type": "integer", "minimum": 0},
+    "label_header_sha256": {"$ref": "#/$defs/sha256"},
+    "label_row_count": {"type": "integer", "minimum": 0},
+    "timestamp_alignment_status": {"enum": ["aligned", "misaligned"]},
+    "label_domain_valid": {"type": "boolean"},
+    "summary_relative_path": {"type": "string", "pattern": "^hai-23\\.05/summary_label[12]\\.txt$"},
+    "summary_file_sha256": {"$ref": "#/$defs/sha256"},
+    "summary_byte_size": {"type": "integer", "minimum": 0},
+    "summary_format_valid": {"type": "boolean"},
+    "event_record_count": {"type": "integer", "minimum": 0},
+    "expected_event_record_count": {"type": "integer", "minimum": 0},
+    "custody_status": {"enum": ["verified", "failed"]},
+    "private_custody_artifact_hash": {"$ref": "#/$defs/sha256"},
+    "label_content_accessed_for_provenance_only": {"const": true},
+    "label_content_used_for_scientific_selection": {"const": false},
+    "attack_event_details_publicly_exposed": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

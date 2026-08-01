@@ -39,6 +39,10 @@ parent TASK-039P1 are complete foundations. TASK-039A is next. This does not
 establish HAI readiness, process feasibility, a production GDN backend, real
 rule construction, detector validation, or a proposed-method result.
 
+TASK-039A now has a frozen, synthetic-tested provenance-audit implementation.
+Its real official-source execution and sanitized result remain commit-separated;
+no HAI raw file or label detail is stored in this repository.
+
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:
 

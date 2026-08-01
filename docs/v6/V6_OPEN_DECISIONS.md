@@ -26,6 +26,8 @@ evidence. TASK-039P0 creates no Rule v2.
 
 Select exactly one process only after official HAI 23.05 provenance, feature
 typing, normal support, delayed-response evidence, and split viability.
+TASK-039A cannot select P1 or P3 and cannot use label or test content for this
+decision.
 
 ## Evaluation and Sealed Test
 

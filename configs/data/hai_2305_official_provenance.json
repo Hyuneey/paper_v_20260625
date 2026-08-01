@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "hai_2305_official_provenance_config",
+  "task_id": "TASK-039A",
+  "official_repository": "https://github.com/icsdataset/hai",
+  "snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "introduction_commit": "ebcd09bbb432a35be39dcfaf1d800083fd06777b",
+  "dataset_directory": "hai-23.05",
+  "excluded_directories": [
+    "haiend-23.05"
+  ],
+  "expected_lfs_files": [
+    {
+      "relative_path": "hai-23.05/hai-test1.csv",
+      "oid_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "byte_size": 31255559
+    },
+    {
+      "relative_path": "hai-23.05/hai-test2.csv",
+      "oid_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "byte_size": 132946575
+    },
+    {
+      "relative_path": "hai-23.05/hai-train1.csv",
+      "oid_sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+      "byte_size": 162418984
+    },
+    {
+      "relative_path": "hai-23.05/hai-train2.csv",
+      "oid_sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+      "byte_size": 169121615
+    },
+    {
+      "relative_path": "hai-23.05/hai-train3.csv",
+      "oid_sha256": "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d",
+      "byte_size": 72774793
+    },
+    {
+      "relative_path": "hai-23.05/hai-train4.csv",
+      "oid_sha256": "56658c83657d42a65db982b864362e0d0ffeb96d1f7b357d5e76e3a5c522d940",
+      "byte_size": 114494940
+    },
+    {
+      "relative_path": "hai-23.05/label-test1.csv",
+      "oid_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "byte_size": 1242017
+    },
+    {
+      "relative_path": "hai-23.05/label-test2.csv",
+      "oid_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "byte_size": 4500018
+    },
+    {
+      "relative_path": "hai-23.05/summary_label1.txt",
+      "oid_sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+      "byte_size": 1591
+    },
+    {
+      "relative_path": "hai-23.05/summary_label2.txt",
+      "oid_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+      "byte_size": 2911
+    }
+  ],
+  "expected_summary_event_counts": {
+    "summary_label1.txt": 14,
+    "summary_label2.txt": 38,
+    "total": 52
+  },
+  "expected_readme_blob_sha": "de19cf9f6466a049ece2c739a7216ddd6f044c32",
+  "expected_technical_manual_blob_sha": "18cb88514176e1c641f584cf24ac8e9559432b38",
+  "technical_manual_path": "hai_dataset_technical_details.pdf",
+  "expected_primary_point_count": 86,
+  "expected_process_ids": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "allowed_network_routes": [
+    "https://github.com/icsdataset/hai",
+    "official GitHub Git-LFS endpoints and required redirects for that remote"
+  ],
+  "source_policy": {
+    "moving_ref_allowed": false,
+    "mirror_fallback_allowed": false,
+    "archive_fallback_allowed": false,
+    "restricted_lfs_include": "hai-23.05/**"
+  },
+  "public_private_output_policy": {
+    "raw_data_in_paper_repository": false,
+    "absolute_paths_in_public_artifacts": false,
+    "private_custody_artifact_outside_repository": true,
+    "attack_event_details_public": false
+  },
+  "test_file_policy": {
+    "structural_audit_only": true,
+    "feature_value_statistics": false,
+    "scientific_selection": false
+  },
+  "label_custody_policy": {
+    "provenance_access_only": true,
+    "scientific_selection": false,
+    "public_event_details": false,
+    "public_positive_point_count": false
+  },
+  "config_hash": "7f36b4ab4055fc412cc86865021a83771117e31ee8734d69a3e9892761f4d34a"
+}

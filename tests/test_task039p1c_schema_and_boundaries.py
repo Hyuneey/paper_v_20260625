@@ -39,6 +39,13 @@ P1D_TYPES = {
     "gdn_dependency_status",
     "gdn_fidelity_freeze",
 }
+TASK039A_TYPES = {
+    "hai_csv_structure_audit",
+    "hai_label_custody_public",
+    "hai_lfs_pointer_record",
+    "hai_provenance_audit_result",
+    "hai_reference_inventory",
+}
 
 
 class Task039P1CSchemaBoundaryTests(unittest.TestCase):
@@ -46,8 +53,9 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
         self.assertTrue(P1C_TYPES.issubset(registry.artifact_types))
         self.assertTrue(P1D_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 14)
-        for artifact_type in P1C_TYPES | P1D_TYPES:
+        self.assertTrue(TASK039A_TYPES.issubset(registry.artifact_types))
+        self.assertEqual(len(registry.artifact_types), 19)
+        for artifact_type in P1C_TYPES | P1D_TYPES | TASK039A_TYPES:
             Draft202012Validator.check_schema(
                 registry.schema_for(artifact_type)
             )

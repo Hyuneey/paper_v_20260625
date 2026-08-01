@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_provenance_audit_result_v1_schema.json",
+  "title": "HAI Provenance Audit Result V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "task_id", "status", "execution_code_commit", "repository_snapshot", "lfs_records", "csv_records", "label_custody_records", "reference_records", "graph_records", "dataset_manifest_id", "mandatory_gates", "boundary", "created_at", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_provenance_audit_result"},
+    "task_id": {"const": "TASK-039A"},
+    "status": {"type": "string", "minLength": 1},
+    "execution_code_commit": {"$ref": "#/$defs/commit"},
+    "repository_snapshot": {"$ref": "#/$defs/snapshot"},
+    "lfs_records": {"type": "array", "items": {"$ref": "#/$defs/lfs"}},
+    "csv_records": {"type": "array", "items": {"$ref": "#/$defs/csv"}},
+    "label_custody_records": {"type": "array", "items": {"$ref": "#/$defs/label"}},
+    "reference_records": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "graph_records": {"type": "array", "items": {"$ref": "#/$defs/graph"}},
+    "dataset_manifest_id": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "mandatory_gates": {"$ref": "#/$defs/gates"},
+    "boundary": {"$ref": "#/$defs/boundary"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "gitSha": {"type": "string", "pattern": "^[a-f0-9]{40,64}$"},
+    "snapshot": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "repository_url", "snapshot_commit", "introduction_commit", "observed_head", "tree_sha", "observed_origin_url", "detached_head", "checkout_clean", "git_fsck_passed", "git_lfs_fsck_passed", "lfs_available", "readme_blob_sha", "technical_manual_blob_sha", "standalone_license_present", "license_source", "license_statement", "warning_codes", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_repository_snapshot"},
+        "repository_url": {"type": "string"}, "snapshot_commit": {"$ref": "#/$defs/commit"}, "introduction_commit": {"$ref": "#/$defs/commit"}, "observed_head": {"$ref": "#/$defs/commit"}, "tree_sha": {"$ref": "#/$defs/gitSha"}, "observed_origin_url": {"type": "string"},
+        "detached_head": {"type": "boolean"}, "checkout_clean": {"type": "boolean"}, "git_fsck_passed": {"type": "boolean"}, "git_lfs_fsck_passed": {"type": "boolean"}, "lfs_available": {"type": "boolean"},
+        "readme_blob_sha": {"$ref": "#/$defs/gitSha"}, "technical_manual_blob_sha": {"$ref": "#/$defs/gitSha"}, "standalone_license_present": {"type": "boolean"}, "license_source": {"type": "string"}, "license_statement": {"type": "string"}, "warning_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "lfs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "relative_path", "pointer_oid_sha256", "pointer_size_bytes", "expected_oid_sha256", "expected_size_bytes", "materialized_sha256", "materialized_size_bytes", "pointer_matches_expected", "materialized_matches_pointer", "materialized", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_lfs_pointer_record"}, "relative_path": {"type": "string"}, "pointer_oid_sha256": {"$ref": "#/$defs/sha256"}, "pointer_size_bytes": {"type": "integer", "minimum": 0}, "expected_oid_sha256": {"$ref": "#/$defs/sha256"}, "expected_size_bytes": {"type": "integer", "minimum": 0}, "materialized_sha256": {"$ref": "#/$defs/sha256"}, "materialized_size_bytes": {"type": "integer", "minimum": 0}, "pointer_matches_expected": {"type": "boolean"}, "materialized_matches_pointer": {"type": "boolean"}, "materialized": {"type": "boolean"}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "csv": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "relative_path", "file_sha256", "byte_size", "utf_encoding_result", "delimiter", "header_field_count", "header_sha256", "timestamp_field", "row_count", "first_timestamp", "last_timestamp", "timestamps_strictly_increasing", "duplicate_timestamp_count", "non_positive_timestamp_delta_count", "nominal_timestamp_delta_seconds", "distinct_timestamp_delta_seconds", "timestamp_delta_summary_truncated", "malformed_row_count", "inconsistent_field_count_rows", "empty_field_count", "ordered_header_matches_canonical", "expected_point_count_reconciled", "normal_file_status", "test_file_structural_only", "process_ids_observed", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_csv_structure_audit"}, "relative_path": {"type": "string"}, "file_sha256": {"$ref": "#/$defs/sha256"}, "byte_size": {"type": "integer", "minimum": 0}, "utf_encoding_result": {"type": "string"}, "delimiter": {"type": "string", "minLength": 1, "maxLength": 1}, "header_field_count": {"type": "integer", "minimum": 1}, "header_sha256": {"$ref": "#/$defs/sha256"}, "timestamp_field": {"type": "string"}, "row_count": {"type": "integer", "minimum": 1}, "first_timestamp": {"type": ["string", "null"]}, "last_timestamp": {"type": ["string", "null"]}, "timestamps_strictly_increasing": {"type": "boolean"}, "duplicate_timestamp_count": {"type": "integer", "minimum": 0}, "non_positive_timestamp_delta_count": {"type": "integer", "minimum": 0}, "nominal_timestamp_delta_seconds": {"type": ["number", "null"]}, "distinct_timestamp_delta_seconds": {"type": "array", "items": {"type": "number"}, "uniqueItems": true}, "timestamp_delta_summary_truncated": {"type": "boolean"}, "malformed_row_count": {"type": "integer", "minimum": 0}, "inconsistent_field_count_rows": {"type": "integer", "minimum": 0}, "empty_field_count": {"type": "integer", "minimum": 0}, "ordered_header_matches_canonical": {"type": "boolean"}, "expected_point_count_reconciled": {"type": "boolean"}, "normal_file_status": {"type": ["string", "null"]}, "test_file_structural_only": {"type": "boolean"}, "process_ids_observed": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "label": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "label_relative_path", "label_file_sha256", "label_byte_size", "label_header_sha256", "label_row_count", "timestamp_alignment_status", "label_domain_valid", "summary_relative_path", "summary_file_sha256", "summary_byte_size", "summary_format_valid", "event_record_count", "expected_event_record_count", "custody_status", "private_custody_artifact_hash", "label_content_accessed_for_provenance_only", "label_content_used_for_scientific_selection", "attack_event_details_publicly_exposed", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_label_custody_public"}, "label_relative_path": {"type": "string"}, "label_file_sha256": {"$ref": "#/$defs/sha256"}, "label_byte_size": {"type": "integer", "minimum": 0}, "label_header_sha256": {"$ref": "#/$defs/sha256"}, "label_row_count": {"type": "integer", "minimum": 0}, "timestamp_alignment_status": {"type": "string"}, "label_domain_valid": {"type": "boolean"}, "summary_relative_path": {"type": "string"}, "summary_file_sha256": {"$ref": "#/$defs/sha256"}, "summary_byte_size": {"type": "integer", "minimum": 0}, "summary_format_valid": {"type": "boolean"}, "event_record_count": {"type": "integer", "minimum": 0}, "expected_event_record_count": {"type": "integer", "minimum": 0}, "custody_status": {"type": "string"}, "private_custody_artifact_hash": {"$ref": "#/$defs/sha256"}, "label_content_accessed_for_provenance_only": {"const": true}, "label_content_used_for_scientific_selection": {"const": false}, "attack_event_details_publicly_exposed": {"const": false}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "reference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "relative_path", "reference_kind", "git_blob_sha", "content_sha256", "byte_size", "file_type_valid", "page_count", "title", "version_metadata", "hai_2305_coverage", "variable_descriptions_available", "process_information_available", "extraction_method", "extraction_tool_version", "extraction_status", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_reference_file_record"}, "relative_path": {"type": "string"}, "reference_kind": {"type": "string"}, "git_blob_sha": {"$ref": "#/$defs/gitSha"}, "content_sha256": {"$ref": "#/$defs/sha256"}, "byte_size": {"type": "integer", "minimum": 0}, "file_type_valid": {"type": "boolean"}, "page_count": {"type": ["integer", "null"], "minimum": 0}, "title": {"type": ["string", "null"]}, "version_metadata": {"type": ["string", "null"]}, "hai_2305_coverage": {"type": "string"}, "variable_descriptions_available": {"type": "string"}, "process_information_available": {"type": "string"}, "extraction_method": {"type": "string"}, "extraction_tool_version": {"type": ["string", "null"]}, "extraction_status": {"type": "string"}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "graph": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "relative_path", "git_blob_sha", "content_sha256", "byte_size", "extension", "strict_json_parse_status", "python_literal_parse_status", "directed", "multigraph", "node_count", "edge_count", "apparent_process_coverage", "reference_kind", "scientific_claim_boundary", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_graph_inventory_record"}, "relative_path": {"type": "string"}, "git_blob_sha": {"$ref": "#/$defs/gitSha"}, "content_sha256": {"$ref": "#/$defs/sha256"}, "byte_size": {"type": "integer", "minimum": 0}, "extension": {"type": "string"}, "strict_json_parse_status": {"type": "string"}, "python_literal_parse_status": {"type": "string"}, "directed": {"type": ["boolean", "null"]}, "multigraph": {"type": ["boolean", "null"]}, "node_count": {"type": ["integer", "null"], "minimum": 0}, "edge_count": {"type": ["integer", "null"], "minimum": 0}, "apparent_process_coverage": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}, "reference_kind": {"type": "string"}, "scientific_claim_boundary": {"const": "weak_relation_reference_not_causal_truth"}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "gates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["official_repository_remote_matches", "source_head_matches_pinned_commit", "source_checkout_clean", "source_snapshot_identity_verified", "git_fsck_passed", "git_lfs_available", "git_lfs_fsck_passed", "exact_lfs_file_population", "expected_files_registered_in_git_lfs", "all_lfs_pointers_match", "all_lfs_files_materialized", "csv_schema_and_continuity_valid", "train_files_normal_only", "labels_aligned_and_custodied", "event_counts_match", "manual_verified", "reference_inventory_complete", "license_and_citation_recorded", "haiend_excluded", "raw_private_boundary_passed", "no_scientific_analysis_performed"],
+      "properties": {
+        "official_repository_remote_matches": {"type": "boolean"}, "source_head_matches_pinned_commit": {"type": "boolean"}, "source_checkout_clean": {"type": "boolean"}, "source_snapshot_identity_verified": {"type": "boolean"}, "git_fsck_passed": {"type": "boolean"}, "git_lfs_available": {"type": "boolean"}, "git_lfs_fsck_passed": {"type": "boolean"}, "exact_lfs_file_population": {"type": "boolean"}, "expected_files_registered_in_git_lfs": {"type": "boolean"}, "all_lfs_pointers_match": {"type": "boolean"}, "all_lfs_files_materialized": {"type": "boolean"}, "csv_schema_and_continuity_valid": {"type": "boolean"}, "train_files_normal_only": {"type": "boolean"}, "labels_aligned_and_custodied": {"type": "boolean"}, "event_counts_match": {"type": "boolean"}, "manual_verified": {"type": "boolean"}, "reference_inventory_complete": {"type": "boolean"}, "license_and_citation_recorded": {"type": "boolean"}, "haiend_excluded": {"type": "boolean"}, "raw_private_boundary_passed": {"type": "boolean"}, "no_scientific_analysis_performed": {"type": "boolean"}
+      }
+    },
+    "boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["label_content_accessed_for_provenance_only", "label_content_used_for_scientific_selection", "attack_event_details_publicly_exposed", "test_file_feature_statistics_computed", "process_selected", "scientific_split_created", "detector_executed", "rule_constructed_or_executed", "outer_or_sealed_scientific_access", "absolute_local_paths_public"],
+      "properties": {
+        "label_content_accessed_for_provenance_only": {"const": true}, "label_content_used_for_scientific_selection": {"const": false}, "attack_event_details_publicly_exposed": {"const": false}, "test_file_feature_statistics_computed": {"const": false}, "process_selected": {"const": false}, "scientific_split_created": {"const": false}, "detector_executed": {"const": false}, "rule_constructed_or_executed": {"const": false}, "outer_or_sealed_scientific_access": {"const": false}, "absolute_local_paths_public": {"const": false}
+      }
+    }
+  }
+}

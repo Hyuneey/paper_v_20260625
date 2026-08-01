@@ -487,3 +487,22 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   direct PA-free inner-only triggering, at most three bounded regression
   windows, one request per triggered branch, no retry, and container-only
   revised-code checks. Outer and sealed-test feedback are prohibited.
+
+## icsdataset/HAI 23.05
+
+- Official repository: https://github.com/icsdataset/hai
+- Frozen snapshot: `2a814cebc9a66b06c9e5cd545e2d72e65d383737`
+- HAI/HAIEnd 23.05 introduction:
+  `ebcd09bbb432a35be39dcfaf1d800083fd06777b`
+- Authorized dataset directory: `hai-23.05`
+- Excluded directory: `haiend-23.05`
+- Expected README blob: `de19cf9f6466a049ece2c739a7216ddd6f044c32`
+- Expected technical-manual blob:
+  `18cb88514176e1c641f584cf24ac8e9559432b38`
+- Acquisition: Git clone with LFS smudge disabled, detached checkout, and
+  restricted `git lfs pull --include="hai-23.05/**"`
+- Redistribution: none; raw files remain local-only outside this repository
+
+These identifiers are the TASK-039A protocol freeze. Content integrity,
+license wording, citation, materialization, CSV structure, labels, manual, and
+graph inventory remain pending the clean real audit from Commit A.

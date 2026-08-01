@@ -30,6 +30,9 @@ or a production GDN backend. The next task is TASK-039A.
 ## TASK-039A
 
 Official HAI 23.05 source and provenance audit with local-only storage.
+Implementation, expected Git-LFS identity, schemas, and synthetic tests are
+frozen first. Real official-source execution and sanitized results use a
+separate commit.
 
 ## TASK-039B
 

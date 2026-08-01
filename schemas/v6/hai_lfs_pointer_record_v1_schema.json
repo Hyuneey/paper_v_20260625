@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_lfs_pointer_record_v1_schema.json",
+  "title": "HAI Git-LFS Pointer Record V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "relative_path",
+    "pointer_oid_sha256", "pointer_size_bytes", "expected_oid_sha256",
+    "expected_size_bytes", "materialized_sha256", "materialized_size_bytes",
+    "pointer_matches_expected", "materialized_matches_pointer", "materialized",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_lfs_pointer_record"},
+    "relative_path": {"type": "string", "pattern": "^hai-23\\.05/[A-Za-z0-9._-]+$"},
+    "pointer_oid_sha256": {"$ref": "#/$defs/sha256"},
+    "pointer_size_bytes": {"type": "integer", "minimum": 0},
+    "expected_oid_sha256": {"$ref": "#/$defs/sha256"},
+    "expected_size_bytes": {"type": "integer", "minimum": 0},
+    "materialized_sha256": {"$ref": "#/$defs/sha256"},
+    "materialized_size_bytes": {"type": "integer", "minimum": 0},
+    "pointer_matches_expected": {"type": "boolean"},
+    "materialized_matches_pointer": {"type": "boolean"},
+    "materialized": {"type": "boolean"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

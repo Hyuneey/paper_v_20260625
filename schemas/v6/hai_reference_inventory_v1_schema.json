@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_reference_inventory_v1_schema.json",
+  "title": "HAI Reference Inventory V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "task_id", "snapshot_commit", "readme", "technical_manual", "graphs", "official_graph_claim_boundary", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_reference_inventory"},
+    "task_id": {"const": "TASK-039A"},
+    "snapshot_commit": {"$ref": "#/$defs/gitSha"},
+    "readme": {"$ref": "#/$defs/readme"},
+    "technical_manual": {"$ref": "#/$defs/reference"},
+    "graphs": {"type": "array", "items": {"$ref": "#/$defs/graph"}},
+    "official_graph_claim_boundary": {"const": "weak_relation_reference_not_causal_truth"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "gitSha": {"type": "string", "pattern": "^[a-f0-9]{40,64}$"},
+    "readme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "git_blob_sha", "content_sha256", "license_source", "license_statement", "citation_sha256"],
+      "properties": {
+        "relative_path": {"const": "README.md"},
+        "git_blob_sha": {"$ref": "#/$defs/gitSha"},
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "license_source": {"type": "string", "minLength": 1},
+        "license_statement": {"type": "string", "minLength": 1},
+        "citation_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "relative_path", "reference_kind", "git_blob_sha", "content_sha256", "byte_size", "file_type_valid", "page_count", "title", "version_metadata", "hai_2305_coverage", "variable_descriptions_available", "process_information_available", "extraction_method", "extraction_tool_version", "extraction_status", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "artifact_type": {"const": "hai_reference_file_record"},
+        "relative_path": {"type": "string", "minLength": 1},
+        "reference_kind": {"type": "string", "minLength": 1},
+        "git_blob_sha": {"$ref": "#/$defs/gitSha"},
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "byte_size": {"type": "integer", "minimum": 0},
+        "file_type_valid": {"type": "boolean"},
+        "page_count": {"type": ["integer", "null"], "minimum": 0},
+        "title": {"type": ["string", "null"]},
+        "version_metadata": {"type": ["string", "null"]},
+        "hai_2305_coverage": {"type": "string", "minLength": 1},
+        "variable_descriptions_available": {"type": "string", "minLength": 1},
+        "process_information_available": {"type": "string", "minLength": 1},
+        "extraction_method": {"type": "string", "minLength": 1},
+        "extraction_tool_version": {"type": ["string", "null"]},
+        "extraction_status": {"type": "string", "minLength": 1},
+        "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "relative_path", "git_blob_sha", "content_sha256", "byte_size", "extension", "strict_json_parse_status", "python_literal_parse_status", "directed", "multigraph", "node_count", "edge_count", "apparent_process_coverage", "reference_kind", "scientific_claim_boundary", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "artifact_type": {"const": "hai_graph_inventory_record"},
+        "relative_path": {"type": "string", "pattern": "^graph/"},
+        "git_blob_sha": {"$ref": "#/$defs/gitSha"},
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "byte_size": {"type": "integer", "minimum": 0},
+        "extension": {"type": "string", "minLength": 1},
+        "strict_json_parse_status": {"type": "string", "minLength": 1},
+        "python_literal_parse_status": {"type": "string", "minLength": 1},
+        "directed": {"type": ["boolean", "null"]},
+        "multigraph": {"type": ["boolean", "null"]},
+        "node_count": {"type": ["integer", "null"], "minimum": 0},
+        "edge_count": {"type": ["integer", "null"], "minimum": 0},
+        "apparent_process_coverage": {"type": "array", "items": {"enum": ["P1", "P2", "P3", "P4"]}, "uniqueItems": true},
+        "reference_kind": {"type": "string", "minLength": 1},
+        "scientific_claim_boundary": {"const": "weak_relation_reference_not_causal_truth"},
+        "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

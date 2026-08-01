@@ -1,5 +1,18 @@
 # Third-Party Notices
 
+## HAI 23.05 Dataset
+
+- Official source: https://github.com/icsdataset/hai
+- Pinned snapshot: `2a814cebc9a66b06c9e5cd545e2d72e65d383737`
+- Dataset directory: `hai-23.05`
+- Expected terms source: README License section at the pinned snapshot
+- Expected statement: Creative Commons Attribution-ShareAlike 4.0
+- Storage: local-only outside this repository
+- Code copied into this repository: none
+
+The exact terms, citation, and source-file integrity remain subject to the
+TASK-039A real audit. Raw files and label details are not redistributed.
+
 ## ARGOS
 
 Copyright (c) Microsoft Corporation.

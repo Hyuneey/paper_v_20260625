@@ -1872,3 +1872,19 @@
   checks, and historical TASK-004/005 regression.
 - Smoke backends are prohibited for HAI ranking, RQ1 GDN results, process
   selection, thesis performance, and scientific edge-stability claims.
+
+### DEC-093: HAI 23.05 official provenance and label custody
+
+- Status: resolved_protocol_TASK039A_pending_execution
+- Owner: researcher
+- The only authorized source is `icsdataset/hai` at commit
+  `2a814cebc9a66b06c9e5cd545e2d72e65d383737`; only `hai-23.05/**` may be
+  materialized through Git LFS.
+- The official checkout and private custody artifact remain outside the paper
+  repository. Public records contain structural aggregates and integrity
+  hashes only.
+- Test and label content may be inspected only for integrity, schema,
+  continuity, alignment, binary-domain validity, and aggregate event counts.
+  It cannot inform any scientific decision.
+- TASK-039A creates no split and selects no process. TASK-039B remains blocked
+  until the real provenance audit passes.

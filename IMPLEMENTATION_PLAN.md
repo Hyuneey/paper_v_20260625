@@ -69,6 +69,10 @@ Audit official HAI 23.05 edition, terms, files, hashes, timestamps, sampling,
 features, labels, local-only storage, and reproducible manifest. Commit no raw
 rows or windows.
 
+Status: implementation and protocol are being frozen before real source and
+Git-LFS execution. HAI readiness is not established until the real audit
+passes and its sanitized result is committed separately.
+
 ## TASK-039B: P1/P3 Feasibility and Process Freeze
 
 Using authorized normal data only, type control and sensor variables, audit

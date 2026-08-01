@@ -37,6 +37,13 @@ Raw HAI, SWaT, WADI, KPI, and other restricted research data is local-only and
 untracked. Never upload it to GitHub, CI artifacts, provider prompts, issue
 attachments, or reports.
 
+TASK-039A authorizes only the official `icsdataset/hai` repository pinned at
+`2a814cebc9a66b06c9e5cd545e2d72e65d383737` and a restricted
+`hai-23.05/**` Git-LFS pull. The official checkout and private label-custody
+artifact must remain outside this repository. Public provenance may contain
+aggregate structural metadata and custody hashes, never raw rows or attack
+details.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

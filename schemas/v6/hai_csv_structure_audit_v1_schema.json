@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_csv_structure_audit_v1_schema.json",
+  "title": "HAI CSV Structure Audit V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "relative_path", "file_sha256",
+    "byte_size", "utf_encoding_result", "delimiter", "header_field_count",
+    "header_sha256", "timestamp_field", "row_count", "first_timestamp",
+    "last_timestamp", "timestamps_strictly_increasing",
+    "duplicate_timestamp_count", "non_positive_timestamp_delta_count",
+    "nominal_timestamp_delta_seconds", "distinct_timestamp_delta_seconds",
+    "timestamp_delta_summary_truncated", "malformed_row_count",
+    "inconsistent_field_count_rows", "empty_field_count",
+    "ordered_header_matches_canonical", "expected_point_count_reconciled",
+    "normal_file_status", "test_file_structural_only", "process_ids_observed",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_csv_structure_audit"},
+    "relative_path": {"type": "string", "pattern": "^hai-23\\.05/hai-(?:train[1-4]|test[12])\\.csv$"},
+    "file_sha256": {"$ref": "#/$defs/sha256"},
+    "byte_size": {"type": "integer", "minimum": 0},
+    "utf_encoding_result": {"type": "string", "minLength": 1},
+    "delimiter": {"type": "string", "minLength": 1, "maxLength": 1},
+    "header_field_count": {"type": "integer", "minimum": 1},
+    "header_sha256": {"$ref": "#/$defs/sha256"},
+    "timestamp_field": {"type": "string", "minLength": 1},
+    "row_count": {"type": "integer", "minimum": 1},
+    "first_timestamp": {"type": ["string", "null"]},
+    "last_timestamp": {"type": ["string", "null"]},
+    "timestamps_strictly_increasing": {"type": "boolean"},
+    "duplicate_timestamp_count": {"type": "integer", "minimum": 0},
+    "non_positive_timestamp_delta_count": {"type": "integer", "minimum": 0},
+    "nominal_timestamp_delta_seconds": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "distinct_timestamp_delta_seconds": {"type": "array", "items": {"type": "number"}, "uniqueItems": true},
+    "timestamp_delta_summary_truncated": {"type": "boolean"},
+    "malformed_row_count": {"type": "integer", "minimum": 0},
+    "inconsistent_field_count_rows": {"type": "integer", "minimum": 0},
+    "empty_field_count": {"type": "integer", "minimum": 0},
+    "ordered_header_matches_canonical": {"type": "boolean"},
+    "expected_point_count_reconciled": {"type": "boolean"},
+    "normal_file_status": {"enum": [null, "normal_only_verified", "normal_status_unverifiable", "unexpected_attack_label_present"]},
+    "test_file_structural_only": {"type": "boolean"},
+    "process_ids_observed": {"type": "array", "items": {"enum": ["P1", "P2", "P3", "P4"]}, "uniqueItems": true},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

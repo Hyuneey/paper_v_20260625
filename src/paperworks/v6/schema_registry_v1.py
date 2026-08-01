@@ -42,6 +42,21 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "gdn_fidelity_freeze": (
         "schemas/v6/gdn_fidelity_freeze_v1_schema.json"
     ),
+    "hai_csv_structure_audit": (
+        "schemas/v6/hai_csv_structure_audit_v1_schema.json"
+    ),
+    "hai_label_custody_public": (
+        "schemas/v6/hai_label_custody_public_v1_schema.json"
+    ),
+    "hai_lfs_pointer_record": (
+        "schemas/v6/hai_lfs_pointer_record_v1_schema.json"
+    ),
+    "hai_provenance_audit_result": (
+        "schemas/v6/hai_provenance_audit_result_v1_schema.json"
+    ),
+    "hai_reference_inventory": (
+        "schemas/v6/hai_reference_inventory_v1_schema.json"
+    ),
     "normal_reference_set_binding": (
         "schemas/v6/normal_reference_set_binding_v1_schema.json"
     ),
