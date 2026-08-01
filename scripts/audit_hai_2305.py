@@ -29,6 +29,7 @@ from paperworks.data.hai_provenance_v1 import (  # noqa: E402
     audit_csv_structure,
     audit_label_custody_pair,
     build_hai_dataset_manifest_v2,
+    build_sanitized_acquisition_failure_report,
     canonical_self_hash,
     git_blob_sha,
     git_blob_text,
@@ -585,6 +586,68 @@ Next task: `TASK-039B`.
     return 0 if status == "passed_hai_2305_official_provenance_audit" else 1
 
 
+def record_acquisition_failure(args: argparse.Namespace) -> int:
+    """Record a source-acquisition block without reading dataset content."""
+
+    config = _load_config(args.config)
+    official_root = args.official_root.resolve()
+    if args.public_output_root.resolve() != REPORT_ROOT.resolve():
+        raise HAIProvenanceError("public output root must be docs/task_reports")
+    assert_external_audit_roots(
+        paper_repository_root=args.paper_root.resolve(),
+        official_root=official_root,
+        private_root=args.private_root.resolve(),
+    )
+    observed_head = run_git(official_root, "rev-parse", "HEAD")
+    observed_origin = run_git(official_root, "remote", "get-url", "origin")
+    report = build_sanitized_acquisition_failure_report(
+        execution_code_commit=args.execution_code_commit,
+        repository_url=str(config["official_repository"]),
+        snapshot_commit=str(config["snapshot_commit"]),
+        observed_head=observed_head,
+        observed_origin_url=observed_origin,
+        failure_status=args.acquisition_failure_status,
+        failure_category=args.failure_category,
+        created_at=args.created_at,
+    )
+    source_receipt = {
+        "schema_version": "1.0",
+        "artifact_type": "task039a_source_receipt",
+        "task_id": "TASK-039A",
+        "status": args.acquisition_failure_status,
+        "execution_code_commit": args.execution_code_commit,
+        "official_repository": str(config["official_repository"]),
+        "snapshot_commit": str(config["snapshot_commit"]),
+        "observed_head": observed_head,
+        "observed_origin_url": observed_origin,
+        "detached_snapshot_checkout": run_git(
+            official_root, "branch", "--show-current"
+        )
+        == "",
+        "git_lfs_materialization_completed": False,
+        "failure_category": args.failure_category,
+        "fallback_source_used": False,
+    }
+    _write_report(REPORT_ROOT / "TASK-039A_SOURCE_RECEIPT.json", source_receipt)
+    write_public_json(REPORT_ROOT / "TASK-039A_PROVENANCE_REPORT.json", report)
+    markdown = f"""# TASK-039A Report
+
+Status: `{args.acquisition_failure_status}`
+
+Execution code commit: `{args.execution_code_commit}`
+
+The official Git repository and pinned snapshot were reached, but the exact
+HAI 23.05 Git-LFS objects were unavailable from the authorized source. No
+fallback source was used. DatasetManifestV2 construction, CSV inspection,
+label custody, process feasibility, and scientific analysis were not run.
+
+TASK-039A does not mark HAI ready. TASK-039B remains blocked until the exact
+official LFS objects can be materialized and the complete audit passes.
+"""
+    (REPORT_ROOT / "TASK-039A_REPORT.md").write_text(markdown, encoding="utf-8")
+    return 2
+
+
 def _path_argument(value: str | None, environment_name: str) -> Path:
     selected = value or os.environ.get(environment_name)
     if not selected:
@@ -602,6 +665,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--config", type=Path, default=CONFIG_PATH)
     parser.add_argument("--execution-code-commit", required=True)
     parser.add_argument(
+        "--acquisition-failure-status",
+        choices=(
+            "blocked_official_source_unavailable",
+            "blocked_git_lfs_unavailable",
+            "blocked_lfs_object_unavailable",
+        ),
+    )
+    parser.add_argument(
+        "--failure-category",
+        choices=(
+            "official_git_remote_unavailable",
+            "git_lfs_command_unavailable",
+            "official_repository_lfs_budget_exhausted",
+            "official_lfs_object_download_failed",
+        ),
+    )
+    parser.add_argument(
         "--created-at",
         default=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     )
@@ -615,10 +695,16 @@ def main() -> int:
         arguments.official_root = _path_argument(
             arguments.official_root, "HAI_OFFICIAL_ROOT"
         )
-        arguments.data_root = _path_argument(arguments.data_root, "HAI_DATA_ROOT")
         arguments.private_root = _path_argument(
             arguments.private_root, "HAI_PRIVATE_AUDIT_ROOT"
         )
+        if arguments.acquisition_failure_status:
+            if not arguments.failure_category:
+                raise HAIProvenanceError(
+                    "failure category is required for acquisition failure reporting"
+                )
+            return record_acquisition_failure(arguments)
+        arguments.data_root = _path_argument(arguments.data_root, "HAI_DATA_ROOT")
         return run_audit(arguments)
     except (HAIProvenanceError, OSError, json.JSONDecodeError) as exc:
         # Deliberately omit exception text because it may contain an absolute path.

@@ -17,16 +17,28 @@ RESULT_JSON = (
     "TASK-039A_REFERENCE_INVENTORY.json",
     "TASK-039A_PROVENANCE_REPORT.json",
 )
+BLOCKED_JSON = {
+    "TASK-039A_SOURCE_RECEIPT.json",
+    "TASK-039A_PROVENANCE_REPORT.json",
+}
 
 
 class Task039AReportTests(unittest.TestCase):
     def test_implementation_phase_or_complete_result_set(self) -> None:
         present = [name for name in RESULT_JSON if (REPORT_ROOT / name).exists()]
-        self.assertIn(len(present), {0, len(RESULT_JSON)})
-        if present:
+        observed = frozenset(present)
+        self.assertIn(
+            observed,
+            {frozenset(), frozenset(BLOCKED_JSON), frozenset(RESULT_JSON)},
+        )
+        if observed == frozenset(RESULT_JSON):
             report = (REPORT_ROOT / "TASK-039A_REPORT.md").read_text(encoding="utf-8")
             self.assertIn("passed_hai_2305_official_provenance_audit", report)
             self.assertIn("It does not select a process", report)
+        elif observed == frozenset(BLOCKED_JSON):
+            report = (REPORT_ROOT / "TASK-039A_REPORT.md").read_text(encoding="utf-8")
+            self.assertIn("blocked_", report)
+            self.assertIn("TASK-039B remains blocked", report)
 
     def test_any_result_json_is_self_hashed_and_public(self) -> None:
         for name in RESULT_JSON:

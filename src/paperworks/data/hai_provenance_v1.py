@@ -1429,7 +1429,7 @@ def assert_public_artifact_has_no_sensitive_content(document: Any) -> None:
             for item in value:
                 visit(item)
         elif isinstance(value, str):
-            if re.search(r"(?:[A-Za-z]:[\\/]|^/home/|^/Users/|^/tmp/)", value):
+            if re.search(r"^(?:[A-Za-z]:[\\/]|/home/|/Users/|/tmp/)", value):
                 raise HAIProvenanceError("public artifact contains an absolute path")
 
     visit(document)
@@ -1486,3 +1486,77 @@ def write_public_json(path: Path, document: Mapping[str, Any]) -> None:
         json.dumps(document, sort_keys=True, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
     )
+
+
+def build_sanitized_acquisition_failure_report(
+    *,
+    execution_code_commit: str,
+    repository_url: str,
+    snapshot_commit: str,
+    observed_head: str,
+    observed_origin_url: str,
+    failure_status: str,
+    failure_category: str,
+    created_at: str,
+) -> dict[str, Any]:
+    """Build a public blocked-acquisition report without exception or path text."""
+
+    _require_commit(execution_code_commit, "execution_code_commit")
+    _require_commit(snapshot_commit, "snapshot_commit")
+    _require_commit(observed_head, "observed_head")
+    if failure_status not in {
+        "blocked_official_source_unavailable",
+        "blocked_git_lfs_unavailable",
+        "blocked_lfs_object_unavailable",
+    }:
+        raise HAIProvenanceError("unsupported acquisition failure status")
+    if failure_category not in {
+        "official_git_remote_unavailable",
+        "git_lfs_command_unavailable",
+        "official_repository_lfs_budget_exhausted",
+        "official_lfs_object_download_failed",
+    }:
+        raise HAIProvenanceError("unsupported acquisition failure category")
+    try:
+        parsed = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise HAIProvenanceError("created_at must be ISO 8601") from exc
+    if parsed.tzinfo is None:
+        raise HAIProvenanceError("created_at must include a timezone")
+    report = {
+        "schema_version": HAI_PROVENANCE_SCHEMA_VERSION,
+        "artifact_type": "task039a_blocked_provenance_report",
+        "task_id": "TASK-039A",
+        "status": failure_status,
+        "execution_code_commit": execution_code_commit,
+        "official_repository": repository_url,
+        "snapshot_commit": snapshot_commit,
+        "observed_head": observed_head,
+        "observed_origin_url": observed_origin_url,
+        "failure_category": failure_category,
+        "completed_audit_stages": [
+            "official_git_clone",
+            "official_remote_identity",
+            "pinned_commit_availability",
+            "detached_snapshot_checkout",
+        ],
+        "unexecuted_audit_stages": [
+            "lfs_materialization_verification",
+            "csv_structure_audit",
+            "label_custody_audit",
+            "technical_reference_inventory",
+            "graph_inventory",
+            "dataset_manifest_v2_construction",
+        ],
+        "dataset_manifest_created": False,
+        "hai_ready": False,
+        "raw_data_entered_paper_repository": False,
+        "label_content_accessed": False,
+        "attack_event_details_publicly_exposed": False,
+        "scientific_analysis_performed": False,
+        "fallback_source_used": False,
+        "created_at": created_at,
+    }
+    report["report_hash"] = canonical_self_hash(report, "report_hash")
+    assert_public_artifact_has_no_sensitive_content(report)
+    return report

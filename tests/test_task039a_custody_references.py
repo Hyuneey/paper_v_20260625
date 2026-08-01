@@ -10,6 +10,7 @@ from paperworks.data.hai_provenance_v1 import (
     assert_external_audit_roots,
     assert_public_artifact_has_no_sensitive_content,
     audit_label_custody_pair,
+    build_sanitized_acquisition_failure_report,
     inventory_graph_file,
 )
 
@@ -145,6 +146,24 @@ class Task039ACustodyReferenceTests(unittest.TestCase):
         self.assertEqual(strict_record.edge_count, 1)
         self.assertEqual(literal_record.strict_json_parse_status, "invalid")
         self.assertEqual(literal_record.python_literal_parse_status, "parsed")
+
+    def test_acquisition_failure_report_is_sanitized_and_non_authorizing(self) -> None:
+        report = build_sanitized_acquisition_failure_report(
+            execution_code_commit="1" * 40,
+            repository_url="https://github.com/icsdataset/hai",
+            snapshot_commit="2" * 40,
+            observed_head="2" * 40,
+            observed_origin_url="https://github.com/icsdataset/hai",
+            failure_status="blocked_lfs_object_unavailable",
+            failure_category="official_repository_lfs_budget_exhausted",
+            created_at="2026-08-01T00:00:00Z",
+        )
+        self.assertFalse(report["dataset_manifest_created"])
+        self.assertFalse(report["hai_ready"])
+        self.assertFalse(report["label_content_accessed"])
+        self.assertFalse(report["fallback_source_used"])
+        self.assertNotIn("error_text", report)
+        assert_public_artifact_has_no_sensitive_content(report)
 
 
 if __name__ == "__main__":
