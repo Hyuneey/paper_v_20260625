@@ -10,8 +10,10 @@
 - Storage: local-only outside this repository
 - Code copied into this repository: none
 
-The exact terms, citation, and source-file integrity remain subject to the
-TASK-039A real audit. Raw files and label details are not redistributed.
+The pinned Git source was reached, but official LFS object acquisition was
+blocked by the source repository's exhausted LFS budget. Exact terms,
+citation, and materialized source-file integrity remain unverified. Raw files
+and label details are not redistributed.
 
 ## ARGOS
 

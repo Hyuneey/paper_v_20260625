@@ -44,6 +44,10 @@ artifact must remain outside this repository. Public provenance may contain
 aggregate structural metadata and custody hashes, never raw rows or attack
 details.
 
+The current TASK-039A execution is `blocked_lfs_object_unavailable`; the
+official Git snapshot was reachable but its LFS budget was exhausted. Do not
+begin TASK-039B or use an alternate HAI source.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

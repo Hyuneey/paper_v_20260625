@@ -5,5 +5,6 @@ The exact expected inventory is frozen in
 external label CSVs, and two attack-summary custody files. Git pointer OID,
 pointer size, materialized SHA-256, and materialized size must all agree.
 
-Real file counts and hashes are pending the clean Commit A execution. No raw
-file is stored in this repository.
+The official Git-LFS endpoint did not make the frozen objects available, so
+materialized SHA-256, size, CSV row, and continuity checks were not executed.
+No DatasetManifestV2 was created and no raw file is stored in this repository.

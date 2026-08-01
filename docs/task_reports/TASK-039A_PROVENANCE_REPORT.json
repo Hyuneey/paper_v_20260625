@@ -1,0 +1,35 @@
+{
+  "artifact_type": "task039a_blocked_provenance_report",
+  "attack_event_details_publicly_exposed": false,
+  "completed_audit_stages": [
+    "official_git_clone",
+    "official_remote_identity",
+    "pinned_commit_availability",
+    "detached_snapshot_checkout"
+  ],
+  "created_at": "2026-08-01T00:00:00+09:00",
+  "dataset_manifest_created": false,
+  "execution_code_commit": "8ad80118c5272a7d62e20fa5f69cf366720bccbf",
+  "failure_category": "official_repository_lfs_budget_exhausted",
+  "fallback_source_used": false,
+  "hai_ready": false,
+  "label_content_accessed": false,
+  "observed_head": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "observed_origin_url": "https://github.com/icsdataset/hai",
+  "official_repository": "https://github.com/icsdataset/hai",
+  "raw_data_entered_paper_repository": false,
+  "report_hash": "7bf8e0dc9a6c9a9c96600829070badc045d21b9541f1b11b338f78e8fc97a646",
+  "schema_version": "1.0.0",
+  "scientific_analysis_performed": false,
+  "snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "status": "blocked_lfs_object_unavailable",
+  "task_id": "TASK-039A",
+  "unexecuted_audit_stages": [
+    "lfs_materialization_verification",
+    "csv_structure_audit",
+    "label_custody_audit",
+    "technical_reference_inventory",
+    "graph_inventory",
+    "dataset_manifest_v2_construction"
+  ]
+}

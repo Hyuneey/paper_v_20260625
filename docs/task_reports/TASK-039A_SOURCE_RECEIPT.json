@@ -1,0 +1,16 @@
+{
+  "artifact_type": "task039a_source_receipt",
+  "detached_snapshot_checkout": true,
+  "execution_code_commit": "8ad80118c5272a7d62e20fa5f69cf366720bccbf",
+  "failure_category": "official_repository_lfs_budget_exhausted",
+  "fallback_source_used": false,
+  "git_lfs_materialization_completed": false,
+  "observed_head": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "observed_origin_url": "https://github.com/icsdataset/hai",
+  "official_repository": "https://github.com/icsdataset/hai",
+  "report_hash": "1e07076637454b4259750cb55e1bd69c849d3f00f3d1710a4fd1064a138969a4",
+  "schema_version": "1.0",
+  "snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "status": "blocked_lfs_object_unavailable",
+  "task_id": "TASK-039A"
+}

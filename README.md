@@ -40,8 +40,10 @@ establish HAI readiness, process feasibility, a production GDN backend, real
 rule construction, detector validation, or a proposed-method result.
 
 TASK-039A now has a frozen, synthetic-tested provenance-audit implementation.
-Its real official-source execution and sanitized result remain commit-separated;
-no HAI raw file or label detail is stored in this repository.
+The official Git snapshot was reached, but the restricted HAI 23.05 LFS pull
+was blocked by the source repository's exhausted LFS budget. Status is
+`blocked_lfs_object_unavailable`; no HAI raw file or label detail is stored in
+this repository, no DatasetManifestV2 was produced, and TASK-039B is blocked.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

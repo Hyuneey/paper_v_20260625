@@ -69,9 +69,10 @@ Audit official HAI 23.05 edition, terms, files, hashes, timestamps, sampling,
 features, labels, local-only storage, and reproducible manifest. Commit no raw
 rows or windows.
 
-Status: implementation and protocol are being frozen before real source and
-Git-LFS execution. HAI readiness is not established until the real audit
-passes and its sanitized result is committed separately.
+Status: `blocked_lfs_object_unavailable`. The official Git snapshot was
+reachable, but its HAI 23.05 LFS objects were unavailable because the source
+repository exceeded its LFS budget. No fallback is authorized. HAI readiness
+is not established and TASK-039B must not begin.
 
 ## TASK-039B: P1/P3 Feasibility and Process Freeze
 

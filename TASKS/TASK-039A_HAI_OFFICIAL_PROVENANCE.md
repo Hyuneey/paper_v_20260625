@@ -36,3 +36,8 @@ absolute local paths.
 Passing status is `passed_hai_2305_official_provenance_audit`. A pass verifies
 source and structural readiness only. Process feasibility and process
 selection remain TASK-039B.
+
+Current execution status: `blocked_lfs_object_unavailable`. The official Git
+snapshot was reached, but the authorized source did not provide its LFS
+objects because its LFS budget was exhausted. No fallback was used and
+TASK-039B remains blocked.

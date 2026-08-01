@@ -28,6 +28,8 @@ Select exactly one process only after official HAI 23.05 provenance, feature
 typing, normal support, delayed-response evidence, and split viability.
 TASK-039A cannot select P1 or P3 and cannot use label or test content for this
 decision.
+The process decision remains blocked because TASK-039A could not materialize
+the official HAI 23.05 LFS objects.
 
 ## Evaluation and Sealed Test
 

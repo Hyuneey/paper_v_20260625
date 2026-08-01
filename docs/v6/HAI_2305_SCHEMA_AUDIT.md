@@ -10,4 +10,6 @@ Test files receive structural inspection only. The audit does not calculate
 per-feature extrema, moments, correlations, constant-feature status, anomaly
 scores, attack-window plots, or any process-specific performance statistic.
 
-The real schema result is pending clean execution from Commit A.
+The real schema audit was not executed because the official Git-LFS objects
+were unavailable. HAI schema readiness and timestamp continuity remain
+unverified.

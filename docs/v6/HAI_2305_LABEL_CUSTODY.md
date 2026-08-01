@@ -11,3 +11,6 @@ ordering, and positive-point counts are prohibited.
 
 Label content cannot inform process selection, preprocessing, candidate
 construction, calibration, rule work, detector work, or utility selection.
+
+The LFS acquisition gate failed before label content access. No private
+custody artifact was created and no label or attack-summary content was read.

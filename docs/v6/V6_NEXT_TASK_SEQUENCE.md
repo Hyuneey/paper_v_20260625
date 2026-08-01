@@ -34,6 +34,12 @@ Implementation, expected Git-LFS identity, schemas, and synthetic tests are
 frozen first. Real official-source execution and sanitized results use a
 separate commit.
 
+Current status: `blocked_lfs_object_unavailable`. The official Git snapshot
+was reached, but the authorized LFS endpoint did not provide the frozen
+objects because the source repository's LFS budget was exhausted. TASK-039B
+is blocked; TASK-039A must be rerun without changing source policy when the
+official objects become available.
+
 ## TASK-039B
 
 P1/P3 normal-only feasibility and exactly one process freeze.

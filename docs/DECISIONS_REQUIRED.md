@@ -1875,7 +1875,7 @@
 
 ### DEC-093: HAI 23.05 official provenance and label custody
 
-- Status: resolved_protocol_TASK039A_pending_execution
+- Status: blocked_lfs_object_unavailable
 - Owner: researcher
 - The only authorized source is `icsdataset/hai` at commit
   `2a814cebc9a66b06c9e5cd545e2d72e65d383737`; only `hai-23.05/**` may be
@@ -1888,3 +1888,7 @@
   It cannot inform any scientific decision.
 - TASK-039A creates no split and selects no process. TASK-039B remains blocked
   until the real provenance audit passes.
+- The official Git snapshot and introduction commit were reachable, but two
+  restricted LFS pulls from clean execution commits were refused because the
+  official repository's LFS budget was exhausted. No alternate source was
+  used, no DatasetManifestV2 was created, and no label content was accessed.

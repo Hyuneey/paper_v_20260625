@@ -503,6 +503,8 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   restricted `git lfs pull --include="hai-23.05/**"`
 - Redistribution: none; raw files remain local-only outside this repository
 
-These identifiers are the TASK-039A protocol freeze. Content integrity,
-license wording, citation, materialization, CSV structure, labels, manual, and
-graph inventory remain pending the clean real audit from Commit A.
+These identifiers are the TASK-039A protocol freeze. The official Git snapshot
+was reached, but the exact LFS objects were unavailable because the source
+repository exceeded its LFS budget. No fallback source was used. Content
+integrity, license wording, citation, materialization, CSV structure, labels,
+manual, and graph inventory remain unverified.
