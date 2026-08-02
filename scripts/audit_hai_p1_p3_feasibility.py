@@ -23,6 +23,7 @@ from paperworks.feasibility.hai_process_io_v1 import (  # noqa: E402
     extract_manual_variable_entries,
     load_process_values,
     load_verified_task039a_manifest,
+    official_graph_available_for_process,
     official_graph_references_by_variable,
     private_ledger_hash_and_write,
     process_feature_names,
@@ -284,7 +285,9 @@ def _screen_process(
         diagnostics=diagnostics,
         screenings=screenings,
         private_screening_ledger_hash=private_hash,
-        official_graph_reference_available=any(graph_refs.values()),
+        official_graph_reference_available=official_graph_available_for_process(
+            graph_inventory, process_id
+        ),
     )
     result = {
         "feature_names": feature_names,

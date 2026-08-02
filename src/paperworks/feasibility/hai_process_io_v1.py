@@ -284,6 +284,23 @@ def official_graph_references_by_variable(
     return {name: tuple(sorted(set(paths))) for name, paths in output.items()}
 
 
+def official_graph_available_for_process(
+    public_reference_inventory: Mapping[str, Any], process_id: str
+) -> bool:
+    """Report source-supported process coverage without using it for scoring."""
+
+    if process_id not in PROCESS_NAMES:
+        raise HAIFeasibilityError("official graph process scope is invalid")
+    for record in public_reference_inventory.get("graphs", []):
+        relative = str(record.get("relative_path", "")).lower()
+        coverage = {str(item).upper() for item in record.get("apparent_process_coverage", [])}
+        if process_id in coverage:
+            return True
+        if process_id == "P1" and relative.startswith("graph/boiler/"):
+            return True
+    return False
+
+
 def private_ledger_hash_and_write(path: Path, document: Mapping[str, Any]) -> str:
     """Write a detailed private screening ledger outside the repository."""
 

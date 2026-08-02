@@ -6,6 +6,7 @@ from pathlib import Path
 
 from paperworks.feasibility.hai_process_io_v1 import (
     extract_manual_variable_entries,
+    official_graph_available_for_process,
     process_feature_names,
 )
 from paperworks.feasibility.hai_process_v1 import (
@@ -27,6 +28,18 @@ class Task039BIOAndSchemaTests(unittest.TestCase):
     def test_unknown_process_rejected(self) -> None:
         with self.assertRaises(HAIFeasibilityError):
             process_feature_names(("P2_A",), "P2")
+
+    def test_official_boiler_graph_is_supplementary_process_coverage(self) -> None:
+        inventory = {
+            "graphs": [
+                {
+                    "relative_path": "graph/boiler/dcs.json",
+                    "apparent_process_coverage": [],
+                }
+            ]
+        }
+        self.assertTrue(official_graph_available_for_process(inventory, "P1"))
+        self.assertFalse(official_graph_available_for_process(inventory, "P3"))
 
     def test_manual_extraction_is_bounded_and_exact_tag_based(self) -> None:
         entries = extract_manual_variable_entries(
