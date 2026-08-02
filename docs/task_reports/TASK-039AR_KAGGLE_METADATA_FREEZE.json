@@ -1,0 +1,450 @@
+{
+  "artifact_hash": "a7389cc123a544302b896c4c1ffc931a3c61c22318c0fa53c575cd1567d5fbfe",
+  "artifact_type": "hai_official_distribution_metadata",
+  "complete_file_inventory": [
+    {
+      "advertised_size_bytes": 4426,
+      "creation_date": "2023-06-01T01:13:15.174Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1001h.json"
+    },
+    {
+      "advertised_size_bytes": 953326,
+      "creation_date": "2023-06-01T01:13:15.454Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1001h.png"
+    },
+    {
+      "advertised_size_bytes": 7341,
+      "creation_date": "2023-06-01T01:13:16.127Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1002h.json"
+    },
+    {
+      "advertised_size_bytes": 1656891,
+      "creation_date": "2023-06-01T01:13:16.223Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1002h.png"
+    },
+    {
+      "advertised_size_bytes": 6199,
+      "creation_date": "2023-06-01T01:13:16.221Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1003h.json"
+    },
+    {
+      "advertised_size_bytes": 1338168,
+      "creation_date": "2023-06-01T01:13:16.286Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1003h.png"
+    },
+    {
+      "advertised_size_bytes": 14859,
+      "creation_date": "2023-06-01T01:13:16.424Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1004h.json"
+    },
+    {
+      "advertised_size_bytes": 3571928,
+      "creation_date": "2023-06-01T01:13:16.3Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1004h.png"
+    },
+    {
+      "advertised_size_bytes": 10344,
+      "creation_date": "2023-06-01T01:13:16.221Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1010h.json"
+    },
+    {
+      "advertised_size_bytes": 2902284,
+      "creation_date": "2023-06-01T01:13:16.285Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1010h.png"
+    },
+    {
+      "advertised_size_bytes": 10378,
+      "creation_date": "2023-06-01T01:13:16.313Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1011h.json"
+    },
+    {
+      "advertised_size_bytes": 2643475,
+      "creation_date": "2023-06-01T01:13:16.293Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1011h.png"
+    },
+    {
+      "advertised_size_bytes": 4041,
+      "creation_date": "2023-06-01T01:13:16.343Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1020h.json"
+    },
+    {
+      "advertised_size_bytes": 760238,
+      "creation_date": "2023-06-01T01:13:16.338Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/dcs_1020h.png"
+    },
+    {
+      "advertised_size_bytes": 69621,
+      "creation_date": "2023-06-01T01:13:16.359Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/phy_boiler.json"
+    },
+    {
+      "advertised_size_bytes": 813182,
+      "creation_date": "2023-06-01T01:13:16.371Z",
+      "file_type": "unknown",
+      "name": "graph/boiler/phy_boiler.png"
+    },
+    {
+      "advertised_size_bytes": 1284357,
+      "creation_date": "2023-06-01T01:13:16.473Z",
+      "file_type": "unknown",
+      "name": "graph/graph_analysis.ipynb"
+    },
+    {
+      "advertised_size_bytes": 121840298,
+      "creation_date": "2023-06-01T01:13:20.161Z",
+      "file_type": "unknown",
+      "name": "hai-20.07/test1.csv"
+    },
+    {
+      "advertised_size_bytes": 64007804,
+      "creation_date": "2023-06-01T01:13:19.055Z",
+      "file_type": "unknown",
+      "name": "hai-20.07/test2.csv"
+    },
+    {
+      "advertised_size_bytes": 130293220,
+      "creation_date": "2023-06-01T01:13:21.218Z",
+      "file_type": "unknown",
+      "name": "hai-20.07/train1.csv"
+    },
+    {
+      "advertised_size_bytes": 101031373,
+      "creation_date": "2023-06-01T01:13:19.174Z",
+      "file_type": "unknown",
+      "name": "hai-20.07/train2.csv"
+    },
+    {
+      "advertised_size_bytes": 23774845,
+      "creation_date": "2023-06-01T01:13:18.412Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/test1.csv"
+    },
+    {
+      "advertised_size_bytes": 64866411,
+      "creation_date": "2023-06-01T01:13:18.652Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/test2.csv"
+    },
+    {
+      "advertised_size_bytes": 59068199,
+      "creation_date": "2023-06-01T01:13:18.848Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/test3.csv"
+    },
+    {
+      "advertised_size_bytes": 21605478,
+      "creation_date": "2023-06-01T01:13:18.336Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/test4.csv"
+    },
+    {
+      "advertised_size_bytes": 50439655,
+      "creation_date": "2023-06-01T01:13:18.477Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/test5.csv"
+    },
+    {
+      "advertised_size_bytes": 117962845,
+      "creation_date": "2023-06-01T01:13:19.409Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/train1.csv"
+    },
+    {
+      "advertised_size_bytes": 123395361,
+      "creation_date": "2023-06-01T01:13:19.138Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/train2.csv"
+    },
+    {
+      "advertised_size_bytes": 261779190,
+      "creation_date": "2023-06-01T01:13:23.676Z",
+      "file_type": "unknown",
+      "name": "hai-21.03/train3.csv"
+    },
+    {
+      "advertised_size_bytes": 2156,
+      "creation_date": "2023-06-01T01:13:17.985Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(test1.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 2744,
+      "creation_date": "2023-06-01T01:13:17.956Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(test2.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 2336,
+      "creation_date": "2023-06-01T01:13:18.507Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(test3.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 3154,
+      "creation_date": "2023-06-01T01:13:18.465Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(test4.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 1373,
+      "creation_date": "2023-06-01T01:13:17.973Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(train1.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 1374,
+      "creation_date": "2023-06-01T01:13:18.469Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(train2.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 1373,
+      "creation_date": "2023-06-01T01:13:18.562Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(train3.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 1373,
+      "creation_date": "2023-06-01T01:13:18.534Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(train4.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 1374,
+      "creation_date": "2023-06-01T01:13:18.614Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(train5.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 1374,
+      "creation_date": "2023-06-01T01:13:18.516Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/summary/summary(train6.csv).txt"
+    },
+    {
+      "advertised_size_bytes": 50536532,
+      "creation_date": "2023-06-01T01:13:19.533Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/test1.csv"
+    },
+    {
+      "advertised_size_bytes": 46616720,
+      "creation_date": "2023-06-01T01:13:19.674Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/test2.csv"
+    },
+    {
+      "advertised_size_bytes": 35066591,
+      "creation_date": "2023-06-01T01:13:19.614Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/test3.csv"
+    },
+    {
+      "advertised_size_bytes": 72931406,
+      "creation_date": "2023-06-01T01:13:19.806Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/test4.csv"
+    },
+    {
+      "advertised_size_bytes": 53190281,
+      "creation_date": "2023-06-01T01:13:19.347Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/train1.csv"
+    },
+    {
+      "advertised_size_bytes": 114199064,
+      "creation_date": "2023-06-01T01:13:19.922Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/train2.csv"
+    },
+    {
+      "advertised_size_bytes": 69953332,
+      "creation_date": "2023-06-01T01:13:19.643Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/train3.csv"
+    },
+    {
+      "advertised_size_bytes": 47917707,
+      "creation_date": "2023-06-01T01:13:19.107Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/train4.csv"
+    },
+    {
+      "advertised_size_bytes": 131777589,
+      "creation_date": "2023-06-01T01:13:24.809Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/train5.csv"
+    },
+    {
+      "advertised_size_bytes": 143438209,
+      "creation_date": "2023-06-01T01:13:24.388Z",
+      "file_type": "unknown",
+      "name": "hai-22.04/train6.csv"
+    },
+    {
+      "advertised_size_bytes": 31255559,
+      "creation_date": "2023-06-01T01:13:23.519Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/hai-test1.csv"
+    },
+    {
+      "advertised_size_bytes": 132946575,
+      "creation_date": "2023-06-01T01:13:25.543Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/hai-test2.csv"
+    },
+    {
+      "advertised_size_bytes": 162418984,
+      "creation_date": "2023-06-01T01:13:25.983Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/hai-train1.csv"
+    },
+    {
+      "advertised_size_bytes": 169121615,
+      "creation_date": "2023-06-01T01:13:26.107Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/hai-train2.csv"
+    },
+    {
+      "advertised_size_bytes": 72774793,
+      "creation_date": "2023-06-01T01:13:23.632Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/hai-train3.csv"
+    },
+    {
+      "advertised_size_bytes": 114494940,
+      "creation_date": "2023-06-01T01:13:23.839Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/hai-train4.csv"
+    },
+    {
+      "advertised_size_bytes": 1242017,
+      "creation_date": "2023-06-01T01:13:22.92Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/label-test1.csv"
+    },
+    {
+      "advertised_size_bytes": 4500018,
+      "creation_date": "2023-06-01T01:13:22.886Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/label-test2.csv"
+    },
+    {
+      "advertised_size_bytes": 1591,
+      "creation_date": "2023-06-01T01:13:22.921Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/summary_label1.txt"
+    },
+    {
+      "advertised_size_bytes": 2911,
+      "creation_date": "2023-06-01T01:13:22.868Z",
+      "file_type": "unknown",
+      "name": "hai-23.05/summary_label2.txt"
+    },
+    {
+      "advertised_size_bytes": 2929375,
+      "creation_date": "2023-06-01T01:13:22.863Z",
+      "file_type": "unknown",
+      "name": "hai_dataset_technical_details.pdf"
+    },
+    {
+      "advertised_size_bytes": 49351620,
+      "creation_date": "2023-06-01T01:13:24.222Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/end-test1.csv"
+    },
+    {
+      "advertised_size_bytes": 209737755,
+      "creation_date": "2023-06-01T01:13:25.529Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/end-test2.csv"
+    },
+    {
+      "advertised_size_bytes": 256552242,
+      "creation_date": "2023-06-01T01:13:30.017Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/end-train1.csv"
+    },
+    {
+      "advertised_size_bytes": 266924893,
+      "creation_date": "2023-06-01T01:13:30.821Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/end-train2.csv"
+    },
+    {
+      "advertised_size_bytes": 115378733,
+      "creation_date": "2023-06-01T01:13:25.642Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/end-train3.csv"
+    },
+    {
+      "advertised_size_bytes": 180186249,
+      "creation_date": "2023-06-01T01:13:51.14Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/end-train4.csv"
+    },
+    {
+      "advertised_size_bytes": 1242017,
+      "creation_date": "2023-06-01T01:13:47.59Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/label-test1.csv"
+    },
+    {
+      "advertised_size_bytes": 4500018,
+      "creation_date": "2023-06-01T01:13:47.646Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/label-test2.csv"
+    },
+    {
+      "advertised_size_bytes": 1591,
+      "creation_date": "2023-06-01T01:13:47.627Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/summary_label1.txt"
+    },
+    {
+      "advertised_size_bytes": 2911,
+      "creation_date": "2023-06-01T01:13:47.603Z",
+      "file_type": "unknown",
+      "name": "haiend-23.05/summary_label2.txt"
+    }
+  ],
+  "complete_file_inventory_count": 70,
+  "complete_inventory_frozen": true,
+  "created_at": "2026-08-02T07:11:51.020550Z",
+  "credentials_included": false,
+  "dataset_ref": "icsdataset/hai-security-dataset",
+  "dataset_version_identifier": 10,
+  "execution_code_commit": "c334479eb3f0a0e6dc2642b8f2fc1b59bc0758b2",
+  "file_inventory_endpoint": "https://www.kaggle.com/api/v1/datasets/list/icsdataset/hai-security-dataset?datasetVersionNumber=10&pageSize=1000",
+  "introduction_commit": "ebcd09bbb432a35be39dcfaf1d800083fd06777b",
+  "kaggle_api_version": "v1",
+  "kaggle_client_name": "paperworks_stdlib_urllib",
+  "kaggle_client_version": "1.0.0",
+  "license_name": "CC BY-SA 4.0",
+  "metadata_endpoint": "https://www.kaggle.com/api/v1/datasets/view/icsdataset/hai-security-dataset",
+  "official_git_repository": "https://github.com/icsdataset/hai",
+  "official_git_snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "owner": "icsdataset",
+  "schema_version": "1.0.0",
+  "selective_download_endpoint_template": "https://www.kaggle.com/api/v1/datasets/download/{owner}/{slug}/{file_name}?datasetVersionNumber={version}",
+  "signed_urls_included": false,
+  "slug": "hai-security-dataset",
+  "task039a_expected_config_hash": "7f36b4ab4055fc412cc86865021a83771117e31ee8734d69a3e9892761f4d34a",
+  "task_id": "TASK-039AR",
+  "version_timestamp": "2023-06-01T01:13:02.73Z"
+}
