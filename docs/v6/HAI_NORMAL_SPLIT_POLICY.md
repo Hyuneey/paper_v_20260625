@@ -16,3 +16,7 @@ cross-file window is allowed. The fixed purge is 120 samples, satisfying
 After selection, only the selected process split manifests become public
 authoritative artifacts. Train4 feature values remain unread and reserved for
 future normal false-fire governance.
+
+TASK-039B created process-scoped comparison manifests in the private execution
+ledger, but neither process passed. Consequently no selected-process split
+manifest became authoritative or entered the public result set.

@@ -1908,7 +1908,7 @@
 
 ### DEC-095: HAI P1/P3 normal-only feasibility and process selection
 
-- Status: resolved_protocol_pending_execution
+- Status: resolved_executed_blocked_no_feasible_process
 - Owner: researcher
 - Candidate fit uses train1/train2, relation confirmation uses train3, and
   train4 is an unread normal guard whose hash/header/range only may be checked.
@@ -1922,3 +1922,8 @@
   cannot score or break a tie.
 - The production graph ranker remains unresolved and no GDN training is
   authorized.
+- TASK-039B found zero eligible first-MVP sources in both P1 and P3. No process
+  was selected and TASK-039C is not authorized.
+- Any change to process scope, discrete-source definition, metadata evidence,
+  or relation family requires a new preregistered decision. The TASK-039B gates
+  and blocked result must not be rewritten after observation.

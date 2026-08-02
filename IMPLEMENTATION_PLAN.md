@@ -82,11 +82,17 @@ Using authorized normal data only, type control and sensor variables, audit
 P1/P3 support, test delayed-response feasibility, and freeze exactly one
 process plus canonical and optional GDN views.
 
-Status: implementation and synthetic protocol in progress. Real execution is
-permitted only from the clean implementation commit. Train4 remains an unread
-normal guard, and the official graph is non-scoring.
+Status: blocked with `blocked_no_feasible_delayed_response_process`. P1 and P3
+both had zero eligible reviewed, nonconstant binary/discrete source variables
+under the frozen first-MVP policy. No process, selected view, or authoritative
+split was frozen. Train4 remained an unread normal guard and the official graph
+was non-scoring.
 
 ## TASK-039C Onward
+
+TASK-039C is not authorized until a new researcher-approved task resolves the
+source/process feasibility contradiction without retroactively lowering the
+TASK-039B gates.
 
 1. TASK-039C: candidate-universe and graph evidence construction.
 2. TASK-039D: normal relation profiling and deterministic calibration.

@@ -22,3 +22,10 @@ Confirmed increase relations count toward current Rule v1 readiness.
 Confirmed decrease relations remain future-family candidates. Neither class
 is a causal or invariant claim, and no screening output is a final calibration
 parameter or CandidateUniverse artifact.
+
+## TASK-039B Result
+
+The eligibility stage produced zero source variables in both P1 and P3, so no
+pair entered screening. Fit support, calibration confirmation, increase-ready,
+and future-decrease counts were all zero. This is a minimum-gate failure, not a
+negative delayed-response estimate for preselected pairs.

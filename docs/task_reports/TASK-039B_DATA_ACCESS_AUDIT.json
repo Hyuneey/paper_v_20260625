@@ -1,0 +1,89 @@
+{
+  "allowed_process_scopes": [
+    "P1",
+    "P3"
+  ],
+  "artifact_hash": "39d4417fbe9981bc047d7172817e5ac12290f8983606d5ea73d157e2aaa1beac",
+  "artifact_type": "task039b_data_access_audit_v1",
+  "entries": [
+    {
+      "feature_values_accessed": false,
+      "process_scope": [],
+      "purpose": "pre_value_integrity_header_and_row_count",
+      "relative_path": "hai-23.05/hai-train1.csv"
+    },
+    {
+      "feature_values_accessed": false,
+      "process_scope": [],
+      "purpose": "pre_value_integrity_header_and_row_count",
+      "relative_path": "hai-23.05/hai-train2.csv"
+    },
+    {
+      "feature_values_accessed": false,
+      "process_scope": [],
+      "purpose": "pre_value_integrity_header_and_row_count",
+      "relative_path": "hai-23.05/hai-train3.csv"
+    },
+    {
+      "feature_values_accessed": false,
+      "process_scope": [],
+      "purpose": "pre_value_integrity_header_and_row_count",
+      "relative_path": "hai-23.05/hai-train4.csv"
+    },
+    {
+      "feature_values_accessed": true,
+      "process_scope": [
+        "P1"
+      ],
+      "purpose": "normal_candidate_fit_or_calibration_process_values",
+      "relative_path": "hai-23.05/hai-train1.csv"
+    },
+    {
+      "feature_values_accessed": true,
+      "process_scope": [
+        "P1"
+      ],
+      "purpose": "normal_candidate_fit_or_calibration_process_values",
+      "relative_path": "hai-23.05/hai-train2.csv"
+    },
+    {
+      "feature_values_accessed": true,
+      "process_scope": [
+        "P1"
+      ],
+      "purpose": "normal_candidate_fit_or_calibration_process_values",
+      "relative_path": "hai-23.05/hai-train3.csv"
+    },
+    {
+      "feature_values_accessed": true,
+      "process_scope": [
+        "P3"
+      ],
+      "purpose": "normal_candidate_fit_or_calibration_process_values",
+      "relative_path": "hai-23.05/hai-train1.csv"
+    },
+    {
+      "feature_values_accessed": true,
+      "process_scope": [
+        "P3"
+      ],
+      "purpose": "normal_candidate_fit_or_calibration_process_values",
+      "relative_path": "hai-23.05/hai-train2.csv"
+    },
+    {
+      "feature_values_accessed": true,
+      "process_scope": [
+        "P3"
+      ],
+      "purpose": "normal_candidate_fit_or_calibration_process_values",
+      "relative_path": "hai-23.05/hai-train3.csv"
+    }
+  ],
+  "label_file_accessed": false,
+  "normal_guard_feature_values_accessed": false,
+  "private_custody_accessed": false,
+  "prohibited_data_access_count": 0,
+  "schema_version": "1.0.0",
+  "summary_file_accessed": false,
+  "test_file_accessed": false
+}

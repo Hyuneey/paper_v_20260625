@@ -50,6 +50,12 @@ unread normal guard. Process selection is minimum-gate then unweighted Pareto;
 no attack information, detector result, or official-graph advantage may enter
 the decision.
 
+TASK-039B completed with `blocked_no_feasible_delayed_response_process`.
+Neither P1 nor P3 contained the required eligible reviewed, nonconstant
+binary/discrete source population under the frozen first-MVP policy. No primary
+process or selected-process view/split was frozen, and TASK-039C is not yet
+authorized.
+
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:
 

@@ -1,0 +1,2195 @@
+{
+  "artifact_hash": "33eca8639847187b49130de396794109c06f652bde600f9e4a7652d50660aba1",
+  "artifact_type": "task039b_variable_metadata_registry_v1",
+  "evidence_records": [
+    {
+      "artifact_hash": "c3cd774f6f9c94e49076abdf86bc0b52d0b7aa691756682be8480821ea505735",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "c80ce67468436ebc4d815a2e99244df8529cbf66e898fddb14ecd0d163cce435",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "e342a144ec272c8440e4a2e6edbaedddc8319aa3eeffe58129bec36f26c9f6fa",
+      "page_references": [
+        13,
+        22,
+        27,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "4197bb2cea3a48eac187bc49bed3c9858dc11ba36566c4247e911cc70a9c38f8",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "a716a07d525309ae9415b022d61c8f3f91d39ddeb82b7c367502e1066ad02d63",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "b447dc2780d44186966b0e59ee9d8989f0fbfce77e3e67e0eb6dc167f4d2f05f",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "0ee072323eb12baa7ae8f24a54c7049d733d8426b861c41ae3e3ff6cd6840b7f",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "89362f18f158906e60b511210bffa215b9a69fa46f76dbb459ca4e92c02a1b34",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "c5a430a375e26ccbff492b8710ec0f07a405fc31934e9def75188b7f3f43959c",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "cf63d38fb70c165d1e27dd40cb648662c2cdc2b666d6ec6ee0a322a6c56aedfb",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "3ac8fc6838496ef72a7c3ccc5135cbe6c8be3e0b7fbcd788288f8ac5bb0e938e",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "d9980046eb5a9c2a8891389918da10e5cc4c5d78bec0322beeb90e7a5f7601b4",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "b22c5b89f28cc4a23c6ebcda6e61b0b8cbdbb097ece67d74abd67c315648a335",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "1c03de7a662163bef2bd62507f30278f98fb4f6a2cb6bd4ed43ea6209307e2da",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "784cfcfb984603f96e445ceeee08b9fc744e91f37acf2f3bfa14b85225b70a53",
+      "page_references": [
+        13,
+        22,
+        27,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "37882b0c2e7c68a658e3cf0db76970e42a6af733e3625c66b2c5a1c1b471a4e2",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "1154046f7ebb7562f4ff055cdf0852d9a300662e301b116837cbb35bff2914f5",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "8a3db63377b43855017f46ef355fdc6b36e0d54d915e20bd350ceeb1888d300f",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "edb2bc0780b029cca5e421802ccb25abec87551bedd682159e1176222fd196ba",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "c7278c4bebd1d882f90c5f5ddaa08f1b0fdef8b468e7eea01e433d5181783130",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "a0c55138be7a6f4538679790c341335013d0ff9b2b444062164547db9237999f",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "1246dc58c1c99704646ae051dbbb2116d7b6e74b5dfdbe5a034dc713c7709cd0",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "dd41d7c887eac8130264c8a5ecefc97d4ab9b4489c4f1ee6dae23ce5cb2efb6c",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "73511ce8e465c04b38810996504a69db8b7897ef561ec2d746cf6d43a7d08cf0",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "8f2c0d5163a2454b2420d3afb09ed6e9080de6dd3c3ba2e558d576052c8c8611",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "44aa34beae71ed5c7db3ec1e97e6ad3ce398424670e665ab82eb062fb480b17a",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "c8eaf2cf32ad12ad3101a5cf57e79365600ccb9b374dbbe351aea858da625325",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "662d3b9ac091445f0fb13288a53fbfa0bfb16e3e9b7a67860b25bce0d57102f9",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "b35a59edb78b3e30248f912fc8455b7a9368514c7694c50e6c17b740957c4a53",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "c972e70f001a708d813ed3160e19b4aed0690e806934bd33d39e16cf9d88bf7a",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "589626d554c5337430ec1cfd6d7dee4ada4335a9e4839370262ee76f6490f066",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "5b84957151c5dcd4d719ca46981239cf2f28e8cc607a3dd7445436b90d3567e3",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "8ca6ee97fadb177484745cc8a343d8921d58284c58b664924960020d8fe038cc",
+      "page_references": [
+        13,
+        22,
+        26,
+        27,
+        29,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        42
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "0e89c189e0555894f060a333320b02c4d4535b2261396d6e53f317de5bdcb4e8",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "d92d44a7ba71716ebb18ff046a71e807cd76068c6d023362b1134808fb765ecf",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "cae185fb320472577bbf66c9a2a5cbceef042580f5e6465a8f189a0895b4a576",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "4345d1534dea8ba176625cdf99769a3e7a279e3ccaed1ce64bd139638d7ec6d7",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "8adf6c12daf41ed590ca5444d95111ad17a4e6d98b25f33ca1c58a9870b08e0f",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "03f1c6c35dc6599d055de84a3634ace73f002d2be03dd7695a1e590bacec2509",
+      "page_references": [
+        13,
+        22,
+        27,
+        29,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "06940a01f90e51f31fd439f7ddc8f8ec29938bdc45cfb60865200a2f6369934c",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "0687d99e737f3c53c7735b4ef7b96bca7dec7537fccfe4ca783656f6a9e4f17d",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "10179e39b3bbd7fbc0b034b32c3d10a616b271492f0598ec93b94264bf6f38d9",
+      "page_references": [
+        13,
+        22
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "5dd2daae1606ecee5152af0cad0052ea6483f09134b446773284013d86c9f830",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "90799bbd50c701f160a8e639579af80032d66932c09531015793a4daed539123",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "a4f78db2bda1d9f3e50a1414d0fb6d7017d99a78f59fdc65b3ff859f52060623",
+      "page_references": [
+        14,
+        23,
+        27,
+        29,
+        32,
+        33,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "85823708c71341f63b9d34e54ed70484dad088b0a9e8e41b90d281b8458a6a53",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "d193e665eb89c74a34235a71fdbdc597ea4c947ab71e913f38e5a0370d59d846",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "9f1175474ac063654ee887b1ff274e911d188e1fda053d71a002a2ecf013c7af",
+      "page_references": [
+        14,
+        23,
+        26,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "f56bda64a8b38e1d0405ff6772bbd7457a31ebd328986e5b72f32627e799d4ef",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "634ab78a49b2e1fe6ec1837cfb6b26c832f5a3139a9b3ef0ddec26b66bd65e76",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "089ccaf2b88efea549e2ca534534c744a6436827d0941ea29a7bfbcc6e19d77d",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "a3937690d13843167045f5866cbfb5e55d5b3c738016312486bc39e9bd4f3106",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "34a93117185246a3b620358d2ed6e3f59f6f86bbdbccfa7fd25f8482287f88a7",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "30db2ed18e1dc15720b6aaea16ed30639cee096b285b5a4c5fb2bc5cd3b31381",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "a8c2e65351049f13fb90d4138849e3faf48df46e26446570689b9befcc0c782c",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "6840adb50bf773f79320f8bc7f43aca27c73e052975cc048632895b495c3da1f",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "ae54f41192b9d3e19adfefacd85232d02c91fdba8f6c541c0a1189384b6b7d9c",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "568bf15fe4ed07996b85b2434f799b6ca6c6511d1219b96e60b0284e4aeb39fb",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "560b3fcbff4396b57e617d0f070e1f2a34a8fb23f4be0d2f892213f37167e810",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "d210457ea31c943041ba6886767bb18137f3708500af8e96f3fdd052361b8a3d",
+      "page_references": [
+        14,
+        23,
+        26,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        41,
+        42
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "12f7eeab6f155a71ae6ab15b78d02b58434e83ba733c83f62c9511c241fcf37a",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "a83968055f0d5829dbd7d06d330bde127b1e61aa310aeb1d55217972040fcbdc",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "1be4b9f15f18470257726aefab79ec370d07e8edbec51cab03caa06a439c65ca",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "eefb2a160a9b4dfc37cecf671a55c46bd54f1b470b90f358ce1727f33ed2c274",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "d889fcf290b18c9c7760700b6a1510b2849f5a16cedcbd2799f0d9aa978f14b9",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "8842a1c3d2b4f4713782c803a3e5fae84d0f5b12c0dca00c0c3dce227cef38f3",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "1b7f5a82eed7962f9ffcba1dd9630d915babcbc79bcb0c98e072182e3f80545f",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "1c862765a7c99e796f26c8070c9858afc089739d0398a2678c5abd5cfb099e79",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "39bb5aedf4124a512f1bf47335bf17e0d4b7fcb10ec650e66a14549097632126",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "1b5ae587cde160d0bf8c771e92a589f961148648380be0ad8d515f16ef7c95ad",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "9e50a11270054093ee838b3f032e0b14d3d7529af948fc162376afc4537940f9",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "61ecefa925b4a4bba1f64aee2a710aefa6944d55f2c3dab288a11e0f7eaee675",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "1d64534115fb76dc027be19be2f14319f9a3c083ef9cb01b52d2d4fc1c2da19d",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "385b394288bdd8de5b535467dc0286ca6c8260d051193ee3e7ac7865fe2474fc",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "2ff1d086c2e3fbcf0781b50163f4bb0fb30b2fa13fd6889dba1c36ae00535387",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "738b945e155f9a8127ab5521be99242962e7db3329f724605b737afec5ff532b",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "66c158829c59cd8f3c12c21a371b1a661a105ef1334851f11aeb1f5fdca35851",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "30522c1b483b8f255ccc7e2f8e2b8d1a0e6c327718e3f9ec4bc6b2f5c91d4145",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "f3de8da9d630058560c211136d4285bc57b46622c910e49cbea8114eea6ad338",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "6929067417021f93ca5dbb0bad2904c666f640af2c4fd90fbeab6a3b7fc7a494",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "a5584f7039ec08a921a6ded78f4ec69806aa878f71260ed5d8101134611a3596",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "6d5a850b96b5dc7cccbc4a124f94958c478fdefe12ba4481756195a89ed19686",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "0015226474be24feffdf4eac8a22374cce34fbda51ce2b873e046769baec9356",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "0661860e91feabdc490c163210cb77e34bfef18c91bbacea862f919287d4c2ad",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "6380955dfa78f5b43071ab7b7de5f17d25ce6848c5f1e1fa15b27c72a642e375",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "f9d679b6a09c6efcd17dba675a8a09483d0f932bb89b4f8f0e70dfd308fd9830",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "f130659832d169b87c137ff85f09b55ae86fa5365c1d6db46e12f379e3e07811",
+      "page_references": [
+        14,
+        27,
+        29,
+        32,
+        34,
+        35,
+        36
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "0bf5e26e5317eb62526ed2da509a2250b7e6b3a9b58dc30c62383acc39f244bc",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "3b760ef5c730322321118448dc5cd5b602196e5948e0d4e6bbc6a2f0dbeb2de0",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "515cb774e741e257a5be2e10a648b8ec587b83263ddfe5cf251dd57ec2b9ef3d",
+      "page_references": [
+        14
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "1178964e055ee8b512cd0932e101dc94b1dcd557eed4f8d4bdb9c6298d228aff",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "e0c8912eb2c607e3af9f1e131213800eb116436a4f36a74a73a756ea2c6d48b0",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "110352e6bcbf840e8e2408fddf05ef8b42ba6af3df12f04c0efacaa920ecc719",
+      "page_references": [
+        14,
+        23
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "c2baa8e4f40fe9674ecbc35843673c736af08792bbd777a99d347bf46e550d03",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "8fcc188e9ca87865c08f89c235621baeb20a4bb51385a24c8026b5e9f6a95f69",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "5756b6201d18f309dc52185d44b276054b750c16d5642b6bb75cfd675081fafa",
+      "page_references": [
+        14,
+        24
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "9e370926d46ab8a0775924bed4a42041da5814c66de69a2b01e460c9e8161170",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "4c17c5ac61d4711adec4edd04d264020fbc5f7bb2c1dffdf0822160f7cef86f8",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "0fd21663e965ec344c0fe0e09c3bea1d54c56b9e92b8d9edd8092996ce0d09d1",
+      "page_references": [
+        14,
+        24
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "e8a6feeaf7a05ec0b6f76022aea8f11add4e7bbe2ac62fc8a14cb5f7a6905690",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "7fe691aa477b8f1b2c1a5a6a92d0c4a61e067a3f707bb0d85df6f21016a39e51",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "9f90f4a1e90313136c9a899c94880fb2a18555bee59d15b3c70070ab1a1c73ec",
+      "page_references": [
+        14,
+        24,
+        27,
+        32,
+        35,
+        36
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "bcda7c881962d045d4ec6d0d5b28cbd973886a0b56506c71dfbc2ee1cd45c0b6",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "9291f364f776af72ec3fbdea23f5c1a30ad11ff761d7d864bf75b396f519572d",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "c10ec095671131e2a4fdcf3b82a3dba12fd2ae40b1105f5316807646c8e83da2",
+      "page_references": [
+        14
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "883bfe4dbbcfe4716bcdfee593db6f6eaf313b8d61b5235493c1bccff562cdf0",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "215f89377f94cebba8418c7d61a1021ed42c88c051b7addad3bd041932e47100",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "956c89b7e1d88d88fa29c7fc7a7f2a599e263234f864cd253c47a535c317ac65",
+      "page_references": [
+        14,
+        24,
+        29,
+        32
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "88016273c3a9838bd2f05e67a1584ed4172bc5bfedc67acdb071dec766588bcb",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "34d601c25f2addb1c50a26b678d4e176e43078534f0168711b4599ef6f93ee39",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "8d480ec79707b3e2a4f186c0f3c52d5c374e71691d258e6b4a3e735f8b730bac",
+      "page_references": [
+        15
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "1f5479f4b6a3cbd7c86c172560f60f126cbec7872e7d19f9c5c93fc72eb7f34e",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "b8e5bcb2e44defc67ab1dafebcaf58c2fdee24104ba5397e3d41112878a311c8",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "c215a69c9b64a0d7c0f3efed16dbe156b94d68cbd8b9231e63d05a41a39d7b3d",
+      "page_references": [
+        15,
+        28,
+        33,
+        35,
+        36,
+        38
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "bb202431235ad6211d78c06bc84e9394ed8cce54e982c171a6174ddef543eb2f",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "54df4e742c3a5722290a760bc7786f8a9417092f8c9a525ef6f115e1d4b784e1",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "a70567ad43b153b7c16ef490739939cc76b89e5095b384e8e15fa8689555e91e",
+      "page_references": [
+        15,
+        28,
+        34,
+        35
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "119ae003b74f16bc7fb0234c982f7b586a44410a892e4684c8c91d062d84484d",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "0d51230199cbf781e357cb63ac877adca53281aa0cf5d0c082269610d3b66cee",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "94c5ef48da9cd407082679cdf296bba13a38bafaefa06c2f1c30bd4705c37950",
+      "page_references": [
+        15,
+        41
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "e56518e5d7b67b8b1a699f2b17a5f0abfd6f1bff175a3206ae4cebbfac0fdb01",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "d10f4e40e8cf49a5c3acf77817ecd91b48324dfd3085066099fad3b0787fd7a6",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "54617b5c883921a80be8c4e038db9f1a08e727a593c17ceecc382affc93d92ef",
+      "page_references": [
+        15,
+        28,
+        36
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "6db1f514002eaa20d2f28fc5ba97b24377b57d29f7f8fae3e7927b99357892a3",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "eaf25f712c1e74953f38d8c8e024886be0490b7101ae330ee1f866a778a9296d",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "3f4781f4aec979c4a0aabbf27ffb1365f662758d3168583a28378cabb1db6127",
+      "page_references": [
+        15,
+        41,
+        42
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    },
+    {
+      "artifact_hash": "5d2b3d4013b2a3a3c51c53c985c5aab618a86a89efce3219b67c8961499ce2d2",
+      "artifact_type": "hai_metadata_evidence_record_v1",
+      "claim_boundary": "metadata_only_not_causal_evidence",
+      "evidence_id": "162d80d1cbd016850cc2a4358f3064691f260a44bbc1294981b70729304f30cc",
+      "evidence_type": "official_technical_manual_exact_tag_reference",
+      "excerpt_hash": "9cb00c8a71c1f27599b98386552389ad061740158bcb52fd2f16a8841414dbb5",
+      "page_references": [
+        15
+      ],
+      "schema_version": "1.0.0",
+      "source_reference": "hai_dataset_technical_details.pdf@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+      "supports_semantic_role": true,
+      "supports_unit_or_quantity": false
+    }
+  ],
+  "raw_values_included": false,
+  "records": [
+    {
+      "artifact_hash": "982f9787142cba1d4d75b9cacee8d7d650a000c8e1537f7d468e8b331a539b4b",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "9 P1_FCV01D 0 100 % Position command for the FCV01 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "c3cd774f6f9c94e49076abdf86bc0b52d0b7aa691756682be8480821ea505735"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22,
+        27,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_FCV01D"
+    },
+    {
+      "artifact_hash": "68ed1e642055ac2368a436b4c5ca651349a7de12c0803f0ff4d66e2701a72335",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "10 P1_FCV01Z 0 100 % Current position of the FCV01 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "4197bb2cea3a48eac187bc49bed3c9858dc11ba36566c4247e911cc70a9c38f8"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_FCV01Z"
+    },
+    {
+      "artifact_hash": "a9a3e61881c4eae792a81a2fc7341e86c5d5ddd9bfa2d95aaeb53c7bfa16c91f",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "11 P1_FCV02D 0 100 % Position command for the FCV02 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "0ee072323eb12baa7ae8f24a54c7049d733d8426b861c41ae3e3ff6cd6840b7f"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_FCV02D"
+    },
+    {
+      "artifact_hash": "89ba76513df526e28d73f2efd70f03b913c3888271e8004bc5b0e718d9aedbed",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "12 P1_FCV02Z 0 100 % Current position of the FCV02 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "cf63d38fb70c165d1e27dd40cb648662c2cdc2b666d6ec6ee0a322a6c56aedfb"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_FCV02Z"
+    },
+    {
+      "artifact_hash": "2b793f7fe5731eecb79b19001032f9d75a49284658d3c711da3e67308af970b7",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "13 P1_FCV03D 0 100 % Position command for the FCV03 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "b22c5b89f28cc4a23c6ebcda6e61b0b8cbdbb097ece67d74abd67c315648a335"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22,
+        27,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_FCV03D"
+    },
+    {
+      "artifact_hash": "b12d94f8b7abdeaf0ea70c56b6427a373198a701709fd08eff14ce9bc1399f3e",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "14 P1_FCV03Z 0 100 % Current position of the FCV03 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "37882b0c2e7c68a658e3cf0db76970e42a6af733e3625c66b2c5a1c1b471a4e2"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_FCV03Z"
+    },
+    {
+      "artifact_hash": "51917681be4d05041ef7aee5f1f4bd18e8bec102cc3fc5e31171e5e8491a8665",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "15 P1_FT01 0 2,500 mmH2O Measured flowrate of the return water tank \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "edb2bc0780b029cca5e421802ccb25abec87551bedd682159e1176222fd196ba"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_FT01"
+    },
+    {
+      "artifact_hash": "4f90d8becba41322282ae678492a899fdce7a92ce2d62fdb65181d31472b2ac5",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "16 P1_FT01Z 0 3,190 l/h Water inflow rate converted from P1_FT01 \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "1246dc58c1c99704646ae051dbbb2116d7b6e74b5dfdbe5a034dc713c7709cd0"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_FT01Z"
+    },
+    {
+      "artifact_hash": "9a396e3b83ce6e127e84f305598aed9092db8e2ddb6f61eefbdd889e966999f1",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "17 P1_FT02 0 2,500 mmH2O Measured flowrate of heating water tank \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "8f2c0d5163a2454b2420d3afb09ed6e9080de6dd3c3ba2e558d576052c8c8611"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_FT02"
+    },
+    {
+      "artifact_hash": "47cbc238481ba6ae0d9c2a1c8ee093266886b5792ed6e965ff6e5a624fa618d8",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "18 P1_FT02Z 0 3,190 l/h Water outflow rate conversion from P1_FT02 \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "662d3b9ac091445f0fb13288a53fbfa0bfb16e3e9b7a67860b25bce0d57102f9"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_FT02Z"
+    },
+    {
+      "artifact_hash": "ebd8e97b4fd5e6cee03856614469397302a61b1ab138121f9628e4c7446403cc",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "19 P1_FT03 0 2,500 mmH2O Measured flowrate of the return water tank \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "589626d554c5337430ec1cfd6d7dee4ada4335a9e4839370262ee76f6490f066"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        13,
+        22,
+        26,
+        27,
+        29,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        42
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_FT03"
+    },
+    {
+      "artifact_hash": "ed50016ed99a483befc4f2d596dce4ab47e17832f5c61e180bd00f70b38d3dbe",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "20 P1_FT03Z 0 3,190 l/h Water outflow rate converted from P1_FT03 \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "0e89c189e0555894f060a333320b02c4d4535b2261396d6e53f317de5bdcb4e8"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_FT03Z"
+    },
+    {
+      "artifact_hash": "3aa02c486443ea2f80219e1c222c8f214d3cd2899e85e9b37c3cb48c82e90bc9",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "21 P1_LCV01D 0 100 % Position command for the LCV01 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "4345d1534dea8ba176625cdf99769a3e7a279e3ccaed1ce64bd139638d7ec6d7"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22,
+        27,
+        29,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_LCV01D"
+    },
+    {
+      "artifact_hash": "795d334da21b428f1abb5bccfdc7e95d2e9f701a313acee5e8ad44b5342e0e57",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "22 P1_LCV01Z 0 100 % Current position of the LCV01 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "06940a01f90e51f31fd439f7ddc8f8ec29938bdc45cfb60865200a2f6369934c"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        13,
+        22
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_LCV01Z"
+    },
+    {
+      "artifact_hash": "f2b5b73e11c04efb0695b149b542859c8ad9d9a955e765bccf50a04d7ceeb582",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "23 P1_LIT01 0 720 mm Water level of the return water tank \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "5dd2daae1606ecee5152af0cad0052ea6483f09134b446773284013d86c9f830"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        14,
+        23,
+        27,
+        29,
+        32,
+        33,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_LIT01"
+    },
+    {
+      "artifact_hash": "fb16acbfbe6f0fe7204b1f3d707a2de35646ee80d2ef7b6d3208969f339174b5",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "24 P1_PCV01D 0 100 % Position command for the PCV01 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "85823708c71341f63b9d34e54ed70484dad088b0a9e8e41b90d281b8458a6a53"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        14,
+        23,
+        26,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PCV01D"
+    },
+    {
+      "artifact_hash": "9adf4a2c5fe08b0ca5db24616e04c2fdcdd1f1509afcf48261db66088ca8ee7c",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "25 P1_PCV01Z 0 100 % Current position of the PCV01 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "f56bda64a8b38e1d0405ff6772bbd7457a31ebd328986e5b72f32627e799d4ef"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PCV01Z"
+    },
+    {
+      "artifact_hash": "0346a48dcd9a9afc1711924be8babcf246d03e37dd4e7454748ed8c71afd48b7",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "26 P1_PCV02D 0 100 % Position command for the PCV2 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "a3937690d13843167045f5866cbfb5e55d5b3c738016312486bc39e9bd4f3106"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PCV02D"
+    },
+    {
+      "artifact_hash": "11540fd2fa72969586b19bd2c464405ea2c1684cacb79c5821093735132ba7bf",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "27 P1_PCV02Z 0 100 % Current position of the PCV02 valve \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "a8c2e65351049f13fb90d4138849e3faf48df46e26446570689b9befcc0c782c"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PCV02Z"
+    },
+    {
+      "artifact_hash": "4e74af9237526545965701097c35fb7036f0b01d04d1c82bc5a5c445bb098843",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "28 P1_PIT01 0 10 bar Heat-exchanger outlet pressure \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "568bf15fe4ed07996b85b2434f799b6ca6c6511d1219b96e60b0284e4aeb39fb"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        14,
+        23,
+        26,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        41,
+        42
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_PIT01"
+    },
+    {
+      "artifact_hash": "bd69095514ce411f71c58cfb99aba2d9df4bb81e66374af737b35befd4c8b255",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "29 P1_PIT01_HH 0 10 bar Highest outlet pressure of the heat-exchanger \u221a",
+      "evidence_record_refs": [
+        "12f7eeab6f155a71ae6ab15b78d02b58434e83ba733c83f62c9511c241fcf37a"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PIT01_HH"
+    },
+    {
+      "artifact_hash": "acc4654ad727818ec5be3f1055731e72b97c7b26063719077de503a02be12f99",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "30 P1_PIT02 0 10 bar Water supply pressure of the heating water pump \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "eefb2a160a9b4dfc37cecf671a55c46bd54f1b470b90f358ce1727f33ed2c274"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_PIT02"
+    },
+    {
+      "artifact_hash": "1323fdc70fb562a9f4685bd13a01c5d09d9c2aa80ff15db6ccd7b8ddccb01ec6",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "31 P1_PP01AD 0 1 Boolean Start command of the main water pump PP01A \u221a \u221a",
+      "evidence_record_refs": [
+        "1b7f5a82eed7962f9ffcba1dd9630d915babcbc79bcb0c98e072182e3f80545f"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP01AD"
+    },
+    {
+      "artifact_hash": "4cd845745416f0db17027801e9f21c4ad504c4fac69a14ba1264be411ba698b7",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "32 P1_PP01AR 0 1 Boolean Running state of the main water pump PP01A \u221a \u221a",
+      "evidence_record_refs": [
+        "1b5ae587cde160d0bf8c771e92a589f961148648380be0ad8d515f16ef7c95ad"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP01AR"
+    },
+    {
+      "artifact_hash": "a98fb781de8bb71502f878ca6dbc342fadcb974b5d9755385a875711fcdb1312",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "33 P1_PP01BD 0 1 Boolean Start command of the main water pump PP01B \u221a \u221a",
+      "evidence_record_refs": [
+        "1d64534115fb76dc027be19be2f14319f9a3c083ef9cb01b52d2d4fc1c2da19d"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP01BD"
+    },
+    {
+      "artifact_hash": "192dc7b08bfe2c99195b1dad7e3d3b75bfee69eb30cc1f225e5ddaa59c49636b",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "34 P1_PP01BR 0 1 Boolean Running state of the main water pump PP01B \u221a \u221a",
+      "evidence_record_refs": [
+        "738b945e155f9a8127ab5521be99242962e7db3329f724605b737afec5ff532b"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP01BR"
+    },
+    {
+      "artifact_hash": "51cc06a05aa9515d3d4bc1cd328931f382362cf12e9378b8327734c17aa07a25",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "35 P1_PP02D 0 1 Boolean Start command of the heating water pump PP02 \u221a \u221a",
+      "evidence_record_refs": [
+        "f3de8da9d630058560c211136d4285bc57b46622c910e49cbea8114eea6ad338"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP02D"
+    },
+    {
+      "artifact_hash": "9f0192531deb16747a9d485d1e643686a0d7abfbdd8f9c3098519d2cfd809b7e",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "36 P1_PP02R 0 1 Boolean Running state of the heating water pump PP02 \u221a \u221a",
+      "evidence_record_refs": [
+        "6d5a850b96b5dc7cccbc4a124f94958c478fdefe12ba4481756195a89ed19686"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator feedback",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_feedback",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP02R"
+    },
+    {
+      "artifact_hash": "f18dfac6a488c85edef9dc9ad055be27ee084b79f014b002cf173c24263e89a6",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "37 P1_PP04 0 100 % Control out of the cooler pump \u221a",
+      "evidence_record_refs": [
+        "6380955dfa78f5b43071ab7b7de5f17d25ce6848c5f1e1fa15b27c72a642e375"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        14,
+        27,
+        29,
+        32,
+        34,
+        35,
+        36
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "actuator state",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "actuator_state",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP04"
+    },
+    {
+      "artifact_hash": "b8dd3aac19f074794ad2ebdd8af6eeea5b610fc3721c3e5e0463749aff61f7ca",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "unresolved",
+      "evidence_record_refs": [],
+      "exclusion_reasons": [
+        "metadata_unresolved"
+      ],
+      "manual_reference": [],
+      "metadata_confidence": "insufficient",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "binary",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "unresolved",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP04D"
+    },
+    {
+      "artifact_hash": "f25a0d541b4d65cb853c926a3410f0881ee295b03fa1f0d18d9a3c3e83f458bf",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "38 P1_PP04SP 0 100 \u2103 Cooler temperature setpoint \u221a",
+      "evidence_record_refs": [
+        "0bf5e26e5317eb62526ed2da509a2250b7e6b3a9b58dc30c62383acc39f244bc"
+      ],
+      "exclusion_reasons": [
+        "setpoint_not_primary_trigger"
+      ],
+      "manual_reference": [
+        14
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "setpoint",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "setpoint",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_PP04SP"
+    },
+    {
+      "artifact_hash": "b06a2288dc863f5e9674802c620e665dd05386b2dea2b053879e9cabbc925248",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "39 P1_SOL01D 0 1 Boolean Open command of the main water tank supply valve \u221a",
+      "evidence_record_refs": [
+        "1178964e055ee8b512cd0932e101dc94b1dcd557eed4f8d4bdb9c6298d228aff"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        23
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_SOL01D"
+    },
+    {
+      "artifact_hash": "8f0490dd4f6d5068e8ad4c192ff752f202359d40dd3fdd617c221ce880885868",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "40 P1_SOL03D 0 1 Boolean Open command of the main water tank drain valve \u221a",
+      "evidence_record_refs": [
+        "c2baa8e4f40fe9674ecbc35843673c736af08792bbd777a99d347bf46e550d03"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        24
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_SOL03D"
+    },
+    {
+      "artifact_hash": "3835bc02b59b3e240ccc5180df435164a9bb006dc6b7a7c55f9fb40f68b7e00b",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "41 P1_STSP 0 1 Boolean Start/stop command of the boiler DCS \u221a \u221a",
+      "evidence_record_refs": [
+        "9e370926d46ab8a0775924bed4a42041da5814c66de69a2b01e460c9e8161170"
+      ],
+      "exclusion_reasons": [
+        "constant_signal"
+      ],
+      "manual_reference": [
+        14,
+        24
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P1_STSP"
+    },
+    {
+      "artifact_hash": "ace8127409c9c6606bb43de74d01e831dfa284a0267c96026570e694dfd2dea9",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "42 P1_TIT01 -50 150 \u2103 Heat-exchanger outlet temperature \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "e8a6feeaf7a05ec0b6f76022aea8f11add4e7bbe2ac62fc8a14cb5f7a6905690"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        14,
+        24,
+        27,
+        32,
+        35,
+        36
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_TIT01"
+    },
+    {
+      "artifact_hash": "3d3968e995578fe1878bdb549e3dc7f16b65bc7a53a0978a7a56785f72ef49d6",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "43 P1_TIT02 -50 150 \u2103 Temperature of the heating water tank \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "bcda7c881962d045d4ec6d0d5b28cbd973886a0b56506c71dfbc2ee1cd45c0b6"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        14
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_TIT02"
+    },
+    {
+      "artifact_hash": "8a4c911c2ad4a6c4b49cd0a43791c4a1124e368d7474564e53bd6385e9bd4d72",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "44 P1_TIT03 -50 150 \u2103 Temperature of the main water tank \u221a",
+      "evidence_record_refs": [
+        "883bfe4dbbcfe4716bcdfee593db6f6eaf313b8d61b5235493c1bccff562cdf0"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        14,
+        24,
+        29,
+        32
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P1",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Boiler",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P1_TIT03"
+    },
+    {
+      "artifact_hash": "06860796dbdb43cefe83dbb4989efed52a82be51eb219b68b1d3de2bf71dd86e",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "69 P3_FIT01 0 27,648 - Flow rate of water flowing into the upper water tank \u221a \u221a",
+      "evidence_record_refs": [
+        "88016273c3a9838bd2f05e67a1584ed4172bc5bfedc67acdb071dec766588bcb"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        15
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P3_FIT01"
+    },
+    {
+      "artifact_hash": "6c4e588b23b7d5ee45d92f9caf4fd1253cff5d3f2d3482f92f4ca849426264cd",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "70 P3_LCP01D 0 27,648 - Speed command for the pump LCP01 \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "1f5479f4b6a3cbd7c86c172560f60f126cbec7872e7d19f9c5c93fc72eb7f34e"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        15,
+        28,
+        33,
+        35,
+        36,
+        38
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P3_LCP01D"
+    },
+    {
+      "artifact_hash": "4bf563f541dba0254d1f7d5073c3128fc758c792c90e5f3c9d7dd51b8568150e",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "71 P3_LCV01D 0 27,648 - Position command for the valve LCV01 \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "bb202431235ad6211d78c06bc84e9394ed8cce54e982c171a6174ddef543eb2f"
+      ],
+      "exclusion_reasons": [
+        "continuous_actuator_outside_first_mvp"
+      ],
+      "manual_reference": [
+        15,
+        28,
+        34,
+        35
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "control command",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "control_command",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P3_LCV01D"
+    },
+    {
+      "artifact_hash": "17a291a2919f63dc0c95f59a1c4a55f0f77a1d1d1444753d05949a75eca0849d",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "72 P3_LH01 0 70 % High water level set-point \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "119ae003b74f16bc7fb0234c982f7b586a44410a892e4684c8c91d062d84484d"
+      ],
+      "exclusion_reasons": [
+        "constant_signal",
+        "setpoint_not_primary_trigger"
+      ],
+      "manual_reference": [
+        15,
+        41
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "setpoint",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "setpoint",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P3_LH01"
+    },
+    {
+      "artifact_hash": "e7111caef66ddee468cafd9185519decd19ca7f08329d992ea618af8d03fd38e",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "73 P3_LIT01 0 90 % Water level of the upper water tank \u221a",
+      "evidence_record_refs": [
+        "e56518e5d7b67b8b1a699f2b17a5f0abfd6f1bff175a3206ae4cebbfac0fdb01"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        15,
+        28,
+        36
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P3_LIT01"
+    },
+    {
+      "artifact_hash": "c2acb025b3157adffefeed802dab4fb134d4cd3bb70ab33089b1635d892f527b",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "74 P3_LL01 0 70 % Low water level set-point \u221a \u221a \u221a",
+      "evidence_record_refs": [
+        "6db1f514002eaa20d2f28fc5ba97b24377b57d29f7f8fae3e7927b99357892a3"
+      ],
+      "exclusion_reasons": [
+        "constant_signal",
+        "setpoint_not_primary_trigger"
+      ],
+      "manual_reference": [
+        15,
+        41,
+        42
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "constant",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "setpoint",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "setpoint",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": false,
+      "unit": "unverified",
+      "variable_name": "P3_LL01"
+    },
+    {
+      "artifact_hash": "56c85990fe41acf831fe61e7f16983c54911ff481443642fb0150798ea241db4",
+      "artifact_type": "hai_variable_metadata_v2",
+      "data_domain_evidence": "aggregate_normal_candidate_fit_and_calibration_domain_only",
+      "description_summary": "75 P3_PIT01 0 27,648 - Pressure of water flowing into the upper water tank \u221a \u221a",
+      "evidence_record_refs": [
+        "5d2b3d4013b2a3a3c51c53c985c5aab618a86a89efce3219b67c8961499ce2d2"
+      ],
+      "exclusion_reasons": [],
+      "manual_reference": [
+        15
+      ],
+      "metadata_confidence": "high",
+      "name_pattern_evidence": "bounded_tag_and_manual_description_pattern",
+      "observed_value_domain": "continuous",
+      "official_graph_references": [],
+      "physical_quantity_or_device": "process sensor",
+      "process_id": "P3",
+      "raw_values_included": false,
+      "review_status": "reviewed",
+      "schema_version": "1.0.0",
+      "semantic_role": "process_sensor",
+      "source_eligibility": false,
+      "subsystem_or_stage": "Water Treatment",
+      "target_eligibility": true,
+      "unit": "unverified",
+      "variable_name": "P3_PIT01"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

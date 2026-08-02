@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "544ff2f3f06e3cfc0b683509ee0ef7aa85fd1f858d62206c9ea93ee9873d403c",
+  "artifact_type": "hai_process_selection_result_v1",
+  "attack_information_used": false,
+  "excluded_process_id": null,
+  "official_graph_used_for_scoring": false,
+  "p1_feasibility_report_hash": "58a9c3380733aca6e0bfc398c696d27254a981702319bd5967c0599f2328ce54",
+  "p3_feasibility_report_hash": "c53addfa933505b266476ed594f81306275a988cdbb264141aec13cccaaaa507",
+  "pareto_comparison": {
+    "metrics": {},
+    "weighted_score_used": false
+  },
+  "schema_version": "1.0.0",
+  "selected_process_id": null,
+  "selection_policy_hash": "ae0dc190ceca040bd24d0a3f3cba1c3ec311eeddab4fc37e31f22644806c1cb4",
+  "selection_policy_id": "TASK039B-PARETO-V1",
+  "selection_reason": "neither_process_passed_minimum_gate",
+  "selection_status": "blocked_no_feasible_delayed_response_process"
+}

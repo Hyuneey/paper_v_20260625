@@ -39,9 +39,11 @@ No process was selected and no scientific split was created.
 
 ## TASK-039B
 
-Active task: P1/P3 normal-only feasibility and exactly one process freeze.
-Implementation and synthetic gates precede any normal-value access. A blocked
-minimum gate or nondominated Pareto result is an accepted scientific outcome.
+Completed with `blocked_no_feasible_delayed_response_process`. Both P1 and P3
+had zero eligible reviewed, nonconstant binary/discrete source variables. No
+process was frozen, and TASK-039C is not authorized. A new explicit decision
+must address process scope or source semantics without changing the observed
+TASK-039B result or post hoc lowering its gates.
 
 ## TASK-039C Onward
 
