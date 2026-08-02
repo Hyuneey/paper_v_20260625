@@ -38,6 +38,7 @@ from paperworks.data.hai_provenance_v1 import (  # noqa: E402
     git_blob_text,
     inventory_graph_file,
     inventory_pdf_reference,
+    readme_supports_normal_train_status,
     run_git,
     streaming_sha256,
     validate_lfs_materialization,
@@ -97,14 +98,6 @@ def _readme_warning_codes(readme: str) -> tuple[str, ...]:
 
 def _normalize_git_remote(value: str) -> str:
     return value[:-4] if value.endswith(".git") else value
-
-
-def _readme_supports_normal_train_status(readme: str) -> bool:
-    lower = " ".join(readme.lower().split())
-    return bool(
-        re.search(r"(?:train|training).{0,180}normal", lower)
-        or re.search(r"normal.{0,180}(?:train|training)", lower)
-    )
 
 
 def _repository_snapshot(
@@ -361,7 +354,7 @@ def run_audit(args: argparse.Namespace) -> int:
                 expected_point_count=int(config["expected_primary_point_count"]),
                 canonical_header=canonical_header,
                 official_train_normal_description_verified=(
-                    not is_test and _readme_supports_normal_train_status(readme)
+                    not is_test and readme_supports_normal_train_status(readme)
                 ),
                 test_file_structural_only=is_test,
             )

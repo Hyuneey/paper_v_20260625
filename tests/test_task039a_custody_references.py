@@ -13,6 +13,7 @@ from paperworks.data.hai_provenance_v1 import (
     audit_label_custody_pair,
     build_sanitized_acquisition_failure_report,
     inventory_graph_file,
+    readme_supports_normal_train_status,
     run_git,
 )
 
@@ -78,8 +79,10 @@ class Task039ACustodyReferenceTests(unittest.TestCase):
             "2026-01-01 00:00:04,0\n"
         )
         summary_text = (
-            "2026-01-01 00:00:01 synthetic private event\n"
-            "2026-01-01 00:00:03 synthetic private event\n"
+            "coverage begins 2026-01-01 00:00:00\n"
+            "2026-01-01 00:00:01 to 2026-01-01 00:00:01 synthetic event\n"
+            "2026-01-01 00:00:03 to 2026-01-01 00:00:03 synthetic event\n"
+            "coverage ends 2026-01-01 00:00:04\n"
         )
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -108,6 +111,57 @@ class Task039ACustodyReferenceTests(unittest.TestCase):
         self.assertNotIn("summary_records", public)
         self.assertIn("label_events", private_document)
         assert_public_artifact_has_no_sensitive_content(public)
+
+    def test_minute_precision_label_timestamps_align_to_second_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            test = root / "test.csv"
+            label = root / "label.csv"
+            summary = root / "summary.txt"
+            test.write_text(
+                "timestamp,P1_SYN\n"
+                "2026-01-01 00:00:00,0\n"
+                "2026-01-01 00:00:01,1\n"
+                "2026-01-01 00:00:02,0\n",
+                encoding="utf-8",
+            )
+            label.write_text(
+                "timestamp,label\n"
+                "2026-01-01 00:00,0\n"
+                "2026-01-01 00:00,1\n"
+                "2026-01-01 00:00,0\n",
+                encoding="utf-8",
+            )
+            summary.write_text(
+                "2026-01-01 00:00 to 2026-01-01 00:00 synthetic event\n",
+                encoding="utf-8",
+            )
+            record = audit_label_custody_pair(
+                test_path=test,
+                test_relative_path="hai-23.05/hai-test2.csv",
+                label_path=label,
+                label_relative_path="hai-23.05/label-test2.csv",
+                summary_path=summary,
+                summary_relative_path="hai-23.05/summary_label2.txt",
+                expected_event_count=1,
+                private_output_path=root / "private.json",
+            )
+        self.assertEqual(record.timestamp_alignment_status, "aligned")
+        self.assertEqual(record.custody_status, "verified")
+
+    def test_readme_normal_status_requires_table_and_all_train_files(self) -> None:
+        complete = "Normal Dataset " + " ".join(
+            f"hai-train{number}" for number in range(1, 5)
+        )
+        self.assertTrue(readme_supports_normal_train_status(complete))
+        self.assertFalse(
+            readme_supports_normal_train_status("Normal Dataset hai-train1")
+        )
+        self.assertFalse(
+            readme_supports_normal_train_status(
+                " ".join(f"hai-train{number}" for number in range(1, 5))
+            )
+        )
 
     def test_invalid_label_domain_and_alignment_fail_custody(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

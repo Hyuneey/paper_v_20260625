@@ -828,6 +828,39 @@ def _parse_timestamp(value: str) -> datetime:
     raise HAIProvenanceError("timestamp value does not match an approved format")
 
 
+def _timestamp_precision(value: str) -> str:
+    normalized = value.strip()
+    if re.search(
+        r"\d{1,2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?$",
+        normalized,
+    ):
+        return "second"
+    if re.search(r"\d{1,2}:\d{2}(?:Z|[+-]\d{2}:?\d{2})?$", normalized):
+        return "minute"
+    raise HAIProvenanceError("timestamp precision must be minute or second")
+
+
+def _timestamps_align_at_label_precision(test_value: str, label_value: str) -> bool:
+    test_timestamp = _parse_timestamp(test_value)
+    label_timestamp = _parse_timestamp(label_value)
+    precision = _timestamp_precision(label_value)
+    if precision == "second":
+        return test_timestamp == label_timestamp
+    return test_timestamp.replace(second=0, microsecond=0) == label_timestamp.replace(
+        second=0, microsecond=0
+    )
+
+
+def readme_supports_normal_train_status(readme: str) -> bool:
+    """Return whether the official README binds all HAI 23.05 train files to normal data."""
+
+    lower = " ".join(readme.lower().split())
+    expected_train_files = tuple(f"hai-train{number}" for number in range(1, 5))
+    return "normal dataset" in lower and all(
+        file_name in lower for file_name in expected_train_files
+    )
+
+
 def _discover_timestamp_index(header: Sequence[str]) -> int:
     normalized = [item.strip().lower() for item in header]
     matches = [index for index, item in enumerate(normalized) if item in _TIMESTAMP_NAMES]
@@ -1009,13 +1042,13 @@ def _summary_event_records(text: str) -> tuple[str, ...]:
 
     records: list[str] = []
     timestamp_pattern = re.compile(
-        r"\d{4}[-/]\d{1,2}[-/]\d{1,2}[^\n]*\d{1,2}:\d{2}:\d{2}"
+        r"\d{4}[-/]\d{1,2}[-/]\d{1,2}[ T]\d{1,2}:\d{2}(?::\d{2})?"
     )
     for raw_line in text.splitlines():
         line = raw_line.strip()
         if not line or line.startswith(("#", "-", "=")):
             continue
-        if timestamp_pattern.search(line):
+        if len(timestamp_pattern.findall(line)) >= 2:
             records.append(line)
     return tuple(records)
 
@@ -1069,9 +1102,14 @@ def audit_label_custody_pair(
             if len(test_row) != len(test_header) or len(label_row) != len(label_header):
                 aligned = False
                 continue
-            test_timestamp = test_row[test_timestamp_index]
             label_timestamp = label_row[label_timestamp_index]
-            if test_timestamp != label_timestamp:
+            try:
+                timestamps_align = _timestamps_align_at_label_precision(
+                    test_row[test_timestamp_index], label_timestamp
+                )
+            except HAIProvenanceError:
+                timestamps_align = False
+            if not timestamps_align:
                 aligned = False
             try:
                 positive = _label_is_positive(label_row[label_index])
