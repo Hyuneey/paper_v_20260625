@@ -127,9 +127,9 @@ class Task039ACustodyReferenceTests(unittest.TestCase):
             )
             label.write_text(
                 "timestamp,label\n"
-                "2026-01-01 00:00,0\n"
-                "2026-01-01 00:00,1\n"
-                "2026-01-01 00:00,0\n",
+                "2026-01-01 0:00,0\n"
+                "2026-01-01 0:00,1\n"
+                "2026-01-01 0:00,0\n",
                 encoding="utf-8",
             )
             summary.write_text(

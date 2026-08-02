@@ -816,8 +816,10 @@ def _parse_timestamp(value: str) -> datetime:
         except ValueError:
             continue
     for fmt in (
+        "%Y-%m-%d %H:%M",
         "%Y-%m-%d %H:%M:%S",
         "%Y-%m-%d %H:%M:%S.%f",
+        "%Y/%m/%d %H:%M",
         "%Y/%m/%d %H:%M:%S",
         "%Y/%m/%d %H:%M:%S.%f",
     ):
