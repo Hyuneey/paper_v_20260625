@@ -36,6 +36,7 @@ class Task039BIOAndSchemaTests(unittest.TestCase):
         self.assertEqual(entries["P1_FT01"].page_references, (1,))
         self.assertEqual(entries["P3_MISSING"].page_references, ())
         self.assertLessEqual(len(entries["P1_FT01"].description), 320)
+        self.assertNotIn("unrelated", entries["P1_FT01"].description)
 
     def test_all_task039b_schemas_registered_and_closed(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)

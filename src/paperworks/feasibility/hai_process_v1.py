@@ -938,8 +938,6 @@ def infer_semantic_role(
         r"(?:FCV|LCV|PCV|PP|PUMP|MV)\d*[A-Z]*(?:R|Z)$", tag
     ):
         return SemanticRoleV2.ACTUATOR_FEEDBACK, "actuator feedback", "state"
-    if re.search(r"\b(valve|pump|motor|heater|switch|solenoid|actuator)\b", text):
-        return SemanticRoleV2.ACTUATOR_STATE, "actuator state", "state"
     sensor_patterns = (
         r"\b(sensor|transmitter|measurement|measured)\b",
         r"\b(flow|level|pressure|temperature|conductivity|ph|turbidity|volume)\b",
@@ -947,6 +945,8 @@ def infer_semantic_role(
     )
     if any(re.search(pattern, text) for pattern in sensor_patterns):
         return SemanticRoleV2.PROCESS_SENSOR, "process sensor", "unverified"
+    if re.search(r"\b(valve|pump|motor|heater|switch|solenoid|actuator)\b", text):
+        return SemanticRoleV2.ACTUATOR_STATE, "actuator state", "state"
     if re.search(r"\b(calculated|derived|internal|diagnostic)\b", text):
         return SemanticRoleV2.DERIVED_OR_INTERNAL, "derived or internal", "unverified"
     return SemanticRoleV2.UNKNOWN, "unknown", "unverified"

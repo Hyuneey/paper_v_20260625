@@ -30,6 +30,12 @@ class Task039BContractTests(unittest.TestCase):
         self.assertEqual(classify_observed_domain([0.1, 0.2, 0.3])[0], ObservedDomainV1.CONTINUOUS)
         self.assertEqual(infer_semantic_role("P1_X01", "unresolved")[0], SemanticRoleV2.UNKNOWN)
 
+    def test_sensor_quantity_precedes_incidental_device_word(self) -> None:
+        role, _, _ = infer_semantic_role(
+            "P1_PIT01", "Measured discharge pressure of the heating water pump"
+        )
+        self.assertEqual(role, SemanticRoleV2.PROCESS_SENSOR)
+
     def test_robust_noise_scale_is_within_file_only(self) -> None:
         observed = robust_noise_scale(([0.0, 1.0, 2.0], [1000.0, 1001.0, 1002.0]))
         self.assertEqual(observed, 1e-12)

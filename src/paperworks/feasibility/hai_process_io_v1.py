@@ -222,12 +222,9 @@ def extract_manual_variable_entries(
         pattern = re.compile(rf"(?<![A-Za-z0-9_]){re.escape(variable)}(?![A-Za-z0-9_])")
         for page_number, text in enumerate(page_texts, start=1):
             lines = [" ".join(line.split()) for line in text.splitlines()]
-            for index, line in enumerate(lines):
+            for line in lines:
                 if pattern.search(line):
-                    context = " ".join(
-                        item for item in lines[max(0, index - 1) : index + 2] if item
-                    )
-                    hits.append((page_number, context[:480]))
+                    hits.append((page_number, line[:480]))
         pages = tuple(sorted({page for page, _ in hits}))
         contexts = tuple(dict.fromkeys(context for _, context in hits if context))
         description = contexts[0][:320] if contexts else ""
