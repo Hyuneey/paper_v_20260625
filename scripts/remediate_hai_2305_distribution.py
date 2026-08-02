@@ -429,7 +429,14 @@ def command_materialize_lfs(args: argparse.Namespace) -> int:
         _run_git(official_root, "lfs", "checkout", "--", record.relative_path)
     if _run_git(official_root, "status", "--porcelain") != "":
         raise HAIDistributionError("materialized official checkout is not Git-clean")
-    _run_git(official_root, "lfs", "fsck")
+    _run_git(
+        official_root,
+        "-c",
+        "lfs.fetchexclude=*,!hai-23.05/**",
+        "lfs",
+        "fsck",
+        "--objects",
+    )
     return 0
 
 

@@ -322,6 +322,16 @@ class Task039ARConfigTests(unittest.TestCase):
             "hai_distribution_byte_equivalence_result", registry.artifact_types
         )
 
+    def test_lfs_fsck_is_scoped_to_approved_hai_directory(self) -> None:
+        for relative in (
+            "scripts/remediate_hai_2305_distribution.py",
+            "scripts/audit_hai_2305.py",
+        ):
+            source = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertIn("lfs.fetchexclude=*,!", source)
+            self.assertIn('"fsck"', source)
+            self.assertIn('"--objects"', source)
+
 
 if __name__ == "__main__":
     unittest.main()

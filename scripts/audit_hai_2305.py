@@ -120,7 +120,14 @@ def _repository_snapshot(
     git_fsck = _git_check(official_root, "fsck", "--full")
     lfs_version = _run(["git", "lfs", "version"], cwd=official_root)
     lfs_available = lfs_version.returncode == 0
-    lfs_fsck = lfs_available and _git_check(official_root, "lfs", "fsck")
+    lfs_fsck = lfs_available and _git_check(
+        official_root,
+        "-c",
+        f"lfs.fetchexclude=*,!{config['dataset_directory']}/**",
+        "lfs",
+        "fsck",
+        "--objects",
+    )
     if not _git_check(official_root, "cat-file", "-e", f"{introduction_commit}^{{commit}}"):
         raise HAIProvenanceError("HAI 23.05 introduction commit is unavailable")
     readme_blob = git_blob_sha(official_root, snapshot_commit, "README.md")
