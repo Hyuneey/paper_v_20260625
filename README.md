@@ -44,6 +44,12 @@ TASK-039B is next. TASK-039A does not establish P1/P3 feasibility, select a
 primary process, approve a production GDN backend, construct a rule, validate a
 detector, or produce a proposed-method result.
 
+TASK-039B implementation freezes a normal-only comparison: train1/train2 are
+candidate-fit periods, train3 is relation confirmation, and train4 remains an
+unread normal guard. Process selection is minimum-gate then unweighted Pareto;
+no attack information, detector result, or official-graph advantage may enter
+the decision.
+
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:
 

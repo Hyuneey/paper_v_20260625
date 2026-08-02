@@ -57,6 +57,13 @@ verified. Process feasibility is not evaluated, no primary process is
 selected, and the production graph-ranking backend remains open. TASK-039B is
 the next authorized planning target.
 
+TASK-039B may read only the four verified normal training files. Train1 and
+train2 are candidate-fit periods, train3 is normal relation confirmation, and
+train4 is an unread normal guard except for hash/header/row-count checks.
+P1/P3 selection must use the frozen minimum gate and unweighted Pareto policy;
+test, label, summary-label, custody, attack, detector, and official-graph
+scoring evidence are prohibited.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

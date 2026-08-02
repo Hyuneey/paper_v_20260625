@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039b_data_access_audit_v1_schema.json",
+  "title": "TASK-039B Data Access Audit V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "entries", "prohibited_data_access_count", "normal_guard_feature_values_accessed", "test_file_accessed", "label_file_accessed", "summary_file_accessed", "private_custody_accessed", "allowed_process_scopes", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039b_data_access_audit_v1"},
+    "entries": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["relative_path", "purpose", "feature_values_accessed", "process_scope"], "properties": {"relative_path": {"type": "string", "pattern": "^hai-23\\.05/hai-train[1-4]\\.csv$"}, "purpose": {"type": "string"}, "feature_values_accessed": {"type": "boolean"}, "process_scope": {"type": "array", "items": {"enum": ["P1", "P3"]}, "uniqueItems": true}}}},
+    "prohibited_data_access_count": {"const": 0},
+    "normal_guard_feature_values_accessed": {"const": false},
+    "test_file_accessed": {"const": false},
+    "label_file_accessed": {"const": false},
+    "summary_file_accessed": {"const": false},
+    "private_custody_accessed": {"const": false},
+    "allowed_process_scopes": {"const": ["P1", "P3"]},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "artifact_type": "task039b_hai_p1_p3_feasibility_config",
+  "schema_version": "1.0.0",
+  "source_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "source_provenance_report_hash": "f1d16091935a264b4e81ed73a2f984b49360e3ff86d404ba3029de539c20c4ef",
+  "source_distribution_equivalence_hash": "7917f8736c119e774a945096f41f8abc18bce30267dd9e754c5a20157a5bf7a8",
+  "processes": {
+    "P1": "Boiler",
+    "P3": "Water Treatment"
+  },
+  "process_prefix_policy": "exact_prefix_only_exclude_P2_P4_and_P4_HIL",
+  "normal_file_roles": {
+    "normal_candidate_fit": [
+      "hai-23.05/hai-train1.csv",
+      "hai-23.05/hai-train2.csv"
+    ],
+    "normal_relation_calibration": [
+      "hai-23.05/hai-train3.csv"
+    ],
+    "normal_guard": [
+      "hai-23.05/hai-train4.csv"
+    ]
+  },
+  "screening": {
+    "relation_family": "transition_to_delayed_continuous_response",
+    "horizons_seconds": [1, 5, 10, 30, 60],
+    "screening_max_lag_seconds": 60,
+    "pre_trigger_context_seconds": 60,
+    "isolation_radius_seconds": 2,
+    "purge_gap_samples": 120,
+    "noise_scale": "max(1.4826_times_MAD_within_file_one_step_difference,numeric_epsilon)",
+    "numeric_epsilon": 1e-12,
+    "fit_min_total_isolated_triggers": 20,
+    "fit_min_isolated_triggers_per_file": 5,
+    "fit_min_directional_consistency": 0.70,
+    "fit_min_per_file_directional_consistency": 0.60,
+    "fit_min_robust_effect_ratio": 2.0,
+    "calibration_min_isolated_triggers": 5,
+    "calibration_min_directional_consistency": 0.60,
+    "calibration_min_robust_effect_ratio": 1.0,
+    "canonical_rule_v1_direction": "increase_only"
+  },
+  "minimum_process_gate": {
+    "eligible_source_variables": 2,
+    "eligible_continuous_targets": 3,
+    "canonical_increase_ready_pairs": 3,
+    "distinct_confirmed_sources": 2,
+    "distinct_confirmed_targets": 2,
+    "fit_to_calibration_transfer_rate": 0.50,
+    "normal_guard_values_accessed": false,
+    "prohibited_data_access_count": 0
+  },
+  "selection_policy": {
+    "policy_id": "TASK039B-PARETO-V1",
+    "weighted_score": false,
+    "eligibility_first": true,
+    "dominance_requires_no_worse_all": true,
+    "dominance_requires_strictly_better_metric_count": 2,
+    "process_id_tie_breaker": false,
+    "official_graph_used_for_scoring": false
+  },
+  "normal_guard_policy": {
+    "hash_header_row_count_allowed": true,
+    "feature_value_access": false,
+    "selection_use": false
+  },
+  "public_private_policy": {
+    "public_pair_identity": false,
+    "public_raw_values": false,
+    "public_transition_timestamps": false,
+    "public_absolute_paths": false,
+    "private_screening_ledger_outside_repository": true
+  },
+  "authorized_inputs": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv",
+    "hai-23.05/hai-train3.csv",
+    "hai-23.05/hai-train4.csv"
+  ],
+  "prohibited_path_tokens": [
+    "hai-test",
+    "label-test",
+    "summary_label",
+    "private",
+    "custody",
+    "attack"
+  ],
+  "config_hash": "673b277659b34f083e29355db5cefc846cb8a2eea43b69509223449d46a24bb5"
+}

@@ -82,6 +82,10 @@ Using authorized normal data only, type control and sensor variables, audit
 P1/P3 support, test delayed-response feasibility, and freeze exactly one
 process plus canonical and optional GDN views.
 
+Status: implementation and synthetic protocol in progress. Real execution is
+permitted only from the clean implementation commit. Train4 remains an unread
+normal guard, and the official graph is non-scoring.
+
 ## TASK-039C Onward
 
 1. TASK-039C: candidate-universe and graph evidence construction.

@@ -39,7 +39,9 @@ No process was selected and no scientific split was created.
 
 ## TASK-039B
 
-Next task: P1/P3 normal-only feasibility and exactly one process freeze.
+Active task: P1/P3 normal-only feasibility and exactly one process freeze.
+Implementation and synthetic gates precede any normal-value access. A blocked
+minimum gate or nondominated Pareto result is an accepted scientific outcome.
 
 ## TASK-039C Onward
 

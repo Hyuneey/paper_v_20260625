@@ -1905,3 +1905,20 @@
 - TASK-039AR passed exact byte equivalence for all ten approved files. The
   resumed TASK-039A audit also passed; TASK-039B may now plan the authorized
   normal-only feasibility audit without reusing test or label content.
+
+### DEC-095: HAI P1/P3 normal-only feasibility and process selection
+
+- Status: resolved_protocol_pending_execution
+- Owner: researcher
+- Candidate fit uses train1/train2, relation confirmation uses train3, and
+  train4 is an unread normal guard whose hash/header/range only may be checked.
+- Metadata follows manual, official-graph, reviewed-name, then normal-domain
+  evidence priority. Domain behavior cannot invent physical semantics.
+- Screening uses fixed 1/5/10/30/60-second horizons, isolated transitions,
+  frozen support/consistency/effect gates, and an increase-only Rule v1 claim
+  boundary.
+- Process choice uses eligibility then unweighted Pareto dominance. The
+  official graph, process ID, attack information, and downstream performance
+  cannot score or break a tie.
+- The production graph ranker remains unresolved and no GDN training is
+  authorized.

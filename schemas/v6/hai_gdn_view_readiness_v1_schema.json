@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_gdn_view_readiness_v1_schema.json",
+  "title": "HAI GDN View Readiness V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "selected_process_id", "production_backend", "downsampling", "model_training", "candidate_mask", "authoritative_gdn_view_created", "claim_boundary", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_gdn_view_readiness_v1"},
+    "selected_process_id": {"enum": ["P1", "P3"]},
+    "production_backend": {"const": "unresolved"},
+    "downsampling": {"const": "not_approved"},
+    "model_training": {"const": "not_authorized"},
+    "candidate_mask": {"const": "required_in_future"},
+    "authoritative_gdn_view_created": {"const": false},
+    "claim_boundary": {"const": "readiness_plan_only_not_model_evidence"},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_variable_metadata_v2_schema.json",
+  "title": "HAI Variable Metadata V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "variable_name", "process_id", "subsystem_or_stage", "semantic_role", "observed_value_domain", "physical_quantity_or_device", "unit", "description_summary", "manual_reference", "official_graph_references", "name_pattern_evidence", "data_domain_evidence", "metadata_confidence", "review_status", "source_eligibility", "target_eligibility", "exclusion_reasons", "evidence_record_refs", "raw_values_included", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_variable_metadata_v2"},
+    "variable_name": {"type": "string", "pattern": "^P[13]_"},
+    "process_id": {"enum": ["P1", "P3"]},
+    "subsystem_or_stage": {"type": "string", "minLength": 1},
+    "semantic_role": {"enum": ["control_command", "actuator_state", "actuator_feedback", "setpoint", "process_sensor", "status_or_alarm", "derived_or_internal", "unknown"]},
+    "observed_value_domain": {"enum": ["binary", "discrete", "continuous", "constant", "unknown"]},
+    "physical_quantity_or_device": {"type": "string", "minLength": 1},
+    "unit": {"type": "string"},
+    "description_summary": {"type": "string", "maxLength": 320},
+    "manual_reference": {"type": "array", "items": {"type": "integer", "minimum": 1}, "uniqueItems": true},
+    "official_graph_references": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "name_pattern_evidence": {"type": "string"},
+    "data_domain_evidence": {"type": "string"},
+    "metadata_confidence": {"enum": ["high", "medium", "insufficient"]},
+    "review_status": {"enum": ["reviewed", "unresolved"]},
+    "source_eligibility": {"type": "boolean"},
+    "target_eligibility": {"type": "boolean"},
+    "exclusion_reasons": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "evidence_record_refs": {"type": "array", "items": {"$ref": "#/$defs/hash"}, "uniqueItems": true},
+    "raw_values_included": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

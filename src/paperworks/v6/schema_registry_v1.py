@@ -60,6 +60,30 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "hai_provenance_audit_result": (
         "schemas/v6/hai_provenance_audit_result_v1_schema.json"
     ),
+    "hai_variable_metadata_v2": (
+        "schemas/v6/hai_variable_metadata_v2_schema.json"
+    ),
+    "hai_variable_domain_diagnostic_v1": (
+        "schemas/v6/hai_variable_domain_diagnostic_v1_schema.json"
+    ),
+    "hai_delayed_response_screening_v1": (
+        "schemas/v6/hai_delayed_response_screening_v1_schema.json"
+    ),
+    "hai_process_feasibility_v1": (
+        "schemas/v6/hai_process_feasibility_v1_schema.json"
+    ),
+    "hai_process_selection_result_v1": (
+        "schemas/v6/hai_process_selection_result_v1_schema.json"
+    ),
+    "hai_process_freeze_v1": (
+        "schemas/v6/hai_process_freeze_v1_schema.json"
+    ),
+    "hai_gdn_view_readiness_v1": (
+        "schemas/v6/hai_gdn_view_readiness_v1_schema.json"
+    ),
+    "task039b_data_access_audit_v1": (
+        "schemas/v6/task039b_data_access_audit_v1_schema.json"
+    ),
     "hai_reference_inventory": (
         "schemas/v6/hai_reference_inventory_v1_schema.json"
     ),

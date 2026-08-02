@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_variable_domain_diagnostic_v1_schema.json",
+  "title": "HAI Variable Domain Diagnostic V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "variable_name", "process_id", "total_value_count", "finite_value_count", "missing_value_count", "nonfinite_value_count", "distinct_value_count", "distinct_count_capped", "integer_like_ratio", "observed_domain", "transition_count_by_file", "nonconstant_by_file", "one_step_robust_variation_scale", "value_domain_values_included", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_variable_domain_diagnostic_v1"},
+    "variable_name": {"type": "string", "pattern": "^P[13]_"},
+    "process_id": {"enum": ["P1", "P3"]},
+    "total_value_count": {"type": "integer", "minimum": 0},
+    "finite_value_count": {"type": "integer", "minimum": 0},
+    "missing_value_count": {"type": "integer", "minimum": 0},
+    "nonfinite_value_count": {"type": "integer", "minimum": 0},
+    "distinct_value_count": {"type": "integer", "minimum": 0},
+    "distinct_count_capped": {"type": "boolean"},
+    "integer_like_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "observed_domain": {"enum": ["binary", "discrete", "continuous", "constant", "unknown"]},
+    "transition_count_by_file": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["relative_path", "count"], "properties": {"relative_path": {"type": "string"}, "count": {"type": "integer", "minimum": 0}}}},
+    "nonconstant_by_file": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["relative_path", "nonconstant"], "properties": {"relative_path": {"type": "string"}, "nonconstant": {"type": "boolean"}}}},
+    "one_step_robust_variation_scale": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "value_domain_values_included": {"const": false},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

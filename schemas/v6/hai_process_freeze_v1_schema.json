@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_process_freeze_v1_schema.json",
+  "title": "HAI Process Freeze V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "dataset_manifest_id", "selected_process_id", "selected_process_name", "excluded_process_id", "selection_policy_id", "selection_policy_hash", "selected_process_feasibility_report_hash", "excluded_process_feasibility_report_hash", "metadata_registry_hash", "private_screening_ledger_hash", "normal_candidate_fit_split_id", "normal_relation_calibration_split_id", "normal_guard_split_id", "canonical_rule_view_id", "candidate_learning_view_id", "gdn_view_status", "selection_status", "claim_boundary", "creation_metadata", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_process_freeze_v1"},
+    "dataset_manifest_id": {"$ref": "#/$defs/hash"},
+    "selected_process_id": {"enum": ["P1", "P3"]},
+    "selected_process_name": {"enum": ["Boiler", "Water Treatment"]},
+    "excluded_process_id": {"enum": ["P1", "P3"]},
+    "selection_policy_id": {"type": "string"},
+    "selection_policy_hash": {"$ref": "#/$defs/hash"},
+    "selected_process_feasibility_report_hash": {"$ref": "#/$defs/hash"},
+    "excluded_process_feasibility_report_hash": {"$ref": "#/$defs/hash"},
+    "metadata_registry_hash": {"$ref": "#/$defs/hash"},
+    "private_screening_ledger_hash": {"$ref": "#/$defs/hash"},
+    "normal_candidate_fit_split_id": {"$ref": "#/$defs/hash"},
+    "normal_relation_calibration_split_id": {"$ref": "#/$defs/hash"},
+    "normal_guard_split_id": {"$ref": "#/$defs/hash"},
+    "canonical_rule_view_id": {"$ref": "#/$defs/hash"},
+    "candidate_learning_view_id": {"$ref": "#/$defs/hash"},
+    "gdn_view_status": {"const": "pending_production_backend"},
+    "selection_status": {"const": "passed_hai_2305_single_process_freeze"},
+    "claim_boundary": {"const": "single_process_feasibility_freeze_not_performance_evidence"},
+    "creation_metadata": {"type": "object"},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

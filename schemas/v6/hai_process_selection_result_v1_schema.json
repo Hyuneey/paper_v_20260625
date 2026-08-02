@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_process_selection_result_v1_schema.json",
+  "title": "HAI Process Selection Result V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "selection_status", "selected_process_id", "excluded_process_id", "selection_policy_id", "selection_policy_hash", "p1_feasibility_report_hash", "p3_feasibility_report_hash", "selection_reason", "pareto_comparison", "official_graph_used_for_scoring", "attack_information_used", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_process_selection_result_v1"},
+    "selection_status": {"enum": ["selected", "blocked_no_feasible_delayed_response_process", "blocked_process_selection_indeterminate"]},
+    "selected_process_id": {"type": ["string", "null"], "enum": ["P1", "P3", null]},
+    "excluded_process_id": {"type": ["string", "null"], "enum": ["P1", "P3", null]},
+    "selection_policy_id": {"type": "string", "minLength": 1},
+    "selection_policy_hash": {"$ref": "#/$defs/hash"},
+    "p1_feasibility_report_hash": {"$ref": "#/$defs/hash"},
+    "p3_feasibility_report_hash": {"$ref": "#/$defs/hash"},
+    "selection_reason": {"type": "string", "minLength": 1},
+    "pareto_comparison": {"type": "object"},
+    "official_graph_used_for_scoring": {"const": false},
+    "attack_information_used": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}
