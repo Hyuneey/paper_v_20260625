@@ -43,6 +43,12 @@ TASK-039A now has a frozen, synthetic-tested provenance-audit implementation.
 Its real official-source execution and sanitized result remain commit-separated;
 no HAI raw file or label detail is stored in this repository.
 
+TASK-039AR is the bounded remediation for the official repository's exhausted
+Git-LFS delivery budget. It retains the pinned Git/LFS identity and allows only
+ten selectively downloaded, byte-equivalent payloads from the official
+`icsdataset` Kaggle distribution. This does not establish HAI readiness until
+the resumed TASK-039A audit also passes.
+
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:
 

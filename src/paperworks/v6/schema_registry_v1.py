@@ -45,11 +45,17 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "hai_csv_structure_audit": (
         "schemas/v6/hai_csv_structure_audit_v1_schema.json"
     ),
+    "hai_distribution_byte_equivalence_result": (
+        "schemas/v6/hai_distribution_byte_equivalence_v1_schema.json"
+    ),
     "hai_label_custody_public": (
         "schemas/v6/hai_label_custody_public_v1_schema.json"
     ),
     "hai_lfs_pointer_record": (
         "schemas/v6/hai_lfs_pointer_record_v1_schema.json"
+    ),
+    "hai_official_distribution_metadata": (
+        "schemas/v6/hai_official_distribution_metadata_v1_schema.json"
     ),
     "hai_provenance_audit_result": (
         "schemas/v6/hai_provenance_audit_result_v1_schema.json"

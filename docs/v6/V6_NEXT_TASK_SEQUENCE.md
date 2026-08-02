@@ -34,6 +34,10 @@ Implementation, expected Git-LFS identity, schemas, and synthetic tests are
 frozen first. Real official-source execution and sanitized results use a
 separate commit.
 
+TASK-039AR is the active remediation for the official Git-LFS delivery block.
+TASK-039B remains blocked until TASK-039AR byte equivalence and the resumed
+TASK-039A provenance audit both pass.
+
 ## TASK-039B
 
 P1/P3 normal-only feasibility and exactly one process freeze.

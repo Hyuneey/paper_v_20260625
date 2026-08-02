@@ -1,0 +1,78 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/hai_distribution_byte_equivalence_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "all_files_byte_equivalent": {"type": "boolean"},
+    "artifact_hash": {"pattern": "^[a-f0-9]{64}$", "type": "string"},
+    "artifact_type": {"const": "hai_distribution_byte_equivalence_result"},
+    "complete_dataset_download_used": {"const": false},
+    "created_at": {"format": "date-time", "type": "string"},
+    "credentials_included": {"const": false},
+    "execution_code_commit": {"pattern": "^[a-f0-9]{40}$", "type": "string"},
+    "expected_file_count": {"const": 10},
+    "haiend_or_earlier_payload_downloaded": {"const": false},
+    "metadata_receipt_hash": {"pattern": "^[a-f0-9]{64}$", "type": "string"},
+    "records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "byte_equivalent": {"type": "boolean"},
+          "extracted_sha256": {"pattern": "^[a-f0-9]{64}$", "type": "string"},
+          "extracted_size_bytes": {"minimum": 0, "type": "integer"},
+          "kaggle_advertised_size_bytes": {"minimum": 0, "type": "integer"},
+          "official_lfs_oid_sha256": {"pattern": "^[a-f0-9]{64}$", "type": "string"},
+          "official_lfs_pointer_size_bytes": {"minimum": 0, "type": "integer"},
+          "relative_path": {"pattern": "^hai-23\\.05/", "type": "string"},
+          "task039a_expected_sha256": {"pattern": "^[a-f0-9]{64}$", "type": "string"},
+          "task039a_expected_size_bytes": {"minimum": 0, "type": "integer"}
+        },
+        "required": [
+          "relative_path",
+          "kaggle_advertised_size_bytes",
+          "official_lfs_oid_sha256",
+          "official_lfs_pointer_size_bytes",
+          "task039a_expected_sha256",
+          "task039a_expected_size_bytes",
+          "extracted_sha256",
+          "extracted_size_bytes",
+          "byte_equivalent"
+        ],
+        "type": "object"
+      },
+      "maxItems": 10,
+      "type": "array"
+    },
+    "schema_version": {"const": "1.0.0"},
+    "selectively_downloaded_file_count": {"maximum": 10, "minimum": 0, "type": "integer"},
+    "signed_urls_included": {"const": false},
+    "status": {
+      "enum": [
+        "passed_official_distribution_byte_equivalence",
+        "failed_official_distribution_byte_equivalence",
+        "blocked_selective_official_download_unavailable"
+      ]
+    },
+    "task_id": {"const": "TASK-039AR"}
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "metadata_receipt_hash",
+    "execution_code_commit",
+    "records",
+    "expected_file_count",
+    "selectively_downloaded_file_count",
+    "complete_dataset_download_used",
+    "haiend_or_earlier_payload_downloaded",
+    "credentials_included",
+    "signed_urls_included",
+    "all_files_byte_equivalent",
+    "created_at",
+    "artifact_hash"
+  ],
+  "title": "HAI Distribution Byte Equivalence Result V1",
+  "type": "object"
+}

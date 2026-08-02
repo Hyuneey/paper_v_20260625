@@ -44,6 +44,13 @@ artifact must remain outside this repository. Public provenance may contain
 aggregate structural metadata and custody hashes, never raw rows or attack
 details.
 
+TASK-039AR additionally authorizes the official Kaggle dataset
+`icsdataset/hai-security-dataset` as a selective payload route only. The
+pinned Git snapshot and Git-LFS pointers remain authoritative. Metadata must
+freeze before payload acquisition, every one of the ten approved files must be
+byte-equivalent, and whole-dataset, HAIEnd, and earlier-version downloads are
+prohibited.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

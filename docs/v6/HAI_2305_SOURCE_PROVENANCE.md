@@ -5,8 +5,11 @@ TASK-039A pins the official repository at
 GitHub remote and its Git-LFS endpoints. The checkout and raw files remain
 outside the paper repository.
 
-The implementation freeze is complete; the real source audit is pending
-Commit A. Passing results will replace this pending statement in Commit B.
+The implementation freeze is complete. The first real execution reached the
+pinned snapshot but was blocked by the official repository's LFS budget; that
+trace is preserved on `task-039a-blocked-lfs`.
 
-No moving ref, mirror, Kaggle copy, archive fallback, or HAIEnd file is an
-authorized source.
+TASK-039AR authorizes only `icsdataset/hai-security-dataset` as an official
+selective payload transport. The Kaggle bytes must exactly equal the frozen Git
+LFS OIDs and sizes before TASK-039A resumes. No moving ref, mirror, unrelated
+archive, whole multi-version download, or HAIEnd payload is authorized.

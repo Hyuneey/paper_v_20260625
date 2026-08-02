@@ -13,7 +13,9 @@ objects, then publish only structural provenance and a dataset-neutral
 - HAI/HAIEnd 23.05 introduction:
   `ebcd09bbb432a35be39dcfaf1d800083fd06777b`
 - LFS include: `hai-23.05/**`
-- HAIEnd and all alternate sources: excluded
+- Official byte-equivalent payload remediation: TASK-039AR may use only
+  `icsdataset/hai-security-dataset` with metadata-first, file-selective access.
+- HAIEnd and all other alternate sources: excluded
 
 ## Execution Separation
 

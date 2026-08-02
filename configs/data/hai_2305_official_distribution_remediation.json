@@ -1,0 +1,36 @@
+{
+  "allowed_download_hosts": [
+    "storage.googleapis.com",
+    "www.kaggle.com"
+  ],
+  "allowed_initial_hosts": [
+    "www.kaggle.com"
+  ],
+  "artifact_type": "task039ar_official_distribution_remediation_config",
+  "complete_dataset_download_prohibited": true,
+  "config_hash": "b568a7491f648e216011a6c293cbed644a535ad4c3e3e4cad2c1b834b6a7a958",
+  "dataset_version_identifier": 10,
+  "excluded_payload_prefixes": [
+    "hai-20",
+    "hai-21",
+    "hai-22",
+    "haiend-"
+  ],
+  "file_inventory_endpoint": "https://www.kaggle.com/api/v1/datasets/list/{owner}/{slug}?datasetVersionNumber={version}&pageSize=1000",
+  "introduction_commit": "ebcd09bbb432a35be39dcfaf1d800083fd06777b",
+  "kaggle_api_version": "v1",
+  "kaggle_client_name": "paperworks_stdlib_urllib",
+  "kaggle_client_version": "1.0.0",
+  "kaggle_owner": "icsdataset",
+  "kaggle_slug": "hai-security-dataset",
+  "metadata_endpoint": "https://www.kaggle.com/api/v1/datasets/view/icsdataset/hai-security-dataset",
+  "metadata_must_freeze_before_payload": true,
+  "official_git_repository": "https://github.com/icsdataset/hai",
+  "official_git_snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "schema_version": "1.0.0",
+  "selective_download_endpoint_template": "https://www.kaggle.com/api/v1/datasets/download/{owner}/{slug}/{file_name}?datasetVersionNumber={version}",
+  "selective_file_download_required": true,
+  "task039a_config_hash": "7f36b4ab4055fc412cc86865021a83771117e31ee8734d69a3e9892761f4d34a",
+  "task039a_config_path": "configs/data/hai_2305_official_provenance.json",
+  "task_id": "TASK-039AR"
+}

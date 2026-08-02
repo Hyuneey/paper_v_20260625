@@ -18,6 +18,9 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
 from paperworks.data.contracts_v2 import CreationMetadataV2  # noqa: E402
+from paperworks.data.hai_distribution_v1 import (  # noqa: E402
+    HAIDistributionByteEquivalenceResultV1,
+)
 from paperworks.data.hai_provenance_v1 import (  # noqa: E402
     HAIGraphInventoryRecordV1,
     HAIProvenanceAuditResultV1,
@@ -262,6 +265,15 @@ def run_audit(args: argparse.Namespace) -> int:
     if args.public_output_root.resolve() != REPORT_ROOT.resolve():
         raise HAIProvenanceError("public output root must be docs/task_reports")
 
+    distribution = HAIDistributionByteEquivalenceResultV1.from_dict(
+        json.loads(args.distribution_equivalence_receipt.read_text(encoding="utf-8"))
+    )
+    if distribution.status != "passed_official_distribution_byte_equivalence":
+        raise HAIProvenanceError("TASK-039AR byte equivalence has not passed")
+    distribution_by_path = {
+        item.relative_path: item for item in distribution.records
+    }
+
     snapshot, readme, readme_sha256, citation_sha256 = _repository_snapshot(
         official_root, config
     )
@@ -293,18 +305,17 @@ def run_audit(args: argparse.Namespace) -> int:
     expected_paths = {str(item["relative_path"]) for item in expected_lfs}
     if tree_files != expected_paths:
         raise HAIProvenanceError("HAI 23.05 source file population differs from freeze")
+    lfs_listed_paths = set(
+        run_git(official_root, "lfs", "ls-files", "-n").splitlines()
+    )
+    if not expected_paths.issubset(lfs_listed_paths):
+        raise HAIProvenanceError("expected HAI files are absent from Git-LFS inventory")
     lfs_records = []
     for item in expected_lfs:
         relative = str(item["relative_path"])
         pointer_text = git_blob_text(
             official_root, str(config["snapshot_commit"]), relative
         )
-
-    lfs_listed_paths = set(
-        run_git(official_root, "lfs", "ls-files", "-n").splitlines()
-    )
-    if not expected_paths.issubset(lfs_listed_paths):
-        raise HAIProvenanceError("expected HAI files are absent from Git-LFS inventory")
         lfs_records.append(
             validate_lfs_materialization(
                 relative_path=relative,
@@ -314,6 +325,15 @@ def run_audit(args: argparse.Namespace) -> int:
                 expected_size_bytes=int(item["byte_size"]),
             )
         )
+    if set(distribution_by_path) != expected_paths or any(
+        not distribution_by_path[item.relative_path].byte_equivalent
+        or distribution_by_path[item.relative_path].extracted_sha256
+        != item.materialized_sha256
+        or distribution_by_path[item.relative_path].extracted_size_bytes
+        != item.materialized_size_bytes
+        for item in lfs_records
+    ):
+        raise HAIProvenanceError("TASK-039AR receipt does not bind materialized files")
 
     time_series_paths = (
         "hai-23.05/hai-train1.csv",
@@ -413,6 +433,8 @@ def run_audit(args: argparse.Namespace) -> int:
             snapshot.artifact_hash,
             manual.artifact_hash,
             reference_inventory["artifact_hash"],
+            distribution.artifact_hash,
+            distribution.metadata_receipt_hash,
         ),
         source_repository=str(config["official_repository"]),
         snapshot_commit=str(config["snapshot_commit"]),
@@ -453,6 +475,10 @@ def run_audit(args: argparse.Namespace) -> int:
         "expected_files_registered_in_git_lfs": expected_paths.issubset(lfs_listed_paths),
         "all_lfs_pointers_match": all(item.pointer_matches_expected for item in lfs_records),
         "all_lfs_files_materialized": all(item.materialized for item in lfs_records),
+        "official_distribution_byte_equivalence": (
+            distribution.status == "passed_official_distribution_byte_equivalence"
+            and distribution.all_files_byte_equivalent
+        ),
         "csv_schema_and_continuity_valid": csv_gate,
         "train_files_normal_only": all(
             item.normal_file_status == "normal_only_verified"
@@ -520,6 +546,9 @@ def run_audit(args: argparse.Namespace) -> int:
             "lfs_records": [item.to_dict() for item in lfs_records],
             "readme_content_sha256": readme_sha256,
             "citation_sha256": citation_sha256,
+            "payload_distribution_route": "official_kaggle_byte_equivalent",
+            "distribution_equivalence_receipt_hash": distribution.artifact_hash,
+            "distribution_metadata_receipt_hash": distribution.metadata_receipt_hash,
         },
     )
     _write_report(
@@ -663,6 +692,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--private-root")
     parser.add_argument("--public-output-root", type=Path, default=REPORT_ROOT)
     parser.add_argument("--config", type=Path, default=CONFIG_PATH)
+    parser.add_argument(
+        "--distribution-equivalence-receipt",
+        type=Path,
+        default=REPORT_ROOT / "TASK-039AR_BYTE_EQUIVALENCE_REPORT.json",
+    )
     parser.add_argument("--execution-code-commit", required=True)
     parser.add_argument(
         "--acquisition-failure-status",

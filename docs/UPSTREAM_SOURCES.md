@@ -499,8 +499,12 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
 - Expected README blob: `de19cf9f6466a049ece2c739a7216ddd6f044c32`
 - Expected technical-manual blob:
   `18cb88514176e1c641f584cf24ac8e9559432b38`
-- Acquisition: Git clone with LFS smudge disabled, detached checkout, and
-  restricted `git lfs pull --include="hai-23.05/**"`
+- Identity acquisition: Git clone with LFS smudge disabled and detached
+  checkout at the frozen snapshot.
+- Primary payload route: restricted `git lfs pull --include="hai-23.05/**"`.
+- Authorized remediation payload route: official Kaggle dataset
+  `icsdataset/hai-security-dataset`, exact version frozen before access, with
+  one-file-at-a-time download and byte equivalence to every pinned LFS object.
 - Redistribution: none; raw files remain local-only outside this repository
 
 These identifiers are the TASK-039A protocol freeze. Content integrity,

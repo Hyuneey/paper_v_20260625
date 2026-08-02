@@ -73,6 +73,12 @@ Status: implementation and protocol are being frozen before real source and
 Git-LFS execution. HAI readiness is not established until the real audit
 passes and its sanitized result is committed separately.
 
+TASK-039AR remediates the official Git-LFS budget block using only selective
+file delivery from the official `icsdataset` Kaggle distribution. It must
+freeze complete metadata first, prove all ten payloads byte-equivalent to the
+pinned Git-LFS objects, and then resume every TASK-039A structural and custody
+gate. TASK-039B remains blocked until both statuses pass.
+
 ## TASK-039B: P1/P3 Feasibility and Process Freeze
 
 Using authorized normal data only, type control and sensor variables, audit

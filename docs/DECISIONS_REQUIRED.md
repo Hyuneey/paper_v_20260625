@@ -1888,3 +1888,18 @@
   It cannot inform any scientific decision.
 - TASK-039A creates no split and selects no process. TASK-039B remains blocked
   until the real provenance audit passes.
+
+### DEC-094: Official HAI distribution byte-equivalence remediation
+
+- Status: resolved_protocol_TASK039AR_pending_execution
+- Owner: researcher
+- Identity authority remains `icsdataset/hai` at
+  `2a814cebc9a66b06c9e5cd545e2d72e65d383737` with the frozen Git-LFS OIDs and
+  sizes.
+- Payload delivery is limited to version-frozen, file-selective access from
+  `icsdataset/hai-security-dataset`; metadata must be committed first.
+- All ten files must match the Kaggle advertised size, Git-LFS pointer OID and
+  size, and TASK-039A expected hash and size. Whole-dataset, HAIEnd, earlier
+  HAI, mirror, and fallback acquisition are prohibited.
+- A TASK-039AR pass authorizes only resumption of TASK-039A provenance. It does
+  not authorize TASK-039B or scientific use until TASK-039A also passes.

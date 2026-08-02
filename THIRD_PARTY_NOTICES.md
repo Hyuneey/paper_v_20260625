@@ -5,6 +5,9 @@
 - Official source: https://github.com/icsdataset/hai
 - Pinned snapshot: `2a814cebc9a66b06c9e5cd545e2d72e65d383737`
 - Dataset directory: `hai-23.05`
+- Official remediation distribution: https://www.kaggle.com/datasets/icsdataset/hai-security-dataset
+- Kaggle use: metadata-first, selective payload transport only; Git-LFS byte
+  equivalence is mandatory
 - Expected terms source: README License section at the pinned snapshot
 - Expected statement: Creative Commons Attribution-ShareAlike 4.0
 - Storage: local-only outside this repository
