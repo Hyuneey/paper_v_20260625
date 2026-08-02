@@ -1859,8 +1859,9 @@
   separate receipts. Evidence and construction grant no authority.
 - `no_op` is non-deployable. P1C runtime authorization is synthetic-only and
   does not execute a rule.
-- P1A, P1B, P1C, P1D, and parent P1 are complete. TASK-039A is next; HAI
-  readiness and the production graph-ranking backend remain unresolved.
+- P1A, P1B, P1C, P1D, and parent P1 are complete. TASK-039A provenance is
+  verified; process feasibility and the production graph-ranking backend
+  remain unresolved. TASK-039B is next.
 
 ### DEC-092: GDN optional dependency and claim ceiling
 
@@ -1875,7 +1876,7 @@
 
 ### DEC-093: HAI 23.05 official provenance and label custody
 
-- Status: resolved_protocol_TASK039A_pending_execution
+- Status: resolved_passed_TASK039A
 - Owner: researcher
 - The only authorized source is `icsdataset/hai` at commit
   `2a814cebc9a66b06c9e5cd545e2d72e65d383737`; only `hai-23.05/**` may be
@@ -1886,12 +1887,12 @@
 - Test and label content may be inspected only for integrity, schema,
   continuity, alignment, binary-domain validity, and aggregate event counts.
   It cannot inform any scientific decision.
-- TASK-039A creates no split and selects no process. TASK-039B remains blocked
-  until the real provenance audit passes.
+- TASK-039A passed every frozen provenance, structural, custody, and public
+  boundary gate. It creates no split and selects no process. TASK-039B is next.
 
 ### DEC-094: Official HAI distribution byte-equivalence remediation
 
-- Status: resolved_protocol_TASK039AR_pending_execution
+- Status: resolved_passed_TASK039AR
 - Owner: researcher
 - Identity authority remains `icsdataset/hai` at
   `2a814cebc9a66b06c9e5cd545e2d72e65d383737` with the frozen Git-LFS OIDs and
@@ -1901,5 +1902,6 @@
 - All ten files must match the Kaggle advertised size, Git-LFS pointer OID and
   size, and TASK-039A expected hash and size. Whole-dataset, HAIEnd, earlier
   HAI, mirror, and fallback acquisition are prohibited.
-- A TASK-039AR pass authorizes only resumption of TASK-039A provenance. It does
-  not authorize TASK-039B or scientific use until TASK-039A also passes.
+- TASK-039AR passed exact byte equivalence for all ten approved files. The
+  resumed TASK-039A audit also passed; TASK-039B may now plan the authorized
+  normal-only feasibility audit without reusing test or label content.

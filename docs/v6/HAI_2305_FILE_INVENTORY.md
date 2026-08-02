@@ -1,9 +1,8 @@
 # HAI 23.05 File Inventory
 
-The exact expected inventory is frozen in
-`configs/data/hai_2305_official_provenance.json`: six time-series CSVs, two
-external label CSVs, and two attack-summary custody files. Git pointer OID,
-pointer size, materialized SHA-256, and materialized size must all agree.
-
-Real file counts and hashes are pending the clean Commit A execution. No raw
-file is stored in this repository.
+- `hai-23.05/hai-train1.csv`: 162418984 bytes, 280800 rows
+- `hai-23.05/hai-train2.csv`: 169121615 bytes, 291600 rows
+- `hai-23.05/hai-train3.csv`: 72774793 bytes, 126000 rows
+- `hai-23.05/hai-train4.csv`: 114494940 bytes, 198000 rows
+- `hai-23.05/hai-test1.csv`: 31255559 bytes, 54000 rows
+- `hai-23.05/hai-test2.csv`: 132946575 bytes, 230400 rows

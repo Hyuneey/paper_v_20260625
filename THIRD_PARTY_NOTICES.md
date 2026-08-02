@@ -13,8 +13,8 @@
 - Storage: local-only outside this repository
 - Code copied into this repository: none
 
-The exact terms, citation, and source-file integrity remain subject to the
-TASK-039A real audit. Raw files and label details are not redistributed.
+TASK-039A verified the pinned terms reference, citation reference, and source
+file integrity. Raw files and label details are not redistributed.
 
 ## ARGOS
 

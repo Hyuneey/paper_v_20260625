@@ -1,13 +1,8 @@
 # HAI 23.05 Schema Audit
 
-The time-series audit is streaming and bounded-memory. It records encoding,
-delimiter, exact header hash, timestamp field, row count, first and last
-timestamps, continuity counts, malformed rows, empty-field total, ordered
-header agreement, process-prefix inventory, and reconciliation with 86 SCADA
-points.
+Six time-series files were streamed with bounded memory. Ordered headers,
+timestamp continuity, row shape, UTF-8 encoding, and the 86-point reconciliation
+were checked. Test files received structural inspection only; no feature-value
+statistics were calculated.
 
-Test files receive structural inspection only. The audit does not calculate
-per-feature extrema, moments, correlations, constant-feature status, anomaly
-scores, attack-window plots, or any process-specific performance statistic.
-
-The real schema result is pending clean execution from Commit A.
+Status: `passed_hai_2305_official_provenance_audit`

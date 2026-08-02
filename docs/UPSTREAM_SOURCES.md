@@ -507,6 +507,8 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   one-file-at-a-time download and byte equivalence to every pinned LFS object.
 - Redistribution: none; raw files remain local-only outside this repository
 
-These identifiers are the TASK-039A protocol freeze. Content integrity,
-license wording, citation, materialization, CSV structure, labels, manual, and
-graph inventory remain pending the clean real audit from Commit A.
+TASK-039AR verified all ten selectively delivered payloads against the pinned
+Git-LFS OIDs and sizes. The resumed TASK-039A audit verified content integrity,
+license and citation references, materialization, CSV structure, label custody,
+the technical manual, and the official graph inventory. Process feasibility
+and scientific graph use remain pending TASK-039B and later tasks.

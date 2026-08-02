@@ -59,9 +59,9 @@ TASK-039P1 is decomposed and complete:
    - current trainers frozen as smoke-only and masked extraction frozen as a
      reusable component, not a complete GDN backend.
 
-P1A, P1B, P1C, P1D, and parent TASK-039P1 are complete. This does not establish
-HAI readiness or a production GDN backend. TASK-039A is next. Do not load HAI
-outside its explicit provenance-audit authorization.
+P1A, P1B, P1C, P1D, and parent TASK-039P1 are complete. TASK-039AR and the
+resumed TASK-039A audit also passed. HAI source provenance is verified, but
+process feasibility and the production GDN backend remain unresolved.
 
 ## TASK-039A: HAI Source and Provenance
 
@@ -69,15 +69,12 @@ Audit official HAI 23.05 edition, terms, files, hashes, timestamps, sampling,
 features, labels, local-only storage, and reproducible manifest. Commit no raw
 rows or windows.
 
-Status: implementation and protocol are being frozen before real source and
-Git-LFS execution. HAI readiness is not established until the real audit
-passes and its sanitized result is committed separately.
+Status: completed with `passed_hai_2305_official_provenance_audit`.
 
-TASK-039AR remediates the official Git-LFS budget block using only selective
-file delivery from the official `icsdataset` Kaggle distribution. It must
-freeze complete metadata first, prove all ten payloads byte-equivalent to the
-pinned Git-LFS objects, and then resume every TASK-039A structural and custody
-gate. TASK-039B remains blocked until both statuses pass.
+TASK-039AR passed `passed_official_distribution_byte_equivalence` using only
+selective file delivery from the official `icsdataset` Kaggle distribution.
+All ten payloads matched the pinned Git-LFS hashes and sizes before TASK-039A
+resumed. TASK-039B is next; no process has yet been selected.
 
 ## TASK-039B: P1/P3 Feasibility and Process Freeze
 

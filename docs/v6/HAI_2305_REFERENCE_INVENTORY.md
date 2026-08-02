@@ -1,10 +1,5 @@
 # HAI 23.05 Reference Inventory
 
-TASK-039A inventories the pinned README, technical manual, and `graph/**`
-objects without copying them into this repository. Git blob IDs and content
-SHA-256 values are distinct provenance fields.
-
-The official graphs are weak relation references and graph metadata candidate
-sources. They are not causal truth, complete physical ground truth, verified
-delayed-response evidence, or an RQ1 answer key. Detailed scientific typing is
-deferred to TASK-039B.
+- Technical manual integrity and parse availability were audited.
+- Official graph files inventoried: 17.
+- Graphs are treated as weak relation references, not causal truth or an RQ1 answer key.

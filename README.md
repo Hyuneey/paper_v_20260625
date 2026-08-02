@@ -20,8 +20,8 @@ lightweight imports and freezes the current GDN trainers as synthetic
 smoke-only implementations. The masked extractor remains a reusable component,
 not a complete GDN model.
 
-- HAI 23.05 is the current primary dataset candidate; no HAI readiness or
-  experimental result is claimed.
+- HAI 23.05 is the current primary dataset candidate. Official source
+  provenance is verified; process feasibility and experimental value are not.
 - The canonical scientific path is `src/paperworks/contracts/`.
 - Phase-1 `dsl/`, `verification/`, `runtime/`, and RuleAst planning paths are
   legacy read-only compatibility code.
@@ -34,20 +34,15 @@ not a complete GDN model.
   correction is supplementary.
 
 See [`docs/v6/V6_CANONICAL_ARCHITECTURE.md`](docs/v6/V6_CANONICAL_ARCHITECTURE.md)
-and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). P1A through P1D and
-parent TASK-039P1 are complete foundations. TASK-039A is next. This does not
-establish HAI readiness, process feasibility, a production GDN backend, real
-rule construction, detector validation, or a proposed-method result.
+and [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md). P1A through P1D,
+TASK-039AR, and the resumed TASK-039A audit are complete. The ten selectively
+downloaded official-distribution payloads were byte-equivalent to the pinned
+Git-LFS objects, and the public provenance manifest passed every structural
+and custody gate. No HAI raw file or label detail is stored in this repository.
 
-TASK-039A now has a frozen, synthetic-tested provenance-audit implementation.
-Its real official-source execution and sanitized result remain commit-separated;
-no HAI raw file or label detail is stored in this repository.
-
-TASK-039AR is the bounded remediation for the official repository's exhausted
-Git-LFS delivery budget. It retains the pinned Git/LFS identity and allows only
-ten selectively downloaded, byte-equivalent payloads from the official
-`icsdataset` Kaggle distribution. This does not establish HAI readiness until
-the resumed TASK-039A audit also passes.
+TASK-039B is next. TASK-039A does not establish P1/P3 feasibility, select a
+primary process, approve a production GDN backend, construct a rule, validate a
+detector, or produce a proposed-method result.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

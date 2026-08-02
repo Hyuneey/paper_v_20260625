@@ -4,8 +4,9 @@
 
 TASK-039P1D resolved the current import and claim boundary: the trainers are
 synthetic smoke-only and the masked extractor is a reusable project component,
-not a complete GDN model. The production backend remains open until TASK-039A/B
-establish HAI schema and process feasibility. TASK-039C must choose either a
+not a complete GDN model. TASK-039A established HAI source provenance; the
+production backend remains open until TASK-039B establishes process
+feasibility. TASK-039C must choose either a
 source-aligned minimal GDN port or a clearly named alternative learned graph
 ranker. Only a validated source-aligned backend may be identified as GDN in the
 future RQ1 arm.
@@ -24,10 +25,10 @@ evidence. TASK-039P0 creates no Rule v2.
 
 ## HAI Process
 
-Select exactly one process only after official HAI 23.05 provenance, feature
-typing, normal support, delayed-response evidence, and split viability.
-TASK-039A cannot select P1 or P3 and cannot use label or test content for this
-decision.
+Official HAI 23.05 provenance is verified. Select exactly one process only
+after TASK-039B evaluates feature typing, normal support, delayed-response
+evidence, and split viability. TASK-039A did not select P1 or P3, and label or
+test content cannot inform this decision.
 
 ## Evaluation and Sealed Test
 

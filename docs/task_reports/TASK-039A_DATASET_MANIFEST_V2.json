@@ -1,0 +1,221 @@
+{
+  "artifact_hash": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "artifact_type": "dataset_manifest_v2",
+  "available_process_ids": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "citation_reference": "sha256:e52cd2ee39e3658d813863ce1ec21705e106ac75f9a8fa38765b5663d2a3775e",
+  "creation_metadata": {
+    "code_commit": "b1f1d8b4e044a54ceb7e801ac8c3c469b8f6a581",
+    "config_hash": "7f36b4ab4055fc412cc86865021a83771117e31ee8734d69a3e9892761f4d34a",
+    "created_at": "2026-08-02T07:31:27.818197Z",
+    "created_by": "TASK-039A official provenance audit"
+  },
+  "dataset_name": "HAI",
+  "dataset_version_or_edition": "23.05",
+  "feature_count": 86,
+  "feature_names_hash": "b8649643c7d123eb798eddba2f23454b99fc20c89ff53c541d2de712c4187112",
+  "files": [
+    {
+      "byte_size": 31255559,
+      "compression": "none",
+      "label_availability": "available",
+      "logical_file_role": "test_time_series",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/hai-test1.csv",
+      "row_count": 54000,
+      "sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "time_range": null
+    },
+    {
+      "byte_size": 132946575,
+      "compression": "none",
+      "label_availability": "available",
+      "logical_file_role": "test_time_series",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/hai-test2.csv",
+      "row_count": 230400,
+      "sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "time_range": null
+    },
+    {
+      "byte_size": 162418984,
+      "compression": "none",
+      "label_availability": "unavailable",
+      "logical_file_role": "normal_train_time_series",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/hai-train1.csv",
+      "row_count": 280800,
+      "sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+      "time_range": null
+    },
+    {
+      "byte_size": 169121615,
+      "compression": "none",
+      "label_availability": "unavailable",
+      "logical_file_role": "normal_train_time_series",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/hai-train2.csv",
+      "row_count": 291600,
+      "sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+      "time_range": null
+    },
+    {
+      "byte_size": 72774793,
+      "compression": "none",
+      "label_availability": "unavailable",
+      "logical_file_role": "normal_train_time_series",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/hai-train3.csv",
+      "row_count": 126000,
+      "sha256": "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d",
+      "time_range": null
+    },
+    {
+      "byte_size": 114494940,
+      "compression": "none",
+      "label_availability": "unavailable",
+      "logical_file_role": "normal_train_time_series",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/hai-train4.csv",
+      "row_count": 198000,
+      "sha256": "56658c83657d42a65db982b864362e0d0ffeb96d1f7b357d5e76e3a5c522d940",
+      "time_range": null
+    },
+    {
+      "byte_size": 1242017,
+      "compression": "none",
+      "label_availability": "available",
+      "logical_file_role": "external_test_label",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/label-test1.csv",
+      "row_count": 54000,
+      "sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "time_range": null
+    },
+    {
+      "byte_size": 4500018,
+      "compression": "none",
+      "label_availability": "available",
+      "logical_file_role": "external_test_label",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/label-test2.csv",
+      "row_count": 230400,
+      "sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "time_range": null
+    },
+    {
+      "byte_size": 1591,
+      "compression": "none",
+      "label_availability": "available",
+      "logical_file_role": "private_attack_summary_reference",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/summary_label1.txt",
+      "row_count": null,
+      "sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+      "time_range": null
+    },
+    {
+      "byte_size": 2911,
+      "compression": "none",
+      "label_availability": "available",
+      "logical_file_role": "private_attack_summary_reference",
+      "process_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "provenance_status": "verified",
+      "relative_local_path": "hai-23.05/summary_label2.txt",
+      "row_count": null,
+      "sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+      "time_range": null
+    }
+  ],
+  "label_specification": {
+    "encoding": {
+      "attack": 1,
+      "normal": 0
+    },
+    "field_name": "label",
+    "provenance_status": "verified"
+  },
+  "license_or_terms_reference": "README.md License section@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "local_only_storage": true,
+  "metadata_artifact_references": [
+    "dcbe058715a6680f7d2527e90f5d67772caca560fe3cecd777e40822ded79674",
+    "e99d332e5769a4cb6c4cdb69e1b158c7864ec54b3ad04040c553f5504b48a8bf",
+    "e629f202456abe531e3fa43e3447e686f0936c35b42f6ab9364a4cad83e5a8cc",
+    "7917f8736c119e774a945096f41f8abc18bce30267dd9e754c5a20157a5bf7a8",
+    "a7389cc123a544302b896c4c1ffc931a3c61c22318c0fa53c575cd1567d5fbfe"
+  ],
+  "nominal_sampling_interval_seconds": 1.0,
+  "provenance_status": "verified",
+  "schema_version": "2.0.0",
+  "source_kind": "official_github_git_lfs",
+  "source_reference": "https://github.com/icsdataset/hai@2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "timestamp_specification": {
+    "field_name": "timestamp",
+    "format": "ISO-8601-compatible source timestamp",
+    "provenance_status": "verified",
+    "timezone": "source_unspecified"
+  }
+}

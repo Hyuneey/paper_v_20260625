@@ -51,6 +51,12 @@ freeze before payload acquisition, every one of the ten approved files must be
 byte-equivalent, and whole-dataset, HAIEnd, and earlier-version downloads are
 prohibited.
 
+TASK-039AR passed exact byte equivalence for all ten approved files, and the
+resumed TASK-039A provenance audit passed. HAI 23.05 source provenance is
+verified. Process feasibility is not evaluated, no primary process is
+selected, and the production graph-ranking backend remains open. TASK-039B is
+the next authorized planning target.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

@@ -23,24 +23,23 @@ TASK-039P1 is decomposed and complete:
 4. **TASK-039P1D**: completed Torch/PyG optional-import boundary, exact pinned
    source audit, and smoke-only/reusable-component claim freeze.
 
-TASK-039P1 is complete: P1A through P1D passed. This does not authorize data
-access or scientific consumer migration and does not establish HAI readiness
-or a production GDN backend. The next task is TASK-039A.
+TASK-039P1 is complete: P1A through P1D passed. It did not authorize data
+access or scientific consumer migration and did not establish HAI provenance
+or a production GDN backend.
+
+The frozen P1D completion statement remains: next task is TASK-039A. TASK-039A
+has since completed as recorded below; the current next task is TASK-039B.
 
 ## TASK-039A
 
-Official HAI 23.05 source and provenance audit with local-only storage.
-Implementation, expected Git-LFS identity, schemas, and synthetic tests are
-frozen first. Real official-source execution and sanitized results use a
-separate commit.
-
-TASK-039AR is the active remediation for the official Git-LFS delivery block.
-TASK-039B remains blocked until TASK-039AR byte equivalence and the resumed
-TASK-039A provenance audit both pass.
+Completed. TASK-039AR passed exact official-distribution byte equivalence for
+the ten approved files, and the resumed TASK-039A audit passed source,
+structure, continuity, custody, reference, manifest, and public-boundary gates.
+No process was selected and no scientific split was created.
 
 ## TASK-039B
 
-P1/P3 normal-only feasibility and exactly one process freeze.
+Next task: P1/P3 normal-only feasibility and exactly one process freeze.
 
 ## TASK-039C Onward
 
