@@ -246,6 +246,18 @@ class Task039AREquivalenceTests(unittest.TestCase):
             )
             self.assertEqual(output.read_bytes(), b"synthetic")
 
+    def test_raw_selective_response_is_preserved_for_hash_verification(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            response = root / "response.bin"
+            response.write_bytes(b"synthetic summary")
+            output = _extract_exact_member(
+                archive=response,
+                expected_relative_path="hai-23.05/summary_label1.txt",
+                destination_root=root / "output",
+            )
+            self.assertEqual(output.read_bytes(), b"synthetic summary")
+
     def test_multi_member_or_wrong_member_archive_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

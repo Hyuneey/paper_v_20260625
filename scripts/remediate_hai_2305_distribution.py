@@ -184,6 +184,15 @@ def _download_one_archive(
 def _extract_exact_member(
     *, archive: Path, expected_relative_path: str, destination_root: Path
 ) -> Path:
+    expected = PurePosixPath(expected_relative_path)
+    destination = destination_root / Path(*expected.parts)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    temporary = destination.with_suffix(destination.suffix + ".part")
+    if not zipfile.is_zipfile(archive):
+        with archive.open("rb") as source, temporary.open("wb") as output:
+            shutil.copyfileobj(source, output, length=1024 * 1024)
+        temporary.replace(destination)
+        return destination
     try:
         with zipfile.ZipFile(archive, "r") as bundle:
             files = [item for item in bundle.infolist() if not item.is_dir()]
@@ -193,24 +202,18 @@ def _extract_exact_member(
                 )
             member = files[0]
             normalized = PurePosixPath(member.filename)
-            expected = PurePosixPath(expected_relative_path)
             if normalized.is_absolute() or ".." in normalized.parts:
                 raise SelectiveDownloadUnavailable("selective archive path is unsafe")
             if normalized not in {expected, PurePosixPath(expected.name)}:
                 raise SelectiveDownloadUnavailable(
                     "selective archive member does not match the requested file"
                 )
-            destination = destination_root / Path(*expected.parts)
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            temporary = destination.with_suffix(destination.suffix + ".part")
             with bundle.open(member, "r") as source, temporary.open("wb") as output:
                 shutil.copyfileobj(source, output, length=1024 * 1024)
             temporary.replace(destination)
             return destination
     except zipfile.BadZipFile as exc:
-        raise SelectiveDownloadUnavailable(
-            "official per-file route did not return a single-file ZIP"
-        ) from exc
+        raise SelectiveDownloadUnavailable("selective ZIP response is malformed") from exc
 
 
 def _write_equivalence_result(
