@@ -1,0 +1,129 @@
+{
+  "all_files_byte_equivalent": true,
+  "artifact_hash": "7917f8736c119e774a945096f41f8abc18bce30267dd9e754c5a20157a5bf7a8",
+  "artifact_type": "hai_distribution_byte_equivalence_result",
+  "complete_dataset_download_used": false,
+  "created_at": "2026-08-02T07:12:28.603780Z",
+  "credentials_included": false,
+  "execution_code_commit": "c334479eb3f0a0e6dc2642b8f2fc1b59bc0758b2",
+  "expected_file_count": 10,
+  "haiend_or_earlier_payload_downloaded": false,
+  "metadata_receipt_hash": "a7389cc123a544302b896c4c1ffc931a3c61c22318c0fa53c575cd1567d5fbfe",
+  "records": [
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "extracted_size_bytes": 31255559,
+      "kaggle_advertised_size_bytes": 31255559,
+      "official_lfs_oid_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "official_lfs_pointer_size_bytes": 31255559,
+      "relative_path": "hai-23.05/hai-test1.csv",
+      "task039a_expected_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "task039a_expected_size_bytes": 31255559
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "extracted_size_bytes": 132946575,
+      "kaggle_advertised_size_bytes": 132946575,
+      "official_lfs_oid_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "official_lfs_pointer_size_bytes": 132946575,
+      "relative_path": "hai-23.05/hai-test2.csv",
+      "task039a_expected_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "task039a_expected_size_bytes": 132946575
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+      "extracted_size_bytes": 162418984,
+      "kaggle_advertised_size_bytes": 162418984,
+      "official_lfs_oid_sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+      "official_lfs_pointer_size_bytes": 162418984,
+      "relative_path": "hai-23.05/hai-train1.csv",
+      "task039a_expected_sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+      "task039a_expected_size_bytes": 162418984
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+      "extracted_size_bytes": 169121615,
+      "kaggle_advertised_size_bytes": 169121615,
+      "official_lfs_oid_sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+      "official_lfs_pointer_size_bytes": 169121615,
+      "relative_path": "hai-23.05/hai-train2.csv",
+      "task039a_expected_sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+      "task039a_expected_size_bytes": 169121615
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d",
+      "extracted_size_bytes": 72774793,
+      "kaggle_advertised_size_bytes": 72774793,
+      "official_lfs_oid_sha256": "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d",
+      "official_lfs_pointer_size_bytes": 72774793,
+      "relative_path": "hai-23.05/hai-train3.csv",
+      "task039a_expected_sha256": "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d",
+      "task039a_expected_size_bytes": 72774793
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "56658c83657d42a65db982b864362e0d0ffeb96d1f7b357d5e76e3a5c522d940",
+      "extracted_size_bytes": 114494940,
+      "kaggle_advertised_size_bytes": 114494940,
+      "official_lfs_oid_sha256": "56658c83657d42a65db982b864362e0d0ffeb96d1f7b357d5e76e3a5c522d940",
+      "official_lfs_pointer_size_bytes": 114494940,
+      "relative_path": "hai-23.05/hai-train4.csv",
+      "task039a_expected_sha256": "56658c83657d42a65db982b864362e0d0ffeb96d1f7b357d5e76e3a5c522d940",
+      "task039a_expected_size_bytes": 114494940
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "extracted_size_bytes": 1242017,
+      "kaggle_advertised_size_bytes": 1242017,
+      "official_lfs_oid_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "official_lfs_pointer_size_bytes": 1242017,
+      "relative_path": "hai-23.05/label-test1.csv",
+      "task039a_expected_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "task039a_expected_size_bytes": 1242017
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "extracted_size_bytes": 4500018,
+      "kaggle_advertised_size_bytes": 4500018,
+      "official_lfs_oid_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "official_lfs_pointer_size_bytes": 4500018,
+      "relative_path": "hai-23.05/label-test2.csv",
+      "task039a_expected_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "task039a_expected_size_bytes": 4500018
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+      "extracted_size_bytes": 1591,
+      "kaggle_advertised_size_bytes": 1591,
+      "official_lfs_oid_sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+      "official_lfs_pointer_size_bytes": 1591,
+      "relative_path": "hai-23.05/summary_label1.txt",
+      "task039a_expected_sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+      "task039a_expected_size_bytes": 1591
+    },
+    {
+      "byte_equivalent": true,
+      "extracted_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+      "extracted_size_bytes": 2911,
+      "kaggle_advertised_size_bytes": 2911,
+      "official_lfs_oid_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+      "official_lfs_pointer_size_bytes": 2911,
+      "relative_path": "hai-23.05/summary_label2.txt",
+      "task039a_expected_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+      "task039a_expected_size_bytes": 2911
+    }
+  ],
+  "schema_version": "1.0.0",
+  "selectively_downloaded_file_count": 10,
+  "signed_urls_included": false,
+  "status": "passed_official_distribution_byte_equivalence",
+  "task_id": "TASK-039AR"
+}
