@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,10 +13,53 @@ from paperworks.data.hai_provenance_v1 import (
     audit_label_custody_pair,
     build_sanitized_acquisition_failure_report,
     inventory_graph_file,
+    run_git,
 )
 
 
 class Task039ACustodyReferenceTests(unittest.TestCase):
+    def test_git_metadata_read_uses_utf8_on_non_utf8_host_locale(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            repository = Path(directory)
+            subprocess.run(
+                ["git", "init", "--quiet", str(repository)],
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(repository), "config", "user.name", "Synthetic"],
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                [
+                    "git",
+                    "-C",
+                    str(repository),
+                    "config",
+                    "user.email",
+                    "synthetic@example.invalid",
+                ],
+                check=True,
+                capture_output=True,
+            )
+            expected = "Official metadata: \ud55c\uae00 UTF-8\n"
+            (repository / "README.md").write_text(expected, encoding="utf-8")
+            subprocess.run(
+                ["git", "-C", str(repository), "add", "README.md"],
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(repository), "commit", "--quiet", "-m", "fixture"],
+                check=True,
+                capture_output=True,
+            )
+
+            observed = run_git(repository, "show", "HEAD:README.md")
+
+        self.assertEqual(observed, expected.rstrip("\n"))
+
     def test_label_alignment_domain_and_public_redaction(self) -> None:
         test_text = (
             "timestamp,P1_SYN_SOURCE\n"

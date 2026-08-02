@@ -1442,6 +1442,8 @@ def run_git(repository: Path, *arguments: str) -> str:
         ["git", "-C", str(repository), *arguments],
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        errors="strict",
         check=False,
     )
     if result.returncode != 0:
