@@ -89,6 +89,15 @@ def _assert_external_root(root: Path) -> Path:
     raise HAIDistributionError("distribution payload root must remain outside the repository")
 
 
+def _committed_json_matches_worktree(committed: bytes, working: bytes) -> bool:
+    try:
+        committed_document = json.loads(committed.decode("utf-8"))
+        working_document = json.loads(working.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise HAIDistributionError("frozen receipt must be UTF-8 JSON") from exc
+    return committed_document == working_document
+
+
 def _assert_tracked_at_head(path: Path) -> None:
     resolved = path.resolve()
     try:
@@ -101,8 +110,8 @@ def _assert_tracked_at_head(path: Path) -> None:
     committed = _run_git(
         REPOSITORY_ROOT, "show", f"HEAD:{relative}", text=False
     )
-    if committed != resolved.read_bytes():
-        raise HAIDistributionError("receipt bytes do not match the committed HEAD")
+    if not _committed_json_matches_worktree(committed, resolved.read_bytes()):
+        raise HAIDistributionError("receipt content does not match the committed HEAD")
 
 
 class _ApprovedRedirectHandler(urllib.request.HTTPRedirectHandler):

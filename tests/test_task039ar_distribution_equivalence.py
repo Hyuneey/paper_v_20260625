@@ -18,6 +18,7 @@ from paperworks.data.hai_distribution_v1 import (
 )
 from scripts.remediate_hai_2305_distribution import (
     SelectiveDownloadUnavailable,
+    _committed_json_matches_worktree,
     _extract_exact_member,
 )
 from paperworks.v6.schema_registry_v1 import load_v6_schema_registry_v1
@@ -261,6 +262,11 @@ class Task039AREquivalenceTests(unittest.TestCase):
 
 
 class Task039ARConfigTests(unittest.TestCase):
+    def test_committed_json_check_is_line_ending_independent(self) -> None:
+        self.assertTrue(
+            _committed_json_matches_worktree(b'{"a":1}\n', b'{\r\n  "a": 1\r\n}\r\n')
+        )
+
     def test_config_is_self_hashed_and_selective_only(self) -> None:
         path = ROOT / "configs/data/hai_2305_official_distribution_remediation.json"
         config = json.loads(path.read_text(encoding="utf-8"))
