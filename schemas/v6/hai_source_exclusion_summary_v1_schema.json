@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_source_exclusion_summary_v1_schema.json",
+  "title": "HAI Source Exclusion Summary V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "task039b_result_commit", "task039b_selection_hash", "frozen_status", "frozen_metrics", "counts_by_process", "private_detail_ledger_hash", "no_process_selected", "raw_values_included", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_source_exclusion_summary_v1"},
+    "task039b_result_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "task039b_selection_hash": {"$ref": "#/$defs/sha256"},
+    "frozen_status": {"const": "blocked_no_feasible_delayed_response_process"},
+    "frozen_metrics": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/frozenMetric"}},
+    "counts_by_process": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/processCounts"}},
+    "private_detail_ledger_hash": {"$ref": "#/$defs/sha256"},
+    "no_process_selected": {"const": true},
+    "raw_values_included": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "frozenMetric": {
+      "type": "object", "additionalProperties": false,
+      "required": ["process_id", "total_variables", "eligible_discrete_control_sources", "eligible_continuous_sensor_targets", "screened_pairs", "feasibility_gate"],
+      "properties": {
+        "process_id": {"enum": ["P1", "P3"]}, "total_variables": {"type": "integer", "minimum": 0},
+        "eligible_discrete_control_sources": {"const": 0}, "eligible_continuous_sensor_targets": {"type": "integer", "minimum": 0},
+        "screened_pairs": {"const": 0}, "feasibility_gate": {"const": "failed"}
+      }
+    },
+    "processCounts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["process_id", "variable_count", "primary_exclusion_counts", "documented_control_variables_exist", "documented_continuous_controls_exist", "discrete_variables_without_control_semantics", "control_variables_constant_or_insufficient", "semantic_role_unresolved_count"],
+      "properties": {
+        "process_id": {"enum": ["P1", "P3"]}, "variable_count": {"type": "integer", "minimum": 0},
+        "primary_exclusion_counts": {"$ref": "#/$defs/categoryCounts"},
+        "documented_control_variables_exist": {"type": "boolean"}, "documented_continuous_controls_exist": {"type": "boolean"},
+        "discrete_variables_without_control_semantics": {"type": "integer", "minimum": 0},
+        "control_variables_constant_or_insufficient": {"type": "integer", "minimum": 0},
+        "semantic_role_unresolved_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "categoryCounts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["eligible_under_failed_discrete_policy", "documented_continuous_control_command", "documented_continuous_actuator_feedback", "documented_setpoint", "documented_process_sensor", "documented_status_or_alarm", "documented_internal_or_derived", "discrete_but_not_control_semantics", "control_semantics_but_constant", "control_semantics_but_insufficient_changes", "semantic_role_unresolved", "value_domain_unresolved", "manual_and_data_evidence_conflict", "excluded_other"],
+      "properties": {
+        "eligible_under_failed_discrete_policy": {"type": "integer", "minimum": 0}, "documented_continuous_control_command": {"type": "integer", "minimum": 0}, "documented_continuous_actuator_feedback": {"type": "integer", "minimum": 0}, "documented_setpoint": {"type": "integer", "minimum": 0}, "documented_process_sensor": {"type": "integer", "minimum": 0}, "documented_status_or_alarm": {"type": "integer", "minimum": 0}, "documented_internal_or_derived": {"type": "integer", "minimum": 0}, "discrete_but_not_control_semantics": {"type": "integer", "minimum": 0}, "control_semantics_but_constant": {"type": "integer", "minimum": 0}, "control_semantics_but_insufficient_changes": {"type": "integer", "minimum": 0}, "semantic_role_unresolved": {"type": "integer", "minimum": 0}, "value_domain_unresolved": {"type": "integer", "minimum": 0}, "manual_and_data_evidence_conflict": {"type": "integer", "minimum": 0}, "excluded_other": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

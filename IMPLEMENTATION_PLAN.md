@@ -74,7 +74,7 @@ Status: completed with `passed_hai_2305_official_provenance_audit`.
 TASK-039AR passed `passed_official_distribution_byte_equivalence` using only
 selective file delivery from the official `icsdataset` Kaggle distribution.
 All ten payloads matched the pinned Git-LFS hashes and sizes before TASK-039A
-resumed. TASK-039B is next; no process has yet been selected.
+resumed. TASK-039B subsequently blocked; no process has yet been selected.
 
 ## TASK-039B: P1/P3 Feasibility and Process Freeze
 
@@ -82,7 +82,24 @@ Using authorized normal data only, type control and sensor variables, audit
 P1/P3 support, test delayed-response feasibility, and freeze exactly one
 process plus canonical and optional GDN views.
 
+Status: `blocked_no_feasible_delayed_response_process`. Both processes had
+zero eligible reviewed, nonconstant binary/discrete sources. No process, view,
+or authoritative split was frozen.
+
+## TASK-039BR0/BR1: Relation-Family Recovery
+
+TASK-039BR0 completed the source root-cause audit and selected
+`versioned_continuous_step_delayed_response_on_HAI`. The finding is structural
+source-morphology readiness only and does not select P1 or P3.
+
+TASK-039BR1 is next. It must preregister a second bounded continuous-step
+trigger family and feasibility protocol without modifying Rule v1 or lowering
+TASK-039B gates.
+
 ## TASK-039C Onward
+
+TASK-039C remains unauthorized until a later versioned feasibility task
+selects exactly one process under a frozen policy.
 
 1. TASK-039C: candidate-universe and graph evidence construction.
 2. TASK-039D: normal relation profiling and deterministic calibration.

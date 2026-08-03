@@ -1,0 +1,81 @@
+{
+  "artifact_hash": "d4de3e10da9855cc17ebe0e6e9231daa9a6f692f28753567e61c9cd01315a0e1",
+  "artifact_type": "hai_source_exclusion_summary_v1",
+  "counts_by_process": [
+    {
+      "control_variables_constant_or_insufficient": 9,
+      "discrete_variables_without_control_semantics": 0,
+      "documented_continuous_controls_exist": true,
+      "documented_control_variables_exist": true,
+      "primary_exclusion_counts": {
+        "control_semantics_but_constant": 9,
+        "control_semantics_but_insufficient_changes": 0,
+        "discrete_but_not_control_semantics": 0,
+        "documented_continuous_actuator_feedback": 7,
+        "documented_continuous_control_command": 6,
+        "documented_internal_or_derived": 0,
+        "documented_process_sensor": 13,
+        "documented_setpoint": 1,
+        "documented_status_or_alarm": 0,
+        "eligible_under_failed_discrete_policy": 0,
+        "excluded_other": 0,
+        "manual_and_data_evidence_conflict": 0,
+        "semantic_role_unresolved": 1,
+        "value_domain_unresolved": 0
+      },
+      "process_id": "P1",
+      "semantic_role_unresolved_count": 1,
+      "variable_count": 37
+    },
+    {
+      "control_variables_constant_or_insufficient": 0,
+      "discrete_variables_without_control_semantics": 0,
+      "documented_continuous_controls_exist": true,
+      "documented_control_variables_exist": true,
+      "primary_exclusion_counts": {
+        "control_semantics_but_constant": 0,
+        "control_semantics_but_insufficient_changes": 0,
+        "discrete_but_not_control_semantics": 0,
+        "documented_continuous_actuator_feedback": 0,
+        "documented_continuous_control_command": 2,
+        "documented_internal_or_derived": 0,
+        "documented_process_sensor": 3,
+        "documented_setpoint": 2,
+        "documented_status_or_alarm": 0,
+        "eligible_under_failed_discrete_policy": 0,
+        "excluded_other": 0,
+        "manual_and_data_evidence_conflict": 0,
+        "semantic_role_unresolved": 0,
+        "value_domain_unresolved": 0
+      },
+      "process_id": "P3",
+      "semantic_role_unresolved_count": 0,
+      "variable_count": 7
+    }
+  ],
+  "frozen_metrics": [
+    {
+      "eligible_continuous_sensor_targets": 12,
+      "eligible_discrete_control_sources": 0,
+      "feasibility_gate": "failed",
+      "process_id": "P1",
+      "screened_pairs": 0,
+      "total_variables": 37
+    },
+    {
+      "eligible_continuous_sensor_targets": 3,
+      "eligible_discrete_control_sources": 0,
+      "feasibility_gate": "failed",
+      "process_id": "P3",
+      "screened_pairs": 0,
+      "total_variables": 7
+    }
+  ],
+  "frozen_status": "blocked_no_feasible_delayed_response_process",
+  "no_process_selected": true,
+  "private_detail_ledger_hash": "3df659ddfa0971933643f54aa203b207679ec0bedc4ed3b58268ce9cd7b52d4a",
+  "raw_values_included": false,
+  "schema_version": "1.0.0",
+  "task039b_result_commit": "6543ca5b88779262d01c5e0c24e51216dd0835e9",
+  "task039b_selection_hash": "544ff2f3f06e3cfc0b683509ee0ef7aa85fd1f858d62206c9ea93ee9873d403c"
+}

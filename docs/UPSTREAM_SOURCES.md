@@ -501,6 +501,19 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
   `18cb88514176e1c641f584cf24ac8e9559432b38`
 - Identity acquisition: Git clone with LFS smudge disabled and detached
   checkout at the frozen snapshot.
+
+### TASK-039BR0 HAIEnd inventory boundary
+
+- Official directory: `haiend-23.05`
+- Frozen snapshot: `2a814cebc9a66b06c9e5cd545e2d72e65d383737`
+- Git-LFS pointer records: 10
+- Documented point count: 225
+- Documented scope: additional internal Boiler DCS control-logic points
+- Collection context: same experiment and version as HAI 23.05
+- Payload downloaded or opened by TASK-039BR0: false
+- Per-point binary/discrete, usefulness, complete documentation, row-level
+  synchronization, and delayed-response readiness claims: prohibited
+- Future route requires separate TASK-039A-END and TASK-039B-END authorization.
 - Primary payload route: restricted `git lfs pull --include="hai-23.05/**"`.
 - Authorized remediation payload route: official Kaggle dataset
   `icsdataset/hai-security-dataset`, exact version frozen before access, with
@@ -510,5 +523,6 @@ GDN's `models/GDN.py` computes cosine similarity over all node embeddings and ca
 TASK-039AR verified all ten selectively delivered payloads against the pinned
 Git-LFS OIDs and sizes. The resumed TASK-039A audit verified content integrity,
 license and citation references, materialization, CSV structure, label custody,
-the technical manual, and the official graph inventory. Process feasibility
-and scientific graph use remain pending TASK-039B and later tasks.
+the technical manual, and the official graph inventory. TASK-039B later
+blocked on discrete-source eligibility; TASK-039BR0 selected a versioned
+continuous-step feasibility route without selecting a process.

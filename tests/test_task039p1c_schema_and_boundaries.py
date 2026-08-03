@@ -46,6 +46,20 @@ TASK039A_TYPES = {
     "hai_provenance_audit_result",
     "hai_reference_inventory",
 }
+TASK039AR_TYPES = {
+    "hai_distribution_byte_equivalence_result",
+    "hai_official_distribution_metadata",
+}
+TASK039BR0_TYPES = {
+    "hai_continuous_route_readiness_v1",
+    "hai_continuous_source_morphology_v1",
+    "hai_source_exclusion_record_v1",
+    "hai_source_exclusion_summary_v1",
+    "haiend_route_readiness_v1",
+    "relation_family_route_decision_v1",
+    "rule_v1_compatibility_record_v1",
+    "task039br0_data_access_audit_v1",
+}
 
 
 class Task039P1CSchemaBoundaryTests(unittest.TestCase):
@@ -54,8 +68,16 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
         self.assertTrue(P1C_TYPES.issubset(registry.artifact_types))
         self.assertTrue(P1D_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039A_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 19)
-        for artifact_type in P1C_TYPES | P1D_TYPES | TASK039A_TYPES:
+        self.assertTrue(TASK039AR_TYPES.issubset(registry.artifact_types))
+        self.assertTrue(TASK039BR0_TYPES.issubset(registry.artifact_types))
+        self.assertEqual(len(registry.artifact_types), 29)
+        for artifact_type in (
+            P1C_TYPES
+            | P1D_TYPES
+            | TASK039A_TYPES
+            | TASK039AR_TYPES
+            | TASK039BR0_TYPES
+        ):
             Draft202012Validator.check_schema(
                 registry.schema_for(artifact_type)
             )

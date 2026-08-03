@@ -1,0 +1,95 @@
+{
+  "artifact_hash": "3966c2ffcaabce193cb46c84457ce446068bf86439edfdc5c12719dae05beccd",
+  "artifact_type": "haiend_route_readiness_v1",
+  "binary_or_discrete_claim_made": false,
+  "boiler_internal_control_logic_documented": true,
+  "complete_auditable_p1_candidate_route": true,
+  "expected_point_count": 225,
+  "file_count": 10,
+  "license_and_citation_compatible": true,
+  "normal_data_availability_documented": true,
+  "official_directory": "haiend-23.05",
+  "official_graph_relevance": "P1_Boiler_reference_only_not_candidate_truth",
+  "official_repository": "https://github.com/icsdataset/hai",
+  "payload_downloaded_or_opened": false,
+  "pointer_inventory": [
+    {
+      "git_blob_sha": "ef5ffd4f57a368baeb305eed29ed0b1bee300945",
+      "lfs_oid_sha256": "e1929829ce3437281eddb97f549121ebc4676384a390136c2b052ce649eb8d58",
+      "lfs_size_bytes": 49351620,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/end-test1.csv"
+    },
+    {
+      "git_blob_sha": "b527429b2ebf915827a27ab2ccf61c3e254608d5",
+      "lfs_oid_sha256": "587dc7a73eb92dd119dc7e3f902d2fa308b8af47352d1aa388ea5ef9da63390c",
+      "lfs_size_bytes": 209737755,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/end-test2.csv"
+    },
+    {
+      "git_blob_sha": "a185c2e39a7be9973591ff8e7ecdebfb3d38d234",
+      "lfs_oid_sha256": "112ab5a553e53b14f48e6fc7c8b81a844ee82c2bf3284cc422345e129b3af476",
+      "lfs_size_bytes": 256552242,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/end-train1.csv"
+    },
+    {
+      "git_blob_sha": "d0dc36190071ac577fe33f728d5edfedb4bd3a79",
+      "lfs_oid_sha256": "7f2367efabbb2fa5a65ef1e95c06b687c47836577f7b2e7fbee6238e00e41855",
+      "lfs_size_bytes": 266924893,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/end-train2.csv"
+    },
+    {
+      "git_blob_sha": "fadbf66f2805258f0372d38651a4a8570a472383",
+      "lfs_oid_sha256": "92dbb6a92a4f05cbd5cf9d6d9747a9e9938d544ef7fe1edb1954cabce52a4c08",
+      "lfs_size_bytes": 115378733,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/end-train3.csv"
+    },
+    {
+      "git_blob_sha": "f1d96ffd8c503bcb99b961771ce087a959aa95bb",
+      "lfs_oid_sha256": "b995dabac6321a34e5b69bdd01abec08f7f844dbdc489bdb5f9935a8da0b2038",
+      "lfs_size_bytes": 180186249,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/end-train4.csv"
+    },
+    {
+      "git_blob_sha": "bddefb9c5531e75a59e1e6f930716fc1e0ed75dc",
+      "lfs_oid_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "lfs_size_bytes": 1242017,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/label-test1.csv"
+    },
+    {
+      "git_blob_sha": "5bbca74ac5b25cbb2150d89eee2633a47056ecca",
+      "lfs_oid_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "lfs_size_bytes": 4500018,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/label-test2.csv"
+    },
+    {
+      "git_blob_sha": "fbf903cd0d9b6a70dd93e5344fe813e12b8c2ca8",
+      "lfs_oid_sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+      "lfs_size_bytes": 1591,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/summary_label1.txt"
+    },
+    {
+      "git_blob_sha": "ef02d5416b9ebd6e68b4624b6a1f69aa917d4fcb",
+      "lfs_oid_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+      "lfs_size_bytes": 2911,
+      "payload_materialized_or_opened": false,
+      "relative_path": "haiend-23.05/summary_label2.txt"
+    }
+  ],
+  "route_status": "haiend_route_requires_separate_provenance_and_feasibility",
+  "row_synchronization_claim_made": false,
+  "same_experiment_version_context_documented": true,
+  "schema_version": "1.0.0",
+  "snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "technical_manual_per_point_coverage_verified": false,
+  "test_file_count": 2,
+  "train_file_count": 4
+}

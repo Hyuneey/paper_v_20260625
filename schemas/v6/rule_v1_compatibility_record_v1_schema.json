@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/rule_v1_compatibility_record_v1_schema.json",
+  "title": "Rule V1 Compatibility Record V1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "rule_schema_sha256", "rule_parser_sha256", "verifier_sha256", "runtime_sha256", "exactly_one_source", "exactly_one_target", "delayed_response_only", "state_changes_to_only", "literal_state_value_required", "trigger_threshold_references_rejected", "trigger_range_references_rejected", "trigger_duration_references_rejected", "increase_only", "missing_expected_response_only", "verifier_runtime_bound_to_semantics", "continuous_source_route_classification", "rule_v1_modified", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "rule_v1_compatibility_record_v1"},
+    "rule_schema_sha256": {"$ref": "#/$defs/sha256"}, "rule_parser_sha256": {"$ref": "#/$defs/sha256"}, "verifier_sha256": {"$ref": "#/$defs/sha256"}, "runtime_sha256": {"$ref": "#/$defs/sha256"},
+    "exactly_one_source": {"const": true}, "exactly_one_target": {"const": true}, "delayed_response_only": {"const": true}, "state_changes_to_only": {"const": true}, "literal_state_value_required": {"const": true},
+    "trigger_threshold_references_rejected": {"const": true}, "trigger_range_references_rejected": {"const": true}, "trigger_duration_references_rejected": {"const": true},
+    "increase_only": {"const": true}, "missing_expected_response_only": {"const": true}, "verifier_runtime_bound_to_semantics": {"const": true},
+    "continuous_source_route_classification": {"const": "requires_versioned_rule_semantics"}, "rule_v1_modified": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  }, "$defs": {"sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

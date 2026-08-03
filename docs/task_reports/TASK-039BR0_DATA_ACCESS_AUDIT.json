@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "03c6caf5b9c64f1e4466aa7afa6bdfe99b6983f682a5e5ad96d85d55d2d5ce72",
+  "artifact_type": "task039br0_data_access_audit_v1",
+  "attack_summary_access_count": 0,
+  "authorized_feature_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv",
+    "hai-23.05/hai-train3.csv"
+  ],
+  "feature_access_entries": [
+    {
+      "process_id": "P1",
+      "purpose": "aggregate_continuous_source_morphology_only",
+      "relative_path": "hai-23.05/hai-train1.csv",
+      "variable_count": 13
+    },
+    {
+      "process_id": "P1",
+      "purpose": "aggregate_continuous_source_morphology_only",
+      "relative_path": "hai-23.05/hai-train2.csv",
+      "variable_count": 13
+    },
+    {
+      "process_id": "P1",
+      "purpose": "aggregate_continuous_source_morphology_only",
+      "relative_path": "hai-23.05/hai-train3.csv",
+      "variable_count": 13
+    },
+    {
+      "process_id": "P3",
+      "purpose": "aggregate_continuous_source_morphology_only",
+      "relative_path": "hai-23.05/hai-train1.csv",
+      "variable_count": 2
+    },
+    {
+      "process_id": "P3",
+      "purpose": "aggregate_continuous_source_morphology_only",
+      "relative_path": "hai-23.05/hai-train2.csv",
+      "variable_count": 2
+    },
+    {
+      "process_id": "P3",
+      "purpose": "aggregate_continuous_source_morphology_only",
+      "relative_path": "hai-23.05/hai-train3.csv",
+      "variable_count": 2
+    }
+  ],
+  "haiend_payload_opened": false,
+  "label_file_access_count": 0,
+  "normal_guard_feature_values_accessed": false,
+  "p2_p4_feature_values_accessed": false,
+  "private_custody_access_count": 0,
+  "prohibited_data_access_count": 0,
+  "schema_version": "1.0.0",
+  "test_file_access_count": 0
+}

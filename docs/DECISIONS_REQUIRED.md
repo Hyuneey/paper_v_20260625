@@ -1905,3 +1905,24 @@
 - TASK-039AR passed exact byte equivalence for all ten approved files. The
   resumed TASK-039A audit also passed; TASK-039B may now plan the authorized
   normal-only feasibility audit without reusing test or label content.
+
+### DEC-095: HAI discrete-state delayed-response feasibility
+
+- Status: blocked_TASK039B_no_feasible_delayed_response_process
+- P1 and P3 each produced zero eligible reviewed, nonconstant binary/discrete
+  control sources under the frozen first-MVP policy.
+- No source-target pair was screened, no process was selected, and no
+  authoritative view or split was frozen.
+- TASK-039B gates and results are immutable. TASK-039C is not authorized.
+
+### DEC-096: Relation-family route after TASK-039B
+
+- Status: resolved_TASK039BR0
+- Decision: `versioned_continuous_step_delayed_response_on_HAI`
+- P1 had 13 documented continuous control/feedback candidates, with 12 meeting
+  the cross-file morphology condition. P3 had 2, with both meeting it.
+- These are source-only morphology results. They do not establish a
+  delayed-response pair or select a process.
+- A continuous trigger requires versioned rule semantics; Rule v1 remains
+  unchanged.
+- Next task: TASK-039BR1. TASK-039C remains unauthorized.

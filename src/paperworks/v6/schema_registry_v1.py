@@ -45,11 +45,26 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "hai_csv_structure_audit": (
         "schemas/v6/hai_csv_structure_audit_v1_schema.json"
     ),
+    "hai_continuous_route_readiness_v1": (
+        "schemas/v6/hai_continuous_route_readiness_v1_schema.json"
+    ),
+    "hai_continuous_source_morphology_v1": (
+        "schemas/v6/hai_continuous_source_morphology_v1_schema.json"
+    ),
     "hai_distribution_byte_equivalence_result": (
         "schemas/v6/hai_distribution_byte_equivalence_v1_schema.json"
     ),
     "hai_label_custody_public": (
         "schemas/v6/hai_label_custody_public_v1_schema.json"
+    ),
+    "hai_source_exclusion_record_v1": (
+        "schemas/v6/hai_source_exclusion_record_v1_schema.json"
+    ),
+    "hai_source_exclusion_summary_v1": (
+        "schemas/v6/hai_source_exclusion_summary_v1_schema.json"
+    ),
+    "haiend_route_readiness_v1": (
+        "schemas/v6/haiend_route_readiness_v1_schema.json"
     ),
     "hai_lfs_pointer_record": (
         "schemas/v6/hai_lfs_pointer_record_v1_schema.json"
@@ -68,6 +83,15 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     ),
     "rule_evidence_binding": (
         "schemas/v6/rule_evidence_binding_v1_schema.json"
+    ),
+    "relation_family_route_decision_v1": (
+        "schemas/v6/relation_family_route_decision_v1_schema.json"
+    ),
+    "rule_v1_compatibility_record_v1": (
+        "schemas/v6/rule_v1_compatibility_record_v1_schema.json"
+    ),
+    "task039br0_data_access_audit_v1": (
+        "schemas/v6/task039br0_data_access_audit_v1_schema.json"
     ),
     "v6_deployment_authorization_receipt": (
         "schemas/v6/v6_deployment_authorization_receipt_v1_schema.json"

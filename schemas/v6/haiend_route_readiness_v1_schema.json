@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/haiend_route_readiness_v1_schema.json",
+  "title": "HAIEnd Route Readiness V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "official_repository", "snapshot_commit", "official_directory", "pointer_inventory", "file_count", "expected_point_count", "train_file_count", "test_file_count", "normal_data_availability_documented", "same_experiment_version_context_documented", "boiler_internal_control_logic_documented", "technical_manual_per_point_coverage_verified", "official_graph_relevance", "license_and_citation_compatible", "payload_downloaded_or_opened", "binary_or_discrete_claim_made", "row_synchronization_claim_made", "complete_auditable_p1_candidate_route", "route_status", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "haiend_route_readiness_v1"},
+    "official_repository": {"const": "https://github.com/icsdataset/hai"},
+    "snapshot_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "official_directory": {"const": "haiend-23.05"},
+    "pointer_inventory": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/pointer"}},
+    "file_count": {"const": 10}, "expected_point_count": {"const": 225},
+    "train_file_count": {"const": 4}, "test_file_count": {"const": 2},
+    "normal_data_availability_documented": {"type": "boolean"},
+    "same_experiment_version_context_documented": {"type": "boolean"},
+    "boiler_internal_control_logic_documented": {"type": "boolean"},
+    "technical_manual_per_point_coverage_verified": {"type": "boolean"},
+    "official_graph_relevance": {"type": "string", "minLength": 1},
+    "license_and_citation_compatible": {"type": "boolean"},
+    "payload_downloaded_or_opened": {"const": false},
+    "binary_or_discrete_claim_made": {"const": false},
+    "row_synchronization_claim_made": {"const": false},
+    "complete_auditable_p1_candidate_route": {"type": "boolean"},
+    "route_status": {"const": "haiend_route_requires_separate_provenance_and_feasibility"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "pointer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["relative_path", "git_blob_sha", "lfs_oid_sha256", "lfs_size_bytes", "payload_materialized_or_opened"],
+      "properties": {
+        "relative_path": {"type": "string", "pattern": "^haiend-23\\.05/"},
+        "git_blob_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "lfs_oid_sha256": {"$ref": "#/$defs/sha256"}, "lfs_size_bytes": {"type": "integer", "minimum": 1},
+        "payload_materialized_or_opened": {"const": false}
+      }
+    }
+  }
+}

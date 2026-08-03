@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/relation_family_route_decision_v1_schema.json",
+  "title": "Relation Family Route Decision V1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "diagnostic_status", "recommended_route", "next_task", "continuous_readiness_ref", "haiend_readiness_ref", "rule_v1_compatibility_ref", "source_exclusion_summary_ref", "decision_reasons", "thesis_contribution_preservation", "weighted_score_used", "process_selected", "task039c_authorized", "task039b_gate_lowered", "attack_information_used", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "relation_family_route_decision_v1"},
+    "diagnostic_status": {"const": "passed_source_eligibility_root_cause_audit"},
+    "recommended_route": {"enum": ["versioned_continuous_step_delayed_response_on_HAI", "audit_HAIEnd_P1_control_logic", "reopen_primary_dataset_decision", "blocked_relation_family_decision_indeterminate"]},
+    "next_task": {"type": "string", "minLength": 1},
+    "continuous_readiness_ref": {"$ref": "#/$defs/sha256"}, "haiend_readiness_ref": {"$ref": "#/$defs/sha256"}, "rule_v1_compatibility_ref": {"$ref": "#/$defs/sha256"}, "source_exclusion_summary_ref": {"$ref": "#/$defs/sha256"},
+    "decision_reasons": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "thesis_contribution_preservation": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/preservation"}},
+    "weighted_score_used": {"const": false}, "process_selected": {"const": false}, "task039c_authorized": {"const": false}, "task039b_gate_lowered": {"const": false}, "attack_information_used": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  }, "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "preservation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["principle", "preserved", "required_guard"],
+      "properties": {"principle": {"type": "string", "minLength": 1}, "preserved": {"const": true}, "required_guard": {"type": "string", "minLength": 1}}
+    }
+  }
+}

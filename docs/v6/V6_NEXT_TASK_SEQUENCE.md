@@ -27,8 +27,9 @@ TASK-039P1 is complete: P1A through P1D passed. It did not authorize data
 access or scientific consumer migration and did not establish HAI provenance
 or a production GDN backend.
 
-The frozen P1D completion statement remains: next task is TASK-039A. TASK-039A
-has since completed as recorded below; the current next task is TASK-039B.
+The frozen P1D completion statement "next task is TASK-039A" remains historical.
+TASK-039A has since completed, TASK-039B blocked, and TASK-039BR0 selected the
+recovery route recorded below.
 
 ## TASK-039A
 
@@ -39,9 +40,22 @@ No process was selected and no scientific split was created.
 
 ## TASK-039B
 
-Next task: P1/P3 normal-only feasibility and exactly one process freeze.
+Status: `blocked_no_feasible_delayed_response_process`. No process was frozen.
+
+## TASK-039BR0
+
+Completed source root-cause diagnosis. Frozen route:
+`versioned_continuous_step_delayed_response_on_HAI`.
+
+## TASK-039BR1
+
+Next task: define and preregister the second bounded continuous-step relation
+family and its feasibility protocol. Do not select P1 or P3 in advance.
 
 ## TASK-039C Onward
+
+TASK-039C is not authorized until versioned feasibility selects exactly one
+process.
 
 1. candidate and graph evidence;
 2. normal relation profiling and calibration;

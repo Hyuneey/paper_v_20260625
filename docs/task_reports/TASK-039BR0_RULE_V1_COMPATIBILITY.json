@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "452d8e0713e1a057c60d12b7ae068ee511f2b450322e0df7bc1b4c0805d4c670",
+  "artifact_type": "rule_v1_compatibility_record_v1",
+  "continuous_source_route_classification": "requires_versioned_rule_semantics",
+  "delayed_response_only": true,
+  "exactly_one_source": true,
+  "exactly_one_target": true,
+  "increase_only": true,
+  "literal_state_value_required": true,
+  "missing_expected_response_only": true,
+  "rule_parser_sha256": "a7f31baf35244236521288d8d22e65c436e8d0bed8d4a03a343cb8f7def1219c",
+  "rule_schema_sha256": "67d50b9b3fd229c6fa6294f3106339c4ba2c093edb48a8be2100817379f7fa8a",
+  "rule_v1_modified": false,
+  "runtime_sha256": "2d5bb9df1c5d5f508df002dc264d16345dca25c988ba9b65908b872a12c294ad",
+  "schema_version": "1.0.0",
+  "state_changes_to_only": true,
+  "trigger_duration_references_rejected": true,
+  "trigger_range_references_rejected": true,
+  "trigger_threshold_references_rejected": true,
+  "verifier_runtime_bound_to_semantics": true,
+  "verifier_sha256": "d48770fe3fb7f7fa97e4aab1d54a91be8a71bdfb6edc171657b804162508678f"
+}

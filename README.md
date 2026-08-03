@@ -21,7 +21,7 @@ smoke-only implementations. The masked extractor remains a reusable component,
 not a complete GDN model.
 
 - HAI 23.05 is the current primary dataset candidate. Official source
-  provenance is verified; process feasibility and experimental value are not.
+  provenance is verified; process selection and experimental value are not.
 - The canonical scientific path is `src/paperworks/contracts/`.
 - Phase-1 `dsl/`, `verification/`, `runtime/`, and RuleAst planning paths are
   legacy read-only compatibility code.
@@ -40,9 +40,12 @@ downloaded official-distribution payloads were byte-equivalent to the pinned
 Git-LFS objects, and the public provenance manifest passed every structural
 and custody gate. No HAI raw file or label detail is stored in this repository.
 
-TASK-039B is next. TASK-039A does not establish P1/P3 feasibility, select a
-primary process, approve a production GDN backend, construct a rule, validate a
-detector, or produce a proposed-method result.
+TASK-039B is frozen as `blocked_no_feasible_delayed_response_process`: both P1
+and P3 lacked eligible reviewed, nonconstant discrete control sources under the
+original MVP policy. TASK-039BR0 found documented continuous control-source
+morphology sufficient to justify a separately versioned feasibility protocol.
+The next task is TASK-039BR1, not TASK-039C. No process, candidate graph,
+production GDN backend, rule, or detector result has been selected.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

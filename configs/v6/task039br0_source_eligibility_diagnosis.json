@@ -1,0 +1,90 @@
+{
+  "artifact_type": "task039br0_source_eligibility_diagnosis_config",
+  "authorized_train_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv",
+    "hai-23.05/hai-train3.csv"
+  ],
+  "authoritative_main_commit": "2450e2c9d3a3f3722581e2c1594435451493bf00",
+  "config_hash": "ef4784efde0b6cf0bcdc478e5f34a0965266e32dc74b863bc13bfe7f097d8c91",
+  "continuous_morphology": {
+    "distinct_count_cap": 4096,
+    "large_change_rule": "abs(one_step_change) > 5 * max(1.4826 * MAD(one_step_changes), numeric_epsilon)",
+    "minimum_repeated_changes_per_file": 2,
+    "numeric_epsilon": 1e-12,
+    "threshold_authoritative": false
+  },
+  "continuous_route_readiness": {
+    "documented_candidates_minimum": 2,
+    "manual_data_conflicts_maximum": 0,
+    "manual_semantic_coverage_required": true,
+    "nonconstant_candidates_per_file_minimum": 2,
+    "repeated_bounded_changes_all_files_minimum": 2,
+    "source_target_pair_evaluation": false
+  },
+  "continuous_source_semantic_roles": [
+    "control_command",
+    "actuator_state",
+    "actuator_feedback"
+  ],
+  "haiend_policy": {
+    "directory": "haiend-23.05",
+    "documentation_and_git_pointer_inventory_only": true,
+    "payload_download_or_open": false,
+    "permitted_claim": "additional_internal_Boiler_DCS_control_logic_points_same_experiment_version_context",
+    "prohibited_claims": [
+      "binary_or_discrete",
+      "useful",
+      "well_documented_per_point",
+      "row_for_row_synchronized",
+      "delayed_response_ready"
+    ],
+    "snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737"
+  },
+  "official_graph_used_for_route_score": false,
+  "prohibited_data_path_tokens": [
+    "hai-train4",
+    "hai-test",
+    "label-test",
+    "summary_label",
+    "private_custody",
+    "attack",
+    "P2",
+    "P4"
+  ],
+  "public_private_policy": {
+    "absolute_paths_public": false,
+    "attack_information_public": false,
+    "exact_normal_sequences_public": false,
+    "private_ledgers_public": false,
+    "raw_values_public": false,
+    "transition_timestamps_public": false
+  },
+  "route_decision_order": [
+    "versioned_continuous_step_delayed_response_on_HAI",
+    "audit_HAIEnd_P1_control_logic",
+    "reopen_primary_dataset_decision",
+    "blocked_relation_family_decision_indeterminate"
+  ],
+  "schema_version": "1.0.0",
+  "source_exclusion_categories": [
+    "eligible_under_failed_discrete_policy",
+    "documented_continuous_control_command",
+    "documented_continuous_actuator_feedback",
+    "documented_setpoint",
+    "documented_process_sensor",
+    "documented_status_or_alarm",
+    "documented_internal_or_derived",
+    "discrete_but_not_control_semantics",
+    "control_semantics_but_constant",
+    "control_semantics_but_insufficient_changes",
+    "semantic_role_unresolved",
+    "value_domain_unresolved",
+    "manual_and_data_evidence_conflict",
+    "excluded_other"
+  ],
+  "source_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "task039b_blocked_result_commit": "6543ca5b88779262d01c5e0c24e51216dd0835e9",
+  "task039b_selection_hash": "544ff2f3f06e3cfc0b683509ee0ef7aa85fd1f858d62206c9ea93ee9873d403c",
+  "task_id": "TASK-039BR0"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_continuous_route_readiness_v1_schema.json",
+  "title": "HAI Continuous Route Readiness V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "process_records", "readiness_definition", "ready_process_ids", "private_morphology_ledger_hash", "source_target_pairs_evaluated", "process_selected", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_continuous_route_readiness_v1"},
+    "process_records": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/processRecord"}},
+    "readiness_definition": {"type": "string", "minLength": 1},
+    "ready_process_ids": {"type": "array", "items": {"enum": ["P1", "P3"]}, "uniqueItems": true},
+    "private_morphology_ledger_hash": {"$ref": "#/$defs/sha256"},
+    "source_target_pairs_evaluated": {"const": false},
+    "process_selected": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "processRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["process_id", "documented_continuous_control_feedback_candidates", "nonconstant_candidates_train1", "nonconstant_candidates_train2", "nonconstant_candidates_train3", "candidates_with_repeated_bounded_changes_all_files", "manual_semantic_coverage_count", "manual_data_conflict_count", "morphology_record_hashes", "route_status"],
+      "properties": {
+        "process_id": {"enum": ["P1", "P3"]},
+        "documented_continuous_control_feedback_candidates": {"type": "integer", "minimum": 0},
+        "nonconstant_candidates_train1": {"type": "integer", "minimum": 0}, "nonconstant_candidates_train2": {"type": "integer", "minimum": 0}, "nonconstant_candidates_train3": {"type": "integer", "minimum": 0},
+        "candidates_with_repeated_bounded_changes_all_files": {"type": "integer", "minimum": 0},
+        "manual_semantic_coverage_count": {"type": "integer", "minimum": 0}, "manual_data_conflict_count": {"type": "integer", "minimum": 0},
+        "morphology_record_hashes": {"type": "array", "items": {"$ref": "#/$defs/sha256"}, "uniqueItems": true},
+        "route_status": {"enum": ["continuous_step_route_ready_for_versioned_feasibility", "continuous_step_route_not_ready"]}
+      }
+    }
+  }
+}

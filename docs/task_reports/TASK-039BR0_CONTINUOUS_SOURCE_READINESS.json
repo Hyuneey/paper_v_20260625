@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "c1968c53d605756cd9d16f72306c730fcf6a9b3ceaf61368eba78157bb84f7a2",
+  "artifact_type": "hai_continuous_route_readiness_v1",
+  "private_morphology_ledger_hash": "3cef789579ca54b4b829a381db7763feb3b1c4ee5b53e6ca61015f5d5aec25a3",
+  "process_records": [
+    {
+      "candidates_with_repeated_bounded_changes_all_files": 12,
+      "documented_continuous_control_feedback_candidates": 13,
+      "manual_data_conflict_count": 0,
+      "manual_semantic_coverage_count": 13,
+      "morphology_record_hashes": [
+        "c3a3e2c82633f18f43ed7649b6add071fdad1962a40697833165a01e3e5f8abf",
+        "f5d00a8d9224a2b327c612ad03f492487cc737ce29bb78ed879f87ab6c34a1bf",
+        "81b8aea72500f47a70cfa8e97c86922fcbe5d57cdf9dc87fa9d956c91eabd215",
+        "f2f3d6b32a0e9465baaa623082009e8a6593ca5ccf6c28dca3b935402fec7100",
+        "355bb7d0f98131740b04f8c818ba3500dd1d8706b7e564fffb42b26f1e722008",
+        "9e1a1cfc1921cf55fd8f5d800c7753e70668cacc2ba25ab76c4ef2857040c3ba",
+        "394f75726c630e4dc89030863a0ad7123e1bd9c3b9b2f2e74133d578dabce69c",
+        "cbb374f520658ff69e9e7b43179b110ed9b51385811863d3156eab5aecf0effa",
+        "eefe552f6742e4971600c1d598d5cf8e6a33e242c54a3be7e55d6bac3b3073ee",
+        "03f6b59c0c91a7df6717916bc9dc503c3e7f4a458c058e3c9cd223c955484876",
+        "a343adc6df8f8292e4a22f3de2df6fabd3855c9900e92bf37ec20637453647b5",
+        "bcb25f62168b71ee872a9c98ebb936fe32c083ea9f805ebdee14d0324e0dd49f",
+        "4899c77c3771f8472af796c36e46e1511fe5b0b61aa4c36f01f37a26eb6a6857"
+      ],
+      "nonconstant_candidates_train1": 13,
+      "nonconstant_candidates_train2": 13,
+      "nonconstant_candidates_train3": 12,
+      "process_id": "P1",
+      "route_status": "continuous_step_route_ready_for_versioned_feasibility"
+    },
+    {
+      "candidates_with_repeated_bounded_changes_all_files": 2,
+      "documented_continuous_control_feedback_candidates": 2,
+      "manual_data_conflict_count": 0,
+      "manual_semantic_coverage_count": 2,
+      "morphology_record_hashes": [
+        "f63905c0a7ce78ae16fc63060e5e428c578c735cdbde2082dbbbb37556c20bf4",
+        "a567749795cb6f3ec98eca0c82416b185f02aee86921d7f808e7096d9a2f0fb3"
+      ],
+      "nonconstant_candidates_train1": 2,
+      "nonconstant_candidates_train2": 2,
+      "nonconstant_candidates_train3": 2,
+      "process_id": "P3",
+      "route_status": "continuous_step_route_ready_for_versioned_feasibility"
+    }
+  ],
+  "process_selected": false,
+  "readiness_definition": "at_least_two_documented_candidates_nonconstant_with_at_least_two_nonzero_and_large_change_candidates_in_each_of_train1_train2_train3",
+  "ready_process_ids": [
+    "P1",
+    "P3"
+  ],
+  "schema_version": "1.0.0",
+  "source_target_pairs_evaluated": false
+}

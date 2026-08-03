@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_continuous_source_morphology_v1_schema.json",
+  "title": "HAI Continuous Source Morphology V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "variable_name", "process_id", "documented_semantic_role", "manual_reference", "file_summaries", "cross_file_availability", "manual_semantic_coverage", "manual_data_conflict", "large_change_multiplier", "diagnostic_threshold_authoritative", "source_target_pairs_evaluated", "raw_values_included", "transition_timestamps_included", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "hai_continuous_source_morphology_v1"},
+    "variable_name": {"type": "string", "pattern": "^P[13]_"},
+    "process_id": {"enum": ["P1", "P3"]},
+    "documented_semantic_role": {"enum": ["control_command", "actuator_state", "actuator_feedback"]},
+    "manual_reference": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1, "uniqueItems": true},
+    "file_summaries": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/fileSummary"}},
+    "cross_file_availability": {"type": "boolean"},
+    "manual_semantic_coverage": {"type": "boolean"},
+    "manual_data_conflict": {"type": "boolean"},
+    "large_change_multiplier": {"const": 5.0},
+    "diagnostic_threshold_authoritative": {"const": false},
+    "source_target_pairs_evaluated": {"const": false},
+    "raw_values_included": {"const": false},
+    "transition_timestamps_included": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "fileSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "finite_value_status", "nonconstant_status", "distinct_value_count", "distinct_count_capped", "zero_difference_ratio", "nonzero_change_count", "piecewise_constant_run_count", "runs_at_least_3_seconds", "large_change_candidate_count", "positive_change_available", "negative_change_available", "diagnostic_noise_scale", "repeated_bounded_changes"],
+      "properties": {
+        "relative_path": {"enum": ["hai-23.05/hai-train1.csv", "hai-23.05/hai-train2.csv", "hai-23.05/hai-train3.csv"]},
+        "finite_value_status": {"enum": ["all_finite", "missing_or_nonfinite_present"]},
+        "nonconstant_status": {"type": "boolean"},
+        "distinct_value_count": {"type": "integer", "minimum": 0},
+        "distinct_count_capped": {"type": "boolean"},
+        "zero_difference_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "nonzero_change_count": {"type": "integer", "minimum": 0},
+        "piecewise_constant_run_count": {"type": "integer", "minimum": 0},
+        "runs_at_least_3_seconds": {"type": "integer", "minimum": 0},
+        "large_change_candidate_count": {"type": "integer", "minimum": 0},
+        "positive_change_available": {"type": "boolean"},
+        "negative_change_available": {"type": "boolean"},
+        "diagnostic_noise_scale": {"type": "number", "exclusiveMinimum": 0},
+        "repeated_bounded_changes": {"type": "boolean"}
+      }
+    }
+  }
+}
