@@ -15,6 +15,39 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "canonical_context_build_result": (
         "schemas/v6/canonical_context_build_result_v1_schema.json"
     ),
+    "continuous_step_feasibility_policy_v1": (
+        "schemas/v6/continuous_step_feasibility_policy_v1_schema.json"
+    ),
+    "continuous_step_parameter_provenance_policy_v1": (
+        "schemas/v6/continuous_step_parameter_provenance_policy_v1_schema.json"
+    ),
+    "continuous_step_process_selection_policy_v1": (
+        "schemas/v6/continuous_step_process_selection_policy_v1_schema.json"
+    ),
+    "continuous_step_protocol_bundle_v1": (
+        "schemas/v6/continuous_step_protocol_bundle_v1_schema.json"
+    ),
+    "continuous_step_relation_family_v1": (
+        "schemas/v6/continuous_step_relation_family_v1_schema.json"
+    ),
+    "continuous_step_response_policy_v1": (
+        "schemas/v6/continuous_step_response_policy_v1_schema.json"
+    ),
+    "continuous_step_rule_migration_plan_v1": (
+        "schemas/v6/continuous_step_rule_migration_plan_v1_schema.json"
+    ),
+    "continuous_step_runtime_migration_plan_v1": (
+        "schemas/v6/continuous_step_runtime_migration_plan_v1_schema.json"
+    ),
+    "continuous_step_trigger_policy_v1": (
+        "schemas/v6/continuous_step_trigger_policy_v1_schema.json"
+    ),
+    "continuous_step_unsupported_policy_v1": (
+        "schemas/v6/continuous_step_unsupported_policy_v1_schema.json"
+    ),
+    "continuous_step_verifier_migration_plan_v1": (
+        "schemas/v6/continuous_step_verifier_migration_plan_v1_schema.json"
+    ),
     "construction_candidate_binding_receipt": (
         "schemas/v6/construction_candidate_binding_receipt_v1_schema.json"
     ),

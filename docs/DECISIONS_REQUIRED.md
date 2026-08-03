@@ -1926,3 +1926,17 @@
 - A continuous trigger requires versioned rule semantics; Rule v1 remains
   unchanged.
 - Next task: TASK-039BR1. TASK-039C remains unauthorized.
+
+### DEC-097: Continuous-step delayed-response protocol
+
+- Status: resolved_protocol_freeze_TASK039BR1
+- Decision: preregister `continuous_step_delayed_response_v1` as a second,
+  bounded experimental family separate from Rule v1.
+- Trigger, scale, stability, clustering, isolation, response, fit/calibration,
+  process feasibility, and Pareto policies are frozen before real execution.
+- Feasibility screening parameters cannot become final runtime parameters by
+  implicit reuse; an Agent has no numerical authority.
+- Rule v1, Verifier v1, and Runtime v1 are unchanged. Rule v2 and future
+  verifier/runtime work remain additive migration plans only.
+- No real HAI value was accessed and no process was selected. TASK-039BR2 is
+  next; TASK-039C remains unauthorized.

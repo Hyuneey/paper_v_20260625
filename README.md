@@ -44,8 +44,10 @@ TASK-039B is frozen as `blocked_no_feasible_delayed_response_process`: both P1
 and P3 lacked eligible reviewed, nonconstant discrete control sources under the
 original MVP policy. TASK-039BR0 found documented continuous control-source
 morphology sufficient to justify a separately versioned feasibility protocol.
-The next task is TASK-039BR1, not TASK-039C. No process, candidate graph,
-production GDN backend, rule, or detector result has been selected.
+TASK-039BR1 has now preregistered that bounded protocol without reading real
+HAI values or creating Rule v2. The next task is TASK-039BR2, not TASK-039C.
+No process, candidate graph, production GDN backend, rule, or detector result
+has been selected.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

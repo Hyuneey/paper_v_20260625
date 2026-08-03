@@ -60,6 +60,19 @@ TASK039BR0_TYPES = {
     "rule_v1_compatibility_record_v1",
     "task039br0_data_access_audit_v1",
 }
+TASK039BR1_TYPES = {
+    "continuous_step_feasibility_policy_v1",
+    "continuous_step_parameter_provenance_policy_v1",
+    "continuous_step_process_selection_policy_v1",
+    "continuous_step_protocol_bundle_v1",
+    "continuous_step_relation_family_v1",
+    "continuous_step_response_policy_v1",
+    "continuous_step_rule_migration_plan_v1",
+    "continuous_step_runtime_migration_plan_v1",
+    "continuous_step_trigger_policy_v1",
+    "continuous_step_unsupported_policy_v1",
+    "continuous_step_verifier_migration_plan_v1",
+}
 
 
 class Task039P1CSchemaBoundaryTests(unittest.TestCase):
@@ -70,13 +83,15 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
         self.assertTrue(TASK039A_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039AR_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039BR0_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 29)
+        self.assertTrue(TASK039BR1_TYPES.issubset(registry.artifact_types))
+        self.assertEqual(len(registry.artifact_types), 40)
         for artifact_type in (
             P1C_TYPES
             | P1D_TYPES
             | TASK039A_TYPES
             | TASK039AR_TYPES
             | TASK039BR0_TYPES
+            | TASK039BR1_TYPES
         ):
             Draft202012Validator.check_schema(
                 registry.schema_for(artifact_type)

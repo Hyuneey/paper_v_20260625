@@ -86,15 +86,21 @@ Status: `blocked_no_feasible_delayed_response_process`. Both processes had
 zero eligible reviewed, nonconstant binary/discrete sources. No process, view,
 or authoritative split was frozen.
 
-## TASK-039BR0/BR1: Relation-Family Recovery
+## TASK-039BR0/BR1/BR2: Relation-Family Recovery
 
 TASK-039BR0 completed the source root-cause audit and selected
 `versioned_continuous_step_delayed_response_on_HAI`. The finding is structural
 source-morphology readiness only and does not select P1 or P3.
 
-TASK-039BR1 is next. It must preregister a second bounded continuous-step
-trigger family and feasibility protocol without modifying Rule v1 or lowering
-TASK-039B gates.
+TASK-039BR1 completed the preregistration of the second bounded
+`continuous_step_delayed_response_v1` family, fit-only source/target scale
+rules, normal-only support gates, process Pareto policy, and additive migration
+plans. Rule v1, Verifier v1, and Runtime v1 remain unchanged; Rule v2 was not
+created.
+
+TASK-039BR2 is next. It may execute the frozen protocol on authorized normal
+train1-3 values and must preserve train4, test, label, summary, and custody
+boundaries. It may freeze one process only under the preregistered gate.
 
 ## TASK-039C Onward
 

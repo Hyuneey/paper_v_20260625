@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_step_parameter_provenance_policy_v1_schema.json",
+  "title": "Continuous Step Parameter Provenance Policy V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "parameter_classes",
+    "screening_implicit_promotion_prohibited",
+    "final_recalibration_task",
+    "deterministic_project_artifacts_required",
+    "agent_allowed_actions",
+    "agent_prohibited_actions",
+    "labels_or_test_performance_used",
+    "agent_number_authority",
+    "creation_metadata",
+    "schema_version",
+    "artifact_type",
+    "artifact_hash"
+  ],
+  "properties": {
+    "parameter_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "screening_implicit_promotion_prohibited": {
+      "type": "boolean"
+    },
+    "final_recalibration_task": {
+      "type": "string"
+    },
+    "deterministic_project_artifacts_required": {
+      "type": "boolean"
+    },
+    "agent_allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "agent_prohibited_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "labels_or_test_performance_used": {
+      "type": "boolean"
+    },
+    "agent_number_authority": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "created_by",
+        "code_commit",
+        "config_hash"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "continuous_step_parameter_provenance_policy_v1"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

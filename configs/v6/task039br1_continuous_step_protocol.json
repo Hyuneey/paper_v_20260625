@@ -1,0 +1,131 @@
+{
+  "artifact_type": "task039br1_continuous_step_protocol_config",
+  "br0_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+  "br0_decision_hash": "3eceafb47742af9fc1be5dba82f148d33e31ba3095ba4b8a2d513ab9d4632a7b",
+  "br0_readiness_hash": "c1968c53d605756cd9d16f72306c730fcf6a9b3ceaf61368eba78157bb84f7a2",
+  "calibration_gate": {
+    "consistency": 0.6,
+    "isolated": 5,
+    "retuning": false,
+    "robust_effect_ratio": 1.0
+  },
+  "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+  "directional_families": [
+    "step_up->target_increase",
+    "step_up->target_decrease",
+    "step_down->target_increase",
+    "step_down->target_decrease"
+  ],
+  "fit_gate": {
+    "consistency": 0.7,
+    "per_file_consistency": 0.6,
+    "per_file_isolated": 5,
+    "robust_effect_ratio": 2.0,
+    "total_isolated": 20
+  },
+  "migration_boundaries": {
+    "rule_v1_modified": false,
+    "rule_v2_created": false,
+    "runtime_v1_modified": false,
+    "verifier_v1_modified": false
+  },
+  "numerical_provenance": {
+    "agent_number_authority": false,
+    "implicit_screening_parameter_promotion": false
+  },
+  "pareto_weighted_score": false,
+  "process_gate": {
+    "confirmed_pairs": 3,
+    "distinct_sources": 2,
+    "distinct_targets": 2,
+    "eligible_targets": 3,
+    "transfer_rate": 0.5,
+    "valid_sources": 2
+  },
+  "real_data_policy": {
+    "attack_or_test_access": false,
+    "process_selection": false,
+    "real_hai_feature_access": false,
+    "task039c_authorized": false
+  },
+  "relation_family_id": "continuous_step_delayed_response_v1",
+  "schema_version": "1.0.0",
+  "setpoints_excluded": true,
+  "source_eligibility": {
+    "data_behavior_grants_control_semantics": false,
+    "discrete_sources_routed_to_family": false,
+    "finite_nonconstant_repeated_changes_train1_train2_train3_required": true,
+    "manual_review_required": true,
+    "metadata_confidence": "sufficient_under_frozen_metadata_policy",
+    "observed_domain": "continuous",
+    "official_graph_grants_source_eligibility": false
+  },
+  "source_roles": [
+    "control_command",
+    "actuator_state",
+    "actuator_feedback"
+  ],
+  "source_scale_strategy": {
+    "fit_role_only": "normal_candidate_fit",
+    "minimum_nontrivial_amplitudes": 20,
+    "noise_scale": "max(1.4826*MAD(dx),numeric_epsilon)",
+    "q75_method": "linear_interpolation_index_0.75_times_n_minus_1",
+    "stability_tolerance": "max(3*source_noise_scale,0.10*source_step_threshold)",
+    "step_threshold": "max(5*source_noise_scale,Q75(A_positive))"
+  },
+  "source_trigger": {
+    "cross_source_isolation_radius_seconds": 2,
+    "minimum_stability_fraction": 0.8,
+    "numeric_epsilon": 1e-12,
+    "post_hold_window_seconds": 5,
+    "pre_window_seconds": 5,
+    "sampling_interval_seconds": 1.0,
+    "source_refractory_seconds": 10
+  },
+  "target_response": {
+    "horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "noise_scale": "max(1.4826*MAD(one_step_target_changes),numeric_epsilon)",
+    "pre_window_seconds": 5,
+    "response_window_seconds": 3
+  },
+  "task_id": "TASK-039BR1",
+  "unsupported_state_registries": {
+    "process": [
+      "feasible",
+      "infeasible",
+      "selected",
+      "not_selected",
+      "selection_indeterminate"
+    ],
+    "source_event": [
+      "supported",
+      "unsupported_semantics",
+      "unsupported_source_scale",
+      "insufficient_nontrivial_amplitudes",
+      "insufficient_fit_events",
+      "insufficient_isolated_events",
+      "unstable_pre_level",
+      "unstable_post_level",
+      "cross_file_unavailable",
+      "manual_data_conflict",
+      "invalid_source"
+    ],
+    "source_target": [
+      "fit_supported",
+      "fit_unsupported",
+      "calibration_confirmed",
+      "calibration_conflict",
+      "right_censored",
+      "direction_unstable",
+      "effect_too_small",
+      "insufficient_support",
+      "invalid_target"
+    ]
+  }
+}

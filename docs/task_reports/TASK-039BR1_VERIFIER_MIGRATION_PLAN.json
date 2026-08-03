@@ -1,0 +1,42 @@
+{
+  "artifact_hash": "fd889ea6321ff11f3b9802f482a9f15ceec8d711130c4843f89b396265d94069",
+  "artifact_type": "continuous_step_verifier_migration_plan_v1",
+  "creation_metadata": {
+    "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+    "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+    "created_at": "2026-08-03T00:00:00+09:00",
+    "created_by": "TASK-039BR1"
+  },
+  "implementation_created": false,
+  "ordered_future_checks": [
+    "schema_and_version",
+    "source_and_target_cardinality",
+    "documented_continuous_source_semantics",
+    "trigger_type",
+    "explicit_source_step_direction",
+    "complete_trigger_parameter_references",
+    "source_parameter_provenance",
+    "fit_only_source_threshold_derivation",
+    "no_calibration_guard_test_trigger_influence",
+    "target_response_direction",
+    "target_parameter_provenance",
+    "lag_and_response_window_consistency",
+    "evidence_and_graph_binding",
+    "normal_reference_binding",
+    "normal_only_construction_evidence",
+    "prohibited_causal_claims",
+    "complexity",
+    "abstention_policy",
+    "no_validity_or_runtime_preclaim",
+    "accepted_rule_hash_binding"
+  ],
+  "plan_status": "migration_plan_only",
+  "schema_version": "1.0.0",
+  "validity_excludes": [
+    "normal_false_fire_assessment",
+    "inner_utility",
+    "detector_FN_recovery",
+    "deployment_selection"
+  ],
+  "verifier_v1_modified": false
+}

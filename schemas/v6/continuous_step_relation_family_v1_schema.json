@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_step_relation_family_v1_schema.json",
+  "title": "Continuous Step Relation Family V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "family_id",
+    "family_kind",
+    "authority_status",
+    "source_cardinality",
+    "target_cardinality",
+    "source_target_must_differ",
+    "trigger_type",
+    "source_step_directions",
+    "target_directions",
+    "directional_families",
+    "violation_semantics",
+    "runtime_outputs",
+    "supported_claims",
+    "prohibited_claims",
+    "rule_v1_compatible",
+    "requires_versioned_rule_semantics",
+    "creation_metadata",
+    "schema_version",
+    "artifact_type",
+    "artifact_hash"
+  ],
+  "properties": {
+    "family_id": {
+      "type": "string"
+    },
+    "family_kind": {
+      "type": "string"
+    },
+    "authority_status": {
+      "type": "string"
+    },
+    "source_cardinality": {
+      "type": "integer"
+    },
+    "target_cardinality": {
+      "type": "integer"
+    },
+    "source_target_must_differ": {
+      "type": "boolean"
+    },
+    "trigger_type": {
+      "type": "string"
+    },
+    "source_step_directions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_directions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "directional_families": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "violation_semantics": {
+      "type": "string"
+    },
+    "runtime_outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supported_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prohibited_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rule_v1_compatible": {
+      "type": "boolean"
+    },
+    "requires_versioned_rule_semantics": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "created_by",
+        "code_commit",
+        "config_hash"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "continuous_step_relation_family_v1"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

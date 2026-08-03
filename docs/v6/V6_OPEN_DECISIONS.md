@@ -28,18 +28,20 @@ evidence. TASK-039P0 creates no Rule v2.
 Official HAI 23.05 provenance is verified. TASK-039B did not select P1 or P3:
 both failed the discrete-source gate. TASK-039BR0 found continuous control
 source morphology sufficient to justify a second versioned feasibility
-protocol, but did not evaluate a source-target pair. TASK-039BR1 must resolve
-the continuous-step contract and process-neutral feasibility policy before any
-process selection. Label or test content cannot inform this decision.
+protocol, but did not evaluate a source-target pair. TASK-039BR1 froze the
+continuous-step contract and process-neutral policy without real execution.
+TASK-039BR2 must now determine feasibility and may select a process only under
+that policy. Label or test content cannot inform this decision.
 
 ## Continuous-Step Rule Semantics
 
 Rule v1 supports a literal `state_changes_to` trigger and remains unchanged.
 The continuous-step route therefore requires versioned rule semantics. Open
-questions for TASK-039BR1 include deterministic step-threshold provenance,
-direction, duration/persistence, verifier authority, runtime abstention, and
-claim boundaries. This must remain a predefined family, not free-form trigger
-invention.
+TASK-039BR1 resolved the experimental trigger, direction, fit-only screening
+provenance, support gates, abstention plan, and claim boundary. A final Rule v2
+schema, canonical parameter artifacts, verifier implementation, runtime
+implementation, and operating-regime calibration remain open. This remains a
+predefined family, not free-form trigger invention.
 
 ## Evaluation and Sealed Test
 

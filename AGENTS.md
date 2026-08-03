@@ -67,6 +67,12 @@ delayed-response pair or select P1/P3. TASK-039BR1 is next and must define a
 second predefined versioned continuous-step family before feasibility work.
 TASK-039C remains unauthorized.
 
+TASK-039BR1 completed the protocol freeze for
+`continuous_step_delayed_response_v1`. It grants no rule, verifier, runtime,
+or process-selection authority and accessed no real HAI values. Rule v1 is
+unchanged and Rule v2 remains a migration plan. TASK-039BR2 is the next task;
+it may execute only the frozen normal-only P1/P3 feasibility protocol.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

@@ -49,8 +49,16 @@ Completed source root-cause diagnosis. Frozen route:
 
 ## TASK-039BR1
 
-Next task: define and preregister the second bounded continuous-step relation
-family and its feasibility protocol. Do not select P1 or P3 in advance.
+Completed protocol freeze for `continuous_step_delayed_response_v1`. Trigger,
+response, fit/calibration support, process selection, numeric provenance, and
+future additive migration requirements are fixed. No real values were read,
+no process was selected, and no authority was granted.
+
+## TASK-039BR2
+
+Next task: execute the preregistered normal-only continuous-step feasibility
+protocol for P1 and P3 and freeze exactly one process only if the frozen gate
+and Pareto policy permit it. TASK-039C remains unauthorized until BR2 passes.
 
 ## TASK-039C Onward
 

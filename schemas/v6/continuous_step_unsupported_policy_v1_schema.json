@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_step_unsupported_policy_v1_schema.json",
+  "title": "Continuous Step Unsupported Policy V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_event_statuses",
+    "source_target_statuses",
+    "process_outcomes",
+    "future_runtime_abstention_reasons",
+    "invalid_rule_is_abstention",
+    "parameter_binding_failure_is_abstention",
+    "isolation_is_runtime_abstention_rule",
+    "no_rule_created_in_br1",
+    "creation_metadata",
+    "schema_version",
+    "artifact_type",
+    "artifact_hash"
+  ],
+  "properties": {
+    "source_event_statuses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_target_statuses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "process_outcomes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "future_runtime_abstention_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "invalid_rule_is_abstention": {
+      "type": "boolean"
+    },
+    "parameter_binding_failure_is_abstention": {
+      "type": "boolean"
+    },
+    "isolation_is_runtime_abstention_rule": {
+      "type": "boolean"
+    },
+    "no_rule_created_in_br1": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "created_by",
+        "code_commit",
+        "config_hash"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "continuous_step_unsupported_policy_v1"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

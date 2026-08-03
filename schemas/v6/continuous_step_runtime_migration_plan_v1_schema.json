@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_step_runtime_migration_plan_v1_schema.json",
+  "title": "Continuous Step Runtime Migration Plan V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "plan_status",
+    "required_trace_fields",
+    "abstention_reasons",
+    "deterministic_trace_required",
+    "llm_free_runtime_required",
+    "explanation_prohibited_inventions",
+    "runtime_v1_modified",
+    "runtime_implementation_created",
+    "rule_execution_performed",
+    "creation_metadata",
+    "schema_version",
+    "artifact_type",
+    "artifact_hash"
+  ],
+  "properties": {
+    "plan_status": {
+      "type": "string"
+    },
+    "required_trace_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "abstention_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deterministic_trace_required": {
+      "type": "boolean"
+    },
+    "llm_free_runtime_required": {
+      "type": "boolean"
+    },
+    "explanation_prohibited_inventions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "runtime_v1_modified": {
+      "type": "boolean"
+    },
+    "runtime_implementation_created": {
+      "type": "boolean"
+    },
+    "rule_execution_performed": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "created_by",
+        "code_commit",
+        "config_hash"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "continuous_step_runtime_migration_plan_v1"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

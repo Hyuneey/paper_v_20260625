@@ -1,0 +1,50 @@
+{
+  "additive_version_required": true,
+  "artifact_hash": "4d80b083740d6b347cc91ca7ba94d931c67464b0cb4d8ef5ee450bb33db88a0b",
+  "artifact_type": "continuous_step_rule_migration_plan_v1",
+  "creation_metadata": {
+    "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+    "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+    "created_at": "2026-08-03T00:00:00+09:00",
+    "created_by": "TASK-039BR1"
+  },
+  "expected_effect_fields": [
+    "effect_type=delayed_change",
+    "direction",
+    "target_variables=exactly_one",
+    "response_threshold_parameter_ref",
+    "lag_parameter_ref",
+    "response_window_parameter_ref"
+  ],
+  "independent_schema_and_parser_required": true,
+  "plan_status": "migration_plan_only",
+  "preserved_contracts": [
+    "one_source",
+    "one_target",
+    "missing_expected_response",
+    "binary_anomaly",
+    "abstention",
+    "normal_reference_binding",
+    "evidence_binding",
+    "graph_edge_binding",
+    "complexity_limit",
+    "review_history",
+    "deterministic_verifier_authority",
+    "llm_free_runtime"
+  ],
+  "route_continuous_rules_through_rule_v1": false,
+  "rule_v1_modified": false,
+  "rule_v2_created": false,
+  "schema_version": "1.0.0",
+  "task032_hash_preservation_required": true,
+  "trigger_fields": [
+    "trigger_type=sustained_continuous_step",
+    "variable",
+    "step_direction",
+    "step_threshold_parameter_ref",
+    "pre_window_parameter_ref",
+    "post_hold_parameter_ref",
+    "stability_tolerance_parameter_ref",
+    "refractory_parameter_ref"
+  ]
+}

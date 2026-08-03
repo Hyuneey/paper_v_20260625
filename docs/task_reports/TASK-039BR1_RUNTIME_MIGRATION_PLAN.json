@@ -1,0 +1,52 @@
+{
+  "abstention_reasons": [
+    "insufficient_pre_window",
+    "incomplete_post_hold_window",
+    "incomplete_target_response_window",
+    "nonfinite_source_window",
+    "nonfinite_target_window",
+    "outside_authorized_operating_regime",
+    "file_or_split_boundary"
+  ],
+  "artifact_hash": "5660b4c38875c415458beee61338035574de8313cc65c29d4e7f288f329404fa",
+  "artifact_type": "continuous_step_runtime_migration_plan_v1",
+  "creation_metadata": {
+    "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+    "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+    "created_at": "2026-08-03T00:00:00+09:00",
+    "created_by": "TASK-039BR1"
+  },
+  "deterministic_trace_required": true,
+  "explanation_prohibited_inventions": [
+    "causes",
+    "attack_identities",
+    "hidden_physical_mechanisms",
+    "unsupported_variables",
+    "unobserved_numeric_values"
+  ],
+  "llm_free_runtime_required": true,
+  "plan_status": "migration_plan_only",
+  "required_trace_fields": [
+    "source_variable",
+    "source_step_direction",
+    "pre_level_aggregate",
+    "post_level_aggregate",
+    "observed_step_amplitude",
+    "step_threshold_parameter_reference",
+    "step_threshold",
+    "stability_result",
+    "event_time",
+    "target_variable",
+    "expected_target_direction",
+    "lag_window",
+    "observed_target_response",
+    "response_threshold_parameter_reference",
+    "response_threshold",
+    "violation_result",
+    "abstention_reason"
+  ],
+  "rule_execution_performed": false,
+  "runtime_implementation_created": false,
+  "runtime_v1_modified": false,
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,502 @@
+{
+  "artifact_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+  "artifact_type": "continuous_step_protocol_bundle_v1",
+  "br0_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+  "br0_decision_hash": "3eceafb47742af9fc1be5dba82f148d33e31ba3095ba4b8a2d513ab9d4632a7b",
+  "br0_readiness_hash": "c1968c53d605756cd9d16f72306c730fcf6a9b3ceaf61368eba78157bb84f7a2",
+  "creation_metadata": {
+    "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+    "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+    "created_at": "2026-08-03T00:00:00+09:00",
+    "created_by": "TASK-039BR1"
+  },
+  "feasibility_policy": {
+    "artifact_hash": "e644b0cbd0536ce426fd2baa60c36e968d53fc922ebb6b704834cfa5b341e26d",
+    "artifact_type": "continuous_step_feasibility_policy_v1",
+    "calibration_directional_consistency_minimum": 0.6,
+    "calibration_file": "hai-train3.csv",
+    "calibration_isolated_events_minimum": 5,
+    "calibration_robust_effect_ratio_minimum": 1.0,
+    "candidate_fit_files": [
+      "hai-train1.csv",
+      "hai-train2.csv"
+    ],
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "final_operating_regime_binding_required": true,
+    "fit_direction_agreement_required": true,
+    "fit_directional_consistency_minimum": 0.7,
+    "fit_per_file_directional_consistency_minimum": 0.6,
+    "fit_per_file_isolated_events_minimum": 5,
+    "fit_robust_effect_ratio_minimum": 2.0,
+    "fit_total_isolated_events_minimum": 20,
+    "frozen_fit_fields_on_calibration": [
+      "source_step_threshold",
+      "source_stability_tolerance",
+      "target_response_direction",
+      "response_horizon"
+    ],
+    "multiple_horizons_do_not_inflate_pairs": true,
+    "normal_guard_values_prohibited": true,
+    "ranking_order": [
+      "highest_directional_consistency",
+      "highest_robust_effect_ratio",
+      "shortest_horizon",
+      "lexicographic_exact_tie_only"
+    ],
+    "real_data_executed": false,
+    "required_aggregate_statistics": [
+      "usable_isolated_event_count",
+      "right_censored_count",
+      "median_target_response",
+      "directional_consistency",
+      "robust_effect_ratio",
+      "per_file_support"
+    ],
+    "schema_version": "1.0.0",
+    "screening_dimensions": [
+      "source",
+      "source_step_direction",
+      "target",
+      "target_response_direction",
+      "response_horizon"
+    ],
+    "unconditioned_screening_feasibility_only": true,
+    "weighted_score_used": false
+  },
+  "next_task": "TASK-039BR2",
+  "parameter_provenance_policy": {
+    "agent_allowed_actions": [
+      "select_approved_parameter_reference",
+      "select_supported_directional_relation",
+      "select_closed_relation_family",
+      "request_verifier_guided_repair",
+      "return_no_rule"
+    ],
+    "agent_number_authority": false,
+    "agent_prohibited_actions": [
+      "invent_source_step_threshold",
+      "invent_stability_tolerance",
+      "invent_lag",
+      "invent_target_response_threshold",
+      "rewrite_parameter_value",
+      "choose_number_from_raw_samples",
+      "use_labels_or_test_performance"
+    ],
+    "artifact_hash": "c710e31111756a79289d7b25132b912a3a1f2200a62418d5e4f237eb04efe8a3",
+    "artifact_type": "continuous_step_parameter_provenance_policy_v1",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "deterministic_project_artifacts_required": true,
+    "final_recalibration_task": "TASK-039D_or_versioned_successor",
+    "labels_or_test_performance_used": false,
+    "parameter_classes": [
+      "feasibility_screening",
+      "final_calibration",
+      "runtime"
+    ],
+    "schema_version": "1.0.0",
+    "screening_implicit_promotion_prohibited": true
+  },
+  "process_selected": false,
+  "process_selection_granted": false,
+  "process_selection_policy": {
+    "artifact_hash": "907b76bae5603a1e0de79a8f4cf07ebe6fc81440f7362ef99cad877495bcf328",
+    "artifact_type": "continuous_step_process_selection_policy_v1",
+    "compared_processes": [
+      "P1",
+      "P3"
+    ],
+    "confirmed_directional_pair_count_minimum": 3,
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "distinct_confirmed_source_count_minimum": 2,
+    "distinct_confirmed_target_count_minimum": 2,
+    "eligible_target_count_minimum": 3,
+    "maximize_metrics": [
+      "distinct_confirmed_sources",
+      "distinct_confirmed_targets",
+      "calibration_confirmed_directional_pairs",
+      "fit_to_calibration_transfer_rate",
+      "median_calibration_isolated_event_support",
+      "manual_metadata_coverage"
+    ],
+    "minimize_metrics": [
+      "metadata_unresolved_ratio",
+      "non_isolated_source_event_ratio",
+      "missing_or_nonfinite_rate"
+    ],
+    "neither_feasible_status": "blocked_no_feasible_continuous_step_process",
+    "non_dominance_status": "blocked_continuous_process_selection_indeterminate",
+    "normal_guard_values_prohibited": true,
+    "prohibited_access_count_maximum": 0,
+    "prohibited_selection_bases": [
+      "total_variable_count",
+      "BR0_candidate_count",
+      "official_graph_availability",
+      "attack_count",
+      "detector_performance",
+      "implementation_convenience",
+      "process_identifier"
+    ],
+    "required_calibration_file": "hai-train3.csv",
+    "required_fit_files": [
+      "hai-train1.csv",
+      "hai-train2.csv"
+    ],
+    "schema_version": "1.0.0",
+    "source_threshold_count_minimum": 2,
+    "strict_improvement_metric_minimum": 2,
+    "transfer_rate_minimum": 0.5,
+    "weighted_score_used": false
+  },
+  "real_data_accessed": false,
+  "relation_family": {
+    "artifact_hash": "80b86b10ec3cf6dff338066fd025257d1a755c43a9685baca5fbce59bb810997",
+    "artifact_type": "continuous_step_relation_family_v1",
+    "authority_status": "preregistered_experimental_protocol",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "directional_families": [
+      "step_up->target_increase",
+      "step_up->target_decrease",
+      "step_down->target_increase",
+      "step_down->target_decrease"
+    ],
+    "family_id": "continuous_step_delayed_response_v1",
+    "family_kind": "delayed_response",
+    "prohibited_claims": [
+      "physical_causality",
+      "root_cause",
+      "universal_invariant",
+      "complete_process_model",
+      "attack_mechanism"
+    ],
+    "requires_versioned_rule_semantics": true,
+    "rule_v1_compatible": false,
+    "runtime_outputs": [
+      "binary_anomaly",
+      "abstain"
+    ],
+    "schema_version": "1.0.0",
+    "source_cardinality": 1,
+    "source_step_directions": [
+      "step_up",
+      "step_down"
+    ],
+    "source_target_must_differ": true,
+    "supported_claims": [
+      "normal_data_step_conditioned_association",
+      "typical_delayed_response",
+      "expected_response_direction",
+      "normal_support_and_transfer"
+    ],
+    "target_cardinality": 1,
+    "target_directions": [
+      "increase",
+      "decrease"
+    ],
+    "trigger_type": "sustained_continuous_step",
+    "violation_semantics": "missing_expected_response"
+  },
+  "response_policy": {
+    "absolute_response_only_prohibited": true,
+    "artifact_hash": "92674c55757cc7d49700ce081972640b597b2ab5ad1f616f0a04315a012a1cf1",
+    "artifact_type": "continuous_step_response_policy_v1",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "decrease_evidence_rule": "target_response<-target_noise_scale",
+    "increase_evidence_rule": "target_response>target_noise_scale",
+    "preserve_response_direction": true,
+    "response_horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "right_censor_incomplete_windows": true,
+    "schema_version": "1.0.0",
+    "target_baseline_formula": "median(y[t-5:t])",
+    "target_noise_fit_role": "normal_candidate_fit",
+    "target_noise_scale_formula": "max(1.4826*MAD(one_step_target_changes),numeric_epsilon)",
+    "target_observed_domain": "continuous",
+    "target_pre_window_seconds": 5,
+    "target_response_formula": "median(y[t+h:t+h+3])-target_baseline",
+    "target_response_window_seconds": 3
+  },
+  "rule_migration_plan": {
+    "additive_version_required": true,
+    "artifact_hash": "4d80b083740d6b347cc91ca7ba94d931c67464b0cb4d8ef5ee450bb33db88a0b",
+    "artifact_type": "continuous_step_rule_migration_plan_v1",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "expected_effect_fields": [
+      "effect_type=delayed_change",
+      "direction",
+      "target_variables=exactly_one",
+      "response_threshold_parameter_ref",
+      "lag_parameter_ref",
+      "response_window_parameter_ref"
+    ],
+    "independent_schema_and_parser_required": true,
+    "plan_status": "migration_plan_only",
+    "preserved_contracts": [
+      "one_source",
+      "one_target",
+      "missing_expected_response",
+      "binary_anomaly",
+      "abstention",
+      "normal_reference_binding",
+      "evidence_binding",
+      "graph_edge_binding",
+      "complexity_limit",
+      "review_history",
+      "deterministic_verifier_authority",
+      "llm_free_runtime"
+    ],
+    "route_continuous_rules_through_rule_v1": false,
+    "rule_v1_modified": false,
+    "rule_v2_created": false,
+    "schema_version": "1.0.0",
+    "task032_hash_preservation_required": true,
+    "trigger_fields": [
+      "trigger_type=sustained_continuous_step",
+      "variable",
+      "step_direction",
+      "step_threshold_parameter_ref",
+      "pre_window_parameter_ref",
+      "post_hold_parameter_ref",
+      "stability_tolerance_parameter_ref",
+      "refractory_parameter_ref"
+    ]
+  },
+  "runtime_authority_granted": false,
+  "runtime_migration_plan": {
+    "abstention_reasons": [
+      "insufficient_pre_window",
+      "incomplete_post_hold_window",
+      "incomplete_target_response_window",
+      "nonfinite_source_window",
+      "nonfinite_target_window",
+      "outside_authorized_operating_regime",
+      "file_or_split_boundary"
+    ],
+    "artifact_hash": "5660b4c38875c415458beee61338035574de8313cc65c29d4e7f288f329404fa",
+    "artifact_type": "continuous_step_runtime_migration_plan_v1",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "deterministic_trace_required": true,
+    "explanation_prohibited_inventions": [
+      "causes",
+      "attack_identities",
+      "hidden_physical_mechanisms",
+      "unsupported_variables",
+      "unobserved_numeric_values"
+    ],
+    "llm_free_runtime_required": true,
+    "plan_status": "migration_plan_only",
+    "required_trace_fields": [
+      "source_variable",
+      "source_step_direction",
+      "pre_level_aggregate",
+      "post_level_aggregate",
+      "observed_step_amplitude",
+      "step_threshold_parameter_reference",
+      "step_threshold",
+      "stability_result",
+      "event_time",
+      "target_variable",
+      "expected_target_direction",
+      "lag_window",
+      "observed_target_response",
+      "response_threshold_parameter_reference",
+      "response_threshold",
+      "violation_result",
+      "abstention_reason"
+    ],
+    "rule_execution_performed": false,
+    "runtime_implementation_created": false,
+    "runtime_v1_modified": false,
+    "schema_version": "1.0.0"
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_continuous_step_relation_protocol_freeze",
+  "task039c_authorized": false,
+  "task_id": "TASK-039BR1",
+  "trigger_policy": {
+    "artifact_hash": "6049632b103559e1fc7fe8de4d0824581f7204f8fdf5142a9944f29debc83acc",
+    "artifact_type": "continuous_step_trigger_policy_v1",
+    "calibration_or_target_feedback_used": false,
+    "candidate_fit_files": [
+      "hai-train1.csv",
+      "hai-train2.csv"
+    ],
+    "cluster_retention_policy": "largest_absolute_amplitude_within_10_seconds",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "cross_file_or_split_events_allowed": false,
+    "cross_source_isolation_radius_seconds": 2,
+    "data_behavior_grants_control_semantics": false,
+    "directions_retained_separately": true,
+    "discrete_sources_routed_to_family": false,
+    "exact_amplitude_tie_policy": "earliest_timestamp",
+    "final_rule_parameter_authority": false,
+    "finite_nonconstant_repeated_changes_all_fit_and_calibration_required": true,
+    "manual_review_required": true,
+    "metadata_confidence_policy": "sufficient_under_frozen_metadata_policy",
+    "minimum_nontrivial_amplitudes": 20,
+    "minimum_stability_fraction": 0.8,
+    "numeric_epsilon": 1e-12,
+    "observed_domain": "continuous",
+    "official_graph_grants_source_eligibility": false,
+    "post_hold_window_seconds": 5,
+    "post_level_formula": "median(x[t:t+5])",
+    "pre_level_formula": "median(x[t-5:t])",
+    "pre_window_seconds": 5,
+    "q75_method": "linear_interpolation_index_0.75_times_n_minus_1",
+    "sampling_interval_seconds": 1.0,
+    "schema_version": "1.0.0",
+    "setpoints_excluded": true,
+    "source_noise_scale_formula": "max(1.4826*MAD(dx),numeric_epsilon)",
+    "source_refractory_seconds": 10,
+    "source_roles": [
+      "control_command",
+      "actuator_state",
+      "actuator_feedback"
+    ],
+    "source_stability_tolerance_formula": "max(3*source_noise_scale,0.10*source_step_threshold)",
+    "source_step_threshold_formula": "max(5*source_noise_scale,Q75(A_positive))",
+    "step_amplitude_formula": "post_level-pre_level"
+  },
+  "unsupported_policy": {
+    "artifact_hash": "18cbfa1965324a6482b967bbf7eed5ce58917930c5b2a1b07a369b5d62b2012b",
+    "artifact_type": "continuous_step_unsupported_policy_v1",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "future_runtime_abstention_reasons": [
+      "insufficient_pre_window",
+      "incomplete_post_hold_window",
+      "incomplete_target_response_window",
+      "nonfinite_source_window",
+      "nonfinite_target_window",
+      "outside_authorized_operating_regime",
+      "file_or_split_boundary"
+    ],
+    "invalid_rule_is_abstention": false,
+    "isolation_is_runtime_abstention_rule": false,
+    "no_rule_created_in_br1": false,
+    "parameter_binding_failure_is_abstention": false,
+    "process_outcomes": [
+      "feasible",
+      "infeasible",
+      "selected",
+      "not_selected",
+      "selection_indeterminate"
+    ],
+    "schema_version": "1.0.0",
+    "source_event_statuses": [
+      "supported",
+      "unsupported_semantics",
+      "unsupported_source_scale",
+      "insufficient_nontrivial_amplitudes",
+      "insufficient_fit_events",
+      "insufficient_isolated_events",
+      "unstable_pre_level",
+      "unstable_post_level",
+      "cross_file_unavailable",
+      "manual_data_conflict",
+      "invalid_source"
+    ],
+    "source_target_statuses": [
+      "fit_supported",
+      "fit_unsupported",
+      "calibration_confirmed",
+      "calibration_conflict",
+      "right_censored",
+      "direction_unstable",
+      "effect_too_small",
+      "insufficient_support",
+      "invalid_target"
+    ]
+  },
+  "validity_authority_granted": false,
+  "verifier_migration_plan": {
+    "artifact_hash": "fd889ea6321ff11f3b9802f482a9f15ceec8d711130c4843f89b396265d94069",
+    "artifact_type": "continuous_step_verifier_migration_plan_v1",
+    "creation_metadata": {
+      "code_commit": "1cd670fe81f627dad79590709a7f7eaea2671460",
+      "config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+      "created_at": "2026-08-03T00:00:00+09:00",
+      "created_by": "TASK-039BR1"
+    },
+    "implementation_created": false,
+    "ordered_future_checks": [
+      "schema_and_version",
+      "source_and_target_cardinality",
+      "documented_continuous_source_semantics",
+      "trigger_type",
+      "explicit_source_step_direction",
+      "complete_trigger_parameter_references",
+      "source_parameter_provenance",
+      "fit_only_source_threshold_derivation",
+      "no_calibration_guard_test_trigger_influence",
+      "target_response_direction",
+      "target_parameter_provenance",
+      "lag_and_response_window_consistency",
+      "evidence_and_graph_binding",
+      "normal_reference_binding",
+      "normal_only_construction_evidence",
+      "prohibited_causal_claims",
+      "complexity",
+      "abstention_policy",
+      "no_validity_or_runtime_preclaim",
+      "accepted_rule_hash_binding"
+    ],
+    "plan_status": "migration_plan_only",
+    "schema_version": "1.0.0",
+    "validity_excludes": [
+      "normal_false_fire_assessment",
+      "inner_utility",
+      "detector_FN_recovery",
+      "deployment_selection"
+    ],
+    "verifier_v1_modified": false
+  }
+}

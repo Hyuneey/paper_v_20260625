@@ -1,0 +1,1238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_step_protocol_bundle_v1_schema.json",
+  "title": "Continuous Step Protocol Bundle V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "status",
+    "br0_commit",
+    "br0_decision_hash",
+    "br0_readiness_hash",
+    "relation_family",
+    "trigger_policy",
+    "response_policy",
+    "feasibility_policy",
+    "process_selection_policy",
+    "unsupported_policy",
+    "parameter_provenance_policy",
+    "rule_migration_plan",
+    "verifier_migration_plan",
+    "runtime_migration_plan",
+    "validity_authority_granted",
+    "runtime_authority_granted",
+    "process_selection_granted",
+    "process_selected",
+    "task039c_authorized",
+    "real_data_accessed",
+    "next_task",
+    "creation_metadata",
+    "schema_version",
+    "artifact_type",
+    "artifact_hash"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "br0_commit": {
+      "type": "string"
+    },
+    "br0_decision_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "br0_readiness_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "relation_family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "family_kind",
+        "authority_status",
+        "source_cardinality",
+        "target_cardinality",
+        "source_target_must_differ",
+        "trigger_type",
+        "source_step_directions",
+        "target_directions",
+        "directional_families",
+        "violation_semantics",
+        "runtime_outputs",
+        "supported_claims",
+        "prohibited_claims",
+        "rule_v1_compatible",
+        "requires_versioned_rule_semantics",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "family_id": {
+          "type": "string"
+        },
+        "family_kind": {
+          "type": "string"
+        },
+        "authority_status": {
+          "type": "string"
+        },
+        "source_cardinality": {
+          "type": "integer"
+        },
+        "target_cardinality": {
+          "type": "integer"
+        },
+        "source_target_must_differ": {
+          "type": "boolean"
+        },
+        "trigger_type": {
+          "type": "string"
+        },
+        "source_step_directions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_directions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "directional_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "violation_semantics": {
+          "type": "string"
+        },
+        "runtime_outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "supported_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prohibited_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rule_v1_compatible": {
+          "type": "boolean"
+        },
+        "requires_versioned_rule_semantics": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_relation_family_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "trigger_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sampling_interval_seconds",
+        "pre_window_seconds",
+        "post_hold_window_seconds",
+        "minimum_stability_fraction",
+        "source_refractory_seconds",
+        "cross_source_isolation_radius_seconds",
+        "numeric_epsilon",
+        "source_roles",
+        "observed_domain",
+        "manual_review_required",
+        "metadata_confidence_policy",
+        "finite_nonconstant_repeated_changes_all_fit_and_calibration_required",
+        "setpoints_excluded",
+        "discrete_sources_routed_to_family",
+        "data_behavior_grants_control_semantics",
+        "official_graph_grants_source_eligibility",
+        "cross_file_or_split_events_allowed",
+        "candidate_fit_files",
+        "source_noise_scale_formula",
+        "pre_level_formula",
+        "post_level_formula",
+        "step_amplitude_formula",
+        "minimum_nontrivial_amplitudes",
+        "q75_method",
+        "source_step_threshold_formula",
+        "source_stability_tolerance_formula",
+        "cluster_retention_policy",
+        "exact_amplitude_tie_policy",
+        "directions_retained_separately",
+        "calibration_or_target_feedback_used",
+        "final_rule_parameter_authority",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "sampling_interval_seconds": {
+          "type": "number"
+        },
+        "pre_window_seconds": {
+          "type": "integer"
+        },
+        "post_hold_window_seconds": {
+          "type": "integer"
+        },
+        "minimum_stability_fraction": {
+          "type": "number"
+        },
+        "source_refractory_seconds": {
+          "type": "integer"
+        },
+        "cross_source_isolation_radius_seconds": {
+          "type": "integer"
+        },
+        "numeric_epsilon": {
+          "type": "number"
+        },
+        "source_roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "observed_domain": {
+          "type": "string"
+        },
+        "manual_review_required": {
+          "type": "boolean"
+        },
+        "metadata_confidence_policy": {
+          "type": "string"
+        },
+        "finite_nonconstant_repeated_changes_all_fit_and_calibration_required": {
+          "type": "boolean"
+        },
+        "setpoints_excluded": {
+          "type": "boolean"
+        },
+        "discrete_sources_routed_to_family": {
+          "type": "boolean"
+        },
+        "data_behavior_grants_control_semantics": {
+          "type": "boolean"
+        },
+        "official_graph_grants_source_eligibility": {
+          "type": "boolean"
+        },
+        "cross_file_or_split_events_allowed": {
+          "type": "boolean"
+        },
+        "candidate_fit_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_noise_scale_formula": {
+          "type": "string"
+        },
+        "pre_level_formula": {
+          "type": "string"
+        },
+        "post_level_formula": {
+          "type": "string"
+        },
+        "step_amplitude_formula": {
+          "type": "string"
+        },
+        "minimum_nontrivial_amplitudes": {
+          "type": "integer"
+        },
+        "q75_method": {
+          "type": "string"
+        },
+        "source_step_threshold_formula": {
+          "type": "string"
+        },
+        "source_stability_tolerance_formula": {
+          "type": "string"
+        },
+        "cluster_retention_policy": {
+          "type": "string"
+        },
+        "exact_amplitude_tie_policy": {
+          "type": "string"
+        },
+        "directions_retained_separately": {
+          "type": "boolean"
+        },
+        "calibration_or_target_feedback_used": {
+          "type": "boolean"
+        },
+        "final_rule_parameter_authority": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_trigger_policy_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "response_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_observed_domain",
+        "target_pre_window_seconds",
+        "target_response_window_seconds",
+        "response_horizons_seconds",
+        "target_baseline_formula",
+        "target_response_formula",
+        "target_noise_scale_formula",
+        "target_noise_fit_role",
+        "increase_evidence_rule",
+        "decrease_evidence_rule",
+        "right_censor_incomplete_windows",
+        "preserve_response_direction",
+        "absolute_response_only_prohibited",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "target_observed_domain": {
+          "type": "string"
+        },
+        "target_pre_window_seconds": {
+          "type": "integer"
+        },
+        "target_response_window_seconds": {
+          "type": "integer"
+        },
+        "response_horizons_seconds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "target_baseline_formula": {
+          "type": "string"
+        },
+        "target_response_formula": {
+          "type": "string"
+        },
+        "target_noise_scale_formula": {
+          "type": "string"
+        },
+        "target_noise_fit_role": {
+          "type": "string"
+        },
+        "increase_evidence_rule": {
+          "type": "string"
+        },
+        "decrease_evidence_rule": {
+          "type": "string"
+        },
+        "right_censor_incomplete_windows": {
+          "type": "boolean"
+        },
+        "preserve_response_direction": {
+          "type": "boolean"
+        },
+        "absolute_response_only_prohibited": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_response_policy_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "feasibility_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_fit_files",
+        "calibration_file",
+        "normal_guard_values_prohibited",
+        "screening_dimensions",
+        "required_aggregate_statistics",
+        "ranking_order",
+        "fit_total_isolated_events_minimum",
+        "fit_per_file_isolated_events_minimum",
+        "fit_directional_consistency_minimum",
+        "fit_per_file_directional_consistency_minimum",
+        "fit_robust_effect_ratio_minimum",
+        "fit_direction_agreement_required",
+        "calibration_isolated_events_minimum",
+        "calibration_directional_consistency_minimum",
+        "calibration_robust_effect_ratio_minimum",
+        "frozen_fit_fields_on_calibration",
+        "multiple_horizons_do_not_inflate_pairs",
+        "unconditioned_screening_feasibility_only",
+        "final_operating_regime_binding_required",
+        "weighted_score_used",
+        "real_data_executed",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "candidate_fit_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "calibration_file": {
+          "type": "string"
+        },
+        "normal_guard_values_prohibited": {
+          "type": "boolean"
+        },
+        "screening_dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_aggregate_statistics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ranking_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fit_total_isolated_events_minimum": {
+          "type": "integer"
+        },
+        "fit_per_file_isolated_events_minimum": {
+          "type": "integer"
+        },
+        "fit_directional_consistency_minimum": {
+          "type": "number"
+        },
+        "fit_per_file_directional_consistency_minimum": {
+          "type": "number"
+        },
+        "fit_robust_effect_ratio_minimum": {
+          "type": "number"
+        },
+        "fit_direction_agreement_required": {
+          "type": "boolean"
+        },
+        "calibration_isolated_events_minimum": {
+          "type": "integer"
+        },
+        "calibration_directional_consistency_minimum": {
+          "type": "number"
+        },
+        "calibration_robust_effect_ratio_minimum": {
+          "type": "number"
+        },
+        "frozen_fit_fields_on_calibration": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "multiple_horizons_do_not_inflate_pairs": {
+          "type": "boolean"
+        },
+        "unconditioned_screening_feasibility_only": {
+          "type": "boolean"
+        },
+        "final_operating_regime_binding_required": {
+          "type": "boolean"
+        },
+        "weighted_score_used": {
+          "type": "boolean"
+        },
+        "real_data_executed": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_feasibility_policy_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "process_selection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compared_processes",
+        "source_threshold_count_minimum",
+        "eligible_target_count_minimum",
+        "confirmed_directional_pair_count_minimum",
+        "distinct_confirmed_source_count_minimum",
+        "distinct_confirmed_target_count_minimum",
+        "transfer_rate_minimum",
+        "required_fit_files",
+        "required_calibration_file",
+        "normal_guard_values_prohibited",
+        "prohibited_access_count_maximum",
+        "maximize_metrics",
+        "minimize_metrics",
+        "strict_improvement_metric_minimum",
+        "weighted_score_used",
+        "prohibited_selection_bases",
+        "neither_feasible_status",
+        "non_dominance_status",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "compared_processes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_threshold_count_minimum": {
+          "type": "integer"
+        },
+        "eligible_target_count_minimum": {
+          "type": "integer"
+        },
+        "confirmed_directional_pair_count_minimum": {
+          "type": "integer"
+        },
+        "distinct_confirmed_source_count_minimum": {
+          "type": "integer"
+        },
+        "distinct_confirmed_target_count_minimum": {
+          "type": "integer"
+        },
+        "transfer_rate_minimum": {
+          "type": "number"
+        },
+        "required_fit_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_calibration_file": {
+          "type": "string"
+        },
+        "normal_guard_values_prohibited": {
+          "type": "boolean"
+        },
+        "prohibited_access_count_maximum": {
+          "type": "integer"
+        },
+        "maximize_metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "minimize_metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "strict_improvement_metric_minimum": {
+          "type": "integer"
+        },
+        "weighted_score_used": {
+          "type": "boolean"
+        },
+        "prohibited_selection_bases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "neither_feasible_status": {
+          "type": "string"
+        },
+        "non_dominance_status": {
+          "type": "string"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_process_selection_policy_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "unsupported_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_event_statuses",
+        "source_target_statuses",
+        "process_outcomes",
+        "future_runtime_abstention_reasons",
+        "invalid_rule_is_abstention",
+        "parameter_binding_failure_is_abstention",
+        "isolation_is_runtime_abstention_rule",
+        "no_rule_created_in_br1",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "source_event_statuses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_target_statuses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "process_outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "future_runtime_abstention_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invalid_rule_is_abstention": {
+          "type": "boolean"
+        },
+        "parameter_binding_failure_is_abstention": {
+          "type": "boolean"
+        },
+        "isolation_is_runtime_abstention_rule": {
+          "type": "boolean"
+        },
+        "no_rule_created_in_br1": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_unsupported_policy_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "parameter_provenance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parameter_classes",
+        "screening_implicit_promotion_prohibited",
+        "final_recalibration_task",
+        "deterministic_project_artifacts_required",
+        "agent_allowed_actions",
+        "agent_prohibited_actions",
+        "labels_or_test_performance_used",
+        "agent_number_authority",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "parameter_classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "screening_implicit_promotion_prohibited": {
+          "type": "boolean"
+        },
+        "final_recalibration_task": {
+          "type": "string"
+        },
+        "deterministic_project_artifacts_required": {
+          "type": "boolean"
+        },
+        "agent_allowed_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "agent_prohibited_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "labels_or_test_performance_used": {
+          "type": "boolean"
+        },
+        "agent_number_authority": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_parameter_provenance_policy_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "rule_migration_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plan_status",
+        "additive_version_required",
+        "trigger_fields",
+        "expected_effect_fields",
+        "preserved_contracts",
+        "rule_v1_modified",
+        "rule_v2_created",
+        "route_continuous_rules_through_rule_v1",
+        "independent_schema_and_parser_required",
+        "task032_hash_preservation_required",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "plan_status": {
+          "type": "string"
+        },
+        "additive_version_required": {
+          "type": "boolean"
+        },
+        "trigger_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected_effect_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "preserved_contracts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rule_v1_modified": {
+          "type": "boolean"
+        },
+        "rule_v2_created": {
+          "type": "boolean"
+        },
+        "route_continuous_rules_through_rule_v1": {
+          "type": "boolean"
+        },
+        "independent_schema_and_parser_required": {
+          "type": "boolean"
+        },
+        "task032_hash_preservation_required": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_rule_migration_plan_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "verifier_migration_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plan_status",
+        "ordered_future_checks",
+        "validity_excludes",
+        "verifier_v1_modified",
+        "implementation_created",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "plan_status": {
+          "type": "string"
+        },
+        "ordered_future_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validity_excludes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verifier_v1_modified": {
+          "type": "boolean"
+        },
+        "implementation_created": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_verifier_migration_plan_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "runtime_migration_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plan_status",
+        "required_trace_fields",
+        "abstention_reasons",
+        "deterministic_trace_required",
+        "llm_free_runtime_required",
+        "explanation_prohibited_inventions",
+        "runtime_v1_modified",
+        "runtime_implementation_created",
+        "rule_execution_performed",
+        "creation_metadata",
+        "schema_version",
+        "artifact_type",
+        "artifact_hash"
+      ],
+      "properties": {
+        "plan_status": {
+          "type": "string"
+        },
+        "required_trace_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "abstention_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deterministic_trace_required": {
+          "type": "boolean"
+        },
+        "llm_free_runtime_required": {
+          "type": "boolean"
+        },
+        "explanation_prohibited_inventions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "runtime_v1_modified": {
+          "type": "boolean"
+        },
+        "runtime_implementation_created": {
+          "type": "boolean"
+        },
+        "rule_execution_performed": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "created_at",
+            "created_by",
+            "code_commit",
+            "config_hash"
+          ],
+          "properties": {
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            },
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "artifact_type": {
+          "const": "continuous_step_runtime_migration_plan_v1"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "validity_authority_granted": {
+      "type": "boolean"
+    },
+    "runtime_authority_granted": {
+      "type": "boolean"
+    },
+    "process_selection_granted": {
+      "type": "boolean"
+    },
+    "process_selected": {
+      "type": "boolean"
+    },
+    "task039c_authorized": {
+      "type": "boolean"
+    },
+    "real_data_accessed": {
+      "type": "boolean"
+    },
+    "next_task": {
+      "type": "string"
+    },
+    "creation_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "created_by",
+        "code_commit",
+        "config_hash"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "continuous_step_protocol_bundle_v1"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
