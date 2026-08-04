@@ -16,6 +16,19 @@ from paperworks.feasibility.hai_source_diagnosis_v1 import (
     diagnose_continuous_source_morphology,
     decide_relation_family_route,
 )
+from paperworks.feasibility.hai_continuous_step_v1 import (
+    ContinuousCalibrationConfirmationRecordV1,
+    ContinuousDirectionalFitRecordV1,
+    ContinuousSourceEventSummaryV1,
+    ContinuousSourceScreeningRecordV1,
+    ContinuousTargetScaleRecordV1,
+    HAIContinuousProcessFeasibilityV1,
+    HAIContinuousProcessFreezeV1,
+    HAIContinuousProcessSelectionResultV1,
+    TASK039BR2DataAccessAuditV1,
+    TASK039BR2ExecutionInterpretationV1,
+    TASK039BR2ExecutionReceiptV1,
+)
 
 __all__ = [
     "CONTINUOUS_SOURCE_ROLES",
@@ -32,4 +45,15 @@ __all__ = [
     "classify_source_exclusion",
     "diagnose_continuous_source_morphology",
     "decide_relation_family_route",
+    "ContinuousCalibrationConfirmationRecordV1",
+    "ContinuousDirectionalFitRecordV1",
+    "ContinuousSourceEventSummaryV1",
+    "ContinuousSourceScreeningRecordV1",
+    "ContinuousTargetScaleRecordV1",
+    "HAIContinuousProcessFeasibilityV1",
+    "HAIContinuousProcessFreezeV1",
+    "HAIContinuousProcessSelectionResultV1",
+    "TASK039BR2DataAccessAuditV1",
+    "TASK039BR2ExecutionInterpretationV1",
+    "TASK039BR2ExecutionReceiptV1",
 ]

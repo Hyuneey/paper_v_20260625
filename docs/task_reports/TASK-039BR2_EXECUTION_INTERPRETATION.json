@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "6e530c60a8b6299fa42db75f32f14089d72657b42da39abc8920fac93cc636a7",
+  "artifact_type": "task039br2_execution_interpretation_v1",
+  "br1_protocol_bundle_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+  "creation_metadata": {
+    "code_commit": "7c046a5988156f194fefc5953d99ffa5b8a38244",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "direction_agreement_rule": "selected_consistency_strictly_greater_than_opposite_in_train1_and_train2",
+  "exact_directional_tie_rejected": true,
+  "file_local_calculation_required": true,
+  "lower_ranked_fallback_prohibited": true,
+  "material_ambiguities_remaining": [],
+  "ranking_order": [
+    "highest_directional_consistency",
+    "highest_robust_effect_ratio",
+    "shortest_horizon",
+    "lexicographic_exact_tie_only"
+  ],
+  "real_data_accessed_when_frozen": false,
+  "relation_family": "continuous_step_delayed_response_v1",
+  "schema_version": "1.0.0",
+  "train3_retuning_prohibited": true
+}

@@ -48,6 +48,39 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "continuous_step_verifier_migration_plan_v1": (
         "schemas/v6/continuous_step_verifier_migration_plan_v1_schema.json"
     ),
+    "continuous_source_screening_record_v1": (
+        "schemas/v6/continuous_source_screening_record_v1_schema.json"
+    ),
+    "continuous_source_event_summary_v1": (
+        "schemas/v6/continuous_source_event_summary_v1_schema.json"
+    ),
+    "continuous_target_scale_record_v1": (
+        "schemas/v6/continuous_target_scale_record_v1_schema.json"
+    ),
+    "continuous_directional_fit_record_v1": (
+        "schemas/v6/continuous_directional_fit_record_v1_schema.json"
+    ),
+    "continuous_calibration_confirmation_record_v1": (
+        "schemas/v6/continuous_calibration_confirmation_record_v1_schema.json"
+    ),
+    "hai_continuous_process_feasibility_v1": (
+        "schemas/v6/hai_continuous_process_feasibility_v1_schema.json"
+    ),
+    "hai_continuous_process_selection_result_v1": (
+        "schemas/v6/hai_continuous_process_selection_result_v1_schema.json"
+    ),
+    "hai_continuous_process_freeze_v1": (
+        "schemas/v6/hai_continuous_process_freeze_v1_schema.json"
+    ),
+    "task039br2_execution_interpretation_v1": (
+        "schemas/v6/task039br2_execution_interpretation_v1_schema.json"
+    ),
+    "task039br2_data_access_audit_v1": (
+        "schemas/v6/task039br2_data_access_audit_v1_schema.json"
+    ),
+    "task039br2_execution_receipt_v1": (
+        "schemas/v6/task039br2_execution_receipt_v1_schema.json"
+    ),
     "construction_candidate_binding_receipt": (
         "schemas/v6/construction_candidate_binding_receipt_v1_schema.json"
     ),

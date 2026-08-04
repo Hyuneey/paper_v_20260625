@@ -1,0 +1,160 @@
+{
+  "artifact_type": "task039br2_hai_continuous_step_feasibility_config",
+  "authorized_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv",
+    "hai-23.05/hai-train3.csv"
+  ],
+  "calibration_gate": {
+    "direction_strictly_exceeds_opposite": true,
+    "directional_consistency_minimum": 0.6,
+    "isolated_events_minimum": 5,
+    "retuning_allowed": false,
+    "robust_effect_ratio_minimum": 1.0
+  },
+  "clustering_policy": {
+    "exact_amplitude_tie": "earliest_event_index",
+    "method": "single_link",
+    "refractory_seconds": 10,
+    "retention": "largest_absolute_step_amplitude"
+  },
+  "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+  "execution_creation_timestamp": "2026-08-04T00:00:00+09:00",
+  "file_local_boundary_policy": {
+    "cross_file_differences": false,
+    "cross_file_windows": false,
+    "fit_files_pooled_after_local_computation": true
+  },
+  "fit_gate": {
+    "direction_agreement_required": true,
+    "directional_consistency_minimum": 0.7,
+    "per_file_consistency_minimum": 0.6,
+    "per_file_isolated_events_minimum": 5,
+    "robust_effect_ratio_minimum": 2.0,
+    "total_isolated_events_minimum": 20
+  },
+  "fit_ranking_policy": [
+    "highest_directional_consistency",
+    "highest_robust_effect_ratio",
+    "shortest_horizon",
+    "lexicographic_exact_tie_only"
+  ],
+  "frozen_eligibility": {
+    "P1": {
+      "sources": [
+        {"metadata_record_hash": "9392ea74f3cc9a1896f063369bb33b4ba19c061019d4ba59ed8f92d45dd25047", "morphology_record_hash": "c3a3e2c82633f18f43ed7649b6add071fdad1962a40697833165a01e3e5f8abf", "semantic_role": "control_command", "variable_name": "P1_FCV01D"},
+        {"metadata_record_hash": "50e198ece814e7e60d92dd610b1b732e19505adcab8502f0de82bb859d08a188", "morphology_record_hash": "f5d00a8d9224a2b327c612ad03f492487cc737ce29bb78ed879f87ab6c34a1bf", "semantic_role": "actuator_feedback", "variable_name": "P1_FCV01Z"},
+        {"metadata_record_hash": "ad1b49e576376ffb662194ba1ad10cee037540dcf31fe765b1ddd24233b83176", "morphology_record_hash": "81b8aea72500f47a70cfa8e97c86922fcbe5d57cdf9dc87fa9d956c91eabd215", "semantic_role": "control_command", "variable_name": "P1_FCV02D"},
+        {"metadata_record_hash": "1d78be71282f3335e47229086643fe0a0fc54e52e0162ca94cc629847608cf6e", "morphology_record_hash": "f2f3d6b32a0e9465baaa623082009e8a6593ca5ccf6c28dca3b935402fec7100", "semantic_role": "actuator_feedback", "variable_name": "P1_FCV02Z"},
+        {"metadata_record_hash": "4025ceb0763f253ad259b5129723831c948beba17ef28ce77f73f3a842eee7d5", "morphology_record_hash": "355bb7d0f98131740b04f8c818ba3500dd1d8706b7e564fffb42b26f1e722008", "semantic_role": "control_command", "variable_name": "P1_FCV03D"},
+        {"metadata_record_hash": "de4de681de5de8d0eaf2032799d27d8d05e23e3bd7975e45aa856c07fe064b9b", "morphology_record_hash": "9e1a1cfc1921cf55fd8f5d800c7753e70668cacc2ba25ab76c4ef2857040c3ba", "semantic_role": "actuator_feedback", "variable_name": "P1_FCV03Z"},
+        {"metadata_record_hash": "ddb7a3c679c13bb4f017ccf54ee0fa01b6d71c897e2aabb5be7373f60e5b6e80", "morphology_record_hash": "394f75726c630e4dc89030863a0ad7123e1bd9c3b9b2f2e74133d578dabce69c", "semantic_role": "control_command", "variable_name": "P1_LCV01D"},
+        {"metadata_record_hash": "c8cbc2781b175b27748d9f20cc7b8621a82fe47ff635ab55725a5bec4bcc2838", "morphology_record_hash": "cbb374f520658ff69e9e7b43179b110ed9b51385811863d3156eab5aecf0effa", "semantic_role": "actuator_feedback", "variable_name": "P1_LCV01Z"},
+        {"metadata_record_hash": "12e05bb6ad57d0ec866f1e483f1a00aeea938204f7337c8554f56ae592de5d34", "morphology_record_hash": "eefe552f6742e4971600c1d598d5cf8e6a33e242c54a3be7e55d6bac3b3073ee", "semantic_role": "control_command", "variable_name": "P1_PCV01D"},
+        {"metadata_record_hash": "7c115fe1e3f4fd6a0eb248e33c3ac6a72853e317e81b798c55416e4907f22a58", "morphology_record_hash": "03f6b59c0c91a7df6717916bc9dc503c3e7f4a458c058e3c9cd223c955484876", "semantic_role": "actuator_feedback", "variable_name": "P1_PCV01Z"},
+        {"metadata_record_hash": "0f7b89d6260c5dba88c44df760a0a187fbfa07d3d9048c6358fa5c6276324303", "morphology_record_hash": "bcb25f62168b71ee872a9c98ebb936fe32c083ea9f805ebdee14d0324e0dd49f", "semantic_role": "actuator_feedback", "variable_name": "P1_PCV02Z"},
+        {"metadata_record_hash": "7c3123c79d06fb4bcfec9ac5e765e5066b211efe202cfade84d37583f8714be7", "morphology_record_hash": "4899c77c3771f8472af796c36e46e1511fe5b0b61aa4c36f01f37a26eb6a6857", "semantic_role": "actuator_state", "variable_name": "P1_PP04"}
+      ],
+      "targets": [
+        {"metadata_record_hash": "baa8d7036a5bbec1998ca3ff3e2d15c0ef5653d94f526bfd181dc26820ca27de", "variable_name": "P1_FT01"},
+        {"metadata_record_hash": "4332d406b38eff043621414acc036b945c401c476ae52ee35c292be7eaeb7430", "variable_name": "P1_FT01Z"},
+        {"metadata_record_hash": "e129c2581d1b0fe18c72b1286a373f827aa614eb888c542a8f311767b77797a2", "variable_name": "P1_FT02"},
+        {"metadata_record_hash": "6e308775e16f2fa38e983d3e2000dbd6a5975f393c35e98b559f2d5412ce6c5e", "variable_name": "P1_FT02Z"},
+        {"metadata_record_hash": "bccb58331d54e5d40d22383f8656880ab623f10bc4060121549e115a1eca9bac", "variable_name": "P1_FT03"},
+        {"metadata_record_hash": "68e8a4864eed627952c81befcb1dd0e526c6f201a03576d48da639ba48fc3ced", "variable_name": "P1_FT03Z"},
+        {"metadata_record_hash": "df48559c7d96ddaacb3ec033bee427a37c7024da05c620ab7de3a231cd7f21e2", "variable_name": "P1_LIT01"},
+        {"metadata_record_hash": "9a45b46b48c52145d118e05c94a9d6f2f4d77509c41a0fd169e85c3b43884c62", "variable_name": "P1_PIT01"},
+        {"metadata_record_hash": "3fd677b9e1a68a623918488c89d4b8ef7e8c07dd98c15601bd03bd4f4f886f91", "variable_name": "P1_PIT02"},
+        {"metadata_record_hash": "cea102e2c1e20bb37e183099963024d23b573f589ebe316007cd34c67b7f21b0", "variable_name": "P1_TIT01"},
+        {"metadata_record_hash": "59aa8a380be85bb29fbe28fcd4afe8ce7fd61e9ba242526ad5d52cebccf6e7d8", "variable_name": "P1_TIT02"},
+        {"metadata_record_hash": "cee7b367fd1d3210fbe2686fc780a15496aa70a65850552873a8e34849dec333", "variable_name": "P1_TIT03"}
+      ]
+    },
+    "P3": {
+      "sources": [
+        {"metadata_record_hash": "97778923f95b7e7450292cde8c59a9c31859708992a355b2335217eae583cd4f", "morphology_record_hash": "f63905c0a7ce78ae16fc63060e5e428c578c735cdbde2082dbbbb37556c20bf4", "semantic_role": "control_command", "variable_name": "P3_LCP01D"},
+        {"metadata_record_hash": "ac486a21f72cc9b94ad1d6715c947f5497abf44fe3f5577ecba8dc928dbd2c51", "morphology_record_hash": "a567749795cb6f3ec98eca0c82416b185f02aee86921d7f808e7096d9a2f0fb3", "semantic_role": "control_command", "variable_name": "P3_LCV01D"}
+      ],
+      "targets": [
+        {"metadata_record_hash": "42d9e0f70d54bccf4a4230aaa55f6671827b6b9b0ed4454984489da7f2393f30", "variable_name": "P3_FIT01"},
+        {"metadata_record_hash": "3a131703408c3328dc759099cea660c87d3fbdabe7c619dff0f41f51791aa5d8", "variable_name": "P3_LIT01"},
+        {"metadata_record_hash": "49048a09d5fd6ae30fd54ae1add61e592af851bd024dd69d88afada242d4dd27", "variable_name": "P3_PIT01"}
+      ]
+    }
+  },
+  "frozen_lineage": {
+    "br0_decision_hash": "3eceafb47742af9fc1be5dba82f148d33e31ba3095ba4b8a2d513ab9d4632a7b",
+    "br0_morphology_ledger_hash": "3cef789579ca54b4b829a381db7763feb3b1c4ee5b53e6ca61015f5d5aec25a3",
+    "br0_readiness_hash": "c1968c53d605756cd9d16f72306c730fcf6a9b3ceaf61368eba78157bb84f7a2",
+    "br0_source_exclusion_ledger_hash": "3df659ddfa0971933643f54aa203b207679ec0bedc4ed3b58268ce9cd7b52d4a",
+    "br1_config_hash": "8a82c7fc0924cd4bc40c83e783eb51f43edf8b0a3ac3948bf4042b93e5370573",
+    "br1_protocol_bundle_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+    "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2"
+  },
+  "isolation_policy": {
+    "primary_support_uses_isolated_events_only": true,
+    "radius_seconds": 2
+  },
+  "normal_guard_policy": {
+    "feature_values_accessed": false,
+    "future_split_manifest_only_after_selection": true,
+    "relative_file": "hai-23.05/hai-train4.csv",
+    "structural_public_records_only": true
+  },
+  "parameter_authority": {
+    "agent_selectable": false,
+    "final_calibration": false,
+    "implicit_promotion": false,
+    "parameter_class": "feasibility_screening",
+    "runtime": false
+  },
+  "private_public_policy": {
+    "private_records": ["source_parameters", "events", "isolation", "directional_fit", "train3_confirmation"],
+    "public_event_indices": false,
+    "public_raw_values": false,
+    "public_records": ["process_aggregates", "status_counts", "private_artifact_hashes", "selection"]
+  },
+  "process_gate": {
+    "calibration_confirmed_directional_pairs_minimum": 3,
+    "distinct_confirmed_sources_minimum": 2,
+    "distinct_confirmed_targets_minimum": 2,
+    "eligible_continuous_targets_minimum": 3,
+    "fit_to_calibration_transfer_rate_minimum": 0.5,
+    "valid_source_thresholds_minimum": 2
+  },
+  "prohibited_files": ["hai-23.05/hai-train4.csv", "hai-test*", "label-test*", "summary_label*", "private_custody*", "attack*"],
+  "relation_family": "continuous_step_delayed_response_v1",
+  "schema_version": "1.0.0",
+  "selection_policy": {
+    "minimum_strict_improvements": 2,
+    "pareto_maximize": ["distinct_confirmed_sources", "distinct_confirmed_targets", "calibration_confirmed_directional_pairs", "fit_to_calibration_transfer_rate", "median_calibration_isolated_event_support", "manual_metadata_coverage"],
+    "pareto_minimize": ["metadata_unresolved_ratio", "non_isolated_source_event_ratio", "missing_or_nonfinite_rate"],
+    "weighted_score": false
+  },
+  "source_threshold_policy": {
+    "fit_files": ["hai-23.05/hai-train1.csv", "hai-23.05/hai-train2.csv"],
+    "minimum_nontrivial_amplitudes": 20,
+    "numeric_epsilon": 1e-12,
+    "q75_method": "linear_interpolation_index_0.75_times_n_minus_1",
+    "source_noise_scale": "max(1.4826*MAD(within_file_dx),1e-12)",
+    "source_stability_tolerance": "max(3*source_noise_scale,0.10*source_step_threshold)",
+    "source_step_threshold": "max(5*source_noise_scale,Q75(A_positive))"
+  },
+  "stability_policy": {
+    "minimum_fraction": 0.8,
+    "post_window_seconds": 5,
+    "pre_window_seconds": 5
+  },
+  "target_response_policy": {
+    "baseline_window_seconds": 5,
+    "directions": ["increase", "decrease"],
+    "horizons_seconds": [1, 5, 10, 30, 60],
+    "noise_scale_fit_only": true,
+    "response_window_seconds": 3
+  },
+  "task039c_authorization": {
+    "candidate_universe_only_after_successful_selection": true,
+    "detector_or_rule_authority": false
+  },
+  "task_id": "TASK-039BR2"
+}

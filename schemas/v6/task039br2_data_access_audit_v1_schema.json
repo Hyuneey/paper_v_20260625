@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039br2_data_access_audit_v1_schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "authorized_feature_value_files", "opened_feature_value_files", "authorized_process_columns_hash", "test_feature_values_accessed", "label_values_accessed", "attack_summary_accessed", "private_custody_accessed", "normal_guard_feature_values_accessed", "p2_p4_feature_values_accessed", "prohibited_data_access_count", "raw_rows_persisted", "raw_windows_persisted", "event_timestamps_publicly_exposed", "creation_metadata", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039br2_data_access_audit_v1"}, "authorized_feature_value_files": {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 3}, "opened_feature_value_files": {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 3}, "authorized_process_columns_hash": {"$ref": "#/$defs/hash"},
+    "test_feature_values_accessed": {"const": false}, "label_values_accessed": {"const": false}, "attack_summary_accessed": {"const": false}, "private_custody_accessed": {"const": false}, "normal_guard_feature_values_accessed": {"const": false}, "p2_p4_feature_values_accessed": {"const": false}, "prohibited_data_access_count": {"const": 0}, "raw_rows_persisted": {"const": false}, "raw_windows_persisted": {"const": false}, "event_timestamps_publicly_exposed": {"const": false}, "creation_metadata": {"$ref": "#/$defs/creation"}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "creation": {"type": "object", "additionalProperties": false, "required": ["created_at", "created_by", "code_commit", "config_hash"], "properties": {"created_at": {"type": "string", "format": "date-time"}, "created_by": {"type": "string"}, "code_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "config_hash": {"$ref": "#/$defs/hash"}}}}
+}

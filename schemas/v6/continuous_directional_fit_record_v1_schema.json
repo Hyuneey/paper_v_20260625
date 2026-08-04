@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_directional_fit_record_v1_schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "process_id", "source_variable", "source_step_direction", "target_variable", "target_response_direction", "selected_horizon_seconds", "train1_usable_isolated_events", "train2_usable_isolated_events", "pooled_usable_isolated_events", "train1_right_censored", "train2_right_censored", "train1_directional_consistency", "train2_directional_consistency", "pooled_directional_consistency", "pooled_median_target_response", "pooled_robust_effect_ratio", "direction_agrees_across_files", "selected_by_frozen_ranking", "lower_ranked_fallback_used", "status", "source_screening_ref", "target_scale_ref", "creation_metadata", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "continuous_directional_fit_record_v1"}, "process_id": {"enum": ["P1", "P3"]}, "source_variable": {"type": "string"}, "source_step_direction": {"enum": ["step_up", "step_down"]}, "target_variable": {"type": "string"},
+    "target_response_direction": {"enum": ["increase", "decrease", null]}, "selected_horizon_seconds": {"enum": [1, 5, 10, 30, 60, null]},
+    "train1_usable_isolated_events": {"type": "integer", "minimum": 0}, "train2_usable_isolated_events": {"type": "integer", "minimum": 0}, "pooled_usable_isolated_events": {"type": "integer", "minimum": 0}, "train1_right_censored": {"type": "integer", "minimum": 0}, "train2_right_censored": {"type": "integer", "minimum": 0},
+    "train1_directional_consistency": {"type": "number", "minimum": 0, "maximum": 1}, "train2_directional_consistency": {"type": "number", "minimum": 0, "maximum": 1}, "pooled_directional_consistency": {"type": "number", "minimum": 0, "maximum": 1},
+    "pooled_median_target_response": {"type": "number"}, "pooled_robust_effect_ratio": {"type": "number", "minimum": 0}, "direction_agrees_across_files": {"type": "boolean"}, "selected_by_frozen_ranking": {"type": "boolean"}, "lower_ranked_fallback_used": {"const": false},
+    "status": {"enum": ["fit_supported", "fit_unsupported", "direction_unstable", "invalid_target"]}, "source_screening_ref": {"$ref": "#/$defs/hash"}, "target_scale_ref": {"$ref": "#/$defs/hash"}, "creation_metadata": {"$ref": "#/$defs/creation"}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "creation": {"type": "object", "additionalProperties": false, "required": ["created_at", "created_by", "code_commit", "config_hash"], "properties": {"created_at": {"type": "string", "format": "date-time"}, "created_by": {"type": "string"}, "code_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "config_hash": {"$ref": "#/$defs/hash"}}}}
+}

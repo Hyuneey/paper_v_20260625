@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/continuous_source_event_summary_v1_schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "process_id", "source_variable", "source_screening_ref", "relative_file", "step_direction", "total_clustered_events", "isolated_events", "non_isolated_events", "isolation_ratio", "event_indices_publicly_exposed", "raw_values_included", "creation_metadata", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "continuous_source_event_summary_v1"},
+    "process_id": {"enum": ["P1", "P3"]}, "source_variable": {"type": "string"}, "source_screening_ref": {"$ref": "#/$defs/hash"},
+    "relative_file": {"enum": ["hai-23.05/hai-train1.csv", "hai-23.05/hai-train2.csv", "hai-23.05/hai-train3.csv"]},
+    "step_direction": {"enum": ["step_up", "step_down"]},
+    "total_clustered_events": {"type": "integer", "minimum": 0}, "isolated_events": {"type": "integer", "minimum": 0}, "non_isolated_events": {"type": "integer", "minimum": 0},
+    "isolation_ratio": {"type": "number", "minimum": 0, "maximum": 1}, "event_indices_publicly_exposed": {"const": false}, "raw_values_included": {"const": false},
+    "creation_metadata": {"$ref": "#/$defs/creation"}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "creation": {"type": "object", "additionalProperties": false, "required": ["created_at", "created_by", "code_commit", "config_hash"], "properties": {"created_at": {"type": "string", "format": "date-time"}, "created_by": {"type": "string"}, "code_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "config_hash": {"$ref": "#/$defs/hash"}}}}
+}

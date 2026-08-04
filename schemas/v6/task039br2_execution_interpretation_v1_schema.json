@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039br2_execution_interpretation_v1_schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "br1_protocol_bundle_hash", "relation_family", "direction_agreement_rule", "exact_directional_tie_rejected", "ranking_order", "lower_ranked_fallback_prohibited", "file_local_calculation_required", "train3_retuning_prohibited", "material_ambiguities_remaining", "real_data_accessed_when_frozen", "creation_metadata", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039br2_execution_interpretation_v1"}, "br1_protocol_bundle_hash": {"$ref": "#/$defs/hash"}, "relation_family": {"const": "continuous_step_delayed_response_v1"}, "direction_agreement_rule": {"const": "selected_consistency_strictly_greater_than_opposite_in_train1_and_train2"}, "exact_directional_tie_rejected": {"const": true}, "ranking_order": {"type": "array", "items": {"type": "string"}, "minItems": 4, "maxItems": 4}, "lower_ranked_fallback_prohibited": {"const": true}, "file_local_calculation_required": {"const": true}, "train3_retuning_prohibited": {"const": true}, "material_ambiguities_remaining": {"type": "array", "maxItems": 0}, "real_data_accessed_when_frozen": {"const": false}, "creation_metadata": {"$ref": "#/$defs/creation"}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "creation": {"type": "object", "additionalProperties": false, "required": ["created_at", "created_by", "code_commit", "config_hash"], "properties": {"created_at": {"type": "string", "format": "date-time"}, "created_by": {"type": "string"}, "code_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "config_hash": {"$ref": "#/$defs/hash"}}}}
+}

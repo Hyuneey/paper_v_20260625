@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/hai_continuous_process_selection_result_v1_schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "selection_status", "selected_process_id", "excluded_process_id", "selection_reason", "p1_feasibility_report_hash", "p3_feasibility_report_hash", "selection_policy_hash", "pareto_metrics", "weighted_score_used", "process_selected", "task039c_authorized", "creation_metadata", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "hai_continuous_process_selection_result_v1"}, "selection_status": {"enum": ["selected", "blocked_no_feasible_continuous_step_process", "blocked_continuous_process_selection_indeterminate"]}, "selected_process_id": {"enum": ["P1", "P3", null]}, "excluded_process_id": {"enum": ["P1", "P3", null]}, "selection_reason": {"type": "string"},
+    "p1_feasibility_report_hash": {"$ref": "#/$defs/hash"}, "p3_feasibility_report_hash": {"$ref": "#/$defs/hash"}, "selection_policy_hash": {"$ref": "#/$defs/hash"}, "pareto_metrics": {"type": "object"}, "weighted_score_used": {"const": false}, "process_selected": {"type": "boolean"}, "task039c_authorized": {"type": "boolean"}, "creation_metadata": {"$ref": "#/$defs/creation"}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "creation": {"type": "object", "additionalProperties": false, "required": ["created_at", "created_by", "code_commit", "config_hash"], "properties": {"created_at": {"type": "string", "format": "date-time"}, "created_by": {"type": "string"}, "code_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "config_hash": {"$ref": "#/$defs/hash"}}}}
+}
