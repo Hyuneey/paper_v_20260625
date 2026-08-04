@@ -73,6 +73,19 @@ TASK039BR1_TYPES = {
     "continuous_step_unsupported_policy_v1",
     "continuous_step_verifier_migration_plan_v1",
 }
+TASK039BR2_TYPES = {
+    "continuous_calibration_confirmation_record_v1",
+    "continuous_directional_fit_record_v1",
+    "continuous_source_event_summary_v1",
+    "continuous_source_screening_record_v1",
+    "continuous_target_scale_record_v1",
+    "hai_continuous_process_feasibility_v1",
+    "hai_continuous_process_freeze_v1",
+    "hai_continuous_process_selection_result_v1",
+    "task039br2_data_access_audit_v1",
+    "task039br2_execution_interpretation_v1",
+    "task039br2_execution_receipt_v1",
+}
 
 
 class Task039P1CSchemaBoundaryTests(unittest.TestCase):
@@ -84,7 +97,8 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
         self.assertTrue(TASK039AR_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039BR0_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039BR1_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 40)
+        self.assertTrue(TASK039BR2_TYPES.issubset(registry.artifact_types))
+        self.assertEqual(len(registry.artifact_types), 51)
         for artifact_type in (
             P1C_TYPES
             | P1D_TYPES
@@ -92,6 +106,7 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
             | TASK039AR_TYPES
             | TASK039BR0_TYPES
             | TASK039BR1_TYPES
+            | TASK039BR2_TYPES
         ):
             Draft202012Validator.check_schema(
                 registry.schema_for(artifact_type)
