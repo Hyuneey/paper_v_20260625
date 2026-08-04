@@ -10,6 +10,7 @@ detector evidence.
 from __future__ import annotations
 
 import csv
+import bisect
 import json
 import math
 import statistics
@@ -47,10 +48,9 @@ from paperworks.v6.continuous_step_protocol_v1 import (
     FAMILY_ID,
     SourceEventStatusV1,
     SustainedStepEventV1,
+    TargetResponseEvaluationV1,
     calibration_confirmation_gate_v1,
-    classify_event_isolation_v1,
-    evaluate_target_response_v1,
-    extract_sustained_step_events_v1,
+    cluster_step_events_v1,
     fit_support_gate_v1,
     process_feasibility_gate_v1,
     select_process_v1,
@@ -936,13 +936,55 @@ def extract_multifile_events_v1(
     source_stability_tolerance: float,
 ) -> dict[str, tuple[SustainedStepEventV1, ...]]:
     return {
-        file_name: extract_sustained_step_events_v1(
+        file_name: extract_sustained_step_events_file_local_v1(
             values,
             source_step_threshold=source_step_threshold,
             source_stability_tolerance=source_stability_tolerance,
         )
         for file_name, values in file_sequences.items()
     }
+
+
+def extract_sustained_step_events_file_local_v1(
+    values: Sequence[float],
+    *,
+    source_step_threshold: float,
+    source_stability_tolerance: float,
+) -> tuple[SustainedStepEventV1, ...]:
+    """Apply the BR1 event formula after one bounded sequence validation."""
+
+    sequence = _finite_values(values, "source values")
+    threshold = require_finite(source_step_threshold, "source_step_threshold")
+    tolerance = require_finite(source_stability_tolerance, "source_stability_tolerance")
+    if threshold <= 0 or tolerance < 0:
+        raise HAIContinuousStepError("threshold and tolerance must be bounded")
+    events: list[SustainedStepEventV1] = []
+    for event_index in range(5, len(sequence) - 5 + 1):
+        pre = sequence[event_index - 5 : event_index]
+        post = sequence[event_index : event_index + 5]
+        pre_level = float(statistics.median(pre))
+        post_level = float(statistics.median(post))
+        amplitude = post_level - pre_level
+        if amplitude == 0 or abs(amplitude) < threshold:
+            continue
+        pre_fraction = sum(abs(item - pre_level) <= tolerance for item in pre) / 5.0
+        if pre_fraction < 0.8:
+            continue
+        post_fraction = sum(abs(item - post_level) <= tolerance for item in post) / 5.0
+        if post_fraction < 0.8:
+            continue
+        events.append(
+            SustainedStepEventV1(
+                event_index,
+                "step_up" if amplitude > 0 else "step_down",
+                pre_level,
+                post_level,
+                amplitude,
+                pre_fraction,
+                post_fraction,
+            )
+        )
+    return cluster_step_events_v1(events)
 
 
 def classify_multisource_isolation_v1(
@@ -953,11 +995,56 @@ def classify_multisource_isolation_v1(
         source: {} for source in source_events
     }
     for file_name in file_names:
-        by_source = {source: files[file_name] for source, files in source_events.items()}
-        classified = classify_event_isolation_v1(by_source)
-        for source in source_events:
-            result[source][file_name] = classified[source]
+        by_source = {source: tuple(files[file_name]) for source, files in source_events.items()}
+        indexes = {
+            source: tuple(sorted(event.event_index for event in events))
+            for source, events in by_source.items()
+        }
+        for source, events in by_source.items():
+            classified: list[tuple[SustainedStepEventV1, bool]] = []
+            other_indexes = [
+                value
+                for other_source, values in indexes.items()
+                if other_source != source
+                for value in values
+            ]
+            other_indexes.sort()
+            for event in events:
+                left = bisect.bisect_left(other_indexes, event.event_index - 2)
+                isolated = left == len(other_indexes) or other_indexes[left] > event.event_index + 2
+                classified.append((event, isolated))
+            result[source][file_name] = tuple(classified)
     return result
+
+
+def evaluate_target_response_file_local_v1(
+    values: Sequence[float],
+    *,
+    event_index: int,
+    horizon_seconds: int,
+    target_noise_scale: float,
+    target_direction: str,
+) -> TargetResponseEvaluationV1:
+    """Apply the BR1 target formula without copying the full sequence per event."""
+
+    if horizon_seconds not in RESPONSE_HORIZONS:
+        raise HAIContinuousStepError("response horizon is not preregistered")
+    if target_direction not in {"increase", "decrease"}:
+        raise HAIContinuousStepError("target direction must be explicit")
+    if event_index < 5 or event_index + horizon_seconds + 3 > len(values):
+        return TargetResponseEvaluationV1(True, None, None)
+    noise = require_finite(target_noise_scale, "target_noise_scale")
+    if noise <= 0:
+        raise HAIContinuousStepError("target_noise_scale must be positive")
+    baseline_values = values[event_index - 5 : event_index]
+    response_values = values[event_index + horizon_seconds : event_index + horizon_seconds + 3]
+    if any(not math.isfinite(float(item)) for item in (*baseline_values, *response_values)):
+        raise HAIContinuousStepError("target response window must contain finite values")
+    baseline = float(statistics.median(baseline_values))
+    response_level = float(statistics.median(response_values))
+    response = response_level - baseline
+    matches = response > noise if target_direction == "increase" else response < -noise
+    return TargetResponseEvaluationV1(False, response, matches)
 
 
 def direction_agrees_strict_v1(
@@ -1001,7 +1088,7 @@ def evaluate_direction_candidate_v1(
         for event in isolated_events_by_file[file_name]:
             if event.direction != source_step_direction:
                 continue
-            evaluation = evaluate_target_response_v1(
+            evaluation = evaluate_target_response_file_local_v1(
                 target_by_file[file_name],
                 event_index=event.event_index,
                 horizon_seconds=horizon_seconds,
@@ -1087,7 +1174,7 @@ def calibration_confirmation_values_v1(
     for event in isolated_events:
         if event.direction != source_step_direction:
             continue
-        evaluation = evaluate_target_response_v1(
+        evaluation = evaluate_target_response_file_local_v1(
             target_values,
             event_index=event.event_index,
             horizon_seconds=horizon_seconds,

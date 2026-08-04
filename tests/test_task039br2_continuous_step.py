@@ -13,6 +13,7 @@ from paperworks.feasibility.hai_continuous_step_v1 import (
     derive_multifile_source_screening_parameters_v1,
     direction_agrees_strict_v1,
     evaluate_direction_candidate_v1,
+    evaluate_target_response_file_local_v1,
     extract_multifile_events_v1,
     fit_candidate_passes_v1,
     select_direction_candidate_v1,
@@ -22,6 +23,7 @@ from paperworks.v6.continuous_step_protocol_v1 import (
     SustainedStepEventV1,
     cluster_step_events_v1,
     evaluate_step_candidate_v1,
+    evaluate_target_response_v1,
     extract_sustained_step_events_v1,
     robust_one_step_scale_v1,
 )
@@ -200,6 +202,18 @@ class DirectionTests(unittest.TestCase):
         )
         self.assertEqual(inc.pooled_consistency, 1.0)
         self.assertEqual(dec.pooled_consistency, 1.0)
+
+    def test_target_response_parity_with_br1(self) -> None:
+        values = [0.0] * 11 + [5.0] * 20
+        expected = evaluate_target_response_v1(
+            values, event_index=10, horizon_seconds=1,
+            target_noise_scale=1.0, target_direction="increase",
+        )
+        observed = evaluate_target_response_file_local_v1(
+            values, event_index=10, horizon_seconds=1,
+            target_noise_scale=1.0, target_direction="increase",
+        )
+        self.assertEqual(observed, expected)
 
     def test_train3_confirmation_and_right_censoring(self) -> None:
         values = [0.0] * 11 + [5.0] * 20
