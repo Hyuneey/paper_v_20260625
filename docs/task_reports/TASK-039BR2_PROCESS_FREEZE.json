@@ -1,0 +1,40 @@
+{
+  "artifact_hash": "f263d23ceda5ab5ff3c7459e56669ab1dadd7d30cd2243ad8971301990a86325",
+  "artifact_type": "hai_continuous_process_freeze_v1",
+  "br0_decision_hash": "3eceafb47742af9fc1be5dba82f148d33e31ba3095ba4b8a2d513ab9d4632a7b",
+  "br1_protocol_bundle_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+  "candidate_learning_view_id": "eaa77f331bf79cc6887ccddcfff8818880c1a93c16ebc6fdd2d06a1c8db37eca",
+  "canonical_rule_view_id": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+  "claim_boundary": [
+    "normal_only_feasibility_selection",
+    "not_physical_causality",
+    "not_rule_or_runtime_authority",
+    "TASK-039C_candidate_universe_only"
+  ],
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "excluded_process_id": "P3",
+  "execution_code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+  "gdn_view_status": "pending_production_backend",
+  "normal_candidate_fit_split_id": "cf02e3474a0ade49aec518a886fef0fb0c405b311d827f593fdc207cfad9ab7a",
+  "normal_guard_split_id": "0a09b9171925a24d1955023c41a2b1d9b54682b68ad4c5715943908ff80f0923",
+  "normal_relation_calibration_split_id": "c9e31a99364c0db11f4ad958a93de90ac065661c5171bf8601e2861a5706bba5",
+  "p1_feasibility_report_hash": "b51a1f238a51139eed13727a057ea91b380cf1cf8da35d138e11ff2dbc140102",
+  "p3_feasibility_report_hash": "4706e484fffb8990232c2be71628e66b4ff342402f89401be89406b42645172c",
+  "rule_v2_status": "not_created",
+  "runtime_authority_granted": false,
+  "schema_version": "1.0.0",
+  "selected_private_relation_ledger_hash": "a9d874a1bbee0db39a0622762152431c9ad4bd89bd061993818f8ef57dbba7e9",
+  "selected_process_id": "P1",
+  "selected_process_name": "Boiler",
+  "selected_source_parameter_ledger_hash": "d97fe5f10a8b77e197d75d3df470ce018ee434d116dc38545dae6626d5921e3a",
+  "selection_policy_hash": "907b76bae5603a1e0de79a8f4cf07ebe6fc81440f7362ef99cad877495bcf328",
+  "selection_reason": "only_P1_feasible",
+  "task039c_authorized": true,
+  "validity_authority_granted": false
+}

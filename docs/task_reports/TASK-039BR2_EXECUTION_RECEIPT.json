@@ -1,0 +1,42 @@
+{
+  "agent_calls": 0,
+  "artifact_hash": "fe9fdf32b0c14218ad27c55b1798a977dce71aa27365e442048059a48bc29d5d",
+  "artifact_type": "task039br2_execution_receipt_v1",
+  "br0_decision_hash": "3eceafb47742af9fc1be5dba82f148d33e31ba3095ba4b8a2d513ab9d4632a7b",
+  "br0_readiness_hash": "c1968c53d605756cd9d16f72306c730fcf6a9b3ceaf61368eba78157bb84f7a2",
+  "br1_protocol_bundle_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+  "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "data_access_audit_ref": "9f64492c34be4df724aa0fc9ac96e87354693e5b93f791ae0c4bf65abf675c6c",
+  "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "detector_executed": false,
+  "execution_code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+  "execution_interpretation_ref": "6e530c60a8b6299fa42db75f32f14089d72657b42da39abc8920fac93cc636a7",
+  "final_parameters_created": false,
+  "normal_only_data_used": true,
+  "p1_feasibility_ref": "b51a1f238a51139eed13727a057ea91b380cf1cf8da35d138e11ff2dbc140102",
+  "p3_feasibility_ref": "4706e484fffb8990232c2be71628e66b4ff342402f89401be89406b42645172c",
+  "private_ledger_hashes": [
+    "d97fe5f10a8b77e197d75d3df470ce018ee434d116dc38545dae6626d5921e3a",
+    "66c0db90d928b1d0193256efe232dd67fa04ae5155c34ce33c9fa7b5c859bf75",
+    "a9d874a1bbee0db39a0622762152431c9ad4bd89bd061993818f8ef57dbba7e9",
+    "6d52e25f308376b82d9f59ea1d2f2f794836c8333c988cba3590738cea091b7d",
+    "d982986b38c3eeb735b4d8c53eeec3252368018beb16dc81ab47f08745f178a5",
+    "cc3d360eec81a4cbbb04dee2d0d6d9175b11a792270bb7bf7eec7f4ddc9620d3"
+  ],
+  "process_freeze_ref": "f263d23ceda5ab5ff3c7459e56669ab1dadd7d30cd2243ad8971301990a86325",
+  "process_selection_ref": "115407ccc97dc6ff84b96a05c45ed2a3f394d896ea865d719ef67ca20534fcff",
+  "provider_calls": 0,
+  "real_data_accessed": true,
+  "rule_v2_created": false,
+  "schema_version": "1.0.0",
+  "selected_process_id": "P1",
+  "status": "passed_hai_2305_continuous_step_single_process_freeze",
+  "task039c_authorized": true,
+  "task_id": "TASK-039BR2"
+}

@@ -56,14 +56,16 @@ no process was selected, and no authority was granted.
 
 ## TASK-039BR2
 
-Next task: execute the preregistered normal-only continuous-step feasibility
-protocol for P1 and P3 and freeze exactly one process only if the frozen gate
-and Pareto policy permit it. TASK-039C remains unauthorized until BR2 passes.
+Completed with `passed_hai_2305_continuous_step_single_process_freeze`. P1
+alone passed the frozen gate and is selected; P3 remained infeasible. Train4
+feature values and all test, label, attack-summary, custody, P2, and P4 values
+remained outside the execution.
 
 ## TASK-039C Onward
 
-TASK-039C is not authorized until versioned feasibility selects exactly one
-process.
+TASK-039C is next and is authorized for P1 candidate-universe and graph-evidence
+work only. Rule v2, construction, verifier/runtime migration, Agent execution,
+detector work, and evaluation remain unauthorized until their own tasks.
 
 1. candidate and graph evidence;
 2. normal relation profiling and calibration;

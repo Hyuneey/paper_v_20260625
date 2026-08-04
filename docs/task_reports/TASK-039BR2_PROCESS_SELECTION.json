@@ -1,0 +1,45 @@
+{
+  "artifact_hash": "115407ccc97dc6ff84b96a05c45ed2a3f394d896ea865d719ef67ca20534fcff",
+  "artifact_type": "hai_continuous_process_selection_result_v1",
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "excluded_process_id": "P3",
+  "p1_feasibility_report_hash": "b51a1f238a51139eed13727a057ea91b380cf1cf8da35d138e11ff2dbc140102",
+  "p3_feasibility_report_hash": "4706e484fffb8990232c2be71628e66b4ff342402f89401be89406b42645172c",
+  "pareto_metrics": {
+    "P1": {
+      "calibration_confirmed_directional_pairs": 65,
+      "distinct_confirmed_sources": 9,
+      "distinct_confirmed_targets": 10,
+      "fit_to_calibration_transfer_rate": 0.9420289855072463,
+      "manual_metadata_coverage": 1.0,
+      "median_calibration_isolated_event_support": 304.0,
+      "metadata_unresolved_ratio": 0.02702702702702703,
+      "missing_or_nonfinite_rate": 0.0,
+      "non_isolated_source_event_ratio": 0.4000094576062799
+    },
+    "P3": {
+      "calibration_confirmed_directional_pairs": 0,
+      "distinct_confirmed_sources": 0,
+      "distinct_confirmed_targets": 0,
+      "fit_to_calibration_transfer_rate": 0.0,
+      "manual_metadata_coverage": 1.0,
+      "median_calibration_isolated_event_support": 0.0,
+      "metadata_unresolved_ratio": 0.0,
+      "missing_or_nonfinite_rate": 0.0,
+      "non_isolated_source_event_ratio": 0.0
+    }
+  },
+  "process_selected": true,
+  "schema_version": "1.0.0",
+  "selected_process_id": "P1",
+  "selection_policy_hash": "907b76bae5603a1e0de79a8f4cf07ebe6fc81440f7362ef99cad877495bcf328",
+  "selection_reason": "only_P1_feasible",
+  "selection_status": "selected",
+  "task039c_authorized": true,
+  "weighted_score_used": false
+}

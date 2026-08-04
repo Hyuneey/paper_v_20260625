@@ -21,9 +21,12 @@ new detector.
 ## 2. Current V6 Scope
 
 - Primary dataset candidate: **HAI 23.05**.
-- Process scope: exactly one process, selected only after P1/P3 feasibility.
-- Relation family: pairwise delayed response.
-- Source: binary or explicitly normalized discrete control/actuator signal.
+- Process scope: **P1 Boiler**, frozen by TASK-039BR2 under the preregistered
+  normal-only continuous-step feasibility policy.
+- Relation family: pairwise `continuous_step_delayed_response_v1` for the HAI
+  MVP; canonical Rule v1 remains unchanged.
+- Source: reviewed continuous control/actuator command or feedback under the
+  bounded continuous-step protocol.
 - Target: continuous process sensor.
 - Core construction evidence: normal-only.
 - Primary rule role: detector false-negative correction.
@@ -61,17 +64,19 @@ eligible reviewed, nonconstant binary/discrete control sources. No primary
 process, selected view, or authoritative split was frozen.
 
 TASK-039BR0 diagnosed the source mismatch and froze
-`versioned_continuous_step_delayed_response_on_HAI` as the next research
-route. This is source-morphology readiness only. It does not establish a
-delayed-response pair or select P1/P3. TASK-039BR1 is next and must define a
-second predefined versioned continuous-step family before feasibility work.
-TASK-039C remains unauthorized.
+`versioned_continuous_step_delayed_response_on_HAI` as the recovery route. Its
+result remains source-morphology readiness only.
 
 TASK-039BR1 completed the protocol freeze for
 `continuous_step_delayed_response_v1`. It grants no rule, verifier, runtime,
 or process-selection authority and accessed no real HAI values. Rule v1 is
-unchanged and Rule v2 remains a migration plan. TASK-039BR2 is the next task;
-it may execute only the frozen normal-only P1/P3 feasibility protocol.
+unchanged and Rule v2 remains a migration plan.
+
+TASK-039BR2 executed that frozen protocol on verified normal train1-train3
+data. P1 alone passed the feasibility gate and is frozen as the selected
+process; P3 remained infeasible. TASK-039C is authorized for P1
+candidate-universe and graph-evidence work only. It has no Rule v2, rule,
+verifier, runtime, Agent, detector, outer, or sealed authority.
 
 ## 3. Canonical, Legacy, and Reference Paths
 

@@ -1,0 +1,32 @@
+{
+  "artifact_hash": "9f64492c34be4df724aa0fc9ac96e87354693e5b93f791ae0c4bf65abf675c6c",
+  "artifact_type": "task039br2_data_access_audit_v1",
+  "attack_summary_accessed": false,
+  "authorized_feature_value_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv",
+    "hai-23.05/hai-train3.csv"
+  ],
+  "authorized_process_columns_hash": "1b37e8c882d0933e6e40bb452949984629e1f314422af9561b0a52b407df7847",
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "event_timestamps_publicly_exposed": false,
+  "label_values_accessed": false,
+  "normal_guard_feature_values_accessed": false,
+  "opened_feature_value_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv",
+    "hai-23.05/hai-train3.csv"
+  ],
+  "p2_p4_feature_values_accessed": false,
+  "private_custody_accessed": false,
+  "prohibited_data_access_count": 0,
+  "raw_rows_persisted": false,
+  "raw_windows_persisted": false,
+  "schema_version": "1.0.0",
+  "test_feature_values_accessed": false
+}

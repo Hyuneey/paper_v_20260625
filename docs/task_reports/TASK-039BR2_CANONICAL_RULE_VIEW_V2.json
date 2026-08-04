@@ -1,0 +1,35 @@
+{
+  "aggregation": {
+    "description": "No aggregation or downsampling.",
+    "explicit": true,
+    "method": "none",
+    "output_sampling_interval_seconds": 1.0,
+    "source_sampling_interval_seconds": 1.0
+  },
+  "artifact_hash": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+  "artifact_type": "data_view_manifest_v2",
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "feature_order_hash": "a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57",
+  "preprocessing_config": {
+    "column_selection": "verified_selected_process_columns_only",
+    "downsampling": false,
+    "imputation": false,
+    "interpolation": false,
+    "numeric_parsing": "deterministic",
+    "scaling": false
+  },
+  "process_scope": [
+    "P1"
+  ],
+  "provenance_status": "verified",
+  "sampling_interval_seconds": 1.0,
+  "schema_version": "2.0.0",
+  "second_level_rule_calibration_allowed": true,
+  "source_dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "view_kind": "canonical_rule"
+}

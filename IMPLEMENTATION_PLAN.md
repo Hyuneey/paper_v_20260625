@@ -74,7 +74,9 @@ Status: completed with `passed_hai_2305_official_provenance_audit`.
 TASK-039AR passed `passed_official_distribution_byte_equivalence` using only
 selective file delivery from the official `icsdataset` Kaggle distribution.
 All ten payloads matched the pinned Git-LFS hashes and sizes before TASK-039A
-resumed. TASK-039B subsequently blocked; no process has yet been selected.
+resumed. TASK-039B subsequently blocked under its discrete-source policy;
+TASK-039BR2 later selected P1 under the separately preregistered continuous-step
+protocol.
 
 ## TASK-039B: P1/P3 Feasibility and Process Freeze
 
@@ -98,14 +100,18 @@ rules, normal-only support gates, process Pareto policy, and additive migration
 plans. Rule v1, Verifier v1, and Runtime v1 remain unchanged; Rule v2 was not
 created.
 
-TASK-039BR2 is next. It may execute the frozen protocol on authorized normal
-train1-3 values and must preserve train4, test, label, summary, and custody
-boundaries. It may freeze one process only under the preregistered gate.
+TASK-039BR2 completed with
+`passed_hai_2305_continuous_step_single_process_freeze`. It used authorized
+normal train1-3 values, preserved train4/test/label/summary/custody boundaries,
+and selected P1 because P1 alone passed the frozen gate. Rule v1 remains
+unchanged and Rule v2 was not created.
 
 ## TASK-039C Onward
 
-TASK-039C remains unauthorized until a later versioned feasibility task
-selects exactly one process under a frozen policy.
+TASK-039C is authorized for P1 candidate-universe and graph-evidence work only.
+It must not treat BR2 screening parameters as canonical calibration or runtime
+parameters, and it must resolve the production graph-ranker naming and fidelity
+boundary before scientific use.
 
 1. TASK-039C: candidate-universe and graph evidence construction.
 2. TASK-039D: normal relation profiling and deterministic calibration.

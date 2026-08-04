@@ -15,3 +15,9 @@ Full source-parameter, event, isolation, relation, and confirmation ledgers are
 private. Public artifacts contain process aggregates, status counts, and
 private-ledger hashes only. Feasibility parameters have no final calibration,
 Agent, verifier, rule, or runtime authority.
+
+TASK-039BR2 executed this interpretation from code commit
+`4461db42b78b573b9f8b10979d75d0e0912bab32`. No material BR1 ambiguity was
+resolved after viewing a scientific result. File-local calculations, strict
+direction agreement, no lower-ranked fallback, and train3 no-retuning checks
+remained fixed.

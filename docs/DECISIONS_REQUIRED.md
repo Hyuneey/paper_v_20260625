@@ -1940,3 +1940,20 @@
   verifier/runtime work remain additive migration plans only.
 - No real HAI value was accessed and no process was selected. TASK-039BR2 is
   next; TASK-039C remains unauthorized.
+
+### DEC-098: HAI continuous-step feasibility and process freeze
+
+- Status: resolved_passed_TASK039BR2
+- Decision: select `P1` Boiler because it alone passed the frozen
+  `continuous_step_delayed_response_v1` feasibility gate.
+- P1 had 12 valid source thresholds, 69 fit-supported directional relations,
+  65 train3-confirmed relations, 9 distinct confirmed sources, 10 distinct
+  confirmed targets, and transfer rate `65/69`.
+- P3 had 2 valid source thresholds but no fit-supported or confirmed relation;
+  it remained infeasible under the same gate.
+- No weighted score or Pareto tie-break was used. Selection reason:
+  `only_P1_feasible`.
+- Rule v1, Verifier v1, and Runtime v1 remain unchanged. Rule v2 is not
+  created, and screening parameters have no canonical or runtime authority.
+- TASK-039C is authorized only for P1 candidate-universe and graph-evidence
+  work. Production graph-ranker identity remains open.

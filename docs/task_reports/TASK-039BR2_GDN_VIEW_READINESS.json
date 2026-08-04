@@ -1,0 +1,11 @@
+{
+  "artifact_hash": "f8e211e17218ed5601d83b2afa84b5ad925c92b16044e99b92319cd557bfc2da",
+  "artifact_type": "task039br2_gdn_view_readiness_v1",
+  "candidate_mask_required": true,
+  "downsampling_approved": false,
+  "gdn_view_status": "pending_production_backend",
+  "model_training_authorized": false,
+  "production_backend": "unresolved",
+  "schema_version": "1.0.0",
+  "selected_process_id": "P1"
+}

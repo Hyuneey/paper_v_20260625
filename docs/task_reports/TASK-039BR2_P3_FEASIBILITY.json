@@ -1,0 +1,49 @@
+{
+  "artifact_hash": "4706e484fffb8990232c2be71628e66b4ff342402f89401be89406b42645172c",
+  "artifact_type": "hai_continuous_process_feasibility_v1",
+  "attack_information_used": false,
+  "calibration_confirmed_directional_pairs": 0,
+  "calibration_status_counts": {},
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "distinct_confirmed_sources": 0,
+  "distinct_confirmed_targets": 0,
+  "documented_sources_with_valid_fit_thresholds": 2,
+  "eligible_continuous_targets": 3,
+  "feasibility_gate_passed": false,
+  "fit_status_counts": {
+    "direction_unstable": 9,
+    "fit_unsupported": 3
+  },
+  "fit_supported_directional_pairs": 0,
+  "fit_to_calibration_transfer_rate": 0.0,
+  "manual_metadata_coverage": 1.0,
+  "median_calibration_isolated_event_support": 0.0,
+  "metadata_unresolved_ratio": 0.0,
+  "missing_or_nonfinite_rate": 0.0,
+  "non_isolated_source_event_ratio": 0.0,
+  "normal_candidate_fit_files": [
+    "hai-train1.csv",
+    "hai-train2.csv"
+  ],
+  "normal_guard_feature_values_accessed": false,
+  "normal_relation_calibration_file": "hai-train3.csv",
+  "official_graph_used_for_scoring": false,
+  "private_event_ledger_hash": "d982986b38c3eeb735b4d8c53eeec3252368018beb16dc81ab47f08745f178a5",
+  "private_relation_ledger_hash": "cc3d360eec81a4cbbb04dee2d0d6d9175b11a792270bb7bf7eec7f4ddc9620d3",
+  "private_source_parameter_ledger_hash": "6d52e25f308376b82d9f59ea1d2f2f794836c8333c988cba3590738cea091b7d",
+  "process_id": "P3",
+  "process_name": "Water Treatment",
+  "process_outcome": "infeasible",
+  "prohibited_data_access_count": 0,
+  "raw_values_included": false,
+  "schema_version": "1.0.0",
+  "source_status_counts": {
+    "supported": 2
+  },
+  "weighted_score_used": false
+}

@@ -1,0 +1,101 @@
+{
+  "artifact_hash": "108dcb05816d8b4adf68d0cb8778a806da600a4e63542fc7a6fb2e0dc832d518",
+  "artifact_type": "task039br2_selected_process_split_manifests_v2",
+  "records": [
+    {
+      "artifact_hash": "cf02e3474a0ade49aec518a886fef0fb0c405b311d827f593fdc207cfad9ab7a",
+      "artifact_type": "split_manifest_v2",
+      "creation_metadata": {
+        "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+        "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+        "created_at": "2026-08-04T00:00:00+09:00",
+        "created_by": "TASK-039BR2"
+      },
+      "creation_policy": "file_level_train1_train2_before_windowing",
+      "data_view_id": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+      "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+      "event_ids": null,
+      "process_scope": [
+        "P1"
+      ],
+      "provenance_status": "verified",
+      "purge_gap_samples": 120,
+      "raw_ranges": [
+        {
+          "end": 280800,
+          "start": 0
+        },
+        {
+          "end": 572520,
+          "start": 280920
+        }
+      ],
+      "role": "normal_candidate_fit",
+      "schema_version": "2.0.0",
+      "sealed_access_status": "not_applicable",
+      "seed": null,
+      "split_before_windowing": true
+    },
+    {
+      "artifact_hash": "c9e31a99364c0db11f4ad958a93de90ac065661c5171bf8601e2861a5706bba5",
+      "artifact_type": "split_manifest_v2",
+      "creation_metadata": {
+        "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+        "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+        "created_at": "2026-08-04T00:00:00+09:00",
+        "created_by": "TASK-039BR2"
+      },
+      "creation_policy": "file_level_train3_before_windowing_without_retuning",
+      "data_view_id": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+      "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+      "event_ids": null,
+      "process_scope": [
+        "P1"
+      ],
+      "provenance_status": "verified",
+      "purge_gap_samples": 120,
+      "raw_ranges": [
+        {
+          "end": 698640,
+          "start": 572640
+        }
+      ],
+      "role": "normal_relation_calibration",
+      "schema_version": "2.0.0",
+      "sealed_access_status": "not_applicable",
+      "seed": null,
+      "split_before_windowing": true
+    },
+    {
+      "artifact_hash": "0a09b9171925a24d1955023c41a2b1d9b54682b68ad4c5715943908ff80f0923",
+      "artifact_type": "split_manifest_v2",
+      "creation_metadata": {
+        "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+        "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+        "created_at": "2026-08-04T00:00:00+09:00",
+        "created_by": "TASK-039BR2"
+      },
+      "creation_policy": "file_level_train4_reserved_without_feature_value_access",
+      "data_view_id": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+      "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+      "event_ids": null,
+      "process_scope": [
+        "P1"
+      ],
+      "provenance_status": "verified",
+      "purge_gap_samples": 120,
+      "raw_ranges": [
+        {
+          "end": 896760,
+          "start": 698760
+        }
+      ],
+      "role": "normal_guard",
+      "schema_version": "2.0.0",
+      "sealed_access_status": "not_applicable",
+      "seed": null,
+      "split_before_windowing": true
+    }
+  ],
+  "schema_version": "1.0.0"
+}

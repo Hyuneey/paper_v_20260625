@@ -1,0 +1,53 @@
+{
+  "artifact_hash": "b51a1f238a51139eed13727a057ea91b380cf1cf8da35d138e11ff2dbc140102",
+  "artifact_type": "hai_continuous_process_feasibility_v1",
+  "attack_information_used": false,
+  "calibration_confirmed_directional_pairs": 65,
+  "calibration_status_counts": {
+    "calibration_confirmed": 65,
+    "calibration_conflict": 4
+  },
+  "creation_metadata": {
+    "code_commit": "4461db42b78b573b9f8b10979d75d0e0912bab32",
+    "config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "created_at": "2026-08-04T00:00:00+09:00",
+    "created_by": "TASK-039BR2"
+  },
+  "distinct_confirmed_sources": 9,
+  "distinct_confirmed_targets": 10,
+  "documented_sources_with_valid_fit_thresholds": 12,
+  "eligible_continuous_targets": 12,
+  "feasibility_gate_passed": true,
+  "fit_status_counts": {
+    "direction_unstable": 58,
+    "fit_supported": 69,
+    "fit_unsupported": 161
+  },
+  "fit_supported_directional_pairs": 69,
+  "fit_to_calibration_transfer_rate": 0.9420289855072463,
+  "manual_metadata_coverage": 1.0,
+  "median_calibration_isolated_event_support": 304.0,
+  "metadata_unresolved_ratio": 0.02702702702702703,
+  "missing_or_nonfinite_rate": 0.0,
+  "non_isolated_source_event_ratio": 0.4000094576062799,
+  "normal_candidate_fit_files": [
+    "hai-train1.csv",
+    "hai-train2.csv"
+  ],
+  "normal_guard_feature_values_accessed": false,
+  "normal_relation_calibration_file": "hai-train3.csv",
+  "official_graph_used_for_scoring": false,
+  "private_event_ledger_hash": "66c0db90d928b1d0193256efe232dd67fa04ae5155c34ce33c9fa7b5c859bf75",
+  "private_relation_ledger_hash": "a9d874a1bbee0db39a0622762152431c9ad4bd89bd061993818f8ef57dbba7e9",
+  "private_source_parameter_ledger_hash": "d97fe5f10a8b77e197d75d3df470ce018ee434d116dc38545dae6626d5921e3a",
+  "process_id": "P1",
+  "process_name": "Boiler",
+  "process_outcome": "feasible",
+  "prohibited_data_access_count": 0,
+  "raw_values_included": false,
+  "schema_version": "1.0.0",
+  "source_status_counts": {
+    "supported": 12
+  },
+  "weighted_score_used": false
+}
