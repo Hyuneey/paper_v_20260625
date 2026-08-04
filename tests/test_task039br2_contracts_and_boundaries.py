@@ -233,6 +233,16 @@ class AccessBoundaryTests(unittest.TestCase):
         with self.assertRaises(HAIContinuousStepError):
             assert_public_payload_safe_v1({"event_index": 10})
         assert_public_payload_safe_v1({"event_timestamps_publicly_exposed": False})
+        assert_public_payload_safe_v1(
+            {
+                "raw_rows_persisted": False,
+                "raw_windows_persisted": False,
+            }
+        )
+        with self.assertRaises(HAIContinuousStepError):
+            assert_public_payload_safe_v1({"event_timestamps_publicly_exposed": True})
+        with self.assertRaises(HAIContinuousStepError):
+            assert_public_payload_safe_v1({"output_root": "C:\\Users\\example\\private"})
 
     def test_synthetic_process_execution(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -1662,23 +1662,18 @@ def assert_public_payload_safe_v1(document: Mapping[str, Any]) -> None:
         elif isinstance(value, (list, tuple)):
             for item in value:
                 inspect(item)
+        elif isinstance(value, str):
+            lowered_value = value.lower()
+            prohibited_value_tokens = (
+                "c:\\users\\",
+                "authorization: bearer",
+                "x-amz-signature=",
+                "credential=",
+            )
+            if any(token in lowered_value for token in prohibited_value_tokens):
+                raise HAIContinuousStepError("failed_public_output_boundary")
 
     inspect(document)
-    text = json.dumps(thaw_json(document), sort_keys=True, ensure_ascii=True).lower()
-    prohibited = (
-        "event_index",
-        "raw_row",
-        "raw_window",
-        "attack_start",
-        "attack_end",
-        "target_controller",
-        "credential",
-        "signed_url",
-        "authorization_header",
-        "c:\\\\users\\\\",
-    )
-    if any(token in text for token in prohibited):
-        raise HAIContinuousStepError("failed_public_output_boundary")
 
 
 class ProcessExecutionResultV1(NamedTuple):
