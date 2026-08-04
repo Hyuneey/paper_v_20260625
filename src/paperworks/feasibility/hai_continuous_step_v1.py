@@ -1639,10 +1639,34 @@ def create_selected_splits_v1(
 
 
 def assert_public_payload_safe_v1(document: Mapping[str, Any]) -> None:
+    def inspect(value: Any) -> None:
+        if isinstance(value, Mapping):
+            for key, item in value.items():
+                lowered_key = str(key).lower()
+                if lowered_key in {
+                    "event_index",
+                    "event_timestamp",
+                    "raw_row",
+                    "raw_window",
+                    "attack_start",
+                    "attack_end",
+                    "target_controller",
+                    "credential",
+                    "signed_url",
+                    "authorization_header",
+                }:
+                    raise HAIContinuousStepError("failed_public_output_boundary")
+                if lowered_key == "event_timestamps_publicly_exposed" and item is not False:
+                    raise HAIContinuousStepError("failed_public_output_boundary")
+                inspect(item)
+        elif isinstance(value, (list, tuple)):
+            for item in value:
+                inspect(item)
+
+    inspect(document)
     text = json.dumps(thaw_json(document), sort_keys=True, ensure_ascii=True).lower()
     prohibited = (
         "event_index",
-        "event_timestamp",
         "raw_row",
         "raw_window",
         "attack_start",

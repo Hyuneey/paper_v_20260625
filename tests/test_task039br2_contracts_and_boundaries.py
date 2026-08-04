@@ -232,6 +232,7 @@ class AccessBoundaryTests(unittest.TestCase):
     def test_public_leak_scan(self) -> None:
         with self.assertRaises(HAIContinuousStepError):
             assert_public_payload_safe_v1({"event_index": 10})
+        assert_public_payload_safe_v1({"event_timestamps_publicly_exposed": False})
 
     def test_synthetic_process_execution(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
