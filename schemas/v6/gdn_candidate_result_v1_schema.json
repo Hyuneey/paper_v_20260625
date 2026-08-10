@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/gdn_candidate_result_v1_schema.json",
+  "title": "GDNCandidateResultV1",
+  "oneOf": [
+    {"$ref": "#/$defs/blockedResult"},
+    {"$ref": "#/$defs/passedResult"}
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "gitSha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "candidateIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "target"],
+      "properties": {"source": {"type": "string"}, "target": {"type": "string"}}
+    },
+    "rankedCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rank", "source", "target", "selected_seed_count", "edge_selection_frequency", "median_upstream_graph_similarity"],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1},
+        "source": {"type": "string"},
+        "target": {"type": "string"},
+        "selected_seed_count": {"type": "integer", "minimum": 1, "maximum": 3},
+        "edge_selection_frequency": {"enum": [0.3333333333333333, 0.6666666666666666, 1.0]},
+        "median_upstream_graph_similarity": {"type": "number"}
+      }
+    },
+    "seedRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed", "successful", "selected_edge_count", "hyperparameter_hash", "epoch_count", "best_validation_loss", "failure_reason"],
+      "properties": {
+        "seed": {"enum": [11, 23, 37]},
+        "successful": {"const": true},
+        "selected_edge_count": {"type": "integer", "minimum": 0},
+        "hyperparameter_hash": {"$ref": "#/$defs/sha256"},
+        "epoch_count": {"type": "integer", "minimum": 1},
+        "best_validation_loss": {"type": "number"},
+        "failure_reason": {"type": "null"}
+      }
+    },
+    "blockedResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "task_id", "arm_id", "status", "phase_a_commit", "protocol_bundle_hash", "gdn_policy_hash", "pair_universe_hash", "upstream_commit", "fidelity_receipt_hash", "dependency_environment_fingerprint", "backend_classification", "source_count", "target_count", "real_hai_feature_access", "seeds_attempted", "seeds_completed", "br2_pair_supervision_used", "train3_accessed", "train4_accessed", "test_accessed", "attention_used_for_primary_ranking", "posthoc_xai_used", "created_at", "blocking_reason", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "gdn_candidate_result_v1"}, "task_id": {"const": "TASK-039C-GDN"}, "arm_id": {"const": "GDN"},
+        "status": {"enum": ["blocked_optional_dependency", "blocked_upstream_gdn_backend_unresolved"]},
+        "phase_a_commit": {"$ref": "#/$defs/gitSha"}, "protocol_bundle_hash": {"const": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff"}, "gdn_policy_hash": {"const": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a"}, "pair_universe_hash": {"const": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557"}, "upstream_commit": {"const": "9853899da860682669a134e4af315d036aab4eca"},
+        "fidelity_receipt_hash": {"$ref": "#/$defs/sha256"}, "dependency_environment_fingerprint": {"$ref": "#/$defs/sha256"}, "backend_classification": {"enum": ["upstream_aligned_validated", "upstream_aligned_unverified"]},
+        "source_count": {"const": 12}, "target_count": {"const": 12}, "real_hai_feature_access": {"const": false}, "seeds_attempted": {"const": []}, "seeds_completed": {"const": []},
+        "br2_pair_supervision_used": {"const": false}, "train3_accessed": {"const": false}, "train4_accessed": {"const": false}, "test_accessed": {"const": false}, "attention_used_for_primary_ranking": {"const": false}, "posthoc_xai_used": {"const": false},
+        "created_at": {"type": "string", "format": "date-time"}, "blocking_reason": {"type": "string", "minLength": 1}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "passedResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "task_id", "arm_id", "status", "phase_a_commit", "protocol_bundle_hash", "gdn_policy_hash", "pair_universe_hash", "upstream_commit", "fidelity_receipt_hash", "dependency_environment_fingerprint", "backend_classification", "source_count", "target_count", "real_hai_feature_access", "seeds_attempted", "seeds_completed", "br2_pair_supervision_used", "train3_accessed", "train4_accessed", "test_accessed", "attention_used_for_primary_ranking", "posthoc_xai_used", "created_at", "seed_records", "evaluated_candidate_count", "supported_candidate_count", "ranking", "ranking_hash", "top10", "top20", "top40", "candidate_shortfall", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "gdn_candidate_result_v1"}, "task_id": {"const": "TASK-039C-GDN"}, "arm_id": {"const": "GDN"}, "status": {"const": "passed_task039c_gdn_candidate_discovery"},
+        "phase_a_commit": {"$ref": "#/$defs/gitSha"}, "protocol_bundle_hash": {"const": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff"}, "gdn_policy_hash": {"const": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a"}, "pair_universe_hash": {"const": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557"}, "upstream_commit": {"const": "9853899da860682669a134e4af315d036aab4eca"},
+        "fidelity_receipt_hash": {"$ref": "#/$defs/sha256"}, "dependency_environment_fingerprint": {"$ref": "#/$defs/sha256"}, "backend_classification": {"const": "upstream_aligned_validated"},
+        "source_count": {"const": 12}, "target_count": {"const": 12}, "real_hai_feature_access": {"const": true}, "seeds_attempted": {"const": [11, 23, 37]}, "seeds_completed": {"const": [11, 23, 37]},
+        "br2_pair_supervision_used": {"const": false}, "train3_accessed": {"const": false}, "train4_accessed": {"const": false}, "test_accessed": {"const": false}, "attention_used_for_primary_ranking": {"const": false}, "posthoc_xai_used": {"const": false}, "created_at": {"type": "string", "format": "date-time"},
+        "seed_records": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/seedRecord"}},
+        "evaluated_candidate_count": {"const": 144}, "supported_candidate_count": {"type": "integer", "minimum": 0, "maximum": 144}, "ranking": {"type": "array", "items": {"$ref": "#/$defs/rankedCandidate"}}, "ranking_hash": {"$ref": "#/$defs/sha256"},
+        "top10": {"type": "array", "maxItems": 10, "items": {"$ref": "#/$defs/candidateIdentity"}}, "top20": {"type": "array", "maxItems": 20, "items": {"$ref": "#/$defs/candidateIdentity"}}, "top40": {"type": "array", "maxItems": 40, "items": {"$ref": "#/$defs/candidateIdentity"}},
+        "candidate_shortfall": {"type": "object", "additionalProperties": false, "required": ["10", "20", "40"], "properties": {"10": {"type": "integer", "minimum": 0}, "20": {"type": "integer", "minimum": 0}, "40": {"type": "integer", "minimum": 0}}},
+        "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039c_gdn_backend_config_v1",
+  "task_id": "TASK-039C-GDN",
+  "starting_commit": "b6522fb83c4cb92d355f98af778f9a6a3c73362f",
+  "protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "gdn_policy_hash": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a",
+  "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "selected_process_id": "P1",
+  "source_count": 12,
+  "target_count": 12,
+  "upstream": {
+    "repository": "https://github.com/d-ailin/GDN",
+    "commit": "9853899da860682669a134e4af315d036aab4eca",
+    "native_reference_dependencies": {
+      "torch": "1.5.1",
+      "torch-geometric": "1.5.0"
+    }
+  },
+  "approved_port_dependencies": {
+    "torch": "2.12.1",
+    "torch-geometric": "2.8.0"
+  },
+  "training": {
+    "seeds": [11, 23, 37],
+    "batch_size": 32,
+    "epochs": 30,
+    "slide_window": 5,
+    "slide_stride": 1,
+    "embedding_dim": 64,
+    "out_layer_num": 1,
+    "out_layer_inter_dim": 128,
+    "learned_graph_topk": 5,
+    "validation_ratio": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "early_stopping_patience": 15,
+    "dropout": 0.2,
+    "device": "cpu"
+  },
+  "preprocessing": {
+    "normalization": "none_as_upstream",
+    "window_policy": "raw_numeric_values_no_scaling_windows_do_not_cross_files",
+    "file_policy": [
+      "hai-23.05/hai-train1.csv",
+      "hai-23.05/hai-train2.csv"
+    ],
+    "split_role": "NORMAL_CANDIDATE_FIT",
+    "labels_allowed": false
+  },
+  "documented_adaptations": [
+    {
+      "field": "node_count_and_input_feature_order",
+      "classification": "dimension_adaptation",
+      "decision": "derive deterministically from the frozen P1 candidate-learning view"
+    },
+    {
+      "field": "random_seeds",
+      "classification": "dimension_adaptation",
+      "decision": "replace upstream demonstration seed with C0 seeds 11, 23, and 37"
+    },
+    {
+      "field": "multi_file_windowing",
+      "classification": "documented_non_scientific_adapter",
+      "decision": "construct windows within train1 and train2 separately, then combine windows without cross-file context"
+    },
+    {
+      "field": "checkpoint_storage",
+      "classification": "documented_non_scientific_adapter",
+      "decision": "retain best validation-loss state dictionary in memory and persist no checkpoint path"
+    },
+    {
+      "field": "candidate_projection",
+      "classification": "documented_non_scientific_adapter",
+      "decision": "project upstream neighbor-to-target graph relatedness onto the exact frozen semantic source-to-target universe without causal claim"
+    }
+  ],
+  "prohibitions": {
+    "smoke_backend_as_gdn": true,
+    "per_seed_tuning": true,
+    "train3_train4_test": true,
+    "br2_pair_supervision": true,
+    "meta_stat_outputs": true,
+    "attention_primary": true,
+    "posthoc_xai_primary": true,
+    "candidate_padding": true,
+    "ad_hoc_dependency_installation": true
+  },
+  "config_hash": "dfd779e49ce865eed6537942d8fc66157b0ccb52874219ae97a45837441d3472"
+}
