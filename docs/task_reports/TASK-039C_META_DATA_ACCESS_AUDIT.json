@@ -1,0 +1,36 @@
+{
+  "arm_id": "META",
+  "artifact_hash": "1a21a4c1a67c053c2be576299cc77584f0f9c4cc7e3e62d738cd083cf4025a68",
+  "artifact_type": "metadata_candidate_data_access_audit_v1",
+  "br2_pair_supervision_used": false,
+  "c0_protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "creation_metadata": {
+    "code_commit": "2b3df4443619b8d0d19434bbcd1ded3b31a1b8ea",
+    "created_at": "2026-08-10T00:00:00+09:00",
+    "created_by": "TASK-039C-META"
+  },
+  "cross_arm_score_used": false,
+  "evidence_input_hash": "8cdb1e606149a2d7647f4b68955280187ad7219d09fde17660cdfb80f2708e39",
+  "feature_value_file_access_count": 0,
+  "official_reference_files": [
+    {
+      "content_sha256": "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556",
+      "git_blob_sha": "18cb88514176e1c641f584cf24ac8e9559432b38",
+      "pinned_relative_path": "hai_dataset_technical_details.pdf",
+      "reference_kind": "official_HAI_technical_manual"
+    },
+    {
+      "content_sha256": "eca648d73c0444a35294608c2a1067256d7b32547257153226fece2de3febd07",
+      "git_blob_sha": "c47dc78fdef88ec1f5973280e179707cca36231b",
+      "pinned_relative_path": "graph/boiler/phy_boiler.json",
+      "reference_kind": "official_P1_process_physical_graph"
+    }
+  ],
+  "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "prohibited_input_access_count": 0,
+  "real_hai_feature_values_accessed": false,
+  "schema_version": "1.0.0",
+  "snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "status": "passed_metadata_data_boundary",
+  "task_id": "TASK-039C-META"
+}
