@@ -755,6 +755,18 @@ def _require_exact_runtime_dependencies_v1() -> None:
         )
 
 
+def upstream_sparse_softmax_compat_v1(
+    src: Any,
+    index: Any,
+    num_nodes: int,
+) -> Any:
+    """Bind upstream PyG-1.5 ``num_nodes`` semantics to the PyG-2.8 API."""
+
+    from torch_geometric.utils import softmax as pyg_softmax
+
+    return pyg_softmax(src, index=index, num_nodes=num_nodes)
+
+
 def _load_runtime_types_v1() -> tuple[Any, Any, Any]:
     """Define the source-aligned model only after exact dependency approval."""
 
@@ -765,7 +777,7 @@ def _load_runtime_types_v1() -> tuple[Any, Any, Any]:
     from torch.nn import Parameter
     from torch_geometric.nn.conv import MessagePassing
     from torch_geometric.nn.inits import glorot, zeros
-    from torch_geometric.utils import add_self_loops, remove_self_loops, softmax
+    from torch_geometric.utils import add_self_loops, remove_self_loops
 
     class GraphLayer(MessagePassing):
         def __init__(self, in_channels: int, out_channels: int, *, heads: int = 1, concat: bool = True, negative_slope: float = 0.2, dropout: float = 0.0, bias: bool = True) -> None:
@@ -817,7 +829,7 @@ def _load_runtime_types_v1() -> tuple[Any, Any, Any]:
             alpha = (key_i * torch.cat((self.att_i, self.att_em_i), dim=-1)).sum(-1)
             alpha += (key_j * torch.cat((self.att_j, self.att_em_j), dim=-1)).sum(-1)
             alpha = functional.leaky_relu(alpha.view(-1, self.heads, 1), self.negative_slope)
-            alpha = softmax(alpha, edge_index_i, size_i)
+            alpha = upstream_sparse_softmax_compat_v1(alpha, edge_index_i, size_i)
             self._alpha = alpha
             alpha = functional.dropout(alpha, p=self.dropout, training=self.training)
             return x_j * alpha.view(-1, self.heads, 1)
@@ -1073,5 +1085,6 @@ __all__ = [
     "inspect_python_executable_v1",
     "load_authorized_numeric_segments_v1",
     "train_upstream_aligned_seed_v1",
+    "upstream_sparse_softmax_compat_v1",
     "verify_pinned_upstream_checkout_v1",
 ]

@@ -60,13 +60,13 @@
     "passedResult": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema_version", "artifact_type", "task_id", "arm_id", "status", "phase_a_commit", "protocol_bundle_hash", "gdn_policy_hash", "pair_universe_hash", "source_identity_hash", "target_identity_hash", "candidate_learning_view_id", "upstream_commit", "fidelity_receipt_hash", "environment_receipt_hash", "dependency_environment_fingerprint", "remediation_execution_commit", "backend_classification", "source_count", "target_count", "real_hai_feature_access", "seeds_attempted", "seeds_completed", "private_seed_ledger_hashes", "data_access_audit_ref", "br2_pair_supervision_used", "train1_accessed", "train2_accessed", "train3_accessed", "train4_accessed", "test_accessed", "labels_accessed", "attacks_accessed", "meta_output_used", "stat_output_used", "attention_used_for_primary_ranking", "posthoc_xai_used", "created_at", "seed_records", "evaluated_candidate_count", "supported_candidate_count", "ranking", "ranking_hash", "top10", "top20", "top40", "candidate_shortfall", "artifact_hash"],
+      "required": ["schema_version", "artifact_type", "task_id", "arm_id", "status", "phase_a_commit", "protocol_bundle_hash", "gdn_policy_hash", "pair_universe_hash", "source_identity_hash", "target_identity_hash", "candidate_learning_view_id", "upstream_commit", "fidelity_receipt_hash", "environment_receipt_hash", "dependency_environment_fingerprint", "remediation_execution_commit", "compatibility_execution_commit", "compatibility_receipt_hash", "lineage_history", "backend_classification", "source_count", "target_count", "real_hai_feature_access", "seeds_attempted", "seeds_completed", "private_seed_ledger_hashes", "data_access_audit_ref", "br2_pair_supervision_used", "train1_accessed", "train2_accessed", "train3_accessed", "train4_accessed", "test_accessed", "labels_accessed", "attacks_accessed", "meta_output_used", "stat_output_used", "attention_used_for_primary_ranking", "posthoc_xai_used", "created_at", "seed_records", "evaluated_candidate_count", "supported_candidate_count", "ranking", "ranking_hash", "top10", "top20", "top40", "candidate_shortfall", "artifact_hash"],
       "properties": {
         "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "gdn_candidate_result_v1"}, "task_id": {"const": "TASK-039C-GDN"}, "arm_id": {"const": "GDN"}, "status": {"const": "passed_task039c_gdn_candidate_discovery"},
         "phase_a_commit": {"$ref": "#/$defs/gitSha"}, "protocol_bundle_hash": {"const": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff"}, "gdn_policy_hash": {"const": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a"}, "pair_universe_hash": {"const": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557"}, "source_identity_hash": {"const": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234"}, "target_identity_hash": {"const": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7"}, "candidate_learning_view_id": {"const": "eaa77f331bf79cc6887ccddcfff8818880c1a93c16ebc6fdd2d06a1c8db37eca"}, "upstream_commit": {"const": "9853899da860682669a134e4af315d036aab4eca"},
-        "fidelity_receipt_hash": {"$ref": "#/$defs/sha256"}, "environment_receipt_hash": {"$ref": "#/$defs/sha256"}, "dependency_environment_fingerprint": {"$ref": "#/$defs/sha256"}, "remediation_execution_commit": {"$ref": "#/$defs/gitSha"}, "backend_classification": {"const": "upstream_aligned_validated"},
+        "fidelity_receipt_hash": {"$ref": "#/$defs/sha256"}, "environment_receipt_hash": {"$ref": "#/$defs/sha256"}, "dependency_environment_fingerprint": {"$ref": "#/$defs/sha256"}, "remediation_execution_commit": {"const": "914e5159e719271262c8caa5bf94a2a806efc589"}, "compatibility_execution_commit": {"$ref": "#/$defs/gitSha"}, "compatibility_receipt_hash": {"$ref": "#/$defs/sha256"}, "lineage_history": {"$ref": "#/$defs/gdncLineage"}, "backend_classification": {"const": "upstream_aligned_validated"},
         "source_count": {"const": 12}, "target_count": {"const": 12}, "real_hai_feature_access": {"const": true}, "seeds_attempted": {"const": [11, 23, 37]}, "seeds_completed": {"const": [11, 23, 37]},
-        "private_seed_ledger_hashes": {"type": "array", "minItems": 3, "maxItems": 3, "prefixItems": [{"$ref": "#/$defs/seedLedgerHash11"}, {"$ref": "#/$defs/seedLedgerHash23"}, {"$ref": "#/$defs/seedLedgerHash37"}], "items": false}, "data_access_audit_ref": {"const": "TASK-039C_GDNR_DATA_ACCESS_AUDIT.json"},
+        "private_seed_ledger_hashes": {"type": "array", "minItems": 3, "maxItems": 3, "prefixItems": [{"$ref": "#/$defs/seedLedgerHash11"}, {"$ref": "#/$defs/seedLedgerHash23"}, {"$ref": "#/$defs/seedLedgerHash37"}], "items": false}, "data_access_audit_ref": {"const": "TASK-039C_GDNC_DATA_ACCESS_AUDIT.json"},
         "br2_pair_supervision_used": {"const": false}, "train1_accessed": {"const": true}, "train2_accessed": {"const": true}, "train3_accessed": {"const": false}, "train4_accessed": {"const": false}, "test_accessed": {"const": false}, "labels_accessed": {"const": false}, "attacks_accessed": {"const": false}, "meta_output_used": {"const": false}, "stat_output_used": {"const": false}, "attention_used_for_primary_ranking": {"const": false}, "posthoc_xai_used": {"const": false}, "created_at": {"type": "string", "format": "date-time"},
         "seed_records": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/seedRecord"}},
         "evaluated_candidate_count": {"const": 144}, "supported_candidate_count": {"type": "integer", "minimum": 0, "maximum": 144}, "ranking": {"type": "array", "items": {"$ref": "#/$defs/rankedCandidate"}}, "ranking_hash": {"$ref": "#/$defs/sha256"},
@@ -78,6 +78,21 @@
     "seedLedgerHash11": {"type": "object", "additionalProperties": false, "required": ["seed", "ledger_hash"], "properties": {"seed": {"const": 11}, "ledger_hash": {"$ref": "#/$defs/sha256"}}},
     "seedLedgerHash23": {"type": "object", "additionalProperties": false, "required": ["seed", "ledger_hash"], "properties": {"seed": {"const": 23}, "ledger_hash": {"$ref": "#/$defs/sha256"}}},
     "seedLedgerHash37": {"type": "object", "additionalProperties": false, "required": ["seed", "ledger_hash"], "properties": {"seed": {"const": 37}, "ledger_hash": {"$ref": "#/$defs/sha256"}}},
+    "gdncLineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["initial_gdn_status", "gdnr_environment_status", "gdnr_status", "gdnr_failure_seed", "gdnr_ranking_produced", "gdnc_compatibility_correction_count", "gdnc_compatibility_classification", "gdnc_final_attempt"],
+      "properties": {
+        "initial_gdn_status": {"const": "blocked_optional_dependency"},
+        "gdnr_environment_status": {"const": "passed_exact_gdn_environment_remediation"},
+        "gdnr_status": {"const": "failed_gdn_training"},
+        "gdnr_failure_seed": {"const": 11},
+        "gdnr_ranking_produced": {"const": false},
+        "gdnc_compatibility_correction_count": {"const": 1},
+        "gdnc_compatibility_classification": {"const": "documented_non_scientific_api_adapter"},
+        "gdnc_final_attempt": {"const": true}
+      }
+    },
     "remediationFailureResult": {
       "type": "object",
       "additionalProperties": false,
