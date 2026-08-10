@@ -1,0 +1,67 @@
+{
+  "allowed_br2_source_reuse_fields": [
+    "source_identity",
+    "semantic_role",
+    "eligibility_status"
+  ],
+  "allowed_process_ids": [
+    "P1"
+  ],
+  "arm_ids": [
+    "META",
+    "STAT",
+    "GDN"
+  ],
+  "artifact_hash": "93ba473f674f398ff95f6ce7ce4a28c81a865ec1bab1f5a90d09c1d6f5d13bf7",
+  "artifact_type": "task039c0_data_access_policy_v1",
+  "br2_pair_level_access_mode": "lineage_hash_verification_only",
+  "br2_pair_level_artifacts": [
+    "BR2_private_relation_ledger",
+    "BR2_directional_fit_records",
+    "BR2_calibration_confirmation_records",
+    "BR2_fit_supported_pair_identities",
+    "BR2_confirmed_pair_identities",
+    "BR2_target_response_values",
+    "BR2_selected_horizons",
+    "BR2_pair_level_consistency",
+    "BR2_pair_level_effect_ratios"
+  ],
+  "candidate_discovery_executed": false,
+  "creation_metadata": {
+    "code_commit": "1a55b1aabcfcd4c2a21dc881a9c5d20b6c5c5d81",
+    "config_hash": "d703d7ec0b87694b53cd4d2b3768ca32efca00cd3bdc3ce12933fc6c8c36d34f",
+    "created_at": "2026-08-10T00:00:00+09:00",
+    "created_by": "TASK-039C0"
+  },
+  "gdn_value_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv"
+  ],
+  "meta_value_files": [],
+  "prohibited_br2_source_reuse_fields": [
+    "source_step_threshold",
+    "stability_tolerance",
+    "event_count",
+    "event_timestamp"
+  ],
+  "prohibited_process_ids": [
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "prohibited_value_files": [
+    "hai-23.05/hai-train3.csv",
+    "hai-23.05/hai-train4.csv",
+    "hai-23.05/hai-test*.csv",
+    "hai-23.05/label-test*.csv",
+    "hai-23.05/summary_label*.txt"
+  ],
+  "real_hai_feature_values_accessed": false,
+  "schema_version": "1.0.0",
+  "stat_value_files": [
+    "hai-23.05/hai-train1.csv",
+    "hai-23.05/hai-train2.csv"
+  ],
+  "train3_reserved_for_relation_calibration": true,
+  "train4_reserved_for_normal_guard": true
+}

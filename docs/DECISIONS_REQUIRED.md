@@ -1957,3 +1957,18 @@
   created, and screening parameters have no canonical or runtime authority.
 - TASK-039C is authorized only for P1 candidate-universe and graph-evidence
   work. Production graph-ranker identity remains open.
+
+### DEC-099: P1 parallel candidate-discovery protocol
+
+- Status: resolved_protocol_freeze_TASK039C0
+- Decision: use one 12-source, 12-target, 144-pair directed P1 universe for
+  META, STAT, and upstream-aligned GDN discovery arms.
+- Primary candidate budget is top 20; top 10 and top 40 are prefixes of one
+  arm ranking. Unsupported candidates cannot pad a list.
+- META is value-free. STAT and GDN may use P1 train1/train2 only. Train3,
+  train4, test, labels, attacks, and P2/P3/P4 values remain prohibited.
+- BR2 pair-level outcomes may verify lineage hashes only and cannot supervise
+  ranking. Integration is set union with method provenance, not a weighted
+  cross-method score.
+- The GDN arm must pass an upstream-aligned fidelity receipt; smoke backends
+  cannot identify as GDN. TASK-039D remains unauthorized.

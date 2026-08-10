@@ -11,6 +11,12 @@ source-aligned minimal GDN port or a clearly named alternative learned graph
 ranker. Only a validated source-aligned backend may be identified as GDN in the
 future RQ1 arm.
 
+TASK-039C0 now requires the GDN candidate arm to pass an
+`UpstreamGDNFidelityReceipt` before real training. A blocked GDN arm does not
+invalidate META or STAT, and no fallback may be renamed GDN. The actual
+source-aligned implementation and fidelity evidence remain open in
+TASK-039C-GDN.
+
 ## Primary Detector
 
 Freeze detector family, training, threshold, development, and selection policy

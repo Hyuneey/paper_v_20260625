@@ -1,0 +1,189 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/candidate_universe_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "candidate_universe_policy_v1",
+      "type": "string"
+    },
+    "br1_protocol_bundle_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "candidate_learning_view_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "canonical_rule_view_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "dataset_manifest_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "eligible_pair_count": {
+      "type": "integer"
+    },
+    "eligible_pair_universe_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "final_candidate_universe_created": {
+      "type": "boolean"
+    },
+    "identity_ordering": {
+      "type": "string"
+    },
+    "normal_candidate_fit_split_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "normal_guard_split_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "normal_relation_calibration_split_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "out_of_universe_candidates_rejected": {
+      "type": "boolean"
+    },
+    "pair_ordering": {
+      "type": "string"
+    },
+    "process_freeze_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "real_data_accessed": {
+      "type": "boolean"
+    },
+    "relation_family": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "selected_process_id": {
+      "type": "string"
+    },
+    "selected_process_name": {
+      "type": "string"
+    },
+    "source_identity_list_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_metadata_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "source_semantic_roles": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "source_target_overlap_count": {
+      "type": "integer"
+    },
+    "source_variables": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "target_identity_list_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "target_metadata_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "target_semantic_roles": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "target_variables": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "artifact_hash",
+    "artifact_type",
+    "br1_protocol_bundle_hash",
+    "candidate_learning_view_id",
+    "canonical_rule_view_id",
+    "creation_metadata",
+    "dataset_manifest_id",
+    "eligible_pair_count",
+    "eligible_pair_universe_hash",
+    "final_candidate_universe_created",
+    "identity_ordering",
+    "normal_candidate_fit_split_id",
+    "normal_guard_split_id",
+    "normal_relation_calibration_split_id",
+    "out_of_universe_candidates_rejected",
+    "pair_ordering",
+    "process_freeze_hash",
+    "real_data_accessed",
+    "relation_family",
+    "schema_version",
+    "selected_process_id",
+    "selected_process_name",
+    "source_identity_list_hash",
+    "source_metadata_refs",
+    "source_semantic_roles",
+    "source_target_overlap_count",
+    "source_variables",
+    "target_identity_list_hash",
+    "target_metadata_refs",
+    "target_semantic_roles",
+    "target_variables"
+  ],
+  "title": "candidate_universe_policy_v1",
+  "type": "object"
+}

@@ -63,17 +63,23 @@ remained outside the execution.
 
 ## TASK-039C Onward
 
-TASK-039C is next and is authorized for P1 candidate-universe and graph-evidence
-work only. Rule v2, construction, verifier/runtime migration, Agent execution,
-detector work, and evaluation remain unauthorized until their own tasks.
+TASK-039C0 completed the protocol freeze without reading HAI values or running
+candidate discovery. It fixed one P1 144-pair universe, common budgets, META,
+STAT, and GDN arm policies, BR2 anti-leakage rules, and unscored integration.
+Five parallel branches start from the exact C0 commit.
 
-1. candidate and graph evidence;
-2. normal relation profiling and calibration;
-3. T0 deterministic baseline;
-4. T1/T1-B/T2 bounded Agentic comparison;
-5. deterministic validity and no-op-aware governance;
-6. detector and FN correction;
-7. LLM-free runtime and trace-grounded explanation;
-8. outer prediction freeze and one-way validation;
-9. joint sealed preregistration;
-10. one-time sealed execution after approval.
+Next work is restricted to the independent C arms and later C integration.
+TASK-039D remains unauthorized. Rule v2, construction, verifier/runtime
+migration, Agent execution, detector work, and evaluation remain unauthorized.
+
+1. TASK-039C-META, TASK-039C-STAT, and TASK-039C-GDN candidate rankings;
+2. TASK-039C review and unscored integration;
+3. normal relation profiling and calibration after separate authorization;
+4. T0 deterministic baseline;
+5. T1/T1-B/T2 bounded Agentic comparison;
+6. deterministic validity and no-op-aware governance;
+7. detector and FN correction;
+8. LLM-free runtime and trace-grounded explanation;
+9. outer prediction freeze and one-way validation;
+10. joint sealed preregistration;
+11. one-time sealed execution after approval.

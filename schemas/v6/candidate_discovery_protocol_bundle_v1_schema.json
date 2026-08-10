@@ -1,0 +1,1257 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/candidate_discovery_protocol_bundle_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_result_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "arm_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "candidate_arm_result_contract_v1",
+          "type": "string"
+        },
+        "budget_views": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "candidate_shortfall_required": {
+          "type": "boolean"
+        },
+        "common_universe_required": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "cross_arm_score_prohibited": {
+          "type": "boolean"
+        },
+        "gdn_statuses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "meta_stat_statuses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "method_specific_score_only": {
+          "type": "boolean"
+        },
+        "one_deterministic_ranking_required": {
+          "type": "boolean"
+        },
+        "raw_hai_values_allowed": {
+          "type": "boolean"
+        },
+        "required_provenance_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "result_created": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "supported_candidate_only": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "arm_ids",
+        "artifact_hash",
+        "artifact_type",
+        "budget_views",
+        "candidate_shortfall_required",
+        "common_universe_required",
+        "creation_metadata",
+        "cross_arm_score_prohibited",
+        "gdn_statuses",
+        "meta_stat_statuses",
+        "method_specific_score_only",
+        "one_deterministic_ranking_required",
+        "raw_hai_values_allowed",
+        "required_provenance_fields",
+        "result_created",
+        "schema_version",
+        "supported_candidate_only"
+      ],
+      "type": "object"
+    },
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "candidate_discovery_protocol_bundle_v1",
+      "type": "string"
+    },
+    "authoritative_main_commit": {
+      "type": "string"
+    },
+    "authorized_future_work": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "budget_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "candidate_budget_policy_v1",
+          "type": "string"
+        },
+        "candidate_shortfall_required": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "one_ranking_per_arm": {
+          "type": "boolean"
+        },
+        "padding_prohibited": {
+          "type": "boolean"
+        },
+        "primary_downstream_view": {
+          "type": "string"
+        },
+        "primary_k": {
+          "type": "integer"
+        },
+        "reranking_for_k_prohibited": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "sensitivity_k": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "shorter_supported_list_allowed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "artifact_hash",
+        "artifact_type",
+        "candidate_shortfall_required",
+        "creation_metadata",
+        "one_ranking_per_arm",
+        "padding_prohibited",
+        "primary_downstream_view",
+        "primary_k",
+        "reranking_for_k_prohibited",
+        "schema_version",
+        "sensitivity_k",
+        "shorter_supported_list_allowed"
+      ],
+      "type": "object"
+    },
+    "candidate_discovery_executed": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "data_access_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_br2_source_reuse_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "allowed_process_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "arm_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "task039c0_data_access_policy_v1",
+          "type": "string"
+        },
+        "br2_pair_level_access_mode": {
+          "type": "string"
+        },
+        "br2_pair_level_artifacts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "candidate_discovery_executed": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "gdn_value_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "meta_value_files": {
+          "items": {},
+          "type": "array"
+        },
+        "prohibited_br2_source_reuse_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "prohibited_process_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "prohibited_value_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "real_hai_feature_values_accessed": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "stat_value_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "train3_reserved_for_relation_calibration": {
+          "type": "boolean"
+        },
+        "train4_reserved_for_normal_guard": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "allowed_br2_source_reuse_fields",
+        "allowed_process_ids",
+        "arm_ids",
+        "artifact_hash",
+        "artifact_type",
+        "br2_pair_level_access_mode",
+        "br2_pair_level_artifacts",
+        "candidate_discovery_executed",
+        "creation_metadata",
+        "gdn_value_files",
+        "meta_value_files",
+        "prohibited_br2_source_reuse_fields",
+        "prohibited_process_ids",
+        "prohibited_value_files",
+        "real_hai_feature_values_accessed",
+        "schema_version",
+        "stat_value_files",
+        "train3_reserved_for_relation_calibration",
+        "train4_reserved_for_normal_guard"
+      ],
+      "type": "object"
+    },
+    "final_candidate_universe_created": {
+      "type": "boolean"
+    },
+    "gdn_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_process_id": {
+          "type": "string"
+        },
+        "allowed_statuses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "allowed_value_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "gdn_candidate_policy_v1",
+          "type": "string"
+        },
+        "attention_causal_claim_allowed": {
+          "type": "boolean"
+        },
+        "attention_evidence_role": {
+          "type": "string"
+        },
+        "candidate_discovery_executed": {
+          "type": "boolean"
+        },
+        "candidate_learning_view_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "downstream_quality_tuning_allowed": {
+          "type": "boolean"
+        },
+        "edge_selection_frequency_formula": {
+          "type": "string"
+        },
+        "fidelity_checks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "full_p1_context_allowed": {
+          "type": "boolean"
+        },
+        "graph_direction_claim_boundary": {
+          "type": "string"
+        },
+        "identical_architecture_and_hyperparameters_across_seeds": {
+          "type": "boolean"
+        },
+        "normal_candidate_fit_split_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "output_projection": {
+          "type": "string"
+        },
+        "p1d_fidelity_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "post_hoc_xai_primary": {
+          "type": "boolean"
+        },
+        "primary_graph_signal": {
+          "type": "string"
+        },
+        "ranking_order": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "required_fidelity_artifact": {
+          "type": "string"
+        },
+        "required_fidelity_class": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "secondary_signal": {
+          "type": "string"
+        },
+        "seeds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "silent_fallback_allowed": {
+          "type": "boolean"
+        },
+        "smoke_backends_allowed_as_gdn": {
+          "type": "boolean"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "upstream_commit": {
+          "type": "string"
+        },
+        "upstream_repository": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "allowed_process_id",
+        "allowed_statuses",
+        "allowed_value_files",
+        "artifact_hash",
+        "artifact_type",
+        "attention_causal_claim_allowed",
+        "attention_evidence_role",
+        "candidate_discovery_executed",
+        "candidate_learning_view_id",
+        "creation_metadata",
+        "downstream_quality_tuning_allowed",
+        "edge_selection_frequency_formula",
+        "fidelity_checks",
+        "full_p1_context_allowed",
+        "graph_direction_claim_boundary",
+        "identical_architecture_and_hyperparameters_across_seeds",
+        "normal_candidate_fit_split_id",
+        "output_projection",
+        "p1d_fidelity_report_hash",
+        "post_hoc_xai_primary",
+        "primary_graph_signal",
+        "ranking_order",
+        "required_fidelity_artifact",
+        "required_fidelity_class",
+        "schema_version",
+        "secondary_signal",
+        "seeds",
+        "silent_fallback_allowed",
+        "smoke_backends_allowed_as_gdn",
+        "task_id",
+        "upstream_commit",
+        "upstream_repository"
+      ],
+      "type": "object"
+    },
+    "integration_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "candidate_integration_policy_v1",
+          "type": "string"
+        },
+        "br2_confirmed_relations_as_ground_truth_allowed": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "cross_method_union_ranking_allowed": {
+          "type": "boolean"
+        },
+        "deduplication_identity": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "downstream_evaluation_dimensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "downstream_task": {
+          "type": "string"
+        },
+        "gdn_included_only_when_passed": {
+          "type": "boolean"
+        },
+        "integration_executed": {
+          "type": "boolean"
+        },
+        "integration_operation": {
+          "type": "string"
+        },
+        "merged_numerical_score_allowed": {
+          "type": "boolean"
+        },
+        "primary_k": {
+          "type": "integer"
+        },
+        "retained_provenance_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "union_arms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "artifact_hash",
+        "artifact_type",
+        "br2_confirmed_relations_as_ground_truth_allowed",
+        "creation_metadata",
+        "cross_method_union_ranking_allowed",
+        "deduplication_identity",
+        "downstream_evaluation_dimensions",
+        "downstream_task",
+        "gdn_included_only_when_passed",
+        "integration_executed",
+        "integration_operation",
+        "merged_numerical_score_allowed",
+        "primary_k",
+        "retained_provenance_fields",
+        "schema_version",
+        "task_id",
+        "union_arms"
+      ],
+      "type": "object"
+    },
+    "main_merge_authorized": {
+      "type": "boolean"
+    },
+    "metadata_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "metadata_candidate_policy_v1",
+          "type": "string"
+        },
+        "candidate_discovery_executed": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "evidence_tiers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "feature_values_used": {
+          "type": "boolean"
+        },
+        "llm_relation_invention_allowed": {
+          "type": "boolean"
+        },
+        "official_graph_claim_boundary": {
+          "type": "string"
+        },
+        "prohibited_inputs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ranking_order": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reference_artifact_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "unsupported_pairs_padded": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "allowed_evidence",
+        "artifact_hash",
+        "artifact_type",
+        "candidate_discovery_executed",
+        "creation_metadata",
+        "evidence_tiers",
+        "feature_values_used",
+        "llm_relation_invention_allowed",
+        "official_graph_claim_boundary",
+        "prohibited_inputs",
+        "ranking_order",
+        "reference_artifact_refs",
+        "schema_version",
+        "task_id",
+        "unsupported_pairs_padded"
+      ],
+      "type": "object"
+    },
+    "parallel_branch_plan": {
+      "additionalProperties": false,
+      "properties": {
+        "all_initial_refs_must_equal": {
+          "type": "boolean"
+        },
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "task039c0_parallel_branch_plan_v1",
+          "type": "string"
+        },
+        "base_commit_policy": {
+          "type": "string"
+        },
+        "branch_creation_recorded_in_git_refs": {
+          "type": "boolean"
+        },
+        "create_only_after_passing_protocol_commit": {
+          "type": "boolean"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "empty_commits_prohibited": {
+          "type": "boolean"
+        },
+        "main_merge_authorized": {
+          "type": "boolean"
+        },
+        "parallel_branches": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "protocol_branch": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        }
+      },
+      "required": [
+        "all_initial_refs_must_equal",
+        "artifact_hash",
+        "artifact_type",
+        "base_commit_policy",
+        "branch_creation_recorded_in_git_refs",
+        "create_only_after_passing_protocol_commit",
+        "creation_metadata",
+        "empty_commits_prohibited",
+        "main_merge_authorized",
+        "parallel_branches",
+        "protocol_branch",
+        "schema_version"
+      ],
+      "type": "object"
+    },
+    "prohibited_authority": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "real_hai_feature_access": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "selected_process_id": {
+      "type": "string"
+    },
+    "selected_process_name": {
+      "type": "string"
+    },
+    "statistical_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_process_id": {
+          "type": "string"
+        },
+        "allowed_value_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "arbitrary_minimum_correlation_threshold": {
+          "type": "null"
+        },
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "statistical_candidate_policy_v1",
+          "type": "string"
+        },
+        "candidate_discovery_executed": {
+          "type": "boolean"
+        },
+        "causal_claim_allowed": {
+          "type": "boolean"
+        },
+        "correlation_formula": {
+          "type": "string"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "cross_file_pairs_allowed": {
+          "type": "boolean"
+        },
+        "horizons_seconds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "no_stable_horizon_score": {
+          "type": "number"
+        },
+        "no_stable_horizon_status": {
+          "type": "string"
+        },
+        "normal_candidate_fit_split_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "ranking_order": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "selected_horizon_rule": {
+          "type": "string"
+        },
+        "sign_stability_rule": {
+          "type": "string"
+        },
+        "source_difference_formula": {
+          "type": "string"
+        },
+        "stability_strength_formula": {
+          "type": "string"
+        },
+        "statistical_candidate_score_formula": {
+          "type": "string"
+        },
+        "target_difference_formula": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "allowed_process_id",
+        "allowed_value_files",
+        "arbitrary_minimum_correlation_threshold",
+        "artifact_hash",
+        "artifact_type",
+        "candidate_discovery_executed",
+        "causal_claim_allowed",
+        "correlation_formula",
+        "creation_metadata",
+        "cross_file_pairs_allowed",
+        "horizons_seconds",
+        "no_stable_horizon_score",
+        "no_stable_horizon_status",
+        "normal_candidate_fit_split_id",
+        "ranking_order",
+        "schema_version",
+        "selected_horizon_rule",
+        "sign_stability_rule",
+        "source_difference_formula",
+        "stability_strength_formula",
+        "statistical_candidate_score_formula",
+        "target_difference_formula",
+        "task_id"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task039d_authorized": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "universe_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "candidate_universe_policy_v1",
+          "type": "string"
+        },
+        "br1_protocol_bundle_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "candidate_learning_view_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "canonical_rule_view_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "creation_metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "code_commit": {
+              "type": "string"
+            },
+            "config_hash": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_commit",
+            "config_hash",
+            "created_at",
+            "created_by"
+          ],
+          "type": "object"
+        },
+        "dataset_manifest_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "eligible_pair_count": {
+          "type": "integer"
+        },
+        "eligible_pair_universe_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "final_candidate_universe_created": {
+          "type": "boolean"
+        },
+        "identity_ordering": {
+          "type": "string"
+        },
+        "normal_candidate_fit_split_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "normal_guard_split_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "normal_relation_calibration_split_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "out_of_universe_candidates_rejected": {
+          "type": "boolean"
+        },
+        "pair_ordering": {
+          "type": "string"
+        },
+        "process_freeze_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "real_data_accessed": {
+          "type": "boolean"
+        },
+        "relation_family": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "type": "string"
+        },
+        "selected_process_id": {
+          "type": "string"
+        },
+        "selected_process_name": {
+          "type": "string"
+        },
+        "source_identity_list_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "source_metadata_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_semantic_roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_target_overlap_count": {
+          "type": "integer"
+        },
+        "source_variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "target_identity_list_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "target_metadata_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "target_semantic_roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "target_variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "artifact_hash",
+        "artifact_type",
+        "br1_protocol_bundle_hash",
+        "candidate_learning_view_id",
+        "canonical_rule_view_id",
+        "creation_metadata",
+        "dataset_manifest_id",
+        "eligible_pair_count",
+        "eligible_pair_universe_hash",
+        "final_candidate_universe_created",
+        "identity_ordering",
+        "normal_candidate_fit_split_id",
+        "normal_guard_split_id",
+        "normal_relation_calibration_split_id",
+        "out_of_universe_candidates_rejected",
+        "pair_ordering",
+        "process_freeze_hash",
+        "real_data_accessed",
+        "relation_family",
+        "schema_version",
+        "selected_process_id",
+        "selected_process_name",
+        "source_identity_list_hash",
+        "source_metadata_refs",
+        "source_semantic_roles",
+        "source_target_overlap_count",
+        "source_variables",
+        "target_identity_list_hash",
+        "target_metadata_refs",
+        "target_semantic_roles",
+        "target_variables"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "arm_result_contract",
+    "artifact_hash",
+    "artifact_type",
+    "authoritative_main_commit",
+    "authorized_future_work",
+    "budget_policy",
+    "candidate_discovery_executed",
+    "creation_metadata",
+    "data_access_policy",
+    "final_candidate_universe_created",
+    "gdn_policy",
+    "integration_policy",
+    "main_merge_authorized",
+    "metadata_policy",
+    "parallel_branch_plan",
+    "prohibited_authority",
+    "real_hai_feature_access",
+    "schema_version",
+    "selected_process_id",
+    "selected_process_name",
+    "statistical_policy",
+    "status",
+    "task039d_authorized",
+    "task_id",
+    "universe_policy"
+  ],
+  "title": "candidate_discovery_protocol_bundle_v1",
+  "type": "object"
+}

@@ -1,0 +1,182 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/gdn_candidate_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_process_id": {
+      "type": "string"
+    },
+    "allowed_statuses": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "allowed_value_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "gdn_candidate_policy_v1",
+      "type": "string"
+    },
+    "attention_causal_claim_allowed": {
+      "type": "boolean"
+    },
+    "attention_evidence_role": {
+      "type": "string"
+    },
+    "candidate_discovery_executed": {
+      "type": "boolean"
+    },
+    "candidate_learning_view_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "downstream_quality_tuning_allowed": {
+      "type": "boolean"
+    },
+    "edge_selection_frequency_formula": {
+      "type": "string"
+    },
+    "fidelity_checks": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "full_p1_context_allowed": {
+      "type": "boolean"
+    },
+    "graph_direction_claim_boundary": {
+      "type": "string"
+    },
+    "identical_architecture_and_hyperparameters_across_seeds": {
+      "type": "boolean"
+    },
+    "normal_candidate_fit_split_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "output_projection": {
+      "type": "string"
+    },
+    "p1d_fidelity_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "post_hoc_xai_primary": {
+      "type": "boolean"
+    },
+    "primary_graph_signal": {
+      "type": "string"
+    },
+    "ranking_order": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "required_fidelity_artifact": {
+      "type": "string"
+    },
+    "required_fidelity_class": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "secondary_signal": {
+      "type": "string"
+    },
+    "seeds": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "silent_fallback_allowed": {
+      "type": "boolean"
+    },
+    "smoke_backends_allowed_as_gdn": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "upstream_commit": {
+      "type": "string"
+    },
+    "upstream_repository": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "allowed_process_id",
+    "allowed_statuses",
+    "allowed_value_files",
+    "artifact_hash",
+    "artifact_type",
+    "attention_causal_claim_allowed",
+    "attention_evidence_role",
+    "candidate_discovery_executed",
+    "candidate_learning_view_id",
+    "creation_metadata",
+    "downstream_quality_tuning_allowed",
+    "edge_selection_frequency_formula",
+    "fidelity_checks",
+    "full_p1_context_allowed",
+    "graph_direction_claim_boundary",
+    "identical_architecture_and_hyperparameters_across_seeds",
+    "normal_candidate_fit_split_id",
+    "output_projection",
+    "p1d_fidelity_report_hash",
+    "post_hoc_xai_primary",
+    "primary_graph_signal",
+    "ranking_order",
+    "required_fidelity_artifact",
+    "required_fidelity_class",
+    "schema_version",
+    "secondary_signal",
+    "seeds",
+    "silent_fallback_allowed",
+    "smoke_backends_allowed_as_gdn",
+    "task_id",
+    "upstream_commit",
+    "upstream_repository"
+  ],
+  "title": "gdn_candidate_policy_v1",
+  "type": "object"
+}

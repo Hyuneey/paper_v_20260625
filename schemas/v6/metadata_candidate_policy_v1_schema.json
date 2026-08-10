@@ -1,0 +1,111 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/metadata_candidate_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "metadata_candidate_policy_v1",
+      "type": "string"
+    },
+    "candidate_discovery_executed": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "evidence_tiers": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "feature_values_used": {
+      "type": "boolean"
+    },
+    "llm_relation_invention_allowed": {
+      "type": "boolean"
+    },
+    "official_graph_claim_boundary": {
+      "type": "string"
+    },
+    "prohibited_inputs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "ranking_order": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reference_artifact_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "unsupported_pairs_padded": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "allowed_evidence",
+    "artifact_hash",
+    "artifact_type",
+    "candidate_discovery_executed",
+    "creation_metadata",
+    "evidence_tiers",
+    "feature_values_used",
+    "llm_relation_invention_allowed",
+    "official_graph_claim_boundary",
+    "prohibited_inputs",
+    "ranking_order",
+    "reference_artifact_refs",
+    "schema_version",
+    "task_id",
+    "unsupported_pairs_padded"
+  ],
+  "title": "metadata_candidate_policy_v1",
+  "type": "object"
+}

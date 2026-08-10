@@ -1,0 +1,87 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/candidate_budget_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "candidate_budget_policy_v1",
+      "type": "string"
+    },
+    "candidate_shortfall_required": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "one_ranking_per_arm": {
+      "type": "boolean"
+    },
+    "padding_prohibited": {
+      "type": "boolean"
+    },
+    "primary_downstream_view": {
+      "type": "string"
+    },
+    "primary_k": {
+      "type": "integer"
+    },
+    "reranking_for_k_prohibited": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "sensitivity_k": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "shorter_supported_list_allowed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "artifact_hash",
+    "artifact_type",
+    "candidate_shortfall_required",
+    "creation_metadata",
+    "one_ranking_per_arm",
+    "padding_prohibited",
+    "primary_downstream_view",
+    "primary_k",
+    "reranking_for_k_prohibited",
+    "schema_version",
+    "sensitivity_k",
+    "shorter_supported_list_allowed"
+  ],
+  "title": "candidate_budget_policy_v1",
+  "type": "object"
+}

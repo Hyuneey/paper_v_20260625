@@ -12,6 +12,21 @@ from typing import Any, Mapping
 V6_SCHEMA_REGISTRY_VERSION = "1.0.0"
 V6_META_SCHEMA = "https://json-schema.org/draft/2020-12/schema"
 V6_SCHEMA_FILES: Mapping[str, str] = {
+    "candidate_arm_result_contract_v1": (
+        "schemas/v6/candidate_arm_result_contract_v1_schema.json"
+    ),
+    "candidate_budget_policy_v1": (
+        "schemas/v6/candidate_budget_policy_v1_schema.json"
+    ),
+    "candidate_discovery_protocol_bundle_v1": (
+        "schemas/v6/candidate_discovery_protocol_bundle_v1_schema.json"
+    ),
+    "candidate_integration_policy_v1": (
+        "schemas/v6/candidate_integration_policy_v1_schema.json"
+    ),
+    "candidate_universe_policy_v1": (
+        "schemas/v6/candidate_universe_policy_v1_schema.json"
+    ),
     "canonical_context_build_result": (
         "schemas/v6/canonical_context_build_result_v1_schema.json"
     ),
@@ -108,6 +123,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "gdn_fidelity_freeze": (
         "schemas/v6/gdn_fidelity_freeze_v1_schema.json"
     ),
+    "gdn_candidate_policy_v1": (
+        "schemas/v6/gdn_candidate_policy_v1_schema.json"
+    ),
     "hai_csv_structure_audit": (
         "schemas/v6/hai_csv_structure_audit_v1_schema.json"
     ),
@@ -144,6 +162,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "hai_reference_inventory": (
         "schemas/v6/hai_reference_inventory_v1_schema.json"
     ),
+    "metadata_candidate_policy_v1": (
+        "schemas/v6/metadata_candidate_policy_v1_schema.json"
+    ),
     "normal_reference_set_binding": (
         "schemas/v6/normal_reference_set_binding_v1_schema.json"
     ),
@@ -155,6 +176,15 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     ),
     "rule_v1_compatibility_record_v1": (
         "schemas/v6/rule_v1_compatibility_record_v1_schema.json"
+    ),
+    "statistical_candidate_policy_v1": (
+        "schemas/v6/statistical_candidate_policy_v1_schema.json"
+    ),
+    "task039c0_data_access_policy_v1": (
+        "schemas/v6/task039c0_data_access_policy_v1_schema.json"
+    ),
+    "task039c0_parallel_branch_plan_v1": (
+        "schemas/v6/task039c0_parallel_branch_plan_v1_schema.json"
     ),
     "task039br0_data_access_audit_v1": (
         "schemas/v6/task039br0_data_access_audit_v1_schema.json"

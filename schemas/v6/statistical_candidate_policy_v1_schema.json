@@ -1,0 +1,138 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/statistical_candidate_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_process_id": {
+      "type": "string"
+    },
+    "allowed_value_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "arbitrary_minimum_correlation_threshold": {
+      "type": "null"
+    },
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "statistical_candidate_policy_v1",
+      "type": "string"
+    },
+    "candidate_discovery_executed": {
+      "type": "boolean"
+    },
+    "causal_claim_allowed": {
+      "type": "boolean"
+    },
+    "correlation_formula": {
+      "type": "string"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "cross_file_pairs_allowed": {
+      "type": "boolean"
+    },
+    "horizons_seconds": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "no_stable_horizon_score": {
+      "type": "number"
+    },
+    "no_stable_horizon_status": {
+      "type": "string"
+    },
+    "normal_candidate_fit_split_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "ranking_order": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "selected_horizon_rule": {
+      "type": "string"
+    },
+    "sign_stability_rule": {
+      "type": "string"
+    },
+    "source_difference_formula": {
+      "type": "string"
+    },
+    "stability_strength_formula": {
+      "type": "string"
+    },
+    "statistical_candidate_score_formula": {
+      "type": "string"
+    },
+    "target_difference_formula": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "allowed_process_id",
+    "allowed_value_files",
+    "arbitrary_minimum_correlation_threshold",
+    "artifact_hash",
+    "artifact_type",
+    "candidate_discovery_executed",
+    "causal_claim_allowed",
+    "correlation_formula",
+    "creation_metadata",
+    "cross_file_pairs_allowed",
+    "horizons_seconds",
+    "no_stable_horizon_score",
+    "no_stable_horizon_status",
+    "normal_candidate_fit_split_id",
+    "ranking_order",
+    "schema_version",
+    "selected_horizon_rule",
+    "sign_stability_rule",
+    "source_difference_formula",
+    "stability_strength_formula",
+    "statistical_candidate_score_formula",
+    "target_difference_formula",
+    "task_id"
+  ],
+  "title": "statistical_candidate_policy_v1",
+  "type": "object"
+}

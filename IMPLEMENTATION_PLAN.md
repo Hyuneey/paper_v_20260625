@@ -108,21 +108,28 @@ unchanged and Rule v2 was not created.
 
 ## TASK-039C Onward
 
-TASK-039C is authorized for P1 candidate-universe and graph-evidence work only.
-It must not treat BR2 screening parameters as canonical calibration or runtime
-parameters, and it must resolve the production graph-ranker naming and fidelity
-boundary before scientific use.
+TASK-039C0 completed the P1 candidate-discovery protocol freeze. It binds one
+12-source, 12-target, 144-pair directed universe and top-10/20/40 budgets for
+META, STAT, and upstream-aligned GDN arms. META is value-free; STAT and GDN
+may use P1 train1/train2 only. BR2 pair-level outcomes are prohibited as
+candidate supervision. Integration is an unscored union with provenance.
 
-1. TASK-039C: candidate-universe and graph evidence construction.
-2. TASK-039D: normal relation profiling and deterministic calibration.
-3. TASK-039E: T0 deterministic template baseline.
-4. TASK-039F: common T1/T1-B/T2 bounded construction protocol.
-5. TASK-039G: deterministic validity and no-op-aware utility governance.
-6. TASK-039H: primary detector and FN-correction protocol.
-7. TASK-039I: LLM-free runtime and trace-grounded explanation.
-8. TASK-039J: outer prediction freeze and one-way validation.
-9. TASK-039K: joint sealed-test preregistration.
-10. TASK-039L: one-time sealed execution after explicit approval.
+The parallel META, STAT, GDN, review, and integration branches start from the
+exact same C0 commit. The GDN arm must pass its upstream fidelity receipt and
+cannot substitute a smoke backend. TASK-039D remains unauthorized until the
+candidate arms are independently completed and integrated.
+
+1. TASK-039C-META/STAT/GDN: parallel candidate discovery.
+2. TASK-039C-INTEGRATE: unscored candidate-set union with provenance.
+3. TASK-039D: normal relation profiling and deterministic calibration.
+4. TASK-039E: T0 deterministic template baseline.
+5. TASK-039F: common T1/T1-B/T2 bounded construction protocol.
+6. TASK-039G: deterministic validity and no-op-aware utility governance.
+7. TASK-039H: primary detector and FN-correction protocol.
+8. TASK-039I: LLM-free runtime and trace-grounded explanation.
+9. TASK-039J: outer prediction freeze and one-way validation.
+10. TASK-039K: joint sealed-test preregistration.
+11. TASK-039L: one-time sealed execution after explicit approval.
 
 ## Construction Arms
 

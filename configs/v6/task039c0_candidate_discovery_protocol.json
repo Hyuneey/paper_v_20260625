@@ -1,0 +1,272 @@
+{
+  "arm_data_permissions": {
+    "GDN": [
+      "hai-23.05/hai-train1.csv",
+      "hai-23.05/hai-train2.csv"
+    ],
+    "META": [],
+    "STAT": [
+      "hai-23.05/hai-train1.csv",
+      "hai-23.05/hai-train2.csv"
+    ],
+    "allowed_process_ids": [
+      "P1"
+    ],
+    "prohibited_process_ids": [
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "train3_train4_test_labels_prohibited": true
+  },
+  "artifact_type": "task039c0_candidate_discovery_protocol_config",
+  "authoritative_main_commit": "1a55b1aabcfcd4c2a21dc881a9c5d20b6c5c5d81",
+  "authority_boundary": {
+    "agent_calls": 0,
+    "attack_test_outer_sealed_access": false,
+    "candidate_discovery_executed": false,
+    "detector_execution": false,
+    "final_candidate_universe_created": false,
+    "real_hai_feature_access": false,
+    "rule_v2_created": false,
+    "runtime_execution": false,
+    "task039d_authorized": false
+  },
+  "br2_anti_leakage": {
+    "allowed_source_level_fields": [
+      "source_identity",
+      "semantic_role",
+      "eligibility_status"
+    ],
+    "allowed_use": "lineage_hash_verification_only",
+    "pair_level_artifacts": [
+      "BR2_private_relation_ledger",
+      "BR2_directional_fit_records",
+      "BR2_calibration_confirmation_records",
+      "BR2_fit_supported_pair_identities",
+      "BR2_confirmed_pair_identities",
+      "BR2_target_response_values",
+      "BR2_selected_horizons",
+      "BR2_pair_level_consistency",
+      "BR2_pair_level_effect_ratios"
+    ],
+    "pair_ranking_or_selection_use": false,
+    "prohibited_source_level_fields": [
+      "source_step_threshold",
+      "stability_tolerance",
+      "event_count",
+      "event_timestamp"
+    ]
+  },
+  "candidate_budgets": {
+    "candidate_shortfall_required": true,
+    "padding_prohibited": true,
+    "primary_k": 20,
+    "sensitivity_k": [
+      10,
+      40
+    ],
+    "single_ranking_reused": true
+  },
+  "common_universe": {
+    "eligible_pair_count": 144,
+    "eligible_pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+    "pair_ordering": "source_then_target_lexicographic",
+    "relation_family": "continuous_step_delayed_response_v1",
+    "source_identities": [
+      {
+        "metadata_record_hash": "9392ea74f3cc9a1896f063369bb33b4ba19c061019d4ba59ed8f92d45dd25047",
+        "semantic_role": "control_command",
+        "variable_name": "P1_FCV01D"
+      },
+      {
+        "metadata_record_hash": "50e198ece814e7e60d92dd610b1b732e19505adcab8502f0de82bb859d08a188",
+        "semantic_role": "actuator_feedback",
+        "variable_name": "P1_FCV01Z"
+      },
+      {
+        "metadata_record_hash": "ad1b49e576376ffb662194ba1ad10cee037540dcf31fe765b1ddd24233b83176",
+        "semantic_role": "control_command",
+        "variable_name": "P1_FCV02D"
+      },
+      {
+        "metadata_record_hash": "1d78be71282f3335e47229086643fe0a0fc54e52e0162ca94cc629847608cf6e",
+        "semantic_role": "actuator_feedback",
+        "variable_name": "P1_FCV02Z"
+      },
+      {
+        "metadata_record_hash": "4025ceb0763f253ad259b5129723831c948beba17ef28ce77f73f3a842eee7d5",
+        "semantic_role": "control_command",
+        "variable_name": "P1_FCV03D"
+      },
+      {
+        "metadata_record_hash": "de4de681de5de8d0eaf2032799d27d8d05e23e3bd7975e45aa856c07fe064b9b",
+        "semantic_role": "actuator_feedback",
+        "variable_name": "P1_FCV03Z"
+      },
+      {
+        "metadata_record_hash": "ddb7a3c679c13bb4f017ccf54ee0fa01b6d71c897e2aabb5be7373f60e5b6e80",
+        "semantic_role": "control_command",
+        "variable_name": "P1_LCV01D"
+      },
+      {
+        "metadata_record_hash": "c8cbc2781b175b27748d9f20cc7b8621a82fe47ff635ab55725a5bec4bcc2838",
+        "semantic_role": "actuator_feedback",
+        "variable_name": "P1_LCV01Z"
+      },
+      {
+        "metadata_record_hash": "12e05bb6ad57d0ec866f1e483f1a00aeea938204f7337c8554f56ae592de5d34",
+        "semantic_role": "control_command",
+        "variable_name": "P1_PCV01D"
+      },
+      {
+        "metadata_record_hash": "7c115fe1e3f4fd6a0eb248e33c3ac6a72853e317e81b798c55416e4907f22a58",
+        "semantic_role": "actuator_feedback",
+        "variable_name": "P1_PCV01Z"
+      },
+      {
+        "metadata_record_hash": "0f7b89d6260c5dba88c44df760a0a187fbfa07d3d9048c6358fa5c6276324303",
+        "semantic_role": "actuator_feedback",
+        "variable_name": "P1_PCV02Z"
+      },
+      {
+        "metadata_record_hash": "7c3123c79d06fb4bcfec9ac5e765e5066b211efe202cfade84d37583f8714be7",
+        "semantic_role": "actuator_state",
+        "variable_name": "P1_PP04"
+      }
+    ],
+    "source_identity_list_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+    "source_target_overlap_count": 0,
+    "target_identities": [
+      {
+        "metadata_record_hash": "baa8d7036a5bbec1998ca3ff3e2d15c0ef5653d94f526bfd181dc26820ca27de",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_FT01"
+      },
+      {
+        "metadata_record_hash": "4332d406b38eff043621414acc036b945c401c476ae52ee35c292be7eaeb7430",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_FT01Z"
+      },
+      {
+        "metadata_record_hash": "e129c2581d1b0fe18c72b1286a373f827aa614eb888c542a8f311767b77797a2",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_FT02"
+      },
+      {
+        "metadata_record_hash": "6e308775e16f2fa38e983d3e2000dbd6a5975f393c35e98b559f2d5412ce6c5e",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_FT02Z"
+      },
+      {
+        "metadata_record_hash": "bccb58331d54e5d40d22383f8656880ab623f10bc4060121549e115a1eca9bac",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_FT03"
+      },
+      {
+        "metadata_record_hash": "68e8a4864eed627952c81befcb1dd0e526c6f201a03576d48da639ba48fc3ced",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_FT03Z"
+      },
+      {
+        "metadata_record_hash": "df48559c7d96ddaacb3ec033bee427a37c7024da05c620ab7de3a231cd7f21e2",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_LIT01"
+      },
+      {
+        "metadata_record_hash": "9a45b46b48c52145d118e05c94a9d6f2f4d77509c41a0fd169e85c3b43884c62",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_PIT01"
+      },
+      {
+        "metadata_record_hash": "3fd677b9e1a68a623918488c89d4b8ef7e8c07dd98c15601bd03bd4f4f886f91",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_PIT02"
+      },
+      {
+        "metadata_record_hash": "cea102e2c1e20bb37e183099963024d23b573f589ebe316007cd34c67b7f21b0",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_TIT01"
+      },
+      {
+        "metadata_record_hash": "59aa8a380be85bb29fbe28fcd4afe8ce7fd61e9ba242526ad5d52cebccf6e7d8",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_TIT02"
+      },
+      {
+        "metadata_record_hash": "cee7b367fd1d3210fbe2686fc780a15496aa70a65850552873a8e34849dec333",
+        "semantic_role": "process_sensor",
+        "variable_name": "P1_TIT03"
+      }
+    ],
+    "target_identity_list_hash": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7"
+  },
+  "config_hash": "d703d7ec0b87694b53cd4d2b3768ca32efca00cd3bdc3ce12933fc6c8c36d34f",
+  "frozen_lineage": {
+    "br1_protocol_bundle_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+    "candidate_learning_view_id": "eaa77f331bf79cc6887ccddcfff8818880c1a93c16ebc6fdd2d06a1c8db37eca",
+    "canonical_rule_view_id": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+    "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+    "normal_candidate_fit_split_id": "cf02e3474a0ade49aec518a886fef0fb0c405b311d827f593fdc207cfad9ab7a",
+    "normal_guard_split_id": "0a09b9171925a24d1955023c41a2b1d9b54682b68ad4c5715943908ff80f0923",
+    "normal_relation_calibration_split_id": "c9e31a99364c0db11f4ad958a93de90ac065661c5171bf8601e2861a5706bba5",
+    "process_freeze_hash": "f263d23ceda5ab5ff3c7459e56669ab1dadd7d30cd2243ad8971301990a86325",
+    "selected_process_id": "P1",
+    "selected_process_name": "Boiler"
+  },
+  "gdn_policy": {
+    "allowed_value_files": [
+      "hai-23.05/hai-train1.csv",
+      "hai-23.05/hai-train2.csv"
+    ],
+    "attention_role": "supplementary_graph_evidence",
+    "p1d_fidelity_report_hash": "ee6a332346ee85cf264f23d00f884a9b3ad5d66951affba85cfc300897356370",
+    "post_hoc_xai_primary": false,
+    "required_fidelity_class": "upstream_aligned_validated",
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "smoke_backend_allowed": false,
+    "upstream_commit": "9853899da860682669a134e4af315d036aab4eca",
+    "upstream_repository": "https://github.com/d-ailin/GDN"
+  },
+  "integration_policy": {
+    "cross_method_union_ranking": false,
+    "gdn_included_only_when_passed": true,
+    "merged_numerical_score": false,
+    "operation": "set_union_with_provenance",
+    "primary_input": "top20"
+  },
+  "metadata_policy": {
+    "cross_method_inputs_prohibited": true,
+    "evidence_tiers": [
+      "M1_EXPLICIT",
+      "M2_GRAPH_ADJACENT",
+      "M3_SUBSYSTEM_SUPPORTED",
+      "UNSUPPORTED"
+    ],
+    "feature_values_used": false,
+    "official_graph_claim_boundary": "weak_relation_reference_not_causal_truth"
+  },
+  "schema_version": "1.0.0",
+  "statistical_policy": {
+    "allowed_value_files": [
+      "hai-23.05/hai-train1.csv",
+      "hai-23.05/hai-train2.csv"
+    ],
+    "arbitrary_minimum_threshold": null,
+    "horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "score": "min(abs(r_train1),abs(r_train2))",
+    "sign_stability": "finite_same_nonzero_sign_in_train1_and_train2",
+    "statistic": "within_file_Pearson_corr_dx_dy_lag"
+  },
+  "task_id": "TASK-039C0"
+}

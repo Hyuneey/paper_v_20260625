@@ -1,0 +1,140 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039c0_data_access_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_br2_source_reuse_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "allowed_process_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "arm_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039c0_data_access_policy_v1",
+      "type": "string"
+    },
+    "br2_pair_level_access_mode": {
+      "type": "string"
+    },
+    "br2_pair_level_artifacts": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "candidate_discovery_executed": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "gdn_value_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "meta_value_files": {
+      "items": {},
+      "type": "array"
+    },
+    "prohibited_br2_source_reuse_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "prohibited_process_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "prohibited_value_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "real_hai_feature_values_accessed": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "stat_value_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "train3_reserved_for_relation_calibration": {
+      "type": "boolean"
+    },
+    "train4_reserved_for_normal_guard": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "allowed_br2_source_reuse_fields",
+    "allowed_process_ids",
+    "arm_ids",
+    "artifact_hash",
+    "artifact_type",
+    "br2_pair_level_access_mode",
+    "br2_pair_level_artifacts",
+    "candidate_discovery_executed",
+    "creation_metadata",
+    "gdn_value_files",
+    "meta_value_files",
+    "prohibited_br2_source_reuse_fields",
+    "prohibited_process_ids",
+    "prohibited_value_files",
+    "real_hai_feature_values_accessed",
+    "schema_version",
+    "stat_value_files",
+    "train3_reserved_for_relation_calibration",
+    "train4_reserved_for_normal_guard"
+  ],
+  "title": "task039c0_data_access_policy_v1",
+  "type": "object"
+}

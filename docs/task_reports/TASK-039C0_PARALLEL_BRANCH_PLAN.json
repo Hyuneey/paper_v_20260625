@@ -1,0 +1,25 @@
+{
+  "all_initial_refs_must_equal": true,
+  "artifact_hash": "e6db60aa4bcfab9ab1e1bead552f4662ca7c701592a64d2f1f62b0277633c553",
+  "artifact_type": "task039c0_parallel_branch_plan_v1",
+  "base_commit_policy": "exact_git_commit_containing_this_protocol_bundle",
+  "branch_creation_recorded_in_git_refs": true,
+  "create_only_after_passing_protocol_commit": true,
+  "creation_metadata": {
+    "code_commit": "1a55b1aabcfcd4c2a21dc881a9c5d20b6c5c5d81",
+    "config_hash": "d703d7ec0b87694b53cd4d2b3768ca32efca00cd3bdc3ce12933fc6c8c36d34f",
+    "created_at": "2026-08-10T00:00:00+09:00",
+    "created_by": "TASK-039C0"
+  },
+  "empty_commits_prohibited": true,
+  "main_merge_authorized": false,
+  "parallel_branches": [
+    "task-039c-meta",
+    "task-039c-stat",
+    "task-039c-gdn",
+    "task-039c-review",
+    "task-039c-integration"
+  ],
+  "protocol_branch": "task-039c0-candidate-protocol",
+  "schema_version": "1.0.0"
+}

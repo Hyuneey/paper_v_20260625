@@ -78,6 +78,13 @@ process; P3 remained infeasible. TASK-039C is authorized for P1
 candidate-universe and graph-evidence work only. It has no Rule v2, rule,
 verifier, runtime, Agent, detector, outer, or sealed authority.
 
+TASK-039C0 freezes one 144-pair P1 source-target universe, top-10/20/40
+budgets, and separate META, STAT, and upstream-aligned GDN discovery policies.
+All C arms must branch from the same C0 commit. They may not use BR2 pair-level
+screening outcomes as candidate supervision. META uses no feature values;
+STAT and GDN are limited to P1 train1/train2. Integration is an unscored union
+with provenance. TASK-039D remains unauthorized.
+
 ## 3. Canonical, Legacy, and Reference Paths
 
 ### Canonical scientific contracts

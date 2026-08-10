@@ -86,6 +86,18 @@ TASK039BR2_TYPES = {
     "task039br2_execution_interpretation_v1",
     "task039br2_execution_receipt_v1",
 }
+TASK039C0_TYPES = {
+    "candidate_arm_result_contract_v1",
+    "candidate_budget_policy_v1",
+    "candidate_discovery_protocol_bundle_v1",
+    "candidate_integration_policy_v1",
+    "candidate_universe_policy_v1",
+    "gdn_candidate_policy_v1",
+    "metadata_candidate_policy_v1",
+    "statistical_candidate_policy_v1",
+    "task039c0_data_access_policy_v1",
+    "task039c0_parallel_branch_plan_v1",
+}
 
 
 class Task039P1CSchemaBoundaryTests(unittest.TestCase):
@@ -98,7 +110,8 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
         self.assertTrue(TASK039BR0_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039BR1_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039BR2_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 51)
+        self.assertTrue(TASK039C0_TYPES.issubset(registry.artifact_types))
+        self.assertEqual(len(registry.artifact_types), 61)
         for artifact_type in (
             P1C_TYPES
             | P1D_TYPES
@@ -107,6 +120,7 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
             | TASK039BR0_TYPES
             | TASK039BR1_TYPES
             | TASK039BR2_TYPES
+            | TASK039C0_TYPES
         ):
             Draft202012Validator.check_schema(
                 registry.schema_for(artifact_type)

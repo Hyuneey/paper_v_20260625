@@ -1,0 +1,116 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/candidate_integration_policy_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "candidate_integration_policy_v1",
+      "type": "string"
+    },
+    "br2_confirmed_relations_as_ground_truth_allowed": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "cross_method_union_ranking_allowed": {
+      "type": "boolean"
+    },
+    "deduplication_identity": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "downstream_evaluation_dimensions": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "downstream_task": {
+      "type": "string"
+    },
+    "gdn_included_only_when_passed": {
+      "type": "boolean"
+    },
+    "integration_executed": {
+      "type": "boolean"
+    },
+    "integration_operation": {
+      "type": "string"
+    },
+    "merged_numerical_score_allowed": {
+      "type": "boolean"
+    },
+    "primary_k": {
+      "type": "integer"
+    },
+    "retained_provenance_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "union_arms": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "artifact_hash",
+    "artifact_type",
+    "br2_confirmed_relations_as_ground_truth_allowed",
+    "creation_metadata",
+    "cross_method_union_ranking_allowed",
+    "deduplication_identity",
+    "downstream_evaluation_dimensions",
+    "downstream_task",
+    "gdn_included_only_when_passed",
+    "integration_executed",
+    "integration_operation",
+    "merged_numerical_score_allowed",
+    "primary_k",
+    "retained_provenance_fields",
+    "schema_version",
+    "task_id",
+    "union_arms"
+  ],
+  "title": "candidate_integration_policy_v1",
+  "type": "object"
+}

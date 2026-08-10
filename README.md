@@ -21,7 +21,8 @@ smoke-only implementations. The masked extractor remains a reusable component,
 not a complete GDN model.
 
 - HAI 23.05 is the current primary dataset candidate. Official source
-  provenance is verified; process selection and experimental value are not.
+  provenance is verified and P1 Boiler is frozen for the bounded MVP;
+  experimental performance is not established.
 - The canonical scientific path is `src/paperworks/contracts/`.
 - Phase-1 `dsl/`, `verification/`, `runtime/`, and RuleAst planning paths are
   legacy read-only compatibility code.
@@ -51,6 +52,12 @@ selected process; P3 remained infeasible. TASK-039C is next and is authorized
 for P1 candidate-universe and graph-evidence work only. No candidate graph,
 production GDN backend, Rule v2, rule, detector result, or anomaly-performance
 claim exists yet.
+
+TASK-039C0 freezes the common 12-source by 12-target P1 identity universe and
+fair META, STAT, and upstream-aligned GDN discovery policies. The task executes
+no discovery and reads no HAI feature value. META is value-free; STAT and GDN
+are limited to normal candidate-fit train1/train2, and BR2 pair results cannot
+supervise ranking. The arm outputs will be integrated by unscored set union.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

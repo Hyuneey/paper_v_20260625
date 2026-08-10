@@ -1,0 +1,87 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039c0_parallel_branch_plan_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "all_initial_refs_must_equal": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039c0_parallel_branch_plan_v1",
+      "type": "string"
+    },
+    "base_commit_policy": {
+      "type": "string"
+    },
+    "branch_creation_recorded_in_git_refs": {
+      "type": "boolean"
+    },
+    "create_only_after_passing_protocol_commit": {
+      "type": "boolean"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "type": "string"
+        },
+        "config_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "empty_commits_prohibited": {
+      "type": "boolean"
+    },
+    "main_merge_authorized": {
+      "type": "boolean"
+    },
+    "parallel_branches": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "protocol_branch": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "all_initial_refs_must_equal",
+    "artifact_hash",
+    "artifact_type",
+    "base_commit_policy",
+    "branch_creation_recorded_in_git_refs",
+    "create_only_after_passing_protocol_commit",
+    "creation_metadata",
+    "empty_commits_prohibited",
+    "main_merge_authorized",
+    "parallel_branches",
+    "protocol_branch",
+    "schema_version"
+  ],
+  "title": "task039c0_parallel_branch_plan_v1",
+  "type": "object"
+}
