@@ -24,6 +24,12 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "candidate_integration_policy_v1": (
         "schemas/v6/candidate_integration_policy_v1_schema.json"
     ),
+    "candidate_profiling_cohort_v1": (
+        "schemas/v6/candidate_profiling_cohort_v1_schema.json"
+    ),
+    "candidate_profiling_entry_v1": (
+        "schemas/v6/candidate_profiling_entry_v1_schema.json"
+    ),
     "candidate_universe_policy_v1": (
         "schemas/v6/candidate_universe_policy_v1_schema.json"
     ),
@@ -126,6 +132,21 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "gdn_candidate_policy_v1": (
         "schemas/v6/gdn_candidate_policy_v1_schema.json"
     ),
+    "gdn_candidate_result_v1": (
+        "schemas/v6/gdn_candidate_result_v1_schema.json"
+    ),
+    "gdn_api_drift_matrix_v1": (
+        "schemas/v6/gdn_api_drift_matrix_v1_schema.json"
+    ),
+    "gdn_index_semantics_receipt_v1": (
+        "schemas/v6/gdn_index_semantics_receipt_v1_schema.json"
+    ),
+    "gdn_legacy_oracle_receipt_v1": (
+        "schemas/v6/gdn_legacy_oracle_receipt_v1_schema.json"
+    ),
+    "gdn_port_compatibility_closure_receipt_v1": (
+        "schemas/v6/gdn_port_compatibility_closure_receipt_v1_schema.json"
+    ),
     "hai_csv_structure_audit": (
         "schemas/v6/hai_csv_structure_audit_v1_schema.json"
     ),
@@ -165,6 +186,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "metadata_candidate_policy_v1": (
         "schemas/v6/metadata_candidate_policy_v1_schema.json"
     ),
+    "metadata_candidate_result_v1": (
+        "schemas/v6/metadata_candidate_result_v1_schema.json"
+    ),
     "normal_reference_set_binding": (
         "schemas/v6/normal_reference_set_binding_v1_schema.json"
     ),
@@ -180,11 +204,44 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "statistical_candidate_policy_v1": (
         "schemas/v6/statistical_candidate_policy_v1_schema.json"
     ),
+    "statistical_candidate_result_v1": (
+        "schemas/v6/statistical_candidate_result_v1_schema.json"
+    ),
+    "pyg_softmax_compatibility_receipt_v1": (
+        "schemas/v6/pyg_softmax_compatibility_receipt_v1_schema.json"
+    ),
     "task039c0_data_access_policy_v1": (
         "schemas/v6/task039c0_data_access_policy_v1_schema.json"
     ),
     "task039c0_parallel_branch_plan_v1": (
         "schemas/v6/task039c0_parallel_branch_plan_v1_schema.json"
+    ),
+    "task039c_arm_binding_v1": (
+        "schemas/v6/task039c_arm_binding_v1_schema.json"
+    ),
+    "task039c_gdn_environment_receipt_v1": (
+        "schemas/v6/task039c_gdn_environment_receipt_v1_schema.json"
+    ),
+    "task039c_gdn_final_audit_v1": (
+        "schemas/v6/task039c_gdn_final_audit_v1_schema.json"
+    ),
+    "task039c_gdnp_data_access_audit_v1": (
+        "schemas/v6/task039c_gdnp_data_access_audit_v1_schema.json"
+    ),
+    "task039c_gdnp_execution_receipt_v1": (
+        "schemas/v6/task039c_gdnp_execution_receipt_v1_schema.json"
+    ),
+    "task039c_integration_receipt_v1": (
+        "schemas/v6/task039c_integration_receipt_v1_schema.json"
+    ),
+    "task039c_three_arm_overlap_v1": (
+        "schemas/v6/task039c_three_arm_overlap_v1_schema.json"
+    ),
+    "task039d0_authorization_v1": (
+        "schemas/v6/task039d0_authorization_v1_schema.json"
+    ),
+    "upstream_gdn_fidelity_receipt_v1": (
+        "schemas/v6/upstream_gdn_fidelity_receipt_v1_schema.json"
     ),
     "task039br0_data_access_audit_v1": (
         "schemas/v6/task039br0_data_access_audit_v1_schema.json"
@@ -243,6 +300,30 @@ class V6SchemaRegistryV1:
         return json.loads(json.dumps(self._schemas[artifact_type]))
 
 
+def _schema_declares_const_v1(
+    schema: Mapping[str, Any], *, property_name: str, expected: str
+) -> bool:
+    """Accept a top-level const or identical consts in all local oneOf branches."""
+
+    if schema.get("properties", {}).get(property_name, {}).get("const") == expected:
+        return True
+    branches = schema.get("oneOf")
+    definitions = schema.get("$defs", {})
+    if not isinstance(branches, list) or not branches:
+        return False
+    values: list[Any] = []
+    for branch in branches:
+        reference = branch.get("$ref") if isinstance(branch, Mapping) else None
+        prefix = "#/$defs/"
+        if not isinstance(reference, str) or not reference.startswith(prefix):
+            return False
+        definition = definitions.get(reference[len(prefix):])
+        if not isinstance(definition, Mapping):
+            return False
+        values.append(definition.get("properties", {}).get(property_name, {}).get("const"))
+    return bool(values) and all(value == expected for value in values)
+
+
 def load_v6_schema_registry_v1(
     *, repository_root: str | Path | None = None
 ) -> V6SchemaRegistryV1:
@@ -273,15 +354,19 @@ def load_v6_schema_registry_v1(
             raise V6SchemaRegistryError(
                 "v6 schema does not declare Draft 2020-12"
             )
-        properties = schema.get("properties", {})
-        if (
-            properties.get("schema_version", {}).get("const")
-            != V6_SCHEMA_REGISTRY_VERSION
+        if not _schema_declares_const_v1(
+            schema,
+            property_name="schema_version",
+            expected=V6_SCHEMA_REGISTRY_VERSION,
         ):
             raise V6SchemaRegistryError(
                 "v6 schema version does not match registry"
             )
-        if properties.get("artifact_type", {}).get("const") != artifact_type:
+        if not _schema_declares_const_v1(
+            schema,
+            property_name="artifact_type",
+            expected=artifact_type,
+        ):
             raise V6SchemaRegistryError(
                 "v6 schema artifact type does not match registry"
             )

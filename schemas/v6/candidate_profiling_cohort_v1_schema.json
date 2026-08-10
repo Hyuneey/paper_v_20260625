@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/candidate_profiling_cohort_v1_schema.json",
+  "title": "CandidateProfilingCohortV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "task_id", "status", "selected_process", "selected_process_name", "relation_family", "c0_protocol_bundle_hash", "common_universe_hash", "source_identity_hash", "target_identity_hash", "primary_k", "included_arms", "arm_bindings", "top20_counts_by_arm", "pairwise_intersections", "triple_intersection", "origin_decomposition", "union_count", "candidates", "candidate_identity_list", "candidate_identity_list_hash", "final_gdn_audit_commit", "final_gdn_audit_hash", "provenance_complete", "global_numerical_score_created", "global_scientific_rank_created", "br2_relation_outcomes_used", "hai_feature_values_accessed_by_integration", "private_ledgers_accessed_by_integration", "relation_profiling_executed", "claim_boundary", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "candidate_profiling_cohort_v1"},
+    "task_id": {"const": "TASK-039C-INTEGRATE"}, "status": {"const": "passed_task039c_three_arm_candidate_cohort_freeze"},
+    "selected_process": {"const": "P1"}, "selected_process_name": {"const": "P1 Boiler"}, "relation_family": {"const": "continuous_step_delayed_response_v1"},
+    "c0_protocol_bundle_hash": {"$ref": "#/$defs/sha256"}, "common_universe_hash": {"$ref": "#/$defs/sha256"}, "source_identity_hash": {"$ref": "#/$defs/sha256"}, "target_identity_hash": {"$ref": "#/$defs/sha256"},
+    "primary_k": {"const": 20}, "included_arms": {"const": ["META", "STAT", "GDN"]},
+    "arm_bindings": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/armBinding"}},
+    "top20_counts_by_arm": {"$ref": "#/$defs/armCounts"},
+    "pairwise_intersections": {"type": "object", "additionalProperties": false, "required": ["META_STAT", "META_GDN", "STAT_GDN"], "properties": {"META_STAT": {"const": 11}, "META_GDN": {"const": 1}, "STAT_GDN": {"const": 1}}},
+    "triple_intersection": {"const": 0},
+    "origin_decomposition": {"type": "object", "additionalProperties": false, "required": ["META_only", "STAT_only", "GDN_only", "META_STAT_only", "META_GDN_only", "STAT_GDN_only", "all_three"], "properties": {"META_only": {"const": 8}, "STAT_only": {"const": 8}, "GDN_only": {"const": 18}, "META_STAT_only": {"const": 11}, "META_GDN_only": {"const": 1}, "STAT_GDN_only": {"const": 1}, "all_three": {"const": 0}}},
+    "union_count": {"const": 47},
+    "candidates": {"type": "array", "minItems": 47, "maxItems": 47, "items": {"$ref": "#/$defs/candidate"}},
+    "candidate_identity_list": {"type": "array", "minItems": 47, "maxItems": 47, "uniqueItems": true, "items": {"$ref": "#/$defs/pair"}},
+    "candidate_identity_list_hash": {"$ref": "#/$defs/sha256"},
+    "final_gdn_audit_commit": {"$ref": "#/$defs/gitSha"}, "final_gdn_audit_hash": {"$ref": "#/$defs/sha256"},
+    "provenance_complete": {"const": true}, "global_numerical_score_created": {"const": false}, "global_scientific_rank_created": {"const": false}, "br2_relation_outcomes_used": {"const": false}, "hai_feature_values_accessed_by_integration": {"const": false}, "private_ledgers_accessed_by_integration": {"const": false}, "relation_profiling_executed": {"const": false},
+    "claim_boundary": {"const": "candidate profiling cohort"}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "gitSha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "pair": {"type": "object", "additionalProperties": false, "required": ["source", "target"], "properties": {"source": {"type": "string", "minLength": 1}, "target": {"type": "string", "minLength": 1}}},
+    "armCounts": {"type": "object", "additionalProperties": false, "required": ["META", "STAT", "GDN"], "properties": {"META": {"const": 20}, "STAT": {"const": 20}, "GDN": {"const": 20}}},
+    "armBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "arm_id", "claim_boundary", "implementation_commit", "result_commit", "result_artifact_hash", "ranking_hash", "policy_hash", "evidence_binding_hashes", "data_access_audit_hash", "evaluated_count", "supported_count", "top20_count", "br2_pair_supervision_used", "cross_arm_score_used", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039c_arm_binding_v1"}, "arm_id": {"enum": ["META", "STAT", "GDN"]}, "claim_boundary": {"type": "string"},
+        "implementation_commit": {"$ref": "#/$defs/gitSha"}, "result_commit": {"$ref": "#/$defs/gitSha"}, "result_artifact_hash": {"$ref": "#/$defs/sha256"}, "ranking_hash": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}, "policy_hash": {"$ref": "#/$defs/sha256"}, "evidence_binding_hashes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sha256"}}, "data_access_audit_hash": {"$ref": "#/$defs/sha256"}, "evaluated_count": {"const": 144}, "supported_count": {"type": "integer", "minimum": 20}, "top20_count": {"const": 20}, "br2_pair_supervision_used": {"const": false}, "cross_arm_score_used": {"const": false}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "methodEvidence": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1, "maximum": 20}, "evidence_tier": {"enum": ["M1_EXPLICIT", "M2_GRAPH_ADJACENT", "M3_SUBSYSTEM_SUPPORTED"]}, "independent_official_reference_count": {"type": "integer", "minimum": 1}, "metadata_evidence_references": {"type": "array", "items": {"type": "string"}}, "evidence_binding_hashes": {"type": "array", "items": {"$ref": "#/$defs/sha256"}}, "result_artifact_hash": {"$ref": "#/$defs/sha256"},
+        "selected_horizon_seconds": {"enum": [1, 5, 10, 30, 60]}, "correlation_sign": {"enum": ["positive", "negative"]}, "r_train1": {"type": "number"}, "r_train2": {"type": "number"}, "stability_strength": {"type": "number"}, "ranking_hash": {"$ref": "#/$defs/sha256"},
+        "edge_selection_frequency": {"type": "number"}, "selected_seed_count": {"type": "integer", "minimum": 1, "maximum": 3}, "median_upstream_graph_similarity": {"type": "number"}, "compatibility_closure_receipt_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "candidate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "artifact_type", "source", "target", "candidate_universe_hash", "origin_arms", "serialization_position", "global_rank", "global_score", "serialization_order_is_scientific_rank", "relation_confirmation", "rule_status", "META", "STAT", "GDN", "artifact_hash"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "candidate_profiling_entry_v1"}, "source": {"type": "string"}, "target": {"type": "string"}, "candidate_universe_hash": {"$ref": "#/$defs/sha256"}, "origin_arms": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["META", "STAT", "GDN"]}}, "serialization_position": {"type": "integer", "minimum": 1, "maximum": 47}, "global_rank": {"type": "null"}, "global_score": {"type": "null"}, "serialization_order_is_scientific_rank": {"const": false}, "relation_confirmation": {"const": "not_evaluated"}, "rule_status": {"const": "not_created"}, "META": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/methodEvidence"}]}, "STAT": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/methodEvidence"}]}, "GDN": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/methodEvidence"}]}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

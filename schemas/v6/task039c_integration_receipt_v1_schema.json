@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039c_integration_receipt_v1_schema.json",
+  "title": "TASK039CIntegrationReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "task_id", "status", "integration_execution_code_commit", "c0_commit", "c0_protocol_bundle_hash", "meta_implementation_commit", "meta_result_commit", "stat_implementation_commit", "stat_result_commit", "gdn_execution_code_commit", "gdn_result_commit", "preliminary_review_commit", "final_gdn_audit_commit", "preliminary_review_hash", "final_gdn_audit_hash", "result_artifact_hashes", "ranking_hashes", "audited_preview_hash", "candidate_identity_list_hash", "candidate_cohort_hash", "overlap_artifact_hash", "included_arms", "candidate_count", "hai_feature_access", "private_ledger_access", "merged_score_created", "global_rank_created", "br2_ground_truth_used", "task039d0_authorization_hash", "real_task039d_execution", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039c_integration_receipt_v1"}, "task_id": {"const": "TASK-039C-INTEGRATE"}, "status": {"const": "passed_task039c_three_arm_candidate_cohort_freeze"},
+    "integration_execution_code_commit": {"$ref": "#/$defs/gitSha"}, "c0_commit": {"$ref": "#/$defs/gitSha"}, "c0_protocol_bundle_hash": {"$ref": "#/$defs/sha256"}, "meta_implementation_commit": {"$ref": "#/$defs/gitSha"}, "meta_result_commit": {"$ref": "#/$defs/gitSha"}, "stat_implementation_commit": {"$ref": "#/$defs/gitSha"}, "stat_result_commit": {"$ref": "#/$defs/gitSha"}, "gdn_execution_code_commit": {"$ref": "#/$defs/gitSha"}, "gdn_result_commit": {"$ref": "#/$defs/gitSha"}, "preliminary_review_commit": {"$ref": "#/$defs/gitSha"}, "final_gdn_audit_commit": {"$ref": "#/$defs/gitSha"}, "preliminary_review_hash": {"$ref": "#/$defs/sha256"}, "final_gdn_audit_hash": {"$ref": "#/$defs/sha256"},
+    "result_artifact_hashes": {"$ref": "#/$defs/armHashes"},
+    "ranking_hashes": {"type": "object", "additionalProperties": false, "required": ["META", "STAT", "GDN"], "properties": {"META": {"type": "null"}, "STAT": {"$ref": "#/$defs/sha256"}, "GDN": {"$ref": "#/$defs/sha256"}}},
+    "audited_preview_hash": {"$ref": "#/$defs/sha256"}, "candidate_identity_list_hash": {"$ref": "#/$defs/sha256"}, "candidate_cohort_hash": {"$ref": "#/$defs/sha256"}, "overlap_artifact_hash": {"$ref": "#/$defs/sha256"}, "task039d0_authorization_hash": {"$ref": "#/$defs/sha256"},
+    "included_arms": {"const": ["META", "STAT", "GDN"]}, "candidate_count": {"const": 47}, "hai_feature_access": {"const": false}, "private_ledger_access": {"const": false}, "merged_score_created": {"const": false}, "global_rank_created": {"const": false}, "br2_ground_truth_used": {"const": false}, "real_task039d_execution": {"const": false}, "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "gitSha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "armHashes": {"type": "object", "additionalProperties": false, "required": ["META", "STAT", "GDN"], "properties": {"META": {"$ref": "#/$defs/sha256"}, "STAT": {"$ref": "#/$defs/sha256"}, "GDN": {"$ref": "#/$defs/sha256"}}}
+  }
+}

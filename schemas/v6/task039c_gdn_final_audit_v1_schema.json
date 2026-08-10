@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039c_gdn_final_audit_v1_schema.json",
+  "title": "TASK039CGDNFinalAuditV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["HAI_values_accessed_by_audit", "TASK039D_authorized", "artifact_hash", "artifact_type", "commit_separation", "commits", "compatibility", "created_at", "data_boundary", "final_CandidateUniverse_created", "findings", "findings_by_severity", "hashes", "integration_readiness", "integrity", "interpretation", "lineage", "overlap_inputs", "patch_scope", "prior_arm_review", "provisional_preview", "provisional_union_count", "provisional_union_hash", "ranking_reconstruction", "regression", "schema_version", "seeds", "sensitivity", "status", "task_id", "top10", "top20"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039c_gdn_final_audit_v1"}, "task_id": {"const": "TASK-039C-GDN-AUDIT"}, "status": {"const": "passed_task039c_gdn_final_audit"},
+    "integration_readiness": {"const": "READY_FOR_THREE_ARM_INTEGRATION"}, "HAI_values_accessed_by_audit": {"const": false}, "TASK039D_authorized": {"const": false}, "final_CandidateUniverse_created": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}, "provisional_union_hash": {"$ref": "#/$defs/sha256"}, "provisional_union_count": {"const": 47}, "created_at": {"type": "string", "format": "date-time"},
+    "commit_separation": {"type": "object"}, "commits": {"type": "object"}, "compatibility": {"type": "object"}, "data_boundary": {"type": "object"}, "findings": {"type": "array"}, "findings_by_severity": {"type": "object"}, "hashes": {"type": "object"}, "integrity": {"type": "object"}, "interpretation": {"type": "object"}, "lineage": {"type": "object"}, "overlap_inputs": {"type": "object"}, "patch_scope": {"type": "object"}, "prior_arm_review": {"type": "object"}, "provisional_preview": {"type": "object"}, "ranking_reconstruction": {"type": "object"}, "regression": {"type": "object"}, "seeds": {"type": "object"}, "sensitivity": {"type": "object"}, "top10": {"type": "object"}, "top20": {"type": "object"}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

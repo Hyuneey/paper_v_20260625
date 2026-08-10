@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039c_three_arm_overlap_v1_schema.json",
+  "title": "TASK039CThreeArmOverlapV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "top10", "top20", "sensitivity", "top10_exactly_two_pairs", "sensitivity_arm_counts", "meta_padded", "gdn_padded", "sensitivity_is_primary_cohort", "interpretation", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039c_three_arm_overlap_v1"},
+    "top10": {"$ref": "#/$defs/overlapBudget"},
+    "top20": {"$ref": "#/$defs/overlapBudget"},
+    "sensitivity": {"$ref": "#/$defs/overlapBudget"},
+    "top10_exactly_two_pairs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["META_STAT", "META_GDN", "STAT_GDN"],
+      "properties": {
+        "META_STAT": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+        "META_GDN": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+        "STAT_GDN": {"type": "array", "items": {"$ref": "#/$defs/pair"}}
+      }
+    },
+    "sensitivity_arm_counts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["META_available", "STAT", "GDN_available"],
+      "properties": {"META_available": {"const": 30}, "STAT": {"const": 40}, "GDN_available": {"const": 39}}
+    },
+    "meta_padded": {"const": false},
+    "gdn_padded": {"const": false},
+    "sensitivity_is_primary_cohort": {"const": false},
+    "interpretation": {"type": "string", "minLength": 1},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "pair": {"type": "object", "additionalProperties": false, "required": ["source", "target"], "properties": {"source": {"type": "string", "minLength": 1}, "target": {"type": "string", "minLength": 1}}},
+    "overlapBudget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["meta_count", "stat_count", "gdn_count", "meta_stat", "meta_gdn", "stat_gdn", "triple", "meta_only", "stat_only", "gdn_only", "meta_stat_only", "meta_gdn_only", "stat_gdn_only", "all_three", "union_count"],
+      "properties": {
+        "meta_count": {"type": "integer", "minimum": 0}, "stat_count": {"type": "integer", "minimum": 0}, "gdn_count": {"type": "integer", "minimum": 0},
+        "meta_stat": {"type": "integer", "minimum": 0}, "meta_gdn": {"type": "integer", "minimum": 0}, "stat_gdn": {"type": "integer", "minimum": 0}, "triple": {"type": "integer", "minimum": 0},
+        "meta_only": {"type": "integer", "minimum": 0}, "stat_only": {"type": "integer", "minimum": 0}, "gdn_only": {"type": "integer", "minimum": 0},
+        "meta_stat_only": {"type": "integer", "minimum": 0}, "meta_gdn_only": {"type": "integer", "minimum": 0}, "stat_gdn_only": {"type": "integer", "minimum": 0}, "all_three": {"type": "integer", "minimum": 0}, "union_count": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/candidate_profiling_entry_v1_schema.json",
+  "title": "CandidateProfilingEntryV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "source", "target", "candidate_universe_hash", "origin_arms", "serialization_position", "global_rank", "global_score", "serialization_order_is_scientific_rank", "relation_confirmation", "rule_status", "META", "STAT", "GDN", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "candidate_profiling_entry_v1"},
+    "source": {"type": "string", "minLength": 1},
+    "target": {"type": "string", "minLength": 1},
+    "candidate_universe_hash": {"$ref": "#/$defs/sha256"},
+    "origin_arms": {"type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["META", "STAT", "GDN"]}},
+    "serialization_position": {"type": "integer", "minimum": 1, "maximum": 47},
+    "global_rank": {"type": "null"},
+    "global_score": {"type": "null"},
+    "serialization_order_is_scientific_rank": {"const": false},
+    "relation_confirmation": {"const": "not_evaluated"},
+    "rule_status": {"const": "not_created"},
+    "META": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/metaEvidence"}]},
+    "STAT": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/statEvidence"}]},
+    "GDN": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/gdnEvidence"}]},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "metaEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rank", "evidence_tier", "independent_official_reference_count", "metadata_evidence_references", "evidence_binding_hashes", "result_artifact_hash"],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1, "maximum": 20},
+        "evidence_tier": {"enum": ["M1_EXPLICIT", "M2_GRAPH_ADJACENT", "M3_SUBSYSTEM_SUPPORTED"]},
+        "independent_official_reference_count": {"type": "integer", "minimum": 1},
+        "metadata_evidence_references": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "evidence_binding_hashes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sha256"}},
+        "result_artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "statEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rank", "selected_horizon_seconds", "correlation_sign", "r_train1", "r_train2", "stability_strength", "ranking_hash", "result_artifact_hash"],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1, "maximum": 20},
+        "selected_horizon_seconds": {"enum": [1, 5, 10, 30, 60]},
+        "correlation_sign": {"enum": ["positive", "negative"]},
+        "r_train1": {"type": "number"}, "r_train2": {"type": "number"}, "stability_strength": {"type": "number", "exclusiveMinimum": 0},
+        "ranking_hash": {"$ref": "#/$defs/sha256"}, "result_artifact_hash": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "gdnEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rank", "edge_selection_frequency", "selected_seed_count", "median_upstream_graph_similarity", "ranking_hash", "result_artifact_hash", "compatibility_closure_receipt_hash"],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1, "maximum": 20},
+        "edge_selection_frequency": {"enum": [0.3333333333333333, 0.6666666666666666, 1.0]},
+        "selected_seed_count": {"type": "integer", "minimum": 1, "maximum": 3},
+        "median_upstream_graph_similarity": {"type": "number"},
+        "ranking_hash": {"$ref": "#/$defs/sha256"}, "result_artifact_hash": {"$ref": "#/$defs/sha256"}, "compatibility_closure_receipt_hash": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

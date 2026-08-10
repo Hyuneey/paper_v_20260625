@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039d0_authorization_v1_schema.json",
+  "title": "TASK039D0AuthorizationV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "task_id", "full_name", "candidate_cohort_hash", "candidate_identity_list_hash", "candidate_count", "process", "relation_family", "source_arm_set", "protocol_design_authorized", "real_hai_profiling_authorized", "train1_train2_profiling_execution_authorized", "train3_confirmation_execution_authorized", "train4_access_authorized", "test_labels_attacks_authorized", "rule_v2_authorized", "agent_execution_authorized", "detector_runtime_authorized", "outer_sealed_authorized", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039d0_authorization_v1"},
+    "task_id": {"const": "TASK-039D0"}, "full_name": {"const": "Normal Relation Profiling and Calibration Protocol Freeze"},
+    "candidate_cohort_hash": {"$ref": "#/$defs/sha256"}, "candidate_identity_list_hash": {"$ref": "#/$defs/sha256"},
+    "candidate_count": {"const": 47}, "process": {"const": "P1"}, "relation_family": {"const": "continuous_step_delayed_response_v1"},
+    "source_arm_set": {"const": ["META", "STAT", "GDN"]},
+    "protocol_design_authorized": {"const": true},
+    "real_hai_profiling_authorized": {"const": false}, "train1_train2_profiling_execution_authorized": {"const": false}, "train3_confirmation_execution_authorized": {"const": false}, "train4_access_authorized": {"const": false}, "test_labels_attacks_authorized": {"const": false}, "rule_v2_authorized": {"const": false}, "agent_execution_authorized": {"const": false}, "detector_runtime_authorized": {"const": false}, "outer_sealed_authorized": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

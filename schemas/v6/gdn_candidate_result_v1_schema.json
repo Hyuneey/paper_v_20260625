@@ -2,6 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://paperworks.local/schemas/v6/gdn_candidate_result_v1_schema.json",
   "title": "GDNCandidateResultV1",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "gdn_candidate_result_v1"}
+  },
   "oneOf": [
     {"$ref": "#/$defs/blockedResult"},
     {"$ref": "#/$defs/passedResult"},
