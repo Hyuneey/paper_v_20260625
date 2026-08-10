@@ -78,12 +78,15 @@ process; P3 remained infeasible. TASK-039C is authorized for P1
 candidate-universe and graph-evidence work only. It has no Rule v2, rule,
 verifier, runtime, Agent, detector, outer, or sealed authority.
 
-TASK-039C0 freezes one 144-pair P1 source-target universe, top-10/20/40
-budgets, and separate META, STAT, and upstream-aligned GDN discovery policies.
-All C arms must branch from the same C0 commit. They may not use BR2 pair-level
-screening outcomes as candidate supervision. META uses no feature values;
-STAT and GDN are limited to P1 train1/train2. Integration is an unscored union
-with provenance. TASK-039D remains unauthorized.
+TASK-039C completed with
+`passed_task039c_three_arm_candidate_cohort_freeze`. META, STAT, and the
+compatibility-closed upstream-aligned GDN arm were independently audited and
+integrated as the unscored union of their top-20 views. The final P1 Boiler
+profiling cohort contains 47 unique directed pairs with complete arm-local
+provenance, no merged score, and no global scientific rank. TASK-039D0 protocol
+design is authorized next; real TASK-039D profiling and all train3/train4/test,
+label, attack, Rule v2, Agent, detector/runtime, outer, and sealed execution
+remain unauthorized.
 
 ## 3. Canonical, Legacy, and Reference Paths
 

@@ -108,20 +108,20 @@ unchanged and Rule v2 was not created.
 
 ## TASK-039C Onward
 
-TASK-039C0 completed the P1 candidate-discovery protocol freeze. It binds one
-12-source, 12-target, 144-pair directed universe and top-10/20/40 budgets for
-META, STAT, and upstream-aligned GDN arms. META is value-free; STAT and GDN
-may use P1 train1/train2 only. BR2 pair-level outcomes are prohibited as
-candidate supervision. Integration is an unscored union with provenance.
+TASK-039C completed the P1 candidate-discovery sequence. META, STAT, and the
+compatibility-closed upstream-aligned GDN arm passed independent review over
+the same 144-pair universe. The frozen primary cohort is the unscored union of
+their top-20 views: 47 unique pairs with complete method provenance, no merged
+score, and no global scientific rank.
 
-The parallel META, STAT, GDN, review, and integration branches start from the
-exact same C0 commit. The GDN arm must pass its upstream fidelity receipt and
-cannot substitute a smoke backend. TASK-039D remains unauthorized until the
-candidate arms are independently completed and integrated.
+The preliminary parallel review remains authoritative for META/STAT; its old
+blocked-GDN state is historical and superseded by the final passing GDN audit.
+TASK-039D0 is authorized only to freeze a common normal-relation profiling and
+calibration protocol. Real TASK-039D profiling remains unauthorized.
 
-1. TASK-039C-META/STAT/GDN: parallel candidate discovery.
-2. TASK-039C-INTEGRATE: unscored candidate-set union with provenance.
-3. TASK-039D: normal relation profiling and deterministic calibration.
+1. TASK-039C-META/STAT/GDN and integration: complete.
+2. TASK-039D0: normal relation profiling and calibration protocol freeze.
+3. TASK-039D execution: requires separate authorization.
 4. TASK-039E: T0 deterministic template baseline.
 5. TASK-039F: common T1/T1-B/T2 bounded construction protocol.
 6. TASK-039G: deterministic validity and no-op-aware utility governance.

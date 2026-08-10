@@ -63,18 +63,18 @@ remained outside the execution.
 
 ## TASK-039C Onward
 
-TASK-039C0 completed the protocol freeze without reading HAI values or running
-candidate discovery. It fixed one P1 144-pair universe, common budgets, META,
-STAT, and GDN arm policies, BR2 anti-leakage rules, and unscored integration.
-Five parallel branches start from the exact C0 commit.
+TASK-039C completed. META, STAT, and compatibility-closed GDN rankings passed
+independent audit and were integrated under the C0 unscored-union policy. Their
+top-20 union freezes 47 unique P1 pairs with method provenance and without a
+merged score or global rank.
 
-Next work is restricted to the independent C arms and later C integration.
-TASK-039D remains unauthorized. Rule v2, construction, verifier/runtime
-migration, Agent execution, detector work, and evaluation remain unauthorized.
+TASK-039D0 protocol design is next. It may freeze a common normal-relation
+profiling and calibration protocol bound to the 47-pair cohort, but may not run
+real profiling. Rule v2, construction, verifier/runtime migration, Agent
+execution, detector work, and evaluation remain unauthorized.
 
-1. TASK-039C-META, TASK-039C-STAT, and TASK-039C-GDN candidate rankings;
-2. TASK-039C review and unscored integration;
-3. normal relation profiling and calibration after separate authorization;
+1. TASK-039D0 protocol freeze;
+2. normal relation profiling and calibration only after separate authorization;
 4. T0 deterministic baseline;
 5. T1/T1-B/T2 bounded Agentic comparison;
 6. deterministic validity and no-op-aware governance;

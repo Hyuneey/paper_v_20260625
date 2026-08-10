@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039c_integration_receipt_v1",
+  "task_id": "TASK-039C-INTEGRATE",
+  "status": "passed_task039c_three_arm_candidate_cohort_freeze",
+  "integration_execution_code_commit": "75a4899ba67e067a88dd363d9bb90554add82cf2",
+  "c0_commit": "b6522fb83c4cb92d355f98af778f9a6a3c73362f",
+  "c0_protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "meta_implementation_commit": "2b3df4443619b8d0d19434bbcd1ded3b31a1b8ea",
+  "meta_result_commit": "b8a744c4b2cc70cd70bfc73ce45408c2ec8b5824",
+  "stat_implementation_commit": "629f022d35bb0db6130e7e69faaf48408b49aa9a",
+  "stat_result_commit": "9359a8b8085b1948bde23171ec886e996fbd37b3",
+  "gdn_execution_code_commit": "6790505e08ea06d6b3f6d34f9fd533d381696b1f",
+  "gdn_result_commit": "1204ff4e6d790c2cd0e8268f778a8f071e5eea4b",
+  "preliminary_review_commit": "058b5e2023b66ccbf6704c5baf1f6c677f17b07a",
+  "final_gdn_audit_commit": "eab10dee0f08f419638154a9902304339b63c471",
+  "preliminary_review_hash": "c2f3159a2ca5a0028ea5965c9aec0f69986110640403ffa29edf6f600f88f6b4",
+  "final_gdn_audit_hash": "8f40aec0dddd48b487c6ca503fc9b71791626aef2cb3b3cf8935b182a34e6357",
+  "result_artifact_hashes": {
+    "META": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+    "STAT": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950",
+    "GDN": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc"
+  },
+  "ranking_hashes": {
+    "META": null,
+    "STAT": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+    "GDN": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3"
+  },
+  "audited_preview_hash": "81a7b6e0dfffdd6ce1b49799721c3dfcfb484af247a194d87b0602e76ac551ff",
+  "candidate_identity_list_hash": "b02304acef7f83c393b73563e486a80fcf32f3ec1997d65051493fe8dbef186c",
+  "candidate_cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+  "overlap_artifact_hash": "70a9f3db1db86b6341b45d4496f828c99b41a270ebab89e693b4235456f295f4",
+  "included_arms": [
+    "META",
+    "STAT",
+    "GDN"
+  ],
+  "candidate_count": 47,
+  "hai_feature_access": false,
+  "private_ledger_access": false,
+  "merged_score_created": false,
+  "global_rank_created": false,
+  "br2_ground_truth_used": false,
+  "task039d0_authorization_hash": "2820307f52fb02a214c7c7a4e20ec7ef0d04322594756fa572e4be130e9ea860",
+  "real_task039d_execution": false,
+  "artifact_hash": "5d53e19542c0334381e0cba1e163f07f89d81092b30af65e706634c08eb1cdb5"
+}

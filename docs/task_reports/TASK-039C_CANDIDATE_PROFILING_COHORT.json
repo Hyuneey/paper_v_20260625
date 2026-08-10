@@ -1,0 +1,1884 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "candidate_profiling_cohort_v1",
+  "task_id": "TASK-039C-INTEGRATE",
+  "status": "passed_task039c_three_arm_candidate_cohort_freeze",
+  "selected_process": "P1",
+  "selected_process_name": "P1 Boiler",
+  "relation_family": "continuous_step_delayed_response_v1",
+  "c0_protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "common_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "source_identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+  "target_identity_hash": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7",
+  "primary_k": 20,
+  "included_arms": [
+    "META",
+    "STAT",
+    "GDN"
+  ],
+  "arm_bindings": [
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "task039c_arm_binding_v1",
+      "arm_id": "META",
+      "claim_boundary": "metadata candidate evidence",
+      "implementation_commit": "2b3df4443619b8d0d19434bbcd1ded3b31a1b8ea",
+      "result_commit": "b8a744c4b2cc70cd70bfc73ce45408c2ec8b5824",
+      "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+      "ranking_hash": null,
+      "policy_hash": "5fc43a043f0e75a56cab855a466a97a394fc1a6fdb67461b17696034547e4af3",
+      "evidence_binding_hashes": [
+        "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+        "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      ],
+      "data_access_audit_hash": "1a21a4c1a67c053c2be576299cc77584f0f9c4cc7e3e62d738cd083cf4025a68",
+      "evaluated_count": 144,
+      "supported_count": 30,
+      "top20_count": 20,
+      "br2_pair_supervision_used": false,
+      "cross_arm_score_used": false,
+      "artifact_hash": "93220290aabef86400ee19ef02517d66850b92b7164dbfe088436fe2bf09eee6"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "task039c_arm_binding_v1",
+      "arm_id": "STAT",
+      "claim_boundary": "lagged change-correlation candidate evidence",
+      "implementation_commit": "629f022d35bb0db6130e7e69faaf48408b49aa9a",
+      "result_commit": "9359a8b8085b1948bde23171ec886e996fbd37b3",
+      "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950",
+      "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+      "policy_hash": "2e3413ee190dbce7106876ff5dd053161a17e18e80d142e75c05e50430c008e3",
+      "evidence_binding_hashes": [
+        "6333ff8f235d62fec1b86d78f1637f47ec66c0b4fb73e7476a094e49564f59d2",
+        "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      ],
+      "data_access_audit_hash": "9588682c8c6c52afdc4dea960c1ccfbe221501a7f756ff9de2893474eb0099e4",
+      "evaluated_count": 144,
+      "supported_count": 141,
+      "top20_count": 20,
+      "br2_pair_supervision_used": false,
+      "cross_arm_score_used": false,
+      "artifact_hash": "2e376b3a1f19778a63c0b17c27a65cb1e681c9659120e03f76d5177123d2e528"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "task039c_arm_binding_v1",
+      "arm_id": "GDN",
+      "claim_boundary": "learned-graph candidate evidence",
+      "implementation_commit": "6790505e08ea06d6b3f6d34f9fd533d381696b1f",
+      "result_commit": "1204ff4e6d790c2cd0e8268f778a8f071e5eea4b",
+      "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+      "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+      "policy_hash": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a",
+      "evidence_binding_hashes": [
+        "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "322e1d3a31d4c07a3e2249d0e99d9ae1fd3cfa84ac683d2b7519cb150aaff978",
+        "7cd7cfec18d5c97323cd6a55a1c87c563a5ec4a8d07ba33c90d9f708d6106338",
+        "d6b1fa41076eac845642bf4ede3fbf84d9f7f08e80e79ec4fe1bcfb637ebde10"
+      ],
+      "data_access_audit_hash": "241a7dfb622c0ac0cad5f376b1893854d480cdb6a9bdccc0fbfc61012de6e771",
+      "evaluated_count": 144,
+      "supported_count": 39,
+      "top20_count": 20,
+      "br2_pair_supervision_used": false,
+      "cross_arm_score_used": false,
+      "artifact_hash": "691c2d998bd426c1cc4d9a33afe652b1264ddac1cafe85c00bb6da1a6590cecc"
+    }
+  ],
+  "top20_counts_by_arm": {
+    "META": 20,
+    "STAT": 20,
+    "GDN": 20
+  },
+  "pairwise_intersections": {
+    "META_STAT": 11,
+    "META_GDN": 1,
+    "STAT_GDN": 1
+  },
+  "triple_intersection": 0,
+  "origin_decomposition": {
+    "META_only": 8,
+    "STAT_only": 8,
+    "GDN_only": 18,
+    "META_STAT_only": 11,
+    "META_GDN_only": 1,
+    "STAT_GDN_only": 1,
+    "all_three": 0
+  },
+  "union_count": 47,
+  "candidates": [
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01D",
+      "target": "P1_FT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 1,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 1,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 19,
+        "selected_horizon_seconds": 60,
+        "correlation_sign": "positive",
+        "r_train1": 0.15901519605380818,
+        "r_train2": 0.23633176875723416,
+        "stability_strength": 0.15901519605380818,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "45b6d6c8077dd54df1955b5f9c3bd13ab8defa7b42a29d7597dfb42499008bc9"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01D",
+      "target": "P1_FT02Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 2,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 2,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 3,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.6333021690899233,
+        "r_train2": 0.5670033714609225,
+        "stability_strength": 0.5670033714609225,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "c85af660366dd995daf6e74d893438561fba22cef4968fd9e5590f197e2b7ec8"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03D",
+      "target": "P1_FT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 3,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 3,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG6_FLOW_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "b74207cec52e910b5c46c9eb610cf9a5536f057957463105de0fe09cbde9243c"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03D",
+      "target": "P1_FT03Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 4,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 4,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG6_FLOW_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "a439b9af4cbf5ce6ff3ba25a6df7e58e58b9bc2ed43284a2f1092b18fba1af32"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01D",
+      "target": "P1_PIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 5,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 5,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG4_PRESSURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 17,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.23880520964919372,
+        "r_train2": 0.19683975711041937,
+        "stability_strength": 0.19683975711041937,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "43336955a20461eb9e0bdd5f0e70d861f36a69ccc3bd9ee21309dd43e8375ff3"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01D",
+      "target": "P1_TIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 6,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 6,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "be28e9bb12868015f448098d9ed25a4156cd0664b8938e7ad89ce3f1db69dc55"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_FT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 7,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 7,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "ea02e18142a96c1e5d29ecf6e279e91e6e5c3f47c282c89902141c42d0749bc9"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_FT02Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 8,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 8,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 14,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "negative",
+        "r_train1": -0.26291212542591424,
+        "r_train2": -0.2855660308208258,
+        "stability_strength": 0.26291212542591424,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "ff2509a3b3ca89ec03160edd8c82c8c16afe7da32bd6faa009729938fbb71b64"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_TIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "GDN"
+      ],
+      "serialization_position": 9,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 9,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": {
+        "rank": 7,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9996952414512634,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "0b6ea4ff87950c05cd419aa4b289bf542bf8103462104ef4ae9f155b8ffcccaf"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03D",
+      "target": "P1_LIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 10,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 10,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "9b80da248c9a912e0b5d304864bd2f100295b77a408c42cf991853e72ae7f135"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_LCV01D",
+      "target": "P1_LIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 11,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 11,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 18,
+        "selected_horizon_seconds": 60,
+        "correlation_sign": "positive",
+        "r_train1": 0.19458934285028526,
+        "r_train2": 0.2115714166705557,
+        "stability_strength": 0.19458934285028526,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "2dd7f24a9b6f1c3afd74db1e3011b2e8966239e278b20f69cedc3d4ed057d9eb"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PP04",
+      "target": "P1_TIT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 12,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 12,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG8_COOLING_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "0473f3c0df755f55aa77dee5550eea9644a520e51f9c1c45ccc53e6051d07334"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01D",
+      "target": "P1_PIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 13,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 13,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 11,
+        "selected_horizon_seconds": 10,
+        "correlation_sign": "negative",
+        "r_train1": -0.3604323608701531,
+        "r_train2": -0.47837993692512615,
+        "stability_strength": 0.3604323608701531,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "1ad12db000e957491720aaeb46356d1f23b07187d8b5f9b39a127adbf4462d88"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 14,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 14,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 4,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.535276546958903,
+        "r_train2": 0.4948530361170134,
+        "stability_strength": 0.4948530361170134,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "39f74bf0de2c0f0ae2ad94e15204dfea9d1da3c7d8c0902df5dcfeafec9afbf3"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 15,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 15,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 1,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.78401032810731,
+        "r_train2": 0.761456475764756,
+        "stability_strength": 0.761456475764756,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "3de096c7c561ef5b3ba2a4e2faa6231411cb5ea73b19ed80efb4ea973d168e83"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01Z",
+      "target": "P1_PIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 16,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 16,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 13,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.3916379307539734,
+        "r_train2": 0.33034436278913765,
+        "stability_strength": 0.33034436278913765,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "aa72d9c3ffc2497660e9d09908abebe10cca3a3441a522efadaddffa2e3deedc"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 17,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 17,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 15,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.25613440236115,
+        "r_train2": 0.24775660215838072,
+        "stability_strength": 0.24775660215838072,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "ea5c4c10d0ca87730eb233f84bdf7c362f835b53fe274496e2a96d62fe8a114c"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "serialization_position": 18,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 18,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 5,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.5620438187637141,
+        "r_train2": 0.4521517989817558,
+        "stability_strength": 0.4521517989817558,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "14f1393e805d6d795c21a4eb630709e342b59cba583968fd266a9fcb860eea2c"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01D",
+      "target": "P1_FT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 19,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 19,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "322b51b19d6834b7ac6acd5c69fd71568979037417a64d34d007adfdf04e66a9"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01D",
+      "target": "P1_FT01Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "META"
+      ],
+      "serialization_position": 20,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": {
+        "rank": 20,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null,
+      "artifact_hash": "ea8ba590f49fb181f0def7813f775a6bc2ce3e3074732df878fb641dc2bb6209"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02Z",
+      "target": "P1_PIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 21,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 2,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "negative",
+        "r_train1": -0.6052714782816841,
+        "r_train2": -0.6331832853477036,
+        "stability_strength": 0.6052714782816841,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "9ce4aba35e0629afd35f57f72a3f3a4b526ccb4e9951fcb596d5dfa14620ec13"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_LCV01Z",
+      "target": "P1_PIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 22,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 6,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "negative",
+        "r_train1": -0.40822204074307206,
+        "r_train2": -0.39979940010471254,
+        "stability_strength": 0.39979940010471254,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "ca2ed11636d5cc740b3eb84b267862ee5b4cc60bc7bdcb7535365b76e16a6c72"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 23,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 7,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "negative",
+        "r_train1": -0.3950211512126073,
+        "r_train2": -0.4270635790394675,
+        "stability_strength": 0.3950211512126073,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "7a912ffd3dd10db76b6ec48c4a472e0197dc9782c3e256566b8acd26e5a996b7"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_PIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 24,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 8,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "negative",
+        "r_train1": -0.39050178021187487,
+        "r_train2": -0.407637637092625,
+        "stability_strength": 0.39050178021187487,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "0195195d48db53406f11fb1dc3a24003087c06cde9c78ca5b379a04ce07726a9"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01Z",
+      "target": "P1_PIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT",
+        "GDN"
+      ],
+      "serialization_position": 25,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 9,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.43857523858326364,
+        "r_train2": 0.3753573522136355,
+        "stability_strength": 0.3753573522136355,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": {
+        "rank": 17,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9997602701187134,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "a17ac927193efcdc3e6b72406b0c9422b8cb694aa27bab5456e06a4e26819cbd"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_LCV01Z",
+      "target": "P1_FT01Z",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 26,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 10,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.44825830776969006,
+        "r_train2": 0.3650495762983653,
+        "stability_strength": 0.3650495762983653,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "ef5c13b588832d17bb807e9ffd40bafb36380a78e75f40f04198779453b38979"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01D",
+      "target": "P1_LIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 27,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 12,
+        "selected_horizon_seconds": 30,
+        "correlation_sign": "positive",
+        "r_train1": 0.34444737583481055,
+        "r_train2": 0.3356902606589881,
+        "stability_strength": 0.3356902606589881,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "e6b07ede97aca3e4eb273b97eee52ae22cbe288b97d6e6c25ac388873c1184ec"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_LCV01D",
+      "target": "P1_PIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 28,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 16,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "negative",
+        "r_train1": -0.2335773450929532,
+        "r_train2": -0.20408186270652884,
+        "stability_strength": 0.20408186270652884,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "921bc04dc537a3a75712d1d40f4a86b364f80dc7603059f1aef2cd7ea972f912"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "STAT"
+      ],
+      "serialization_position": 29,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": {
+        "rank": 20,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.15672012733249302,
+        "r_train2": 0.170977287947114,
+        "stability_strength": 0.15672012733249302,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null,
+      "artifact_hash": "453ed912efff3d32b42e9ab29c297ad285d9870ba48410597e8a52d946c9614e"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01Z",
+      "target": "P1_TIT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 30,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 1,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9999693036079407,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "c64df22b93237b0374c3d7734ac3c538460247127e74983cb93550627abb1c3d"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV01D",
+      "target": "P1_TIT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 31,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 2,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9999651908874512,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "74123ea28c37b83811d9d3d89424cdf9688b544a3a6c8747071c77f13e18f588"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 32,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 3,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.999930739402771,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "4d66e5e046fd479851c965d7a5ba66760637c443c454f61caa79b0c04b5a8e99"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03Z",
+      "target": "P1_FT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 33,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 4,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9999004602432251,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "5328c19518ee31193e904a03701308c460f46f612804d4c0beb47c541dba315e"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03D",
+      "target": "P1_FT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 34,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 5,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9998656511306763,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "2e2dd8b9835e2cc986dc92908ad2e41d5e715039174413fc7c5deea0f9feb9b8"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_TIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 35,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 6,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9998044371604919,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "0eba3adc1e94ae7f4c1489f8ad0236c9dd52992d550da7225599489b353fe44d"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01D",
+      "target": "P1_TIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 36,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 8,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9994266033172607,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "fec92a6fd926be2adc31e3f1001eb4689c18e00068c334eb22a32dd47760fbd0"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_FT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 37,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 9,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9973872303962708,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "eb6db20ff77d61e7f38b455c551652c80761e6aee67c35ca583d4b733706d043"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02D",
+      "target": "P1_LIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 38,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 10,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9951580762863159,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "4cdc132b23a8fa8df48a03b8b45a3506145963468e1568ba5d6faf97d54fdae5"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01Z",
+      "target": "P1_TIT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 39,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 11,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.999962568283081,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "c7b30b1f252d6290e3b87262f40e0575a7673c7236a9d08e1512112b376a71f7"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 40,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 12,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.999952495098114,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "fe998642fcafc3faefaae60c1e37289fe46f27453d6ef4d07fe1b7fae51bf147"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_LCV01D",
+      "target": "P1_TIT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 41,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 13,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9999468922615051,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "cd3f86eedf67a0301c8f62708e6b70c41925ab695dd9032325d68d14a11a9baa"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 42,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 14,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9999403953552246,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "78f3ae09b308975ac4aec93073b1011e02a136d96157c6f19c16fc04247a8542"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 43,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 15,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9998640418052673,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "273596618b3ac428769f8b21b9a1b98bcd1038ab522604de669bc6d59c0bb009"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_LCV01D",
+      "target": "P1_PIT02",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 44,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 16,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9997804164886475,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "2002ce8ee3a5e35fa345b6e938342d3357d8b667a333dc7f382c327f2eafa23b"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV03Z",
+      "target": "P1_TIT03",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 45,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 18,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.99965900182724,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "f42b470c531c2bc156b983e39f9b37f50ef5d04e0dd19c3c65e7fac1ee378897"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_PP04",
+      "target": "P1_FT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 46,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 19,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9995879530906677,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "841efc3c234fd6d487a1068a0da5f6a462a3319d6648323bb0cc822816a82985"
+    },
+    {
+      "schema_version": "1.0.0",
+      "artifact_type": "candidate_profiling_entry_v1",
+      "source": "P1_FCV01Z",
+      "target": "P1_FT01",
+      "candidate_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "origin_arms": [
+        "GDN"
+      ],
+      "serialization_position": 47,
+      "global_rank": null,
+      "global_score": null,
+      "serialization_order_is_scientific_rank": false,
+      "relation_confirmation": "not_evaluated",
+      "rule_status": "not_created",
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 20,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9994772672653198,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      },
+      "artifact_hash": "20f418b6626f51b7d4601dd6531ecd9eea138f99abd38a3fc478866abf0e8ace"
+    }
+  ],
+  "candidate_identity_list": [
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_FT02"
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_FT02Z"
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_FT03"
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_FT03Z"
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_PIT01"
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_TIT01"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_FT02"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_FT02Z"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_TIT01"
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_LIT01"
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_LIT01"
+    },
+    {
+      "source": "P1_PP04",
+      "target": "P1_TIT03"
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_PIT02"
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02"
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02Z"
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_PIT02"
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03"
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03Z"
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_FT01"
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_FT01Z"
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_PIT02"
+    },
+    {
+      "source": "P1_LCV01Z",
+      "target": "P1_PIT01"
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02Z"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_PIT02"
+    },
+    {
+      "source": "P1_PCV01Z",
+      "target": "P1_PIT01"
+    },
+    {
+      "source": "P1_LCV01Z",
+      "target": "P1_FT01Z"
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_LIT01"
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_PIT01"
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02"
+    },
+    {
+      "source": "P1_PCV01Z",
+      "target": "P1_TIT03"
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_TIT03"
+    },
+    {
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT01"
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_FT01"
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_FT01"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_TIT02"
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_TIT02"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_FT03"
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_LIT01"
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_TIT03"
+    },
+    {
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT02"
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_TIT03"
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT02"
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT01"
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_PIT02"
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_TIT03"
+    },
+    {
+      "source": "P1_PP04",
+      "target": "P1_FT01"
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_FT01"
+    }
+  ],
+  "candidate_identity_list_hash": "b02304acef7f83c393b73563e486a80fcf32f3ec1997d65051493fe8dbef186c",
+  "final_gdn_audit_commit": "eab10dee0f08f419638154a9902304339b63c471",
+  "final_gdn_audit_hash": "8f40aec0dddd48b487c6ca503fc9b71791626aef2cb3b3cf8935b182a34e6357",
+  "provenance_complete": true,
+  "global_numerical_score_created": false,
+  "global_scientific_rank_created": false,
+  "br2_relation_outcomes_used": false,
+  "hai_feature_values_accessed_by_integration": false,
+  "private_ledgers_accessed_by_integration": false,
+  "relation_profiling_executed": false,
+  "claim_boundary": "candidate profiling cohort",
+  "artifact_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254"
+}

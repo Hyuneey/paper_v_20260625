@@ -48,16 +48,15 @@ morphology sufficient to justify a separately versioned feasibility protocol.
 TASK-039BR1 preregistered that bounded protocol without reading real HAI values
 or creating Rule v2. TASK-039BR2 then executed it using only verified normal
 train1-train3 data. P1 Boiler alone passed the frozen gate and is now the
-selected process; P3 remained infeasible. TASK-039C is next and is authorized
-for P1 candidate-universe and graph-evidence work only. No candidate graph,
-production GDN backend, Rule v2, rule, detector result, or anomaly-performance
-claim exists yet.
+selected process; P3 remained infeasible. TASK-039C then completed META, STAT,
+and compatibility-closed upstream-aligned GDN discovery over the common
+12-source by 12-target P1 universe. Independent reviews passed, and the final
+unscored top-20 union freezes 47 unique source-target pairs with complete
+arm-local provenance, no merged score, and no global scientific rank.
 
-TASK-039C0 freezes the common 12-source by 12-target P1 identity universe and
-fair META, STAT, and upstream-aligned GDN discovery policies. The task executes
-no discovery and reads no HAI feature value. META is value-free; STAT and GDN
-are limited to normal candidate-fit train1/train2, and BR2 pair results cannot
-supervise ranking. The arm outputs will be integrated by unscored set union.
+TASK-039D0 protocol design is next. Real relation profiling is not authorized;
+no relation is confirmed, no Rule v2 or rule exists, and detector, runtime,
+outer, sealed, label, or attack evaluation remains out of scope.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

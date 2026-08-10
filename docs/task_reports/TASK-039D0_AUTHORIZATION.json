@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039d0_authorization_v1",
+  "task_id": "TASK-039D0",
+  "full_name": "Normal Relation Profiling and Calibration Protocol Freeze",
+  "candidate_cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+  "candidate_identity_list_hash": "b02304acef7f83c393b73563e486a80fcf32f3ec1997d65051493fe8dbef186c",
+  "candidate_count": 47,
+  "process": "P1",
+  "relation_family": "continuous_step_delayed_response_v1",
+  "source_arm_set": [
+    "META",
+    "STAT",
+    "GDN"
+  ],
+  "protocol_design_authorized": true,
+  "real_hai_profiling_authorized": false,
+  "train1_train2_profiling_execution_authorized": false,
+  "train3_confirmation_execution_authorized": false,
+  "train4_access_authorized": false,
+  "test_labels_attacks_authorized": false,
+  "rule_v2_authorized": false,
+  "agent_execution_authorized": false,
+  "detector_runtime_authorized": false,
+  "outer_sealed_authorized": false,
+  "artifact_hash": "2820307f52fb02a214c7c7a4e20ec7ef0d04322594756fa572e4be130e9ea860"
+}

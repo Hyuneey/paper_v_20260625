@@ -1972,3 +1972,21 @@
   cross-method score.
 - The GDN arm must pass an upstream-aligned fidelity receipt; smoke backends
   cannot identify as GDN. TASK-039D remains unauthorized.
+
+### DEC-100: Final three-arm candidate profiling cohort
+
+- Status: `resolved_passed_TASK039C`
+- Decision: freeze `META top20 ∪ STAT top20 ∪ GDN top20` under the C0
+  `set_union_with_provenance` policy.
+- META, STAT, and the compatibility-closed GDN result passed their independent
+  reviews. The earlier pre-GDNP preliminary review remains authoritative for
+  META/STAT but its blocked-GDN availability conclusion is historical and is
+  superseded by the final GDN audit.
+- Exact overlap is META/STAT 11, META/GDN 1, STAT/GDN 1, and triple 0. The
+  resulting cohort contains 47 unique P1 source-target pairs.
+- Arm-specific evidence and ranks remain method-local. No merged numerical
+  score or global scientific rank exists, and agreement is not a selection
+  criterion.
+- TASK-039D0 protocol design is authorized. Real profiling, train3/train4/test,
+  label or attack access, Rule v2, Agent, detector/runtime, outer, and sealed
+  execution remain unauthorized.

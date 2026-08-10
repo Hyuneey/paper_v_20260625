@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039c_three_arm_overlap_v1",
+  "top10": {
+    "meta_count": 10,
+    "stat_count": 10,
+    "gdn_count": 10,
+    "meta_stat": 1,
+    "meta_gdn": 1,
+    "stat_gdn": 0,
+    "triple": 0,
+    "meta_only": 8,
+    "stat_only": 9,
+    "gdn_only": 9,
+    "meta_stat_only": 1,
+    "meta_gdn_only": 1,
+    "stat_gdn_only": 0,
+    "all_three": 0,
+    "union_count": 28
+  },
+  "top20": {
+    "meta_count": 20,
+    "stat_count": 20,
+    "gdn_count": 20,
+    "meta_stat": 11,
+    "meta_gdn": 1,
+    "stat_gdn": 1,
+    "triple": 0,
+    "meta_only": 8,
+    "stat_only": 8,
+    "gdn_only": 18,
+    "meta_stat_only": 11,
+    "meta_gdn_only": 1,
+    "stat_gdn_only": 1,
+    "all_three": 0,
+    "union_count": 47
+  },
+  "sensitivity": {
+    "meta_count": 30,
+    "stat_count": 40,
+    "gdn_count": 39,
+    "meta_stat": 24,
+    "meta_gdn": 7,
+    "stat_gdn": 5,
+    "triple": 3,
+    "meta_only": 2,
+    "stat_only": 14,
+    "gdn_only": 30,
+    "meta_stat_only": 21,
+    "meta_gdn_only": 4,
+    "stat_gdn_only": 2,
+    "all_three": 3,
+    "union_count": 76
+  },
+  "top10_exactly_two_pairs": {
+    "META_STAT": [
+      {
+        "source": "P1_FCV01D",
+        "target": "P1_FT02Z"
+      }
+    ],
+    "META_GDN": [
+      {
+        "source": "P1_FCV02D",
+        "target": "P1_TIT01"
+      }
+    ],
+    "STAT_GDN": []
+  },
+  "sensitivity_arm_counts": {
+    "META_available": 30,
+    "STAT": 40,
+    "GDN_available": 39
+  },
+  "meta_padded": false,
+  "gdn_padded": false,
+  "sensitivity_is_primary_cohort": false,
+  "interpretation": "descriptive overlap only; overlap is not correctness, quality, method superiority, or a selection rule",
+  "artifact_hash": "70a9f3db1db86b6341b45d4496f828c99b41a270ebab89e693b4235456f295f4"
+}

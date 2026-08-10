@@ -2,20 +2,15 @@
 
 ## Production Graph-Ranking Backend
 
-TASK-039P1D resolved the current import and claim boundary: the trainers are
-synthetic smoke-only and the masked extractor is a reusable project component,
-not a complete GDN model. TASK-039A established HAI source provenance and
-TASK-039BR2 selected P1 under the continuous-step feasibility protocol. The
-production backend remains open. TASK-039C must choose either a
-source-aligned minimal GDN port or a clearly named alternative learned graph
-ranker. Only a validated source-aligned backend may be identified as GDN in the
-future RQ1 arm.
+TASK-039C closed this decision for candidate discovery. The project-owned,
+upstream-aligned port passed source fidelity, exact-environment verification,
+PyG 1.5-to-2.8 semantic compatibility closure, synthetic parity, real seed
+execution, and an independent final audit. Smoke trainers remain synthetic
+smoke-only and are not the production GDN arm.
 
-TASK-039C0 now requires the GDN candidate arm to pass an
-`UpstreamGDNFidelityReceipt` before real training. A blocked GDN arm does not
-invalidate META or STAT, and no fallback may be renamed GDN. The actual
-source-aligned implementation and fidelity evidence remain open in
-TASK-039C-GDN.
+The accepted GDN output is learned-graph candidate evidence, not causality,
+relation truth, anomaly performance, or superiority. Future use is bound to
+the frozen 47-pair three-arm profiling cohort and a common TASK-039D protocol.
 
 ## Primary Detector
 
