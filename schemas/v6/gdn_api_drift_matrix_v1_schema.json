@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/gdn_api_drift_matrix_v1_schema.json",
+  "title": "GDN API Drift Matrix V1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "rows",
+    "exact_row_count",
+    "adapted_row_count",
+    "unresolved_rows",
+    "source_inventory_hashes",
+    "source_inventories",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "gdn_api_drift_matrix_v1"},
+    "task_id": {"const": "TASK-039C-GDNP"},
+    "status": {"enum": ["passed_pyg15_to_pyg28_gdn_port_compatibility_closure", "blocked_additional_unresolved_pyg_api_drift"]},
+    "rows": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["row", "behavior", "pyg_1_5_semantics", "pyg_2_8_semantics", "project_binding", "classification"],
+        "properties": {
+          "row": {"type": "integer", "minimum": 1, "maximum": 20},
+          "behavior": {"type": "string", "minLength": 1},
+          "pyg_1_5_semantics": {"type": "string", "minLength": 1},
+          "pyg_2_8_semantics": {"type": "string", "minLength": 1},
+          "project_binding": {"type": "string", "minLength": 1},
+          "classification": {"enum": ["exact_semantics", "changed_default_requires_explicit_binding", "changed_signature_requires_explicit_binding", "documented_non_scientific_adapter", "unresolved"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "exact_row_count": {"type": "integer", "minimum": 0},
+    "adapted_row_count": {"type": "integer", "minimum": 0},
+    "unresolved_rows": {"type": "array", "items": {"type": "integer"}},
+    "source_inventory_hashes": {"type": "object"},
+    "source_inventories": {"type": "object"},
+    "artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}

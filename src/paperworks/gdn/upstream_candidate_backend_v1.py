@@ -781,7 +781,7 @@ def _load_runtime_types_v1() -> tuple[Any, Any, Any]:
 
     class GraphLayer(MessagePassing):
         def __init__(self, in_channels: int, out_channels: int, *, heads: int = 1, concat: bool = True, negative_slope: float = 0.2, dropout: float = 0.0, bias: bool = True) -> None:
-            super().__init__(aggr="add")
+            super().__init__(aggr="add", node_dim=0)
             self.in_channels = in_channels
             self.out_channels = out_channels
             self.heads = heads
