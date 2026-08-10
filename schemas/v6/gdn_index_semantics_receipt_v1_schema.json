@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/gdn_index_semantics_receipt_v1_schema.json",
+  "title": "GDN Index Semantics Receipt V1",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "task_id", "status", "flow", "node_dim", "aggregation", "source_row", "destination_row", "checks", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "gdn_index_semantics_receipt_v1"},
+    "task_id": {"const": "TASK-039C-GDNP"},
+    "status": {"const": "passed_gdnp_index_self_loop_parity"},
+    "flow": {"const": "source_to_target"},
+    "node_dim": {"const": 0},
+    "aggregation": {"const": "add"},
+    "source_row": {"const": 0},
+    "destination_row": {"const": 1},
+    "checks": {"type": "object", "minProperties": 8, "additionalProperties": {"const": true}},
+    "artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}

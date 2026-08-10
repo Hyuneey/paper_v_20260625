@@ -1,0 +1,311 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "upstream_gdn_fidelity_receipt_v1",
+  "task_id": "TASK-039C-GDN",
+  "status": "passed_upstream_gdn_fidelity",
+  "protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "gdn_policy_hash": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a",
+  "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "source_verification": {
+    "repository": "https://github.com/d-ailin/GDN",
+    "commit": "9853899da860682669a134e4af315d036aab4eca",
+    "detached_head": true,
+    "clean_worktree": true,
+    "file_records": [
+      {
+        "path": "models/GDN.py",
+        "git_blob_sha": "e967790769a5ea38dfbaed3e0e77b22cd0c5c896",
+        "sha256": "eedcdc73d48e9f34c384b1a7ad875e37580f3177e023d59608a14bc56c60eb66"
+      },
+      {
+        "path": "models/graph_layer.py",
+        "git_blob_sha": "77d9db23df4bfde2db69500d3fda2fc9b378e3e3",
+        "sha256": "0963e4091f9625e867dd90e7b402a277085f5c659a7d70c28880f3ae229b7f79"
+      },
+      {
+        "path": "datasets/TimeDataset.py",
+        "git_blob_sha": "8eb0b4c580b78fec0248069b2c6a81fbe3ce080c",
+        "sha256": "b1b9f6d53080d275d96ea7157bf4ded92131a1b566410fa7a7eaf96cc5084904"
+      },
+      {
+        "path": "train.py",
+        "git_blob_sha": "934bd50ab2acffcb9d028633960f722eae3440de",
+        "sha256": "885687aec4c42ac6a2b4782aced7ebf8785e0d0b56b787f39695a4f1b84169e1"
+      },
+      {
+        "path": "test.py",
+        "git_blob_sha": "58ae62520552cd0548318ed14d4a5fc07965a4f8",
+        "sha256": "156de035bdb1b2d4931787cd863090064e2f4c6b05ae92e3f2103cba305eddeb"
+      },
+      {
+        "path": "evaluate.py",
+        "git_blob_sha": "ae4110dc37d3665a93c1a88de35d313da6b4dd73",
+        "sha256": "daa647f55b26e1dd627257a25b9084c60fc36488f58c45faf9d7455491231e83"
+      },
+      {
+        "path": "util/net_struct.py",
+        "git_blob_sha": "ccc6256180aeb40395004a695446721fe073c754",
+        "sha256": "e0079cc401b2b9cf6e03634146382581accf267918d91c1ebffe628c82a6bac4"
+      }
+    ],
+    "verification_method": "git_commit_blob_identity_and_canonical_blob_sha256"
+  },
+  "backend_id": "task039c_upstream_aligned_gdn_v1",
+  "backend_classification": "upstream_aligned_validated",
+  "implementation_module": "paperworks.gdn.upstream_candidate_backend_v1",
+  "implementation_sha256": "2ffa96a31aa8f5008bae44f7b5fc29fde12d881c4977d534a090ed70171b57e4",
+  "training_config": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "batch_size": 32,
+    "epochs": 30,
+    "slide_window": 5,
+    "slide_stride": 1,
+    "embedding_dim": 64,
+    "out_layer_num": 1,
+    "out_layer_inter_dim": 128,
+    "learned_graph_topk": 5,
+    "validation_ratio": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "early_stopping_patience": 15,
+    "dropout": 0.2,
+    "device": "cpu",
+    "preprocessing": "raw_numeric_values_no_scaling_windows_do_not_cross_files",
+    "validation_policy": "upstream_seeded_contiguous_random_validation_block",
+    "checkpoint_policy": "minimum_validation_loss_in_memory_state_dict",
+    "hyperparameter_hash": "68fbd006af1bc71468c157ba90888f54b8c0cbeba1aa7aba1121701a5b87870e"
+  },
+  "field_assessments": [
+    {
+      "field_name": "pinned_upstream_repository_and_commit",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "P1D frozen inventory"
+      ],
+      "implementation_evidence": [
+        "verify_pinned_upstream_checkout_v1"
+      ],
+      "rationale": "Repository and commit are exact constants and are verified through Git."
+    },
+    {
+      "field_name": "required_upstream_file_identities",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "models/GDN.py",
+        "models/graph_layer.py",
+        "datasets/TimeDataset.py",
+        "train.py",
+        "test.py",
+        "evaluate.py",
+        "util/net_struct.py"
+      ],
+      "implementation_evidence": [
+        "canonical Git blob verifier"
+      ],
+      "rationale": "All seven P1D Git blob and SHA-256 identities are required."
+    },
+    {
+      "field_name": "model_architecture_correspondence",
+      "classification": "dimension_adaptation",
+      "upstream_sources": [
+        "models/GDN.py:GDN,GNNLayer,OutLayer"
+      ],
+      "implementation_evidence": [
+        "_load_runtime_types_v1"
+      ],
+      "rationale": "Layer topology is preserved; node count and input width derive from the frozen P1 view."
+    },
+    {
+      "field_name": "node_embedding_construction",
+      "classification": "dimension_adaptation",
+      "upstream_sources": [
+        "models/GDN.py:GDN.embedding"
+      ],
+      "implementation_evidence": [
+        "nn.Embedding(node_count,64)"
+      ],
+      "rationale": "Embedding construction is exact apart from deterministic P1 node count."
+    },
+    {
+      "field_name": "learned_topk_graph_construction",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "models/GDN.py:GDN.forward"
+      ],
+      "implementation_evidence": [
+        "cosine matrix and torch.topk(k=5)"
+      ],
+      "rationale": "The learned graph is the per-target top-5 cosine-neighbor graph used upstream."
+    },
+    {
+      "field_name": "similarity_semantics",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "models/GDN.py:cos_ji_mat"
+      ],
+      "implementation_evidence": [
+        "unnormalized dot divided by outer L2 norms"
+      ],
+      "rationale": "Signed cosine similarity and largest-value Top-K semantics are preserved."
+    },
+    {
+      "field_name": "prediction_graph_usage",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "models/GDN.py:gated_edge_index"
+      ],
+      "implementation_evidence": [
+        "GraphLayer receives learned gated edges"
+      ],
+      "rationale": "The forecast graph is built from the learned embedding graph on every forward pass."
+    },
+    {
+      "field_name": "prediction_and_loss_path",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "models/GDN.py:GDN.forward",
+        "train.py:loss_func"
+      ],
+      "implementation_evidence": [
+        "next-value output and mean MSE"
+      ],
+      "rationale": "Prediction width and mean squared next-value loss match upstream."
+    },
+    {
+      "field_name": "training_loop_correspondence",
+      "classification": "documented_non_scientific_adapter",
+      "upstream_sources": [
+        "train.py:train",
+        "main.py:get_loaders"
+      ],
+      "implementation_evidence": [
+        "train_upstream_aligned_seed_v1"
+      ],
+      "rationale": "Epoch loop, shuffled training, validation loss, patience 15, and best state are preserved; checkpoints remain in memory."
+    },
+    {
+      "field_name": "preprocessing_correspondence",
+      "classification": "documented_non_scientific_adapter",
+      "upstream_sources": [
+        "util/preprocess.py:construct_data",
+        "datasets/TimeDataset.py:process"
+      ],
+      "implementation_evidence": [
+        "load_authorized_numeric_segments_v1",
+        "_segment_windows_v1"
+      ],
+      "rationale": "Raw numeric values and per-file sliding windows are preserved without inventing cross-file windows or scaling."
+    },
+    {
+      "field_name": "optimizer_configuration",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "train.py:Adam"
+      ],
+      "implementation_evidence": [
+        "Adam lr=0.001 weight_decay=0"
+      ],
+      "rationale": "Optimizer class and parameters match the executed upstream run script and train loop."
+    },
+    {
+      "field_name": "architecture_hyperparameters",
+      "classification": "dimension_adaptation",
+      "upstream_sources": [
+        "run.sh",
+        "models/GDN.py"
+      ],
+      "implementation_evidence": [
+        "UpstreamGDNTrainingConfigV1"
+      ],
+      "rationale": "Run-script architecture defaults are frozen; only node count follows the P1 view."
+    },
+    {
+      "field_name": "training_hyperparameters",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "run.sh",
+        "train.py"
+      ],
+      "implementation_evidence": [
+        "UpstreamGDNTrainingConfigV1"
+      ],
+      "rationale": "Batch, epoch, window, stride, validation, learning-rate, decay, and patience behavior are frozen before data."
+    },
+    {
+      "field_name": "random_seed_control",
+      "classification": "dimension_adaptation",
+      "upstream_sources": [
+        "main.py:seed controls"
+      ],
+      "implementation_evidence": [
+        "FROZEN_SEEDS",
+        "_set_all_seeds_v1"
+      ],
+      "rationale": "Upstream seed controls are preserved while C0 mandates exactly 11, 23, and 37."
+    },
+    {
+      "field_name": "no_hidden_project_specific_scientific_modification",
+      "classification": "documented_non_scientific_adapter",
+      "upstream_sources": [
+        "P1D fidelity freeze"
+      ],
+      "implementation_evidence": [
+        "dedicated module; smoke backends rejected"
+      ],
+      "rationale": "Only path, CSV, in-memory checkpoint, and universe-projection adapters are present and explicitly classified."
+    },
+    {
+      "field_name": "learned_graph_extraction_correspondence",
+      "classification": "exact_upstream",
+      "upstream_sources": [
+        "models/GDN.py:self.learned_graph"
+      ],
+      "implementation_evidence": [
+        "train_upstream_aligned_seed_v1 post-checkpoint extraction"
+      ],
+      "rationale": "Extraction recomputes the same embedding cosine matrix and per-target torch.topk indices, then projects without reversing semantic identities."
+    }
+  ],
+  "unresolved_fields": [],
+  "smoke_backend_used": false,
+  "dependency_status": {
+    "required_versions": {
+      "torch": "2.12.1",
+      "torch-geometric": "2.8.0"
+    },
+    "upstream_native_reference_versions": {
+      "torch": "1.5.1",
+      "torch-geometric": "1.5.0"
+    },
+    "inspection_policy": "already_approved_environments_only_no_install_or_upgrade",
+    "environments": [
+      {
+        "environment_id": "bundled_CP3.12.13",
+        "python_version": "3.12.13",
+        "platform_id": "windows-amd64",
+        "torch_version": null,
+        "torch_geometric_version": null,
+        "exact_approved_backend": false
+      },
+      {
+        "environment_id": "system_CP3.14.2",
+        "python_version": "3.14.2",
+        "platform_id": "windows-amd64",
+        "torch_version": "2.11.0+cu128",
+        "torch_geometric_version": null,
+        "exact_approved_backend": false
+      }
+    ],
+    "exact_backend_available": false,
+    "selected_environment_id": null,
+    "dependency_status": "blocked_optional_dependency",
+    "environment_fingerprint": "698ed2cc888a36415c0bce0fbf78f69c073af5e917da35dc1174c49871c68304"
+  },
+  "real_hai_feature_values_accessed": false,
+  "created_at": "2026-08-10T06:40:31+00:00",
+  "artifact_hash": "93821469e465a942ff94c779c6798355383e35003b13db24c19b9760ca3266c4"
+}

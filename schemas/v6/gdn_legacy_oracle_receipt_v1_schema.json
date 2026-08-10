@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/gdn_legacy_oracle_receipt_v1_schema.json",
+  "title": "GDN Legacy Oracle Receipt V1",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "task_id", "status", "synthetic_only", "hai_feature_values_accessed", "official_sources_only", "bounded_attempt_count", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "gdn_legacy_oracle_receipt_v1"},
+    "task_id": {"const": "TASK-039C-GDNP"},
+    "status": {"enum": ["passed_legacy_pyg15_synthetic_oracle", "blocked_official_legacy_environment_unavailable"]},
+    "synthetic_only": {"const": true},
+    "hai_feature_values_accessed": {"const": false},
+    "official_sources_only": {"const": true},
+    "bounded_attempt_count": {"const": 1},
+    "artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}
