@@ -1,0 +1,349 @@
+{
+  "$defs": {
+    "candidate_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "source_identity": {
+          "type": "string"
+        },
+        "target_identity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_identity",
+        "target_identity"
+      ],
+      "type": "object"
+    },
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "created_by": {
+          "const": "TASK-039C-META",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "ranked_candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_summary": {
+          "enum": [
+            "manual_explicit_control_chain",
+            "manual_explicit_control_chain_and_graph_adjacent",
+            "graph_adjacent_with_reviewed_semantic_mapping",
+            "reviewed_same_control_subsystem_no_direct_graph_edge"
+          ],
+          "type": "string"
+        },
+        "evidence_tier": {
+          "enum": [
+            "M1_EXPLICIT",
+            "M2_GRAPH_ADJACENT",
+            "M3_SUBSYSTEM_SUPPORTED"
+          ],
+          "type": "string"
+        },
+        "graph_evidence_present": {
+          "type": "boolean"
+        },
+        "independent_official_reference_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "manual_semantic_evidence_present": {
+          "const": true,
+          "type": "boolean"
+        },
+        "rank": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "reference_identifiers": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "source_identity": {
+          "type": "string"
+        },
+        "subsystem_evidence_present": {
+          "type": "boolean"
+        },
+        "supported_status": {
+          "const": true,
+          "type": "boolean"
+        },
+        "target_identity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_summary",
+        "evidence_tier",
+        "graph_evidence_present",
+        "independent_official_reference_count",
+        "manual_semantic_evidence_present",
+        "rank",
+        "reference_identifiers",
+        "source_identity",
+        "subsystem_evidence_present",
+        "supported_status",
+        "target_identity"
+      ],
+      "type": "object"
+    },
+    "shortfall_record": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_shortfall": {
+          "type": "boolean"
+        },
+        "requested_count": {
+          "enum": [
+            10,
+            20,
+            40
+          ],
+          "type": "integer"
+        },
+        "returned_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "shortfall_count": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "candidate_shortfall",
+        "requested_count",
+        "returned_count",
+        "shortfall_count"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://paperworks.local/schemas/v6/metadata_candidate_result_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "BR2_pair_supervision_used": {
+      "const": false,
+      "type": "boolean"
+    },
+    "arm_id": {
+      "const": "META",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "artifact_type": {
+      "const": "metadata_candidate_result_v1",
+      "type": "string"
+    },
+    "c0_protocol_bundle_hash": {
+      "const": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+      "type": "string"
+    },
+    "candidate_shortfall": {
+      "additionalProperties": false,
+      "properties": {
+        "top10": {
+          "$ref": "#/$defs/shortfall_record"
+        },
+        "top20": {
+          "$ref": "#/$defs/shortfall_record"
+        },
+        "top40": {
+          "$ref": "#/$defs/shortfall_record"
+        }
+      },
+      "required": [
+        "top10",
+        "top20",
+        "top40"
+      ],
+      "type": "object"
+    },
+    "creation_metadata": {
+      "$ref": "#/$defs/creation_metadata"
+    },
+    "cross_arm_score_used": {
+      "const": false,
+      "type": "boolean"
+    },
+    "data_access_audit_ref": {
+      "$ref": "#/$defs/hash"
+    },
+    "evaluated_pair_count": {
+      "const": 144,
+      "type": "integer"
+    },
+    "evidence_ledger_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "metadata_policy_hash": {
+      "const": "5fc43a043f0e75a56cab855a466a97a394fc1a6fdb67461b17696034547e4af3",
+      "type": "string"
+    },
+    "numerical_weighting_used": {
+      "const": false,
+      "type": "boolean"
+    },
+    "official_graph_claim_boundary": {
+      "const": "weak_relation_reference_not_causal_truth",
+      "type": "string"
+    },
+    "pair_universe_hash": {
+      "const": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+      "type": "string"
+    },
+    "real_hai_feature_values_accessed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "source_identity_list_hash": {
+      "const": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+      "type": "string"
+    },
+    "status": {
+      "const": "passed_task039c_metadata_candidate_discovery",
+      "type": "string"
+    },
+    "supported_count": {
+      "maximum": 144,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "supported_ranking": {
+      "items": {
+        "$ref": "#/$defs/ranked_candidate"
+      },
+      "maxItems": 144,
+      "type": "array"
+    },
+    "target_identity_list_hash": {
+      "const": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7",
+      "type": "string"
+    },
+    "task_id": {
+      "const": "TASK-039C-META",
+      "type": "string"
+    },
+    "tier_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "M1_EXPLICIT": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "M2_GRAPH_ADJACENT": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "M3_SUBSYSTEM_SUPPORTED": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "UNSUPPORTED": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "M1_EXPLICIT",
+        "M2_GRAPH_ADJACENT",
+        "M3_SUBSYSTEM_SUPPORTED",
+        "UNSUPPORTED"
+      ],
+      "type": "object"
+    },
+    "top10_identities": {
+      "items": {
+        "$ref": "#/$defs/candidate_identity"
+      },
+      "maxItems": 10,
+      "type": "array"
+    },
+    "top20_identities": {
+      "items": {
+        "$ref": "#/$defs/candidate_identity"
+      },
+      "maxItems": 20,
+      "type": "array"
+    },
+    "top40_identities": {
+      "items": {
+        "$ref": "#/$defs/candidate_identity"
+      },
+      "maxItems": 40,
+      "type": "array"
+    },
+    "unsupported_count": {
+      "maximum": 144,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "BR2_pair_supervision_used",
+    "arm_id",
+    "artifact_hash",
+    "artifact_type",
+    "c0_protocol_bundle_hash",
+    "candidate_shortfall",
+    "creation_metadata",
+    "cross_arm_score_used",
+    "data_access_audit_ref",
+    "evaluated_pair_count",
+    "evidence_ledger_hash",
+    "metadata_policy_hash",
+    "numerical_weighting_used",
+    "official_graph_claim_boundary",
+    "pair_universe_hash",
+    "real_hai_feature_values_accessed",
+    "schema_version",
+    "source_identity_list_hash",
+    "status",
+    "supported_count",
+    "supported_ranking",
+    "target_identity_list_hash",
+    "task_id",
+    "tier_counts",
+    "top10_identities",
+    "top20_identities",
+    "top40_identities",
+    "unsupported_count"
+  ],
+  "title": "Metadata Candidate Result V1",
+  "type": "object"
+}

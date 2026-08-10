@@ -1,0 +1,794 @@
+{
+  "BR2_pair_supervision_used": false,
+  "arm_id": "META",
+  "artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+  "artifact_type": "metadata_candidate_result_v1",
+  "c0_protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "candidate_shortfall": {
+    "top10": {
+      "candidate_shortfall": false,
+      "requested_count": 10,
+      "returned_count": 10,
+      "shortfall_count": 0
+    },
+    "top20": {
+      "candidate_shortfall": false,
+      "requested_count": 20,
+      "returned_count": 20,
+      "shortfall_count": 0
+    },
+    "top40": {
+      "candidate_shortfall": true,
+      "requested_count": 40,
+      "returned_count": 30,
+      "shortfall_count": 10
+    }
+  },
+  "creation_metadata": {
+    "code_commit": "2b3df4443619b8d0d19434bbcd1ded3b31a1b8ea",
+    "created_at": "2026-08-10T00:00:00+09:00",
+    "created_by": "TASK-039C-META"
+  },
+  "cross_arm_score_used": false,
+  "data_access_audit_ref": "1a21a4c1a67c053c2be576299cc77584f0f9c4cc7e3e62d738cd083cf4025a68",
+  "evaluated_pair_count": 144,
+  "evidence_ledger_hash": "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+  "metadata_policy_hash": "5fc43a043f0e75a56cab855a466a97a394fc1a6fdb67461b17696034547e4af3",
+  "numerical_weighting_used": false,
+  "official_graph_claim_boundary": "weak_relation_reference_not_causal_truth",
+  "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "real_hai_feature_values_accessed": false,
+  "schema_version": "1.0.0",
+  "source_identity_list_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+  "status": "passed_task039c_metadata_candidate_discovery",
+  "supported_count": 30,
+  "supported_ranking": [
+    {
+      "evidence_summary": "manual_explicit_control_chain_and_graph_adjacent",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 1,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT02"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain_and_graph_adjacent",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 2,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain_and_graph_adjacent",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 3,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG6_FLOW_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV03D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT03"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain_and_graph_adjacent",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 4,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG6_FLOW_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV03D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain_and_graph_adjacent",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 5,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG4_PRESSURE_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_PCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_PIT01"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 6,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+      ],
+      "source_identity": "P1_FCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 7,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23"
+      ],
+      "source_identity": "P1_FCV02D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT02"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 8,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23"
+      ],
+      "source_identity": "P1_FCV02D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 9,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+      ],
+      "source_identity": "P1_FCV02D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 10,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+      ],
+      "source_identity": "P1_FCV03D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 11,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+      ],
+      "source_identity": "P1_LCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "evidence_summary": "manual_explicit_control_chain",
+      "evidence_tier": "M1_EXPLICIT",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 12,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG8_COOLING_CONTROL"
+      ],
+      "source_identity": "P1_PP04",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_TIT03"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 13,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_PIT02"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 14,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV01Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT02"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 15,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV01Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 16,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV01Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_PIT02"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 17,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV03Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT03"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 18,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_FCV03Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 19,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_PCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT01"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 20,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_PCV01D",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT01Z"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 21,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_PCV01Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT01"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 22,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_PCV01Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_FT01Z"
+    },
+    {
+      "evidence_summary": "graph_adjacent_with_reviewed_semantic_mapping",
+      "evidence_tier": "M2_GRAPH_ADJACENT",
+      "graph_evidence_present": true,
+      "independent_official_reference_count": 2,
+      "manual_semantic_evidence_present": true,
+      "rank": 23,
+      "reference_identifiers": [
+        "HAI_MANUAL_DATA_POINTS_P12_P13",
+        "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+        "HAI_P1_PHYSICAL_GRAPH"
+      ],
+      "source_identity": "P1_PCV01Z",
+      "subsystem_evidence_present": false,
+      "supported_status": true,
+      "target_identity": "P1_PIT01"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 24,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+      ],
+      "source_identity": "P1_FCV01Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 25,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+      ],
+      "source_identity": "P1_FCV02Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_FT02"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 26,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+      ],
+      "source_identity": "P1_FCV02Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 27,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+      ],
+      "source_identity": "P1_FCV02Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 28,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG5_LEVEL_CONTROL",
+        "HAI_MANUAL_FIG6_FLOW_CONTROL"
+      ],
+      "source_identity": "P1_FCV03Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 29,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+      ],
+      "source_identity": "P1_LCV01Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "evidence_summary": "reviewed_same_control_subsystem_no_direct_graph_edge",
+      "evidence_tier": "M3_SUBSYSTEM_SUPPORTED",
+      "graph_evidence_present": false,
+      "independent_official_reference_count": 1,
+      "manual_semantic_evidence_present": true,
+      "rank": 30,
+      "reference_identifiers": [
+        "HAI_MANUAL_FIG4_PRESSURE_CONTROL"
+      ],
+      "source_identity": "P1_PCV02Z",
+      "subsystem_evidence_present": true,
+      "supported_status": true,
+      "target_identity": "P1_PIT01"
+    }
+  ],
+  "target_identity_list_hash": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7",
+  "task_id": "TASK-039C-META",
+  "tier_counts": {
+    "M1_EXPLICIT": 12,
+    "M2_GRAPH_ADJACENT": 11,
+    "M3_SUBSYSTEM_SUPPORTED": 7,
+    "UNSUPPORTED": 114
+  },
+  "top10_identities": [
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_FT03"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_PIT01"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_LIT01"
+    }
+  ],
+  "top20_identities": [
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_FT03"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_PIT01"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "source_identity": "P1_LCV01D",
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "source_identity": "P1_PP04",
+      "target_identity": "P1_TIT03"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_PIT02"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_PIT02"
+    },
+    {
+      "source_identity": "P1_FCV03Z",
+      "target_identity": "P1_FT03"
+    },
+    {
+      "source_identity": "P1_FCV03Z",
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_FT01"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_FT01Z"
+    }
+  ],
+  "top40_identities": [
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_FT03"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_PIT01"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV02D",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV03D",
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "source_identity": "P1_LCV01D",
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "source_identity": "P1_PP04",
+      "target_identity": "P1_TIT03"
+    },
+    {
+      "source_identity": "P1_FCV01D",
+      "target_identity": "P1_PIT02"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_PIT02"
+    },
+    {
+      "source_identity": "P1_FCV03Z",
+      "target_identity": "P1_FT03"
+    },
+    {
+      "source_identity": "P1_FCV03Z",
+      "target_identity": "P1_FT03Z"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_FT01"
+    },
+    {
+      "source_identity": "P1_PCV01D",
+      "target_identity": "P1_FT01Z"
+    },
+    {
+      "source_identity": "P1_PCV01Z",
+      "target_identity": "P1_FT01"
+    },
+    {
+      "source_identity": "P1_PCV01Z",
+      "target_identity": "P1_FT01Z"
+    },
+    {
+      "source_identity": "P1_PCV01Z",
+      "target_identity": "P1_PIT01"
+    },
+    {
+      "source_identity": "P1_FCV01Z",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV02Z",
+      "target_identity": "P1_FT02"
+    },
+    {
+      "source_identity": "P1_FCV02Z",
+      "target_identity": "P1_FT02Z"
+    },
+    {
+      "source_identity": "P1_FCV02Z",
+      "target_identity": "P1_TIT01"
+    },
+    {
+      "source_identity": "P1_FCV03Z",
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "source_identity": "P1_LCV01Z",
+      "target_identity": "P1_LIT01"
+    },
+    {
+      "source_identity": "P1_PCV02Z",
+      "target_identity": "P1_PIT01"
+    }
+  ],
+  "unsupported_count": 114
+}
