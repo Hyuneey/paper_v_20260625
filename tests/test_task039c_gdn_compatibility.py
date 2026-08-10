@@ -7,6 +7,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import torch
+
 from paperworks.gdn.gdn_remediation_environment_v1 import verify_self_hash_v1
 from paperworks.gdn.pyg_softmax_compatibility_v1 import (
     EXACT_ENVIRONMENT_RECEIPT_HASH,
@@ -43,6 +45,11 @@ ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = ROOT / "external/gdn"
 ENVIRONMENT = ROOT / "docs/task_reports/TASK-039C_GDNR_ENVIRONMENT_RECEIPT.json"
 C0 = ROOT / "docs/task_reports/TASK-039C0_PROTOCOL_BUNDLE.json"
+OUTCOME_PATHS = (
+    "docs/task_reports/TASK-039C_GDNC_DATA_ACCESS_AUDIT.json",
+    "docs/task_reports/TASK-039C_GDNC_EXECUTION_RECEIPT.json",
+    "docs/task_reports/TASK-039C_GDNC_REPORT.md",
+)
 
 
 class Task039CGDNCSoftmaxCompatibilityTests(unittest.TestCase):
@@ -183,7 +190,7 @@ class Task039CGDNCSoftmaxCompatibilityTests(unittest.TestCase):
         self.assertRegex(patched_hash, r"^[a-f0-9]{64}$")
         changed = assert_allowed_gdnc_paths_v1(
             repository_root=ROOT,
-            allowed_paths=ALLOWED_COMMIT_A_PATHS,
+            allowed_paths=ALLOWED_COMMIT_A_PATHS + OUTCOME_PATHS,
         )
         self.assertIn("src/paperworks/gdn/upstream_candidate_backend_v1.py", changed)
 
