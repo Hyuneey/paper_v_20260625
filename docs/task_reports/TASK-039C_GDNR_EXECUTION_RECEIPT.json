@@ -1,0 +1,43 @@
+{
+  "artifact_hash": "f46eb437aa307be41cad593fca8384d226c632738c1336a62c57554e42cf3a80",
+  "artifact_type": "task039c_gdnr_execution_receipt_v1",
+  "attention_used_for_primary_ranking": false,
+  "blocked_gdn_base_commit": "c0efdb6218385ec326be1a929371242314e63cb6",
+  "br2_pair_supervision_used": false,
+  "checkpoint_persisted": false,
+  "created_at": "2026-08-10T09:10:00+00:00",
+  "data_access_audit_hash": "6c1de4784e7cfc3d8f9daf30a7542326aad5030c2dfed9daa1c74630b01cf2dc",
+  "dependency_environment_fingerprint": "923984a1ecf72e7fd23527f6b03a59e288eb878efcdffd54f0734ecc8c4b30e1",
+  "environment_receipt_hash": "d0602e4f591073d58881aa1f918b788176ed888d5265f5e253fd272e060109c6",
+  "evaluated_candidate_count": 0,
+  "execution_commit_clean_at_start": true,
+  "fidelity_receipt_hash": "93821469e465a942ff94c779c6798355383e35003b13db24c19b9760ca3266c4",
+  "gdn_policy_hash": "9c2387a98312ef6c96ddcd17a871ceb70a96b670eb4a39a7269878101f2ba41a",
+  "meta_output_used": false,
+  "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "phase_a_commit": "229cb29cfec567e6491515de34c495a863c6e5fa",
+  "posthoc_xai_used": false,
+  "private_seed_ledger_hashes": [],
+  "protocol_bundle_hash": "41aab751d6bbbaadc72a95ef3289ea6440c26659fb38f640bf17fb0688836dff",
+  "ranking_hash": null,
+  "remediation_execution_commit": "914e5159e719271262c8caa5bf94a2a806efc589",
+  "result_artifact_hash": "f00610c2a334d433949a0ad91957b7a75ccbe8475be9fa3755e9f6eb7f9e6a30",
+  "schema_version": "1.0.0",
+  "scientific_source_change_after_execution_start": false,
+  "scientific_source_hashes": {
+    "configs/v6/task039c_gdn_backend_v1.json": "04302368e903ed033d5a58af71eb490d3f5828f0137a2fdd85de80d05a4a1a94",
+    "src/paperworks/candidates/gdn_candidate_discovery_v1.py": "8b3d24d467cdbcab60ed5dc30b7100930d1fa3d10426fcd109e99ea9792db082",
+    "src/paperworks/gdn/upstream_candidate_backend_v1.py": "2ffa96a31aa8f5008bae44f7b5fc29fde12d881c4977d534a090ed70171b57e4"
+  },
+  "seeds_attempted": [
+    11
+  ],
+  "seeds_completed": [],
+  "source_identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+  "stat_output_used": false,
+  "status": "failed_gdn_training",
+  "supported_candidate_count": 0,
+  "target_identity_hash": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7",
+  "task_id": "TASK-039C-GDNR",
+  "wheelhouse_receipt_hash": "b8e3d5fc7b66e61282d48a6a9aa28872e387534e40ead4cda691433a3bdd8cea"
+}
