@@ -1,0 +1,427 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/statistical_candidate_result_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "creation_metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "code_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "config_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "created_by": {
+          "const": "TASK-039C-STAT",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code_commit",
+        "config_hash",
+        "created_at",
+        "created_by"
+      ],
+      "type": "object"
+    },
+    "rank_view": {
+      "additionalProperties": false,
+      "properties": {
+        "rank": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "source": {
+          "pattern": "^P1_",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^P1_",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rank",
+        "source",
+        "target"
+      ],
+      "type": "object"
+    },
+    "ranking_record": {
+      "additionalProperties": false,
+      "properties": {
+        "correlation_sign": {
+          "enum": [
+            "positive",
+            "negative"
+          ],
+          "type": "string"
+        },
+        "method_evidence_refs": {
+          "items": {
+            "$ref": "#/$defs/sha256"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "method_status": {
+          "const": "cross_file_sign_stable",
+          "type": "string"
+        },
+        "r_train1": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "type": "number"
+        },
+        "r_train2": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "type": "number"
+        },
+        "rank": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "selected_horizon_seconds": {
+          "enum": [
+            1,
+            5,
+            10,
+            30,
+            60
+          ],
+          "type": "integer"
+        },
+        "source": {
+          "pattern": "^P1_",
+          "type": "string"
+        },
+        "stability_strength": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "type": "number"
+        },
+        "target": {
+          "pattern": "^P1_",
+          "type": "string"
+        }
+      },
+      "required": [
+        "correlation_sign",
+        "method_evidence_refs",
+        "method_status",
+        "r_train1",
+        "r_train2",
+        "rank",
+        "selected_horizon_seconds",
+        "source",
+        "stability_strength",
+        "target"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "shortfall": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_shortfall": {
+          "type": "boolean"
+        },
+        "missing_count": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "candidate_shortfall",
+        "missing_count"
+      ],
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "arbitrary_minimum_correlation_threshold": {
+      "type": "null"
+    },
+    "arm_id": {
+      "const": "STAT",
+      "type": "string"
+    },
+    "arm_result_status": {
+      "enum": [
+        "passed",
+        "candidate_shortfall"
+      ],
+      "type": "string"
+    },
+    "artifact_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifact_type": {
+      "const": "statistical_candidate_result_v1",
+      "type": "string"
+    },
+    "br2_pair_supervision_used": {
+      "const": false,
+      "type": "boolean"
+    },
+    "c0_protocol_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "candidate_shortfall": {
+      "type": "boolean"
+    },
+    "candidate_shortfall_by_k": {
+      "additionalProperties": false,
+      "properties": {
+        "10": {
+          "$ref": "#/$defs/shortfall"
+        },
+        "20": {
+          "$ref": "#/$defs/shortfall"
+        },
+        "40": {
+          "$ref": "#/$defs/shortfall"
+        }
+      },
+      "required": [
+        "10",
+        "20",
+        "40"
+      ],
+      "type": "object"
+    },
+    "creation_metadata": {
+      "$ref": "#/$defs/creation_metadata"
+    },
+    "cross_arm_score_used": {
+      "const": false,
+      "type": "boolean"
+    },
+    "data_access_audit_ref": {
+      "$ref": "#/$defs/sha256"
+    },
+    "dataset_manifest_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "direction_unstable_count": {
+      "maximum": 144,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "evaluated_pair_count": {
+      "const": 144,
+      "type": "integer"
+    },
+    "file_boundaries_explicit": {
+      "const": true,
+      "type": "boolean"
+    },
+    "horizons_seconds": {
+      "const": [
+        1,
+        5,
+        10,
+        30,
+        60
+      ],
+      "type": "array"
+    },
+    "labels_accessed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "method_interpretation": {
+      "const": "statistical_candidate_evidence_not_causality_or_rule_validity",
+      "type": "string"
+    },
+    "method_name": {
+      "const": "lagged_change_correlation_candidate_score",
+      "type": "string"
+    },
+    "minimum_finite_observations": {
+      "const": 2,
+      "type": "integer"
+    },
+    "numerical_backend": {
+      "const": "numpy_float64_vectorized_with_independent_math_fsum_parity",
+      "type": "string"
+    },
+    "pair_universe_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "parity_absolute_tolerance": {
+      "const": 1e-12,
+      "type": "number"
+    },
+    "parity_relative_tolerance": {
+      "const": 1e-12,
+      "type": "number"
+    },
+    "pearson_definition": {
+      "const": "float64_centered_product_moment_on_pairwise_finite_aligned_observations",
+      "type": "string"
+    },
+    "private_detailed_ledger_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "process_id": {
+      "const": "P1",
+      "type": "string"
+    },
+    "ranking_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "raw_time_series_samples_exposed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "reranking_for_k_used": {
+      "const": false,
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "source_identity_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "stat_policy_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "status": {
+      "const": "passed_task039c_statistical_candidate_discovery",
+      "type": "string"
+    },
+    "supported_ranking": {
+      "items": {
+        "$ref": "#/$defs/ranking_record"
+      },
+      "maxItems": 144,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "supported_stable_count": {
+      "maximum": 144,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "target_identity_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "task_id": {
+      "const": "TASK-039C-STAT",
+      "type": "string"
+    },
+    "test_accessed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "top10": {
+      "items": {
+        "$ref": "#/$defs/rank_view"
+      },
+      "maxItems": 10,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "top20": {
+      "items": {
+        "$ref": "#/$defs/rank_view"
+      },
+      "maxItems": 20,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "top40": {
+      "items": {
+        "$ref": "#/$defs/rank_view"
+      },
+      "maxItems": 40,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "train1_accessed": {
+      "const": true,
+      "type": "boolean"
+    },
+    "train2_accessed": {
+      "const": true,
+      "type": "boolean"
+    },
+    "train3_accessed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "train4_accessed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "unstable_padding_used": {
+      "const": false,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "arbitrary_minimum_correlation_threshold",
+    "arm_id",
+    "arm_result_status",
+    "artifact_hash",
+    "artifact_type",
+    "br2_pair_supervision_used",
+    "c0_protocol_hash",
+    "candidate_shortfall",
+    "candidate_shortfall_by_k",
+    "creation_metadata",
+    "cross_arm_score_used",
+    "data_access_audit_ref",
+    "dataset_manifest_id",
+    "direction_unstable_count",
+    "evaluated_pair_count",
+    "file_boundaries_explicit",
+    "horizons_seconds",
+    "labels_accessed",
+    "method_interpretation",
+    "method_name",
+    "minimum_finite_observations",
+    "numerical_backend",
+    "pair_universe_hash",
+    "parity_absolute_tolerance",
+    "parity_relative_tolerance",
+    "pearson_definition",
+    "private_detailed_ledger_hash",
+    "process_id",
+    "ranking_hash",
+    "raw_time_series_samples_exposed",
+    "reranking_for_k_used",
+    "schema_version",
+    "source_identity_hash",
+    "stat_policy_hash",
+    "status",
+    "supported_ranking",
+    "supported_stable_count",
+    "target_identity_hash",
+    "task_id",
+    "test_accessed",
+    "top10",
+    "top20",
+    "top40",
+    "train1_accessed",
+    "train2_accessed",
+    "train3_accessed",
+    "train4_accessed",
+    "unstable_padding_used"
+  ],
+  "title": "statistical_candidate_result_v1",
+  "type": "object"
+}
