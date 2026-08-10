@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039c_gdn_environment_receipt_v1_schema.json",
+  "title": "TASK039CGDNEnvironmentReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "python_version",
+    "platform_id",
+    "top_level_packages",
+    "wheel_count",
+    "wheel_manifest",
+    "sanitized_wheel_manifest_hash",
+    "wheelhouse_receipt_hash",
+    "installed_package_freeze_hash",
+    "installed_package_count",
+    "pip_version",
+    "pip_check_status",
+    "dependency_environment_fingerprint",
+    "fidelity_receipt_hash",
+    "torch_runtime_version",
+    "cpu_execution_available",
+    "gpu_or_cuda_required",
+    "unapproved_pyg_extensions_installed",
+    "wheelhouse_installed_distribution_match",
+    "deterministic_environment",
+    "environment_exact_match",
+    "environment_root_disclosed",
+    "created_at",
+    "artifact_hash"
+  ],
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "passed_exact_gdn_environment_remediation"}}},
+      "then": {
+        "properties": {
+          "wheel_count": {"type": "integer", "minimum": 3},
+          "wheel_manifest": {"type": "array", "minItems": 3},
+          "installed_package_count": {"type": "integer", "minimum": 3},
+          "pip_check_status": {"const": "passed"},
+          "torch_runtime_version": {"type": "string", "pattern": "^2\\.12\\.1(?:\\+.*)?$"},
+          "cpu_execution_available": {"const": true},
+          "wheelhouse_installed_distribution_match": {"const": true},
+          "environment_exact_match": {"const": true}
+        }
+      },
+      "else": {
+        "required": ["blocking_reason"],
+        "properties": {
+          "status": {"enum": ["blocked_exact_gdn_environment_unavailable", "blocked_exact_gdn_environment_missing_unapproved_extension"]},
+          "wheel_count": {"const": 0},
+          "wheel_manifest": {"type": "array", "maxItems": 0},
+          "installed_package_count": {"const": 0},
+          "pip_check_status": {"const": "not_run"},
+          "torch_runtime_version": {"const": "unavailable"},
+          "cpu_execution_available": {"const": false},
+          "wheelhouse_installed_distribution_match": {"const": false},
+          "environment_exact_match": {"const": false}
+        }
+      }
+    }
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039c_gdn_environment_receipt_v1"},
+    "task_id": {"const": "TASK-039C-GDNR"},
+    "status": {"enum": ["passed_exact_gdn_environment_remediation", "blocked_exact_gdn_environment_unavailable", "blocked_exact_gdn_environment_missing_unapproved_extension"]},
+    "python_version": {"const": "3.12.13"},
+    "platform_id": {"const": "windows-amd64"},
+    "top_level_packages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["jsonschema", "torch", "torch-geometric"],
+      "properties": {
+        "jsonschema": {"const": "4.26.0"},
+        "torch": {"const": "2.12.1"},
+        "torch-geometric": {"const": "2.8.0"}
+      }
+    },
+    "wheel_count": {"type": "integer", "minimum": 0},
+    "wheel_manifest": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["file_name", "package_name", "version", "byte_size", "sha256"],
+        "properties": {
+          "file_name": {"type": "string", "pattern": "^[^/\\\\]+\\.whl$"},
+          "package_name": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "version": {"type": "string", "minLength": 1},
+          "byte_size": {"type": "integer", "minimum": 1},
+          "sha256": {"$ref": "#/$defs/sha256"}
+        }
+      }
+    },
+    "sanitized_wheel_manifest_hash": {"$ref": "#/$defs/sha256"},
+    "wheelhouse_receipt_hash": {"$ref": "#/$defs/sha256"},
+    "installed_package_freeze_hash": {"$ref": "#/$defs/sha256"},
+    "installed_package_count": {"type": "integer", "minimum": 0},
+    "pip_version": {"type": "string", "minLength": 1},
+    "pip_check_status": {"enum": ["passed", "not_run"]},
+    "dependency_environment_fingerprint": {"$ref": "#/$defs/sha256"},
+    "fidelity_receipt_hash": {"const": "93821469e465a942ff94c779c6798355383e35003b13db24c19b9760ca3266c4"},
+    "torch_runtime_version": {"type": "string", "minLength": 1},
+    "cpu_execution_available": {"type": "boolean"},
+    "gpu_or_cuda_required": {"const": false},
+    "unapproved_pyg_extensions_installed": {"const": false},
+    "wheelhouse_installed_distribution_match": {"type": "boolean"},
+    "deterministic_environment": {
+      "const": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONHASHSEED": "0"
+      }
+    },
+    "environment_exact_match": {"type": "boolean"},
+    "environment_root_disclosed": {"const": false},
+    "blocking_reason": {"type": "string", "pattern": "^[A-Za-z0-9_.:-]+$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

@@ -22,6 +22,7 @@ from paperworks.v6.common import stable_hash_v1
 ROOT = Path(__file__).resolve().parents[1]
 RESULT = ROOT / "docs/task_reports/TASK-039C_GDN_RESULT.json"
 ACCESS = ROOT / "docs/task_reports/TASK-039C_GDN_DATA_ACCESS_AUDIT.json"
+REMEDIATION_ACCESS = ROOT / "docs/task_reports/TASK-039C_GDNR_DATA_ACCESS_AUDIT.json"
 REPORT = ROOT / "docs/task_reports/TASK-039C_GDN_REPORT.md"
 SCHEMA = ROOT / "schemas/v6/gdn_candidate_result_v1_schema.json"
 HASH = "a" * 64
@@ -139,18 +140,34 @@ class Task039CGDNCandidateTests(unittest.TestCase):
         observed = first.pop("artifact_hash")
         self.assertEqual(stable_hash_v1(first), observed)
 
-    def test_final_blocked_artifacts_validate_and_disclose_no_access(self) -> None:
+    def test_final_terminal_artifacts_validate_and_preserve_access_boundary(self) -> None:
         result = json.loads(RESULT.read_text(encoding="utf-8"))
         Draft202012Validator(json.loads(SCHEMA.read_text(encoding="utf-8"))).validate(result)
         observed = result.pop("artifact_hash")
         self.assertEqual(stable_hash_v1(result), observed)
-        self.assertEqual(result["status"], "blocked_optional_dependency")
-        self.assertFalse(result["real_hai_feature_access"])
-        self.assertNotIn("ranking", result)
-        audit = json.loads(ACCESS.read_text(encoding="utf-8"))
+        if result["status"] == "blocked_optional_dependency":
+            self.assertFalse(result["real_hai_feature_access"])
+            self.assertNotIn("ranking", result)
+        else:
+            self.assertEqual(result["status"], "passed_task039c_gdn_candidate_discovery")
+            self.assertTrue(result["real_hai_feature_access"])
+            self.assertEqual(result["seeds_completed"], [11, 23, 37])
+            self.assertEqual(result["evaluated_candidate_count"], 144)
+        audit_path = (
+            ACCESS
+            if result["status"] == "blocked_optional_dependency"
+            else REMEDIATION_ACCESS
+        )
+        audit = json.loads(audit_path.read_text(encoding="utf-8"))
         audit_hash = audit.pop("artifact_hash")
         self.assertEqual(stable_hash_v1(audit), audit_hash)
-        self.assertEqual(audit["files_accessed"], [])
+        if result["status"] == "blocked_optional_dependency":
+            self.assertEqual(audit["files_accessed"], [])
+        else:
+            self.assertEqual(
+                audit["files_accessed"],
+                ["hai-23.05/hai-train1.csv", "hai-23.05/hai-train2.csv"],
+            )
 
     def test_public_raw_value_checkpoint_path_and_private_path_leak_scan(self) -> None:
         for path in (RESULT, ACCESS, REPORT):
