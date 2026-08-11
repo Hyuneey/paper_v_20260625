@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "source_stability_tolerance": {
+      "type": "number"
+    },
+    "source_step_threshold": {
+      "type": "number"
+    },
+    "target_noise_scale": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "source_step_threshold",
+    "source_stability_tolerance",
+    "target_noise_scale"
+  ],
+  "type": "object"
+}

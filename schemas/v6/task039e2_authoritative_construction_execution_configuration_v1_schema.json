@@ -1,0 +1,211 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_authoritative_construction_execution_configuration_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_authoritative_construction_execution_configuration_v1",
+      "type": "string"
+    },
+    "capability_probe_executed": {
+      "type": "boolean"
+    },
+    "credential_checked": {
+      "type": "boolean"
+    },
+    "direct_number_role_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "direct_number_structured_output_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "execution_authorized": {
+      "type": "boolean"
+    },
+    "llm_called": {
+      "type": "boolean"
+    },
+    "main_structured_output_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "model_capability_receipt_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "previous_response_id_used": {
+      "type": "boolean"
+    },
+    "prompt_template_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provider_contacted": {
+      "type": "boolean"
+    },
+    "provider_managed_conversational_state": {
+      "type": "boolean"
+    },
+    "provider_model_freeze_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provider_response_custody_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "reasoning_methodological_rationale": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reasoning_persistence": {
+      "type": "boolean"
+    },
+    "rendering_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "retrieval_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "sampling_configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "frequency_penalty": {
+          "type": "integer"
+        },
+        "max_completion_tokens": {
+          "type": "integer"
+        },
+        "model": {
+          "type": "string"
+        },
+        "n": {
+          "type": "integer"
+        },
+        "presence_penalty": {
+          "type": "integer"
+        },
+        "reasoning_effort": {
+          "type": "string"
+        },
+        "seed": {
+          "type": "null"
+        },
+        "seed_determinism_claimed": {
+          "type": "boolean"
+        },
+        "seed_used": {
+          "type": "boolean"
+        },
+        "store": {
+          "type": "boolean"
+        },
+        "stream": {
+          "type": "boolean"
+        },
+        "temperature": {
+          "type": "number"
+        },
+        "tool_choice": {
+          "type": "null"
+        },
+        "tools": {
+          "items": {},
+          "type": "array"
+        },
+        "top_p": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "model",
+        "reasoning_effort",
+        "temperature",
+        "top_p",
+        "max_completion_tokens",
+        "n",
+        "seed",
+        "seed_used",
+        "seed_determinism_claimed",
+        "presence_penalty",
+        "frequency_penalty",
+        "stream",
+        "store",
+        "tools",
+        "tool_choice"
+      ],
+      "type": "object"
+    },
+    "sampling_configuration_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "schedule_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "shared_llm_arms": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "stateless_requests": {
+      "type": "boolean"
+    },
+    "t0_template_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "transport_retry_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "provider_model_freeze_hash",
+    "model_capability_receipt_hash",
+    "shared_llm_arms",
+    "sampling_configuration",
+    "sampling_configuration_hash",
+    "reasoning_methodological_rationale",
+    "stateless_requests",
+    "reasoning_persistence",
+    "previous_response_id_used",
+    "provider_managed_conversational_state",
+    "prompt_template_bundle_hash",
+    "main_structured_output_policy_hash",
+    "direct_number_structured_output_policy_hash",
+    "rendering_policy_hash",
+    "retrieval_policy_hash",
+    "t0_template_policy_hash",
+    "schedule_hash",
+    "transport_retry_policy_hash",
+    "provider_response_custody_policy_hash",
+    "direct_number_role_policy_hash",
+    "provider_contacted",
+    "credential_checked",
+    "capability_probe_executed",
+    "llm_called",
+    "execution_authorized",
+    "artifact_hash"
+  ],
+  "title": "task039e2_authoritative_construction_execution_configuration_v1",
+  "type": "object"
+}

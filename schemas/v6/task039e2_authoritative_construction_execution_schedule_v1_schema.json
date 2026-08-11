@@ -1,0 +1,122 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_authoritative_construction_execution_schedule_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_authoritative_construction_execution_schedule_v1",
+      "type": "string"
+    },
+    "capability_probe_count": {
+      "type": "integer"
+    },
+    "capability_probe_fixture": {
+      "type": "string"
+    },
+    "capability_probe_may_change_frozen_configuration": {
+      "type": "boolean"
+    },
+    "capability_probe_scientific_call": {
+      "type": "boolean"
+    },
+    "capability_probe_unsupported_outcome": {
+      "type": "string"
+    },
+    "cross_arm_output_visibility": {
+      "type": "boolean"
+    },
+    "direct_number_scientific_calls": {
+      "type": "integer"
+    },
+    "e1_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "maximum_scientific_calls": {
+      "type": "integer"
+    },
+    "per_relation_sequence": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "relation_count": {
+      "type": "integer"
+    },
+    "relation_identities": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "relation_identity_order_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "relation_order_policy": {
+      "type": "string"
+    },
+    "result_dependent_ordering": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "scientific_concurrency": {
+      "type": "integer"
+    },
+    "serialization_order_is_scientific_rank": {
+      "type": "boolean"
+    },
+    "t0_provider_calls": {
+      "type": "integer"
+    },
+    "t1_maximum_scientific_calls": {
+      "type": "integer"
+    },
+    "t1b_fixed_scientific_calls": {
+      "type": "integer"
+    },
+    "t2_maximum_scientific_calls": {
+      "type": "integer"
+    },
+    "t2_own_validity_feedback_only": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "e1_cohort_hash",
+    "relation_count",
+    "relation_order_policy",
+    "relation_identities",
+    "relation_identity_order_hash",
+    "serialization_order_is_scientific_rank",
+    "per_relation_sequence",
+    "t0_provider_calls",
+    "t1_maximum_scientific_calls",
+    "t1b_fixed_scientific_calls",
+    "t2_maximum_scientific_calls",
+    "direct_number_scientific_calls",
+    "maximum_scientific_calls",
+    "scientific_concurrency",
+    "result_dependent_ordering",
+    "cross_arm_output_visibility",
+    "t2_own_validity_feedback_only",
+    "capability_probe_count",
+    "capability_probe_fixture",
+    "capability_probe_scientific_call",
+    "capability_probe_may_change_frozen_configuration",
+    "capability_probe_unsupported_outcome",
+    "artifact_hash"
+  ],
+  "title": "task039e2_authoritative_construction_execution_schedule_v1",
+  "type": "object"
+}

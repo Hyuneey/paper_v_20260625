@@ -429,6 +429,48 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039e2_authorization_v1": (
         "schemas/v6/task039e2_authorization_v1_schema.json"
     ),
+    "provider_model_freeze_v1": (
+        "schemas/v6/provider_model_freeze_v1_schema.json"
+    ),
+    "task039e2_authoritative_model_capability_receipt_v1": (
+        "schemas/v6/task039e2_authoritative_model_capability_receipt_v1_schema.json"
+    ),
+    "task039e2_authoritative_construction_execution_configuration_v1": (
+        "schemas/v6/task039e2_authoritative_construction_execution_configuration_v1_schema.json"
+    ),
+    "task039e2_prompt_template_bundle_v1": (
+        "schemas/v6/task039e2_prompt_template_bundle_v1_schema.json"
+    ),
+    "task039e2_main_structured_output_policy_v1": (
+        "schemas/v6/task039e2_main_structured_output_policy_v1_schema.json"
+    ),
+    "task039e2_direct_number_structured_output_policy_v1": (
+        "schemas/v6/task039e2_direct_number_structured_output_policy_v1_schema.json"
+    ),
+    "task039e2_construction_evidence_rendering_policy_v1": (
+        "schemas/v6/task039e2_construction_evidence_rendering_policy_v1_schema.json"
+    ),
+    "task039e2_authoritative_t2_retrieval_corpus_policy_v1": (
+        "schemas/v6/task039e2_authoritative_t2_retrieval_corpus_policy_v1_schema.json"
+    ),
+    "task039e2_t0_template_policy_v1": (
+        "schemas/v6/task039e2_t0_template_policy_v1_schema.json"
+    ),
+    "task039e2_authoritative_construction_execution_schedule_v1": (
+        "schemas/v6/task039e2_authoritative_construction_execution_schedule_v1_schema.json"
+    ),
+    "task039e2_transport_retry_policy_v1": (
+        "schemas/v6/task039e2_transport_retry_policy_v1_schema.json"
+    ),
+    "task039e2_provider_response_custody_policy_v1": (
+        "schemas/v6/task039e2_provider_response_custody_policy_v1_schema.json"
+    ),
+    "task039e2_direct_number_role_policy_v1": (
+        "schemas/v6/task039e2_direct_number_role_policy_v1_schema.json"
+    ),
+    "task039e2_protocol_bundle_v1": (
+        "schemas/v6/task039e2_protocol_bundle_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),

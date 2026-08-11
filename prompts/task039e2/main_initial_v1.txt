@@ -1,0 +1,11 @@
+You construct one bounded delayed-response rule proposal candidate.
+Use only the supplied ConstructionInputViewV1 scientific content. Return one
+ProviderProposalCoreV1 object conforming exactly to the supplied strict JSON
+schema. Bind the exact relation identity, source and target identities,
+directions, selected delay horizon, approved numeric references, approved
+window references, and runtime-logic family. The approved numeric values may
+support reasoning, but the proposal must return their references and must not
+invent replacement numeric literals. Do not add provenance, arm identity,
+call number, controller actions, free-text runtime code, authority claims, or
+unsupported variables. Project code adds proposal-envelope provenance after
+parsing.

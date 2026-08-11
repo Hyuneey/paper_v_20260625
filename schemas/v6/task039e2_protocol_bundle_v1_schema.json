@@ -1,0 +1,196 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_protocol_bundle_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_protocol_bundle_v1",
+      "type": "string"
+    },
+    "authoritative_main": {
+      "type": "string"
+    },
+    "capability_probe_executed": {
+      "type": "boolean"
+    },
+    "component_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "direct_number_role_policy": {
+          "type": "string"
+        },
+        "direct_number_structured_output_policy": {
+          "type": "string"
+        },
+        "execution_configuration": {
+          "type": "string"
+        },
+        "execution_schedule": {
+          "type": "string"
+        },
+        "main_structured_output_policy": {
+          "type": "string"
+        },
+        "model_capability_receipt": {
+          "type": "string"
+        },
+        "prompt_template_bundle": {
+          "type": "string"
+        },
+        "provider_model_freeze": {
+          "type": "string"
+        },
+        "provider_response_custody_policy": {
+          "type": "string"
+        },
+        "rendering_policy": {
+          "type": "string"
+        },
+        "retrieval_policy": {
+          "type": "string"
+        },
+        "t0_template_policy": {
+          "type": "string"
+        },
+        "transport_retry_policy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_model_freeze",
+        "model_capability_receipt",
+        "execution_configuration",
+        "prompt_template_bundle",
+        "main_structured_output_policy",
+        "direct_number_structured_output_policy",
+        "rendering_policy",
+        "retrieval_policy",
+        "t0_template_policy",
+        "execution_schedule",
+        "transport_retry_policy",
+        "provider_response_custody_policy",
+        "direct_number_role_policy"
+      ],
+      "type": "object"
+    },
+    "credential_checked": {
+      "type": "boolean"
+    },
+    "direct_number_executed": {
+      "type": "boolean"
+    },
+    "e0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e1_construction_evidence_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e1_materialization_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e1_private_evidence_accessed": {
+      "type": "boolean"
+    },
+    "e1_private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e2_authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e2_prep_commit": {
+      "type": "string"
+    },
+    "e3_authorization_created": {
+      "type": "boolean"
+    },
+    "hai_accessed": {
+      "type": "boolean"
+    },
+    "llm_called": {
+      "type": "boolean"
+    },
+    "next_task": {
+      "type": "string"
+    },
+    "numeric_binding_count": {
+      "type": "integer"
+    },
+    "provider_contacted": {
+      "type": "boolean"
+    },
+    "real_t0_generated": {
+      "type": "boolean"
+    },
+    "relation_count": {
+      "type": "integer"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "runtime_authority": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "t1_generated": {
+      "type": "boolean"
+    },
+    "t1b_generated": {
+      "type": "boolean"
+    },
+    "t2_generated": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "next_task",
+    "authoritative_main",
+    "e2_prep_commit",
+    "e2_authorization_hash",
+    "e0_protocol_bundle_hash",
+    "e1_materialization_result_hash",
+    "e1_construction_evidence_cohort_hash",
+    "e1_private_ledger_hash",
+    "relation_count",
+    "numeric_binding_count",
+    "component_hashes",
+    "provider_contacted",
+    "credential_checked",
+    "capability_probe_executed",
+    "llm_called",
+    "real_t0_generated",
+    "t1_generated",
+    "t1b_generated",
+    "t2_generated",
+    "direct_number_executed",
+    "e3_authorization_created",
+    "rule_v2_authorized",
+    "runtime_authority",
+    "e1_private_evidence_accessed",
+    "hai_accessed",
+    "artifact_hash"
+  ],
+  "title": "task039e2_protocol_bundle_v1",
+  "type": "object"
+}

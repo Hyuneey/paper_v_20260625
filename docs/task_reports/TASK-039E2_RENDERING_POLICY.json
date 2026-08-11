@@ -1,0 +1,37 @@
+{
+  "approved_source": "task039e1_construction_evidence_cohort_and_private_resolver_future_e3",
+  "artifact_hash": "1e7a5f8fa32bcb0771cbf54a755032944db3d7df622dcd3963b88ac4a076c0e8",
+  "artifact_type": "task039e2_construction_evidence_rendering_policy_v1",
+  "construction_input_view_hash_recorded": true,
+  "hai_accessed": false,
+  "input_contract": "ConstructionInputViewV1",
+  "main_calibrated_values_visible": true,
+  "main_proposal_outputs_references": true,
+  "model_visible_fields": [
+    "public_relation_identity",
+    "source",
+    "target",
+    "source_direction",
+    "target_direction",
+    "selected_horizon",
+    "approved_calibrated_numeric_values",
+    "approved_numeric_references",
+    "approved_window_constants",
+    "bounded_semantic_process_metadata"
+  ],
+  "private_evidence_ledger_accessed_in_e2": false,
+  "prohibited_fields": [
+    "raw_hai",
+    "event_timestamps",
+    "labels",
+    "attacks",
+    "test_data",
+    "utility_outcomes",
+    "candidate_method_metrics",
+    "construction_arm",
+    "call_index"
+  ],
+  "raw_rendered_prompt_policy": "raw_rendered_prompt_not_persisted",
+  "rendered_prompt_hash_recorded": true,
+  "schema_version": "1.0.0"
+}

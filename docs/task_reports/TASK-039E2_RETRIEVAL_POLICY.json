@@ -1,0 +1,30 @@
+{
+  "allowed_slices": [
+    "approved_numeric_provenance_slice",
+    "confirmed_relation_binding_slice",
+    "approved_semantic_process_metadata_slice",
+    "preregistered_window_constant_slice"
+  ],
+  "artifact_hash": "54e5c90fd5ee1f14e0dae7bbc9cb4e9b3f419a2ed06c661352f86ec46aac83fe",
+  "artifact_type": "task039e2_authoritative_t2_retrieval_corpus_policy_v1",
+  "controller_hash": "6cc22fea19a636d590cb5e744d896e8f8588946049d2e0743674883c9eae15b4",
+  "controller_is_project_owned": true,
+  "maximum_retrieval_actions_per_relation": 1,
+  "model_selects_controller_action": false,
+  "new_scientific_evidence_allowed": false,
+  "prohibited_sources": [
+    "new_d1_d2_statistics",
+    "raw_hai",
+    "labels",
+    "attacks",
+    "test",
+    "train4",
+    "utility_outcomes",
+    "meta_stat_gdn_results"
+  ],
+  "provider_generation_calls_consumed_by_retrieval": 0,
+  "retrieval_semantics": "targeted_re_presentation_of_existing_evidence",
+  "schema_version": "1.0.0",
+  "subsequent_revision_consumes_generation_call": true,
+  "underlying_corpus": "same_approved_e1_construction_evidence_as_initial_view"
+}

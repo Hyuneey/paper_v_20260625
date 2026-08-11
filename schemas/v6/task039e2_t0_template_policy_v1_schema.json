@@ -1,0 +1,102 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_t0_template_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_t0_template_policy_v1",
+      "type": "string"
+    },
+    "fallback_used": {
+      "type": "boolean"
+    },
+    "llm_used": {
+      "type": "boolean"
+    },
+    "proposal_core_contract": {
+      "type": "string"
+    },
+    "proposal_envelope_contract": {
+      "type": "string"
+    },
+    "real_relation_generated": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "search_used": {
+      "type": "boolean"
+    },
+    "synthetic_tests_only_in_e2": {
+      "type": "boolean"
+    },
+    "template_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "template_specification": {
+      "additionalProperties": false,
+      "properties": {
+        "dsl_family": {
+          "type": "string"
+        },
+        "identity_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "numeric_literals": {
+          "type": "string"
+        },
+        "reference_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "runtime_logic_family": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dsl_family",
+        "runtime_logic_family",
+        "identity_fields",
+        "reference_fields",
+        "numeric_literals"
+      ],
+      "type": "object"
+    },
+    "template_version": {
+      "type": "string"
+    },
+    "uses_approved_e1_references": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "template_version",
+    "template_specification",
+    "template_hash",
+    "proposal_core_contract",
+    "proposal_envelope_contract",
+    "uses_approved_e1_references",
+    "llm_used",
+    "search_used",
+    "fallback_used",
+    "synthetic_tests_only_in_e2",
+    "real_relation_generated",
+    "artifact_hash"
+  ],
+  "title": "task039e2_t0_template_policy_v1",
+  "type": "object"
+}

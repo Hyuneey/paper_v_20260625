@@ -1,0 +1,107 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_authoritative_model_capability_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "account_specific_model_availability": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_authoritative_model_capability_receipt_v1",
+      "type": "string"
+    },
+    "capability_basis": {
+      "type": "string"
+    },
+    "chat_completions_supported": {
+      "type": "boolean"
+    },
+    "credential_availability": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "provider_contacted": {
+      "type": "boolean"
+    },
+    "reasoning_effort_none_supported": {
+      "type": "boolean"
+    },
+    "review_date": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "seed_capability": {
+      "type": "string"
+    },
+    "seed_reproducibility_relied_upon": {
+      "type": "boolean"
+    },
+    "snapshot_locked": {
+      "type": "boolean"
+    },
+    "source_documents": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "identity_class": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "url_identity_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "url_identity_hash",
+          "identity_class"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "structured_outputs_supported": {
+      "type": "boolean"
+    },
+    "temperature_parameter_expected": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "provider",
+    "model",
+    "snapshot_locked",
+    "chat_completions_supported",
+    "structured_outputs_supported",
+    "reasoning_effort_none_supported",
+    "temperature_parameter_expected",
+    "seed_capability",
+    "seed_reproducibility_relied_upon",
+    "account_specific_model_availability",
+    "provider_contacted",
+    "credential_availability",
+    "capability_basis",
+    "review_date",
+    "source_documents",
+    "artifact_hash"
+  ],
+  "title": "task039e2_authoritative_model_capability_receipt_v1",
+  "type": "object"
+}

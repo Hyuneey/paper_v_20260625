@@ -1,0 +1,7 @@
+Estimate exactly three construction-only numeric
+quantities for the supplied relation context: source_step_threshold,
+source_stability_tolerance, and target_noise_scale. The approved values and
+references for those three roles are withheld. The relation identity,
+directions, selected delay horizon, and preregistered window constants remain
+provided. Return only the three finite JSON numbers under the strict schema.
+These estimates grant no validity, rule, or runtime authority.

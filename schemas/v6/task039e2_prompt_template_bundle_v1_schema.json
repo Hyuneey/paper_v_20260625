@@ -1,0 +1,112 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_prompt_template_bundle_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_identity_model_visible": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_prompt_template_bundle_v1",
+      "type": "string"
+    },
+    "call_index_model_visible": {
+      "type": "boolean"
+    },
+    "direct_number_prompt_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "direct_number_template_path": {
+      "type": "string"
+    },
+    "direct_number_template_version": {
+      "type": "string"
+    },
+    "initial_content_equality_required": {
+      "type": "boolean"
+    },
+    "initial_model_visible_content_hash_method": {
+      "type": "string"
+    },
+    "main_initial_prompt_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "main_initial_shared_arms": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "main_initial_template_path": {
+      "type": "string"
+    },
+    "main_initial_template_version": {
+      "type": "string"
+    },
+    "raw_rendered_prompt_policy": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "t1b_all_three_calls_required": {
+      "type": "boolean"
+    },
+    "t1b_previous_proposal_visible": {
+      "type": "boolean"
+    },
+    "t1b_previous_validity_visible": {
+      "type": "boolean"
+    },
+    "t1b_selection_rule": {
+      "type": "string"
+    },
+    "t1b_stateless_independent_requests": {
+      "type": "boolean"
+    },
+    "t2_followup_prompt_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "t2_followup_template_path": {
+      "type": "string"
+    },
+    "t2_followup_template_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "main_initial_template_version",
+    "main_initial_template_path",
+    "main_initial_prompt_hash",
+    "t2_followup_template_version",
+    "t2_followup_template_path",
+    "t2_followup_prompt_hash",
+    "direct_number_template_version",
+    "direct_number_template_path",
+    "direct_number_prompt_hash",
+    "main_initial_shared_arms",
+    "initial_model_visible_content_hash_method",
+    "initial_content_equality_required",
+    "arm_identity_model_visible",
+    "call_index_model_visible",
+    "t1b_stateless_independent_requests",
+    "t1b_previous_proposal_visible",
+    "t1b_previous_validity_visible",
+    "t1b_all_three_calls_required",
+    "t1b_selection_rule",
+    "raw_rendered_prompt_policy",
+    "artifact_hash"
+  ],
+  "title": "task039e2_prompt_template_bundle_v1",
+  "type": "object"
+}

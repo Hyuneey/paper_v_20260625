@@ -1,0 +1,75 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_transport_retry_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_transport_retry_policy_v1",
+      "type": "string"
+    },
+    "fixed_retry_delays_seconds": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "maximum_transport_retries_per_request": {
+      "type": "integer"
+    },
+    "non_retryable_outcomes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "relation_skip_allowed": {
+      "type": "boolean"
+    },
+    "response_failures_consume_scientific_call": {
+      "type": "boolean"
+    },
+    "retry_after_429_policy": {
+      "type": "string"
+    },
+    "retry_after_validity_policy": {
+      "type": "string"
+    },
+    "retry_exhaustion_outcome": {
+      "type": "string"
+    },
+    "retryable_no_response_outcomes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "scientific_generation_retries": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "maximum_transport_retries_per_request",
+    "scientific_generation_retries",
+    "retryable_no_response_outcomes",
+    "non_retryable_outcomes",
+    "fixed_retry_delays_seconds",
+    "retry_after_429_policy",
+    "retry_after_validity_policy",
+    "response_failures_consume_scientific_call",
+    "retry_exhaustion_outcome",
+    "relation_skip_allowed",
+    "artifact_hash"
+  ],
+  "title": "task039e2_transport_retry_policy_v1",
+  "type": "object"
+}

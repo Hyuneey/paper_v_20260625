@@ -1,0 +1,22 @@
+{
+  "account_snapshot_availability": "not_probed",
+  "alternative_model_fallback_allowed": false,
+  "api_base_url": "https://api.openai.com",
+  "api_endpoint": "/v1/chat/completions",
+  "api_endpoint_family": "chat_completions",
+  "artifact_hash": "85154455772d4f8faaac0e86e25006718071bd0679897847d00a59f22c25d4e4",
+  "artifact_type": "provider_model_freeze_v1",
+  "automatic_upgrade_allowed": false,
+  "credential_accessed": false,
+  "credential_environment_variable": "OPENAI_API_KEY",
+  "exact_model_snapshot": "gpt-5.4-2026-03-05",
+  "model_alias_fallback_allowed": false,
+  "provider": "openai",
+  "provider_contacted": false,
+  "provider_name": "OpenAI",
+  "provider_sdk_dependency": false,
+  "schema_version": "1.0.0",
+  "snapshot_locked": true,
+  "transport_implementation": "python_stdlib_urllib_request_future_e3_only",
+  "unavailable_snapshot_outcome": "block_task039e3"
+}

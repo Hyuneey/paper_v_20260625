@@ -1,0 +1,36 @@
+{
+  "account_specific_model_availability": "not_probed",
+  "artifact_hash": "c44c9b39d4e92d3ebac62a962ff967073411e55184cbcdd9d770cb7f2eeaf649",
+  "artifact_type": "task039e2_authoritative_model_capability_receipt_v1",
+  "capability_basis": "static_official_document_reference_only",
+  "chat_completions_supported": true,
+  "credential_availability": "not_probed",
+  "model": "gpt-5.4-2026-03-05",
+  "provider": "OpenAI",
+  "provider_contacted": false,
+  "reasoning_effort_none_supported": true,
+  "review_date": "2026-08-11",
+  "schema_version": "1.0.0",
+  "seed_capability": "deprecated_beta_not_relied_upon",
+  "seed_reproducibility_relied_upon": false,
+  "snapshot_locked": true,
+  "source_documents": [
+    {
+      "identity_class": "url_identity_not_live_content_digest",
+      "url": "https://platform.openai.com/docs/models/gpt-5.4",
+      "url_identity_hash": "6cd535f4271948933d8dc53dcc6da2c533e1649080fa258f89213a1fc2b8af4f"
+    },
+    {
+      "identity_class": "url_identity_not_live_content_digest",
+      "url": "https://platform.openai.com/docs/guides/structured-outputs",
+      "url_identity_hash": "b2986739165a92d2259df6930017038186d4dec2b9b66327c4010116abc0ea63"
+    },
+    {
+      "identity_class": "url_identity_not_live_content_digest",
+      "url": "https://platform.openai.com/docs/api-reference/chat/create",
+      "url_identity_hash": "5acff3b63a58d28632d9aa39b0373e62828bde73c16d2fe83eff2a78f2647dd1"
+    }
+  ],
+  "structured_outputs_supported": true,
+  "temperature_parameter_expected": true
+}

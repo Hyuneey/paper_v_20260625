@@ -1,0 +1,66 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_direct_number_structured_output_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_direct_number_structured_output_policy_v1",
+      "type": "string"
+    },
+    "exact_numeric_field_count": {
+      "type": "integer"
+    },
+    "finite_json_numbers_required": {
+      "type": "boolean"
+    },
+    "numeric_roles": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "provider_schema_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provider_schema_path": {
+      "type": "string"
+    },
+    "relation_specific_calibrated_bounds_present": {
+      "type": "boolean"
+    },
+    "runtime_authority": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "strict": {
+      "type": "boolean"
+    },
+    "validity_authority": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "strict",
+    "provider_schema_path",
+    "provider_schema_hash",
+    "numeric_roles",
+    "exact_numeric_field_count",
+    "finite_json_numbers_required",
+    "relation_specific_calibrated_bounds_present",
+    "validity_authority",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e2_direct_number_structured_output_policy_v1",
+  "type": "object"
+}

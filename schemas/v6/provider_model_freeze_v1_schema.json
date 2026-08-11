@@ -1,0 +1,94 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/provider_model_freeze_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "account_snapshot_availability": {
+      "type": "string"
+    },
+    "alternative_model_fallback_allowed": {
+      "type": "boolean"
+    },
+    "api_base_url": {
+      "type": "string"
+    },
+    "api_endpoint": {
+      "type": "string"
+    },
+    "api_endpoint_family": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "provider_model_freeze_v1",
+      "type": "string"
+    },
+    "automatic_upgrade_allowed": {
+      "type": "boolean"
+    },
+    "credential_accessed": {
+      "type": "boolean"
+    },
+    "credential_environment_variable": {
+      "type": "string"
+    },
+    "exact_model_snapshot": {
+      "type": "string"
+    },
+    "model_alias_fallback_allowed": {
+      "type": "boolean"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "provider_contacted": {
+      "type": "boolean"
+    },
+    "provider_name": {
+      "type": "string"
+    },
+    "provider_sdk_dependency": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "snapshot_locked": {
+      "type": "boolean"
+    },
+    "transport_implementation": {
+      "type": "string"
+    },
+    "unavailable_snapshot_outcome": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "provider",
+    "provider_name",
+    "api_endpoint_family",
+    "api_base_url",
+    "api_endpoint",
+    "exact_model_snapshot",
+    "snapshot_locked",
+    "model_alias_fallback_allowed",
+    "automatic_upgrade_allowed",
+    "alternative_model_fallback_allowed",
+    "unavailable_snapshot_outcome",
+    "transport_implementation",
+    "provider_sdk_dependency",
+    "credential_environment_variable",
+    "credential_accessed",
+    "provider_contacted",
+    "account_snapshot_availability",
+    "artifact_hash"
+  ],
+  "title": "provider_model_freeze_v1",
+  "type": "object"
+}

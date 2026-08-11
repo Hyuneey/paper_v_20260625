@@ -1,0 +1,76 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_construction_evidence_rendering_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approved_source": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_construction_evidence_rendering_policy_v1",
+      "type": "string"
+    },
+    "construction_input_view_hash_recorded": {
+      "type": "boolean"
+    },
+    "hai_accessed": {
+      "type": "boolean"
+    },
+    "input_contract": {
+      "type": "string"
+    },
+    "main_calibrated_values_visible": {
+      "type": "boolean"
+    },
+    "main_proposal_outputs_references": {
+      "type": "boolean"
+    },
+    "model_visible_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "private_evidence_ledger_accessed_in_e2": {
+      "type": "boolean"
+    },
+    "prohibited_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "raw_rendered_prompt_policy": {
+      "type": "string"
+    },
+    "rendered_prompt_hash_recorded": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "input_contract",
+    "approved_source",
+    "model_visible_fields",
+    "prohibited_fields",
+    "main_calibrated_values_visible",
+    "main_proposal_outputs_references",
+    "raw_rendered_prompt_policy",
+    "rendered_prompt_hash_recorded",
+    "construction_input_view_hash_recorded",
+    "private_evidence_ledger_accessed_in_e2",
+    "hai_accessed",
+    "artifact_hash"
+  ],
+  "title": "task039e2_construction_evidence_rendering_policy_v1",
+  "type": "object"
+}

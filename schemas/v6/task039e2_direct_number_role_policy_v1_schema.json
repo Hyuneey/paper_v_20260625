@@ -1,0 +1,93 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_direct_number_role_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "additional_metrics": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "arm": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_direct_number_role_policy_v1",
+      "type": "string"
+    },
+    "calls_per_relation": {
+      "type": "integer"
+    },
+    "designated_comparator": {
+      "type": "string"
+    },
+    "label_free": {
+      "type": "boolean"
+    },
+    "normalized_absolute_error_formula": {
+      "type": "string"
+    },
+    "numeric_roles": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "provided_context": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "retrieval_allowed": {
+      "type": "boolean"
+    },
+    "runtime_authority": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "validity_authority": {
+      "type": "boolean"
+    },
+    "withheld_references": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "withheld_values": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "arm",
+    "designated_comparator",
+    "calls_per_relation",
+    "numeric_roles",
+    "withheld_values",
+    "withheld_references",
+    "provided_context",
+    "retrieval_allowed",
+    "normalized_absolute_error_formula",
+    "additional_metrics",
+    "label_free",
+    "validity_authority",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e2_direct_number_role_policy_v1",
+  "type": "object"
+}

@@ -1,0 +1,67 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_main_structured_output_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arbitrary_numeric_literals_allowed": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_main_structured_output_policy_v1",
+      "type": "string"
+    },
+    "model_generates_project_provenance": {
+      "type": "boolean"
+    },
+    "project_envelope_contract": {
+      "type": "string"
+    },
+    "provider_core_contract": {
+      "type": "string"
+    },
+    "provider_schema_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provider_schema_path": {
+      "type": "string"
+    },
+    "relation_specific_const_present": {
+      "type": "boolean"
+    },
+    "relation_specific_singleton_enum_present": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "semantic_binding_verified_by": {
+      "type": "string"
+    },
+    "strict": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "provider_core_contract",
+    "project_envelope_contract",
+    "strict",
+    "provider_schema_path",
+    "provider_schema_hash",
+    "relation_specific_const_present",
+    "relation_specific_singleton_enum_present",
+    "model_generates_project_provenance",
+    "arbitrary_numeric_literals_allowed",
+    "semantic_binding_verified_by",
+    "artifact_hash"
+  ],
+  "title": "task039e2_main_structured_output_policy_v1",
+  "type": "object"
+}

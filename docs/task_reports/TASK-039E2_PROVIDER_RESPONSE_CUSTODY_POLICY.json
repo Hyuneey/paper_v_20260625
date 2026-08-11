@@ -1,0 +1,40 @@
+{
+  "arm_response_handling": {
+    "T1": "invalid_incomplete_or_refusal_yields_no_rule",
+    "T1-B": "all_three_calls_still_execute_then_lowest_admissible_else_no_rule",
+    "T2": "refusal_yields_no_rule_and_stop_other_rejections_use_frozen_controller_when_structurally_possible"
+  },
+  "artifact_hash": "1a7de5643d3b32b720a99ad5f33548862fe0c64ba9b8f1f182bd84295c7b4f29",
+  "artifact_type": "task039e2_provider_response_custody_policy_v1",
+  "incomplete_output_consumes_scientific_call": true,
+  "prohibited_stored_fields": [
+    "api_key",
+    "authorization_header",
+    "chain_of_thought",
+    "raw_hai"
+  ],
+  "provider_refusal_consumes_scientific_call": true,
+  "provider_refusal_repairability": "non_repairable",
+  "provider_refusal_t2_outcome": "no_rule_and_stop",
+  "raw_model_output_policy": "not_committed_structured_parsed_response_retained",
+  "received_failure_is_transport_failure": false,
+  "required_receipt_fields": [
+    "request_sequence_number",
+    "relation_binding_hash",
+    "local_arm",
+    "local_call_number",
+    "provider_response_id",
+    "returned_model_id",
+    "system_fingerprint_if_returned",
+    "finish_reason",
+    "usage_tokens",
+    "transport_retry_count",
+    "structured_parse_status",
+    "provider_refusal_state",
+    "proposal_core_hash"
+  ],
+  "schema_parse_failure_consumes_scientific_call": true,
+  "schema_version": "1.0.0",
+  "structured_parsed_response_is_scientific_record": true,
+  "verifier_rejection_consumes_scientific_call": true
+}

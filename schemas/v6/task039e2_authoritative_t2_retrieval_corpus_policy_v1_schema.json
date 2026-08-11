@@ -1,0 +1,77 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_authoritative_t2_retrieval_corpus_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_slices": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_authoritative_t2_retrieval_corpus_policy_v1",
+      "type": "string"
+    },
+    "controller_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "controller_is_project_owned": {
+      "type": "boolean"
+    },
+    "maximum_retrieval_actions_per_relation": {
+      "type": "integer"
+    },
+    "model_selects_controller_action": {
+      "type": "boolean"
+    },
+    "new_scientific_evidence_allowed": {
+      "type": "boolean"
+    },
+    "prohibited_sources": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "provider_generation_calls_consumed_by_retrieval": {
+      "type": "integer"
+    },
+    "retrieval_semantics": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "subsequent_revision_consumes_generation_call": {
+      "type": "boolean"
+    },
+    "underlying_corpus": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "underlying_corpus",
+    "retrieval_semantics",
+    "allowed_slices",
+    "prohibited_sources",
+    "new_scientific_evidence_allowed",
+    "maximum_retrieval_actions_per_relation",
+    "provider_generation_calls_consumed_by_retrieval",
+    "subsequent_revision_consumes_generation_call",
+    "controller_hash",
+    "controller_is_project_owned",
+    "model_selects_controller_action",
+    "artifact_hash"
+  ],
+  "title": "task039e2_authoritative_t2_retrieval_corpus_policy_v1",
+  "type": "object"
+}

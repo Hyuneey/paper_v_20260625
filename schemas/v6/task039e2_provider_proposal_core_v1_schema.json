@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "dsl_family": {
+      "enum": [
+        "canonical_delayed_response_rule_v1_candidate"
+      ],
+      "type": "string"
+    },
+    "relation_identity": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "runtime_logic_family": {
+      "enum": [
+        "missing_expected_delayed_response"
+      ],
+      "type": "string"
+    },
+    "selected_delay_horizon_seconds": {
+      "enum": [
+        1,
+        5,
+        10,
+        30,
+        60
+      ],
+      "type": "integer"
+    },
+    "source": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_stability_reference": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "source_step_direction": {
+      "enum": [
+        "step_down",
+        "step_up"
+      ],
+      "type": "string"
+    },
+    "source_threshold_reference": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "target": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "target_response_direction": {
+      "enum": [
+        "decrease",
+        "increase"
+      ],
+      "type": "string"
+    },
+    "target_scale_reference": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "variables": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "window_constant_references": {
+      "additionalProperties": false,
+      "properties": {
+        "cross_source_isolation_radius_seconds": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "minimum_source_stability_fraction": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "source_post_window_seconds": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "source_pre_window_seconds": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "source_refractory_seconds": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "target_baseline_window_seconds": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "target_response_window_seconds": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_pre_window_seconds",
+        "source_post_window_seconds",
+        "minimum_source_stability_fraction",
+        "source_refractory_seconds",
+        "cross_source_isolation_radius_seconds",
+        "target_baseline_window_seconds",
+        "target_response_window_seconds"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "dsl_family",
+    "relation_identity",
+    "source",
+    "source_step_direction",
+    "target",
+    "target_response_direction",
+    "selected_delay_horizon_seconds",
+    "source_threshold_reference",
+    "source_stability_reference",
+    "target_scale_reference",
+    "window_constant_references",
+    "variables",
+    "runtime_logic_family"
+  ],
+  "type": "object"
+}

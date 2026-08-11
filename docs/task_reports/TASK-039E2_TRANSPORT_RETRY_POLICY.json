@@ -1,0 +1,33 @@
+{
+  "artifact_hash": "3a7192d07ef4980c9ecaeb3f28fe00f31df8c299a177d86250f5ebd09f1c477b",
+  "artifact_type": "task039e2_transport_retry_policy_v1",
+  "fixed_retry_delays_seconds": [
+    2,
+    4
+  ],
+  "maximum_transport_retries_per_request": 2,
+  "non_retryable_outcomes": [
+    "http_400",
+    "http_401",
+    "http_403",
+    "provider_refusal",
+    "schema_invalid_response",
+    "malformed_scientific_output",
+    "verifier_rejection",
+    "low_quality_proposal"
+  ],
+  "relation_skip_allowed": false,
+  "response_failures_consume_scientific_call": true,
+  "retry_after_429_policy": "valid_retry_after_overrides_corresponding_fixed_delay",
+  "retry_after_validity_policy": "provider_header_must_parse_as_standard_retry_after",
+  "retry_exhaustion_outcome": "abort_full_scientific_run",
+  "retryable_no_response_outcomes": [
+    "connection_failure",
+    "connection_reset",
+    "timeout_before_response",
+    "http_429",
+    "http_5xx"
+  ],
+  "schema_version": "1.0.0",
+  "scientific_generation_retries": 0
+}

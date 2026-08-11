@@ -1,0 +1,15 @@
+{
+  "arbitrary_numeric_literals_allowed": false,
+  "artifact_hash": "c3a0abd4d9af2a8aaf0ef13b3a3ff88e41ca09f02fe58d40d1d702df16be04c1",
+  "artifact_type": "task039e2_main_structured_output_policy_v1",
+  "model_generates_project_provenance": false,
+  "project_envelope_contract": "RuleProposalEnvelopeV1",
+  "provider_core_contract": "ProviderProposalCoreV1",
+  "provider_schema_hash": "92c628faf78e5ebdcfc3ec2dbeb9daa42b6beff0875cbf226c87c2f2c43cc216",
+  "provider_schema_path": "schemas/v6/task039e2_provider_proposal_core_v1_schema.json",
+  "relation_specific_const_present": false,
+  "relation_specific_singleton_enum_present": false,
+  "schema_version": "1.0.0",
+  "semantic_binding_verified_by": "task039e0_validity_v2",
+  "strict": true
+}

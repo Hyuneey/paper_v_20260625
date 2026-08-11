@@ -1,0 +1,31 @@
+{
+  "arm_identity_model_visible": false,
+  "artifact_hash": "babefe1a17f45ecf085bc6ca554a2e1267a0f31f48ef4150b7ea698b0fc2c588",
+  "artifact_type": "task039e2_prompt_template_bundle_v1",
+  "call_index_model_visible": false,
+  "direct_number_prompt_hash": "fb01d8990ee3a7affe540dfdf3556b46d7bd744cd1e3a04d6fd9d79772dd2769",
+  "direct_number_template_path": "prompts/task039e2/direct_number_v1.txt",
+  "direct_number_template_version": "DIRECT_NUMBER_PROMPT_V1",
+  "initial_content_equality_required": true,
+  "initial_model_visible_content_hash_method": "sha256_utf8_exact_rendered_scientific_content",
+  "main_initial_prompt_hash": "a251e4b9da31c33e72d14dd81da6b2b1d0d1437fdf37ca311330eccce226f1ba",
+  "main_initial_shared_arms": [
+    "T1",
+    "T1-B-1",
+    "T1-B-2",
+    "T1-B-3",
+    "T2-1"
+  ],
+  "main_initial_template_path": "prompts/task039e2/main_initial_v1.txt",
+  "main_initial_template_version": "MAIN_INITIAL_PROMPT_V1",
+  "raw_rendered_prompt_policy": "raw_rendered_prompt_not_persisted",
+  "schema_version": "1.0.0",
+  "t1b_all_three_calls_required": true,
+  "t1b_previous_proposal_visible": false,
+  "t1b_previous_validity_visible": false,
+  "t1b_selection_rule": "lowest_admissible_call_index_else_no_rule",
+  "t1b_stateless_independent_requests": true,
+  "t2_followup_prompt_hash": "a633067a7c9927be158f68ce714236f4c18c09433d49c903dac941a9774eeca5",
+  "t2_followup_template_path": "prompts/task039e2/t2_followup_v1.txt",
+  "t2_followup_template_version": "T2_FOLLOWUP_PROMPT_V1"
+}

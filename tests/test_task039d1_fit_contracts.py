@@ -35,7 +35,7 @@ class Task039D1FitContractTests(unittest.TestCase):
 
     def test_all_schemas_are_draft_2020_12_closed_and_registered(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 146)
+        self.assertEqual(len(registry.artifact_types), 160)
         examples = d1_schema_examples_v1()
         for artifact_type, document in examples.items():
             schema = registry.schema_for(artifact_type)

@@ -1,0 +1,34 @@
+{
+  "artifact_hash": "25d335a08baef67222085dcc039d96eb4e77f8c72bd53e9dcd4b754053e5f2a1",
+  "artifact_type": "task039e2_t0_template_policy_v1",
+  "fallback_used": false,
+  "llm_used": false,
+  "proposal_core_contract": "ProviderProposalCoreV1",
+  "proposal_envelope_contract": "RuleProposalEnvelopeV1",
+  "real_relation_generated": false,
+  "schema_version": "1.0.0",
+  "search_used": false,
+  "synthetic_tests_only_in_e2": true,
+  "template_hash": "504328783b654054029ab3277360bc6efc7bbd8eef3d5f1f6cc98ea3aefb12ff",
+  "template_specification": {
+    "dsl_family": "canonical_delayed_response_rule_v1_candidate",
+    "identity_fields": [
+      "relation_identity",
+      "source",
+      "source_step_direction",
+      "target",
+      "target_response_direction",
+      "selected_delay_horizon_seconds"
+    ],
+    "numeric_literals": "prohibited",
+    "reference_fields": [
+      "source_threshold_reference",
+      "source_stability_reference",
+      "target_scale_reference",
+      "window_constant_references"
+    ],
+    "runtime_logic_family": "missing_expected_delayed_response"
+  },
+  "template_version": "T0_TEMPLATE_V1",
+  "uses_approved_e1_references": true
+}

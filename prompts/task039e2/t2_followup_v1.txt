@@ -1,0 +1,8 @@
+Produce one fresh corrected ProviderProposalCoreV1.
+Use the original frozen ConstructionInputViewV1, the bounded deterministic
+validity issue codes and affected fields, any approved targeted
+re-presentation of evidence already present in the initial corpus, and the
+previous proposal hash only for provenance. Do not provide chain-of-thought,
+controller actions, human feedback, labels, utility outcomes, candidate-arm
+results, new evidence, or authority claims. Return only the strict structured
+proposal core.

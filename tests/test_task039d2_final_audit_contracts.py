@@ -39,7 +39,7 @@ class TASK039D2FinalAuditContractTests(unittest.TestCase):
 
     def test_schemas_closed_registered_and_examples_validate(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 146)
+        self.assertEqual(len(registry.artifact_types), 160)
         for document in audit.audit_schema_examples_v1():
             schema = registry.schema_for(document["artifact_type"])
             self.assertFalse(schema["additionalProperties"])

@@ -1,0 +1,97 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_provider_response_custody_policy_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_response_handling": {
+      "additionalProperties": false,
+      "properties": {
+        "T1": {
+          "type": "string"
+        },
+        "T1-B": {
+          "type": "string"
+        },
+        "T2": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "T1",
+        "T1-B",
+        "T2"
+      ],
+      "type": "object"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_provider_response_custody_policy_v1",
+      "type": "string"
+    },
+    "incomplete_output_consumes_scientific_call": {
+      "type": "boolean"
+    },
+    "prohibited_stored_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "provider_refusal_consumes_scientific_call": {
+      "type": "boolean"
+    },
+    "provider_refusal_repairability": {
+      "type": "string"
+    },
+    "provider_refusal_t2_outcome": {
+      "type": "string"
+    },
+    "raw_model_output_policy": {
+      "type": "string"
+    },
+    "received_failure_is_transport_failure": {
+      "type": "boolean"
+    },
+    "required_receipt_fields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_parse_failure_consumes_scientific_call": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "type": "string"
+    },
+    "structured_parsed_response_is_scientific_record": {
+      "type": "boolean"
+    },
+    "verifier_rejection_consumes_scientific_call": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "required_receipt_fields",
+    "structured_parsed_response_is_scientific_record",
+    "raw_model_output_policy",
+    "prohibited_stored_fields",
+    "provider_refusal_consumes_scientific_call",
+    "incomplete_output_consumes_scientific_call",
+    "schema_parse_failure_consumes_scientific_call",
+    "verifier_rejection_consumes_scientific_call",
+    "provider_refusal_repairability",
+    "provider_refusal_t2_outcome",
+    "received_failure_is_transport_failure",
+    "arm_response_handling",
+    "artifact_hash"
+  ],
+  "title": "task039e2_provider_response_custody_policy_v1",
+  "type": "object"
+}

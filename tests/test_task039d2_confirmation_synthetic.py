@@ -369,7 +369,7 @@ class TASK039D2SyntheticConfirmationTests(unittest.TestCase):
         import json
 
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 146)
+        self.assertEqual(len(registry.artifact_types), 160)
 
         for document, schema_name in pairs:
             schema = json.loads((ROOT / "schemas" / "v6" / schema_name).read_text("utf-8"))

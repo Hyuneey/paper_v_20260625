@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "4a1d196bff89718f7b6ecc6a5594c89f12f90713b2cf29cd0012540996d50b39",
+  "artifact_type": "task039e2_direct_number_structured_output_policy_v1",
+  "exact_numeric_field_count": 3,
+  "finite_json_numbers_required": true,
+  "numeric_roles": [
+    "source_step_threshold",
+    "source_stability_tolerance",
+    "target_noise_scale"
+  ],
+  "provider_schema_hash": "b1b91bf27fd191da57984be625a2547e4e5ee96a0aca52535df071af92bfd6ca",
+  "provider_schema_path": "schemas/v6/task039e2_direct_number_response_v1_schema.json",
+  "relation_specific_calibrated_bounds_present": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "strict": true,
+  "validity_authority": false
+}
