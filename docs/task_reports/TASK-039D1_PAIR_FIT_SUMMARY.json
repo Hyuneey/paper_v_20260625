@@ -1,0 +1,352 @@
+{
+  "artifact_hash": "a466057faa20eacd0692b6a9c19fbbb5b8968135ba4c018310a076aa0393d4f2",
+  "artifact_type": "task039d1_pair_fit_summary_v1",
+  "candidate_arm_evidence_visible_to_profiler": false,
+  "candidate_cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+  "candidate_count": 47,
+  "d0_protocol_bundle_hash": "888e3d642eba6f8ad8784d428bc4b27d7db7592d34779ba9a1f817860d76e1eb",
+  "directional_opportunity_count": 94,
+  "directional_status_counts": {
+    "direction_unstable": 17,
+    "fit_supported": 45,
+    "fit_unsupported": 32
+  },
+  "lower_ranked_fallback_used": false,
+  "pair_fit_supported_count": 25,
+  "pair_fit_unsupported_count": 22,
+  "pair_outcomes": [
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT02Z"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV03D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_FT03"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV03D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT03Z"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_PCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV01D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT02Z"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV03D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_LIT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_LCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_LIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_PP04",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_TIT03"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT02Z"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV03Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT03"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV03Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT03Z"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_PCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_PCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT01Z"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02Z",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_PIT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_LCV01Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02Z",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_FT02Z"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_PCV01Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_LCV01Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT01Z"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_PCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_LIT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_LCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_PIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02Z",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_FT02"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_PCV01Z",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT03"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_PCV01D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT03"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_PCV02Z",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_PIT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV03Z",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_supported",
+      "target": "P1_FT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV03D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_FT01"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_supported",
+      "target": "P1_TIT02"
+    },
+    {
+      "pair_fit_status": "fit_supported_pair",
+      "source": "P1_FCV01D",
+      "step_down_status": "fit_supported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT02"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_FT03"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02D",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_LIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV01Z",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT03"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_PCV02Z",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_PIT02"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_LCV01D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "direction_unstable",
+      "target": "P1_TIT03"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02Z",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_TIT02"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV02Z",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_TIT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_LCV01D",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_PIT02"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV03Z",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_TIT03"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_PP04",
+      "step_down_status": "direction_unstable",
+      "step_up_status": "direction_unstable",
+      "target": "P1_FT01"
+    },
+    {
+      "pair_fit_status": "fit_unsupported_pair",
+      "source": "P1_FCV01Z",
+      "step_down_status": "fit_unsupported",
+      "step_up_status": "fit_unsupported",
+      "target": "P1_FT01"
+    }
+  ],
+  "profiling_identity_view_hash": "ec1186ec71c20f240c6fb1c7f4b7cd0054882ac8032f6bfb3940274e772f5b7e",
+  "schema_version": "1.0.0",
+  "status": "frozen_task039d1_pair_fit_outcomes",
+  "task_id": "TASK-039D1"
+}

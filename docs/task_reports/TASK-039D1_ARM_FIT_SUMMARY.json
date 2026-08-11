@@ -1,0 +1,39 @@
+{
+  "arms": [
+    {
+      "arm": "META",
+      "directional_fit_supported_count": 29,
+      "pair_fit_support_yield": 0.8,
+      "pair_fit_supported_count": 16,
+      "top20_pair_count": 20
+    },
+    {
+      "arm": "STAT",
+      "directional_fit_supported_count": 33,
+      "pair_fit_support_yield": 0.85,
+      "pair_fit_supported_count": 17,
+      "top20_pair_count": 20
+    },
+    {
+      "arm": "GDN",
+      "directional_fit_supported_count": 7,
+      "pair_fit_support_yield": 0.25,
+      "pair_fit_supported_count": 5,
+      "top20_pair_count": 20
+    }
+  ],
+  "artifact_hash": "6589930085ed0d5d87224ef9da88984b1d52d5e2c7bd1e8b295539b6d0da15e8",
+  "artifact_type": "task039d1_arm_fit_summary_v1",
+  "claim_boundary": "descriptive fit-only candidate-method yield; no winner",
+  "d2_confirmation_metrics_calculated": false,
+  "pair_summary_hash": "a466057faa20eacd0692b6a9c19fbbb5b8968135ba4c018310a076aa0393d4f2",
+  "primary_k": 20,
+  "provenance_analysis_view_hash": "7ab92318611dd7d0252c763c4099a7ee69f3dbab3132308254aeb92f8af2e115",
+  "provenance_joined_after_outcomes_frozen": true,
+  "same_pair_same_d1_outcome_across_all_origin_arms": true,
+  "schema_version": "1.0.0",
+  "scientific_profiles_per_unique_pair": 1,
+  "status": "fit_only_descriptive_arm_summary",
+  "task_id": "TASK-039D1",
+  "winner_selected": false
+}
