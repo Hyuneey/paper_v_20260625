@@ -1,0 +1,23 @@
+{
+  "absolute_local_paths_public": false,
+  "artifact_hash": "7a52f89262070cf51a3ecb1784c159ee31894d445d4fe54ae06c654d1551c88b",
+  "artifact_type": "task039e1_data_access_audit_v1",
+  "d1_directional_ledger_accessed": true,
+  "d1_source_ledger_accessed": true,
+  "d1_target_ledger_accessed": true,
+  "d2_confirmation_ledger_accessed": true,
+  "hai_accessed": false,
+  "llm_called": false,
+  "private_calibrated_values_public": false,
+  "private_input_ledgers_modified": false,
+  "prohibited_access_count": 0,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "t0_generated": false,
+  "t1_t1b_t2_generated": false,
+  "task_id": "TASK-039E1",
+  "test_labels_attacks_accessed": false,
+  "train1_train2_train3_reread": false,
+  "train4_accessed": false
+}

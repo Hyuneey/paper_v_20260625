@@ -1,0 +1,11 @@
+{
+  "artifact_hash": "30f1beef2c38f91c30a17de2762c4cf3fc40104be1faf713366025c8e131bf16",
+  "artifact_type": "task039e1_private_ledger_binding_v1",
+  "numeric_binding_count": 462,
+  "private_contents_public": false,
+  "private_ledger_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+  "private_numeric_values_public": false,
+  "record_count": 42,
+  "schema_version": "1.0.0",
+  "storage_boundary": "outside_git"
+}
