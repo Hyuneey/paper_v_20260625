@@ -1,0 +1,156 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_authorization_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "agent_authorized": {
+      "type": "boolean"
+    },
+    "alternative_horizon_search_authorized": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_authorization_v1"
+    },
+    "br2_pair_results_authorized": {
+      "type": "boolean"
+    },
+    "candidate_arm_evidence_visible_to_confirmation_engine": {
+      "type": "boolean"
+    },
+    "candidate_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "candidate_identity_list_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "confirmation_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_directional_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_fit_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_source_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_target_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d2_executed_by_this_artifact": {
+      "type": "boolean"
+    },
+    "detector_runtime_authorized": {
+      "type": "boolean"
+    },
+    "input_directional_relation_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "input_directional_relations": {
+      "type": "string"
+    },
+    "opposite_target_direction_search_authorized": {
+      "type": "boolean"
+    },
+    "parameter_retuning_authorized": {
+      "type": "boolean"
+    },
+    "readiness": {
+      "type": "string"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "separate_clean_d2_execution_code_commit_required": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "supported_pair_context_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "test_labels_attacks_authorized": {
+      "type": "boolean"
+    },
+    "train1_train2_feature_value_refitting_authorized": {
+      "type": "boolean"
+    },
+    "train3_feature_values_authorized": {
+      "type": "boolean"
+    },
+    "train4_authorized": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "readiness",
+    "d0_protocol_bundle_hash",
+    "confirmation_policy_hash",
+    "d1_fit_result_hash",
+    "d1_source_ledger_hash",
+    "d1_target_ledger_hash",
+    "d1_directional_ledger_hash",
+    "d1_pair_summary_hash",
+    "candidate_cohort_hash",
+    "candidate_identity_list_hash",
+    "candidate_count",
+    "input_directional_relations",
+    "input_directional_relation_count",
+    "supported_pair_context_count",
+    "train3_feature_values_authorized",
+    "train1_train2_feature_value_refitting_authorized",
+    "train4_authorized",
+    "test_labels_attacks_authorized",
+    "br2_pair_results_authorized",
+    "candidate_arm_evidence_visible_to_confirmation_engine",
+    "parameter_retuning_authorized",
+    "alternative_horizon_search_authorized",
+    "opposite_target_direction_search_authorized",
+    "rule_v2_authorized",
+    "agent_authorized",
+    "detector_runtime_authorized",
+    "separate_clean_d2_execution_code_commit_required",
+    "d2_executed_by_this_artifact",
+    "artifact_hash"
+  ],
+  "title": "task039d2_authorization_v1",
+  "type": "object"
+}

@@ -80,8 +80,14 @@ class Task039D1ReportingTests(unittest.TestCase):
         self.assertTrue(arm["same_pair_same_d1_outcome_across_all_origin_arms"])
         self.assertFalse(arm["d2_confirmation_metrics_calculated"] or arm["winner_selected"])
 
-    def test_no_d2_authorization_artifact_created(self) -> None:
-        self.assertFalse((REPORTS / "TASK-039D2_AUTHORIZATION.json").exists())
+    def test_d1_itself_did_not_authorize_d2(self) -> None:
+        fit = json.loads((REPORTS / "TASK-039D1_FIT_RESULT.json").read_text(encoding="utf-8"))
+        self.assertFalse(fit["task039d2_authorized"])
+        authorization_path = REPORTS / "TASK-039D2_AUTHORIZATION.json"
+        if authorization_path.exists():
+            authorization = json.loads(authorization_path.read_text(encoding="utf-8"))
+            self.assertEqual(authorization["task_id"], "TASK-039D1-AUDIT")
+            self.assertFalse(authorization["d2_executed_by_this_artifact"])
 
 
 if __name__ == "__main__":

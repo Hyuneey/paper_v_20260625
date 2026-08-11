@@ -303,6 +303,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039d1_execution_complexity_receipt_v1": (
         "schemas/v6/task039d1_execution_complexity_receipt_v1_schema.json"
     ),
+    "task039d1_final_audit_v1": (
+        "schemas/v6/task039d1_final_audit_v1_schema.json"
+    ),
     "task039d1_fit_result_v1": (
         "schemas/v6/task039d1_fit_result_v1_schema.json"
     ),
@@ -314,6 +317,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     ),
     "task039d1_target_parameter_ledger_binding_v1": (
         "schemas/v6/task039d1_target_parameter_ledger_binding_v1_schema.json"
+    ),
+    "task039d2_authorization_v1": (
+        "schemas/v6/task039d2_authorization_v1_schema.json"
     ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"

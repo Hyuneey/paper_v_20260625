@@ -1,0 +1,159 @@
+{
+  "arm_summary_replay": {
+    "GDN": {
+      "fit_supported_directions": 7,
+      "fit_supported_pairs": 5,
+      "yield": 0.25
+    },
+    "META": {
+      "fit_supported_directions": 29,
+      "fit_supported_pairs": 16,
+      "yield": 0.8
+    },
+    "STAT": {
+      "fit_supported_directions": 33,
+      "fit_supported_pairs": 17,
+      "yield": 0.85
+    },
+    "same_pair_same_outcome": true,
+    "winner_selected": false
+  },
+  "artifact_hash": "7004ad2bacd738098bf241638a51abb1cbaae4412b3a9edee78d81bd1a29212d",
+  "artifact_type": "task039d1_final_audit_v1",
+  "commit_separation": {
+    "b2_changed_file_count": 6,
+    "passed": true,
+    "scientific_source_changed_after_a2": false
+  },
+  "complexity_recovery_verification": {
+    "d0_policy_changed": false,
+    "event_complexity_class": "linear_in_sequence_length",
+    "event_semantic_parity": "passed",
+    "isolation_complexity_class": "O(E log E)_with_fixed_12_source_context",
+    "isolation_semantic_parity": "passed",
+    "receipt_hash": "6639c6c767af749775eed8cbd98dc43ccff8cf603ee8cdd009a169b45944bef0",
+    "source_bindings_verified": true,
+    "target_response_optimization_unchanged": true,
+    "unresolved_complexity_defects": []
+  },
+  "d2_authorization_hash": "791f985afdc5f16b5c6b5aec4eb7bcefe1e39bc3b0f262cc0ff56c7ff5071f25",
+  "d2_readiness": {
+    "d2_executed": false,
+    "input_fit_supported_direction_count": 45,
+    "separate_clean_execution_code_commit_required": true,
+    "status": "READY_FOR_TASK039D2",
+    "supported_pair_context_count": 25
+  },
+  "data_boundary": {
+    "absolute_paths_publicly_persisted": false,
+    "attacks_accessed": false,
+    "br2_pair_results_accessed": false,
+    "candidate_arm_evidence_visible_during_replay": false,
+    "dataset_file_identities_verified": true,
+    "event_timestamps_publicly_persisted": false,
+    "labels_accessed": false,
+    "prohibited_access_count": 0,
+    "provenance_loaded_after_replay_freeze": true,
+    "raw_values_publicly_persisted": false,
+    "raw_windows_publicly_persisted": false,
+    "test_accessed": false,
+    "train1_accessed": true,
+    "train2_accessed": true,
+    "train3_accessed": false,
+    "train4_accessed": false
+  },
+  "directional_replay": {
+    "direction_unstable_count": 17,
+    "fit_gate_failure_count": 32,
+    "fit_supported_count": 45,
+    "fit_unsupported_count": 32,
+    "no_fallback_verified": true,
+    "normalized_records_exact": true,
+    "opportunity_count": 94
+  },
+  "event_isolation_replay": {
+    "all_source_context_used": true,
+    "clustering_reproduced": true,
+    "event_support_and_stream_references_reproduced": true,
+    "fit_file_count": 2,
+    "inclusive_isolation_radius_seconds": 2,
+    "public_event_timestamps_included": false,
+    "source_count": 12,
+    "step_directions_reproduced": true
+  },
+  "findings_by_severity": {
+    "BLOCKING": 0,
+    "DOCUMENTATION_OR_HYGIENE": 0,
+    "IMPORTANT_NONBLOCKING": 0
+  },
+  "frozen_identities": {
+    "candidate_cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+    "candidate_count": 47,
+    "candidate_identity_list_hash": "b02304acef7f83c393b73563e486a80fcf32f3ec1997d65051493fe8dbef186c",
+    "d0_protocol_bundle_hash": "888e3d642eba6f8ad8784d428bc4b27d7db7592d34779ba9a1f817860d76e1eb",
+    "d1_authorization_hash": "e3ec4316d26520efe4a93d1bf790f36633ed692fa5f9fb9458c26d2a9ad16467",
+    "directional_opportunity_count": 94
+  },
+  "interpretation_boundary": {
+    "anomaly_performance_claimed": false,
+    "causality_claimed": false,
+    "claim": "D1 fit-supported normal delayed-response relation candidates reproduced",
+    "confirmed_relation_claimed": false,
+    "method_superiority_claimed": false,
+    "rule_validity_claimed": false
+  },
+  "lineage": {
+    "aborted_a1": "d70f90b297bf7a6737652777f8f3059864c0c158",
+    "authoritative_main": "c622c082c053176eab170b6176a343eb2cb35384",
+    "execution_a2": "edf2727d33d30f615aa2be48756fc209afdcd95c",
+    "result_b2": "360cf4b84ed2c18e026186be00f2312508a8fb85"
+  },
+  "pair_replay": {
+    "fit_supported_count": 25,
+    "fit_unsupported_count": 22,
+    "identity_status_equality": true,
+    "pair_count": 47,
+    "pair_summary_hash": "a466057faa20eacd0692b6a9c19fbbb5b8968135ba4c018310a076aa0393d4f2"
+  },
+  "private_ledger_verification": {
+    "all_self_hashes_verified": true,
+    "directional_ledger_hash": "e372d7ccf4a7dde5f7ccd91049cc73b443b3b19a3a0c563f451aea50e8faddc7",
+    "directional_record_count": 94,
+    "original_ledgers_modified": false,
+    "source_ledger_hash": "3eb6ff199dbc67b183d35a804754e557bdfa869a899c754e551cd77e8dcfb304",
+    "source_record_count": 12,
+    "target_ledger_hash": "f36f4b424c85b228043f9685a22a25c73d6b165e28714b627cf51e8bbb77f96e",
+    "target_record_count": 12
+  },
+  "public_artifact_verification": {
+    "access_audit_hash": "b51ec23dd4bad9ed66d7036ec209f6841f99d1e38b0b7766afd16ff75f9004d7",
+    "all_self_hashes_verified": true,
+    "arm_summary_hash": "6589930085ed0d5d87224ef9da88984b1d52d5e2c7bd1e8b295539b6d0da15e8",
+    "execution_receipt_hash": "51d6dacf27f4b6779c88074f4978e8578fc4541d71b4e8077a78e591d2ff24a2",
+    "fit_result_hash": "a2767945ef3cec5fa80c3e131b98fdc8a1eeecaa69a97461988d8da90a4e06d3",
+    "pair_summary_hash": "a466057faa20eacd0692b6a9c19fbbb5b8968135ba4c018310a076aa0393d4f2"
+  },
+  "raw_replay": {
+    "audit_private_replay_artifact_count": 4,
+    "audit_source_hash": "58b17fd03eed2f333f12c1829d676adb357135e8fb6b1b6c1ed8f15583a220d6",
+    "d1_top_level_execution_function_called": false,
+    "orchestration": "audit_specific_br1_br2_primitive_reconstruction",
+    "profiling_identity_view_only": true,
+    "provenance_loaded_after_replay_freeze": true,
+    "status": "passed_independent_train1_train2_replay"
+  },
+  "readiness": "READY_FOR_TASK039D2",
+  "rule_v2_authorized": false,
+  "schema_version": "1.0.0",
+  "source_target_replay": {
+    "exact_normalized_field_agreement": true,
+    "no_cross_file_differences_or_windows": true,
+    "q75_threshold_tolerance_reproduced": true,
+    "source_record_count": 12,
+    "source_supported_count": 12,
+    "source_unsupported_count": 0,
+    "target_record_count": 12
+  },
+  "status": "passed_task039d1_final_audit",
+  "task_id": "TASK-039D1-AUDIT"
+}
