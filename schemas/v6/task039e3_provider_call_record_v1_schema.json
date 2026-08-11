@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e3_provider_call_record_v1_schema.json",
+  "title": "TASK-039E3 Provider Call Record V1",
+  "type": "object",
+  "properties": {
+    "sequence_index": {"type": "integer", "minimum": 0},
+    "previous_record_hash": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+    "slot": {
+      "type": "object",
+      "properties": {
+        "artifact_type": {"const": "scientific_provider_call_slot_v1"},
+        "relation_schedule_index": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0, "maximum": 41},
+            {"type": "null"}
+          ]
+        },
+        "relation_binding_hash": {"$ref": "#/$defs/hash"},
+        "arm": {
+          "enum": ["T1", "T1-B", "T2", "T1-DIRECT-NUMBER", "CAPABILITY"]
+        },
+        "arm_local_call_number": {"type": "integer", "minimum": 1, "maximum": 3},
+        "scientific": {"type": "boolean"},
+        "schedule_hash": {"$ref": "#/$defs/hash"}
+      },
+      "required": [
+        "artifact_type",
+        "relation_schedule_index",
+        "relation_binding_hash",
+        "arm",
+        "arm_local_call_number",
+        "scientific",
+        "schedule_hash"
+      ],
+      "additionalProperties": false
+    },
+    "slot_hash": {"$ref": "#/$defs/hash"},
+    "request_hash": {"$ref": "#/$defs/hash"},
+    "response_present": {"type": "boolean"},
+    "provider_response_metadata": {"type": "object"},
+    "transport_attempts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "attempt_number": {"type": "integer", "minimum": 1, "maximum": 3},
+          "outcome": {"type": "string", "minLength": 1},
+          "response_present": {"type": "boolean"},
+          "status_code": {
+            "oneOf": [
+              {"type": "integer", "minimum": 100, "maximum": 599},
+              {"type": "null"}
+            ]
+          },
+          "retry_eligible": {"type": "boolean"},
+          "planned_retry_delay_seconds": {
+            "oneOf": [
+              {"enum": [2, 4]},
+              {"type": "null"}
+            ]
+          }
+        },
+        "required": [
+          "attempt_number",
+          "outcome",
+          "response_present",
+          "status_code",
+          "retry_eligible",
+          "planned_retry_delay_seconds"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "parse_status": {"type": "string", "minLength": 1},
+    "proposal_core_hash": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+    "terminal_slot_state": {
+      "enum": [
+        "completed_structured",
+        "completed_refusal",
+        "completed_invalid_response",
+        "transport_exhausted"
+      ]
+    },
+    "api_key_stored": {"const": false},
+    "authorization_header_stored": {"const": false},
+    "chain_of_thought_stored": {"const": false},
+    "record_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": [
+    "sequence_index",
+    "previous_record_hash",
+    "slot",
+    "slot_hash",
+    "request_hash",
+    "response_present",
+    "provider_response_metadata",
+    "transport_attempts",
+    "parse_status",
+    "proposal_core_hash",
+    "terminal_slot_state",
+    "api_key_stored",
+    "authorization_header_stored",
+    "chain_of_thought_stored",
+    "record_hash"
+  ],
+  "additionalProperties": false,
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

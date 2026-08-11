@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e3_execution_failure_receipt_v1_schema.json",
+  "title": "TASK-039E3 Execution Failure Receipt V1",
+  "type": "object",
+  "properties": {
+    "artifact_type": {"const": "execution_failure_receipt_v1"},
+    "failure_reason": {"type": "string", "minLength": 1},
+    "failed_slot_hash": {"$ref": "#/$defs/hash"},
+    "completed_slot_record_hashes": {"type": "array", "items": {"$ref": "#/$defs/hash"}},
+    "provider_call_ledger_hash": {"$ref": "#/$defs/hash"},
+    "status": {"const": "failed_closed"},
+    "full_run_aborted": {"const": true},
+    "relation_skipping_allowed": {"const": false},
+    "automatic_resume_authority": {"const": false},
+    "automatic_rerun_policy": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": [
+    "artifact_type",
+    "failure_reason",
+    "failed_slot_hash",
+    "completed_slot_record_hashes",
+    "provider_call_ledger_hash",
+    "status",
+    "full_run_aborted",
+    "relation_skipping_allowed",
+    "automatic_resume_authority",
+    "automatic_rerun_policy",
+    "artifact_hash"
+  ],
+  "additionalProperties": false,
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}
