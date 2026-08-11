@@ -12,6 +12,15 @@ The accepted GDN output is learned-graph candidate evidence, not causality,
 relation truth, anomaly performance, or superiority. Future use is bound to
 the frozen 47-pair three-arm profiling cohort and a common TASK-039D protocol.
 
+## Normal Relation Profiling Execution
+
+TASK-039D0 closed the protocol-design decision. The 47 pairs have one arm-blind
+identity view, all-12-source isolation context, fit-only train1/train2 numeric
+derivation, strict direction/horizon selection without fallback, and a planned
+one-way train3 confirmation. TASK-039D1 execution is the next authorized step.
+TASK-039D2, train4 guard access, and later construction remain open and
+separately gated.
+
 ## Primary Detector
 
 Freeze detector family, training, threshold, development, and selection policy

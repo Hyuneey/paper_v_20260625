@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "allowed_fields",
+    "prohibited_fields",
+    "profiler_input_artifact_type",
+    "provenance_join_timing",
+    "invariance_requirement",
+    "arm_specific_policy_allowed",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "profiling_identity_view_policy_v1"
+    },
+    "allowed_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prohibited_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "profiler_input_artifact_type": {
+      "type": "string"
+    },
+    "provenance_join_timing": {
+      "type": "string"
+    },
+    "invariance_requirement": {
+      "type": "string"
+    },
+    "arm_specific_policy_allowed": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/profiling_identity_view_policy_v1_schema.json",
+  "title": "profiling_identity_view_policy_v1"
+}

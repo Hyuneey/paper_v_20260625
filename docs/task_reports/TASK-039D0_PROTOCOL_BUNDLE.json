@@ -1,0 +1,434 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039d_protocol_bundle_v1",
+  "task_id": "TASK-039D0",
+  "status": "passed_task039d0_relation_profiling_protocol_freeze",
+  "authoritative_main_commit": "9ac4578603b81385dc9592cd5db5076d83a3fb66",
+  "config_hash": "92358db70576e944f003f983f03ee1f9f20475b8d92efbce4590d17e92d95faf",
+  "protocol": {
+    "schema_version": "1.0.0",
+    "artifact_type": "relation_profiling_protocol_v1",
+    "task_id": "TASK-039D0",
+    "status": "protocol_freeze_only",
+    "dataset_manifest_hash": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+    "process": "P1",
+    "process_name": "Boiler",
+    "relation_family": "continuous_step_delayed_response_v1",
+    "br1_protocol_bundle_hash": "5e57e1103b95d8cb24bf55f9ff85a989773dbe05816479dc79c493de044a7bbd",
+    "task039c_commit": "9ac4578603b81385dc9592cd5db5076d83a3fb66",
+    "cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+    "identity_list_hash": "b02304acef7f83c393b73563e486a80fcf32f3ec1997d65051493fe8dbef186c",
+    "candidate_count": 47,
+    "original_pair_universe_count": 144,
+    "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+    "source_identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+    "target_identity_hash": "063037980aae4f0eaf45fbebb59f2aa0a924fbad583f3818107a793dfe7248e7",
+    "execution_sequence": [
+      "TASK-039D0:protocol_only",
+      "TASK-039D1:train1_train2_fit_only",
+      "TASK-039D2:one_way_train3_confirmation",
+      "later_rule_construction"
+    ],
+    "claim_boundary": "common normal relation profiling and deterministic calibration protocol",
+    "artifact_hash": "b8d249ce8448c5f5b20400bc620163d8186ec241b9ef64a16ce08e65b5f42493"
+  },
+  "identity_view_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "profiling_identity_view_policy_v1",
+    "allowed_fields": [
+      "source",
+      "target",
+      "process",
+      "relation_family",
+      "candidate_cohort_hash"
+    ],
+    "prohibited_fields": [
+      "GDN",
+      "META",
+      "STAT",
+      "edge_selection_frequency",
+      "evidence_tier",
+      "gdn_frequency",
+      "gdn_rank",
+      "gdn_similarity",
+      "median_upstream_graph_similarity",
+      "meta_rank",
+      "meta_tier",
+      "origin_arm_count",
+      "origin_arms",
+      "overlap_category",
+      "r_train1",
+      "r_train2",
+      "rank",
+      "selected_horizon_seconds",
+      "stability_strength",
+      "stat_correlation",
+      "stat_horizon",
+      "stat_score"
+    ],
+    "profiler_input_artifact_type": "profiling_identity_view_v1",
+    "provenance_join_timing": "after_profiling_outcomes_frozen",
+    "invariance_requirement": "same pair -> same profiling result regardless of proposing arm",
+    "arm_specific_policy_allowed": false,
+    "artifact_hash": "715ebfa1469347b122c0761e5768cf12f8561f74248909ea32745870a1049adf"
+  },
+  "profiling_identity_view_hash": "ec1186ec71c20f240c6fb1c7f4b7cd0054882ac8032f6bfb3940274e772f5b7e",
+  "provenance_analysis_view_hash": "7ab92318611dd7d0252c763c4099a7ee69f3dbab3132308254aeb92f8af2e115",
+  "source_scale_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "source_scale_policy_v1",
+    "fit_files": [
+      "hai-train1.csv",
+      "hai-train2.csv"
+    ],
+    "difference_scope": "within_each_file_only",
+    "pooling_order": "compute_file_local_differences_then_pool",
+    "noise_scale_formula": "max(1.4826*MAD(within-file dx pooled across fit files),1e-12)",
+    "numeric_epsilon": 1e-12,
+    "amplitude_pre_window_seconds": 5,
+    "amplitude_post_window_seconds": 5,
+    "amplitude_formula": "abs(median(x[t:t+5])-median(x[t-5:t]))",
+    "nontrivial_rule": "A>source_noise_scale",
+    "minimum_nontrivial_amplitudes": 20,
+    "q75_method": "linear_interpolation_position_0.75_times_n_minus_1",
+    "step_threshold_formula": "max(5*source_noise_scale,Q75_linear(A_positive))",
+    "stability_tolerance_formula": "max(3*source_noise_scale,0.10*source_step_threshold)",
+    "train3_influences_parameters": false,
+    "parameter_class": "normal_relation_profile_fit_derived",
+    "artifact_hash": "47831757a6f66e0c860a0589391f610aa99213291278861a8c5f260a7fe54233"
+  },
+  "event_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "source_step_profiling_policy_v1",
+    "source_context": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV02Z",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_PCV01D",
+      "P1_PCV01Z",
+      "P1_PCV02Z",
+      "P1_PP04"
+    ],
+    "source_records": [
+      {
+        "source": "P1_FCV01D",
+        "semantic_role": "control_command"
+      },
+      {
+        "source": "P1_FCV01Z",
+        "semantic_role": "actuator_feedback"
+      },
+      {
+        "source": "P1_FCV02D",
+        "semantic_role": "control_command"
+      },
+      {
+        "source": "P1_FCV02Z",
+        "semantic_role": "actuator_feedback"
+      },
+      {
+        "source": "P1_FCV03D",
+        "semantic_role": "control_command"
+      },
+      {
+        "source": "P1_FCV03Z",
+        "semantic_role": "actuator_feedback"
+      },
+      {
+        "source": "P1_LCV01D",
+        "semantic_role": "control_command"
+      },
+      {
+        "source": "P1_LCV01Z",
+        "semantic_role": "actuator_feedback"
+      },
+      {
+        "source": "P1_PCV01D",
+        "semantic_role": "control_command"
+      },
+      {
+        "source": "P1_PCV01Z",
+        "semantic_role": "actuator_feedback"
+      },
+      {
+        "source": "P1_PCV02Z",
+        "semantic_role": "actuator_feedback"
+      },
+      {
+        "source": "P1_PP04",
+        "semantic_role": "actuator_state"
+      }
+    ],
+    "source_count": 12,
+    "source_roles": [
+      "control_command",
+      "actuator_state",
+      "actuator_feedback"
+    ],
+    "event_pre_window_seconds": 5,
+    "event_post_window_seconds": 5,
+    "event_threshold_rule": "abs(post_level-pre_level)>=source_step_threshold",
+    "directions": [
+      "step_up",
+      "step_down"
+    ],
+    "stability_fraction_minimum": 0.8,
+    "refractory_seconds": 10,
+    "refractory_linkage": "single_link_file_local",
+    "cluster_retention": "largest_absolute_step_amplitude",
+    "exact_tie_break": "earliest_event_index",
+    "isolation_radius_seconds": 2,
+    "isolation_boundary_inclusive": true,
+    "isolation_source_count": 12,
+    "file_local_only": true,
+    "cross_file_windows_allowed": false,
+    "directions_pooled": false,
+    "artifact_hash": "1f07a72b380b9ffb2ceb42e029517ef42716145062a57b1770d118b9db252342"
+  },
+  "target_response_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "target_response_profiling_policy_v1",
+    "target_context": [
+      "P1_FT01",
+      "P1_FT01Z",
+      "P1_FT02",
+      "P1_FT02Z",
+      "P1_FT03",
+      "P1_FT03Z",
+      "P1_LIT01",
+      "P1_PIT01",
+      "P1_PIT02",
+      "P1_TIT01",
+      "P1_TIT02",
+      "P1_TIT03"
+    ],
+    "target_role": "continuous_process_sensor",
+    "target_count": 12,
+    "fit_files": [
+      "hai-train1.csv",
+      "hai-train2.csv"
+    ],
+    "noise_scale_formula": "max(1.4826*MAD(target within-file dy pooled across fit files),1e-12)",
+    "noise_scale_scope": "once_per_target_reused_across_candidates",
+    "pair_specific_scale": false,
+    "arm_specific_scale": false,
+    "baseline_window_seconds": 5,
+    "baseline_formula": "median(target[t-5:t])",
+    "response_horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "response_window_seconds": 3,
+    "response_formula": "median(target[t+h:t+h+3])-baseline",
+    "increase_rule": "response>target_noise_scale",
+    "decrease_rule": "response<-target_noise_scale",
+    "neutral_interval": "[-target_noise_scale,+target_noise_scale]",
+    "right_censor_incomplete": true,
+    "impute_censored": false,
+    "train3_influences_scale": false,
+    "artifact_hash": "4b007b9511152396e03722ad8ce0e9cf659ebef2760cef5110414e4ce4bcbeaf"
+  },
+  "direction_selection_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "directional_relation_selection_policy_v1",
+    "source_step_directions": [
+      "step_up",
+      "step_down"
+    ],
+    "target_response_directions": [
+      "increase",
+      "decrease"
+    ],
+    "horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "directions_evaluated_independently": true,
+    "per_file_statistics": [
+      "usable_response_count",
+      "right_censored_count",
+      "directional_match_count",
+      "directional_consistency",
+      "opposite_direction_consistency"
+    ],
+    "pooled_statistics": [
+      "directional_consistency",
+      "median_target_response",
+      "robust_effect_ratio"
+    ],
+    "strict_direction_agreement": "selected_train1>opposite_train1 AND selected_train2>opposite_train2",
+    "equality_passes": false,
+    "ranking_order": [
+      "pooled_directional_consistency_desc",
+      "pooled_robust_effect_ratio_desc",
+      "horizon_asc",
+      "target_direction_lexical"
+    ],
+    "selection_before_fit_gate": true,
+    "lower_ranked_fallback_allowed": false,
+    "no_eligible_status": "direction_unstable",
+    "artifact_hash": "0026c57f83502f67b1a0d055b22eec42ac08e05eeb6709ffe9cb55ee28d5839b"
+  },
+  "fit_gate_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "relation_fit_gate_policy_v1",
+    "total_usable_minimum": 20,
+    "train1_usable_minimum": 5,
+    "train2_usable_minimum": 5,
+    "pooled_consistency_minimum": 0.7,
+    "train1_consistency_minimum": 0.6,
+    "train2_consistency_minimum": 0.6,
+    "robust_effect_ratio_minimum": 2.0,
+    "strict_direction_agreement_required": true,
+    "all_conditions_required": true,
+    "failure_status": "fit_unsupported",
+    "arm_specific_gate_allowed": false,
+    "artifact_hash": "da2442ad641aa035c37e738bd8a20521f3e5b46a1801f02fee8dbdcba3520344"
+  },
+  "confirmation_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "relation_confirmation_policy_v1",
+    "planned_task": "TASK-039D2",
+    "execution_authorized": false,
+    "file": "hai-train3.csv",
+    "input_scope": "D1_fit_supported_directional_relations_only",
+    "reused_fit_fields": [
+      "source_noise_scale",
+      "source_step_threshold",
+      "source_stability_tolerance",
+      "target_noise_scale",
+      "source_step_direction",
+      "target_response_direction",
+      "selected_horizon",
+      "pre_post_windows",
+      "response_windows",
+      "refractory_period",
+      "isolation_radius"
+    ],
+    "alternative_horizon_search": false,
+    "opposite_direction_search": false,
+    "usable_minimum": 5,
+    "source_direction_unchanged": true,
+    "selected_consistency_strictly_greater_than_opposite": true,
+    "directional_consistency_minimum": 0.6,
+    "robust_effect_ratio_minimum": 1.0,
+    "retuning_allowed": false,
+    "all_conditions_required": true,
+    "outcomes": [
+      "calibration_confirmed",
+      "calibration_conflict"
+    ],
+    "artifact_hash": "83419f6acefaeb21ebc329d5ff9df8563e9636da72ad5367318a172df8fb0b27"
+  },
+  "outcome_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "relation_profiling_outcome_policy_v1",
+    "candidate_pair_count": 47,
+    "directional_opportunity_maximum": 94,
+    "directional_records_preserved": true,
+    "directional_failure_reasons_preserved": true,
+    "pair_fit_supported_definition": "at_least_one_source_step_direction_passes_D1_fit_gate",
+    "pair_states": [
+      "fit_supported_pair",
+      "fit_unsupported_pair"
+    ],
+    "d1_ledgers": [
+      "shared_12_source_parameter_ledger",
+      "shared_12_target_parameter_ledger",
+      "directional_relation_fit_ledger",
+      "47_pair_fit_summary"
+    ],
+    "public_exclusions": [
+      "raw_windows",
+      "event_timestamps",
+      "absolute_paths"
+    ],
+    "artifact_hash": "72846dcd74f18e626780d9ca1ef717ae6c89e350615f0aec22b189434d664457"
+  },
+  "method_comparison_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "candidate_method_comparison_policy_v1",
+    "primary_k": 20,
+    "arms": [
+      "META",
+      "STAT",
+      "GDN"
+    ],
+    "profile_once_per_unique_pair": true,
+    "join_provenance_after_outcomes": true,
+    "metrics": {
+      "pair_fit_support_yield": "arm_top20_pairs_with_at_least_one_fit_supported_directional_relation/20",
+      "confirmed_relation_yield_at_20": "arm_top20_pairs_with_at_least_one_D2_confirmed_directional_relation/20",
+      "pair_fit_to_confirmation_transfer": "confirmed_pairs/fit_supported_pairs_or_0_when_denominator_0",
+      "directional_fit_count": "fit_supported_directional_relations_among_arm_top20_range_0_to_40",
+      "directional_confirmation_count": "D2_confirmed_directional_relations_among_arm_top20_range_0_to_40",
+      "directional_transfer": "confirmed_directional_relations/fit_supported_directional_relations_or_0_when_denominator_0",
+      "distinct_confirmed_source_coverage_at_20": "distinct_sources_with_confirmed_relation_count_and_rate_over_12",
+      "distinct_confirmed_target_coverage_at_20": "distinct_targets_with_confirmed_relation_count_and_rate_over_12",
+      "cross_arm_confirmed_pair_overlap": "confirmed_pairs_unique_by_arm_shared_by_two_and_shared_by_all_applicable_arms"
+    },
+    "coverage_denominator_sources": 12,
+    "coverage_denominator_targets": 12,
+    "confirmed_overlap_reporting": [
+      "unique_META",
+      "unique_STAT",
+      "unique_GDN",
+      "shared_two_arms",
+      "shared_all_applicable_arms"
+    ],
+    "shared_pair_outcome_invariant": true,
+    "precision_term_allowed": false,
+    "winner_selection_d0": false,
+    "winner_selection_d1": false,
+    "d2_gate_tuning_from_d1_allowed": false,
+    "artifact_hash": "0ccc7a97a5e9b3fe1e5a8a54828ec8f8f7e6482c62eb63f7df62d804c8cae39e"
+  },
+  "numeric_evidence_policy": {
+    "schema_version": "1.0.0",
+    "artifact_type": "numeric_evidence_authority_policy_v1",
+    "d1_parameter_class": "normal_relation_profile_fit_derived",
+    "d1_construction_eligibility_requires_d2": true,
+    "confirmed_relation_primitive_is_rule": false,
+    "confirmed_relation_numeric_fields": [
+      "source_step_threshold",
+      "source_stability_tolerance",
+      "source_pre_window",
+      "source_post_window",
+      "minimum_source_stability_fraction",
+      "source_refractory",
+      "cross_source_isolation_radius",
+      "selected_delay_horizon",
+      "target_baseline_window",
+      "target_response_window",
+      "target_noise_scale",
+      "source_direction",
+      "target_direction"
+    ],
+    "evidence_authority": "construction_evidence",
+    "runtime_authority": "not_granted",
+    "llm_numeric_invention_required": false,
+    "rule_v2_authorized": false,
+    "verifier_authority": false,
+    "runtime_authority_granted": false,
+    "artifact_hash": "2cdc0b12724f549a165d7fad870b69b602d4eb0c2e0006dcd1780c88c2b8fcbc"
+  },
+  "data_access_policy_hash": "16cb28d6ca79b7bfee15c22028605f368fdad8c6aa107991c22b0ca5d5b301b7",
+  "d1_authorization_hash": "e3ec4316d26520efe4a93d1bf790f36633ed692fa5f9fb9458c26d2a9ad16467",
+  "unresolved_fields": [],
+  "real_hai_feature_access": false,
+  "d2_execution_authorized": false,
+  "rule_v2_authorized": false,
+  "artifact_claim": "protocol_freeze_only_no_real_numeric_result",
+  "artifact_hash": "888e3d642eba6f8ad8784d428bc4b27d7db7592d34779ba9a1f817860d76e1eb"
+}

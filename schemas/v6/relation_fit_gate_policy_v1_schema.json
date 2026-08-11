@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "total_usable_minimum",
+    "train1_usable_minimum",
+    "train2_usable_minimum",
+    "pooled_consistency_minimum",
+    "train1_consistency_minimum",
+    "train2_consistency_minimum",
+    "robust_effect_ratio_minimum",
+    "strict_direction_agreement_required",
+    "all_conditions_required",
+    "failure_status",
+    "arm_specific_gate_allowed",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "relation_fit_gate_policy_v1"
+    },
+    "total_usable_minimum": {
+      "type": "integer"
+    },
+    "train1_usable_minimum": {
+      "type": "integer"
+    },
+    "train2_usable_minimum": {
+      "type": "integer"
+    },
+    "pooled_consistency_minimum": {
+      "type": "number"
+    },
+    "train1_consistency_minimum": {
+      "type": "number"
+    },
+    "train2_consistency_minimum": {
+      "type": "number"
+    },
+    "robust_effect_ratio_minimum": {
+      "type": "number"
+    },
+    "strict_direction_agreement_required": {
+      "type": "boolean"
+    },
+    "all_conditions_required": {
+      "type": "boolean"
+    },
+    "failure_status": {
+      "type": "string"
+    },
+    "arm_specific_gate_allowed": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/relation_fit_gate_policy_v1_schema.json",
+  "title": "relation_fit_gate_policy_v1"
+}

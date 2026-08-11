@@ -1,0 +1,576 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "cohort_hash",
+    "candidate_count",
+    "join_key",
+    "join_allowed_after_outcomes_frozen",
+    "candidates",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "candidate_provenance_analysis_view_v1"
+    },
+    "cohort_hash": {
+      "type": "string"
+    },
+    "candidate_count": {
+      "type": "integer"
+    },
+    "join_key": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "join_allowed_after_outcomes_frozen": {
+      "type": "boolean"
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "target",
+              "origin_arms",
+              "META",
+              "STAT",
+              "GDN"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "origin_arms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "META": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "evidence_tier",
+                  "independent_official_reference_count",
+                  "metadata_evidence_references",
+                  "evidence_binding_hashes",
+                  "result_artifact_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "evidence_tier": {
+                    "type": "string"
+                  },
+                  "independent_official_reference_count": {
+                    "type": "integer"
+                  },
+                  "metadata_evidence_references": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "evidence_binding_hashes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  }
+                }
+              },
+              "STAT": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "selected_horizon_seconds",
+                  "correlation_sign",
+                  "r_train1",
+                  "r_train2",
+                  "stability_strength",
+                  "ranking_hash",
+                  "result_artifact_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "selected_horizon_seconds": {
+                    "type": "integer"
+                  },
+                  "correlation_sign": {
+                    "type": "string"
+                  },
+                  "r_train1": {
+                    "type": "number"
+                  },
+                  "r_train2": {
+                    "type": "number"
+                  },
+                  "stability_strength": {
+                    "type": "number"
+                  },
+                  "ranking_hash": {
+                    "type": "string"
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  }
+                }
+              },
+              "GDN": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "target",
+              "origin_arms",
+              "META",
+              "STAT",
+              "GDN"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "origin_arms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "META": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "evidence_tier",
+                  "independent_official_reference_count",
+                  "metadata_evidence_references",
+                  "evidence_binding_hashes",
+                  "result_artifact_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "evidence_tier": {
+                    "type": "string"
+                  },
+                  "independent_official_reference_count": {
+                    "type": "integer"
+                  },
+                  "metadata_evidence_references": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "evidence_binding_hashes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  }
+                }
+              },
+              "STAT": {
+                "type": "null"
+              },
+              "GDN": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "target",
+              "origin_arms",
+              "META",
+              "STAT",
+              "GDN"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "origin_arms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "META": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "evidence_tier",
+                  "independent_official_reference_count",
+                  "metadata_evidence_references",
+                  "evidence_binding_hashes",
+                  "result_artifact_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "evidence_tier": {
+                    "type": "string"
+                  },
+                  "independent_official_reference_count": {
+                    "type": "integer"
+                  },
+                  "metadata_evidence_references": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "evidence_binding_hashes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  }
+                }
+              },
+              "STAT": {
+                "type": "null"
+              },
+              "GDN": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "edge_selection_frequency",
+                  "selected_seed_count",
+                  "median_upstream_graph_similarity",
+                  "ranking_hash",
+                  "result_artifact_hash",
+                  "compatibility_closure_receipt_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "edge_selection_frequency": {
+                    "type": "number"
+                  },
+                  "selected_seed_count": {
+                    "type": "integer"
+                  },
+                  "median_upstream_graph_similarity": {
+                    "type": "number"
+                  },
+                  "ranking_hash": {
+                    "type": "string"
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  },
+                  "compatibility_closure_receipt_hash": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "target",
+              "origin_arms",
+              "META",
+              "STAT",
+              "GDN"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "origin_arms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "META": {
+                "type": "null"
+              },
+              "STAT": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "selected_horizon_seconds",
+                  "correlation_sign",
+                  "r_train1",
+                  "r_train2",
+                  "stability_strength",
+                  "ranking_hash",
+                  "result_artifact_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "selected_horizon_seconds": {
+                    "type": "integer"
+                  },
+                  "correlation_sign": {
+                    "type": "string"
+                  },
+                  "r_train1": {
+                    "type": "number"
+                  },
+                  "r_train2": {
+                    "type": "number"
+                  },
+                  "stability_strength": {
+                    "type": "number"
+                  },
+                  "ranking_hash": {
+                    "type": "string"
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  }
+                }
+              },
+              "GDN": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "target",
+              "origin_arms",
+              "META",
+              "STAT",
+              "GDN"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "origin_arms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "META": {
+                "type": "null"
+              },
+              "STAT": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "selected_horizon_seconds",
+                  "correlation_sign",
+                  "r_train1",
+                  "r_train2",
+                  "stability_strength",
+                  "ranking_hash",
+                  "result_artifact_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "selected_horizon_seconds": {
+                    "type": "integer"
+                  },
+                  "correlation_sign": {
+                    "type": "string"
+                  },
+                  "r_train1": {
+                    "type": "number"
+                  },
+                  "r_train2": {
+                    "type": "number"
+                  },
+                  "stability_strength": {
+                    "type": "number"
+                  },
+                  "ranking_hash": {
+                    "type": "string"
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  }
+                }
+              },
+              "GDN": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "edge_selection_frequency",
+                  "selected_seed_count",
+                  "median_upstream_graph_similarity",
+                  "ranking_hash",
+                  "result_artifact_hash",
+                  "compatibility_closure_receipt_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "edge_selection_frequency": {
+                    "type": "number"
+                  },
+                  "selected_seed_count": {
+                    "type": "integer"
+                  },
+                  "median_upstream_graph_similarity": {
+                    "type": "number"
+                  },
+                  "ranking_hash": {
+                    "type": "string"
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  },
+                  "compatibility_closure_receipt_hash": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "target",
+              "origin_arms",
+              "META",
+              "STAT",
+              "GDN"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "origin_arms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "META": {
+                "type": "null"
+              },
+              "STAT": {
+                "type": "null"
+              },
+              "GDN": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rank",
+                  "edge_selection_frequency",
+                  "selected_seed_count",
+                  "median_upstream_graph_similarity",
+                  "ranking_hash",
+                  "result_artifact_hash",
+                  "compatibility_closure_receipt_hash"
+                ],
+                "properties": {
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "edge_selection_frequency": {
+                    "type": "number"
+                  },
+                  "selected_seed_count": {
+                    "type": "integer"
+                  },
+                  "median_upstream_graph_similarity": {
+                    "type": "number"
+                  },
+                  "ranking_hash": {
+                    "type": "string"
+                  },
+                  "result_artifact_hash": {
+                    "type": "string"
+                  },
+                  "compatibility_closure_receipt_hash": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/candidate_provenance_analysis_view_v1_schema.json",
+  "title": "candidate_provenance_analysis_view_v1"
+}

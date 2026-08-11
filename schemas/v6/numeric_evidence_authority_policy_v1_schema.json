@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "d1_parameter_class",
+    "d1_construction_eligibility_requires_d2",
+    "confirmed_relation_primitive_is_rule",
+    "confirmed_relation_numeric_fields",
+    "evidence_authority",
+    "runtime_authority",
+    "llm_numeric_invention_required",
+    "rule_v2_authorized",
+    "verifier_authority",
+    "runtime_authority_granted",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "numeric_evidence_authority_policy_v1"
+    },
+    "d1_parameter_class": {
+      "type": "string"
+    },
+    "d1_construction_eligibility_requires_d2": {
+      "type": "boolean"
+    },
+    "confirmed_relation_primitive_is_rule": {
+      "type": "boolean"
+    },
+    "confirmed_relation_numeric_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_authority": {
+      "type": "string"
+    },
+    "runtime_authority": {
+      "type": "string"
+    },
+    "llm_numeric_invention_required": {
+      "type": "boolean"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "verifier_authority": {
+      "type": "boolean"
+    },
+    "runtime_authority_granted": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/numeric_evidence_authority_policy_v1_schema.json",
+  "title": "numeric_evidence_authority_policy_v1"
+}

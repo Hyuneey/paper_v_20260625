@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039d_data_access_policy_v1",
+  "d0_feature_values_authorized": false,
+  "d1_fit_files": [
+    "hai-train1.csv",
+    "hai-train2.csv"
+  ],
+  "d1_process": "P1",
+  "d1_real_fit_profiling_authorized": true,
+  "d2_confirmation_file": "hai-train3.csv",
+  "d2_real_confirmation_authorized": false,
+  "normal_guard_file": "hai-train4.csv",
+  "normal_guard_access_authorized": false,
+  "prohibited_files": [
+    "hai-train3.csv",
+    "hai-train4.csv",
+    "test",
+    "labels",
+    "attacks",
+    "summary_labels",
+    "private_label_custody"
+  ],
+  "labels_authorized": false,
+  "attacks_authorized": false,
+  "p2_p3_p4_values_authorized": false,
+  "br2_pair_results_authorized": false,
+  "candidate_arm_evidence_visible_to_profiler": false,
+  "private_ledger_access_authorized": false,
+  "artifact_hash": "16cb28d6ca79b7bfee15c22028605f368fdad8c6aa107991c22b0ca5d5b301b7"
+}

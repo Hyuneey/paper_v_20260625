@@ -116,20 +116,23 @@ score, and no global scientific rank.
 
 The preliminary parallel review remains authoritative for META/STAT; its old
 blocked-GDN state is historical and superseded by the final passing GDN audit.
-TASK-039D0 is authorized only to freeze a common normal-relation profiling and
-calibration protocol. Real TASK-039D profiling remains unauthorized.
+TASK-039D0 froze a common arm-blind normal-relation profiling and calibration
+protocol for the 47 pairs without real HAI access. It authorizes TASK-039D1 to
+run train1/train2 fit-only profiling. Train3 confirmation remains a separately
+authorized D2 step, and train4 remains guard-only.
 
 1. TASK-039C-META/STAT/GDN and integration: complete.
-2. TASK-039D0: normal relation profiling and calibration protocol freeze.
-3. TASK-039D execution: requires separate authorization.
-4. TASK-039E: T0 deterministic template baseline.
-5. TASK-039F: common T1/T1-B/T2 bounded construction protocol.
-6. TASK-039G: deterministic validity and no-op-aware utility governance.
-7. TASK-039H: primary detector and FN-correction protocol.
-8. TASK-039I: LLM-free runtime and trace-grounded explanation.
-9. TASK-039J: outer prediction freeze and one-way validation.
-10. TASK-039K: joint sealed-test preregistration.
-11. TASK-039L: one-time sealed execution after explicit approval.
+2. TASK-039D0: complete - common profiling and calibration protocol frozen.
+3. TASK-039D1: authorized next - train1/train2 fit-only profiling.
+4. TASK-039D2: future one-way train3 confirmation after D1 review/authorization.
+5. TASK-039E: T0 deterministic template baseline.
+6. TASK-039F: common T1/T1-B/T2 bounded construction protocol.
+7. TASK-039G: deterministic validity and no-op-aware utility governance.
+8. TASK-039H: primary detector and FN-correction protocol.
+9. TASK-039I: LLM-free runtime and trace-grounded explanation.
+10. TASK-039J: outer prediction freeze and one-way validation.
+11. TASK-039K: joint sealed-test preregistration.
+12. TASK-039L: one-time sealed execution after explicit approval.
 
 ## Construction Arms
 

@@ -68,15 +68,19 @@ independent audit and were integrated under the C0 unscored-union policy. Their
 top-20 union freezes 47 unique P1 pairs with method provenance and without a
 merged score or global rank.
 
-TASK-039D0 protocol design is next. It may freeze a common normal-relation
-profiling and calibration protocol bound to the 47-pair cohort, but may not run
-real profiling. Rule v2, construction, verifier/runtime migration, Agent
-execution, detector work, and evaluation remain unauthorized.
+TASK-039D0 completed the common arm-blind profiling and calibration protocol
+freeze for the 47-pair cohort without real HAI access. TASK-039D1 is next and
+may execute train1/train2 fit-only profiling under that frozen protocol.
+TASK-039D2 train3 confirmation remains unauthorized until a passed and reviewed
+D1 result creates separate authority. Train4 remains guard-only. Rule v2,
+construction, verifier/runtime migration, Agent execution, detector work, and
+evaluation remain unauthorized.
 
-1. TASK-039D0 protocol freeze;
-2. normal relation profiling and calibration only after separate authorization;
-4. T0 deterministic baseline;
-5. T1/T1-B/T2 bounded Agentic comparison;
+1. TASK-039D0 protocol freeze: complete;
+2. TASK-039D1 train1/train2 fit-only profiling: authorized next;
+3. TASK-039D2 one-way train3 confirmation: not yet authorized;
+4. T0 deterministic baseline after relation evidence authority;
+5. T1/T1-B/T2 bounded Agentic comparison after protocol authorization;
 6. deterministic validity and no-op-aware governance;
 7. detector and FN correction;
 8. LLM-free runtime and trace-grounded explanation;

@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "primary_k",
+    "arms",
+    "profile_once_per_unique_pair",
+    "join_provenance_after_outcomes",
+    "metrics",
+    "coverage_denominator_sources",
+    "coverage_denominator_targets",
+    "confirmed_overlap_reporting",
+    "shared_pair_outcome_invariant",
+    "precision_term_allowed",
+    "winner_selection_d0",
+    "winner_selection_d1",
+    "d2_gate_tuning_from_d1_allowed",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "candidate_method_comparison_policy_v1"
+    },
+    "primary_k": {
+      "type": "integer"
+    },
+    "arms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "profile_once_per_unique_pair": {
+      "type": "boolean"
+    },
+    "join_provenance_after_outcomes": {
+      "type": "boolean"
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pair_fit_support_yield",
+        "confirmed_relation_yield_at_20",
+        "pair_fit_to_confirmation_transfer",
+        "directional_fit_count",
+        "directional_confirmation_count",
+        "directional_transfer",
+        "distinct_confirmed_source_coverage_at_20",
+        "distinct_confirmed_target_coverage_at_20",
+        "cross_arm_confirmed_pair_overlap"
+      ],
+      "properties": {
+        "pair_fit_support_yield": {
+          "type": "string"
+        },
+        "confirmed_relation_yield_at_20": {
+          "type": "string"
+        },
+        "pair_fit_to_confirmation_transfer": {
+          "type": "string"
+        },
+        "directional_fit_count": {
+          "type": "string"
+        },
+        "directional_confirmation_count": {
+          "type": "string"
+        },
+        "directional_transfer": {
+          "type": "string"
+        },
+        "distinct_confirmed_source_coverage_at_20": {
+          "type": "string"
+        },
+        "distinct_confirmed_target_coverage_at_20": {
+          "type": "string"
+        },
+        "cross_arm_confirmed_pair_overlap": {
+          "type": "string"
+        }
+      }
+    },
+    "coverage_denominator_sources": {
+      "type": "integer"
+    },
+    "coverage_denominator_targets": {
+      "type": "integer"
+    },
+    "confirmed_overlap_reporting": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "shared_pair_outcome_invariant": {
+      "type": "boolean"
+    },
+    "precision_term_allowed": {
+      "type": "boolean"
+    },
+    "winner_selection_d0": {
+      "type": "boolean"
+    },
+    "winner_selection_d1": {
+      "type": "boolean"
+    },
+    "d2_gate_tuning_from_d1_allowed": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/candidate_method_comparison_policy_v1_schema.json",
+  "title": "candidate_method_comparison_policy_v1"
+}

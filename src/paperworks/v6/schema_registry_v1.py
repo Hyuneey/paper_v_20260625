@@ -24,6 +24,12 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "candidate_integration_policy_v1": (
         "schemas/v6/candidate_integration_policy_v1_schema.json"
     ),
+    "candidate_method_comparison_policy_v1": (
+        "schemas/v6/candidate_method_comparison_policy_v1_schema.json"
+    ),
+    "candidate_provenance_analysis_view_v1": (
+        "schemas/v6/candidate_provenance_analysis_view_v1_schema.json"
+    ),
     "candidate_profiling_cohort_v1": (
         "schemas/v6/candidate_profiling_cohort_v1_schema.json"
     ),
@@ -108,8 +114,17 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "normal_relation_evidence": (
         "schemas/v6/normal_relation_evidence_v1_schema.json"
     ),
+    "numeric_evidence_authority_policy_v1": (
+        "schemas/v6/numeric_evidence_authority_policy_v1_schema.json"
+    ),
     "detector_error_context": (
         "schemas/v6/detector_error_context_v1_schema.json"
+    ),
+    "directional_relation_identity_v1": (
+        "schemas/v6/directional_relation_identity_v1_schema.json"
+    ),
+    "directional_relation_selection_policy_v1": (
+        "schemas/v6/directional_relation_selection_policy_v1_schema.json"
     ),
     "rule_construction_outcome": (
         "schemas/v6/rule_construction_outcome_v1_schema.json"
@@ -207,8 +222,35 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "statistical_candidate_result_v1": (
         "schemas/v6/statistical_candidate_result_v1_schema.json"
     ),
+    "source_scale_policy_v1": (
+        "schemas/v6/source_scale_policy_v1_schema.json"
+    ),
+    "source_step_profiling_policy_v1": (
+        "schemas/v6/source_step_profiling_policy_v1_schema.json"
+    ),
+    "target_response_profiling_policy_v1": (
+        "schemas/v6/target_response_profiling_policy_v1_schema.json"
+    ),
     "pyg_softmax_compatibility_receipt_v1": (
         "schemas/v6/pyg_softmax_compatibility_receipt_v1_schema.json"
+    ),
+    "profiling_identity_view_policy_v1": (
+        "schemas/v6/profiling_identity_view_policy_v1_schema.json"
+    ),
+    "profiling_identity_view_v1": (
+        "schemas/v6/profiling_identity_view_v1_schema.json"
+    ),
+    "relation_confirmation_policy_v1": (
+        "schemas/v6/relation_confirmation_policy_v1_schema.json"
+    ),
+    "relation_fit_gate_policy_v1": (
+        "schemas/v6/relation_fit_gate_policy_v1_schema.json"
+    ),
+    "relation_profiling_outcome_policy_v1": (
+        "schemas/v6/relation_profiling_outcome_policy_v1_schema.json"
+    ),
+    "relation_profiling_protocol_v1": (
+        "schemas/v6/relation_profiling_protocol_v1_schema.json"
     ),
     "task039c0_data_access_policy_v1": (
         "schemas/v6/task039c0_data_access_policy_v1_schema.json"
@@ -236,6 +278,18 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     ),
     "task039c_three_arm_overlap_v1": (
         "schemas/v6/task039c_three_arm_overlap_v1_schema.json"
+    ),
+    "task039d0_relation_profiling_protocol_config": (
+        "schemas/v6/task039d0_relation_profiling_protocol_config_schema.json"
+    ),
+    "task039d1_authorization_v1": (
+        "schemas/v6/task039d1_authorization_v1_schema.json"
+    ),
+    "task039d_data_access_policy_v1": (
+        "schemas/v6/task039d_data_access_policy_v1_schema.json"
+    ),
+    "task039d_protocol_bundle_v1": (
+        "schemas/v6/task039d_protocol_bundle_v1_schema.json"
     ),
     "task039d0_authorization_v1": (
         "schemas/v6/task039d0_authorization_v1_schema.json"

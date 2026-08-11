@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "planned_task",
+    "execution_authorized",
+    "file",
+    "input_scope",
+    "reused_fit_fields",
+    "alternative_horizon_search",
+    "opposite_direction_search",
+    "usable_minimum",
+    "source_direction_unchanged",
+    "selected_consistency_strictly_greater_than_opposite",
+    "directional_consistency_minimum",
+    "robust_effect_ratio_minimum",
+    "retuning_allowed",
+    "all_conditions_required",
+    "outcomes",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "relation_confirmation_policy_v1"
+    },
+    "planned_task": {
+      "type": "string"
+    },
+    "execution_authorized": {
+      "type": "boolean"
+    },
+    "file": {
+      "type": "string"
+    },
+    "input_scope": {
+      "type": "string"
+    },
+    "reused_fit_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alternative_horizon_search": {
+      "type": "boolean"
+    },
+    "opposite_direction_search": {
+      "type": "boolean"
+    },
+    "usable_minimum": {
+      "type": "integer"
+    },
+    "source_direction_unchanged": {
+      "type": "boolean"
+    },
+    "selected_consistency_strictly_greater_than_opposite": {
+      "type": "boolean"
+    },
+    "directional_consistency_minimum": {
+      "type": "number"
+    },
+    "robust_effect_ratio_minimum": {
+      "type": "number"
+    },
+    "retuning_allowed": {
+      "type": "boolean"
+    },
+    "all_conditions_required": {
+      "type": "boolean"
+    },
+    "outcomes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/relation_confirmation_policy_v1_schema.json",
+  "title": "relation_confirmation_policy_v1"
+}

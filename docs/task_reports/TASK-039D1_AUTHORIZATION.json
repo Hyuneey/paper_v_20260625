@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "task039d1_authorization_v1",
+  "d0_protocol_hash": "92358db70576e944f003f983f03ee1f9f20475b8d92efbce4590d17e92d95faf",
+  "candidate_cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+  "candidate_identity_list_hash": "b02304acef7f83c393b73563e486a80fcf32f3ec1997d65051493fe8dbef186c",
+  "candidate_count": 47,
+  "process": "P1",
+  "relation_family": "continuous_step_delayed_response_v1",
+  "train1_authorized": true,
+  "train2_authorized": true,
+  "train3_authorized": false,
+  "train4_authorized": false,
+  "test_labels_attacks_authorized": false,
+  "br2_pair_result_access": false,
+  "candidate_arm_evidence_visible_to_profiler": false,
+  "real_fit_profiling_authorized": true,
+  "rule_v2_authorized": false,
+  "agent_authorized": false,
+  "detector_runtime_authorized": false,
+  "artifact_hash": "e3ec4316d26520efe4a93d1bf790f36633ed692fa5f9fb9458c26d2a9ad16467"
+}

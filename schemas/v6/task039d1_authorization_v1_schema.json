@@ -1,0 +1,92 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "d0_protocol_hash",
+    "candidate_cohort_hash",
+    "candidate_identity_list_hash",
+    "candidate_count",
+    "process",
+    "relation_family",
+    "train1_authorized",
+    "train2_authorized",
+    "train3_authorized",
+    "train4_authorized",
+    "test_labels_attacks_authorized",
+    "br2_pair_result_access",
+    "candidate_arm_evidence_visible_to_profiler",
+    "real_fit_profiling_authorized",
+    "rule_v2_authorized",
+    "agent_authorized",
+    "detector_runtime_authorized",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "task039d1_authorization_v1"
+    },
+    "d0_protocol_hash": {
+      "type": "string"
+    },
+    "candidate_cohort_hash": {
+      "type": "string"
+    },
+    "candidate_identity_list_hash": {
+      "type": "string"
+    },
+    "candidate_count": {
+      "type": "integer"
+    },
+    "process": {
+      "type": "string"
+    },
+    "relation_family": {
+      "type": "string"
+    },
+    "train1_authorized": {
+      "type": "boolean"
+    },
+    "train2_authorized": {
+      "type": "boolean"
+    },
+    "train3_authorized": {
+      "type": "boolean"
+    },
+    "train4_authorized": {
+      "type": "boolean"
+    },
+    "test_labels_attacks_authorized": {
+      "type": "boolean"
+    },
+    "br2_pair_result_access": {
+      "type": "boolean"
+    },
+    "candidate_arm_evidence_visible_to_profiler": {
+      "type": "boolean"
+    },
+    "real_fit_profiling_authorized": {
+      "type": "boolean"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "agent_authorized": {
+      "type": "boolean"
+    },
+    "detector_runtime_authorized": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039d1_authorization_v1_schema.json",
+  "title": "task039d1_authorization_v1"
+}

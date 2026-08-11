@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "cohort_hash",
+    "identity_list_hash",
+    "candidate_count",
+    "process",
+    "relation_family",
+    "candidates",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "profiling_identity_view_v1"
+    },
+    "cohort_hash": {
+      "type": "string"
+    },
+    "identity_list_hash": {
+      "type": "string"
+    },
+    "candidate_count": {
+      "type": "integer"
+    },
+    "process": {
+      "type": "string"
+    },
+    "relation_family": {
+      "type": "string"
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "target",
+          "process",
+          "relation_family",
+          "candidate_cohort_hash"
+        ],
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "process": {
+            "type": "string"
+          },
+          "relation_family": {
+            "type": "string"
+          },
+          "candidate_cohort_hash": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/profiling_identity_view_v1_schema.json",
+  "title": "profiling_identity_view_v1"
+}

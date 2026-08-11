@@ -1,0 +1,1112 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "candidate_provenance_analysis_view_v1",
+  "cohort_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+  "candidate_count": 47,
+  "join_key": [
+    "source",
+    "target"
+  ],
+  "join_allowed_after_outcomes_frozen": true,
+  "candidates": [
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_FT02",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 1,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 19,
+        "selected_horizon_seconds": 60,
+        "correlation_sign": "positive",
+        "r_train1": 0.15901519605380818,
+        "r_train2": 0.23633176875723416,
+        "stability_strength": 0.15901519605380818,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_FT02Z",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 2,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 3,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.6333021690899233,
+        "r_train2": 0.5670033714609225,
+        "stability_strength": 0.5670033714609225,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_FT03",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 3,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG6_FLOW_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_FT03Z",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 4,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG6_FLOW_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_PIT01",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 5,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG4_PRESSURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 17,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.23880520964919372,
+        "r_train2": 0.19683975711041937,
+        "stability_strength": 0.19683975711041937,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_TIT01",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 6,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_FT02",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 7,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_FT02Z",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 8,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 14,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "negative",
+        "r_train1": -0.26291212542591424,
+        "r_train2": -0.2855660308208258,
+        "stability_strength": 0.26291212542591424,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_TIT01",
+      "origin_arms": [
+        "META",
+        "GDN"
+      ],
+      "META": {
+        "rank": 9,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG7_TEMPERATURE_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": {
+        "rank": 7,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9996952414512634,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_LIT01",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 10,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_LIT01",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 11,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG5_LEVEL_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 18,
+        "selected_horizon_seconds": 60,
+        "correlation_sign": "positive",
+        "r_train1": 0.19458934285028526,
+        "r_train2": 0.2115714166705557,
+        "stability_strength": 0.19458934285028526,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_PP04",
+      "target": "P1_TIT03",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 12,
+        "evidence_tier": "M1_EXPLICIT",
+        "independent_official_reference_count": 1,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_FIG8_COOLING_CONTROL"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_PIT02",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 13,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 11,
+        "selected_horizon_seconds": 10,
+        "correlation_sign": "negative",
+        "r_train1": -0.3604323608701531,
+        "r_train2": -0.47837993692512615,
+        "stability_strength": 0.3604323608701531,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 14,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 4,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.535276546958903,
+        "r_train2": 0.4948530361170134,
+        "stability_strength": 0.4948530361170134,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02Z",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 15,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 1,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.78401032810731,
+        "r_train2": 0.761456475764756,
+        "stability_strength": 0.761456475764756,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_PIT02",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 16,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 13,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.3916379307539734,
+        "r_train2": 0.33034436278913765,
+        "stability_strength": 0.33034436278913765,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 17,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 15,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.25613440236115,
+        "r_train2": 0.24775660215838072,
+        "stability_strength": 0.24775660215838072,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03Z",
+      "origin_arms": [
+        "META",
+        "STAT"
+      ],
+      "META": {
+        "rank": 18,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": {
+        "rank": 5,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.5620438187637141,
+        "r_train2": 0.4521517989817558,
+        "stability_strength": 0.4521517989817558,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_FT01",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 19,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_FT01Z",
+      "origin_arms": [
+        "META"
+      ],
+      "META": {
+        "rank": 20,
+        "evidence_tier": "M2_GRAPH_ADJACENT",
+        "independent_official_reference_count": 2,
+        "metadata_evidence_references": [
+          "HAI_MANUAL_DATA_POINTS_P12_P13",
+          "HAI_MANUAL_HAIEND_MAPPING_P21_P23",
+          "HAI_P1_PHYSICAL_GRAPH"
+        ],
+        "evidence_binding_hashes": [
+          "efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62",
+          "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+        ],
+        "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "STAT": null,
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_PIT02",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 2,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "negative",
+        "r_train1": -0.6052714782816841,
+        "r_train2": -0.6331832853477036,
+        "stability_strength": 0.6052714782816841,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_LCV01Z",
+      "target": "P1_PIT01",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 6,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "negative",
+        "r_train1": -0.40822204074307206,
+        "r_train2": -0.39979940010471254,
+        "stability_strength": 0.39979940010471254,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02Z",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 7,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "negative",
+        "r_train1": -0.3950211512126073,
+        "r_train2": -0.4270635790394675,
+        "stability_strength": 0.3950211512126073,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_PIT02",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 8,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "negative",
+        "r_train1": -0.39050178021187487,
+        "r_train2": -0.407637637092625,
+        "stability_strength": 0.39050178021187487,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_PCV01Z",
+      "target": "P1_PIT01",
+      "origin_arms": [
+        "STAT",
+        "GDN"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 9,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.43857523858326364,
+        "r_train2": 0.3753573522136355,
+        "stability_strength": 0.3753573522136355,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": {
+        "rank": 17,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9997602701187134,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_LCV01Z",
+      "target": "P1_FT01Z",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 10,
+        "selected_horizon_seconds": 1,
+        "correlation_sign": "positive",
+        "r_train1": 0.44825830776969006,
+        "r_train2": 0.3650495762983653,
+        "stability_strength": 0.3650495762983653,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_LIT01",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 12,
+        "selected_horizon_seconds": 30,
+        "correlation_sign": "positive",
+        "r_train1": 0.34444737583481055,
+        "r_train2": 0.3356902606589881,
+        "stability_strength": 0.3356902606589881,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_PIT01",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 16,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "negative",
+        "r_train1": -0.2335773450929532,
+        "r_train2": -0.20408186270652884,
+        "stability_strength": 0.20408186270652884,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02",
+      "origin_arms": [
+        "STAT"
+      ],
+      "META": null,
+      "STAT": {
+        "rank": 20,
+        "selected_horizon_seconds": 5,
+        "correlation_sign": "positive",
+        "r_train1": 0.15672012733249302,
+        "r_train2": 0.170977287947114,
+        "stability_strength": 0.15672012733249302,
+        "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+        "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "GDN": null
+    },
+    {
+      "source": "P1_PCV01Z",
+      "target": "P1_TIT03",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 1,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9999693036079407,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_PCV01D",
+      "target": "P1_TIT03",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 2,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9999651908874512,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 3,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.999930739402771,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_FT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 4,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9999004602432251,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV03D",
+      "target": "P1_FT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 5,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9998656511306763,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_TIT02",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 6,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9998044371604919,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV01D",
+      "target": "P1_TIT02",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 8,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9994266033172607,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_FT03",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 9,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9973872303962708,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV02D",
+      "target": "P1_LIT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 10,
+        "edge_selection_frequency": 0.6666666666666666,
+        "selected_seed_count": 2,
+        "median_upstream_graph_similarity": 0.9951580762863159,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_TIT03",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 11,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.999962568283081,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT02",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 12,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.999952495098114,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_TIT03",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 13,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9999468922615051,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT02",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 14,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9999403953552246,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 15,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9998640418052673,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_LCV01D",
+      "target": "P1_PIT02",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 16,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9997804164886475,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV03Z",
+      "target": "P1_TIT03",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 18,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.99965900182724,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_PP04",
+      "target": "P1_FT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 19,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9995879530906677,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    },
+    {
+      "source": "P1_FCV01Z",
+      "target": "P1_FT01",
+      "origin_arms": [
+        "GDN"
+      ],
+      "META": null,
+      "STAT": null,
+      "GDN": {
+        "rank": 20,
+        "edge_selection_frequency": 0.3333333333333333,
+        "selected_seed_count": 1,
+        "median_upstream_graph_similarity": 0.9994772672653198,
+        "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+        "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "compatibility_closure_receipt_hash": "fe59877405b17c7268c800690c434b267056a3e8a0c7b50715cec8df12f61f44"
+      }
+    }
+  ],
+  "artifact_hash": "7ab92318611dd7d0252c763c4099a7ee69f3dbab3132308254aeb92f8af2e115"
+}

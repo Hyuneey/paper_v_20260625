@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "d0_feature_values_authorized",
+    "d1_fit_files",
+    "d1_process",
+    "d1_real_fit_profiling_authorized",
+    "d2_confirmation_file",
+    "d2_real_confirmation_authorized",
+    "normal_guard_file",
+    "normal_guard_access_authorized",
+    "prohibited_files",
+    "labels_authorized",
+    "attacks_authorized",
+    "p2_p3_p4_values_authorized",
+    "br2_pair_results_authorized",
+    "candidate_arm_evidence_visible_to_profiler",
+    "private_ledger_access_authorized",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "task039d_data_access_policy_v1"
+    },
+    "d0_feature_values_authorized": {
+      "type": "boolean"
+    },
+    "d1_fit_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "d1_process": {
+      "type": "string"
+    },
+    "d1_real_fit_profiling_authorized": {
+      "type": "boolean"
+    },
+    "d2_confirmation_file": {
+      "type": "string"
+    },
+    "d2_real_confirmation_authorized": {
+      "type": "boolean"
+    },
+    "normal_guard_file": {
+      "type": "string"
+    },
+    "normal_guard_access_authorized": {
+      "type": "boolean"
+    },
+    "prohibited_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "labels_authorized": {
+      "type": "boolean"
+    },
+    "attacks_authorized": {
+      "type": "boolean"
+    },
+    "p2_p3_p4_values_authorized": {
+      "type": "boolean"
+    },
+    "br2_pair_results_authorized": {
+      "type": "boolean"
+    },
+    "candidate_arm_evidence_visible_to_profiler": {
+      "type": "boolean"
+    },
+    "private_ledger_access_authorized": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039d_data_access_policy_v1_schema.json",
+  "title": "task039d_data_access_policy_v1"
+}

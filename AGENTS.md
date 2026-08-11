@@ -83,10 +83,12 @@ TASK-039C completed with
 compatibility-closed upstream-aligned GDN arm were independently audited and
 integrated as the unscored union of their top-20 views. The final P1 Boiler
 profiling cohort contains 47 unique directed pairs with complete arm-local
-provenance, no merged score, and no global scientific rank. TASK-039D0 protocol
-design is authorized next; real TASK-039D profiling and all train3/train4/test,
-label, attack, Rule v2, Agent, detector/runtime, outer, and sealed execution
-remain unauthorized.
+provenance, no merged score, and no global scientific rank. TASK-039D0 then
+froze one common arm-blind protocol for the exact 47 pairs without opening HAI
+values. TASK-039D1 is authorized next for train1/train2 fit-only profiling.
+Train3 confirmation still requires later D2 authorization; train4 remains
+NORMAL_GUARD-only. Test, label, attack, Rule v2, Agent, detector/runtime, outer,
+and sealed execution remain unauthorized.
 
 ## 3. Canonical, Legacy, and Reference Paths
 

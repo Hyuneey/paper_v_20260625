@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "candidate_pair_count",
+    "directional_opportunity_maximum",
+    "directional_records_preserved",
+    "directional_failure_reasons_preserved",
+    "pair_fit_supported_definition",
+    "pair_states",
+    "d1_ledgers",
+    "public_exclusions",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "relation_profiling_outcome_policy_v1"
+    },
+    "candidate_pair_count": {
+      "type": "integer"
+    },
+    "directional_opportunity_maximum": {
+      "type": "integer"
+    },
+    "directional_records_preserved": {
+      "type": "boolean"
+    },
+    "directional_failure_reasons_preserved": {
+      "type": "boolean"
+    },
+    "pair_fit_supported_definition": {
+      "type": "string"
+    },
+    "pair_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "d1_ledgers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "public_exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/relation_profiling_outcome_policy_v1_schema.json",
+  "title": "relation_profiling_outcome_policy_v1"
+}

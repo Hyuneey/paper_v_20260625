@@ -1,0 +1,109 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "target_context",
+    "target_role",
+    "target_count",
+    "fit_files",
+    "noise_scale_formula",
+    "noise_scale_scope",
+    "pair_specific_scale",
+    "arm_specific_scale",
+    "baseline_window_seconds",
+    "baseline_formula",
+    "response_horizons_seconds",
+    "response_window_seconds",
+    "response_formula",
+    "increase_rule",
+    "decrease_rule",
+    "neutral_interval",
+    "right_censor_incomplete",
+    "impute_censored",
+    "train3_influences_scale",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "target_response_profiling_policy_v1"
+    },
+    "target_context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_role": {
+      "type": "string"
+    },
+    "target_count": {
+      "type": "integer"
+    },
+    "fit_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "noise_scale_formula": {
+      "type": "string"
+    },
+    "noise_scale_scope": {
+      "type": "string"
+    },
+    "pair_specific_scale": {
+      "type": "boolean"
+    },
+    "arm_specific_scale": {
+      "type": "boolean"
+    },
+    "baseline_window_seconds": {
+      "type": "integer"
+    },
+    "baseline_formula": {
+      "type": "string"
+    },
+    "response_horizons_seconds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "response_window_seconds": {
+      "type": "integer"
+    },
+    "response_formula": {
+      "type": "string"
+    },
+    "increase_rule": {
+      "type": "string"
+    },
+    "decrease_rule": {
+      "type": "string"
+    },
+    "neutral_interval": {
+      "type": "string"
+    },
+    "right_censor_incomplete": {
+      "type": "boolean"
+    },
+    "impute_censored": {
+      "type": "boolean"
+    },
+    "train3_influences_scale": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/target_response_profiling_policy_v1_schema.json",
+  "title": "target_response_profiling_policy_v1"
+}

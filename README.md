@@ -54,9 +54,11 @@ and compatibility-closed upstream-aligned GDN discovery over the common
 unscored top-20 union freezes 47 unique source-target pairs with complete
 arm-local provenance, no merged score, and no global scientific rank.
 
-TASK-039D0 protocol design is next. Real relation profiling is not authorized;
-no relation is confirmed, no Rule v2 or rule exists, and detector, runtime,
-outer, sealed, label, or attack evaluation remains out of scope.
+TASK-039D0 has frozen the common arm-blind relation-profiling and deterministic
+calibration protocol without opening HAI values. TASK-039D1 is next and may run
+fit-only profiling on train1/train2. Train3 confirmation, train4 guard access,
+Rule v2, rules, detector/runtime, outer/sealed, label, and attack evaluation
+remain unauthorized.
 
 Torch and Torch Geometric are optional. Install the frozen GDN dependency set
 only when the optional backend is required:

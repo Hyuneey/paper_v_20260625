@@ -1,0 +1,125 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "source_context",
+    "source_records",
+    "source_count",
+    "source_roles",
+    "event_pre_window_seconds",
+    "event_post_window_seconds",
+    "event_threshold_rule",
+    "directions",
+    "stability_fraction_minimum",
+    "refractory_seconds",
+    "refractory_linkage",
+    "cluster_retention",
+    "exact_tie_break",
+    "isolation_radius_seconds",
+    "isolation_boundary_inclusive",
+    "isolation_source_count",
+    "file_local_only",
+    "cross_file_windows_allowed",
+    "directions_pooled",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "source_step_profiling_policy_v1"
+    },
+    "source_context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "semantic_role"
+        ],
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "semantic_role": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_count": {
+      "type": "integer"
+    },
+    "source_roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_pre_window_seconds": {
+      "type": "integer"
+    },
+    "event_post_window_seconds": {
+      "type": "integer"
+    },
+    "event_threshold_rule": {
+      "type": "string"
+    },
+    "directions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stability_fraction_minimum": {
+      "type": "number"
+    },
+    "refractory_seconds": {
+      "type": "integer"
+    },
+    "refractory_linkage": {
+      "type": "string"
+    },
+    "cluster_retention": {
+      "type": "string"
+    },
+    "exact_tie_break": {
+      "type": "string"
+    },
+    "isolation_radius_seconds": {
+      "type": "integer"
+    },
+    "isolation_boundary_inclusive": {
+      "type": "boolean"
+    },
+    "isolation_source_count": {
+      "type": "integer"
+    },
+    "file_local_only": {
+      "type": "boolean"
+    },
+    "cross_file_windows_allowed": {
+      "type": "boolean"
+    },
+    "directions_pooled": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/source_step_profiling_policy_v1_schema.json",
+  "title": "source_step_profiling_policy_v1"
+}

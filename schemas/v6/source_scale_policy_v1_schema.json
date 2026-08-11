@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "fit_files",
+    "difference_scope",
+    "pooling_order",
+    "noise_scale_formula",
+    "numeric_epsilon",
+    "amplitude_pre_window_seconds",
+    "amplitude_post_window_seconds",
+    "amplitude_formula",
+    "nontrivial_rule",
+    "minimum_nontrivial_amplitudes",
+    "q75_method",
+    "step_threshold_formula",
+    "stability_tolerance_formula",
+    "train3_influences_parameters",
+    "parameter_class",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "source_scale_policy_v1"
+    },
+    "fit_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "difference_scope": {
+      "type": "string"
+    },
+    "pooling_order": {
+      "type": "string"
+    },
+    "noise_scale_formula": {
+      "type": "string"
+    },
+    "numeric_epsilon": {
+      "type": "number"
+    },
+    "amplitude_pre_window_seconds": {
+      "type": "integer"
+    },
+    "amplitude_post_window_seconds": {
+      "type": "integer"
+    },
+    "amplitude_formula": {
+      "type": "string"
+    },
+    "nontrivial_rule": {
+      "type": "string"
+    },
+    "minimum_nontrivial_amplitudes": {
+      "type": "integer"
+    },
+    "q75_method": {
+      "type": "string"
+    },
+    "step_threshold_formula": {
+      "type": "string"
+    },
+    "stability_tolerance_formula": {
+      "type": "string"
+    },
+    "train3_influences_parameters": {
+      "type": "boolean"
+    },
+    "parameter_class": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/source_scale_policy_v1_schema.json",
+  "title": "source_scale_policy_v1"
+}

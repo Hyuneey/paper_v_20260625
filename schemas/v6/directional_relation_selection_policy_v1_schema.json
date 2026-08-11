@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "source_step_directions",
+    "target_response_directions",
+    "horizons_seconds",
+    "directions_evaluated_independently",
+    "per_file_statistics",
+    "pooled_statistics",
+    "strict_direction_agreement",
+    "equality_passes",
+    "ranking_order",
+    "selection_before_fit_gate",
+    "lower_ranked_fallback_allowed",
+    "no_eligible_status",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "directional_relation_selection_policy_v1"
+    },
+    "source_step_directions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_response_directions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "horizons_seconds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "directions_evaluated_independently": {
+      "type": "boolean"
+    },
+    "per_file_statistics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pooled_statistics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "strict_direction_agreement": {
+      "type": "string"
+    },
+    "equality_passes": {
+      "type": "boolean"
+    },
+    "ranking_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_before_fit_gate": {
+      "type": "boolean"
+    },
+    "lower_ranked_fallback_allowed": {
+      "type": "boolean"
+    },
+    "no_eligible_status": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/directional_relation_selection_policy_v1_schema.json",
+  "title": "directional_relation_selection_policy_v1"
+}

@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "source",
+    "source_step_direction",
+    "target",
+    "target_response_direction",
+    "selected_horizon_is_identity",
+    "relation_family",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "directional_relation_identity_v1"
+    },
+    "source": {
+      "type": "string"
+    },
+    "source_step_direction": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "target_response_direction": {
+      "type": "string"
+    },
+    "selected_horizon_is_identity": {
+      "type": "boolean"
+    },
+    "relation_family": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/directional_relation_identity_v1_schema.json",
+  "title": "directional_relation_identity_v1"
+}

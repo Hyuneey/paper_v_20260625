@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "dataset_manifest_hash",
+    "process",
+    "process_name",
+    "relation_family",
+    "br1_protocol_bundle_hash",
+    "task039c_commit",
+    "cohort_hash",
+    "identity_list_hash",
+    "candidate_count",
+    "original_pair_universe_count",
+    "pair_universe_hash",
+    "source_identity_hash",
+    "target_identity_hash",
+    "execution_sequence",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "const": "relation_profiling_protocol_v1"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "dataset_manifest_hash": {
+      "type": "string"
+    },
+    "process": {
+      "type": "string"
+    },
+    "process_name": {
+      "type": "string"
+    },
+    "relation_family": {
+      "type": "string"
+    },
+    "br1_protocol_bundle_hash": {
+      "type": "string"
+    },
+    "task039c_commit": {
+      "type": "string"
+    },
+    "cohort_hash": {
+      "type": "string"
+    },
+    "identity_list_hash": {
+      "type": "string"
+    },
+    "candidate_count": {
+      "type": "integer"
+    },
+    "original_pair_universe_count": {
+      "type": "integer"
+    },
+    "pair_universe_hash": {
+      "type": "string"
+    },
+    "source_identity_hash": {
+      "type": "string"
+    },
+    "target_identity_hash": {
+      "type": "string"
+    },
+    "execution_sequence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/relation_profiling_protocol_v1_schema.json",
+  "title": "relation_profiling_protocol_v1"
+}

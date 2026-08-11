@@ -1990,3 +1990,16 @@
 - TASK-039D0 protocol design is authorized. Real profiling, train3/train4/test,
   label or attack access, Rule v2, Agent, detector/runtime, outer, and sealed
   execution remain unauthorized.
+
+### DEC-101: Common arm-blind normal relation-profiling protocol
+
+- Status: resolved by TASK-039D0.
+- The exact 47-pair cohort is profiled once through an identity-only view;
+  META/STAT/GDN provenance is joined only after outcomes are frozen.
+- D1 recomputes source and target parameters from train1/train2 only, applies
+  strict per-file direction agreement and one preselected direction/horizon,
+  and permits no lower-ranked fallback.
+- D2 is a future one-way train3 confirmation using unchanged D1 parameters.
+  D0 does not authorize D2. Train4 remains later NORMAL_GUARD-only.
+- D1 is authorized next. Rule v2, Agent, detector, verifier/runtime, labels,
+  attacks, outer, and sealed execution remain unauthorized.
