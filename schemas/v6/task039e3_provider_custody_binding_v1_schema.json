@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://paperworks.local/schemas/v6/task039e3_provider_custody_binding_v1_schema.json",
+  "title": "TASK-039E3 Provider Custody Binding V1", "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039e3_provider_custody_binding_v1"}, "task_id": {"const": "TASK-039E3"},
+    "provider": {"const": "openai"}, "model": {"const": "gpt-5.4-2026-03-05"}, "provider_call_ledger_hash": {"$ref": "#/$defs/hash"},
+    "record_count": {"type": "integer", "minimum": 253, "maximum": 337}, "scientific_record_count": {"type": "integer", "minimum": 252, "maximum": 336},
+    "transport_attempt_count": {"type": "integer", "minimum": 253}, "transport_retry_count": {"type": "integer", "minimum": 0},
+    "hash_chain_verified": {"const": true}, "private_storage": {"const": "outside_git"}, "individual_proposals_public": {"const": false}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": ["schema_version", "artifact_type", "task_id", "provider", "model", "provider_call_ledger_hash", "record_count", "scientific_record_count", "transport_attempt_count", "transport_retry_count", "hash_chain_verified", "private_storage", "individual_proposals_public", "artifact_hash"],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

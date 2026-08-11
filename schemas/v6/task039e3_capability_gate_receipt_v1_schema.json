@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e3_capability_gate_receipt_v1_schema.json",
+  "title": "TASK-039E3 Capability Gate Receipt V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e3_capability_gate_receipt_v1"},
+    "task_id": {"const": "TASK-039E3"},
+    "status": {"enum": ["passed_task039e3_capability_gate", "blocked_task039e3_capability_gate"]},
+    "execution_code_commit": {"$ref": "#/$defs/sha1"},
+    "exact_model": {"const": "gpt-5.4-2026-03-05"},
+    "response_id": {"type": ["string", "null"]},
+    "returned_model": {"type": ["string", "null"]},
+    "finish_reason": {"type": ["string", "null"]},
+    "structured_parse_status": {"type": "string"},
+    "transport_attempts": {"type": "integer", "minimum": 1, "maximum": 3},
+    "usage": {"type": ["object", "null"], "additionalProperties": {"type": "integer", "minimum": 0}},
+    "system_fingerprint": {"type": ["string", "null"]},
+    "passed": {"type": "boolean"},
+    "scientific_calls": {"const": 0},
+    "scientific_calls_before_probe": {"const": 0},
+    "configuration_modified_after_probe": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": ["schema_version", "artifact_type", "task_id", "status", "execution_code_commit", "exact_model", "response_id", "returned_model", "finish_reason", "structured_parse_status", "transport_attempts", "usage", "system_fingerprint", "passed", "configuration_modified_after_probe", "artifact_hash"],
+  "oneOf": [
+    {"required": ["scientific_calls"], "properties": {"passed": {"const": false}}},
+    {"required": ["scientific_calls_before_probe"], "properties": {"passed": {"const": true}}}
+  ],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "sha1": {"type": "string", "pattern": "^[a-f0-9]{40}$"}}
+}

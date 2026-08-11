@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://paperworks.local/schemas/v6/task039e3_construction_metrics_v1_schema.json",
+  "title": "TASK-039E3 Construction Metrics V1", "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039e3_construction_metrics_v1"}, "task_id": {"const": "TASK-039E3"}, "status": {"const": "passed_task039e3_rule_construction_scientific_execution"},
+    "main_metrics": {"type": "object", "required": ["T0", "T1", "T1-B", "T2"], "additionalProperties": false, "properties": {"T0": {"type": "object"}, "T1": {"type": "object"}, "T1-B": {"type": "object"}, "T2": {"type": "object"}}},
+    "provider_call_ledger_hash": {"$ref": "#/$defs/hash"}, "proposal_validity_ledger_hash": {"$ref": "#/$defs/hash"}, "outcome_ledger_hash": {"$ref": "#/$defs/hash"},
+    "scientific_slot_count": {"type": "integer", "minimum": 252, "maximum": 336}, "frozen_metrics_contract_hash": {"$ref": "#/$defs/hash"}, "winner_selected": {"const": false}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": ["schema_version", "artifact_type", "task_id", "status", "main_metrics", "provider_call_ledger_hash", "proposal_validity_ledger_hash", "outcome_ledger_hash", "scientific_slot_count", "frozen_metrics_contract_hash", "winner_selected", "artifact_hash"],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

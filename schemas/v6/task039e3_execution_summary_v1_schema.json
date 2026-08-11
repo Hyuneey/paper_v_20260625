@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://paperworks.local/schemas/v6/task039e3_execution_summary_v1_schema.json",
+  "title": "TASK-039E3 Execution Summary V1", "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039e3_execution_summary_v1"}, "task_id": {"const": "TASK-039E3"}, "status": {"const": "passed_task039e3_rule_construction_scientific_execution"}, "execution_code_commit": {"$ref": "#/$defs/sha1"},
+    "relations_completed": {"const": 42}, "relations_skipped": {"const": 0}, "t0_outcomes": {"const": 42}, "t1_outcomes": {"const": 42}, "t1b_outcomes": {"const": 42}, "t2_outcomes": {"const": 42}, "direct_number_results": {"const": 42},
+    "scientific_calls": {"type": "integer", "minimum": 252, "maximum": 336}, "scientific_call_counts": {"type": "object"}, "transport_attempts": {"type": "integer", "minimum": 253}, "transport_retries": {"type": "integer", "minimum": 0}, "scientific_retries": {"const": 0}, "cross_arm_leakage": {"const": false}, "winner_selected": {"const": false}, "rule_v2_authorized": {"const": false}, "runtime_authority": {"const": false}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": ["schema_version", "artifact_type", "task_id", "status", "execution_code_commit", "relations_completed", "relations_skipped", "t0_outcomes", "t1_outcomes", "t1b_outcomes", "t2_outcomes", "direct_number_results", "scientific_calls", "scientific_call_counts", "transport_attempts", "transport_retries", "scientific_retries", "cross_arm_leakage", "winner_selected", "rule_v2_authorized", "runtime_authority", "artifact_hash"],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "sha1": {"type": "string", "pattern": "^[a-f0-9]{40}$"}}
+}

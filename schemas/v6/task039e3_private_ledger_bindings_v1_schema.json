@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://paperworks.local/schemas/v6/task039e3_private_ledger_bindings_v1_schema.json",
+  "title": "TASK-039E3 Private Ledger Bindings V1", "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039e3_private_ledger_bindings_v1"}, "task_id": {"const": "TASK-039E3"},
+    "provider_call_ledger_hash": {"$ref": "#/$defs/hash"}, "proposal_validity_ledger_hash": {"$ref": "#/$defs/hash"}, "outcome_ledger_hash": {"$ref": "#/$defs/hash"}, "direct_number_ledger_hash": {"$ref": "#/$defs/hash"},
+    "provider_records": {"type": "integer", "minimum": 253, "maximum": 337}, "proposal_records": {"type": "integer", "minimum": 42, "maximum": 336}, "outcome_records": {"const": 168}, "direct_number_records": {"const": 42},
+    "private_contents_public": {"const": false}, "storage_boundary": {"const": "outside_git"}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": ["schema_version", "artifact_type", "task_id", "provider_call_ledger_hash", "proposal_validity_ledger_hash", "outcome_ledger_hash", "direct_number_ledger_hash", "provider_records", "proposal_records", "outcome_records", "direct_number_records", "private_contents_public", "storage_boundary", "artifact_hash"],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

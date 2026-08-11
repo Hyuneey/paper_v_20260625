@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://paperworks.local/schemas/v6/task039e3_execution_failure_v1_schema.json",
+  "title": "TASK-039E3 Execution Failure V1", "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "task039e3_execution_failure_receipt_v1"}, "task_id": {"const": "TASK-039E3"}, "status": {"const": "failed_task039e3_scientific_execution"}, "execution_code_commit": {"$ref": "#/$defs/sha1"}, "capability_state": {"type": "string"}, "completed_scientific_slot_count": {"type": "integer", "minimum": 0, "maximum": 336}, "provider_call_ledger_head_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "last_completed_slot": {"type": ["object", "null"]}, "failure_classification": {"enum": ["failed_task039e3_scientific_execution", "failed_task039e3_model_identity_integrity"]}, "underlying_failure_receipt_hash": {"$ref": "#/$defs/hash"}, "configuration_unchanged": {"const": true}, "automatic_resume_authorized": {"const": false}, "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "required": ["schema_version", "artifact_type", "task_id", "status", "execution_code_commit", "capability_state", "completed_scientific_slot_count", "provider_call_ledger_head_hash", "last_completed_slot", "failure_classification", "underlying_failure_receipt_hash", "configuration_unchanged", "automatic_resume_authorized", "artifact_hash"],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "sha1": {"type": "string", "pattern": "^[a-f0-9]{40}$"}}
+}
