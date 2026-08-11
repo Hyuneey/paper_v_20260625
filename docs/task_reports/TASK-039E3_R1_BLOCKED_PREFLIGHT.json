@@ -1,0 +1,73 @@
+{
+  "artifact_hash": "8959357a2eedd12c3bd08d6f3e09d683f8553a1629fc750a07572dd07d5a974c",
+  "artifact_type": "task039e3_r1_blocked_preflight_v1",
+  "blocker": {
+    "classification": "e2_timeout_authority_unresolved",
+    "historical_e3_live_timeout_seconds": 30,
+    "historical_e3_live_timeout_source": "src/paperworks/v6/task039e3_live_transport_v1.py",
+    "historical_e3_value_is_authoritative_e2_protocol": false,
+    "reason": "The authoritative E2 configuration and retry-policy artifacts do not freeze a concrete call-timeout duration.",
+    "synthetic_e2_prep_fixture_timeout_seconds": 30,
+    "synthetic_fixture_is_authoritative_e2_protocol": false,
+    "task_stop_condition": "If the exact frozen timeout cannot be resolved from E2 authority: BLOCK R1."
+  },
+  "historical_bindings": {
+    "capability_block_commit": "52a8cec2d170f9b8e3c5c0ac048115ffad93e018",
+    "capability_receipt_hash": "e36098690f2c4c018b8ed5f339d46870fbbe0561f52c117cd2525a63d155c279",
+    "e3_commit_a": "48b79643088ce1a0179191d7ddae4c97dc8dece9",
+    "e3_prep_commit": "aee1fc6e22bcb45572fe3bab5c9bb605de09d721",
+    "historical_task_status": "blocked_task039e3_capability_gate",
+    "historical_task_status_unchanged": true,
+    "provider_ledger_head_hash": "656d81ded2f166175adf2717abc226c325cd4a9fcbcee5306f4ea35c7465d254"
+  },
+  "lineage": {
+    "exact_lineage_verified": true,
+    "main": "11a5f04a0422049a099020f06c59ec23bc72d130",
+    "r0": "d5164aa93cc4c3efb6a343e0890b554f436a7e39"
+  },
+  "r0_bindings": {
+    "protocol_provenance_classification": "insufficient_authority_evidence",
+    "receipt_bundle_hash": "8c402cdea45f53a7bb49cfb8ba796d4b557a6fb70532c7ad22281f3b62c60ccc",
+    "recovery_change_classification": "explicit_protocol_amendment_requires_new_authorization",
+    "recovery_protocol_artifact_hash": "8b1b55c4ed96b0642737e616dd60b271684d59738c8186211abb9c6c46cd1362",
+    "recovery_scientifically_eligible": true,
+    "scientific_contamination_detected": false
+  },
+  "status": "blocked_task039e3_r1_recovery_implementation",
+  "stop_stage": "pre_implementation_timeout_authority_validation",
+  "task_id": "TASK-039E3-R1",
+  "timeout_authority_audit": {
+    "authoritative_e2_configuration_contains_timeout_duration": false,
+    "authoritative_e2_configuration_hash": "4a7387692db5bc866e51bb75f2d00da1c7b93106cd8ae84619e6528551cba333",
+    "authoritative_e2_configuration_timeout_field_count": 0,
+    "authoritative_e2_protocol_hash": "2295f6e57aff47081419d70e942af02101de33fa545a758ea4a7e6476a46e6e8",
+    "authoritative_e2_retry_policy_contains_timeout_duration": false,
+    "authoritative_e2_retry_policy_hash": "3a7192d07ef4980c9ecaeb3f28fe00f31df8c299a177d86250f5ebd09f1c477b",
+    "authoritative_e2_retry_policy_timeout_field_count": 0,
+    "authoritative_e2_retry_policy_timeout_failure_class_present": true,
+    "exact_authoritative_timeout_seconds": null,
+    "resolved": false
+  },
+  "validation": {
+    "e2_authoritative_configuration_tests": {
+      "command": "python -m unittest tests.test_task039e2_authoritative_configuration",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 8,
+      "skipped": 0
+    },
+    "git_diff_check": "passed",
+    "json_and_self_hash_validation": "passed",
+    "pip_check": "passed_no_broken_requirements",
+    "public_leak_scan": "passed",
+    "r0_forensic_tests": {
+      "command": "python -m unittest tests.test_task039e3_r0_capability_forensics",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 6,
+      "skipped": 0
+    }
+  }
+}
