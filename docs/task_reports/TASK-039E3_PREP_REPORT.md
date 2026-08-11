@@ -9,6 +9,16 @@ harness exists and passes synthetic tests. It is not an E3 scientific result,
 provider capability result, proposal result, Rule v2 authorization, or runtime
 authorization.
 
+## Audited authorization lineage
+
+The authoritative preparation binds the exact public E3 authorization
+`85470f2c433bb64c052e635dbb5276fbbd26caa54394a1950317eb3deb7baae3`
+and its E0 protocol, E1 materialization result, E1 construction cohort, and E1
+private-ledger hash. The required audited E2 main
+`11a5f04a0422049a099020f06c59ec23bc72d130` was merged into the existing
+preparation branch without rewriting the historical initial preparation commit,
+which had been created from the pre-audit E2 result `3c263277...`.
+
 ## Frozen E2 binding
 
 The harness binds:
@@ -98,9 +108,12 @@ live/credential hard locks.
 
 ## Verification
 
-- 41 focused TASK-039E3 synthetic tests pass.
-- 114 selected E0/E2/E3 protocol, boundary, schema, and orchestration tests
-  pass together.
+- 42 focused TASK-039E3 synthetic tests pass.
+- The combined E0/E2/E3 discovery ran 192 tests: 187 passed and five expected
+  historical/Windows diagnostics remained. Four are the already-audited LF vs
+  CRLF byte diagnostics (one E0 regeneration comparison and three E2 prompt
+  hashes); one frozen E2 result-instance test predates and therefore expects
+  the later final-audit-created E3 authorization to be absent.
 - Task modules compile, all four task schemas parse, and `pip check` passes.
 - Repository-wide discovery ran 1,001 tests with 14 failures, 67 errors, and
   5 skips in frozen or optional areas. The observed blockers include absent
@@ -111,11 +124,13 @@ live/credential hard locks.
 
 | Boundary | Value |
 | --- | --- |
+| Real E1 result accessed | `false` |
 | Real E1 private evidence accessed | `false` |
 | Provider contacted | `false` |
 | API key/credential accessed | `false` |
 | Live capability probe executed | `false` |
 | LLM called | `false` |
+| Real T0 generated | `false` |
 | Real proposal generated | `false` |
 | Rule v2 authorized | `false` |
 | Runtime authority | `false` |

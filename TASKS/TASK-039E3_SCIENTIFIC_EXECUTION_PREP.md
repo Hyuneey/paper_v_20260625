@@ -20,8 +20,12 @@ This preparation:
 
 ## Frozen execution identity
 
-- Base: `3c263277d5b30217058601bd0e12876d2cf58ba4`
+- Authoritative audited base: `11a5f04a0422049a099020f06c59ec23bc72d130`
+- Historical initial preparation base (preserved in Git):
+  `3c263277d5b30217058601bd0e12876d2cf58ba4`
 - Branch: `task-039e3-scientific-execution-prep`
+- E3 authorization:
+  `85470f2c433bb64c052e635dbb5276fbbd26caa54394a1950317eb3deb7baae3`
 - Provider identity: `openai`
 - Endpoint: `https://api.openai.com/v1/chat/completions`
 - Exact model: `gpt-5.4-2026-03-05`

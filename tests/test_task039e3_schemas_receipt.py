@@ -49,9 +49,17 @@ class Task039E3SchemasReceiptTests(unittest.TestCase):
         schema = self._load("task039e3_preparation_receipt_v1_schema.json")
         self.assertEqual(set(receipt), set(schema["required"]))
         self.assertEqual(receipt["status"], "passed_task039e3_scientific_execution_preparation")
+        self.assertTrue(receipt["e3_authorization_bound"])
+        self.assertTrue(receipt["e0_e1_lineage_bound"])
+        self.assertEqual(
+            receipt["e3_authorization_hash"],
+            "85470f2c433bb64c052e635dbb5276fbbd26caa54394a1950317eb3deb7baae3",
+        )
         self.assertFalse(receipt["provider_contacted"])
         self.assertFalse(receipt["credential_accessed"])
+        self.assertFalse(receipt["real_e1_result_accessed"])
         self.assertFalse(receipt["llm_called"])
+        self.assertFalse(receipt["real_t0_generated"])
         self.assertFalse(receipt["rule_v2_authorized"])
         self.assertFalse(receipt["runtime_authority"])
 

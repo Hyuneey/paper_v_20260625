@@ -41,13 +41,32 @@ from paperworks.v6.task039e2_execution_configuration_v1 import (
 
 
 TASK_ID = "TASK-039E3-PREP"
-BASE_COMMIT = "3c263277d5b30217058601bd0e12876d2cf58ba4"
+BASE_COMMIT = "11a5f04a0422049a099020f06c59ec23bc72d130"
+HISTORICAL_INITIAL_PREPARATION_BASE_COMMIT = (
+    "3c263277d5b30217058601bd0e12876d2cf58ba4"
+)
 BRANCH = "task-039e3-scientific-execution-prep"
 STATUS = "passed_task039e3_scientific_execution_preparation"
 
+E0_PROTOCOL_BUNDLE_HASH = (
+    "a95aecffeaff82d0c67f966f19293ef947827cb0e1e7621a38ecd7c1fd96e17b"
+)
+E1_MATERIALIZATION_RESULT_HASH = (
+    "2831f175f777bc0544513c35926269e05b6360c17e13f70b89d1768f1c7aa164"
+)
+E1_CONSTRUCTION_EVIDENCE_COHORT_HASH = (
+    "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4"
+)
+E1_PRIVATE_LEDGER_HASH = (
+    "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7"
+)
 E2_PROTOCOL_BUNDLE_HASH = (
     "2295f6e57aff47081419d70e942af02101de33fa545a758ea4a7e6476a46e6e8"
 )
+E3_AUTHORIZATION_HASH = (
+    "85470f2c433bb64c052e635dbb5276fbbd26caa54394a1950317eb3deb7baae3"
+)
+RELATION_COUNT = 42
 MAIN_PROMPT_HASH = (
     "a251e4b9da31c33e72d14dd81da6b2b1d0d1437fdf37ca311330eccce226f1ba"
 )
@@ -80,12 +99,14 @@ PROVIDER_MODEL_RECEIPT_HASH = (
 )
 
 LIVE_PROVIDER_TRANSPORT_ENABLED = False
+REAL_E1_RESULT_ACCESSED = False
 REAL_E1_PRIVATE_EVIDENCE_ACCESSED = False
 PROVIDER_CONTACTED = False
 CREDENTIAL_ACCESSED = False
 API_KEY_ACCESSED = False
 CAPABILITY_PROBE_EXECUTED = False
 LLM_CALLED = False
+REAL_T0_GENERATED = False
 REAL_PROPOSAL_GENERATED = False
 RULE_V2_AUTHORIZED = False
 RUNTIME_AUTHORITY_GRANTED = False
@@ -160,6 +181,56 @@ def _require_nonempty_string(value: object, field_name: str) -> str:
     if not isinstance(value, str) or not value:
         raise TASK039E3PreparationError(f"{field_name} must be a nonempty string")
     return value
+
+
+def validate_e3_authorization_v1(document: Mapping[str, Any]) -> str:
+    """Validate the exact public E3 authorization without enabling live I/O."""
+
+    observed_hash = _require_hash(document.get("artifact_hash"), "artifact_hash")
+    content = {key: value for key, value in document.items() if key != "artifact_hash"}
+    if stable_hash_v1(content) != observed_hash or observed_hash != E3_AUTHORIZATION_HASH:
+        raise TASK039E3PreparationError("E3 authorization self-hash differs")
+
+    exact_bindings: Mapping[str, Any] = {
+        "artifact_type": "task039e3_authorization_v1",
+        "status": "authorized_task039e3_rule_construction_scientific_execution",
+        "readiness": "READY_FOR_TASK039E3",
+        "e0_protocol_bundle_hash": E0_PROTOCOL_BUNDLE_HASH,
+        "e1_materialization_result_hash": E1_MATERIALIZATION_RESULT_HASH,
+        "e1_construction_evidence_cohort_hash": (
+            E1_CONSTRUCTION_EVIDENCE_COHORT_HASH
+        ),
+        "e1_private_ledger_hash": E1_PRIVATE_LEDGER_HASH,
+        "e2_protocol_bundle_hash": E2_PROTOCOL_BUNDLE_HASH,
+        "relation_count": RELATION_COUNT,
+        "maximum_scientific_provider_calls": MAXIMUM_SCIENTIFIC_SLOTS,
+        "capability_probe_count": 1,
+        "capability_probe_must_precede_scientific_calls": True,
+        "capability_probe_scientific_call": False,
+        "scientific_concurrency": 1,
+        "scientific_generation_retries": 0,
+        "transport_retries_per_request_maximum": MAXIMUM_TRANSPORT_RETRIES,
+        "deterministic_t0_relation_count": RELATION_COUNT,
+        "t1_calls_per_relation": 1,
+        "t1b_calls_per_relation": 3,
+        "t2_maximum_calls_per_relation": 3,
+        "direct_number_calls_per_relation": 1,
+        "exact_model_snapshot": EXACT_MODEL,
+        "exact_provider_endpoint": "https://api.openai.com/v1/chat/completions",
+        "model_fallback_allowed": False,
+        "alternative_model_fallback_allowed": False,
+        "hai_access_authorized": False,
+        "train1_train2_train3_train4_access_authorized": False,
+        "test_labels_attacks_access_authorized": False,
+        "rule_v2_materialization_authorized": False,
+        "runtime_authority": False,
+    }
+    for field_name, expected in exact_bindings.items():
+        if document.get(field_name) != expected:
+            raise TASK039E3PreparationError(
+                f"E3 authorization field differs: {field_name}"
+            )
+    return observed_hash
 
 
 def _canonical_json(value: Mapping[str, Any]) -> str:
@@ -1527,6 +1598,7 @@ class CapabilityProbeRunnerV1:
 @dataclass(frozen=True)
 class FutureLiveRunnerBoundaryV1:
     required_authorization_contract: str = "TASK039E3AuthorizationV1"
+    exact_authorization_hash: str = E3_AUTHORIZATION_HASH
     clean_execution_code_commit_required: bool = True
     exact_e2_bundle_required: bool = True
     exact_e1_private_ledger_hash_required: bool = True
@@ -1537,6 +1609,8 @@ class FutureLiveRunnerBoundaryV1:
     def __post_init__(self) -> None:
         if self.required_authorization_contract != "TASK039E3AuthorizationV1":
             raise TASK039E3PreparationError("future authorization contract differs")
+        if self.exact_authorization_hash != E3_AUTHORIZATION_HASH:
+            raise TASK039E3PreparationError("future authorization hash differs")
         for field_name in (
             "clean_execution_code_commit_required",
             "exact_e2_bundle_required",
@@ -1553,17 +1627,21 @@ class FutureLiveRunnerBoundaryV1:
 @dataclass(frozen=True)
 class TASK039E3PreparationReceiptV1:
     status: str = STATUS
+    e3_authorization_bound: bool = True
+    e0_e1_lineage_bound: bool = True
     frozen_e2_configuration_bound: bool = True
     mock_provider_prepared: bool = True
     live_provider_locked: bool = True
     capability_probe_harness_prepared: bool = True
     orchestration_harness_prepared: bool = True
     custody_and_metrics_prepared: bool = True
+    real_e1_result_accessed: bool = False
     real_e1_private_evidence_accessed: bool = False
     provider_contacted: bool = False
     credential_accessed: bool = False
     capability_probe_executed_live: bool = False
     llm_called: bool = False
+    real_t0_generated: bool = False
     real_proposal_generated: bool = False
     rule_v2_authorized: bool = False
     runtime_authority: bool = False
@@ -1572,6 +1650,8 @@ class TASK039E3PreparationReceiptV1:
         if self.status != STATUS:
             raise TASK039E3PreparationError("preparation receipt status differs")
         for field_name in (
+            "e3_authorization_bound",
+            "e0_e1_lineage_bound",
             "frozen_e2_configuration_bound",
             "mock_provider_prepared",
             "live_provider_locked",
@@ -1582,11 +1662,13 @@ class TASK039E3PreparationReceiptV1:
             if getattr(self, field_name) is not True:
                 raise TASK039E3PreparationError(f"{field_name} must be true")
         for field_name in (
+            "real_e1_result_accessed",
             "real_e1_private_evidence_accessed",
             "provider_contacted",
             "credential_accessed",
             "capability_probe_executed_live",
             "llm_called",
+            "real_t0_generated",
             "real_proposal_generated",
             "rule_v2_authorized",
             "runtime_authority",
@@ -1598,6 +1680,15 @@ class TASK039E3PreparationReceiptV1:
         return {
             "artifact_type": "task039e3_preparation_receipt_v1",
             "status": self.status,
+            "e3_authorization_hash": E3_AUTHORIZATION_HASH,
+            "e3_authorization_bound": self.e3_authorization_bound,
+            "e0_protocol_bundle_hash": E0_PROTOCOL_BUNDLE_HASH,
+            "e1_materialization_result_hash": E1_MATERIALIZATION_RESULT_HASH,
+            "e1_construction_evidence_cohort_hash": (
+                E1_CONSTRUCTION_EVIDENCE_COHORT_HASH
+            ),
+            "e1_private_ledger_hash": E1_PRIVATE_LEDGER_HASH,
+            "e0_e1_lineage_bound": self.e0_e1_lineage_bound,
             "frozen_e2_configuration_bound": self.frozen_e2_configuration_bound,
             "mock_provider_prepared": self.mock_provider_prepared,
             "live_provider_locked": self.live_provider_locked,
@@ -1606,6 +1697,7 @@ class TASK039E3PreparationReceiptV1:
             ),
             "orchestration_harness_prepared": self.orchestration_harness_prepared,
             "custody_and_metrics_prepared": self.custody_and_metrics_prepared,
+            "real_e1_result_accessed": self.real_e1_result_accessed,
             "real_e1_private_evidence_accessed": (
                 self.real_e1_private_evidence_accessed
             ),
@@ -1613,6 +1705,7 @@ class TASK039E3PreparationReceiptV1:
             "credential_accessed": self.credential_accessed,
             "capability_probe_executed_live": self.capability_probe_executed_live,
             "llm_called": self.llm_called,
+            "real_t0_generated": self.real_t0_generated,
             "real_proposal_generated": self.real_proposal_generated,
             "rule_v2_authorized": self.rule_v2_authorized,
             "runtime_authority": self.runtime_authority,
@@ -1648,21 +1741,25 @@ def instantiate_live_provider_request_v1(*_args: Any, **_kwargs: Any) -> None:
 
 def assert_preparation_boundary_v1(
     *,
+    real_e1_result_accessed: bool = False,
     real_e1_private_evidence_accessed: bool = False,
     provider_contacted: bool = False,
     credential_accessed: bool = False,
     capability_probe_executed_live: bool = False,
     llm_called: bool = False,
+    real_t0_generated: bool = False,
     real_proposal_generated: bool = False,
     rule_v2_authorized: bool = False,
     runtime_authority: bool = False,
 ) -> str:
     boundaries = {
+        "real_e1_result_accessed": real_e1_result_accessed,
         "real_e1_private_evidence_accessed": real_e1_private_evidence_accessed,
         "provider_contacted": provider_contacted,
         "credential_accessed": credential_accessed,
         "capability_probe_executed_live": capability_probe_executed_live,
         "llm_called": llm_called,
+        "real_t0_generated": real_t0_generated,
         "real_proposal_generated": real_proposal_generated,
         "rule_v2_authorized": rule_v2_authorized,
         "runtime_authority": runtime_authority,
@@ -1687,16 +1784,22 @@ __all__ = [
     "ConstructionEvidenceContextV1",
     "DIRECT_NUMBER_PROMPT_HASH",
     "DIRECT_NUMBER_SCHEMA_HASH",
+    "E0_PROTOCOL_BUNDLE_HASH",
     "E0_BUDGET_POLICY_HASH",
     "E0_CONTROLLER_POLICY_HASH",
     "E0_VALIDITY_POLICY_HASH",
     "E2_PROTOCOL_BUNDLE_HASH",
+    "E1_CONSTRUCTION_EVIDENCE_COHORT_HASH",
+    "E1_MATERIALIZATION_RESULT_HASH",
+    "E1_PRIVATE_LEDGER_HASH",
+    "E3_AUTHORIZATION_HASH",
     "EXECUTION_SCHEDULE_HASH",
     "ExecutionFailureReceiptV1",
     "FROZEN_E2_BINDING",
     "FrozenE2ExecutionBindingV1",
     "FrozenProviderRequestV1",
     "FutureLiveRunnerBoundaryV1",
+    "HISTORICAL_INITIAL_PREPARATION_BASE_COMMIT",
     "INDIVIDUAL_PROPOSALS_PUBLIC",
     "LIVE_PROVIDER_TRANSPORT_ENABLED",
     "LLM_CALLED",
@@ -1716,8 +1819,11 @@ __all__ = [
     "ProviderTransportAttemptV1",
     "ProviderTransportV1",
     "REAL_E1_PRIVATE_EVIDENCE_ACCESSED",
+    "REAL_E1_RESULT_ACCESSED",
     "REAL_PROPOSAL_GENERATED",
+    "REAL_T0_GENERATED",
     "RULE_V2_AUTHORIZED",
+    "RELATION_COUNT",
     "RUNTIME_AUTHORITY_GRANTED",
     "STATUS",
     "ScientificRunAbortV1",
@@ -1744,4 +1850,5 @@ __all__ = [
     "read_openai_api_key_v1",
     "render_direct_number_input_v1",
     "render_main_construction_input_v1",
+    "validate_e3_authorization_v1",
 ]

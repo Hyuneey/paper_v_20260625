@@ -9,14 +9,22 @@ from paperworks.v6.task039e2_execution_configuration_v1 import (
 )
 from paperworks.v6.task039e3_execution_prep_v1 import (
     API_KEY_ACCESSED,
+    BASE_COMMIT,
     CAPABILITY_PROBE_EXECUTED,
     CREDENTIAL_ACCESSED,
+    E0_PROTOCOL_BUNDLE_HASH,
+    E1_CONSTRUCTION_EVIDENCE_COHORT_HASH,
+    E1_MATERIALIZATION_RESULT_HASH,
+    E1_PRIVATE_LEDGER_HASH,
+    E3_AUTHORIZATION_HASH,
     FROZEN_E2_BINDING,
     LIVE_PROVIDER_TRANSPORT_ENABLED,
     LLM_CALLED,
     PROVIDER_CONTACTED,
     REAL_E1_PRIVATE_EVIDENCE_ACCESSED,
+    REAL_E1_RESULT_ACCESSED,
     REAL_PROPOSAL_GENERATED,
+    REAL_T0_GENERATED,
     RULE_V2_AUTHORIZED,
     RUNTIME_AUTHORITY_GRANTED,
     CapabilityProbeRunnerV1,
@@ -32,11 +40,39 @@ from paperworks.v6.task039e3_execution_prep_v1 import (
     open_live_provider_transport_v1,
     read_openai_api_key_v1,
     render_main_construction_input_v1,
+    validate_e3_authorization_v1,
 )
 from task039e3_support import capability_payload, make_evidence
 
 
 class Task039E3RequestCapabilityBoundaryTests(unittest.TestCase):
+    def test_exact_public_e3_authorization_and_lineage_bindings(self) -> None:
+        root = Path(__file__).parents[1]
+        authorization = json.loads(
+            (root / "docs" / "task_reports" / "TASK-039E3_AUTHORIZATION.json")
+            .read_text(encoding="utf-8")
+        )
+        self.assertEqual(validate_e3_authorization_v1(authorization), E3_AUTHORIZATION_HASH)
+        self.assertEqual(BASE_COMMIT, "11a5f04a0422049a099020f06c59ec23bc72d130")
+        self.assertEqual(
+            authorization["e0_protocol_bundle_hash"], E0_PROTOCOL_BUNDLE_HASH
+        )
+        self.assertEqual(
+            authorization["e1_materialization_result_hash"],
+            E1_MATERIALIZATION_RESULT_HASH,
+        )
+        self.assertEqual(
+            authorization["e1_construction_evidence_cohort_hash"],
+            E1_CONSTRUCTION_EVIDENCE_COHORT_HASH,
+        )
+        self.assertEqual(
+            authorization["e1_private_ledger_hash"], E1_PRIVATE_LEDGER_HASH
+        )
+        tampered = dict(authorization)
+        tampered["relation_count"] = 41
+        with self.assertRaises(TASK039E3PreparationError):
+            validate_e3_authorization_v1(tampered)
+
     def test_exact_frozen_e2_binding(self) -> None:
         binding = FROZEN_E2_BINDING
         self.assertEqual(
@@ -136,6 +172,7 @@ class Task039E3RequestCapabilityBoundaryTests(unittest.TestCase):
                 with self.assertRaises(TASK039E3PreparationError):
                     function(object())
         boundary = FutureLiveRunnerBoundaryV1()
+        self.assertEqual(boundary.exact_authorization_hash, E3_AUTHORIZATION_HASH)
         self.assertFalse(boundary.live_runner_present)
         self.assertFalse(boundary.execution_authorized)
 
@@ -162,12 +199,14 @@ class Task039E3RequestCapabilityBoundaryTests(unittest.TestCase):
 
     def test_all_prep_boundaries_remain_false(self) -> None:
         self.assertFalse(LIVE_PROVIDER_TRANSPORT_ENABLED)
+        self.assertFalse(REAL_E1_RESULT_ACCESSED)
         self.assertFalse(REAL_E1_PRIVATE_EVIDENCE_ACCESSED)
         self.assertFalse(PROVIDER_CONTACTED)
         self.assertFalse(CREDENTIAL_ACCESSED)
         self.assertFalse(API_KEY_ACCESSED)
         self.assertFalse(CAPABILITY_PROBE_EXECUTED)
         self.assertFalse(LLM_CALLED)
+        self.assertFalse(REAL_T0_GENERATED)
         self.assertFalse(REAL_PROPOSAL_GENERATED)
         self.assertFalse(RULE_V2_AUTHORIZED)
         self.assertFalse(RUNTIME_AUTHORITY_GRANTED)
