@@ -1,0 +1,149 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e0_authorization_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "agent_execution_authorized": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e0_authorization_v1"
+    },
+    "audited_d2_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "audited_directional_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "audited_pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "confirmed_directional_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "confirmed_pair_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "confirmed_relation_primitive_contract_design_authorized": {
+      "type": "boolean"
+    },
+    "construction_evidence_protocol_design_authorized": {
+      "type": "boolean"
+    },
+    "d1_directional_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_source_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_target_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d2_private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "detector_integration_authorized": {
+      "type": "boolean"
+    },
+    "deterministic_validity_verifier_protocol_design_authorized": {
+      "type": "boolean"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "llm_calls_authorized": {
+      "type": "boolean"
+    },
+    "outer_sealed_evaluation_authorized": {
+      "type": "boolean"
+    },
+    "process": {
+      "type": "string"
+    },
+    "readiness": {
+      "type": "string"
+    },
+    "real_rule_generation_authorized": {
+      "type": "boolean"
+    },
+    "relation_family": {
+      "type": "string"
+    },
+    "rule_construction_workflow_protocol_design_authorized": {
+      "type": "boolean"
+    },
+    "rule_v2_runtime_authorized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "t0_generation_authorized": {
+      "type": "boolean"
+    },
+    "t1_t1b_t2_generation_authorized": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "test_labels_attacks_authorized": {
+      "type": "boolean"
+    },
+    "train4_authorized": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "readiness",
+    "full_name",
+    "audited_d2_result_hash",
+    "audited_directional_summary_hash",
+    "audited_pair_summary_hash",
+    "d1_source_ledger_hash",
+    "d1_target_ledger_hash",
+    "d1_directional_ledger_hash",
+    "d2_private_ledger_hash",
+    "confirmed_directional_count",
+    "confirmed_pair_count",
+    "relation_family",
+    "process",
+    "construction_evidence_protocol_design_authorized",
+    "confirmed_relation_primitive_contract_design_authorized",
+    "rule_construction_workflow_protocol_design_authorized",
+    "deterministic_validity_verifier_protocol_design_authorized",
+    "real_rule_generation_authorized",
+    "llm_calls_authorized",
+    "t0_generation_authorized",
+    "t1_t1b_t2_generation_authorized",
+    "rule_v2_runtime_authorized",
+    "agent_execution_authorized",
+    "detector_integration_authorized",
+    "train4_authorized",
+    "test_labels_attacks_authorized",
+    "outer_sealed_evaluation_authorized",
+    "artifact_hash"
+  ],
+  "title": "task039e0_authorization_v1",
+  "type": "object"
+}

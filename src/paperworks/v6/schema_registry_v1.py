@@ -354,6 +354,12 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039d2_result_contract_recovery_receipt_v1": (
         "schemas/v6/task039d2_result_contract_recovery_receipt_v1_schema.json"
     ),
+    "task039d2_final_audit_v1": (
+        "schemas/v6/task039d2_final_audit_v1_schema.json"
+    ),
+    "task039e0_authorization_v1": (
+        "schemas/v6/task039e0_authorization_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),
