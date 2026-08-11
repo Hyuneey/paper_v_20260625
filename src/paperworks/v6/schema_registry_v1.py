@@ -321,6 +321,12 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039d2_authorization_v1": (
         "schemas/v6/task039d2_authorization_v1_schema.json"
     ),
+    "task039d2_confirmation_result_v1": (
+        "schemas/v6/task039d2_confirmation_result_v1_schema.json"
+    ),
+    "task039d2_execution_receipt_v1": (
+        "schemas/v6/task039d2_execution_receipt_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),
