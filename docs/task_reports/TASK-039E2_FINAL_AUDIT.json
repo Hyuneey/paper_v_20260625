@@ -1,0 +1,235 @@
+{
+  "artifact_hash": "eef76ee5d30a8fcb47ad706ac3ba39e2247e69568edcb5909572c8fd41587c8d",
+  "artifact_type": "task039e2_final_audit_v1",
+  "audit_boundary": {
+    "api_key_accessed": false,
+    "capability_probe_executed": false,
+    "credential_checked": false,
+    "e1_private_ledger_accessed": false,
+    "hai_accessed": false,
+    "llm_called": false,
+    "provider_contacted": false,
+    "real_proposal_generated": false,
+    "real_t0_generated": false
+  },
+  "audit_prep": {
+    "commit": "e5a6f3cd1bc3355142ff3794049f4a4039926d6c",
+    "merge_commit": "136d207a9e12322ea56d20781d8ec4a7654f8764",
+    "oracle_imports_production_e2_freezer": false,
+    "oracle_standard_library_only": true,
+    "status": "passed_task039e2_audit_preparation",
+    "synthetic_tests_passed": 32
+  },
+  "component_hashes": {
+    "direct_number_provider_schema": "b1b91bf27fd191da57984be625a2547e4e5ee96a0aca52535df071af92bfd6ca",
+    "direct_number_prompt": "fb01d8990ee3a7affe540dfdf3556b46d7bd744cd1e3a04d6fd9d79772dd2769",
+    "direct_number_role_policy": "c95c65b984ea508937f490c133ad4e6da832e6a2d4b165745fe834db56924fe6",
+    "direct_number_structured_output_policy": "4a1d196bff89718f7b6ecc6a5594c89f12f90713b2cf29cd0012540996d50b39",
+    "execution_configuration": "4a7387692db5bc866e51bb75f2d00da1c7b93106cd8ae84619e6528551cba333",
+    "execution_schedule": "6db63485387924b28e9ce498aae46412a127ba69055a28e72880e1afffa4c4ca",
+    "main_initial_prompt": "a251e4b9da31c33e72d14dd81da6b2b1d0d1437fdf37ca311330eccce226f1ba",
+    "main_provider_schema": "92c628faf78e5ebdcfc3ec2dbeb9daa42b6beff0875cbf226c87c2f2c43cc216",
+    "main_structured_output_policy": "c3a0abd4d9af2a8aaf0ef13b3a3ff88e41ca09f02fe58d40d1d702df16be04c1",
+    "model_capability_receipt": "c44c9b39d4e92d3ebac62a962ff967073411e55184cbcdd9d770cb7f2eeaf649",
+    "prompt_template_bundle": "babefe1a17f45ecf085bc6ca554a2e1267a0f31f48ef4150b7ea698b0fc2c588",
+    "provider_model_freeze": "85154455772d4f8faaac0e86e25006718071bd0679897847d00a59f22c25d4e4",
+    "provider_response_custody_policy": "1a7de5643d3b32b720a99ad5f33548862fe0c64ba9b8f1f182bd84295c7b4f29",
+    "rendering_policy": "1e7a5f8fa32bcb0771cbf54a755032944db3d7df622dcd3963b88ac4a076c0e8",
+    "t0_template_content": "504328783b654054029ab3277360bc6efc7bbd8eef3d5f1f6cc98ea3aefb12ff",
+    "t0_template_policy": "25d335a08baef67222085dcc039d96eb4e77f8c72bd53e9dcd4b754053e5f2a1",
+    "t2_controller": "6cc22fea19a636d590cb5e744d896e8f8588946049d2e0743674883c9eae15b4",
+    "t2_followup_prompt": "a633067a7c9927be158f68ce714236f4c18c09433d49c903dac941a9774eeca5",
+    "t2_retrieval": "54e5c90fd5ee1f14e0dae7bbc9cb4e9b3f419a2ed06c661352f86ec46aac83fe",
+    "transport_retry_policy": "3a7192d07ef4980c9ecaeb3f28fe00f31df8c299a177d86250f5ebd09f1c477b"
+  },
+  "direct_number_audit": {
+    "calibrated_references_withheld": true,
+    "calibrated_values_withheld": true,
+    "designated_comparator": "T1",
+    "generation_calls_per_relation": 1,
+    "indirect_retrieval_leakage_absent": true,
+    "provider_schema_hash_verified": true,
+    "withheld_roles": [
+      "source_step_threshold",
+      "source_stability_tolerance",
+      "target_noise_scale"
+    ]
+  },
+  "e3_authorization_created": true,
+  "e3_authorization_hash": "85470f2c433bb64c052e635dbb5276fbbd26caa54394a1950317eb3deb7baae3",
+  "findings": {
+    "BLOCKING": [],
+    "DOCUMENTATION_OR_HYGIENE": [
+      {
+        "classification": "expected_environment_incompatibility",
+        "finding": "Four historical GDN regressions require the pinned external checkout, which is intentionally absent from the temporary LF regression clone; two optional tests skipped."
+      },
+      {
+        "classification": "expected_environment_incompatibility",
+        "finding": "Three historical P1D optional-dependency tests expect Torch/PyG absence, while the exact existing audit environment intentionally contains them."
+      }
+    ],
+    "IMPORTANT_NONBLOCKING": [
+      {
+        "classification": "windows_worktree_line_ending_diagnostic",
+        "finding": "Three raw-byte prompt assertions observe CRLF in the ordinary Windows worktree; canonical Git blobs and an LF-normalized complete E2 suite reproduce all frozen prompt hashes."
+      }
+    ]
+  },
+  "independent_configuration_reproduction": {
+    "api_base_url": "https://api.openai.com",
+    "api_endpoint": "/v1/chat/completions",
+    "api_endpoint_family": "chat_completions",
+    "automatic_upgrade_allowed": false,
+    "exact_model_snapshot": "gpt-5.4-2026-03-05",
+    "independent_configuration_hash": "c47689c5c0a7c92e87e81c3836321125dc95cb12d388e3eef246ed0d5852c201",
+    "model_alias_fallback_allowed": false,
+    "provider": "openai",
+    "sampling_configuration": {
+      "frequency_penalty": 0,
+      "max_completion_tokens": 1024,
+      "model": "gpt-5.4-2026-03-05",
+      "n": 1,
+      "presence_penalty": 0,
+      "reasoning_effort": "none",
+      "seed": null,
+      "seed_determinism_claimed": false,
+      "seed_used": false,
+      "store": false,
+      "stream": false,
+      "temperature": 0.7,
+      "tool_choice": null,
+      "tools": [],
+      "top_p": 1.0
+    },
+    "snapshot_locked": true,
+    "snapshot_unavailable_outcome": "block_task039e3",
+    "stateless_scientific_requests": true
+  },
+  "lineage": {
+    "authoritative_main_expected_and_unchanged": "4a6b5875b59bdcc7c3bd0957e90fa27b71e0e9fb",
+    "e2_authorization_hash": "5a68559bc0e95c6e92061cbf5762ed3359817537f3cbe0c5ae885774d14250ff",
+    "e2_commit": "3c263277d5b30217058601bd0e12876d2cf58ba4",
+    "e2_status": "passed_task039e2_execution_configuration_freeze",
+    "e2_protocol_bundle_hash": "2295f6e57aff47081419d70e942af02101de33fa545a758ea4a7e6476a46e6e8",
+    "e0_protocol_bundle_hash": "a95aecffeaff82d0c67f966f19293ef947827cb0e1e7621a38ecd7c1fd96e17b",
+    "e1_construction_evidence_cohort_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+    "e1_materialization_result_hash": "2831f175f777bc0544513c35926269e05b6360c17e13f70b89d1768f1c7aa164",
+    "e1_private_ledger_binding_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+    "numeric_binding_count": 462,
+    "relation_count": 42
+  },
+  "prompt_and_schema_audit": {
+    "arm_label_model_visible": false,
+    "call_index_model_visible": false,
+    "candidate_method_metrics_model_visible": false,
+    "initial_model_visible_content_equal_for_t1_t1b1_t1b2_t1b3_t2call1": true,
+    "main_schema_closed": true,
+    "main_schema_relation_specific_answer_leakage_absent": true,
+    "model_generates_project_provenance": false,
+    "other_arm_outcome_model_visible": false,
+    "project_envelope_added_after_provider_core_parsing": true,
+    "semantic_validity_separate_from_syntactic_schema": true,
+    "synthetic_initial_model_visible_content_hash": "cc013b4a93766bfa13b50283da8fde7930bcc54f8940f88bd8091535318b73cc"
+  },
+  "provider_noncontact_audit": {
+    "account_snapshot_availability": "not_probed",
+    "api_key_value_inspected": false,
+    "capability_probe_executed": false,
+    "credential_environment_variable_name_only_recorded": true,
+    "e2_source_imports_provider_or_network_client": false,
+    "e2_source_reads_private_e1_root": false,
+    "llm_called": false,
+    "provider_contacted": false,
+    "real_t0_generated": false
+  },
+  "provider_response_custody_audit": {
+    "api_key_storage_prohibited": true,
+    "authorization_header_storage_prohibited": true,
+    "chain_of_thought_storage_prohibited": true,
+    "operational_receipt_fields_closed_and_verified": true,
+    "raw_hai_storage_prohibited": true,
+    "structured_parsed_response_is_scientific_record": true
+  },
+  "readiness": "READY_FOR_TASK039E3",
+  "regression": {
+    "br_family": "101 passed",
+    "c_family": "188 passed, 2 skipped, 4 expected external-checkout diagnostics",
+    "d_family": "164 passed, 2 skipped",
+    "e0": "65 passed on canonical LF content",
+    "e1_and_e1_audit": "79 passed",
+    "e2_audit_prep": "32 passed",
+    "e2_full": "85 passed on canonical Git/LF content; ordinary Windows view has 3 explained CRLF diagnostics",
+    "hai_provenance": "37 passed",
+    "p1_construction_outcome": "131 passed, 3 expected optional-dependency-presence diagnostics",
+    "pip_checks": "exact and existing environments passed",
+    "public_boundary_scans": "passed",
+    "public_json_and_v6_schemas": "passed",
+    "python_compilation": "passed",
+    "status": "passed_no_unexplained_scientific_regression",
+    "task032": "106 passed"
+  },
+  "retry_audit": {
+    "eligible_transport_failures_require_no_model_response": true,
+    "maximum_transport_retries_per_request": 2,
+    "noneligible_and_scientific_failures_never_transport_retry": true,
+    "relation_skipping_allowed": false,
+    "retry_exhaustion_outcome": "abort_full_scientific_run",
+    "scientific_generation_retries": 0
+  },
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schedule_audit": {
+    "capability_probe_count": 1,
+    "capability_probe_executed": false,
+    "capability_probe_scientific_call": false,
+    "cross_arm_output_visibility": false,
+    "direct_number_calls": 42,
+    "maximum_scientific_provider_calls": 336,
+    "relation_count": 42,
+    "relation_identity_order_hash": "debb7eededbe9b0cfd6d178d1f34f1cdfff225b6a59c9f1d8ecb309d4f69568e",
+    "relation_order_equals_e1_cohort_serialization_order": true,
+    "scientific_concurrency": 1,
+    "t0_provider_calls": 0,
+    "t1_calls": 42,
+    "t1b_calls": 126,
+    "t2_maximum_calls": 126
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039e2_final_audit",
+  "t0_audit": {
+    "approved_e1_references_required": true,
+    "fallback_used": false,
+    "provider_calls": 0,
+    "real_relation_generated": false,
+    "search_used": false,
+    "synthetic_fixture_only": true,
+    "template_hash_verified": true
+  },
+  "t1b_audit": {
+    "all_three_calls_required": true,
+    "calls_per_relation": 3,
+    "fourth_call_possible": false,
+    "no_cross_call_memory": true,
+    "no_previous_proposal_or_validity_visible": true,
+    "selection_policy": "lowest_admissible_call_index_else_no_rule",
+    "stateless_independent_requests": true
+  },
+  "t2_audit": {
+    "allowed_controller_actions": [
+      "revise",
+      "retrieve",
+      "no_rule"
+    ],
+    "call1_initial_content_equal": true,
+    "controller_hash_verified": true,
+    "controller_project_owned_and_deterministic": true,
+    "followup_bounded_to_original_input_issue_codes_fields_retrieved_slice_and_previous_hash": true,
+    "maximum_generation_calls": 3,
+    "maximum_retrieval_actions": 1,
+    "model_selects_controller_action": false,
+    "retrieval_identity_subset_of_initial_e1_corpus": true,
+    "retrieval_introduces_new_measurement": false
+  },
+  "task_id": "TASK-039E2-AUDIT"
+}

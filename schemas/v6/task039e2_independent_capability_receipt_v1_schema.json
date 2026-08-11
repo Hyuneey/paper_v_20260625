@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_independent_capability_receipt_v1_schema.json",
+  "title": "TASK-039E2 Independent Capability Receipt V1",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "task039e2_independent_capability_receipt_v1"},
+    "provider": {"const": "openai"},
+    "endpoint": {"const": "/v1/chat/completions"},
+    "exact_model_snapshot": {"const": "gpt-5.4-2026-03-05"},
+    "structured_output_required": {"const": true},
+    "seed_policy": {"const": "deprecated_not_relied_upon"},
+    "provider_contacted": {"const": false},
+    "live_capability_checked": {"const": false},
+    "account_availability_checked": {"const": false},
+    "seed_determinism_claimed": {"const": false},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "required": [
+    "schema_version",
+    "provider",
+    "endpoint",
+    "exact_model_snapshot",
+    "structured_output_required",
+    "seed_policy",
+    "provider_contacted",
+    "live_capability_checked",
+    "account_availability_checked",
+    "seed_determinism_claimed",
+    "artifact_hash"
+  ],
+  "additionalProperties": false
+}
