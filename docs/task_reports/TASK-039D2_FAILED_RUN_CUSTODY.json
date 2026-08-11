@@ -1,0 +1,42 @@
+{
+  "artifact_hash": "2a6e070686d07f9de7c53534ead4a6d13f39d4ff07384cb0627bcd6be9e64184",
+  "artifact_type": "task039d2_failed_run_custody_v1",
+  "claim_boundary": "custody evidence for serialization recovery; not an independent scientific audit",
+  "confirmation_policy_hash": "83419f6acefaeb21ebc329d5ff9df8563e9636da72ad5367318a172df8fb0b27",
+  "d1_directional_ledger_hash": "e372d7ccf4a7dde5f7ccd91049cc73b443b3b19a3a0c563f451aea50e8faddc7",
+  "d2_authorization_hash": "791f985afdc5f16b5c6b5aec4eb7bcefe1e39bc3b0f262cc0ff56c7ff5071f25",
+  "defect_classification": "non_scientific_result_contract_schema_defect",
+  "machine_verifiable_evidence": {
+    "all_45_d1_directional_references_exact": true,
+    "all_45_private_record_hashes_valid": true,
+    "commit_a_has_no_result_commit_b": true,
+    "commit_a_schema_runtime_cardinality_mismatch_reproduced": true,
+    "original_branch_tip_equals_commit_a": true,
+    "private_ledger_self_hash_valid": true
+  },
+  "original_branch": "origin/task-039d2-train3-confirmation",
+  "original_branch_tip": "5524262d8a666093f948f7f01491b4a0b03e568e",
+  "original_execution_commit_a": "5524262d8a666093f948f7f01491b4a0b03e568e",
+  "original_public_outputs_authoritative": false,
+  "original_result_commit_b": null,
+  "original_terminal_status": "failed_task039d2_result_contract",
+  "private_ledger_hash": "d349421ae9a866b924c329dcb2546088466866e09f45851ec5d18090509dc062",
+  "private_ledger_record_count": 45,
+  "private_scientific_ledger_authoritative_custody_candidate": true,
+  "result_contract_validation_failure_stage": "post_scientific_public_execution_receipt_schema_validation",
+  "schema_defect_identifier": "scientific_source_hashes_example_key_undercoverage_v1",
+  "schema_version": "1.0.0",
+  "scientific_computation_completed_before_schema_failure": true,
+  "scientific_source_commit_blob_hashes": {
+    "src/paperworks/profiling/task039d1_execution_optimization_v1.py": "756d5c1ec7e506420e8cb49f5aa7827ba9ecd966f4bb18bd56271b571ee7e06e",
+    "src/paperworks/profiling/task039d2_confirmation_v1.py": "dda2151d633aa16740fff1e5c133d83211681da460a08839960fc55d6e1c7c4b",
+    "src/paperworks/profiling/task039d2_real_execution_v1.py": "88b29be3ec7d77b6004f2974140f8cd3cfbe6316cb9c5de6dc35cc0301b4c1de",
+    "src/paperworks/v6/relation_profiling_protocol_v1.py": "ba7a7ea29eb0d68077a51442691d201915470d16dca751dff3c214a7ead3c529"
+  },
+  "scientific_source_modified_after_train3_read": false,
+  "status": "verified_task039d2_failed_run_custody",
+  "synthetic_prep_merge_commit": "826820aed3bb6c4205977454c00a9b618a7b6b69",
+  "task_id": "TASK-039D2R",
+  "train1_train2_feature_value_refit_used": false,
+  "train3_accessed_by_original_run": true
+}

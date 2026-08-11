@@ -1,0 +1,182 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_result_contract_recovery_receipt_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_result_contract_recovery_receipt_v1"
+    },
+    "corrected_receipt_schema_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d2_result_authoritative_after_recovery": {
+      "type": "boolean"
+    },
+    "d2_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "defect_classification": {
+      "type": "string"
+    },
+    "directional_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "execution_receipt_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "failed_run_custody_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "four_key_receipt_schema_validated": {
+      "type": "boolean"
+    },
+    "frozen_scientific_source_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d2_confirmation_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d2_real_execution_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "src/paperworks/v6/relation_profiling_protocol_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "src/paperworks/profiling/task039d2_real_execution_v1.py",
+        "src/paperworks/profiling/task039d2_confirmation_v1.py",
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py",
+        "src/paperworks/v6/relation_profiling_protocol_v1.py"
+      ],
+      "type": "object"
+    },
+    "hai_values_accessed_during_recovery": {
+      "type": "boolean"
+    },
+    "independent_d2_audit_still_required": {
+      "type": "boolean"
+    },
+    "original_d2_commit_a": {
+      "type": "string"
+    },
+    "original_failed_status": {
+      "type": "string"
+    },
+    "original_private_d2_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "original_private_ledger_validated": {
+      "type": "boolean"
+    },
+    "pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "public_summaries_deterministically_reconstructed_from_frozen_ledger": {
+      "type": "boolean"
+    },
+    "recommended_next_task": {
+      "type": "string"
+    },
+    "result_contract_recovery_commit": {
+      "type": "string"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "schema_changed": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_code_changed": {
+      "type": "boolean"
+    },
+    "scientific_outcomes_recomputed_from_hai": {
+      "type": "boolean"
+    },
+    "scientific_source_hash_basis": {
+      "type": "string"
+    },
+    "scientific_sources_unchanged": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "train3_reread": {
+      "type": "boolean"
+    },
+    "winner_selected": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "defect_classification",
+    "original_d2_commit_a",
+    "original_failed_status",
+    "original_private_d2_ledger_hash",
+    "original_private_ledger_validated",
+    "frozen_scientific_source_hashes",
+    "scientific_source_hash_basis",
+    "scientific_sources_unchanged",
+    "result_contract_recovery_commit",
+    "failed_run_custody_hash",
+    "corrected_receipt_schema_hash",
+    "schema_changed",
+    "scientific_code_changed",
+    "train3_reread",
+    "hai_values_accessed_during_recovery",
+    "scientific_outcomes_recomputed_from_hai",
+    "public_summaries_deterministically_reconstructed_from_frozen_ledger",
+    "four_key_receipt_schema_validated",
+    "directional_summary_hash",
+    "pair_summary_hash",
+    "arm_summary_hash",
+    "data_access_audit_hash",
+    "execution_receipt_hash",
+    "d2_result_hash",
+    "d2_result_authoritative_after_recovery",
+    "independent_d2_audit_still_required",
+    "winner_selected",
+    "rule_v2_authorized",
+    "recommended_next_task",
+    "artifact_hash"
+  ],
+  "title": "task039d2_result_contract_recovery_receipt_v1",
+  "type": "object"
+}

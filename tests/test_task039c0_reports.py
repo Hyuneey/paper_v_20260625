@@ -108,7 +108,7 @@ class Task039C0ReportTests(unittest.TestCase):
 
     def test_schemas_registered_meta_valid_and_closed(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 118)
+        self.assertEqual(len(registry.artifact_types), 121)
         for artifact_type in C0_TYPES:
             schema = registry.schema_for(artifact_type)
             Draft202012Validator.check_schema(schema)

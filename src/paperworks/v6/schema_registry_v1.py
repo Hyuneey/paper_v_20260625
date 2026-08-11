@@ -345,6 +345,15 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039d2_real_execution_receipt_v1": (
         "schemas/v6/task039d2_real_execution_receipt_v1_schema.json"
     ),
+    "task039d2_failed_run_custody_v1": (
+        "schemas/v6/task039d2_failed_run_custody_v1_schema.json"
+    ),
+    "task039d2r_data_access_audit_v1": (
+        "schemas/v6/task039d2r_data_access_audit_v1_schema.json"
+    ),
+    "task039d2_result_contract_recovery_receipt_v1": (
+        "schemas/v6/task039d2_result_contract_recovery_receipt_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),

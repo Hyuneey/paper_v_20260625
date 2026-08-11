@@ -111,7 +111,7 @@ class Task039P1CSchemaBoundaryTests(unittest.TestCase):
         self.assertTrue(TASK039BR1_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039BR2_TYPES.issubset(registry.artifact_types))
         self.assertTrue(TASK039C0_TYPES.issubset(registry.artifact_types))
-        self.assertEqual(len(registry.artifact_types), 118)
+        self.assertEqual(len(registry.artifact_types), 121)
         for artifact_type in (
             P1C_TYPES
             | P1D_TYPES

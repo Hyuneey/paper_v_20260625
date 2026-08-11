@@ -1,0 +1,174 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2r_data_access_audit_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "absolute_local_paths_persisted": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2r_data_access_audit_v1"
+    },
+    "authorized_original_file": {
+      "type": "string"
+    },
+    "dataset_manifest_id": {
+      "type": "string"
+    },
+    "immutable_file_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_size": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "header_sha256": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "row_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "relative_path",
+        "sha256",
+        "byte_size",
+        "row_count",
+        "header_sha256"
+      ],
+      "type": "object"
+    },
+    "original_scientific_run": {
+      "additionalProperties": false,
+      "properties": {
+        "attacks_accessed": {
+          "type": "boolean"
+        },
+        "br2_pair_results_accessed": {
+          "type": "boolean"
+        },
+        "candidate_provenance_visible_during_confirmation": {
+          "type": "boolean"
+        },
+        "d1_private_ledgers_accessed": {
+          "type": "boolean"
+        },
+        "d1_private_ledgers_modified": {
+          "type": "boolean"
+        },
+        "labels_accessed": {
+          "type": "boolean"
+        },
+        "test_accessed": {
+          "type": "boolean"
+        },
+        "train1_feature_values_accessed": {
+          "type": "boolean"
+        },
+        "train2_feature_values_accessed": {
+          "type": "boolean"
+        },
+        "train3_accessed": {
+          "type": "boolean"
+        },
+        "train4_accessed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "train3_accessed",
+        "train1_feature_values_accessed",
+        "train2_feature_values_accessed",
+        "train4_accessed",
+        "test_accessed",
+        "labels_accessed",
+        "attacks_accessed",
+        "br2_pair_results_accessed",
+        "d1_private_ledgers_accessed",
+        "d1_private_ledgers_modified",
+        "candidate_provenance_visible_during_confirmation"
+      ],
+      "type": "object"
+    },
+    "process": {
+      "type": "string"
+    },
+    "prohibited_access_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "recovery_finalization": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_provenance_loaded_after_outcomes_frozen": {
+          "type": "boolean"
+        },
+        "d1_private_ledgers_read_for_binding_only": {
+          "type": "boolean"
+        },
+        "frozen_d2_private_ledger_read": {
+          "type": "boolean"
+        },
+        "hai_feature_values_accessed": {
+          "type": "boolean"
+        },
+        "train1_train2_train4_test_labels_attacks_accessed": {
+          "type": "boolean"
+        },
+        "train3_accessed": {
+          "type": "boolean"
+        },
+        "train3_reread": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "train3_accessed",
+        "train3_reread",
+        "hai_feature_values_accessed",
+        "train1_train2_train4_test_labels_attacks_accessed",
+        "frozen_d2_private_ledger_read",
+        "d1_private_ledgers_read_for_binding_only",
+        "candidate_provenance_loaded_after_outcomes_frozen"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "dataset_manifest_id",
+    "process",
+    "authorized_original_file",
+    "immutable_file_identity",
+    "original_scientific_run",
+    "recovery_finalization",
+    "prohibited_access_count",
+    "absolute_local_paths_persisted",
+    "artifact_hash"
+  ],
+  "title": "task039d2r_data_access_audit_v1",
+  "type": "object"
+}

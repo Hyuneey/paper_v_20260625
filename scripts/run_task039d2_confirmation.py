@@ -43,6 +43,9 @@ from paperworks.profiling.task039d2_real_execution_v1 import (
     write_json_v1,
 )
 from paperworks.profiling.task039d1_final_audit_v1 import verify_audit_self_hash_v1
+from paperworks.profiling.task039d2_result_recovery_v1 import (
+    bind_exact_four_source_hash_schema_v1,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,9 +123,12 @@ def _write_schemas() -> None:
     if set(examples) != expected or set(SCHEMA_FILES) != expected:
         raise TASK039D2ExecutionError("D2 schema example coverage mismatch")
     for artifact_type, filename in SCHEMA_FILES.items():
+        schema = schema_for_d2_artifact_v1(examples[artifact_type])
+        if artifact_type == "task039d2_real_execution_receipt_v1":
+            schema = bind_exact_four_source_hash_schema_v1(schema)
         write_json_v1(
             ROOT / "schemas" / "v6" / filename,
-            schema_for_d2_artifact_v1(examples[artifact_type]),
+            schema,
             public=True,
         )
 

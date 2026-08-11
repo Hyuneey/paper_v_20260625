@@ -1,0 +1,183 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_failed_run_custody_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_failed_run_custody_v1"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "confirmation_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_directional_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d2_authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "defect_classification": {
+      "type": "string"
+    },
+    "machine_verifiable_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "all_45_d1_directional_references_exact": {
+          "type": "boolean"
+        },
+        "all_45_private_record_hashes_valid": {
+          "type": "boolean"
+        },
+        "commit_a_has_no_result_commit_b": {
+          "type": "boolean"
+        },
+        "commit_a_schema_runtime_cardinality_mismatch_reproduced": {
+          "type": "boolean"
+        },
+        "original_branch_tip_equals_commit_a": {
+          "type": "boolean"
+        },
+        "private_ledger_self_hash_valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "original_branch_tip_equals_commit_a",
+        "commit_a_has_no_result_commit_b",
+        "private_ledger_self_hash_valid",
+        "all_45_private_record_hashes_valid",
+        "all_45_d1_directional_references_exact",
+        "commit_a_schema_runtime_cardinality_mismatch_reproduced"
+      ],
+      "type": "object"
+    },
+    "original_branch": {
+      "type": "string"
+    },
+    "original_branch_tip": {
+      "type": "string"
+    },
+    "original_execution_commit_a": {
+      "type": "string"
+    },
+    "original_public_outputs_authoritative": {
+      "type": "boolean"
+    },
+    "original_result_commit_b": {
+      "type": "null"
+    },
+    "original_terminal_status": {
+      "type": "string"
+    },
+    "private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "private_ledger_record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "private_scientific_ledger_authoritative_custody_candidate": {
+      "type": "boolean"
+    },
+    "result_contract_validation_failure_stage": {
+      "type": "string"
+    },
+    "schema_defect_identifier": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_computation_completed_before_schema_failure": {
+      "type": "boolean"
+    },
+    "scientific_source_commit_blob_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d2_confirmation_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d2_real_execution_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "src/paperworks/v6/relation_profiling_protocol_v1.py": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "src/paperworks/profiling/task039d2_real_execution_v1.py",
+        "src/paperworks/profiling/task039d2_confirmation_v1.py",
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py",
+        "src/paperworks/v6/relation_profiling_protocol_v1.py"
+      ],
+      "type": "object"
+    },
+    "scientific_source_modified_after_train3_read": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "synthetic_prep_merge_commit": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "train1_train2_feature_value_refit_used": {
+      "type": "boolean"
+    },
+    "train3_accessed_by_original_run": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "defect_classification",
+    "original_execution_commit_a",
+    "original_branch",
+    "original_branch_tip",
+    "synthetic_prep_merge_commit",
+    "original_terminal_status",
+    "original_result_commit_b",
+    "private_ledger_hash",
+    "private_ledger_record_count",
+    "scientific_computation_completed_before_schema_failure",
+    "result_contract_validation_failure_stage",
+    "schema_defect_identifier",
+    "train3_accessed_by_original_run",
+    "train1_train2_feature_value_refit_used",
+    "scientific_source_modified_after_train3_read",
+    "original_public_outputs_authoritative",
+    "private_scientific_ledger_authoritative_custody_candidate",
+    "d2_authorization_hash",
+    "d1_directional_ledger_hash",
+    "confirmation_policy_hash",
+    "scientific_source_commit_blob_hashes",
+    "machine_verifiable_evidence",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "title": "task039d2_failed_run_custody_v1",
+  "type": "object"
+}
