@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_preregistered_window_constant_bundle_v1_schema.json",
+  "title": "Preregistered window constant bundle preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "bundle_identity",
+    "d0_protocol_bundle_hash", "source_event_policy_hash",
+    "target_response_policy_hash", "confirmation_policy_hash",
+    "source_pre_window_seconds", "source_post_window_seconds",
+    "minimum_source_stability_fraction", "source_refractory_seconds",
+    "cross_source_isolation_radius_seconds", "target_baseline_window_seconds",
+    "target_response_window_seconds", "value_origin", "llm_generated",
+    "runtime_authority_granted", "synthetic_fixture", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e1_preregistered_window_constant_bundle_v1"},
+    "bundle_identity": {"$ref": "#/$defs/syntheticIdentifier"},
+    "d0_protocol_bundle_hash": {"$ref": "#/$defs/hash"},
+    "source_event_policy_hash": {"$ref": "#/$defs/hash"},
+    "target_response_policy_hash": {"$ref": "#/$defs/hash"},
+    "confirmation_policy_hash": {"$ref": "#/$defs/hash"},
+    "source_pre_window_seconds": {"type": "integer", "minimum": 1},
+    "source_post_window_seconds": {"type": "integer", "minimum": 1},
+    "minimum_source_stability_fraction": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "source_refractory_seconds": {"type": "integer", "minimum": 1},
+    "cross_source_isolation_radius_seconds": {"type": "integer", "minimum": 1},
+    "target_baseline_window_seconds": {"type": "integer", "minimum": 1},
+    "target_response_window_seconds": {"type": "integer", "minimum": 1},
+    "value_origin": {"const": "d0_preregistered_window_constant"},
+    "llm_generated": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "synthetic_fixture": {"const": true},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_synthetic_d1_directional_fit_supported_record_v1_schema.json",
+  "title": "Synthetic D1 directional fit-supported record preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "source", "target",
+    "source_step_direction", "selected_target_direction",
+    "selected_horizon_seconds", "source_parameter_record_hash",
+    "target_parameter_record_hash", "fit_result", "lower_ranked_fallback_used",
+    "candidate_arm_evidence_visible", "synthetic_fixture", "real_record",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e1_synthetic_d1_directional_fit_supported_record_v1"},
+    "source": {"$ref": "#/$defs/syntheticIdentifier"},
+    "target": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source_step_direction": {"enum": ["step_up", "step_down"]},
+    "selected_target_direction": {"enum": ["increase", "decrease"]},
+    "selected_horizon_seconds": {"type": "integer", "minimum": 1},
+    "source_parameter_record_hash": {"$ref": "#/$defs/hash"},
+    "target_parameter_record_hash": {"$ref": "#/$defs/hash"},
+    "fit_result": {"const": "fit_supported"},
+    "lower_ranked_fallback_used": {"const": false},
+    "candidate_arm_evidence_visible": {"const": false},
+    "synthetic_fixture": {"const": true},
+    "real_record": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}
