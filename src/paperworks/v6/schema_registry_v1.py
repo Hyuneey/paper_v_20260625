@@ -285,6 +285,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039d1_authorization_v1": (
         "schemas/v6/task039d1_authorization_v1_schema.json"
     ),
+    "task039d1_aborted_execution_record_v1": (
+        "schemas/v6/task039d1_aborted_execution_record_v1_schema.json"
+    ),
     "task039d1_arm_fit_summary_v1": (
         "schemas/v6/task039d1_arm_fit_summary_v1_schema.json"
     ),
@@ -296,6 +299,9 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     ),
     "task039d1_execution_receipt_v1": (
         "schemas/v6/task039d1_execution_receipt_v1_schema.json"
+    ),
+    "task039d1_execution_complexity_receipt_v1": (
+        "schemas/v6/task039d1_execution_complexity_receipt_v1_schema.json"
     ),
     "task039d1_fit_result_v1": (
         "schemas/v6/task039d1_fit_result_v1_schema.json"

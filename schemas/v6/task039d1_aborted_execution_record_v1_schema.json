@@ -1,0 +1,97 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_aborted_execution_record_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "aborted_outputs_reused": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_aborted_execution_record_v1"
+    },
+    "attacks_accessed": {
+      "type": "boolean"
+    },
+    "defect": {
+      "type": "string"
+    },
+    "labels_accessed": {
+      "type": "boolean"
+    },
+    "original_d1_commit_a": {
+      "pattern": "^[a-f0-9]{40}$",
+      "type": "string"
+    },
+    "private_ledgers_produced": {
+      "type": "boolean"
+    },
+    "provenance_joined": {
+      "type": "boolean"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_outcomes_frozen": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task039d2_authorized": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "terminal_status": {
+      "type": "string"
+    },
+    "test_accessed": {
+      "type": "boolean"
+    },
+    "train1_accessed": {
+      "type": "boolean"
+    },
+    "train2_accessed": {
+      "type": "boolean"
+    },
+    "train3_accessed": {
+      "type": "boolean"
+    },
+    "train4_accessed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "original_d1_commit_a",
+    "terminal_status",
+    "train1_accessed",
+    "train2_accessed",
+    "train3_accessed",
+    "train4_accessed",
+    "test_accessed",
+    "labels_accessed",
+    "attacks_accessed",
+    "private_ledgers_produced",
+    "scientific_outcomes_frozen",
+    "provenance_joined",
+    "rule_v2_authorized",
+    "task039d2_authorized",
+    "defect",
+    "aborted_outputs_reused",
+    "artifact_hash"
+  ],
+  "title": "task039d1_aborted_execution_record_v1",
+  "type": "object"
+}

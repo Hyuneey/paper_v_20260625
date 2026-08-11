@@ -16,7 +16,7 @@ import statistics
 from array import array
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
-from typing import Any, ClassVar, Mapping, MutableMapping, Sequence
+from typing import Any, Callable, ClassVar, Mapping, MutableMapping, Sequence
 
 from paperworks.data.contracts_v2 import DatasetManifestV2
 from paperworks.v6.common import (
@@ -48,13 +48,15 @@ from paperworks.v6.relation_profiling_protocol_v1 import (
     assert_arm_blind_identity_record_v1,
     authorize_br2_reference_v1,
     authorize_value_access_v1,
-    classify_all_source_isolation_v1,
     derive_multi_file_source_parameters_v1,
     derive_multi_file_target_scale_v1,
-    extract_file_local_events_v1,
     rank_direction_horizon_v1,
     selected_fit_gate_v1,
     verify_self_hash_v1,
+)
+from paperworks.profiling.task039d1_execution_optimization_v1 import (
+    classify_all_source_isolation_indexed_v1,
+    extract_file_local_events_linear_v1,
 )
 
 
@@ -732,6 +734,7 @@ def evaluate_arm_blind_fit_v1(
     fit_values: Mapping[str, Mapping[str, Sequence[float]]],
     fit_file_bindings: Mapping[str, str],
     execution_code_commit: str,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Evaluate all 47 pairs exactly once without loading arm provenance."""
 
@@ -754,19 +757,24 @@ def evaluate_arm_blind_fit_v1(
         if set(fit_values[file_name]) != set(SELECTED_COLUMNS):
             raise TASK039D1Error("scientific values exceed the frozen 24-column view")
 
+    def progress(message: str) -> None:
+        if progress_callback is not None:
+            progress_callback(message)
+
     source_records: list[dict[str, Any]] = []
     source_record_by_name: dict[str, dict[str, Any]] = {}
     source_parameters: dict[str, Mapping[str, Any]] = {}
     source_events_by_file: dict[str, dict[str, Sequence[Any]]] = {
         file_name: {} for file_name in FIT_FILES
     }
-    for source in FROZEN_SOURCES:
+    progress("source_parameter_and_event_derivation_started")
+    for source_index, source in enumerate(FROZEN_SOURCES, start=1):
         parameters = derive_multi_file_source_parameters_v1(
             tuple(fit_values[file_name][source] for file_name in FIT_FILES)
         )
         source_parameters[source] = parameters
         if parameters["status"] == "supported":
-            extracted = extract_file_local_events_v1(
+            extracted = extract_file_local_events_linear_v1(
                 {file_name: fit_values[file_name][source] for file_name in FIT_FILES},
                 source_step_threshold=float(parameters["source_step_threshold"]),
                 source_stability_tolerance=float(parameters["source_stability_tolerance"]),
@@ -792,15 +800,21 @@ def evaluate_arm_blind_fit_v1(
         )
         source_records.append(record)
         source_record_by_name[source] = record
+        progress(f"source_parameter_and_event_derivation_completed_{source_index}_of_12")
 
     isolated_by_file: dict[str, Mapping[str, Sequence[tuple[Any, bool]]]] = {}
+    progress("all_source_isolation_started")
     for file_name in FIT_FILES:
-        isolated_by_file[file_name] = classify_all_source_isolation_v1(source_events_by_file[file_name])
+        isolated_by_file[file_name] = classify_all_source_isolation_indexed_v1(
+            source_events_by_file[file_name]
+        )
+    progress("all_source_isolation_completed")
 
     target_records: list[dict[str, Any]] = []
     target_record_by_name: dict[str, dict[str, Any]] = {}
     target_scales: dict[str, float] = {}
-    for target in FROZEN_TARGETS:
+    progress("target_scale_derivation_started")
+    for target_index, target in enumerate(FROZEN_TARGETS, start=1):
         scale = derive_multi_file_target_scale_v1(
             tuple(fit_values[file_name][target] for file_name in FIT_FILES)
         )
@@ -817,6 +831,7 @@ def evaluate_arm_blind_fit_v1(
         )
         target_records.append(record)
         target_record_by_name[target] = record
+        progress(f"target_scale_derivation_completed_{target_index}_of_12")
 
     directional_records: list[dict[str, Any]] = []
     pair_outcomes: list[dict[str, Any]] = []
@@ -829,7 +844,8 @@ def evaluate_arm_blind_fit_v1(
         "insufficient_nontrivial_amplitudes": 0,
         "fit_gate_not_satisfied": 0,
     }
-    for identity in identities:
+    progress("pair_profiling_started")
+    for pair_index, identity in enumerate(identities, start=1):
         source, target = identity["source"], identity["target"]
         pair_direction_status: dict[str, str] = {}
         for source_direction in SOURCE_DIRECTIONS:
@@ -939,7 +955,9 @@ def evaluate_arm_blind_fit_v1(
                 "pair_fit_status": pair_status,
             }
         )
+        progress(f"pair_profiling_completed_{pair_index}_of_47")
 
+    progress("scientific_outcome_finalization_started")
     source_ledger = _private_ledger(
         "task039d1_source_parameter_ledger_v1", source_records,
         execution_code_commit=execution_code_commit,
@@ -970,6 +988,7 @@ def evaluate_arm_blind_fit_v1(
             "candidate_arm_evidence_visible_to_profiler": False,
         }
     )
+    progress("scientific_outcome_finalization_completed")
     return {
         "source_ledger": source_ledger,
         "target_ledger": target_ledger,
@@ -1392,7 +1411,11 @@ def d1_schema_examples_v1() -> dict[str, dict[str, Any]]:
     )
     execution = build_execution_receipt_v1(
         execution_code_commit="1" * 40,
-        scientific_source_hashes={"task039d1_fit_v1.py": digest},
+        scientific_source_hashes={
+            "src/paperworks/profiling/task039d1_fit_v1.py": digest,
+            "src/paperworks/profiling/task039d1_execution_optimization_v1.py": digest,
+            "src/paperworks/v6/relation_profiling_protocol_v1.py": digest,
+        },
         source_binding=source_binding, target_binding=target_binding,
         directional_binding=directional_binding, pair_summary=pair,
         fit_result=fit, arm_summary=arm, data_access=access,

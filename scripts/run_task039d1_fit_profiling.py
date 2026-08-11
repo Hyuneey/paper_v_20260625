@@ -45,6 +45,12 @@ from paperworks.profiling.task039d1_fit_v1 import (
     verify_d1_self_hash_v1,
     write_json_v1,
 )
+from paperworks.profiling.task039d1_execution_optimization_v1 import (
+    ABORTED_COMMIT_A1,
+    RECOVERY_BRANCH,
+    RECOVERY_STATUS,
+    verify_recovery_artifact_v1,
+)
 from paperworks.v6.relation_profiling_protocol_v1 import verify_self_hash_v1
 
 
@@ -52,6 +58,8 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "docs" / "task_reports"
 IDENTITY_PATH = REPORTS / "TASK-039D0_PROFILING_IDENTITY_VIEW.json"
 PROVENANCE_PATH = REPORTS / "TASK-039D0_PROVENANCE_ANALYSIS_VIEW.json"
+COMPLEXITY_RECEIPT_PATH = REPORTS / "TASK-039D1R_EXECUTION_COMPLEXITY_RECEIPT.json"
+ABORTED_RECORD_PATH = REPORTS / "TASK-039D1_ABORTED_EXECUTION_RECORD.json"
 
 SCHEMA_FILES = {
     "task039d1_source_parameter_ledger_binding_v1": "task039d1_source_parameter_ledger_binding_v1_schema.json",
@@ -64,28 +72,27 @@ SCHEMA_FILES = {
     "task039d1_execution_receipt_v1": "task039d1_execution_receipt_v1_schema.json",
 }
 
-ALLOWED_COMMIT_A_PATHS = frozenset(
+ALLOWED_COMMIT_A2_PATHS = frozenset(
     {
-        "TASKS/TASK-039D1_RELATION_FIT_PROFILING.md",
+        "TASKS/TASK-039D1R_COMPLEXITY_RECOVERY.md",
+        "docs/task_reports/TASK-039D1R_EXECUTION_COMPLEXITY_RECEIPT.json",
+        "docs/task_reports/TASK-039D1_ABORTED_EXECUTION_RECORD.json",
         "src/paperworks/profiling/task039d1_fit_v1.py",
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py",
         "scripts/run_task039d1_fit_profiling.py",
-        "schemas/v6/task039d1_source_parameter_ledger_binding_v1_schema.json",
-        "schemas/v6/task039d1_target_parameter_ledger_binding_v1_schema.json",
-        "schemas/v6/task039d1_directional_fit_ledger_binding_v1_schema.json",
-        "schemas/v6/task039d1_pair_fit_summary_v1_schema.json",
-        "schemas/v6/task039d1_fit_result_v1_schema.json",
-        "schemas/v6/task039d1_arm_fit_summary_v1_schema.json",
-        "schemas/v6/task039d1_data_access_audit_v1_schema.json",
+        "scripts/audit_task039d1r_complexity.py",
+        "schemas/v6/task039d1_aborted_execution_record_v1_schema.json",
+        "schemas/v6/task039d1_execution_complexity_receipt_v1_schema.json",
         "schemas/v6/task039d1_execution_receipt_v1_schema.json",
         "src/paperworks/v6/schema_registry_v1.py",
         "tests/test_task039c0_reports.py",
         "tests/test_task039d0_relation_profiling_protocol.py",
         "tests/test_task039p1c_schema_and_boundaries.py",
         "tests/test_task039d1_fit_contracts.py",
-        "tests/test_task039d1_arm_blindness.py",
-        "tests/test_task039d1_fit_engine.py",
-        "tests/test_task039d1_data_boundary.py",
-        "tests/test_task039d1_reporting.py",
+        "tests/test_task039d1r_event_optimization.py",
+        "tests/test_task039d1r_isolation_optimization.py",
+        "tests/test_task039d1r_hot_path.py",
+        "tests/test_task039d1r_recovery_receipts.py",
     }
 )
 
@@ -159,23 +166,49 @@ def _validate_frozen_d0() -> tuple[dict[str, Any], dict[str, Any]]:
 def _validate_commit_a(execution_commit: str) -> None:
     if len(execution_commit) != 40:
         raise TASK039D1Error("execution-code commit must be a full SHA")
-    if _git("branch", "--show-current") != BRANCH:
+    if _git("branch", "--show-current") != RECOVERY_BRANCH:
         raise TASK039D1Error("blocked_task039d1_d0_promotion_mismatch")
-    if _git("rev-parse", "HEAD") != execution_commit or _git("rev-parse", "HEAD^") != BASE_COMMIT:
+    if (
+        _git("rev-parse", "HEAD") != execution_commit
+        or _git("rev-parse", "HEAD^") != ABORTED_COMMIT_A1
+    ):
         raise TASK039D1Error("blocked_task039d1_d0_promotion_mismatch")
     if _git("status", "--porcelain=v1"):
         raise TASK039D1Error("real execution requires a clean Commit A")
     changed = {
         item.replace("\\", "/")
-        for item in _git("diff", "--name-only", BASE_COMMIT, execution_commit).splitlines()
+        for item in _git("diff", "--name-only", ABORTED_COMMIT_A1, execution_commit).splitlines()
         if item
     }
-    prohibited = sorted(changed - ALLOWED_COMMIT_A_PATHS)
+    prohibited = sorted(changed - ALLOWED_COMMIT_A2_PATHS)
     if prohibited:
         raise TASK039D1Error("failed_task039d1_protocol_compliance: " + ", ".join(prohibited))
     existing = [name for name in RESULT_PATH_NAMES if (REPORTS / name).exists()]
     if existing:
         raise TASK039D1Error("D1 real-result file existed before execution")
+
+
+def _validate_recovery_receipts() -> tuple[dict[str, Any], dict[str, Any]]:
+    complexity = _load_json(COMPLEXITY_RECEIPT_PATH)
+    aborted = _load_json(ABORTED_RECORD_PATH)
+    verify_recovery_artifact_v1(complexity)
+    verify_recovery_artifact_v1(aborted)
+    if (
+        complexity.get("status") != RECOVERY_STATUS
+        or complexity.get("original_aborted_commit_a") != ABORTED_COMMIT_A1
+        or complexity.get("d0_protocol_bundle_hash") != D0_PROTOCOL_BUNDLE_HASH
+        or complexity.get("d1_authorization_hash") != D1_AUTHORIZATION_HASH
+        or complexity.get("scientific_formulas_changed")
+        or complexity.get("d0_policies_changed")
+        or complexity.get("unresolved_execution_complexity_defects")
+        or complexity.get("hai_values_accessed_during_recovery_implementation")
+        or aborted.get("original_d1_commit_a") != ABORTED_COMMIT_A1
+        or aborted.get("private_ledgers_produced")
+        or aborted.get("scientific_outcomes_frozen")
+        or aborted.get("aborted_outputs_reused")
+    ):
+        raise TASK039D1Error("failed_task039d1r_recovery_boundary")
+    return complexity, aborted
 
 
 def _write_schemas() -> None:
@@ -200,13 +233,17 @@ def _private_output_path(private_root: Path, name: str) -> Path:
 
 def _report(
     *, fit: Mapping[str, Any], arm: Mapping[str, Any], access: Mapping[str, Any],
-    receipt: Mapping[str, Any]
+    receipt: Mapping[str, Any], recovery: Mapping[str, Any], aborted: Mapping[str, Any]
 ) -> str:
     arm_by_name = {item["arm"]: item for item in arm["arms"]}
     failures = fit["other_failure_counts"]
     return f"""# TASK-039D1 Report
 
 Status: `{fit['status']}`
+
+Recovery preflight: `{recovery['status']}`. The historical A1 execution at
+`{aborted['original_d1_commit_a']}` was aborted without frozen scientific
+outcomes or private ledgers. No partial scientific state was reused.
 
 TASK-039D1 executed the common arm-blind normal relation fit protocol once for
 the exact 47-pair cohort. The result describes fit-supported normal
@@ -255,6 +292,7 @@ created.
 
 def execute(execution_commit: str) -> None:
     _validate_commit_a(execution_commit)
+    recovery, aborted = _validate_recovery_receipts()
     identity, _ = _validate_frozen_d0()
     expected_files = load_expected_file_identities_v1(ROOT)
     data_raw = os.environ.get("HAI_DATA_ROOT", "")
@@ -274,6 +312,7 @@ def execute(execution_commit: str) -> None:
         expected_file_identities=expected_files,
         state=state,
     )
+    print("[TASK-039D1] authorized_fit_files_loaded_2_of_2", flush=True)
     fit_file_bindings = {
         Path(item["relative_path"]).name: str(item["sha256"]) for item in file_records
     }
@@ -282,6 +321,7 @@ def execute(execution_commit: str) -> None:
         fit_values=fit_values,
         fit_file_bindings=fit_file_bindings,
         execution_code_commit=execution_commit,
+        progress_callback=lambda message: print(f"[TASK-039D1] {message}", flush=True),
     )
     del fit_values
 
@@ -345,6 +385,9 @@ def execute(execution_commit: str) -> None:
         "src/paperworks/v6/relation_profiling_protocol_v1.py": source_file_sha256_v1(
             ROOT / "src/paperworks/v6/relation_profiling_protocol_v1.py"
         ),
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py": source_file_sha256_v1(
+            ROOT / "src/paperworks/profiling/task039d1_execution_optimization_v1.py"
+        ),
     }
     receipt = build_execution_receipt_v1(
         execution_code_commit=execution_commit,
@@ -365,6 +408,8 @@ def execute(execution_commit: str) -> None:
             arm=arm.to_dict(),
             access=access.to_dict(),
             receipt=receipt.to_dict(),
+            recovery=recovery,
+            aborted=aborted,
         ),
         encoding="utf-8",
         newline="\n",

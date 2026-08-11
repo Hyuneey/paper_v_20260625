@@ -156,12 +156,20 @@
     "scientific_source_hashes": {
       "additionalProperties": false,
       "properties": {
-        "task039d1_fit_v1.py": {
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py": {
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d1_fit_v1.py": {
+          "type": "string"
+        },
+        "src/paperworks/v6/relation_profiling_protocol_v1.py": {
           "type": "string"
         }
       },
       "required": [
-        "task039d1_fit_v1.py"
+        "src/paperworks/profiling/task039d1_fit_v1.py",
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py",
+        "src/paperworks/v6/relation_profiling_protocol_v1.py"
       ],
       "type": "object"
     },

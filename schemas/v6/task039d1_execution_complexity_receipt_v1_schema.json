@@ -1,0 +1,201 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_execution_complexity_receipt_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_execution_complexity_receipt_v1"
+    },
+    "component_policy_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "confirmation": {
+          "type": "string"
+        },
+        "direction_selection": {
+          "type": "string"
+        },
+        "fit_gate": {
+          "type": "string"
+        },
+        "method_comparison": {
+          "type": "string"
+        },
+        "numeric_evidence": {
+          "type": "string"
+        },
+        "source_event": {
+          "type": "string"
+        },
+        "source_scale": {
+          "type": "string"
+        },
+        "target_response": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_scale",
+        "source_event",
+        "target_response",
+        "direction_selection",
+        "fit_gate",
+        "confirmation",
+        "method_comparison",
+        "numeric_evidence"
+      ],
+      "type": "object"
+    },
+    "d0_policies_changed": {
+      "type": "boolean"
+    },
+    "d0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "defect": {
+      "type": "string"
+    },
+    "defect_classification": {
+      "type": "string"
+    },
+    "event_complexity_class": {
+      "type": "string"
+    },
+    "event_optimized_path": {
+      "type": "string"
+    },
+    "event_reference_path": {
+      "type": "string"
+    },
+    "event_semantic_parity": {
+      "type": "string"
+    },
+    "event_streams_computed_once_per_source_file": {
+      "type": "boolean"
+    },
+    "hai_values_accessed_during_recovery_implementation": {
+      "type": "boolean"
+    },
+    "isolation_complexity_class": {
+      "type": "string"
+    },
+    "isolation_computed_once_per_file": {
+      "type": "boolean"
+    },
+    "isolation_optimized_path": {
+      "type": "string"
+    },
+    "isolation_reference_path": {
+      "type": "string"
+    },
+    "isolation_semantic_parity": {
+      "type": "string"
+    },
+    "original_aborted_commit_a": {
+      "pattern": "^[a-f0-9]{40}$",
+      "type": "string"
+    },
+    "root_cause_function_chain": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_formulas_changed": {
+      "type": "boolean"
+    },
+    "source_file_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "src/paperworks/feasibility/hai_continuous_step_v1.py": {
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py": {
+          "type": "string"
+        },
+        "src/paperworks/profiling/task039d1_fit_v1.py": {
+          "type": "string"
+        },
+        "src/paperworks/v6/continuous_step_protocol_v1.py": {
+          "type": "string"
+        },
+        "src/paperworks/v6/relation_profiling_protocol_v1.py": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "src/paperworks/profiling/task039d1_fit_v1.py",
+        "src/paperworks/profiling/task039d1_execution_optimization_v1.py",
+        "src/paperworks/v6/continuous_step_protocol_v1.py",
+        "src/paperworks/v6/relation_profiling_protocol_v1.py",
+        "src/paperworks/feasibility/hai_continuous_step_v1.py"
+      ],
+      "type": "object"
+    },
+    "source_parameters_computed_once_per_source": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "target_response_optimization_status": {
+      "type": "string"
+    },
+    "target_scale_computed_once_per_target": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "unresolved_execution_complexity_defects": {
+      "items": {},
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "original_aborted_commit_a",
+    "defect",
+    "defect_classification",
+    "root_cause_function_chain",
+    "d0_protocol_bundle_hash",
+    "d1_authorization_hash",
+    "component_policy_hashes",
+    "scientific_formulas_changed",
+    "d0_policies_changed",
+    "event_reference_path",
+    "event_optimized_path",
+    "event_semantic_parity",
+    "event_complexity_class",
+    "isolation_reference_path",
+    "isolation_optimized_path",
+    "isolation_semantic_parity",
+    "isolation_complexity_class",
+    "target_response_optimization_status",
+    "source_parameters_computed_once_per_source",
+    "target_scale_computed_once_per_target",
+    "event_streams_computed_once_per_source_file",
+    "isolation_computed_once_per_file",
+    "unresolved_execution_complexity_defects",
+    "hai_values_accessed_during_recovery_implementation",
+    "source_file_hashes",
+    "artifact_hash"
+  ],
+  "title": "task039d1_execution_complexity_receipt_v1",
+  "type": "object"
+}

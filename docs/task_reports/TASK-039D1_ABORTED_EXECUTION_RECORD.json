@@ -1,0 +1,23 @@
+{
+  "aborted_outputs_reused": false,
+  "artifact_hash": "111001a07dc240ac60b2537aa4d80eded67b7f1215be60b91ee132ab974f439c",
+  "artifact_type": "task039d1_aborted_execution_record_v1",
+  "attacks_accessed": false,
+  "defect": "repeated_whole_sequence_validation_inside_event_index_loop",
+  "labels_accessed": false,
+  "original_d1_commit_a": "d70f90b297bf7a6737652777f8f3059864c0c158",
+  "private_ledgers_produced": false,
+  "provenance_joined": false,
+  "rule_v2_authorized": false,
+  "schema_version": "1.0.0",
+  "scientific_outcomes_frozen": false,
+  "status": "recorded_task039d1_aborted_execution",
+  "task039d2_authorized": false,
+  "task_id": "TASK-039D1R",
+  "terminal_status": "failed_task039d1_scientific_execution",
+  "test_accessed": false,
+  "train1_accessed": true,
+  "train2_accessed": true,
+  "train3_accessed": false,
+  "train4_accessed": false
+}
