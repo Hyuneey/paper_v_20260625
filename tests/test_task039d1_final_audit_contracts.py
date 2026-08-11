@@ -32,7 +32,7 @@ class TASK039D1FinalAuditContractTests(unittest.TestCase):
 
     def test_schemas_are_closed_registered_and_validate_examples(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 144)
+        self.assertEqual(len(registry.artifact_types), 146)
         for document in audit_schema_examples_v1():
             schema = registry.schema_for(document["artifact_type"])
             self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")

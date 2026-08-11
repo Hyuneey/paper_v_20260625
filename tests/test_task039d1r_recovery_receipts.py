@@ -50,7 +50,7 @@ class TASK039D1RRecoveryReceiptTests(unittest.TestCase):
 
     def test_recovery_schemas_registered(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 144)
+        self.assertEqual(len(registry.artifact_types), 146)
         self.assertIn("task039d1_execution_complexity_receipt_v1", registry.artifact_types)
         self.assertIn("task039d1_aborted_execution_record_v1", registry.artifact_types)
 

@@ -1,0 +1,80 @@
+{
+  "artifact_hash": "7eca927e8bfaf123eb19ce828d3bdec6f9724e810e40ec49babdf59d3a7bfd9b",
+  "artifact_type": "task039e1_final_audit_v1",
+  "e2_authorization_created": true,
+  "e2_authorization_hash": "5a68559bc0e95c6e92061cbf5762ed3359817537f3cbe0c5ae885774d14250ff",
+  "findings": {
+    "blocking": [],
+    "important_nonblocking": []
+  },
+  "independent_replay": {
+    "audit_replay_ledger_hash": "338bf5547ddd8f5db4086c1a282d07bacfa235b95098487d10f386bf4e57dcc4",
+    "numeric_bindings_reproduced": 462,
+    "numeric_references_reproduced": 462,
+    "origin_mapping_reproduced": true,
+    "parameter_binding_reproduced": true,
+    "private_records_reproduced": 42,
+    "relation_binding_reproduced": true,
+    "resolver_negative_guards_passed": true,
+    "resolver_positive_replays": 462,
+    "role_frequencies": {
+      "cross_source_isolation_radius_seconds": 42,
+      "minimum_source_stability_fraction": 42,
+      "selected_delay_horizon_seconds": 42,
+      "source_post_window_seconds": 42,
+      "source_pre_window_seconds": 42,
+      "source_refractory_seconds": 42,
+      "source_stability_tolerance": 42,
+      "source_step_threshold": 42,
+      "target_baseline_window_seconds": 42,
+      "target_noise_scale": 42,
+      "target_response_window_seconds": 42
+    },
+    "window_bundle_hash": "53c3d6ff60987621b38b002f088a5b5f4b686e59c0040e5de7226b6dace6d863",
+    "window_bundle_reproduced": true
+  },
+  "lineage": {
+    "audit_execution_code_commit": "e95fc9690f42797610c47a508e064cd2c0ef527b",
+    "audit_prep_commit": "5ed61b03ce6138ed9b2e763e568cbb01fb91ee23",
+    "commit_separation_verified": true,
+    "e1_execution_commit_a": "e8fd2ed47bb0214a0e364bf978eebe75ae4a79a3",
+    "e1_prep_merge_commit": "f32e02136e2471c6bfc3fed584d4a58b16c7aad1",
+    "e1_result_commit_b": "89788b78a98eee3565bd3cbb774541b4c96825bd"
+  },
+  "private_input_hashes": {
+    "all_record_hashes_verified": true,
+    "all_self_hashes_verified": true,
+    "d1_directional_ledger_hash": "e372d7ccf4a7dde5f7ccd91049cc73b443b3b19a3a0c563f451aea50e8faddc7",
+    "d1_source_ledger_hash": "3eb6ff199dbc67b183d35a804754e557bdfa869a899c754e551cd77e8dcfb304",
+    "d1_target_ledger_hash": "f36f4b424c85b228043f9685a22a25c73d6b165e28714b627cf51e8bbb77f96e",
+    "d2_confirmation_ledger_hash": "d349421ae9a866b924c329dcb2546088466866e09f45851ec5d18090509dc062",
+    "e1_private_ledger_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+    "original_ledgers_modified": false
+  },
+  "public_private_boundary": {
+    "absolute_local_paths_public": false,
+    "hai_accessed_by_audit": false,
+    "llm_called_by_audit": false,
+    "passed": true,
+    "private_ledgers_committed": false,
+    "private_numeric_values_public": false,
+    "raw_hai_public": false,
+    "rule_generated_by_audit": false,
+    "runtime_authority_granted": false
+  },
+  "public_reconstruction": {
+    "approved_numeric_bundles_reproduced": 42,
+    "byte_semantic_equality_verified": true,
+    "construction_evidence_cohort_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+    "data_access_audit_hash": "7a52f89262070cf51a3ecb1784c159ee31894d445d4fe54ae06c654d1551c88b",
+    "execution_receipt_hash": "5d09cc438344222bdb2a70644ccb3a5a5b7d7b8342ba9a906ba9c8097343f9c7",
+    "materialization_result_hash": "2831f175f777bc0544513c35926269e05b6360c17e13f70b89d1768f1c7aa164",
+    "public_manifest_entries_reproduced": 42,
+    "public_manifest_hash": "ee8c5b7e9895f5f6afdd1be2563244e3b82dca9c3eadca502dd522940931e3ae",
+    "relation_primitives_reproduced": 42
+  },
+  "readiness": "READY_FOR_TASK039E2",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e1_final_audit",
+  "task_id": "TASK-039E1-AUDIT"
+}

@@ -31,7 +31,7 @@ class AuthoritativeReportTests(unittest.TestCase):
         self.registry = load_v6_schema_registry_v1(repository_root=ROOT)
 
     def test_registry_contains_prep_and_authoritative_schemas(self) -> None:
-        self.assertEqual(len(self.registry.artifact_types), 144)
+        self.assertEqual(len(self.registry.artifact_types), 146)
         for artifact_type in (*ARTIFACTS, "task039e0_prepared_validity_result_v2"):
             self.assertIn(artifact_type, self.registry.artifact_types)
         self.assertNotIn("fair_generation_budget_policy_v1", self.registry.artifact_types)
