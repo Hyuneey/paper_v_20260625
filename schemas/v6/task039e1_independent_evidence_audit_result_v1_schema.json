@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_independent_evidence_audit_result_v1_schema.json",
+  "title": "TASK-039E1 independent evidence audit preparation result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "confirmed_relation_count",
+    "pair_context_count",
+    "private_evidence_record_count",
+    "numeric_binding_count",
+    "public_relation_primitive_count",
+    "approved_numeric_bundle_count",
+    "public_manifest_entry_count",
+    "skipped_relation_count",
+    "role_frequencies",
+    "e0_cohort_identity_preserved",
+    "public_private_separation_passed",
+    "audit_status",
+    "real_result_audited",
+    "runtime_authority_granted",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e1_independent_evidence_audit_result_v1"},
+    "confirmed_relation_count": {"const": 42},
+    "pair_context_count": {"const": 23},
+    "private_evidence_record_count": {"const": 42},
+    "numeric_binding_count": {"const": 462},
+    "public_relation_primitive_count": {"const": 42},
+    "approved_numeric_bundle_count": {"const": 42},
+    "public_manifest_entry_count": {"const": 42},
+    "skipped_relation_count": {"const": 0},
+    "role_frequencies": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["numeric_role", "count"],
+        "properties": {
+          "numeric_role": {
+            "enum": [
+              "source_step_threshold",
+              "source_stability_tolerance",
+              "target_noise_scale",
+              "selected_delay_horizon",
+              "source_pre_window",
+              "source_post_window",
+              "minimum_source_stability_fraction",
+              "source_refractory",
+              "cross_source_isolation_radius",
+              "target_baseline_window",
+              "target_response_window"
+            ]
+          },
+          "count": {"const": 42}
+        }
+      }
+    },
+    "e0_cohort_identity_preserved": {"const": true},
+    "public_private_separation_passed": {"const": true},
+    "audit_status": {"const": "passed_task039e1_audit_preparation"},
+    "real_result_audited": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
