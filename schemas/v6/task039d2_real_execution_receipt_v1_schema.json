@@ -1,0 +1,156 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_real_execution_receipt_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alternative_horizon_search_used": {
+      "type": "boolean"
+    },
+    "arm_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_real_execution_receipt_v1"
+    },
+    "audit_commit": {
+      "type": "string"
+    },
+    "authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "br2_pair_results_accessed": {
+      "type": "boolean"
+    },
+    "candidate_provenance_visible_during_confirmation": {
+      "type": "boolean"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "directional_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "execution_code_commit": {
+      "type": "string"
+    },
+    "execution_phase_order": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "input_relation_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "lower_ranked_fallback_used": {
+      "type": "boolean"
+    },
+    "opposite_direction_search_used": {
+      "type": "boolean"
+    },
+    "outcomes_frozen_before_provenance_join": {
+      "type": "boolean"
+    },
+    "pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "parameter_retuning_used": {
+      "type": "boolean"
+    },
+    "private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "recommended_next_task": {
+      "type": "string"
+    },
+    "result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_source_changed_after_first_train3_read": {
+      "type": "boolean"
+    },
+    "scientific_source_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "src/paperworks/profiling/task039d2_real_execution_v1.py": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "src/paperworks/profiling/task039d2_real_execution_v1.py"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "type": "string"
+    },
+    "synthetic_prep_merge_commit": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "train1_train2_feature_values_accessed": {
+      "type": "boolean"
+    },
+    "train3_accessed": {
+      "type": "boolean"
+    },
+    "train4_test_labels_attacks_accessed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "execution_code_commit",
+    "synthetic_prep_merge_commit",
+    "audit_commit",
+    "authorization_hash",
+    "scientific_source_hashes",
+    "execution_phase_order",
+    "outcomes_frozen_before_provenance_join",
+    "scientific_source_changed_after_first_train3_read",
+    "private_ledger_hash",
+    "directional_summary_hash",
+    "pair_summary_hash",
+    "arm_summary_hash",
+    "result_hash",
+    "data_access_audit_hash",
+    "input_relation_count",
+    "parameter_retuning_used",
+    "alternative_horizon_search_used",
+    "opposite_direction_search_used",
+    "lower_ranked_fallback_used",
+    "train3_accessed",
+    "train1_train2_feature_values_accessed",
+    "train4_test_labels_attacks_accessed",
+    "br2_pair_results_accessed",
+    "candidate_provenance_visible_during_confirmation",
+    "rule_v2_authorized",
+    "recommended_next_task",
+    "artifact_hash"
+  ],
+  "title": "task039d2_real_execution_receipt_v1",
+  "type": "object"
+}

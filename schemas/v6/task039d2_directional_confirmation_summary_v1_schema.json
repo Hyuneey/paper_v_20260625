@@ -1,0 +1,147 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_directional_confirmation_summary_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alternative_horizon_search_used": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_directional_confirmation_summary_v1"
+    },
+    "authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_provenance_visible_during_confirmation": {
+      "type": "boolean"
+    },
+    "confirmation_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "confirmed_directional_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "conflict_directional_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "d1_directional_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "input_relation_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "lower_ranked_fallback_used": {
+      "type": "boolean"
+    },
+    "opposite_direction_search_used": {
+      "type": "boolean"
+    },
+    "parameter_retuning_used": {
+      "type": "boolean"
+    },
+    "private_ledger_contents_public": {
+      "type": "boolean"
+    },
+    "private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "private_ledger_record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "private_ledger_storage_boundary": {
+      "type": "string"
+    },
+    "relations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "confirmation_status": {
+            "type": "string"
+          },
+          "d1_directional_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "private_confirmation_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "selected_horizon_seconds": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "source": {
+            "type": "string"
+          },
+          "source_step_direction": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "target_response_direction": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "source_step_direction",
+          "target",
+          "target_response_direction",
+          "selected_horizon_seconds",
+          "d1_directional_record_hash",
+          "confirmation_status",
+          "private_confirmation_record_hash"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "authorization_hash",
+    "confirmation_policy_hash",
+    "d1_directional_ledger_hash",
+    "input_relation_count",
+    "confirmed_directional_count",
+    "conflict_directional_count",
+    "relations",
+    "private_ledger_hash",
+    "private_ledger_record_count",
+    "private_ledger_storage_boundary",
+    "private_ledger_contents_public",
+    "parameter_retuning_used",
+    "alternative_horizon_search_used",
+    "opposite_direction_search_used",
+    "lower_ranked_fallback_used",
+    "candidate_provenance_visible_during_confirmation",
+    "artifact_hash"
+  ],
+  "title": "task039d2_directional_confirmation_summary_v1",
+  "type": "object"
+}

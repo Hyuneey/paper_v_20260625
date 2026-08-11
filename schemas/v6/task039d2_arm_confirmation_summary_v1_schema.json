@@ -1,0 +1,295 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_arm_confirmation_summary_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arms": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "arm": {
+            "type": "string"
+          },
+          "confirmed_relation_yield_at_20": {
+            "type": "number"
+          },
+          "d1_directional_fit_supported_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "d1_fit_supported_pair_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "d1_pair_fit_support_yield": {
+            "type": "number"
+          },
+          "d2_confirmed_pair_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "directional_confirmation_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "directional_transfer": {
+            "type": "number"
+          },
+          "distinct_confirmed_source_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "distinct_confirmed_source_coverage_at_20": {
+            "type": "number"
+          },
+          "distinct_confirmed_target_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "distinct_confirmed_target_coverage_at_20": {
+            "type": "number"
+          },
+          "pair_fit_to_confirmation_transfer": {
+            "type": "number"
+          },
+          "top20_pair_count": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "arm",
+          "top20_pair_count",
+          "d1_fit_supported_pair_count",
+          "d1_pair_fit_support_yield",
+          "d1_directional_fit_supported_count",
+          "d2_confirmed_pair_count",
+          "confirmed_relation_yield_at_20",
+          "pair_fit_to_confirmation_transfer",
+          "directional_confirmation_count",
+          "directional_transfer",
+          "distinct_confirmed_source_count",
+          "distinct_confirmed_source_coverage_at_20",
+          "distinct_confirmed_target_count",
+          "distinct_confirmed_target_coverage_at_20"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_arm_confirmation_summary_v1"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "confirmed_pair_overlap": {
+      "additionalProperties": false,
+      "properties": {
+        "GDN_only": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "META_GDN_only": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "META_STAT_only": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "META_only": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "STAT_GDN_only": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "STAT_only": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "all_three": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "pairs": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "required": [
+            "count",
+            "pairs"
+          ],
+          "type": "object"
+        },
+        "confirmed_union_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "shared_by_exactly_two_count": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "META_only",
+        "STAT_only",
+        "GDN_only",
+        "META_STAT_only",
+        "META_GDN_only",
+        "STAT_GDN_only",
+        "all_three",
+        "confirmed_union_count",
+        "shared_by_exactly_two_count"
+      ],
+      "type": "object"
+    },
+    "method_comparison_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "pair_confirmation_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "primary_k": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "provenance_analysis_view_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provenance_joined_after_outcomes_frozen": {
+      "type": "boolean"
+    },
+    "same_pair_same_d2_outcome_across_all_origin_arms": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "winner_selected": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "method_comparison_policy_hash",
+    "pair_confirmation_summary_hash",
+    "provenance_analysis_view_hash",
+    "primary_k",
+    "arms",
+    "confirmed_pair_overlap",
+    "same_pair_same_d2_outcome_across_all_origin_arms",
+    "provenance_joined_after_outcomes_frozen",
+    "winner_selected",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "title": "task039d2_arm_confirmation_summary_v1",
+  "type": "object"
+}

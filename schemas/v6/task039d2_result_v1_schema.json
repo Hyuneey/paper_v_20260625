@@ -1,0 +1,173 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_result_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "agent_authorized": {
+      "type": "boolean"
+    },
+    "alternative_horizon_search_used": {
+      "type": "boolean"
+    },
+    "arm_confirmation_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_result_v1"
+    },
+    "authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_identity_list_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "confirmation_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "confirmed_directional_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "conflict_directional_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "d0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_directional_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_fit_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_source_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_target_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "directional_confirmation_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "input_directional_relation_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "lower_ranked_fallback_used": {
+      "type": "boolean"
+    },
+    "method_comparison_policy_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "opposite_direction_search_used": {
+      "type": "boolean"
+    },
+    "pair_confirmation_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "pairs_with_confirmed_direction_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "parameter_retuning_used": {
+      "type": "boolean"
+    },
+    "private_confirmation_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "runtime_authority": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "supported_pair_context_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "winner_selected": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "authorization_hash",
+    "d0_protocol_bundle_hash",
+    "confirmation_policy_hash",
+    "method_comparison_policy_hash",
+    "candidate_cohort_hash",
+    "candidate_identity_list_hash",
+    "d1_fit_result_hash",
+    "d1_pair_summary_hash",
+    "d1_source_ledger_hash",
+    "d1_target_ledger_hash",
+    "d1_directional_ledger_hash",
+    "input_directional_relation_count",
+    "supported_pair_context_count",
+    "confirmed_directional_count",
+    "conflict_directional_count",
+    "pairs_with_confirmed_direction_count",
+    "directional_confirmation_summary_hash",
+    "pair_confirmation_summary_hash",
+    "arm_confirmation_summary_hash",
+    "data_access_audit_hash",
+    "private_confirmation_ledger_hash",
+    "parameter_retuning_used",
+    "alternative_horizon_search_used",
+    "opposite_direction_search_used",
+    "lower_ranked_fallback_used",
+    "winner_selected",
+    "rule_v2_authorized",
+    "agent_authorized",
+    "runtime_authority",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "title": "task039d2_result_v1",
+  "type": "object"
+}

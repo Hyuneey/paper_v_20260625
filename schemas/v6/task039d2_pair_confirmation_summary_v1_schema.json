@@ -1,0 +1,104 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_pair_confirmation_summary_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d2_pair_confirmation_summary_v1"
+    },
+    "candidate_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "d1_fit_supported_pair_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "d1_fit_unsupported_pair_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "d1_pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_supported_pairs_without_confirmed_direction_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "directional_confirmation_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "outcomes_frozen_before_provenance_join": {
+      "type": "boolean"
+    },
+    "pair_records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "d1_fit_supported_pair": {
+            "type": "boolean"
+          },
+          "d2_evaluated_direction_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "has_d2_confirmed_directional_relation": {
+            "type": "boolean"
+          },
+          "source": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "target",
+          "d1_fit_supported_pair",
+          "d2_evaluated_direction_count",
+          "has_d2_confirmed_directional_relation"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "pairs_with_confirmed_direction_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "d1_pair_summary_hash",
+    "directional_confirmation_summary_hash",
+    "candidate_count",
+    "d1_fit_supported_pair_count",
+    "d1_fit_unsupported_pair_count",
+    "pairs_with_confirmed_direction_count",
+    "d1_supported_pairs_without_confirmed_direction_count",
+    "pair_records",
+    "outcomes_frozen_before_provenance_join",
+    "artifact_hash"
+  ],
+  "title": "task039d2_pair_confirmation_summary_v1",
+  "type": "object"
+}

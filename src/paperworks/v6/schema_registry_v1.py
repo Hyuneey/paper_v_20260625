@@ -327,6 +327,24 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039d2_execution_receipt_v1": (
         "schemas/v6/task039d2_execution_receipt_v1_schema.json"
     ),
+    "task039d2_data_access_audit_v1": (
+        "schemas/v6/task039d2_data_access_audit_v1_schema.json"
+    ),
+    "task039d2_directional_confirmation_summary_v1": (
+        "schemas/v6/task039d2_directional_confirmation_summary_v1_schema.json"
+    ),
+    "task039d2_pair_confirmation_summary_v1": (
+        "schemas/v6/task039d2_pair_confirmation_summary_v1_schema.json"
+    ),
+    "task039d2_arm_confirmation_summary_v1": (
+        "schemas/v6/task039d2_arm_confirmation_summary_v1_schema.json"
+    ),
+    "task039d2_result_v1": (
+        "schemas/v6/task039d2_result_v1_schema.json"
+    ),
+    "task039d2_real_execution_receipt_v1": (
+        "schemas/v6/task039d2_real_execution_receipt_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),
