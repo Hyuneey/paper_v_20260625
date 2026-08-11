@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e0_prepared_validity_result_v1_schema.json",
+  "title": "PreparedValidityResultV1 draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "proposal_hash",
+    "relation_binding_hash",
+    "evidence_bundle_hash",
+    "construction_provenance_hash",
+    "budget_policy_hash",
+    "status",
+    "issues",
+    "verifier_version",
+    "project_owned_deterministic_code",
+    "label_input_used",
+    "utility_input_used",
+    "llm_chain_of_thought_used",
+    "canonical_rule_materialized",
+    "validity_authority_granted",
+    "runtime_authority_granted",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e0_prepared_validity_result_v1"},
+    "proposal_hash": {"$ref": "#/$defs/hash"},
+    "relation_binding_hash": {"$ref": "#/$defs/hash"},
+    "evidence_bundle_hash": {"$ref": "#/$defs/hash"},
+    "construction_provenance_hash": {"$ref": "#/$defs/hash"},
+    "budget_policy_hash": {"$ref": "#/$defs/hash"},
+    "status": {"enum": ["admissible", "rejected"]},
+    "issues": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/issue"}
+    },
+    "verifier_version": {"$ref": "#/$defs/identifier"},
+    "project_owned_deterministic_code": {"const": true},
+    "label_input_used": {"const": false},
+    "utility_input_used": {"const": false},
+    "llm_chain_of_thought_used": {"const": false},
+    "canonical_rule_materialized": {"const": false},
+    "validity_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "admissible"}}},
+      "then": {"properties": {"issues": {"maxItems": 0}}},
+      "else": {"properties": {"issues": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "field", "repairability"],
+      "properties": {
+        "code": {
+          "enum": [
+            "VALIDITY_LABEL_INPUT_PROHIBITED",
+            "VALIDITY_UTILITY_INPUT_PROHIBITED",
+            "VALIDITY_MALFORMED_DSL",
+            "VALIDITY_DSL_FAMILY_UNSUPPORTED",
+            "VALIDITY_RELATION_BINDING_MISMATCH",
+            "VALIDITY_RELATION_IDENTITY_MISMATCH",
+            "VALIDITY_SOURCE_NOT_ALLOWED",
+            "VALIDITY_TARGET_NOT_ALLOWED",
+            "VALIDITY_SOURCE_BINDING_MISMATCH",
+            "VALIDITY_TARGET_BINDING_MISMATCH",
+            "VALIDITY_SOURCE_DIRECTION_MISMATCH",
+            "VALIDITY_TARGET_DIRECTION_MISMATCH",
+            "VALIDITY_HORIZON_MISMATCH",
+            "VALIDITY_NUMERIC_EVIDENCE_BUNDLE_INVALID",
+            "VALIDITY_NUMERIC_REFERENCE_MISMATCH",
+            "VALIDITY_NUMERIC_ORIGIN_UNAPPROVED",
+            "VALIDITY_UNAPPROVED_NUMERIC_LITERAL",
+            "VALIDITY_UNSUPPORTED_VARIABLE",
+            "VALIDITY_RUNTIME_LOGIC_UNSUPPORTED",
+            "VALIDITY_FREE_TEXT_RUNTIME_LOGIC",
+            "VALIDITY_PROHIBITED_DATA_REFERENCE",
+            "VALIDITY_SERIALIZATION_HASH_MISMATCH",
+            "VALIDITY_CONSTRUCTION_PROVENANCE_INVALID",
+            "VALIDITY_RULE_MATERIALIZATION_PRECLAIMED",
+            "VALIDITY_AUTHORITY_PRECLAIMED"
+          ]
+        },
+        "field": {"$ref": "#/$defs/identifier"},
+        "repairability": {"enum": ["repairable", "non_repairable"]}
+      }
+    }
+  }
+}
