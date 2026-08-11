@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_public_construction_evidence_manifest_entry_v1_schema.json",
+  "title": "PublicConstructionEvidenceManifestEntryV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "relation_binding_hash",
+    "relation_identity", "source", "target", "source_step_direction",
+    "target_response_direction", "selected_horizon_seconds",
+    "private_evidence_record_hash", "approved_numeric_roles",
+    "source_parameter_record_hash", "target_parameter_record_hash",
+    "d1_fit_evidence_hash", "d2_confirmation_evidence_hash",
+    "window_constant_bundle_hash", "disclosure_policy_hash",
+    "construction_evidence_status", "private_numeric_values_included",
+    "raw_hai_included", "rule_generated", "runtime_authority_granted",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "public_construction_evidence_manifest_entry_v1"},
+    "relation_binding_hash": {"$ref": "#/$defs/hash"},
+    "relation_identity": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source": {"$ref": "#/$defs/syntheticIdentifier"},
+    "target": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source_step_direction": {"enum": ["step_up", "step_down"]},
+    "target_response_direction": {"enum": ["increase", "decrease"]},
+    "selected_horizon_seconds": {"type": ["integer", "null"], "minimum": 1},
+    "private_evidence_record_hash": {"$ref": "#/$defs/hash"},
+    "approved_numeric_roles": {
+      "type": "array", "minItems": 11, "maxItems": 11, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/numericRole"}
+    },
+    "source_parameter_record_hash": {"$ref": "#/$defs/hash"},
+    "target_parameter_record_hash": {"$ref": "#/$defs/hash"},
+    "d1_fit_evidence_hash": {"$ref": "#/$defs/hash"},
+    "d2_confirmation_evidence_hash": {"$ref": "#/$defs/hash"},
+    "window_constant_bundle_hash": {"$ref": "#/$defs/hash"},
+    "disclosure_policy_hash": {"$ref": "#/$defs/hash"},
+    "construction_evidence_status": {"const": "approved"},
+    "private_numeric_values_included": {"const": false},
+    "raw_hai_included": {"const": false},
+    "rule_generated": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"},
+    "numericRole": {
+      "enum": [
+        "source_step_threshold", "source_stability_tolerance",
+        "target_noise_scale", "selected_delay_horizon_seconds",
+        "source_pre_window_seconds", "source_post_window_seconds",
+        "minimum_source_stability_fraction", "source_refractory_seconds",
+        "cross_source_isolation_radius_seconds",
+        "target_baseline_window_seconds", "target_response_window_seconds"
+      ]
+    }
+  }
+}

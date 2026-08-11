@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_synthetic_d1_source_parameter_record_v1_schema.json",
+  "title": "Synthetic D1 source parameter record preparation draft",
+  "description": "Code validation additionally requires complete positive parameters when status is supported.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "source", "source_noise_scale",
+    "source_step_threshold", "source_stability_tolerance", "parameter_status",
+    "fit_ledger_binding_hash", "source_threshold_origin",
+    "stability_tolerance_origin", "parameter_class", "synthetic_fixture",
+    "real_record", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e1_synthetic_d1_source_parameter_record_v1"},
+    "source": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source_noise_scale": {"type": ["number", "null"]},
+    "source_step_threshold": {"type": ["number", "null"]},
+    "source_stability_tolerance": {"type": ["number", "null"]},
+    "parameter_status": {"enum": ["supported", "unsupported"]},
+    "fit_ledger_binding_hash": {"$ref": "#/$defs/hash"},
+    "source_threshold_origin": {"const": "d1_fit_derived_source_parameter"},
+    "stability_tolerance_origin": {"const": "d1_fit_derived_source_parameter"},
+    "parameter_class": {"const": "normal_relation_profile_fit_derived"},
+    "synthetic_fixture": {"const": true},
+    "real_record": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}

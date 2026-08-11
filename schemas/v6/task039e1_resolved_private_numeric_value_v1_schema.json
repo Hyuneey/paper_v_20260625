@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_resolved_private_numeric_value_v1_schema.json",
+  "title": "ResolvedPrivateNumericValueV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "relation_binding_hash",
+    "numeric_role", "numeric_reference", "private_evidence_record_hash",
+    "numeric_value", "evidence_authority", "construction_only",
+    "runtime_authority_granted", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "resolved_private_numeric_value_v1"},
+    "relation_binding_hash": {"$ref": "#/$defs/hash"},
+    "numeric_role": {"$ref": "#/$defs/numericRole"},
+    "numeric_reference": {"$ref": "#/$defs/hash"},
+    "private_evidence_record_hash": {"$ref": "#/$defs/hash"},
+    "numeric_value": {"type": "number"},
+    "evidence_authority": {"const": "approved_construction_evidence"},
+    "construction_only": {"const": true},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "numericRole": {
+      "enum": [
+        "source_step_threshold", "source_stability_tolerance",
+        "target_noise_scale", "selected_delay_horizon_seconds",
+        "source_pre_window_seconds", "source_post_window_seconds",
+        "minimum_source_stability_fraction", "source_refractory_seconds",
+        "cross_source_isolation_radius_seconds",
+        "target_baseline_window_seconds", "target_response_window_seconds"
+      ]
+    }
+  }
+}
