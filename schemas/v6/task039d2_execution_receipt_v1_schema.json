@@ -1,0 +1,68 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d2_execution_receipt_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "task039d2_execution_receipt_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "base_commit",
+    "branch",
+    "confirmation_policy_hash",
+    "execution_mode",
+    "synthetic_cases",
+    "no_retuning_checks",
+    "arm_blindness_passed",
+    "optimized_event_extraction_reused",
+    "indexed_all_source_isolation_reused",
+    "optimized_target_response_reused",
+    "d1_optimized_implementation_modified",
+    "real_hai_files_accessed",
+    "d1_private_ledgers_accessed",
+    "d2_authorization_present",
+    "real_d2_execution_possible",
+    "method_provenance_joined",
+    "rule_v2_authorized",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039d2_execution_receipt_v1"},
+    "task_id": {"const": "TASK-039D2-PREP"},
+    "status": {"const": "passed_task039d2_synthetic_preparation"},
+    "base_commit": {"const": "360cf4b84ed2c18e026186be00f2312508a8fb85"},
+    "branch": {"const": "task-039d2-synthetic-prep"},
+    "confirmation_policy_hash": {
+      "const": "83419f6acefaeb21ebc329d5ff9df8563e9636da72ad5367318a172df8fb0b27"
+    },
+    "execution_mode": {"const": "synthetic_only_preparation"},
+    "synthetic_cases": {"$ref": "#/$defs/stringList"},
+    "no_retuning_checks": {"$ref": "#/$defs/stringList"},
+    "arm_blindness_passed": {"const": true},
+    "optimized_event_extraction_reused": {"const": true},
+    "indexed_all_source_isolation_reused": {"const": true},
+    "optimized_target_response_reused": {"const": true},
+    "d1_optimized_implementation_modified": {"const": false},
+    "real_hai_files_accessed": {"const": false},
+    "d1_private_ledgers_accessed": {"const": false},
+    "d2_authorization_present": {"const": false},
+    "real_d2_execution_possible": {"const": false},
+    "method_provenance_joined": {"const": false},
+    "rule_v2_authorized": {"const": false},
+    "claim_boundary": {"type": "string", "minLength": 1},
+    "artifact_hash": {"$ref": "#/$defs/sha256"}
+  }
+}
