@@ -34,6 +34,7 @@ from paperworks.profiling.task039d2_final_audit_v1 import (
     build_final_audit_v1,
     build_independent_input_set_v1,
     load_json_object_v1,
+    load_frozen_audit_replay_v1,
     load_train3_for_independent_audit_v1,
     reconstruct_post_freeze_arm_audit_v1,
     replay_train3_independently_v1,
@@ -56,6 +57,7 @@ from paperworks.profiling.task039d2_result_recovery_v1 import (
     verify_recovery_self_hash_v1,
     verify_scientific_sources_unchanged_v1,
 )
+from paperworks.v6.common import stable_hash_v1
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,6 +83,8 @@ def _args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--schemas-only", action="store_true")
     parser.add_argument("--audit-commit")
+    parser.add_argument("--finalize-from-audit-ledger", action="store_true")
+    parser.add_argument("--finalization-commit")
     return parser.parse_args()
 
 
@@ -281,9 +285,9 @@ def _validate_pair_and_arm(
     }
     membership = {pair: provenance_by_pair[pair] for pair in confirmed}
     decomposition = {
-        "META_only": sum(arms == ["META"] for arms in membership.values()),
-        "STAT_only": sum(arms == ["STAT"] for arms in membership.values()),
-        "GDN_only": sum(arms == ["GDN"] for arms in membership.values()),
+        "META_only": sum(arms == ("META",) for arms in membership.values()),
+        "STAT_only": sum(arms == ("STAT",) for arms in membership.values()),
+        "GDN_only": sum(arms == ("GDN",) for arms in membership.values()),
         "META+STAT_only": sum(set(arms) == {"META", "STAT"} for arms in membership.values()),
         "META+GDN_only": sum(set(arms) == {"META", "GDN"} for arms in membership.values()),
         "STAT+GDN_only": sum(set(arms) == {"STAT", "GDN"} for arms in membership.values()),
@@ -394,10 +398,87 @@ def execute(audit_commit: str) -> dict[str, str]:
     return {"audit_hash": audit["artifact_hash"], "authorization_hash": authorization["artifact_hash"]}
 
 
+def finalize_from_frozen_audit_ledger(
+    *, audit_commit: str, finalization_commit: str,
+) -> dict[str, str]:
+    if (
+        _git("branch", "--show-current") != BRANCH
+        or _git("rev-parse", "HEAD") != finalization_commit
+        or _git("status", "--porcelain=v1")
+    ):
+        raise TASK039D2FinalAuditError("frozen-ledger finalization requires a clean commit")
+    _git("merge-base", "--is-ancestor", audit_commit, finalization_commit)
+    if verify_scientific_sources_unchanged_v1(ROOT, finalization_commit) != COMMIT_A_SCIENTIFIC_SOURCE_HASHES:
+        raise TASK039D2FinalAuditError("failed_task039d2_recovery_audit")
+    raw = tuple(os.environ.get(name, "") for name in (
+        "TASK039D_PRIVATE_ROOT", "TASK039D2_PRIVATE_ROOT", "TASK039D2_AUDIT_PRIVATE_ROOT",
+    ))
+    if any(not value for value in raw):
+        raise TASK039D2FinalAuditError("private roots must be explicit")
+    d1_root, d2_root, audit_root = (Path(value).resolve(strict=True) for value in raw)
+    repository = ROOT.resolve(strict=True)
+    if len({d1_root, d2_root, audit_root}) != 3 or any(
+        path.is_relative_to(repository) or repository.is_relative_to(path)
+        for path in (d1_root, d2_root, audit_root)
+    ):
+        raise TASK039D2FinalAuditError("private roots must remain outside Git")
+    for name in ("TASK-039D2_FINAL_AUDIT.json", "TASK-039D2_FINAL_AUDIT.md", "TASK-039E0_AUTHORIZATION.json"):
+        if (REPORTS / name).exists():
+            raise TASK039D2FinalAuditError("audit result already exists")
+    public = _validate_public_history()
+    d1_inputs, d2_ledger = _validate_private(d1_root, d2_root)
+    input_set = build_independent_input_set_v1(
+        source_document=d1_inputs.source_document,
+        target_document=d1_inputs.target_document,
+        directional_document=d1_inputs.directional_document,
+    )
+    replay = load_frozen_audit_replay_v1(
+        input_set=input_set, original_ledger=d2_ledger,
+        audit_private_root=audit_root,
+    )
+    if replay["confirmed_count"] != 42 or replay["conflict_count"] != 3:
+        raise TASK039D2FinalAuditError("failed_task039d2_independent_train3_replay")
+    provenance = load_json_object_v1(REPORTS / "TASK-039D0_PROVENANCE_ANALYSIS_VIEW.json")
+    arm_audit = reconstruct_post_freeze_arm_audit_v1(
+        outcomes=replay["outcomes"], provenance_document=provenance,
+    )
+    _validate_pair_and_arm(replay=replay, arm_audit=arm_audit, public=public)
+    authorization = build_e0_authorization_v1()
+    audit = build_final_audit_v1(
+        replay=replay, arm_audit=arm_audit, audit_commit=audit_commit,
+        audit_private_ledger_hash=replay["audit_private_ledger_hash"],
+        e0_authorization_hash=authorization["artifact_hash"],
+    )
+    audit["findings_by_severity"]["IMPORTANT_NONBLOCKING"].append(
+        "post_freeze_tuple_list_accounting_assertion_corrected_without_train3_reread"
+    )
+    audit = {key: value for key, value in audit.items() if key != "artifact_hash"}
+    audit["artifact_hash"] = stable_hash_v1(audit)
+    for document in (audit, authorization):
+        verify_audit_self_hash_v1(document)
+        _validate_schema(document)
+    write_json_v1(REPORTS / "TASK-039D2_FINAL_AUDIT.json", audit)
+    write_json_v1(REPORTS / "TASK-039E0_AUTHORIZATION.json", authorization)
+    (REPORTS / "TASK-039D2_FINAL_AUDIT.md").write_text(
+        _report(audit, authorization), encoding="utf-8", newline="\n",
+    )
+    return {"audit_hash": audit["artifact_hash"], "authorization_hash": authorization["artifact_hash"]}
+
+
 def main() -> int:
     args = _args()
     if args.schemas_only:
         write_schemas()
+        return 0
+    if args.finalize_from_audit_ledger:
+        if not args.audit_commit or not args.finalization_commit:
+            raise TASK039D2FinalAuditError("both audit and finalization commits are required")
+        result = finalize_from_frozen_audit_ledger(
+            audit_commit=args.audit_commit, finalization_commit=args.finalization_commit,
+        )
+        print(f"[TASK-039D2-AUDIT] {STATUS}", flush=True)
+        print(f"[TASK-039D2-AUDIT] {READINESS}", flush=True)
+        print(json.dumps(result, sort_keys=True), flush=True)
         return 0
     if not args.audit_commit:
         raise TASK039D2FinalAuditError("--audit-commit is required")

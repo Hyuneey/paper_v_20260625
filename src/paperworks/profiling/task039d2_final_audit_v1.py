@@ -507,6 +507,106 @@ def replay_train3_independently_v1(
     }
 
 
+def load_frozen_audit_replay_v1(
+    *, input_set: D2DirectionalInputSetV1, original_ledger: Mapping[str, Any],
+    audit_private_root: Path,
+) -> dict[str, Any]:
+    """Reload the completed audit replay without any HAI data dependency."""
+
+    path = audit_private_root / "TASK039D2_AUDIT_PRIVATE_REPLAY_LEDGER.json"
+    document = load_json_object_v1(path)
+    ledger_hash = verify_audit_self_hash_v1(document)
+    if (
+        document.get("artifact_type") != "task039d2_audit_private_replay_ledger_v1"
+        or document.get("task_id") != TASK_ID
+        or document.get("confirmation_policy_hash") != CONFIRMATION_POLICY_HASH
+        or document.get("input_set_binding_hash") != input_set.binding_hash
+        or document.get("original_d2_private_ledger_hash") != PRIVATE_D2_LEDGER_HASH
+        or document.get("record_count") != 45
+        or len(document.get("records", ())) != 45
+        or document.get("float_absolute_tolerance") != FLOAT_ABS_TOLERANCE
+        or document.get("float_relative_tolerance") != FLOAT_REL_TOLERANCE
+        or any(document.get(field) is not False for field in (
+            "raw_hai_rows_included", "raw_windows_included",
+            "event_timestamps_included", "absolute_paths_included",
+        ))
+    ):
+        raise TASK039D2FinalAuditError("failed_task039d2_record_level_parity")
+    relation_by_hash = {
+        item.d1_directional_record_hash: item for item in input_set.directional_inputs
+    }
+    original_by_hash = {
+        item["artifact_hash"]: item for item in original_ledger["records"]
+    }
+    outcomes: list[AuditedDirectionOutcomeV1] = []
+    seen: set[str] = set()
+    for record in document["records"]:
+        verify_audit_self_hash_v1(record)
+        relation = relation_by_hash.get(str(record.get("d1_directional_record_hash")))
+        original = original_by_hash.get(str(record.get("original_d2_record_hash")))
+        if relation is None or original is None or record["d1_directional_record_hash"] in seen:
+            raise TASK039D2FinalAuditError("failed_task039d2_record_level_parity")
+        seen.add(record["d1_directional_record_hash"])
+        exact = (
+            record["source"] == relation.source == original["source"]
+            and record["source_step_direction"] == relation.source_step_direction == original["source_step_direction"]
+            and record["target"] == relation.target == original["target"]
+            and record["target_response_direction"] == relation.target_response_direction == original["target_response_direction"]
+            and record["selected_horizon_seconds"] == relation.selected_horizon_seconds == original["selected_horizon_seconds"]
+            and record["usable_response_count"] == original["train3_usable_response_count"]
+            and record["right_censored_count"] == original["right_censored_count"]
+            and record["confirmation_status"] == original["confirmation_status"]
+            and record["record_level_parity"] is True
+        )
+        numeric = all(
+            _close(float(record[audit_name]), float(original[original_name]))
+            for audit_name, original_name in (
+                ("selected_consistency", "selected_directional_consistency"),
+                ("opposite_consistency", "opposite_directional_consistency"),
+                ("robust_effect_ratio", "robust_effect_ratio"),
+            )
+        )
+        if record["median_target_response"] is None:
+            median_equal = original["median_target_response"] is None
+        else:
+            median_equal = _close(
+                float(record["median_target_response"]),
+                float(original["median_target_response"]),
+            )
+        if not (exact and numeric and median_equal):
+            raise TASK039D2FinalAuditError("failed_task039d2_record_level_parity")
+        outcomes.append(AuditedDirectionOutcomeV1(
+            input_binding_hash=relation.binding_hash,
+            d1_source_parameter_record_hash=relation.d1_source_parameter_record_hash,
+            d1_target_parameter_record_hash=relation.d1_target_parameter_record_hash,
+            d1_directional_record_hash=relation.d1_directional_record_hash,
+            source=relation.source, source_step_direction=relation.source_step_direction,
+            target=relation.target, target_response_direction=relation.target_response_direction,
+            selected_horizon_seconds=relation.selected_horizon_seconds,
+            usable_response_count=int(record["usable_response_count"]),
+            right_censored_count=int(record["right_censored_count"]),
+            source_direction_unchanged=True,
+            selected_consistency=float(record["selected_consistency"]),
+            opposite_consistency=float(record["opposite_consistency"]),
+            robust_effect_ratio=float(record["robust_effect_ratio"]),
+            status=str(record["confirmation_status"]),
+            record_hash=str(original["artifact_hash"]),
+        ))
+    if set(seen) != set(relation_by_hash):
+        raise TASK039D2FinalAuditError("failed_task039d2_record_level_parity")
+    frozen = FrozenD2OutcomeSetV1(
+        directions=tuple(outcomes), private_ledger_hash=PRIVATE_D2_LEDGER_HASH,
+        input_set_binding_hash=input_set.binding_hash,
+    )
+    return {
+        "outcomes": frozen,
+        "audit_private_ledger_hash": ledger_hash,
+        "confirmed_count": sum(item.status == "calibration_confirmed" for item in outcomes),
+        "conflict_count": sum(item.status == "calibration_conflict" for item in outcomes),
+        "record_level_parity": True,
+    }
+
+
 def reconstruct_post_freeze_arm_audit_v1(
     *, outcomes: FrozenD2OutcomeSetV1, provenance_document: Mapping[str, Any],
 ) -> PostFreezeArmAuditV1:
@@ -813,6 +913,7 @@ __all__ = [
     "build_independent_input_set_v1", "load_train3_for_independent_audit_v1",
     "verify_train3_manifest_identity_v1",
     "replay_train3_independently_v1", "reconstruct_post_freeze_arm_audit_v1",
+    "load_frozen_audit_replay_v1",
     "build_e0_authorization_v1", "build_final_audit_v1", "audit_schema_examples_v1",
     "schema_for_audit_artifact_v1", "verify_audit_self_hash_v1", "write_json_v1",
     "STATUS", "READINESS", "FLOAT_ABS_TOLERANCE", "FLOAT_REL_TOLERANCE",

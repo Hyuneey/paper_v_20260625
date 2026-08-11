@@ -121,14 +121,22 @@ class TASK039D2FinalAuditContractTests(unittest.TestCase):
                 "confirmation_status": item.status,
             }
             records.append({**content, "artifact_hash": stable_hash_v1(content)})
+        original_ledger = {"records": records}
         with tempfile.TemporaryDirectory() as directory:
+            private_root = Path(directory) / "audit"
             result = audit.replay_train3_independently_v1(
                 input_set=input_set,
                 values=values,
-                original_ledger={"records": records},
-                audit_private_root=Path(directory) / "audit",
+                original_ledger=original_ledger,
+                audit_private_root=private_root,
+            )
+            frozen = audit.load_frozen_audit_replay_v1(
+                input_set=input_set,
+                original_ledger=original_ledger,
+                audit_private_root=private_root,
             )
         self.assertEqual(result["confirmed_count"], sum(item.status == "calibration_confirmed" for item in expected))
+        self.assertEqual(frozen["audit_private_ledger_hash"], result["audit_private_ledger_hash"])
         self.assertTrue(result["record_level_parity"])
 
 
