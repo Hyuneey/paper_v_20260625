@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_structured_rule_proposal_v1_schema.json",
+  "title": "Closed structured rule proposal family for E2 preparation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "construction_arm", "dsl_family",
+    "relation_binding_hash", "relation_identity", "source", "source_step_direction",
+    "target", "target_response_direction", "selected_delay_horizon_seconds",
+    "numeric_origin", "source_threshold_reference", "source_stability_reference",
+    "target_scale_reference", "fit_evidence_reference", "confirmation_evidence_reference",
+    "preregistered_window_constant_references", "variables", "runtime_logic",
+    "free_text_runtime_logic", "numeric_literals", "prohibited_data_references",
+    "construction_provenance_hash", "canonical_rule_materialized",
+    "validity_authority_granted", "runtime_authority_granted", "proposal_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e0_rule_proposal_envelope_v1"},
+    "construction_arm": {"enum": ["T0", "T1", "T1_B", "T2"]},
+    "dsl_family": {"const": "canonical_delayed_response_rule_v1_candidate"},
+    "relation_binding_hash": {"$ref": "#/$defs/hash"},
+    "relation_identity": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source_step_direction": {"enum": ["step_up", "step_down"]},
+    "target": {"$ref": "#/$defs/syntheticIdentifier"},
+    "target_response_direction": {"enum": ["increase", "decrease"]},
+    "selected_delay_horizon_seconds": {"type": "integer", "minimum": 1},
+    "numeric_origin": {"const": "deterministic_calibrated_evidence"},
+    "source_threshold_reference": {"$ref": "#/$defs/hash"},
+    "source_stability_reference": {"$ref": "#/$defs/hash"},
+    "target_scale_reference": {"$ref": "#/$defs/hash"},
+    "fit_evidence_reference": {"$ref": "#/$defs/hash"},
+    "confirmation_evidence_reference": {"$ref": "#/$defs/hash"},
+    "preregistered_window_constant_references": {"type": "array", "minItems": 7, "maxItems": 7, "uniqueItems": true, "items": {"$ref": "#/$defs/hash"}},
+    "variables": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/syntheticIdentifier"}},
+    "runtime_logic": {"const": "missing_expected_delayed_response"},
+    "free_text_runtime_logic": {"type": "null"},
+    "numeric_literals": {"type": "array", "maxItems": 0},
+    "prohibited_data_references": {"type": "array", "maxItems": 0},
+    "construction_provenance_hash": {"$ref": "#/$defs/hash"},
+    "canonical_rule_materialized": {"const": false},
+    "validity_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "proposal_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_model_capability_receipt_v1_schema.json",
+  "title": "ModelCapabilityReceiptV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "provider_identifier", "model_identifier",
+    "stable_explicit_model_version", "structured_schema_output_supported",
+    "temperature_control_supported", "deterministic_decoding_supported",
+    "exposed_seed_control_supported", "stateless_independent_calls_supported",
+    "maximum_input_tokens", "maximum_output_tokens",
+    "required_evidence_envelope_tokens", "required_output_tokens",
+    "unsupported_capabilities", "capability_evidence_reference",
+    "preparation_only", "real_provider_selected", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "model_capability_receipt_v1"},
+    "provider_identifier": {"$ref": "#/$defs/syntheticIdentifier"},
+    "model_identifier": {"$ref": "#/$defs/syntheticIdentifier"},
+    "stable_explicit_model_version": {"type": "boolean"},
+    "structured_schema_output_supported": {"type": "boolean"},
+    "temperature_control_supported": {"type": "boolean"},
+    "deterministic_decoding_supported": {"type": "boolean"},
+    "exposed_seed_control_supported": {"type": "boolean"},
+    "stateless_independent_calls_supported": {"type": "boolean"},
+    "maximum_input_tokens": {"type": "integer", "minimum": 1},
+    "maximum_output_tokens": {"type": "integer", "minimum": 1},
+    "required_evidence_envelope_tokens": {"type": "integer", "minimum": 1},
+    "required_output_tokens": {"type": "integer", "minimum": 1},
+    "unsupported_capabilities": {
+      "type": "array", "uniqueItems": true,
+      "items": {"enum": ["stable_explicit_model_version", "structured_schema_output", "temperature_control", "deterministic_or_seed_control", "stateless_independent_calls", "sufficient_input_tokens", "sufficient_output_tokens"]}
+    },
+    "capability_evidence_reference": {"$ref": "#/$defs/hash"},
+    "preparation_only": {"const": true},
+    "real_provider_selected": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_provider_response_custody_receipt_v1_schema.json",
+  "title": "ProviderResponseCustodyReceiptV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "provider_identifier", "model_identifier",
+    "call_number", "provider_request_identifier", "response_received",
+    "structured_parse_result", "transport_retry_count", "proposal_hash",
+    "raw_output_retention_policy", "raw_model_output_stored",
+    "chain_of_thought_stored", "runtime_authority_granted", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "provider_response_custody_receipt_v1"},
+    "provider_identifier": {"$ref": "#/$defs/syntheticIdentifier"},
+    "model_identifier": {"$ref": "#/$defs/syntheticIdentifier"},
+    "call_number": {"type": "integer", "minimum": 1},
+    "provider_request_identifier": {"anyOf": [{"$ref": "#/$defs/syntheticIdentifier"}, {"type": "null"}]},
+    "response_received": {"type": "boolean"},
+    "structured_parse_result": {"enum": ["parsed", "rejected", "not_received"]},
+    "transport_retry_count": {"type": "integer", "minimum": 0},
+    "proposal_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+    "raw_output_retention_policy": {"const": "sanitized_structured_output_first"},
+    "raw_model_output_stored": {"const": false},
+    "chain_of_thought_stored": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}

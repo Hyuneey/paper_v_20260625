@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_t2_retrieval_corpus_policy_v1_schema.json",
+  "title": "T2RetrievalCorpusPolicyV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "initial_evidence_corpus_hash",
+    "maximum_retrieval_actions", "same_underlying_corpus_required",
+    "allowed_operation", "scientifically_new_information_allowed",
+    "raw_hai_allowed", "labels_attacks_test_allowed",
+    "utility_or_candidate_results_allowed", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "t2_retrieval_corpus_policy_v1"},
+    "initial_evidence_corpus_hash": {"$ref": "#/$defs/hash"},
+    "maximum_retrieval_actions": {"const": 1},
+    "same_underlying_corpus_required": {"const": true},
+    "allowed_operation": {"const": "targeted_re-presentation_of_already-authorized_evidence"},
+    "scientifically_new_information_allowed": {"const": false},
+    "raw_hai_allowed": {"const": false},
+    "labels_attacks_test_allowed": {"const": false},
+    "utility_or_candidate_results_allowed": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}
