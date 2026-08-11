@@ -1,0 +1,133 @@
+{
+  "artifact_hash": "8b1b55c4ed96b0642737e616dd60b271684d59738c8186211abb9c6c46cd1362",
+  "artifact_type": "task039e3_r0_recovery_protocol_v1",
+  "corrected_capability_gate": {
+    "capability_token": "TASK039E3_STRICT_JSON_SCHEMA_V1",
+    "checker_source_hash": "a2484b2a1327a48b2b02ee7d2dc3cb05909daed8724a736c806117253b4df783",
+    "checker_source_specification": "PASS iff response.model == 'gpt-5.4-2026-03-05'\nand response.message.refusal is absent or empty\nand the frozen strict json_schema request was accepted\nand content parsed as JSON and validated against the exact frozen schema\nand fixture_id == 'SYNTHETIC_CAPABILITY_CHECK'\nand capability_token == 'TASK039E3_STRICT_JSON_SCHEMA_V1';\notherwise BLOCK; no model fallback, third probe, or patch-and-continue.",
+    "decision_table": [
+      {
+        "decision": "PASS",
+        "fixed_fixture_acknowledgement": true,
+        "provider_model_exact": true,
+        "refusal_absent": true,
+        "strict_schema_parse_and_validation": true
+      },
+      {
+        "condition": "any required authoritative observation is false",
+        "decision": "BLOCK"
+      }
+    ],
+    "fixture_id": "SYNTHETIC_CAPABILITY_CHECK",
+    "prompt_sha256": "b725da5aaf23913c5c5ad7c74aa8260304c27a53f004d588d34b386ecfe0372b",
+    "prompt_utf8": "SYNTHETIC_CAPABILITY_CHECK\nReturn exactly the frozen capability acknowledgement. No scientific evidence is supplied.",
+    "request_builder_contract": {
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-5.4-2026-03-05",
+      "model_identity_source": "provider_response_metadata_only",
+      "model_self_report_authoritative": false,
+      "prompt_sha256": "b725da5aaf23913c5c5ad7c74aa8260304c27a53f004d588d34b386ecfe0372b",
+      "provider": "openai",
+      "schema_sha256": "7fb77614ef8df85ea6c03afe7b47ec6fda06c5b09d8f37722daae39de0f57e9a",
+      "strict_json_schema": true,
+      "structured_support_self_report_authoritative": false,
+      "structured_support_source": "observed_strict_schema_parse_and_validation"
+    },
+    "request_builder_hash": "8bdd8612f57bef011a28f3c130953f0e2fbd05f0e0ba153a8c712688cec10864",
+    "schema_canonical_json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "capability_token": {
+          "const": "TASK039E3_STRICT_JSON_SCHEMA_V1",
+          "type": "string"
+        },
+        "fixture_id": {
+          "const": "SYNTHETIC_CAPABILITY_CHECK",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fixture_id",
+        "capability_token"
+      ],
+      "type": "object"
+    },
+    "schema_sha256": "7fb77614ef8df85ea6c03afe7b47ec6fda06c5b09d8f37722daae39de0f57e9a"
+  },
+  "future_task_requiring_new_authorization": "TASK-039E3-R1_RECOVERY_IMPLEMENTATION",
+  "historical_accounting": {
+    "cumulative_capability_probes_if_executed": 2,
+    "current_recovery_run_probes_if_executed": 1,
+    "historical_capability_probes": 1,
+    "historical_scientific_calls": 0,
+    "maximum_additional_recovery_capability_probes_if_later_authorized": 1
+  },
+  "next_authorized_task": null,
+  "provider_contact_authorized": false,
+  "recovery_probe_authorized": false,
+  "required_future_run_controls": {
+    "bind_historical_capability_receipt": "e36098690f2c4c018b8ed5f339d46870fbbe0561f52c117cd2525a63d155c279",
+    "bind_historical_provider_ledger_head": "656d81ded2f166175adf2717abc226c325cd4a9fcbcee5306f4ea35c7465d254",
+    "e1_private_evidence_before_capability_pass": false,
+    "full_scientific_schedule_only_after_capability_pass": true,
+    "historical_private_root_read_only": true,
+    "independent_audit_before_provider_contact": true,
+    "model_fallback": false,
+    "new_private_recovery_root_outside_git": true,
+    "new_recovery_run_identity": true,
+    "patch_and_continue": false,
+    "separate_clean_recovery_implementation_commit": true,
+    "source_or_configuration_change_after_contact": false,
+    "third_capability_probe": false
+  },
+  "required_future_serialization_fix": {
+    "atomic_replace": true,
+    "canonicalize_before_self_hash": true,
+    "flush_and_fsync": true,
+    "json_round_trip_equality": true,
+    "partial_public_file_prevention": true,
+    "private_custody_survives_public_failure": true,
+    "recursive_plain_json_conversion": true,
+    "reject_unsupported_types_before_write": true,
+    "sanitized_failure_without_provider_recontact": true,
+    "temporary_file_write": true
+  },
+  "required_future_versioned_tests": [
+    "exact authorization guard",
+    "exact branch and commit guard",
+    "clean worktree guard",
+    "credential ordering",
+    "private root guard",
+    "live request construction",
+    "Authorization header exclusion from hashes",
+    "response mapping",
+    "exact returned-model integrity",
+    "refusal handling",
+    "strict-schema parsing",
+    "retryable transport classes",
+    "non-retryable failures",
+    "Retry-After behavior",
+    "one logical probe versus transport attempts",
+    "corrected capability PASS",
+    "corrected capability BLOCK",
+    "no E1 access before PASS",
+    "nested MappingProxyType serialization",
+    "nested dict list tuple serialization",
+    "canonical self-hash stability",
+    "write failure before atomic replacement",
+    "no incomplete target file",
+    "provider ledger hash chain",
+    "public leak scan",
+    "no scientific execution on capability block"
+  ],
+  "required_new_authority": "explicit authorization for corrected capability semantics and one recovery probe",
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "scientific_execution_authorized": false,
+  "status": "blocked_recovery_protocol_not_authorized",
+  "task_id": "TASK-039E3-R0",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

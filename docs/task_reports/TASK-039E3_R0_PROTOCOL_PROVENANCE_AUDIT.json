@@ -1,0 +1,57 @@
+{
+  "artifact_hash": "b871d372c0d047d73b94272c9165f8c6b2745694fff8c46880683eb08a380349",
+  "artifact_type": "task039e3_r0_protocol_provenance_audit_v1",
+  "classification": "insufficient_authority_evidence",
+  "e2_explicitly_froze": {
+    "ask_model_to_declare_structured_support": false,
+    "ask_model_to_self_report_snapshot": false,
+    "configuration_immutable_after_probe": true,
+    "exact_capability_prompt_bytes": false,
+    "exact_capability_schema_bytes": false,
+    "exact_checker_semantics": false,
+    "exact_model_snapshot": true,
+    "fixture_identity": true,
+    "one_capability_probe": true,
+    "probe_non_scientific": true,
+    "self_report_fields_authoritative": false,
+    "self_report_mismatch_maps_to_block_snapshot": false,
+    "static_structured_output_support_claim": true,
+    "unsupported_probe_blocks_e3": true
+  },
+  "historical_protocol_reinterpreted": false,
+  "recovery_change_classification": "explicit_protocol_amendment_requires_new_authorization",
+  "schema_version": "1.0.0",
+  "self_report_checker_introduced_at": {
+    "commit": "aee1fc6e22bcb45572fe3bab5c9bb605de09d721",
+    "path": "src/paperworks/v6/task039e3_execution_prep_v1.py",
+    "source_blob_sha256": "3b7d05b3751cfe8b4fa4c6fd580815d823eaf49aa84ed882d49ed4a7e9174826"
+  },
+  "status": "blocked_task039e3_r0_capability_block_forensic_audit",
+  "task_id": "TASK-039E3-R0",
+  "test_provenance": {
+    "capability_checker": "verified_by_versioned_test",
+    "commit_a_added_test_files": [
+      "tests/test_task039e3_live_execution.py",
+      "tests/test_task039e3_live_transport.py"
+    ],
+    "durable_historical_test_log_found": false,
+    "live_transport": "verified_by_versioned_test",
+    "nested_public_serialization": "not_tested",
+    "private_root_guards": "verified_by_versioned_test",
+    "r0_independent_49_test_rerun": "passed",
+    "reported_49_of_49_historical_claim": "reported_but_not_independently_traceable",
+    "response_mapping": "verified_by_versioned_test",
+    "retry_classification": "verified_by_versioned_test",
+    "test_files_at_commit_a": [
+      "tests/task039e3_support.py",
+      "tests/test_task039e3_live_execution.py",
+      "tests/test_task039e3_live_transport.py",
+      "tests/test_task039e3_main_arms.py",
+      "tests/test_task039e3_metrics_schedule_public.py",
+      "tests/test_task039e3_request_capability_boundary.py",
+      "tests/test_task039e3_schemas_receipt.py",
+      "tests/test_task039e3_t2_direct.py",
+      "tests/test_task039e3_transport_parser_custody.py"
+    ]
+  }
+}
