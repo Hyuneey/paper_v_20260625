@@ -1,0 +1,131 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e2_authorization_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e2_authorization_v1"
+    },
+    "decoding_parameter_freeze_authorized": {
+      "const": true
+    },
+    "detector_runtime_authorized": {
+      "const": false
+    },
+    "deterministic_execution_schedule_freeze_authorized": {
+      "const": true
+    },
+    "direct_number_execution_authorized": {
+      "const": false
+    },
+    "e0_protocol_bundle_hash": {
+      "const": "a95aecffeaff82d0c67f966f19293ef947827cb0e1e7621a38ecd7c1fd96e17b"
+    },
+    "e1_construction_evidence_cohort_hash": {
+      "const": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4"
+    },
+    "e1_materialization_result_hash": {
+      "const": "2831f175f777bc0544513c35926269e05b6360c17e13f70b89d1768f1c7aa164"
+    },
+    "e1_private_ledger_hash": {
+      "const": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7"
+    },
+    "hai_test_labels_attacks_authorized": {
+      "const": false
+    },
+    "numeric_binding_count": {
+      "const": 462
+    },
+    "private_evidence_rendering_policy_freeze_authorized": {
+      "const": true
+    },
+    "prompt_template_freeze_authorized": {
+      "const": true
+    },
+    "provider_model_call_authorized": {
+      "const": false
+    },
+    "provider_model_identity_freeze_authorized": {
+      "const": true
+    },
+    "readiness": {
+      "const": "READY_FOR_TASK039E2"
+    },
+    "real_t0_generation_authorized": {
+      "const": false
+    },
+    "real_t1_t1b_t2_generation_authorized": {
+      "const": false
+    },
+    "relation_count": {
+      "const": 42
+    },
+    "rule_v2_authorized": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "seed_policy_freeze_authorized": {
+      "const": true
+    },
+    "status": {
+      "const": "authorized_task039e2_configuration_freeze_only"
+    },
+    "structured_output_schema_freeze_authorized": {
+      "const": true
+    },
+    "t0_template_finalization_authorized": {
+      "const": true
+    },
+    "t1_t1b_t2_harness_protocol_freeze_authorized": {
+      "const": true
+    },
+    "task_id": {
+      "const": "TASK-039E2"
+    },
+    "task_name": {
+      "const": "Rule Construction Execution Configuration Freeze"
+    },
+    "transport_retry_policy_freeze_authorized": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "task_name",
+    "status",
+    "readiness",
+    "e0_protocol_bundle_hash",
+    "e1_materialization_result_hash",
+    "e1_construction_evidence_cohort_hash",
+    "e1_private_ledger_hash",
+    "relation_count",
+    "numeric_binding_count",
+    "provider_model_identity_freeze_authorized",
+    "prompt_template_freeze_authorized",
+    "structured_output_schema_freeze_authorized",
+    "decoding_parameter_freeze_authorized",
+    "seed_policy_freeze_authorized",
+    "deterministic_execution_schedule_freeze_authorized",
+    "transport_retry_policy_freeze_authorized",
+    "private_evidence_rendering_policy_freeze_authorized",
+    "t0_template_finalization_authorized",
+    "t1_t1b_t2_harness_protocol_freeze_authorized",
+    "provider_model_call_authorized",
+    "real_t0_generation_authorized",
+    "real_t1_t1b_t2_generation_authorized",
+    "direct_number_execution_authorized",
+    "rule_v2_authorized",
+    "detector_runtime_authorized",
+    "hai_test_labels_attacks_authorized",
+    "artifact_hash"
+  ],
+  "type": "object"
+}

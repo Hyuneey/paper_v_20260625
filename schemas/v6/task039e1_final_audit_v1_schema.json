@@ -1,0 +1,344 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_final_audit_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_final_audit_v1"
+    },
+    "e2_authorization_created": {
+      "const": true
+    },
+    "e2_authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "findings": {
+      "additionalProperties": false,
+      "properties": {
+        "blocking": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "important_nonblocking": {
+          "maxItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "blocking",
+        "important_nonblocking"
+      ],
+      "type": "object"
+    },
+    "independent_replay": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_replay_ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "numeric_bindings_reproduced": {
+          "const": 462
+        },
+        "numeric_references_reproduced": {
+          "const": 462
+        },
+        "origin_mapping_reproduced": {
+          "const": true
+        },
+        "parameter_binding_reproduced": {
+          "const": true
+        },
+        "private_records_reproduced": {
+          "const": 42
+        },
+        "relation_binding_reproduced": {
+          "const": true
+        },
+        "resolver_negative_guards_passed": {
+          "const": true
+        },
+        "resolver_positive_replays": {
+          "const": 462
+        },
+        "role_frequencies": {
+          "additionalProperties": false,
+          "properties": {
+            "cross_source_isolation_radius_seconds": {
+              "const": 42
+            },
+            "minimum_source_stability_fraction": {
+              "const": 42
+            },
+            "selected_delay_horizon_seconds": {
+              "const": 42
+            },
+            "source_post_window_seconds": {
+              "const": 42
+            },
+            "source_pre_window_seconds": {
+              "const": 42
+            },
+            "source_refractory_seconds": {
+              "const": 42
+            },
+            "source_stability_tolerance": {
+              "const": 42
+            },
+            "source_step_threshold": {
+              "const": 42
+            },
+            "target_baseline_window_seconds": {
+              "const": 42
+            },
+            "target_noise_scale": {
+              "const": 42
+            },
+            "target_response_window_seconds": {
+              "const": 42
+            }
+          },
+          "required": [
+            "source_step_threshold",
+            "source_stability_tolerance",
+            "target_noise_scale",
+            "selected_delay_horizon_seconds",
+            "source_pre_window_seconds",
+            "source_post_window_seconds",
+            "minimum_source_stability_fraction",
+            "source_refractory_seconds",
+            "cross_source_isolation_radius_seconds",
+            "target_baseline_window_seconds",
+            "target_response_window_seconds"
+          ],
+          "type": "object"
+        },
+        "window_bundle_hash": {
+          "const": "53c3d6ff60987621b38b002f088a5b5f4b686e59c0040e5de7226b6dace6d863"
+        },
+        "window_bundle_reproduced": {
+          "const": true
+        }
+      },
+      "required": [
+        "audit_replay_ledger_hash",
+        "private_records_reproduced",
+        "numeric_bindings_reproduced",
+        "numeric_references_reproduced",
+        "role_frequencies",
+        "window_bundle_hash",
+        "window_bundle_reproduced",
+        "resolver_positive_replays",
+        "resolver_negative_guards_passed",
+        "relation_binding_reproduced",
+        "parameter_binding_reproduced",
+        "origin_mapping_reproduced"
+      ],
+      "type": "object"
+    },
+    "lineage": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_execution_code_commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        "audit_prep_commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        "commit_separation_verified": {
+          "const": true
+        },
+        "e1_execution_commit_a": {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        "e1_prep_merge_commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        "e1_result_commit_b": {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "e1_prep_merge_commit",
+        "e1_execution_commit_a",
+        "e1_result_commit_b",
+        "audit_prep_commit",
+        "audit_execution_code_commit",
+        "commit_separation_verified"
+      ],
+      "type": "object"
+    },
+    "private_input_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "all_record_hashes_verified": {
+          "const": true
+        },
+        "all_self_hashes_verified": {
+          "const": true
+        },
+        "d1_directional_ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "d1_source_ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "d1_target_ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "d2_confirmation_ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "e1_private_ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "original_ledgers_modified": {
+          "const": false
+        }
+      },
+      "required": [
+        "d1_source_ledger_hash",
+        "d1_target_ledger_hash",
+        "d1_directional_ledger_hash",
+        "d2_confirmation_ledger_hash",
+        "e1_private_ledger_hash",
+        "all_self_hashes_verified",
+        "all_record_hashes_verified",
+        "original_ledgers_modified"
+      ],
+      "type": "object"
+    },
+    "public_private_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "absolute_local_paths_public": {
+          "const": false
+        },
+        "hai_accessed_by_audit": {
+          "const": false
+        },
+        "llm_called_by_audit": {
+          "const": false
+        },
+        "passed": {
+          "const": true
+        },
+        "private_ledgers_committed": {
+          "const": false
+        },
+        "private_numeric_values_public": {
+          "const": false
+        },
+        "raw_hai_public": {
+          "const": false
+        },
+        "rule_generated_by_audit": {
+          "const": false
+        },
+        "runtime_authority_granted": {
+          "const": false
+        }
+      },
+      "required": [
+        "private_numeric_values_public",
+        "absolute_local_paths_public",
+        "raw_hai_public",
+        "private_ledgers_committed",
+        "hai_accessed_by_audit",
+        "llm_called_by_audit",
+        "rule_generated_by_audit",
+        "runtime_authority_granted",
+        "passed"
+      ],
+      "type": "object"
+    },
+    "public_reconstruction": {
+      "additionalProperties": false,
+      "properties": {
+        "approved_numeric_bundles_reproduced": {
+          "const": 42
+        },
+        "byte_semantic_equality_verified": {
+          "const": true
+        },
+        "construction_evidence_cohort_hash": {
+          "const": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4"
+        },
+        "data_access_audit_hash": {
+          "const": "7a52f89262070cf51a3ecb1784c159ee31894d445d4fe54ae06c654d1551c88b"
+        },
+        "execution_receipt_hash": {
+          "const": "5d09cc438344222bdb2a70644ccb3a5a5b7d7b8342ba9a906ba9c8097343f9c7"
+        },
+        "materialization_result_hash": {
+          "const": "2831f175f777bc0544513c35926269e05b6360c17e13f70b89d1768f1c7aa164"
+        },
+        "public_manifest_entries_reproduced": {
+          "const": 42
+        },
+        "public_manifest_hash": {
+          "const": "ee8c5b7e9895f5f6afdd1be2563244e3b82dca9c3eadca502dd522940931e3ae"
+        },
+        "relation_primitives_reproduced": {
+          "const": 42
+        }
+      },
+      "required": [
+        "relation_primitives_reproduced",
+        "approved_numeric_bundles_reproduced",
+        "public_manifest_entries_reproduced",
+        "public_manifest_hash",
+        "construction_evidence_cohort_hash",
+        "materialization_result_hash",
+        "data_access_audit_hash",
+        "execution_receipt_hash",
+        "byte_semantic_equality_verified"
+      ],
+      "type": "object"
+    },
+    "readiness": {
+      "const": "READY_FOR_TASK039E2"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "passed_task039e1_final_audit"
+    },
+    "task_id": {
+      "const": "TASK-039E1-AUDIT"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "readiness",
+    "lineage",
+    "private_input_hashes",
+    "independent_replay",
+    "public_reconstruction",
+    "public_private_boundary",
+    "findings",
+    "e2_authorization_created",
+    "e2_authorization_hash",
+    "artifact_hash"
+  ],
+  "type": "object"
+}
