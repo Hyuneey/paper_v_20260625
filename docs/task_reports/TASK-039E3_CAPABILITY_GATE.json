@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "e36098690f2c4c018b8ed5f339d46870fbbe0561f52c117cd2525a63d155c279",
+  "artifact_type": "task039e3_capability_gate_receipt_v1",
+  "configuration_modified_after_probe": false,
+  "exact_model": "gpt-5.4-2026-03-05",
+  "execution_code_commit": "48b79643088ce1a0179191d7ddae4c97dc8dece9",
+  "finish_reason": "stop",
+  "passed": false,
+  "response_id": "chatcmpl-EBoZnPrUfDXlKbhytq3eLqCXslFAO",
+  "returned_model": "gpt-5.4-2026-03-05",
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "status": "blocked_task039e3_capability_gate",
+  "structured_parse_status": "block_snapshot",
+  "system_fingerprint": null,
+  "task_id": "TASK-039E3",
+  "transport_attempts": 1,
+  "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 74,
+    "total_tokens": 101
+  }
+}
