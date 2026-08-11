@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_construction_input_view_v1_schema.json",
+  "title": "ConstructionInputViewV1 synthetic private-view draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "relation_identity", "relation_binding_hash",
+    "source", "source_step_direction", "target", "target_response_direction",
+    "selected_delay_horizon_seconds", "approved_numeric_values", "fit_evidence_reference",
+    "confirmation_evidence_reference", "bounded_semantic_metadata",
+    "initial_evidence_corpus_hash", "raw_hai_included", "labels_included",
+    "attacks_included", "test_or_utility_outcomes_included",
+    "candidate_method_results_included", "runtime_authority_granted", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "construction_input_view_v1"},
+    "relation_identity": {"$ref": "#/$defs/syntheticIdentifier"},
+    "relation_binding_hash": {"$ref": "#/$defs/hash"},
+    "source": {"$ref": "#/$defs/syntheticIdentifier"},
+    "source_step_direction": {"enum": ["step_up", "step_down"]},
+    "target": {"$ref": "#/$defs/syntheticIdentifier"},
+    "target_response_direction": {"enum": ["increase", "decrease"]},
+    "selected_delay_horizon_seconds": {"type": "integer", "minimum": 1},
+    "approved_numeric_values": {
+      "type": "array", "minItems": 11, "maxItems": 11,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["numeric_role", "numeric_value", "numeric_reference", "evidence_origin_reference"],
+        "properties": {
+          "numeric_role": {"enum": ["source_step_threshold", "source_stability_tolerance", "target_noise_scale", "selected_delay_horizon", "source_pre_window", "source_post_window", "minimum_source_stability_fraction", "source_refractory", "cross_source_isolation_radius", "target_baseline_window", "target_response_window"]},
+          "numeric_value": {"type": "number"},
+          "numeric_reference": {"$ref": "#/$defs/hash"},
+          "evidence_origin_reference": {"$ref": "#/$defs/hash"}
+        }
+      }
+    },
+    "fit_evidence_reference": {"$ref": "#/$defs/hash"},
+    "confirmation_evidence_reference": {"$ref": "#/$defs/hash"},
+    "bounded_semantic_metadata": {
+      "type": "array", "maxItems": 8,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["key", "value"],
+        "properties": {"key": {"type": "string"}, "value": {"type": "string"}}
+      }
+    },
+    "initial_evidence_corpus_hash": {"$ref": "#/$defs/hash"},
+    "raw_hai_included": {"const": false},
+    "labels_included": {"const": false},
+    "attacks_included": {"const": false},
+    "test_or_utility_outcomes_included": {"const": false},
+    "candidate_method_results_included": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}

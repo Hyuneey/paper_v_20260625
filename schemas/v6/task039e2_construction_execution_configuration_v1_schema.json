@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_construction_execution_configuration_v1_schema.json",
+  "title": "ConstructionExecutionConfigurationV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "provider_identifier", "exact_model_identifier",
+    "model_capability_receipt_hash", "prompt_template_version", "prompt_template_hash",
+    "structured_output_schema_hash", "temperature", "top_p", "maximum_output_tokens",
+    "seed_value", "seed_policy", "stateless_calls_required", "call_timeout_seconds",
+    "transport_retry_policy_hash", "scientific_generation_budget_hash",
+    "execution_schedule_hash", "construction_evidence_rendering_policy_hash",
+    "configuration_binding_hash", "preparation_only", "provider_selected",
+    "model_selected", "provider_contacted", "execution_authorized", "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "construction_execution_configuration_v1"},
+    "provider_identifier": {"$ref": "#/$defs/syntheticIdentifier"},
+    "exact_model_identifier": {"$ref": "#/$defs/syntheticIdentifier"},
+    "model_capability_receipt_hash": {"$ref": "#/$defs/hash"},
+    "prompt_template_version": {"type": "string"},
+    "prompt_template_hash": {"$ref": "#/$defs/hash"},
+    "structured_output_schema_hash": {"$ref": "#/$defs/hash"},
+    "temperature": {"type": "number", "minimum": 0, "maximum": 2},
+    "top_p": {"type": ["number", "null"], "exclusiveMinimum": 0, "maximum": 1},
+    "maximum_output_tokens": {"type": "integer", "minimum": 1},
+    "seed_value": {"type": ["integer", "null"]},
+    "seed_policy": {"enum": ["provider_exposed_fixed_seed", "deterministic_decoding_without_seed", "provider_seed_not_exposed_disclosed"]},
+    "stateless_calls_required": {"const": true},
+    "call_timeout_seconds": {"type": "integer", "minimum": 1},
+    "transport_retry_policy_hash": {"$ref": "#/$defs/hash"},
+    "scientific_generation_budget_hash": {"$ref": "#/$defs/hash"},
+    "execution_schedule_hash": {"$ref": "#/$defs/hash"},
+    "construction_evidence_rendering_policy_hash": {"$ref": "#/$defs/hash"},
+    "configuration_binding_hash": {"$ref": "#/$defs/hash"},
+    "preparation_only": {"const": true},
+    "provider_selected": {"const": false},
+    "model_selected": {"const": false},
+    "provider_contacted": {"const": false},
+    "execution_authorized": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "syntheticIdentifier": {"type": "string", "pattern": "^SYNTHETIC_[A-Za-z0-9._:-]+$"}
+  }
+}
