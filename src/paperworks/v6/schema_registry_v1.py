@@ -393,6 +393,36 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039e1_authorization_v1": (
         "schemas/v6/task039e1_authorization_v1_schema.json"
     ),
+    "task039e1_real_window_constant_bundle_v1": (
+        "schemas/v6/task039e1_real_window_constant_bundle_v1_schema.json"
+    ),
+    "task039e1_real_private_numeric_binding_v1": (
+        "schemas/v6/task039e1_real_private_numeric_binding_v1_schema.json"
+    ),
+    "task039e1_real_private_construction_evidence_v1": (
+        "schemas/v6/task039e1_real_private_construction_evidence_v1_schema.json"
+    ),
+    "task039e1_private_construction_evidence_ledger_v1": (
+        "schemas/v6/task039e1_private_construction_evidence_ledger_v1_schema.json"
+    ),
+    "task039e1_private_ledger_binding_v1": (
+        "schemas/v6/task039e1_private_ledger_binding_v1_schema.json"
+    ),
+    "task039e1_construction_evidence_manifest_v1": (
+        "schemas/v6/task039e1_construction_evidence_manifest_v1_schema.json"
+    ),
+    "task039e1_construction_evidence_cohort_v1": (
+        "schemas/v6/task039e1_construction_evidence_cohort_v1_schema.json"
+    ),
+    "task039e1_materialization_result_v1": (
+        "schemas/v6/task039e1_materialization_result_v1_schema.json"
+    ),
+    "task039e1_data_access_audit_v1": (
+        "schemas/v6/task039e1_data_access_audit_v1_schema.json"
+    ),
+    "task039e1_execution_receipt_v1": (
+        "schemas/v6/task039e1_execution_receipt_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),

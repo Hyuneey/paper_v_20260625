@@ -1,0 +1,111 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_execution_receipt_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_execution_receipt_v1"
+    },
+    "construction_evidence_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_directional_ledger_hash": {
+      "const": "e372d7ccf4a7dde5f7ccd91049cc73b443b3b19a3a0c563f451aea50e8faddc7"
+    },
+    "d1_source_ledger_hash": {
+      "const": "3eb6ff199dbc67b183d35a804754e557bdfa869a899c754e551cd77e8dcfb304"
+    },
+    "d1_target_ledger_hash": {
+      "const": "f36f4b424c85b228043f9685a22a25c73d6b165e28714b627cf51e8bbb77f96e"
+    },
+    "d2_confirmation_ledger_hash": {
+      "const": "d349421ae9a866b924c329dcb2546088466866e09f45851ec5d18090509dc062"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e0_cohort_hash": {
+      "const": "e71fa69999dbc18310ebb1730fd1d0ea36403763e891b99841ab8cef7ec18732"
+    },
+    "e0_protocol_bundle_hash": {
+      "const": "a95aecffeaff82d0c67f966f19293ef947827cb0e1e7621a38ecd7c1fd96e17b"
+    },
+    "e1_authorization_hash": {
+      "const": "03ad2a9e534d553cad75aa811090c1255988156bf1d2a217fb6b883620e05580"
+    },
+    "execution_code_commit": {
+      "pattern": "^[a-f0-9]{40}$",
+      "type": "string"
+    },
+    "hai_accessed": {
+      "const": false
+    },
+    "llm_called": {
+      "const": false
+    },
+    "materialization_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "private_e1_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "public_manifest_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "rule_generated": {
+      "const": false
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "passed_task039e1_evidence_materialization"
+    },
+    "task_id": {
+      "const": "TASK-039E1"
+    },
+    "window_constant_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "execution_code_commit",
+    "e0_protocol_bundle_hash",
+    "e0_cohort_hash",
+    "e1_authorization_hash",
+    "d1_source_ledger_hash",
+    "d1_target_ledger_hash",
+    "d1_directional_ledger_hash",
+    "d2_confirmation_ledger_hash",
+    "window_constant_bundle_hash",
+    "private_e1_ledger_hash",
+    "public_manifest_hash",
+    "construction_evidence_cohort_hash",
+    "materialization_result_hash",
+    "data_access_audit_hash",
+    "hai_accessed",
+    "llm_called",
+    "rule_generated",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e1_execution_receipt_v1",
+  "type": "object"
+}

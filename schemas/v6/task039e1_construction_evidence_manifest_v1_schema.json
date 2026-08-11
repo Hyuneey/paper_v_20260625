@@ -1,0 +1,237 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_construction_evidence_manifest_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_construction_evidence_manifest_v1"
+    },
+    "e0_cohort_hash": {
+      "const": "e71fa69999dbc18310ebb1730fd1d0ea36403763e891b99841ab8cef7ec18732"
+    },
+    "entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "approved_numeric_roles": {
+            "items": {
+              "enum": [
+                "source_step_threshold",
+                "source_stability_tolerance",
+                "target_noise_scale",
+                "selected_delay_horizon_seconds",
+                "source_pre_window_seconds",
+                "source_post_window_seconds",
+                "minimum_source_stability_fraction",
+                "source_refractory_seconds",
+                "cross_source_isolation_radius_seconds",
+                "target_baseline_window_seconds",
+                "target_response_window_seconds"
+              ]
+            },
+            "maxItems": 11,
+            "minItems": 11,
+            "type": "array"
+          },
+          "artifact_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "artifact_type": {
+            "const": "task039e1_public_manifest_entry_v1"
+          },
+          "d1_fit_evidence_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "d2_confirmation_evidence_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "evidence_status": {
+            "const": "approved"
+          },
+          "numeric_references": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "numeric_reference": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "numeric_role": {
+                  "enum": [
+                    "source_step_threshold",
+                    "source_stability_tolerance",
+                    "target_noise_scale",
+                    "selected_delay_horizon_seconds",
+                    "source_pre_window_seconds",
+                    "source_post_window_seconds",
+                    "minimum_source_stability_fraction",
+                    "source_refractory_seconds",
+                    "cross_source_isolation_radius_seconds",
+                    "target_baseline_window_seconds",
+                    "target_response_window_seconds"
+                  ]
+                }
+              },
+              "required": [
+                "numeric_role",
+                "numeric_reference"
+              ],
+              "type": "object"
+            },
+            "maxItems": 11,
+            "minItems": 11,
+            "type": "array"
+          },
+          "private_evidence_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "private_numeric_values_included": {
+            "const": false
+          },
+          "raw_hai_included": {
+            "const": false
+          },
+          "relation_binding_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "relation_identity": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rule_generated": {
+            "const": false
+          },
+          "runtime_authority": {
+            "const": false
+          },
+          "schema_version": {
+            "const": "1.0.0"
+          },
+          "selected_horizon_seconds": {
+            "enum": [
+              1,
+              5,
+              10,
+              30,
+              60
+            ]
+          },
+          "source": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_parameter_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "source_step_direction": {
+            "enum": [
+              "step_up",
+              "step_down"
+            ]
+          },
+          "target": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_parameter_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "target_response_direction": {
+            "enum": [
+              "increase",
+              "decrease"
+            ]
+          },
+          "window_constant_bundle_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "artifact_type",
+          "relation_identity",
+          "source",
+          "source_step_direction",
+          "target",
+          "target_response_direction",
+          "selected_horizon_seconds",
+          "relation_binding_hash",
+          "private_evidence_record_hash",
+          "approved_numeric_roles",
+          "numeric_references",
+          "source_parameter_record_hash",
+          "target_parameter_record_hash",
+          "d1_fit_evidence_hash",
+          "d2_confirmation_evidence_hash",
+          "window_constant_bundle_hash",
+          "evidence_status",
+          "private_numeric_values_included",
+          "raw_hai_included",
+          "rule_generated",
+          "runtime_authority",
+          "artifact_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 42,
+      "minItems": 42,
+      "type": "array"
+    },
+    "numeric_binding_count": {
+      "const": 462
+    },
+    "private_numeric_values_included": {
+      "const": false
+    },
+    "raw_hai_included": {
+      "const": false
+    },
+    "relation_count": {
+      "const": 42
+    },
+    "rule_generated": {
+      "const": false
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "frozen_task039e1_public_construction_evidence_manifest"
+    },
+    "task_id": {
+      "const": "TASK-039E1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "e0_cohort_hash",
+    "relation_count",
+    "numeric_binding_count",
+    "entries",
+    "private_numeric_values_included",
+    "raw_hai_included",
+    "rule_generated",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e1_construction_evidence_manifest_v1",
+  "type": "object"
+}

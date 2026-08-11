@@ -28,7 +28,7 @@ class TASK039D2RealContractTests(unittest.TestCase):
 
     def test_registry_contains_all_real_d2_schemas(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 134)
+        self.assertEqual(len(registry.artifact_types), 144)
         for artifact_type in d2_schema_examples_v1():
             schema = registry.schema_for(artifact_type)
             self.assertFalse(schema["additionalProperties"])

@@ -1,0 +1,461 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_construction_evidence_cohort_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approved_numeric_evidence_bundles": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "approved": {
+            "const": true
+          },
+          "arbitrary_numeric_literals_allowed": {
+            "const": false
+          },
+          "artifact_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "artifact_type": {
+            "const": "approved_numeric_evidence_bundle_v1"
+          },
+          "confirmation_evidence_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "fit_evidence_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "numeric_origin": {
+            "const": "deterministic_calibrated_evidence"
+          },
+          "preregistered_window_constant_references": {
+            "items": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "maxItems": 7,
+            "minItems": 7,
+            "type": "array"
+          },
+          "raw_numeric_values_included": {
+            "const": false
+          },
+          "relation_binding_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "1.0.0"
+          },
+          "source_stability_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "source_threshold_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "target_scale_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "artifact_type",
+          "relation_binding_hash",
+          "source_threshold_reference",
+          "source_stability_reference",
+          "target_scale_reference",
+          "fit_evidence_reference",
+          "confirmation_evidence_reference",
+          "preregistered_window_constant_references",
+          "numeric_origin",
+          "approved",
+          "raw_numeric_values_included",
+          "arbitrary_numeric_literals_allowed",
+          "artifact_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 42,
+      "minItems": 42,
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_construction_evidence_cohort_v1"
+    },
+    "candidate_origin_filtering_used": {
+      "const": false
+    },
+    "confirmed_relation_primitives": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "approved_source_stability_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "approved_source_threshold_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "approved_target_scale_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "artifact_type": {
+            "const": "confirmed_relation_primitive_v1"
+          },
+          "binding_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "confirmation_evidence_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "confirmed": {
+            "const": true
+          },
+          "fit_evidence_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "relation_family": {
+            "const": "continuous_step_delayed_response_v1"
+          },
+          "relation_identity": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rule_authority_granted": {
+            "const": false
+          },
+          "runtime_authority_granted": {
+            "const": false
+          },
+          "schema_version": {
+            "const": "1.0.0"
+          },
+          "selected_delay_horizon_seconds": {
+            "enum": [
+              1,
+              5,
+              10,
+              30,
+              60
+            ]
+          },
+          "source": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_step_direction": {
+            "enum": [
+              "step_up",
+              "step_down"
+            ]
+          },
+          "target": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_response_direction": {
+            "enum": [
+              "increase",
+              "decrease"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "artifact_type",
+          "relation_identity",
+          "relation_family",
+          "source",
+          "source_step_direction",
+          "target",
+          "target_response_direction",
+          "selected_delay_horizon_seconds",
+          "approved_source_threshold_reference",
+          "approved_source_stability_reference",
+          "approved_target_scale_reference",
+          "fit_evidence_reference",
+          "confirmation_evidence_reference",
+          "confirmed",
+          "rule_authority_granted",
+          "runtime_authority_granted",
+          "binding_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 42,
+      "minItems": 42,
+      "type": "array"
+    },
+    "e0_cohort_hash": {
+      "const": "e71fa69999dbc18310ebb1730fd1d0ea36403763e891b99841ab8cef7ec18732"
+    },
+    "e0_identity_list_hash": {
+      "const": "c7f198388bbe53f44bebe5378116a35cc9ed342de7c4df29e255cb5d39cf0479"
+    },
+    "e0_protocol_bundle_hash": {
+      "const": "a95aecffeaff82d0c67f966f19293ef947827cb0e1e7621a38ecd7c1fd96e17b"
+    },
+    "e1_authorization_hash": {
+      "const": "03ad2a9e534d553cad75aa811090c1255988156bf1d2a217fb6b883620e05580"
+    },
+    "numeric_binding_count": {
+      "const": 462
+    },
+    "pair_context_count": {
+      "const": 23
+    },
+    "private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "process": {
+      "const": "P1"
+    },
+    "public_manifest_entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "approved_numeric_roles": {
+            "items": {
+              "enum": [
+                "source_step_threshold",
+                "source_stability_tolerance",
+                "target_noise_scale",
+                "selected_delay_horizon_seconds",
+                "source_pre_window_seconds",
+                "source_post_window_seconds",
+                "minimum_source_stability_fraction",
+                "source_refractory_seconds",
+                "cross_source_isolation_radius_seconds",
+                "target_baseline_window_seconds",
+                "target_response_window_seconds"
+              ]
+            },
+            "maxItems": 11,
+            "minItems": 11,
+            "type": "array"
+          },
+          "artifact_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "artifact_type": {
+            "const": "task039e1_public_manifest_entry_v1"
+          },
+          "d1_fit_evidence_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "d2_confirmation_evidence_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "evidence_status": {
+            "const": "approved"
+          },
+          "numeric_references": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "numeric_reference": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "numeric_role": {
+                  "enum": [
+                    "source_step_threshold",
+                    "source_stability_tolerance",
+                    "target_noise_scale",
+                    "selected_delay_horizon_seconds",
+                    "source_pre_window_seconds",
+                    "source_post_window_seconds",
+                    "minimum_source_stability_fraction",
+                    "source_refractory_seconds",
+                    "cross_source_isolation_radius_seconds",
+                    "target_baseline_window_seconds",
+                    "target_response_window_seconds"
+                  ]
+                }
+              },
+              "required": [
+                "numeric_role",
+                "numeric_reference"
+              ],
+              "type": "object"
+            },
+            "maxItems": 11,
+            "minItems": 11,
+            "type": "array"
+          },
+          "private_evidence_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "private_numeric_values_included": {
+            "const": false
+          },
+          "raw_hai_included": {
+            "const": false
+          },
+          "relation_binding_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "relation_identity": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rule_generated": {
+            "const": false
+          },
+          "runtime_authority": {
+            "const": false
+          },
+          "schema_version": {
+            "const": "1.0.0"
+          },
+          "selected_horizon_seconds": {
+            "enum": [
+              1,
+              5,
+              10,
+              30,
+              60
+            ]
+          },
+          "source": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_parameter_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "source_step_direction": {
+            "enum": [
+              "step_up",
+              "step_down"
+            ]
+          },
+          "target": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "target_parameter_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "target_response_direction": {
+            "enum": [
+              "increase",
+              "decrease"
+            ]
+          },
+          "window_constant_bundle_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "artifact_type",
+          "relation_identity",
+          "source",
+          "source_step_direction",
+          "target",
+          "target_response_direction",
+          "selected_horizon_seconds",
+          "relation_binding_hash",
+          "private_evidence_record_hash",
+          "approved_numeric_roles",
+          "numeric_references",
+          "source_parameter_record_hash",
+          "target_parameter_record_hash",
+          "d1_fit_evidence_hash",
+          "d2_confirmation_evidence_hash",
+          "window_constant_bundle_hash",
+          "evidence_status",
+          "private_numeric_values_included",
+          "raw_hai_included",
+          "rule_generated",
+          "runtime_authority",
+          "artifact_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 42,
+      "minItems": 42,
+      "type": "array"
+    },
+    "relation_count": {
+      "const": 42
+    },
+    "relation_family": {
+      "const": "continuous_step_delayed_response_v1"
+    },
+    "rule_generation_executed": {
+      "const": false
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_ranking_created": {
+      "const": false
+    },
+    "status": {
+      "const": "frozen_task039e1_construction_evidence_cohort"
+    },
+    "task_id": {
+      "const": "TASK-039E1"
+    },
+    "window_constant_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "process",
+    "relation_family",
+    "e0_cohort_hash",
+    "e0_identity_list_hash",
+    "e0_protocol_bundle_hash",
+    "e1_authorization_hash",
+    "window_constant_bundle_hash",
+    "relation_count",
+    "pair_context_count",
+    "numeric_binding_count",
+    "confirmed_relation_primitives",
+    "approved_numeric_evidence_bundles",
+    "public_manifest_entries",
+    "private_ledger_hash",
+    "scientific_ranking_created",
+    "candidate_origin_filtering_used",
+    "rule_generation_executed",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e1_construction_evidence_cohort_v1",
+  "type": "object"
+}

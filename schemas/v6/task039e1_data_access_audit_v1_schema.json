@@ -1,0 +1,96 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_data_access_audit_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "absolute_local_paths_public": {
+      "const": false
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_data_access_audit_v1"
+    },
+    "d1_directional_ledger_accessed": {
+      "const": true
+    },
+    "d1_source_ledger_accessed": {
+      "const": true
+    },
+    "d1_target_ledger_accessed": {
+      "const": true
+    },
+    "d2_confirmation_ledger_accessed": {
+      "const": true
+    },
+    "hai_accessed": {
+      "const": false
+    },
+    "llm_called": {
+      "const": false
+    },
+    "private_calibrated_values_public": {
+      "const": false
+    },
+    "private_input_ledgers_modified": {
+      "const": false
+    },
+    "prohibited_access_count": {
+      "const": 0
+    },
+    "rule_v2_authorized": {
+      "const": false
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "t0_generated": {
+      "const": false
+    },
+    "t1_t1b_t2_generated": {
+      "const": false
+    },
+    "task_id": {
+      "const": "TASK-039E1"
+    },
+    "test_labels_attacks_accessed": {
+      "const": false
+    },
+    "train1_train2_train3_reread": {
+      "const": false
+    },
+    "train4_accessed": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "d1_source_ledger_accessed",
+    "d1_target_ledger_accessed",
+    "d1_directional_ledger_accessed",
+    "d2_confirmation_ledger_accessed",
+    "private_input_ledgers_modified",
+    "hai_accessed",
+    "train1_train2_train3_reread",
+    "train4_accessed",
+    "test_labels_attacks_accessed",
+    "llm_called",
+    "t0_generated",
+    "t1_t1b_t2_generated",
+    "rule_v2_authorized",
+    "runtime_authority",
+    "absolute_local_paths_public",
+    "private_calibrated_values_public",
+    "prohibited_access_count",
+    "artifact_hash"
+  ],
+  "title": "task039e1_data_access_audit_v1",
+  "type": "object"
+}

@@ -1,0 +1,108 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_materialization_result_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approved_numeric_bundles": {
+      "const": 42
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_materialization_result_v1"
+    },
+    "confirmed_input_relations": {
+      "const": 42
+    },
+    "confirmed_pair_contexts": {
+      "const": 23
+    },
+    "construction_evidence_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "e0_cohort_hash": {
+      "const": "e71fa69999dbc18310ebb1730fd1d0ea36403763e891b99841ab8cef7ec18732"
+    },
+    "e0_protocol_bundle_hash": {
+      "const": "a95aecffeaff82d0c67f966f19293ef947827cb0e1e7621a38ecd7c1fd96e17b"
+    },
+    "e1_authorization_hash": {
+      "const": "03ad2a9e534d553cad75aa811090c1255988156bf1d2a217fb6b883620e05580"
+    },
+    "failed_relations": {
+      "const": 0
+    },
+    "materialized_private_records": {
+      "const": 42
+    },
+    "numeric_bindings": {
+      "const": 462
+    },
+    "private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "public_manifest_entries": {
+      "const": 42
+    },
+    "public_manifest_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "relation_primitives": {
+      "const": 42
+    },
+    "rule_generated": {
+      "const": false
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "skipped_relations": {
+      "const": 0
+    },
+    "status": {
+      "const": "passed_task039e1_evidence_materialization"
+    },
+    "task_id": {
+      "const": "TASK-039E1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "e0_cohort_hash",
+    "e0_protocol_bundle_hash",
+    "e1_authorization_hash",
+    "confirmed_input_relations",
+    "confirmed_pair_contexts",
+    "materialized_private_records",
+    "public_manifest_entries",
+    "relation_primitives",
+    "approved_numeric_bundles",
+    "numeric_bindings",
+    "failed_relations",
+    "skipped_relations",
+    "private_ledger_hash",
+    "public_manifest_hash",
+    "construction_evidence_cohort_hash",
+    "data_access_audit_hash",
+    "rule_generated",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e1_materialization_result_v1",
+  "type": "object"
+}

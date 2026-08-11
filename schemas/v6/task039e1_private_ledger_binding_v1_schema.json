@@ -1,0 +1,49 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_private_ledger_binding_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_private_ledger_binding_v1"
+    },
+    "numeric_binding_count": {
+      "const": 462
+    },
+    "private_contents_public": {
+      "const": false
+    },
+    "private_ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "private_numeric_values_public": {
+      "const": false
+    },
+    "record_count": {
+      "const": 42
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "storage_boundary": {
+      "const": "outside_git"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "private_ledger_hash",
+    "record_count",
+    "numeric_binding_count",
+    "storage_boundary",
+    "private_contents_public",
+    "private_numeric_values_public",
+    "artifact_hash"
+  ],
+  "title": "task039e1_private_ledger_binding_v1",
+  "type": "object"
+}

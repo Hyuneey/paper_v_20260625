@@ -1,0 +1,211 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_real_private_construction_evidence_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_real_private_construction_evidence_v1"
+    },
+    "construction_evidence_status": {
+      "const": "approved"
+    },
+    "d1_fit_evidence_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d2_confirmation_evidence_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "evidence_authority": {
+      "const": "approved_construction_evidence"
+    },
+    "numeric_bindings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_type": {
+            "const": "task039e1_real_private_numeric_binding_v1"
+          },
+          "d1_fit_evidence_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "d2_confirmation_evidence_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "evidence_authority": {
+            "const": "approved_construction_evidence"
+          },
+          "llm_generated": {
+            "const": false
+          },
+          "numeric_reference": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "numeric_role": {
+            "enum": [
+              "source_step_threshold",
+              "source_stability_tolerance",
+              "target_noise_scale",
+              "selected_delay_horizon_seconds",
+              "source_pre_window_seconds",
+              "source_post_window_seconds",
+              "minimum_source_stability_fraction",
+              "source_refractory_seconds",
+              "cross_source_isolation_radius_seconds",
+              "target_baseline_window_seconds",
+              "target_response_window_seconds"
+            ]
+          },
+          "numeric_value": {
+            "type": "number"
+          },
+          "relation_identity": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "runtime_authority": {
+            "const": false
+          },
+          "schema_version": {
+            "const": "1.0.0"
+          },
+          "source_parameter_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "target_parameter_record_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "value_origin": {
+            "enum": [
+              "d1_fit_derived_source_parameter",
+              "d1_fit_derived_target_parameter",
+              "d1_fit_selected_horizon",
+              "d0_preregistered_window_constant"
+            ]
+          },
+          "window_constant_bundle_hash": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "artifact_type",
+          "relation_identity",
+          "numeric_role",
+          "numeric_value",
+          "value_origin",
+          "source_parameter_record_hash",
+          "target_parameter_record_hash",
+          "d1_fit_evidence_hash",
+          "d2_confirmation_evidence_hash",
+          "window_constant_bundle_hash",
+          "evidence_authority",
+          "llm_generated",
+          "runtime_authority",
+          "numeric_reference"
+        ],
+        "type": "object"
+      },
+      "maxItems": 11,
+      "minItems": 11,
+      "type": "array"
+    },
+    "private_record": {
+      "const": true
+    },
+    "relation_binding_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "relation_identity": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rule_generated": {
+      "const": false
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "selected_horizon_seconds": {
+      "enum": [
+        1,
+        5,
+        10,
+        30,
+        60
+      ]
+    },
+    "source": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_parameter_record_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "source_step_direction": {
+      "enum": [
+        "step_up",
+        "step_down"
+      ]
+    },
+    "target": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "target_parameter_record_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "target_response_direction": {
+      "enum": [
+        "increase",
+        "decrease"
+      ]
+    },
+    "window_constant_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "relation_binding_hash",
+    "relation_identity",
+    "source",
+    "source_step_direction",
+    "target",
+    "target_response_direction",
+    "selected_horizon_seconds",
+    "source_parameter_record_hash",
+    "target_parameter_record_hash",
+    "d1_fit_evidence_hash",
+    "d2_confirmation_evidence_hash",
+    "window_constant_bundle_hash",
+    "numeric_bindings",
+    "evidence_authority",
+    "construction_evidence_status",
+    "private_record",
+    "rule_generated",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e1_real_private_construction_evidence_v1",
+  "type": "object"
+}

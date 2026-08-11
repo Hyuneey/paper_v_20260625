@@ -115,13 +115,16 @@ class SchemaDraftTests(unittest.TestCase):
         self.assertIs(public_properties["runtime_authority_granted"]["const"], False)
 
     def test_preparation_schemas_are_not_registered_as_execution_contracts(self) -> None:
-        for relative in (
-            "src/paperworks/v6/schema_registry_v1.py",
-            "configs/contracts/task032a_schema_registry.json",
-        ):
-            self.assertNotIn(
-                "task039e1_", (ROOT / relative).read_text(encoding="utf-8")
-            )
+        from paperworks.v6.schema_registry_v1 import V6_SCHEMA_FILES
+
+        preparation_artifact_types = {
+            json.loads((ROOT / relative).read_text(encoding="utf-8"))["properties"][
+                "artifact_type"
+            ]["const"]
+            for relative in SCHEMAS.values()
+        }
+        for artifact_type in preparation_artifact_types:
+            self.assertNotIn(artifact_type, V6_SCHEMA_FILES)
 
 
 class PreparationBoundaryTests(unittest.TestCase):

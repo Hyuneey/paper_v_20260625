@@ -1,0 +1,84 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039e1_real_window_constant_bundle_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039e1_real_window_constant_bundle_v1"
+    },
+    "bundle_identity": {
+      "const": "task039e1_preregistered_window_constants_v1"
+    },
+    "confirmation_policy_hash": {
+      "const": "83419f6acefaeb21ebc329d5ff9df8563e9636da72ad5367318a172df8fb0b27"
+    },
+    "cross_source_isolation_radius_seconds": {
+      "const": 2
+    },
+    "d0_protocol_bundle_hash": {
+      "const": "888e3d642eba6f8ad8784d428bc4b27d7db7592d34779ba9a1f817860d76e1eb"
+    },
+    "llm_generated": {
+      "const": false
+    },
+    "minimum_source_stability_fraction": {
+      "const": 0.8
+    },
+    "runtime_authority": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "source_event_policy_hash": {
+      "const": "1f07a72b380b9ffb2ceb42e029517ef42716145062a57b1770d118b9db252342"
+    },
+    "source_post_window_seconds": {
+      "const": 5
+    },
+    "source_pre_window_seconds": {
+      "const": 5
+    },
+    "source_refractory_seconds": {
+      "const": 10
+    },
+    "target_baseline_window_seconds": {
+      "const": 5
+    },
+    "target_response_policy_hash": {
+      "const": "4b007b9511152396e03722ad8ce0e9cf659ebef2760cef5110414e4ce4bcbeaf"
+    },
+    "target_response_window_seconds": {
+      "const": 3
+    },
+    "value_origin": {
+      "const": "d0_preregistered_window_constant"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "bundle_identity",
+    "d0_protocol_bundle_hash",
+    "source_event_policy_hash",
+    "target_response_policy_hash",
+    "confirmation_policy_hash",
+    "source_pre_window_seconds",
+    "source_post_window_seconds",
+    "minimum_source_stability_fraction",
+    "source_refractory_seconds",
+    "cross_source_isolation_radius_seconds",
+    "target_baseline_window_seconds",
+    "target_response_window_seconds",
+    "value_origin",
+    "llm_generated",
+    "runtime_authority",
+    "artifact_hash"
+  ],
+  "title": "task039e1_real_window_constant_bundle_v1",
+  "type": "object"
+}
