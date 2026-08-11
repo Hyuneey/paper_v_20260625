@@ -360,6 +360,39 @@ V6_SCHEMA_FILES: Mapping[str, str] = {
     "task039e0_authorization_v1": (
         "schemas/v6/task039e0_authorization_v1_schema.json"
     ),
+    "confirmed_relation_identity_cohort_v1": (
+        "schemas/v6/confirmed_relation_identity_cohort_v1_schema.json"
+    ),
+    "fair_generation_budget_policy_v2": (
+        "schemas/v6/fair_generation_budget_policy_v2_schema.json"
+    ),
+    "t1b_selection_policy_v1": (
+        "schemas/v6/t1b_selection_policy_v1_schema.json"
+    ),
+    "t2_deterministic_controller_policy_v1": (
+        "schemas/v6/t2_deterministic_controller_policy_v1_schema.json"
+    ),
+    "task039e0_validity_policy_v2": (
+        "schemas/v6/task039e0_validity_policy_v2_schema.json"
+    ),
+    "task039e0_prepared_validity_result_v2": (
+        "schemas/v6/task039e0_prepared_validity_result_v2_schema.json"
+    ),
+    "construction_evidence_materialization_policy_v1": (
+        "schemas/v6/construction_evidence_materialization_policy_v1_schema.json"
+    ),
+    "llm_direct_number_evaluation_policy_v1": (
+        "schemas/v6/llm_direct_number_evaluation_policy_v1_schema.json"
+    ),
+    "construction_metric_policy_v1": (
+        "schemas/v6/construction_metric_policy_v1_schema.json"
+    ),
+    "task039e0_protocol_bundle_v1": (
+        "schemas/v6/task039e0_protocol_bundle_v1_schema.json"
+    ),
+    "task039e1_authorization_v1": (
+        "schemas/v6/task039e1_authorization_v1_schema.json"
+    ),
     "task039d_data_access_policy_v1": (
         "schemas/v6/task039d_data_access_policy_v1_schema.json"
     ),

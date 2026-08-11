@@ -269,7 +269,7 @@ class Task039D0AuthorityAndReportTests(unittest.TestCase):
 
     def test_all_new_schemas_registered_and_closed(self) -> None:
         registry = load_v6_schema_registry_v1(repository_root=ROOT)
-        self.assertEqual(len(registry.artifact_types), 123)
+        self.assertEqual(len(registry.artifact_types), 134)
         for artifact_type in ARTIFACT_CLASS_BY_TYPE:
             schema = registry.schema_for(artifact_type)
             self.assertFalse(schema["additionalProperties"])

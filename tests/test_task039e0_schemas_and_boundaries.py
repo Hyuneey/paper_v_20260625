@@ -177,14 +177,22 @@ class SchemaDraftTests(unittest.TestCase):
         ):
             self.assertIs(properties[field]["const"], False)
 
-    def test_preparation_drafts_are_not_registered_as_execution_contracts(self) -> None:
+    def test_preparation_drafts_remain_unregistered_after_authoritative_e0(self) -> None:
         registry_sources = (
             ROOT / "src/paperworks/v6/schema_registry_v1.py",
             ROOT / "configs/contracts/task032a_schema_registry.json",
         )
+        prep_draft_types = (
+            "confirmed_relation_primitive_v1",
+            "fair_generation_budget_policy_v1",
+            "future_generation_call_record_v1",
+            "task039e0_prepared_validity_result_v1",
+            "task039e0_rule_proposal_envelope_v1",
+        )
         for path in registry_sources:
             text = path.read_text(encoding="utf-8")
-            self.assertNotIn("task039e0_", text)
+            for artifact_type in prep_draft_types:
+                self.assertNotIn(f'"{artifact_type}"', text)
 
 
 class HardBoundaryTests(unittest.TestCase):
