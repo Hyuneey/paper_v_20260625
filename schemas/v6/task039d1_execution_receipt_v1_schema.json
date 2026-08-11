@@ -1,0 +1,239 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_execution_receipt_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_fit_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_execution_receipt_v1"
+    },
+    "base_commit": {
+      "type": "string"
+    },
+    "br1_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "br2_pair_results_accessed": {
+      "type": "boolean"
+    },
+    "candidate_arm_evidence_visible_to_profiler": {
+      "type": "boolean"
+    },
+    "candidate_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "candidate_identity_list_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "component_policy_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "direction_selection": {
+          "type": "string"
+        },
+        "fit_gate": {
+          "type": "string"
+        },
+        "method_comparison": {
+          "type": "string"
+        },
+        "numeric_evidence_authority": {
+          "type": "string"
+        },
+        "source_event": {
+          "type": "string"
+        },
+        "source_scale": {
+          "type": "string"
+        },
+        "target_response": {
+          "type": "string"
+        },
+        "train3_confirmation_planned_not_executed": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_scale",
+        "source_event",
+        "target_response",
+        "direction_selection",
+        "fit_gate",
+        "train3_confirmation_planned_not_executed",
+        "method_comparison",
+        "numeric_evidence_authority"
+      ],
+      "type": "object"
+    },
+    "d0_config_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "dataset_manifest_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "directional_ledger_binding_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "directional_opportunity_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "execution_code_commit": {
+      "type": "string"
+    },
+    "execution_phase_order": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "fit_result_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "lower_ranked_fallback_used": {
+      "type": "boolean"
+    },
+    "merged_cross_arm_score_used": {
+      "type": "boolean"
+    },
+    "outcomes_frozen_before_provenance_join": {
+      "type": "boolean"
+    },
+    "pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "profiling_identity_view_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provenance_analysis_view_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "recommended_next_task": {
+      "type": "string"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_code_changed_after_first_value_read": {
+      "type": "boolean"
+    },
+    "scientific_source_hashes": {
+      "additionalProperties": false,
+      "properties": {
+        "task039d1_fit_v1.py": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "task039d1_fit_v1.py"
+      ],
+      "type": "object"
+    },
+    "source_ledger_binding_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "target_ledger_binding_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "task039d2_authorized": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "test_labels_attacks_accessed": {
+      "type": "boolean"
+    },
+    "train3_accessed": {
+      "type": "boolean"
+    },
+    "train4_accessed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "execution_code_commit",
+    "base_commit",
+    "d0_config_hash",
+    "d0_protocol_bundle_hash",
+    "d1_authorization_hash",
+    "component_policy_hashes",
+    "candidate_cohort_hash",
+    "candidate_identity_list_hash",
+    "profiling_identity_view_hash",
+    "provenance_analysis_view_hash",
+    "dataset_manifest_hash",
+    "br1_protocol_bundle_hash",
+    "scientific_source_hashes",
+    "execution_phase_order",
+    "outcomes_frozen_before_provenance_join",
+    "scientific_code_changed_after_first_value_read",
+    "source_ledger_binding_hash",
+    "target_ledger_binding_hash",
+    "directional_ledger_binding_hash",
+    "pair_summary_hash",
+    "fit_result_hash",
+    "arm_fit_summary_hash",
+    "data_access_audit_hash",
+    "candidate_count",
+    "directional_opportunity_count",
+    "lower_ranked_fallback_used",
+    "candidate_arm_evidence_visible_to_profiler",
+    "br2_pair_results_accessed",
+    "merged_cross_arm_score_used",
+    "train3_accessed",
+    "train4_accessed",
+    "test_labels_attacks_accessed",
+    "task039d2_authorized",
+    "rule_v2_authorized",
+    "recommended_next_task",
+    "artifact_hash"
+  ],
+  "title": "task039d1_execution_receipt_v1",
+  "type": "object"
+}

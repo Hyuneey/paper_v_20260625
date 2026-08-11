@@ -1,0 +1,42 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_source_parameter_ledger_binding_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_source_parameter_ledger_binding_v1"
+    },
+    "ledger_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "private_contents_public": {
+      "type": "boolean"
+    },
+    "record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "storage_boundary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "record_count",
+    "ledger_hash",
+    "storage_boundary",
+    "private_contents_public",
+    "artifact_hash"
+  ],
+  "title": "task039d1_source_parameter_ledger_binding_v1",
+  "type": "object"
+}

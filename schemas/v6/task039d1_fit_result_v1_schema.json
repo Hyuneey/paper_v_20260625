@@ -1,0 +1,296 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_fit_result_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_fit_result_v1"
+    },
+    "candidate_arm_evidence_visible_to_profiler": {
+      "type": "boolean"
+    },
+    "candidate_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "candidate_identity_list_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "construction_confirmed": {
+      "type": "boolean"
+    },
+    "d0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "d1_authorization_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "data_access_audit_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "direction_unstable_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "directional_fit_supported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "directional_ledger_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "type": "string"
+        },
+        "ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "private_contents_public": {
+          "type": "boolean"
+        },
+        "record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "storage_boundary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_type",
+        "record_count",
+        "ledger_hash",
+        "storage_boundary",
+        "private_contents_public",
+        "artifact_hash"
+      ],
+      "type": "object"
+    },
+    "directional_opportunity_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "fit_unsupported_directional_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "lower_ranked_fallback_used": {
+      "type": "boolean"
+    },
+    "merged_cross_arm_score_used": {
+      "type": "boolean"
+    },
+    "numeric_parameter_class": {
+      "type": "string"
+    },
+    "other_failure_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "fit_gate_not_satisfied": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "insufficient_nontrivial_amplitudes": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "insufficient_nontrivial_amplitudes",
+        "fit_gate_not_satisfied"
+      ],
+      "type": "object"
+    },
+    "pair_fit_supported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pair_fit_unsupported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "rule_authority": {
+      "type": "boolean"
+    },
+    "rule_v2_authorized": {
+      "type": "boolean"
+    },
+    "runtime_authority": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "source_ledger_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "type": "string"
+        },
+        "ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "private_contents_public": {
+          "type": "boolean"
+        },
+        "record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "storage_boundary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_type",
+        "record_count",
+        "ledger_hash",
+        "storage_boundary",
+        "private_contents_public",
+        "artifact_hash"
+      ],
+      "type": "object"
+    },
+    "source_parameter_record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_parameter_supported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_parameter_unsupported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "target_ledger_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "artifact_type": {
+          "type": "string"
+        },
+        "ledger_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "private_contents_public": {
+          "type": "boolean"
+        },
+        "record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "storage_boundary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_type",
+        "record_count",
+        "ledger_hash",
+        "storage_boundary",
+        "private_contents_public",
+        "artifact_hash"
+      ],
+      "type": "object"
+    },
+    "target_parameter_record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "task039d2_authorized": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "d0_protocol_bundle_hash",
+    "d1_authorization_hash",
+    "candidate_cohort_hash",
+    "candidate_identity_list_hash",
+    "candidate_count",
+    "directional_opportunity_count",
+    "source_parameter_record_count",
+    "source_parameter_supported_count",
+    "source_parameter_unsupported_count",
+    "target_parameter_record_count",
+    "pair_fit_supported_count",
+    "pair_fit_unsupported_count",
+    "directional_fit_supported_count",
+    "direction_unstable_count",
+    "fit_unsupported_directional_count",
+    "other_failure_counts",
+    "source_ledger_binding",
+    "target_ledger_binding",
+    "directional_ledger_binding",
+    "pair_summary_hash",
+    "data_access_audit_hash",
+    "candidate_arm_evidence_visible_to_profiler",
+    "lower_ranked_fallback_used",
+    "merged_cross_arm_score_used",
+    "numeric_parameter_class",
+    "construction_confirmed",
+    "rule_authority",
+    "runtime_authority",
+    "task039d2_authorized",
+    "rule_v2_authorized",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "title": "task039d1_fit_result_v1",
+  "type": "object"
+}

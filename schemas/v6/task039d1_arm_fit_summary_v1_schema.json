@@ -1,0 +1,107 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_arm_fit_summary_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arms": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "arm": {
+            "type": "string"
+          },
+          "directional_fit_supported_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "pair_fit_support_yield": {
+            "type": "number"
+          },
+          "pair_fit_supported_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "top20_pair_count": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "arm",
+          "top20_pair_count",
+          "pair_fit_supported_count",
+          "pair_fit_support_yield",
+          "directional_fit_supported_count"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_arm_fit_summary_v1"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "d2_confirmation_metrics_calculated": {
+      "type": "boolean"
+    },
+    "pair_summary_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "primary_k": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "provenance_analysis_view_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "provenance_joined_after_outcomes_frozen": {
+      "type": "boolean"
+    },
+    "same_pair_same_d1_outcome_across_all_origin_arms": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "scientific_profiles_per_unique_pair": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "winner_selected": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "pair_summary_hash",
+    "provenance_analysis_view_hash",
+    "primary_k",
+    "arms",
+    "same_pair_same_d1_outcome_across_all_origin_arms",
+    "scientific_profiles_per_unique_pair",
+    "provenance_joined_after_outcomes_frozen",
+    "d2_confirmation_metrics_calculated",
+    "winner_selected",
+    "claim_boundary",
+    "artifact_hash"
+  ],
+  "title": "task039d1_arm_fit_summary_v1",
+  "type": "object"
+}

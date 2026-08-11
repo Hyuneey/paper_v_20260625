@@ -1,0 +1,131 @@
+{
+  "$id": "https://paperworks.local/schemas/v6/task039d1_pair_fit_summary_v1_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "artifact_type": {
+      "const": "task039d1_pair_fit_summary_v1"
+    },
+    "candidate_arm_evidence_visible_to_profiler": {
+      "type": "boolean"
+    },
+    "candidate_cohort_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "candidate_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "d0_protocol_bundle_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "directional_opportunity_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "directional_status_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "direction_unstable": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "fit_supported": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "fit_unsupported": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "fit_supported",
+        "direction_unstable",
+        "fit_unsupported"
+      ],
+      "type": "object"
+    },
+    "lower_ranked_fallback_used": {
+      "type": "boolean"
+    },
+    "pair_fit_supported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pair_fit_unsupported_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pair_outcomes": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "pair_fit_status": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "step_down_status": {
+            "type": "string"
+          },
+          "step_up_status": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "target",
+          "step_up_status",
+          "step_down_status",
+          "pair_fit_status"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "profiling_identity_view_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "task_id",
+    "status",
+    "d0_protocol_bundle_hash",
+    "candidate_cohort_hash",
+    "profiling_identity_view_hash",
+    "candidate_count",
+    "directional_opportunity_count",
+    "pair_fit_supported_count",
+    "pair_fit_unsupported_count",
+    "directional_status_counts",
+    "pair_outcomes",
+    "lower_ranked_fallback_used",
+    "candidate_arm_evidence_visible_to_profiler",
+    "artifact_hash"
+  ],
+  "title": "task039d1_pair_fit_summary_v1",
+  "type": "object"
+}
