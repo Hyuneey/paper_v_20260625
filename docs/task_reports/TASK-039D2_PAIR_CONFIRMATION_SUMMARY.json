@@ -1,0 +1,346 @@
+{
+  "artifact_hash": "3929e84c680422a75069d59e1bef756f054a476ecc95f3e4e9573c7dfe368ad5",
+  "artifact_type": "task039d2_pair_confirmation_summary_v1",
+  "candidate_count": 47,
+  "d1_fit_supported_pair_count": 25,
+  "d1_fit_unsupported_pair_count": 22,
+  "d1_pair_summary_hash": "a466057faa20eacd0692b6a9c19fbbb5b8968135ba4c018310a076aa0393d4f2",
+  "d1_supported_pairs_without_confirmed_direction_count": 2,
+  "directional_confirmation_summary_hash": "4f5057380c4b1b995bd0d5a714d307df556ce05094223fa909b6e2ed7dfec666",
+  "outcomes_frozen_before_provenance_join": true,
+  "pair_records": [
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV01D",
+      "target": "P1_FT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV01D",
+      "target": "P1_FT02Z"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV03D",
+      "target": "P1_FT03"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV03D",
+      "target": "P1_FT03Z"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_PCV01D",
+      "target": "P1_PIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV01D",
+      "target": "P1_TIT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 1,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV02D",
+      "target": "P1_FT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 1,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV02D",
+      "target": "P1_FT02Z"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 1,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02D",
+      "target": "P1_TIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV03D",
+      "target": "P1_LIT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_LCV01D",
+      "target": "P1_LIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_PP04",
+      "target": "P1_TIT03"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV01D",
+      "target": "P1_PIT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV01Z",
+      "target": "P1_FT02Z"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV01Z",
+      "target": "P1_PIT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV03Z",
+      "target": "P1_FT03Z"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_PCV01D",
+      "target": "P1_FT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_PCV01D",
+      "target": "P1_FT01Z"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02Z",
+      "target": "P1_PIT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_LCV01Z",
+      "target": "P1_PIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02Z"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV02D",
+      "target": "P1_PIT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_PCV01Z",
+      "target": "P1_PIT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_LCV01Z",
+      "target": "P1_FT01Z"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_PCV01D",
+      "target": "P1_LIT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_LCV01D",
+      "target": "P1_PIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02Z",
+      "target": "P1_FT02"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_PCV01Z",
+      "target": "P1_TIT03"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_PCV01D",
+      "target": "P1_TIT03"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 2,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV03Z",
+      "target": "P1_FT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV03D",
+      "target": "P1_FT01"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 1,
+      "has_d2_confirmed_directional_relation": true,
+      "source": "P1_FCV02D",
+      "target": "P1_TIT02"
+    },
+    {
+      "d1_fit_supported_pair": true,
+      "d2_evaluated_direction_count": 1,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV01D",
+      "target": "P1_TIT02"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02D",
+      "target": "P1_FT03"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02D",
+      "target": "P1_LIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV01Z",
+      "target": "P1_TIT03"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_PCV02Z",
+      "target": "P1_PIT02"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_LCV01D",
+      "target": "P1_TIT03"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT02"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV02Z",
+      "target": "P1_TIT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_LCV01D",
+      "target": "P1_PIT02"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV03Z",
+      "target": "P1_TIT03"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_PP04",
+      "target": "P1_FT01"
+    },
+    {
+      "d1_fit_supported_pair": false,
+      "d2_evaluated_direction_count": 0,
+      "has_d2_confirmed_directional_relation": false,
+      "source": "P1_FCV01Z",
+      "target": "P1_FT01"
+    }
+  ],
+  "pairs_with_confirmed_direction_count": 23,
+  "schema_version": "1.0.0",
+  "status": "frozen_task039d2_pair_confirmation_summary",
+  "task_id": "TASK-039D2"
+}

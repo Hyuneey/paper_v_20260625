@@ -1,0 +1,194 @@
+{
+  "arms": [
+    {
+      "arm": "META",
+      "confirmed_relation_yield_at_20": 0.75,
+      "d1_directional_fit_supported_count": 29,
+      "d1_fit_supported_pair_count": 16,
+      "d1_pair_fit_support_yield": 0.8,
+      "d2_confirmed_pair_count": 15,
+      "directional_confirmation_count": 28,
+      "directional_transfer": 0.9655172413793104,
+      "distinct_confirmed_source_count": 7,
+      "distinct_confirmed_source_coverage_at_20": 0.5833333333333334,
+      "distinct_confirmed_target_count": 9,
+      "distinct_confirmed_target_coverage_at_20": 0.75,
+      "pair_fit_to_confirmation_transfer": 0.9375,
+      "top20_pair_count": 20
+    },
+    {
+      "arm": "STAT",
+      "confirmed_relation_yield_at_20": 0.85,
+      "d1_directional_fit_supported_count": 33,
+      "d1_fit_supported_pair_count": 17,
+      "d1_pair_fit_support_yield": 0.85,
+      "d2_confirmed_pair_count": 17,
+      "directional_confirmation_count": 32,
+      "directional_transfer": 0.9696969696969697,
+      "distinct_confirmed_source_count": 8,
+      "distinct_confirmed_source_coverage_at_20": 0.6666666666666666,
+      "distinct_confirmed_target_count": 8,
+      "distinct_confirmed_target_coverage_at_20": 0.6666666666666666,
+      "pair_fit_to_confirmation_transfer": 1.0,
+      "top20_pair_count": 20
+    },
+    {
+      "arm": "GDN",
+      "confirmed_relation_yield_at_20": 0.15,
+      "d1_directional_fit_supported_count": 7,
+      "d1_fit_supported_pair_count": 5,
+      "d1_pair_fit_support_yield": 0.25,
+      "d2_confirmed_pair_count": 3,
+      "directional_confirmation_count": 5,
+      "directional_transfer": 0.7142857142857143,
+      "distinct_confirmed_source_count": 3,
+      "distinct_confirmed_source_coverage_at_20": 0.25,
+      "distinct_confirmed_target_count": 3,
+      "distinct_confirmed_target_coverage_at_20": 0.25,
+      "pair_fit_to_confirmation_transfer": 0.6,
+      "top20_pair_count": 20
+    }
+  ],
+  "artifact_hash": "afc9ea42cf4c925667888e6223e414769c97fe326e0eb4c7c55f6ef9155c42e7",
+  "artifact_type": "task039d2_arm_confirmation_summary_v1",
+  "claim_boundary": "one-way train3 confirmation metrics; no candidate-method winner",
+  "confirmed_pair_overlap": {
+    "GDN_only": {
+      "count": 2,
+      "pairs": [
+        {
+          "source": "P1_FCV03Z",
+          "target": "P1_FT01"
+        },
+        {
+          "source": "P1_FCV02D",
+          "target": "P1_TIT02"
+        }
+      ]
+    },
+    "META_GDN_only": {
+      "count": 0,
+      "pairs": []
+    },
+    "META_STAT_only": {
+      "count": 11,
+      "pairs": [
+        {
+          "source": "P1_FCV01D",
+          "target": "P1_FT02"
+        },
+        {
+          "source": "P1_FCV01D",
+          "target": "P1_FT02Z"
+        },
+        {
+          "source": "P1_PCV01D",
+          "target": "P1_PIT01"
+        },
+        {
+          "source": "P1_FCV02D",
+          "target": "P1_FT02Z"
+        },
+        {
+          "source": "P1_LCV01D",
+          "target": "P1_LIT01"
+        },
+        {
+          "source": "P1_FCV01D",
+          "target": "P1_PIT02"
+        },
+        {
+          "source": "P1_FCV01Z",
+          "target": "P1_FT02"
+        },
+        {
+          "source": "P1_FCV01Z",
+          "target": "P1_FT02Z"
+        },
+        {
+          "source": "P1_FCV01Z",
+          "target": "P1_PIT02"
+        },
+        {
+          "source": "P1_FCV03Z",
+          "target": "P1_FT03"
+        },
+        {
+          "source": "P1_FCV03Z",
+          "target": "P1_FT03Z"
+        }
+      ]
+    },
+    "META_only": {
+      "count": 4,
+      "pairs": [
+        {
+          "source": "P1_FCV03D",
+          "target": "P1_FT03Z"
+        },
+        {
+          "source": "P1_FCV02D",
+          "target": "P1_FT02"
+        },
+        {
+          "source": "P1_PCV01D",
+          "target": "P1_FT01"
+        },
+        {
+          "source": "P1_PCV01D",
+          "target": "P1_FT01Z"
+        }
+      ]
+    },
+    "STAT_GDN_only": {
+      "count": 1,
+      "pairs": [
+        {
+          "source": "P1_PCV01Z",
+          "target": "P1_PIT01"
+        }
+      ]
+    },
+    "STAT_only": {
+      "count": 5,
+      "pairs": [
+        {
+          "source": "P1_LCV01Z",
+          "target": "P1_PIT01"
+        },
+        {
+          "source": "P1_FCV02D",
+          "target": "P1_PIT02"
+        },
+        {
+          "source": "P1_LCV01Z",
+          "target": "P1_FT01Z"
+        },
+        {
+          "source": "P1_PCV01D",
+          "target": "P1_LIT01"
+        },
+        {
+          "source": "P1_LCV01D",
+          "target": "P1_PIT01"
+        }
+      ]
+    },
+    "all_three": {
+      "count": 0,
+      "pairs": []
+    },
+    "confirmed_union_count": 23,
+    "shared_by_exactly_two_count": 12
+  },
+  "method_comparison_policy_hash": "0ccc7a97a5e9b3fe1e5a8a54828ec8f8f7e6482c62eb63f7df62d804c8cae39e",
+  "pair_confirmation_summary_hash": "3929e84c680422a75069d59e1bef756f054a476ecc95f3e4e9573c7dfe368ad5",
+  "primary_k": 20,
+  "provenance_analysis_view_hash": "7ab92318611dd7d0252c763c4099a7ee69f3dbab3132308254aeb92f8af2e115",
+  "provenance_joined_after_outcomes_frozen": true,
+  "same_pair_same_d2_outcome_across_all_origin_arms": true,
+  "schema_version": "1.0.0",
+  "status": "descriptive_task039d2_arm_confirmation_summary",
+  "task_id": "TASK-039D2",
+  "winner_selected": false
+}

@@ -1,0 +1,41 @@
+{
+  "absolute_local_paths_persisted": false,
+  "artifact_hash": "95839a3ff08de15ee42997feaf1042bd34759bc9177b3294fade22203f8716c4",
+  "artifact_type": "task039d2r_data_access_audit_v1",
+  "authorized_original_file": "hai-23.05/hai-train3.csv",
+  "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "immutable_file_identity": {
+    "byte_size": 72774793,
+    "header_sha256": "95968d825d1c9caab778a857cec618b64674ec5a85d94e6952d99c2cab08d16a",
+    "relative_path": "hai-23.05/hai-train3.csv",
+    "row_count": 126000,
+    "sha256": "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d"
+  },
+  "original_scientific_run": {
+    "attacks_accessed": false,
+    "br2_pair_results_accessed": false,
+    "candidate_provenance_visible_during_confirmation": false,
+    "d1_private_ledgers_accessed": true,
+    "d1_private_ledgers_modified": false,
+    "labels_accessed": false,
+    "test_accessed": false,
+    "train1_feature_values_accessed": false,
+    "train2_feature_values_accessed": false,
+    "train3_accessed": true,
+    "train4_accessed": false
+  },
+  "process": "P1",
+  "prohibited_access_count": 0,
+  "recovery_finalization": {
+    "candidate_provenance_loaded_after_outcomes_frozen": true,
+    "d1_private_ledgers_read_for_binding_only": true,
+    "frozen_d2_private_ledger_read": true,
+    "hai_feature_values_accessed": false,
+    "train1_train2_train4_test_labels_attacks_accessed": false,
+    "train3_accessed": false,
+    "train3_reread": false
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039d2r_no_reread_data_boundary",
+  "task_id": "TASK-039D2R"
+}
