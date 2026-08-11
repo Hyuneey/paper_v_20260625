@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e0_confirmed_relation_primitive_v1_schema.json",
+  "title": "ConfirmedRelationPrimitiveV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "relation_identity",
+    "relation_family",
+    "source",
+    "source_step_direction",
+    "target",
+    "target_response_direction",
+    "selected_delay_horizon_seconds",
+    "approved_source_threshold_reference",
+    "approved_source_stability_reference",
+    "approved_target_scale_reference",
+    "fit_evidence_reference",
+    "confirmation_evidence_reference",
+    "confirmed",
+    "rule_authority_granted",
+    "runtime_authority_granted",
+    "binding_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "confirmed_relation_primitive_v1"},
+    "relation_identity": {"$ref": "#/$defs/identifier"},
+    "relation_family": {"const": "continuous_step_delayed_response_v1"},
+    "source": {"$ref": "#/$defs/identifier"},
+    "source_step_direction": {"enum": ["step_up", "step_down"]},
+    "target": {"$ref": "#/$defs/identifier"},
+    "target_response_direction": {"enum": ["increase", "decrease"]},
+    "selected_delay_horizon_seconds": {"type": "integer", "minimum": 1},
+    "approved_source_threshold_reference": {"$ref": "#/$defs/hash"},
+    "approved_source_stability_reference": {"$ref": "#/$defs/hash"},
+    "approved_target_scale_reference": {"$ref": "#/$defs/hash"},
+    "fit_evidence_reference": {"$ref": "#/$defs/hash"},
+    "confirmation_evidence_reference": {"$ref": "#/$defs/hash"},
+    "confirmed": {"const": true},
+    "rule_authority_granted": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "binding_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    }
+  }
+}

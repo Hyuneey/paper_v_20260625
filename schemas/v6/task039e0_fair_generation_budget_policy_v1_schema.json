@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e0_fair_generation_budget_policy_v1_schema.json",
+  "title": "FairGenerationBudgetPolicyV1 preparation draft",
+  "description": "Code validation additionally requires T1-B total generation calls to equal T2 maximum total generation calls.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "policy_id",
+    "t0_total_generation_calls",
+    "t1_total_generation_calls",
+    "t1b_total_generation_calls",
+    "t2_maximum_total_generation_calls",
+    "frozen_before_relation_identities_visible",
+    "frozen_before_proposals_visible",
+    "result_dependent_extra_calls",
+    "scientific_generation_retry_policy",
+    "transport_retry_policy",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "fair_generation_budget_policy_v1"},
+    "policy_id": {"$ref": "#/$defs/identifier"},
+    "t0_total_generation_calls": {"const": 0},
+    "t1_total_generation_calls": {"const": 1},
+    "t1b_total_generation_calls": {"type": "integer", "minimum": 2},
+    "t2_maximum_total_generation_calls": {"type": "integer", "minimum": 2},
+    "frozen_before_relation_identities_visible": {"const": true},
+    "frozen_before_proposals_visible": {"const": true},
+    "result_dependent_extra_calls": {"const": false},
+    "scientific_generation_retry_policy": {"const": "none"},
+    "transport_retry_policy": {
+      "const": "separate_preregistered_transport_retry_only"
+    },
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    }
+  }
+}

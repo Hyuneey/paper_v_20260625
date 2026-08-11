@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e0_future_generation_call_record_v1_schema.json",
+  "title": "FutureGenerationCallRecordV1 preparation draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "construction_arm",
+    "model_identifier",
+    "provider_identifier",
+    "prompt_template_version",
+    "temperature",
+    "decoding_settings",
+    "seed",
+    "seed_exposed",
+    "call_number",
+    "evidence_bundle_hash",
+    "verifier_feedback_hash",
+    "proposal_hash",
+    "accepted_state",
+    "total_calls_consumed",
+    "independent_generation",
+    "transport_retry_count",
+    "transport_retries_scientific_generation",
+    "raw_prompt_stored",
+    "chain_of_thought_stored",
+    "raw_evidence_rows_stored",
+    "runtime_authority_granted",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "future_generation_call_record_v1"},
+    "construction_arm": {"enum": ["T1", "T1_B", "T2"]},
+    "model_identifier": {"$ref": "#/$defs/identifier"},
+    "provider_identifier": {"$ref": "#/$defs/identifier"},
+    "prompt_template_version": {"$ref": "#/$defs/identifier"},
+    "temperature": {"type": "number", "minimum": 0},
+    "decoding_settings": {"type": "object"},
+    "seed": {"type": ["integer", "null"]},
+    "seed_exposed": {"type": "boolean"},
+    "call_number": {"type": "integer", "minimum": 1},
+    "evidence_bundle_hash": {"$ref": "#/$defs/hash"},
+    "verifier_feedback_hash": {
+      "anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]
+    },
+    "proposal_hash": {"$ref": "#/$defs/hash"},
+    "accepted_state": {
+      "enum": ["candidate_proposed", "accepted", "no_rule", "rejected"]
+    },
+    "total_calls_consumed": {"type": "integer", "minimum": 1},
+    "independent_generation": {"type": "boolean"},
+    "transport_retry_count": {"type": "integer", "minimum": 0},
+    "transport_retries_scientific_generation": {"const": false},
+    "raw_prompt_stored": {"const": false},
+    "chain_of_thought_stored": {"const": false},
+    "raw_evidence_rows_stored": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    }
+  }
+}
