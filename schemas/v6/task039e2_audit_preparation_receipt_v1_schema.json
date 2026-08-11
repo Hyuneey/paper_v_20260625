@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e2_audit_preparation_receipt_v1_schema.json",
+  "title": "TASK-039E2 Audit Preparation Receipt V1",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "task039e2_audit_preparation_receipt_v1"},
+    "status": {"const": "passed_task039e2_audit_preparation"},
+    "independent_standard_library_oracle_prepared": {"const": true},
+    "real_e2_result_accessed": {"const": false},
+    "real_e1_private_evidence_accessed": {"const": false},
+    "provider_contacted": {"const": false},
+    "model_called": {"const": false},
+    "api_key_accessed": {"const": false},
+    "real_t0_generated": {"const": false},
+    "rule_generated": {"const": false},
+    "runtime_authority": {"const": false},
+    "e3_authority": {"const": false},
+    "artifact_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "independent_standard_library_oracle_prepared",
+    "real_e2_result_accessed",
+    "real_e1_private_evidence_accessed",
+    "provider_contacted",
+    "model_called",
+    "api_key_accessed",
+    "real_t0_generated",
+    "rule_generated",
+    "runtime_authority",
+    "e3_authority",
+    "artifact_hash"
+  ],
+  "additionalProperties": false
+}
