@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e1_future_private_ledger_replay_design_v1_schema.json",
+  "title": "TASK-039E1 future private-ledger replay design",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "logical_inputs",
+    "expected_relation_count",
+    "expected_numeric_binding_count",
+    "real_reads_enabled",
+    "separate_authorization_required",
+    "raw_hai_allowed",
+    "runtime_authority_granted",
+    "artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "task039e1_future_private_ledger_replay_design_v1"},
+    "logical_inputs": {
+      "const": [
+        "d1_source_ledger",
+        "d1_target_ledger",
+        "d1_directional_ledger",
+        "d2_confirmation_ledger",
+        "e1_private_construction_evidence_ledger"
+      ]
+    },
+    "expected_relation_count": {"const": 42},
+    "expected_numeric_binding_count": {"const": 462},
+    "real_reads_enabled": {"const": false},
+    "separate_authorization_required": {"const": true},
+    "raw_hai_allowed": {"const": false},
+    "runtime_authority_granted": {"const": false},
+    "artifact_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
