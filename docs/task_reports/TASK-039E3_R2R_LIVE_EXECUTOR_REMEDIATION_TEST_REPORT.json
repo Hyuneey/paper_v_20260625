@@ -1,0 +1,45 @@
+{
+  "artifact_hash": "15d02417cfeb5af8bd30d73d76a0055f174edc55befd85e646e3e3317792e4a3",
+  "artifact_type": "task039e3_r2r_live_executor_remediation_test_report_v1",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_live_executor_remediation",
+      "result": "7/7 PASS"
+    },
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_failure_forensic_audit",
+      "result": "8/8 PASS; historical never-send cause remains reproducible from frozen source identity"
+    },
+    {
+      "command": "bundled-python -B -m unittest -q focused live-executor, orchestration, request, transport, custody, integrity, runner, and science modules",
+      "result": "100/100 PASS from exact clean Remediation Commit A"
+    },
+    {
+      "command": "bundled-python -B -m compileall focused production and test paths",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python -B -m pip check",
+      "result": "PASS; no broken requirements"
+    },
+    {
+      "command": "exact Git-object active closure reconstruction and source-record verification",
+      "result": "49 material paths; 50/50 Git blobs and byte SHA-256 PASS; dynamic=0; unresolved=0; unbound=0"
+    },
+    {
+      "command": "git diff --check and task-scoped sanitized leak scan",
+      "result": "PASS"
+    }
+  ],
+  "credential_accessed": false,
+  "failed_execution_private_root_accessed": false,
+  "live_runner_invocations": 0,
+  "network_capable_tests": 0,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "recovery_main_provider_schema_v2_hash": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1",
+  "remediation_commit_a": "f10365adbdde5bb2070df429770174d215829dc6",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-LIVE-EXECUTOR-REMEDIATION"
+}
