@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from types import MappingProxyType
-from typing import Any, Mapping, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from paperworks.v6.common import (
     V6_FOUNDATION_SCHEMA_VERSION,
@@ -50,6 +50,7 @@ from paperworks.v6.task039e3_execution_prep_v1 import (
     PROVIDER_MODEL_RECEIPT_HASH,
     ConstructionEvidenceContextV1,
     ConstructionInputViewV1,
+    FrozenProviderRequestV1,
     MockProviderTransportV1,
     ProviderCallLedgerV1,
     ProviderCallSlotV1,
@@ -59,6 +60,10 @@ from paperworks.v6.task039e3_execution_prep_v1 import (
     build_t2_followup_request_v1,
     execute_mock_provider_slot_v1,
 )
+
+
+MainRequestBuilderV1 = Callable[[ConstructionInputViewV1], FrozenProviderRequestV1]
+T2FollowupRequestBuilderV1 = Callable[..., FrozenProviderRequestV1]
 
 
 T0_TEMPLATE_HASH = "504328783b654054029ab3277360bc6efc7bbd8eef3d5f1f6cc98ea3aefb12ff"
@@ -492,8 +497,9 @@ def run_t1_v1(
     proposal_ledger: ConstructionProposalLedgerV1,
     outcome_ledger: ConstructionOutcomeLedgerV1,
     synthetic_validity_fault: str | None = None,
+    main_request_builder: MainRequestBuilderV1 = build_main_request_v1,
 ) -> ConstructionOutcomeRecordV1:
-    request = build_main_request_v1(evidence.render_view())
+    request = main_request_builder(evidence.render_view())
     slot = ProviderCallSlotV1(
         relation_schedule_index,
         evidence.relation.binding_hash,
@@ -557,10 +563,11 @@ def run_t1b_v1(
     proposal_ledger: ConstructionProposalLedgerV1,
     outcome_ledger: ConstructionOutcomeLedgerV1,
     synthetic_validity_faults: Sequence[str | None] = (None, None, None),
+    main_request_builder: MainRequestBuilderV1 = build_main_request_v1,
 ) -> ConstructionOutcomeRecordV1:
     if len(synthetic_validity_faults) != 3:
         raise TASK039E3PreparationError("T1-B requires exactly three fault slots")
-    request = build_main_request_v1(evidence.render_view())
+    request = main_request_builder(evidence.render_view())
     admissible: list[bool] = []
     verifier_invocations = 0
     verifier_rejections = 0
@@ -654,11 +661,15 @@ def run_t2_v1(
     outcome_ledger: ConstructionOutcomeLedgerV1,
     synthetic_validity_faults: Sequence[str | None] = (None, None, None),
     retrieval_identity: str | None = None,
+    main_request_builder: MainRequestBuilderV1 = build_main_request_v1,
+    t2_followup_request_builder: T2FollowupRequestBuilderV1 = (
+        build_t2_followup_request_v1
+    ),
 ) -> ConstructionOutcomeRecordV1:
     if len(synthetic_validity_faults) != 3:
         raise TASK039E3PreparationError("T2 requires three precommitted fault slots")
     view = evidence.render_view()
-    request = build_main_request_v1(view)
+    request = main_request_builder(view)
     retrieval_used = False
     retrieval_count = 0
     revise_count = 0
@@ -772,7 +783,7 @@ def run_t2_v1(
                 feedback_path = "revise"
         if call_number == 3:
             raise TASK039E3PreparationError("T2 fourth call is prohibited")
-        request = build_t2_followup_request_v1(
+        request = t2_followup_request_builder(
             view=view,
             verifier_issue_codes=issue_codes,
             affected_fields=[issue.field for issue in validity.issues],
