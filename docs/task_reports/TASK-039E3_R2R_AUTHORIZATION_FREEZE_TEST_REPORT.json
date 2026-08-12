@@ -1,0 +1,49 @@
+{
+  "artifact_hash": "469f9ad6e963f5442e9f4a50b9802698a0b6b8096528606eb61f9f1648e9d262",
+  "artifact_type": "task039e3_r2r_authorization_freeze_test_report_v1",
+  "authorization_commit_a": "87ad653da733d3d9fa146f7320e806c9a1e87277",
+  "commands": [
+    {
+      "classification": "passed",
+      "collected": 14,
+      "command": "$env:PYTHONPATH='src;tests'; <bundled-python> -B -m unittest -v tests.test_task039e3_r2r_authorization_freeze tests.test_task039e3_r2r_execution_v1",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 14,
+      "skipped": 0
+    },
+    {
+      "classification": "passed",
+      "command": "independent exact-Commit-A authorization/configuration hash, closed-schema, Audit-B Git-byte, scope, and artifact identity oracle",
+      "exit_code": 0
+    },
+    {
+      "classification": "passed",
+      "command": "<bundled-python> -B -m compileall -q tests/test_task039e3_r2r_authorization_freeze.py",
+      "exit_code": 0
+    },
+    {
+      "classification": "passed",
+      "command": "<bundled-python> -B -m pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "classification": "passed",
+      "command": "task-scoped credential/private-path leak scan and git diff checks",
+      "exit_code": 0,
+      "leak_hits": 0
+    }
+  ],
+  "authorization_closed_schema_fields": 60,
+  "authorization_exact_byte_sha256": "b6746d1750fc7ad78b6c3f3c45031be9e5aa37109e54e47c10aca01a333ed767",
+  "authorization_git_blob_sha": "1a66cdd51d14665b78d3a4c3b60d824de827f248",
+  "authorization_self_hash": "674d314c42d672dfdd847e5552a310f938fb44b7a55c4bd49fa968d3aa746c91",
+  "canonical_audit_git_bytes_verified": true,
+  "configuration_hash": "edeffb7c6c1282a529df00ec3820039c3289b3c274279131e4a305fcaf990f6d",
+  "exact_commit_a_clean": true,
+  "source_records_verified": 50,
+  "status": "passed_task039e3_r2r_authorization_freeze_tests",
+  "task_id": "TASK-039E3-R2R-AUTHORIZATION-FREEZE"
+}

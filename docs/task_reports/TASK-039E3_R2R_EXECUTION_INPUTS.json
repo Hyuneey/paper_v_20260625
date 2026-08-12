@@ -1,0 +1,55 @@
+{
+  "artifact_hash": "76d091c8b01572f1f9009ecf4799f877d0696749c3b32625d4e077d13511999f",
+  "artifact_type": "task039e3_r2r_execution_inputs_v1",
+  "capability_ledger_root": {
+    "artifact_hash": "d6531d990bd70d89d114094f003dd9387e4df2db9cf9c2fc14bb5cf790818294",
+    "artifact_role": "historical durable capability custody root",
+    "provider_ledger_head_hash": "e0b449ca96ffbf229954c059780baf8fb115aa79fc5d65802dd19e3a54120471",
+    "required_state": "existing, read-only, exact durable custody"
+  },
+  "capability_receipt": {
+    "artifact_hash": "9ee4637da31b585a34eda4bad3b3be1dfa5597396ce1e78ef0564fa53da2b428",
+    "artifact_role": "historical durable private capability PASS receipt",
+    "required_state": "existing exact bytes"
+  },
+  "e1_private_root": {
+    "artifact_role": "existing E1 private evidence root",
+    "precontact_content_access": false,
+    "required_state": "existing authorized private root; content accessible only after frozen guards"
+  },
+  "execution_repository_worktree": {
+    "exact_commit": "eb62b449e06ea5f6c4a2d445223f6ca98de3690c",
+    "exact_worktree_bytes_must_equal_git_objects": true,
+    "required_state": "fresh, clean, detached, index clean, line-ending conversion disabled"
+  },
+  "public_output_root": {
+    "artifact_role": "new R2R sanitized public output root",
+    "required_state": "new empty absolute directory outside Git and every private root"
+  },
+  "r2r_authorization": {
+    "artifact_path": "docs/task_reports/TASK-039E3_R2R_EXECUTION_AUTHORIZATION.json",
+    "exact_byte_sha256": "b6746d1750fc7ad78b6c3f3c45031be9e5aa37109e54e47c10aca01a333ed767",
+    "git_blob_sha": "1a66cdd51d14665b78d3a4c3b60d824de827f248",
+    "self_hash": "674d314c42d672dfdd847e5552a310f938fb44b7a55c4bd49fa968d3aa746c91",
+    "source_commit": "87ad653da733d3d9fa146f7320e806c9a1e87277"
+  },
+  "r2r_audit_receipt": {
+    "artifact_hash": "ca827f1f10ca825941c3eb7a49aea774bf26453baba51480b4e03d2a3c9d7b74",
+    "artifact_path": "docs/task_reports/TASK-039E3_R2R_AUDIT_RECEIPT.json",
+    "required_state": "external exact Git-object bytes",
+    "source_commit": "7264d4c570d0c5109aec09b3b02f27f687040dc8"
+  },
+  "r2r_recovery_private_root": {
+    "artifact_role": "new R2R private custody root",
+    "required_state": "new empty absolute directory outside Git and all other roots"
+  },
+  "r2r_source_manifest": {
+    "artifact_hash": "01c8e23f2eb15f321295bf0163dcbd81df67ed0179817acb725614a45bfede1d",
+    "artifact_path": "docs/task_reports/TASK-039E3_R2R_FINALIZATION_REMEDIATION_SOURCE_FREEZE.json",
+    "required_state": "external exact Git-object bytes",
+    "source_commit": "2caec1dbdfd175e07bc2d5d5bf4d36896f56f99d"
+  },
+  "schema_version": "1.0.0",
+  "secret_material_in_manifest": false,
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-EXECUTION"
+}
