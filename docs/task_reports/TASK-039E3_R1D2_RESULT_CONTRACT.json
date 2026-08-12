@@ -1,0 +1,43 @@
+{
+  "artifact_hash": "7ab28c455ac340db5ec1d1f2cfddf0fc6d97867a0edb7162775ec0f6679b6451",
+  "artifact_type": "task039e3_r1d2_result_contract_v1",
+  "authoritative_head_semantics": "HEAD.json_is_sole_authoritative_committed_head",
+  "external_public_artifacts": [
+    "TASK-039E3_R2_CAPABILITY_GATE.json",
+    "TASK-039E3_R2_PROVIDER_CUSTODY_BINDING.json",
+    "TASK-039E3_R2_PRIVATE_LEDGER_BINDINGS.json",
+    "TASK-039E3_R2_CONSTRUCTION_METRICS.json",
+    "TASK-039E3_R2_DIRECT_NUMBER_METRICS.json",
+    "TASK-039E3_R2_EXECUTION_SUMMARY.json",
+    "TASK-039E3_R2_DATA_ACCESS_AUDIT.json",
+    "TASK-039E3_R2_EXECUTION_RECEIPT.json"
+  ],
+  "failure_receipt": {
+    "automatic_resume_authorized": false,
+    "double_fault_classification": "double_fault_failure_receipt_persistence_failed",
+    "provider_recontact_authorized": false,
+    "sanitized": true,
+    "self_hashed": true
+  },
+  "final_execution_receipt_required_for_pass": true,
+  "final_execution_receipt_written_last": true,
+  "private_authoritative_snapshots": [
+    "scientific_provider",
+    "proposal_validity",
+    "construction_outcome",
+    "direct_number"
+  ],
+  "provider_response_semantics": {
+    "malformed_http_200_provider_authored_response": true,
+    "malformed_http_200_response_present": true,
+    "malformed_http_200_terminal_state": "completed_schema_invalid_response",
+    "model_mismatch_response_id_preserved": true,
+    "model_mismatch_returned_model_preserved": true,
+    "model_mismatch_terminal_state": "completed_model_identity_mismatch"
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_recovery_audit_remediation",
+  "task_id": "TASK-039E3-R1D2_RECOVERY_AUDIT_REMEDIATION",
+  "transactional_orphan_classification": "orphan_non_authoritative",
+  "working_jsonl_authoritative": false
+}

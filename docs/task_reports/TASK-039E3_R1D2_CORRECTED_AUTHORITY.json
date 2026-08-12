@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "7ccea8b0d892c86307b904b691894262ae71ca4002ff15d59d6b1d025fb1ceec",
+  "artifact_type": "task039e3_r1d2_corrected_authority_v1",
+  "authority_binding_correction_only": true,
+  "corrected_authoritative_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce5fbeb616",
+  "corrected_authority_independently_verified": true,
+  "historical_blocked_r1d_commit": "66e15fcdae2e932bebf09b569fefbe6028443d79",
+  "historical_r1d_status": "blocked_task039e3_r1d_recovery_audit_remediation",
+  "historical_r1d_status_unchanged": true,
+  "incorrect_revoked_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce3d6ae967",
+  "implementation_authorized": true,
+  "provider_contact_authorized": false,
+  "real_r2_authorization_artifact_created": false,
+  "recovery_probe_authorized": false,
+  "schema_version": "1.0.0",
+  "scientific_execution_authorized": false,
+  "status": "passed_task039e3_r1d2_recovery_audit_remediation",
+  "task_id": "TASK-039E3-R1D2_RECOVERY_AUDIT_REMEDIATION"
+}

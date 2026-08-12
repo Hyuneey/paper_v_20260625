@@ -1,0 +1,19 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "18d55fa758e5fa5486f0fb4a5ef26fe06b05d23a552957e2352faf1607b147da",
+  "artifact_type": "task039e3_r1d2_data_access_audit_v1",
+  "capability_probe_executed": false,
+  "hai_accessed": false,
+  "historical_private_roots_accessed": false,
+  "openai_api_key_accessed": false,
+  "openai_transport_attempts": 0,
+  "provider_contacted": false,
+  "real_e1_evidence_accessed": false,
+  "real_recovery_private_root_accessed": false,
+  "schema_version": "1.0.0",
+  "scientific_provider_calls": 0,
+  "status": "passed_task039e3_r1d2_recovery_audit_remediation",
+  "task_id": "TASK-039E3-R1D2_RECOVERY_AUDIT_REMEDIATION",
+  "test_labels_attacks_accessed": false,
+  "train1_train2_train3_train4_accessed": false
+}

@@ -1,0 +1,43 @@
+{
+  "artifact_hash": "01370cb7c4823c9d40597e8e0bac66be5a11c516f3169b8ff6d9508b9606f36a",
+  "artifact_type": "task039e3_r1d2_test_report_v1",
+  "commit_under_test": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "conflicting_lane_findings": [],
+  "coordinator_aggregation": "passed",
+  "file_ownership_violations": [],
+  "multi_agent_execution_used": true,
+  "parallel_lanes": {
+    "lane_a_provider_forensics": "passed",
+    "lane_b_transactional_custody": "passed",
+    "lane_c_result_finalizer": "passed",
+    "lane_d_postcontact_integrity": "passed",
+    "lane_e_authority_audit_chain": "passed",
+    "lane_f_failure_finalization": "passed"
+  },
+  "private_custody_concurrently_written": false,
+  "provider_calls_executed_in_parallel": false,
+  "schema_version": "1.0.0",
+  "shared_authoritative_files_concurrently_written": false,
+  "status": "passed_task039e3_r1d2_recovery_audit_remediation",
+  "task_id": "TASK-039E3-R1D2_RECOVERY_AUDIT_REMEDIATION",
+  "test_runs": [
+    {"collected":50,"command":"python -B -m unittest -v tests.test_task039e3_r1d2_provider_forensics_v3 tests.test_task039e3_r1d2_transactional_custody_v3 tests.test_task039e3_r1d2_result_finalizer_v3 tests.test_task039e3_r1d2_postcontact_integrity_v3 tests.test_task039e3_r1d2_authorization_chain_v3 tests.test_task039e3_r1d2_failure_finalization tests.test_task039e3_r1d2_execution_v3","errors":0,"exit_code":0,"failed":0,"name":"r1d2_exact_commit_a","passed":50,"skipped":0},
+    {"collected":31,"command":"python -m unittest -v tests.test_task039e3_r1c_audit_authority_chain tests.test_task039e3_r1c_audit_blocker_closure tests.test_task039e3_r1c_audit_custody tests.test_task039e3_r1c_audit_exact_commit_a tests.test_task039e3_r1c_audit_git_closure tests.test_task039e3_r1c_audit_postcontact_integrity tests.test_task039e3_r1c_audit_provider_forensics tests.test_task039e3_r1c_audit_result_completeness","errors":0,"exit_code":0,"failed":0,"name":"r1c_audit_oracles","passed":31,"skipped":0},
+    {"collected":48,"command":"python -m unittest -v tests.test_task039e3_r1c_authorization_v2 tests.test_task039e3_r1c_blocking_regressions tests.test_task039e3_r1c_custody_v2 tests.test_task039e3_r1c_execution_v2 tests.test_task039e3_r1c_live_transport_v2 tests.test_task039e3_r1c_science_v2","errors":0,"exit_code":0,"failed":0,"name":"r1c_regressions","passed":48,"skipped":0},
+    {"classification":"environmental_sandbox_diagnostic","collected":46,"command":"python -B -m unittest discover -v -s tests -p test_task039e3_r1b_audit_*.py","errors":1,"exit_code":1,"failed":0,"name":"r1b_audit_oracles_initial_sandbox_run","passed":45,"skipped":0},
+    {"collected":46,"command":"python -m unittest -v tests.test_task039e3_r1b_audit_git_freeze tests.test_task039e3_r1b_audit_capability tests.test_task039e3_r1b_audit_authorization tests.test_task039e3_r1b_audit_compatibility_custody tests.test_task039e3_r1b_audit_live_transport tests.test_task039e3_r1b_audit_serialization tests.test_task039e3_r1b_audit_exact_commit_a","errors":0,"exit_code":0,"failed":0,"name":"r1b_audit_oracles_after_permission_rerun","passed":46,"skipped":0},
+    {"collected":50,"command":"python -m unittest discover -v -s tests -p test_task039e3_r1b_recovery_*.py","errors":0,"exit_code":0,"failed":0,"name":"r1b_regressions","passed":50,"skipped":0},
+    {"collected":6,"command":"python -m unittest -v tests.test_task039e3_r1a_timeout_authority","errors":0,"exit_code":0,"failed":0,"name":"r1a_regressions","passed":6,"skipped":0},
+    {"collected":6,"command":"python -m unittest -v tests.test_task039e3_r0_capability_forensics","errors":0,"exit_code":0,"failed":0,"name":"r0_regressions","passed":6,"skipped":0},
+    {"collected":49,"command":"python -m unittest -v tests.test_task039e3_live_transport tests.test_task039e3_live_execution tests.test_task039e3_transport_parser_custody tests.test_task039e3_t2_direct tests.test_task039e3_schemas_receipt tests.test_task039e3_request_capability_boundary tests.test_task039e3_metrics_schedule_public tests.test_task039e3_main_arms","errors":0,"exit_code":0,"failed":0,"name":"historical_e3_e3_prep","passed":49,"skipped":0},
+    {"collected":39,"command":"python -B -m unittest -v tests.test_task039e2_authoritative_configuration tests.test_task039e2_boundaries tests.test_task039e2_execution_config tests.test_task039e2_input_prompts_retrieval tests.test_task039e2_schedule_transport tests.test_task039e2_schemas tests.test_task039e2_structured_output_t0","errors":0,"exit_code":0,"failed":0,"name":"compatible_e2","passed":39,"skipped":0},
+    {"collected":29,"command":"python -B -m unittest -v tests.test_task039e1_real_schemas tests.test_task039e1_real_materialization tests.test_task039e1_real_boundaries tests.test_task039e1_mismatch_and_resolver tests.test_task039e1_materialization_synthetic","errors":0,"exit_code":0,"failed":0,"name":"compatible_e1","passed":28,"skipped":1},
+    {"collected":59,"command":"python -B -m unittest -v tests.test_task039e0_authoritative_protocol tests.test_task039e0_protocol tests.test_task039e0_schemas_and_boundaries tests.test_task039e0_validity tests.test_task039e0_validity_v2","errors":0,"exit_code":0,"failed":0,"name":"compatible_e0","passed":59,"skipped":0},
+    {"command":"python -B -m compileall -q src/paperworks/v6 scripts tests","exit_code":0,"name":"compileall"},
+    {"command":"python -m pip check","exit_code":0,"name":"pip_check"},
+    {"classification":"command_quoting_diagnostic","command":"PowerShell schema one-liner using an unescaped $schema token","exit_code":1,"name":"json_schema_validation_initial_diagnostic"},
+    {"command":"python JSON parse and closed-contract validation over recovery schemas using chr(36)+'schema'","exit_code":0,"name":"json_schema_validation","parsed_files":4},
+    {"command":"PowerShell sanitized R1D2 source/schema/test leak scan","exit_code":0,"hits":0,"name":"public_private_leak_scan","scanned_files":15},
+    {"command":"git diff --check","exit_code":0,"name":"git_diff_check"}
+  ]
+}
