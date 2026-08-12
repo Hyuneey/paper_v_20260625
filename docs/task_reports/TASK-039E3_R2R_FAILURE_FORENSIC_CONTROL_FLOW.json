@@ -1,0 +1,50 @@
+{
+  "artifact_hash": "bb0def1c7401378a519b9ff5de0da8dc0d5f4ed01b7be5af2d58860f8ca8ffb3",
+  "artifact_type": "task039e3_r2r_failure_forensic_control_flow_v1",
+  "control_flow": [
+    "run_task039e3_r2r_scientific_execution_v1.py",
+    "run_r2r_live_execution_path_v1",
+    "R2RIntegrityGuardedTransportV1",
+    "run_injected_r2r_scientific_cohort_v1",
+    "_run_post_capability_scientific_execution_v2",
+    "relation_0_run_real_t0_v1",
+    "R2R_ARM_RUNNERS_V1.t1",
+    "run_t1_v1",
+    "build_r2r_main_request_v1",
+    "ProviderCallSlotV1",
+    "execute_mock_provider_slot_v1"
+  ],
+  "exception_message_safe_literal": "TASK-039E3-PREP accepts MockProviderTransportV1 only",
+  "exception_message_sha256": "fdcfc8b5298d22c5e78afcdfb254cf9924e1d995c71df6ee0b677b4bb33bfe81",
+  "historical_audit_gap": {
+    "classification": "EXACT_LIVE_WRAPPER_TO_FIRST_FROZEN_T1_SLOT_NOT_EXERCISED",
+    "independent_science_tests": "used MockProviderTransportV1-compatible transports directly",
+    "minimal_missing_oracle": "exact live wrapper can enter first T1 slot without network contact",
+    "runner_and_precontact_tests": "used injected synthetic scientific callbacks",
+    "transport_integrity_tests": "called guarded send directly but did not enter the frozen arm slot executor"
+  },
+  "integrity_wrapper_invocations": 0,
+  "relation_schedule_index": 0,
+  "request_build_succeeded": true,
+  "request_hash": "556d62f0d4ce42eca16f4e11a324b90db41f7e71297dddaa5f90ee153e8fdd94",
+  "schema_version": "1.0.0",
+  "sentinel_send_calls": 0,
+  "slot_hash": "cad061bc206ae3f4245bdf83243e4744ad224a66bf829dbba1fadc8c466c5bfe",
+  "source_identities": [
+    {"git_blob_sha":"90dfed17ec4302f139f018327c87464903cd2626","repository_path":"scripts/run_task039e3_r2r_scientific_execution_v1.py","sha256":"26fd1968ac707de9b0019c3314bc9531844836529cb2ae5697a88cac2678bc5e"},
+    {"git_blob_sha":"24bb1cf094bd5712e3612767a4d70b21d8fb5612","repository_path":"src/paperworks/v6/task039e3_r2r_precontact_v1.py","sha256":"9059e0a1e049d74fca88ce11b126031d83012fecf434550609a11fc0f878dd2f"},
+    {"git_blob_sha":"bbf452e76b29002cd576239cbbece7de301cb4d5","repository_path":"src/paperworks/v6/task039e3_r2r_live_execution_v1.py","sha256":"28d5dbbe65d1dea90f7e83700b5ed769534cd43d41be218c5195f93460fe878b"},
+    {"git_blob_sha":"07afa68735e2715ab2ef4e308fcdc97059e363b6","repository_path":"src/paperworks/v6/task039e3_r2r_execution_v1.py","sha256":"5c5e81b592abbe5208f64a429334d70c67359fb214c363aefd8cd8c2c6830c5a"},
+    {"git_blob_sha":"8ce9dc5ed95bf8bcfbde183259bfc7b8f9663b04","repository_path":"src/paperworks/v6/task039e3_recovery_science_v2.py","sha256":"e3886dd495372eac20972e6bb258b27ce41de39785783e62eca1273c3432e575"},
+    {"git_blob_sha":"33a20128ddfd164747a19ed6b1dc140809783780","repository_path":"src/paperworks/v6/task039e3_scientific_execution_v1.py","sha256":"3b589c4a79a65f2c5c84f702db421ebc1339e36db1241b4ffd19067fa3339021"},
+    {"git_blob_sha":"ecce87da8003f759bd7cb2d1fcf746343bdb39b4","repository_path":"src/paperworks/v6/task039e3_orchestration_v1.py","sha256":"d744487cec25501199f672235851fce213b112fe3307d9c09e8cab316805f5b3"},
+    {"git_blob_sha":"123eed7618c6c22a4473fc33a3338872c3953ff7","repository_path":"src/paperworks/v6/task039e3_r2r_request_contract_v1.py","sha256":"5c99f9aeac3ac6329ac67bd0c89544e6221a2a1cd35a0f2c45b7c7093a9ab4ad"},
+    {"git_blob_sha":"bf0d9acbc42f6a8244275184632cb5e6b1db7301","repository_path":"src/paperworks/v6/task039e3_execution_prep_v1.py","sha256":"3b7d05b3751cfe8b4fa4c6fd580815d823eaf49aa84ed882d49ed4a7e9174826"},
+    {"git_blob_sha":"71b16aeda7bf1154672b7290a80ca86a5ead1f9b","repository_path":"src/paperworks/v6/task039e3_recovery_live_transport_v3.py","sha256":"8962642704dec5382ac874cdf6c2fef32bf395e5893f1200f1783af90d5f8e7f"},
+    {"git_blob_sha":"0f570a44e3523dd81e853cdb4019c48dd246636e","repository_path":"src/paperworks/v6/task039e3_r2r_live_transport_v1.py","sha256":"3a53f372b65875b240b49347d2e0781474b9a1112ee9b56aeb505a2d2540dd30"},
+    {"git_blob_sha":"d771b7faf93d748cbc779a1f664013903f490a4a","repository_path":"src/paperworks/v6/task039e3_recovery_execution_v3.py","sha256":"c222302920cd1e0cab1d6765082649ab76d10e5b178f727f7ed13ef0b2336d5e"},
+    {"git_blob_sha":"af8203915ccbedf973c292419599a3648afbf7f2","repository_path":"src/paperworks/v6/task039e3_recovery_transactional_custody_v3.py","sha256":"cafd97dfcc05663b9c83963b7c8714e012d378a937df3a285e3548ada3b660fe"}
+  ],
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-FAILURE-FORENSIC-AUDIT"
+}

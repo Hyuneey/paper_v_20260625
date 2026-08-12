@@ -1,0 +1,41 @@
+{
+  "artifact_hash": "2e44e8985ce3a766aaac356bc66228aabcc3a98362be22bdc0c9da8f719f46e4",
+  "artifact_type": "task039e3_r2r_failure_forensic_test_report_v1",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_failure_forensic_audit",
+      "result": "8/8 PASS"
+    },
+    {
+      "command": "bundled-python -B -m unittest -v forensic + live_runner + independent_audit_science + independent_audit_transport_integrity + integration",
+      "result": "38/38 PASS"
+    },
+    {
+      "command": "bundled-python -B coordinator-only exact relation-0 never-send replay and private custody reconstruction",
+      "result": "PASS; request built; exact exception reproduced; send_calls=0; T0 hashes matched"
+    },
+    {
+      "command": "bundled-python -B -m compileall focused forensic test",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python -B -m pip check",
+      "result": "PASS; no broken requirements"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python JSON self-hash, forensic bundle, and sanitized report leak oracle",
+      "result": "6/6 JSON self-hashes PASS; bundle PASS; leak scan PASS"
+    }
+  ],
+  "credential_accessed": false,
+  "live_runner_invocations": 0,
+  "network_capable_tests": 0,
+  "provider_calls": 0,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-FAILURE-FORENSIC-AUDIT"
+}
