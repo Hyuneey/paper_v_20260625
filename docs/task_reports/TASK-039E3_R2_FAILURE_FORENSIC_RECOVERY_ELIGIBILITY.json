@@ -1,0 +1,35 @@
+{
+  "additional_recovery_probe_authorized": false,
+  "artifact_hash": "829ef55b87d6a42a087b74dd08608ecf8398a28f680425d7e469a5d5bfc389e9",
+  "artifact_type": "task039e3_r2_failure_forensic_recovery_eligibility_v1",
+  "capability_already_passed": true,
+  "cumulative_capability_probes": 2,
+  "maximum_cumulative_capability_probes": 2,
+  "provider_contact_authorized_for_new_calls": false,
+  "recommended_next_protocol_design_task": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+  "recovery_constraints": [
+    "The corrected capability PASS is durable and the cumulative probe count is already 2 of 2.",
+    "A third capability probe is prohibited.",
+    "One failed T1 scientific logical call and its HTTP 400 custody must remain immutable.",
+    "Automatic resume, provider recontact, patch-and-continue, and scientific reexecution are not authorized.",
+    "The consumed R2 Authorization V3 is not reusable execution authority.",
+    "Any new recovery must be designed offline, independently audited, and separately authorized."
+  ],
+  "recovery_design_questions": [
+    "Can a new scientific recovery execution reuse the durable capability PASS without another capability probe?",
+    "How must the failed T1 logical call be accounted for?",
+    "Is reissuing the same failed T1 request transport recovery or prohibited by scientific_generation_retries=0?",
+    "Would restarting all arms create unfair extra provider exposure relative to T1-B and T2 budgets?",
+    "Can a fresh scientific cohort be authorized while retaining the failed run as separate immutable custody?"
+  ],
+  "resume_authorized": false,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "scientific_recovery_eligibility": "ELIGIBLE_FOR_PROTOCOL_DESIGN",
+  "scientific_reexecution_authorized": false,
+  "status": "passed_task039e3_r2_failure_forensic_audit",
+  "task_id": "TASK-039E3-R2-FAILURE-FORENSIC-AUDIT",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

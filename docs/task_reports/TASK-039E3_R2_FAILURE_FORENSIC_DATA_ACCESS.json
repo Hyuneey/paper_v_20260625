@@ -1,0 +1,23 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "64c034ab8fa63980382524d49815f7a2a227af3874ce73f6278b641739d2b416",
+  "artifact_type": "task039e3_r2_failure_forensic_data_access_v1",
+  "authorization_header_accessed": false,
+  "capability_probe_executed": false,
+  "chain_of_thought_accessed": false,
+  "coordinator_only_private_read": true,
+  "e1_relation_records_read": 1,
+  "e1_relation_read_passes": 2,
+  "live_runner_invoked": false,
+  "openai_api_key_accessed": false,
+  "private_files_read_unique_count": 11,
+  "private_read_passes": 2,
+  "private_root_writes": 0,
+  "provider_contacted": false,
+  "raw_e1_numeric_values_exposed": false,
+  "raw_proposal_text_exposed": false,
+  "schema_version": "1.0.0",
+  "scientific_provider_calls": 0,
+  "status": "passed_task039e3_r2_failure_forensic_audit",
+  "task_id": "TASK-039E3-R2-FAILURE-FORENSIC-AUDIT"
+}

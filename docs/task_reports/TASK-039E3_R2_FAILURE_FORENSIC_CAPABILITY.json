@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "c64522e910e3354aebe59c12cfad4052f7c8abb788f8aedef2f1de7fb09d68ba",
+  "artifact_type": "task039e3_r2_failure_forensic_capability_v1",
+  "authoritative_logical_record_count": 1,
+  "capability_gate_status": "PASS",
+  "cumulative_real_capability_probes": 2,
+  "finish_reason": "stop",
+  "historical_real_capability_probes": 1,
+  "local_compatibility_slots": 0,
+  "maximum_cumulative_capability_probes": 2,
+  "provider_ledger_hash": "d6531d990bd70d89d114094f003dd9387e4df2db9cf9c2fc14bb5cf790818294",
+  "provider_ledger_head_hash": "e0b449ca96ffbf229954c059780baf8fb115aa79fc5d65802dd19e3a54120471",
+  "provider_record_hash": "e0b449ca96ffbf229954c059780baf8fb115aa79fc5d65802dd19e3a54120471",
+  "response_id": "chatcmpl-EBymHEjpmxFMggRlkPRcAH7HW4tAu",
+  "returned_model": "gpt-5.4-2026-03-05",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2_failure_forensic_audit",
+  "task_id": "TASK-039E3-R2-FAILURE-FORENSIC-AUDIT",
+  "terminal_classification": "completed_provider_response",
+  "third_probe_authorized": false,
+  "token_usage": {
+    "completion_tokens": 44,
+    "prompt_tokens": 97,
+    "total_tokens": 141
+  },
+  "transport_attempts": 1,
+  "transport_retries": 0
+}

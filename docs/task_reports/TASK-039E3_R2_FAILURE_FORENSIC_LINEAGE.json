@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "7c90e532d2c4ba21e4559005cb44db98dde12293be6d0b580e04c8591f7bbf0c",
+  "artifact_type": "task039e3_r2_failure_forensic_lineage_v1",
+  "authorization_freeze_commit_a": "68f0040514b073d75c56622716ff3925ecdb0cb8",
+  "authorization_freeze_commit_b": "73bd472eb4c349111ce17a200280d1e712f64b64",
+  "authorization_self_hash": "2133f54651447258c00546d6293600f95bbea86500a7ced7ca9bbe820ef373cc",
+  "branch": "task-039e3-r2-failure-forensic-audit",
+  "complete_source_manifest_hash": "e8f236a8238bad744eced3009e2000bab9597094cab04446d920df0a0ddf9283",
+  "created_at_utc": "2026-08-12T09:21:26Z",
+  "forensic_audit_commit_a": "ede40a2dc1cad07d2125a1b599f115538d1ccf1d",
+  "forensic_audit_parent": "73bd472eb4c349111ce17a200280d1e712f64b64",
+  "historical_branches_modified": false,
+  "main_modified": false,
+  "r1d2_executable_commit_a": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "r1d2_final_audit_receipt_hash": "e23aac907717c3159b4c16c2bee9337a26b7ae201b811a11feec02176c138225",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2_failure_forensic_audit",
+  "task_id": "TASK-039E3-R2-FAILURE-FORENSIC-AUDIT"
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_hash": "f9577aa851b368b02f8f9c33b46b13df1bd1bf108471b49b8e6d3d3709846d27",
+  "artifact_type": "task039e3_r2_failure_forensic_test_report_v1",
+  "blocking_findings": 0,
+  "commands": [
+    {
+      "command": "python -B -m unittest -v tests.test_task039e3_r2_failure_forensic_audit tests.test_task039e3_r1d2_transactional_custody_v3 tests.test_task039e3_r1d2_provider_forensics_v3 tests.test_task039e3_r1d2_failure_finalization",
+      "collected": 25,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 25,
+      "phase": "pre_commit_a",
+      "skipped": 0
+    },
+    {
+      "command": "python -B -m unittest -v tests.test_task039e3_r2_failure_forensic_audit tests.test_task039e3_r1d2_provider_forensics_v3 tests.test_task039e3_r1d2_transactional_custody_v3 tests.test_task039e3_r1d2_failure_finalization tests.test_task039e3_r1d2_execution_v3",
+      "collected": 33,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 33,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -m unittest -v tests.test_task039e3_r1d2_audit_provider_semantics tests.test_task039e3_r1d2_audit_transactional_custody tests.test_task039e3_r1d2_audit_failure_finalization tests.test_task039e3_r2_authorization_freeze",
+      "collected": 22,
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 22,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -m compileall -q src/paperworks/v6 scripts tests",
+      "exit_code": 0
+    },
+    {
+      "command": "python -B -m pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "exact_commit_a": "ede40a2dc1cad07d2125a1b599f115538d1ccf1d",
+  "important_nonblocking_findings": [
+    "The frozen transport did not retain a provider HTTP error body, so the exact provider-side reason for HTTP 400 is unavailable."
+  ],
+  "oracle_tests": 5,
+  "oracle_tests_passed": 5,
+  "pre_commit_a_tests_collected": 25,
+  "pre_commit_a_tests_passed": 25,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2_failure_forensic_audit",
+  "task_id": "TASK-039E3-R2-FAILURE-FORENSIC-AUDIT",
+  "test_errors": 0,
+  "test_failures": 0,
+  "test_skips": 0,
+  "tests_collected": 55,
+  "tests_passed": 55
+}

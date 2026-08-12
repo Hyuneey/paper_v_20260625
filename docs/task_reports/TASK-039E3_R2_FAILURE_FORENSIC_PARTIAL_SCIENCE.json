@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "7b730bd574d0b9eae22651d1c5b304d159fdd2b5ac93f09a813a2f24177fb98c",
+  "artifact_type": "task039e3_r2_failure_forensic_partial_science_v1",
+  "direct_number_committed_count": 0,
+  "direct_number_started": false,
+  "outcome_committed_count": 1,
+  "partial_record_corresponds_to_t0": true,
+  "proposal_committed_count": 1,
+  "relation_identity_hash": "c7a25bdb6bebb705071f4b58255e17a2560ea6838bddaa09192d3d3f078b7499",
+  "schema_version": "1.0.0",
+  "scientific_interpretation": "The run aborted before a complete arm comparison. It is not evidence that T1, T1-B, T2, or the proposed method is scientifically ineffective; no utility comparison or winner selection is valid.",
+  "scientific_logical_calls": 1,
+  "scientific_transport_attempts": 1,
+  "scientific_transport_retries": 0,
+  "status": "passed_task039e3_r2_failure_forensic_audit",
+  "t0_outcome": {
+    "accepted_call_number": 0,
+    "artifact_hash": "972c401ff4fa2023dead8eff42e46b687bd7049512b4d735e9a779ae8caf0cb8",
+    "generation_calls": 0,
+    "outcome_type": "accepted_proposal",
+    "verifier_invocations": 1
+  },
+  "t0_proposal": {
+    "arm": "T0",
+    "call_number": 0,
+    "proposal_hash": "f7680f74ed9b4768f504b9ecbb9b5a8eb2c2e0606c8cdf1bbbed072681e37b8f",
+    "record_hash": "3a0de798fb2903336b79b1ec4a9bbfc4d3133d8330567066f2e5e550638dd754",
+    "validity_hash": "94bb2fe45dd796bfca745b1181f5bbc4c9ed306759b7fe7c13916b2ae5c3e5db"
+  },
+  "t1_b_started": false,
+  "t1_outcome_committed": false,
+  "t1_proposal_committed": false,
+  "t1_provider_call_failed": true,
+  "t2_started": false,
+  "task_id": "TASK-039E3-R2-FAILURE-FORENSIC-AUDIT"
+}
