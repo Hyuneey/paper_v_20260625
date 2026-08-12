@@ -1,0 +1,27 @@
+{
+  "artifact_hash": "d96ab8bc1a22e13c6976f7ccdea356902004c91c6c640f7cf1813ab2394963ff",
+  "artifact_type": "task039e3_r1b_audit_capability_v1",
+  "checker_specification_hash_verified": "a2484b2a1327a48b2b02ee7d2dc3cb05909daed8724a736c806117253b4df783",
+  "corrected_capability_independent_audit_result": "passed",
+  "exact_request_configuration_verified": true,
+  "model_identity_authority": "provider_response_metadata_only",
+  "model_self_report_authority": false,
+  "prompt_sha256_verified": "b725da5aaf23913c5c5ad7c74aa8260304c27a53f004d588d34b386ecfe0372b",
+  "request_builder_contract_hash_verified": "8bdd8612f57bef011a28f3c130953f0e2fbd05f0e0ba153a8c712688cec10864",
+  "request_contract": {
+    "max_completion_tokens": 1024,
+    "model": "gpt-5.4-2026-03-05",
+    "reasoning_effort": "none",
+    "stateless": true,
+    "strict_json_schema": true,
+    "temperature": 0.7,
+    "tools_present": false,
+    "top_p": 1.0
+  },
+  "schema_sha256_verified": "7fb77614ef8df85ea6c03afe7b47ec6fda06c5b09d8f37722daae39de0f57e9a",
+  "schema_version": "1.0.0",
+  "self_report_extra_fields_block_under_closed_schema": true,
+  "status": "blocked_task039e3_r1b_independent_audit",
+  "structured_output_authority": "observed_strict_schema_parse_and_validation",
+  "task_id": "TASK-039E3-R1B-AUDIT"
+}

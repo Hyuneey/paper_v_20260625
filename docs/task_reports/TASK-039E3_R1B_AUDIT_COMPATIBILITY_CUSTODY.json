@@ -1,0 +1,48 @@
+{
+  "artifact_hash": "63c81d2a57d4361a39ee175f4fc3eb031cbe519543be3344007e791e50f6b42a",
+  "artifact_type": "task039e3_r1b_audit_compatibility_custody_v1",
+  "blocking_findings": [
+    {
+      "classification": "BLOCKING",
+      "finding_id": "compatibility_adapter_not_intrinsically_gate_bound",
+      "finding": "The adapter constructor accepts an exact-model response with response_present=true even when the corrected gate is BLOCK, including provider refusal, and can synthesize the legacy PASS acknowledgement if called directly."
+    },
+    {
+      "classification": "BLOCKING",
+      "finding_id": "cross_counter_cancellation_obscures_retry_accounting",
+      "finding": "Aggregate retries subtract a provider ledger containing the local compatibility slot from delegate attempts containing the separate real recovery probe, relying on one-for-one cancellation between different slot identities."
+    }
+  ],
+  "compatibility_acknowledgement_provider_calls": 0,
+  "compatibility_acknowledgement_scientific_calls": 0,
+  "compatibility_custody_result": "blocking",
+  "compatibility_local_provider_distinction": "record_level_local_outcome_present_but_aggregate_accounting_ambiguous",
+  "compatibility_probe_accounting_result": "blocking_cross_counter_substitution",
+  "historical_provider_probe_count": 1,
+  "important_nonblocking_findings": [
+    "The local record has outcome local_corrected_gate_compatibility_acknowledgement and scientific=false, but copies provider response_id/model/token usage and lacks explicit response_origin/provider_contacted/provider_authored fields."
+  ],
+  "local_ack_changes_scientific_model_visible_inputs": false,
+  "maximum_cumulative_real_provider_probes": 2,
+  "maximum_recovery_real_provider_probes": 1,
+  "real_probe_attempt_scenarios_audited": [1, 2, 3],
+  "schema_version": "1.0.0",
+  "scientific_schedule": {
+    "concurrency": 1,
+    "direct_number_calls": 42,
+    "relations": 42,
+    "scientific_generation_retries": 0,
+    "scientific_total_maximum": 336,
+    "scientific_total_minimum": 252,
+    "t1_calls": 42,
+    "t1b_calls": 126,
+    "t1b_lowest_admissible_selection": true,
+    "t1b_three_independent_calls": true,
+    "t2_calls_maximum": 126,
+    "t2_calls_minimum": 42,
+    "t2_maximum_calls_per_relation": 3,
+    "t2_maximum_retrievals_per_relation": 1
+  },
+  "status": "blocked_task039e3_r1b_independent_audit",
+  "task_id": "TASK-039E3-R1B-AUDIT"
+}

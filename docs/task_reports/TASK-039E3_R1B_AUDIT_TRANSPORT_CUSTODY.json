@@ -1,0 +1,19 @@
+{
+  "actual_unexpected_model_preserved": false,
+  "artifact_hash": "9e38c82a155ec9c1e310077aff9fbfbde3c68416a414658fea020e6c4d011e68",
+  "artifact_type": "task039e3_r1b_audit_transport_custody_v1",
+  "classification": "BLOCKING",
+  "finding": "On an HTTP 200 returned-model mismatch, the transport replaces the observed model and response id with null; attempt and durable custody cannot reconstruct which model was returned and labels the terminal slot transport_exhausted.",
+  "fixed_retry_wait_seconds": [2, 4],
+  "http_400_401_403_nonretryable": true,
+  "http_429_and_5xx_retryable": true,
+  "maximum_transport_attempts": 3,
+  "maximum_transport_retries": 2,
+  "refusal_schema_failure_and_model_mismatch_nonretryable": true,
+  "retry_after_override_verified": true,
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r1b_independent_audit",
+  "task_id": "TASK-039E3-R1B-AUDIT",
+  "timeout_scope": "each_transport_attempt",
+  "urlopen_timeout_seconds": 30.0
+}

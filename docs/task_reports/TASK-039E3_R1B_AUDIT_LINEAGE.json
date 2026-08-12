@@ -1,0 +1,41 @@
+{
+  "artifact_hash": "d294130ef28410287dc3ec60a63133b2e3dd84e1942c9eb6128cabee04f17b82",
+  "artifact_type": "task039e3_r1b_audit_lineage_v1",
+  "audit_commit_a": "106d9b31913827c5cbac5343467b37105fd70c60",
+  "commit_b_changed_files": [
+    "docs/task_reports/TASK-039E3_R1B_DATA_ACCESS_AUDIT.json",
+    "docs/task_reports/TASK-039E3_R1B_IMPLEMENTATION_AUTHORITY.json",
+    "docs/task_reports/TASK-039E3_R1B_IMPLEMENTATION_RECEIPT.json",
+    "docs/task_reports/TASK-039E3_R1B_RECOVERY_CONFIGURATION.json",
+    "docs/task_reports/TASK-039E3_R1B_REPORT.md",
+    "docs/task_reports/TASK-039E3_R1B_SOURCE_FREEZE.json",
+    "docs/task_reports/TASK-039E3_R1B_TEST_REPORT.json"
+  ],
+  "commit_b_reports_only": true,
+  "direct_parent_chain": [
+    "aee1fc6e22bcb45572fe3bab5c9bb605de09d721",
+    "48b79643088ce1a0179191d7ddae4c97dc8dece9",
+    "52a8cec2d170f9b8e3c5c0ac048115ffad93e018",
+    "d5164aa93cc4c3efb6a343e0890b554f436a7e39",
+    "2f4aac3209ad0756649b3be7d993fc217357025e",
+    "260b91be463815bc5bb453ca2cc05cec741aacc3",
+    "93c2e8a6333829446c5353f1ca9b61c967f8a7a7",
+    "2b6e4964085b2405513680303e0586f7cca50c6d"
+  ],
+  "historical_e3_status_unchanged": true,
+  "historical_r1_status_unchanged": true,
+  "implementation_source_unchanged_a_to_b": true,
+  "lineage_pass": true,
+  "main_commit": "11a5f04a0422049a099020f06c59ec23bc72d130",
+  "main_unchanged": true,
+  "production_schema_runner_or_test_modified_in_commit_b": false,
+  "r0_commit": "d5164aa93cc4c3efb6a343e0890b554f436a7e39",
+  "r1a_commit": "260b91be463815bc5bb453ca2cc05cec741aacc3",
+  "r1a_status_unchanged": true,
+  "r1b_commit_a": "93c2e8a6333829446c5353f1ca9b61c967f8a7a7",
+  "r1b_commit_b": "2b6e4964085b2405513680303e0586f7cca50c6d",
+  "r1b_status_unchanged": true,
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r1b_independent_audit",
+  "task_id": "TASK-039E3-R1B-AUDIT"
+}

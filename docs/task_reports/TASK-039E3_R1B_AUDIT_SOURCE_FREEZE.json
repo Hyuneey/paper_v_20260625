@@ -1,0 +1,33 @@
+{
+  "all_git_blobs_verified": true,
+  "all_sha256_verified": true,
+  "artifact_hash": "bbadf1650b8895a8c6673d6f879948336d8bed1022c79fe8d44eabf3eb1708d7",
+  "artifact_type": "task039e3_r1b_audit_source_freeze_v1",
+  "commit_a_b_source_identity": true,
+  "described_commit": "93c2e8a6333829446c5353f1ca9b61c967f8a7a7",
+  "historical_live_transport_unchanged": true,
+  "historical_scientific_executor_unchanged": true,
+  "implementation_bundle_hash_bound_in_verified_receipt": "0822326ef4b5b6a86ff8c3f17cc2db460a1efb5b0b0683a027e3e8e49c6c302e",
+  "implementation_receipt_hash_verified": "22236bce28da183bebf7778675453ecbef134f67653275f2bda8604933261722",
+  "r1b_source_manifest_hash_verified": "d976af3fc66a3b5aa69ef9aa3a97146cd93a6941fc9e1c28b6783ed6f1a7dc7d",
+  "schema_version": "1.0.0",
+  "source_record_count": 14,
+  "source_records": [
+    {"git_blob_sha":"35e2c0dd18dc9f96feccb0af7683530408c28146","repository_path":"src/paperworks/v6/task039e0_validity_v2.py","sha256":"3a5ab1690a2e676a9a1da9bc9f27b629b348ab98f625cbeae3dc3109b96b0ccf"},
+    {"git_blob_sha":"b8409fecbd2cc8f630d26f7e8dd2810229f54c2c","repository_path":"src/paperworks/v6/task039e0_rule_construction_protocol_v1.py","sha256":"1f3b601fd088b939e0cd027441e536a211f329152b04b62f81198ad151bfbe4a"},
+    {"git_blob_sha":"eee56498bf5fd21cb86fcd1a75ab9cb8ba71c59f","repository_path":"src/paperworks/v6/task039e2_execution_configuration_v1.py","sha256":"41ec800550227180438272b4c818d3762895cb3068bb988b8964c5254bf13c3e"},
+    {"git_blob_sha":"bf0d9acbc42f6a8244275184632cb5e6b1db7301","repository_path":"src/paperworks/v6/task039e3_execution_prep_v1.py","sha256":"3b7d05b3751cfe8b4fa4c6fd580815d823eaf49aa84ed882d49ed4a7e9174826"},
+    {"git_blob_sha":"cc79da2a3576aabab56fe4a6ab2c407420001cc0","repository_path":"src/paperworks/v6/task039e3_orchestration_v1.py","sha256":"c915517e1f55f7cce0e7affbe7f7f4e0b526a74ed287da132430c20757591067"},
+    {"git_blob_sha":"25b20f24037c41ddfbf6c2f6404384a19250bcfc","repository_path":"src/paperworks/v6/task039e3_live_transport_v1.py","sha256":"e67fea5730b2c4cf6f9ee7224bcaea1b09bb816f6cf31290c12f3cab54c4d5c2"},
+    {"git_blob_sha":"33a20128ddfd164747a19ed6b1dc140809783780","repository_path":"src/paperworks/v6/task039e3_scientific_execution_v1.py","sha256":"3b589c4a79a65f2c5c84f702db421ebc1339e36db1241b4ffd19067fa3339021"},
+    {"git_blob_sha":"2885d8f8dd3784c4fcf55704909ccec8632b730f","repository_path":"src/paperworks/v6/task039e3_recovery_capability_v1.py","sha256":"91ac5eeaf70d39e883cb991d83b3ab938cba2ec9c49fb90f67006290bedf26e2"},
+    {"git_blob_sha":"bec22ae955f9c4c6256af68c6606de678e8e5f0e","repository_path":"src/paperworks/v6/task039e3_recovery_serialization_v1.py","sha256":"8e230078ce18810ce0624a67f9b879d066cc66971c62341ba7c2ba96efeea20b"},
+    {"git_blob_sha":"e566ceefeb56b390e96b69ea7dc81a3b35b09254","repository_path":"src/paperworks/v6/task039e3_recovery_authorization_v1.py","sha256":"e790a8fc66b9c78c3cd8cf484b3b9eb263e2efc6467d7b2b0a7739a14f1a9f77"},
+    {"git_blob_sha":"20646760f6efd07fa2682ddbfb834dcd23316884","repository_path":"src/paperworks/v6/task039e3_recovery_execution_v1.py","sha256":"75543ab09eac0bbe68f933f929a03ba9504291fba3877f1d5a3c32b1381a98e5"},
+    {"git_blob_sha":"7d6849eae45275dafeadf5e091b5236aa9af9683","repository_path":"scripts/run_task039e3_recovery_execution.py","sha256":"ef29500cadd8deb0d590d9169e695e23104ad0ef0985eeabedfc840174e0bac7"},
+    {"git_blob_sha":"9da5e60c12e29437b96d77783cdc8c3b8b7ba1fd","repository_path":"schemas/v6/task039e3_recovery_capability_response_v1_schema.json","sha256":"084ef4431ad30af7354283dca2749e0f4ad5102eb3d20508cc8112b6bc7a6026"},
+    {"git_blob_sha":"5f940d3a6246e1c3e375f8e672e003154a9d34c8","repository_path":"schemas/v6/task039e3_recovery_execution_authorization_v1_schema.json","sha256":"e48db115946289452d6df450f257f1555acd83bd6eb2b4ff53871eb2f41d92dd"}
+  ],
+  "status": "blocked_task039e3_r1b_independent_audit",
+  "task_id": "TASK-039E3-R1B-AUDIT"
+}

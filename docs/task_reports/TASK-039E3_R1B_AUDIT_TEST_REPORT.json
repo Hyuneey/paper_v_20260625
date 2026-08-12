@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "5064f66ad6d5b1982aded18a8d44163c492250b1d45e2a1d5d181be963a8ae98",
+  "artifact_type": "task039e3_r1b_audit_test_report_v1",
+  "audit_commit_a": "106d9b31913827c5cbac5343467b37105fd70c60",
+  "audit_oracle_tests": {"collected":46,"errors":0,"exit_code":0,"failed":0,"passed":46,"skipped":0},
+  "historical_diagnostics": [
+    "The first pre-refreeze aggregate audit run found one audit-only current-HEAD assertion defect and one sandbox Git-worktree metadata permission error; the oracle was refrozen before the authoritative run.",
+    "The optional jsonschema dependency is unavailable; the compatible E1 suite recorded one expected skip and no dependency was installed.",
+    "The user global Git ignore file is inaccessible in this environment; repository Git assertions remained valid."
+  ],
+  "r1b_reported_results_distinguished_from_audit": true,
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r1b_independent_audit",
+  "task_id": "TASK-039E3-R1B-AUDIT",
+  "test_runs": [
+    {"collected":46,"command":"python -m unittest -v tests.test_task039e3_r1b_audit_git_freeze tests.test_task039e3_r1b_audit_capability tests.test_task039e3_r1b_audit_authorization tests.test_task039e3_r1b_audit_compatibility_custody tests.test_task039e3_r1b_audit_live_transport tests.test_task039e3_r1b_audit_serialization tests.test_task039e3_r1b_audit_exact_commit_a","errors":0,"exit_code":0,"failed":0,"name":"independent_audit_oracles","passed":46,"skipped":0},
+    {"collected":50,"command":"python -m unittest -v tests.test_task039e3_r1b_recovery_capability tests.test_task039e3_r1b_recovery_serialization tests.test_task039e3_r1b_recovery_authorization tests.test_task039e3_r1b_recovery_execution tests.test_task039e3_r1b_recovery_boundaries","errors":0,"exit_code":0,"failed":0,"name":"r1b_versioned","passed":50,"skipped":0},
+    {"collected":6,"command":"python -m unittest -v tests.test_task039e3_r1a_timeout_authority","errors":0,"exit_code":0,"failed":0,"name":"r1a","passed":6,"skipped":0},
+    {"collected":6,"command":"python -m unittest -v tests.test_task039e3_r0_capability_forensics","errors":0,"exit_code":0,"failed":0,"name":"r0_forensic_synthetic_custody","passed":6,"skipped":0},
+    {"collected":49,"command":"python -m unittest -v tests.test_task039e3_live_transport tests.test_task039e3_live_execution tests.test_task039e3_transport_parser_custody tests.test_task039e3_t2_direct tests.test_task039e3_schemas_receipt tests.test_task039e3_request_capability_boundary tests.test_task039e3_metrics_schedule_public tests.test_task039e3_main_arms","errors":0,"exit_code":0,"failed":0,"name":"historical_e3_and_prep","passed":49,"skipped":0},
+    {"collected":39,"command":"python -m unittest -v tests.test_task039e2_authoritative_configuration tests.test_task039e2_boundaries tests.test_task039e2_execution_config tests.test_task039e2_input_prompts_retrieval tests.test_task039e2_schedule_transport tests.test_task039e2_schemas tests.test_task039e2_structured_output_t0","errors":0,"exit_code":0,"failed":0,"name":"e2_compatible","passed":39,"skipped":0},
+    {"collected":29,"command":"python -m unittest -v tests.test_task039e1_real_schemas tests.test_task039e1_real_materialization tests.test_task039e1_real_boundaries tests.test_task039e1_mismatch_and_resolver tests.test_task039e1_materialization_synthetic","errors":0,"exit_code":0,"failed":0,"name":"e1_compatible","passed":28,"skipped":1},
+    {"collected":59,"command":"python -m unittest -v tests.test_task039e0_authoritative_protocol tests.test_task039e0_protocol tests.test_task039e0_schemas_and_boundaries tests.test_task039e0_validity tests.test_task039e0_validity_v2","errors":0,"exit_code":0,"failed":0,"name":"e0_compatible","passed":59,"skipped":0},
+    {"collected":null,"command":"python -m compileall -q src scripts tests","errors":0,"exit_code":0,"failed":0,"name":"compileall","passed":null,"skipped":0},
+    {"collected":525,"command":"offline JSON parse and stable_hash_v1 validation for docs/task_reports and schemas/v6","errors":0,"exit_code":0,"failed":0,"name":"json_parse_and_self_hash_final_audit_artifacts","passed":525,"self_hashes_checked":141,"skipped":0},
+    {"collected":17,"command":"offline public leak scan over TASK-039E3_R1B_AUDIT artifacts and audit-oracle tests","errors":0,"exit_code":0,"failed":0,"name":"public_leak_scan","passed":17,"skipped":0,"suspicious_hits":0},
+    {"collected":null,"command":"python -m pip check","errors":0,"exit_code":0,"failed":0,"name":"pip_check","passed":null,"skipped":0},
+    {"collected":null,"command":"git diff --check","errors":0,"exit_code":0,"failed":0,"name":"git_diff_check","passed":null,"skipped":0}
+  ]
+}
