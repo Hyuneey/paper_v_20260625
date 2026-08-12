@@ -1,0 +1,30 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "8947a27b7c5679ae5ede4c2d6fd82c0c4cef01ae470df184a8bfee7c8072fba5",
+  "artifact_type": "task039e3_r2_scientific_recovery_protocol_data_access_v1",
+  "capability_probe_executed": false,
+  "coordinator_private_read": {
+    "authorized_object": "recovery_capability_receipt_v3.json",
+    "capability_receipt_hash": "9ee4637da31b585a34eda4bad3b3be1dfa5597396ce1e78ef0564fa53da2b428",
+    "files_read": 1,
+    "purpose": "verify and freeze the durable capability PASS reuse binding",
+    "raw_content_published": false,
+    "status": "COMPLETE_AND_CLOSED"
+  },
+  "credential_or_authorization_header_persisted": false,
+  "e1_accessed": false,
+  "e1_relation_records_read": 0,
+  "live_runner_invoked": false,
+  "openai_api_key_accessed": false,
+  "private_files_read": 1,
+  "private_provider_records_read": 0,
+  "provider_contacted": false,
+  "provider_diagnostic_call_executed": false,
+  "raw_e1_numeric_values_exposed": false,
+  "raw_private_provider_content_exposed": false,
+  "raw_proposal_text_exposed": false,
+  "schema_version": "1.0.0",
+  "scientific_provider_calls": 0,
+  "status": "passed_task039e3_r2_scientific_recovery_protocol_data_access_audit",
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL"
+}

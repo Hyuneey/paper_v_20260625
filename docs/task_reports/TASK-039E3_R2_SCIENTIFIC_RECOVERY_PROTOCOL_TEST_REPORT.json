@@ -1,0 +1,92 @@
+{
+  "artifact_hash": "994ded39609fefb690f3dd5f1097b073177744734cde76fccdb51146bfd5eaa8",
+  "artifact_type": "task039e3_r2_scientific_recovery_protocol_test_report_v1",
+  "commit_under_test": "e55c01d679aa92ebf2cebd2c1929fd81c9e2f75f",
+  "compileall": {
+    "command": "python -B -m compileall -q src/paperworks/v6 scripts tests",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  "exact_commit_a_clean_before_and_after": true,
+  "exact_commit_a_test_groups": [
+    {
+      "command": "python -B -m unittest -v tests.test_task039e3_r2_scientific_recovery_protocol",
+      "errors": 0,
+      "failures": 0,
+      "passed": 11,
+      "skipped": 0,
+      "status": "PASS",
+      "tests_run": 11
+    },
+    {
+      "command": "python -B -m unittest -v tests.test_task039e3_r2_failure_forensic_audit tests.test_task039e0_validity tests.test_task039e0_validity_v2 tests.test_task039e2_structured_output_t0 tests.test_task039e3_main_arms tests.test_task039e3_t2_direct tests.test_task039e3_r1d2_provider_forensics_v3",
+      "errors": 0,
+      "failures": 0,
+      "passed": 56,
+      "skipped": 0,
+      "status": "PASS",
+      "tests_run": 56
+    },
+    {
+      "command": "python -B -m unittest -v tests.test_task039e3_r1d2_execution_v3 tests.test_task039e3_r1d2_transactional_custody_v3 tests.test_task039e3_r1d2_failure_finalization tests.test_task039e3_r2_authorization_freeze",
+      "errors": 0,
+      "failures": 0,
+      "passed": 26,
+      "skipped": 0,
+      "status": "PASS",
+      "tests_run": 26
+    }
+  ],
+  "exact_commit_a_test_totals": {
+    "errors": 0,
+    "failures": 0,
+    "passed": 93,
+    "skipped": 0,
+    "tests_run": 93
+  },
+  "git_diff_check": "PASS",
+  "json_git_object_self_hash_validation": {
+    "passed": 9,
+    "records": 9,
+    "status": "PASS"
+  },
+  "offline_only": true,
+  "pip_check": {
+    "command": "python -B -m pip check",
+    "exit_code": 0,
+    "result": "No broken requirements found.",
+    "status": "PASS"
+  },
+  "precommit_supplemental_tests": {
+    "errors": 0,
+    "failures": 0,
+    "passed": 67,
+    "skipped": 0,
+    "tests_run": 67
+  },
+  "production_scientific_runner_schema_changes": 0,
+  "protocol_oracle_coverage": {
+    "capability_probe_accounting": "PASS",
+    "cohort_accounting_and_no_carry_forward": "PASS",
+    "forensic_authority": "PASS",
+    "fresh_empty_ledgers_requirement": "PASS",
+    "http400_nonretryable": "PASS",
+    "http_error_bounded_retention": "PASS",
+    "provider_schema_v1_to_v2_projection": "PASS",
+    "provider_schema_v2_closed_object": "PASS",
+    "rule_runtime_utility_winner_false": "PASS",
+    "semantic_parity_adversarial_cases": "25/25 rejected",
+    "semantic_parity_valid_cases": "1/1 admitted",
+    "shared_arm_fairness": "PASS",
+    "third_probe_and_diagnostic_call_prohibited": "PASS"
+  },
+  "public_leak_scan": {
+    "files_scanned": 10,
+    "hits": 0,
+    "status": "PASS"
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2_scientific_recovery_protocol_tests",
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+  "tested_at_utc": "2026-08-12T10:07:05Z"
+}
