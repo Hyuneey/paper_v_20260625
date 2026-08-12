@@ -1,0 +1,42 @@
+{
+  "artifact_hash": "2daec7d838efc8fd243ff10eddece2284788e7f5096b32fb0156a78fdec462c6",
+  "artifact_type": "task039e3_r1d2_audit_transactional_custody_v1",
+  "authoritative_head": "HEAD.json",
+  "competing_authoritative_interpretations": 0,
+  "crash_windows_reconstructed": [
+    "record_promoted_head_not_replaced",
+    "head_replaced_parent_directory_fsync_failure",
+    "head_durable_process_dies_before_memory_update",
+    "orphan_persists_across_restart"
+  ],
+  "d5_status": "CLOSED",
+  "fault_stages_verified": 11,
+  "fault_stages": [
+    "candidate_write",
+    "candidate_flush",
+    "candidate_fsync",
+    "record_promotion",
+    "records_directory_fsync",
+    "head_temp_write",
+    "head_temp_flush",
+    "head_temp_fsync",
+    "head_replace",
+    "ledger_directory_fsync",
+    "disk_verification"
+  ],
+  "orphan_classification": "orphan_non_authoritative",
+  "pending_authoritative": false,
+  "schema_version": "1.0.0",
+  "sole_authoritative_committed_head": true,
+  "status": "passed_transactional_custody_component_audit",
+  "tamper_and_divergence_cases_verified": [
+    "record_hash_tampering",
+    "head_hash_tampering",
+    "head_absent_record",
+    "record_predecessor_mismatch",
+    "duplicate_record",
+    "orphan_record",
+    "pending_record"
+  ],
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

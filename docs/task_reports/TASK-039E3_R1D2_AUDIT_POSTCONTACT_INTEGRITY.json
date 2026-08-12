@@ -1,0 +1,31 @@
+{
+  "active_source_freeze_complete": false,
+  "artifact_hash": "7ccb345a2c794bbe619b7407e965a9d2b6a81ac66a457d430dbc27c68c63bd1c",
+  "artifact_type": "task039e3_r1d2_audit_postcontact_integrity_v1",
+  "blocking_finding": "incomplete_active_source_freeze",
+  "configuration_mutations_blocked": [
+    "source_manifest",
+    "timeout",
+    "model",
+    "capability_prompt",
+    "capability_schema",
+    "sampling_configuration",
+    "retry_policy",
+    "relation_schedule",
+    "scientific_accounting_behavior"
+  ],
+  "d3_status": "NOT_CLOSED_DUE_TO_INCOMPLETE_ACTIVE_SOURCE_FREEZE",
+  "declared_source_mutation_blocks_next_provider_attempt": true,
+  "omitted_material_dependency_mutations_detected": false,
+  "omitted_mutations_tested": [
+    "src/paperworks/v6/common.py",
+    "src/paperworks/v6/task039e2_execution_configuration_v1.py",
+    "src/paperworks/v6/task039e3_live_transport_v1.py",
+    "src/paperworks/v6/task039e3_recovery_authorization_v1.py"
+  ],
+  "postcontact_config_integrity_complete": true,
+  "postcontact_source_integrity_complete": false,
+  "schema_version": "1.0.0",
+  "status": "blocked_postcontact_source_integrity_component_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

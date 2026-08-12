@@ -1,0 +1,33 @@
+{
+  "artifact_hash": "523368de774b289823206ddf976a8a9e164c3c397427f68c19fb7b952a3db8db",
+  "artifact_type": "task039e3_r1d2_audit_receipt_v1",
+  "audit_bundle_hash": "0a7e48afb8ea99600deae9d90e29d9d4d1c02e7d568dac8748759538631b5d9b",
+  "audit_commit_a": "88f53fe881eb118607f8c33e531f4f4e65399019",
+  "blocking_finding_count": 1,
+  "component_artifact_hashes": {
+    "authority_chain": "c109a92be2df06ecca17639ce8d99458e55bda2f92dc7069cb8aa8ce907e1f1f",
+    "data_access": "c80e37388cf6e8601a77246a49abddf6d0272bb9809a355f5f8d83cdeea9bdd9",
+    "failure_finalization": "dc72d79740774b88886a46f21f645cea6baf44136089edc3ea1d6aebebbf0686",
+    "lineage": "1bfa9b896394d91537080af396aaa6a7a1bbf22ec3da084d406d105d55cedfa6",
+    "postcontact_integrity": "7ccb345a2c794bbe619b7407e965a9d2b6a81ac66a457d430dbc27c68c63bd1c",
+    "provider_forensics": "7af0e60720aefdbbb9487676769d247ae1f3d60f7d2949200bd4bbc188358468",
+    "result_completeness": "a6c4188ebc15cde243d05d33b164d762cad0d773d78d5c53e02e4f5a6bc36a2e",
+    "source_closure": "3579a22005ea590aad31a13b9ace62431d552b9430082dd2ecceda2526ed6cdc",
+    "test_report": "e52e8f8f678d87626163272663c037278a4038df5f74954f2d90429262b60721",
+    "transactional_custody": "2daec7d838efc8fd243ff10eddece2284788e7f5096b32fb0156a78fdec462c6"
+  },
+  "provider_contact_authorized": false,
+  "r1d2_commit_a": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "r1d2_commit_b": "3da8b7007b7dd78d934554b299e6cb264a0e6470",
+  "r1d2_source_manifest_hash": "d9ea32af4ffb60af8bb6d0b7a496a74e4126d8e411e337da64ce64e15a152e48",
+  "recovery_probe_authorized": false,
+  "report_sha256": "bf9431bccab0fcd5b9088bfe8d3107185403966ce08a3811aae481777768b970",
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "scientific_execution_authorized": false,
+  "status": "blocked_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

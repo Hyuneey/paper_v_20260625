@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "c109a92be2df06ecca17639ce8d99458e55bda2f92dc7069cb8aa8ce907e1f1f",
+  "artifact_type": "task039e3_r1d2_audit_authority_chain_v1",
+  "audit_commit_b_receipt_circularity": false,
+  "audit_git_receipt_path": "docs/task_reports/TASK-039E3_R1D2_AUDIT_RECEIPT.json",
+  "audit_git_receipt_provenance_verified_synthetically": true,
+  "audit_receipt_artifact_type": "task039e3_r1d2_audit_receipt_v1",
+  "audit_receipt_pass_status": "passed_task039e3_r1d2_independent_audit",
+  "audit_receipt_task_id": "TASK-039E3-R1D2-AUDIT",
+  "d4_status": "CLOSED",
+  "exact_commit_a_external_topology": "passed",
+  "precredential_failure_cases_keep_credential_unreachable": true,
+  "real_r2_authorization_artifact_created": false,
+  "revoked_custody_hash_accepted": false,
+  "schema_version": "1.0.0",
+  "status": "passed_authority_chain_component_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

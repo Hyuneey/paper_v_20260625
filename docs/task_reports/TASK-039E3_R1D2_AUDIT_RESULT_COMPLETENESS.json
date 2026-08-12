@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "a6c4188ebc15cde243d05d33b164d762cad0d773d78d5c53e02e4f5a6bc36a2e",
+  "artifact_type": "task039e3_r1d2_audit_result_completeness_v1",
+  "construction_metrics_independently_matched": true,
+  "d2_status": "CLOSED",
+  "data_access_audit_finalized": true,
+  "direct_number_metrics_independently_matched": true,
+  "direct_number_ledger_finalized": true,
+  "execution_summary_finalized": true,
+  "final_execution_receipt_finalized": true,
+  "outcome_ledger_finalized": true,
+  "pass_without_receipt_possible": false,
+  "private_bindings_finalized": true,
+  "proposal_ledger_finalized": true,
+  "provider_custody_finalized": true,
+  "public_artifacts_materialized": 8,
+  "public_output_dirties_git": false,
+  "receipt_corruption_prevents_pass": true,
+  "receipt_written_last": true,
+  "required_private_snapshot_count": 4,
+  "schema_version": "1.0.0",
+  "status": "passed_result_completeness_component_audit",
+  "synthetic_terminal_cohorts": [
+    {"direct_number_calls": 42, "relations": 42, "scientific_calls": 252, "t0_outcomes": 42, "t1_calls": 42, "t1b_calls": 126, "t2_calls": 42},
+    {"direct_number_calls": 42, "relations": 42, "scientific_calls": 294, "t0_outcomes": 42, "t1_calls": 42, "t1b_calls": 126, "t2_calls": 84}
+  ],
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

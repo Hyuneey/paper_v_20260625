@@ -1,0 +1,49 @@
+{
+  "artifact_hash": "7af0e60720aefdbbb9487676769d247ae1f3d60f7d2949200bd4bbc188358468",
+  "artifact_type": "task039e3_r1d2_audit_provider_forensics_v1",
+  "b1_status": "REMAINS_CLOSED",
+  "b2_status": "REMAINS_CLOSED",
+  "b3_status": "REMAINS_CLOSED",
+  "compatibility_bridge_active_path_reachable": false,
+  "cross_family_counter_cancellation": false,
+  "d1_status": "CLOSED",
+  "historical_capability_probes": 1,
+  "local_compatibility_slots": 0,
+  "malformed_http_200": {
+    "provider_authored_response": true,
+    "response_present": true,
+    "retry_eligible": false,
+    "terminal_state": "completed_schema_invalid_response",
+    "transport_exhausted": false,
+    "transport_failure": false
+  },
+  "maximum_additional_recovery_probes": 1,
+  "maximum_cumulative_real_provider_capability_probes": 2,
+  "model_mismatch": {
+    "response_id_preserved": true,
+    "retry_eligible": false,
+    "returned_model_preserved": true,
+    "terminal_state": "completed_model_identity_mismatch"
+  },
+  "provider_response_classes_verified": [
+    "valid_structured_response",
+    "provider_refusal",
+    "http_400",
+    "http_401",
+    "http_403",
+    "http_429",
+    "http_5xx",
+    "timeout",
+    "connection_reset",
+    "connection_failure",
+    "http_200_invalid_utf8",
+    "http_200_invalid_json",
+    "http_200_non_object_json",
+    "http_200_malformed_envelope",
+    "http_200_malformed_message_content",
+    "http_200_returned_model_mismatch"
+  ],
+  "schema_version": "1.0.0",
+  "status": "passed_provider_forensics_component_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

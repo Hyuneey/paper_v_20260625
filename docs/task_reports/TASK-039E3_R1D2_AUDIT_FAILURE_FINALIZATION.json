@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "dc72d79740774b88886a46f21f645cea6baf44136089edc3ea1d6aebebbf0686",
+  "artifact_type": "task039e3_r1d2_audit_failure_finalization_v1",
+  "automatic_resume_authorized": false,
+  "d6_status": "CLOSED",
+  "double_fault_classification": "double_fault_failure_receipt_persistence_failed",
+  "double_fault_pass_possible": false,
+  "failure_receipt_leak_scan_passed": true,
+  "failure_stages_verified": [
+    "before_e1_load",
+    "during_t0",
+    "during_t1",
+    "during_t1b",
+    "during_t2",
+    "during_direct_number",
+    "provider_custody_finalization",
+    "proposal_outcome_direct_snapshot_finalization",
+    "metrics_finalization",
+    "public_artifact_finalization",
+    "execution_receipt_finalization"
+  ],
+  "provider_recontact_authorized": false,
+  "required_reconstruction_fields_present": true,
+  "sanitized_self_hashed_failure_receipt_durable": true,
+  "schema_version": "1.0.0",
+  "status": "passed_failure_finalization_component_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

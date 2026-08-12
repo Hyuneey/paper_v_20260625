@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "1bfa9b896394d91537080af396aaa6a7a1bbf22ec3da084d406d105d55cedfa6",
+  "artifact_type": "task039e3_r1d2_audit_lineage_v1",
+  "audit_commit_a": "88f53fe881eb118607f8c33e531f4f4e65399019",
+  "commit_b_reports_only": true,
+  "corrected_authoritative_custody_accounting_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce5fbeb616",
+  "historical_blocked_r1d_commit": "66e15fcdae2e932bebf09b569fefbe6028443d79",
+  "historical_blocked_r1d_status_unchanged": true,
+  "lineage_exact": true,
+  "main": "11a5f04a0422049a099020f06c59ec23bc72d130",
+  "r1d2_commit_a": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "r1d2_commit_b": "3da8b7007b7dd78d934554b299e6cb264a0e6470",
+  "r1d2_implementation_receipt_hash_verified": "fffe5ff0ce4a8ddc9a386288251b7dca201eba22b6d622b7ae828d8e24bb0b44",
+  "r1d2_remediation_bundle_hash_verified": "c070c0831035e09c395d53719daa77ec809bdd675f56cba06873086d8bc03653",
+  "r1d2_source_manifest_hash_verified": "d9ea32af4ffb60af8bb6d0b7a496a74e4126d8e411e337da64ce64e15a152e48",
+  "revoked_incorrect_hash_has_authority": false,
+  "revoked_incorrect_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce3d6ae967",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}
