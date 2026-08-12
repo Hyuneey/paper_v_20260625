@@ -1,0 +1,61 @@
+{
+  "artifact_hash": "a48e814f67f6d6220784193bad305e4f193577e37ae9e9ac7f259897aaaec610",
+  "artifact_type": "task039e3_r2_authorization_freeze_test_report_v1",
+  "authorization_commit_a": "68f0040514b073d75c56622716ff3925ecdb0cb8",
+  "commands": [
+    {
+      "classification": "passed",
+      "collected": 5,
+      "command": "python -B -m unittest -v tests.test_task039e3_r2_authorization_freeze",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 5,
+      "skipped": 0
+    },
+    {
+      "classification": "passed_compatible_regressions",
+      "collected": 26,
+      "command": "python -B -m unittest -v tests.test_task039e3_r1d2_authorization_chain_v3 tests.test_task039e3_r1d2_execution_v3 tests.test_task039e3_r1d2_audit_rerun_authority_chain tests.test_task039e3_r1d2_audit_rerun_exact_commit_a tests.test_task039e3_r1d2_sf1_complete_source_freeze",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 26,
+      "skipped": 0
+    },
+    {
+      "classification": "passed",
+      "command": "independent provider sampling retry and scientific-budget boundary oracle",
+      "exit_code": 0
+    },
+    {
+      "classification": "passed",
+      "command": "python -B -m compileall -q tests/test_task039e3_r2_authorization_freeze.py",
+      "exit_code": 0
+    },
+    {
+      "classification": "passed",
+      "command": "python -B -m pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "classification": "passed",
+      "command": "authorization JSON parse, closed-schema, self-hash, native-validator, 41 source blobs, audit Git provenance, sentinel-order, authority-boundary, leak, and git diff checks",
+      "exit_code": 0
+    }
+  ],
+  "exact_commit_a_clean": true,
+  "independent_lane_results": {
+    "audit_provenance": "passed",
+    "authorization_oracle": "passed",
+    "authority_boundary": "passed",
+    "complete_source_authority": "passed",
+    "precontact_sentinel": "passed",
+    "schema_closed_contract": "passed"
+  },
+  "provider_contacted": false,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2_authorization_freeze_tests",
+  "task_id": "TASK-039E3-R2-AUTHORIZATION-FREEZE"
+}

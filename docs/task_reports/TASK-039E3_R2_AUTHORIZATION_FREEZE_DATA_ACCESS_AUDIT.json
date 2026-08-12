@@ -1,0 +1,20 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "1eeeff46c39b2b6a502f6d51396cf8ae20b23e002b92663da7bb791e84fd7863",
+  "artifact_type": "task039e3_r2_authorization_freeze_data_access_audit_v1",
+  "capability_probe_executed": false,
+  "hai_accessed": false,
+  "historical_e3_private_root_accessed": false,
+  "openai_api_key_accessed": false,
+  "openai_attempts": 0,
+  "provider_contacted": false,
+  "real_e1_evidence_accessed": false,
+  "real_recovery_private_root_accessed": false,
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "status": "passed_task039e3_r2_authorization_freeze_data_access_audit",
+  "synthetic_sentinel_credential_used": true,
+  "task_id": "TASK-039E3-R2-AUTHORIZATION-FREEZE",
+  "test_labels_attacks_accessed": false,
+  "train1_train2_train3_train4_accessed": false
+}

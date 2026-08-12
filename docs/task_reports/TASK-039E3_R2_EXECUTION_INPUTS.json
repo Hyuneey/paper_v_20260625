@@ -1,0 +1,24 @@
+{
+  "artifact_hash": "6c5613485d341914c3dfc7e4dcffda02f96c7e307071f3ece32c9cae66fcc9c1",
+  "artifact_type": "task039e3_r2_execution_external_inputs_v1",
+  "authorization": {
+    "git_blob_sha": "75b5624ce1d3864354d4d39779412f505ef4f9b7",
+    "path": "docs/task_reports/TASK-039E3_R2_AUTHORIZATION_V3.json",
+    "self_hash": "2133f54651447258c00546d6293600f95bbea86500a7ced7ca9bbe820ef373cc",
+    "sha256": "9b2ef95442dfe737a3ee14630c062dbd919ad693e231e342f1667a52cdf55f70"
+  },
+  "complete_source_manifest": {
+    "artifact_hash": "e8f236a8238bad744eced3009e2000bab9597094cab04446d920df0a0ddf9283",
+    "path": "docs/task_reports/TASK-039E3_R1D2_SF1_COMPLETE_SOURCE_FREEZE.json"
+  },
+  "execution_commit": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "final_audit_receipt": {
+    "artifact_hash": "e23aac907717c3159b4c16c2bee9337a26b7ae201b811a11feec02176c138225",
+    "git_commit": "116e56246c44bb356bad5818160527c66c6bb580",
+    "path": "docs/task_reports/TASK-039E3_R1D2_AUDIT_RECEIPT.json"
+  },
+  "must_be_supplied_outside_executable_worktree": true,
+  "next_task": "TASK-039E3-R2_RECOVERY_EXECUTION",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2-AUTHORIZATION-FREEZE"
+}

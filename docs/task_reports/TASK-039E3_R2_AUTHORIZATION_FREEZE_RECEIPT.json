@@ -1,0 +1,48 @@
+{
+  "actual_activity": {
+    "api_key_presence_checked": false,
+    "capability_probe_executed": false,
+    "openai_api_key_accessed": false,
+    "openai_attempts": 0,
+    "provider_contacted": false,
+    "real_e1_accessed": false,
+    "real_private_root_accessed": false,
+    "scientific_calls": 0
+  },
+  "artifact_hash": "1cf724333752ec2e3c1c8c7814314f513d2f488b0d471ef1afcac632c8c81973",
+  "artifact_type": "task039e3_r2_authorization_freeze_receipt_v1",
+  "authorization_artifact_git_blob_sha": "75b5624ce1d3864354d4d39779412f505ef4f9b7",
+  "authorization_artifact_path": "docs/task_reports/TASK-039E3_R2_AUTHORIZATION_V3.json",
+  "authorization_artifact_sha256": "9b2ef95442dfe737a3ee14630c062dbd919ad693e231e342f1667a52cdf55f70",
+  "authorization_artifact_self_hash": "2133f54651447258c00546d6293600f95bbea86500a7ced7ca9bbe820ef373cc",
+  "authorization_freeze_commit_a": "68f0040514b073d75c56622716ff3925ecdb0cb8",
+  "authorization_grants": {
+    "provider_contact_authorized": true,
+    "recovery_probe_authorized": true,
+    "rule_v2_authorized": false,
+    "runtime_authority": false,
+    "scientific_execution_after_capability_pass_authorized": true,
+    "utility_evaluation_authorized": false,
+    "winner_selected": false
+  },
+  "complete_source_manifest_hash": "e8f236a8238bad744eced3009e2000bab9597094cab04446d920df0a0ddf9283",
+  "exact_model": "gpt-5.4-2026-03-05",
+  "final_audit_bundle_hash": "5d7da8d040647c4d4aab916c110b112f18d1a85a11500507c375480f117cbad9",
+  "final_audit_commit_b": "116e56246c44bb356bad5818160527c66c6bb580",
+  "final_audit_receipt_hash": "e23aac907717c3159b4c16c2bee9337a26b7ae201b811a11feec02176c138225",
+  "historical_capability_receipt_hash": "e36098690f2c4c018b8ed5f339d46870fbbe0561f52c117cd2525a63d155c279",
+  "historical_provider_ledger_head_hash": "656d81ded2f166175adf2717abc226c325cd4a9fcbcee5306f4ea35c7465d254",
+  "next_authorized_task": "TASK-039E3-R2_RECOVERY_EXECUTION",
+  "probe_accounting": {
+    "historical": 1,
+    "maximum_additional": 1,
+    "maximum_cumulative": 2,
+    "third_probe_prohibited": true
+  },
+  "r1d2_commit_a": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "r1d2_commit_b": "3da8b7007b7dd78d934554b299e6cb264a0e6470",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2_authorization_freeze",
+  "task_id": "TASK-039E3-R2-AUTHORIZATION-FREEZE",
+  "urlopen_timeout_seconds": 30.0
+}
