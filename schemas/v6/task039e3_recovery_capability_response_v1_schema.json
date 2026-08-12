@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capability_token": {
+      "const": "TASK039E3_STRICT_JSON_SCHEMA_V1",
+      "type": "string"
+    },
+    "fixture_id": {
+      "const": "SYNTHETIC_CAPABILITY_CHECK",
+      "type": "string"
+    }
+  },
+  "required": [
+    "fixture_id",
+    "capability_token"
+  ],
+  "type": "object"
+}
