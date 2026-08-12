@@ -1,0 +1,82 @@
+{
+  "amendment_classification": "new_recovery_operational_authority",
+  "arm_specific_timeout": false,
+  "artifact_type": "task039e3_r1a_timeout_authority_v1",
+  "authoritative_e2_timeout_seconds": null,
+  "authority": {
+    "provider_contact_authorized": false,
+    "recovery_implementation_authorized": true,
+    "recovery_probe_authorized": false,
+    "rule_v2_authorized": false,
+    "runtime_authority": false,
+    "scientific_execution_authorized": false,
+    "utility_evaluation_authorized": false,
+    "winner_selected": false
+  },
+  "blocked_r1_commit": "2f4aac3209ad0756649b3be7d993fc217357025e",
+  "e2_authoritative_configuration_hash": "4a7387692db5bc866e51bb75f2d00da1c7b93106cd8ae84619e6528551cba333",
+  "e2_protocol_hash": "2295f6e57aff47081419d70e942af02101de33fa545a758ea4a7e6476a46e6e8",
+  "e2_timeout_duration_frozen": false,
+  "e2_timeout_failure_class_frozen": true,
+  "e2_transport_retry_policy_hash": "3a7192d07ef4980c9ecaeb3f28fe00f31df8c299a177d86250f5ebd09f1c477b",
+  "fixed_retry_wait_seconds": [
+    2,
+    4
+  ],
+  "historical_capability_block_commit": "52a8cec2d170f9b8e3c5c0ac048115ffad93e018",
+  "historical_capability_probe_count": 1,
+  "historical_context": {
+    "historical_e3_live_timeout_seconds": 30,
+    "historical_e3_timeout_classification": "non_authoritative_supporting_context",
+    "historical_e3_timeout_promoted_to_e2_fact": false,
+    "synthetic_e2_prep_timeout_seconds": 30,
+    "synthetic_fixture_classification": "non_authoritative_supporting_context",
+    "synthetic_fixture_promoted_to_e2_fact": false
+  },
+  "historical_e3_commit_a": "48b79643088ce1a0179191d7ddae4c97dc8dece9",
+  "historical_e3_status_unchanged": true,
+  "historical_r1_status_unchanged": true,
+  "logical_call_accounting": {
+    "scientific_calls_incremented_by_transport_retry": false,
+    "transport_attempts_counted_separately": true
+  },
+  "main_commit": "11a5f04a0422049a099020f06c59ec23bc72d130",
+  "maximum_additional_recovery_probes": 1,
+  "maximum_cumulative_capability_probes": 2,
+  "maximum_transport_attempts_per_logical_request": 3,
+  "maximum_transport_retries_per_logical_request": 2,
+  "no_adaptive_timeout": true,
+  "original_e2_timeout_classification": "unspecified",
+  "provider_request_arms": [
+    "recovery_capability_probe",
+    "T1",
+    "T1-B",
+    "T2",
+    "T1-DIRECT-NUMBER"
+  ],
+  "r0_corrected_capability_bindings": {
+    "checker_spec_hash": "a2484b2a1327a48b2b02ee7d2dc3cb05909daed8724a736c806117253b4df783",
+    "prompt_hash": "b725da5aaf23913c5c5ad7c74aa8260304c27a53f004d588d34b386ecfe0372b",
+    "request_builder_contract_hash": "8bdd8612f57bef011a28f3c130953f0e2fbd05f0e0ba153a8c712688cec10864",
+    "schema_hash": "7fb77614ef8df85ea6c03afe7b47ec6fda06c5b09d8f37722daae39de0f57e9a",
+    "semantics_changed_by_r1a": false
+  },
+  "r0_commit": "d5164aa93cc4c3efb6a343e0890b554f436a7e39",
+  "reconstructed_e2_authority": false,
+  "recovery_timeout_amendment_seconds": 30.0,
+  "retroactive_e2_reinterpretation": false,
+  "retry_after_policy_unchanged": true,
+  "schema_version": "1.0.0",
+  "scientific_generation_retries": 0,
+  "self_hash": "d70f40d644405387681dfd2984b9fed2c4c8c0d6da13fbdd79a428b226b46865",
+  "status": "passed_task039e3_r1a_timeout_authority_freeze",
+  "task_id": "TASK-039E3-R1A",
+  "third_capability_probe": "prohibited",
+  "timeout_authority_frozen": true,
+  "timeout_exhaustion_behavior": "abort_full_scientific_run",
+  "timeout_library_semantics": "urllib.request.urlopen(request, timeout=30.0) timeout argument",
+  "timeout_scope": "each_transport_attempt",
+  "total_logical_request_deadline_seconds": null,
+  "uniform_across_provider_arms": true,
+  "urlopen_timeout_seconds": 30.0
+}

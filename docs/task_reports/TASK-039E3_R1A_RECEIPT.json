@@ -1,0 +1,52 @@
+{
+  "api_key_accessed": false,
+  "artifact_type": "task039e3_r1a_receipt_v1",
+  "blocked_r1_preflight_hash": "8959357a2eedd12c3bd08d6f3e09d683f8553a1629fc750a07572dd07d5a974c",
+  "blocked_r1_receipt_hash": "d9168552460262207763f6e67ba3445cf90de84a03b6ad583b60a5b56d9fc5ce",
+  "data_access_audit_hash": "68eeb251efc383434bea2b41b45026686626098fe176ce342a311413fd1cef40",
+  "exact_timeout_seconds": 30.0,
+  "historical_e3_status_unchanged": true,
+  "historical_r1_status_unchanged": true,
+  "next_authorized_task": "TASK-039E3-R1B_RECOVERY_IMPLEMENTATION",
+  "parallel_execution": {
+    "conflicting_lane_results": [],
+    "coordinator_aggregation": "passed",
+    "multi_agent_execution_used": true,
+    "parallel_audit_lanes": {
+      "lane_a_git_lineage_source_integrity": "passed",
+      "lane_b_e2_timeout_authority": "passed",
+      "lane_c_historical_30_second_context": "passed",
+      "lane_d_r0_blocked_r1_bindings": "passed",
+      "lane_e_boundary_contamination": "passed"
+    },
+    "private_custody_concurrently_written": false,
+    "provider_calls_executed_in_parallel": false,
+    "shared_authoritative_files_concurrently_written": false
+  },
+  "provider_contact_authorized": false,
+  "provider_contacted": false,
+  "r0_bundle_hash": "8c402cdea45f53a7bb49cfb8ba796d4b557a6fb70532c7ad22281f3b62c60ccc",
+  "recovery_implementation_authorized": true,
+  "recovery_probe_authorized": false,
+  "retroactive_e2_reinterpretation": false,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "scientific_calls": 0,
+  "scientific_execution_authorized": false,
+  "self_hash": "2ad5eac5d18ad6ecac742279dc5c7c70d5fca3546f1aa2ea8607889119fa1441",
+  "status": "passed_task039e3_r1a_timeout_authority_freeze",
+  "task_id": "TASK-039E3-R1A",
+  "test_results": {
+    "e2_authoritative_configuration": "8_passed",
+    "git_diff_check": "passed",
+    "json_self_hash_and_bindings": "3_artifacts_5_bindings_passed",
+    "pip_check": "passed_no_broken_requirements",
+    "public_leak_scan": "passed",
+    "python_compile": "passed",
+    "r0_forensic": "6_passed",
+    "r1a_authority": "6_passed"
+  },
+  "timeout_authority_hash": "d70f40d644405387681dfd2984b9fed2c4c8c0d6da13fbdd79a428b226b46865",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}
