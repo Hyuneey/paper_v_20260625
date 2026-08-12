@@ -1,0 +1,61 @@
+{
+  "additional_checks": [
+    {
+      "command": "python -B -m compileall -q src/paperworks/v6 scripts tests",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python -B -m pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "command": "python -B scripts/run_task039e3_r2r_scientific_execution_v1.py --offline-self-check",
+      "exit_code": 0,
+      "result": "PASS_OFFLINE_AUTHORITY_FALSE"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "raw-Git AST closure and exact blob/byte SHA-256 oracle",
+      "exit_code": 0,
+      "result": "49 active paths; 50 records; 0 unbound; 0 dynamic; 0 unresolved"
+    }
+  ],
+  "api_key_presence_checked": false,
+  "artifact_hash": "215bd940e4eaf4503b7a47937599cfa778421acbed406e2500d7cd41caae4602",
+  "artifact_type": "task039e3_r2r_c1_test_report_v1",
+  "capability_probe_executed": false,
+  "failed_r2_private_root_accessed": false,
+  "focused_tests": {
+    "collected": 136,
+    "command": "python -B -m unittest -q tests.test_task039e3_r2r_request_contract_v1 tests.test_task039e3_r2r_execution_v1 tests.test_task039e3_r2r_integration_v1 tests.test_task039e3_r2r_live_transport_v1 tests.test_task039e3_r2r_transport_faults_c1 tests.test_task039e3_r2r_live_runner_v1 tests.test_task039e3_r2r_finalization_v1 tests.test_task039e3_main_arms tests.test_task039e3_t2_direct tests.test_task039e0_validity tests.test_task039e0_validity_v2 tests.test_task039e3_r1d2_postcontact_integrity_v3 tests.test_task039e3_r1d2_transactional_custody_v3 tests.test_task039e3_r1d2_result_finalizer_v3 tests.test_task039e3_r1d2_failure_finalization tests.test_task039e3_r1d2_provider_forensics_v3 tests.test_task039e3_r2_scientific_recovery_protocol tests.test_task039e3_r2_failure_forensic_audit",
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 136,
+    "skipped": 0
+  },
+  "implementation_commit_a": "3aa63588b08692b0333de26d3042b717e62014f2",
+  "multi_agent_results": {
+    "conflicting_lane_results": [],
+    "file_ownership_violations": [],
+    "independent_integration_review": "PASS",
+    "lane_a_precontact_live_runner": "PASS",
+    "lane_b_result_failure_finalization": "PASS",
+    "lane_c_transport_faults": "PASS",
+    "shared_authoritative_concurrent_writes": false
+  },
+  "openai_api_key_accessed": false,
+  "private_custody_written": false,
+  "provider_contacted": false,
+  "real_e1_accessed": false,
+  "schema_version": "1.0.0",
+  "scientific_provider_calls": 0,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-REQUEST-CONTRACT-REMEDIATION-C1"
+}
