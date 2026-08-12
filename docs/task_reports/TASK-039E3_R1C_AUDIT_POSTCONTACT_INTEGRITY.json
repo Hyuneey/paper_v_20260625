@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "a4998e990e14cce97b11f14ef1a82d93dd3f73ab9574a668cc001a65917a6506",
+  "artifact_type": "task039e3_r1c_audit_postcontact_integrity_v1",
+  "blocking_findings": [
+    "active V2 has no post-contact Git/source-manifest revalidation and can return scientific PASS after active source and accounting behavior mutate",
+    "active V2 can return scientific PASS after the transport timeout configuration mutates from 30.0 to 31.0 seconds"
+  ],
+  "configuration_unchanged_after_contact_enforced": false,
+  "model_prompt_schema_sampling_schedule_recheck_before_pass": false,
+  "postcontact_mutation_test_returned_pass": true,
+  "precontact_git_source_guard": true,
+  "schema_version": "1.0.0",
+  "source_unchanged_after_contact_enforced": false,
+  "status": "blocked_task039e3_r1c_independent_audit",
+  "task_id": "TASK-039E3-R1C-AUDIT",
+  "timeout_unchanged_after_contact_enforced": false
+}

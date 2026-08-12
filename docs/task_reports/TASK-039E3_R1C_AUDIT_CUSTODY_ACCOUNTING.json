@@ -1,0 +1,24 @@
+{
+  "artifact_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce5fbeb616",
+  "artifact_type": "task039e3_r1c_audit_custody_accounting_v1",
+  "blocking_findings": [
+    "an fsync failure after flush can leave a complete valid-looking JSONL tail record while the in-memory authoritative ledger head remains at the preceding record",
+    "an arbitrary scientific exception propagates without a durable terminal failure receipt"
+  ],
+  "capability_ledger_exact_logical_slots": 1,
+  "capability_ledger_rejects_scientific_slots": true,
+  "capability_scientific_ledgers_separately_typed": true,
+  "disk_hash_chain_independently_reconstructed": true,
+  "failure_path_custody_reconstructible": false,
+  "latest_successful_committed_head_reconstructible_before_write_failure": true,
+  "local_compatibility_records": 0,
+  "model_mismatch_durable_before_abort": true,
+  "provider_refusal_and_parser_rejection_distinct": true,
+  "schema_version": "1.0.0",
+  "scientific_ledger_rejects_capability_slots": true,
+  "scientific_ledger_scientific_slots_only": true,
+  "status": "blocked_task039e3_r1c_independent_audit",
+  "task_id": "TASK-039E3-R1C-AUDIT",
+  "transport_exhaustion_durable_before_abort": true,
+  "typed_accounting_cross_family_cancellation": false
+}

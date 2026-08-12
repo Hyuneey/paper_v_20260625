@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "a251e21a16b8c0872137bb22cbe0ab082df694685010a5df1009973559f03bd7",
+  "artifact_type": "task039e3_r1c_audit_authority_chain_v1",
+  "audit_to_r2_authority_binding": "INSUFFICIENT",
+  "blocking_findings": [
+    "the closed R2 V2 authorization contract cannot bind an R1C-AUDIT PASS commit, independent-audit bundle hash, or audit receipt hash",
+    "no separately enforced wrapper closes the R1C-AUDIT-to-R2 provenance chain before credential access"
+  ],
+  "closed_contract_rejects_added_r1c_audit_fields": true,
+  "existing_r2_contract_binds_r1b_audit": true,
+  "existing_r2_contract_binds_r1c_audit": false,
+  "r1c_audit_bundle_field_present": false,
+  "r1c_audit_commit_field_present": false,
+  "r1c_audit_receipt_field_present": false,
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r1c_independent_audit",
+  "task_id": "TASK-039E3-R1C-AUDIT",
+  "wrapper_enforced_before_credential": false
+}

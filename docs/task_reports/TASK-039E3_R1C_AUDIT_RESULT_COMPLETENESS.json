@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "32a283b5fb9bff85f6d96b410d04eb60d909d955a145567e8c1630a4ceb0b5bf",
+  "artifact_type": "task039e3_r1c_audit_result_completeness_v1",
+  "blocking_findings": [
+    "successful V2 returns counts, one scientific provider-ledger hash, and typed accounting without finalizing the frozen scientific metrics and result bindings",
+    "the future runner prints only a status object and does not materialize sanitized terminal scientific artifacts"
+  ],
+  "capability_receipt_materialized": true,
+  "construction_metrics_materialized": false,
+  "data_access_audit_materialized": false,
+  "direct_number_ledger_finalized": false,
+  "direct_number_metrics_materialized": false,
+  "execution_receipt_materialized": false,
+  "execution_summary_materialized": false,
+  "outcome_ledger_finalized": false,
+  "private_ledger_bindings_finalized": false,
+  "proposal_validity_ledger_finalized": false,
+  "provider_custody_binding_finalized": false,
+  "raw_private_jsonl_ledgers_created": true,
+  "required_result_exists_only_in_memory_or_stdout": true,
+  "runner_stdout_fields": ["status"],
+  "schema_version": "1.0.0",
+  "scientific_result_completeness": "blocked",
+  "status": "blocked_task039e3_r1c_independent_audit",
+  "task_id": "TASK-039E3-R1C-AUDIT"
+}

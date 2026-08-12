@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "55abfe52ef714556e6ad4b963edf62d1e5ac61aafbe4422309dff4ce3d6ae967",
+  "artifact_type": "task039e3_r1c_audit_lineage_v1",
+  "audit_branch": "task-039e3-r1c-audit",
+  "audit_commit_a": "14cc9130cccd9a5ee4189f194be6abf76bab5bde",
+  "commit_b_reports_only": true,
+  "historical_branches_modified": false,
+  "lineage_verified": true,
+  "main_commit": "11a5f04a0422049a099020f06c59ec23bc72d130",
+  "r1b_audit_commit_b": "1747ece15cac693b2ec84c7f780bd1a817a78469",
+  "r1c_commit_a": "42f51cba0168f8050803139ec3333156ed2fa403",
+  "r1c_commit_b": "a1a802eb814937e2f024b6caa429943690bc6976",
+  "r1c_commit_b_parent_is_commit_a": true,
+  "r1c_commit_b_report_file_count": 8,
+  "r1c_commit_b_source_changes": 0,
+  "schema_version": "1.0.0",
+  "source_blob_records_verified": 14,
+  "source_blob_records_expected": 14,
+  "source_blobs_identical_commit_a_to_b": true,
+  "source_manifest_hash": "e494c727d03b75cbec7123c7bb92da61ead345673f678078d32a217dfe6350d0",
+  "status": "blocked_task039e3_r1c_independent_audit",
+  "task_id": "TASK-039E3-R1C-AUDIT"
+}

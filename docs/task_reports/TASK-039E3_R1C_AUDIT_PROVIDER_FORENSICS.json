@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "c04ad89d7aa86bb1a6ecf104794d896fff33d701508d9f38fdce92c7bd31342b",
+  "artifact_type": "task039e3_r1c_audit_provider_forensics_v1",
+  "blocking_findings": [
+    "provider-authored HTTP 200 invalid UTF-8, invalid JSON, non-object JSON, and invalid-envelope responses are frozen as transport_exhausted in capability and scientific logical-slot custody"
+  ],
+  "coherent_response_classes": [
+    "valid_structured_response",
+    "provider_refusal",
+    "http_400",
+    "http_401",
+    "http_403",
+    "http_429",
+    "http_5xx",
+    "timeout_before_response",
+    "connection_reset",
+    "connection_failure",
+    "returned_model_mismatch",
+    "valid_envelope_malformed_content"
+  ],
+  "http_200_malformed_attempt_classification": "completed_schema_invalid_response",
+  "http_200_malformed_attempt_provider_authored_response": true,
+  "http_200_malformed_attempt_provider_contacted": true,
+  "http_200_malformed_attempt_response_origin": "provider",
+  "http_200_malformed_attempt_status_code": 200,
+  "http_200_malformed_logical_parse_status": "transport_failure",
+  "http_200_malformed_logical_response_present": false,
+  "http_200_malformed_logical_terminal_state": "transport_exhausted",
+  "model_mismatch_response_id_preserved": true,
+  "model_mismatch_returned_model_preserved": true,
+  "model_mismatch_terminal_state": "completed_model_identity_mismatch",
+  "provider_response_forensic_audit": "blocked",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r1c_independent_audit",
+  "task_id": "TASK-039E3-R1C-AUDIT"
+}
