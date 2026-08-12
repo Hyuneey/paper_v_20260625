@@ -68,6 +68,23 @@ PRIVATE_ARTIFACT_NAMES_R2R_V1: Mapping[str, str] = {
     "direct_number": "TASK039E3_R2R_DIRECT_NUMBER_LEDGER.json",
 }
 
+_PUBLIC_RECEIPT_HASH_FIELDS_R2R_V1: Mapping[str, str] = {
+    "capability_reuse": "capability_reuse_artifact_hash",
+    "provider_custody": "provider_custody_binding_hash",
+    "private_bindings": "private_ledger_bindings_hash",
+    "construction_metrics": "construction_metrics_hash",
+    "direct_number_metrics": "direct_number_metrics_hash",
+    "execution_summary": "execution_summary_hash",
+    "data_access_audit": "data_access_audit_hash",
+}
+
+_PRIVATE_BINDING_HASH_FIELDS_R2R_V1: Mapping[str, str] = {
+    "scientific_provider": "scientific_provider_ledger_hash",
+    "proposal_validity": "proposal_validity_ledger_hash",
+    "construction_outcome": "construction_outcome_ledger_hash",
+    "direct_number": "direct_number_ledger_hash",
+}
+
 _AUTHORITY_FIELD_LENGTHS: Mapping[str, int] = {
     "protocol_bundle_hash": 64,
     "protocol_receipt_hash": 64,
@@ -123,6 +140,28 @@ def _require_hash(value: Any, name: str, length: int = 64) -> str:
             f"{name} must be a lowercase {length}-character hash"
         )
     return value
+
+
+def _read_verified_terminal_artifact_v1(
+    path: Path,
+    intended_document: Mapping[str, Any],
+    name: str,
+) -> dict[str, Any]:
+    """Re-read one terminal artifact and require exact intended durable content."""
+
+    try:
+        observed = json.loads(path.read_text(encoding="utf-8"))
+        verified = verify_public_artifact_v1(observed)
+        intended = verify_public_artifact_v1(intended_document)
+    except Exception as exc:
+        raise TASK039E3R2RResultFinalizationError(
+            f"durable {name} could not be re-read and self-hash verified"
+        ) from exc
+    if verified != intended:
+        raise TASK039E3R2RResultFinalizationError(
+            f"durable {name} differs from the intended finalized artifact"
+        )
+    return verified
 
 
 def _closed_authority(bindings: Mapping[str, Any]) -> dict[str, str]:
@@ -674,15 +713,19 @@ def finalize_successful_r2r_scientific_result_v1(
             source="fresh_r2r_working_log",
         ),
     }
-    private_artifacts: dict[str, dict[str, Any]] = {}
+    private_documents = {
+        key: finalize_public_artifact_v1(document)
+        for key, document in private_inputs.items()
+    }
     for key in (
         "scientific_provider",
         "proposal_validity",
         "construction_outcome",
         "direct_number",
     ):
-        private_artifacts[key] = artifact_writer(
-            private_root / PRIVATE_ARTIFACT_NAMES_R2R_V1[key], private_inputs[key]
+        artifact_writer(
+            private_root / PRIVATE_ARTIFACT_NAMES_R2R_V1[key],
+            private_documents[key],
         )
 
     main_metrics = aggregate_construction_metrics_v1(outcomes)
@@ -699,7 +742,7 @@ def finalize_successful_r2r_scientific_result_v1(
             "scientific_provider_custody_binding_hash": scientific_binding[
                 "artifact_hash"
             ],
-            "scientific_provider_ledger_snapshot_hash": private_artifacts[
+            "scientific_provider_ledger_snapshot_hash": private_documents[
                 "scientific_provider"
             ]["artifact_hash"],
             "scientific_provider_record_count": r2r_calls,
@@ -720,16 +763,16 @@ def finalize_successful_r2r_scientific_result_v1(
             "artifact_type": "task039e3_r2r_private_ledger_bindings_v1",
             "task_id": TASK_ID,
             "scientific_provider_binding_hash": scientific_binding["artifact_hash"],
-            "scientific_provider_ledger_hash": private_artifacts[
+            "scientific_provider_ledger_hash": private_documents[
                 "scientific_provider"
             ]["artifact_hash"],
-            "proposal_validity_ledger_hash": private_artifacts["proposal_validity"][
+            "proposal_validity_ledger_hash": private_documents["proposal_validity"][
                 "artifact_hash"
             ],
-            "construction_outcome_ledger_hash": private_artifacts[
+            "construction_outcome_ledger_hash": private_documents[
                 "construction_outcome"
             ]["artifact_hash"],
-            "direct_number_ledger_hash": private_artifacts["direct_number"][
+            "direct_number_ledger_hash": private_documents["direct_number"][
                 "artifact_hash"
             ],
             "provider_records": r2r_calls,
@@ -749,13 +792,13 @@ def finalize_successful_r2r_scientific_result_v1(
             "status": SUCCESS_STATUS,
             "metrics_cohort": "R2R_FRESH_FULL_COHORT_ONLY",
             "main_metrics": main_metrics,
-            "scientific_provider_ledger_hash": private_artifacts[
+            "scientific_provider_ledger_hash": private_documents[
                 "scientific_provider"
             ]["artifact_hash"],
-            "proposal_validity_ledger_hash": private_artifacts["proposal_validity"][
+            "proposal_validity_ledger_hash": private_documents["proposal_validity"][
                 "artifact_hash"
             ],
-            "construction_outcome_ledger_hash": private_artifacts[
+            "construction_outcome_ledger_hash": private_documents[
                 "construction_outcome"
             ]["artifact_hash"],
             "r2r_scientific_logical_calls": r2r_calls,
@@ -851,11 +894,12 @@ def finalize_successful_r2r_scientific_result_v1(
         "execution_summary",
         "data_access_audit",
     ):
-        written = artifact_writer(
+        artifact_writer(
             public_root / PUBLIC_ARTIFACT_NAMES_R2R_V1[key], public_documents[key]
         )
         public_hashes[key] = _require_hash(
-            written.get("artifact_hash"), f"written {key} artifact hash"
+            public_documents[key].get("artifact_hash"),
+            f"intended {key} artifact hash",
         )
         write_order.append(key)
 
@@ -895,28 +939,69 @@ def finalize_successful_r2r_scientific_result_v1(
     )
     write_order.append("execution_receipt")
     try:
-        observed = json.loads(
-            (
-                public_root
-                / PUBLIC_ARTIFACT_NAMES_R2R_V1["execution_receipt"]
-            ).read_text(encoding="utf-8")
-        )
-        verified_receipt = verify_public_artifact_v1(observed)
+        verified_written_receipt = verify_public_artifact_v1(written_receipt)
     except Exception as exc:
         raise TASK039E3R2RResultFinalizationError(
-            "durable R2R receipt could not be re-read and self-hash verified"
+            "written R2R receipt could not be verified"
         ) from exc
-    if written_receipt != verified_receipt or verified_receipt.get("status") != SUCCESS_STATUS:
+    if verified_written_receipt != receipt:
+        raise TASK039E3R2RResultFinalizationError(
+            "written R2R receipt differs from the intended terminal PASS"
+        )
+
+    observed_public: dict[str, dict[str, Any]] = {}
+    for key in _PUBLIC_RECEIPT_HASH_FIELDS_R2R_V1:
+        observed_public[key] = _read_verified_terminal_artifact_v1(
+            public_root / PUBLIC_ARTIFACT_NAMES_R2R_V1[key],
+            public_documents[key],
+            f"public {key}",
+        )
+
+    observed_private: dict[str, dict[str, Any]] = {}
+    observed_private_bindings = observed_public["private_bindings"]
+    for key, binding_field in _PRIVATE_BINDING_HASH_FIELDS_R2R_V1.items():
+        observed_private[key] = _read_verified_terminal_artifact_v1(
+            private_root / PRIVATE_ARTIFACT_NAMES_R2R_V1[key],
+            private_documents[key],
+            f"private {key}",
+        )
+        if (
+            observed_private_bindings.get(binding_field)
+            != observed_private[key]["artifact_hash"]
+        ):
+            raise TASK039E3R2RResultFinalizationError(
+                f"durable private binding for {key} differs"
+            )
+
+    verified_receipt = _read_verified_terminal_artifact_v1(
+        public_root / PUBLIC_ARTIFACT_NAMES_R2R_V1["execution_receipt"],
+        receipt,
+        "R2R execution receipt",
+    )
+    if (
+        verified_receipt != verified_written_receipt
+        or verified_receipt.get("status") != SUCCESS_STATUS
+    ):
         raise TASK039E3R2RResultFinalizationError(
             "durable R2R receipt differs from the intended terminal PASS"
         )
-    public_hashes["execution_receipt"] = verified_receipt["artifact_hash"]
+    for key, receipt_field in _PUBLIC_RECEIPT_HASH_FIELDS_R2R_V1.items():
+        if verified_receipt.get(receipt_field) != observed_public[key]["artifact_hash"]:
+            raise TASK039E3R2RResultFinalizationError(
+                f"durable R2R receipt binding for {key} differs"
+            )
+
+    observed_public_hashes = {
+        key: document["artifact_hash"] for key, document in observed_public.items()
+    }
+    observed_public_hashes["execution_receipt"] = verified_receipt["artifact_hash"]
+    observed_private_hashes = {
+        key: document["artifact_hash"] for key, document in observed_private.items()
+    }
     return FinalizedR2RScientificResultV1(
         status=SUCCESS_STATUS,
-        public_artifact_hashes=public_hashes,
-        private_artifact_hashes={
-            key: document["artifact_hash"] for key, document in private_artifacts.items()
-        },
+        public_artifact_hashes=observed_public_hashes,
+        private_artifact_hashes=observed_private_hashes,
         execution_receipt_hash=verified_receipt["artifact_hash"],
         public_artifact_order=tuple(write_order),
     )
