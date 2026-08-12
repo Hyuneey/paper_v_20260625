@@ -118,7 +118,7 @@ class R2RIntegrationTests(unittest.TestCase):
         lifetime = build_lifetime_accounting_v1(result.scientific_logical_calls)
         self.assertEqual(lifetime.lifetime_scientific_logical_call_attempts, 253)
 
-    def test_runner_is_offline_only_and_self_check_is_sanitized(self) -> None:
+    def test_runner_self_check_is_offline_and_live_credential_is_singular(self) -> None:
         spec = importlib.util.spec_from_file_location("r2r_runner", RUNNER)
         assert spec is not None and spec.loader is not None
         module = importlib.util.module_from_spec(spec)
@@ -143,8 +143,9 @@ class R2RIntegrationTests(unittest.TestCase):
             for node in ast.walk(tree)
             if isinstance(node, ast.ImportFrom)
         }
-        self.assertFalse(imported & {"os", "socket", "urllib", "requests", "openai"})
-        self.assertNotIn("OPENAI_API_KEY", source)
+        self.assertFalse(imported & {"socket", "urllib", "requests", "openai"})
+        self.assertIn("os", imported)
+        self.assertEqual(source.count('os.environ.get("OPENAI_API_KEY")'), 1)
         self.assertNotIn("urlopen", source)
 
 

@@ -48,6 +48,10 @@ _RETRYABLE_OUTCOMES = frozenset(
 )
 
 
+class R2RHTTPErrorCustodyPersistenceError(RuntimeError):
+    """Required non-200 custody did not durably commit; transport is sealed."""
+
+
 def _header(headers: Any, name: str) -> str | None:
     if headers is None:
         return None
@@ -408,15 +412,38 @@ class R2RLiveOpenAIChatCompletionsTransportV1(
         opener: Callable[..., Any] = urlopen,
         sleeper: Callable[[float], None] = time.sleep,
         timeout_seconds: float = URLOPEN_TIMEOUT_SECONDS,
+        http_error_custody_committer: (
+            Callable[[R2RLiveTransportAttemptCustodyV1], None] | None
+        ) = None,
+        require_durable_http_error_custody: bool = False,
     ) -> None:
+        if require_durable_http_error_custody and not callable(
+            http_error_custody_committer
+        ):
+            raise ValueError(
+                "durable HTTP-error custody requires an injected committer"
+            )
+        if http_error_custody_committer is not None and not callable(
+            http_error_custody_committer
+        ):
+            raise TypeError("HTTP-error custody committer must be callable")
         self._raw_opener = opener
         self._pending_http_error: PrivateHTTPErrorCustodyV1 | None = None
+        self._http_error_custody_committer = http_error_custody_committer
+        self._require_durable_http_error_custody = bool(
+            require_durable_http_error_custody
+        )
+        self._http_error_custody_persistence_failed = False
         super().__init__(
             api_key=api_key,
             opener=self._bounded_opener,
             sleeper=sleeper,
             timeout_seconds=timeout_seconds,
         )
+
+    @property
+    def http_error_custody_persistence_failed(self) -> bool:
+        return self._http_error_custody_persistence_failed
 
     def _store_http_error(self, custody: PrivateHTTPErrorCustodyV1) -> None:
         if self._pending_http_error is not None:
@@ -472,33 +499,54 @@ class R2RLiveOpenAIChatCompletionsTransportV1(
                 raise ValueError("HTTP-error custody disagrees with transport outcome")
         elif http_error is not None:
             raise ValueError("HTTP-error custody attached to a non-HTTP outcome")
-        self._attempt_custody.append(
-            R2RLiveTransportAttemptCustodyV1(
-                sequence_index=len(self._attempt_custody),
-                attempt_number=attempt_number,
-                request_hash=request_hash,
-                response_origin=RESPONSE_ORIGIN,
-                transport_response_received=response.transport_response_received,
-                provider_payload_received=response.provider_payload_received,
-                provider_contacted=response.provider_contacted,
-                provider_authored_response=response.provider_authored_response,
-                response_present=response.response_present,
-                structured_payload_valid=response.structured_payload_valid,
-                outcome=response.outcome,
-                terminal_classification=terminal_classification_v3(response),
-                status_code=response.status_code,
-                returned_model=response.model,
-                response_id=response.response_id,
-                finish_reason=response.finish_reason,
-                token_usage=response.token_usage,
-                system_fingerprint=response.system_fingerprint,
-                provider_payload_hash=response.provider_payload_hash,
-                retry_eligible=retryable,
-                actual_retry_delay_before_attempt_seconds=actual_delay,
-                retry_after_seconds_observed=retry_after,
-                private_http_error=http_error,
-            )
+        attempt = R2RLiveTransportAttemptCustodyV1(
+            sequence_index=len(self._attempt_custody),
+            attempt_number=attempt_number,
+            request_hash=request_hash,
+            response_origin=RESPONSE_ORIGIN,
+            transport_response_received=response.transport_response_received,
+            provider_payload_received=response.provider_payload_received,
+            provider_contacted=response.provider_contacted,
+            provider_authored_response=response.provider_authored_response,
+            response_present=response.response_present,
+            structured_payload_valid=response.structured_payload_valid,
+            outcome=response.outcome,
+            terminal_classification=terminal_classification_v3(response),
+            status_code=response.status_code,
+            returned_model=response.model,
+            response_id=response.response_id,
+            finish_reason=response.finish_reason,
+            token_usage=response.token_usage,
+            system_fingerprint=response.system_fingerprint,
+            provider_payload_hash=response.provider_payload_hash,
+            retry_eligible=retryable,
+            actual_retry_delay_before_attempt_seconds=actual_delay,
+            retry_after_seconds_observed=retry_after,
+            private_http_error=http_error,
         )
+
+        # A retry is forbidden until required non-200 custody commits.  Install
+        # the fail-closed state before invoking external persistence so an
+        # exception can never leave a pending retry armed.
+        self._retry_pending = False
+        self._next_delay_seconds = None
+        self._attempt_custody.append(attempt)
+        if http_error is not None:
+            committer = self._http_error_custody_committer
+            if committer is None and self._require_durable_http_error_custody:
+                self._http_error_custody_persistence_failed = True
+                raise R2RHTTPErrorCustodyPersistenceError(
+                    "required HTTP-error custody committer is unavailable"
+                )
+            if committer is not None:
+                try:
+                    committer(attempt)
+                except Exception:
+                    self._http_error_custody_persistence_failed = True
+                    raise R2RHTTPErrorCustodyPersistenceError(
+                        "required HTTP-error custody persistence failed"
+                    ) from None
+
         self._retry_pending = retryable
         self._next_delay_seconds = (
             retry_after if response.outcome == "http_429" else None
@@ -509,6 +557,10 @@ class R2RLiveOpenAIChatCompletionsTransportV1(
         return response
 
     def send(self, request: FrozenProviderRequestV1) -> RecoveryProviderResponseV3:
+        if self._http_error_custody_persistence_failed:
+            raise R2RHTTPErrorCustodyPersistenceError(
+                "transport sealed after HTTP-error custody persistence failure"
+            )
         if self._pending_http_error is not None:
             raise ValueError("stale HTTP-error custody before transport attempt")
         return super().send(request)
@@ -518,6 +570,7 @@ __all__ = [
     "HTTP_ERROR_BODY_READ_LIMIT_BYTES",
     "MAXIMUM_RETAINED_HTTP_ERROR_BODY_BYTES",
     "PrivateHTTPErrorCustodyV1",
+    "R2RHTTPErrorCustodyPersistenceError",
     "R2RLiveOpenAIChatCompletionsTransportV1",
     "R2RLiveTransportAttemptCustodyV1",
 ]
