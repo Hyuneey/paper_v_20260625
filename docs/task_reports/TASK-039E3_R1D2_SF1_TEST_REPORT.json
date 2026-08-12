@@ -1,0 +1,67 @@
+{
+  "artifact_hash": "988f032139df0267eb851e8448857843b997ecbf2122545a882aa793f24e3a78",
+  "artifact_type": "task039e3_r1d2_sf1_test_report_v1",
+  "command_contract": {
+    "compileall": "python -B -m compileall -q src/paperworks/v6 scripts tests",
+    "dependency": "python -B -m pip check",
+    "environment": "PYTHONPATH=src;tests",
+    "git": "git diff --check",
+    "interpreter": "C:/Users/hyun/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "test_form": "python -B -m unittest -v <recorded suite modules>"
+  },
+  "historical_expected_diagnostics": [
+    {
+      "initial": "46 collected; 45 passed; 1 sandbox worktree-metadata error; exit 1",
+      "rerun": "1/1 passed; exit 0",
+      "suite": "r1b_audit_exact_commit_a"
+    },
+    {
+      "result": "1 skipped: jsonschema environment unavailable",
+      "suite": "e1_optional_jsonschema"
+    }
+  ],
+  "hygiene": {
+    "compileall": true,
+    "complete_source_blobs_verified": 41,
+    "complete_source_sha256_verified": 41,
+    "git_diff_check": true,
+    "json_artifact_self_hashes_verified": 20,
+    "leak_scan_files": 55,
+    "leak_scan_hits": 0,
+    "pip_check": true,
+    "recovery_schemas_validated": 4
+  },
+  "index_clean_before_and_after": true,
+  "prefreeze_fixture_diagnostics": [
+    "SF1 oracle safe-directory fixture: 3 pass/1 error, resolved, final 4/4",
+    "SF1 oracle event-label expectation: 3 pass/1 failure, resolved, final 4/4",
+    "independent raw-byte fixture: 2 pass/1 failure/1 error, resolved with exact Git bytes, final 4/4"
+  ],
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_sf1_complete_active_source_freeze",
+  "suite_results": {
+    "e0": "59/59",
+    "e1": "28/29 with 1 expected optional-jsonschema skip",
+    "e2": "39/39",
+    "historical_e3_e3_prep": "49/49",
+    "historical_old_manifest_oracles": "6/6",
+    "r0": "6/6",
+    "r1a": "6/6",
+    "r1b": "50/50",
+    "r1b_audit": "46/46 after isolated worktree rerun",
+    "r1c": "48/48",
+    "r1c_audit": "31/31",
+    "r1d2": "50/50",
+    "sf1_oracle": "4/4"
+  },
+  "task_id": "TASK-039E3-R1D2-SF1_COMPLETE_ACTIVE_SOURCE_FREEZE_REMEDIATION",
+  "tested_commit": "86e7b38c36286a140f2549cff388b6700ab5d363",
+  "unique_verification": {
+    "collected": 423,
+    "errors": 0,
+    "failed": 0,
+    "passed": 422,
+    "skipped": 1
+  },
+  "worktree_clean_before_and_after": true
+}

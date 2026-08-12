@@ -1,0 +1,21 @@
+{
+  "HAI_accessed": false,
+  "OPENAI_API_KEY_accessed": false,
+  "OPENAI_API_KEY_presence_checked": false,
+  "OpenAI_transport_attempts": 0,
+  "artifact_hash": "c2bae6d06ae1efaa1b3a5262ee5be55d6f624391a137a4d18eef5e9a3dd32666",
+  "artifact_type": "task039e3_r1d2_sf1_data_access_audit_v1",
+  "capability_probe_executed": false,
+  "historical_private_roots_accessed": false,
+  "private_custody_written": false,
+  "production_source_modified": false,
+  "provider_contacted": false,
+  "real_E1_evidence_accessed": false,
+  "real_recovery_private_root_accessed": false,
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "status": "passed_task039e3_r1d2_sf1_complete_active_source_freeze",
+  "synthetic_temporary_roots_used": true,
+  "task_id": "TASK-039E3-R1D2-SF1_COMPLETE_ACTIVE_SOURCE_FREEZE_REMEDIATION",
+  "train_test_labels_attacks_accessed": false
+}

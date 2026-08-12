@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "b96a89f14ce3bd2487e67907ec671ace8f59574654184c0bc8c5d003215c5618",
+  "artifact_type": "task039e3_r1d2_sf1_postcontact_integrity_v1",
+  "authorization_v3_accepts_new_manifest_hash": true,
+  "committed_oracle_mutation_cases_passed": 80,
+  "committed_oracle_mutation_cases_run": 80,
+  "existing_integrity_guard_modified": false,
+  "independent_mutation_cases_passed": 120,
+  "independent_mutation_cases_run": 120,
+  "material_dependency_mutation_detection_rate": 1.0,
+  "material_paths_tested": 40,
+  "next_provider_attempt_blocked_after_mutation": true,
+  "previously_unbound_dependencies_tested": 25,
+  "previously_unbound_mutations_detected": 25,
+  "provider_contacted": false,
+  "real_credential_accessed": false,
+  "representative_results": {
+    "src/paperworks/v6/common.py": "detected",
+    "src/paperworks/v6/task039e2_execution_configuration_v1.py": "detected",
+    "src/paperworks/v6/task039e3_live_transport_v1.py": "detected",
+    "src/paperworks/v6/task039e3_recovery_authorization_v1.py": "detected"
+  },
+  "runtime_collect_git_execution_state_accepts_complete_manifest": true,
+  "schema_version": "1.0.0",
+  "sentinel_credential_reached_after_all_guards": true,
+  "status": "passed_task039e3_r1d2_sf1_complete_active_source_freeze",
+  "task_id": "TASK-039E3-R1D2-SF1_COMPLETE_ACTIVE_SOURCE_FREEZE_REMEDIATION"
+}

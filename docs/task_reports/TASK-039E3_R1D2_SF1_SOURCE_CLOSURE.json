@@ -1,0 +1,26 @@
+{
+  "active_project_local_paths_including_runner": 40,
+  "active_source_freeze_complete": true,
+  "artifact_hash": "800448ffec73ffd470c1d96d7f69abb8245aaa581546ea0e514a676f75d48e4a",
+  "artifact_type": "task039e3_r1d2_sf1_source_closure_v1",
+  "complete_source_manifest_hash": "e8f236a8238bad744eced3009e2000bab9597094cab04446d920df0a0ddf9283",
+  "complete_source_records": 41,
+  "dynamic_imports_found": [],
+  "entrypoint": "scripts/run_task039e3_recovery_execution_v3.py",
+  "execution_commit": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "historical_declared_source_records": 16,
+  "material_dependencies_excluding_runner": 39,
+  "old_manifest_bound_active_paths": 15,
+  "package_initializers_included": [
+    "src/paperworks/__init__.py",
+    "src/paperworks/data/__init__.py",
+    "src/paperworks/metadata/__init__.py",
+    "src/paperworks/v6/__init__.py"
+  ],
+  "previously_unbound_dependencies": 25,
+  "remaining_unbound_dependencies": 0,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_sf1_complete_active_source_freeze",
+  "task_id": "TASK-039E3-R1D2-SF1_COMPLETE_ACTIVE_SOURCE_FREEZE_REMEDIATION",
+  "unresolved_dynamic_imports": []
+}
