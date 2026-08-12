@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "d8ce744500f30336c93cc6140b59f8048c1aef0620659e3cdd5793e408e72cd6",
+  "artifact_type": "task039e3_r1d2_audit_rerun_postcontact_integrity_v1",
+  "configuration_mutation_families_detected": 14,
+  "d3_status": "CLOSED",
+  "full_manifest_record_identity_mutations_detected": 82,
+  "full_manifest_record_identity_mutations_tested": 82,
+  "material_mutation_detection_rate": 1.0,
+  "mutation_during_attempt_detected_before_next_attempt": true,
+  "named_regressions": {
+    "src/paperworks/v6/common.py": "detected",
+    "src/paperworks/v6/task039e2_execution_configuration_v1.py": "detected",
+    "src/paperworks/v6/task039e3_live_transport_v1.py": "detected",
+    "src/paperworks/v6/task039e3_recovery_authorization_v1.py": "detected"
+  },
+  "next_provider_attempt_blocked_after_mismatch": true,
+  "previously_omitted_dependencies_detected": 25,
+  "previously_omitted_dependencies_tested": 25,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

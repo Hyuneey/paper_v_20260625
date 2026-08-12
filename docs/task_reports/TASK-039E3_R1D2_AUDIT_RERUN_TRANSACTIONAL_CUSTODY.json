@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "a9d7371148ef4a991432d27363ec4e4ac6ddefc4a7689d5689d9c744f8b1e513",
+  "artifact_type": "task039e3_r1d2_audit_rerun_transactional_custody_v1",
+  "competing_authoritative_tails": 0,
+  "d5_status": "CLOSED",
+  "fault_stages_reconstructed": 11,
+  "head_json_sole_authority": true,
+  "orphan_classification": "orphan_non_authoritative",
+  "pending_files_non_authoritative": true,
+  "restart_reconstruction_unambiguous": true,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT",
+  "tamper_and_predecessor_checks_passed": true
+}

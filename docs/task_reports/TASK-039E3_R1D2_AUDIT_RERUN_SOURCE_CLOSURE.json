@@ -1,0 +1,24 @@
+{
+  "active_project_local_path_count_including_runner": 40,
+  "active_source_freeze_complete": true,
+  "artifact_hash": "472293d5909743e8ac9d28de079de0de428adb5ae9bb255085789b8d36660871",
+  "artifact_type": "task039e3_r1d2_audit_rerun_source_closure_v1",
+  "complete_source_record_count": 41,
+  "complete_source_records_verified": 41,
+  "dynamic_imports": [],
+  "exact_git_blob_matches": 41,
+  "exact_git_byte_sha256_matches": 41,
+  "historical_incomplete_manifest_hash": "d9ea32af4ffb60af8bb6d0b7a496a74e4126d8e411e337da64ce64e15a152e48",
+  "manifest_conservative_extra_records": [
+    "schemas/v6/task039e3_recovery_execution_authorization_v3_schema.json"
+  ],
+  "material_dependency_count_excluding_runner": 39,
+  "missing_material_paths": [],
+  "new_complete_manifest_hash": "e8f236a8238bad744eced3009e2000bab9597094cab04446d920df0a0ddf9283",
+  "previously_omitted_count": 25,
+  "remaining_unbound_dependency_count": 0,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT",
+  "unresolved_dynamic_imports": []
+}

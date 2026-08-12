@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "ee5677aac1b1731b39fff9880c14b7188795a2099e89ff13b6a086d1428e9751",
+  "artifact_type": "task039e3_r1d2_audit_rerun_lineage_v1",
+  "audit_commit_a": "3f2e5d6d20c90c297d503567f033c45a43fdfad1",
+  "audit_event": "R1D2_AUDIT_RERUN_AFTER_SF1",
+  "direct_lineage_verified": true,
+  "historical_blocked_audit_commit_b": "460cc11a038ba2fd5604a4b2b0b57616b70c97cc",
+  "historical_blocked_audit_receipt_hash": "523368de774b289823206ddf976a8a9e164c3c397427f68c19fb7b952a3db8db",
+  "historical_blocked_audit_status": "blocked_task039e3_r1d2_independent_audit",
+  "historical_blocked_audit_status_unchanged": true,
+  "main": "11a5f04a0422049a099020f06c59ec23bc72d130",
+  "r1d2_commit_a": "2653f2b7349a049f9ca4828d736dfea9462c4748",
+  "r1d2_commit_b": "3da8b7007b7dd78d934554b299e6cb264a0e6470",
+  "schema_version": "1.0.0",
+  "sf1_commit_a": "86e7b38c36286a140f2549cff388b6700ab5d363",
+  "sf1_commit_b": "5296cf7a054d4fc3bbfdf742b70585bc0dc90515",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact_hash": "056b3fa0c5daafa91b3a833f4e2385cf1f143d3bca99d9fda22366c12b8f2ebc",
+  "artifact_type": "task039e3_r1d2_audit_rerun_provider_forensics_v1",
+  "b1_status": "REMAINS_CLOSED",
+  "b2_status": "REMAINS_CLOSED",
+  "b3_status": "REMAINS_CLOSED",
+  "cross_family_counter_cancellation": false,
+  "d1_status": "CLOSED",
+  "local_compatibility_slots": 0,
+  "malformed_http200": {
+    "provider_authored_response": true,
+    "response_present": true,
+    "retry_eligible": false,
+    "terminal_state": "completed_schema_invalid_response"
+  },
+  "model_mismatch": {
+    "response_id_preserved": true,
+    "retry_eligible": false,
+    "returned_model_preserved": true,
+    "terminal_state": "completed_model_identity_mismatch"
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

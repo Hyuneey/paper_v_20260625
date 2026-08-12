@@ -1,0 +1,19 @@
+{
+  "HAI_train_test_labels_attacks_accessed": false,
+  "OPENAI_API_KEY_accessed": false,
+  "OPENAI_API_KEY_presence_checked": false,
+  "OpenAI_attempts": 0,
+  "artifact_hash": "790514a3ab9adf624fee4bab7e60bf1314202d9df53478049dbbc913c7bfe090",
+  "artifact_type": "task039e3_r1d2_audit_rerun_data_access_v1",
+  "capability_probe_executed": false,
+  "historical_e3_private_root_accessed": false,
+  "production_source_modified": false,
+  "provider_contacted": false,
+  "real_E1_evidence_accessed": false,
+  "real_recovery_private_root_accessed": false,
+  "schema_version": "1.0.0",
+  "scientific_provider_calls": 0,
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "synthetic_fixtures_only": true,
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

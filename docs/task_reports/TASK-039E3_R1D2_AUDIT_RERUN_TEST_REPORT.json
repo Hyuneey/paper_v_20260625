@@ -1,0 +1,29 @@
+{
+  "artifact_hash": "1c167d881dd31bac8cb206d9474a3a7e9f84aaa96859f1192e71db56c45739ec",
+  "artifact_type": "task039e3_r1d2_audit_rerun_test_report_v1",
+  "audit_commit_a": "3f2e5d6d20c90c297d503567f033c45a43fdfad1",
+  "hygiene": {
+    "compileall": true,
+    "complete_source_blob_checks": 41,
+    "complete_source_sha256_checks": 41,
+    "git_diff_check": true,
+    "json_self_hashes_verified": 25,
+    "leak_scan_hits": 0,
+    "pip_check": true,
+    "recovery_schemas_validated": 4
+  },
+  "historical_expected_diagnostics": [
+    "R1B-AUDIT exact-worktree oracle required isolated writable Git metadata and passed 1/1 on rerun",
+    "E1 optional jsonschema test skipped because jsonschema environment was unavailable"
+  ],
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "suite_groups": {
+    "T1_rerun_historical_r1d2_sf1_r1d2": {"collected":101,"passed":101,"skipped":0},
+    "T2_r1c_r1b": {"collected":175,"passed":175,"skipped":0},
+    "T3_r1a_r0_e3_e2_e1_e0": {"collected":188,"passed":187,"skipped":1}
+  },
+  "task_id": "TASK-039E3-R1D2-AUDIT",
+  "unique_tests": {"collected":464,"errors":0,"failed":0,"passed":463,"skipped":1},
+  "worktree_and_index_clean_before_after": true
+}

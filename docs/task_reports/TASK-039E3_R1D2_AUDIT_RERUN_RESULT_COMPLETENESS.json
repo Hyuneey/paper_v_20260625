@@ -1,0 +1,25 @@
+{
+  "all_eight_sanitized_artifacts_materialized": true,
+  "artifact_hash": "b9e3312db733f1383da847126dbd50778b657df70bb23439c67b0052f56c50a7",
+  "artifact_type": "task039e3_r1d2_audit_rerun_result_completeness_v1",
+  "construction_metrics_independently_matched": true,
+  "d2_status": "CLOSED",
+  "direct_number_metrics_independently_matched": true,
+  "final_receipt_reread_and_self_hash_verified": true,
+  "final_receipt_written_last": true,
+  "pass_without_valid_receipt_possible": false,
+  "private_bindings_finalized": {
+    "construction_outcome": true,
+    "direct_number": true,
+    "proposal_validity": true,
+    "provider_custody": true
+  },
+  "public_private_root_boundary_passed": true,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "synthetic_runs": [
+    {"relations":42,"scientific_calls":252,"t1":42,"t1b":126,"t2":42,"direct_number":42},
+    {"relations":42,"scientific_calls":294,"t1":42,"t1b":126,"t2":84,"direct_number":42}
+  ],
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}

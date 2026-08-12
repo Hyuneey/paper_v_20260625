@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "020c2a60583f56a9f4dc0ffc1decf5cefec0c67a7bcf0e7a91f2f663d06e8d6a",
+  "artifact_type": "task039e3_r1d2_audit_rerun_failure_finalization_v1",
+  "automatic_resume_authorized": false,
+  "d6_status": "CLOSED",
+  "double_fault_classification": "double_fault_failure_receipt_persistence_failed",
+  "double_fault_can_pass": false,
+  "ordinary_failure_stages_tested": 11,
+  "ordinary_failure_stages_with_durable_receipt": 11,
+  "provider_recontact_authorized": false,
+  "receipts_sanitized_and_self_hashed": true,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1d2_independent_audit",
+  "task_id": "TASK-039E3-R1D2-AUDIT"
+}
