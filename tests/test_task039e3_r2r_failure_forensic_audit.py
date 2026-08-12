@@ -105,6 +105,19 @@ class _NeverSendIntegrityGuard:
         return callback()
 
 
+class _HistoricalR2RIntegrityGuardedTransportV1:
+    """Exact pre-remediation interface shape used by the forensic oracle."""
+
+    def __init__(self, transport: Any, integrity_guard: Any) -> None:
+        self.transport = transport
+        self.integrity_guard = integrity_guard
+
+    def send(self, request: Any) -> Any:
+        return self.integrity_guard.invoke_guarded_provider_attempt(
+            lambda: self.transport.send(request)
+        )
+
+
 def _git_output(repository: Path, *arguments: str, text: bool = False) -> Any:
     return subprocess.run(
         ["git", *arguments],
@@ -375,7 +388,7 @@ class R2RFailureForensicAuditTests(unittest.TestCase):
     def test_never_send_reproduces_exact_mock_only_guard(self) -> None:
         raw = _NeverSendRawTransport()
         integrity = _NeverSendIntegrityGuard()
-        guarded = R2RIntegrityGuardedTransportV1(raw, integrity)  # type: ignore[arg-type]
+        guarded = _HistoricalR2RIntegrityGuardedTransportV1(raw, integrity)
         slot = ProviderCallSlotV1(0, "0" * 64, "T1", 1, True)
         request = unittest.mock.MagicMock() if hasattr(unittest, "mock") else None
         # The type guard precedes all request use, so a sentinel object is sufficient.
@@ -417,22 +430,32 @@ class R2RFailureForensicAuditTests(unittest.TestCase):
         self.assertIn("execute_mock_provider_slot_v1", sources["direct"])
         self.assertIn("isinstance(transport, MockProviderTransportV1)", sources["slot"])
 
-    def test_r1d2_adapter_and_r2r_wrapper_interfaces_differ(self) -> None:
+    def test_r1d2_adapter_and_historical_r2r_interfaces_differ(self) -> None:
         self.assertTrue(issubclass(IntegrityGuardedTransportV3, MockProviderTransportV1))
-        self.assertFalse(
-            issubclass(R2RIntegrityGuardedTransportV1, MockProviderTransportV1)
+        historical = _git_output(
+            Path(__file__).resolve().parents[1],
+            "show",
+            f"{EXECUTION_COMMIT}:src/paperworks/v6/task039e3_r2r_precontact_v1.py",
+            text=True,
+        )
+        self.assertIn("class R2RIntegrityGuardedTransportV1:", historical)
+        self.assertNotIn(
+            "class R2RIntegrityGuardedTransportV1(MockProviderTransportV1):",
+            historical,
         )
         for name in ("calls", "request_hashes", "attempt_custody", "send"):
             self.assertTrue(hasattr(IntegrityGuardedTransportV3, name))
-        self.assertTrue(hasattr(R2RIntegrityGuardedTransportV1, "send"))
+        self.assertTrue(hasattr(_HistoricalR2RIntegrityGuardedTransportV1, "send"))
         for name in ("calls", "request_hashes", "attempt_custody"):
-            self.assertFalse(hasattr(R2RIntegrityGuardedTransportV1, name))
+            self.assertFalse(
+                hasattr(_HistoricalR2RIntegrityGuardedTransportV1, name)
+            )
 
     def test_t1b_has_a_follow_on_request_hashes_dependency(self) -> None:
         source = inspect.getsource(run_t1b_v1)
         self.assertIn("transport.request_hashes[-3:]", source)
-        guarded = R2RIntegrityGuardedTransportV1(
-            _NeverSendRawTransport(), _NeverSendIntegrityGuard()  # type: ignore[arg-type]
+        guarded = _HistoricalR2RIntegrityGuardedTransportV1(
+            _NeverSendRawTransport(), _NeverSendIntegrityGuard()
         )
         with self.assertRaises(AttributeError):
             _ = guarded.request_hashes  # type: ignore[attr-defined]

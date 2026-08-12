@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Callable, Generic, TypeVar
 
 from paperworks.v6.common import require_sha256, stable_hash_v1
+from paperworks.v6.task039e3_execution_prep_v1 import MockProviderTransportV1
 from paperworks.v6.task039e3_r2r_authorization_v1 import (
     DIRECT_NUMBER_PROMPT_HASH,
     DIRECT_NUMBER_SCHEMA_HASH,
@@ -221,11 +222,23 @@ class R2RPostContactIntegrityGuardV1:
 
 
 @dataclass(frozen=True)
-class R2RIntegrityGuardedTransportV1:
+class R2RIntegrityGuardedTransportV1(MockProviderTransportV1):
     """Require the complete R2R fingerprint before every provider attempt."""
 
     transport: Any
     integrity_guard: R2RPostContactIntegrityGuardV1
+
+    @property
+    def calls(self) -> int:
+        return self.transport.calls
+
+    @property
+    def request_hashes(self) -> tuple[str, ...]:
+        return self.transport.request_hashes
+
+    @property
+    def attempt_custody(self) -> tuple[Any, ...]:
+        return self.transport.attempt_custody
 
     def send(self, request: Any) -> Any:
         return self.integrity_guard.invoke_guarded_provider_attempt(
