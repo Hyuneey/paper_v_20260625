@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "cb5f17fa7c3c72b38252f14e1b03f6bf11dfc48c2fd9d629d53957670b4f2967",
+  "artifact_type": "task039e3_r1c_recovery_configuration_v1",
+  "capability_accounting": {
+    "cumulative_real_provider_capability_probes": 2,
+    "historical_capability_probes": 1,
+    "maximum_additional_recovery_probes": 1,
+    "maximum_cumulative_probes": 2,
+    "third_probe_prohibited": true
+  },
+  "corrected_capability_prompt_hash": "b725da5aaf23913c5c5ad7c74aa8260304c27a53f004d588d34b386ecfe0372b",
+  "corrected_capability_schema_hash": "7fb77614ef8df85ea6c03afe7b47ec6fda06c5b09d8f37722daae39de0f57e9a",
+  "exact_model": "gpt-5.4-2026-03-05",
+  "local_compatibility_slots": 0,
+  "maximum_transport_attempts": 3,
+  "maximum_transport_retries": 2,
+  "provider_ledgers": {
+    "capability": "separate_typed_hash_chain",
+    "scientific": "separate_typed_hash_chain_scientific_only"
+  },
+  "retry_wait_seconds": [2.0, 4.0],
+  "schema_version": "1.0.0",
+  "scientific_accounting": {
+    "direct_number_logical_calls": 42,
+    "maximum_logical_calls": 336,
+    "minimum_logical_calls": 252,
+    "scientific_concurrency": 1,
+    "scientific_generation_retries": 0,
+    "t1_logical_calls": 42,
+    "t1b_logical_calls": 126,
+    "t2_logical_calls_maximum": 126,
+    "t2_logical_calls_minimum": 42
+  },
+  "status": "passed_task039e3_r1c_recovery_remediation",
+  "task_id": "TASK-039E3-R1C",
+  "timeout_scope": "each_transport_attempt",
+  "urlopen_timeout_seconds": 30.0
+}

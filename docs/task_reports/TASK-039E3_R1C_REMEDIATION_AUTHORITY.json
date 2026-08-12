@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "4ae13b2edefb6dd43332a4c8a020b8e792ca8d67698486e14adcbc60d3022f40",
+  "artifact_type": "task039e3_r1c_remediation_authority_v1",
+  "authorized_remediation_targets": [
+    "eliminate_compatibility_acknowledgement_from_active_path",
+    "typed_separate_capability_and_scientific_accounting",
+    "preserve_model_mismatch_provider_metadata"
+  ],
+  "base_audit_commit_b": "1747ece15cac693b2ec84c7f780bd1a817a78469",
+  "historical_e3_status_unchanged": true,
+  "historical_r1_status_unchanged": true,
+  "provider_contact_authorized": false,
+  "r1a_status_unchanged": true,
+  "r1b_audit_receipt_hash": "0d5e4b35cb62d08cfffb53c8b34f8e89f26db1329c83057c89a8eb749f0a83bc",
+  "r1b_audit_status_unchanged": true,
+  "r1b_independent_audit_bundle_hash": "da87b16e0c8daa373303d716ef85203de58e7bfa6d21d42c3184fd4ef4e6ccf7",
+  "r1b_status_unchanged": true,
+  "recovery_implementation_authorized": true,
+  "recovery_probe_authorized": false,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "scientific_execution_authorized": false,
+  "status": "passed_task039e3_r1c_recovery_remediation",
+  "task_id": "TASK-039E3-R1C",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

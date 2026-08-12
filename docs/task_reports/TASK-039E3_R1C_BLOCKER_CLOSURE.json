@@ -1,0 +1,34 @@
+{
+  "artifact_hash": "a706a087f5dafddc8cfac0807dd2a19d92388ddc6ab18be52036b53512562321",
+  "artifact_type": "task039e3_r1c_blocker_closure_v1",
+  "blockers": [
+    {
+      "active_path_usage_count": 0,
+      "blocker_id": "B1",
+      "historical_finding": "compatibility_adapter_not_intrinsically_gate_bound",
+      "status": "CLOSED_BY_ELIMINATION_FROM_ACTIVE_PATH"
+    },
+    {
+      "blocker_id": "B2",
+      "cross_counter_cancellation_present": false,
+      "historical_finding": "cross_counter_cancellation_obscures_retry_accounting",
+      "local_compatibility_slots": 0,
+      "status": "CLOSED_BY_TYPED_SEPARATE_ACCOUNTING"
+    },
+    {
+      "blocker_id": "B3",
+      "historical_finding": "model_mismatch_metadata_discarded",
+      "model_mismatch_terminal_state": "completed_model_identity_mismatch",
+      "status": "CLOSED_BY_RECOVERY_TRANSPORT_V2",
+      "unexpected_model_preserved": true,
+      "unexpected_response_id_preserved": true
+    }
+  ],
+  "compatibility_bridge_active_path_usage_count": 0,
+  "local_compatibility_slot_count": 0,
+  "r1b_audit_compatibility_artifact_hash": "63c81d2a57d4361a39ee175f4fc3eb031cbe519543be3344007e791e50f6b42a",
+  "r1b_audit_transport_artifact_hash": "9e38c82a155ec9c1e310077aff9fbfbde3c68416a414658fea020e6c4d011e68",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r1c_recovery_remediation",
+  "task_id": "TASK-039E3-R1C"
+}
