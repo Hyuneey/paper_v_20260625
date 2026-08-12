@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "6b1705d0f2c65157bb1bcac0e6543c77a30968a265f352f4126dbadddb2fdf13",
+  "artifact_type": "task039e3_r2r_independent_audit_finalization_authority_v1",
+  "audit_commit_a": "0161a442f02d4f6da6505636f7e5ee06512a9756",
+  "authorization_chain_synthetic_final_c1_bindings_valid": true,
+  "blocking_finding": "terminal_pass_survives_missing_or_corrupt_prereceipt_public_artifact",
+  "component_status": "NOT_CLOSED",
+  "complete_synthetic_result_finalized": true,
+  "double_fault_classification_distinct": true,
+  "failure_receipt_sanitized": true,
+  "failure_resume_authorized": false,
+  "failure_rule_v2_authorized": false,
+  "failure_runtime_authority": false,
+  "failure_utility_authorized": false,
+  "failure_winner_selected": false,
+  "final_receipt_reread_and_self_hash_verified": true,
+  "final_receipt_written_last": true,
+  "prereceipt_artifact_mutation_cases_tested": 14,
+  "prereceipt_artifact_mutation_cases_unsafe_pass": 14,
+  "required_prereceipt_public_artifacts": 7,
+  "task_id": "TASK-039E3-R2R-INDEPENDENT-AUDIT"
+}

@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "e5f1c8797b6378cc4c19dc430da872b19322dfacc6c90d81cf2f99a9f50c573c",
+  "artifact_type": "task039e3_r2r_independent_audit_receipt_v1",
+  "audit_bundle_hash": "afb7209962544eff3ae3fd2a68b4d7f8444d15b3b252e4bebaa486e28ae936f5",
+  "audit_commit_a": "0161a442f02d4f6da6505636f7e5ee06512a9756",
+  "bundle_hash_method": "stable_hash_v1_of_task_audit_commit_components_and_report_sha256",
+  "blocking_finding_count": 1,
+  "capability_probe_authorized": false,
+  "final_source_manifest_hash": "35e73804156c097b27ae3d216575af6867a6330d346ddc71c888b5917a60859a",
+  "finalization_authority_hash": "6b1705d0f2c65157bb1bcac0e6543c77a30968a265f352f4126dbadddb2fdf13",
+  "implementation_commit_a": "3aa63588b08692b0333de26d3042b717e62014f2",
+  "implementation_commit_b": "c6e34440ee362df51e95b6181853f3f89fe4310e",
+  "provider_contact_authorized": false,
+  "report_sha256": "a1be0bb5305427b7ef13ce6dec8972913bea8aed5fdfdb28ac396fcc308316ba",
+  "resume_authorized": false,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "scientific_execution_authorized": false,
+  "scientific_semantics_hash": "b6264029e4bb1dddc764cf42a52b5e95475f5d7945d4f72fc10f51a80f767666",
+  "source_precontact_hash": "5566fb4ec1dd912bc0dc9ae92f088ce1ac94dc037202156bb93035efef09a816",
+  "status": "blocked_task039e3_r2r_independent_audit",
+  "task_id": "TASK-039E3-R2R-INDEPENDENT-AUDIT",
+  "test_report_hash": "0cbd13648f51d1d1a22218587f5ecaee4c24294606931b16709d976160512836",
+  "transport_integrity_hash": "f85173690986c01428121049a7d1d114e2c25cf4b256f9027ee0d61fafd4b4d5",
+  "unresolved_findings": [
+    "terminal_pass_survives_missing_or_corrupt_prereceipt_public_artifact"
+  ],
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

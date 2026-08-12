@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "f85173690986c01428121049a7d1d114e2c25cf4b256f9027ee0d61fafd4b4d5",
+  "artifact_type": "task039e3_r2r_independent_audit_transport_integrity_v1",
+  "audit_commit_a": "0161a442f02d4f6da6505636f7e5ee06512a9756",
+  "body_read_failure_sanitized": true,
+  "component_status": "CLOSED",
+  "custody_persistence_failure_blocks_retry": true,
+  "http_400_retry_eligible": false,
+  "http_400_terminal_classification": "completed_nonretryable_transport_failure",
+  "http_429_and_5xx_attempt_ceiling": 3,
+  "http_429_and_5xx_retry_waits_seconds": [2.0, 4.0],
+  "http_error_boundary_lengths_tested": [0, 1, 65535, 65536, 65537],
+  "http_error_maximum_read_bytes": 65537,
+  "http_error_maximum_retained_bytes": 65536,
+  "integrity_families_mutated_after_first_contact": 19,
+  "integrity_families_mutated_before_first_contact": 19,
+  "postcontact_provider_recontact_count": 0,
+  "private_raw_error_bytes_public": false,
+  "task_id": "TASK-039E3-R2R-INDEPENDENT-AUDIT",
+  "transport_retry_semantics_unchanged": true
+}
