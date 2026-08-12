@@ -1,0 +1,72 @@
+{
+  "all_required_tests_passed": true,
+  "api_key_presence_checked": false,
+  "artifact_hash": "67942e2ff29d0930fe210bd7a6aecac47e9aeea30e79402a64e3286acca32851",
+  "artifact_type": "task039e3_r2r_request_contract_remediation_test_report_v1",
+  "commit_a": "f6749952f4e7f1ec7f7adec967ba7627feab18ac",
+  "commands": [
+    {
+      "command": "$env:PYTHONPATH='src;tests'; <bundled-python> -B -m unittest -v tests.test_task039e3_r2_scientific_recovery_protocol tests.test_task039e3_r2_failure_forensic_audit tests.test_task039e3_r2r_request_contract_v1 tests.test_task039e3_r2r_live_transport_v1 tests.test_task039e3_r2r_execution_v1 tests.test_task039e3_r2r_integration_v1 tests.test_task039e0_validity tests.test_task039e0_validity_v2 tests.test_task039e3_main_arms tests.test_task039e3_t2_direct tests.test_task039e3_r1d2_provider_forensics_v3 tests.test_task039e3_r1d2_transactional_custody_v3",
+      "errors": 0,
+      "failures": 0,
+      "passed": 92,
+      "skipped": 0,
+      "tests_run": 92
+    },
+    {
+      "command": "$env:PYTHONPATH='src;tests'; <bundled-python> -B -m unittest -v tests.test_task039e3_r1c_science_v2 tests.test_task039e3_r1c_blocking_regressions tests.test_task039e3_r1d2_execution_v3 tests.test_task039e3_r1d2_failure_finalization tests.test_task039e3_r1d2_authorization_chain_v3",
+      "errors": 0,
+      "failures": 0,
+      "passed": 36,
+      "skipped": 0,
+      "tests_run": 36
+    },
+    {
+      "command": "<bundled-python> -B -m compileall -q src/paperworks/v6 scripts tests",
+      "result": "PASS"
+    },
+    {
+      "command": "<bundled-python> -B scripts/run_task039e3_r2r_scientific_execution_v1.py --offline-self-check",
+      "result": "PASS"
+    },
+    {
+      "command": "offline closed-schema parse and R2R authorization validation",
+      "result": "PASS"
+    },
+    {
+      "command": "independent raw-Git AST closure and 40-record blob/byte verification",
+      "result": "PASS"
+    },
+    {
+      "command": "JSON parse and stable_hash_v1 self-hash verification",
+      "result": "PASS"
+    },
+    {
+      "command": "sanitized task-delta leak scan",
+      "result": "PASS"
+    },
+    {
+      "command": "<bundled-python> -B -m pip check",
+      "result": "PASS: No broken requirements found"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    }
+  ],
+  "dynamic_import_count": 0,
+  "e1_accessed": false,
+  "live_runner_invoked": false,
+  "openai_api_key_accessed": false,
+  "provider_contacted": false,
+  "real_failed_r2_private_root_accessed": false,
+  "schema_v2_hash": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1",
+  "schema_v2_hash_verified": true,
+  "schema_version": "1.0.0",
+  "source_record_count": 40,
+  "status": "passed_task039e3_r2r_request_contract_remediation",
+  "task_id": "TASK-039E3-R2R-REQUEST-CONTRACT-REMEDIATION",
+  "total_unittest_passed": 128,
+  "total_unittest_run": 128,
+  "unbound_material_dependency_count": 0
+}
