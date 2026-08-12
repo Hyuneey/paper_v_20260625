@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "ad2cc1493c97e91c3775a1b13c1ba88a5b06c774d2df043e0ace806559532870",
+  "artifact_type": "task039e3_r1d_blocked_preflight_v1",
+  "authoritative_observed_custody_accounting_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce5fbeb616",
+  "authoritative_observed_hash_recomputed": true,
+  "base_commit": "8bd34c6af42f97835588f6b0ffba34660a5d51cc",
+  "blocking_classification": "r1c_audit_custody_accounting_authority_binding_mismatch",
+  "implementation_started": false,
+  "lineage_verified": true,
+  "main_commit": "11a5f04a0422049a099020f06c59ec23bc72d130",
+  "multi_agent_lanes_started": false,
+  "other_required_bindings_verified": true,
+  "r1c_audit_bundle_hash": "cd5c905fb356982947f0367ab7d44f8c9a6c694130fa7d02d936e26389713384",
+  "r1c_audit_receipt_hash": "2abff5c79cfad02bccc963043c13def1e4223676b89b58773216000aeeb3049f",
+  "required_custody_accounting_hash": "ac5dd3d8b060ef353b18a124ea9344ab679cbd6ac82bbcfb5d9f94ce3d6ae967",
+  "schema_version": "1.0.0",
+  "source_files_created_or_modified": false,
+  "status": "blocked_task039e3_r1d_recovery_audit_remediation",
+  "stop_stage": "preimplementation_audit_authority_binding_validation",
+  "task_id": "TASK-039E3-R1D"
+}
