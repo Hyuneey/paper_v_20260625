@@ -1,0 +1,23 @@
+{
+  "additional_capability_probes": 0,
+  "artifact_hash": "14f7aeee70bd6cb6938f463e35fa6a8abc73257addbcdeb083f7e86b53bf5420",
+  "artifact_type": "task039e3_r2_recovery_capability_reuse_policy_v1",
+  "capability_reuse_binding_required": true,
+  "capability_transport_instantiation_authorized": false,
+  "cumulative_capability_probes_after_r2r": 2,
+  "cumulative_capability_probes_before_r2r": 2,
+  "diagnostic_provider_call_authorized": false,
+  "maximum_cumulative_capability_probes": 2,
+  "precredential_revalidation_requirements": [
+    "private capability receipt self-hash and PASS status",
+    "execution commit, source manifest, and consumed authorization bindings",
+    "exact returned model and provider-authored response",
+    "disk-authoritative capability ledger hash, head, record count, and absence of orphan or pending records",
+    "one logical call, one attempt, zero retries, zero local compatibility slots, and cumulative probe count two"
+  ],
+  "recovery_capability_policy": "REUSE_DURABLE_CORRECTED_CAPABILITY_PASS",
+  "schema_version": "1.0.0",
+  "status": "frozen_task039e3_r2_recovery_capability_reuse_policy",
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+  "third_capability_probe_authorized": false
+}

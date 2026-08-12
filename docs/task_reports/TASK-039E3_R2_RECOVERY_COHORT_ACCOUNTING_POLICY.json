@@ -1,0 +1,46 @@
+{
+  "artifact_hash": "f9e800c5976ea6aa3ac742bb2addca1527bde693f9ce8663ba519b66847069cc",
+  "artifact_type": "task039e3_r2_recovery_cohort_accounting_policy_v1",
+  "direct_number_logical_calls": 42,
+  "fresh_cohort_ledgers_required_empty": [
+    "scientific_provider",
+    "proposal_validity",
+    "construction_outcome",
+    "direct_number"
+  ],
+  "historical_aborted_r2_accounting": {
+    "evaluable_scientific_results": 0,
+    "provider_authored_scientific_responses": 0,
+    "scientific_logical_calls": 1,
+    "scientific_transport_attempts": 1,
+    "t1_proposals_generated": 0
+  },
+  "historical_partial_outputs_metric_authority": false,
+  "lifetime_scientific_logical_call_attempts_formula": "1 + actual_recovery_cohort_scientific_logical_calls",
+  "lifetime_scientific_logical_call_attempts_range": {
+    "maximum": 337,
+    "minimum": 253
+  },
+  "prior_failed_t1_reused": false,
+  "prior_t0_reused": false,
+  "recovery_cohort_metric_authority": "complete_r2r_cohort_only",
+  "recovery_cohort_scientific_logical_calls": {
+    "maximum": 336,
+    "minimum": 252
+  },
+  "recovery_execution_mode": "FRESH_FULL_COHORT_RESTART",
+  "relations": 42,
+  "schema_version": "1.0.0",
+  "scientific_concurrency": 1,
+  "scientific_generation_retries": 0,
+  "status": "frozen_task039e3_r2_recovery_cohort_accounting_policy",
+  "t0_deterministic_outcomes": 42,
+  "t0_provider_calls": 0,
+  "t1_b_logical_calls": 126,
+  "t1_logical_calls": 42,
+  "t2_logical_calls": {
+    "maximum": 126,
+    "minimum": 42
+  },
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL"
+}

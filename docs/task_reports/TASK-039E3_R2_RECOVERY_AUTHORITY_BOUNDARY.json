@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "29f82aafc81316d735b418688f06f0050fe76b51461337fb234fe4e2b6dba7df",
+  "artifact_type": "task039e3_r2_recovery_authority_boundary_v1",
+  "capability_probe_authorized": false,
+  "future_task_graph": [
+    "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+    "TASK-039E3-R2R-REQUEST-CONTRACT-REMEDIATION",
+    "TASK-039E3-R2R-INDEPENDENT-AUDIT",
+    "TASK-039E3-R2R-AUTHORIZATION-FREEZE",
+    "TASK-039E3-R2R-SCIENTIFIC-EXECUTION"
+  ],
+  "historical_partial_result_reuse_authorized": false,
+  "next_authorized_task": "TASK-039E3-R2R-REQUEST-CONTRACT-REMEDIATION",
+  "provider_contact_authorized": false,
+  "provider_diagnostic_call_authorized": false,
+  "resume_authorized": false,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "scientific_reexecution_authorized": false,
+  "status": "frozen_task039e3_r2_recovery_authority_boundary",
+  "task_graph_steps_skippable": false,
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

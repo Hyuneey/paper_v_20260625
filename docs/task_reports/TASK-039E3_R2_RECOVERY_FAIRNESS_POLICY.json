@@ -1,0 +1,31 @@
+{
+  "artifact_hash": "99084b6501c2529b48070dfaae7860bf91c11e499cec44882d920d5fd267a829",
+  "artifact_type": "task039e3_r2_recovery_fairness_policy_v1",
+  "direct_number_schema_shared_policy": "UNCHANGED_V1",
+  "historical_information_carry_forward": false,
+  "model_endpoint_prompt_sampling_changes": false,
+  "recovery_main_schema_hash_shared_by": {
+    "T1": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1",
+    "T1-B": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1",
+    "T2": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1"
+  },
+  "schema_version": "1.0.0",
+  "scientific_concurrency": 1,
+  "scientific_generation_retries": 0,
+  "status": "frozen_task039e3_r2_recovery_fairness_policy",
+  "t1_b_policy": {
+    "calls_per_relation": 3,
+    "complete_all_calls": true,
+    "feedback": false,
+    "selection": "lowest_index_admissible_else_no_rule",
+    "same_initial_evidence": true
+  },
+  "t2_policy": {
+    "budget_exhaustion": "no_rule",
+    "maximum_calls_per_relation": 3,
+    "maximum_retrievals": 1,
+    "retrieval_corpus": "same_approved_initial_e1_corpus",
+    "stop_on": ["admissible", "deterministically_nonrepairable"]
+  },
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL"
+}

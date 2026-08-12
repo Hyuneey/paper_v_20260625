@@ -1,0 +1,28 @@
+{
+  "adversarial_case_count": 25,
+  "artifact_hash": "4645b0b8b9a7ec61acc9b0e280d13e48411e18a5709b0a4bf04bf4cea6db86b2",
+  "artifact_type": "task039e3_r2_recovery_validity_parity_policy_v1",
+  "deterministic_checks_preserved": [
+    "relation identity exact match",
+    "source and target exact match",
+    "source and target direction exact match",
+    "selected horizon exact match",
+    "approved numeric origin and reference validity",
+    "window-reference closure",
+    "variables exactly correspond to source and target with unsupported and duplicate rejection",
+    "runtime logic family",
+    "no arbitrary numeric literals or prohibited data references",
+    "construction provenance validity",
+    "no rule, validity, or runtime authority preclaim",
+    "canonical serialization and proposal hash validity"
+  ],
+  "project_deterministic_validity_role": "FINAL_SCIENTIFIC_ADMISSIBILITY_AUTHORITY",
+  "provider_schema_relaxation_equals_scientific_gate_relaxation": false,
+  "reversed_source_target_variable_order_policy": "unchanged_v1_set_correspondence_semantics",
+  "schema_version": "1.0.0",
+  "scientific_admissibility_parity": "PASS",
+  "scientific_gate_lowered": false,
+  "status": "frozen_task039e3_r2_recovery_validity_parity_policy",
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+  "valid_case_count": 1
+}

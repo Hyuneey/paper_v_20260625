@@ -1,0 +1,89 @@
+{
+  "artifact_hash": "91ac18f830498e0232f66ea48575bf6e4aecb751ca469bc258f5e34bbf9f5dad",
+  "artifact_type": "task039e3_r2_recovery_provider_schema_policy_v1",
+  "direct_number_provider_schema_hash": "b1b91bf27fd191da57984be625a2547e4e5ee96a0aca52535df071af92bfd6ca",
+  "direct_number_provider_schema_policy": "UNCHANGED",
+  "external_document_evidence_classification": "SUPPLIED_COMPATIBILITY_SIGNAL_NOT_HISTORICAL_CAUSAL_PROOF",
+  "original_main_provider_schema_hash": "92c628faf78e5ebdcfc3ec2dbeb9daa42b6beff0875cbf226c87c2f2c43cc216",
+  "provider_schema_constraints_removed": {
+    "$schema": ["root"],
+    "maxItems": ["variables"],
+    "minItems": ["variables"],
+    "minLength": ["relation_identity", "source", "target", "variables.items"],
+    "pattern": [
+      "source_threshold_reference",
+      "source_stability_reference",
+      "target_scale_reference",
+      "window_constant_references.source_pre_window_seconds",
+      "window_constant_references.source_post_window_seconds",
+      "window_constant_references.minimum_source_stability_fraction",
+      "window_constant_references.source_refractory_seconds",
+      "window_constant_references.cross_source_isolation_radius_seconds",
+      "window_constant_references.target_baseline_window_seconds",
+      "window_constant_references.target_response_window_seconds"
+    ],
+    "uniqueItems": ["variables"]
+  },
+  "provider_schema_role": "STRUCTURED_SERIALIZATION_AND_BASIC_TYPE_CONSTRAINT_ONLY",
+  "recovery_main_provider_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "dsl_family": {"enum": ["canonical_delayed_response_rule_v1_candidate"], "type": "string"},
+      "relation_identity": {"type": "string"},
+      "runtime_logic_family": {"enum": ["missing_expected_delayed_response"], "type": "string"},
+      "selected_delay_horizon_seconds": {"enum": [1, 5, 10, 30, 60], "type": "integer"},
+      "source": {"type": "string"},
+      "source_stability_reference": {"type": "string"},
+      "source_step_direction": {"enum": ["step_down", "step_up"], "type": "string"},
+      "source_threshold_reference": {"type": "string"},
+      "target": {"type": "string"},
+      "target_response_direction": {"enum": ["decrease", "increase"], "type": "string"},
+      "target_scale_reference": {"type": "string"},
+      "variables": {"items": {"type": "string"}, "type": "array"},
+      "window_constant_references": {
+        "additionalProperties": false,
+        "properties": {
+          "cross_source_isolation_radius_seconds": {"type": "string"},
+          "minimum_source_stability_fraction": {"type": "string"},
+          "source_post_window_seconds": {"type": "string"},
+          "source_pre_window_seconds": {"type": "string"},
+          "source_refractory_seconds": {"type": "string"},
+          "target_baseline_window_seconds": {"type": "string"},
+          "target_response_window_seconds": {"type": "string"}
+        },
+        "required": [
+          "source_pre_window_seconds",
+          "source_post_window_seconds",
+          "minimum_source_stability_fraction",
+          "source_refractory_seconds",
+          "cross_source_isolation_radius_seconds",
+          "target_baseline_window_seconds",
+          "target_response_window_seconds"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "dsl_family",
+      "relation_identity",
+      "source",
+      "source_step_direction",
+      "target",
+      "target_response_direction",
+      "selected_delay_horizon_seconds",
+      "source_threshold_reference",
+      "source_stability_reference",
+      "target_scale_reference",
+      "window_constant_references",
+      "variables",
+      "runtime_logic_family"
+    ],
+    "type": "object"
+  },
+  "recovery_main_provider_schema_hash": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1",
+  "recovery_main_provider_schema_version": "RECOVERY_MAIN_PROVIDER_SCHEMA_V2",
+  "schema_version": "1.0.0",
+  "status": "frozen_task039e3_r2_recovery_provider_schema_policy",
+  "task_id": "TASK-039E3-R2-SCIENTIFIC-RECOVERY-PROTOCOL",
+  "uniqueItems_compatibility_classification": "HIGH_PRIORITY_PROVIDER_SCHEMA_COMPATIBILITY_SUSPECT_NOT_PROVEN_HTTP400_CAUSE"
+}
