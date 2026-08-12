@@ -1,0 +1,167 @@
+{
+  "artifact_hash": "8f4aeb52d3d979d06091853729ff2c8f896221db77082a1f8c273592555f2152",
+  "artifact_type": "task039e3_r1b_test_report_v1",
+  "commit_under_test": "93c2e8a6333829446c5353f1ca9b61c967f8a7a7",
+  "conflicting_lane_results": [],
+  "coordinator_aggregation": "passed",
+  "e0_tests_passed": 59,
+  "e1_tests_collected": 29,
+  "e1_tests_passed": 28,
+  "e1_tests_skipped": 1,
+  "e2_compatible_tests_passed": 39,
+  "file_ownership_violations": [],
+  "historical_e3_tests_passed": 49,
+  "implementation_lanes": {
+    "lane_a_corrected_capability": "passed",
+    "lane_b_serialization_atomic_writer": "passed",
+    "lane_c_authorization_root_guards": "passed",
+    "lane_d_historical_reuse_audit": "passed",
+    "lane_e_boundary_oracle": "passed"
+  },
+  "multi_agent_execution_used": true,
+  "parallel_test_lanes": {
+    "t1_capability_authorization": "passed",
+    "t2_serialization_roots": "passed",
+    "t3_integration_boundaries": "passed_by_coordinator"
+  },
+  "private_custody_concurrently_written": false,
+  "provider_calls_executed_in_parallel": false,
+  "r1b_unique_tests": 50,
+  "r1b_unique_tests_passed": 50,
+  "schema_version": "1.0.0",
+  "shared_authoritative_files_concurrently_written": false,
+  "status": "passed_task039e3_r1b_recovery_implementation",
+  "task_id": "TASK-039E3-R1B",
+  "test_runs": [
+    {
+      "collected": 30,
+      "command": "python -m unittest -v tests.test_task039e3_r1b_recovery_capability tests.test_task039e3_r1b_recovery_authorization tests.test_task039e3_r1a_timeout_authority tests.test_task039e3_r0_capability_forensics",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "parallel_t1_capability_authorization_r1a_r0",
+      "passed": 30,
+      "skipped": 0
+    },
+    {
+      "collected": 20,
+      "command": "python -m unittest -v tests.test_task039e3_r1b_recovery_serialization tests.test_task039e3_r1b_recovery_authorization",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "parallel_t2_serialization_roots",
+      "passed": 20,
+      "skipped": 0
+    },
+    {
+      "collected": 68,
+      "command": "python -m unittest -v tests.test_task039e3_r1b_recovery_execution tests.test_task039e3_r1b_recovery_boundaries tests.test_task039e3_live_execution tests.test_task039e3_live_transport tests.test_task039e3_main_arms tests.test_task039e3_metrics_schedule_public tests.test_task039e3_request_capability_boundary tests.test_task039e3_schemas_receipt tests.test_task039e3_t2_direct tests.test_task039e3_transport_parser_custody",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "coordinator_t3_and_historical_e3",
+      "passed": 68,
+      "skipped": 0
+    },
+    {
+      "classification": "historical_nonblocking_diagnostic",
+      "collected": 53,
+      "command": "python -m unittest -v tests.test_task039e2_authoritative_configuration tests.test_task039e2_authoritative_prompts tests.test_task039e2_authoritative_reports tests.test_task039e2_boundaries tests.test_task039e2_execution_config tests.test_task039e2_input_prompts_retrieval tests.test_task039e2_schedule_transport tests.test_task039e2_schemas tests.test_task039e2_structured_output_t0",
+      "errors": 0,
+      "exit_code": 1,
+      "failed": 4,
+      "findings": [
+        "three worktree-byte prompt hashes differ under Windows line-ending conversion; Git blob identities remain frozen",
+        "one E2-preparation test expects the later E3 authorization artifact to be absent and is lineage-incompatible"
+      ],
+      "name": "e2_broad_historical_diagnostic",
+      "passed": 48,
+      "skipped": 1
+    },
+    {
+      "collected": 39,
+      "command": "python -m unittest -v tests.test_task039e2_authoritative_configuration tests.test_task039e2_boundaries tests.test_task039e2_execution_config tests.test_task039e2_input_prompts_retrieval tests.test_task039e2_schedule_transport tests.test_task039e2_schemas tests.test_task039e2_structured_output_t0",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "e2_compatible",
+      "passed": 39,
+      "skipped": 0
+    },
+    {
+      "classification": "jsonschema_optional_skip",
+      "collected": 29,
+      "command": "python -m unittest -v tests.test_task039e1_real_schemas tests.test_task039e1_real_materialization tests.test_task039e1_real_boundaries tests.test_task039e1_mismatch_and_resolver tests.test_task039e1_materialization_synthetic",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "e1_compatible",
+      "passed": 28,
+      "skipped": 1
+    },
+    {
+      "collected": 59,
+      "command": "python -m unittest -v tests.test_task039e0_authoritative_protocol tests.test_task039e0_protocol tests.test_task039e0_schemas_and_boundaries tests.test_task039e0_validity tests.test_task039e0_validity_v2",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "e0_compatible",
+      "passed": 59,
+      "skipped": 0
+    },
+    {
+      "collected": null,
+      "command": "python -m compileall -q src scripts tests",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "compileall",
+      "passed": null,
+      "skipped": 0
+    },
+    {
+      "collected": 510,
+      "command": "offline JSON parse and stable_hash_v1 validation for docs/task_reports and schemas/v6",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "json_schema_self_hash",
+      "passed": 510,
+      "recovery_schemas_checked": 2,
+      "self_hashes_checked": 126,
+      "skipped": 0
+    },
+    {
+      "collected": null,
+      "command": "python -m pip check",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "pip_check",
+      "passed": null,
+      "result": "No broken requirements found.",
+      "skipped": 0
+    },
+    {
+      "collected": 13,
+      "command": "PowerShell Select-String over 13 R1B implementation/schema/test/task files",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "public_leak_scan",
+      "passed": 13,
+      "skipped": 0,
+      "suspicious_hits": 0
+    },
+    {
+      "collected": null,
+      "command": "git diff --check",
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "name": "git_diff_check",
+      "passed": null,
+      "skipped": 0
+    }
+  ]
+}
