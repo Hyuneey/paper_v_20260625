@@ -1,0 +1,50 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "467b84e2c52756972a01ebabe011484610caf5a6bd2bd4784749e34b164a9c72",
+  "artifact_type": "task039e3_r2r_direct_rendering_audit_test_report_v1",
+  "capability_probes": 0,
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v first exact-Commit-A focused module list",
+      "result": "87 substantive tests PASS and 1 expected private-root oracle skip; command list contained 3 nonexistent historical module names, producing loader errors only"
+    },
+    {
+      "command": "bundled-python -B -m unittest -v corrected exact-Commit-A focused 17-module suite",
+      "result": "114/114 PASS; 1 expected coordinator-only historical private-root oracle skip"
+    },
+    {
+      "command": "bundled-python -B -m compileall -q four new audit test modules",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python -B -m pip check",
+      "result": "PASS; no broken requirements"
+    },
+    {
+      "command": "independent AST closure reconstruction from exact Remediation Commit A Git blobs",
+      "result": "49 active material paths; 50 source records; dynamic=0; unresolved=0; unbound=0"
+    },
+    {
+      "command": "exact source identity verification",
+      "result": "50/50 Git blobs, raw-byte SHA-256 values, and worktree bytes PASS"
+    },
+    {
+      "command": "git diff --check and task-scoped offline safety scan",
+      "result": "PASS; only frozen public endpoint literal observed in a synthetic authorization fixture; no network-capable call"
+    },
+    {
+      "command": "JSON self-hash and audit bundle reconstruction",
+      "result": "PASS"
+    }
+  ],
+  "failed_execution_private_root_accessed": false,
+  "live_runner_invocations": 0,
+  "network_capable_tests": 0,
+  "openai_api_key_accessed": false,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-DIRECT-NUMBER-RENDERING-INDEPENDENT-AUDIT"
+}

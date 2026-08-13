@@ -1,0 +1,46 @@
+{
+  "active_material_path_count": 49,
+  "artifact_hash": "51957804685a3e58c6b8c4251ecf46267582641625b26c62ab2dee7dcd55e891",
+  "artifact_type": "task039e3_r2r_direct_rendering_audit_source_v1",
+  "blocking_finding_count": 0,
+  "changed_active_source_files": [
+    {
+      "classification": "DIRECT_RENDERING_REMEDIATION",
+      "path": "src/paperworks/v6/task039e2_execution_configuration_v1.py"
+    },
+    {
+      "classification": "HISTORICAL_ACCOUNTING_ROLLOVER",
+      "path": "src/paperworks/v6/task039e3_r2r_execution_v1.py"
+    },
+    {
+      "classification": "HISTORICAL_ACCOUNTING_ROLLOVER",
+      "path": "src/paperworks/v6/task039e3_r2r_failure_finalizer_v1.py"
+    },
+    {
+      "classification": "HISTORICAL_ACCOUNTING_ROLLOVER",
+      "path": "src/paperworks/v6/task039e3_r2r_live_execution_v1.py"
+    },
+    {
+      "classification": "HISTORICAL_ACCOUNTING_ROLLOVER",
+      "path": "src/paperworks/v6/task039e3_r2r_precontact_v1.py"
+    },
+    {
+      "classification": "HISTORICAL_ACCOUNTING_ROLLOVER",
+      "path": "src/paperworks/v6/task039e3_r2r_result_finalizer_v1.py"
+    }
+  ],
+  "dynamic_import_count": 0,
+  "forensic_commit_b": "4712eeea87f0f60b51f4db9414fb589391c899d1",
+  "git_blob_identity_validation": "50/50_PASS",
+  "raw_byte_sha256_validation": "50/50_PASS",
+  "remediation_commit_a": "5dca2d0431d60ef2f2bdfc907ebfe3fe18521f16",
+  "remediation_commit_b": "d511372db560fd2cf27c2d56db7c637a3324584f",
+  "remediation_source_manifest_hash": "9037fda0bc7694fd643058a9779fb919c75664824f2f11c49dde9f4be1b209b8",
+  "schema_version": "1.0.0",
+  "source_record_count": 50,
+  "task_id": "TASK-039E3-R2R-DIRECT-NUMBER-RENDERING-INDEPENDENT-AUDIT",
+  "unbound_dependency_count": 0,
+  "unexplained_scientific_source_drift_count": 0,
+  "unresolved_import_count": 0,
+  "worktree_bytes_equal_git_objects": "50/50_PASS"
+}
