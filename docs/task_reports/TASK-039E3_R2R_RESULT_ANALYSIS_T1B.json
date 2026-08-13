@@ -1,0 +1,27 @@
+{
+  "additional_provider_calls": {"beyond_first_draw": 84, "call_2_stage": 42, "call_3_stage": 42},
+  "admissible_count_distribution": {"0": 0, "1": 1, "2": 2, "3": 39},
+  "admissible_proposals": 122,
+  "artifact_hash": "9ef7ce42e9d695d4a9e3708ebe087b124599763ca484813e1441fd5c016c5b74",
+  "artifact_type": "task039e3_r2r_result_analysis_t1b_v1",
+  "cumulative_relation_yield": {"after_call_1": 41, "after_calls_1_2": 41, "after_calls_1_2_3": 42},
+  "final_accepted_relations": 42,
+  "marginal_recovery": {"call_2": 0, "call_3": 1},
+  "materialized_proposals": 125,
+  "per_call": {
+    "1": {"admissible": 41, "parse_failure": 0, "rejected": 1},
+    "2": {"admissible": 39, "parse_failure": 1, "rejected": 2},
+    "3": {"admissible": 42, "parse_failure": 0, "rejected": 0}
+  },
+  "provider_calls": 126,
+  "rejected_count_distribution": {"0": 40, "1": 1, "2": 1, "3": 0},
+  "rejected_proposals": 3,
+  "schema_parse_failures": 1,
+  "schema_failure_handling": "relation_remained_accepted_from_call_1_no_proposal_fabricated",
+  "schema_version": "1.0.0",
+  "selected_call_distribution": {"1": 41, "2": 0, "3": 1},
+  "selected_earliest_admissible_relations": 42,
+  "structured_count_distribution": {"0": 0, "1": 0, "2": 1, "3": 41},
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS",
+  "valid_structured": 125
+}

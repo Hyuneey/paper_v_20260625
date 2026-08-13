@@ -1,0 +1,5 @@
+arm,relation_denominator,accepted,no_rule,accepted_rate,materialized_proposals,admissible_proposals,rejected_proposals,parse_failures
+T0,42,42,0,1.0,42,42,0,0
+T1,42,42,0,1.0,42,42,0,0
+T1-B,42,42,0,1.0,125,122,3,1
+T2,42,39,3,0.9285714285714286,42,39,3,0

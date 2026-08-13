@@ -1,0 +1,17 @@
+{
+  "all_relations_mapped": true,
+  "artifact_hash": "562de7029e1e6768b34ffa9455e280eed7512c5312669ac5e34d7b8b419513c5",
+  "artifact_type": "task039e3_r2r_result_analysis_origin_v1",
+  "claim_classification": "INCONCLUSIVE",
+  "membership_pattern_counts": {"GDN": 3, "META": 7, "META+STAT": 21, "STAT": 9, "STAT+GDN": 2},
+  "memberships_nonexclusive": true,
+  "origins": {
+    "GDN": {"accepted": {"T0": 5, "T1": 5, "T1-B": 5, "T2": 3}, "direct_error": {"source_stability_tolerance": {"mean": 2.7531973564875076, "median": 1.0011006053329343}, "source_step_threshold": {"mean": 0.5734367607846671, "median": 0.4997248486667665}, "target_noise_scale": {"mean": 40.0752275593522, "median": 25.53734135645314}}, "eligible_relations": 5, "t1b_parse_failures": 0, "t1b_rejections": 1, "t2_no_rule": 2},
+    "META": {"accepted": {"T0": 28, "T1": 28, "T1-B": 28, "T2": 28}, "direct_error": {"source_stability_tolerance": {"mean": 1.03854144137894, "median": 0.3315888096245502}, "source_step_threshold": {"mean": 0.7120383589758063, "median": 0.705527687023047}, "target_noise_scale": {"mean": 13.371611559537934, "median": 0.971869695496612}}, "eligible_relations": 28, "t1b_parse_failures": 1, "t1b_rejections": 0, "t2_no_rule": 0},
+    "STAT": {"accepted": {"T0": 32, "T1": 32, "T1-B": 32, "T2": 30}, "direct_error": {"source_stability_tolerance": {"mean": 1.0315033224607042, "median": 0.49035418075741677}, "source_step_threshold": {"mean": 0.6243080960537505, "median": 0.598414372942047}, "target_noise_scale": {"mean": 50.95873133716461, "median": 0.9840535741175774}}, "eligible_relations": 32, "t1b_parse_failures": 1, "t1b_rejections": 2, "t2_no_rule": 2}
+  },
+  "schema_version": "1.0.0",
+  "subgroup_role": "exploratory",
+  "t2_no_rule_by_membership_pattern": {"GDN": 1, "STAT": 1, "STAT+GDN": 1},
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS"
+}

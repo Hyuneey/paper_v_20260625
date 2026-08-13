@@ -1,0 +1,74 @@
+{
+  "artifact_hash": "3cccbaa48b4564fb08a10d6bc663d233ee198e42a4860e3e0145a407a32591c1",
+  "artifact_type": "task039e3_r2r_result_analysis_claims_v1",
+  "claims": {
+    "A": {
+      "allowed_thesis_wording": "The bounded evidence-bound pipeline produced verifier-admissible rules for confirmed relations in this 42-relation cohort.",
+      "counter_evidence": "T2 abstained on three relations.",
+      "direct_evidence": "T0, T1, and T1-B each accepted 42/42; T2 accepted 39/42.",
+      "limitations": "Deterministic validity is not utility or detector benefit.",
+      "prohibited_overclaim": "The constructed rules improve anomaly detection.",
+      "status": "SUPPORTED"
+    },
+    "B": {
+      "allowed_thesis_wording": "One frozen T1 call yielded an admissible proposal for every relation in this cohort and run.",
+      "counter_evidence": "None within T1 in this run.",
+      "direct_evidence": "42 calls, 42 valid structured proposals, 42 admissible proposals, 42 accepted relations.",
+      "limitations": "One cohort, model snapshot, and realized run; no general reliability claim.",
+      "prohibited_overclaim": "LLMs reliably construct valid CPS rules in general.",
+      "status": "SUPPORTED"
+    },
+    "C": {
+      "allowed_thesis_wording": "Repeated independent sampling recovered one first-draw rejection and tolerated one unrelated parse failure, at 84 extra calls.",
+      "counter_evidence": "Final yield did not exceed the separate T1 arm; call 2 recovered zero relations.",
+      "direct_evidence": "T1-B yield progressed 41, 41, 42; all relations accepted; one parse failure did not affect its relation.",
+      "limitations": "Only one realized sequence and one parse failure.",
+      "prohibited_overclaim": "Best-of-three generally improves validity or provider reliability.",
+      "status": "PARTIALLY_SUPPORTED"
+    },
+    "D": {
+      "allowed_thesis_wording": "Incremental validity benefit of T2 was not observed, and its feedback mechanism was not empirically exercised.",
+      "counter_evidence": "T1 and T1-B reached 42/42 while T2 reached 39/42.",
+      "direct_evidence": "Zero revise, retrieve, follow-up, or recovery actions; three deterministic non-repairable no_rule outcomes.",
+      "limitations": "The run evaluates the realized controller path, not an activated feedback-recovery path.",
+      "prohibited_overclaim": "Verifier feedback improved construction.",
+      "status": "NOT_SUPPORTED"
+    },
+    "E": {
+      "allowed_thesis_wording": "T2 used one-third of T1-B's calls but lost three accepted relations; T1 dominated both on this validity/cost frontier.",
+      "counter_evidence": "T2's 42 calls were cheaper than T1-B's 126.",
+      "direct_evidence": "T2 39/42 at 42 calls versus T1-B 42/42 at 126; T1 42/42 at 42.",
+      "limitations": "No preregistered acceptable-loss threshold and no utility outcome.",
+      "prohibited_overclaim": "T2 provides the best efficiency-quality trade-off.",
+      "status": "NOT_SUPPORTED"
+    },
+    "F": {
+      "allowed_thesis_wording": "Direct estimation was structurally valid but materially inaccurate, supporting deterministic calibration for this contract.",
+      "counter_evidence": "No missing, nonfinite, parse, or sign-domain failures occurred.",
+      "direct_evidence": "Median normalized errors were 0.598, 0.490, and 0.984; target-noise mean was 39.604.",
+      "limitations": "Descriptive frozen-cohort evidence; utility remains untested.",
+      "prohibited_overclaim": "LLMs cannot estimate numeric parameters in any setting.",
+      "status": "SUPPORTED"
+    },
+    "G": {
+      "allowed_thesis_wording": "The deterministic verifier/controller prevented three non-repairable unsupported-variable proposals from becoming accepted rules.",
+      "counter_evidence": "No repairable case exercised feedback recovery.",
+      "direct_evidence": "Three T2 proposals had VALIDITY_UNSUPPORTED_VARIABLE and terminated as no_rule.",
+      "limitations": "Safety is established only at deterministic validity admission, not runtime or utility.",
+      "prohibited_overclaim": "The mechanism guarantees deployed-system safety.",
+      "status": "SUPPORTED"
+    },
+    "H": {
+      "allowed_thesis_wording": "Exploratory origin summaries show no META no_rule outcomes and two GDN-member no_rule outcomes, but cannot establish an origin effect.",
+      "counter_evidence": "Memberships overlap and GDN has only five relations.",
+      "direct_evidence": "T2 accepted META 28/28, STAT 30/32, GDN 3/5; other arms accepted every subgroup relation.",
+      "limitations": "Non-exclusive exploratory groups, small GDN membership, no causal or powered subgroup design.",
+      "prohibited_overclaim": "Candidate origin materially determines construction success.",
+      "status": "INCONCLUSIVE"
+    }
+  },
+  "discussion_branches": ["C_T2_BELOW_T1B", "D_VALIDITY_CEILING_AND_DISCRIMINATION_LIMITATION"],
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS",
+  "utility_necessity": "ESSENTIAL"
+}

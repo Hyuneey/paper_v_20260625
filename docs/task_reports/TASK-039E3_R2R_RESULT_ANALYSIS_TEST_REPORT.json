@@ -1,0 +1,21 @@
+{
+  "analysis_commit_a": "0b2c41db90eda1103eb6602eb57bedf2597bd981",
+  "analysis_hash": "717f994cacc5ce1ebca07283039eb01826c55fa662e51b552a4443677c10fdc6",
+  "artifact_hash": "47371513650906972f4965b826467e3e194ddb98cd7dccded01d0a654a1e1324",
+  "artifact_type": "task039e3_r2r_result_analysis_test_report_v1",
+  "blocking_finding_count": 0,
+  "checks": {
+    "compileall": "PASS",
+    "git_diff_check": "PASS",
+    "input_authority": "PASS",
+    "pip_check": "PASS",
+    "private_paired_matrix": "PASS",
+    "task_scoped_leak_scan": "PASS"
+  },
+  "focused_tests": {"failed": 0, "passed": 9, "skipped": 0},
+  "private_paired_matrix_hash": "60618dbe43308f44f3a50a28dad2880bf5680f26797e3415bdb7273fe61a42d4",
+  "provider_contact": 0,
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS"
+}

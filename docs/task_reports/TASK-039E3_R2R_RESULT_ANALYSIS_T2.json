@@ -1,0 +1,23 @@
+{
+  "accepted_relations": 39,
+  "all_terminated_after_call_1": true,
+  "artifact_hash": "ae38ea482ca48e2314fd0bf9cafb5d3e6aacc1e2ecde0d534e4ca5499c62fbc6",
+  "artifact_type": "task039e3_r2r_result_analysis_t2_v1",
+  "feedback_activation_rate": 0.0,
+  "feedback_eligible_rejections": 0,
+  "feedback_path_empirically_exercised": false,
+  "follow_up_generations": 0,
+  "incremental_validity_benefit_observed": false,
+  "no_rule_relations": 3,
+  "provider_calls": 42,
+  "retrieve_actions": 0,
+  "revise_actions": 0,
+  "sanitized_issue_categories": [
+    {"code": "VALIDITY_UNSUPPORTED_VARIABLE", "controller_action": "no_rule", "count": 3, "field_category": "variables", "repairability": "non_repairable"}
+  ],
+  "schema_version": "1.0.0",
+  "successful_recoveries": 0,
+  "t1_initial_draw_paired_comparison": {"both_admissible": 39, "exact_two_sided_p": 0.25, "neither": 0, "t1_only": 3, "t2_only": 0},
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS",
+  "terminal_categories": {"accepted_proposal_call_1": 39, "no_rule_non_repairable_issue": 3}
+}

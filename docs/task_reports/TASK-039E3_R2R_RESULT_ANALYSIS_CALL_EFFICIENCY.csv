@@ -1,0 +1,5 @@
+arm,provider_calls,accepted_relations,no_rule_relations,calls_per_accepted,accepted_per_call,feedback_calls,parse_failures,proposal_rejections
+T0,0,42,0,NA,NA,0,0,0
+T1,42,42,0,1.0,1.0,0,0,0
+T1-B,126,42,0,3.0,0.3333333333333333,0,1,3
+T2,42,39,3,1.0769230769230769,0.9285714285714286,0,0,3

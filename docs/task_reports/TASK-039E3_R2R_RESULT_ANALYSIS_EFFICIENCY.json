@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "3c830fd1a0eb9de03fcd2a0954df0adc702dd9c508f722b2c14267c2ae5512d9",
+  "artifact_type": "task039e3_r2r_result_analysis_efficiency_v1",
+  "deterministic_baseline": {"accepted_relations": 42, "arm": "T0", "provider_calls": 0, "ratio_reported": false},
+  "provider_arms": {
+    "T1": {"accepted_per_call": 1.0, "accepted_relations": 42, "calls_per_accepted": 1.0, "no_rule": 0, "parse_failures": 0, "proposal_rejections": 0, "provider_calls": 42},
+    "T1-B": {"accepted_per_call": 0.3333333333333333, "accepted_relations": 42, "calls_per_accepted": 3.0, "no_rule": 0, "parse_failures": 1, "proposal_rejections": 3, "provider_calls": 126},
+    "T2": {"accepted_per_call": 0.9285714285714286, "accepted_relations": 39, "calls_per_accepted": 1.0769230769230769, "no_rule": 3, "parse_failures": 0, "proposal_rejections": 3, "provider_calls": 42}
+  },
+  "provider_frontier": {
+    "T1": "non_dominated",
+    "T1-B": "dominated_by_T1_same_yield_84_fewer_calls",
+    "T2": "dominated_by_T1_same_calls_3_more_accepted"
+  },
+  "schema_version": "1.0.0",
+  "scope": "construction_validity_and_provider_call_cost_only",
+  "t1b_vs_t2": "incomparable_when_considered_alone_higher_yield_versus_lower_cost",
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS"
+}

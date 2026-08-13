@@ -1,0 +1,4 @@
+call_index,admissible,rejected,parse_failure,selected,cumulative_relation_yield,incremental_recovery,cumulative_provider_calls
+1,41,1,0,41,41,41,42
+2,39,2,1,0,41,0,84
+3,42,0,0,1,42,1,126

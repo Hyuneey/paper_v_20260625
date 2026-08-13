@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "2175fca3c3bcc5ccffe7dfca1fcd8c3a0687ac94a56d077f5db53a6632bf2159",
+  "artifact_type": "task039e3_r2r_result_analysis_construction_v1",
+  "arm_results": {
+    "T0": {"accepted": 42, "accepted_rate": 1.0, "no_rule": 0},
+    "T1": {"accepted": 42, "accepted_rate": 1.0, "no_rule": 0},
+    "T1-B": {"accepted": 42, "accepted_rate": 1.0, "no_rule": 0},
+    "T2": {"accepted": 39, "accepted_rate": 0.9285714285714286, "no_rule": 3}
+  },
+  "initial_request_fairness": {
+    "arm_identity_model_visible": false,
+    "identical_request_hashes": 42,
+    "mismatches": 0,
+    "relations": 42,
+    "requests_compared_per_relation": 5
+  },
+  "paired_comparisons": {
+    "T0_vs_T1": {"both_accepted": 42, "left_only": 0, "right_only": 0, "p_value": 1.0},
+    "T0_vs_T1-B": {"both_accepted": 42, "left_only": 0, "right_only": 0, "p_value": 1.0},
+    "T0_vs_T2": {"both_accepted": 39, "difference_pp": 7.142857142857143, "left_only": 3, "right_only": 0, "p_value": 0.25},
+    "T1_vs_T1-B": {"both_accepted": 42, "left_only": 0, "right_only": 0, "p_value": 1.0},
+    "T1_vs_T2": {"both_accepted": 39, "difference_pp": 7.142857142857143, "left_only": 3, "right_only": 0, "p_value": 0.25},
+    "T1-B_vs_T2": {"both_accepted": 39, "difference_pp": 7.142857142857143, "left_only": 3, "right_only": 0, "p_value": 0.25}
+  },
+  "paired_test": "exact two-sided conditional McNemar/binomial; supplementary",
+  "private_paired_matrix_hash": "60618dbe43308f44f3a50a28dad2880bf5680f26797e3415bdb7273fe61a42d4",
+  "proposal_level": {
+    "T0": {"admissible": 42, "materialized": 42, "parse_failures": 0, "rejected": 0},
+    "T1": {"admissible": 42, "materialized": 42, "parse_failures": 0, "rejected": 0},
+    "T1-B": {"admissible": 122, "materialized": 125, "parse_failures": 1, "rejected": 3},
+    "T2": {"admissible": 39, "materialized": 42, "parse_failures": 0, "rejected": 3}
+  },
+  "relation_count": 42,
+  "relation_level_validity_ceiling_observed": true,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-RESULT-ANALYSIS",
+  "utility_tested": false
+}
