@@ -1,0 +1,32 @@
+{
+  "artifact_hash": "58d06cdecb5d0636a20031673d91e419e26f21b499e62c8c8c0c4faba73153ba",
+  "artifact_type": "task039e3_r2r_terminal_custody_audit_serializer_v1",
+  "canonical_serializer": "serialize_construction_proposal_custody_record_v2",
+  "custody_serialization_changed": true,
+  "fail_closed_mutation_cases_passed": 9,
+  "final_custody_uses_canonical_serializer": true,
+  "future_guarded_failure_working_custody_complete": true,
+  "proposal_hash_formula_changed": false,
+  "record_hash_formula_changed": false,
+  "remediation_commit_a": "77de8992f010e4331d6f4c024be4f6b8fa38517d",
+  "remediation_commit_b": "870e20db2515bd6a54dbf6a306fea05055ec0afd",
+  "schema_version": "1.0.0",
+  "scientific_semantics_changed": false,
+  "serialized_fields_present": [
+    "proposal_envelope",
+    "project_proposal",
+    "validity_result",
+    "proposal_hash",
+    "validity_hash",
+    "record_hash"
+  ],
+  "serialized_only_record_hash_roundtrip": true,
+  "serialized_only_validity_hash_roundtrip": true,
+  "serialized_only_proposal_hash_roundtrip": true,
+  "source_freeze_hash": "47b014e9ffbd95c1a36f8579375f61a65fa344404c4a9aa5e77d056117dbfb73",
+  "source_freeze_records_verified": 4,
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-INDEPENDENT-AUDIT",
+  "validity_hash_formula_changed": false,
+  "working_and_final_documents_equal": true,
+  "working_custody_uses_canonical_serializer": true
+}

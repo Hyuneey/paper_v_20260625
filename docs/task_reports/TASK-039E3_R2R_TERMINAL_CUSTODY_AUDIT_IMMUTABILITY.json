@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "2b1ffb27091ab5e0136d63ead3e545a034d1f867824558dd0f1a6d8b5da64bf0",
+  "artifact_type": "task039e3_r2r_terminal_custody_audit_immutability_v1",
+  "blocked_terminal_audit_receipt_hash": "6a2f3bd18e2df370eaee5bb5da95bc12c7f3da72eff11b82fd06b3775191614b",
+  "carried_forward_nonblocking_findings": {
+    "construction_metrics_exact": true,
+    "direct_metrics_exact": true,
+    "http_error_records": 0,
+    "postcontact_integrity": "verified_unchanged",
+    "private_artifacts_verified": 4,
+    "provider_records": 252,
+    "public_artifacts_verified": 8,
+    "scientific_call_accounting": [6, 252, 258]
+  },
+  "original_artifact_additions": 0,
+  "original_artifact_changes": 0,
+  "original_artifact_removals": 0,
+  "original_execution_receipt_hash": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+  "original_private_inventory": {
+    "directory_count": 8,
+    "file_count": 263,
+    "inventory_hash": "56c1cb6fc14be6742d88ba681987398d7d0b02cb19759b6d7b4d572cfd0e011a",
+    "link_count": 0
+  },
+  "original_private_proposal_ledger_hash": "1d573ae83a147edf4aacb2a806016d7cfaf23b90d17e11e4e7b3c885c30e0e93",
+  "original_public_inventory": {
+    "directory_count": 0,
+    "file_count": 8,
+    "inventory_hash": "0dd0792e95066bbff3a5b28f69adec81307fe6b0a6b3a4d45bfbd837d9b9aa1b",
+    "link_count": 0
+  },
+  "original_roots_unchanged": true,
+  "prior_blocker_classification": "BLOCKER_RESULT_CUSTODY_PROPOSAL_RECORD_HASH_PREIMAGE_OMITTED",
+  "prior_blocker_count": 1,
+  "schema_version": "1.0.0",
+  "supplement_root_distinct_outside_and_unnested": true,
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-INDEPENDENT-AUDIT"
+}

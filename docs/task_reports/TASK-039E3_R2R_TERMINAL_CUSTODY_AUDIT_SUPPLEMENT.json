@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "d88e86a87a250732ccc391ed4312df2bdfc8ec1f609e677cba672bd786323486",
+  "artifact_type": "task039e3_r2r_terminal_custody_audit_supplement_v1",
+  "duplicate_logical_keys": 0,
+  "independent_envelope_matches": 251,
+  "independent_original_record_hash_matches": 251,
+  "independent_proposal_hash_matches": 251,
+  "independent_recomputed_record_hash_matches": 251,
+  "independent_validity_hash_matches": 251,
+  "private_supplement_contains_required_scientific_custody_only": true,
+  "public_binding_hash": "4faccc88de1754993f3fda4bbb98fedfb44c6386d72b8cc20122b93440c13345",
+  "public_binding_private_content_included": false,
+  "schema_version": "1.0.0",
+  "supplement_artifact_hash": "54d71edb6357e8c4d4a5479a9f0b130ca0f89f10ed4ff04ad9ba90122f3ff7c2",
+  "supplement_record_count": 251,
+  "supplement_record_hashes_verified": 251,
+  "supplement_self_hash_valid": true,
+  "supplement_only_record_hash_matches": 251,
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-INDEPENDENT-AUDIT",
+  "unauthorized_private_content_found": false
+}

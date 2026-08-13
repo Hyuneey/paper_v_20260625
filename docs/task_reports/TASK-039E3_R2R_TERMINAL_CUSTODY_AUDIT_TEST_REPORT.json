@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "2d92423cce9cde67bcbdc21de759ddd78f638bec5a4df6673e7fe5dac0786ff2",
+  "artifact_type": "task039e3_r2r_terminal_custody_audit_test_report_v1",
+  "audit_commit_a": "3abf1651dd81554a990c26b7b46512ac75fc63e4",
+  "blocking_finding_count": 0,
+  "checks": {
+    "compileall": "PASS",
+    "git_diff_check": "PASS",
+    "json_self_hashes": "PASS",
+    "pip_check": "PASS",
+    "public_remediation_leak_scan": "PASS",
+    "source_git_bytes": "PASS"
+  },
+  "focused_integrated_suite": {
+    "failed": 0,
+    "passed": 42,
+    "seconds": 6.949,
+    "skipped": 0
+  },
+  "independent_audit_oracles": {
+    "failed": 0,
+    "passed": 12,
+    "skipped": 0
+  },
+  "live_runner_invocations": 0,
+  "provider_contact": 0,
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-INDEPENDENT-AUDIT"
+}
