@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "90f444a93e374cf801f6c23dc63642c8b6110f85220f3a8b68d19d79520f7c33",
+  "artifact_type": "task039e3_r2r_reexecution_inputs_v1",
+  "audit_receipt": {
+    "artifact_hash": "2b3135fc8e01440f8c93fc70ee40621e861e030539b210acf6c61e03f1e67de0",
+    "exact_git_bytes_from_commit": "8a430a0586f772cbd36e27fdbf5dbe9f04471cfc",
+    "repository_path": "docs/task_reports/TASK-039E3_R2R_LIVE_EXECUTOR_AUDIT_RECEIPT.json"
+  },
+  "capability_custody": {
+    "ledger_hash": "d6531d990bd70d89d114094f003dd9387e4df2db9cf9c2fc14bb5cf790818294",
+    "ledger_head_hash": "e0b449ca96ffbf229954c059780baf8fb115aa79fc5d65802dd19e3a54120471",
+    "ledger_root_role": "existing durable capability provider custody root",
+    "receipt_hash": "9ee4637da31b585a34eda4bad3b3be1dfa5597396ce1e78ef0564fa53da2b428",
+    "receipt_role": "existing durable corrected capability PASS receipt"
+  },
+  "e1_private_root": {
+    "cohort_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+    "role": "same authoritative existing E1 private evidence root"
+  },
+  "execution_event": "R2R_FRESH_REEXECUTION_AFTER_ZERO_CONTACT_EXECUTOR_REMEDIATION",
+  "execution_repository": {
+    "exact_detached_commit": "f10365adbdde5bb2070df429770174d215829dc6",
+    "exact_worktree_bytes_must_equal_git_objects": true,
+    "role": "fresh isolated exact executable checkout"
+  },
+  "failed_r2r_partial_ledger_import_authorized": false,
+  "historical_failed_roots_reusable": false,
+  "private_filesystem_paths_in_manifest": false,
+  "public_output_root": {
+    "must_be_empty": true,
+    "must_be_fresh": true,
+    "must_be_outside_git_and_private_roots": true,
+    "must_not_equal_historical_failed_public_root": true,
+    "role": "new sanitized public output root"
+  },
+  "reauthorization": {
+    "artifact_self_hash": "cf24208fbd12f4a1b54425640bb370de9f781b222224545b8cfbd1670c1aba06",
+    "exact_git_bytes_from_commit": "e89451da531dc00ba5287fe8fdb9ebacf63bad7a",
+    "repository_path": "docs/task_reports/TASK-039E3_R2R_REEXECUTION_AUTHORIZATION.json"
+  },
+  "recovery_private_root": {
+    "must_be_empty": true,
+    "must_be_fresh": true,
+    "must_be_outside_git": true,
+    "must_not_equal_historical_failed_recovery_root": true,
+    "role": "new R2R recovery private custody root"
+  },
+  "schema_version": "1.0.0",
+  "source_manifest": {
+    "artifact_hash": "a58b5e3480fb7d1b88029cf2c2ff018cfdaae84be3a5861299eed003c13ad235",
+    "exact_git_bytes_from_commit": "067dcffc441170064180c677b0bd7845a93ce5ef",
+    "repository_path": "docs/task_reports/TASK-039E3_R2R_LIVE_EXECUTOR_REMEDIATION_SOURCE_FREEZE.json"
+  },
+  "status": "frozen_reexecution_inputs",
+  "task_id": "TASK-039E3-R2R-SCIENTIFIC-EXECUTION"
+}

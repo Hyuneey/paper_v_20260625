@@ -1,0 +1,42 @@
+{
+  "artifact_hash": "d28171a24a034156925cb950045ca1ecf40f8d7e6734405cb52c99059ace116f",
+  "artifact_type": "task039e3_r2r_reauthorization_freeze_test_report_v1",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_reauthorization_freeze",
+      "result": "8/8 PASS from exact clean Reauthorization Commit A"
+    },
+    {
+      "command": "bundled-python -B -m compileall focused reauthorization oracle",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python -B -m pip check",
+      "result": "PASS; no broken requirements"
+    },
+    {
+      "command": "closed schema plus validate_r2r_authorization_v1",
+      "result": "PASS"
+    },
+    {
+      "command": "exact Audit B Git-byte and independent audit-bundle reconstruction",
+      "result": "PASS; receipt blob e727135a31f830c9377855e5211fd716e3b21338"
+    },
+    {
+      "command": "complete source-manifest verification at Implementation A",
+      "result": "50/50 Git blobs and exact-byte SHA-256 PASS; active=49; unbound/dynamic/unresolved=0"
+    },
+    {
+      "command": "git diff --check and task-scoped sanitized leak scan",
+      "result": "PASS"
+    }
+  ],
+  "credential_accessed": false,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "reauthorization_commit_a": "e89451da531dc00ba5287fe8fdb9ebacf63bad7a",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-REAUTHORIZATION-FREEZE"
+}
