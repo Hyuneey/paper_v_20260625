@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "4faccc88de1754993f3fda4bbb98fedfb44c6386d72b8cc20122b93440c13345",
+  "artifact_type": "task039e3_r2r_terminal_custody_remediation_binding_v1",
+  "blocked_terminal_audit_receipt_hash": "6a2f3bd18e2df370eaee5bb5da95bc12c7f3da72eff11b82fd06b3775191614b",
+  "original_execution_receipt_hash": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+  "original_execution_receipt_modified": false,
+  "original_execution_roots_modified": false,
+  "original_private_proposal_ledger_hash": "1d573ae83a147edf4aacb2a806016d7cfaf23b90d17e11e4e7b3c885c30e0e93",
+  "original_terminal_private_artifacts_modified": false,
+  "proposal_records": 251,
+  "provider_responses_changed": false,
+  "record_hash_exact_matches": 251,
+  "record_hash_mismatches": 0,
+  "record_hash_preimages_reconstructed": 251,
+  "schema_version": "1.0.0",
+  "scientific_results_changed": false,
+  "status": "passed_terminal_custody_supplement_binding",
+  "supplemental_private_artifact_hash": "54d71edb6357e8c4d4a5479a9f0b130ca0f89f10ed4ff04ad9ba90122f3ff7c2",
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-REMEDIATION"
+}

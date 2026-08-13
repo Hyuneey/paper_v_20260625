@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "47b014e9ffbd95c1a36f8579375f61a65fa344404c4a9aa5e77d056117dbfb73",
+  "artifact_type": "task039e3_r2r_terminal_custody_remediation_source_freeze_v1",
+  "custody_serialization_changed": true,
+  "historical_execution_commit": "5dca2d0431d60ef2f2bdfc907ebfe3fe18521f16",
+  "historical_scientific_execution_source_unchanged": true,
+  "record_hash_formula_changed": false,
+  "remediation_commit_a": "77de8992f010e4331d6f4c024be4f6b8fa38517d",
+  "schema_version": "1.0.0",
+  "scientific_semantics_changed": false,
+  "source_records": [
+    {
+      "byte_sha256": "3b4f6b94b63a9ea76d634f9547a2c5dcec19e20580829fcd4341d668e14b7be5",
+      "change_classification": "DETERMINISTIC_PRIVATE_RECONSTRUCTION_TOOLING",
+      "git_blob_sha": "741b4534748768bed4a45daba88ab43686c0d4de",
+      "path": "scripts/reconstruct_task039e3_r2r_terminal_custody_v1.py"
+    },
+    {
+      "byte_sha256": "6d3747994afb91fb19d1ceb5d70000bd46e12771324fc6089c1831e73c0f884c",
+      "change_classification": "CANONICAL_PROPOSAL_CUSTODY_SERIALIZATION",
+      "git_blob_sha": "1b321d2646714afbaf08fbca9a025fbecd8e9d5e",
+      "path": "src/paperworks/v6/task039e3_r2r_proposal_custody_v2.py"
+    },
+    {
+      "byte_sha256": "d829b18fa36c173b3f5a36e63f3cbed5f082ee2ea378edf8339fe22ce7c58315",
+      "change_classification": "FUTURE_FINAL_CUSTODY_SERIALIZATION",
+      "git_blob_sha": "1d9bf02cbd9fcf8e57ee51cf03168f0966a78c61",
+      "path": "src/paperworks/v6/task039e3_r2r_result_finalizer_v1.py"
+    },
+    {
+      "byte_sha256": "7837791182cdcf236872fa71e883645b35874ee09c802ee14a45932b6c496e8d",
+      "change_classification": "FUTURE_WORKING_CUSTODY_SERIALIZATION",
+      "git_blob_sha": "1eb576d8aa3ff42ca25812ec6e8c5c4a06caea97",
+      "path": "src/paperworks/v6/task039e3_scientific_execution_v1.py"
+    }
+  ],
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-REMEDIATION"
+}

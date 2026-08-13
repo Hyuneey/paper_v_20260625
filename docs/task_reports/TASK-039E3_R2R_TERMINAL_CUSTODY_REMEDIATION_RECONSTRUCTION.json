@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "934869d2c4121561440fb5981f937f039da4d3f30e48a02cd7aa95c12062527d",
+  "artifact_type": "task039e3_r2r_terminal_custody_remediation_reconstruction_v1",
+  "authoritative_e1_cohort_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+  "authoritative_e1_private_ledger_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+  "e1_records_read": 42,
+  "exact_historical_execution_commit": "5dca2d0431d60ef2f2bdfc907ebfe3fe18521f16",
+  "missing_proposal": {
+    "arm": "T1-B",
+    "arm_local_call_number": 2,
+    "materialized": false,
+    "parse_status": "schema_parse_failure",
+    "relation_schedule_index": 19
+  },
+  "model_visible_main_prompt_hash_equality_relations": 42,
+  "proposal_arm_counts": {
+    "T0": 42,
+    "T1": 42,
+    "T1-B": 125,
+    "T2": 42
+  },
+  "proposal_cores_reconstructed": 251,
+  "proposal_envelopes_reconstructed": 251,
+  "proposal_hashes_verified": 251,
+  "provider_contact": 0,
+  "raw_e1_values_published": false,
+  "record_hash_exact_matches": 251,
+  "record_hash_mismatches": 0,
+  "record_hashes_recomputed": 251,
+  "reconstruction_inference_used": false,
+  "schema_version": "1.0.0",
+  "status": "passed_exact_historical_proposal_preimage_reconstruction",
+  "t2_all_materialized_proposals_local_call_one": true,
+  "task_id": "TASK-039E3-R2R-TERMINAL-CUSTODY-REMEDIATION",
+  "validity_hashes_verified": 251
+}
