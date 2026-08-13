@@ -1,0 +1,39 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "47d98d45981373f15badee0983c2058a80458c10d85cd7209e887b0a8322c667",
+  "artifact_type": "task039e3_r2r_direct_authority_bridge_test_report_v1",
+  "bridge_commit_a": "4215b559c03c0b1520cad4f351f05bb3e264e3b2",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_direct_authority_bridge before Bridge Commit A",
+      "result": "3/3 substantive oracles PASS; exact committed-byte oracle skipped as designed before commit"
+    },
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_direct_authority_bridge from exact Bridge Commit A",
+      "result": "4/4 PASS"
+    },
+    {
+      "command": "actual frozen _validate_forensic_protocol with bridged receipt",
+      "result": "PASS"
+    },
+    {
+      "command": "actual frozen _validate_forensic_protocol with historical f8ce canonical receipt",
+      "result": "REJECTED as required"
+    },
+    {
+      "command": "actual frozen _validate_forensic_protocol with native 0af6 direct-audit receipt",
+      "result": "REJECTED as required"
+    },
+    {
+      "command": "canonical receipt self-hash, bundle, Git blob, and exact-byte validation",
+      "result": "PASS"
+    }
+  ],
+  "openai_api_key_accessed": false,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-DIRECT-REMEDIATION-AUTHORITY-BRIDGE-AND-REAUTHORIZATION"
+}
