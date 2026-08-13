@@ -1,0 +1,35 @@
+{
+  "artifact_hash": "40a3307b5ebd6a082f080edc053ef4e026c58365314d9f2496f24f60bd2471b0",
+  "artifact_type": "task039e3_r2r_reauthorization_v2_test_report_v1",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_audit_authority_bridge",
+      "result": "4/4 PASS"
+    },
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_reauthorization_v2 with exact f103 detached worktree and Commit C external Git bytes",
+      "result": "5/5 PASS"
+    },
+    {
+      "command": "combined bridge plus V2 focused suite",
+      "result": "9/9 PASS"
+    },
+    {
+      "command": "actual precredential path: authorization, exact source/manifest, protocol/forensic/canonical audit, synthetic capability PASS, roots/fresh ledgers/integrity, sentinel credential",
+      "result": "PASS; audit authority passed before one sentinel credential call; provider/E1/private access zero"
+    },
+    {
+      "command": "bundled-python -B -m compileall focused bridge and V2 oracles; pip check; git diff --check; scoped leak scan",
+      "result": "PASS"
+    }
+  ],
+  "credential_accessed": false,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "reauthorization_commit_c": "d9975e563c6b264d0a9b2c64ed5381b71b21316d",
+  "schema_version": "1.0.0",
+  "sentinel_credential_calls": 1,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-AUDIT-AUTHORITY-BRIDGE-AND-REAUTHORIZATION"
+}
