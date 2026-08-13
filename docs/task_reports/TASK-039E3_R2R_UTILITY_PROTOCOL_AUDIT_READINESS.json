@@ -1,0 +1,41 @@
+{
+  "artifact_hash": "0fdf0cd62026920ac6dcbcc7f00ce74bd9284692d98cbe6dc955da589c2e4c1c",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_readiness_v1",
+  "blocking_findings": [
+    "BLOCKER_UTILITY_PROTOCOL_LOGICAL_PHYSICAL_COORDINATE_MAPPING_UNBOUND",
+    "BLOCKER_UTILITY_PROTOCOL_SOURCE_UNIVERSE_UNBOUND",
+    "BLOCKER_UTILITY_PROTOCOL_NUMERIC_REFERENCE_AUTHORITY_UNAVAILABLE",
+    "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED",
+    "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS",
+    "BLOCKER_EVENT_F1_CUSTODY_PREIMAGE_NOT_PRESERVED",
+    "BLOCKER_SYNTHETIC_ATTACK_EVENT_BINARY_VALIDATION_COERCES_NONBINARY",
+    "BLOCKER_NORMAL_EXPOSURE_DENOMINATOR_NOT_CROSS_BOUND_TO_LABEL_EVENT_CUSTODY",
+    "BLOCKER_T2_MATERIAL_COVERAGE_LOSS_UNDEFINED",
+    "BLOCKER_U6_COST_BASELINE_AMBIGUOUS_AFTER_COMMON_COLLAPSE"
+  ],
+  "exactly_frozen_hidden_choices": 12,
+  "hai_test_feature_values_accessed": false,
+  "label_values_accessed": false,
+  "open_hidden_choices": [
+    "logical_physical_coordinate_mapping",
+    "source_universe_protocol_binding",
+    "numeric_private_resolver_authority",
+    "abstention_opportunity_enumeration",
+    "event_f1_count_preimage_custody",
+    "synthetic_input_and_state_fail_closed_validation",
+    "normal_exposure_label_custody_cross_binding",
+    "t2_material_coverage_loss_margin",
+    "u6_cost_comparator"
+  ],
+  "open_hidden_choice_count": 9,
+  "provider_calls": 0,
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "status": "blocked_task039e3_r2r_utility_protocol_independent_audit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT",
+  "uniquely_derivable_hidden_choices": 7,
+  "utility_evaluator_implementation_ready": false,
+  "utility_execution_authorization_ready": false,
+  "utility_protocol_audited": false,
+  "utility_values_computed": false
+}

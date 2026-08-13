@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "8f341b8e50c82a7db9deb347dde66c044734510e4c7e21671828ae7abd06b650",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_receipt_v1",
+  "audit_bundle_hash": "4bac5875b2806d9cdf14500fdca08a8131bf6e75fef9cae28d0ea593aef77525",
+  "audit_commit_a": "de5dd26eb2c052f01560627e23dc4041b61ef307",
+  "blocking_finding_count": 10,
+  "component_hashes": {
+    "data_splits": "ef1fbc0957ffd8f9e55f4d8107f47c5c1a6ae03b620554ebe3c3da62738d0cfb",
+    "equivalence": "1ee017ff764cff967f4e1226fc8eff3a9f9e529e2e98748e7af2a0274b34928f",
+    "governance": "e55d4533b76f345cbbc8fff1ab7856d7e3722443ff88c744c53dd8a357dacda0",
+    "interpreter": "ddd11a224b289a677a7462a52849502659aa81bc12db4acbd0399502d3ded26f",
+    "metrics": "d9f946ad3f1a3a6d20c58b48aed8dbe62de9684bb479ecae2e4db60d6a99c16a",
+    "readiness": "0fdf0cd62026920ac6dcbcc7f00ce74bd9284692d98cbe6dc955da589c2e4c1c",
+    "reference_closure": "3ab2efd8bbe44dc313c905bd49ccdd29534e6dfdd88a8543f684ff36c8bddfe7",
+    "source": "f0705897015f368344eb4c0d3d1934bd154213d49e121336005c1371493b6dc4",
+    "statistics": "7070baec183f6b0348072d7b4b57a956067553f196eb7773854c5526e4d3f911",
+    "test_report": "a93a077afb5b07c08fd94ecccbd11364758e1fcb828b962f88d0ee5844717b5f"
+  },
+  "input_authority": {
+    "construction_custody_audit_receipt": "5578202038dbd2e04972447467afc021a230c08dd6a821e81d9dd23bfb2b8986",
+    "construction_execution_receipt": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+    "gate_bundle": "803f4f6f614b587925bb974420ef93a2c97502a291dfe5443c3597556e78e57b",
+    "gate_receipt": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+    "protocol_bundle": "189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d",
+    "protocol_commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "protocol_commit_b": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+    "protocol_receipt": "f6db67c4ec4c3f64f0acc8031e27f583fc3192029170184e42dd721dbaf15949",
+    "result_analysis_receipt": "d9df904bcc0f823780c82c0a594f124939fe56354e50606c866a71e0e05e999f"
+  },
+  "next_task": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION",
+  "protocol_classification": "POST_RESULT_PROTOCOL_FREEZE",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_protocol_independent_audit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT",
+  "utility_evaluator_implementation_ready": false,
+  "utility_execution_authorization_ready": false,
+  "utility_protocol_audited": false
+}

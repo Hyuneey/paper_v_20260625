@@ -1,0 +1,31 @@
+{
+  "artifact_hash": "3ab2efd8bbe44dc313c905bd49ccdd29534e6dfdd88a8543f684ff36c8bddfe7",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_reference_closure_v1",
+  "blockers": [
+    "BLOCKER_UTILITY_PROTOCOL_SOURCE_UNIVERSE_UNBOUND",
+    "BLOCKER_UTILITY_PROTOCOL_NUMERIC_REFERENCE_AUTHORITY_UNAVAILABLE"
+  ],
+  "numeric_reference_closure": {
+    "accepted_relation_arm_cells_checked": 165,
+    "ambiguous_private_resolutions": "NOT_ASSESSABLE_WITHOUT_EXACT_AUTHORIZED_LEDGER",
+    "direct_number_provenance_found": 0,
+    "finite_private_values_verified": 0,
+    "private_authoritative_resolutions": 0,
+    "public_manifest_registrations": 420,
+    "public_manifest_unique_role_bindings": 420,
+    "references_checked": 420,
+    "test_or_label_provenance_found": 0
+  },
+  "schema_version": "1.0.0",
+  "source_universe": {
+    "authority_commit": "b6522fb83c4cb92d355f98af778f9a6a3c73362f",
+    "authority_config_git_blob": "3daed02833954c72427985145d14b5999f83af66",
+    "authority_exists": true,
+    "authority_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+    "count": 12,
+    "protocol_binds_authority": false,
+    "protocol_helper_accepts_caller_selected_universe": true
+  },
+  "status": "BLOCK",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT"
+}

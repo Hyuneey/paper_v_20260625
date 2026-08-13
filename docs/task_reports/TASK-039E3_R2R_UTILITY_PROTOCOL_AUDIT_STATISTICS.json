@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "7070baec183f6b0348072d7b4b57a956067553f196eb7773854c5526e4d3f911",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_statistics_v1",
+  "confidence_intervals": {
+    "alarm_episode_precision": "CLOPPER_PEARSON_EXACT_95_PERCENT",
+    "attack_event_recall": "CLOPPER_PEARSON_EXACT_95_PERCENT",
+    "normal_false_alarm_rate": "GARWOOD_EXACT_POISSON_95_PERCENT"
+  },
+  "exact_mcnemar_exhaustive_small_cases": "PASS",
+  "false_alarm_comparison": "DESCRIPTIVE_NO_NAIVE_PER_SECOND_TEST",
+  "multiple_comparison_policy": "ONE_PREDECLARED_PRIMARY_TEST_NO_CORRECTION",
+  "paired_unit": "IDENTICAL_ATTACK_EVENT_SET",
+  "primary_comparison": "COMMON-42_vs_T2",
+  "p_value_role": "SUPPLEMENTARY",
+  "schema_version": "1.0.0",
+  "semantically_identical_projection_tests": 0,
+  "status": "PASS_WITH_GOVERNANCE_CATEGORY_BLOCKERS",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT"
+}

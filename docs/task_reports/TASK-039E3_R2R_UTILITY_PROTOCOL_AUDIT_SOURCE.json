@@ -1,0 +1,33 @@
+{
+  "artifact_hash": "f0705897015f368344eb4c0d3d1934bd154213d49e121336005c1371493b6dc4",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_source_v1",
+  "audit_commit_a": "de5dd26eb2c052f01560627e23dc4041b61ef307",
+  "base_commit": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+  "commit_boundary_a": {
+    "base": "cd6c23b68131820acf03d16cdd78c77db9635f59",
+    "expected_paths_only": true,
+    "path_count": 2,
+    "protocol_commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905"
+  },
+  "commit_boundary_b": {
+    "expected_paths_only": true,
+    "path_count": 16,
+    "protocol_commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "protocol_commit_b": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+    "reports_and_data_only": true,
+    "source_changes": 0,
+    "test_changes": 0
+  },
+  "existing_scientific_source_modified": false,
+  "production_source_modified": false,
+  "protocol_classification": "POST_RESULT_PROTOCOL_FREEZE",
+  "protocol_source": {
+    "byte_sha256": "56305eced40020b00e29783fa9d795f3a352b230e584ffed0ae5465f1f1a5165",
+    "git_blob": "2e6960c6838519310b71df417b4fb4824f4a4f92",
+    "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v1.py"
+  },
+  "protocol_source_modified_by_audit": false,
+  "schema_version": "1.0.0",
+  "status": "PASS_WITH_CROSS_LANE_BLOCKERS",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT"
+}

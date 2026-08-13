@@ -1,0 +1,40 @@
+{
+  "artifact_hash": "e55d4533b76f345cbbc8fff1ab7856d7e3722443ff88c744c53dd8a357dacda0",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_governance_v1",
+  "authorities": {
+    "deployment": false,
+    "inner_label_access": false,
+    "outer_label_access": false,
+    "production_runtime": false,
+    "provider": false,
+    "rule_v2": false,
+    "sealed": false,
+    "utility_execution": false,
+    "utility_interpreter_implementation": false,
+    "winner": false
+  },
+  "blockers": [
+    "BLOCKER_T2_MATERIAL_COVERAGE_LOSS_UNDEFINED",
+    "BLOCKER_U6_COST_BASELINE_AMBIGUOUS_AFTER_COMMON_COLLAPSE"
+  ],
+  "candidate_origin": "EXPLORATORY_NONEXCLUSIVE_DESCRIPTIVE_ONLY",
+  "cost_facts": {
+    "T0_provider_calls": 0,
+    "T1-B_provider_calls": 126,
+    "T1_provider_calls": 42,
+    "T2_provider_calls": 42,
+    "common_has_single_cost": false,
+    "protocol_binds_comparator_specific_cost_table": false
+  },
+  "custody_boundary": "PASS",
+  "direct_number_utility_authority": false,
+  "label_values_accessed": false,
+  "p1_global_label_claim_boundary": "PASS",
+  "precommitted_before_construction_result": false,
+  "protocol_classification": "POST_RESULT_PROTOCOL_FREEZE",
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "summary_label_required": false,
+  "t2_material_coverage_margin_frozen": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT"
+}

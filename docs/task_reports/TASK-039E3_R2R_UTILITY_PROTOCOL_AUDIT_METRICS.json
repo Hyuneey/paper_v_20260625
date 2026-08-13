@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "d9f946ad3f1a3a6d20c58b48aed8dbe62de9684bb479ecae2e4db60d6a99c16a",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_metrics_v1",
+  "auprc": "NOT_APPLICABLE_NOT_PRIMARY",
+  "auroc": "NOT_APPLICABLE_NOT_PRIMARY",
+  "blockers": [
+    "BLOCKER_EVENT_F1_CUSTODY_PREIMAGE_NOT_PRESERVED",
+    "BLOCKER_SYNTHETIC_ATTACK_EVENT_BINARY_VALIDATION_COERCES_NONBINARY",
+    "BLOCKER_NORMAL_EXPOSURE_DENOMINATOR_NOT_CROSS_BOUND_TO_LABEL_EVENT_CUSTODY"
+  ],
+  "event_and_alarm_semantics": {
+    "alarm_episode_half_open": true,
+    "attack_event_maximal_file_local_contiguous_run": true,
+    "false_episode_has_zero_attack_overlap": true,
+    "merge_tolerance_seconds": 0,
+    "same_timestamp_deduplicated": true
+  },
+  "normal_exposure": {
+    "frozen_formula": "count(label == 0) / 3600",
+    "helper_cross_bound_to_label_custody": false,
+    "purge_exclusion_bound": false
+  },
+  "point_adjustment": "PROHIBITED",
+  "primary_metrics": {
+    "attack_event_recall_formula": "PASS",
+    "normal_false_alarm_rate_per_hour_formula": "PASS"
+  },
+  "schema_version": "1.0.0",
+  "secondary_metrics": {
+    "event_f1_count_preimage_faithful": false,
+    "other_declared_formulas": "PASS",
+    "zero_denominator_policy": "NA_WITH_DENOMINATOR_AND_REASON"
+  },
+  "status": "BLOCK",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT"
+}

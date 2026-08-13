@@ -1,0 +1,59 @@
+{
+  "artifact_hash": "ef1fbc0957ffd8f9e55f4d8107f47c5c1a6ae03b620554ebe3c3da62738d0cfb",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_data_splits_v1",
+  "blockers": [
+    "BLOCKER_UTILITY_PROTOCOL_LOGICAL_PHYSICAL_COORDINATE_MAPPING_UNBOUND"
+  ],
+  "cross_file_windows": "PROHIBITED",
+  "cross_split_windows": "PROHIBITED",
+  "dataset": {
+    "artifact_hash": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+    "edition": "HAI 23.05",
+    "label_encoding_metadata": {
+      "attack": 1,
+      "normal": 0
+    },
+    "sampling_interval_seconds": 1.0,
+    "test1_feature_rows": 54000,
+    "test1_label_rows": 54000,
+    "test2_feature_rows": 230400,
+    "test2_label_rows": 230400
+  },
+  "independent_required_context": {
+    "footprint_observations": 68,
+    "lookahead_samples": 62,
+    "lookback_samples": 5,
+    "maximum_horizon_seconds": 60
+  },
+  "logical_coordinates": {
+    "purge": [54000, 54120],
+    "test1": [0, 54000],
+    "test2": [54120, 284520]
+  },
+  "logical_physical_mapping": {
+    "intended_test1_endpoints": [0, 53999],
+    "intended_test2_endpoints": [0, 230399],
+    "mapping_authority_bound": false,
+    "purge_maps_to_physical_observations": "OPEN",
+    "purge_metric_denominator_exclusion": "OPEN",
+    "status": "OPEN_BLOCKING"
+  },
+  "purge": {
+    "actual_context_safe": true,
+    "gap_samples": 120,
+    "result": "CONSERVATIVE"
+  },
+  "schema_version": "1.0.0",
+  "sealed": {
+    "authorized": false,
+    "manifest": null
+  },
+  "splits": {
+    "inner": "30a7c88d6e0af5c37493237cc83b9520cbcd6f43c2dee7bb50ec3cac2668e7d0",
+    "outer": "9d76358ff109e4a6d2a712a1ff679c199d08e9cc92239160c8016e9efa063203"
+  },
+  "status": "BLOCK",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT",
+  "utility_view_id": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24",
+  "utility_view_reconstructed": true
+}

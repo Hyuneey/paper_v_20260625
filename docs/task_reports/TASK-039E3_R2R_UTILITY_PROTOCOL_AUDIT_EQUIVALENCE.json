@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "1ee017ff764cff967f4e1226fc8eff3a9f9e529e2e98748e7af2a0274b34928f",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_equivalence_v1",
+  "common_equivalence": {
+    "exact_matches": 42,
+    "expected": 42,
+    "t0_t1_t1b_independent_samples": false
+  },
+  "independent_equivalence_digest": "b8af645a29841b95adc10641ba551fd5888a05222ef7bcebfbd9eb2ef42e4e38",
+  "original_custody": {
+    "outcome_ledger_hash": "991a289a6936b9b3a6c4481ac8f700da1fee7ca9267dc4e0c013ac4411094057",
+    "proposal_ledger_hash": "1d573ae83a147edf4aacb2a806016d7cfaf23b90d17e11e4e7b3c885c30e0e93"
+  },
+  "public_protocol_equivalence_exact_matches": 42,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "t2_accepted_equivalence": {
+    "exact_matches": 39,
+    "expected": 39
+  },
+  "t2_no_rule": {
+    "no_substitution": 3,
+    "preserved": 3
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT"
+}

@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "ddd11a224b289a677a7462a52849502659aa81bc12db4acbd0399502d3ded26f",
+  "artifact_type": "task039e3_r2r_utility_protocol_audit_interpreter_v1",
+  "abstention_no_rule_no_op_separation": "SEMANTIC_CATEGORIES_DISTINCT",
+  "blockers": [
+    "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED",
+    "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS"
+  ],
+  "cross_source_isolation": {
+    "inclusive_boundary_seconds": 2,
+    "minus_2_nonisolated": true,
+    "minus_3_isolated_absent_other_conflict": true,
+    "plus_2_nonisolated": true,
+    "plus_3_isolated_absent_other_conflict": true,
+    "source_universe_fail_closed": false
+  },
+  "decision_index": {
+    "formula": "event_index + horizon_seconds + 2",
+    "horizons_verified": [1, 5, 10, 30, 60],
+    "result": "PASS"
+  },
+  "detector_integration": "DEFERRED",
+  "historical_semantic_parity": {
+    "cross_source_isolation_radius": "PASS",
+    "direction_filter_order": "PASS",
+    "response_strict_inequality": "PASS",
+    "same_source_clustering": "PASS",
+    "source_medians_and_threshold": "PASS",
+    "stability": "PASS"
+  },
+  "outside_authorized_operating_regime": "NOT_APPLICABLE_ENTIRE_FROZEN_P1_UTILITY_VIEW",
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT",
+  "utility_driven_no_op": "DEFERRED"
+}
