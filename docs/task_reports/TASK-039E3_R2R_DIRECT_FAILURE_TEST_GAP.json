@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "48b01f3285eb9f18f54e207f2b0e63e259e2bd44657b2f1bf1c51b9ca989146b",
+  "artifact_type": "task039e3_r2r_direct_failure_test_gap_v1",
+  "historical_audit_gap_classification": "SYNTHETIC_FIXTURE_DID_NOT_PRESERVE_REAL_E1_REFERENCE_IDENTITY_ALIASING",
+  "historical_offline_cohort_pass_explained": true,
+  "real_e1_projection": {
+    "approved_identity_source": "binding.reference",
+    "evidence_identity_equals_reference": true
+  },
+  "schema_version": "1.0.0",
+  "synthetic_fixture": {
+    "approved_identity_source": "binding.evidence_identity",
+    "evidence_identity_equals_reference": false,
+    "source_byte_sha256": "b1b993a7653af36a6578af48eca4e39035e1111cc2e210e9e51fc3109f518c91",
+    "source_git_blob_sha": "7eec3c185c9468919a1add29fc67bddda34c2ea9",
+    "source_path": "tests/task039e3_support.py"
+  },
+  "task_id": "TASK-039E3-R2R-FAILURE-FORENSIC-AUDIT"
+}

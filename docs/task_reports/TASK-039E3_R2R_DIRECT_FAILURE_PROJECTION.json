@@ -1,0 +1,64 @@
+{
+  "all_real_e1_relations_structurally_affected": true,
+  "approved_evidence_identities_equal_binding_references": true,
+  "artifact_hash": "391ab02209f390d429cc190124a06c6aaeba15dd254c4f3b70262b3d850fe948",
+  "artifact_type": "task039e3_r2r_direct_failure_projection_v1",
+  "calibrated_bindings_remaining_in_direct_payload": 0,
+  "calibrated_numeric_references_remaining_in_direct_payload": 0,
+  "control_flow": [
+    "T2 returns",
+    "run_direct_number_v1",
+    "evidence.render_view",
+    "build_direct_number_request_v1",
+    "render_direct_number_input_v1",
+    "render_direct_number_model_content_v1",
+    "local calibrated-reference leak guard",
+    "ProviderCallSlotV1",
+    "execute_mock_provider_slot_v1",
+    "transport.send"
+  ],
+  "direct_request_build_succeeded": false,
+  "exception_class": "TASK039E3PreparationError",
+  "exception_message_safe_literal": "direct-number calibrated reference leaked",
+  "exception_message_sha256": "35bf2ccc6bb866573cb028739c7828d170f3b5407b09f0bcf7b3a917e5651c5a",
+  "generic_code_proof": {
+    "approved_identities_derive_from_references": true,
+    "direct_renderer_removes_calibrated_bindings": true,
+    "direct_renderer_removes_calibrated_numeric_references": true,
+    "direct_renderer_retains_approved_identity_aliases": true,
+    "project_real_evidence_sets_identity_equal_reference": true
+  },
+  "numeric_binding_count": 10,
+  "primary_root_cause_classification": "REAL_E1_NUMERIC_REFERENCE_ALIASED_AS_APPROVED_EVIDENCE_IDENTITY_CAUSES_DIRECT_NUMBER_LEAK_GUARD",
+  "private_e1_bytes_read_upper_bound": 16384,
+  "private_e1_relation_records_read": 1,
+  "reference_equals_evidence_identity_count": 10,
+  "relation_schedule_index": 0,
+  "schema_version": "1.0.0",
+  "sentinel_send_calls": 0,
+  "source_identities": [
+    {
+      "byte_sha256": "3b589c4a79a65f2c5c84f702db421ebc1339e36db1241b4ffd19067fa3339021",
+      "git_blob_sha": "33a20128ddfd164747a19ed6b1dc140809783780",
+      "path": "src/paperworks/v6/task039e3_scientific_execution_v1.py"
+    },
+    {
+      "byte_sha256": "41ec800550227180438272b4c818d3762895cb3068bb988b8964c5254bf13c3e",
+      "git_blob_sha": "eee56498bf5fd21cb86fcd1a75ab9cb8ba71c59f",
+      "path": "src/paperworks/v6/task039e2_execution_configuration_v1.py"
+    },
+    {
+      "byte_sha256": "3b7d05b3751cfe8b4fa4c6fd580815d823eaf49aa84ed882d49ed4a7e9174826",
+      "git_blob_sha": "bf0d9acbc42f6a8244275184632cb5e6b1db7301",
+      "path": "src/paperworks/v6/task039e3_execution_prep_v1.py"
+    },
+    {
+      "byte_sha256": "d744487cec25501199f672235851fce213b112fe3307d9c09e8cab316805f5b3",
+      "git_blob_sha": "ecce87da8003f759bd7cb2d1fcf746343bdb39b4",
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py"
+    }
+  ],
+  "task_id": "TASK-039E3-R2R-FAILURE-FORENSIC-AUDIT",
+  "withheld_calibrated_role_count": 3,
+  "withheld_references_remaining_via_approved_evidence_identities": 3
+}

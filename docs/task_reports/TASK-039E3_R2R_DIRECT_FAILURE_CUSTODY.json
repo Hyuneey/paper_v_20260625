@@ -1,0 +1,89 @@
+{
+  "all_transactional_chains_valid": true,
+  "artifact_hash": "c2f775b5c1ccc07602768f16670460720dde64b16db1ef798471d0c557aa44fc",
+  "artifact_type": "task039e3_r2r_direct_failure_custody_v1",
+  "direct_number_record_count": 0,
+  "http_error_ledger_hash": "36bd9d061b5e47a7bece1e19366d06c57ed91bdf1e2cd64bdb691875e0d3065d",
+  "http_error_ledger_head_hash": null,
+  "http_error_record_count": 0,
+  "outcome_record_count": 4,
+  "outcome_sequence": [
+    "T0",
+    "T1",
+    "T1-B",
+    "T2"
+  ],
+  "proposal_record_count": 6,
+  "proposal_sequence": [
+    ["T0", 0],
+    ["T1", 1],
+    ["T1-B", 1],
+    ["T1-B", 2],
+    ["T1-B", 3],
+    ["T2", 1]
+  ],
+  "proposal_validity_hash_bindings_valid": true,
+  "provider_records": [
+    {
+      "arm": "T1",
+      "local_call_number": 1,
+      "parse_status": "valid_structured",
+      "record_hash": "187c390620b133dea8624c0c7f6e7f7d7cf6698982443b7f931dd9ce5c7c2625",
+      "response_present": true,
+      "returned_model": "gpt-5.4-2026-03-05",
+      "terminal_state": "completed_provider_response"
+    },
+    {
+      "arm": "T1-B",
+      "local_call_number": 1,
+      "parse_status": "valid_structured",
+      "record_hash": "f3d24cccb75af06f830384bab19d6daf73c6737bd6967c1671901851e7abc125",
+      "response_present": true,
+      "returned_model": "gpt-5.4-2026-03-05",
+      "terminal_state": "completed_provider_response"
+    },
+    {
+      "arm": "T1-B",
+      "local_call_number": 2,
+      "parse_status": "valid_structured",
+      "record_hash": "9aa580893562b42465c01e650b7fba24629c41d637e9fe3303f14ef5af9b5382",
+      "response_present": true,
+      "returned_model": "gpt-5.4-2026-03-05",
+      "terminal_state": "completed_provider_response"
+    },
+    {
+      "arm": "T1-B",
+      "local_call_number": 3,
+      "parse_status": "valid_structured",
+      "record_hash": "b374aebd1896df44ea0c00398b12ee78cbba4134888fcf2fc7b045ac2c592662",
+      "response_present": true,
+      "returned_model": "gpt-5.4-2026-03-05",
+      "terminal_state": "completed_provider_response"
+    },
+    {
+      "arm": "T2",
+      "local_call_number": 1,
+      "parse_status": "valid_structured",
+      "record_hash": "69deb2988968b67ec8760904357436a5d5c0058e5b4ef334d2c8a5045e3684af",
+      "response_present": true,
+      "returned_model": "gpt-5.4-2026-03-05",
+      "terminal_state": "completed_provider_response"
+    }
+  ],
+  "relation_identity_hash": "288b2129172d00d05d36b1380839b39b54a81cf1bfd721853a197787554f66ed",
+  "schema_version": "1.0.0",
+  "scientific_provider_ledger_hash": "d5cf33d636ffb1d81433f39f067371fe1ec9821e304bbba7614fe85422f717fd",
+  "scientific_provider_ledger_head_hash": "69deb2988968b67ec8760904357436a5d5c0058e5b4ef334d2c8a5045e3684af",
+  "scientific_provider_record_count": 5,
+  "t2_call_1": {
+    "accepted_call_index": 1,
+    "generation_calls_consumed": 1,
+    "outcome": "accepted_proposal",
+    "retrieval_count": 0,
+    "revise_count": 0,
+    "validity_status": "admissible",
+    "verifier_issue_codes": []
+  },
+  "task_id": "TASK-039E3-R2R-FAILURE-FORENSIC-AUDIT",
+  "working_outcome_hashes_valid": true
+}

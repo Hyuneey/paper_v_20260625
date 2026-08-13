@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "9be43f344b8f6771c60bd0bfa06e56192139087bd17c8bfcf59608de6eff69d2",
+  "artifact_type": "task039e3_r2r_direct_failure_test_report_v1",
+  "compileall": "PASS",
+  "credential_accessed": false,
+  "diff_check": "PASS",
+  "focused_private_replay_tests": {
+    "failed": 0,
+    "passed": 5,
+    "provider_capable": false,
+    "result": "PASS",
+    "skipped": 0
+  },
+  "focused_preprivate_tests": {
+    "failed": 0,
+    "passed": 4,
+    "result": "PASS",
+    "skipped": 1
+  },
+  "json_self_hashes": "PASS",
+  "pip_check": "PASS",
+  "private_custody_mutated": false,
+  "production_source_modified": false,
+  "provider_contacted": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-FAILURE-FORENSIC-AUDIT",
+  "task_scoped_leak_scan": "PASS",
+  "test_commands": [
+    "bundled-python -B -m unittest -v tests.test_task039e3_r2r_direct_number_failure_forensic_audit (private replay disabled)",
+    "bundled-python -B -m unittest -v tests.test_task039e3_r2r_direct_number_failure_forensic_audit (coordinator-only exact-path private replay enabled)",
+    "bundled-python -B -m compileall -q tests/test_task039e3_r2r_direct_number_failure_forensic_audit.py",
+    "bundled-python -B -m pip check",
+    "git diff --check",
+    "task-scoped sanitized leak scan"
+  ]
+}
