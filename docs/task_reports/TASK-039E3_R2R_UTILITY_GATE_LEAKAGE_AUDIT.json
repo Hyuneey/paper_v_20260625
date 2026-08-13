@@ -1,0 +1,27 @@
+{
+  "artifact_hash": "686fa5b082f47b12fe90bb91d5a63e4e1a33a6a7b41a2e1dbcf238bfdd6730f5",
+  "artifact_type": "task039e3_r2r_utility_gate_leakage_audit_v1",
+  "classification": "AUTHORIZED_VALUE_ACCESS",
+  "current_gate_access": {
+    "attack_intervals_read": false,
+    "label_values_read": false,
+    "private_label_custody_read": false,
+    "utility_outcomes_read": false
+  },
+  "hai_utility_role_label_access_found": false,
+  "historical_authorized_access": {
+    "commit": "2450e2c9d3a3f3722581e2c1594435451493bf00",
+    "public_report_hash": "345e7ee908701aeae187d178af1f815a940ee85a69b6616a33587a6de66274c1",
+    "scope": "TASK-039A_PROVENANCE_ONLY",
+    "scientific_selection_used": false,
+    "utility_assessment_used": false
+  },
+  "history_search_result": {
+    "ambiguous_hai_utility_value_access_found": false,
+    "authorized_metadata_only_records_found": true,
+    "unauthorized_hai_value_access_found": false
+  },
+  "interpretation": "The classification records a narrow authorized provenance read in TASK-039A, not utility-role access and not access by this gate.",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE"
+}

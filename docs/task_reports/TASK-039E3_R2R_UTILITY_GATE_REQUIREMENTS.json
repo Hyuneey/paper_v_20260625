@@ -1,0 +1,27 @@
+{
+  "artifact_hash": "844fcf61c6f2326328447c618be2fb2e0b26769ccdc3cd85be11d1482eb05932",
+  "artifact_type": "task039e3_r2r_utility_gate_requirements_v1",
+  "arm_agnostic_utility_protocol_required": true,
+  "direct_number_isolated": true,
+  "post_result_protocol_freeze_must_be_disclosed": true,
+  "requirements": [
+    "materialize_and_audit_inner_utility_split_before_label_access",
+    "freeze_outer_and_sealed_role_plan_without_granting_sealed_access",
+    "freeze_offline_candidate_utility_interpreter_semantics",
+    "freeze_no_rule_coverage_and_denominator_semantics",
+    "freeze_primary_unit_metric_formulas_and_aggregation",
+    "freeze_event_or_point_matching_and_no_point_adjustment_policy",
+    "freeze_normal_data_only_threshold_sources",
+    "freeze_paired_arm_agnostic_comparison_and_statistical_reporting",
+    "freeze_private_label_and_result_custody",
+    "independently_audit_protocol_before_utility_authorization"
+  ],
+  "required_role_sequence": [
+    "U1_INNER_UTILITY_AFTER_PROTOCOL_AUDIT_AND_AUTHORIZATION",
+    "U2_OUTER_VALIDATION_AFTER_INNER_DECISION_FREEZE_IF_JUSTIFIED",
+    "U3_SEALED_EVALUATION_ONLY_BY_SEPARATE_EXPLICIT_GATE"
+  ],
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE",
+  "utility_execution_granted": false
+}

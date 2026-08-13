@@ -1,0 +1,77 @@
+{
+  "artifact_hash": "0f445cf79de22711c630c64743037993afc35ea41bc0b0a4480689d0048e9a90",
+  "artifact_type": "task039e3_r2r_utility_gate_precommitment_inventory_v1",
+  "exact_current_r2r_utility_protocol_found": false,
+  "history_scope": {
+    "commits_scanned": 243,
+    "historical_paths_inspected": 80,
+    "result_observation_boundary_commit": "a431dd88866e0f65439e3fad567894e0e9058713"
+  },
+  "inventory": [
+    {
+      "commit": "1c8a7f40b1ee46e0f819afe1b8b43904e3927e53",
+      "path": "docs/v6/V6_SCIENTIFIC_BOUNDARIES.md",
+      "precommitted_before_result": true,
+      "status": "FROZEN",
+      "finding": "Utility categories and validity separation are frozen, but formulas, denominators, evaluator, primary unit, aggregation, and statistics are absent."
+    },
+    {
+      "commit": "1c8a7f40b1ee46e0f819afe1b8b43904e3927e53",
+      "path": "docs/v6/V6_OPEN_DECISIONS.md",
+      "precommitted_before_result": true,
+      "status": "PROVISIONAL",
+      "finding": "Dataset-neutral utility metrics, detector endpoints, budgets, aggregation, outer exposure, and sealed execution were explicitly left open."
+    },
+    {
+      "commit": "59715458d1635cb3a673a640262d3343ddaeb3cb",
+      "path": "src/paperworks/data/contracts_v2.py;src/paperworks/data/splits_v2.py;docs/v6/V6_SPLIT_ROLE_AND_PERMISSION_POLICY.md",
+      "precommitted_before_result": true,
+      "status": "FROZEN",
+      "finding": "Dataset-neutral split roles and operation permissions are exact; detector-threshold selection remains unauthorized."
+    },
+    {
+      "commit": "ebe5e9a48a16e1a7008bf62acb59e256d267650b",
+      "path": "docs/v6/V6_VALIDITY_UTILITY_BOUNDARY.md;docs/v6/V6_GOVERNANCE_OUTCOME_SEMANTICS.md;src/paperworks/v6/outcomes_v1.py",
+      "precommitted_before_result": true,
+      "status": "FROZEN",
+      "finding": "Inner-only utility and selected_rule versus no_op semantics are frozen; no utility calculation or selection algorithm is implemented."
+    },
+    {
+      "commit": "b386ffefc6ea825fe9f67c1cb6aa6eec9aab1caa",
+      "path": "docs/v6/V6_GOVERNANCE_AUTHORITY_BINDING.md;src/paperworks/contracts/outcome_binding_v1.py",
+      "precommitted_before_result": true,
+      "status": "FROZEN",
+      "finding": "The binding consumes an already-computed utility outcome; it does not define or compute utility."
+    },
+    {
+      "commit": "20ca2e6f561ce0cdfaf822198f7b64d8e143215c",
+      "path": "src/paperworks/v6/task039e0_rule_construction_protocol_v1.py;docs/task_reports/TASK-039E0_CONSTRUCTION_METRIC_POLICY.json",
+      "precommitted_before_result": true,
+      "status": "FROZEN",
+      "finding": "Construction metrics are utility-free; construction no_rule is distinct from runtime abstention, but its utility scoring is undefined."
+    }
+  ],
+  "legacy_or_reference_items": [
+    {
+      "commit": "3054b3770efe9c4c0b8463bccd9e7c88862a514c",
+      "scope": "TASK-014 SWaT restricted evaluation harness",
+      "status": "IMPLEMENTED_ONLY",
+      "current_r2r_applicability": "UNRELATED"
+    },
+    {
+      "commit": "317a43a0bfe0be59caad611edf895c0f3ddc6e37",
+      "scope": "TASK-030 SWaT-oriented proposed-method split and metric policy",
+      "status": "SUPERSEDED",
+      "current_r2r_applicability": "UNRELATED"
+    },
+    {
+      "commit": "b13f17d8235c1b833a38a596c4ab31cfa7212ee2",
+      "scope": "ARGOS TASK-038E KPI branch utility protocol",
+      "status": "FROZEN_REFERENCE_ONLY",
+      "current_r2r_applicability": "UNRELATED"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE",
+  "utility_protocol_precommitted": "partial"
+}

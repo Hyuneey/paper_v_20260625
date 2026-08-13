@@ -1,0 +1,40 @@
+{
+  "artifact_hash": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+  "artifact_type": "task039e3_r2r_utility_gate_receipt_v1",
+  "blocking_finding_count": 0,
+  "component_artifact_hashes": {
+    "claim_map": "af388be5e07f94a8a906a80c6a1682b7865192de95b7c528d3e803aed2329c01",
+    "decision": "8df798ac373ec44dda4f1e124e19cb20847a2ac93f8cf6e6d42ad7fa6692ad66",
+    "evaluator_feasibility": "598e70f67f6df116f5f2e57333c5b64a1fbb9d04d74c2f29036788a2a365b683",
+    "leakage_audit": "686fa5b082f47b12fe90bb91d5a63e4e1a33a6a7b41a2e1dbcf238bfdd6730f5",
+    "metric_readiness": "329741ae75127cc1363cf966f809a83816e28e8968754d6d9ba5c516c8f020c8",
+    "precommitment_inventory": "0f445cf79de22711c630c64743037993afc35ea41bc0b0a4480689d0048e9a90",
+    "report_byte_sha256": "3c50a5e7dbfea696d0f2a5e87a9607615a3589f124a5165b68701591e780442b",
+    "requirements": "844fcf61c6f2326328447c618be2fb2e0b26769ccdc3cd85be11d1482eb05932",
+    "split_readiness": "a81141862b8ad4038909b891bda68825a0fff47e4ab246f52c1bc29ec0961490",
+    "test_report": "102d0d0e7ac897d7ead4c95565b0556d9441e5286e394e57c421a646660e56d0"
+  },
+  "gate_bundle_formula": "stable_hash_v1({task_id,gate_commit_a,result_analysis_authority,component_artifact_hashes})",
+  "gate_bundle_hash": "803f4f6f614b587925bb974420ef93a2c97502a291dfe5443c3597556e78e57b",
+  "gate_commit_a": "4298daa03e209383040c0271a073e7fb7cdd0011",
+  "label_values_accessed": false,
+  "next_task": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "production_source_modified": false,
+  "provider_calls": 0,
+  "result_analysis_authority": {
+    "bundle": "edd96574545504693479def2972740e7c9d065f1883b2d767c307a36c57cfe9d",
+    "commit_a": "0b2c41db90eda1103eb6602eb57bedf2597bd981",
+    "commit_b": "bc3d930237f1e6b52c6afc02d643d4b6cc1bb0d8",
+    "receipt": "d9df904bcc0f823780c82c0a594f124939fe56354e50606c866a71e0e05e999f"
+  },
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "scientific_execution_source_modified": false,
+  "status": "passed_task039e3_r2r_utility_feasibility_and_authorization_gate",
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE",
+  "utility_execution_authorization_ready": false,
+  "utility_feasible": "conditional",
+  "utility_protocol_audited": false,
+  "utility_protocol_precommitted": "partial",
+  "utility_values_computed": false
+}

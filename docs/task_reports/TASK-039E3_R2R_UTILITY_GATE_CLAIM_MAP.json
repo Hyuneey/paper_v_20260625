@@ -1,0 +1,39 @@
+{
+  "artifact_hash": "af388be5e07f94a8a906a80c6a1682b7865192de95b7c528d3e803aed2329c01",
+  "artifact_type": "task039e3_r2r_utility_gate_claim_map_v1",
+  "claims": {
+    "U1": {
+      "claim": "Verifier-admissible proposals have actual anomaly-detection utility.",
+      "required_split": "INNER_UTILITY",
+      "status": "CONDITIONALLY_TESTABLE_AFTER_PROTOCOL_AND_SPLIT_FREEZE"
+    },
+    "U2": {
+      "claim": "Utility distinguishes T0, T1, and T1-B despite the validity ceiling.",
+      "required_split": "INNER_UTILITY",
+      "status": "NOT_TESTABLE_FROM_PREDICTIONS_BECAUSE_EXECUTABLE_PROJECTIONS_ARE_IDENTICAL"
+    },
+    "U3": {
+      "claim": "T2 no_rule provides a safety-quality trade-off.",
+      "required_split": "INNER_UTILITY",
+      "status": "CONDITIONALLY_TESTABLE_AFTER_NO_RULE_COVERAGE_AND_DENOMINATOR_FREEZE"
+    },
+    "U4": {
+      "claim": "T1-B repeated sampling changes utility rather than only generation robustness.",
+      "required_split": "INNER_UTILITY",
+      "status": "NOT_TESTABLE_WITH_FROZEN_SELECTED_PROPOSALS"
+    },
+    "U5": {
+      "claim": "LLM structural choices add utility beyond deterministic T0.",
+      "required_split": "INNER_UTILITY",
+      "status": "NOT_TESTABLE_UNDER_CLOSED_VERIFIER_PROJECTION"
+    },
+    "U6": {
+      "claim": "Utility differences justify additional provider-call cost.",
+      "required_split": "INNER_UTILITY",
+      "status": "PARTIALLY_TESTABLE_ONLY_FOR_PRECOMMITTED_T2_NO_RULE_COVERAGE_TRADEOFF"
+    }
+  },
+  "required_primary_design": "ARM_AGNOSTIC_PAIRED_FULL_COHORT",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE"
+}

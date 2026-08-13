@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "8df798ac373ec44dda4f1e124e19cb20847a2ac93f8cf6e6d42ad7fa6692ad66",
+  "artifact_type": "task039e3_r2r_utility_gate_decision_v1",
+  "authorities": {
+    "provider_contact": false,
+    "rule_v2": false,
+    "runtime": false,
+    "scientific_rerun": false,
+    "sealed_evaluation": false,
+    "utility_execution": false,
+    "winner_selection": false
+  },
+  "blocking_finding_count": 0,
+  "label_values_accessed": false,
+  "next_task": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "protocol_readiness_classification": "UTILITY_PROTOCOL_FREEZE_REQUIRED",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_feasibility_and_authorization_gate",
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE",
+  "utility_execution_authorization_ready": false,
+  "utility_feasible": "conditional",
+  "utility_necessity": "ESSENTIAL",
+  "utility_protocol_audited": false,
+  "utility_protocol_precommitted": "partial",
+  "utility_values_computed": false
+}

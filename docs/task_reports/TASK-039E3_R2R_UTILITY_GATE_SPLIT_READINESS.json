@@ -1,0 +1,72 @@
+{
+  "artifact_hash": "a81141862b8ad4038909b891bda68825a0fff47e4ab246f52c1bc29ec0961490",
+  "artifact_type": "task039e3_r2r_utility_gate_split_readiness_v1",
+  "dataset_metadata": {
+    "dataset_manifest_hash": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+    "dataset_name": "HAI",
+    "edition": "23.05",
+    "label_metadata_declared_available": true,
+    "labeled_observation_rows_at_dataset_level": 284400,
+    "nominal_sampling_interval_seconds": 1.0,
+    "process_scope": "P1"
+  },
+  "materialized_split_collection": {
+    "artifact_hash": "108dcb05816d8b4adf68d0cb8778a806da600a4e63542fc7a6fb2e0dc832d518",
+    "git_blob": "6cc0b55d386f1edc4a60be89668d3882841ec0a7",
+    "roles": [
+      "normal_candidate_fit",
+      "normal_relation_calibration",
+      "normal_guard"
+    ],
+    "self_hash_valid": true
+  },
+  "roles": {
+    "INNER_UTILITY": {
+      "data_view_id": null,
+      "dataset_manifest_id": null,
+      "label_metadata_bound_to_role": false,
+      "manifest_exists": false,
+      "purge_gap": null,
+      "raw_range_count": null,
+      "readiness": false,
+      "row_count": null
+    },
+    "OUTER_VALIDATION": {
+      "data_view_id": null,
+      "dataset_manifest_id": null,
+      "label_metadata_bound_to_role": false,
+      "manifest_exists": false,
+      "purge_gap": null,
+      "raw_range_count": null,
+      "readiness": false,
+      "row_count": null
+    },
+    "SEALED_EVALUATION": {
+      "data_view_id": null,
+      "dataset_manifest_id": null,
+      "label_metadata_bound_to_role": false,
+      "manifest_exists": false,
+      "purge_gap": null,
+      "raw_range_count": null,
+      "readiness": false,
+      "row_count": null,
+      "sealed_access_status": "not_materialized",
+      "sealed_evaluation_authorized": false
+    }
+  },
+  "schema_version": "1.0.0",
+  "split_policy": {
+    "assess_rule_utility": ["inner_utility"],
+    "run_sealed_evaluation": ["sealed_evaluation"],
+    "sealed_requires_approved": true,
+    "select_rule_or_no_op": ["inner_utility"],
+    "replay_outer": ["outer_validation"]
+  },
+  "split_policy_authority": {
+    "commit": "59715458d1635cb3a673a640262d3343ddaeb3cb",
+    "contracts_blob": "2f0456554ebcebad14e36493fd6e2f6b5a62bdce",
+    "splits_blob": "149a3459343b850f0a640e020551a48e4a36e1b8"
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE",
+  "utility_split_materialization_ready": false
+}

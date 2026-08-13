@@ -1,0 +1,45 @@
+{
+  "artifact_hash": "598e70f67f6df116f5f2e57333c5b64a1fbb9d04d74c2f29036788a2a365b683",
+  "artifact_type": "task039e3_r2r_utility_gate_evaluator_feasibility_v1",
+  "accepted_cells": 165,
+  "arms": 4,
+  "direct_number_utility_execution": "NOT_APPLICABLE",
+  "existing_exact_continuous_step_utility_evaluator": false,
+  "frozen_arm_inputs": {
+    "T0": "frozen_accepted_proposal",
+    "T1": "frozen_accepted_proposal",
+    "T1-B": "frozen_selected_proposal_only",
+    "T2": "frozen_accepted_proposal_or_no_rule"
+  },
+  "historical_partial_or_posthoc_substitution_allowed": false,
+  "minimum_future_component": "OFFLINE_CANDIDATE_UTILITY_INTERPRETER",
+  "no_rule_cells": 3,
+  "no_rule_utility_semantics_precommitted": false,
+  "offline_candidate_interpreter_feasible": true,
+  "production_rule_v2_required": false,
+  "relation_arm_cells": 168,
+  "relations": 42,
+  "rule_v1_compatible": false,
+  "runtime_authority_required": false,
+  "semantic_identity": {
+    "T0_T1_T1B_accepted_executable_projection_equal_per_relation": true,
+    "implication": "Utility can test shared rule semantics and T2 no_rule coverage, but cannot attribute prediction differences to LLM structural choices among T0, T1, and T1-B."
+  },
+  "source_authority": {
+    "continuous_step_protocol_blob": "70b9a06e7613138b0e903934c1ea2e03fbd82618",
+    "proposal_contract_blob": "27cde14be79ca1ebd97e40bfbc66d0c1b1ce6280",
+    "runtime_v1_blob": "594c5e6566ef39b812a2609320c6f6d19bb80cc6",
+    "validity_blob": "16c4bfc5512a6bdae5176a1a39aa988cf40286bb"
+  },
+  "threshold_readiness": {
+    "arm_specific_thresholds_allowed": false,
+    "direct_number_substitution_allowed": false,
+    "label_tuned_thresholds_allowed": false,
+    "normal_derived_references_cover_required_proposal_roles": true,
+    "new_calibration_required": false
+  },
+  "utility_feasible": "conditional",
+  "schema_version": "1.0.0",
+  "scientific_source_changes_required": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-FEASIBILITY-AND-AUTHORIZATION-GATE"
+}
