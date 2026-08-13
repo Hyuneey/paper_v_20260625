@@ -1,0 +1,35 @@
+{
+  "aggregation": {
+    "description": "No aggregation or downsampling.",
+    "explicit": true,
+    "method": "none",
+    "output_sampling_interval_seconds": 1.0,
+    "source_sampling_interval_seconds": 1.0
+  },
+  "artifact_hash": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24",
+  "artifact_type": "data_view_manifest_v2",
+  "creation_metadata": {
+    "code_commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "config_hash": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+    "created_at": "2026-08-14T00:00:00+09:00",
+    "created_by": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+  },
+  "feature_order_hash": "a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57",
+  "preprocessing_config": {
+    "column_selection": "verified_selected_process_columns_only",
+    "downsampling": false,
+    "imputation": false,
+    "interpolation": false,
+    "numeric_parsing": "deterministic",
+    "scaling": false
+  },
+  "process_scope": [
+    "P1"
+  ],
+  "provenance_status": "verified",
+  "sampling_interval_seconds": 1.0,
+  "schema_version": "2.0.0",
+  "second_level_rule_calibration_allowed": false,
+  "source_dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "view_kind": "canonical_rule"
+}

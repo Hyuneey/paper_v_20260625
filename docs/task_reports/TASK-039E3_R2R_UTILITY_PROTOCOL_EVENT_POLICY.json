@@ -1,0 +1,32 @@
+{
+  "alarm_episode": "maximal contiguous sequence of unique one-second alarm timestamps",
+  "artifact_hash": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+  "artifact_type": "task039e3_r2r_utility_protocol_event_policy_v1",
+  "attack_event": "maximal contiguous run of label == 1 within one authorized labeled file",
+  "attack_type_or_P1_attribution": "NOT_PRIMARY_SEPARATELY_AUTHORIZED_IF_FUTURE",
+  "cross_file_event_join": false,
+  "duplicate_firing_measured_before_episode_merge": true,
+  "event_derivation_time": "AUTHORIZED_UTILITY_EXECUTION_ONLY",
+  "expand_event_boundaries": false,
+  "fill_short_gaps": false,
+  "merge_separated_attacks": false,
+  "merge_tolerance_seconds": 0,
+  "normal_observation": "label == 0",
+  "point_adjustment": "PROHIBITED",
+  "primary_scope_wording": "P1-bounded rule-set utility against HAI labeled attack events",
+  "raw_alarm_trace_fields": [
+    "relation_identity",
+    "semantic_execution_hash",
+    "source_event_index",
+    "decision_index",
+    "selected_horizon",
+    "violation_result",
+    "abstention_state",
+    "parameter_reference_identities"
+  ],
+  "raw_rule_alarm": "one point at decision_index for each missing expected response",
+  "schema_version": "1.0.0",
+  "summary_label_required": false,
+  "system_alarm_deduplication": "exact timestamp within arm",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+}

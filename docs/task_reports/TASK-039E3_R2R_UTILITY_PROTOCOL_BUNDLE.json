@@ -1,0 +1,33 @@
+{
+  "artifact_hash": "189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d",
+  "artifact_type": "task039e3_r2r_utility_protocol_bundle_v1",
+  "component_artifact_hashes": {
+    "authority_policy": "1e67a515e0c4cb3f47a978454e51f52d0fb7f3f8cb12a937c9ca2628440fd66b",
+    "custody_policy": "23700e55b51d5a72d69f065eec82fd4b6bdb33c33f989139351f02874522836a",
+    "data_policy": "c17b28fb58a51e9842fbdb3fcc8fab933061e97ae97ef7b1981a7fea1084f0e3",
+    "data_view_v2": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24",
+    "event_policy": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "executable_equivalence": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "interpreter_policy": "6e5b7939e8fb0c015e2053bda218ca89a9ba282ec1fd3707ed241e6c7a752327",
+    "metric_policy": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "no_rule_policy": "9c4617c5c346064ff7a89a547e875909145db84df5e2daed87bc86f6f65d062d",
+    "split_manifests_v2": "c0f2251d9a6c724dc109f5b2824f654f629602a4a65e51c7ede66ae6630b7e4b",
+    "split_policy": "c1825a6780552d82346ffd4fd8219792ad545d22c95586fe8ad20e920a872008",
+    "statistics_policy": "76fd208abc87c8cc725f1eccf345fe97c1b0eb4133c3fde5cbb5a1f6a6ba42f7",
+    "test_report": "87965911cae8f6d1aef0826534959aba44abc8f8ca14c86709226bcd3854402e"
+  },
+  "construction_execution_receipt": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+  "gate_bundle_hash": "803f4f6f614b587925bb974420ef93a2c97502a291dfe5443c3597556e78e57b",
+  "gate_commit_a": "4298daa03e209383040c0271a073e7fb7cdd0011",
+  "gate_commit_b": "cd6c23b68131820acf03d16cdd78c77db9635f59",
+  "gate_receipt_hash": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+  "hai_test_feature_values_accessed": false,
+  "label_values_accessed": false,
+  "protocol_commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+  "protocol_policy_snapshot_hash": "930539103cdb394637d04d3abc71968e1c81d321e970c47a96da5b90846c41c1",
+  "result_analysis_receipt": "d9df904bcc0f823780c82c0a594f124939fe56354e50606c866a71e0e05e999f",
+  "schema_version": "1.0.0",
+  "source_authority_hash": "f3b9d36e65ee77d5546dfd42c5772312fddab99d07cf4dc77d8f57f9360ff7bf",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "utility_values_computed": false
+}

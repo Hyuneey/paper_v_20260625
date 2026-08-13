@@ -1,0 +1,26 @@
+{
+  "T2_no_rule_cells": 3,
+  "abstentions": 0,
+  "alarms": 0,
+  "artifact_hash": "9c4617c5c346064ff7a89a547e875909145db84df5e2daed87bc86f6f65d062d",
+  "artifact_type": "task039e3_r2r_utility_protocol_no_rule_policy_v1",
+  "construction_coverage": 0,
+  "construction_denominator_contribution": 1,
+  "drop_or_substitute": false,
+  "interpreter_instances": 0,
+  "no_rule_is": "construction_absence",
+  "no_rule_is_not": [
+    "runtime_abstain",
+    "no_op"
+  ],
+  "numeric_safety_budget_frozen": false,
+  "relation_alarm_precision": "NA",
+  "relation_attack_event_recall_contribution": 0,
+  "relation_false_alarm_count": 0,
+  "runtime_evaluations": 0,
+  "schema_version": "1.0.0",
+  "select_rule_or_no_op_operation_used": false,
+  "system_portfolio_treatment": "rule_absent",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "utility_driven_no_op_selection": "DEFERRED"
+}

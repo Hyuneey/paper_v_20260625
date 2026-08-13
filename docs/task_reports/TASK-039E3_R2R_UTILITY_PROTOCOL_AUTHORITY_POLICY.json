@@ -1,0 +1,90 @@
+{
+  "T2_interpretation_categories": {
+    "A": "lower_false_alarms_without_material_coverage_loss",
+    "B": "lower_false_alarms_and_lower_coverage_tradeoff",
+    "C": "no_false_alarm_reduction_and_lower_coverage",
+    "D": "utility_equivalent"
+  },
+  "artifact_hash": "1e67a515e0c4cb3f47a978454e51f52d0fb7f3f8cb12a937c9ca2628440fd66b",
+  "artifact_type": "task039e3_r2r_utility_protocol_authority_policy_v1",
+  "claims": {
+    "U1": "TESTABLE_AFTER_AUTHORIZED_LABEL_ACCESS",
+    "U2": "NOT_TESTABLE_IDENTICAL_T0_T1_T1B_PREDICTIONS",
+    "U3": "TESTABLE_AS_COMMON_VS_T2_NO_RULE_SAFETY_COVERAGE_TRADEOFF",
+    "U4": "NOT_TESTABLE_WITH_FROZEN_SELECTED_T1B_PROPOSALS",
+    "U5": "NOT_TESTABLE_UNDER_CLOSED_VERIFIER_PROJECTION",
+    "U6": "PARTIALLY_TESTABLE_BY_JOINING_UTILITY_WITH_FROZEN_CONSTRUCTION_COST"
+  },
+  "construction_result_authority": {
+    "custody_audit_receipt": "5578202038dbd2e04972447467afc021a230c08dd6a821e81d9dd23bfb2b8986",
+    "execution_receipt": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+    "result_analysis_receipt": "d9df904bcc0f823780c82c0a594f124939fe56354e50606c866a71e0e05e999f"
+  },
+  "deployment": false,
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-PROTOCOL-INDEPENDENT-AUDIT",
+  "inner_label_access": false,
+  "outer_label_access": false,
+  "precommitted_before_construction_result": false,
+  "production_runtime": false,
+  "protocol_classification": "POST_RESULT_PROTOCOL_FREEZE",
+  "provider": false,
+  "rule_v2": false,
+  "schema_version": "1.0.0",
+  "sealed_evaluation": false,
+  "source_authority": {
+    "construction_result_authority": {
+      "artifact_hash": "2175fca3c3bcc5ccffe7dfca1fcd8c3a0687ac94a56d077f5db53a6632bf2159",
+      "byte_sha256": "628bef0f32e6cf416c60648eb98811879a0e507958e71b0433df4f19efd8623d",
+      "git_blob": "f10b83446675c4af35b692b111e5bcba5e5cbe97",
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CONSTRUCTION.json"
+    },
+    "continuous_step_protocol": {
+      "byte_sha256": "cc88b692d9dee50b3b8cc5497f596595a74082ee5c7a838b5fe51e7c381c4596",
+      "commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+      "git_blob": "70b9a06e7613138b0e903934c1ea2e03fbd82618",
+      "path": "src/paperworks/v6/continuous_step_protocol_v1.py"
+    },
+    "dataset_contract": {
+      "byte_sha256": "889d8e058d6bfd50b2debdb1c3c931210ddecc577a13892206ed1727f7382104",
+      "commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+      "git_blob": "2f0456554ebcebad14e36493fd6e2f6b5a62bdce",
+      "path": "src/paperworks/data/contracts_v2.py"
+    },
+    "proposal_contract": {
+      "byte_sha256": "217d5e89e1420956a9592c8086a0a37af5a330a489493de621a094979df76425",
+      "commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+      "git_blob": "27cde14be79ca1ebd97e40bfbc66d0c1b1ce6280",
+      "path": "src/paperworks/v6/task039e2_execution_configuration_v1.py"
+    },
+    "result_analysis_authority": {
+      "artifact_hash": "d9df904bcc0f823780c82c0a594f124939fe56354e50606c866a71e0e05e999f",
+      "byte_sha256": "efc225ffa912eac9768610305b5939cdd66e93c44b94cad8bc0b5c06952fbbe6",
+      "git_blob": "5ea758e6e7248390890baf4714180edffaee53a7",
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_RECEIPT.json"
+    },
+    "split_contract": {
+      "byte_sha256": "a2df07b2edb3697c332d136c2c509a52b4355d92d6c2ca02a047b134c3500f67",
+      "commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+      "git_blob": "149a3459343b850f0a640e020551a48e4a36e1b8",
+      "path": "src/paperworks/data/splits_v2.py"
+    },
+    "utility_gate_authority": {
+      "artifact_hash": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+      "byte_sha256": "764bc7beaaf2244ab3242676ad41a510f85cf4e2b0eec8ff6a2817bbc9be61a1",
+      "git_blob": "c4963f9d920734b3b5558390802f054986cccbf3",
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_GATE_RECEIPT.json"
+    },
+    "utility_protocol_source": {
+      "byte_sha256": "56305eced40020b00e29783fa9d795f3a352b230e584ffed0ae5465f1f1a5165",
+      "commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+      "git_blob": "2e6960c6838519310b71df417b4fb4824f4a4f92",
+      "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v1.py"
+    }
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "utility_evaluator_implementation": false,
+  "utility_execution": false,
+  "utility_protocol_audited": false,
+  "utility_protocol_frozen": true,
+  "winner": false
+}

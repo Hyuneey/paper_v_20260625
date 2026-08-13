@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "87965911cae8f6d1aef0826534959aba44abc8f8ca14c86709226bcd3854402e",
+  "artifact_type": "task039e3_r2r_utility_protocol_test_report_v1",
+  "bundle_reconstruction": "PASS",
+  "compileall": "PASS",
+  "focused_test_modules": [
+    "tests.test_task039e3_r2r_utility_protocol_v1",
+    "tests.test_task039p1a_splits_v2",
+    "tests.test_task039br1_continuous_step_protocol",
+    "tests.test_task039e3_r2r_utility_feasibility_gate"
+  ],
+  "focused_tests_failed": 0,
+  "focused_tests_passed": 62,
+  "focused_tests_run": 62,
+  "git_diff_check": "PASS",
+  "hai_test_feature_values_accessed": false,
+  "json_self_hash_validation": "PASS",
+  "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+  "protocol_commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+  "provider_calls": 0,
+  "real_label_values_accessed": false,
+  "schema_version": "1.0.0",
+  "scientific_calls": 0,
+  "synthetic_only": true,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "task_scoped_sensitive_data_scan": "PASS",
+  "utility_values_computed": false
+}

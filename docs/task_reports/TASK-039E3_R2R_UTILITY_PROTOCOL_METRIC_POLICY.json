@@ -1,0 +1,46 @@
+{
+  "artifact_hash": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+  "artifact_type": "task039e3_r2r_utility_protocol_metric_policy_v1",
+  "auprc": "NOT_PRIMARY_NOT_APPLICABLE_TO_BINARY_EVENT_TRIGGERED_OUTPUT",
+  "auroc": "NOT_PRIMARY_NOT_APPLICABLE_TO_BINARY_EVENT_TRIGGERED_OUTPUT",
+  "co_primary_endpoints": {
+    "attack_event_recall": {
+      "denominator": "all AttackEvents",
+      "higher_is_better": true,
+      "numerator": "AttackEvents overlapped by at least one AlarmEpisode"
+    },
+    "normal_false_alarm_rate_per_hour": {
+      "denominator": "normal_labeled_seconds / 3600",
+      "lower_is_better": true,
+      "numerator": "AlarmEpisodes containing no attack-labeled timestamp"
+    }
+  },
+  "direct_number_utility": "NOT_APPLICABLE",
+  "no_rule_explicit_exceptions": {
+    "alarm_precision": "NA",
+    "attack_event_recall_contribution": 0,
+    "false_alarm_count": 0
+  },
+  "point_adjustment": "PROHIBITED",
+  "primary_units": [
+    "AttackEvent",
+    "normal_labeled_exposure_hour"
+  ],
+  "relation_level_diagnostics": "SEPARATE_DESCRIPTIVE",
+  "scalar_utility_score": null,
+  "schema_version": "1.0.0",
+  "secondary_metrics": {
+    "abstention_rate": "abstained applicable evaluations / all applicable rule evaluation opportunities",
+    "alarm_episode_count": "count AlarmEpisode",
+    "alarm_episode_precision": "attack-overlapping AlarmEpisodes / all AlarmEpisodes",
+    "construction_coverage": "accepted executable relation cells / 42",
+    "duplicate_firing_ratio": "(raw_rule_alarms - unique_alarm_timestamps) / raw_rule_alarms",
+    "event_f1": "harmonic_mean(AlarmEpisodePrecision, AttackEventRecall)",
+    "raw_alarm_count": "count RawRuleAlarm",
+    "unique_alarm_timestamp_count": "count unique decision timestamps"
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "weighted_composite": null,
+  "winner_selection": false,
+  "zero_denominator_policy": "NA_WITH_DENOMINATOR_AND_REASON_NEVER_ZERO"
+}

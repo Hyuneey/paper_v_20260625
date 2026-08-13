@@ -1,0 +1,115 @@
+{
+  "artifact_hash": "c0f2251d9a6c724dc109f5b2824f654f629602a4a65e51c7ede66ae6630b7e4b",
+  "artifact_type": "task039e3_r2r_utility_protocol_split_manifests_v2",
+  "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "event_ids_created": false,
+  "file_coordinate_map": [
+    {
+      "feature_file": "hai-test1.csv",
+      "feature_file_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "label_file": "label-test1.csv",
+      "label_file_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "logical_file_index": 1,
+      "logical_range": {
+        "end": 54000,
+        "start": 0
+      },
+      "observation_count": 54000,
+      "split_role": "inner_utility"
+    },
+    {
+      "feature_file": "hai-test2.csv",
+      "feature_file_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "label_file": "label-test2.csv",
+      "label_file_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "logical_file_index": 2,
+      "logical_range": {
+        "end": 284520,
+        "start": 54120
+      },
+      "observation_count": 230400,
+      "split_role": "outer_validation"
+    }
+  ],
+  "hai_test_feature_values_accessed": false,
+  "label_values_accessed": false,
+  "protocol_commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+  "purge_gap_samples": 120,
+  "purge_range": {
+    "end": 54120,
+    "start": 54000
+  },
+  "record_count": 2,
+  "records": [
+    {
+      "artifact_hash": "30a7c88d6e0af5c37493237cc83b9520cbcd6f43c2dee7bb50ec3cac2668e7d0",
+      "artifact_type": "split_manifest_v2",
+      "creation_metadata": {
+        "code_commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+        "config_hash": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+        "created_at": "2026-08-14T00:00:00+09:00",
+        "created_by": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+      },
+      "creation_policy": "deterministic_file_index_test1_inner_before_labels_v1",
+      "data_view_id": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24",
+      "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+      "event_ids": null,
+      "process_scope": [
+        "P1"
+      ],
+      "provenance_status": "verified",
+      "purge_gap_samples": 120,
+      "raw_ranges": [
+        {
+          "end": 54000,
+          "start": 0
+        }
+      ],
+      "role": "inner_utility",
+      "schema_version": "2.0.0",
+      "sealed_access_status": "not_applicable",
+      "seed": null,
+      "split_before_windowing": true
+    },
+    {
+      "artifact_hash": "9d76358ff109e4a6d2a712a1ff679c199d08e9cc92239160c8016e9efa063203",
+      "artifact_type": "split_manifest_v2",
+      "creation_metadata": {
+        "code_commit": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+        "config_hash": "110a0070f309db6680a508a6f10e65025f1c87b15585f8c019a3dbe277a48f02",
+        "created_at": "2026-08-14T00:00:00+09:00",
+        "created_by": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+      },
+      "creation_policy": "deterministic_file_index_test2_outer_before_labels_v1",
+      "data_view_id": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24",
+      "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+      "event_ids": null,
+      "process_scope": [
+        "P1"
+      ],
+      "provenance_status": "verified",
+      "purge_gap_samples": 120,
+      "raw_ranges": [
+        {
+          "end": 284520,
+          "start": 54120
+        }
+      ],
+      "role": "outer_validation",
+      "schema_version": "2.0.0",
+      "sealed_access_status": "not_applicable",
+      "seed": null,
+      "split_before_windowing": true
+    }
+  ],
+  "required_purge_validation": {
+    "maximum_required_lag": 60,
+    "required": 120,
+    "window_size": 61
+  },
+  "schema_version": "1.0.0",
+  "sealed_evaluation_authorized": false,
+  "sealed_evaluation_manifest": null,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "utility_data_view_id": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24"
+}

@@ -1,0 +1,35 @@
+{
+  "artifact_hash": "23700e55b51d5a72d69f065eec82fd4b6bdb33c33f989139351f02874522836a",
+  "artifact_type": "task039e3_r2r_utility_protocol_custody_policy_v1",
+  "future_private_minimal": [
+    "label_event_binding",
+    "evaluation_traces",
+    "proposal_reference_bindings"
+  ],
+  "future_public_allowed": [
+    "aggregate_metric_counts",
+    "aggregate_metric_values",
+    "confidence_intervals",
+    "arm_level_summaries",
+    "relation_level_aggregate_summaries",
+    "hashes"
+  ],
+  "future_public_prohibited": [
+    "raw_label_arrays",
+    "raw_test_rows",
+    "raw_sensor_traces",
+    "attack_timestamps",
+    "private_local_paths",
+    "credentials"
+  ],
+  "inner_may_change_protocol": false,
+  "inner_result_status": "DEVELOPMENT_EVIDENCE",
+  "outer_result_status": "ONE_WAY_FROZEN_REPLAY",
+  "poor_inner_result_may_cancel_outer": false,
+  "private_artifacts_bound_by_public_hashes": true,
+  "provider_or_external_disclosure": false,
+  "raw_data_entered_git": false,
+  "schema_version": "1.0.0",
+  "sealed_evaluation_required_for_current_MVP": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+}

@@ -1,0 +1,1262 @@
+{
+  "T0_T1_T1B_equivalence_verified": true,
+  "T0_T1_T1B_equivalent_relation_count": 42,
+  "T2_accepted_equivalent_count": 39,
+  "T2_accepted_rule_equivalence_verified": true,
+  "T2_no_rule_cells_preserved": true,
+  "T2_no_rule_count": 3,
+  "T2_status_mapping_private_binding_hash": "60618dbe43308f44f3a50a28dad2880bf5680f26797e3415bdb7273fe61a42d4",
+  "artifact_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+  "artifact_type": "task039e3_r2r_utility_protocol_executable_equivalence_v1",
+  "excluded_nonexecuting_fields": [
+    "construction_arm",
+    "provider_response_id",
+    "call_index",
+    "prompt_hash",
+    "provenance_envelope"
+  ],
+  "identical_projections_treated_as_independent_predictions": false,
+  "portfolio_class": "COMMON-42",
+  "relation_equivalence_class_count": 42,
+  "relation_records": [
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV01D",
+        "source_stability_reference": "f102d4a3556f1af2826feeff92c0863e32def4fd87be4b08b6257c7b0e8a9c27",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "2c68b0520a42c3d10e93bbc81355bc1f475859477db3be438fdffca993c973b6",
+        "target": "P1_FT02",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "4624d088b41813f1b2077f2d24c48f8a1d00ccfc142c819c9a8e4587696ed9fa",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "a0261f080b2e40ea09ebb327254731d6ba52758170f2a53d01e52c4ff30006e2",
+          "minimum_source_stability_fraction": "20f26d07f35a1a628a515c2205919528bdcfdc44f45b3526f89d33431f594dec",
+          "source_post_window_seconds": "0e2743f95ea9e1f48a2c0ddaa67f84bfdfad361395a89e785985553844aefbfb",
+          "source_pre_window_seconds": "0e418377bcb82f340b8146ca9a1a17e63d89beadfc75b649787d13a3b20f8723",
+          "source_refractory_seconds": "0c1f95d728fb713a4803b2652dc8bd15703bfafffc63f23191c574d49e61cdc1",
+          "target_baseline_window_seconds": "67c77e0ba18825d4441b99ac991b762f0cd2aa3e78e2ffcc00e1a6af3eefaf42",
+          "target_response_window_seconds": "1c756144e13144da8a6aa78a28074942063dc7e5604e8cb3414d09edc6d638e1"
+        }
+      },
+      "relation_binding_hash": "771cda117815b723c681559b33c60f7935774cd0b1f27970854b97971b2a10a5",
+      "semantic_execution_hash": "a7ec0ce4c08f6f236ab515708fe8d36bea7c98ae33a7d7d587029f6f15bf426d"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV01D",
+        "source_stability_reference": "803624b41e790118aa063293ad32e4dad3ee73ffafcff1b94f16e2b99b0f4b08",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "65739b5f5fae577e855f17078ac400aaf660205eee9276693d8b157e39faa3bf",
+        "target": "P1_FT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "46a8495674970b35f8e9bfdabf9511b8c9154230771a41692b11412f3418218a",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "6312b45a1f9dc8bc7324d189bf4ee396a5f6fe738b02f2e0c43cc46d172d04da",
+          "minimum_source_stability_fraction": "59a124bcb388d2502aa63197510b30f23b21ba992efb6239581127ec0ad6bee5",
+          "source_post_window_seconds": "a403e5cb47c6a01d5da17247c33a428113fde5a93a3216ef2b7a1ab82e82e336",
+          "source_pre_window_seconds": "b61fc6fd37d8136c8b710b6fae541e8b85b3bef8a1c68bab3d41604e63c4a93b",
+          "source_refractory_seconds": "54c01d30c22731edefd12d0323129bdf3401f19b8a1bf0f1d871ea4313739706",
+          "target_baseline_window_seconds": "c030075731746005a4b3a6bb46e24fe177b8a8901fb976f0eea1621dce3b5ea3",
+          "target_response_window_seconds": "00d18183e7165b2a6089d4ed2e7fbb9177e5539d56243f5d0403ae5064386c29"
+        }
+      },
+      "relation_binding_hash": "daaaee2795f7763ba55608107358506f561ccb44da9970be20eaa17cfcf4e63d",
+      "semantic_execution_hash": "6349283a3179ac1f94960d317a19257c45eb5c6389324fb69145feaab36077dd"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV01D",
+        "source_stability_reference": "755177e7b0b82e6019a9317a528277f7a98156afd269f01916d19a9ed88e01ef",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "c6c673c061d8eb0e1a3f11919608459afa6dd5e07d5da637d816b3e5504bcaf2",
+        "target": "P1_FT02Z",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "53816b072c45d16f046318bb1ebe63b54943c830fa384600bdca85d7aa7e89c5",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "b5ba6e6baeeb9d5985f02156f1a50e5d5b2c6ae21461ec1747ab959ae5f7f0cb",
+          "minimum_source_stability_fraction": "cf1d787161c4c24a28cf61b6e9d25aff223409cb9519ce6f9c3843b25f70c19d",
+          "source_post_window_seconds": "84df144ae51750ff0ab0438660f23bb7f89da5ab78cb4f19abfd67cf1228cc85",
+          "source_pre_window_seconds": "056c593b3a878244d70d2153835539f30f093950ff2f3648a5708911307fd76c",
+          "source_refractory_seconds": "41ac1bf7f9ae34bfa8d42e17910502dfb9a98a5d8845835d14c988fd9c3c02a0",
+          "target_baseline_window_seconds": "de155823bbba209a626d39f57461a895706f8eeb8be4f23ebb83592b912efd13",
+          "target_response_window_seconds": "331b74f90aa7754f748ab1d04d75ae7ebe22c4c64c64175bc60470708b13d3be"
+        }
+      },
+      "relation_binding_hash": "db78e2c122ba53bd39a554c7efee83ec439f11da333e4f61df80da741df43dda",
+      "semantic_execution_hash": "3b6d397a032ac8498168b396bd36346bde5c912f96e51a5815f82973337761aa"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV01D",
+        "source_stability_reference": "5fe54aa32fde97e01b225496f8e9c20f4dc953d85fc92f7375811a9da75e1135",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "f62f5c82da89ef7c41e291998e8f9d0adc0c48d3f3fe5056502b39c0ed006b99",
+        "target": "P1_FT02Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "83a8ca48355eb0b4b07f9ad95e8756dbd696d1020a301dabce371c5d94b950c8",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "c0ac83d42796a69d64436356269d3e1a19ee863bd5302308bfa1b5e46502e315",
+          "minimum_source_stability_fraction": "f4df3ff636c504f363e73ba59535ba0186cb50360db7f582a22d22f55f59dff0",
+          "source_post_window_seconds": "5e995a78b6aaf91510d212161253018900e824b236a185d7f6abdea5e3da9c6b",
+          "source_pre_window_seconds": "77bf81589683c52626817b3cd2c21c90b9e38ce3ac2cc0703ddd714cad430330",
+          "source_refractory_seconds": "0b9d11fced9678d7fda281387e2d7c85ce38d09710edfc282d42919e146ce16d",
+          "target_baseline_window_seconds": "f1db37b0c75b3ddab05bdfd842a3b1248f3ec51612a5e0cf875603aa85cce137",
+          "target_response_window_seconds": "1859862b438adc641ea701c9afd2a84b2afaeb2e9ea3bcfc6f0c48c58a2f5352"
+        }
+      },
+      "relation_binding_hash": "ad0d7c6e2e47966df473f98af02d3e9f35f0de9e696fa4e99cc05189dc0d4438",
+      "semantic_execution_hash": "7a6886db9d078ce97f5b047085b845e0c2397efba7929605d14a666f7d721dc6"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV03D",
+        "source_stability_reference": "ce879ca590fad4c9b9005f955499025fcec2bf558844d598740c31a892526f63",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "0a0e4192b7acba34c304e2bf1e3cc0f5d0fa358172c56aec7ddac1d27ed8df46",
+        "target": "P1_FT03Z",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "f6001325476783598e95e8786dd62d678368574b0ac4bcea9e0be763eafb2973",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "1b132bd169b77740222e1daae24f43234e89b2dbe644e4d5736b0e430887e0db",
+          "minimum_source_stability_fraction": "ae5204f24c78d92ab351015109bf45ac37e0e2d61de321cb04dafc691af1004e",
+          "source_post_window_seconds": "34005acc73d3e6fcaa836e75f63bc239c2362aea744656c6ad57a2dc6ebab4cd",
+          "source_pre_window_seconds": "84aa7ba7fde595d930253252cb46e7dd94b083a3ce1dda717c16c12fc1be524c",
+          "source_refractory_seconds": "9227fcee91768c532e6ba51bf8a9b0bd039f80ff4dcb208420a1b3c9df649ec4",
+          "target_baseline_window_seconds": "bf8907116bb7a853f26d1590b7911eab4be013278374fd1024cd9b88deebacf7",
+          "target_response_window_seconds": "4df27c998f57f06d3dc8aade39e21b07b2a3533d25efb096f50c300f0463422a"
+        }
+      },
+      "relation_binding_hash": "30b80b42163722fbf0fe20f3d258f61ae889294b5a860c21114d6125f2cf62b0",
+      "semantic_execution_hash": "250cc73d2c83def65aea253b7f1047a69f6143e546ab171fa27f20da1051c8c5"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV03D",
+        "source_stability_reference": "1f89dacb5ce7e8edfe9029b9f443bc0524db00feee3543b4ee084e69752d0527",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "4bef05718d780c4a2f0488d66747eed00eea59f4636595891cc4f5526cf521e1",
+        "target": "P1_FT03Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "0584e0373f9b993ac92700d8d031f1d3c54726e51736dd4b3120d21ae61ff418",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "b3ed9b28950c818d385f013893ef61aa0fff37c25e4547b69ddd6be9abe5970a",
+          "minimum_source_stability_fraction": "47a3c1a59c58f4fb3ef7e5279b713548eee745e60e860db7cb65b435dbe4a8e0",
+          "source_post_window_seconds": "96ca2ebe71a105defc7d1bab7c429500f65f3a18a2d4682c176980e6745682ef",
+          "source_pre_window_seconds": "fbe7f9a927dee63f41860c4a0837246afa379abd14a755d1206814a6ce71f010",
+          "source_refractory_seconds": "990d69cd7246ed1d4fbe8365d0f80a3856ab9dfc6a8852ade96bd6564e31e61b",
+          "target_baseline_window_seconds": "ee3ff6812ddb4446e9774cb2268955b78ef8b6e6c622edf63c3d4ebd94f047de",
+          "target_response_window_seconds": "39cc3a12e126d3c42a5437261e72cf11a7a3ec517b03d444a3438943d6776322"
+        }
+      },
+      "relation_binding_hash": "204abd371c860fa8ad746e687b73e8cea948268fd0656435f031b3626ae967ed",
+      "semantic_execution_hash": "97f55bf9ed56adcc01adfd41624c56b85ec2d0e2efc87cbb6587754a300928d9"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "d43c61d2ec69cff80a3bac01a4c64261fc35686146e0ccd2a6189fe26a75347f",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "ffa7b2f33a72b8657d6bdfeda05770dd9a52f1a189288ee08ab4d6779aee39ae",
+        "target": "P1_PIT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "4075620d673c2db27d84e8d57e9c69f18392f67b717c352f2a5046d72c6ac3ad",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "cf10ceb03570444b572a6a79f9770cfae5cfc618450b47e013425dfa64647dcc",
+          "minimum_source_stability_fraction": "91a163f9cf7e2da475833a1e40e4ad158c33d02a5832252ebf85d15ad9f34ccf",
+          "source_post_window_seconds": "3f0eeaadf55d738edfd29194f0aaf46340113d7f94c3818ea06850972a4c1890",
+          "source_pre_window_seconds": "860a4cad6d8ed53d448bb0a671691440dc2fb36a6d5043ff52416681486d1472",
+          "source_refractory_seconds": "12c4490a54880f544b7237083b3984ca6ecd2e1def7be978c8547eac1d539137",
+          "target_baseline_window_seconds": "51a9a5ff7d13e33688cd471637d9379033abbe4846c22b69d93af5db726dccb7",
+          "target_response_window_seconds": "5fe8d6c363b2f16e884316537e633c2336ea2b3693859d734ca6b2e4dd610516"
+        }
+      },
+      "relation_binding_hash": "a84e45627c76351d6d867b20a7b00be6b3908dc53a38142c739d9c3480aa73d3",
+      "semantic_execution_hash": "4e0a4706f2b17ead2079e7baa0876858aa4173e3afade806c0e38e8df0291705"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "cdd78b6f5976b5203d4f17661cb53966a7e00ef0374b5f48bd20d106d414130e",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "6b5ac77590a8ec5361997395a054c10e84026a95e49076515377eee8fb59f247",
+        "target": "P1_PIT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "1834cbf936f18e32d62c66bb4a699eb1e3ea4b8e436f5ae2a3cc22713427c825",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "a0cd82c5f34dee345f34f163e0e3f170cba10fcb1046d877a07f49f7bdceb13f",
+          "minimum_source_stability_fraction": "60450b24faf856de3e1b1115a86142735cce7b0ce11d25e1b51bc6b6c91530ff",
+          "source_post_window_seconds": "c36efcb0fd2a9ec65c780ba5f2d5ddf89f632f24f1dfd6901ef12b5f6f50c50f",
+          "source_pre_window_seconds": "81dd7a935edad499224b388912cd0ab09e40752678df070cf7f8d1271f9052a8",
+          "source_refractory_seconds": "e404a0540ec205fde3515c2962ea9e8a729b0d6a252090c6285c354126e4febc",
+          "target_baseline_window_seconds": "d65631776dfe10fb57821692f6cafe756f211a10fceee966bff1dd8ca188d859",
+          "target_response_window_seconds": "87e1f9b354c15856b01f1562fb2a526d5e59e1f76af5abab803448d0edaf2a1c"
+        }
+      },
+      "relation_binding_hash": "906cd998411c78071974a9e0c96d82d3094c844c4f8d67f97ea72c72496c9785",
+      "semantic_execution_hash": "e90e144a4cf5f9ec537ca581309606923dda6427ebccf3c673b6f715d857b00d"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV02D",
+        "source_stability_reference": "75a98d0fe9f17e2d31673ace534210bff22f2b723744b6fd8cb7bc3b0a976adb",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "8f1825c128d347c787bd66451a343fca940a35d96f0bf036b1b599e1fa218d88",
+        "target": "P1_FT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "ae75e3a1f0f52bc0e84b602a2433d729d2707c8fe3bdb8fd51c707e1d374da13",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "13fc97140a25052195f684ef81f1dbdc220d558e56b81a6c776dff0a616845e4",
+          "minimum_source_stability_fraction": "1748248d5b526edd4ea93dbf40766e3f9923d728c4bbbb89cfb78c504a2729ba",
+          "source_post_window_seconds": "ec65d181b8840a3406dd123159c376c60d28ac4f63946e453efd00ead5c90aa5",
+          "source_pre_window_seconds": "5252205bd5800b566999e2a7c37b94aba3b6ba13addacd30e1bc2b9d5df801c9",
+          "source_refractory_seconds": "fa0c4618dff6b9613dbd54329aaf59b87f0467cb2577a326eabd36dc5fe3a55f",
+          "target_baseline_window_seconds": "857e524741c852b82c5f3c7d33c9420ad3b79c524b5c1af9065c2155c7d4416f",
+          "target_response_window_seconds": "cdad99735f91ea73e6901340ab6f330ced9c15140ca0ce684d574f53521c9856"
+        }
+      },
+      "relation_binding_hash": "903262b61a1ed4c1324176ac0405590651941fb8c42c4e0585eba30ca6e72789",
+      "semantic_execution_hash": "d277e8983c3363be8c8c472906b53cfdfc63802e51a5f1681b0733918610b8d5"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV02D",
+        "source_stability_reference": "1b4c5afb8e0000fba7d2e877e58cc1d43a0ae57008092164de51c7e3c2c391d7",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "ae1b9ffd52a638d58d25f176735886960c03677c69e71cdb0d574bf1a2a36bde",
+        "target": "P1_FT02Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "4bae9b5737642648a1afac2f7721b0bc8b779d05d9a843b8a3e464925fdf5668",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "8c045d2ea5dec99eaed360f293a2e82bb07477b3949bf508b7e931d64bb36437",
+          "minimum_source_stability_fraction": "7f3777c31faa97db1124a1993191cd7577b41065e1e239d27607cca6bbb04c0e",
+          "source_post_window_seconds": "7a556e56021e1c471e65151f6ef37d37b5d8dbdc63edef527924fe51b166902c",
+          "source_pre_window_seconds": "ce33404a1fac039d6a9c5f96dc5b1456c703056e75acd4f8922c71c374c3596c",
+          "source_refractory_seconds": "e6b434f8add5353b0081a02c1ebb0974547e340033b98bc47bb5fd398403e2ad",
+          "target_baseline_window_seconds": "4bd9ecb65fd21d5e0220f194a17d665ce078f6a30b6912862a1585e0c2b4a908",
+          "target_response_window_seconds": "0f07ee905ec28eb5a6d168acc42cc66c0beaa5e7251584252b33bef72693ff9f"
+        }
+      },
+      "relation_binding_hash": "5af9d8c43235f048c32f8dea66d75114e29edf35975ec2687333a8e1362657b5",
+      "semantic_execution_hash": "bb6a573f374bb470a948dfd1c7af2ffa2c453676adafa1ce149394a0f6799a85"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_LCV01D",
+        "source_stability_reference": "22da273d88e3177d2ecaedd2446e5b022afff3a9c0a8c3c14de2a32d3b236bba",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "15c61cfcf932a1c17e4dcb8326e45388b558665419c2fce7548e64e24c55feff",
+        "target": "P1_LIT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "da5ec481b7db695756067a652aa53f30d14122cf81abb852fe225799c7458583",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "f3646a92c96bd3b94e8d739741f96dc7d54623eaf7a2057e377df98325fe8790",
+          "minimum_source_stability_fraction": "a608ad6375a1c2c32811615494ac0724b81491f7f2a63dbebbde27c0dd2e7373",
+          "source_post_window_seconds": "7bf49418710e574c92fb4c920ba46f33b0534510f3bffaa6dcaeffa53177c6d0",
+          "source_pre_window_seconds": "95ff8331e8e3099513b54a38f87b8f2a24e0e8221439e967438585c0bc516771",
+          "source_refractory_seconds": "088428b678625cf1f9caf6b10e68b6cfa20f44ff269917e4444cb812ff1274aa",
+          "target_baseline_window_seconds": "308795d78be9379eda56eb29dee7f8add57fb7b3f80a1f9492b026bb8b65fb1d",
+          "target_response_window_seconds": "ed240cae102ce3a81800f87e05aefbc348ff04c1f738de03e323fa5f88875814"
+        }
+      },
+      "relation_binding_hash": "3dbc8a58c388b5c0784ad658db4a17dafa3f5b5cb28192f32f4ffba82256be31",
+      "semantic_execution_hash": "c0d42f9d92d5ed29a81a09665e112d4304b66aa3e8afe5651b46b62092887f50"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_LCV01D",
+        "source_stability_reference": "18cc414757401be22c5c26fc7325dc8bd4e36b74ca6e02ff9b029bdde54d8223",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "f88b586bf4b81939084e59b7638e29a3a892f9a4b7f4bd05a3bc40f10aa9da4b",
+        "target": "P1_LIT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "618343428a11cbcd3c6cee6703e91f659b78f673a2d7baf10a9e32a5b48f0b0c",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "eac122017a80285ba2bd27040376c719413e5eaa7e1eda872a1fb0c1460936da",
+          "minimum_source_stability_fraction": "0a0222148b23d626267a4450dce3ac69d6c93929f679f66abfb5d468d223ff45",
+          "source_post_window_seconds": "4e331effda27facf7b76c27a327f77f6bf15be6f265845cb916bef9ed0b08e29",
+          "source_pre_window_seconds": "e7cdf107b8aa79f033d8fee2fc18c8be4681dfd543a5f4bb905fa20782f3637d",
+          "source_refractory_seconds": "35a151e4bbe63145b1d6bd1d79718c79226f98d80417dafde9d71a24ed76b58c",
+          "target_baseline_window_seconds": "e90a34981f05a7b3a861a4f8c96fb1d5754ac76748d0f1b3284e66a57921710d",
+          "target_response_window_seconds": "715deee0501e4f84c34c644e1ee0917eae7ffbed0eb9ab090cd5d8a555b0cf96"
+        }
+      },
+      "relation_binding_hash": "7c39a5bb783bbcfd757f08a8808fcab0c128cae9ea16742ef6fbdf6d75a9642f",
+      "semantic_execution_hash": "37eb9a3bc40eb4cbbe49011b8ec7965581b8951989942a0d598e57f5322cb724"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV01D",
+        "source_stability_reference": "acecf2665cbd603072a8d1f04e961c2c2b9846638e5c166c97c770fad47ce57d",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "4907be4db37ddc3a069d6fac44a33975ad64f5af888aff126f273fc770edcd33",
+        "target": "P1_PIT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "7c73f1758ab66c66858b38c9877f409c97307ef0b3bff3c9fa3ece216632412f",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "efabba341c8fb0763b1ac563c46d0f6028626fcba4daae294a963f41643d7d81",
+          "minimum_source_stability_fraction": "572915793c80034cd70c85c708c080301488964bce795f8128865ba01586dbb8",
+          "source_post_window_seconds": "8a51d9e43bed7e1b1dcd8c26c501175b2633864b8ef9d6d2c4888e2350303a19",
+          "source_pre_window_seconds": "bafd3c5e4e0a95c78d50c32218f7d76c8741258bb0a3933811dde3c3c0b8c5ec",
+          "source_refractory_seconds": "f9984c52c74ab436eface8e6742ac584dcda1e407167337da6d2807197c75bf6",
+          "target_baseline_window_seconds": "917b2863b0ca961842a99c82ff4dbca93768474b7294f55d30d176f647dd5340",
+          "target_response_window_seconds": "3c9ec2eda40dbd651207941ad54b36b629e1f5534329162ddfbfeb6487fa51a0"
+        }
+      },
+      "relation_binding_hash": "9c33b11c1095fce4aeda9a9865cb202813edc112fb25ab1385256c878911db8e",
+      "semantic_execution_hash": "9a5ca8eb37a5a612346b1944724d04bae56d7931529ff0e9d0c60146e23b9014"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV01D",
+        "source_stability_reference": "f50695a5ff8e345b8a32762895647ce2a7ad2b6a2ad396a30f7511acc647f7fe",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "b68730085d29a152a658391ceed6845142836df5b594d70c0c947f309d8952b9",
+        "target": "P1_PIT02",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "e158747f13201ef4a424bf966856a995e97b4cf9d1e331387e6b667968913b05",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "6a58007421baf2a98634479f5da7f39215f491a549f51b19b815a34404e50476",
+          "minimum_source_stability_fraction": "26933b20b3eeeed27ed33220956d9d1057723ff778459fab9551b1291bf9017d",
+          "source_post_window_seconds": "f40f51450c90a010a5a30868129e331b4a65037565a7b309037c130dd9cb8957",
+          "source_pre_window_seconds": "703205a59f8e3be32169ea2182225ea0a0ceccfce0ce8d69e2e1aa6171656ad7",
+          "source_refractory_seconds": "c02fd440c7c1c5023b162142e89828ea8525821f932de30c3033b0315cfa5b64",
+          "target_baseline_window_seconds": "a4e29a94e9c28c5234b814ade59ca7801b1a2178b7039e38bb8493ed22127786",
+          "target_response_window_seconds": "01108cc9b0f2c92d5105d39855a305ffb82aae1570133416179763f92c2de94b"
+        }
+      },
+      "relation_binding_hash": "99d4230cba35d407b5ebac9fe47c0d0db9020444c1875cc55ab13eb59569dc9f",
+      "semantic_execution_hash": "84dcd481ac1df5d1bfd98a772d9ae2b2fe4dd633dc166b52c1d60212bea0eb83"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_FCV01Z",
+        "source_stability_reference": "cb26577247a2080d9afe09ff8ce0c95195b969ce41b90adb38124910b8f5a19b",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "b523d94ed242d91ed4c3bce815d783454c937a0bf543673559bb4050026adb23",
+        "target": "P1_FT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "65362941ef3c1e233798d8beb3c9ab0ed3810ba59f9e1eb226f16d3a5c5b51ba",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "b3ab6fc0acad9914cb84739a98d34fac57864dfdb42f945b03f9e17b3be405f6",
+          "minimum_source_stability_fraction": "1fa81aa70c7f299b962dbe7e8cac6f6c18e97bdcb6720dcd8cd31bf503aa5f73",
+          "source_post_window_seconds": "ca5a2da1bcb05e25da2a8b772bd2bd97e06dd24d540697d810352af241282bf1",
+          "source_pre_window_seconds": "6085f9005e4a69210ddac10d316634c786c90353e74e8e6d119035d57bf5333e",
+          "source_refractory_seconds": "adc7007263974359c058822faec15c206a9e55ded438ead91e00f47888af2dfd",
+          "target_baseline_window_seconds": "11b288cc92224e9547c5749ab9f05fe420df5fecbbfea32643f212abab93089e",
+          "target_response_window_seconds": "22a2ecfbce8fd1297d036c3de267a747b198f9ca8f915e71c24f18fb0b165ec3"
+        }
+      },
+      "relation_binding_hash": "ed33b18de044e209f7d6db492cc52bc8ea1e782a659fc0747e5c92030a2b1222",
+      "semantic_execution_hash": "d47013b8f6c37dfc51922bfc4ae3440070e30a15a9884cad091ad9e1c3b2171d"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 5,
+        "source": "P1_FCV01Z",
+        "source_stability_reference": "ef2a40b35a813172efcc90f0b8fd58d35fc919fc693c747501ea4c6e6b436c58",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "713c4db3fbb08ac576fe3d4303a2e2070da99f8a267d773e2043138f6c4629ef",
+        "target": "P1_FT02",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "ccdb9011b7d5a797e396330620eeabd925a71e17245b806e9ae64ef445f7b8ad",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "cd15593c83cb74576c61642b1ea19019aa6fb1cb54ca14600ebe48194fe8218e",
+          "minimum_source_stability_fraction": "924baa339109e6d81c107ef19f832d7d961880b621cef8f1578929082928d4ae",
+          "source_post_window_seconds": "f0c247507660acf7cc0de5365591687f9e7b6e2610abb95f40d0e8c21c4efba5",
+          "source_pre_window_seconds": "bd50b40a1bf9db0a3ecfe5b7d37044122689fdb673dc89445df98855398534b4",
+          "source_refractory_seconds": "d079c69d3f9c4b3adb6b400fd0a644b7a2483dbb56b525b157f1064a91c7d2f2",
+          "target_baseline_window_seconds": "d8b70cad693b15689938ef52d9d7ace92b858a29af4c885764571ec45a03b347",
+          "target_response_window_seconds": "0604340c47c240219dfc0778f3a7e02625513bc47e5be2e864b3ff8e89e09c25"
+        }
+      },
+      "relation_binding_hash": "3c9df59cb467ce444ee90616092ca0cc09cefc55a2bdf727a6938fe0033f9161",
+      "semantic_execution_hash": "7ba3e73f65e10247d1789804919f3b79612083c5cc2d6b1988f5994db3ec4b02"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_FCV01Z",
+        "source_stability_reference": "3c7de0c084b341b3113f5a301f2ad8a366587827f3f049ee8d81f645a43a2dc5",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "2a1a6557fd78e9b1b7f578ee3d0bbd4995043e8c91b8f3f5fe105d83a778140c",
+        "target": "P1_FT02Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "5588d78cfb210251b0263bd17e741621e2ae0f6f0971d4e51ce822efaf5522f3",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "41de700be88fa1ef380e48bf6ba72dace5d102e25f7f2c68158531f7b30871d0",
+          "minimum_source_stability_fraction": "6307f1593025579f6b1e57610736bac73649b3dbae9e61372bb7fb0848ca76f9",
+          "source_post_window_seconds": "aba36f1975cf1bad3b03a12ac7f10339f74f772b4ecc78678701893b94c719b0",
+          "source_pre_window_seconds": "e9e7580d40a5aff9d27b864fb43222723498efe6756dd1132573b667058030d7",
+          "source_refractory_seconds": "9645c78a3efba929e9505dbf5a3f0204010f69c3c1450839638796942ec3cdff",
+          "target_baseline_window_seconds": "4e54f1e9608fe7a2c6410ba574f7fcdad808b4bcf8cd94f7fb55e0b37db2738e",
+          "target_response_window_seconds": "58bd770a8f4ce24ce92ef21a3c99e2009eeb823e4bffff5c1a9091a7ca0760d9"
+        }
+      },
+      "relation_binding_hash": "a8b45686f0af3335d1f7b7f3bebb00d051b296f885daaba647eca936ef5d7745",
+      "semantic_execution_hash": "0adeefe8d8e1f063d51c7ca7e3edcc0f4dea8ec18394bc14dcf435d0f71caf02"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 5,
+        "source": "P1_FCV01Z",
+        "source_stability_reference": "e85ded2118894e3c3cca5dcc2185ef37ddee0513dc1a76f084c840c5c5756208",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "04d67743c31f9c8f91cac2f125b2ee5db5c7db97150e48292f8b11b74ce24f2a",
+        "target": "P1_FT02Z",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "5c87e616da267fb2ee144e5694a9529bbc55ebfde901f36e74896b3baaecf068",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "c063bb25cbec7d795938211d9de7fe28956614e0caa9a89abd3a4ee0f72a1b03",
+          "minimum_source_stability_fraction": "7b7a3fe10b09146494df5070a95e1829409e647b30906f1f1aac0f93d4c4e7d4",
+          "source_post_window_seconds": "fcc9ac0d92018f9c0f73a44fed1e2ae97844e9a61ef743eec03962eb711ccb0a",
+          "source_pre_window_seconds": "e2afec2ed1f418a4548d8ebef22b4bcc7fdf648ce501cbcf862d4ea66f8191c8",
+          "source_refractory_seconds": "e8a5928687ef6cb2a18d14aa92740daddf17d71fd31f410a442ea39d200f8312",
+          "target_baseline_window_seconds": "7be30d0eb820d1f565085d87bfa918f68db118a41343be8ac3eb111fad4114af",
+          "target_response_window_seconds": "506ad5e3e7fa122f1d988a01f7e442bddfea44bd6ae5678d775ac8ecb164bbf2"
+        }
+      },
+      "relation_binding_hash": "5f4495927c0a79d685b710b4531542cdfa1583b5f2bf5fbd0e253201e3902cd0",
+      "semantic_execution_hash": "5be3c05cf2493c2138e45f5afbdad050f50c6ff0ea04df02310f56ececfc1aca"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 5,
+        "source": "P1_FCV01Z",
+        "source_stability_reference": "96b056692a5bb6384a8ba5408fa8b4c5dd715197bafa6184ac780204a7cf4ca3",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "8adb57a094d4dc75a8830bf7ecc2ac985606f81c3a6953709c1564cddc259b20",
+        "target": "P1_PIT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "e34806c37dae0d1ae49c7ebc39f8c95d73995fc6463327de334bd67397d65800",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "77732c31425021234c63fae662063ac7864e1fb8aa82e339a2945f5d7b531f2a",
+          "minimum_source_stability_fraction": "aa4fd957356b81d96966f356138bf3754046372aa80a1b22ef8ba8b40ce50f7e",
+          "source_post_window_seconds": "863047755046df93f6e8b11e7601d86a895d12b814cfb8b41432e67b654a7a0d",
+          "source_pre_window_seconds": "0efbf7d7a52ce6d8e0302b0be3476f51edf227b5d65723ff2a2b3af4b04f70ac",
+          "source_refractory_seconds": "979e16f819f336b614b215e94a7b47d03c99f547da0ca6b779af216666c454fa",
+          "target_baseline_window_seconds": "7fd18b2fb82a8f10d054f797d661b7bd060ad1fc5002f5758b0c97a3d33ad770",
+          "target_response_window_seconds": "0c2cb0c6272bbc7da322319f5e1cc6f69eb11d2bd9ce235c5527c48cc39207b8"
+        }
+      },
+      "relation_binding_hash": "0e70af83f6bacd3432a230454f601e6386a2996fd816d18e75a79e757b7e1d0f",
+      "semantic_execution_hash": "47aa7e869efb7baf5898e8f3b03913f5bb60f0452706442a87a04fdcb550a937"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 10,
+        "source": "P1_FCV01Z",
+        "source_stability_reference": "10f2b4927cf01d011f597c0d1aa755f41846108847c41b593f12c0ef56845b91",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "a64f6ae54a467a92f887d236b911dd9f15c756ab29783f896abe45ccce21f0dc",
+        "target": "P1_PIT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "7cde6341d72f02c4d2fb7793356a6dfd3ab1af7cf59ad8b7f53484826087fec4",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "9bb0dae743f9f17abdd40574a70d9ed27ae0fa775acbf53fcd229b6f6bbbb262",
+          "minimum_source_stability_fraction": "42045bc6618590c8dd2e05a4fdcc39361cba7f4aed4d8c30fd2be2d0e24386b4",
+          "source_post_window_seconds": "0fe853311ffd6858f937cb6ffb46077cb4586cbc710919571c0418f06324d420",
+          "source_pre_window_seconds": "ae3fcc53e18ac74948655563db86fa7540a9a2decbe7f1906cc5e791fcf9bc1f",
+          "source_refractory_seconds": "a31237e7708765b75ac7806302d944d8ba6cf4ba8f552c9f49e8ee9ef04aa786",
+          "target_baseline_window_seconds": "10b88c0cc23f1121516114aa9e80da4639146b5d828e76eaf019eb48dcc26689",
+          "target_response_window_seconds": "1e52a626f96f89984966352a1a704ecb98337aca67d8bd6826c39d6e52bd3190"
+        }
+      },
+      "relation_binding_hash": "fde2a820965ad298c8d636286b5f85972d853a279c4801f991f94e5550eacac8",
+      "semantic_execution_hash": "af8c247ca0783e172013244c097094aea49bffc80a3323f903eadf71ca5c1ea7"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV03Z",
+        "source_stability_reference": "77bc829472ba4cced50ed0c4491f50ce6dd93089791817cbb6a07908b01159ef",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "cfcd5470104a3a527ef47e1bdfdcf7824a5800f5d0d6bfebc676393858cd8728",
+        "target": "P1_FT03",
+        "target_response_direction": "increase",
+        "target_scale_reference": "17d35f1afc420aa4b3633fb2e08bb1a49ee49f070899ddaa4b0f878f8c2db58b",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "a15b7c5717d88324380d8b5634dea59fad7f8cc37ae8a18e5c03c94e7cd1102d",
+          "minimum_source_stability_fraction": "bdac0ae49dcd1c70bb1a7dfa93e6028d4a54c16b957b1fd061dfa47fd3bfba2e",
+          "source_post_window_seconds": "466a3cea5eff908664db84a1c9ad4884da871ce019eadf1296a0114963452f55",
+          "source_pre_window_seconds": "a682d3a3fd2df31c81ed5cce1ff84dc4ea97875b2711458ac2e9bbb98a3069ae",
+          "source_refractory_seconds": "596c29eaacf94757b1bf98af451764efb2f2a591341e0709a949e500b80586ba",
+          "target_baseline_window_seconds": "cb3961bff985160978f47de8fa52e7d28458772656572a211ad04f75008979fe",
+          "target_response_window_seconds": "bd0fa245c9b09920a4115fab8b02efc0f2cda940f9b0b922e4d87341fcfb3a81"
+        }
+      },
+      "relation_binding_hash": "c574e104acee0e509317e7cd66112725678ecf6bc1759a3e26915b8a8cd7c207",
+      "semantic_execution_hash": "0e77d04eb69f2e75f1f4730f16b09a0af9b26b74c802730d093f115967d7ed2f"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV03Z",
+        "source_stability_reference": "39a81968d7cbfd9ef95cb0a47a81f1dabcd4d1ec14a0962cb331481c9b3efc00",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "a8df36652b7c4120022a985f0127d2e1d24291c2a5bc2bff02112320a27155e6",
+        "target": "P1_FT03",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "80d15aa6a80739cacf8ca90617177696931f5e7bb760a47fcfcdaa913e8c0529",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "da7e13840af38d14994df1bf4f596da81ad4a981595a933803b9982e17c6a84e",
+          "minimum_source_stability_fraction": "7cf22746c93d60be7a3c281bccd4e4840d5b55030236cf566382ad8df8a836c6",
+          "source_post_window_seconds": "87fe08c52c13b4c33a1f568cfb20a2cdd793fdf7ebde7acd18435f53599e9d5e",
+          "source_pre_window_seconds": "bfe768bcc4d8ce2628dc1205644b50b9090e62ef2dbc1e2d3e473bb22a677296",
+          "source_refractory_seconds": "730f4bab41f6ee47958681326994ba0cc95d8cdd88702f05837ad565648acf8b",
+          "target_baseline_window_seconds": "2d3c3911710beb74591d01769512cd0a023fa771c66593b046588f26f92e3117",
+          "target_response_window_seconds": "78ac94d2a1796c5d38c7ac7bfb30e23bbf42e9c9a585db372ed4e7db9197a7a8"
+        }
+      },
+      "relation_binding_hash": "1b68720367a8a6d29c858f5e59fea00736d9ebf8dfdf7ff48973b856fbca561e",
+      "semantic_execution_hash": "dd18c11c70fc4e4f801ba73be6685bb4c12ba838f9748c1540cf4653acd5280f"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV03Z",
+        "source_stability_reference": "403a8ca67c82df4a42b14ad4603bd73e6a93792cfcc86e8ea71a1813a94ca479",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "dcdba0dcb959522765cd5a2fe7a6d574397ecb477abec4afb2d236e5bec4b687",
+        "target": "P1_FT03Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "f09b83d724c35e66ed1d7bfea24a0513d14a252c409e3a9cee1dbe06d962fc66",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "8f61696de6b8f6865eba32d3580325e9449698637d73ead8d142ef73f4015b86",
+          "minimum_source_stability_fraction": "54d12b2d15225a830366b1db8f43db6a054d25a4a06fadb9dd6138f4c4e0f7cd",
+          "source_post_window_seconds": "703b37038fddabeef08c2dd5d539d507ef89804517368fdc4e20483dd8ab0cea",
+          "source_pre_window_seconds": "9992f8daf15a24348eb222eac0e939aecb0825f58e30088e3eeeeed6986e931b",
+          "source_refractory_seconds": "34e829d3fda1b7342bd1c3311a30cda1aadcaa03fb42c89cb4767f1d12c3734c",
+          "target_baseline_window_seconds": "72111377e7f0ea19e5cafee7af77ae6915294cbb7c01bd0fd5e662b48f3e944d",
+          "target_response_window_seconds": "a1d31b37c6d4fa42ecaa2087b153cc3eb80da894716c25968e07192ddf587fcd"
+        }
+      },
+      "relation_binding_hash": "0f658a081aaf9d47eb15c8c0547fe31d23d49a43740911ed9f2c3b36a9a429c5",
+      "semantic_execution_hash": "d9d20ca899be2e8f7dd6397cf6fad6d50d87b3e60ecccda0a5b669190ce3b68c"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV03Z",
+        "source_stability_reference": "06e814dd52f6384c40e47039468eca66e5aacf57566a22bbacf897d979aed20f",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "98f104c8ff9e106b02ce84de350a17844e6b9a43fd680d8b5bc65505ffeb32fd",
+        "target": "P1_FT03Z",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "b619f51bc63c8385f693885a08ba7d92d56d4f21273d34e73268bc7a6beb6071",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "13ecc2fcf5aa4316f6310fc81a07e046482f53e79bae3a3bcb25792f4ff9dd60",
+          "minimum_source_stability_fraction": "501503ece2706360d40e2d2d12a0a9a6c764d047d9457a85043644cbd492e710",
+          "source_post_window_seconds": "bed89ae08a3190b299235dde4b92fcd9755a132133a6116021b6189af3698940",
+          "source_pre_window_seconds": "b8834dd4323efda93ce0acc2ef0e977ee7d7a21f05712af199c61bd75b694690",
+          "source_refractory_seconds": "179684b7db4d0f3b83a155739ed91dafec4aef85533520d57be3c41f538bee44",
+          "target_baseline_window_seconds": "5ae5b87cd4b681293ca8dbcd412434423c21acc5c9842616a24f92381561d247",
+          "target_response_window_seconds": "d5334b9f8a14f45cad55e4ad16f781ce0830eb85a2cdbd7dd4897fb04fb1b50a"
+        }
+      },
+      "relation_binding_hash": "21f6f2a96dd168711b5e0cca999a6b22683f504d8cfb2760888a4ab80fd84b51",
+      "semantic_execution_hash": "3abeba73547c9a96f247aadb7cfe91fc0ea04b18144a187bf6ca5c15f54e67ef"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 10,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "2218f3e17f6a65ffb98916924ba21de1682aa8ed5eb298a8bdcc2ac51ab639bd",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "21f28146fd4acb03ba41b28278c2872361e3f767b80a8859c001a48adc7fa69a",
+        "target": "P1_FT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "6c9ec10fd6dcadc7b43776b5e4b3eb4b07bafb1c9f5a41f048da1801c988d529",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "b62230f62d9a554023f7b2d719e7d8fbd3cac3459a202f59d1aaafcfa8b168cd",
+          "minimum_source_stability_fraction": "d203f55b382eaccc1c21ad40f480154c6a0ffd50adb705dad4ca593d0cac1bfb",
+          "source_post_window_seconds": "1f0f5667e998bc92c3283ea30905181bc795d7752f9e07797a6202cb5acf8dc2",
+          "source_pre_window_seconds": "eb1374e41aaebb9373ddd829f594d282575268bc6c4d1902c3ae7053e1a08a85",
+          "source_refractory_seconds": "5d7ed72a5408767a1be7cc0f8af5a326595900bf02dacdf4ec7b19cd21ed2da7",
+          "target_baseline_window_seconds": "b94e3d802d1e555a4f34a896f34f2e15631a1bdcdc1861572e2b4fcdbd927e90",
+          "target_response_window_seconds": "dd8e1b91e9531544de9a2e7338d9d81e4574a5f32b11e86bef57e4a61b0d4e5d"
+        }
+      },
+      "relation_binding_hash": "1289d048e50ee131727a71788166be7feffb285d712e75403ee3046f5d22d9cc",
+      "semantic_execution_hash": "d84433bb90563a7abd02cd2e5f885dfb3a10b46a309188ea8bd3c393e9c9c936"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 30,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "29b1e805c77192c73fe658e92e4fd36c725a4bd7b86f133647cb9983ab0779e6",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "62a9a2f5be145fa8fcf3305ac6e6912ed93a317e5f496bf560c2f09f72d9e38c",
+        "target": "P1_FT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "fb03bfce9144473b91d70a57c36f42884a67e589d33c07b03aa743776e1cbd30",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "4df8d8ca2af7c19758cc876720f553333197b4d20b9dabd5beac3791fc89e433",
+          "minimum_source_stability_fraction": "9120c2d5a0ee1379a06cc8f63fccb48c0a70fa72207dcef8c7ea85da29658d34",
+          "source_post_window_seconds": "2877923177ad69176a8fba6a79c453580961acf8cee8e017ffc07df303db363d",
+          "source_pre_window_seconds": "6dbd710abecf8c221792a84d8d13c994bcad718c130e74557005fc63e2ff36e0",
+          "source_refractory_seconds": "0ddbb449b9c846d4ffd64d107d5a9b021d9fbf9bfaf3af8cc5618f6f5abe88d3",
+          "target_baseline_window_seconds": "c06a7442523d96b8bcf869f8b647c9c18af5e5793e843653c4bddfc83d42bb8c",
+          "target_response_window_seconds": "ec7c5ef810c47f037058161a8584f16004a02df1d0f29cc6a50d7a8a24fc3662"
+        }
+      },
+      "relation_binding_hash": "48d74de36469bfcc3c077577adaa247f92346d8deedbd5ec803f39cfd37b99cc",
+      "semantic_execution_hash": "5f80eb01dc7e5408749050849313ae93450172742498d590a4b46de8ccbd98b4"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 10,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "c1155e2eff97fee1ab87739988fc64e2366f9603c418746e2202fba186f71245",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "cdbbf53438211bcef42c4f5b1800f9a33590c7751460c86c9840bc359066945f",
+        "target": "P1_FT01Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "3ff152c899f1338b4804cdd2a0c653f64e112422a18f571c363aca409c60dfd9",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "85ec3aabd7ccb34666caeeec8ea4bdf36c4d00e7de3213077574c1b5e460d2d3",
+          "minimum_source_stability_fraction": "306f154c96d5f55a5b22163b26f3ec1f17ef009e1683ef6e1408dd04a3595b89",
+          "source_post_window_seconds": "61fcda3721a4b8e0596854a8957a39f88a9d99145efbad99a3c13931f111a27b",
+          "source_pre_window_seconds": "339224609b6b8699d96eb91848ae84a21887d2e8a5f4e0f89d123e0c192ec034",
+          "source_refractory_seconds": "34118344126f4649b111caec75eae9502e8ed2290bed1e97b8a43ac868b22376",
+          "target_baseline_window_seconds": "a970a796b9583fe1fe2caca2ef8e0c3afc38b607a3f5c579708c6866478184c0",
+          "target_response_window_seconds": "ed5b6cf8cf33aad79f17aa0d26487618b14218b3bb36f0860a1ccf9a7c08a97b"
+        }
+      },
+      "relation_binding_hash": "53645fb94519c2e374ee51f136f758d513c3c5b2c0fcc640b0b4d1845da53918",
+      "semantic_execution_hash": "fd2a085962f9fc3f086251ca3806a6f783653050982d58238537724c690b9121"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 30,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "c4d96014b5c76e87f27e73ee5bb48c04502487f5aca63e684c5d4d7fde24fdae",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "b23316c22b82e6da2b2aba30c786af2efcee951f2c08b0ee174ae20e7443a6b9",
+        "target": "P1_FT01Z",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "2e526db9b31147d1a0fbb17a55613276ae7d3ccae9f1cd927ff48175df19b554",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "355b6bd3c3e21a79fdede3904c34207a2f50835bbc7e344740a0724a7785590f",
+          "minimum_source_stability_fraction": "18cd55c74bd1de399ede52235b0381679146c9cf2360d6f6c838e46f2437c399",
+          "source_post_window_seconds": "83f24d4b604b6d063728fdacb363cf9e135608a6c19248b31c9aae22c96b3a14",
+          "source_pre_window_seconds": "f2a3e6455704c0318cba3ab8a0231b0323a34efd0cf48f2a635b6c17cb31d093",
+          "source_refractory_seconds": "4629abb31b1c4417d674449ccc0acbd1ad5c40585cdb0814e3a13cce4db1a3f8",
+          "target_baseline_window_seconds": "1a3bc92bcc3d07cc474d4c4ffb7d5e5b25e89b820a64043c6102c523eea6f567",
+          "target_response_window_seconds": "8ab4e89d79d7a4926cf6d1b926fd12af8df6297e436f411eec2d4a74d95cec0e"
+        }
+      },
+      "relation_binding_hash": "e2fdbb7013bfbbd896c272e33bdddf96bcf420cbf000c9c103370e591c1be10d",
+      "semantic_execution_hash": "57ec3090b8a5ec39b4332290b6f2748236e2b258917d23a4ef160266af77a771"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_LCV01Z",
+        "source_stability_reference": "b31efe1211dbdae3ffd00b57b410fcb0b3fc54f0bb315dd2315b5ca3f3d83486",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "b0c0b27c74184c44cb3f1c9ddd52a5b6f8a697045820d25afaf39bd4c4bc4c79",
+        "target": "P1_PIT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "31eb9809b76a8f32c6259824d8f2e51b13f5bbb8f0e78077627bd0768c05c0e5",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "648af26275cc4c38b3174b81c57503aa7f6322f5be9e71a8342b4c543061586a",
+          "minimum_source_stability_fraction": "e57cb0d8b830ba296794b6bfd636ba9812d2ec4b2e5f842db932cb6985575e50",
+          "source_post_window_seconds": "0bcbf6f8cf742946d093ec6137c23bba4e97e9bf2e7b91a0118967544dcd19d1",
+          "source_pre_window_seconds": "85da460a262a4a01004885ee7baf800bbc0b2c52856c9e961de8e215c8450795",
+          "source_refractory_seconds": "bd0f2ced232458149f8a57162e83d13125312279022ec1bdf8d56404ba376a26",
+          "target_baseline_window_seconds": "72e69b629394b59d821acacf27a9e825779d588034b0ad271314d683f0dacde8",
+          "target_response_window_seconds": "8cbb9682d1af9ab79683120e21d9fb11e2c213f1bd425578de9058340251e922"
+        }
+      },
+      "relation_binding_hash": "4f84d8bb244fcafb82b8a8fbe6c5dd397d329a9d5df311682a8a8ae2206e6680",
+      "semantic_execution_hash": "3cc0138ada3e60709bec08cb24c1011c498b8f9a0600b35612c83c9163e9cdb0"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_LCV01Z",
+        "source_stability_reference": "a1f0a17f1950d1257939d726b6ce82dbdbeeb613092a86afd6e06a26b71e3c6b",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "daeb4f998f4bccee5be14a2961e2c395eb7be3e14bdd3b6f52bc12da5486c8ed",
+        "target": "P1_PIT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "63f0667aa756d4edf3bb9743a445bba3f96226370ba4a3f89e77047428b6f2af",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "4e70755df80359f1fb397c22ca13919f9a46887b0f6e522394a7226e52a68f73",
+          "minimum_source_stability_fraction": "87e141a85ae5d5f98bb5de1a3a288039e25cc12d73de54255839860354f8b659",
+          "source_post_window_seconds": "9dbefc57b036e20284b2eaa199e6f28ef0caa70788ad0950230c933be5988785",
+          "source_pre_window_seconds": "b633cd05982fcd8fb4d7979e1205caac9bb0a12dbe6296b798bb9a65a515cee4",
+          "source_refractory_seconds": "ef00e214ad1e6ab1a12d88e7d67cd9494169dbd83903c565002930e85cc6e04f",
+          "target_baseline_window_seconds": "003860835307026821d35f5c9f283f151ea6a4794a2e70c1228d9b6b879a8a72",
+          "target_response_window_seconds": "08f096f759402b66e9e9dc7f3209adb6c86a54d183d8aa6596eede836640bb32"
+        }
+      },
+      "relation_binding_hash": "0b2da257d89b11ace02f81328fdcbf10380130e35dd7cff1492194099bc6eb4b",
+      "semantic_execution_hash": "b9d5c944ed0c758ca417970175bf0301d02173e5bd4c08b904ec6f827cc0bcd9"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_FCV02D",
+        "source_stability_reference": "ef52b4c9afd4f5aee5b33febd576520645233b98fc3a77cfffd4b47caf8925b2",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "6ed3f9a7ffe85afe989e0205cb480404b68916c43371efd868cd8bf0a38ea6ff",
+        "target": "P1_PIT02",
+        "target_response_direction": "increase",
+        "target_scale_reference": "cea8d994b22e453e8812c222db50535710700ad9fe9b9d165db852bd4c1cfacf",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "23583bd0df28ac03df0248c0dcdb506d2c7bbaad366540bda2914e171cd18c83",
+          "minimum_source_stability_fraction": "a63318d6c9c63373981371a380f2163d0164787f50f4752fdb1b7011d99cfb26",
+          "source_post_window_seconds": "cc4a7f5da1506dcba9d5fc8c023ee86c78a5989b882740b8582e201ee5787376",
+          "source_pre_window_seconds": "06db1440ab2619c22fd6b07de107b62ffbfad3d10823a5187277330ab298b749",
+          "source_refractory_seconds": "1c68f7339d38fb9b11c588c0561ec14490479f72edb160884516b489e54bce2a",
+          "target_baseline_window_seconds": "68568bbe8f09e93a3f9ff074a1cd487048e29d07b2c63313da4835e7aff588b3",
+          "target_response_window_seconds": "148b5e1d87ab294d37da97f91598910c9ed3c4008233fcbad843fe39e4e3fae5"
+        }
+      },
+      "relation_binding_hash": "d6d807ea85531f60daeabc4df766012bffdbaeec004f675b74655965326db8f8",
+      "semantic_execution_hash": "0df7070f3b677a3d3e9a79b7e3b2d64c231cea9f1470924279025292319e8c86"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_PCV01Z",
+        "source_stability_reference": "b28e91ef77e7f7ec481a92b35d884a53c8e0334957b487c07c31ba43ba724c68",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "462cb542d6ad7bbd975127565b43f2dec2f80bdb215e6f4431d71c2792da8354",
+        "target": "P1_PIT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "be750e8af794378d3f072c98ef66600fce6a99b0d68fb9db249d5dfbe86eece3",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "f56422f47647ef66f5b758be2e98334470d38d6fb0a1c76c097875d6207259fd",
+          "minimum_source_stability_fraction": "b722df245b91a275b24d905592521a38646e0a9393ab4a967f9e3898a27eb420",
+          "source_post_window_seconds": "d482f8109e88ac4d704b3bc6cba81a4dcec5f07a13cf687b8b46e63eaec595ad",
+          "source_pre_window_seconds": "61a086a9e3bd40621543baa38fecc01fb3c90716c1028bf51e89654dc2d813a2",
+          "source_refractory_seconds": "94338de86e32f4cc9f3d751851b418f28f5686ab8b42c9439fc2081985405543",
+          "target_baseline_window_seconds": "a9b9fbd1b44da7294672f02ac71909a76d2f900310afd67f82e9b8c237f43b83",
+          "target_response_window_seconds": "5caff4ddfdf342babf26e2e18d19d74ecd9a6d03055d03c00369130392595e75"
+        }
+      },
+      "relation_binding_hash": "5dfc20b41b38244a264cc74f915d4c62d14286db99e0a96921ce11d0698c339b",
+      "semantic_execution_hash": "123a27e2b76ae3893069b7cea128d3423aef1b96be75ef0165065182e4968c63"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_PCV01Z",
+        "source_stability_reference": "c2d44e3574ddd01e8ac9ec5a7ef1e507f9fc5495018ad54fdd3f62b3a06199db",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "bb6fb82014cf488878fe730d38d1eecc3e2effe4c9c22945068168d2699ecb57",
+        "target": "P1_PIT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "fe7954c5580755dc6bb37b0c30ae9483986430354daa6e73f29330c97ba47205",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "0e262aad1f6734011caad8d46e285485344844f9e8d6a02ae2d56c471a3e5ff2",
+          "minimum_source_stability_fraction": "bd80a75fa4a32288ba275352f8a4afbaba9809cde2837da419fe026f412c1202",
+          "source_post_window_seconds": "736dc8b0ab383829d5cbffe3ab262f9fcd7a3d0d510b2ab2b94f3bbaccad186a",
+          "source_pre_window_seconds": "6f3b188af780e6812901362ec1ea32a962ec70c543860830278c237ab8da03ee",
+          "source_refractory_seconds": "484d74ba59921761b65cd1b9b4b53ef2945a7cd8df8fb2bf0712fab2bb3fe196",
+          "target_baseline_window_seconds": "6375b8c5cdb5d0ca583e9f2f5712c9f248db5419b049834a527f708044adee4d",
+          "target_response_window_seconds": "c5fd80ea2def417257e5cdaf532c3eff0f933e63fc60a4c10ad76949aee6c566"
+        }
+      },
+      "relation_binding_hash": "49ffab3ee089c9d1d99fbb8d0d22dfaceb324207f727ba499475bef09afbf532",
+      "semantic_execution_hash": "aa6bb86398bdbecd0e3fda32fe4b6d7153a41f020e5764d1272da47d3c70bae3"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_LCV01Z",
+        "source_stability_reference": "b6fe21a4c81a761340e92ae800bbc2dff25981cd5f2df99ae0900ec404accb43",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "8ada7b4996f2f0d401802ac786e15c33b42684de5bd26ed92c187222a74ee31a",
+        "target": "P1_FT01Z",
+        "target_response_direction": "increase",
+        "target_scale_reference": "667de9ef97ca9194ab04e4bcc7008794b50eeee0a01065fc50f00d9a94ae5b98",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "9f1a1e95f469cd884effb38b6e0f71c8435ecfb0d4325627894918e817ec18f6",
+          "minimum_source_stability_fraction": "8cb104edbfa0750eff68c3f89dee313ad016ccb0ae36103d2bb1e1d03a67082e",
+          "source_post_window_seconds": "ef368bf536c4ad35a6d9fde63d5f814ff7d48748fe8eeee15222736d7269a488",
+          "source_pre_window_seconds": "0813854c44818c2c6e3e6653adbe8e3dec8d0c920d64c6d893f5301360400076",
+          "source_refractory_seconds": "2fb98c459f95b7a8c5670c27fe17d7c54b6bf63138f137c522fab8b8b5b9311e",
+          "target_baseline_window_seconds": "bbbe8565769ca8c59d3a3961cfa4c789d8f78a9ef262685321ac3c1994064441",
+          "target_response_window_seconds": "529e8d873e5b1601bf3414dcc798e515c1c5aaed18c2bf072e08c807fd4077a3"
+        }
+      },
+      "relation_binding_hash": "3864585573b951ad9d9d2be170d6d6094c637e3029347b4851e06f45e8a1ab15",
+      "semantic_execution_hash": "981dc4fb5824d6ac8399c496f0bf77eb0e1d4b977901f334fc3b262c6bbca87c"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 1,
+        "source": "P1_LCV01Z",
+        "source_stability_reference": "6844d617e9ccf225bb9f3713e32e7e82ecbcbb0052c5e3e212fd7b7cd9255545",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "6ffee840a50b73ee6b3a8f1be226e96f52078d54de28001df50feed3e2b5a428",
+        "target": "P1_FT01Z",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "e0a4a55c040fce909eaa9d4a5165f4fbcd0b30f4f02a983231ecf2a0134e5f90",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "803232b2b157d3f3dbcdb472edbc6e2de9f167dd026c0e6df10baa6f120f8267",
+          "minimum_source_stability_fraction": "89123b6c9ded6b19625a54b79220346318c89cf32ef901a06ed7af4c589ea640",
+          "source_post_window_seconds": "7de60beed176d73729ba6ba4bc5d91a336f2d971d7b8014392ff1671f0efbfd1",
+          "source_pre_window_seconds": "db45d00995526f7d9dd275768acbdc31c4c8460208d44733ec9306dbd44d2cb3",
+          "source_refractory_seconds": "27ece42ca338ef6faa5c2a3f329d767bd479ab3fc2538ff11ebcbde2db4685cc",
+          "target_baseline_window_seconds": "54f527722f62bfc53b6f174c79f19fd77fd6f025cd444b6ed1bf8995841cdfcf",
+          "target_response_window_seconds": "4df2c1a641761fea45ad26039ca816f73e9e30b00a66552c0d7042c70333070f"
+        }
+      },
+      "relation_binding_hash": "55a52946ca90609619c198ad3da8b1e47140d97dcf8184e22a4a747df669bdd5",
+      "semantic_execution_hash": "8f8801776bcf63169a78035784ee0dfcf0cad7a31874b60b6710d6f02859d745"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "c79a8e179f314076a5c3debc9051dc1ee9b473d6e7b1832d9df76f6443eb90fb",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "c807ca8602571742b918bfc17e0d42bd3a79202cd3753bc5c48ffd1b4481b1e3",
+        "target": "P1_LIT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "335d4728b245eb7c93a5834cb96f4bee59696cc31832c89562b7bc019f51f056",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "63f5d0a3edf9a3e2d5ff517bde7fd205a0e1a20a16f36536f0b3651dc0737d8a",
+          "minimum_source_stability_fraction": "feb4131739035c6c8e7f3587071bb311558d6f4c6c88ced77e4cf7021a61e998",
+          "source_post_window_seconds": "60f84551f5ccf996d02f682e7570b4e6836a9516bb286f185d42957771d146a2",
+          "source_pre_window_seconds": "5b28bdad87d74fa481ef679e50f70a41680fcb839c9afc9fb11d9724486b8a07",
+          "source_refractory_seconds": "cc3b1c1b4e15873a6f312004b0f71d8eb8e4802d7c2b8a5839b4d5a042285f13",
+          "target_baseline_window_seconds": "0cb4366079e3e306f31c54d8f21790c1d3e0c7f8a7b97da89d021ce5085dc6c8",
+          "target_response_window_seconds": "5c1893ec473b955052afd0a32982a491cbb696b6cffff96d9701d1d1ad250c0e"
+        }
+      },
+      "relation_binding_hash": "16cb66eaedd4a1f8685f9d621e8515edbd112c86c635b37ba06e2a30fcc49ffc",
+      "semantic_execution_hash": "d7b84ab445bf4ddfa80598dfa439581b191fd1dfa97b2dd238e283ef4591a7d8"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_PCV01D",
+        "source_stability_reference": "1012758e1a89854399622ec82b169a1ecae1450f85568e298f11b33f657ecbad",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "7335aea7775738fd79d59ab99ac028b4e6a5958f77189b39a99d18ebbcfb6caa",
+        "target": "P1_LIT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "91274605c96f9fff8f18c06039a9ba167702cfdcdeba666851c911ce5d5c6b02",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "195b3b2a77a1505712f6f97a1aae69dd617161eaef4a8da2b78ccdb0f666c426",
+          "minimum_source_stability_fraction": "b385b529a5453c879eac382ed8d73596b2a8c8e7a27add9183d25f9d3e64563a",
+          "source_post_window_seconds": "3e174a0d126d10ad52b78f5d6903b281b9c2cccfc4a5195e182e57870f5fb88a",
+          "source_pre_window_seconds": "578210623958db26120892c8396d322cb0d2be4cf084479f72ed79f76b5143f1",
+          "source_refractory_seconds": "1f810fbb3a917a8c16de92e51e1223a48d189e695b64d6942ab57ed12de95f32",
+          "target_baseline_window_seconds": "7fa5de5496fe8970e2de326089ec01d4a470710125e7a5af1f1c8c36d01c7870",
+          "target_response_window_seconds": "ba4c5bd40b5d7aa6bed67a02983203ee306661ad14a8a52b626e4a1523486776"
+        }
+      },
+      "relation_binding_hash": "75ee416429ab599aa7eb67fc6c045cc266c21fb8b35c2088d6ab810914463381",
+      "semantic_execution_hash": "ab3bbaeb75445fa48d1aa3c233636033cd583f67bc49b8ef1515c6847dc4bd3d"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 10,
+        "source": "P1_LCV01D",
+        "source_stability_reference": "803fd1ffe35b0bb09cc76d54813b66de5495d27952a64f487025184257236b98",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "7dec21927b22a0dca1de124f1b5c07be38a091a211117c8148c203145f3f6388",
+        "target": "P1_PIT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "adb42e3e498319bd736eac6888d1032e16fa71cb706106bab0d1578c43c02882",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "6547f4485149cc17dccd0926114464ee4a82476d121dc0e0b1d82193449443f9",
+          "minimum_source_stability_fraction": "aaa03555f186fcf1ce62f3e4b5d3ff02de5a666ac4e76f9e43dfbd07cfcf03b4",
+          "source_post_window_seconds": "910ae7e3a193a85d33ac9eb873da87031621f92efd3899fc80a39e7184b98d0c",
+          "source_pre_window_seconds": "83fe7350d84dd02227d781e9a5f176a07181585a5eb539a8ef76a1a3c4547296",
+          "source_refractory_seconds": "f4473d2628a4094d2bf15451c717e4ab4ea18c9619b186f69c2c02299817dd41",
+          "target_baseline_window_seconds": "afe3658d1e1f9c2a491f10ebd50fdc47fbc2bbd0f27e6acf4c57a9d598095dcc",
+          "target_response_window_seconds": "e0a0c30f580330ebba6aa0c7ff0252b0640f482de9d9e65f15017cadb281f802"
+        }
+      },
+      "relation_binding_hash": "44a0a75f85e92223cd48c85e36e62974f26ac1b0e1b2b5b8b37c35010f9b0a8d",
+      "semantic_execution_hash": "170bd0adc33f9e51055a8cb4cac7dc54f443d22e8a8120c53547466bef692b49"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 10,
+        "source": "P1_LCV01D",
+        "source_stability_reference": "fdb0d0cff2a2ed5f6d75d4d9f42b6b9aeccead1baab8100401cdaf31c1196827",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "67994bafc857ca8cbb3004367655b4e3bc68177bedd6630ca17366ad47cf6bca",
+        "target": "P1_PIT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "03800d4212171419f41bfea042b4abcc15801f612219f9249ff06a5c6869b2fb",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "4db5e6d3a4792423109defdd6b67fea81054ecc9cdd1ca272b94af0d832a1fe8",
+          "minimum_source_stability_fraction": "69779ed54a577e0b339564da57ceeba85f75d5636de92126554c9f97db81d18f",
+          "source_post_window_seconds": "26b7a6f04a5e4d41123a774930e41fda9372461d5ea90214c24025d5ba5b7cb9",
+          "source_pre_window_seconds": "dc069e7bb92ec464b098961e10a63a76860d565fbc2222ce17f321df22ce4822",
+          "source_refractory_seconds": "2859b72c49556d36c2765ef3a7bb092028a20f984c3b3d23dac7b0efd87f8d1b",
+          "target_baseline_window_seconds": "f1f6de383d9c43b948ad2b32f845d8426ba7967d6b8533e72538f1dbf5cd70cd",
+          "target_response_window_seconds": "d5f33136eba5a3c3795216098cfd076c69732636972f73f66c4f2e855e0ca5c2"
+        }
+      },
+      "relation_binding_hash": "9b985c0d4e95a2df49df445e1f5f5b47f54b50c946c168ce129eae595deec6e2",
+      "semantic_execution_hash": "abb899b2f147a6368c082ce8979170319ed72f3fcdf1b430eaedc1b70c829a02"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_FCV03Z",
+        "source_stability_reference": "8cbe20222422210d9a90dfc8b1a27ee3f0aa25dbd3af3cf86dd1d391d4e75b6d",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "620af15307a552acf5cd367c957ffaf064002b70efe3060e419c0be68b780fb5",
+        "target": "P1_FT01",
+        "target_response_direction": "increase",
+        "target_scale_reference": "d498d3c7644f53a0a2efb70d86d70ace5e288d56be87d9fa0d0c92267d8111b6",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "6cbce43e81753547de5022082341c293865490554ec578246043c03bad785b4c",
+          "minimum_source_stability_fraction": "0918221eccf1c1179d70cae93d01147d63593c44951e8fdc4a9f7442da74fc2f",
+          "source_post_window_seconds": "e9b7921fe26ebc354f22757e7432c74bd3bfbad3a58e351e50e3926eb63a71d5",
+          "source_pre_window_seconds": "1bb4f66146f9650a47f7645569aff248309e89c03ffd51c89e0df68f6a898f69",
+          "source_refractory_seconds": "046e82a5db075de664c96e9b933deb81a788efc4426640949cdbab6b1c628c53",
+          "target_baseline_window_seconds": "23d76bd62820c2e98ffe807465e99f1e12fc940c4f030a798653d496749bebd1",
+          "target_response_window_seconds": "01732be1093c339913e1d047e1571be12c89c98323db015917d03fe230f14c64"
+        }
+      },
+      "relation_binding_hash": "bc5160b571b18d7438a5855f83747f55a555574f13d458b2903abd656dd5d58b",
+      "semantic_execution_hash": "0271ff24ae5406645d54f8b121cb8c25353128facf6f0d495023e28046575e8e"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_FCV03Z",
+        "source_stability_reference": "e0901fc9e1784843d441a6218fe687007f410e824ce142cf62debbc8a067bbe8",
+        "source_step_direction": "step_down",
+        "source_threshold_reference": "f79c348ded414751d1b2afee732e69086c8f68b4048d0146a5092e4198d1a310",
+        "target": "P1_FT01",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "b1d689c0c4113433938b249049a278ab5e088aa043d24bd77f01cc244dc69d9d",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "fd4629800644966c3b77f38b27d723b7a82898b6d855c2f5930eca5c9fc3ecd2",
+          "minimum_source_stability_fraction": "b26e19ac86efa6013bd8c2ef326fad4fa2f7b9a9ec6ac2fcbdf0b12f12a2f13a",
+          "source_post_window_seconds": "60b5d1c55bb1aeaaf3cadf061a00309016d8459007cf143d1a4b604fd1875eed",
+          "source_pre_window_seconds": "61ce9ebc861791995b0248baf68167d0eefd49eb4644cb36a40bafc1a0ef75cd",
+          "source_refractory_seconds": "68defb7761221ec6ef57fcd8d4456268b63884b07cb1fb64502c69784c600194",
+          "target_baseline_window_seconds": "357beebcc865a97897bbb3d6d3c5dda13bdb99ef12f7f6da327dcecc80a44d0f",
+          "target_response_window_seconds": "efa4f1fbbed8767fec7a241d8b21e3b498468fdb5d836eb91c3d210b1a70d059"
+        }
+      },
+      "relation_binding_hash": "bffb5b67d8b04ae8b235dbc7a5a15706c69d6aad34ccd71cc58b181e722ec935",
+      "semantic_execution_hash": "f26f6e27ecef6f29cc4a1e29073d79231ebc6630967d4727b551e0ed3d62e8fa"
+    },
+    {
+      "common_arm_cells": [
+        "T0",
+        "T1",
+        "T1-B"
+      ],
+      "executable_signature": {
+        "runtime_logic_family": "missing_expected_delayed_response",
+        "selected_delay_horizon_seconds": 60,
+        "source": "P1_FCV02D",
+        "source_stability_reference": "88b330890067521466cfd0e4522d1c668f42d1153a57f8be03f8a78a79333128",
+        "source_step_direction": "step_up",
+        "source_threshold_reference": "eda4dc3bf8a9585b4838fc3f72bb74b0a46393bacb25a9c51763bdbabd7148aa",
+        "target": "P1_TIT02",
+        "target_response_direction": "decrease",
+        "target_scale_reference": "7edd900866a48ba4c41cef93f0bcca4167cb4f59f5a5e49a9eb854f3b7a24ec1",
+        "window_constant_references": {
+          "cross_source_isolation_radius_seconds": "a718b25b71c263bc5f8f965a67ff0453fad9860c834f4fa13645db6dc13f9111",
+          "minimum_source_stability_fraction": "d80103743038a50207ff8ba54fc7659fc513f60cf19151fd6a74b17a13b08734",
+          "source_post_window_seconds": "a67d362617670d4d0c52caa65d36b7bd4639bf845b3b3d68ccee85c5a461ba8b",
+          "source_pre_window_seconds": "a1778741498ca25e7830719cb7f0bafc278bf84e06baa2db91aa4c3b62707a88",
+          "source_refractory_seconds": "a930e00b29ba99d770fb663304f3b3808666e3267ce18cebce745846c92877b4",
+          "target_baseline_window_seconds": "f3dc40fde617defefeb3ed2af736a824b1653d695480f35002f6c679ac245357",
+          "target_response_window_seconds": "6231f129edb4889ff0f7d4ed1fffff352e5d56040209a18aee3fe2268eddd21f"
+        }
+      },
+      "relation_binding_hash": "4a8e908cbb3fa7b844aaf7238862d047268fed3889a79b5c8b0b42443bc2b125",
+      "semantic_execution_hash": "96012d09ddd170da0a461d3dad14e3ad3ba3fcb2e2d6a7001c79092a9273551f"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "signature_definition": [
+    "source",
+    "source_step_direction",
+    "target",
+    "target_response_direction",
+    "selected_delay_horizon_seconds",
+    "source_threshold_reference",
+    "source_stability_reference",
+    "target_scale_reference",
+    "window_constant_references",
+    "runtime_logic_family"
+  ],
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "utility_time_reselection_or_substitution": false,
+  "verification_basis": {
+    "closed_verifier_requires_exact_execution_fields": true,
+    "construction_analysis_hash": "2175fca3c3bcc5ccffe7dfca1fcd8c3a0687ac94a56d077f5db53a6632bf2159",
+    "e1_public_manifest_hash": "ee8c5b7e9895f5f6afdd1be2563244e3b82dca9c3eadca502dd522940931e3ae",
+    "gate_evaluator_feasibility_hash": "598e70f67f6df116f5f2e57333c5b64a1fbb9d04d74c2f29036788a2a365b683"
+  }
+}

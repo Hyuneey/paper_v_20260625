@@ -1,0 +1,43 @@
+{
+  "artifact_hash": "c1825a6780552d82346ffd4fd8219792ad545d22c95586fe8ad20e920a872008",
+  "artifact_type": "task039e3_r2r_utility_protocol_split_policy_v1",
+  "assignment_policy": "deterministic_file_index_before_label_access",
+  "attack_or_event_informed_partitioning": false,
+  "coordinate_map": {
+    "purge": {
+      "end": 54120,
+      "start": 54000
+    },
+    "test1": {
+      "end": 54000,
+      "start": 0
+    },
+    "test2": {
+      "end": 284520,
+      "start": 54120
+    }
+  },
+  "cross_file_rule_windows": "PROHIBITED",
+  "cross_split_rule_windows": "PROHIBITED",
+  "inner_assignment": [
+    "hai-test1.csv",
+    "label-test1.csv"
+  ],
+  "inner_permitted_protocol_operation": "ASSESS_RULE_UTILITY_ONLY",
+  "inner_revision_or_selection": "PROHIBITED",
+  "label_informed_partitioning": false,
+  "outer_assignment": [
+    "hai-test2.csv",
+    "label-test2.csv"
+  ],
+  "outer_permitted_protocol_operation": "ONE_WAY_FROZEN_REPLAY_ONLY",
+  "outer_replay_after_inner": "REQUIRED_UNLESS_INTEGRITY_PROTOCOL_OR_DATA_BINDING_FAILURE",
+  "poor_inner_result_may_block_outer": false,
+  "purge_gap_samples": 120,
+  "random_partitioning": false,
+  "schema_version": "1.0.0",
+  "sealed_assignment": null,
+  "sealed_evaluation": "NOT_MATERIALIZED_NOT_AUTHORIZED",
+  "split_before_windowing": true,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+}

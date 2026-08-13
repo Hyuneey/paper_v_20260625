@@ -1,0 +1,62 @@
+{
+  "aggregation": {
+    "description": "No aggregation or downsampling.",
+    "explicit": true,
+    "method": "none",
+    "output_sampling_interval_seconds": 1.0,
+    "source_sampling_interval_seconds": 1.0
+  },
+  "artifact_hash": "c17b28fb58a51e9842fbdb3fcc8fab933061e97ae97ef7b1981a7fea1084f0e3",
+  "artifact_type": "task039e3_r2r_utility_protocol_data_policy_v1",
+  "attack_intervals_accessed": false,
+  "dataset": "HAI 23.05",
+  "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "feature_order_hash": "a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57",
+  "file_contents_accessed": false,
+  "file_metadata": {
+    "hai-test1.csv": {
+      "label_availability": "available",
+      "row_count": 54000,
+      "sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be"
+    },
+    "hai-test2.csv": {
+      "label_availability": "available",
+      "row_count": 230400,
+      "sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3"
+    },
+    "label-test1.csv": {
+      "label_availability": "available",
+      "row_count": 54000,
+      "sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc"
+    },
+    "label-test2.csv": {
+      "label_availability": "available",
+      "row_count": 230400,
+      "sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92"
+    }
+  },
+  "hai_test_feature_values_accessed": false,
+  "label_values_accessed": false,
+  "no_downsampling": true,
+  "no_feature_selection_from_utility_data": true,
+  "no_label_derived_preprocessing": true,
+  "no_test_derived_imputation_parameters": true,
+  "no_test_derived_normalization": true,
+  "preprocessing_config": {
+    "column_selection": "verified_selected_process_columns_only",
+    "downsampling": false,
+    "imputation": false,
+    "interpolation": false,
+    "numeric_parsing": "deterministic",
+    "scaling": false
+  },
+  "process_scope": "P1",
+  "protocol_classification": "POST_RESULT_PROTOCOL_FREEZE",
+  "sampling_interval_seconds": 1.0,
+  "schema_version": "1.0.0",
+  "scientific_preprocessing_source_view_id": "d7bcc2b06aedd627db78a0dc104dd6fec5a171f0a2be773180e48ca3e8e52f57",
+  "second_level_rule_calibration_allowed": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE",
+  "utility_data_view_id": "4445c98c0a22e4f53a5679b39b52a984adf342eb02fe893d5d53256ea2133e24",
+  "utility_values_computed": false
+}

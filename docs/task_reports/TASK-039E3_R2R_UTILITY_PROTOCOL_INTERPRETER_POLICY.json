@@ -1,0 +1,60 @@
+{
+  "abstention": {
+    "distinct_from_no_rule": true,
+    "emits_alarm": false,
+    "nonfinite_scope": "required_local_window_only",
+    "outside_authorized_operating_regime": "NOT_APPLICABLE_ENTIRE_FROZEN_P1_UTILITY_VIEW_IS_AUTHORIZED_REGIME",
+    "reasons": [
+      "insufficient_pre_window",
+      "incomplete_post_hold_window",
+      "incomplete_target_response_window",
+      "nonfinite_source_window",
+      "nonfinite_target_window",
+      "file_boundary",
+      "split_boundary"
+    ]
+  },
+  "applicable_evaluation_opportunity": "one retained isolated matching-direction source event for one accepted relation cell before target-response evaluation",
+  "artifact_hash": "6e5b7939e8fb0c015e2053bda218ca89a9ba282ec1fd3707ed241e6c7a752327",
+  "artifact_type": "task039e3_r2r_utility_protocol_interpreter_policy_v1",
+  "authority": "UTILITY_EVALUATION_ONLY",
+  "decision_index": "event_index + selected_delay_horizon_seconds + target_response_window_seconds - 1",
+  "deployment_authority": false,
+  "frozen_response_window_seconds": 3,
+  "interpreter": "OFFLINE_CANDIDATE_UTILITY_INTERPRETER_V1",
+  "llm_calls": 0,
+  "parameter_policy": {
+    "direct_number_substitution": false,
+    "label_tuned_threshold_count": 0,
+    "missing_or_mismatched_reference": "FAIL_CLOSED",
+    "resolve_only_frozen_normal_derived_references": true,
+    "test_recalibration": false
+  },
+  "production_runtime_authority": false,
+  "provider_calls": 0,
+  "rule_v2_authority": false,
+  "schema_version": "1.0.0",
+  "simplified_decision_index": "event_index + h + 2",
+  "source_event": {
+    "cross_source_isolation": "after clustering; other-source retained event within inclusive +/-2 seconds is nonisolated",
+    "direction_filter_order": "after clustering and isolation",
+    "post_level": "median(x[t:t+5])",
+    "pre_level": "median(x[t-5:t])",
+    "same_source_clustering": "single_link_gap_seconds <= 10; retain greatest absolute amplitude; exact tie earliest",
+    "sampling_hz": 1,
+    "source_stream_scope": "all_12_frozen_P1_source_streams",
+    "stability": "pre_fraction >= 0.80 and post_fraction >= 0.80 using abs(value-level) <= source_stability_tolerance",
+    "step_amplitude": "post_level - pre_level",
+    "threshold_operator": "abs(step_amplitude) >= source_step_threshold",
+    "wrong_direction": "NO_TRIGGER"
+  },
+  "target_response": {
+    "baseline": "median(y[t-5:t])",
+    "decrease_satisfied": "response < -target_noise_scale",
+    "increase_satisfied": "response > target_noise_scale",
+    "response": "median(y[t+h:t+h+3]) - baseline",
+    "threshold_equality": "MISSING_EXPECTED_RESPONSE_VIOLATION",
+    "violation_output": "one RawRuleAlarm at decision_index"
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-FREEZE"
+}
