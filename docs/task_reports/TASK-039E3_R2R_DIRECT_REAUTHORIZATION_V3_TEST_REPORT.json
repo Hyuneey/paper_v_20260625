@@ -1,0 +1,53 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "0d2fb764fd5225be0835a11592fd366a91c393bc43ddf28ad67ea94f9e739a1d",
+  "artifact_type": "task039e3_r2r_direct_reauthorization_v3_test_report_v1",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v exact Bridge Commit B bridge oracles",
+      "result": "4/4 PASS"
+    },
+    {
+      "command": "bundled-python -B -m unittest -v V3 authorization oracles before Commit C",
+      "result": "5/5 substantive offline oracles PASS; exact Commit-C precredential oracle skipped as designed"
+    },
+    {
+      "command": "first exact-Commit-C precredential invocation",
+      "result": "blocked before any credential by CodexSandboxOffline Git safe.directory ownership boundary"
+    },
+    {
+      "command": "exact-Commit-C precredential invocation with process-local safe.directory entries and exact Commit C SHA",
+      "result": "6/6 PASS; sentinel credential calls=1; provider calls=0"
+    },
+    {
+      "command": "combined bridge plus V3 authorization suite from exact Commit C",
+      "result": "10/10 PASS"
+    },
+    {
+      "command": "50-record exact source Git blob, raw-byte SHA-256, and checkout-byte validation",
+      "result": "50/50 PASS"
+    },
+    {
+      "command": "bundled-python -B -m compileall focused governance tests",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python -B -m pip check",
+      "result": "PASS; no broken requirements"
+    },
+    {
+      "command": "closed schema, native authorization validator, JSON self-hashes, diff check, and task-scoped safety scan",
+      "result": "PASS"
+    }
+  ],
+  "credential_sentinel_calls": 1,
+  "exact_execution_checkout_commit": "5dca2d0431d60ef2f2bdfc907ebfe3fe18521f16",
+  "live_runner_invocations": 0,
+  "openai_api_key_accessed": false,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-DIRECT-REMEDIATION-AUTHORITY-BRIDGE-AND-REAUTHORIZATION"
+}
