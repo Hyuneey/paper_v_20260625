@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import PropertyMock, patch
+from unittest.mock import patch
 
 from paperworks.v6.common import stable_hash_v1
 from paperworks.v6.task039e2_execution_configuration_v1 import (
@@ -14,6 +14,11 @@ from paperworks.v6.task039e2_execution_configuration_v1 import (
 from paperworks.v6.task039e3_orchestration_v1 import (
     ConstructionOutcomeRecordV1,
     DirectNumberOutcomeV1,
+    T0_TEMPLATE_HASH,
+    wrap_and_verify_core_v1,
+)
+from paperworks.v6.task039e3_r2r_proposal_custody_v2 import (
+    serialize_construction_proposal_custody_record_v2,
 )
 from paperworks.v6.task039e3_r2r_capability_reuse_v1 import (
     ValidatedCapabilityReuseR2RV1,
@@ -43,13 +48,29 @@ from paperworks.v6.task039e3_recovery_serialization_v1 import (
     verify_public_artifact_v1,
     write_public_artifact_atomic_v1,
 )
+from task039e3_support import make_evidence, valid_core
 
 
 ROOT = Path(__file__).resolve().parents[1]
 HASH = "a" * 64
 COMMIT = "b" * 40
 AUTHORIZATION_HASH = "c" * 64
-PRIVATE_PROPOSAL = "SYNTHETIC_PRIVATE_PROPOSAL_MUST_NOT_BE_PUBLIC"
+PRIVATE_PROPOSAL = "SYNTHETIC_RELATION_001"
+
+
+def _proposal_records() -> tuple[dict[str, object], ...]:
+    records: list[dict[str, object]] = []
+    for index in range(1, 43):
+        evidence = make_evidence(index)
+        record = wrap_and_verify_core_v1(
+            core=valid_core(evidence),
+            evidence=evidence,
+            arm="T0",
+            call_number=0,
+            prompt_hash=T0_TEMPLATE_HASH,
+        )
+        records.append(serialize_construction_proposal_custody_record_v2(record))
+    return tuple(records)
 
 
 def _outcomes() -> tuple[ConstructionOutcomeRecordV1, ...]:
@@ -217,14 +238,7 @@ def _arguments(private: Path, public: Path) -> dict[str, object]:
             }
             for index in range(252)
         ),
-        "proposal_records": tuple(
-            {
-                "relation_identity": f"relation-{index:02d}",
-                "raw_proposal": PRIVATE_PROPOSAL,
-                "record_hash": stable_hash_v1({"r2r_proposal": index}),
-            }
-            for index in range(42)
-        ),
+        "proposal_records": _proposal_records(),
         "outcome_records": _outcomes(),
         "direct_number_records": _direct(),
         "typed_accounting": _accounting(),
@@ -259,30 +273,15 @@ def _failure_context() -> dict[str, object]:
 class R2RFinalizationV1Tests(unittest.TestCase):
     def test_live_proposal_record_is_materializable_without_public_leakage(self) -> None:
         from paperworks.v6.task039e3_r2r_result_finalizer_v1 import _mapping_record
-
-        class _Validity:
-            proposal_hash = "a" * 64
-            artifact_hash = "b" * 64
-
-            def to_dict(self):
-                return {"proposal_hash": self.proposal_hash, "artifact_hash": self.artifact_hash}
-
-        record = object.__new__(ConstructionProposalRecordV1)
-        object.__setattr__(record, "relation_identity", "relation-00")
-        object.__setattr__(record, "arm", "T1")
-        object.__setattr__(record, "call_number", 1)
-        object.__setattr__(record, "project_proposal", {"proposal_hash": "a" * 64})
-        object.__setattr__(record, "validity_result", _Validity())
-        object.__setattr__(record, "proposal_envelope", None)
-        with patch.object(
-            ConstructionProposalRecordV1,
-            "record_hash",
-            new_callable=PropertyMock,
-            return_value="c" * 64,
-        ):
-            projected = _mapping_record(record, "proposal-validity")
-        self.assertEqual(projected["relation_identity"], "relation-00")
-        self.assertEqual(projected["proposal_hash"], "a" * 64)
+        evidence = make_evidence(1)
+        record = wrap_and_verify_core_v1(
+            core=valid_core(evidence), evidence=evidence, arm="T0",
+            call_number=0, prompt_hash=T0_TEMPLATE_HASH,
+        )
+        projected = _mapping_record(record, "proposal-validity")
+        self.assertEqual(projected["relation_identity"], "SYNTHETIC_RELATION_001")
+        self.assertEqual(projected["proposal_hash"], record.proposal_hash)
+        self.assertIn("proposal_envelope", projected)
 
     def test_complete_synthetic_42_relation_cohort_finalizes_r2r_only(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

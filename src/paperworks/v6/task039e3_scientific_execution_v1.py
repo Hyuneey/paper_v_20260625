@@ -48,6 +48,9 @@ from paperworks.v6.task039e3_execution_prep_v1 import (
 from paperworks.v6.task039e3_live_transport_v1 import (
     LiveOpenAIChatCompletionsTransportV1,
 )
+from paperworks.v6.task039e3_r2r_proposal_custody_v2 import (
+    serialize_construction_proposal_custody_record_v2,
+)
 from paperworks.v6.task039e3_orchestration_v1 import (
     T0_TEMPLATE_HASH,
     ConstructionOutcomeLedgerV1,
@@ -380,20 +383,6 @@ class DurableProviderCallLedgerV1(ProviderCallLedgerV1):
         self._custody.close()
 
 
-def _proposal_document(record: ConstructionProposalRecordV1) -> dict[str, Any]:
-    validity = record.validity_result
-    return {
-        "relation_identity": record.relation_identity,
-        "arm": record.arm,
-        "call_number": record.call_number,
-        "project_proposal": thaw_json(record.project_proposal),
-        "validity_result": validity.to_dict(),
-        "proposal_hash": record.proposal_hash,
-        "validity_hash": record.validity_hash,
-        "record_hash": record.record_hash,
-    }
-
-
 class DurableConstructionProposalLedgerV1(ConstructionProposalLedgerV1):
     def __init__(self, path: Path) -> None:
         super().__init__()
@@ -401,10 +390,18 @@ class DurableConstructionProposalLedgerV1(ConstructionProposalLedgerV1):
 
     def append(self, record: ConstructionProposalRecordV1) -> None:
         super().append(record)
-        self._custody.persist(_proposal_document(record))
+        self._custody.persist(
+            serialize_construction_proposal_custody_record_v2(record)
+        )
 
     def close(self) -> None:
         self._custody.close()
+
+
+def _proposal_document(record: ConstructionProposalRecordV1) -> dict[str, Any]:
+    """Compatibility name routed to the sole complete custody serializer."""
+
+    return serialize_construction_proposal_custody_record_v2(record)
 
 
 class DurableConstructionOutcomeLedgerV1(ConstructionOutcomeLedgerV1):

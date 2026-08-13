@@ -45,6 +45,11 @@ from paperworks.v6.task039e3_recovery_transactional_custody_v3 import (
     TransactionalLedgerReconstructionV3,
 )
 from paperworks.v6.task039e3_scientific_execution_v1 import _direct_summary
+from paperworks.v6.task039e3_r2r_proposal_custody_v2 import (
+    TASK039E3ProposalCustodyError,
+    serialize_construction_proposal_custody_record_v2,
+    verify_serialized_construction_proposal_custody_record_v2,
+)
 
 
 TASK_ID = "TASK-039E3-R2R-SCIENTIFIC-EXECUTION"
@@ -373,18 +378,7 @@ def prepare_r2r_result_roots_v1(
 
 def _mapping_record(record: Any, name: str) -> dict[str, Any]:
     if isinstance(record, ConstructionProposalRecordV1):
-        normalized = normalize_plain_json_v1(
-            {
-                "relation_identity": record.relation_identity,
-                "arm": record.arm,
-                "call_number": record.call_number,
-                "project_proposal": record.project_proposal,
-                "validity_result": record.validity_result.to_dict(),
-                "proposal_hash": record.proposal_hash,
-                "validity_hash": record.validity_hash,
-                "record_hash": record.record_hash,
-            }
-        )
+        normalized = serialize_construction_proposal_custody_record_v2(record)
     elif isinstance(record, Mapping):
         normalized = normalize_plain_json_v1(record)
     else:
@@ -397,6 +391,21 @@ def _mapping_record(record: Any, name: str) -> dict[str, Any]:
     if not isinstance(normalized, dict):
         raise TASK039E3R2RResultFinalizationError(f"{name} record must be an object")
     return normalized
+
+
+def _proposal_custody_record_v2(record: Any) -> dict[str, Any]:
+    try:
+        if isinstance(record, ConstructionProposalRecordV1):
+            return serialize_construction_proposal_custody_record_v2(record)
+        if not isinstance(record, Mapping):
+            raise TASK039E3ProposalCustodyError(
+                "proposal custody record must be typed or serialized"
+            )
+        return verify_serialized_construction_proposal_custody_record_v2(record)
+    except (TASK039E3ProposalCustodyError, TypeError, ValueError) as exc:
+        raise TASK039E3R2RResultFinalizationError(
+            "proposal-validity custody is not independently verifiable"
+        ) from exc
 
 
 def _coerce_outcome(
@@ -675,7 +684,7 @@ def finalize_successful_r2r_scientific_result_v1(
             "scientific provider snapshot contains another call family"
         )
     proposal_documents = tuple(
-        _mapping_record(record, "proposal-validity") for record in proposal_records
+        _proposal_custody_record_v2(record) for record in proposal_records
     )
     outcomes = tuple(_coerce_outcome(record) for record in outcome_records)
     direct = tuple(_coerce_direct(record) for record in direct_number_records)
@@ -720,7 +729,7 @@ def finalize_successful_r2r_scientific_result_v1(
             source="transactional_provider_ledger",
         ),
         "proposal_validity": _private_snapshot(
-            artifact_type="task039e3_r2r_proposal_validity_ledger_v1",
+            artifact_type="task039e3_r2r_proposal_validity_ledger_v2",
             records=proposal_documents,
             source="fresh_r2r_working_log",
         ),
