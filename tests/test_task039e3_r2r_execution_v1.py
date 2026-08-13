@@ -259,8 +259,10 @@ class R2RCapabilityReuseAndExecutionTests(unittest.TestCase):
     def test_lifetime_and_recovery_accounting_namespaces_are_separate(self) -> None:
         low = build_lifetime_accounting_v1(252)
         high = build_lifetime_accounting_v1(336)
-        self.assertEqual(low.lifetime_scientific_logical_call_attempts, 253)
-        self.assertEqual(high.lifetime_scientific_logical_call_attempts, 337)
+        self.assertEqual(low.historical_scientific_logical_calls_total, 6)
+        self.assertEqual(high.historical_scientific_logical_calls_total, 6)
+        self.assertEqual(low.lifetime_scientific_logical_call_attempts, 258)
+        self.assertEqual(high.lifetime_scientific_logical_call_attempts, 342)
         for invalid in (251, 337, True):
             with self.assertRaises(TASK039E3R2RExecutionError):
                 build_lifetime_accounting_v1(invalid)

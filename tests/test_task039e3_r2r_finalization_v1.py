@@ -122,13 +122,17 @@ def _direct() -> tuple[DirectNumberOutcomeV1, ...]:
 def _accounting() -> dict[str, int]:
     return {
         "historical_aborted_r2_scientific_logical_calls": 1,
+        "historical_original_r2_scientific_logical_calls": 1,
+        "historical_zero_contact_r2r_scientific_logical_calls": 0,
+        "historical_partial_r2r_scientific_logical_calls": 5,
+        "historical_scientific_logical_calls_total": 6,
         "historical_aborted_r2_provider_authored_scientific_responses": 0,
         "r2r_t1_logical_calls": 42,
         "r2r_t1b_logical_calls": 126,
         "r2r_t2_logical_calls": 42,
         "r2r_direct_number_logical_calls": 42,
         "r2r_scientific_logical_calls": 252,
-        "lifetime_scientific_logical_call_attempts": 253,
+        "lifetime_scientific_logical_call_attempts": 258,
         "r2r_scientific_transport_attempts": 252,
         "r2r_scientific_transport_retries": 0,
         "scientific_concurrency": 1,
@@ -317,7 +321,7 @@ class R2RFinalizationV1Tests(unittest.TestCase):
                 receipt["typed_accounting"][
                     "lifetime_scientific_logical_call_attempts"
                 ],
-                253,
+                258,
             )
             self.assertFalse(receipt["historical_partial_results_reused"])
             public_text = "".join(
@@ -443,7 +447,28 @@ class R2RFinalizationV1Tests(unittest.TestCase):
             self.assertFalse(receipt["runtime_authority"])
             self.assertFalse(receipt["utility_evaluation_authorized"])
             self.assertFalse(receipt["winner_selected"])
+            self.assertEqual(receipt["historical_scientific_logical_calls_total"], 6)
+            self.assertEqual(receipt["lifetime_scientific_logical_call_attempts"], 6)
             self.assertNotIn("PRIVATE_SYNTHETIC_FAILURE_DETAIL", destination.read_text())
+
+    def test_partial_future_failure_keeps_historical_calls_outside_fresh_count(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            destination = Path(temporary) / "TASK-039E3_R2R_EXECUTION_FAILURE.json"
+            context = _failure_context()
+            context["completed_r2r_scientific_logical_calls"] = 5
+            receipt = write_terminal_failure_receipt_r2r_v1(
+                destination=destination,
+                failure_stage="scientific_execution",
+                failure=RuntimeError("synthetic"),
+                context=context,
+            )
+            self.assertEqual(receipt["historical_original_r2_scientific_logical_calls"], 1)
+            self.assertEqual(receipt["historical_zero_contact_r2r_scientific_logical_calls"], 0)
+            self.assertEqual(receipt["historical_partial_r2r_scientific_logical_calls"], 5)
+            self.assertEqual(receipt["historical_scientific_logical_calls_total"], 6)
+            self.assertEqual(receipt["completed_r2r_scientific_logical_calls"], 5)
+            self.assertEqual(receipt["lifetime_scientific_logical_call_attempts"], 11)
+            self.assertFalse(receipt["historical_partial_results_reused"])
 
     def test_failure_receipt_persistence_failure_is_distinct_double_fault(self) -> None:
         def execute() -> object:

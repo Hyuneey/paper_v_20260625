@@ -5,6 +5,7 @@ import inspect
 import json
 import os
 from pathlib import Path
+import subprocess
 from typing import Any, Mapping
 import unittest
 
@@ -360,7 +361,19 @@ class R2RDirectNumberFailureForensicAuditTests(unittest.TestCase):
         self.assertIn("approved_evidence_identities=tuple(item.reference for item in bindings)", source)
 
     def test_renderer_removes_calibrated_fields_but_not_approved_aliases(self) -> None:
-        renderer = inspect.getsource(render_direct_number_model_content_v1)
+        repository = Path(__file__).resolve().parents[1]
+        renderer = subprocess.check_output(
+            [
+                "git",
+                "show",
+                (
+                    f"{EXECUTION_COMMIT}:"
+                    "src/paperworks/v6/task039e2_execution_configuration_v1.py"
+                ),
+            ],
+            cwd=repository,
+            text=True,
+        )
         self.assertIn("rendered[\"numeric_bindings\"] = retained", renderer)
         self.assertIn("rendered[\"numeric_references\"]", renderer)
         self.assertNotIn("approved_evidence_identities", renderer)

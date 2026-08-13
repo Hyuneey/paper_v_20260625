@@ -4,7 +4,7 @@ This additive module never reads evidence, credentials, or the network.  It
 consumes an already completed fresh R2R cohort, reuses the frozen scientific
 metric and canonical-artifact primitives, and makes PASS reachable only after
 the R2R terminal receipt has been written last, re-read, and self-hash checked.
-The one aborted historical R2 call remains in lifetime accounting only.
+Six failed-run scientific calls remain in lifetime accounting only.
 """
 
 from __future__ import annotations
@@ -30,6 +30,10 @@ from paperworks.v6.task039e3_r2r_capability_reuse_v1 import (
 from paperworks.v6.task039e3_r2r_authorization_v1 import (
     CAPABILITY_REUSE_BINDING_HASH,
     validate_r2r_authorization_v1,
+)
+from paperworks.v6.task039e3_r2r_execution_v1 import (
+    HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS,
+    build_lifetime_accounting_v1,
 )
 from paperworks.v6.task039e3_recovery_serialization_v1 import (
     finalize_public_artifact_v1,
@@ -490,15 +494,32 @@ def _validate_completed_r2r_science(
     accounting = normalize_plain_json_v1(typed_accounting)
     if not isinstance(accounting, dict):
         raise TASK039E3R2RResultFinalizationError("typed accounting must be an object")
+    lifetime = build_lifetime_accounting_v1(r2r_calls)
     expected = {
-        "historical_aborted_r2_scientific_logical_calls": 1,
+        "historical_aborted_r2_scientific_logical_calls": (
+            HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        "historical_original_r2_scientific_logical_calls": (
+            lifetime.historical_original_r2_scientific_logical_calls
+        ),
+        "historical_zero_contact_r2r_scientific_logical_calls": (
+            lifetime.historical_zero_contact_r2r_scientific_logical_calls
+        ),
+        "historical_partial_r2r_scientific_logical_calls": (
+            lifetime.historical_partial_r2r_scientific_logical_calls
+        ),
+        "historical_scientific_logical_calls_total": (
+            lifetime.historical_scientific_logical_calls_total
+        ),
         "historical_aborted_r2_provider_authored_scientific_responses": 0,
         "r2r_t1_logical_calls": calls["T1"],
         "r2r_t1b_logical_calls": calls["T1-B"],
         "r2r_t2_logical_calls": calls["T2"],
         "r2r_direct_number_logical_calls": calls["T1-DIRECT-NUMBER"],
         "r2r_scientific_logical_calls": r2r_calls,
-        "lifetime_scientific_logical_call_attempts": 1 + r2r_calls,
+        "lifetime_scientific_logical_call_attempts": (
+            lifetime.lifetime_scientific_logical_call_attempts
+        ),
         "scientific_concurrency": 1,
         "scientific_generation_retries": 0,
         "historical_partial_records_reused": 0,
@@ -661,6 +682,7 @@ def finalize_successful_r2r_scientific_result_v1(
     calls, r2r_calls, accounting = _validate_completed_r2r_science(
         outcomes, direct, typed_accounting
     )
+    lifetime = build_lifetime_accounting_v1(r2r_calls)
     if (
         len(provider_documents) != r2r_calls
         or scientific_binding.get("record_count") != r2r_calls
@@ -837,8 +859,24 @@ def finalize_successful_r2r_scientific_result_v1(
             "direct_number_results": RELATION_COUNT,
             "scientific_call_counts": calls,
             "r2r_scientific_logical_calls": r2r_calls,
-            "historical_aborted_r2_scientific_logical_calls": 1,
-            "lifetime_scientific_logical_call_attempts": 1 + r2r_calls,
+            "historical_aborted_r2_scientific_logical_calls": (
+                HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+            ),
+            "historical_original_r2_scientific_logical_calls": (
+                lifetime.historical_original_r2_scientific_logical_calls
+            ),
+            "historical_zero_contact_r2r_scientific_logical_calls": (
+                lifetime.historical_zero_contact_r2r_scientific_logical_calls
+            ),
+            "historical_partial_r2r_scientific_logical_calls": (
+                lifetime.historical_partial_r2r_scientific_logical_calls
+            ),
+            "historical_scientific_logical_calls_total": (
+                lifetime.historical_scientific_logical_calls_total
+            ),
+            "lifetime_scientific_logical_call_attempts": (
+                lifetime.lifetime_scientific_logical_call_attempts
+            ),
             "typed_accounting": accounting,
             "historical_partial_results_reused": False,
             "cross_arm_leakage": False,

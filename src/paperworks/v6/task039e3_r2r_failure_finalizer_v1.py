@@ -14,6 +14,12 @@ from typing import Any, TypeVar
 from paperworks.v6.task039e3_recovery_serialization_v1 import (
     write_public_artifact_atomic_v1,
 )
+from paperworks.v6.task039e3_r2r_execution_v1 import (
+    HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS,
+    HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS,
+    HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL,
+    HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS,
+)
 
 
 FAILURE_STATUS = "failed_task039e3_r2r_scientific_execution"
@@ -101,7 +107,25 @@ def write_terminal_failure_receipt_r2r_v1(
             "failure_stage": failure_stage,
             "failure_classification": type(failure).__name__,
             **values,
-            "historical_aborted_r2_scientific_logical_calls": 1,
+            "historical_aborted_r2_scientific_logical_calls": (
+                HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+            ),
+            "historical_original_r2_scientific_logical_calls": (
+                HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+            ),
+            "historical_zero_contact_r2r_scientific_logical_calls": (
+                HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS
+            ),
+            "historical_partial_r2r_scientific_logical_calls": (
+                HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS
+            ),
+            "historical_scientific_logical_calls_total": (
+                HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL
+            ),
+            "lifetime_scientific_logical_call_attempts": (
+                HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL
+                + values["completed_r2r_scientific_logical_calls"]
+            ),
             "historical_partial_results_reused": False,
             "additional_capability_probes": 0,
             "third_capability_probe_authorized": False,

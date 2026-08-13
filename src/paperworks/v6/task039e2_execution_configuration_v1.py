@@ -713,12 +713,19 @@ def render_direct_number_model_content_v1(view: Mapping[str, Any]) -> str:
         raise TASK039E2ConfigurationError("direct-number view requires numeric_bindings")
     retained = []
     observed_withheld: set[str] = set()
+    withheld_evidence_identities: set[str] = set()
+    withheld_references: set[str] = set()
     for item in bindings:
         if not isinstance(item, Mapping) or "numeric_role" not in item:
             raise TASK039E2ConfigurationError("numeric binding is malformed")
         role = str(item["numeric_role"])
         if role in CALIBRATED_NUMERIC_ROLES:
             observed_withheld.add(role)
+            if "evidence_identity" in item:
+                withheld_evidence_identities.add(str(item["evidence_identity"]))
+            reference = item.get("reference", item.get("numeric_reference"))
+            if reference is not None:
+                withheld_references.add(str(reference))
             continue
         retained.append(dict(item))
     if observed_withheld != set(CALIBRATED_NUMERIC_ROLES):
@@ -733,10 +740,28 @@ def render_direct_number_model_content_v1(view: Mapping[str, Any]) -> str:
             for role, reference in references.items()
             if role not in CALIBRATED_NUMERIC_ROLES
         }
+    approved_evidence_identities = rendered.get("approved_evidence_identities")
+    if approved_evidence_identities is not None and not isinstance(
+        approved_evidence_identities, list
+    ):
+        raise TASK039E2ConfigurationError(
+            "approved evidence identity list is malformed"
+        )
+    if approved_evidence_identities is not None:
+        rendered["approved_evidence_identities"] = [
+            identity
+            for identity in approved_evidence_identities
+            if identity not in withheld_evidence_identities
+        ]
     text = _canonical_json(rendered)
     for role in CALIBRATED_NUMERIC_ROLES:
         if role in text:
             raise TASK039E2ConfigurationError("calibrated role leaked into direct-number input")
+    for withheld in withheld_references | withheld_evidence_identities:
+        if withheld in text:
+            raise TASK039E2ConfigurationError(
+                "calibrated evidence leaked into direct-number input"
+            )
     return DIRECT_NUMBER_PROMPT_V1 + "\n\nDIRECT_NUMBER_INPUT_JSON\n" + text
 
 

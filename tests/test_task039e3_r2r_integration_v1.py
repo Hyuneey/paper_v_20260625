@@ -116,7 +116,8 @@ class R2RIntegrationTests(unittest.TestCase):
         self.assertEqual((result.t1_logical_calls, result.t1b_logical_calls), (42, 126))
         self.assertEqual((result.t2_logical_calls, result.direct_number_logical_calls), (42, 42))
         lifetime = build_lifetime_accounting_v1(result.scientific_logical_calls)
-        self.assertEqual(lifetime.lifetime_scientific_logical_call_attempts, 253)
+        self.assertEqual(lifetime.historical_scientific_logical_calls_total, 6)
+        self.assertEqual(lifetime.lifetime_scientific_logical_call_attempts, 258)
 
     def test_runner_self_check_is_offline_and_live_credential_is_singular(self) -> None:
         spec = importlib.util.spec_from_file_location("r2r_runner", RUNNER)

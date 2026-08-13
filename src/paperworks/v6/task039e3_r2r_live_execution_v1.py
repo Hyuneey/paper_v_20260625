@@ -31,6 +31,10 @@ from paperworks.v6.task039e3_r2r_capability_reuse_v1 import (
 from paperworks.v6.task039e3_r2r_execution_v1 import (
     EXPECTED_EMPTY_LEDGER_KINDS,
     FreshLedgerObservationR2RV1,
+    HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS,
+    HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS,
+    HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL,
+    HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS,
     build_lifetime_accounting_v1,
     run_injected_r2r_scientific_cohort_v1,
     validate_empty_fresh_cohort_ledgers_v1,
@@ -277,7 +281,21 @@ def _typed_accounting(
     lifetime = build_lifetime_accounting_v1(result.scientific_logical_calls)
     attempts = len(transport.attempt_custody)
     return {
-        "historical_aborted_r2_scientific_logical_calls": 1,
+        "historical_aborted_r2_scientific_logical_calls": (
+            HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        "historical_original_r2_scientific_logical_calls": (
+            lifetime.historical_original_r2_scientific_logical_calls
+        ),
+        "historical_zero_contact_r2r_scientific_logical_calls": (
+            lifetime.historical_zero_contact_r2r_scientific_logical_calls
+        ),
+        "historical_partial_r2r_scientific_logical_calls": (
+            lifetime.historical_partial_r2r_scientific_logical_calls
+        ),
+        "historical_scientific_logical_calls_total": (
+            lifetime.historical_scientific_logical_calls_total
+        ),
         "historical_aborted_r2_provider_authored_scientific_responses": 0,
         "r2r_t1_logical_calls": result.t1_logical_calls,
         "r2r_t1b_logical_calls": result.t1b_logical_calls,

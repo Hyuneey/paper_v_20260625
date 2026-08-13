@@ -50,6 +50,10 @@ EXPECTED_EMPTY_LEDGER_KINDS = (
     "direct_number",
 )
 RECOVERY_EXECUTION_MODE = "FRESH_FULL_COHORT_RESTART"
+HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS = 1
+HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS = 0
+HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS = 5
+HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL = 6
 
 
 class TASK039E3R2RExecutionError(ValueError):
@@ -93,6 +97,10 @@ class FreshLedgerObservationR2RV1:
 @dataclass(frozen=True)
 class R2RLifetimeAccountingV1:
     historical_aborted_r2_scientific_logical_calls: int
+    historical_original_r2_scientific_logical_calls: int
+    historical_zero_contact_r2r_scientific_logical_calls: int
+    historical_partial_r2r_scientific_logical_calls: int
+    historical_scientific_logical_calls_total: int
     recovery_cohort_scientific_logical_calls: int
     lifetime_scientific_logical_call_attempts: int
 
@@ -114,7 +122,7 @@ def fresh_ledger_observation_from_reconstruction_v1(
 def build_lifetime_accounting_v1(
     recovery_cohort_scientific_logical_calls: int,
 ) -> R2RLifetimeAccountingV1:
-    """Keep the aborted R2 call visible but outside R2R cohort metrics."""
+    """Keep all failed-run calls visible but outside fresh-cohort metrics."""
 
     if (
         isinstance(recovery_cohort_scientific_logical_calls, bool)
@@ -125,12 +133,27 @@ def build_lifetime_accounting_v1(
             "R2R recovery-cohort logical-call count must be within 252..336"
         )
     return R2RLifetimeAccountingV1(
-        historical_aborted_r2_scientific_logical_calls=1,
+        historical_aborted_r2_scientific_logical_calls=(
+            HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        historical_original_r2_scientific_logical_calls=(
+            HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        historical_zero_contact_r2r_scientific_logical_calls=(
+            HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        historical_partial_r2r_scientific_logical_calls=(
+            HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        historical_scientific_logical_calls_total=(
+            HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL
+        ),
         recovery_cohort_scientific_logical_calls=(
             recovery_cohort_scientific_logical_calls
         ),
         lifetime_scientific_logical_call_attempts=(
-            1 + recovery_cohort_scientific_logical_calls
+            HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL
+            + recovery_cohort_scientific_logical_calls
         ),
     )
 
@@ -256,6 +279,10 @@ def run_injected_r2r_scientific_cohort_v1(
 __all__ = [
     "EXPECTED_EMPTY_LEDGER_KINDS",
     "FreshLedgerObservationR2RV1",
+    "HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS",
+    "HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS",
+    "HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL",
+    "HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS",
     "R2RExecutionBootstrapV1",
     "R2RLifetimeAccountingV1",
     "RECOVERY_EXECUTION_MODE",

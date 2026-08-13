@@ -29,6 +29,12 @@ from paperworks.v6.task039e3_r2r_failure_finalizer_v1 import (
     TASK039E3R2RFailureReceiptDoubleFault,
     TASK039E3R2RGuardedExecutionFailure,
 )
+from paperworks.v6.task039e3_r2r_execution_v1 import (
+    HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS,
+    HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS,
+    HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL,
+    HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS,
+)
 
 
 class TASK039E3R2RPrecontactError(ValueError):
@@ -41,7 +47,21 @@ class TASK039E3R2RDoubleFaultError(RuntimeError):
 
 R2R_SCIENTIFIC_ACCOUNTING_BEHAVIOR_HASH_V1 = stable_hash_v1(
     {
-        "historical_aborted_r2_scientific_logical_calls": 1,
+        "historical_aborted_r2_scientific_logical_calls": (
+            HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        "historical_original_r2_scientific_logical_calls": (
+            HISTORICAL_ORIGINAL_R2_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        "historical_zero_contact_r2r_scientific_logical_calls": (
+            HISTORICAL_ZERO_CONTACT_R2R_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        "historical_partial_r2r_scientific_logical_calls": (
+            HISTORICAL_PARTIAL_R2R_SCIENTIFIC_LOGICAL_CALLS
+        ),
+        "historical_scientific_logical_calls_total": (
+            HISTORICAL_SCIENTIFIC_LOGICAL_CALLS_TOTAL
+        ),
         "historical_partial_records_reused": 0,
         "relations": 42,
         "t1_logical_calls": 42,
@@ -51,7 +71,7 @@ R2R_SCIENTIFIC_ACCOUNTING_BEHAVIOR_HASH_V1 = stable_hash_v1(
         "direct_number_logical_calls": 42,
         "r2r_scientific_logical_calls_minimum": 252,
         "r2r_scientific_logical_calls_maximum": 336,
-        "lifetime_accounting": "1_plus_actual_r2r_scientific_logical_calls",
+        "lifetime_accounting": "6_plus_actual_r2r_scientific_logical_calls",
         "scientific_concurrency": 1,
         "scientific_generation_retries": 0,
     }
