@@ -1,0 +1,22 @@
+{
+  "accounting_behavior_hash": "0e18526c8dbcaec26d67385b89c60826dc4388cac08727cd61a2c60b1b812ae2",
+  "artifact_hash": "6ce9557f502546f318205f203fb14a129de904f02fa74f89c98d9b1af7592f83",
+  "artifact_type": "task039e3_r2r_terminal_audit_accounting_v1",
+  "capability_additional_probes": 0,
+  "capability_cumulative_probes": 2,
+  "capability_reuse_status": "PASS_REUSED",
+  "fresh_scientific_logical_calls": 252,
+  "generation_retries": 0,
+  "historical_original_r2_scientific_logical_calls": 1,
+  "historical_partial_records_reused": 0,
+  "historical_partial_r2r_scientific_logical_calls": 5,
+  "historical_scientific_logical_calls_total": 6,
+  "historical_zero_contact_r2r_scientific_logical_calls": 0,
+  "lifetime_scientific_logical_calls": 258,
+  "postcontact_integrity_status": "verified_unchanged",
+  "schema_version": "1.0.0",
+  "stale_one_plus_fresh_accounting_present": false,
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT",
+  "transport_attempts": 252,
+  "transport_retries": 0
+}

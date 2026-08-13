@@ -1,0 +1,24 @@
+{
+  "artifact_hash": "e39801cd1c6830d2f5032081c42dad8112e4363cc404bb7512192a99a40fb8a5",
+  "artifact_type": "task039e3_r2r_terminal_audit_evaluability_v1",
+  "authorization_v3_reusable": false,
+  "blocking_finding_count": 1,
+  "blocking_findings": [
+    {
+      "classification": "BLOCKER_RESULT_CUSTODY_PROPOSAL_RECORD_HASH_PREIMAGE_OMITTED",
+      "observed_custody_consistent": true,
+      "reason": "all_251_record_hash_values_are_preserved_but_the_required_proposal_envelope_preimage_is_absent_from_terminal_custody",
+      "required_invariant": "independently_recompute_every_proposal_record_hash"
+    }
+  ],
+  "provider_contact_authorized": false,
+  "rule_v2_authorized": false,
+  "runtime_authority": false,
+  "schema_version": "1.0.0",
+  "scientific_result_evaluable": false,
+  "scientific_result_status": "RESULT_AUTHORITY_BLOCKED_PENDING_CUSTODY_REMEDIATION",
+  "scientific_rerun_authorized": false,
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT",
+  "utility_evaluation_authorized": false,
+  "winner_selected": false
+}

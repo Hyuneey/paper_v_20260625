@@ -1,0 +1,47 @@
+{
+  "artifact_hash": "6a2f3bd18e2df370eaee5bb5da95bc12c7f3da72eff11b82fd06b3775191614b",
+  "artifact_type": "task039e3_r2r_terminal_audit_receipt_v1",
+  "audit_bundle_hash": "e92cca9c63ad02b7aa47ffbc4d3fda89769109a99ff634144a1e31da4a3dd448",
+  "audit_bundle_formula": "stable_hash_v1({task_id,audit_commit_a,execution_receipt,implementation_a_b_source,authorization_v3,canonical_audit,public_terminal_hashes,private_ledger_hashes,provider_transactional_ledger_head,component_audit_hashes})",
+  "audit_commit_a": "b74a2755281a3cc675593ce9df4c3edcb4536f9f",
+  "authorization_v3_hash": "4d3dda2ab78edfff5768218905aefbb6864348e7d4471270dcb6187b59499db5",
+  "blocking_finding_count": 1,
+  "canonical_audit_receipt_hash": "9aed9c6dd2a9e9d1985f2bcd734d27cf7cd594855feb46e41823fefc8dd52e5b",
+  "component_audit_hashes": {
+    "accounting": "6ce9557f502546f318205f203fb14a129de904f02fa74f89c98d9b1af7592f83",
+    "custody": "637d0e5f346895fb73a1049aaab9833db2af2bb14bcafdb664d5f991be4e0335",
+    "evaluability": "e39801cd1c6830d2f5032081c42dad8112e4363cc404bb7512192a99a40fb8a5",
+    "metrics": "2bcc1cd01adb1bd6ce0f89ca587dbb9cfc9e4ba4e51d3c00788fcda567d4a56e",
+    "private": "b3cc3b7a3d20ed513893109be07623930cdcad6fdc808c5dbd579e9caefaac71",
+    "public": "e21ed242d8bbf13e565e5f5da61aa7229ab61ea2067dc7f5db13ed6bf6410456",
+    "test_report": "6e5e9bd68d240cab2098c61fb2b41d881f5cbdad1f9c1f5c2389da0f587042ce"
+  },
+  "execution_receipt_hash": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+  "implementation_commit_a": "5dca2d0431d60ef2f2bdfc907ebfe3fe18521f16",
+  "implementation_commit_b": "d511372db560fd2cf27c2d56db7c637a3324584f",
+  "implementation_source_manifest_hash": "9037fda0bc7694fd643058a9779fb919c75664824f2f11c49dde9f4be1b209b8",
+  "next_task": "TASK-039E3-R2R-TERMINAL-CUSTODY-REMEDIATION",
+  "provider_api_key_access": [0, 0],
+  "private_authoritative_ledger_hashes": {
+    "construction_outcome": "991a289a6936b9b3a6c4481ac8f700da1fee7ca9267dc4e0c013ac4411094057",
+    "direct_number": "e39a28c5199345471727648930ffbfe4cf96aac73e484cef9f208a306f2c002f",
+    "proposal_validity": "1d573ae83a147edf4aacb2a806016d7cfaf23b90d17e11e4e7b3c885c30e0e93",
+    "scientific_provider": "dd63972ae1a49fb86ce3020e472b67ece54ca4aadc19dd9311c415fce0234664"
+  },
+  "provider_transactional_head_hash": "63bec365e303e2fa8bc0b51d13267cacb63d6cc3da4e38076830c7668a163b44",
+  "provider_transactional_ledger_hash": "d6dc0db9abe2e0631ef7ff324358875c2575b27a6b0dc951be212a5712e7f6ee",
+  "public_terminal_artifact_hashes": {
+    "capability_reuse": "cc240a511bc701518f2208882b71456397b3864e0d6d3fc259960a2a4299334e",
+    "construction_metrics": "c3758bbdba4bd85799dc86d4cff1eeb395190d27317f7a857ee54b279f4848b8",
+    "data_access_audit": "815b3fe1176d87c8277deb51a6a72d0110e0b41456e19be728dd201f560628cd",
+    "direct_number_metrics": "3848ed1650c67522b2acc47f9543b1545f0d39f74488eb58d82173d250da115e",
+    "execution_receipt": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+    "execution_summary": "af88ac3df00954d483d46d89c4fa2e9813ccf7138303a8bac913e7579dafc8e9",
+    "private_ledger_bindings": "6caf7e285f6ba0da8859f44a280b961ac945319732b77ea08bc60037a99fe54f",
+    "provider_custody": "3692354bfe41eacdb1475b10a013e10a6e08320033b880825abd71714bc06717"
+  },
+  "schema_version": "1.0.0",
+  "scientific_result_evaluable": false,
+  "status": "blocked_task039e3_r2r_terminal_result_audit",
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT"
+}

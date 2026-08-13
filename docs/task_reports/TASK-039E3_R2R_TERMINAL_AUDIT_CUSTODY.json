@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "637d0e5f346895fb73a1049aaab9833db2af2bb14bcafdb664d5f991be4e0335",
+  "artifact_type": "task039e3_r2r_terminal_audit_custody_v1",
+  "authoritative_head_verified": true,
+  "capability_slots_in_scientific_ledger": 0,
+  "http_error_ledger_hash": "36bd9d061b5e47a7bece1e19366d06c57ed91bdf1e2cd64bdb691875e0d3065d",
+  "http_error_records": 0,
+  "model_mismatch_records": 0,
+  "orphan_records": 0,
+  "pending_records": 0,
+  "provider_contacted_records": 252,
+  "provider_records": 252,
+  "provider_returned_model": "gpt-5.4-2026-03-05",
+  "provider_transactional_head_hash": "63bec365e303e2fa8bc0b51d13267cacb63d6cc3da4e38076830c7668a163b44",
+  "provider_transactional_ledger_hash": "d6dc0db9abe2e0631ef7ff324358875c2575b27a6b0dc951be212a5712e7f6ee",
+  "schema_version": "1.0.0",
+  "slot_counts": {
+    "T1": 42,
+    "T1-B": 126,
+    "T1-DIRECT-NUMBER": 42,
+    "T2": 42
+  },
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT",
+  "terminal_completed_provider_response_records": 252,
+  "transactional_hash_chain_verified": true,
+  "transport_attempts": 252,
+  "transport_retries": 0
+}

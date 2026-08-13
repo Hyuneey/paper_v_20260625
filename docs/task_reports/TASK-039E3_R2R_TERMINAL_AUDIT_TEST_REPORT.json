@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "6e5e9bd68d240cab2098c61fb2b41d881f5cbdad1f9c1f5c2389da0f587042ce",
+  "artifact_type": "task039e3_r2r_terminal_audit_test_report_v1",
+  "audit_commit_a": "b74a2755281a3cc675593ce9df4c3edcb4536f9f",
+  "compileall": "PASS",
+  "diff_check": "PASS",
+  "focused_tests_passed": 32,
+  "focused_tests_run": 32,
+  "new_independent_oracles_passed": 14,
+  "new_independent_oracles_run": 14,
+  "pip_check": "PASS",
+  "private_custody_access_scope": "successful_execution_root_only_read_only",
+  "provider_api_key_capability_probe_scientific_calls": [0, 0, 0, 0],
+  "roots_modified": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT"
+}

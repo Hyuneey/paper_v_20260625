@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "e21ed242d8bbf13e565e5f5da61aa7229ab61ea2067dc7f5db13ed6bf6410456",
+  "artifact_type": "task039e3_r2r_terminal_audit_public_v1",
+  "canonical_audit_receipt_hash": "9aed9c6dd2a9e9d1985f2bcd734d27cf7cd594855feb46e41823fefc8dd52e5b",
+  "execution_receipt_hash": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+  "public_artifact_count": 8,
+  "public_artifact_hashes": {
+    "capability_reuse": "cc240a511bc701518f2208882b71456397b3864e0d6d3fc259960a2a4299334e",
+    "construction_metrics": "c3758bbdba4bd85799dc86d4cff1eeb395190d27317f7a857ee54b279f4848b8",
+    "data_access_audit": "815b3fe1176d87c8277deb51a6a72d0110e0b41456e19be728dd201f560628cd",
+    "direct_number_metrics": "3848ed1650c67522b2acc47f9543b1545f0d39f74488eb58d82173d250da115e",
+    "execution_receipt": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+    "execution_summary": "af88ac3df00954d483d46d89c4fa2e9813ccf7138303a8bac913e7579dafc8e9",
+    "private_ledger_bindings": "6caf7e285f6ba0da8859f44a280b961ac945319732b77ea08bc60037a99fe54f",
+    "provider_custody": "3692354bfe41eacdb1475b10a013e10a6e08320033b880825abd71714bc06717"
+  },
+  "public_artifacts_regular_nonlink": true,
+  "public_artifacts_self_hash_verified": 8,
+  "public_leak_scan": "PASS",
+  "receipt_authority_bindings_exact": true,
+  "receipt_component_bindings_exact": true,
+  "receipt_terminal_binding_complete": true,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT",
+  "write_last_final_read_contract_compatible": true
+}

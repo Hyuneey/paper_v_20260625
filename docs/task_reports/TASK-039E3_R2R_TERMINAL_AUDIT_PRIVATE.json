@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "b3cc3b7a3d20ed513893109be07623930cdcad6fdc808c5dbd579e9caefaac71",
+  "artifact_type": "task039e3_r2r_terminal_audit_private_v1",
+  "authoritative_private_artifact_count": 4,
+  "authoritative_private_artifacts_self_hash_verified": 4,
+  "credential_header_chain_of_thought_indicators_present": false,
+  "historical_records_included": 0,
+  "private_artifact_hashes": {
+    "construction_outcome": "991a289a6936b9b3a6c4481ac8f700da1fee7ca9267dc4e0c013ac4411094057",
+    "direct_number": "e39a28c5199345471727648930ffbfe4cf96aac73e484cef9f208a306f2c002f",
+    "proposal_validity": "1d573ae83a147edf4aacb2a806016d7cfaf23b90d17e11e4e7b3c885c30e0e93",
+    "scientific_provider": "dd63972ae1a49fb86ce3020e472b67ece54ca4aadc19dd9311c415fce0234664"
+  },
+  "private_artifact_record_counts": {
+    "construction_outcome": 168,
+    "direct_number": 42,
+    "proposal_validity": 251,
+    "scientific_provider": 252
+  },
+  "private_binding_artifact_hash": "6caf7e285f6ba0da8859f44a280b961ac945319732b77ea08bc60037a99fe54f",
+  "private_bindings_exact": true,
+  "proposal_document_hashes_recomputed": 251,
+  "proposal_record_hash_preimages_available": false,
+  "proposal_record_hash_values_preserved_working_to_final": 251,
+  "proposal_record_hash_values_unique_and_well_formed": 251,
+  "proposal_record_hash_verification_limitation": "proposal_envelope_required_by_record_hash_formula_is_not_serialized_in_preserved_terminal_custody",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-TERMINAL-RESULT-AUDIT",
+  "validity_result_hashes_recomputed": 251
+}
