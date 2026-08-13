@@ -1,0 +1,47 @@
+{
+  "api_key_presence_checked": false,
+  "artifact_hash": "6eabf5950395af894280891cfdb241c3f1583d340bc4b922bdc3eb2483c24cc7",
+  "artifact_type": "task039e3_r2r_direct_number_rendering_remediation_test_report_v1",
+  "capability_probes": 0,
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -q focused Direct-number rendering, prompt, orchestration, forensic, request-contract, science, accounting, finalization, integration, and runner modules",
+      "result": "76/76 PASS from exact clean Remediation Commit A; 1 expected private-root oracle skip"
+    },
+    {
+      "command": "bundled-python -B -m compileall focused production and test paths",
+      "result": "PASS"
+    },
+    {
+      "command": "bundled-python -B -m pip check",
+      "result": "PASS; no broken requirements"
+    },
+    {
+      "command": "independent AST closure reconstruction from exact Git blobs",
+      "result": "49 material paths; dynamic=0; unresolved=0; unbound=0"
+    },
+    {
+      "command": "exact Git-object source-record verification",
+      "result": "50/50 Git blobs and raw-byte SHA-256 PASS"
+    },
+    {
+      "command": "git diff --check and refined task-scoped credential leak scan",
+      "result": "PASS"
+    }
+  ],
+  "credential_accessed": false,
+  "direct_number_prompt_hash": "fb01d8990ee3a7affe540dfdf3556b46d7bd744cd1e3a04d6fd9d79772dd2769",
+  "direct_number_provider_schema_v1_hash": "b1b91bf27fd191da57984be625a2547e4e5ee96a0aca52535df071af92bfd6ca",
+  "failed_execution_private_root_accessed": false,
+  "live_runner_invocations": 0,
+  "network_capable_tests": 0,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "recovery_main_provider_schema_v2_hash": "bcbc9debc32ec9e4b02d5781c7f8b512023752ccb90f60154648bb5d9de67aa1",
+  "remediation_commit_a": "5dca2d0431d60ef2f2bdfc907ebfe3fe18521f16",
+  "schema_version": "1.0.0",
+  "source_manifest_hash": "9037fda0bc7694fd643058a9779fb919c75664824f2f11c49dde9f4be1b209b8",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-DIRECT-NUMBER-RENDERING-REMEDIATION"
+}
