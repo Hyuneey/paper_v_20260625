@@ -1,0 +1,34 @@
+{
+  "artifact_hash": "b4b98fb796c21602872395679c497ff12b88d76631a59faf3853d29998f5fe6d",
+  "artifact_type": "task039e3_r2r_audit_authority_bridge_test_report_v1",
+  "bridge_commit_a": "6a9cc6323a6760f469aff63cfd51d26dd6b53f1d",
+  "commands": [
+    {
+      "command": "bundled-python -B -m unittest -v tests.test_task039e3_r2r_audit_authority_bridge from exact clean Bridge Commit A",
+      "result": "4/4 PASS"
+    },
+    {
+      "command": "actual frozen f103 _validate_forensic_protocol with committed canonical bridge bytes",
+      "result": "PASS"
+    },
+    {
+      "command": "actual frozen f103 _validate_forensic_protocol with historical ca827 canonical receipt",
+      "result": "EXPECTED REJECTION: R2R independent audit authority differs"
+    },
+    {
+      "command": "actual frozen f103 _validate_forensic_protocol with native live-executor 2b313 receipt",
+      "result": "EXPECTED REJECTION: R2R independent audit authority differs"
+    },
+    {
+      "command": "bundled-python -B -m compileall bridge oracle; pip check; git diff --check; scoped leak/network scan",
+      "result": "PASS"
+    }
+  ],
+  "credential_accessed": false,
+  "private_custody_accessed": false,
+  "provider_calls": 0,
+  "real_e1_accessed": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-AUDIT-AUTHORITY-BRIDGE-AND-REAUTHORIZATION"
+}
