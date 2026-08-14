@@ -1,0 +1,27 @@
+{
+  "artifact_hash": "336d880c257cc68f3c83222851a46f1f8fe3da65629dd3fd30d45f17d6a2eff2",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_interpretation_cost_v1",
+  "closure_status": "CLOSED_EXACTLY_FROZEN",
+  "common_42_construction_cost": "NO_SINGLE_COST",
+  "construction_provider_calls": {
+    "T0": 0,
+    "T1": 42,
+    "T1-B": 126,
+    "T2": 42
+  },
+  "materiality_margin": null,
+  "original_blockers": [
+    "BLOCKER_T2_MATERIAL_COVERAGE_LOSS_UNDEFINED",
+    "BLOCKER_U6_COST_BASELINE_AMBIGUOUS_AFTER_COMMON_COLLAPSE"
+  ],
+  "t2_delta_classification": "EXACT_TWO_DIMENSIONAL_SIGN_NO_MARGIN_NO_WEIGHTED_SCORE",
+  "t2_minus_comparator_provider_calls": {
+    "T0": 42,
+    "T1": 0,
+    "T1-B": -84
+  },
+  "u6_status": "COMPARATOR_SPECIFIC_COST_UTILITY_CONTEXT_ONLY",
+  "winner_authority": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

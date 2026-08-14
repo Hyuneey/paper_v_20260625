@@ -1,0 +1,40 @@
+{
+  "artifact_hash": "883e32ef7c035707257f0b3596aa5ab1a5df8364f8dab70ffda32c818b1dacac",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_bundle_v1",
+  "audit_commit_a": "008a34d6ddce536c65ab36322389a34580710f18",
+  "base_protocol_authority": {
+    "audit_a": "de5dd26eb2c052f01560627e23dc4041b61ef307",
+    "audit_b": "65f3e651947c36f21322612b85a6337c3cbded67",
+    "audit_bundle": "4bac5875b2806d9cdf14500fdca08a8131bf6e75fef9ca28d0ea593aef77525",
+    "audit_receipt": "8f341b8e50c82a7db9deb347dde66c044734510e4c7e21671828ae7abd06b650",
+    "protocol_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "protocol_b": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+    "protocol_bundle": "189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d",
+    "protocol_receipt": "f6db67c4ec4c3f64f0acc8031e27f583fc3192029170184e42dd721dbaf15949"
+  },
+  "component_audit_hashes": {
+    "coordinates": "2dd6e59ac924f7c8e45cdd2693a5152290b811f8b7798302a6f04f9bd697f717",
+    "fail_closed": "76667539fe31d7192f770cfd3e7945382ad3cd352b266395143b690b0678455c",
+    "interpretation_cost": "336d880c257cc68f3c83222851a46f1f8fe3da65629dd3fd30d45f17d6a2eff2",
+    "label_custody": "77a1502e7fa4d500d90525d70b08a45a2228bc43c0d2c50120f347cbcbf0e498",
+    "metric_custody": "98f87daa7ef720b7e001f4cc36ae6a5fcb1a64bd38d35223f2843d14c86029c4",
+    "numeric_authority": "e50300efd372fb8a5c4567a6fa9e3277e36804506b306ea0053f7fc4ab48ceed",
+    "opportunity": "2a675ee3133e22c0be9b29e273dea8b725f90cd6dc18fbd8b1ce24b76b548a94",
+    "readiness": "fca1a0f601a65c0314f7f6c11884f77c8007d631af539d360b76e23e89ddae2e",
+    "regression": "1e40d790f4571ba8bb6c656d8f152ba186fc3f55a422efd3fa61e24947a271ee",
+    "source_universe": "86416c580604f2177433b90a5e3ff98228344a9d93ef0eec1fe88efdb4f9b7e5",
+    "test_report": "3fd2d5880a133ced454b89f8df50530c06011c13224d38fe0c587966e7dd4eb5"
+  },
+  "private_numeric_registry_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+  "remediation_authority": {
+    "canonical_v2_authority": "9e23c16e7c85f825e19dd30da96a17b88e3daf06763eb98c3bdba86bea189d44",
+    "remediation_a": "6c63a9a8410d083c8b0e71c344d799284f02941b",
+    "remediation_b": "4f9393fd59f23b8093c8fc2b7c95bf3f57ec5c22",
+    "remediation_bundle": "5880ebff1fbda2004dfa3d955376b88d21972721b5287bc5fd62b9e71a6df2cb",
+    "remediation_receipt": "46ef239e01697bd54eec3eea5fb9725fe07396ceaf24c82dbb0da1606223f00d",
+    "remediation_source_freeze": "6ed4f60018993c378e2388565d00a33f189f74d86fc5017468f9a30e6b4a1726"
+  },
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_protocol_remediation_focused_reaudit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "2a675ee3133e22c0be9b29e273dea8b725f90cd6dc18fbd8b1ce24b76b548a94",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_opportunity_v1",
+  "blocking_finding": "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED",
+  "closure_status": "OPEN",
+  "evidence": {
+    "arbitrary_denominator_accepted": 999,
+    "arbitrary_numerator_accepted": 1,
+    "denominator_derived_from_opportunity_records": false,
+    "opportunity_collection_custody_exists": false,
+    "public_policy_formula_only": true
+  },
+  "no_rule_opportunities": 0,
+  "original_blocker": "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED",
+  "passed_semantics": {
+    "matching_retained_event_forms_one_opportunity": true,
+    "source_context_failure_not_abstention": true,
+    "target_abstention_precedence_for_well_formed_inputs": true
+  },
+  "schema_version": "1.0.0",
+  "status": "BLOCKED",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

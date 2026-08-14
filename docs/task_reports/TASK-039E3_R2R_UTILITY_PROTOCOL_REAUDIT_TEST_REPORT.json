@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "3fd2d5880a133ced454b89f8df50530c06011c13224d38fe0c587966e7dd4eb5",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_test_report_v1",
+  "audit_commit_a": "008a34d6ddce536c65ab36322389a34580710f18",
+  "checks": {
+    "bundle_reconstruction": "PASS",
+    "compileall": "PASS",
+    "focused_independent_reaudit_tests": "22/22_PASS",
+    "git_diff_check": "PASS",
+    "git_source_blob_and_byte_verification": "PASS_4/4",
+    "json_self_hashes": "PASS_11/11_COMPONENTS",
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+    "remediation_and_builder_regression_tests": "26/26_PASS",
+    "sensitive_data_scan": "PASS"
+  },
+  "important_interpretation": "tests pass by independently proving both closures and residual blocker behaviors; test pass does not imply audit pass",
+  "repo_recorded_tests_passed": 48,
+  "repo_recorded_tests_run": 48,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

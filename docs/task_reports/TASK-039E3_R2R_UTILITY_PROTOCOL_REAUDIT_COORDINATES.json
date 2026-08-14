@@ -1,0 +1,32 @@
+{
+  "artifact_hash": "2dd6e59ac924f7c8e45cdd2693a5152290b811f8b7798302a6f04f9bd697f717",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_coordinates_v1",
+  "closure_status": "CLOSED_EXACTLY_FROZEN",
+  "coordinate_mapping_status": "PASS",
+  "endpoints": {
+    "test1_0": 0,
+    "test1_53999": 53999,
+    "test2_284519": 230399,
+    "test2_54120": 0
+  },
+  "exhaustive_feature_label_roundtrips": 568800,
+  "logical_ranges": {
+    "purge": [54000, 54120],
+    "test1": [0, 54000],
+    "test2": [54120, 284520]
+  },
+  "original_blocker": "BLOCKER_UTILITY_PROTOCOL_LOGICAL_PHYSICAL_COORDINATE_MAPPING_UNBOUND",
+  "purge_mapping_attempts_rejected": 480,
+  "purge_semantics": {
+    "eligible_for_interpreter": false,
+    "included_in_attack_events": false,
+    "included_in_metric_denominator": false,
+    "included_in_normal_exposure": false,
+    "maps_to_feature_row": false,
+    "maps_to_label_row": false,
+    "maps_to_physical_row": false,
+    "virtual_non_observation": true
+  },
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "86416c580604f2177433b90a5e3ff98228344a9d93ef0eec1fe88efdb4f9b7e5",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_source_universe_v1",
+  "authority_commit": "b6522fb83c4cb92d355f98af778f9a6a3c73362f",
+  "authority_module_commit": "c622c082c053176eab170b6176a343eb2cb35384",
+  "closure_status": "CLOSED_EXACT_AUTHORITY_BOUND",
+  "count": 12,
+  "exact_tuple_equal": true,
+  "extra_source_rejects": true,
+  "identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+  "isolation_boundary": {
+    "minus_or_plus_2": "NONISOLATED",
+    "minus_or_plus_3": "ISOLATED"
+  },
+  "isolation_has_caller_selected_universe": false,
+  "missing_source_rejects": true,
+  "original_blocker": "BLOCKER_UTILITY_PROTOCOL_SOURCE_UNIVERSE_UNBOUND",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

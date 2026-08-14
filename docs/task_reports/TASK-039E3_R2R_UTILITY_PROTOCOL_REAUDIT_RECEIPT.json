@@ -1,0 +1,47 @@
+{
+  "artifact_hash": "dc0199685029ba5d8e65761ef7b8bddb21e2563b0c65d5927366ab001b106ba5",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_receipt_v1",
+  "audit_bundle": "883e32ef7c035707257f0b3596aa5ab1a5df8364f8dab70ffda32c818b1dacac",
+  "audit_commit_a": "008a34d6ddce536c65ab36322389a34580710f18",
+  "blocking_findings": [
+    "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED",
+    "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS"
+  ],
+  "blocking_finding_count": 2,
+  "canonical_v2_authority": "9e23c16e7c85f825e19dd30da96a17b88e3daf06763eb98c3bdba86bea189d44",
+  "commit_b_scope": "REPORTS_ONLY",
+  "created_at": "2026-08-14T10:39:07+09:00",
+  "data_access": {
+    "attack_intervals_accessed": 0,
+    "hai_label_values_accessed": 0,
+    "hai_test_feature_values_accessed": 0,
+    "private_e1_authority_accessed": true,
+    "private_numeric_registry_accessed": true,
+    "utility_values_computed": 0
+  },
+  "next_task": "NONE_AUTHORIZED_STOP",
+  "original_v1_unchanged": true,
+  "private_numeric_registry_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+  "provider_and_scientific_access": {
+    "api_key_accessed": false,
+    "capability_probes": 0,
+    "provider_calls": 0,
+    "scientific_calls": 0,
+    "scientific_rerun": 0
+  },
+  "readiness": {
+    "utility_evaluator_implementation_ready": false,
+    "utility_execution_authorization_ready": false,
+    "utility_protocol_audited": false
+  },
+  "schema_version": "1.0.0",
+  "source_changes": {
+    "audit_commit_a_tests_only": true,
+    "existing_production_source_changes": 0,
+    "existing_protocol_source_changes": 0,
+    "existing_scientific_source_changes": 0
+  },
+  "status": "blocked_task039e3_r2r_utility_protocol_remediation_focused_reaudit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT",
+  "test_report_hash": "3fd2d5880a133ced454b89f8df50530c06011c13224d38fe0c587966e7dd4eb5"
+}

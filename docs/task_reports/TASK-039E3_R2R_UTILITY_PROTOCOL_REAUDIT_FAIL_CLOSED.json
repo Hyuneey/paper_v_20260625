@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "76667539fe31d7192f770cfd3e7945382ad3cd352b266395143b690b0678455c",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_fail_closed_v1",
+  "blocking_finding": "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS",
+  "boundary_states_mask_malformed_inputs": true,
+  "closure_status": "OPEN",
+  "evidence": {
+    "bool_source_values_reclassified_as_nonfinite_source": true,
+    "bool_target_values_reclassified_as_nonfinite_target": true,
+    "file_boundary_masks_invalid_target_inputs": true,
+    "out_of_file_event_reclassified_as_source_context_failure": true,
+    "source_boundary_masks_invalid_source_inputs": true,
+    "string_source_values_reclassified_as_nonfinite_source": true,
+    "string_target_values_reclassified_as_nonfinite_target": true
+  },
+  "exact_window_validation_when_reached": true,
+  "original_blocker": "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS",
+  "schema_version": "1.0.0",
+  "status": "BLOCKED",
+  "strict_binary_label_contract": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT",
+  "typed_candidate_decision_invariants": "PASS"
+}

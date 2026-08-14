@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "98f87daa7ef720b7e001f4cc36ae6a5fcb1a64bd38d35223f2843d14c86029c4",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_metric_custody_v1",
+  "closure_status": "CLOSED_EXACTLY_FROZEN",
+  "event_f1": {
+    "component_preimages_preserved": true,
+    "fabricated_single_count_preimage": false,
+    "formula": "harmonic_mean_alarm_episode_precision_attack_event_recall_v2",
+    "precision_or_recall_undefined": "F1_NA",
+    "roundtrip_reproducible": true,
+    "zero_plus_zero": 0
+  },
+  "far_has_free_normal_seconds_argument": false,
+  "far_normal_exposure_source": "LabelEventCustodyV2.normal_labeled_seconds",
+  "original_blocker": "BLOCKER_EVENT_F1_CUSTODY_PREIMAGE_NOT_PRESERVED",
+  "purge_in_far_denominator": false,
+  "recall_and_far_same_label_custody_hash": true,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}

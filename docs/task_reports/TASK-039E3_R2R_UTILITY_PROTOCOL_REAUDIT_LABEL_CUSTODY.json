@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "77a1502e7fa4d500d90525d70b08a45a2228bc43c0d2c50120f347cbcbf0e498",
+  "artifact_type": "task039e3_r2r_utility_protocol_focused_reaudit_label_custody_v1",
+  "attack_plus_normal_equals_physical_rows": true,
+  "closure_status": "CLOSED_EXACTLY_FROZEN",
+  "feature_label_row_alignment": "EXACT_SAME_PHYSICAL_ROW_INDEX",
+  "future_timestamp_mismatch": "FAIL_CLOSED",
+  "label_values_accessed": false,
+  "normal_exposure_from_same_custody": true,
+  "original_blockers": [
+    "BLOCKER_SYNTHETIC_ATTACK_EVENT_BINARY_VALIDATION_COERCES_NONBINARY",
+    "BLOCKER_NORMAL_EXPOSURE_DENOMINATOR_NOT_CROSS_BOUND_TO_LABEL_EVENT_CUSTODY"
+  ],
+  "purge_in_custody": false,
+  "same_label_vector_binds_attack_events_and_exposure": true,
+  "schema_version": "1.0.0",
+  "strict_label_contract": "ONLY_ACTUAL_INTEGER_0_OR_1",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION-FOCUSED-RE-AUDIT"
+}
