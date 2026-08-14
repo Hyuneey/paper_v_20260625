@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "06c7237d06348e53ce8dab6089eae9ce17f2ee33d8a4d889a728651ee943b94d",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_metric_custody_v2",
+  "attack_event_recall_and_far_same_label_custody": true,
+  "event_f1": {
+    "component_preimages_preserved": true,
+    "fabricated_single_count_preimage": false,
+    "formula": "harmonic_mean_alarm_episode_precision_attack_event_recall_v2",
+    "undefined_if_precision_or_recall_undefined": true,
+    "zero_if_both_defined_and_sum_zero": true
+  },
+  "far_free_normal_seconds_argument": false,
+  "no_rule_relation_diagnostic_only": true,
+  "normal_far_denominator": "label_event_custody.normal_labeled_seconds/3600",
+  "point_adjustment": "PROHIBITED",
+  "primary_system_attack_event_recall": "union_deduplicated_portfolio_alarms_only",
+  "schema_version": "2.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION",
+  "zero_denominator": "NA_WITH_DENOMINATOR_AND_REASON"
+}

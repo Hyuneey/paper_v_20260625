@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "6ed4f60018993c378e2388565d00a33f189f74d86fc5017468f9a30e6b4a1726",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_source_freeze_v2",
+  "base_commit": "65f3e651947c36f21322612b85a6337c3cbded67",
+  "original_v1_modified": false,
+  "records": [
+    {
+      "change_classification": "new_canonical_v2_protocol_overlay",
+      "git_blob": "9dc1f71e69d414502172cf86e5ea6bed9a75b5f5",
+      "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py",
+      "raw_byte_sha256": "0e9f9be8d5f8ed09ea7d0b385ffe37b7fbaa53834ac3bfffd17e740d8d4fdf01"
+    },
+    {
+      "change_classification": "new_explicit_private_registry_builder",
+      "git_blob": "17520e8016d580c5ef8cbc0c7084330c95a1b2d1",
+      "path": "scripts/build_task039e3_r2r_utility_numeric_registry_v2.py",
+      "raw_byte_sha256": "0e3386e21484b9c77689911e909c085e166c2ad88b55b047b3e6a5f0a0262491"
+    },
+    {
+      "change_classification": "new_remediation_focused_tests",
+      "git_blob": "09b7bedddf46d895e8fb9ce64c0852de999854fb",
+      "path": "tests/test_task039e3_r2r_utility_protocol_v2.py",
+      "raw_byte_sha256": "fa9a5d39c74d287a44c1d185e7c84f3c6711fcf372a41041c2c8172e7c2c64eb"
+    },
+    {
+      "change_classification": "new_private_builder_boundary_tests",
+      "git_blob": "811998125190dbaa2120c545fb69dd4256fb52b1",
+      "path": "tests/test_task039e3_r2r_utility_numeric_registry_builder_v2.py",
+      "raw_byte_sha256": "0f5cb5b7980a2442f3b28d599b52759fee99e5dd76a982bdcba9eb7281efa69a"
+    }
+  ],
+  "remediation_commit_a": "6c63a9a8410d083c8b0e71c344d799284f02941b",
+  "schema_version": "2.0.0",
+  "scientific_execution_source_changes": 0,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION"
+}

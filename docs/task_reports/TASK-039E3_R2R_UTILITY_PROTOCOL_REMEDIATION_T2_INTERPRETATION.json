@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "9789241d715f863624fc7311110240e2823055472b4b1a133beb3ffe9c419972",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_t2_interpretation_v2",
+  "classification": "EXACT_TWO_DIMENSIONAL_SIGN_NO_MARGIN_NO_WEIGHTED_SCORE",
+  "delta_attack_event_recall": "T2_recall-COMMON_recall",
+  "delta_normal_far_per_hour": "T2_far-COMMON_far",
+  "materiality_margin": null,
+  "possible_signs": [
+    "NEGATIVE",
+    "ZERO",
+    "POSITIVE"
+  ],
+  "schema_version": "2.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION",
+  "undefined_material_wording_removed": true,
+  "weighted_utility_score": false,
+  "winner_authority": false
+}

@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "4c81bdc014408d4219d357df608014fa2bfc0e7880d737332300bb41532ef0c5",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_label_event_custody_v2",
+  "attack_event_definition": "maximal_contiguous_file_local_run_of_strict_integer_label_1",
+  "custody_invariants": [
+    "attack_seconds_plus_normal_seconds_equals_physical_row_count",
+    "attack_events_derive_from_same_strict_label_vector",
+    "normal_exposure_derives_from_same_strict_label_vector",
+    "feature_row_i_equals_label_row_i",
+    "virtual_purge_has_no_physical_custody"
+  ],
+  "future_raw_label_tokens": "exact_dataset_authorized_0_or_1_only",
+  "label_values_accessed": false,
+  "row_alignment": "exact_rowwise_timestamp_alignment_after_one_frozen_normalization_no_shift_nearest_neighbor_or_interpolation",
+  "schema_version": "2.0.0",
+  "strict_synthetic_label_types": "type(value)_is_int_and_value_in_{0,1}",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION",
+  "test_feature_values_accessed": false
+}

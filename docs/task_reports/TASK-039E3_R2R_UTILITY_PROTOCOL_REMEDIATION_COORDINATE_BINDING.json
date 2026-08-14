@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "0ffe2f017629585bdf60ba0b5a1c4d55aa01cdd6e1ebb1332754d08675b18efa",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_coordinate_binding_v2",
+  "coordinate_mapping_status": "CLOSED",
+  "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+  "files": [
+    {
+      "feature_file": "hai-test1.csv",
+      "feature_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "label_file": "label-test1.csv",
+      "label_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "logical_range": [
+        0,
+        54000
+      ],
+      "mapping": "physical_row=logical_index",
+      "physical_range": [
+        0,
+        54000
+      ],
+      "split_id": "30a7c88d6e0af5c37493237cc83b9520cbcd6f43c2dee7bb50ec3cac2668e7d0"
+    },
+    {
+      "feature_file": "hai-test2.csv",
+      "feature_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+      "label_file": "label-test2.csv",
+      "label_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+      "logical_range": [
+        54120,
+        284520
+      ],
+      "mapping": "physical_row=logical_index-54120;logical_index=physical_row+54120",
+      "physical_range": [
+        0,
+        230400
+      ],
+      "split_id": "9d76358ff109e4a6d2a712a1ff679c199d08e9cc92239160c8016e9efa063203"
+    }
+  ],
+  "purge": {
+    "eligible_for_interpreter": false,
+    "included_in_attack_events": false,
+    "included_in_metric_denominator": false,
+    "included_in_normal_exposure": false,
+    "logical_range": [
+      54000,
+      54120
+    ],
+    "maps_to_feature_row": false,
+    "maps_to_label_row": false,
+    "maps_to_physical_row": false,
+    "virtual_non_observation": true
+  },
+  "schema_version": "2.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION"
+}

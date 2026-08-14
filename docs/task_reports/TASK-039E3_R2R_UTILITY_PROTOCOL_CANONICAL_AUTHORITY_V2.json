@@ -1,0 +1,59 @@
+{
+  "artifact_hash": "9e23c16e7c85f825e19dd30da96a17b88e3daf06763eb98c3bdba86bea189d44",
+  "artifact_type": "task039e3_r2r_utility_protocol_canonical_authority_v2",
+  "authority_state": {
+    "inner_label_access": false,
+    "outer_label_access": false,
+    "production_runtime": false,
+    "provider": false,
+    "rule_v2": false,
+    "sealed": false,
+    "utility_evaluator_implementation_ready": false,
+    "utility_execution_authorization_ready": false,
+    "utility_protocol_audited": false,
+    "winner": false
+  },
+  "base_protocol": {
+    "commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "commit_b": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+    "protocol_bundle": "189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d",
+    "protocol_receipt": "f6db67c4ec4c3f64f0acc8031e27f583fc3192029170184e42dd721dbaf15949"
+  },
+  "blocked_audit": {
+    "audit_bundle": "4bac5875b2806d9cdf14500fdca08a8131bf6e75fef9ca28d0ea593aef77525",
+    "audit_receipt": "8f341b8e50c82a7db9deb347dde66c044734510e4c7e21671828ae7abd06b650",
+    "commit_a": "de5dd26eb2c052f01560627e23dc4041b61ef307",
+    "commit_b": "65f3e651947c36f21322612b85a6337c3cbded67"
+  },
+  "canonical_protocol": "BASE_V1_PLUS_REMEDIATION_V2",
+  "closure_artifact_hashes": {
+    "coordinate_binding": "0ffe2f017629585bdf60ba0b5a1c4d55aa01cdd6e1ebb1332754d08675b18efa",
+    "cost_policy": "d0111f06020e2cd134a948e3d1463b6e71cdeaaee232f9fee48b151b8f05f89b",
+    "fail_closed_policy": "67377fd458c4a223babe8e62d4970b974b379b242aa0537fb06b7ea380f07949",
+    "label_event_custody": "4c81bdc014408d4219d357df608014fa2bfc0e7880d737332300bb41532ef0c5",
+    "metric_custody": "06c7237d06348e53ce8dab6089eae9ce17f2ee33d8a4d889a728651ee943b94d",
+    "numeric_authority": "f72c320ddace5d2680b46147b349a6608fb5a2fd27284078f795ebc4eb9f8c8c",
+    "opportunity_policy": "fba670e372e79c928204b5992cbb70873ecda8c5b30b882e8dcbbcb745206a30",
+    "source_freeze": "6ed4f60018993c378e2388565d00a33f189f74d86fc5017468f9a30e6b4a1726",
+    "source_universe": "2454d78b59d14b4bb16203d50a84b7117cbffbaac2f5377339b4b891ef8167cd",
+    "t2_interpretation": "9789241d715f863624fc7311110240e2823055472b4b1a133beb3ffe9c419972",
+    "test_report": "c97cd07be3a5165e98711ba865bfcd9a56100222fbf4dcd06bcc5e2217bcf21a"
+  },
+  "construction_regression": {
+    "common_equivalence": "42/42",
+    "executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "t2_accepted_equivalence": "39/39",
+    "t2_no_rule_preserved": "3/3"
+  },
+  "original_v1": "IMMUTABLE_HISTORICAL_BASE_FROZEN_BUT_BLOCKED_BY_INDEPENDENT_AUDIT",
+  "private_numeric_registry_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+  "remediation_commit_a": "6c63a9a8410d083c8b0e71c344d799284f02941b",
+  "schema_version": "2.0.0",
+  "source_authority": {
+    "v2_git_blob": "9dc1f71e69d414502172cf86e5ea6bed9a75b5f5",
+    "v2_path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py",
+    "v2_raw_byte_sha256": "0e9f9be8d5f8ed09ea7d0b385ffe37b7fbaa53834ac3bfffd17e740d8d4fdf01"
+  },
+  "status": "FROZEN_PENDING_REAUDIT",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION"
+}

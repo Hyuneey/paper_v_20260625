@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "2454d78b59d14b4bb16203d50a84b7117cbffbaac2f5377339b4b891ef8167cd",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_source_universe_v2",
+  "binding_result": "CLOSED_EXACT_12_SOURCE_SET",
+  "c0_authority": {
+    "commit": "b6522fb83c4cb92d355f98af778f9a6a3c73362f",
+    "config_git_blob": "3daed02833954c72427985145d14b5999f83af66",
+    "config_raw_byte_sha256": "f02182816190f3f7097a1a7200dbd45ed2a72aad2a2cea3f78a1f47f9d3f2406"
+  },
+  "d0_source_authority": {
+    "commit": "c622c082c053176eab170b6176a343eb2cb35384",
+    "git_blob": "7d7da2c07cbd5207edc223b4a854885f30b584b3",
+    "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+    "raw_byte_sha256": "ba7a7ea29eb0d68077a51442691d201915470d16dca751dff3c214a7ead3c529"
+  },
+  "exact_source_count": 12,
+  "missing_source_fails_closed": true,
+  "schema_version": "2.0.0",
+  "source_identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+  "superset_fails_closed": true,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION",
+  "v2_caller_selected_source_universe": false
+}

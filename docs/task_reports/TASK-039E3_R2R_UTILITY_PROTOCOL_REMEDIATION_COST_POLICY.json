@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "d0111f06020e2cd134a948e3d1463b6e71cdeaaee232f9fee48b151b8f05f89b",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_cost_policy_v2",
+  "common_42_has_single_construction_cost": false,
+  "common_42_scope": "prediction_and_executable_identity_only",
+  "construction_provider_calls": {
+    "T0": 0,
+    "T1": 42,
+    "T1-B": 126,
+    "T2": 42
+  },
+  "generic_additional_cost_wording_permitted": false,
+  "schema_version": "2.0.0",
+  "t2_cost_deltas": {
+    "vs_T0": 42,
+    "vs_T1": 0,
+    "vs_T1-B": -84
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION",
+  "u6_status": "COMPARATOR_SPECIFIC_COST_UTILITY_CONTEXT_ONLY",
+  "weighted_cost_utility_score": false,
+  "winner_authority": false
+}

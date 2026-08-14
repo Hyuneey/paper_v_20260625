@@ -1,0 +1,32 @@
+{
+  "artifact_hash": "67377fd458c4a223babe8e62d4970b974b379b242aa0537fb06b7ea380f07949",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_fail_closed_policy_v2",
+  "exact_window_lengths": {
+    "source_post": 5,
+    "source_pre": 5,
+    "target_baseline": 5,
+    "target_response": 3
+  },
+  "reject": [
+    "bool_as_integer",
+    "float_or_string_index",
+    "stringified_numeric",
+    "nan",
+    "positive_or_negative_infinity",
+    "unknown_direction",
+    "unknown_horizon",
+    "unknown_status",
+    "unknown_role",
+    "unknown_source",
+    "missing_source_stream",
+    "extra_source_stream",
+    "malformed_coordinate",
+    "wrong_window_length",
+    "unknown_reference",
+    "inconsistent_state_tuple"
+  ],
+  "schema_version": "2.0.0",
+  "silent_numeric_coercion": false,
+  "silent_window_slicing": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION"
+}

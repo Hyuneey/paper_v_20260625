@@ -1,0 +1,25 @@
+{
+  "abstention_denominator": "abstained_applicable_opportunities/all_applicable_rule_evaluation_opportunities",
+  "applicable_opportunity": "one retained isolated matching-direction source event for an accepted relation cell",
+  "artifact_hash": "fba670e372e79c928204b5992cbb70873ecda8c5b30b882e8dcbbcb745206a30",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_opportunity_policy_v2",
+  "cluster_policy": "single_link_gap_le_10_keep_max_abs_amplitude_earliest_tie",
+  "direction_filter_order": "after_clustering_and_exact_12_source_isolation",
+  "no_rule_opportunities": 0,
+  "outside_authorized_operating_regime": "NOT_APPLICABLE_FOR_THIS_BOUNDED_P1_UTILITY_PROTOCOL",
+  "schema_version": "2.0.0",
+  "source_candidate_scan": "only_indices_with_complete_file_local_t_minus_5_to_t_plus_4_context",
+  "source_context_failures": {
+    "incomplete_source_post_window": "SOURCE_OPPORTUNITY_NOT_FORMED",
+    "insufficient_source_pre_window": "SOURCE_OPPORTUNITY_NOT_FORMED",
+    "nonfinite_source_window": "SOURCE_OPPORTUNITY_NOT_FORMED"
+  },
+  "source_context_failures_in_abstention_denominator": false,
+  "target_abstention_precedence": [
+    "file_boundary",
+    "split_boundary",
+    "incomplete_target_response_window",
+    "nonfinite_target_window"
+  ],
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION"
+}

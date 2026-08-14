@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "c97cd07be3a5165e98711ba865bfcd9a56100222fbf4dcd06bcc5e2217bcf21a",
+  "artifact_type": "task039e3_r2r_utility_protocol_remediation_test_report_v2",
+  "bundle_reconstruction": "PASS_DETERMINISTIC_BINDING",
+  "compileall": "PASS",
+  "focused_tests_failed": 0,
+  "focused_tests_passed": 70,
+  "focused_tests_run": 70,
+  "git_diff_check": "PASS",
+  "json_self_hashes": "PASS_ALL_TASK_SCOPED",
+  "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+  "private_registry_tests": "PASS_420_OF_420",
+  "provider_or_network_tests_run": false,
+  "schema_version": "2.0.0",
+  "sensitive_data_scan": "PASS_NO_PRIVATE_PATH_NUMERIC_VALUE_LABEL_OR_TEST_ROW",
+  "source_byte_verification": "PASS_4_OF_4",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-REMEDIATION"
+}
