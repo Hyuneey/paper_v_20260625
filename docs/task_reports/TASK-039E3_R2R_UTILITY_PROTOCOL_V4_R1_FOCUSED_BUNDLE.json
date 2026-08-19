@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "2d8fb4f4400af6f95c387de2b6b7b4bdff9a007813fd16515dfbd11d4fc7e0df",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_bundle",
+  "audit_hash": "8c66590f222ad656add781745a361e483ba0ecd3c42bccbfa11f08cfaa6550ae",
+  "base_commit": "743d2c3ab7dbd1a1729a057cbd046f88c06b59e4",
+  "census_audit_hash": "241e6b3d86c2fedfca9acc6106529a9dee240f082d03f574cbc3157e95475018",
+  "coordinate_audit_hash": "88596b092847cd65aa53d9a3972f58410d592eb8833b1d23bf8ca9266cb52d2a",
+  "current_v4_r1_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "evidence_audit_hash": "d5666ac9cd60846497e7430e2e8223c0e61ae77fbbfadaefff060a6ba45ef044",
+  "focused_audit_commit_a": "32fbe151794d40ae0e60e0638b8c8c854e7d5143",
+  "historical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "readiness_hash": "8ce41985d44ac0d8c00fbdc9b445c2fb5afebff410b4621effd0ad4f0c7312a1",
+  "remaining_blockers": 0,
+  "r1_remediation_hash": "da9c028c8ab1173dfe51238176d0d6f55790b608152bb8840130c77626d5de2e",
+  "r1_source_git_blob": "8ce6e56215246a5ec14ae148de20cdf0680c1658",
+  "r1_source_raw_sha256": "880bc1b08ea9941349042d664314184d8afa8337c13f778563b90404436429f9",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_protocol_v4_r1_focused_independent_reaudit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "test_report_hash": "7d4bd04d72a25836b17231e8842232086ed881de8d85934e149b1d7e7bf4efb7",
+  "type_audit_hash": "c36e1d98c170d7ac5a728159ae90f8e8f5de6e49fa9914f0953f328c15aa3161",
+  "zero_access_counters": true
+}

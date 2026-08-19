@@ -1,0 +1,33 @@
+{
+  "accepted_invalid_authoritative_cases": 0,
+  "artifact_hash": "88596b092847cd65aa53d9a3972f58410d592eb8833b1d23bf8ca9266cb52d2a",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_coordinate_audit",
+  "caller_timestamp_authoritative": false,
+  "coordinate_attack_cases": 8,
+  "coordinate_authority_hash": "6bfa5f41564cc09871463b24026b297ac12a347802b4fcecc8a094c94e3f15a0",
+  "csv_structure_report_hash": "d4f43034e9402806a4f34da943a1e39191503f8f54465d6d1f98b9cdc31bb7c9",
+  "finding": "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+  "historical_self_consistent_timestamp_bypass_accepted": 0,
+  "independent_oracle": "stdlib_sha256_json_and_first_timestamp_plus_physical_row_seconds",
+  "invalid_mutations_rejected": 7,
+  "result": "CLOSED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "test1": {
+    "first_row": "PASS",
+    "interior_row": "PASS",
+    "last_row": "PASS",
+    "last_timestamp": "2022-08-13 07:00:00",
+    "row_count": 54000,
+    "sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be"
+  },
+  "test2": {
+    "first_row": "PASS",
+    "interior_row": "PASS",
+    "last_row": "PASS",
+    "last_timestamp": "2022-08-19 16:00:00",
+    "row_count": 230400,
+    "sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3"
+  },
+  "timestamp_influence_equivalence_checks": 1
+}

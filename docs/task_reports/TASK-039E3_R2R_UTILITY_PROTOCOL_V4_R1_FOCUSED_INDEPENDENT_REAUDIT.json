@@ -1,0 +1,102 @@
+{
+  "access_boundary": {
+    "api_key_access": false,
+    "attack_interval_accesses": 0,
+    "hai_normal_accesses": 0,
+    "hai_test_accesses": 0,
+    "label_accesses": 0,
+    "network_requests": 0,
+    "private_numeric_values_accessed": 0,
+    "private_registry_opened": 0,
+    "provider_calls": 0,
+    "scientific_llm_calls": 0,
+    "utility_computations": 0
+  },
+  "artifact_hash": "8c66590f222ad656add781745a361e483ba0ecd3c42bccbfa11f08cfaa6550ae",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_independent_reaudit",
+  "base_commit": "743d2c3ab7dbd1a1729a057cbd046f88c06b59e4",
+  "blocked_audit_lineage": {
+    "accepted_invalid_cases": 17,
+    "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+    "audit_commit_b": "11a0392246ec34ea6158a08b0790c7bb32092d81",
+    "audit_hash": "d099fa7b79987e95887fa73d0ef78f1d6d337f65a452ac38d502d6e25f30c171",
+    "bundle_hash": "39f775281e4145f54e0d7226140d3f9d61a64881a93fadd27213e6a35ccb9f17",
+    "receipt_hash": "2aa04bbbf75aa507fa4a2a364f2bf06f9b48feee530895cfc821342e12ec9631"
+  },
+  "current_v4_r1_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "focused_attack_counts": {
+    "accepted_invalid_authoritative_cases": 0,
+    "census": 9,
+    "coordinate": 8,
+    "recursive_types": 18,
+    "runtime_evidence": 13,
+    "total": 48
+  },
+  "focused_audit_commit_a": "32fbe151794d40ae0e60e0638b8c8c854e7d5143",
+  "focused_audit_test_git_blob": "946a2ebc199416dd37dbaf551db75108baa0368b",
+  "focused_audit_test_raw_sha256": "0b551476876051b6f0846f3f151f6cc6949824b1eaa1bdeac7bc600c71bb35a7",
+  "focused_component_hashes": {
+    "census_audit": "241e6b3d86c2fedfca9acc6106529a9dee240f082d03f574cbc3157e95475018",
+    "coordinate_audit": "88596b092847cd65aa53d9a3972f58410d592eb8833b1d23bf8ca9266cb52d2a",
+    "evidence_audit": "d5666ac9cd60846497e7430e2e8223c0e61ae77fbbfadaefff060a6ba45ef044",
+    "test_report": "7d4bd04d72a25836b17231e8842232086ed881de8d85934e149b1d7e7bf4efb7",
+    "type_audit": "c36e1d98c170d7ac5a728159ae90f8e8f5de6e49fa9914f0953f328c15aa3161"
+  },
+  "four_findings": [
+    {
+      "accepted_invalid_authoritative_cases": 0,
+      "finding": "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+      "result": "CLOSED"
+    },
+    {
+      "accepted_invalid_authoritative_cases": 0,
+      "finding": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+      "result": "CLOSED"
+    },
+    {
+      "accepted_invalid_authoritative_cases": 0,
+      "finding": "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+      "result": "CLOSED"
+    },
+    {
+      "accepted_invalid_authoritative_cases": 0,
+      "finding": "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+      "result": "CLOSED"
+    }
+  ],
+  "historical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "immutability": {
+    "blocked_audit_helper_git_blob": "262e829259a46ffd8f3864c7c18e0732984089ce",
+    "blocked_audit_helper_modified": false,
+    "blocked_audit_test_git_blob": "9089d41d69028c36ddfc61008f1e423362c4c78c",
+    "blocked_audit_test_modified": false,
+    "production_source_modified": false,
+    "r1_remediation_test_git_blob": "6b9b51ad3338bdb89df869f45f64bcae5e524000",
+    "r1_remediation_test_modified": false
+  },
+  "minimal_scientific_invariants": {
+    "common_relations": 42,
+    "common_sources": 9,
+    "common_targets": 10,
+    "evaluator_schema": [12, 10, 22],
+    "materialization_footprint": [9, 10, 19],
+    "numeric_descriptor_hash": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "numeric_reference_count": 420,
+    "numeric_reference_set_hash": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "t2_utility_authorized": false
+  },
+  "next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-IMPLEMENTATION-AND-FREEZE",
+  "remaining_blockers": 0,
+  "r1_source_git_blob": "8ce6e56215246a5ec14ae148de20cdf0680c1658",
+  "r1_source_raw_sha256": "880bc1b08ea9941349042d664314184d8afa8337c13f778563b90404436429f9",
+  "schema_version": "1.0.0",
+  "state": {
+    "utility_evaluator_implementation_ready": true,
+    "utility_execution_authorization_ready": false,
+    "utility_protocol_v4_control_revision": "R1",
+    "utility_protocol_v4_implemented": true,
+    "utility_protocol_v4_independently_audited": true
+  },
+  "status": "passed_task039e3_r2r_utility_protocol_v4_r1_focused_independent_reaudit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT"
+}

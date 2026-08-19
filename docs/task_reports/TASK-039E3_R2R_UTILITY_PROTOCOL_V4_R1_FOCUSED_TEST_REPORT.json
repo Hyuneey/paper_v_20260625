@@ -1,0 +1,49 @@
+{
+  "artifact_hash": "7d4bd04d72a25836b17231e8842232086ed881de8d85934e149b1d7e7bf4efb7",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_test_report",
+  "compileall": "PASS",
+  "focused_independent": {
+    "accepted_invalid_authoritative_cases": 0,
+    "adversarial_cases": 48,
+    "failed": 0,
+    "passed": 62,
+    "result": "PASS",
+    "total": 62
+  },
+  "git_diff_check": "PASS",
+  "normal_only_public_synthetic_regression": {
+    "failed": 0,
+    "passed": 106,
+    "result": "PASS",
+    "total": 106
+  },
+  "pip_check": "PASS",
+  "public_json_self_hash_cross_binding": "PASS",
+  "r1_remediation_regression": {
+    "failed": 0,
+    "passed": 36,
+    "result": "PASS",
+    "total": 36
+  },
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "v1_v2_regression": {
+    "failed": 0,
+    "passed": 40,
+    "result": "PASS_WITH_DOCUMENTED_PRIVATE_CUSTODY_SKIPS",
+    "skipped": 2,
+    "total": 42
+  },
+  "v3_regression": {
+    "failed": 0,
+    "passed": 27,
+    "result": "PASS",
+    "total": 27
+  },
+  "v4_regression": {
+    "failed": 0,
+    "passed": 51,
+    "result": "PASS",
+    "total": 51
+  }
+}

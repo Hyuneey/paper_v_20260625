@@ -1,0 +1,24 @@
+{
+  "accepted_invalid_authoritative_cases": 0,
+  "artifact_hash": "241e6b3d86c2fedfca9acc6106529a9dee240f082d03f574cbc3157e95475018",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_census_audit",
+  "authoritative_caller_census_hashes_issued": 0,
+  "caller_authority_attack_cases": 9,
+  "denominator_policy": "ALL_AUTOMATICALLY_ENUMERATED_APPLICABLE_CANONICAL_OPPORTUNITIES",
+  "enumeration_contract_hash": "7f854ef13afb5c2e7f5864faac249ccdd3e39060f2d2b09811e8792481b9db5b",
+  "finding": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+  "historical_direct_cases": {
+    "caller_39": "REJECTED",
+    "empty": "REJECTED",
+    "one_row_times_42": "REJECTED",
+    "singleton": "REJECTED"
+  },
+  "read_only_lane_extended_attacks": {
+    "accepted": 0,
+    "attempted": 28
+  },
+  "real_enumeration_authority_available": false,
+  "result": "CLOSED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT"
+}

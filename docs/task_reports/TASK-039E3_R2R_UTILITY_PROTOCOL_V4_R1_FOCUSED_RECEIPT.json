@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "09cf661a21cb4bd0d5ad356c2cf725264d76aeaffc7963858425e88267717509",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_receipt",
+  "audit_hash": "8c66590f222ad656add781745a361e483ba0ecd3c42bccbfa11f08cfaa6550ae",
+  "base_commit": "743d2c3ab7dbd1a1729a057cbd046f88c06b59e4",
+  "bundle_hash": "2d8fb4f4400af6f95c387de2b6b7b4bdff9a007813fd16515dfbd11d4fc7e0df",
+  "control_revision": "R1",
+  "current_v4_r1_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "focused_audit_commit_a": "32fbe151794d40ae0e60e0638b8c8c854e7d5143",
+  "next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-IMPLEMENTATION-AND-FREEZE",
+  "readiness_hash": "8ce41985d44ac0d8c00fbdc9b445c2fb5afebff410b4621effd0ad4f0c7312a1",
+  "remaining_blockers": 0,
+  "r1_source_git_blob": "8ce6e56215246a5ec14ae148de20cdf0680c1658",
+  "r1_source_raw_sha256": "880bc1b08ea9941349042d664314184d8afa8337c13f778563b90404436429f9",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_protocol_v4_r1_focused_independent_reaudit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "utility_evaluator_implementation_ready": true,
+  "utility_execution_authorization_ready": false,
+  "utility_protocol_v4_independently_audited": true
+}

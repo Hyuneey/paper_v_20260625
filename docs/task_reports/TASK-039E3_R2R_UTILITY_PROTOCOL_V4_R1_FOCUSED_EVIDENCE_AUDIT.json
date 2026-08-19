@@ -1,0 +1,29 @@
+{
+  "accepted_invalid_authoritative_cases": 0,
+  "artifact_hash": "d5666ac9cd60846497e7430e2e8223c0e61ae77fbbfadaefff060a6ba45ef044",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_evidence_audit",
+  "caller_response_matched_authorized": false,
+  "caller_source_window_authorized": false,
+  "caller_target_window_authorized": false,
+  "caller_within_split_authorized": false,
+  "contract_hash": "20c7247c31045dc38e99dcac147abce284e7f375799dd45e9232af318e10a15e",
+  "finding": "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+  "real_response_evidence_authority_available": false,
+  "real_source_evidence_authority_available": false,
+  "result": "CLOSED",
+  "runtime_window_boundary_attack_cases": 13,
+  "schema_version": "1.0.0",
+  "synthetic_helper_authority_scope": "SYNTHETIC_CONTRACT_ONLY",
+  "synthetic_metric_custody_accepted": 0,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "window_coordinate_results": {
+    "interior_within_split": "PASS",
+    "near_end_file_boundary": "PASS",
+    "selected_horizon_mutation": "REJECTED",
+    "source_interval_mutation": "REJECTED",
+    "source_window_identity_mutation": "REJECTED",
+    "target_baseline_mutation": "REJECTED",
+    "target_response_mutation": "REJECTED",
+    "target_window_identity_mutation": "REJECTED"
+  }
+}

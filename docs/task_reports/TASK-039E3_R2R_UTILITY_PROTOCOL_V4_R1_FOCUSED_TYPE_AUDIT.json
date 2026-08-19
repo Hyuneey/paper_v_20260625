@@ -1,0 +1,30 @@
+{
+  "accepted_invalid_authoritative_cases": 0,
+  "additional_widening_attacks": 10,
+  "artifact_hash": "c36e1d98c170d7ac5a728159ae90f8e8f5de6e49fa9914f0953f328c15aa3161",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_r1_focused_type_audit",
+  "finding": "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+  "focused_type_attack_cases": 18,
+  "historical_tuple_to_list_attacks": {
+    "attempted": 8,
+    "rejected": 8
+  },
+  "policy_hash": "d0f549f2ce9b9ac058aa362d9579068fec2fb03a2d2cde4a4495ecc3d70db7f0",
+  "read_only_lane_extended_attacks": {
+    "accepted": 0,
+    "attempted": 52,
+    "rejected": 52
+  },
+  "result": "CLOSED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "widening_classes": [
+    "list",
+    "generator",
+    "set",
+    "inner_pair_list",
+    "dataclass_subtype",
+    "bool_int_subtype",
+    "string_subtype"
+  ]
+}
