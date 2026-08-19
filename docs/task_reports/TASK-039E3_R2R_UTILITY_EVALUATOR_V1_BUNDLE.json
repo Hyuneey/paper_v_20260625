@@ -1,0 +1,41 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_bundle",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_implementation_and_freeze",
+  "base_commit": "01212b27dc9754064d9c8dc7b0bdb748abade99a",
+  "implementation_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "evaluator_implementation_identity": "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330",
+  "evaluator_authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+  "component_artifacts": {
+    "implementation_contract": "605ec48bab0beaa20c0b8e018d2a0ad1feaa14cda58cc97f5ac3191272aefa76",
+    "authority_bindings": "996b5a3adfe565192ab2450c8d0e8c3ca0c0da77634627e4705ca575cdd065cf",
+    "synthetic_test_report": "c4470dd98283c5922af55d481961a3d06a3bc04d93a657249d2fbca3f023a601",
+    "regression_report": "60c866530d4940e8c3acc35068e238960c7c02590b240aaca3bb733fcd7d4677",
+    "readiness": "b1c5c6a7bd09f697130e2a4714fd5b0f6ff1477dd97e52fab361b58c44a54b95"
+  },
+  "production_sources": [
+    {"file": "task039e3_r2r_utility_evaluator_types_v1.py", "git_blob": "47deeccc1347902c3de4a2beb4b592f1176316dc", "raw_sha256": "b869222947e1f7fa983f6595225e71161942bfeb26fd77168a6c1ae5e10f9864"},
+    {"file": "task039e3_r2r_utility_evaluator_authority_v1.py", "git_blob": "9f5e19ecb1bf2906a10fce035621232297861b1f", "raw_sha256": "97e7eb21689c2707c62848d0ea1aeb75cbdb1a77ea4b53d096f2b68561999cf5"},
+    {"file": "task039e3_r2r_utility_evaluator_input_v1.py", "git_blob": "134638e0f36a1ce4351ee530f3b494f5fff234cf", "raw_sha256": "4ab2e3677392d24425081bed3d639c2c21c7f4df49b83cb67e2f5f1b5b2843d7"},
+    {"file": "task039e3_r2r_utility_evaluator_census_v1.py", "git_blob": "95638ddebde017dc2436bb99f691875d16172bfa", "raw_sha256": "0b52d44472182f9bcadd85667773ed17d82ecb7ecaca678ae80437d9e67801f1"},
+    {"file": "task039e3_r2r_utility_evaluator_rule_engine_v1.py", "git_blob": "446765531eba68bf5dd67ec0c36d2813c5d0a50a", "raw_sha256": "e9ca811b609ddc253f0298f38a6fdfe003400697a3c2a651a4ff934d81ea1849"},
+    {"file": "task039e3_r2r_utility_evaluator_metrics_v1.py", "git_blob": "4f80fdda8d48d8a4a93787c4636ec39226f796cf", "raw_sha256": "c5b864b5b3a25b435e18b7c00495324143a0cc91e526389ba064cec5b25b7689"},
+    {"file": "task039e3_r2r_utility_evaluator_v1.py", "git_blob": "5fc5f93e93024c9447951baf152fee20cfd6c046", "raw_sha256": "d47c6274cee8073e3e3640a07a0881fd49a2a4690e4193b53a53f3b5001e7221"}
+  ],
+  "verification": {
+    "focused_tests": "45/45_PASS",
+    "invalid_synthetic_cases": 148,
+    "invalid_rejected": 148,
+    "invalid_accepted": 0,
+    "regression_suites": "6/6_PASS",
+    "compileall": "PASS",
+    "pip_check": "PASS",
+    "git_diff_check": "PASS",
+    "import_side_effect_audit": "PASS"
+  },
+  "real_access_total": 0,
+  "real_utility_status": "NOT_EXECUTED",
+  "numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "artifact_hash": "f81b6d6a9190f44b6ed20c64a234ae0773e4314acd373e511c992f299c470907"
+}

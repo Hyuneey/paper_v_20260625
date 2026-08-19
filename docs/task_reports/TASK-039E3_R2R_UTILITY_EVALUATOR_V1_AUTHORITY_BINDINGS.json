@@ -1,0 +1,61 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_authority_bindings",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "implementation_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "evaluator_authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+  "v4_r1": {
+    "authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+    "historical_authority_hash_rejected": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+    "focused_audit_hash": "8c66590f222ad656add781745a361e483ba0ecd3c42bccbfa11f08cfaa6550ae",
+    "focused_receipt_hash": "09cf661a21cb4bd0d5ad356c2cf725264d76aeaffc7963858425e88267717509"
+  },
+  "common": {
+    "portfolio": "COMMON-42",
+    "relations": 42,
+    "accepted": 42,
+    "no_rule": 0,
+    "t2_utility_authorized": false
+  },
+  "main_numeric_authority": {
+    "version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "descriptor_hash": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "reference_set_hash": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "references": 420,
+    "sources": 9,
+    "expected_private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "materialized_audit_receipt": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+    "locator_hash": "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4",
+    "actual_private_reads": 0
+  },
+  "source_census_supplement": {
+    "version": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1",
+    "purpose": "CROSS_SOURCE_ISOLATION_EVENT_CENSUS_ONLY",
+    "descriptor_hash": "d45af926511c669ec04dd13c36823d454b67ccaa98ae0a7be2919b02652bd927",
+    "reference_set_hash": "5139cae6e454318f0ca4317f3f5eaa5f775bd4f75261c4110ea610815929b580",
+    "references": 6,
+    "sources": 3,
+    "expected_private_registry_hash": "12ec7f50a953e097cd7cbe3ac93c7cabfb669130612d7f30ab3b19df85289aaf",
+    "locator_hash": "8c11872dca6a0c8b2544c2988dd57c969ddc036f51b04578d936fdc3a60757ac",
+    "final_audit_hash": "ad61a4c435e7904b5a80feca40e7e629dc3522e8dc4f68c99b2b9ab9b45d142b",
+    "final_receipt_hash": "c4397b83155bff74c0997c8e4837b0c90198e6df6dd0bea748d62086eef7ba98",
+    "actual_private_reads": 0
+  },
+  "source_census": {
+    "combined_contract_hash": "cb53d0e4533ebadb61edbdc72b549fe47b46c8dcc4621841aac93a007660ced9",
+    "main_sources": 9,
+    "supplement_sources": 3,
+    "total_sources": 12,
+    "source_census_event_policy_hash": "3fb20068feff44632be3e4e6917183d52fea5616feec68ede5e9b62f95ecb390",
+    "cross_source_isolation_policy_hash": "f62075523632a7573d28e95ca7f0402d87e62977f4a2f14f4eaf2b9a58f0e280"
+  },
+  "utility_policies": {
+    "event_aggregation_policy_hash": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "metric_policy_hash": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "canonical_feature_schema_hash": "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+    "runtime_feature_schema_hash": "e7a0c46d28491b9d03a333a0ad1e87d686a982bafba072861913e05fb6c50b58",
+    "evaluator_feature_schema": {"sources": 12, "targets": 10, "union": 22},
+    "common_materialization_footprint": {"sources": 9, "targets": 10, "union": 19}
+  },
+  "artifact_hash": "996b5a3adfe565192ab2450c8d0e8c3ca0c0da77634627e4705ca575cdd065cf"
+}

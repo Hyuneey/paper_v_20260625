@@ -1,0 +1,21 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_receipt",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_implementation_and_freeze",
+  "base_commit": "01212b27dc9754064d9c8dc7b0bdb748abade99a",
+  "implementation_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "bundle_hash": "f81b6d6a9190f44b6ed20c64a234ae0773e4314acd373e511c992f299c470907",
+  "implementation_contract_hash": "605ec48bab0beaa20c0b8e018d2a0ad1feaa14cda58cc97f5ac3191272aefa76",
+  "readiness_hash": "b1c5c6a7bd09f697130e2a4714fd5b0f6ff1477dd97e52fab361b58c44a54b95",
+  "evaluator_implementation_identity": "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330",
+  "canonical_v4_r1_authority": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "execution_mode": "SYNTHETIC_CONTRACT_ONLY",
+  "scientific_eligible": false,
+  "real_utility_status": "NOT_EXECUTED",
+  "real_access_total": 0,
+  "numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "blockers": [],
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-INDEPENDENT-AUDIT",
+  "artifact_hash": "e79c18f1f193eaa79fbf83c2c1d2b0211b2c7046fc7abbe3ebfa941a46a9fade"
+}

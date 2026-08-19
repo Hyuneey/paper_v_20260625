@@ -1,0 +1,22 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_regression_report",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "implementation_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "exact_commit_a_execution": true,
+  "regressions": {
+    "v4_r1_remediation": {"passed": 36, "total": 36},
+    "v4_r1_focused_reaudit": {"passed": 62, "total": 62},
+    "v4_implementation": {"passed": 51, "total": 51},
+    "normal_only_materialized_public": {"passed": 8, "total": 8},
+    "source_census_supplement_focused": {"passed": 13, "total": 13},
+    "source_census_supplement_independent": {"passed": 15, "total": 15}
+  },
+  "compileall": "PASS",
+  "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+  "git_diff_check": "PASS",
+  "fresh_import_audit": {"modules_imported": 7, "side_effect_calls": 0, "result": "PASS"},
+  "existing_production_modified": false,
+  "existing_tests_modified": false,
+  "artifact_hash": "60c866530d4940e8c3acc35068e238960c7c02590b240aaca3bb733fcd7d4677"
+}

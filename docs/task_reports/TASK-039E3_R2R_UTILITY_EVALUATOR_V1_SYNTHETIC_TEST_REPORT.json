@@ -1,0 +1,37 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_synthetic_test_report",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "implementation_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "execution_mode": "SYNTHETIC_CONTRACT_ONLY",
+  "scientific_eligible": false,
+  "focused_suites": {
+    "authority_resolver": {"passed": 9, "total": 9, "invalid_cases": 46, "invalid_rejected": 46},
+    "input_census": {"passed": 13, "total": 13, "invalid_cases": 44, "invalid_rejected": 44},
+    "rule_state": {"passed": 6, "total": 6, "invalid_cases": 20, "invalid_rejected": 20},
+    "metric_artifact": {"passed": 11, "total": 11, "invalid_cases": 30, "invalid_rejected": 30},
+    "integration": {"passed": 6, "total": 6, "invalid_cases": 8, "invalid_rejected": 8}
+  },
+  "focused_tests": {"passed": 45, "total": 45},
+  "invalid_synthetic_cases": 148,
+  "rejected_invalid_cases": 148,
+  "accepted_invalid_cases": 0,
+  "synthetic_full_pipeline_invocations": 5,
+  "synthetic_positive_pipeline_scenarios": 2,
+  "synthetic_metric_or_diagnostic_computations": 7,
+  "verified_behaviors": {
+    "source_census_exact_twelve": true,
+    "cross_source_isolation_uses_all_twelve": true,
+    "supplement_events_create_common_relations": false,
+    "caller_controls_full_census": false,
+    "rule_execution_deterministic": true,
+    "error_and_abstention_distinct": true,
+    "prediction_artifact_deterministic_and_self_hashed": true,
+    "synthetic_artifact_accepted_as_real": false,
+    "d2_requires_same_d1_rule_artifact": true
+  },
+  "real_utility_computations": 0,
+  "numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "artifact_hash": "c4470dd98283c5922af55d481961a3d06a3bc04d93a657249d2fbca3f023a601"
+}
