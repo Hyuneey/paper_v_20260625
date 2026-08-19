@@ -1,0 +1,27 @@
+{
+  "artifact_hash": "f857b3fd2f34124b73a2ca8c336aae87e2f0d8332d1e70fb1fa5d6b58d10d770",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialization_authorization_interface_audit",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_materialization_authorization_interface_audit",
+  "interface_commit": "216783ac6b3c77376b4e56b92ddc655907ce3668",
+  "interface_source_git_blob": "5e6d52fdfadada7373c50c382a347930f3384e24",
+  "interface_source_raw_sha256": "1b15098e9f8c75a76ad98f7a0ef998af86470b195d035ffab08e9f185fe1a3d9",
+  "independent_audit_commit": "93e66bc6d11a9e36509aea675f62211fad3161e2",
+  "independent_tests_passed": 8,
+  "independent_tests_failed": 0,
+  "scientific_change": false,
+  "authorization_control_change": true,
+  "protocol_audit_closure_hash": "e0d9975a4027cc08140b3b8fd1027580a6668c17eee967553ce604f303e63c36",
+  "protocol_audit_receipt_hash": "5be947afa0456ab839e5955aeca238e3fe96ab451a4b8be8c2e7dafaa49c6647",
+  "remaining_blockers": 0,
+  "access_counters": {
+    "hai_normal_value_accesses": 0,
+    "hai_test_value_accesses": 0,
+    "hai_label_accesses": 0,
+    "train3_value_accesses": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0
+  }
+}
