@@ -1,0 +1,268 @@
+{
+  "artifact_hash": "05ab58acaa73b462c6a29bd26ae394d7d77edfe6a3ba006106b83e8e0e21e428",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_protocol_freeze",
+  "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+  "base_commit": "6b3b912aa6b69394a06697c3244589cfe98ecd4a",
+  "bindings": {
+    "authority_dependency_matrix_hash": "bbeffb23ec9310f9572e1ab6657d6d18b2ec93e62b18687a70567dcec6ccd74d",
+    "common42_authority_check_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+    "feasibility_audit_hash": "eb2406391e189d3c53613e2c0074d4575cc91403fe047e54066b5a418906e415",
+    "selected_route": "ROUTE_C_NEW_NORMAL_ONLY_AUTHORITY_RECONSTITUTION_REQUIRED"
+  },
+  "calibration": {
+    "all_roles_mapped_to_frozen_implementation": true,
+    "any_reinterpretation": false,
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "calibration_policy_version": "TASK039D0_CONTINUOUS_STEP_CALIBRATION_V1",
+    "role_count": 10,
+    "roles": [
+      {
+        "fail_closed_condition": "wrong input identity, nonfinite values, fewer than 20 amplitudes, or unsupported source",
+        "formula": "noise=max(1.4826*MAD(file-local dx pooled across train1/train2),1e-12); A=abs(median(x[t:t+5])-median(x[t-5:t])); retain A>noise; threshold=max(5*noise,Q75_linear(A)) with at least 20 retained amplitudes",
+        "normal_split_dependency": "train1+train2 only",
+        "numeric_role": "source_step_threshold",
+        "relation_dependency": "frozen COMMON source identity",
+        "source_function": "derive_multi_file_source_parameters_v1",
+        "source_path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+        "validation": "float finite positive"
+      },
+      {
+        "fail_closed_condition": "wrong input identity, nonfinite values, unsupported source, or missing threshold preimage",
+        "formula": "max(3*source_noise_scale,0.10*source_step_threshold)",
+        "normal_split_dependency": "train1+train2 only",
+        "numeric_role": "source_stability_tolerance",
+        "relation_dependency": "frozen COMMON source identity",
+        "source_function": "derive_multi_file_source_parameters_v1",
+        "source_path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+        "validation": "float finite nonnegative"
+      },
+      {
+        "fail_closed_condition": "wrong input identity, nonfinite values, or missing target",
+        "formula": "max(1.4826*MAD(target file-local one-step changes pooled across train1/train2),1e-12)",
+        "normal_split_dependency": "train1+train2 only",
+        "numeric_role": "target_noise_scale",
+        "relation_dependency": "frozen COMMON target identity; reused per target",
+        "source_function": "derive_multi_file_target_scale_v1",
+        "source_path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+        "validation": "float finite positive"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.source_pre_window_seconds",
+        "normal_split_dependency": "none",
+        "numeric_role": "source_pre_window_seconds",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "integer exactly 5"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.source_post_window_seconds",
+        "normal_split_dependency": "none",
+        "numeric_role": "source_post_window_seconds",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "integer exactly 5"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.minimum_source_stability_fraction",
+        "normal_split_dependency": "none",
+        "numeric_role": "minimum_source_stability_fraction",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "float exactly 0.8"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.source_refractory_seconds",
+        "normal_split_dependency": "none",
+        "numeric_role": "source_refractory_seconds",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "integer exactly 10"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.cross_source_isolation_radius_seconds",
+        "normal_split_dependency": "none",
+        "numeric_role": "cross_source_isolation_radius_seconds",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "integer exactly 2"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.target_baseline_window_seconds",
+        "normal_split_dependency": "none",
+        "numeric_role": "target_baseline_window_seconds",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "integer exactly 5"
+      },
+      {
+        "fail_closed_condition": "constant differs from frozen committed implementation",
+        "formula": "exact PreregisteredWindowConstantBundleV1.target_response_window_seconds",
+        "normal_split_dependency": "none",
+        "numeric_role": "target_response_window_seconds",
+        "relation_dependency": "relation-bound global constant",
+        "source_function": "PreregisteredWindowConstantBundleV1",
+        "source_path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "validation": "integer exactly 3"
+      }
+    ],
+    "source_authorities": [
+      {
+        "git_blob": "7d7da2c07cbd5207edc223b4a854885f30b584b3",
+        "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+        "raw_sha256": "ba7a7ea29eb0d68077a51442691d201915470d16dca751dff3c214a7ead3c529"
+      },
+      {
+        "git_blob": "af4401cbcf2240df8523a36c0ff69a197fdfae4b",
+        "path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+        "raw_sha256": "2a6e627fcc95b532fead6619c3aa7d0a6f5781537206cddb2638c736c0856a24"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "allowed": [
+      "A new deterministic normal-only numeric authority was materialized from the frozen COMMON-42 relation structure and frozen calibration method using the preregistered normal training inputs, only after future successful materialization and audit.",
+      "The authority is method-continuous with the historical construction pipeline but has a new authority identity."
+    ],
+    "forbidden_without_later_separate_proof": [
+      "historical E1 was recovered",
+      "historical numeric registry was reproduced",
+      "the new numeric values were proven identical to historical E1",
+      "the exact historical rules were utility-tested"
+    ]
+  },
+  "common42": {
+    "accepted": 42,
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "no_rule": 0,
+    "relation_count": 42,
+    "semantic_execution_hash_count": 42,
+    "utility_numeric_reference_count": 420
+  },
+  "construction_provenance": {
+    "scientific_result_evaluable": true,
+    "successful_execution_accounting": "0e18526c8dbcaec26d67385b89c60826dc4388cac08727cd61a2c60b1b812ae2",
+    "successful_execution_receipt": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+    "terminal_audit_a": "3abf1651dd81554a990c26b7b46512ac75fc63e4",
+    "terminal_audit_b": "a431dd88866e0f65439e3fad567894e0e9058713",
+    "terminal_custody_supplement": "54d71edb6357e8c4d4a5479a9f0b130ca0f89f10ed4ff04ad9ba90122f3ff7c2"
+  },
+  "current_boundaries": {
+    "attack_intervals_accessed": 0,
+    "hai_labels_accessed": 0,
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "openai_api_key_accessed": false,
+    "provider_calls": 0,
+    "real_private_authority_materialized": false,
+    "scientific_llm_calls": 0,
+    "utility_computations": 0
+  },
+  "durable_custody": {
+    "atomic_order": [
+      "verify frozen source commit",
+      "verify COMMON-42 authority",
+      "verify train1/train2 byte identities before scientific parsing",
+      "verify explicit private destination",
+      "compute and validate exactly 420 records",
+      "write and validate temporary private registry",
+      "atomic rename",
+      "write and validate local-only locator manifest",
+      "reopen and rehash authoritative registry",
+      "write public receipt last"
+    ],
+    "environment_locator": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "local_locator_manifest_created_in_this_task": false,
+    "local_locator_must_be_outside_git": true,
+    "partial_output_authoritative": false,
+    "public_receipt_written_last": true
+  },
+  "historical_authority_boundary": {
+    "construction_result_validity": "UNCHANGED",
+    "historical_e1_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+    "historical_e1_identity_restored": false,
+    "historical_numeric_identity_restored": false,
+    "historical_numeric_registry_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+    "terminal_custody_validity": "UNCHANGED"
+  },
+  "interpretation": "The future utility experiment evaluates the frozen COMMON-42 executable relation/rule structure under a newly versioned deterministic normal-only calibration authority. It does not evaluate byte-identical historical E1 numeric rule instances.",
+  "implementation_binding": {
+    "contract_hash": "1ba69cc445bc22fe9b9387b1ccde97572d6b55694785b3e5629fa83561bb0902",
+    "source_path": "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py",
+    "source_raw_sha256": "f18eceabd1f0f5aee7755bff964b985014411b6a0b98425e424863a59256b30e",
+    "synthetic_test_report_hash": "1cfa0a0cb35b0fb08b005ead3d81020d9192464a9d2917548236ca42a0368121",
+    "test_path": "tests/test_task039e3_r2r_utility_normal_only_authority_v1.py",
+    "test_raw_sha256": "59ea34dd4a475b35f4f7ce8fe2744f594db69ab3d7b408472a5f1850dbb9bb30"
+  },
+  "new_reference_identity": {
+    "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "deterministic": true,
+    "preimage_fields": [
+      "authority_version",
+      "relation_binding_hash",
+      "semantic_execution_hash",
+      "numeric_role",
+      "calibration_policy_version",
+      "normal_input_identity_set",
+      "COMMON-42 authority hash"
+    ],
+    "value_affects_reference_identity": false,
+    "value_affects_final_record_hash": true
+  },
+  "next_gate": "INDEPENDENT AUDIT OF TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1 ONLY; NO REAL MATERIALIZATION",
+  "normal_inputs": {
+    "d1_data_access_audit_hash": "b51ec23dd4bad9ed66d7036ec209f6841f99d1e38b0b7766afd16ff75f9004d7",
+    "dataset_manifest_hash": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+    "expected_identity_set_hash": "cc502d87daf19a1511f868c1c767045a4457d505d195b0214f244d1910fe0cda",
+    "real_values_accessed": false,
+    "train1": {
+      "byte_size": 162418984,
+      "header_sha256": "95968d825d1c9caab778a857cec618b64674ec5a85d94e6952d99c2cab08d16a",
+      "relative_path": "hai-23.05/hai-train1.csv",
+      "row_count": 280800,
+      "sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a"
+    },
+    "train2": {
+      "byte_size": 169121615,
+      "header_sha256": "95968d825d1c9caab778a857cec618b64674ec5a85d94e6952d99c2cab08d16a",
+      "relative_path": "hai-23.05/hai-train2.csv",
+      "row_count": 291600,
+      "sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56"
+    },
+    "train3_access_authorized": false,
+    "test_access_authorized": false
+  },
+  "private_registry": {
+    "artifact_created_in_this_task": false,
+    "expected_record_count": 420,
+    "expected_unique_logical_keys": 420,
+    "numeric_values_public": false,
+    "schema_frozen": true
+  },
+  "public_receipt": {
+    "absolute_private_paths_allowed": false,
+    "numeric_values_allowed": false,
+    "schema_frozen": true
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_implementation_and_freeze",
+  "t2_boundary": {
+    "historical_accepted": 39,
+    "historical_no_rule": 3,
+    "reason": "exact private identity of the three T2 no_rule relations is unavailable",
+    "t2_utility_scope_authorized": false
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-IMPLEMENTATION-AND-FREEZE"
+}

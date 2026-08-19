@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "1cfa0a0cb35b0fb08b005ead3d81020d9192464a9d2917548236ca42a0368121",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_synthetic_test_report",
+  "boundaries": {
+    "hai_labels_accessed": 0,
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "openai_api_key_accessed": false,
+    "provider_calls": 0,
+    "real_private_authority_materialized": false,
+    "scientific_llm_calls": 0,
+    "utility_computations": 0
+  },
+  "command": "$env:PYTHONPATH='src;tests'; <bundled-python> -m unittest -v tests.test_task039e3_r2r_utility_normal_only_authority_v1",
+  "coverage": {
+    "atomic_finalization": "PASS",
+    "canonical_serialization": "PASS",
+    "common_relation_count_42": "PASS",
+    "duplicate_missing_unexpected_records": "PASS",
+    "historical_identity_nonreuse": "PASS",
+    "local_locator_manifest": "PASS",
+    "new_reference_determinism": "PASS",
+    "nonfinite_bool_string_rejection": "PASS",
+    "normal_identity_preflight_before_value_reader": "PASS",
+    "partial_output_rejection": "PASS",
+    "public_receipt_redaction": "PASS",
+    "public_receipt_write_last": "PASS",
+    "synthetic_frozen_calibration": "PASS",
+    "t2_exclusion": "PASS",
+    "utility_reference_count_420": "PASS"
+  },
+  "failures": 0,
+  "result": "PASS",
+  "schema_version": "1.0.0",
+  "synthetic_tests_passed": 24,
+  "synthetic_tests_total": 24,
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-IMPLEMENTATION-AND-FREEZE"
+}

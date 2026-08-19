@@ -1,0 +1,150 @@
+{
+  "artifact_hash": "1ba69cc445bc22fe9b9387b1ccde97572d6b55694785b3e5629fa83561bb0902",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_contract",
+  "atomic_materialization_contract": {
+    "authoritative_only_after_public_receipt": true,
+    "order": [
+      "verify_builder_commit_and_blob",
+      "verify_common42",
+      "verify_both_normal_file_byte_identities_before_value_parse",
+      "require_explicit_environment_locator_and_destination_match",
+      "compute_validate_420_records",
+      "temporary_private_write_and_reopen",
+      "atomic_private_rename",
+      "local_locator_write_and_validate",
+      "authoritative_private_reopen_and_rehash",
+      "public_receipt_write_last"
+    ],
+    "overwrite_existing_authority": false,
+    "partial_output_authoritative": false
+  },
+  "authority_identity": {
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "authority_lineage": "NEW_VERSION_FROM_FROZEN_METHOD_AND_NORMAL_DATA",
+    "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "historical_e1_identity_restored": false,
+    "historical_numeric_identity_restored": false
+  },
+  "command_contract": {
+    "defaults_for_private_or_scientific_inputs": false,
+    "environment_locator": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "required_arguments": [
+      "--feasibility-audit",
+      "--dependency-matrix",
+      "--common42-check",
+      "--dataset-manifest",
+      "--d1-data-access-audit",
+      "--executable-equivalence",
+      "--evidence-manifest",
+      "--train1",
+      "--train2",
+      "--private-destination",
+      "--local-locator-manifest",
+      "--public-receipt",
+      "--repository-root",
+      "--expected-builder-commit",
+      "--execution-timestamp"
+    ]
+  },
+  "local_locator_manifest_schema": {
+    "committable": false,
+    "must_be_outside_git": true,
+    "required_fields": [
+      "artifact_type",
+      "schema_version",
+      "authority_version",
+      "absolute_private_authority_path",
+      "private_authority_hash",
+      "public_receipt_hash",
+      "created_at",
+      "builder_commit",
+      "local_only",
+      "must_not_be_committed",
+      "artifact_hash"
+    ],
+    "schema_identity": "task039e3_r2r_utility_normal_only_local_locator_manifest_v1"
+  },
+  "private_registry_schema": {
+    "artifact_created_in_this_task": false,
+    "expected_record_count": 420,
+    "expected_relation_count": 42,
+    "expected_unique_logical_key_count": 420,
+    "logical_key": [
+      "relation_binding_hash",
+      "numeric_role"
+    ],
+    "record_required_fields": [
+      "schema_version",
+      "authority_version",
+      "relation_identity",
+      "relation_binding_hash",
+      "semantic_execution_hash",
+      "numeric_role",
+      "new_reference_identity",
+      "numeric_value",
+      "calibration_policy_version",
+      "normal_train1_identity",
+      "normal_train2_identity",
+      "provenance_identity",
+      "record_hash"
+    ],
+    "schema_identity": "task039e3_r2r_utility_normal_only_private_registry_v1",
+    "unexpected_record_policy": "FAIL_CLOSED"
+  },
+  "public_receipt_schema": {
+    "forbidden_content": [
+      "numeric values",
+      "raw HAI values",
+      "absolute private paths",
+      "labels",
+      "credentials"
+    ],
+    "required_fields": [
+      "authority_version",
+      "private_registry_content_hash",
+      "record_count",
+      "unique_key_count",
+      "COMMON-42 hash",
+      "normal input identities",
+      "calibration policy identity",
+      "builder commit",
+      "builder Git blob",
+      "builder source SHA-256",
+      "execution timestamp",
+      "validation counts",
+      "construction provenance",
+      "artifact_hash"
+    ],
+    "schema_identity": "task039e3_r2r_utility_normal_only_public_receipt_v1",
+    "write_last": true
+  },
+  "reference_identity_schema": {
+    "format": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1:<sha256-of-preimage>",
+    "preimage_fields": [
+      "authority_version",
+      "relation_binding_hash",
+      "semantic_execution_hash",
+      "numeric_role",
+      "calibration_policy_version",
+      "normal_input_identity_set",
+      "COMMON-42 authority hash"
+    ],
+    "value_in_preimage": false,
+    "value_in_record_hash": true
+  },
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-IMPLEMENTATION-AND-FREEZE",
+  "validation_policy": {
+    "bool_as_numeric": "FAIL_CLOSED",
+    "duplicate_logical_key": "FAIL_CLOSED",
+    "historical_authority_identity_reuse": "FAIL_CLOSED",
+    "missing_record": "FAIL_CLOSED",
+    "nonfinite_numeric_value": "FAIL_CLOSED",
+    "private_destination_inside_git": "FAIL_CLOSED",
+    "string_as_numeric": "FAIL_CLOSED",
+    "unexpected_record": "FAIL_CLOSED",
+    "wrong_common42_hash": "FAIL_CLOSED",
+    "wrong_normal_input_identity": "FAIL_BEFORE_SCIENTIFIC_VALUE_PARSE",
+    "wrong_semantic_execution_hash": "FAIL_CLOSED"
+  }
+}
