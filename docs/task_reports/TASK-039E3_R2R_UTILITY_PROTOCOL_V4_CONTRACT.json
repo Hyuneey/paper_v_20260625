@@ -1,0 +1,116 @@
+{
+  "artifact_hash": "8516b0e214725992439fb6de986bc65e30e7e9c5b6d9ff5be9f82d36a14b60df",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_contract",
+  "base_commit": "e971c8c8543f49b31aba2a57cf60257d190b76d5",
+  "canonical_authority": {
+    "authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+    "common_runtime_library_count": 1,
+    "main_portfolio": "COMMON-42",
+    "protocol_version": "TASK039E3_R2R_UTILITY_PROTOCOL_V4",
+    "t2_utility_scope_authorized": false,
+    "v3_lineage": "BASE_V1_PLUS_REMEDIATION_V2_PLUS_FINAL_CLOSURE_V3"
+  },
+  "claim_boundary": {
+    "hai_accesses": 0,
+    "label_accesses": 0,
+    "private_numeric_values_accessed": 0,
+    "provider_calls": 0,
+    "test_accesses": 0,
+    "utility_computations": 0,
+    "utility_evaluator_implemented": false,
+    "utility_execution_authorized": false
+  },
+  "corrected_regression_authorities": {
+    "event_policy_hash": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "metric_policy_hash": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "numeric_reference_authority_hash": "e50300efd372fb8a5c4567a6fa9e3277e36804506b306ea0053f7fc4ab48ceed",
+    "numeric_reference_authority_role": "historical_regression_provenance_only"
+  },
+  "created_at": "2026-08-19T10:20:28Z",
+  "feature_schema": {
+    "canonical_runtime_schema_hash": "e7a0c46d28491b9d03a333a0ad1e87d686a982bafba072861913e05fb6c50b58",
+    "canonical_v3_schema_report_hash": "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+    "common_materialization_features": 19,
+    "common_materialization_sources": 9,
+    "common_materialization_targets": 10,
+    "evaluator_features": 22,
+    "evaluator_sources": 12,
+    "evaluator_targets": 10,
+    "serialized_substitution_authorized": false
+  },
+  "full_census": {
+    "caller_denominator_authorized": false,
+    "caller_opportunity_list_authorized": false,
+    "caller_relation_subset_authorized": false,
+    "caller_sample_size_authorized": false,
+    "portfolio": "COMMON-42",
+    "sampling_policy": "FULL_CENSUS_NO_FIXED_SAMPLE_SIZE"
+  },
+  "numeric_authority": {
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_authority_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+    "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "descriptor_hash": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "historical_identity_restored": false,
+    "materialized_audit_receipt_hash": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+    "new_reference_set_hash": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "normal_input_identity_set_hash": "cc502d87daf19a1511f868c1c767045a4457d505d195b0214f244d1910fe0cda",
+    "private_registry_content_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "records": 420,
+    "references": 420,
+    "relations": 42,
+    "roles": 10,
+    "t2_utility_scope_authorized": false
+  },
+  "opportunity_identity": {
+    "binds_dataset_split_file": true,
+    "binds_event_and_enumeration_policies": true,
+    "binds_numeric_authority": true,
+    "binds_relation_semantics": true,
+    "binds_row_time_identity": true,
+    "binds_rule_descriptor": true,
+    "caller_semantic_fields_authoritative": false
+  },
+  "private_resolver": {
+    "historical_private_authority_required": false,
+    "lookup_key_fields": [
+      "relation_binding_hash",
+      "numeric_role"
+    ],
+    "partial_lookup_on_failure": false,
+    "private_serialization_exposed": false
+  },
+  "schema_version": "1.0.0",
+  "split_policy": {
+    "dataset": "HAI 23.05 P1",
+    "inner": "test1",
+    "main_portfolio": "COMMON-42",
+    "outer": "test2",
+    "virtual_purge_seconds": 120
+  },
+  "strict_scalar_policy": {
+    "boolean": "type(value) is bool",
+    "float": "type(value) is float and finite",
+    "integer": "type(value) is int",
+    "silent_coercion": false,
+    "string": "type(value) is str",
+    "tuple": "type(value) is tuple"
+  },
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-NORMAL-ONLY-AUTHORITY-REBIND-AND-CANONICAL-CLOSURE",
+  "terminal_provenance": {
+    "caller_terminal_state_authorized": false,
+    "malformed_input_is_abstention": false,
+    "parent_chain": [
+      "CanonicalOpportunityV4",
+      "SourceQualificationStateV4",
+      "TargetEvaluationStateV4"
+    ],
+    "states": [
+      "evaluated_expected_response",
+      "evaluated_anomaly",
+      "abstain"
+    ]
+  }
+}

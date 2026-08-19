@@ -1,0 +1,60 @@
+{
+  "artifact_hash": "0153215a6ef29cbeda53f37695fc1d4479b32bda3efffa6b8415d8016129a451",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_protocol_freeze",
+  "authority_bindings": {
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_authority_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+    "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "materialized_authority_audit_receipt_hash": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+    "new_reference_set_hash": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "normal_input_identity_set_hash": "cc502d87daf19a1511f868c1c767045a4457d505d195b0214f244d1910fe0cda",
+    "private_registry_content_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0"
+  },
+  "base_commit": "e971c8c8543f49b31aba2a57cf60257d190b76d5",
+  "blocker_closure_matrix_hash": "f11636647559b40ca16ab2f4812ec3b4e421fcc9cc2869362e481456bd9a1f17",
+  "canonical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "contract_hash": "8516b0e214725992439fb6de986bc65e30e7e9c5b6d9ff5be9f82d36a14b60df",
+  "corrected_regression_authorities": {
+    "event_policy_hash": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "metric_policy_hash": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "numeric_reference_authority_hash": "e50300efd372fb8a5c4567a6fa9e3277e36804506b306ea0053f7fc4ab48ceed"
+  },
+  "created_at": "2026-08-19T10:20:28Z",
+  "eight_historical_findings_closed": 8,
+  "frozen_counts": {
+    "common_no_rule": 0,
+    "common_relations": 42,
+    "numeric_records": 420,
+    "numeric_references": 420,
+    "numeric_roles": 10,
+    "rule_descriptors": 42
+  },
+  "historical_identity_restored": false,
+  "implementation": {
+    "source_git_blob": "97689945beb68113d0674f944cd8addfa25bdcea",
+    "source_path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py",
+    "source_raw_sha256": "b3dfc70f1623f3aea7eafce5615419387dbc8868d0881a88cfdca1e6148a72a2",
+    "test_git_blob": "e8eb7ddb584cf5dc17072bbb64205927ae0b9d27",
+    "test_path": "tests/test_task039e3_r2r_utility_protocol_v4.py",
+    "test_raw_sha256": "746172aef39ca1c8a6d2403339fc9db47a1e5692d3d9291fe5a78ddbace57863"
+  },
+  "main_portfolio": "COMMON-42",
+  "protocol_version": "TASK039E3_R2R_UTILITY_PROTOCOL_V4",
+  "schema_version": "1.0.0",
+  "scientific_authority_changed": false,
+  "synthetic_test_report_hash": "572f4569cd8ace4e0a0d164326a25c01b2dabca39a736629a3788de21d1720a2",
+  "t2_utility_scope_authorized": false,
+  "utility_executed": false,
+  "v3_lineage": "BASE_V1_PLUS_REMEDIATION_V2_PLUS_FINAL_CLOSURE_V3",
+  "zero_access_counters": {
+    "api_key_access": false,
+    "hai_accesses": 0,
+    "label_accesses": 0,
+    "private_numeric_values_accessed": 0,
+    "provider_calls": 0,
+    "scientific_llm_calls": 0,
+    "test_accesses": 0,
+    "utility_computations": 0
+  }
+}

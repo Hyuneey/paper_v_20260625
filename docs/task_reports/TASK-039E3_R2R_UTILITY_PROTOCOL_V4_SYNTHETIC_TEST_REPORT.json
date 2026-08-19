@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "572f4569cd8ace4e0a0d164326a25c01b2dabca39a736629a3788de21d1720a2",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_synthetic_test_report",
+  "created_at": "2026-08-19T10:20:28Z",
+  "focused_adversarial_coverage": {
+    "census_authority": "PASS",
+    "feature_schema": "PASS",
+    "numeric_authority": "PASS",
+    "opportunity_identity": "PASS",
+    "regression_authorities": "PASS",
+    "rule_descriptors": "PASS",
+    "scalar_policy": "PASS",
+    "t2_exclusion": "PASS",
+    "terminal_provenance": "PASS"
+  },
+  "results": {
+    "compileall": "PASS",
+    "earlier_utility_regression": {
+      "passed": 40,
+      "run": 42,
+      "skipped": 2,
+      "skips": [
+        "historical V2 private-registry resolution test",
+        "historical V2 private-registry mutation test"
+      ],
+      "status": "PASS_WITH_2_INTENTIONAL_PRIVATE_CUSTODY_SKIPS"
+    },
+    "git_diff_check": "PASS",
+    "normal_only_public_and_synthetic_regression": {
+      "passed": 106,
+      "run": 106,
+      "skipped": 0,
+      "status": "PASS"
+    },
+    "pip_check": "PASS",
+    "v3_regression": {
+      "passed": 27,
+      "run": 27,
+      "skipped": 0,
+      "status": "PASS"
+    },
+    "v4_focused": {
+      "minimum_required_cases": 35,
+      "passed": 51,
+      "run": 51,
+      "skipped": 0,
+      "status": "PASS"
+    }
+  },
+  "schema_version": "1.0.0",
+  "source_git_blob": "97689945beb68113d0674f944cd8addfa25bdcea",
+  "source_raw_sha256": "b3dfc70f1623f3aea7eafce5615419387dbc8868d0881a88cfdca1e6148a72a2",
+  "status": "PASS",
+  "test_git_blob": "e8eb7ddb584cf5dc17072bbb64205927ae0b9d27",
+  "test_raw_sha256": "746172aef39ca1c8a6d2403339fc9db47a1e5692d3d9291fe5a78ddbace57863"
+}

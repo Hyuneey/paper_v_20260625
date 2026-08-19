@@ -1,0 +1,72 @@
+{
+  "artifact_hash": "f11636647559b40ca16ab2f4812ec3b4e421fcc9cc2869362e481456bd9a1f17",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_blocker_closure_matrix",
+  "closures": [
+    {
+      "closure": "CLOSED_BY_EXPLICIT_SCOPE_EXCLUSION",
+      "finding": "BLOCKER_V3_T2_EXACT_PORTFOLIO_MEMBERSHIP_UNBOUND",
+      "historical_problem": "T2 accepted count-only caller membership",
+      "result": "PASS",
+      "test_evidence": "test_t2_and_fake_subset_reject"
+    },
+    {
+      "closure": "CLOSED_BY_V4_CANONICAL_SEMANTIC_REPLAY",
+      "finding": "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+      "historical_problem": "opportunity identity omitted relation semantic fields",
+      "result": "PASS",
+      "test_evidence": "test_opportunity_semantic_mutations_reject_even_when_rehashed"
+    },
+    {
+      "closure": "CLOSED_BY_AUDITED_V1_420_REFERENCE_AUTHORITY",
+      "finding": "BLOCKER_V3_FULL_CENSUS_NUMERIC_REFERENCE_AUTHORITY_UNBOUND",
+      "historical_problem": "caller thresholds and direct numeric authority changed census",
+      "result": "PASS",
+      "test_evidence": "test_numeric_authority_mutations_reject; test_rule_reference_missing_extra_reorder_rejects"
+    },
+    {
+      "closure": "CLOSED_BY_V4_CANONICAL_FULL_CENSUS_PLAN",
+      "finding": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+      "historical_problem": "direct caller census could become metric custody",
+      "result": "PASS",
+      "test_evidence": "test_census_caller_authorities_reject; test_fabricated_census_plan_rejects"
+    },
+    {
+      "closure": "CLOSED_BY_V4_COMMITTED_METADATA_REPLAY",
+      "finding": "BLOCKER_V3_SERIALIZED_FEATURE_SCHEMA_AUTHORITY_SUBSTITUTION",
+      "historical_problem": "self-rehashed replacement schema was accepted",
+      "result": "PASS",
+      "test_evidence": "test_feature_schema_serialized_substitutions_reject; test_lower_metadata_mutation_rejects_feature_replay"
+    },
+    {
+      "closure": "CLOSED_BY_V4_EXACT_SCALAR_TYPES",
+      "finding": "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+      "historical_problem": "Python numeric subtypes and widening crossed schema boundaries",
+      "result": "PASS",
+      "test_evidence": "test_strict_scalar_cross_type_mutations_reject; generated coercion cases 01-12"
+    },
+    {
+      "closure": "CLOSED_BY_V4_PARENT_CHAIN_TRANSITIONS",
+      "finding": "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+      "historical_problem": "caller terminal outcome lacked opportunity and coordinate provenance",
+      "result": "PASS",
+      "test_evidence": "test_direct_parent_and_terminal_construction_rejects; test_terminal_forged_interior_boundaries_reject"
+    },
+    {
+      "closure": "CLOSED_BY_CORRECTED_AUTHORITY_HASH_BINDING",
+      "finding": "BLOCKER_V3_REGRESSION_COMPONENT_AUTHORITY_HASH_MISMATCH",
+      "historical_problem": "three V3 regression component hashes differed from committed authorities",
+      "result": "PASS",
+      "test_evidence": "test_corrected_regression_authorities_only"
+    }
+  ],
+  "created_at": "2026-08-19T10:20:28Z",
+  "historical_evidence_hashes": {
+    "feature_authority": "dee0fed8a8f1202ab6206aba96317c14b5b2c49e08f312c3732de2d480e61bf0",
+    "opportunity": "04a2aed36e7aa90810612b0dcaaade3d2464b77cc8d5754efbb6f74aa4acfae3",
+    "regression": "91daf11c621790d846d480945dc80eb67bfb3835648a683e7ce94f062c359c42",
+    "type_policy": "023d7024a3fa95b913ae17a51c2fe9fdd561968787d5491e386c43ce736117f6"
+  },
+  "open_findings": [],
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}
