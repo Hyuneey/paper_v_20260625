@@ -1,0 +1,16 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_opportunity_policy",
+  "schema_version":"3.0.0",
+  "sampling_policy":"FULL_CENSUS_NO_FIXED_SAMPLE_SIZE",
+  "primary_opportunity_sampling":false,
+  "fixed_sample_size":null,
+  "formation_pipeline":["complete_finite_source_context","threshold_and_stability_trigger","same_source_clustering_gap_le_10_seconds","exact_12_source_isolation_inclusive_plus_minus_2_seconds","expected_source_direction"],
+  "formed_opportunity_rule":"one surviving event per accepted relation cell forms exactly one ApplicableRuleEvaluationOpportunityV3",
+  "not_opportunities":["incomplete_source_context","below_threshold","stability_failure","removed_by_same_source_clustering","cross_source_nonisolation","wrong_source_direction"],
+  "no_rule_policy":{"interpreter_instances":0,"opportunity_records":0,"alarms":0,"abstentions":0,"construction_denominator_membership":true,"substitution":false},
+  "canonical_enumerator":"enumerate_full_census_from_timeline_v3",
+  "caller_count_override":false,
+  "manual_explanation_review_affects_denominator":false,
+  "source_event_policy_identity":"continuous_step_source_event_pipeline_v3_full_census_overlay",
+  "artifact_hash":"51fc48431a5f754caed52ad4533abaabc4750b5a0b54b4b77043690c5bf1f32c"
+}

@@ -1,0 +1,19 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_bundle",
+  "schema_version":"3.0.0",
+  "task_id":"TASK-039E3-R2R-UTILITY-PROTOCOL-V3-REOPEN-AND-FINAL-REMEDIATION",
+  "commit_a":"a3d9e8d324e8492144eea4a2baa3bde746545acc",
+  "components":{
+    "reopen_authorization":"dffef0fcc2bdd5d6c0473cac027c81b050c2f9f0bbe74c6b577875de827c2f5a",
+    "feature_schema":"62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+    "opportunity_policy":"51fc48431a5f754caed52ad4533abaabc4750b5a0b54b4b77043690c5bf1f32c",
+    "opportunity_custody_policy":"1fc835162ccca7b6ee79762d2f9fbb5a085e714bf0bc627a107573bcf9c6caf1",
+    "type_and_state_policy":"d3e3494ad2b000bbb7b42fb9b28ce4f3bfa8fa5be97183589ecbb3e845796059",
+    "regression":"d00ab05347d39a4d01bcadf4c2520b641e1405781d9d33223ec2f2d1bd4acd7d",
+    "source_freeze":"4a78d09ef746c654e3c6b3239f5c5ee14cf8c9d95b05af374be0bfa5d637f1a2",
+    "test_report":"92a611d8702fbdda3deaa6791038ee078bcb24039353ebde403a5322b04d8447",
+    "canonical_authority":"6ad82359bbaee7f81a0fe2c163dea63b8c855aac9e36af7f10a322ab4944f5e2"
+  },
+  "prior_authorities":{"v1_bundle":"189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d","v1_receipt":"f6db67c4ec4c3f64f0acc8031e27f583fc3192029170184e42dd721dbaf15949","v2_bundle":"5880ebff1fbda2004dfa3d955376b88d21972721b5287bc5fd62b9e71a6df2cb","v2_receipt":"46ef239e01697bd54eec3eea5fb9725fe07396ceaf24c82dbb0da1606223f00d","blocked_reaudit_bundle":"883e32ef7c035707257f0b3596aa5ab1a5df8364f8dab70ffda32c818b1dacac","blocked_reaudit_receipt":"dc0199685029ba5d8e65761ef7b8bddb21e2563b0c65d5927366ab001b106ba5"},
+  "artifact_hash":"5c0d481c27fb7693c44c62ef8cb6beb04aa20e9e1f8075ee0e63f4d19bf1e472"
+}

@@ -1,0 +1,17 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_regression",
+  "schema_version":"3.0.0",
+  "dataset_scope":{"dataset":"HAI 23.05","process":"P1","unchanged":true},
+  "construction":{"T0":{"accepted":42,"no_rule":0},"T1":{"accepted":42,"no_rule":0},"T1-B":{"accepted":42,"no_rule":0},"T2":{"accepted":39,"no_rule":3},"result_values_changed":false},
+  "equivalence":{"COMMON":"42/42","T2_accepted":"39/39","T2_no_rule":"3/3","authority_hash":"3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f"},
+  "numeric_reference_authority":{"resolved":420,"requested":420,"missing":0,"ambiguous":0,"authority_hash":"e50300ef65ae8ab71631c00125fe6d694397714daf220a3a3a7df79115ce68bb"},
+  "semantics":{"source_windows":"5_pre_5_post","same_source_cluster_seconds":10,"cross_source_isolation_seconds":2,"cross_source_inclusive":true,"decision_index":"event+horizon+2","target_response_window":3,"unchanged":true},
+  "metrics":{"primary":["AttackEventRecall","NormalFalseAlarmRatePerHour"],"redesigned":false,"point_adjustment":"PROHIBITED","event_policy_hash":"6e4a446743cbd8c69cd93b9ccbd660b1f4e30f63f75575d37dd57bb6ab4c8250","metric_policy_hash":"4c7b6cfd2c18ddc5a6ca5b13285fc2acb67e4bda43fd8436dbb1e302164a1da0"},
+  "construction_provider_calls":{"T0":0,"T1":42,"T1-B":126,"T2":42,"unchanged":true},
+  "direct_number":"EXCLUDED_FROM_UTILITY_THRESHOLDS",
+  "candidate_origin":"EXPLORATORY_ONLY",
+  "label_values_accessed":0,
+  "hai_test_feature_values_accessed":0,
+  "utility_values_computed":0,
+  "artifact_hash":"d00ab05347d39a4d01bcadf4c2520b641e1405781d9d33223ec2f2d1bd4acd7d"
+}

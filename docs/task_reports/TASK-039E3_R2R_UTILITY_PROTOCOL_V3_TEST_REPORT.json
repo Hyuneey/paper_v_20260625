@@ -1,0 +1,19 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_test_report",
+  "schema_version":"3.0.0",
+  "commit_a":"a3d9e8d324e8492144eea4a2baa3bde746545acc",
+  "v3_focused":{"run":27,"passed":27,"failed":0,"skipped":0},
+  "historical_regression":{"run":61,"passed":58,"failed":0,"skipped":3,"skip_reason":"private registry or E1 ledger inputs intentionally absent from this zero-private-access task invocation"},
+  "total":{"run":88,"passed":85,"failed":0,"skipped":3},
+  "checks":{"compileall":"PASS","pip_check":"PASS_NO_BROKEN_REQUIREMENTS","json_parse":"PASS","reopen_self_hash":"PASS","v1_v2_byte_immutability":"PASS","source_git_blob_and_byte":"PASS","task_scoped_sensitive_scan":"PASS_HARMLESS_FILE_IDENTITIES_AND_ROW_COUNTS_ONLY","git_diff_check":"PASS"},
+  "synthetic_opportunity_oracle":{"record_count":5,"evaluated_count":3,"abstained_count":2,"numerator":2,"denominator":5,"rate":0.4,"caller_1_over_999":"IMPOSSIBLE_BY_SIGNATURE"},
+  "fail_closed_mutations":{"covered":true,"malformed_values_returned_scientific_state":0,"boundary_masking_failures":0},
+  "provider_or_network_tests_run":false,
+  "hai_test_feature_values_accessed":0,
+  "hai_label_values_accessed":0,
+  "attack_intervals_accessed":0,
+  "utility_values_computed":0,
+  "provider_calls":0,
+  "scientific_calls":0,
+  "artifact_hash":"92a611d8702fbdda3deaa6791038ee078bcb24039353ebde403a5322b04d8447"
+}

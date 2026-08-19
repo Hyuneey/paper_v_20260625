@@ -1,0 +1,23 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_canonical_authority",
+  "schema_version":"3.0.0",
+  "canonical_protocol":"BASE_V1_PLUS_REMEDIATION_V2_PLUS_FINAL_CLOSURE_V3",
+  "status":"FROZEN_PENDING_FINAL_FOCUSED_AUDIT",
+  "base_commit":"5d6a7b74bf3f43efc0edff44c3ed32fb130cffe9",
+  "protocol_v1":{"commit_a":"0eec09c662ecc1c78daa5f661c2471aba69cf905","commit_b":"c021768fc29a4560bd1bc52f5ed61462731be1c7","bundle":"189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d","receipt":"f6db67c4ec4c3f64f0acc8031e27f583fc3192029170184e42dd721dbaf15949"},
+  "protocol_v2":{"commit_a":"6c63a9a8410d083c8b0e71c344d799284f02941b","commit_b":"4f9393fd59f23b8093c8fc2b7c95bf3f57ec5c22","canonical_authority":"9e23c16e7c85f825e19dd30da96a17b88e3daf06763eb98c3bdba86bea189d44","source_freeze":"6ed4f60018993c378e2388565d00a33f189f74d86fc5017468f9a30e6b4a1726","bundle":"5880ebff1fbda2004dfa3d955376b88d21972721b5287bc5fd62b9e71a6df2cb","receipt":"46ef239e01697bd54eec3eea5fb9725fe07396ceaf24c82dbb0da1606223f00d"},
+  "blocked_focused_reaudit":{"commit_a":"008a34d6ddce536c65ab36322389a34580710f18","commit_b":"4213963e5c3abc9f97b45bb183accb0fc43297be","bundle":"883e32ef7c035707257f0b3596aa5ab1a5df8364f8dab70ffda32c818b1dacac","receipt":"dc0199685029ba5d8e65761ef7b8bddb21e2563b0c65d5927366ab001b106ba5"},
+  "v3_reopen_authorization":"dffef0fcc2bdd5d6c0473cac027c81b050c2f9f0bbe74c6b577875de827c2f5a",
+  "v3_commit_a":"a3d9e8d324e8492144eea4a2baa3bde746545acc",
+  "v3_source_freeze":"4a78d09ef746c654e3c6b3239f5c5ee14cf8c9d95b05af374be0bfa5d637f1a2",
+  "v3_feature_schema":"62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+  "v3_opportunity_policy":"51fc48431a5f754caed52ad4533abaabc4750b5a0b54b4b77043690c5bf1f32c",
+  "v3_opportunity_custody_policy":"1fc835162ccca7b6ee79762d2f9fbb5a085e714bf0bc627a107573bcf9c6caf1",
+  "v3_type_and_state_policy":"d3e3494ad2b000bbb7b42fb9b28ce4f3bfa8fa5be97183589ecbb3e845796059",
+  "v3_regression":"d00ab05347d39a4d01bcadf4c2520b641e1405781d9d33223ec2f2d1bd4acd7d",
+  "v3_test_report":"92a611d8702fbdda3deaa6791038ee078bcb24039353ebde403a5322b04d8447",
+  "exact_closed_blockers":["BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED","BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS"],
+  "opportunity_sampling_policy":"FULL_CENSUS_NO_FIXED_SAMPLE_SIZE",
+  "authorities":{"utility_protocol_v3_frozen":true,"utility_protocol_audited":false,"utility_evaluator_implementation_ready":false,"utility_execution_authorization_ready":false,"real_hai_test_access":false,"real_label_access":false,"inner_execution":false,"outer_execution":false,"detector_integration":false,"rule_v2":false,"production_runtime":false,"winner":false},
+  "artifact_hash":"6ad82359bbaee7f81a0fe2c163dea63b8c855aac9e36af7f10a322ab4944f5e2"
+}

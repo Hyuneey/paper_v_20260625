@@ -1,0 +1,30 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_source_freeze",
+  "schema_version":"3.0.0",
+  "commit_a":"a3d9e8d324e8492144eea4a2baa3bde746545acc",
+  "active_v3_records":[
+    {"path":"src/paperworks/v6/task039e3_r2r_utility_protocol_v3.py","git_blob":"d233cb05ce2a10930ee20952f3ce6784f3ece8bf","raw_byte_sha256":"85fb16f257a957736548ddf852f6e594be06fe0800b94f066c54b9eb3e988a3e","classification":"additive_final_closure_protocol"},
+    {"path":"schemas/v6/task039e3_r2r_opportunity_custody_v3_schema.json","git_blob":"e0b50df897cfd1e14fa3c1bbed4ada4643036326","raw_byte_sha256":"3ea986daeeeee1f56a3d9e5cc77b20f290b10f8ecd0c67a9462bf96ece337b4c","classification":"new_metadata_schema"},
+    {"path":"schemas/v6/task039e3_r2r_feature_schema_v3_schema.json","git_blob":"c652c8c122c6e4dbb24fa662384c41a7438384c3","raw_byte_sha256":"fa7cb627db83203a238cd48fcac663c107c8dbc7b08f0db62610c41f3079f127","classification":"new_metadata_schema"},
+    {"path":"tests/test_task039e3_r2r_utility_protocol_v3_opportunity.py","git_blob":"719dae9057cd4e728790c45218eff19064089344","raw_byte_sha256":"171f6bfe8cc27680d02ce9294931832358e2ffdb822aad22a4210bce6eacb798","classification":"synthetic_focused_test"},
+    {"path":"tests/test_task039e3_r2r_utility_protocol_v3_types.py","git_blob":"c8035321dc49bba5efe25399a02ffb48baba8866","raw_byte_sha256":"39d339c833ee88812234ac62256bbc2ecea6719b1f534007b61e4c0531b8cc0c","classification":"synthetic_focused_test"},
+    {"path":"tests/test_task039e3_r2r_utility_protocol_v3_regression.py","git_blob":"4d15f696c3f1580f09846518f74b31d194368ae2","raw_byte_sha256":"cd2c9c7c9a585ffb88c77a416544fbe11c8a7b6c5caf73b5a15dcb4325f88195","classification":"metadata_regression_test"},
+    {"path":"docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_V3_REOPEN_AUTHORIZATION.json","git_blob":"2bf9443c4c51c5cc074dc0498423d0b9b629c1d0","raw_byte_sha256":"7214ffcaeb729b7bfd9be1b463208a416ec42a737b752e94daa303b22f63c9f7","classification":"scope_limited_governance_authority"}
+  ],
+  "immutable_historical_sources":[
+    {"path":"src/paperworks/v6/task039e3_r2r_utility_protocol_v1.py","git_blob":"2e6960c6838519310b71df417b4fb4824f4a4f92","raw_byte_sha256":"56305eced40020b00e29783fa9d795f3a352b230e584ffed0ae5465f1f1a5165","modified":false},
+    {"path":"src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py","git_blob":"9dc1f71e69d414502172cf86e5ea6bed9a75b5f5","raw_byte_sha256":"0e9f9be8d5f8ed09ea7d0b385ffe37b7fbaa53834ac3bfffd17e740d8d4fdf01","modified":false}
+  ],
+  "active_dependency_records":[
+    {"path":"src/paperworks/v6/common.py","git_blob":"8874a42cad1e03d38d0b1db4094fe94f0b19e743","raw_byte_sha256":"bbe34b7882608cb16aae0cc7bfcc175a6af0e305208b78dcbe56360c058241c4","classification":"stable_hash_dependency"},
+    {"path":"src/paperworks/v6/relation_profiling_protocol_v1.py","git_blob":"7d7da2c07cbd5207edc223b4a854885f30b584b3","raw_byte_sha256":"ba7a7ea29eb0d68077a51442691d201915470d16dca751dff3c214a7ead3c529","classification":"12_source_authority_dependency"},
+    {"path":"configs/v6/task039c0_candidate_discovery_protocol.json","git_blob":"3daed02833954c72427985145d14b5999f83af66","raw_byte_sha256":"f02182816190f3f7097a1a7200dbd45ed2a72aad2a2cea3f78a1f47f9d3f2406","classification":"feature_metadata_authority"},
+    {"path":"configs/v6/task039br2_hai_continuous_step_feasibility.json","git_blob":"ce15fe89c4b8dd548564ec04ca3d4f0dbb48d7ed","raw_byte_sha256":"63614bf6dc0f97dca7c58c287ee8289147bda736097b46ff38137a051c4fd4fb","classification":"continuous_numeric_eligibility_authority"},
+    {"path":"docs/task_reports/TASK-039A_DATASET_MANIFEST_V2.json","git_blob":"355a015b45e46c7cd17b99dbc1d047a55880ca37","raw_byte_sha256":"f021eae767085599794fbf0744dcdd6919412732d1974b53e8b2abb907283c52","classification":"dataset_metadata_authority"},
+    {"path":"docs/task_reports/TASK-039A_CSV_STRUCTURE_REPORT.json","git_blob":"70a3b5b1fb810ae004fb626a7a9707cd84311041","raw_byte_sha256":"2e7a1c36fe007177d175e1e3e5bf909d1f022f613b8ff24f84c2a04e7d759c33","classification":"csv_structure_metadata_authority"},
+    {"path":"docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json","git_blob":"7512a1c31147342cbd3d1bb51552f1a55b620f93","raw_byte_sha256":"9751f68da0e869e59ef535ba55971abb1fa8862a843540a579bc2713ac78a492","classification":"COMMON_42_executable_authority"}
+  ],
+  "construction_scientific_source_modified":false,
+  "construction_result_artifacts_modified":false,
+  "artifact_hash":"4a78d09ef746c654e3c6b3239f5c5ee14cf8c9d95b05af374be0bfa5d637f1a2"
+}

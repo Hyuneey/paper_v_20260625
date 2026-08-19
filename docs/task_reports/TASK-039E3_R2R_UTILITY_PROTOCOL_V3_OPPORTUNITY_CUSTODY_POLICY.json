@@ -1,0 +1,16 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_opportunity_custody_policy",
+  "schema_version":"3.0.0",
+  "record_contract":"ApplicableRuleEvaluationOpportunityRecordV3",
+  "collection_contract":"OpportunityCustodyV3",
+  "record_fields":["opportunity_id","relation_binding_hash","executable_signature_hash","portfolio_identity","file_identity","source","target","source_event_physical_index","selected_horizon_seconds","target_evaluation_state","decision_index","alarm_emitted","abstention_reason","record_hash"],
+  "terminal_states":["evaluated_expected_response","evaluated_anomaly","abstain"],
+  "opportunity_id_preimage":["relation_binding_hash","executable_signature_hash","portfolio_identity","file_identity","source_event_physical_index","selected_horizon_seconds"],
+  "collection_summary_fields":["record_count","evaluated_count","abstained_count","anomaly_count","expected_response_count"],
+  "summary_authority":"recomputed_from_ordered_records_and_verified_on_roundtrip",
+  "invariants":["record_count=evaluated_count+abstained_count","evaluated_count=anomaly_count+expected_response_count","terminal_records_exactly_cover_full_census","opportunity_ids_and_logical_keys_unique","no_rule_relations_absent"],
+  "abstention_formula":{"identity":"abstained_opportunity_records_over_all_opportunity_records_v3","numerator":"count(records state=abstain)","denominator":"len(records)","zero_denominator":{"defined":false,"value":null,"reason":"no_applicable_opportunities"}},
+  "external_numerator_or_denominator_authority":false,
+  "synthetic_oracle":{"records":5,"evaluated":3,"abstained":2,"anomaly":1,"expected_response":2,"numerator":2,"denominator":5,"rate":0.4,"opportunity_custody_hash":"8ba886bedf57f7340299475059f71ab87eadcf1ad6996f25d5a3419096977d2b"},
+  "artifact_hash":"1fc835162ccca7b6ee79762d2f9fbb5a085e714bf0bc627a107573bcf9c6caf1"
+}

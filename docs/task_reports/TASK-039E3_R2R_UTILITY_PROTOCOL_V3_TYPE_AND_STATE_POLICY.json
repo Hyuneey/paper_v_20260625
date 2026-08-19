@@ -1,0 +1,15 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_type_and_state_policy",
+  "schema_version":"3.0.0",
+  "validation_order":["request_identity_and_scalar_types","feature_schema_and_discriminated_window_state","exact_window_lengths_and_numeric_object_types","parameter_domains_and_directions","coordinate_and_boundary_authority","scientific_source_or_target_semantics","terminal_scientific_state"],
+  "raw_parser":{"tokens":"strict decimal numeric strings only","errors":"raise","missing_token":"none authorized","nonfinite":"fail_closed","silent_coercion":false},
+  "internal_numeric_contract":{"container":"tuple","scalar_type":"canonical float","finite":true,"bool":false,"string":false,"none":false,"complex":false,"object_array":false},
+  "source_discriminated_union":{"available":{"pre_length":5,"post_length":5,"values_required":true},"unavailable":{"values_attached":false,"reasons":["insufficient_source_pre_window","incomplete_source_post_window"]}},
+  "target_discriminated_union":{"available":{"baseline_length":5,"response_length":3,"values_required":true},"unavailable":{"values_attached":false,"reasons":["file_boundary","split_boundary","incomplete_target_response_window"]}},
+  "malformed_precedence":"MALFORMED_INPUT_BEFORE_BOUNDARY_OR_SCIENTIFIC_STATE",
+  "nonfinite_policy":"PROHIBITED_AT_RAW_LOADER_AND_INTERNAL_EVALUATOR_BOUNDARIES",
+  "boundary_precedence":["physical_file_boundary","split_boundary","incomplete_target_response_window"],
+  "boundary_masking_results":{"invalid_source_values_plus_boundary":"ERROR","invalid_target_values_plus_file_boundary":"ERROR","invalid_target_values_plus_split_boundary":"ERROR","valid_source_boundary":"SOURCE_OPPORTUNITY_NOT_FORMED","valid_target_boundary":"ABSTAIN"},
+  "unknown_horizon_direction_role_feature_reference":"ERROR",
+  "artifact_hash":"d3e3494ad2b000bbb7b42fb9b28ce4f3bfa8fa5be97183589ecbb3e845796059"
+}

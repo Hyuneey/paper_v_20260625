@@ -1,0 +1,21 @@
+{
+  "artifact_type":"task039e3_r2r_utility_protocol_v3_receipt",
+  "schema_version":"3.0.0",
+  "status":"passed_task039e3_r2r_utility_protocol_v3_final_remediation",
+  "canonical_protocol":"BASE_V1_PLUS_REMEDIATION_V2_PLUS_FINAL_CLOSURE_V3",
+  "commit_a":"a3d9e8d324e8492144eea4a2baa3bde746545acc",
+  "canonical_authority":"6ad82359bbaee7f81a0fe2c163dea63b8c855aac9e36af7f10a322ab4944f5e2",
+  "bundle_hash":"5c0d481c27fb7693c44c62ef8cb6beb04aa20e9e1f8075ee0e63f4d19bf1e472",
+  "closed_blockers":{"opportunity_enumeration":"CLOSED_BY_DURABLE_FULL_CENSUS_CUSTODY","input_state_fail_closed":"CLOSED_BY_SCHEMA_BOUND_DISCRIMINATED_INPUTS_AND_VALIDATION_ORDER"},
+  "opportunity_sampling_policy":"FULL_CENSUS_NO_FIXED_SAMPLE_SIZE",
+  "synthetic_oracle":{"records":5,"derived_abstentions":2,"derived_denominator":5,"rate":0.4},
+  "feature_schema":{"sources":12,"targets":10,"missing_or_ambiguous":0},
+  "regressions":{"COMMON":"42/42","T2_accepted":"39/39","T2_no_rule":"3/3","numeric_references":"420/420"},
+  "access_and_calls":{"hai_test_feature_values_accessed":0,"hai_label_values_accessed":0,"attack_intervals_accessed":0,"utility_values_computed":0,"provider_calls":0,"openai_api_key_access":false,"scientific_calls":0},
+  "immutability":{"v1_modified":false,"v2_modified":false,"construction_result_modified":false},
+  "authorities_after_pass":{"utility_protocol_v3_frozen":true,"utility_protocol_audited":false,"utility_evaluator_implementation_ready":false,"utility_execution_authorization_ready":false},
+  "blockers":[],
+  "exact_next_task":"TASK-039E3-R2R-UTILITY-PROTOCOL-V3-FOCUSED-INDEPENDENT-AUDIT",
+  "created_at":"2026-08-19T10:12:30.6743271+09:00",
+  "artifact_hash":"1a6888bb21b42b41e700b3d20cdb4b3b8d3e52b2416a76229d5f1cbb0e26f90f"
+}
