@@ -71,6 +71,7 @@ CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH = "0510da125dd8a799c988927ba49ecb784ca
 
 _FINAL_STATES = frozenset({"evaluated_expected_response", "evaluated_anomaly", "abstain"})
 _ISSUED_RULE_ARTIFACTS: dict[int, tuple[ReferenceType[RulePredictionArtifactV1], str]]
+_METRIC_ISSUANCE_TOKEN = object()
 
 
 def _fail(code: str) -> None:
@@ -152,8 +153,51 @@ class SyntheticLabelEventCustodyV1:
     custody_hash: str
 
 
+_ISSUED_LABEL_CUSTODIES: dict[
+    int,
+    tuple[
+        ReferenceType[SyntheticLabelEventCustodyV1],
+        str,
+        str,
+        str,
+        int,
+        int,
+        int,
+    ],
+] = {}
+
+
 def _label_custody_payload(custody: SyntheticLabelEventCustodyV1) -> dict[str, object]:
     return dataclass_payload_v1(custody, exclude=("custody_hash",))
+
+
+def _attack_event_set_hash(events: tuple[IntervalV1, ...]) -> str:
+    return stable_hash_v1(
+        {
+            "artifact_type": "task039e3_r2r_synthetic_attack_event_set_v1",
+            "event_policy_hash": CORRECTED_EVENT_POLICY_HASH,
+            "interval_semantics": "HALF_OPEN_FILE_LOCAL_ONE_SECOND",
+            "events": [dataclass_payload_v1(item) for item in events],
+        }
+    )
+
+
+def _issue_label_custody(custody: SyntheticLabelEventCustodyV1) -> SyntheticLabelEventCustodyV1:
+    issued_id = id(custody)
+
+    def _discard(_reference: object, *, key: int = issued_id) -> None:
+        _ISSUED_LABEL_CUSTODIES.pop(key, None)
+
+    _ISSUED_LABEL_CUSTODIES[issued_id] = (
+        ref(custody, _discard),
+        custody.custody_hash,
+        custody.strict_label_vector_hash,
+        _attack_event_set_hash(custody.attack_events),
+        custody.physical_row_count,
+        custody.attack_labeled_seconds,
+        custody.normal_labeled_seconds,
+    )
+    return custody
 
 
 def build_synthetic_label_event_custody_v1(
@@ -186,12 +230,25 @@ def build_synthetic_label_event_custody_v1(
         CORRECTED_EVENT_POLICY_HASH,
         "",
     )
-    return replace(result, custody_hash=stable_hash_v1(_label_custody_payload(result)))
+    issued = replace(result, custody_hash=stable_hash_v1(_label_custody_payload(result)))
+    return _issue_label_custody(issued)
 
 
 def validate_synthetic_label_event_custody_v1(custody: SyntheticLabelEventCustodyV1) -> str:
     if type(custody) is not SyntheticLabelEventCustodyV1:
         _fail("METRIC_LABEL_CUSTODY_TYPE_REJECTED")
+    issuance = _ISSUED_LABEL_CUSTODIES.get(id(custody))
+    if (
+        issuance is None
+        or issuance[0]() is not custody
+        or issuance[1] != custody.custody_hash
+        or issuance[2] != custody.strict_label_vector_hash
+        or issuance[3] != _attack_event_set_hash(custody.attack_events)
+        or issuance[4] != custody.physical_row_count
+        or issuance[5] != custody.attack_labeled_seconds
+        or issuance[6] != custody.normal_labeled_seconds
+    ):
+        _fail("METRIC_LABEL_CUSTODY_FACTORY_CUSTODY_REJECTED")
     if (
         custody.execution_mode != SYNTHETIC_CONTRACT_ONLY
         or custody.synthetic_authority_identity != SYNTHETIC_AUTHORITY_IDENTITY
@@ -201,11 +258,15 @@ def validate_synthetic_label_event_custody_v1(custody: SyntheticLabelEventCustod
     strict_int_v1(custody.physical_row_count, "physical row count", minimum=0)
     strict_int_v1(custody.attack_labeled_seconds, "attack labeled seconds", minimum=0)
     strict_int_v1(custody.normal_labeled_seconds, "normal labeled seconds", minimum=0)
+    strict_sha256_v1(custody.strict_label_vector_hash, "strict label vector hash")
+    strict_sha256_v1(custody.custody_hash, "label custody hash")
     if custody.attack_labeled_seconds + custody.normal_labeled_seconds != custody.physical_row_count:
         _fail("METRIC_LABEL_CUSTODY_EXPOSURE_REJECTED")
     strict_tuple_v1(custody.attack_events, "attack events")
     if any(type(event) is not IntervalV1 for event in custody.attack_events):
         _fail("METRIC_ATTACK_EVENT_TYPE_REJECTED")
+    if any(event.end > custody.physical_row_count for event in custody.attack_events):
+        _fail("METRIC_ATTACK_EVENT_OUT_OF_RANGE")
     if sum(event.end - event.start for event in custody.attack_events) != custody.attack_labeled_seconds:
         _fail("METRIC_ATTACK_EVENT_EXPOSURE_REJECTED")
     if any(left.end >= right.start for left, right in zip(custody.attack_events, custody.attack_events[1:])):
@@ -232,6 +293,29 @@ class BoundMetricV1:
     metric_hash: str
 
 
+_ISSUED_BOUND_METRICS: dict[
+    int,
+    tuple[
+        ReferenceType[BoundMetricV1],
+        str,
+        str,
+        str,
+        str,
+        str,
+    ],
+] = {}
+
+_ALLOWED_METRIC_FORMULAS = {
+    "attack_event_recall": ATTACK_EVENT_RECALL_FORMULA,
+    "normal_false_alarm_rate_per_hour": NORMAL_FAR_FORMULA,
+}
+
+_UNDEFINED_REASONS = {
+    "attack_event_recall": "no_attack_events",
+    "normal_false_alarm_rate_per_hour": "no_normal_exposure",
+}
+
+
 def _metric_payload(metric: BoundMetricV1) -> dict[str, object]:
     return dataclass_payload_v1(metric, exclude=("metric_hash",))
 
@@ -247,6 +331,48 @@ def _episode_set_hash(episodes: tuple[IntervalV1, ...]) -> str:
     )
 
 
+def _validate_canonical_alarm_episodes_v1(
+    episodes: tuple[IntervalV1, ...],
+    *,
+    physical_row_count: int,
+) -> tuple[IntervalV1, ...]:
+    """Validate an already-formed canonical, maximal alarm episode tuple."""
+
+    strict_tuple_v1(episodes, "alarm episodes")
+    strict_int_v1(physical_row_count, "physical row count", minimum=0)
+    previous: IntervalV1 | None = None
+    for episode in episodes:
+        if type(episode) is not IntervalV1:
+            _fail("METRIC_ALARM_EPISODE_TYPE_REJECTED")
+        strict_int_v1(episode.start, "alarm episode start", minimum=0)
+        strict_int_v1(episode.end, "alarm episode end", minimum=0)
+        if episode.end <= episode.start:
+            _fail("METRIC_ALARM_EPISODE_EMPTY_OR_REVERSED")
+        if episode.end > physical_row_count:
+            _fail("METRIC_ALARM_EPISODE_OUT_OF_RANGE")
+        if previous is not None and previous.end >= episode.start:
+            _fail("METRIC_ALARM_EPISODE_NONCANONICAL")
+        previous = episode
+    return episodes
+
+
+def _issue_bound_metric(metric: BoundMetricV1) -> BoundMetricV1:
+    issued_id = id(metric)
+
+    def _discard(_reference: object, *, key: int = issued_id) -> None:
+        _ISSUED_BOUND_METRICS.pop(key, None)
+
+    _ISSUED_BOUND_METRICS[issued_id] = (
+        ref(metric, _discard),
+        metric.metric_hash,
+        metric.metric_name,
+        metric.formula_identity,
+        metric.label_custody_hash,
+        metric.alarm_episode_set_hash,
+    )
+    return metric
+
+
 def _build_bound_metric(
     *,
     metric_name: str,
@@ -256,7 +382,12 @@ def _build_bound_metric(
     undefined_reason: str,
     custody_hash: str,
     episodes: tuple[IntervalV1, ...],
+    issuance_token: object,
 ) -> BoundMetricV1:
+    if issuance_token is not _METRIC_ISSUANCE_TOKEN:
+        _fail("METRIC_BOUND_METRIC_ISSUANCE_REJECTED")
+    if _ALLOWED_METRIC_FORMULAS.get(metric_name) != formula_identity:
+        _fail("METRIC_BOUND_METRIC_SEMANTIC_AUTHORITY_REJECTED")
     strict_int_v1(numerator, "metric numerator", minimum=0)
     strict_float_v1(denominator, "metric denominator", nonnegative=True)
     if denominator == 0.0:
@@ -281,24 +412,47 @@ def _build_bound_metric(
         _episode_set_hash(episodes),
         "",
     )
-    return replace(result, metric_hash=stable_hash_v1(_metric_payload(result)))
+    issued = replace(result, metric_hash=stable_hash_v1(_metric_payload(result)))
+    return _issue_bound_metric(issued)
 
 
 def validate_bound_metric_v1(metric: BoundMetricV1) -> str:
     if type(metric) is not BoundMetricV1:
         _fail("METRIC_BOUND_METRIC_TYPE_REJECTED")
+    issuance = _ISSUED_BOUND_METRICS.get(id(metric))
+    if (
+        issuance is None
+        or issuance[0]() is not metric
+        or issuance[1] != metric.metric_hash
+        or issuance[2] != metric.metric_name
+        or issuance[3] != metric.formula_identity
+        or issuance[4] != metric.label_custody_hash
+        or issuance[5] != metric.alarm_episode_set_hash
+    ):
+        _fail("METRIC_BOUND_METRIC_FACTORY_CUSTODY_REJECTED")
     if metric.execution_mode != SYNTHETIC_CONTRACT_ONLY or metric.metric_policy_hash != CORRECTED_METRIC_POLICY_HASH:
         _fail("METRIC_BOUND_METRIC_AUTHORITY_REJECTED")
+    if _ALLOWED_METRIC_FORMULAS.get(metric.metric_name) != metric.formula_identity:
+        _fail("METRIC_BOUND_METRIC_SEMANTIC_AUTHORITY_REJECTED")
+    strict_sha256_v1(metric.label_custody_hash, "metric label custody hash")
+    strict_sha256_v1(metric.alarm_episode_set_hash, "metric alarm episode set hash")
+    strict_sha256_v1(metric.metric_hash, "metric hash")
     strict_int_v1(metric.numerator, "metric numerator", minimum=0)
     strict_float_v1(metric.denominator, "metric denominator", nonnegative=True)
+    strict_bool_v1(metric.defined, "metric defined")
     if metric.defined:
-        if type(metric.defined) is not bool or metric.undefined_reason is not None or metric.denominator == 0.0:
+        if metric.undefined_reason is not None or metric.denominator == 0.0:
             _fail("METRIC_BOUND_METRIC_STATE_REJECTED")
         observed = strict_float_v1(metric.value, "metric value")
         if not math.isclose(observed, metric.numerator / metric.denominator, rel_tol=0.0, abs_tol=1e-15):
             _fail("METRIC_BOUND_METRIC_VALUE_REJECTED")
-    elif type(metric.defined) is not bool or metric.value is not None or not metric.undefined_reason or metric.denominator != 0.0:
-        _fail("METRIC_BOUND_METRIC_STATE_REJECTED")
+    else:
+        if (
+            metric.value is not None
+            or metric.undefined_reason != _UNDEFINED_REASONS[metric.metric_name]
+            or metric.denominator != 0.0
+        ):
+            _fail("METRIC_BOUND_METRIC_STATE_REJECTED")
     expected = stable_hash_v1(_metric_payload(metric))
     if metric.metric_hash != expected:
         _fail("METRIC_BOUND_METRIC_HASH_REJECTED")
@@ -310,9 +464,10 @@ def attack_event_recall_v1(
     alarm_episodes: tuple[IntervalV1, ...],
 ) -> BoundMetricV1:
     validate_synthetic_label_event_custody_v1(custody)
-    strict_tuple_v1(alarm_episodes, "alarm episodes")
-    if any(type(item) is not IntervalV1 for item in alarm_episodes):
-        _fail("METRIC_ALARM_EPISODE_TYPE_REJECTED")
+    _validate_canonical_alarm_episodes_v1(
+        alarm_episodes,
+        physical_row_count=custody.physical_row_count,
+    )
     covered = sum(any(_overlap(event, alarm) for alarm in alarm_episodes) for event in custody.attack_events)
     return _build_bound_metric(
         metric_name="attack_event_recall",
@@ -322,6 +477,7 @@ def attack_event_recall_v1(
         undefined_reason="no_attack_events",
         custody_hash=custody.custody_hash,
         episodes=alarm_episodes,
+        issuance_token=_METRIC_ISSUANCE_TOKEN,
     )
 
 
@@ -330,9 +486,10 @@ def normal_far_episodes_per_hour_v1(
     alarm_episodes: tuple[IntervalV1, ...],
 ) -> BoundMetricV1:
     validate_synthetic_label_event_custody_v1(custody)
-    strict_tuple_v1(alarm_episodes, "alarm episodes")
-    if any(type(item) is not IntervalV1 for item in alarm_episodes):
-        _fail("METRIC_ALARM_EPISODE_TYPE_REJECTED")
+    _validate_canonical_alarm_episodes_v1(
+        alarm_episodes,
+        physical_row_count=custody.physical_row_count,
+    )
     false_alarms = sum(not any(_overlap(event, alarm) for event in custody.attack_events) for alarm in alarm_episodes)
     return _build_bound_metric(
         metric_name="normal_false_alarm_rate_per_hour",
@@ -342,6 +499,7 @@ def normal_far_episodes_per_hour_v1(
         undefined_reason="no_normal_exposure",
         custody_hash=custody.custody_hash,
         episodes=alarm_episodes,
+        issuance_token=_METRIC_ISSUANCE_TOKEN,
     )
 
 

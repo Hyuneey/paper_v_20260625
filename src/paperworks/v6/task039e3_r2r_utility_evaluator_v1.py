@@ -8,6 +8,7 @@ authority, HAI input, label, or detector object.
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
+import weakref
 
 from paperworks.v6.task039e3_r2r_utility_evaluator_authority_v1 import (
     EvaluatorAuthorityBundleV1,
@@ -61,11 +62,16 @@ EVALUATOR_PRODUCTION_MODULES = (
     "task039e3_r2r_utility_evaluator_metrics_v1.py",
     "task039e3_r2r_utility_evaluator_v1.py",
 )
+UTILITY_EVALUATOR_CONTROL_REVISION = "R1"
+ORIGINAL_EVALUATOR_IMPLEMENTATION_IDENTITY = (
+    "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330"
+)
 
 
 @dataclass(frozen=True)
 class EvaluatorImplementationAuthorityV1:
     evaluator_version: str
+    control_revision: str
     evaluator_authority_bundle_hash: str
     v4_authority_hash: str
     utility_portfolio: str
@@ -80,12 +86,42 @@ def _implementation_payload(value: EvaluatorImplementationAuthorityV1) -> dict[s
     return dataclass_payload_v1(value, exclude=("implementation_identity",))
 
 
-def build_evaluator_implementation_authority_v1(
-    bundle: EvaluatorAuthorityBundleV1,
+_ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES: dict[
+    int, tuple[weakref.ReferenceType[EvaluatorImplementationAuthorityV1], str, str]
+] = {}
+
+
+def _issue_evaluator_implementation_authority_v1(
+    authority: EvaluatorImplementationAuthorityV1,
 ) -> EvaluatorImplementationAuthorityV1:
-    bundle_hash = validate_evaluator_authority_bundle_v1(bundle)
+    """Record exact factory issuance and remove stale object-id entries."""
+
+    object_id = id(authority)
+
+    def cleanup(
+        dead_ref: weakref.ReferenceType[EvaluatorImplementationAuthorityV1],
+    ) -> None:
+        issued = _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES.get(object_id)
+        if issued is not None and issued[0] is dead_ref:
+            _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES.pop(object_id, None)
+
+    issued_ref = weakref.ref(authority, cleanup)
+    _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES[object_id] = (
+        issued_ref,
+        authority.implementation_identity,
+        authority.evaluator_authority_bundle_hash,
+    )
+    return authority
+
+
+def _build_expected_evaluator_implementation_authority_v1(
+    bundle_hash: str,
+) -> EvaluatorImplementationAuthorityV1:
+    """Pure semantic constructor; validation must never create issuance."""
+
     provisional = EvaluatorImplementationAuthorityV1(
         EVALUATOR_VERSION,
+        UTILITY_EVALUATOR_CONTROL_REVISION,
         bundle_hash,
         CANONICAL_V4_AUTHORITY_HASH,
         UTILITY_MAIN_PORTFOLIO,
@@ -101,15 +137,38 @@ def build_evaluator_implementation_authority_v1(
     )
 
 
+def build_evaluator_implementation_authority_v1(
+    bundle: EvaluatorAuthorityBundleV1,
+) -> EvaluatorImplementationAuthorityV1:
+    bundle_hash = validate_evaluator_authority_bundle_v1(bundle)
+    return _issue_evaluator_implementation_authority_v1(
+        _build_expected_evaluator_implementation_authority_v1(bundle_hash)
+    )
+
+
 def validate_evaluator_implementation_authority_v1(
     authority: EvaluatorImplementationAuthorityV1,
     bundle: EvaluatorAuthorityBundleV1,
 ) -> str:
     if type(authority) is not EvaluatorImplementationAuthorityV1:
         raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_AUTHORITY_TYPE_REJECTED")
-    expected = build_evaluator_implementation_authority_v1(bundle)
+    issued = _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES.get(id(authority))
+    if (
+        issued is None
+        or issued[0]() is not authority
+        or issued[1] != authority.implementation_identity
+        or issued[2] != authority.evaluator_authority_bundle_hash
+    ):
+        raise UtilityEvaluatorV1Error(
+            "EVALUATOR_IMPLEMENTATION_AUTHORITY_FACTORY_CUSTODY_REJECTED"
+        )
+    bundle_hash = validate_evaluator_authority_bundle_v1(bundle)
+    expected = _build_expected_evaluator_implementation_authority_v1(bundle_hash)
     if authority != expected:
         raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_AUTHORITY_REPLAY_REJECTED")
+    strict_str_v1(authority.control_revision, "evaluator control revision")
+    if authority.control_revision != UTILITY_EVALUATOR_CONTROL_REVISION:
+        raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_CONTROL_REVISION_REJECTED")
     strict_sha256_v1(authority.implementation_identity, "implementation identity")
     strict_bool_v1(
         authority.real_utility_execution_authorized,
@@ -241,6 +300,7 @@ def run_real_utility_evaluator_v1(
 def evaluator_claim_boundary_v1() -> dict[str, object]:
     return {
         "evaluator_version": EVALUATOR_VERSION,
+        "control_revision": UTILITY_EVALUATOR_CONTROL_REVISION,
         "implementation_ready_for_independent_audit": True,
         "real_utility_status": "NOT_EXECUTED",
         "real_utility_execution_authorized": False,
@@ -252,6 +312,8 @@ def evaluator_claim_boundary_v1() -> dict[str, object]:
 
 __all__ = [
     "EVALUATOR_PRODUCTION_MODULES",
+    "UTILITY_EVALUATOR_CONTROL_REVISION",
+    "ORIGINAL_EVALUATOR_IMPLEMENTATION_IDENTITY",
     "EvaluatorImplementationAuthorityV1",
     "SyntheticEvaluatorRunV1",
     "build_evaluator_implementation_authority_v1",

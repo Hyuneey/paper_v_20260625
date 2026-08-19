@@ -86,12 +86,16 @@ def _row_payload_v1(
     timestamp_second: int,
     feature_values: tuple[tuple[str, float], ...],
 ) -> dict[str, object]:
+    validated_feature_values = tuple(
+        _validate_feature_pair_v1(pair) for pair in feature_values
+    )
     return {
         "artifact_type": "task039e3_r2r_utility_evaluator_v1_synthetic_feature_row",
         "dataset_manifest_identity": dataset_manifest_identity,
         "execution_mode": SYNTHETIC_CONTRACT_ONLY,
         "feature_values": [
-            {"feature": feature, "value": value} for feature, value in feature_values
+            {"feature": feature, "value": value}
+            for feature, value in validated_feature_values
         ],
         "physical_row_index": physical_row_index,
         "source_file_identity": source_file_identity,
@@ -99,6 +103,16 @@ def _row_payload_v1(
         "synthetic_authority_identity": SYNTHETIC_AUTHORITY_IDENTITY,
         "timestamp_second": timestamp_second,
     }
+
+
+def _validate_feature_pair_v1(pair: object) -> tuple[str, float]:
+    """Reject widened feature pairs before destructuring or hash replay."""
+
+    if type(pair) is not tuple or len(pair) != 2:
+        raise UtilityEvaluatorV1Error("SYNTHETIC_FEATURE_PAIR_CONTAINER_INVALID")
+    feature = strict_str_v1(pair[0], "feature")
+    value = strict_float_v1(pair[1], f"feature[{feature}]")
+    return feature, value
 
 
 def _frame_payload_v1(frame: SyntheticFeatureFrameV1) -> dict[str, object]:
@@ -230,11 +244,11 @@ def validate_synthetic_feature_frame_v1(
             raise UtilityEvaluatorV1Error("SYNTHETIC_TIMESTAMP_COORDINATE_INVALID")
         if type(row.feature_values) is not tuple:
             raise UtilityEvaluatorV1Error("SYNTHETIC_FEATURE_CONTAINER_INVALID")
-        if tuple(feature for feature, _ in row.feature_values) != frame.ordered_features:
+        validated_feature_values = tuple(
+            _validate_feature_pair_v1(pair) for pair in row.feature_values
+        )
+        if tuple(feature for feature, _ in validated_feature_values) != frame.ordered_features:
             raise UtilityEvaluatorV1Error("SYNTHETIC_FEATURE_ORDER_INVALID")
-        for feature, value in row.feature_values:
-            strict_str_v1(feature, "feature")
-            strict_float_v1(value, f"feature[{feature}]")
         expected_row_hash = stable_hash_v1(
             _row_payload_v1(
                 dataset_manifest_identity=frame.dataset_manifest_identity,
@@ -242,7 +256,7 @@ def validate_synthetic_feature_frame_v1(
                 source_file_identity=frame.source_file_identity,
                 physical_row_index=row.physical_row_index,
                 timestamp_second=row.timestamp_second,
-                feature_values=row.feature_values,
+                feature_values=validated_feature_values,
             )
         )
         if row.row_identity != expected_row_hash:

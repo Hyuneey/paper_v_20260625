@@ -156,10 +156,32 @@ class EvaluatorAuthorityBundleV1:
         return {**self._payload(), "bundle_hash": self.bundle_hash}
 
 
-def build_evaluator_authority_bundle_v1(
+_ISSUED_EVALUATOR_AUTHORITY_BUNDLES: dict[
+    int, tuple[weakref.ReferenceType[EvaluatorAuthorityBundleV1], str]
+] = {}
+
+
+def _issue_evaluator_authority_bundle_v1(
+    bundle: EvaluatorAuthorityBundleV1,
+) -> EvaluatorAuthorityBundleV1:
+    """Record exact process-local factory custody without retaining the object."""
+
+    object_id = id(bundle)
+
+    def cleanup(dead_ref: weakref.ReferenceType[EvaluatorAuthorityBundleV1]) -> None:
+        issued = _ISSUED_EVALUATOR_AUTHORITY_BUNDLES.get(object_id)
+        if issued is not None and issued[0] is dead_ref:
+            _ISSUED_EVALUATOR_AUTHORITY_BUNDLES.pop(object_id, None)
+
+    issued_ref = weakref.ref(bundle, cleanup)
+    _ISSUED_EVALUATOR_AUTHORITY_BUNDLES[object_id] = (issued_ref, bundle.bundle_hash)
+    return bundle
+
+
+def _build_expected_evaluator_authority_bundle_v1(
     v4_authority: v4.UtilityProtocolV4CanonicalAuthority,
 ) -> EvaluatorAuthorityBundleV1:
-    """Build only from an exact replay-validated current V4 R1 authority."""
+    """Pure semantic replay constructor; it deliberately grants no custody."""
 
     try:
         v4.validate_utility_protocol_v4_authority(v4_authority)
@@ -219,10 +241,27 @@ def build_evaluator_authority_bundle_v1(
     )
 
 
+def build_evaluator_authority_bundle_v1(
+    v4_authority: v4.UtilityProtocolV4CanonicalAuthority,
+) -> EvaluatorAuthorityBundleV1:
+    """Issue an authoritative bundle from an exact current V4 R1 replay."""
+
+    return _issue_evaluator_authority_bundle_v1(
+        _build_expected_evaluator_authority_bundle_v1(v4_authority)
+    )
+
+
 def validate_evaluator_authority_bundle_v1(bundle: EvaluatorAuthorityBundleV1) -> str:
     if type(bundle) is not EvaluatorAuthorityBundleV1:
         raise UtilityEvaluatorV1Error("EVALUATOR_AUTHORITY_BUNDLE_TYPE_REJECTED")
-    expected = build_evaluator_authority_bundle_v1(bundle.v4_authority)
+    issued = _ISSUED_EVALUATOR_AUTHORITY_BUNDLES.get(id(bundle))
+    if (
+        issued is None
+        or issued[0]() is not bundle
+        or issued[1] != bundle.bundle_hash
+    ):
+        raise UtilityEvaluatorV1Error("EVALUATOR_AUTHORITY_BUNDLE_FACTORY_CUSTODY_REJECTED")
+    expected = _build_expected_evaluator_authority_bundle_v1(bundle.v4_authority)
     if bundle != expected or bundle.to_public_dict() != expected.to_public_dict():
         raise UtilityEvaluatorV1Error("EVALUATOR_AUTHORITY_BUNDLE_REPLAY_REJECTED")
     return bundle.bundle_hash
