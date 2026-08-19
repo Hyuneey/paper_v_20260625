@@ -1380,6 +1380,8 @@ def validate_public_receipt_v1(
         or validation_counts != expected_counts
         or type(construction_provenance) is not dict
         or set(construction_provenance) != CONSTRUCTION_PROVENANCE_ALLOWED_KEYS_V1
+        or type(construction_provenance.get("scientific_result_evaluable")) is not bool
+        or construction_provenance.get("scientific_result_evaluable") is not True
         or construction_provenance != expected_provenance
         or type(normal_identities) is not list
         or len(normal_identities) != 2
