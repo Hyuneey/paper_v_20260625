@@ -1,0 +1,29 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_side_effect_audit",
+  "schema_version": "1.0.0",
+  "status": "NOT_RUN_AFTER_EARLIER_BLOCKER",
+  "dynamic_side_effect_attacks": 0,
+  "unauthorized_side_effects_observed": 0,
+  "actual_access_counters": {
+    "main_private_registry_reads": 0,
+    "supplement_private_registry_reads": 0,
+    "private_locator_reads": 0,
+    "hai_train1_reads": 0,
+    "hai_train2_reads": 0,
+    "hai_train3_reads": 0,
+    "hai_train4_reads": 0,
+    "hai_test1_reads": 0,
+    "hai_test2_reads": 0,
+    "label_reads": 0,
+    "attack_interval_reads": 0,
+    "real_utility_computations": 0,
+    "detector_executions": 0,
+    "provider_calls": 0,
+    "scientific_llm_calls": 0,
+    "api_key_access": false,
+    "network_requests": 0
+  },
+  "numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "artifact_hash": "8831c486f3faa57b2c8a214dd1d8da1d1af5b88e8ee2dd4e9ea90d4231589197"
+}

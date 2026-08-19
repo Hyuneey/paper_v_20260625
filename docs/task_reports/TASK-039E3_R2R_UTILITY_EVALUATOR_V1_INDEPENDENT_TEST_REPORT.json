@@ -1,0 +1,28 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_test_report",
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "audit_commit_a": "db0911324ab0fed9e2e5ab586714c5860cf11143",
+  "independent_suites": {
+    "authority": {"test_methods": 2, "accepted_invalid_subcases": 6, "result": "FAIL_AS_BLOCKER_EVIDENCE"},
+    "input_census": {"test_methods": 1, "accepted_invalid_subcases": 1, "result": "FAIL_AS_BLOCKER_EVIDENCE"},
+    "metric_artifact": {"test_methods": 5, "passed": 2, "accepted_invalid_subcases": 3, "result": "FAIL_AS_BLOCKER_EVIDENCE"},
+    "rule_state": {"result": "NOT_RUN_AFTER_BLOCKER"},
+    "side_effect_access": {"result": "NOT_RUN_AFTER_BLOCKER"}
+  },
+  "raw_independent_attacks": 32,
+  "unique_semantic_attack_classes": 28,
+  "rejected_invalid_cases": 22,
+  "accepted_invalid_cases": 10,
+  "implementation_regression": "NOT_RUN_AFTER_BLOCKER",
+  "v4_r1_remediation_regression": "NOT_RUN_AFTER_BLOCKER",
+  "v4_r1_focused_reaudit_regression": "NOT_RUN_AFTER_BLOCKER",
+  "v4_implementation_regression": "NOT_RUN_AFTER_BLOCKER",
+  "normal_only_regression": "NOT_RUN_AFTER_BLOCKER",
+  "supplement_focused_regression": "NOT_RUN_AFTER_BLOCKER",
+  "supplement_independent_regression": "NOT_RUN_AFTER_BLOCKER",
+  "compileall": "PASS",
+  "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+  "git_diff_check": "PASS",
+  "artifact_hash": "5eb0db099055ec7c75def4d32d69e821532b19ec4921d757c8902339ddf60544"
+}

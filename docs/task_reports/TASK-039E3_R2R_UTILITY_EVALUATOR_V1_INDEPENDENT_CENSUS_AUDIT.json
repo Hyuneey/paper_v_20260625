@@ -1,0 +1,33 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_census_audit",
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "lower_source_universe": {
+    "main_sources": 9,
+    "supplement_sources": 3,
+    "total_sources": 12,
+    "supplement_identities": ["P1_FCV02Z", "P1_PCV02Z", "P1_PP04"]
+  },
+  "frozen_event_semantics": {
+    "source_pre_window_seconds": 5,
+    "source_post_window_seconds": 5,
+    "minimum_stability_fraction": 0.8,
+    "source_refractory_seconds": 10,
+    "cross_source_isolation_radius_seconds": 2,
+    "clustering": "single_link_within_refractory_window",
+    "retention": "largest_absolute_step_amplitude_then_earliest_physical_index"
+  },
+  "all_twelve_source_isolation_static_replay": "PASS",
+  "supplement_events_extend_common_relations": false,
+  "caller_census_controls_present": false,
+  "input_schema_attacks": 1,
+  "accepted_input_schema_attacks": 1,
+  "accepted_mutation": "INNER_FEATURE_VALUE_PAIR_TUPLE_TO_LIST_WITH_HASH_PRESERVED",
+  "census_isolation_dynamic_attacks": "NOT_RUN_AFTER_BLOCKER",
+  "opportunity_dynamic_attacks": "NOT_RUN_AFTER_BLOCKER",
+  "blockers": [
+    "BLOCKER_EVALUATOR_V1_SYNTHETIC_FEATURE_PAIR_CONTAINER_WIDENING_ACCEPTED"
+  ],
+  "real_data_accesses": 0,
+  "artifact_hash": "8ab6e51e8bf302d09c1fb06b70c69b0e676952f3a4a749459328ca2ca1284371"
+}

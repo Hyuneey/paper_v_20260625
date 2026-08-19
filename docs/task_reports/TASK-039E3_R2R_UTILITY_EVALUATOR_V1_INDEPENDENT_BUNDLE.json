@@ -1,0 +1,35 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_bundle",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_evaluator_v1_independent_audit",
+  "frozen_base": "a12c41cc1a04fffe9c74d7d0ee607a7061e982bb",
+  "evaluator_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "evaluator_freeze_commit_b": "a12c41cc1a04fffe9c74d7d0ee607a7061e982bb",
+  "audit_commit_a": "db0911324ab0fed9e2e5ab586714c5860cf11143",
+  "component_artifacts": {
+    "independent_audit": "e52b2aad01ca879b290dd839edff510fa3a13cdf897edfc074aba695d291ee45",
+    "authority_audit": "741cd7effb5718700608a72f8f416f8eacfe4f55662f7e1b5025dbeefde109ec",
+    "census_audit": "8ab6e51e8bf302d09c1fb06b70c69b0e676952f3a4a749459328ca2ca1284371",
+    "rule_state_audit": "be57854299643ae27c06eb4121197a9b4b5f21ff3e9a4f5dcaaa0952d8ac4f5b",
+    "metric_artifact_audit": "2eb8b3bd34069d5586f7a0eeea11107b32287e2abd77cdec9c406d42a1bc1e64",
+    "side_effect_audit": "8831c486f3faa57b2c8a214dd1d8da1d1af5b88e8ee2dd4e9ea90d4231589197",
+    "test_report": "5eb0db099055ec7c75def4d32d69e821532b19ec4921d757c8902339ddf60544",
+    "readiness": "5097d6c10d67c637d46c25fae4ca4496201eef10f88f1242fed59b79cba15f61"
+  },
+  "evaluator_source_hashes": [
+    {"file": "task039e3_r2r_utility_evaluator_types_v1.py", "git_blob": "47deeccc1347902c3de4a2beb4b592f1176316dc", "raw_sha256": "b869222947e1f7fa983f6595225e71161942bfeb26fd77168a6c1ae5e10f9864"},
+    {"file": "task039e3_r2r_utility_evaluator_authority_v1.py", "git_blob": "9f5e19ecb1bf2906a10fce035621232297861b1f", "raw_sha256": "97e7eb21689c2707c62848d0ea1aeb75cbdb1a77ea4b53d096f2b68561999cf5"},
+    {"file": "task039e3_r2r_utility_evaluator_input_v1.py", "git_blob": "134638e0f36a1ce4351ee530f3b494f5fff234cf", "raw_sha256": "4ab2e3677392d24425081bed3d639c2c21c7f4df49b83cb67e2f5f1b5b2843d7"},
+    {"file": "task039e3_r2r_utility_evaluator_census_v1.py", "git_blob": "95638ddebde017dc2436bb99f691875d16172bfa", "raw_sha256": "0b52d44472182f9bcadd85667773ed17d82ecb7ecaca678ae80437d9e67801f1"},
+    {"file": "task039e3_r2r_utility_evaluator_rule_engine_v1.py", "git_blob": "446765531eba68bf5dd67ec0c36d2813c5d0a50a", "raw_sha256": "e9ca811b609ddc253f0298f38a6fdfe003400697a3c2a651a4ff934d81ea1849"},
+    {"file": "task039e3_r2r_utility_evaluator_metrics_v1.py", "git_blob": "4f80fdda8d48d8a4a93787c4636ec39226f796cf", "raw_sha256": "c5b864b5b3a25b435e18b7c00495324143a0cc91e526389ba064cec5b25b7689"},
+    {"file": "task039e3_r2r_utility_evaluator_v1.py", "git_blob": "5fc5f93e93024c9447951baf152fee20cfd6c046", "raw_sha256": "d47c6274cee8073e3e3640a07a0881fd49a2a4690e4193b53a53f3b5001e7221"}
+  ],
+  "accepted_invalid_cases": 10,
+  "blocking_findings": 6,
+  "production_modified": false,
+  "implementation_tests_modified": false,
+  "real_access_total": 0,
+  "real_utility_status": "NOT_EXECUTED",
+  "artifact_hash": "8c539c74aba870adda3baf85a99ff9dfa093d49e577e8e4d06f89823eb1c8422"
+}

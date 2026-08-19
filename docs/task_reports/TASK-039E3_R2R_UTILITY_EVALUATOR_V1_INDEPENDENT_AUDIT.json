@@ -1,0 +1,44 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_audit",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_evaluator_v1_independent_audit",
+  "frozen_base": "a12c41cc1a04fffe9c74d7d0ee607a7061e982bb",
+  "evaluator_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "evaluator_freeze_commit_b": "a12c41cc1a04fffe9c74d7d0ee607a7061e982bb",
+  "audit_commit_a": "db0911324ab0fed9e2e5ab586714c5860cf11143",
+  "evaluator_implementation_identity": "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330",
+  "frozen_source_hashes_exact": true,
+  "implementation_tests_unchanged": true,
+  "commit_b_reports_only": true,
+  "lower_authority_replay": {
+    "v4_r1_authority": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+    "authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+    "common_relations": 42,
+    "t2_authorized": false,
+    "main_references": 420,
+    "supplement_references": 6,
+    "source_census": 12
+  },
+  "independent_attack_summary": {
+    "raw_cases": 32,
+    "unique_semantic_classes": 28,
+    "rejected_invalid_cases": 22,
+    "accepted_invalid_cases": 10,
+    "pass_threshold_accepted_invalid": 0
+  },
+  "blocking_findings": [
+    "BLOCKER_EVALUATOR_AUTHORITY_BUNDLE_CALLER_RECONSTRUCTION_ACCEPTED",
+    "BLOCKER_EVALUATOR_IMPLEMENTATION_AUTHORITY_CALLER_RECONSTRUCTION_ACCEPTED",
+    "BLOCKER_EVALUATOR_V1_SYNTHETIC_FEATURE_PAIR_CONTAINER_WIDENING_ACCEPTED",
+    "BLOCKER_EVALUATOR_LABEL_CUSTODY_SELF_REHASH_REPLAY_BYPASS",
+    "BLOCKER_EVALUATOR_FAR_DUPLICATE_EPISODE_INJECTION",
+    "BLOCKER_EVALUATOR_BOUND_METRIC_SELF_REHASH_REPLAY_BYPASS"
+  ],
+  "halt_stage": "INDEPENDENT_METRIC_AND_CUSTODY_ATTACKS",
+  "production_remediation_performed": false,
+  "real_utility_status": "NOT_EXECUTED",
+  "actual_private_or_scientific_accesses": 0,
+  "numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "artifact_hash": "e52b2aad01ca879b290dd839edff510fa3a13cdf897edfc074aba695d291ee45"
+}

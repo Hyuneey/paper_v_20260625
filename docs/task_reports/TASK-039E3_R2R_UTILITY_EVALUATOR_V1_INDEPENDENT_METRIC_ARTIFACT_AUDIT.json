@@ -1,0 +1,35 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_metric_artifact_audit",
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "independent_oracles": {
+    "alarm_episode_oracle_unmutated": "PASS",
+    "attack_event_oracle_unmutated": "PASS",
+    "attack_event_recall_oracle_unmutated": "PASS",
+    "normal_far_oracle_unmutated": "PASS",
+    "interval_semantics": "HALF_OPEN_FILE_LOCAL_ONE_SECOND",
+    "zero_denominator": "UNDEFINED"
+  },
+  "semantic_attacks": 3,
+  "rejected_invalid": 0,
+  "accepted_invalid": 3,
+  "accepted_findings": [
+    {
+      "code": "BLOCKER_EVALUATOR_LABEL_CUSTODY_SELF_REHASH_REPLAY_BYPASS",
+      "observed": "SEMANTICALLY_RELOCATED_ATTACK_INTERVALS_ACCEPTED_AFTER_SELF_REHASH"
+    },
+    {
+      "code": "BLOCKER_EVALUATOR_FAR_DUPLICATE_EPISODE_INJECTION",
+      "observed": "DUPLICATE_ALARM_EPISODES_COUNTED_MORE_THAN_ONCE"
+    },
+    {
+      "code": "BLOCKER_EVALUATOR_BOUND_METRIC_SELF_REHASH_REPLAY_BYPASS",
+      "observed": "SUBSTITUTED_METRIC_FORMULA_CUSTODY_AND_ARITHMETIC_ACCEPTED_AFTER_SELF_REHASH"
+    }
+  ],
+  "rule_prediction_artifact_static_issuance_review": "FACTORY_CUSTODY_PRESENT",
+  "scientific_rule_artifact_validator_static_review": "FAIL_CLOSED",
+  "artifact_d1_d2_dynamic_attacks": "NOT_RUN_AFTER_BLOCKER",
+  "real_label_or_metric_accesses": 0,
+  "artifact_hash": "2eb8b3bd34069d5586f7a0eeea11107b32287e2abd77cdec9c406d42a1bc1e64"
+}

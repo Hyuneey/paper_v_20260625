@@ -1,0 +1,12 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_rule_state_audit",
+  "schema_version": "1.0.0",
+  "status": "NOT_RUN_AFTER_EARLIER_BLOCKER",
+  "dynamic_rule_state_attacks": 0,
+  "accepted_rule_state_forgeries": null,
+  "malformed_to_abstain_bypass": null,
+  "reason": "MANDATORY_STOP_AFTER_ACCEPTED_AUTHORITY_INPUT_AND_METRIC_MUTATIONS",
+  "production_modified": false,
+  "real_data_accesses": 0,
+  "artifact_hash": "be57854299643ae27c06eb4121197a9b4b5f21ff3e9a4f5dcaaa0952d8ac4f5b"
+}

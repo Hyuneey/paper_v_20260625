@@ -1,0 +1,32 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_independent_authority_audit",
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+  "v4_r1_authority": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "main_descriptor": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+  "main_reference_set": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+  "supplement_descriptor": "d45af926511c669ec04dd13c36823d454b67ccaa98ae0a7be2919b02652bd927",
+  "supplement_reference_set": "5139cae6e454318f0ca4317f3f5eaa5f775bd4f75261c4110ea610815929b580",
+  "combined_census_contract": "cb53d0e4533ebadb61edbdc72b549fe47b46c8dcc4621841aac93a007660ced9",
+  "raw_attacks": 28,
+  "semantic_substitutions_rejected": 22,
+  "caller_reconstruction_attacks": 6,
+  "caller_reconstruction_accepted": 6,
+  "accepted_mechanisms": [
+    "exact_bundle_reconstruction",
+    "bundle_deepcopy",
+    "bundle_noop_replace",
+    "exact_implementation_authority_reconstruction",
+    "implementation_authority_deepcopy",
+    "implementation_authority_noop_replace"
+  ],
+  "synthetic_resolver_factory_custody_present": true,
+  "real_resolver_static_fail_before_path_inspection": true,
+  "private_files_opened": 0,
+  "blockers": [
+    "BLOCKER_EVALUATOR_AUTHORITY_BUNDLE_CALLER_RECONSTRUCTION_ACCEPTED",
+    "BLOCKER_EVALUATOR_IMPLEMENTATION_AUTHORITY_CALLER_RECONSTRUCTION_ACCEPTED"
+  ],
+  "artifact_hash": "741cd7effb5718700608a72f8f416f8eacfe4f55662f7e1b5025dbeefde109ec"
+}
