@@ -1,0 +1,33 @@
+{
+  "artifact_hash": "abac61c47b63390ca7ebeb1ba07cecd056bc34b921e6168ca7a887047bc53afb",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_remediation_r1_test_report",
+  "schema_version": "1.0.0",
+  "synthetic_only": true,
+  "suites": {
+    "original_v1_synthetic": {"passed": 24, "failed": 0, "result": "PASS"},
+    "unchanged_independent_audit": {"passed": 28, "failed": 0, "result": "PASS"},
+    "r1_focused_remediation": {"passed": 10, "failed": 0, "result": "PASS"},
+    "compileall": {"result": "PASS"},
+    "pip_check": {"result": "PASS", "detail": "No broken requirements found."},
+    "git_diff_check": {"result": "PASS"}
+  },
+  "mutation_coverage": {
+    "common_semantic_fields_rejected": 7,
+    "pre_value_output_cases_rejected": 5,
+    "value_reads_across_preflight_failures": 0,
+    "self_consistent_authorization_mutations_rejected": 7,
+    "unknown_receipt_fields_rejected": 6,
+    "inside_git_locator_copy_rejected": true,
+    "locator_receipt_builder_mismatch_rejected": true
+  },
+  "commands": [
+    "python -m unittest tests.test_task039e3_r2r_utility_normal_only_authority_v1 -v",
+    "python -m unittest tests.test_task039e3_r2r_utility_normal_only_authority_v1_independent_science_audit tests.test_task039e3_r2r_utility_normal_only_authority_v1_independent_identity_audit tests.test_task039e3_r2r_utility_normal_only_authority_v1_independent_custody_audit -v",
+    "python -m unittest tests.test_task039e3_r2r_utility_normal_only_authority_v1_remediation_r1 -v",
+    "python -m compileall -q src/paperworks/v6 focused_test_paths",
+    "python -m pip check",
+    "git diff --check"
+  ],
+  "real_data_accessed": false,
+  "provider_or_key_accessed": false
+}

@@ -1,0 +1,36 @@
+{
+  "artifact_hash": "e0dc5ec7dcc4b84c5e97b69475889403cfe65b684533ad1f2322e94867d72bfc",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_remediation_r1_freeze",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_PENDING_FOCUSED_INDEPENDENT_REAUDIT",
+  "original_v1_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+  "blocked_independent_audit_commit_a": "8fdd30d57edfb824956662887453f4620fe200c3",
+  "blocked_independent_audit_commit_b": "f0cf820212305862f6418f50fc0296160b982d1b",
+  "blocked_findings": [
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_COMMON_RELATION_AUTHORITY_REPLAY_BYPASS",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PRIVATE_LOCATOR_PRECHECK_AFTER_VALUE_PARSE",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_BUILDER_COMMIT_CALLER_AUTHORITY",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PUBLIC_RECEIPT_OPEN_SCHEMA_LEAKAGE",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_FINAL_LOCATOR_PATH_NOT_REVALIDATED",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_LOCATOR_RECEIPT_BUILDER_COMMIT_NOT_CROSS_BOUND"
+  ],
+  "remediation_source": {
+    "path": "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py",
+    "git_blob": "a72cb75f30f5f0c96b507f6ea49402d909ab7c31",
+    "raw_sha256": "0df865a1e07110514f28461e66f0a9a1d05a92ffaea61687dd0e5a2e1ddba65b"
+  },
+  "focused_test_source": {
+    "path": "tests/test_task039e3_r2r_utility_normal_only_authority_v1_remediation_r1.py",
+    "git_blob": "dbcac03d247cbac5739b0822c33515bf76f63093",
+    "raw_sha256": "aec532e9e0a031938681bafb32ebfed18abf240716ef616bd5bdfb0cc67ae2b5"
+  },
+  "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+  "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+  "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+  "common_relation_count": 42,
+  "utility_numeric_reference_count": 420,
+  "scientific_change": false,
+  "execution_control_revision": "R1",
+  "materialization_authorized": false,
+  "audit_required": true
+}

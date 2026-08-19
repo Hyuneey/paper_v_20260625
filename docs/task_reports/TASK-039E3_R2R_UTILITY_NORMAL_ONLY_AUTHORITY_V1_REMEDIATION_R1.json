@@ -1,0 +1,44 @@
+{
+  "artifact_hash": "949773f0d3e6fb574151764999af394e523cc9346835f2ab04ee2daf71fd4392",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_remediation_r1",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_bounded_remediation_r1",
+  "base_commit": "f0cf820212305862f6418f50fc0296160b982d1b",
+  "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+  "execution_control_revision": "R1",
+  "scientific_change": false,
+  "blocker_closures": {
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_COMMON_RELATION_AUTHORITY_REPLAY_BYPASS": "CLOSED_CANONICAL_42_RELATION_420_REFERENCE_REPLAY",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PRIVATE_LOCATOR_PRECHECK_AFTER_VALUE_PARSE": "CLOSED_OUTPUT_PREFLIGHT_BEFORE_VALUE_READ",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_BUILDER_COMMIT_CALLER_AUTHORITY": "CLOSED_FROZEN_SCIENTIFIC_COMMIT_AND_PENDING_R1_AUTHORIZATION",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PUBLIC_RECEIPT_OPEN_SCHEMA_LEAKAGE": "CLOSED_EXACT_RECURSIVE_SCHEMA",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_FINAL_LOCATOR_PATH_NOT_REVALIDATED": "CLOSED_FILE_PATH_OUTSIDE_GIT_REVALIDATION",
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_LOCATOR_RECEIPT_BUILDER_COMMIT_NOT_CROSS_BOUND": "CLOSED_CONTROL_IDENTITY_CROSS_BINDING"
+  },
+  "scientific_invariants": {
+    "common_relations": 42,
+    "utility_numeric_references": 420,
+    "historical_bindings": 462,
+    "excluded_role": "selected_delay_horizon_seconds",
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "train1_sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+    "train2_sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+    "t2_utility_scope_authorized": false,
+    "historical_e1_identity_restored": false,
+    "historical_numeric_identity_restored": false
+  },
+  "access_counters": {
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "hai_labels_accessed": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0,
+    "real_authority_materialized": false
+  },
+  "remaining_blockers": [],
+  "next_gate": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-R1-FOCUSED-INDEPENDENT-REAUDIT"
+}
