@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "e0d9975a4027cc08140b3b8fd1027580a6668c17eee967553ce604f303e63c36",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_r1_boolean_schema_closure",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_r1_boolean_schema_microclosure",
+  "base_commit": "9a9b80fcadb134787cb28b7253dac3ee6fa2e5ad",
+  "micro_remediation_commit_a": "625d95375097213553928242546c5b04263326c0",
+  "micro_reaudit_commit_b": "399f6ca98e2f8e4e2f07e49cadf9ac277883b2a4",
+  "blocked_focused_reaudit_receipt": "bded1ced761ddf813fba2099e27486ca9eeb69bdedeff294dc3d0eac04efaf4b",
+  "closed_blocker": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PUBLIC_RECEIPT_OPEN_SCHEMA_LEAKAGE",
+  "historical_attacks": {
+    "scientific_result_evaluable_integer_1": "REJECTED",
+    "scientific_result_evaluable_float_1_0": "REJECTED"
+  },
+  "boolean_schema": {
+    "canonical_true": "ACCEPTED",
+    "noncanonical_mutations_rejected": 14,
+    "public_receipt_boolean_fields_inspected": 6,
+    "public_receipt_integer_fields_inspected": 13,
+    "bool_as_int_bypasses": 0,
+    "unknown_top_level_fields_rejected": true,
+    "unknown_nested_fields_rejected": true
+  },
+  "previous_closed_blockers": {
+    "common_authority_replay": "CLOSED",
+    "pre_value_locator_output_preflight": "CLOSED",
+    "caller_selected_builder_authority": "CLOSED",
+    "locator_file_path_validation": "CLOSED",
+    "builder_control_cross_binding": "CLOSED"
+  },
+  "scientific_invariants": {
+    "common_accepted": 42,
+    "common_no_rule": 0,
+    "utility_references": 420,
+    "historical_bindings": 462,
+    "excluded_role": "selected_delay_horizon_seconds",
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "train1_sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+    "train2_sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+    "t2_utility_authorized": false
+  },
+  "remaining_blockers": [],
+  "access_counters": {
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "hai_labels_accessed": 0,
+    "attack_intervals_accessed": 0,
+    "real_authority_materialized": false,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "artifact_hash": "a13e10b34d69f98261b789a70b846df5c7ea659fed9629d0db0a988d8885fbc5",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_r1_boolean_schema_test_report",
+  "schema_version": "1.0.0",
+  "synthetic_only": true,
+  "suites": {
+    "boolean_microfix": {"passed": 4, "failed": 0, "result": "PASS"},
+    "independent_boolean_micro_reaudit": {"passed": 5, "failed": 0, "result": "PASS"},
+    "focused_r1_reaudit": {"passed": 9, "failed": 0, "result": "PASS"},
+    "original_v1": {"passed": 24, "failed": 0, "result": "PASS"},
+    "prior_independent_audit": {"passed": 28, "failed": 0, "result": "PASS"},
+    "r1_remediation": {"passed": 10, "failed": 0, "result": "PASS"},
+    "compileall": {"result": "PASS"},
+    "pip_check": {"result": "PASS", "detail": "No broken requirements found."},
+    "git_diff_check": {"result": "PASS"}
+  },
+  "mutation_results": {
+    "canonical_true_accepted": true,
+    "section_5_noncanonical_values_rejected": 14,
+    "historical_integer_1_rejected": true,
+    "historical_float_1_0_rejected": true,
+    "receipt_boolean_positions": 6,
+    "receipt_integer_positions": 13,
+    "bool_as_int_rejections": 26,
+    "unknown_object_layers_rejected": 5
+  },
+  "sources": {
+    "microfix_test_git_blob": "2df6ea4a1141c2349b293bc5cfcbc1047541ba3b",
+    "microfix_test_raw_sha256": "f9e243d7ac2cbc811726bdcbfcafc94394df742dfc590e2becb1ffc3225839d2",
+    "independent_test_git_blob": "beebf4f08551ba7a3b636dff3027999f6b14f2b5",
+    "independent_test_raw_sha256": "b9d98d7574f2125b30b9f2a7622aebf7df5284da47d234acdafd19f524e3c193"
+  },
+  "real_data_accessed": false,
+  "provider_or_key_accessed": false
+}

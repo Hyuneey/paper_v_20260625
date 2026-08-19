@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "7ae964275b5970dcc49e5287d823ebc09d7dc464c81d5ea28c91ee78e6dc62c3",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_r1_boolean_schema_bundle",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "base_commit": "9a9b80fcadb134787cb28b7253dac3ee6fa2e5ad",
+  "micro_remediation_commit_a": "625d95375097213553928242546c5b04263326c0",
+  "micro_reaudit_commit_b": "399f6ca98e2f8e4e2f07e49cadf9ac277883b2a4",
+  "component_hashes": {
+    "closure": "e0d9975a4027cc08140b3b8fd1027580a6668c17eee967553ce604f303e63c36",
+    "test_report": "a13e10b34d69f98261b789a70b846df5c7ea659fed9629d0db0a988d8885fbc5",
+    "readiness": "fd50592f64742199042bce9ae0ee527b92a403482f04ef6aad220493fb928e50",
+    "report_raw_sha256": "63cff94c46eb989ac8cb867ecdfc29440f3b2e8e69c91e036f90cb91719634f9"
+  },
+  "production_source_git_blob": "879d274920e6fed721413eb8b03e1ed86f156cb4",
+  "production_source_raw_sha256": "2a469fb70c81cc4496be98abd89eb2acb66d47f3b87f696f48810d38c55e2729",
+  "remaining_blockers": 0
+}
