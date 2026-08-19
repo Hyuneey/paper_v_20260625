@@ -1,0 +1,183 @@
+{
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_feature_scope_reconciliation",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-MATERIALIZATION-FEATURE-SCOPE-RECONCILIATION-AND-RESUME",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_feature_scope_reconciliation",
+  "base_commit": "998371ad10de21ddb4678b934922509634f42ec4",
+  "previous_blocker": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZATION_FEATURE_SCOPE_MISMATCH",
+  "previous_canonical_materializer_invocations": 0,
+  "previous_train1_scientific_parse_count": 0,
+  "previous_train2_scientific_parse_count": 0,
+  "authorities": {
+    "v3_feature_schema_artifact": "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+    "e1_construction_evidence_manifest": "ee8c5b7e9895f5f6afdd1be2563244e3b82dca9c3eadca502dd522940931e3ae",
+    "authority_definition": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "calibration_policy": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_executable_equivalence": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "authorization_artifact": "dad4d6c39d5f317bed41fe3f780d4bb20bd7b33aea047b9a166614ac4acf42b9",
+    "authorization_receipt": "3b19a827a77388b9c227910f6485edb5f490c611db6dbb3cd9fba692fd062bac"
+  },
+  "v3_evaluator_schema": {
+    "semantic_scope": "BROADER_UTILITY_SOURCE_EVENT_AND_OPPORTUNITY_EVALUATION_UNIVERSE",
+    "source_count": 12,
+    "source_identities": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV02Z",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_PCV01D",
+      "P1_PCV01Z",
+      "P1_PCV02Z",
+      "P1_PP04"
+    ],
+    "target_count": 10,
+    "target_identities": [
+      "P1_FT01",
+      "P1_FT01Z",
+      "P1_FT02",
+      "P1_FT02Z",
+      "P1_FT03",
+      "P1_FT03Z",
+      "P1_LIT01",
+      "P1_PIT01",
+      "P1_PIT02",
+      "P1_TIT02"
+    ],
+    "feature_union_count": 22,
+    "feature_union_identities": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV02Z",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_FT01",
+      "P1_FT01Z",
+      "P1_FT02",
+      "P1_FT02Z",
+      "P1_FT03",
+      "P1_FT03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_LIT01",
+      "P1_PCV01D",
+      "P1_PCV01Z",
+      "P1_PCV02Z",
+      "P1_PIT01",
+      "P1_PIT02",
+      "P1_PP04",
+      "P1_TIT02"
+    ]
+  },
+  "common42_materialization_footprint": {
+    "semantic_scope": "EXACT_FROZEN_COMMON42_RELATION_CALIBRATION_AND_MATERIALIZATION_FOOTPRINT",
+    "relation_count": 42,
+    "source_count": 9,
+    "source_identities": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_PCV01D",
+      "P1_PCV01Z"
+    ],
+    "target_count": 10,
+    "target_identities": [
+      "P1_FT01",
+      "P1_FT01Z",
+      "P1_FT02",
+      "P1_FT02Z",
+      "P1_FT03",
+      "P1_FT03Z",
+      "P1_LIT01",
+      "P1_PIT01",
+      "P1_PIT02",
+      "P1_TIT02"
+    ],
+    "feature_union_count": 19,
+    "feature_union_identities": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_FT01",
+      "P1_FT01Z",
+      "P1_FT02",
+      "P1_FT02Z",
+      "P1_FT03",
+      "P1_FT03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_LIT01",
+      "P1_PCV01D",
+      "P1_PCV01Z",
+      "P1_PIT01",
+      "P1_PIT02",
+      "P1_TIT02"
+    ],
+    "numeric_role_count": 10,
+    "numeric_reference_count": 420,
+    "historical_binding_count": 462,
+    "excluded_utility_role": "selected_delay_horizon_seconds"
+  },
+  "set_difference": {
+    "v3_source_universe_minus_common_source_footprint": [
+      "P1_FCV02Z",
+      "P1_PCV02Z",
+      "P1_PP04"
+    ],
+    "v3_feature_schema_minus_common_feature_footprint": [
+      "P1_FCV02Z",
+      "P1_PCV02Z",
+      "P1_PP04"
+    ],
+    "common_source_subset_of_v3_source_universe": true,
+    "common_targets_equal_v3_required_targets": true,
+    "common_feature_subset_of_v3_feature_schema": true,
+    "missing_common_feature_count": 0,
+    "missing_common_features": []
+  },
+  "implementation_replay": {
+    "feature_selection": "EXACT_RELATION_SOURCE_UNION_RELATION_TARGET",
+    "train_mapping_requires_exact_feature_set": true,
+    "unique_source_calibrations": 9,
+    "unique_target_calibrations": 10,
+    "hardcoded_feature_counts_used_for_selection": false
+  },
+  "authorization_continuity": {
+    "validated": true,
+    "binds_authority_definition": true,
+    "binds_calibration_policy": true,
+    "binds_common_executable_equivalence": true,
+    "binds_normal_input_identity_set": true,
+    "binds_train1_train2_identities": true,
+    "binds_fixed_12_source_materialization_footprint": false,
+    "binds_fixed_22_feature_materialization_footprint": false,
+    "authorization_reissue_required": false
+  },
+  "decision": {
+    "result": "PASS",
+    "v3_interpretation_preserved": true,
+    "common42_materialization_footprint_authoritative": true,
+    "scientific_change": false,
+    "statement": "Feature-scope reconciliation changes the materialization work-order expectation only. It does not change V3, COMMON-42, the scientific authority definition, calibration semantics, relation membership, or numeric-reference identities."
+  },
+  "access_counters": {
+    "hai_normal_value_accesses": 0,
+    "hai_test_value_accesses": 0,
+    "hai_label_accesses": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0
+  },
+  "artifact_hash": "1ba6f09a4120b56acdbecb5147eb928bb4d2ceeda329f1115f6f7b01a0a84710"
+}
