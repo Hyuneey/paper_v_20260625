@@ -1,0 +1,35 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_metric_custody",
+  "schema_version": "1.0.0",
+  "r1_commit_a": "623a355104d719633733ab7f9b6650f9e92ec3fd",
+  "label_custody": {
+    "factory_issuance_required": true,
+    "focused_attacks": 9,
+    "accepted_invalid": 0,
+    "relocated_self_rehashed_attack": "REJECTED"
+  },
+  "alarm_episode_canonicalization": {
+    "exact_tuple": true,
+    "file_row_bounds": true,
+    "strict_order": true,
+    "duplicates_rejected": true,
+    "overlap_rejected": true,
+    "adjacency_rejected": true,
+    "duplicate_specific_attacks": 2,
+    "duplicate_specific_accepted": 0
+  },
+  "bound_metric": {
+    "factory_issuance_required": true,
+    "allowed_metric_formula_pairs": 2,
+    "focused_attacks": 14,
+    "accepted_invalid": 0,
+    "arbitrary_self_rehashed_metric": "REJECTED"
+  },
+  "canonical_alarm_oracle_equivalence": "PASS",
+  "canonical_attack_oracle_equivalence": "PASS",
+  "canonical_recall_equivalence": "PASS",
+  "canonical_far_equivalence": "PASS",
+  "metric_formulas_changed": false,
+  "result": "PASS",
+  "artifact_hash": "b8b90b8ef783ecd386a83470403faf123acc45cf9944e84f0c750c1169eba57b"
+}

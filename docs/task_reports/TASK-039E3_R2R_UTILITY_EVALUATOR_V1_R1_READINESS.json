@@ -1,0 +1,19 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_readiness",
+  "schema_version": "1.0.0",
+  "r1_commit_a": "623a355104d719633733ab7f9b6650f9e92ec3fd",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_bounded_remediation_r1",
+  "UTILITY_EVALUATOR_V1_IMPLEMENTED": true,
+  "UTILITY_EVALUATOR_V1_CONTROL_REVISION": "R1",
+  "UTILITY_EVALUATOR_V1_R1_REMEDIATED": true,
+  "UTILITY_EVALUATOR_V1_R1_FROZEN": true,
+  "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": false,
+  "UTILITY_EVALUATOR_V1_R1_INDEPENDENT_REAUDIT_READY": true,
+  "UTILITY_INNER_EXECUTION_AUTHORIZATION_READY": false,
+  "UTILITY_INNER_EXECUTION_AUTHORIZED": false,
+  "REAL_UTILITY_EXECUTION_AUTHORIZED": false,
+  "real_utility_status": "NOT_EXECUTED",
+  "blockers": [],
+  "next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R1-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "artifact_hash": "5959d6d676c97c4ad9f1f2d7eca233586acad9786cdc96ad4f7c6f939e1d0484"
+}

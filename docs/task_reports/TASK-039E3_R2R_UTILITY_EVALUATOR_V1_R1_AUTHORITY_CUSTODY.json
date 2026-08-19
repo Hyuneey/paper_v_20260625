@@ -1,0 +1,26 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_authority_custody",
+  "schema_version": "1.0.0",
+  "r1_commit_a": "623a355104d719633733ab7f9b6650f9e92ec3fd",
+  "authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+  "v4_r1_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "control_revision": "R1",
+  "original_implementation_identity": "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330",
+  "r1_implementation_identity": "64a6e7f0d210dc074bc85b0f389e61b45aaa512091532cf8f4d275ccaa35746a",
+  "bundle_reconstruction_attacks": 3,
+  "bundle_reconstruction_accepted": 0,
+  "implementation_reconstruction_attacks": 3,
+  "implementation_reconstruction_accepted": 0,
+  "stale_identity_attacks": 2,
+  "stale_identity_accepted": 0,
+  "issuance_policy": {
+    "exact_weak_reference_required": true,
+    "stored_reference_must_be_candidate": true,
+    "issued_hash_binding_required": true,
+    "automatic_cleanup_required": true,
+    "semantic_replay_required": true
+  },
+  "lower_authority_replay": "PASS",
+  "result": "PASS",
+  "artifact_hash": "1ea52c13406c32882fcba294f0a96fcf9b78c930b08589b70ad3ba882875c5c6"
+}

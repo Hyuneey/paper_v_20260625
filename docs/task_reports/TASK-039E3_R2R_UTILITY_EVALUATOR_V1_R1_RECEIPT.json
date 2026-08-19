@@ -1,0 +1,22 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_receipt",
+  "schema_version": "1.0.0",
+  "r1_commit_a": "623a355104d719633733ab7f9b6650f9e92ec3fd",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_bounded_remediation_r1",
+  "bundle_hash": "7e9f9b4be176164dba8493d4631c9e089af1f128cd568cc0a7e88ac018c9c36c",
+  "component_hashes": {
+    "remediation": "f5390c0adb4c11c15f9827fdd94d26bb9fe9cda909a2c8b3aca014bd1c043a06",
+    "authority_custody": "1ea52c13406c32882fcba294f0a96fcf9b78c930b08589b70ad3ba882875c5c6",
+    "input_canonicalization": "d9e01dfaee1578c6e91a34b46bd9100df3c88d953493228a962e9c3421559895",
+    "metric_custody": "b8b90b8ef783ecd386a83470403faf123acc45cf9944e84f0c750c1169eba57b",
+    "blocker_closure_matrix": "f0c055018ee8249e23fdb784b0ea7d88a414d68d21c93301124de7c455b5afe2",
+    "test_report": "0a3bbc4b30a9c65064f432b2501549aee3516b1396a7668ea8de0e1bd54d935e",
+    "readiness": "5959d6d676c97c4ad9f1f2d7eca233586acad9786cdc96ad4f7c6f939e1d0484"
+  },
+  "historical_accepted_invalid": 10,
+  "post_remediation_accepted_invalid": 0,
+  "real_private_or_scientific_accesses": 0,
+  "real_utility_status": "NOT_EXECUTED",
+  "next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R1-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "artifact_hash": "302fbc36af8efa4544414a7ec6cb62508a9c915670e304710b479cbed5842026"
+}

@@ -1,0 +1,23 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_input_canonicalization",
+  "schema_version": "1.0.0",
+  "r1_commit_a": "623a355104d719633733ab7f9b6650f9e92ec3fd",
+  "blocker": "BLOCKER_EVALUATOR_V1_SYNTHETIC_FEATURE_PAIR_CONTAINER_WIDENING_ACCEPTED",
+  "canonical_pair_policy": {
+    "container": "EXACT_BUILTIN_TUPLE",
+    "length": 2,
+    "feature_type": "EXACT_BUILTIN_STR",
+    "value_type": "EXACT_FINITE_BUILTIN_FLOAT",
+    "validation_precedes_destructuring": true,
+    "validation_precedes_hash_replay": true,
+    "validation_precedes_accessor_use": true
+  },
+  "focused_invalid_cases": 15,
+  "rejected_invalid_cases": 15,
+  "accepted_invalid_cases": 0,
+  "historical_tuple_to_list_attack": "REJECTED",
+  "preserved_hash_bypass": "REJECTED",
+  "recomputed_hash_bypass": "REJECTED",
+  "result": "PASS",
+  "artifact_hash": "d9e01dfaee1578c6e91a34b46bd9100df3c88d953493228a962e9c3421559895"
+}
