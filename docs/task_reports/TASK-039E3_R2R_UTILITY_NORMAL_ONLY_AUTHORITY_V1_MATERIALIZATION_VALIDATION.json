@@ -1,0 +1,58 @@
+{
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialization_validation",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_materialization_validation",
+  "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+  "authorization_hash": "dad4d6c39d5f317bed41fe3f780d4bb20bd7b33aea047b9a166614ac4acf42b9",
+  "private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+  "local_locator_hash": "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4",
+  "public_receipt_hash": "3054bf3eaf50bdc4297652a475b3b465e59b449810493ac775fed0bcf7567ced",
+  "final_reopened_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+  "hashes_consistent": true,
+  "write_order": [
+    "private_registry_atomic_rename",
+    "local_locator_manifest_written_and_validated",
+    "private_registry_reopened_and_rehashed",
+    "public_receipt_written_last"
+  ],
+  "structural_validation": {
+    "relations": 42,
+    "roles": 10,
+    "records": 420,
+    "unique_logical_keys": 420,
+    "unique_reference_identities": 420,
+    "missing": 0,
+    "duplicates": 0,
+    "unexpected": 0,
+    "nonfinite": 0,
+    "foreign_relations": 0,
+    "semantic_mismatches": 0,
+    "authority_mismatches": 0,
+    "train_identity_mismatches": 0,
+    "calibration_policy_mismatches": 0,
+    "historical_identity_collisions": 0
+  },
+  "role_record_counts": {
+    "source_step_threshold": 42,
+    "source_stability_tolerance": 42,
+    "target_noise_scale": 42,
+    "source_pre_window_seconds": 42,
+    "source_post_window_seconds": 42,
+    "minimum_source_stability_fraction": 42,
+    "source_refractory_seconds": 42,
+    "cross_source_isolation_radius_seconds": 42,
+    "target_baseline_window_seconds": 42,
+    "target_response_window_seconds": 42
+  },
+  "custody_validation": {
+    "private_registry_outside_git": true,
+    "local_locator_outside_git": true,
+    "private_registry_committed": false,
+    "local_locator_committed": false,
+    "raw_hai_payload_committed": false,
+    "public_absolute_private_path_count": 0,
+    "public_numeric_calibration_value_count": 0,
+    "canonical_final_authority_validation": "PASS"
+  },
+  "artifact_hash": "9c69a9863d1c74c211ea026eaabb7cff99f0206c37677db7a137a6dba3ac360f"
+}

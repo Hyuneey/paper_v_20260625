@@ -1,0 +1,125 @@
+{
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialization",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-HAI2305-NORMAL-INPUT-SELECTIVE-REACQUISITION-AND-MATERIALIZATION-RESUME",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_materialization",
+  "base_commit": "998371ad10de21ddb4678b934922509634f42ec4",
+  "reconciliation_commit": "555ab1817db0559f02c7461e680b606584966afa",
+  "reconciliation_artifact_hash": "1ba6f09a4120b56acdbecb5147eb928bb4d2ceeda329f1115f6f7b01a0a84710",
+  "execution_timestamp": "2026-08-19T18:15:46.508421+09:00",
+  "historical_acquisition_authority": {
+    "official_repository": "https://github.com/icsdataset/hai",
+    "official_snapshot": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "official_payload_route": "icsdataset/hai-security-dataset",
+    "frozen_kaggle_version": 10,
+    "frozen_metadata_artifact": "a7389cc123a544302b896c4c1ffc931a3c61c22318c0fa53c575cd1567d5fbfe",
+    "client_lineage": "paperworks_stdlib_urllib",
+    "historical_acquisition_implementation_commit": "9334d23879f5b32fea74c47f066a2ae45a3c15f5",
+    "historical_metadata_freeze_commit": "76a3545d4f8d85e73b52e0ee2857c67e65423d0f",
+    "historical_final_provenance_commit": "2450e2c9d3a3f3722581e2c1594435451493bf00"
+  },
+  "selective_reacquisition": {
+    "reacquired": true,
+    "requested_file_count": 2,
+    "successful_file_count": 2,
+    "network_file_request_count": 2,
+    "pre_network_runner_initialization_failures": 1,
+    "whole_dataset_endpoint_used": false,
+    "haiend_used": false,
+    "earlier_hai_version_used": false,
+    "other_hai_payload_file_request_count": 0,
+    "files": [
+      {
+        "relative_path": "hai-23.05/hai-train1.csv",
+        "sha256": "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a",
+        "byte_size": 162418984,
+        "task039a_identity_match": true,
+        "git_lfs_identity_match": true,
+        "kaggle_advertised_size_match": true
+      },
+      {
+        "relative_path": "hai-23.05/hai-train2.csv",
+        "sha256": "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56",
+        "byte_size": 169121615,
+        "task039a_identity_match": true,
+        "git_lfs_identity_match": true,
+        "kaggle_advertised_size_match": true
+      }
+    ]
+  },
+  "authorization": {
+    "artifact_hash": "dad4d6c39d5f317bed41fe3f780d4bb20bd7b33aea047b9a166614ac4acf42b9",
+    "receipt_hash": "3b19a827a77388b9c227910f6485edb5f490c611db6dbb3cd9fba692fd062bac",
+    "scope": "NORMAL_TRAIN1_TRAIN2_NUMERIC_AUTHORITY_MATERIALIZATION_ONLY",
+    "validated": true,
+    "materialization_authorized": true,
+    "train3_access": false,
+    "test_access": false,
+    "label_access": false,
+    "provider_access": false,
+    "utility_execution": false
+  },
+  "scientific_authority": {
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "normal_input_identity_set_hash": "cc502d87daf19a1511f868c1c767045a4457d505d195b0214f244d1910fe0cda",
+    "historical_e1_identity_restored": false,
+    "historical_numeric_registry_identity_restored": false
+  },
+  "control_source": {
+    "commit": "216783ac6b3c77376b4e56b92ddc655907ce3668",
+    "git_blob": "5e6d52fdfadada7373c50c382a347930f3384e24",
+    "raw_sha256": "1b15098e9f8c75a76ad98f7a0ef998af86470b195d035ffab08e9f185fe1a3d9",
+    "exact_and_clean": true
+  },
+  "common_feature_scope": {
+    "source_count": 9,
+    "target_count": 10,
+    "feature_union_count": 19,
+    "derived_from_authority_relations": true
+  },
+  "materialization": {
+    "canonical_invocation_count": 1,
+    "scientific_retry_count": 0,
+    "train1_scientific_parse_count": 1,
+    "train2_scientific_parse_count": 1,
+    "relation_count": 42,
+    "role_count": 10,
+    "record_count": 420,
+    "unique_logical_key_count": 420,
+    "unique_reference_identity_count": 420,
+    "unique_source_calibration_count": 9,
+    "unique_target_calibration_count": 10,
+    "data_derived_record_count": 126,
+    "frozen_constant_record_count": 294,
+    "missing_count": 0,
+    "duplicate_count": 0,
+    "unexpected_count": 0,
+    "nonfinite_count": 0
+  },
+  "custody": {
+    "private_registry_created": true,
+    "private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "private_registry_outside_git": true,
+    "local_locator_created": true,
+    "local_locator_hash": "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4",
+    "local_locator_outside_git": true,
+    "public_receipt_hash": "3054bf3eaf50bdc4297652a475b3b465e59b449810493ac775fed0bcf7567ced",
+    "public_receipt_written_last": true,
+    "private_public_locator_hashes_consistent": true,
+    "absolute_private_path_publicly_exposed": false,
+    "numeric_calibration_value_publicly_exposed": false
+  },
+  "access_counters": {
+    "train3_scientific_value_accesses": 0,
+    "test_value_accesses": 0,
+    "label_accesses": 0,
+    "attack_interval_accesses": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0
+  },
+  "artifact_hash": "9c509382474068a049bc0837392d6a230801fec8f6cfa2f38d425299054aec06"
+}

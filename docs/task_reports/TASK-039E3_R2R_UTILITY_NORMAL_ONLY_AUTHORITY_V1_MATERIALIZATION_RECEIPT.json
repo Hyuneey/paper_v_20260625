@@ -1,0 +1,23 @@
+{
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialization_receipt",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_materialization",
+  "base_commit": "998371ad10de21ddb4678b934922509634f42ec4",
+  "reconciliation_commit": "555ab1817db0559f02c7461e680b606584966afa",
+  "authorization_artifact_hash": "dad4d6c39d5f317bed41fe3f780d4bb20bd7b33aea047b9a166614ac4acf42b9",
+  "authorization_receipt_hash": "3b19a827a77388b9c227910f6485edb5f490c611db6dbb3cd9fba692fd062bac",
+  "materialization_artifact_hash": "9c509382474068a049bc0837392d6a230801fec8f6cfa2f38d425299054aec06",
+  "validation_artifact_hash": "9c69a9863d1c74c211ea026eaabb7cff99f0206c37677db7a137a6dba3ac360f",
+  "bundle_artifact_hash": "ee50021f125cabb23028991e41ef7faf5692b6151559722bee37ecb7dca66a82",
+  "canonical_public_receipt_hash": "3054bf3eaf50bdc4297652a475b3b465e59b449810493ac775fed0bcf7567ced",
+  "private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+  "selectively_reacquired_file_count": 2,
+  "canonical_materializer_invocation_count": 1,
+  "scientific_retry_count": 0,
+  "normal_only_authority_materialized": true,
+  "normal_only_authority_materialization_audited": false,
+  "utility_evaluator_implementation_ready": false,
+  "utility_execution_authorization_ready": false,
+  "next_task": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-MATERIALIZED-AUTHORITY-INDEPENDENT-AUDIT",
+  "artifact_hash": "96aee01d66063487e5997fe0294969c413b14159774e99a36289fcd3d8dab8c9"
+}

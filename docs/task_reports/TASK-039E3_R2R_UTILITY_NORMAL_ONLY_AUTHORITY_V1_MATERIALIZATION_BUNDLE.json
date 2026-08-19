@@ -1,0 +1,13 @@
+{
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialization_bundle",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_materialization",
+  "reconciliation_artifact_hash": "1ba6f09a4120b56acdbecb5147eb928bb4d2ceeda329f1115f6f7b01a0a84710",
+  "materialization_artifact_hash": "9c509382474068a049bc0837392d6a230801fec8f6cfa2f38d425299054aec06",
+  "validation_artifact_hash": "9c69a9863d1c74c211ea026eaabb7cff99f0206c37677db7a137a6dba3ac360f",
+  "canonical_public_receipt_hash": "3054bf3eaf50bdc4297652a475b3b465e59b449810493ac775fed0bcf7567ced",
+  "private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+  "local_locator_hash": "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4",
+  "public_only": true,
+  "artifact_hash": "ee50021f125cabb23028991e41ef7faf5692b6151559722bee37ecb7dca66a82"
+}
