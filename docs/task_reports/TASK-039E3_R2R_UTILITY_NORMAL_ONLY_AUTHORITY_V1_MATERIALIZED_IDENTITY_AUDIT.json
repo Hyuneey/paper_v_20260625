@@ -1,0 +1,74 @@
+{
+  "artifact_hash": "8b1bfe945ce056bd1120d141abf2095c95df1af21f62f853e285040f1c64a45b",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialized_identity_audit",
+  "authority": {
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "authority_lineage": "NEW_VERSION_FROM_FROZEN_METHOD_AND_NORMAL_DATA",
+    "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_authority_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+    "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "historical_e1_identity_restored": false,
+    "historical_numeric_identity_restored": false,
+    "normal_input_identity_set_hash": "cc502d87daf19a1511f868c1c767045a4457d505d195b0214f244d1910fe0cda",
+    "t2_utility_scope_authorized": false,
+    "utility_binding_set_hash": "55c315b463b60d44f43dfc8058bd85cea2dd6ef865eba421c8953cf7a808a089"
+  },
+  "common": {
+    "feature_union": 19,
+    "relations": 42,
+    "sources": 9,
+    "targets": 10
+  },
+  "created_at": "2026-08-19T09:46:07Z",
+  "frozen_constants": {
+    "mismatches": 0,
+    "record_count": 294
+  },
+  "normal_input_provenance": {
+    "raw_hai_files_opened": 0,
+    "train1_binding": "PASS",
+    "train2_binding": "PASS"
+  },
+  "numeric_type_domain_failures": {
+    "source_stability_tolerance": 0,
+    "source_step_threshold": 0,
+    "target_noise_scale": 0
+  },
+  "records": {
+    "authority_mismatches": 0,
+    "calibration_policy_mismatches": 0,
+    "duplicates": 0,
+    "foreign_relations": 0,
+    "logical_keys": 420,
+    "missing": 0,
+    "normal_input_mismatches": 0,
+    "provenance_identity_matches": 420,
+    "record_hash_matches": 420,
+    "records": 420,
+    "reference_mismatches": 0,
+    "references": 420,
+    "semantic_mismatches": 0,
+    "unexpected": 0
+  },
+  "roles": [
+    "source_step_threshold",
+    "source_stability_tolerance",
+    "target_noise_scale",
+    "source_pre_window_seconds",
+    "source_post_window_seconds",
+    "minimum_source_stability_fraction",
+    "source_refractory_seconds",
+    "cross_source_isolation_radius_seconds",
+    "target_baseline_window_seconds",
+    "target_response_window_seconds"
+  ],
+  "schema_version": "1.0.0",
+  "sharing": {
+    "source_groups": 9,
+    "source_inconsistencies": 0,
+    "target_groups": 10,
+    "target_inconsistencies": 0
+  },
+  "status": "PASS"
+}

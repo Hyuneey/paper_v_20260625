@@ -1,0 +1,46 @@
+{
+  "artifact_hash": "40b9a364177eca26dfa24a6616399acedcef5e8997d69ad9829c9bebd18616a9",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialized_test_report",
+  "canonical_production_validator": {
+    "private_registry_hash_match": true,
+    "result": "PASS",
+    "role": "SUPPLEMENTARY_ONLY"
+  },
+  "compileall": {
+    "command": "python -m compileall -q scripts/audit_task039e3_r2r_utility_normal_only_authority_v1_materialized.py tests/test_task039e3_r2r_utility_normal_only_authority_v1_materialized_public_audit.py",
+    "result": "PASS"
+  },
+  "created_at": "2026-08-19T09:46:07Z",
+  "git_diff_check": {
+    "command": "git diff --check",
+    "result": "PASS"
+  },
+  "independent_private_audit": {
+    "command": "python scripts/audit_task039e3_r2r_utility_normal_only_authority_v1_materialized.py --repository-root . --private-registry [LOCAL_ONLY] --locator [LOCAL_ONLY]",
+    "private_numeric_output_emitted": false,
+    "private_path_output_emitted": false,
+    "result": "PASS"
+  },
+  "json_self_hash_and_cross_binding": {
+    "result": "PASS"
+  },
+  "mutation_audit": {
+    "accepted": 0,
+    "cases": 20,
+    "rejected": 20
+  },
+  "pip_check": {
+    "command": "python -m pip check",
+    "result": "PASS",
+    "summary": "No broken requirements found."
+  },
+  "public_synthetic_tests": {
+    "command": "python -m unittest -v tests.test_task039e3_r2r_utility_normal_only_authority_v1_materialized_public_audit",
+    "failed": 0,
+    "passed": 8,
+    "result": "PASS",
+    "total": 8
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}

@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "d2e4b8e9976695c151f83eba49eb89e2cb5193b4381dd51913026b819ebc5b13",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialized_independent_audit_bundle",
+  "audit_commit_a": "977ebacc93c6ad5334b2e0975464ebfdb26fc0fe",
+  "base_commit": "37bdfb60fa22e64c8c074847e7393ebb87e2c619",
+  "created_at": "2026-08-19T09:46:07Z",
+  "custody_audit_hash": "977aa2b46154294eb22f5d54eb9f57312ce3bd7e9fda1592dae3599d67c93b24",
+  "identity_audit_hash": "8b1bfe945ce056bd1120d141abf2095c95df1af21f62f853e285040f1c64a45b",
+  "independent_audit_hash": "7e7f9a776d92bac40b6f9647823d1c193a4b767048c4cb6cabba1ab60d76185a",
+  "materialization_commit": "37bdfb60fa22e64c8c074847e7393ebb87e2c619",
+  "readiness_hash": "b65e27fe2f4bb42c2713495d472dc3f66f8199151c38d6579b34ea68953c19c8",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_normal_only_authority_v1_materialized_independent_audit",
+  "test_report_hash": "40b9a364177eca26dfa24a6616399acedcef5e8997d69ad9829c9bebd18616a9"
+}

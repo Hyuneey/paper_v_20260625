@@ -1,0 +1,57 @@
+{
+  "artifact_hash": "977aa2b46154294eb22f5d54eb9f57312ce3bd7e9fda1592dae3599d67c93b24",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_materialized_custody_audit",
+  "authorization": {
+    "artifact_hash": "dad4d6c39d5f317bed41fe3f780d4bb20bd7b33aea047b9a166614ac4acf42b9",
+    "control_source_blob": "5e6d52fdfadada7373c50c382a347930f3384e24",
+    "control_source_commit": "216783ac6b3c77376b4e56b92ddc655907ce3668",
+    "control_source_raw_sha256": "1b15098e9f8c75a76ad98f7a0ef998af86470b195d035ffab08e9f185fe1a3d9",
+    "receipt_hash": "3b19a827a77388b9c227910f6485edb5f490c611db6dbb3cd9fba692fd062bac",
+    "validated": true
+  },
+  "created_at": "2026-08-19T09:46:07Z",
+  "cross_custody": {
+    "authorization_control_binding": "PASS",
+    "locator_private_binding": "PASS",
+    "locator_public_binding": "PASS",
+    "private_public_locator_hash_agreement": "PASS",
+    "public_receipt_written_last": true
+  },
+  "git_boundary": {
+    "base_to_materialization_added_public_files": 6,
+    "locator_additions": 0,
+    "private_registry_additions": 0,
+    "production_source_changes": 0,
+    "raw_hai_additions": 0,
+    "test_changes": 0
+  },
+  "locator": {
+    "artifact_hash": "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4",
+    "modified": false,
+    "outside_git": true,
+    "resolved": true
+  },
+  "private_registry": {
+    "artifact_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "modified": false,
+    "outside_git": true,
+    "resolved": true
+  },
+  "public_leakage": {
+    "absolute_private_paths": 0,
+    "attack_intervals": 0,
+    "credentials": 0,
+    "data_derived_calibration_values": 0,
+    "labels": 0,
+    "private_registry_records": 0,
+    "public_artifacts_checked": 6,
+    "raw_hai_rows": 0
+  },
+  "public_receipt": {
+    "artifact_hash": "3054bf3eaf50bdc4297652a475b3b465e59b449810493ac775fed0bcf7567ced",
+    "cross_binding": "PASS",
+    "written_last": true
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}
