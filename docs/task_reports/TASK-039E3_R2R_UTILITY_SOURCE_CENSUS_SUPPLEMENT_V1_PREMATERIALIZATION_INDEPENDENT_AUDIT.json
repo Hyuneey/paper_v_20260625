@@ -1,0 +1,50 @@
+{
+  "artifact_type": "task039e3_r2r_utility_source_census_supplement_v1_prematerialization_independent_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-SOURCE-CENSUS-SUPPLEMENT-V1-END-TO-END-CLOSURE",
+  "status": "passed_source_census_supplement_v1_prematerialization_independent_audit",
+  "implementation_commit": "5fb2ba426d5a4720362030c9055ddacdcf99931a",
+  "implementation_source_git_blob": "436c08b135f424f6d6702c444f3b187fa8a69c06",
+  "implementation_source_raw_sha256": "f238492892f6b9b6260204d1f000952256898ba2ee10ae80c1e7d0c1e2a6e882",
+  "independent_audit_commit": "a1ef6b85273419190480cd508fa1fade5a41500b",
+  "independent_test_git_blob": "fcaae3fba2501d5a28d9db88c45d83d6932206fc",
+  "independent_test_raw_sha256": "8a1ed5691a9eb663e135f8db1855ae8df9507e20394b35753b01ecff66ef6731",
+  "focused_tests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "independent_tests": {
+    "passed": 15,
+    "failed": 0
+  },
+  "independent_attack_counts": {
+    "registry": 24,
+    "definition": 9,
+    "authorization": 19,
+    "combined_contract": 8,
+    "historical_closure": 6,
+    "public_leakage": 1,
+    "total": 67,
+    "rejected": 67,
+    "accepted_invalid": 0
+  },
+  "historical_pre_freeze_findings": [
+    "cross_worktree_git_output_custody_closed",
+    "exact_main_registry_hash_required",
+    "canonical_main_source_order_required",
+    "committed_authorization_cross_custody_required"
+  ],
+  "formula_delegate": "derive_source_parameters_normal_only_v1",
+  "synthetic_formula_output_equivalence": true,
+  "sources": 3,
+  "roles": 2,
+  "records": 6,
+  "references": 6,
+  "hai_normal_value_accesses": 0,
+  "hai_test_accesses": 0,
+  "label_accesses": 0,
+  "utility_computations": 0,
+  "provider_calls": 0,
+  "network_requests": 0,
+  "artifact_hash": "423d579807078093393a2897b690be33d72ed0ad01696decab987d4ef6bf61e2"
+}
