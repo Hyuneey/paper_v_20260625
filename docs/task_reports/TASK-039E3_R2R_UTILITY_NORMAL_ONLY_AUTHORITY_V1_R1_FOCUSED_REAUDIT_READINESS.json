@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "4ea4d51719e4f6dff3c64295e5e1759631ef04cbf809c69a343a2e6f8e4971bf",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_r1_focused_reaudit_readiness",
+  "schema_version": "1.0.0",
+  "status": "BLOCKED",
+  "normal_only_authority_protocol_audited": false,
+  "normal_only_authority_real_materialization_ready": false,
+  "normal_only_authority_materialized": false,
+  "normal_only_authority_materialization_audited": false,
+  "utility_evaluator_implementation_ready": false,
+  "utility_execution_authorization_ready": false,
+  "real_execution_authorization_created": false,
+  "closed_blockers": 5,
+  "open_blockers": 1,
+  "open_blocker_ids": [
+    "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PUBLIC_RECEIPT_OPEN_SCHEMA_LEAKAGE"
+  ],
+  "automatic_next_task": "NONE"
+}

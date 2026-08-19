@@ -1,0 +1,31 @@
+{
+  "artifact_hash": "5812eb90a9ace9f1b6c41acc19fa41d5fa862bbb6a2b7f7092896bacbc204704",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_r1_focused_reaudit_test_report",
+  "schema_version": "1.0.0",
+  "synthetic_only": true,
+  "suites": {
+    "new_focused_reaudit": {"passed": 9, "failed": 0, "result": "PASS"},
+    "original_v1": {"passed": 24, "failed": 0, "result": "PASS"},
+    "prior_independent_audit": {"passed": 28, "failed": 0, "result": "PASS"},
+    "r1_remediation": {"passed": 10, "failed": 0, "result": "PASS"},
+    "compileall": {"result": "PASS"},
+    "pip_check": {"result": "PASS", "detail": "No broken requirements found."},
+    "git_diff_check": {"result": "PASS"}
+  },
+  "supplemental_receipt_type_probe": {
+    "scientific_result_evaluable_integer_1": "ACCEPTED_UNEXPECTED",
+    "scientific_result_evaluable_float_1_0": "ACCEPTED_UNEXPECTED",
+    "scientific_result_evaluable_false": "REJECTED",
+    "scientific_result_evaluable_string_true": "REJECTED",
+    "scientific_result_evaluable_null": "REJECTED",
+    "result": "BLOCKING_FINDING_CONFIRMED"
+  },
+  "test_source": {
+    "git_blob": "8cb9736bbf3ede35c47f7e0535ce59ab188f8702",
+    "raw_sha256": "748b51a22f6898cde5da5c5cb85c06af69b72fbd4edd54765fd3d76bf8a7403f"
+  },
+  "prior_test_files_modified": false,
+  "production_source_modified": false,
+  "real_data_accessed": false,
+  "provider_or_key_accessed": false
+}

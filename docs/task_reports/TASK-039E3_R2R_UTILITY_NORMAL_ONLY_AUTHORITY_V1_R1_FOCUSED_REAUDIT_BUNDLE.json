@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "0bfcb969cc4703ff9ff2b74858cc3d83540cefa85990398e460bfc0647936b4a",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_r1_focused_reaudit_bundle",
+  "schema_version": "1.0.0",
+  "status": "BLOCKED",
+  "base_commit": "1afb6c3fb78e0c1ef8ca15bf1b44b14792a9c631",
+  "audit_commit_a": "49d107cb3187a8bbb43782d27defd812aecf1174",
+  "component_hashes": {
+    "reaudit": "80f751e95cbadd9dfc61f8d991365962728c6c3dd164bbe40f29352f0178c959",
+    "test_report": "5812eb90a9ace9f1b6c41acc19fa41d5fa862bbb6a2b7f7092896bacbc204704",
+    "readiness": "4ea4d51719e4f6dff3c64295e5e1759631ef04cbf809c69a343a2e6f8e4971bf",
+    "report_raw_sha256": "ecf697f6f24001b1020d0ddca1d2514838240e2b08ab53219d116f84fefea1b3"
+  },
+  "r1_source_git_blob": "a72cb75f30f5f0c96b507f6ea49402d909ab7c31",
+  "r1_source_raw_sha256": "0df865a1e07110514f28461e66f0a9a1d05a92ffaea61687dd0e5a2e1ddba65b",
+  "closed_findings": 5,
+  "open_findings": 1
+}
