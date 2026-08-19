@@ -1,0 +1,115 @@
+{
+  "artifact_type": "task039e3_r2r_utility_source_census_supplement_v1_coverage_decision",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-SOURCE-CENSUS-SUPPLEMENT-V1-END-TO-END-CLOSURE",
+  "status": "create_supplemental_source_census_authority_v1",
+  "base_commit": "42e3a979cf89e4a860426936efdeeebf67d03a59",
+  "v4_r1_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "v4_r1_focused_audit_hash": "8c66590f222ad656add781745a361e483ba0ecd3c42bccbfa11f08cfaa6550ae",
+  "v4_r1_focused_receipt_hash": "09cf661a21cb4bd0d5ad356c2cf725264d76aeaffc7963858425e88267717509",
+  "v3_source_authority": {
+    "feature_schema_hash": "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+    "source_identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+    "source_count": 12,
+    "sources": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV02Z",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_PCV01D",
+      "P1_PCV01Z",
+      "P1_PCV02Z",
+      "P1_PP04"
+    ],
+    "threshold_map_requires_exact_source_set": true,
+    "tolerance_map_requires_exact_source_set": true,
+    "source_series_map_requires_exact_source_set": true,
+    "source_pre_window_seconds": 5,
+    "source_post_window_seconds": 5,
+    "minimum_source_stability_fraction": 0.8,
+    "source_refractory_seconds": 10,
+    "cross_source_isolation_radius_seconds": 2,
+    "clustering": "single_link_within_refractory_window",
+    "retention": "largest_absolute_step_amplitude_then_earliest_physical_index"
+  },
+  "main_authority": {
+    "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "descriptor_hash": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "audit_receipt_hash": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+    "record_count": 420,
+    "source_count": 9,
+    "sources": [
+      "P1_FCV01D",
+      "P1_FCV01Z",
+      "P1_FCV02D",
+      "P1_FCV03D",
+      "P1_FCV03Z",
+      "P1_LCV01D",
+      "P1_LCV01Z",
+      "P1_PCV01D",
+      "P1_PCV01Z"
+    ],
+    "source_groups": 9,
+    "within_source_inconsistencies": 0,
+    "changed_by_this_task": false
+  },
+  "coverage_gap": {
+    "missing_source_count": 3,
+    "missing_sources": [
+      "P1_FCV02Z",
+      "P1_PCV02Z",
+      "P1_PP04"
+    ],
+    "missing_roles_per_source": [
+      "source_step_threshold",
+      "source_stability_tolerance"
+    ],
+    "missing_record_count": 6
+  },
+  "existing_authority_search": {
+    "qualifying_final_runtime_authority_found": false,
+    "br2_config_hash": "c101a4cd988b926d160b527d20afe9cdd2590093f9aeb820897dea77dd15783b",
+    "br2_execution_receipt_hash": "fe9fdf32b0c14218ad27c55b1798a977dce71aa27365e442048059a48bc29d5d",
+    "br2_parameter_class": "feasibility_screening",
+    "br2_final_calibration": false,
+    "br2_runtime": false,
+    "d1_fit_result_hash": "a2767945ef3cec5fa80c3e131b98fdc8a1eeecaa69a97461988d8da90a4e06d3",
+    "d1_formula_reuse_compatible": true,
+    "d1_construction_confirmed": false,
+    "d1_rule_authority": false,
+    "d1_runtime_authority": false,
+    "implicit_promotion_permitted": false
+  },
+  "decision": {
+    "selected_route": "CREATE_SUPPLEMENTAL_SOURCE_CENSUS_AUTHORITY_V1",
+    "scientific_reinterpretation_required": false,
+    "main_authority_mutation_required": false,
+    "common42_change_required": false,
+    "v4_r1_change_required": false,
+    "supplement_authority_version": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1",
+    "purpose": "CROSS_SOURCE_ISOLATION_EVENT_CENSUS_ONLY",
+    "supplement_descriptor_hash": "d45af926511c669ec04dd13c36823d454b67ccaa98ae0a7be2919b02652bd927",
+    "supplement_reference_set_hash": "5139cae6e454318f0ca4317f3f5eaa5f775bd4f75261c4110ea610815929b580",
+    "source_census_purpose_identity": "aab688c8c4aff4d50c5b0af5c4eb9fff03b525e469248d7dcd2aefb54f8b730a",
+    "main_source_collapse_policy_hash": "0fad386bb3e013196fbf2865e769b5d8403ca5e08797f14abb8665a802081bc9",
+    "cross_source_isolation_policy_hash": "f62075523632a7573d28e95ca7f0402d87e62977f4a2f14f4eaf2b9a58f0e280"
+  },
+  "access_counters": {
+    "private_numeric_values_accessed": 0,
+    "private_registry_opened": 0,
+    "hai_normal_value_accesses": 0,
+    "hai_test_value_accesses": 0,
+    "label_accesses": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "network_requests": 0,
+    "scientific_llm_calls": 0
+  },
+  "artifact_hash": "57242d1b03a801a6df321d816f3a7c99f84544b0790487f272e6f08385ed3fdb"
+}
