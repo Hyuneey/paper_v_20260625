@@ -1,0 +1,51 @@
+{
+  "artifact_hash": "b04b7e31f218d561dec19cc919225727ce143a7a72b102c1dae46166d7d7af84",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_schema_state_audit",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "created_at": "2026-08-19T12:08:00Z",
+  "feature_schema": {
+    "common_materialization": {
+      "sources": 9,
+      "targets": 10,
+      "union": 19
+    },
+    "runtime_replay_hash": "e7a0c46d28491b9d03a333a0ad1e87d686a982bafba072861913e05fb6c50b58",
+    "semantic_substitution_attacks_accepted": 0,
+    "semantic_substitution_attacks_rejected": 11,
+    "v3_evaluator": {
+      "report_hash": "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+      "sources": 12,
+      "targets": 10,
+      "union": 22
+    }
+  },
+  "scalar_attacks": {
+    "accepted_invalid_case_ids": [
+      "schema_source_features_list",
+      "schema_target_features_list",
+      "schema_union_features_list",
+      "schema_common_source_list",
+      "schema_common_target_list",
+      "schema_common_union_list",
+      "schema_metadata_outer_list",
+      "schema_metadata_inner_lists"
+    ],
+    "accepted_invalid_cases": 8,
+    "cases": 23,
+    "direct_scalar_coercions_rejected": 15
+  },
+  "schema_version": "1.0.0",
+  "status": "BLOCK",
+  "terminal_attacks": {
+    "accepted_invalid_case_ids": [
+      "self_consistent_target_window_substitution",
+      "self_consistent_interior_split_boundary",
+      "self_consistent_source_window_substitution",
+      "caller_response_outcome_switch"
+    ],
+    "accepted_invalid_cases": 4,
+    "cases": 14,
+    "rejected_invalid_cases": 10
+  }
+}

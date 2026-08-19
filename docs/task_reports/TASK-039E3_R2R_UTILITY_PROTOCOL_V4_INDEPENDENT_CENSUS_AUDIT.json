@@ -1,0 +1,31 @@
+{
+  "artifact_hash": "83307426b775b1dd93b9d55c5b1a4d1c1e122e1a95009d79d907017a2f3f195b",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_census_audit",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "created_at": "2026-08-19T12:08:00Z",
+  "census_attacks": {
+    "accepted_invalid_case_ids": [
+      "caller_empty_opportunity_set",
+      "caller_singleton_opportunity_set",
+      "caller_39_relation_opportunity_set",
+      "caller_42_relation_one_row_set"
+    ],
+    "accepted_invalid_cases": 4,
+    "cases": 12,
+    "rejected_invalid_cases": 8
+  },
+  "denominator_semantics_required": "ALL_AUTOMATICALLY_ENUMERATED_APPLICABLE_EVENTS",
+  "finding": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+  "observed": "public opportunity-set validation assigns a census hash to caller-selected empty, partial, and one-row relation sets without canonical plan or frame provenance",
+  "opportunity_attacks": {
+    "accepted_invalid_case_ids": [
+      "self_consistent_time_identity_substitution"
+    ],
+    "accepted_invalid_cases": 1,
+    "cases": 17,
+    "rejected_invalid_cases": 16
+  },
+  "schema_version": "1.0.0",
+  "status": "BLOCK"
+}

@@ -1,0 +1,46 @@
+{
+  "artifact_hash": "8e6f0e26f9df7060e0f3055f7994815a2a35fef17006a76728bb24634b1e5184",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_test_report",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "checks": {
+    "compileall": "PASS",
+    "git_diff_check": "PASS",
+    "pip_check": "PASS"
+  },
+  "created_at": "2026-08-19T12:08:00Z",
+  "independent_attack_oracle": {
+    "accepted_invalid": 17,
+    "cases": 116,
+    "rejected_invalid": 99,
+    "result": "BLOCK"
+  },
+  "regressions": {
+    "normal_only_public_synthetic": {
+      "passed": 106,
+      "result": "PASS",
+      "run": 106,
+      "skipped": 0
+    },
+    "utility_v1_v2": {
+      "passed": 40,
+      "result": "PASS_WITH_DOCUMENTED_SKIPS",
+      "run": 42,
+      "skipped": 2
+    },
+    "utility_v3": {
+      "passed": 27,
+      "result": "PASS",
+      "run": 27,
+      "skipped": 0
+    },
+    "utility_v4": {
+      "passed": 51,
+      "result": "PASS",
+      "run": 51,
+      "skipped": 0
+    }
+  },
+  "schema_version": "1.0.0",
+  "status": "BLOCK"
+}

@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "2aa04bbbf75aa507fa4a2a364f2bf06f9b48feee530895cfc821342e12ec9631",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_receipt",
+  "audit_bundle_hash": "39f775281e4145f54e0d7226140d3f9d61a64881a93fadd27213e6a35ccb9f17",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "canonical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "created_at": "2026-08-19T12:08:00Z",
+  "independent_audit_hash": "d099fa7b79987e95887fa73d0ef78f1d6d337f65a452ac38d502d6e25f30c171",
+  "invalid_cases_accepted": 17,
+  "private_data_accessed": false,
+  "remaining_blockers": 4,
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_protocol_v4_independent_audit",
+  "utility_executed": false
+}

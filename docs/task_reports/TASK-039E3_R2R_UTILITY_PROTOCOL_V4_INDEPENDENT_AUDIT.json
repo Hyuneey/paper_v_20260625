@@ -1,0 +1,74 @@
+{
+  "access_counters": {
+    "api_key_access": false,
+    "attack_interval_accesses": 0,
+    "hai_normal_accesses": 0,
+    "hai_test_accesses": 0,
+    "label_accesses": 0,
+    "network_requests": 0,
+    "private_numeric_values_accessed": 0,
+    "private_registry_opened": 0,
+    "provider_calls": 0,
+    "scientific_llm_calls": 0,
+    "utility_computations": 0
+  },
+  "artifact_hash": "d099fa7b79987e95887fa73d0ef78f1d6d337f65a452ac38d502d6e25f30c171",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_audit",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "canonical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "created_at": "2026-08-19T12:08:00Z",
+  "finding_results": [
+    {
+      "finding": "BLOCKER_V3_T2_EXACT_PORTFOLIO_MEMBERSHIP_UNBOUND",
+      "result": "CLOSED_BY_EXPLICIT_SCOPE_EXCLUSION"
+    },
+    {
+      "finding": "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+      "result": "OPEN"
+    },
+    {
+      "finding": "BLOCKER_V3_FULL_CENSUS_NUMERIC_REFERENCE_AUTHORITY_UNBOUND",
+      "result": "CLOSED"
+    },
+    {
+      "finding": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+      "result": "OPEN"
+    },
+    {
+      "finding": "BLOCKER_V3_SERIALIZED_FEATURE_SCHEMA_AUTHORITY_SUBSTITUTION",
+      "result": "CLOSED"
+    },
+    {
+      "finding": "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+      "result": "OPEN"
+    },
+    {
+      "finding": "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+      "result": "OPEN"
+    },
+    {
+      "finding": "BLOCKER_V3_REGRESSION_COMPONENT_AUTHORITY_HASH_MISMATCH",
+      "result": "CLOSED"
+    }
+  ],
+  "independent_attack_summary": {
+    "accepted_invalid_cases": 17,
+    "cases": 116,
+    "rejected_invalid_cases": 99
+  },
+  "open_findings": [
+    "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+    "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+    "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+    "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND"
+  ],
+  "production_immutability": {
+    "v4_source_modified": false,
+    "v4_test_modified": false
+  },
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_protocol_v4_independent_audit",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-INDEPENDENT-AUDIT",
+  "utility_executed": false
+}

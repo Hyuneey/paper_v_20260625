@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "39f775281e4145f54e0d7226140d3f9d61a64881a93fadd27213e6a35ccb9f17",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_bundle",
+  "artifacts": {
+    "authority_audit": "5f81daca434d3a819dbe50533936676432c5dbf18836fceb43e7f2b812fac306",
+    "census_audit": "83307426b775b1dd93b9d55c5b1a4d1c1e122e1a95009d79d907017a2f3f195b",
+    "independent_audit": "d099fa7b79987e95887fa73d0ef78f1d6d337f65a452ac38d502d6e25f30c171",
+    "readiness": "297c593ee555cf414afe45bd2f28eab7fc10fe49229bd87b3b73f21ac4bb3cea",
+    "schema_state_audit": "b04b7e31f218d561dec19cc919225727ce143a7a72b102c1dae46166d7d7af84",
+    "test_report": "8e6f0e26f9df7060e0f3055f7994815a2a35fef17006a76728bb24634b1e5184"
+  },
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "canonical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "created_at": "2026-08-19T12:08:00Z",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_protocol_v4_independent_audit"
+}

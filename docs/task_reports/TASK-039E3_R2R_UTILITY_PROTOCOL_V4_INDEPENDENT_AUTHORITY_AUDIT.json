@@ -1,0 +1,57 @@
+{
+  "artifact_hash": "5f81daca434d3a819dbe50533936676432c5dbf18836fceb43e7f2b812fac306",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_authority_audit",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "canonical_v4_authority_hash": "2864c99017dcea576437efe9f9c5d531cc0d7810504cb2bd8e8585643d2fa0a1",
+  "common": {
+    "relations": 42,
+    "sources": 9,
+    "t2_utility_scope_authorized": false,
+    "targets": 10
+  },
+  "created_at": "2026-08-19T12:08:00Z",
+  "numeric_authority": {
+    "descriptor_hash": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "materialized_audit_receipt": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+    "private_registry_content_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "reference_count": 420,
+    "reference_set_hash": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1"
+  },
+  "private_resolver_contract": {
+    "arbitrary_private_path_authoritative": false,
+    "exposes_private_serialization": false,
+    "historical_registry_authoritative": false,
+    "lookup_key_fields": [
+      "relation_binding_hash",
+      "numeric_role"
+    ],
+    "partial_lookup_after_failure": false,
+    "result": "PASS"
+  },
+  "regression_authorities": {
+    "event_policy": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "metric_policy": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "numeric_regression_provenance": "e50300efd372fb8a5c4567a6fa9e3277e36804506b306ea0053f7fc4ab48ceed"
+  },
+  "results": {
+    "numeric_and_reference_attacks": {
+      "accepted": 0,
+      "cases": 20,
+      "rejected": 20
+    },
+    "rule_attacks": {
+      "accepted": 0,
+      "cases": 9,
+      "rejected": 9
+    },
+    "t2_attacks": {
+      "accepted": 0,
+      "cases": 4,
+      "rejected": 4
+    }
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}

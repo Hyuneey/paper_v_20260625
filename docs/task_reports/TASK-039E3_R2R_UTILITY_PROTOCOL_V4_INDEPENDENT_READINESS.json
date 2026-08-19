@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "297c593ee555cf414afe45bd2f28eab7fc10fe49229bd87b3b73f21ac4bb3cea",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_independent_readiness",
+  "audit_commit_a": "ab1749f0b74582ade01402fe057fa50eade0fe98",
+  "base_commit": "78b26921d8377b3a6d6b401ca3444c56fb73d7fe",
+  "created_at": "2026-08-19T12:08:00Z",
+  "normal_only_authority_materialization_audited": true,
+  "normal_only_authority_materialized": true,
+  "normal_only_authority_protocol_audited": true,
+  "remaining_blockers": 4,
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_protocol_v4_independent_audit",
+  "utility_evaluator_implementation_ready": false,
+  "utility_execution_authorization_ready": false,
+  "utility_protocol_v4_implemented": true,
+  "utility_protocol_v4_independently_audited": false
+}
