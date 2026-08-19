@@ -1,0 +1,22 @@
+{
+  "artifact_type": "task039e3_r2r_utility_source_census_supplement_v1_materialization_receipt",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-SOURCE-CENSUS-SUPPLEMENT-V1-END-TO-END-CLOSURE",
+  "status": "passed_source_census_supplement_v1_materialization",
+  "materialization_bundle_hash": "effcf1a21298d5864262d3bb2386411cf7ba00eac5766743f919f3afabdca7fb",
+  "materialization_hash": "4762762759dd8746e5b5595d69e84d5d48f7215a7cef1b1189d056e3c5a77967",
+  "materialization_validation_hash": "39fae6433efb2d35f69d24a4e7037c27d4748cf43ec2c6641b395d5f83b984fa",
+  "canonical_public_receipt_hash": "56e455d69823e87b7fa217c6ee7d8d86f5d08b7fc5aaf9865ff1241c6798d16e",
+  "private_registry_hash": "12ec7f50a953e097cd7cbe3ac93c7cabfb669130612d7f30ab3b19df85289aaf",
+  "authorization_hash": "232535401e4649a639bb614a922fb6fc0c6c3fde66856ba708d99dd019958cfa",
+  "sources": 3,
+  "roles": 2,
+  "records": 6,
+  "references": 6,
+  "scientific_parse_train1": 1,
+  "scientific_parse_train2": 1,
+  "scientific_retries": 0,
+  "utility_executed": false,
+  "post_materialization_independent_audit_pending": true,
+  "artifact_hash": "89fd3fd85dfdbdca3969ab0a8259921fae96e3756ca7173ad0761e942b608b64"
+}
