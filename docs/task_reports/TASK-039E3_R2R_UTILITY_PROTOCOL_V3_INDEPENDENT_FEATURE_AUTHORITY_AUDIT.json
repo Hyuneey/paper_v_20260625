@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "dee0fed8a8f1202ab6206aba96317c14b5b2c49e08f312c3732de2d480e61bf0",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_feature_authority_audit_v1",
+  "authority_derivation": {
+    "common_executable_equivalence_artifact": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "source_identity_hash": "0af3f80f18a3eab59b9783af64d306c8d774eeb69b3a72c24c10048abd4ed234",
+    "source_universe_commit": "b6522fb83c4cb92d355f98af778f9a6a3c73362f"
+  },
+  "continuous_numeric_eligibility": {
+    "features_checked": 22,
+    "status": "PASS"
+  },
+  "feature_union": {
+    "distinct_features": 22,
+    "missing_type_authority": 0,
+    "ambiguous_type_authority": 0,
+    "required_sources": 12,
+    "required_targets": 10
+  },
+  "physical_storage_dtype_invented": false,
+  "public_semantic_type": "finite_real_scalar",
+  "raw_storage_dtype": "NOT_CLAIMED",
+  "serialized_authority_boundary": {
+    "status": "BLOCK",
+    "finding_id": "BLOCKER_V3_SERIALIZED_FEATURE_SCHEMA_AUTHORITY_SUBSTITUTION"
+  },
+  "status": "BLOCK"
+}

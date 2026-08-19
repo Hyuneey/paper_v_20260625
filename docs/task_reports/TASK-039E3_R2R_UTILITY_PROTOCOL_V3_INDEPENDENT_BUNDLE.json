@@ -1,0 +1,34 @@
+{
+  "artifact_hash": "0b83bd782a92e1a55711d4a4316cf0767f1ff9dd7df5f6085d28b289b4013136",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_bundle_v1",
+  "audit_commit_a": "6479df10ce46c166c152ba6e90c7bc2922042c79",
+  "base_commit": "ee7656531f662e6204a666af1499174184b2c746",
+  "component_artifact_hashes": {
+    "feature_authority_audit": "dee0fed8a8f1202ab6206aba96317c14b5b2c49e08f312c3732de2d480e61bf0",
+    "opportunity_audit": "04a2aed36e7aa90810612b0dcaaade3d2464b77cc8d5754efbb6f74aa4acfae3",
+    "readiness": "d650dc875c9c2dbb7bcb5715650bd4fc70b706dacd35ed4af006a4dea446aa84",
+    "regression_audit": "91daf11c621790d846d480945dc80eb67bfb3835648a683e7ce94f062c359c42",
+    "test_report": "813a9a4f801cb188ca934e6bd7d55f5e66215c69f028f51621009c25960fd799",
+    "type_audit": "023d7024a3fa95b913ae17a51c2fe9fdd561968787d5491e386c43ce736117f6"
+  },
+  "component_report_sha256": "6be5e602cbb84caa3833c6affb7f401b9309061f97e0c9c28ad810d8fd3d8142",
+  "historical_authorities": {
+    "blocked_focused_audit_a": "008a34d6ddce536c65ab36322389a34580710f18",
+    "blocked_focused_audit_b": "4213963e5c3abc9f97b45bb183accb0fc43297be",
+    "v1_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "v1_b": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+    "v2_a": "6c63a9a8410d083c8b0e71c344d799284f02941b",
+    "v2_b": "4f9393fd59f23b8093c8fc2b7c95bf3f57ec5c22",
+    "v2_canonical": "9e23c16e7c85f825e19dd30da96a17b88e3daf06763eb98c3bdba86bea189d44"
+  },
+  "status": "blocked_task039e3_r2r_utility_protocol_v3_focused_independent_audit",
+  "v3_authorities": {
+    "bundle": "5c0d481c27fb7693c44c62ef8cb6beb04aa20e9e1f8075ee0e63f4d19bf1e472",
+    "canonical": "6ad82359bbaee7f81a0fe2c163dea63b8c855aac9e36af7f10a322ab4944f5e2",
+    "feature_schema": "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8",
+    "opportunity_custody_policy": "1fc835162ccca7b6ee79762d2f9fbb5a085e714bf0bc627a107573bcf9c6caf1",
+    "receipt": "1a6888bb21b42b41e700b3d20cdb4b3b8d3e52b2416a76229d5f1cbb0e26f90f",
+    "reopen": "dffef0fcc2bdd5d6c0473cac027c81b050c2f9f0bbe74c6b577875de827c2f5a",
+    "source_freeze": "4a78d09ef746c654e3c6b3239f5c5ee14cf8c9d95b05af374be0bfa5d637f1a2"
+  }
+}

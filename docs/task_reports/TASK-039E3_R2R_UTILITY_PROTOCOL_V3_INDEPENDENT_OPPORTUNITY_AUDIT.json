@@ -1,0 +1,57 @@
+{
+  "artifact_hash": "04a2aed36e7aa90810612b0dcaaade3d2464b77cc8d5754efbb6f74aa4acfae3",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_opportunity_audit_v1",
+  "audit_commit_a": "6479df10ce46c166c152ba6e90c7bc2922042c79",
+  "base_commit": "ee7656531f662e6204a666af1499174184b2c746",
+  "blocker_status": {
+    "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED": "NOT_CLOSED"
+  },
+  "blocking_findings": [
+    {
+      "finding_id": "BLOCKER_V3_T2_EXACT_PORTFOLIO_MEMBERSHIP_UNBOUND",
+      "observed": "A 39-accepted plus 3-foreign-no_rule partition is accepted when only counts and local authority membership are checked."
+    },
+    {
+      "finding_id": "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+      "observed": "A record target can change without changing opportunity_id and custody accepts the mutated record because source/target are not replay-bound to the executable signature."
+    },
+    {
+      "finding_id": "BLOCKER_V3_FULL_CENSUS_NUMERIC_REFERENCE_AUTHORITY_UNBOUND",
+      "observed": "Caller source-keyed thresholds changed the same synthetic retained census from 14 opportunities to 0 without an E1 registry binding."
+    },
+    {
+      "finding_id": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+      "observed": "A directly constructed FullCensusEnumerationV3 with caller-selected records and census hash was accepted by the custody builder."
+    }
+  ],
+  "caller_count_path": {
+    "abstention_rate_external_counts": false,
+    "arbitrary_1_over_999_by_signature": "IMPOSSIBLE",
+    "effective_census_preimage_override": true
+  },
+  "custody_oracle": {
+    "abstained": 2,
+    "derived_denominator": 5,
+    "derived_numerator": 2,
+    "evaluated": 3,
+    "expected_rate": 0.4,
+    "records": 5,
+    "round_trip": "PASS"
+  },
+  "fixed_sample_size_override_field_found": false,
+  "mutation_audit": {
+    "cases_checked": 15,
+    "cases_rejected": 15,
+    "status": "PASS"
+  },
+  "no_rule_in_opportunity_custody": false,
+  "opportunity_sampling_policy": "FULL_CENSUS_NO_FIXED_SAMPLE_SIZE",
+  "source_not_formed_in_opportunity_custody": false,
+  "status": "BLOCK",
+  "synthetic_full_census": {
+    "exact_identity_matches": 14,
+    "implementation_observed_opportunities": 14,
+    "independent_expected_opportunities": 14,
+    "status": "PASS_FOR_FIXED_SYNTHETIC_INPUT"
+  }
+}

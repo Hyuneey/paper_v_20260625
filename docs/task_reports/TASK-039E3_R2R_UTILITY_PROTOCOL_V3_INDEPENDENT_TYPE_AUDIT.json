@@ -1,0 +1,49 @@
+{
+  "artifact_hash": "023d7024a3fa95b913ae17a51c2fe9fdd561968787d5491e386c43ce736117f6",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_type_audit_v1",
+  "audit_commit_a": "6479df10ce46c166c152ba6e90c7bc2922042c79",
+  "blocker_status": {
+    "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS": "NOT_CLOSED"
+  },
+  "blocking_findings": [
+    {
+      "finding_id": "BLOCKER_V3_SERIALIZED_FEATURE_SCHEMA_AUTHORITY_SUBSTITUTION",
+      "observed": "Self-consistent serialized schemas with a substituted target or metadata authority hash round-trip and are trusted by the raw parser."
+    },
+    {
+      "finding_id": "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+      "observed": "An integer NumericParameterV3 value and a floating physical row count are accepted despite the frozen canonical scalar contract."
+    },
+    {
+      "finding_id": "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+      "observed": "An interior opportunity can be paired with a caller-created file_boundary abstention outcome and accepted as a custody record."
+    }
+  ],
+  "boundary_masking": {
+    "invalid_source_plus_boundary": "UtilityProtocolV3Error",
+    "invalid_target_plus_file_boundary": "UtilityProtocolV3Error",
+    "invalid_target_plus_split_boundary": "UtilityProtocolV3Error",
+    "valid_source_boundary": "source_opportunity_not_formed",
+    "valid_target_file_boundary": "abstain:file_boundary",
+    "valid_target_split_boundary": "abstain:split_boundary"
+  },
+  "discriminated_context_shapes": "PASS",
+  "internal_windows": {
+    "canonical_type": "tuple_of_exact_finite_float",
+    "mutation_cases_rejected": 17,
+    "source_lengths": [5, 5],
+    "target_lengths": [5, 3]
+  },
+  "raw_feature_parser": {
+    "accepted_cases": 9,
+    "rejected_cases": 15,
+    "storage_dtype_claim": "NOT_CLAIMED",
+    "status_for_bound_schema": "PASS"
+  },
+  "raw_label_parser": {
+    "accepted_cases": 2,
+    "rejected_cases": 11,
+    "status": "PASS"
+  },
+  "status": "BLOCK"
+}

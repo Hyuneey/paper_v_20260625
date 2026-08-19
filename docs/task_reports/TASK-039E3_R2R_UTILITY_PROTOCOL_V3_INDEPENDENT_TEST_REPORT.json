@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "813a9a4f801cb188ca934e6bd7d55f5e66215c69f028f51621009c25960fd799",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_test_report_v1",
+  "audit_commit_a": "6479df10ce46c166c152ba6e90c7bc2922042c79",
+  "checks": {
+    "compileall": "PASS",
+    "git_diff_check": "PASS",
+    "independent_bundle_reconstruction": "PASS_6_OF_6",
+    "json_self_hashes": "PASS_8_OF_8",
+    "pip_check": "PASS",
+    "provider_network_tests": "NOT_RUN_PROHIBITED",
+    "real_hai_data_tests": "NOT_RUN_PROHIBITED",
+    "source_freeze_git_blob_and_bytes": "PASS_16_OF_16",
+    "task_scoped_sensitive_data_scan": "PASS_SANITIZED_METADATA_IDENTITIES_ONLY"
+  },
+  "focused_independent_unittest": {
+    "errors": 0,
+    "failing_test_methods": 8,
+    "failure_records": 9,
+    "passing_test_methods": 23,
+    "test_methods_run": 31,
+    "status": "FAILED_AS_BLOCKER_EVIDENCE"
+  },
+  "independence": {
+    "implementation_test_helpers_used_as_oracle": false,
+    "independent_expected_census": true,
+    "independent_lower_authority_feature_derivation": true
+  },
+  "status": "BLOCK"
+}

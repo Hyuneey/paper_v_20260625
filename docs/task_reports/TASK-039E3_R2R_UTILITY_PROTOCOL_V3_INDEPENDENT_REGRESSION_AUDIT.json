@@ -1,0 +1,48 @@
+{
+  "artifact_hash": "91daf11c621790d846d480945dc80eb67bfb3835648a683e7ce94f062c359c42",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_regression_audit_v1",
+  "blocking_findings": [
+    {
+      "finding_id": "BLOCKER_V3_REGRESSION_COMPONENT_AUTHORITY_HASH_MISMATCH",
+      "mismatched_component_count": 3,
+      "components": [
+        "numeric_reference_authority",
+        "event_policy",
+        "metric_policy"
+      ]
+    }
+  ],
+  "component_authority_hashes": {
+    "event_policy_correct": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "event_policy_recorded": "6e4a446743cbd8c69cd93b9ccbd660b1f4e30f63f75575d37dd57bb6ab4c8250",
+    "metric_policy_correct": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "metric_policy_recorded": "4c7b6cfd2c18ddc5a6ca5b13285fc2acb67e4bda43fd8436dbb1e302164a1da0",
+    "numeric_authority_correct": "e50300efd372fb8a5c4567a6fa9e3277e36804506b306ea0053f7fc4ab48ceed",
+    "numeric_authority_recorded": "e50300ef65ae8ab71631c00125fe6d694397714daf220a3a3a7df79115ce68bb"
+  },
+  "immutability": {
+    "construction_result_modified": false,
+    "v1_modified": false,
+    "v2_modified": false,
+    "v3_production_source_modified": false
+  },
+  "minimal_scientific_regression": {
+    "common_equivalence": "42/42",
+    "cross_source_isolation_seconds": 2,
+    "decision_index": "event+horizon+2",
+    "direct_number_utility_threshold_authority": false,
+    "numeric_references": "420/420",
+    "point_adjustment": "PROHIBITED",
+    "same_source_clustering_seconds": 10,
+    "supported_horizons": [1, 5, 10, 30, 60],
+    "t2_accepted_equivalence": "39/39",
+    "t2_no_rule": "3/3",
+    "target_response_window": 3
+  },
+  "source_freeze": {
+    "records_checked": 16,
+    "records_matching": 16,
+    "status": "PASS"
+  },
+  "status": "BLOCK"
+}

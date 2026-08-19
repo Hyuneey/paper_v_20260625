@@ -1,0 +1,39 @@
+{
+  "artifact_hash": "d650dc875c9c2dbb7bcb5715650bd4fc70b706dacd35ed4af006a4dea446aa84",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_readiness_v1",
+  "access_and_calls": {
+    "api_key_access": false,
+    "attack_intervals_accessed": 0,
+    "hai_label_values_accessed": 0,
+    "hai_test_feature_values_accessed": 0,
+    "provider_calls": 0,
+    "scientific_llm_calls": 0,
+    "utility_values_computed": 0
+  },
+  "authorities": {
+    "inner_execution": false,
+    "outer_execution": false,
+    "real_hai_test_access": false,
+    "real_label_access": false,
+    "utility_evaluator_implementation_ready": false,
+    "utility_execution_authorization_ready": false,
+    "utility_protocol_audited": false
+  },
+  "blocking_findings": [
+    "BLOCKER_V3_T2_EXACT_PORTFOLIO_MEMBERSHIP_UNBOUND",
+    "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+    "BLOCKER_V3_FULL_CENSUS_NUMERIC_REFERENCE_AUTHORITY_UNBOUND",
+    "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+    "BLOCKER_V3_SERIALIZED_FEATURE_SCHEMA_AUTHORITY_SUBSTITUTION",
+    "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+    "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+    "BLOCKER_V3_REGRESSION_COMPONENT_AUTHORITY_HASH_MISMATCH"
+  ],
+  "blocking_finding_count": 8,
+  "historical_blocker_closure": {
+    "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS": "NOT_CLOSED",
+    "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED": "NOT_CLOSED"
+  },
+  "next_action": "USER_DECISION_REQUIRED_NO_AUTOMATIC_REMEDIATION_LOOP",
+  "status": "blocked_task039e3_r2r_utility_protocol_v3_focused_independent_audit"
+}

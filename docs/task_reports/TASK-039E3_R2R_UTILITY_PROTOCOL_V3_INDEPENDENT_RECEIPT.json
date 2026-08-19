@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "a393da929ac28fd0cb7fa8ff9d6f2538bb8d97110dec62addbcb64dc0b6dff8e",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_independent_receipt_v1",
+  "audit_bundle": "0b83bd782a92e1a55711d4a4316cf0767f1ff9dd7df5f6085d28b289b4013136",
+  "audit_commit_a": "6479df10ce46c166c152ba6e90c7bc2922042c79",
+  "blocking_finding_count": 8,
+  "boundary_counts": {
+    "attack_intervals_accessed": 0,
+    "hai_label_values_accessed": 0,
+    "hai_test_feature_values_accessed": 0,
+    "provider_calls": 0,
+    "scientific_calls": 0,
+    "utility_values_computed": 0
+  },
+  "readiness_hash": "d650dc875c9c2dbb7bcb5715650bd4fc70b706dacd35ed4af006a4dea446aa84",
+  "status": "blocked_task039e3_r2r_utility_protocol_v3_focused_independent_audit"
+}
