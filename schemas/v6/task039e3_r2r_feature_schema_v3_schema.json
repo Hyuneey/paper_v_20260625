@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e3_r2r_feature_schema_v3_schema.json",
+  "title": "TASK-039E3 R2R P1 Utility Feature Schema V3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_hash", "artifact_type", "schema_version", "feature_entries",
+    "required_source_count", "required_target_count", "timestamp_field",
+    "label_field", "metadata_authorities", "missing_or_ambiguous_feature_type_count",
+    "type_authority_basis"
+  ],
+  "properties": {
+    "artifact_hash": {"$ref": "#/$defs/sha256"},
+    "artifact_type": {"const": "p1_utility_feature_schema_v3"},
+    "schema_version": {"const": "3.0.0"},
+    "feature_entries": {"type": "array", "minItems": 22, "maxItems": 22, "items": {"$ref": "#/$defs/entry"}},
+    "required_source_count": {"const": 12},
+    "required_target_count": {"const": 10},
+    "timestamp_field": {"type": "object"},
+    "label_field": {"type": "object"},
+    "metadata_authorities": {"type": "object"},
+    "missing_or_ambiguous_feature_type_count": {"const": 0},
+    "type_authority_basis": {"const": "COMMITTED_CONTINUOUS_STEP_NUMERIC_SEMANTICS_AND_VARIABLE_METADATA_BINDINGS"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feature_name", "role", "expected_raw_representation",
+        "expected_logical_type", "unit_identity", "missing_value_policy",
+        "finite_value_policy", "metadata_authority_hash"
+      ],
+      "properties": {
+        "feature_name": {"type": "string", "minLength": 1},
+        "role": {"enum": ["source", "target", "source_and_target"]},
+        "expected_raw_representation": {"const": "strict_decimal_numeric_token"},
+        "expected_logical_type": {"const": "finite_real_scalar"},
+        "unit_identity": {"type": ["string", "null"]},
+        "missing_value_policy": {"const": "PROHIBITED_NO_AUTHORIZED_MISSING_TOKEN"},
+        "finite_value_policy": {"const": "FINITE_REQUIRED_FAIL_CLOSED"},
+        "metadata_authority_hash": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

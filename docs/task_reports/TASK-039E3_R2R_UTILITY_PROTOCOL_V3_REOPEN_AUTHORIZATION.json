@@ -1,0 +1,56 @@
+{
+  "artifact_hash": "dffef0fcc2bdd5d6c0473cac027c81b050c2f9f0bbe74c6b577875de827c2f5a",
+  "artifact_type": "task039e3_r2r_utility_protocol_v3_reopen_authorization_v1",
+  "authorization_decision_date": "2026-08-19",
+  "authorized_scope": [
+    "FINAL_UTILITY_PROTOCOL_V3_REMEDIATION_OF_TWO_OPEN_BLOCKERS",
+    "SYNTHETIC_OFFLINE_TESTS",
+    "SUBSEQUENT_FOCUSED_INDEPENDENT_AUDIT"
+  ],
+  "base_commit": "5d6a7b74bf3f43efc0edff44c3ed32fb130cffe9",
+  "blocked_focused_reaudit": {
+    "audit_commit_a": "008a34d6ddce536c65ab36322389a34580710f18",
+    "audit_commit_b": "4213963e5c3abc9f97b45bb183accb0fc43297be",
+    "bundle_hash": "883e32ef7c035707257f0b3596aa5ab1a5df8364f8dab70ffda32c818b1dacac",
+    "receipt_hash": "dc0199685029ba5d8e65761ef7b8bddb21e2563b0c65d5927366ab001b106ba5"
+  },
+  "canonical_v2": {
+    "authority_hash": "9e23c16e7c85f825e19dd30da96a17b88e3daf06763eb98c3bdba86bea189d44",
+    "bundle_hash": "5880ebff1fbda2004dfa3d955376b88d21972721b5287bc5fd62b9e71a6df2cb",
+    "commit_a": "6c63a9a8410d083c8b0e71c344d799284f02941b",
+    "commit_b": "4f9393fd59f23b8093c8fc2b7c95bf3f57ec5c22",
+    "receipt_hash": "46ef239e01697bd54eec3eea5fb9725fe07396ceaf24c82dbb0da1606223f00d",
+    "source_freeze_hash": "6ed4f60018993c378e2388565d00a33f189f74d86fc5017468f9a30e6b4a1726"
+  },
+  "exact_open_blockers": [
+    "BLOCKER_UTILITY_PROTOCOL_ABSTENTION_OPPORTUNITY_ENUMERATION_UNDERDEFINED",
+    "BLOCKER_SYNTHETIC_INPUT_AND_STATE_FAIL_CLOSED_GAPS"
+  ],
+  "historical_stop": {
+    "prior_status": "NONE_AUTHORIZED_STOP",
+    "preserved_as_immutable_custody": true,
+    "superseded_only_for_authorized_scope": true
+  },
+  "original_v1": {
+    "bundle_hash": "189c662b83e82ed47137d7e67f52ff97580662ef65e696a5d5715d2dddaae86d",
+    "commit_a": "0eec09c662ecc1c78daa5f661c2471aba69cf905",
+    "commit_b": "c021768fc29a4560bd1bc52f5ed61462731be1c7",
+    "receipt_hash": "f6db67c4ec4c3f64f0acc8031e27f583fc3192029170184e42dd721dbaf15949"
+  },
+  "prohibited_authorities": {
+    "detector_integration": false,
+    "inner_execution": false,
+    "outer_execution": false,
+    "production_runtime": false,
+    "provider_contact": false,
+    "real_hai_label_access": false,
+    "real_hai_test_access": false,
+    "rule_v2": false,
+    "utility_execution": false,
+    "winner_selection": false
+  },
+  "reopen_authority": "USER_APPROVED_RESOLUTION_OF_TWO_REMAINING_UTILITY_BLOCKERS_AND_RESUMPTION_OF_THE_UTILITY_RESEARCH_PATH",
+  "schema_version": "1.0.0",
+  "status": "authorized_task039e3_r2r_utility_protocol_v3_final_remediation",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V3-REOPEN-AND-FINAL-REMEDIATION"
+}

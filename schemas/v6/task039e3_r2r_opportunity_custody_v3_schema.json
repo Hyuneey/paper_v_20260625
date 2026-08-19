@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperworks.local/schemas/v6/task039e3_r2r_opportunity_custody_v3_schema.json",
+  "title": "TASK-039E3 R2R Opportunity Custody V3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_hash",
+    "artifact_type",
+    "schema_version",
+    "records",
+    "record_count",
+    "evaluated_count",
+    "abstained_count",
+    "anomaly_count",
+    "expected_response_count",
+    "portfolio_identity",
+    "split_identity",
+    "file_identity",
+    "source_event_policy_hash",
+    "target_evaluation_policy_hash",
+    "retained_source_event_census_hash",
+    "accepted_relation_binding_hashes",
+    "no_rule_relation_binding_hashes",
+    "full_census_policy"
+  ],
+  "properties": {
+    "artifact_hash": {"$ref": "#/$defs/sha256"},
+    "artifact_type": {"const": "opportunity_custody_v3"},
+    "schema_version": {"const": "3.0.0"},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "record_count": {"type": "integer", "minimum": 0},
+    "evaluated_count": {"type": "integer", "minimum": 0},
+    "abstained_count": {"type": "integer", "minimum": 0},
+    "anomaly_count": {"type": "integer", "minimum": 0},
+    "expected_response_count": {"type": "integer", "minimum": 0},
+    "portfolio_identity": {"enum": ["COMMON-42", "T0", "T1", "T1-B", "T2"]},
+    "split_identity": {"$ref": "#/$defs/sha256"},
+    "file_identity": {"enum": ["hai-test1.csv", "hai-test2.csv"]},
+    "source_event_policy_hash": {"$ref": "#/$defs/sha256"},
+    "target_evaluation_policy_hash": {"$ref": "#/$defs/sha256"},
+    "retained_source_event_census_hash": {"$ref": "#/$defs/sha256"},
+    "accepted_relation_binding_hashes": {"type": "array", "items": {"$ref": "#/$defs/sha256"}, "uniqueItems": true},
+    "no_rule_relation_binding_hashes": {"type": "array", "items": {"$ref": "#/$defs/sha256"}, "uniqueItems": true},
+    "full_census_policy": {"const": "FULL_CENSUS_NO_FIXED_SAMPLE_SIZE"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_hash", "opportunity_id", "relation_binding_hash",
+        "executable_signature_hash", "portfolio_identity", "file_identity",
+        "source", "target", "source_event_physical_index",
+        "selected_horizon_seconds", "target_evaluation_state",
+        "decision_index", "alarm_emitted", "abstention_reason"
+      ],
+      "properties": {
+        "record_hash": {"$ref": "#/$defs/sha256"},
+        "opportunity_id": {"$ref": "#/$defs/sha256"},
+        "relation_binding_hash": {"$ref": "#/$defs/sha256"},
+        "executable_signature_hash": {"$ref": "#/$defs/sha256"},
+        "portfolio_identity": {"type": "string"},
+        "file_identity": {"type": "string"},
+        "source": {"type": "string"},
+        "target": {"type": "string"},
+        "source_event_physical_index": {"type": "integer", "minimum": 0},
+        "selected_horizon_seconds": {"enum": [1, 5, 10, 30, 60]},
+        "target_evaluation_state": {"enum": ["evaluated_expected_response", "evaluated_anomaly", "abstain"]},
+        "decision_index": {"type": ["integer", "null"], "minimum": 0},
+        "alarm_emitted": {"type": "boolean"},
+        "abstention_reason": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
