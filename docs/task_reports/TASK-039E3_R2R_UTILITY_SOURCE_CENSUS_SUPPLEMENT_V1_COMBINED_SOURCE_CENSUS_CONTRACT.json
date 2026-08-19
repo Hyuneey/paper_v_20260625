@@ -1,0 +1,47 @@
+{
+  "artifact_type": "task039e3_r2r_utility_source_census_combined_numeric_contract_v1",
+  "contract_hash": "cb53d0e4533ebadb61edbdc72b549fe47b46c8dcc4621841aac93a007660ced9",
+  "cross_source_isolation_policy_hash": "f62075523632a7573d28e95ca7f0402d87e62977f4a2f14f4eaf2b9a58f0e280",
+  "event_policy_hash": "3fb20068feff44632be3e4e6917183d52fea5616feec68ede5e9b62f95ecb390",
+  "main_audit_receipt_hash": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+  "main_descriptor_hash": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+  "main_private_registry_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+  "main_source_collapse_policy_hash": "0fad386bb3e013196fbf2865e769b5d8403ca5e08797f14abb8665a802081bc9",
+  "main_source_resolution": "validate_all_applicable_records_then_require_one_unique_value",
+  "main_sources": [
+    "P1_FCV01D",
+    "P1_FCV01Z",
+    "P1_FCV02D",
+    "P1_FCV03D",
+    "P1_FCV03Z",
+    "P1_LCV01D",
+    "P1_LCV01Z",
+    "P1_PCV01D",
+    "P1_PCV01Z"
+  ],
+  "schema_version": "1.0.0",
+  "supplement_audit_receipt_hash": "ad61a4c435e7904b5a80feca40e7e629dc3522e8dc4f68c99b2b9ab9b45d142b",
+  "supplement_descriptor_hash": "d45af926511c669ec04dd13c36823d454b67ccaa98ae0a7be2919b02652bd927",
+  "supplement_private_registry_hash": "12ec7f50a953e097cd7cbe3ac93c7cabfb669130612d7f30ab3b19df85289aaf",
+  "supplement_purpose": "CROSS_SOURCE_ISOLATION_EVENT_CENSUS_ONLY",
+  "supplement_sources": [
+    "P1_FCV02Z",
+    "P1_PCV02Z",
+    "P1_PP04"
+  ],
+  "total_covered_sources": 12,
+  "v3_sources": [
+    "P1_FCV01D",
+    "P1_FCV01Z",
+    "P1_FCV02D",
+    "P1_FCV02Z",
+    "P1_FCV03D",
+    "P1_FCV03Z",
+    "P1_LCV01D",
+    "P1_LCV01Z",
+    "P1_PCV01D",
+    "P1_PCV01Z",
+    "P1_PCV02Z",
+    "P1_PP04"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "artifact_type": "task039e3_r2r_utility_source_census_supplement_v1_final_test_report",
+  "schema_version": "1.0.0",
+  "status": "passed_source_census_supplement_v1_end_to_end_tests",
+  "supplement_focused_tests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "supplement_independent_tests": {
+    "passed": 15,
+    "failed": 0
+  },
+  "v4_r1_remediation_regression": {
+    "passed": 36,
+    "failed": 0
+  },
+  "v4_r1_focused_reaudit_regression": {
+    "passed": 62,
+    "failed": 0
+  },
+  "v4_implementation_regression": {
+    "passed": 51,
+    "failed": 0
+  },
+  "normal_only_materialized_public_regression": {
+    "passed": 8,
+    "failed": 0
+  },
+  "post_materialization_mutations": {
+    "cases": 26,
+    "rejected": 26,
+    "accepted_invalid": 0
+  },
+  "compileall": "PASS",
+  "pip_check": "PASS",
+  "git_diff_check": "PASS",
+  "json_self_hash_checks": "PASS",
+  "artifact_hash": "74d4448b16467d44897169e72364b9b05b39feb995dc9964559e3bf0ba0a40a8"
+}
