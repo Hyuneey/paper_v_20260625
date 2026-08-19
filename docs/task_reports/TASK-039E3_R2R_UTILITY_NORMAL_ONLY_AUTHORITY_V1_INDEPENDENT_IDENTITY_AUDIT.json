@@ -1,0 +1,70 @@
+{
+  "artifact_hash": "6667b20283842a7c2a912fea0c267c79b8f96fd6db4c5c3a7691410694c97fc7",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_independent_identity_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-INDEPENDENT-AUDIT",
+  "status": "blocked_identity_authority_lane",
+  "base_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+  "common_authority": {
+    "executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "common42_authority_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "expected_relations": 42,
+    "observed_relations": 42,
+    "identity_matches": 42,
+    "semantic_hash_replays": 42,
+    "accepted": 42,
+    "no_rule": 0,
+    "relation_substitution_in_canonical_builder": 0
+  },
+  "reference_identity": {
+    "expected": 420,
+    "observed": 420,
+    "unique": 420,
+    "independent_matches": 420,
+    "deterministic": true,
+    "value_in_reference_preimage": false,
+    "value_change_preserved_reference": true,
+    "value_change_changed_record_hash": true,
+    "identity_field_mutations_checked": 7,
+    "identity_field_mutations_changed_reference": 7
+  },
+  "historical_identity_collision": {
+    "historical_e1_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+    "historical_registry_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+    "new_reference_collisions": 0,
+    "explicit_collision_mutations_rejected": 3
+  },
+  "registry_closure": {
+    "record_count": 420,
+    "unique_logical_keys": 420,
+    "unique_reference_identities": 420,
+    "canonical_registry_validation": "PASS",
+    "mutation_cases_checked": 14,
+    "canonical_authority_mutation_failures": 14,
+    "strict_numeric_types": "PASS"
+  },
+  "claim_boundary": {
+    "historical_e1_identity_restored": false,
+    "historical_numeric_identity_restored": false,
+    "t2_utility_scope_authorized": false,
+    "utility_status": "NOT_EXECUTED"
+  },
+  "blocking_findings": [
+    {
+      "finding_id": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_COMMON_RELATION_AUTHORITY_REPLAY_BYPASS",
+      "status": "OPEN",
+      "evidence": "Public registry, receipt, and finalization validators trust a caller-created NormalOnlyAuthorityDefinitionV1 and do not replay its relations or recompute its authority definition hash against committed COMMON authority.",
+      "accepted_mutations": [
+        "relation_identity",
+        "semantic_execution_hash",
+        "source",
+        "selected_horizon_seconds"
+      ],
+      "impact": "A fabricated relation authority can produce a registry and receipt that still claim the canonical COMMON and authority-definition hashes."
+    }
+  ],
+  "production_source_modified": false,
+  "existing_v1_test_modified": false,
+  "created_at": "2026-08-19T15:12:16+09:00"
+}

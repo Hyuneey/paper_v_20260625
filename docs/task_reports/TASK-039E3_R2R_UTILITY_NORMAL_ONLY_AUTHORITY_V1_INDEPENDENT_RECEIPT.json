@@ -1,0 +1,42 @@
+{
+  "artifact_hash": "655bb354ca18cd2fec94fe6aac37aea36ba9a255a9027e946d50cf8cce45c6a1",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_independent_receipt",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-INDEPENDENT-AUDIT",
+  "status": "blocked_task039e3_r2r_utility_normal_only_authority_v1_independent_audit",
+  "branch": "task-039e3-r2r-utility-normal-only-authority-v1-independent-audit",
+  "base_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+  "audit_commit_a": "8fdd30d57edfb824956662887453f4620fe200c3",
+  "audit_bundle_hash": "128a874f92cc7d51a8e46f4eb2a9a1ae018ad6a807829233ec94add92e4ae58c",
+  "component_hashes": {
+    "science_audit": "c375d0fa26ee13ad2a9c09c043df59dd3a17bd88be3a3aead35ef90a1c89a85e",
+    "identity_audit": "6667b20283842a7c2a912fea0c267c79b8f96fd6db4c5c3a7691410694c97fc7",
+    "custody_audit": "33089215defbae5a59f14e7b100bce8597cf05bd827e8f166c671b98b94e59ca",
+    "readiness": "853b93006b50efad388220974ba35e1a60a9fff80e49264bf22db12b35e4c350",
+    "test_report": "4465f8d947c934a896ba3c8e4bdbef9a7fb17a8f9d6cb40a3da7fa5c1e24ddfd"
+  },
+  "immutability": {
+    "v1_production_source_modified": false,
+    "existing_v1_tests_modified": false,
+    "historical_artifacts_modified": false
+  },
+  "boundaries": {
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "hai_labels_accessed": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0,
+    "real_authority_materialized": false
+  },
+  "authority_flags": {
+    "normal_only_authority_protocol_audited": false,
+    "normal_only_authority_real_materialization_ready": false,
+    "normal_only_authority_materialized": false,
+    "utility_evaluator_implementation_ready": false,
+    "utility_execution_authorization_ready": false
+  },
+  "exact_next_task": "NONE_AUTOMATIC",
+  "created_at": "2026-08-19T15:12:16+09:00"
+}

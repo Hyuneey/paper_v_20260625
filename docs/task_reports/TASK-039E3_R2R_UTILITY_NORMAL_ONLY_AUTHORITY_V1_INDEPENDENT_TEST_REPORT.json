@@ -1,0 +1,55 @@
+{
+  "artifact_hash": "4465f8d947c934a896ba3c8e4bdbef9a7fb17a8f9d6cb40a3da7fa5c1e24ddfd",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_independent_test_report",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-INDEPENDENT-AUDIT",
+  "status": "completed_with_blocking_independent_oracle_failures",
+  "base_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+  "audit_commit_a": "8fdd30d57edfb824956662887453f4620fe200c3",
+  "independent_audit_tests": {
+    "command": "python -m unittest -v tests.test_task039e3_r2r_utility_normal_only_authority_v1_independent_science_audit tests.test_task039e3_r2r_utility_normal_only_authority_v1_independent_identity_audit tests.test_task039e3_r2r_utility_normal_only_authority_v1_independent_custody_audit",
+    "total": 28,
+    "passed": 22,
+    "failed": 6,
+    "errors": 0,
+    "result": "FAILED_AS_BLOCKING_EVIDENCE",
+    "failed_tests": [
+      "test_common_relation_authority_must_not_be_caller_substitutable",
+      "test_locator_must_be_validated_before_any_normal_value_parse",
+      "test_builder_checkout_is_internally_pinned_to_audited_commit",
+      "test_public_receipt_schema_must_reject_disguised_numeric_leakage",
+      "test_final_validator_requires_locator_file_outside_git",
+      "test_final_validator_requires_locator_receipt_builder_cross_binding"
+    ]
+  },
+  "existing_implementation_tests": {
+    "command": "python -m unittest -v tests.test_task039e3_r2r_utility_normal_only_authority_v1",
+    "total": 24,
+    "passed": 24,
+    "failed": 0,
+    "errors": 0,
+    "result": "PASS_SUPPLEMENTARY_ONLY"
+  },
+  "checks": {
+    "compileall": "PASS",
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+    "git_diff_check": "PASS",
+    "upstream_and_freeze_json_self_hashes": {
+      "checked": 10,
+      "passed": 10
+    },
+    "sensitive_public_artifact_scan": "PASS_AFTER_REPORT_FINALIZATION",
+    "production_source_modified": false,
+    "existing_v1_test_modified": false
+  },
+  "data_and_call_boundaries": {
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "hai_labels_accessed": 0,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0
+  },
+  "created_at": "2026-08-19T15:12:16+09:00"
+}

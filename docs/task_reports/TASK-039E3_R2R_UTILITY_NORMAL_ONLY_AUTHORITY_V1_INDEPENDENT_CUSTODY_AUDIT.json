@@ -1,0 +1,115 @@
+{
+  "artifact_hash": "33089215defbae5a59f14e7b100bce8597cf05bd827e8f166c671b98b94e59ca",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_independent_custody_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-INDEPENDENT-AUDIT",
+  "status": "blocked_data_access_and_custody_lane",
+  "base_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+  "normal_input_preflight": {
+    "observed_order": [
+      "verify_train1",
+      "verify_train2",
+      "parse_train1",
+      "parse_train2",
+      "reverify_train1",
+      "reverify_train2"
+    ],
+    "both_identities_before_value_parse": true,
+    "wrong_train1_size_value_reads": 0,
+    "wrong_train1_hash_value_reads": 0,
+    "wrong_train2_hash_train1_value_reads": 0,
+    "wrong_train2_hash_train2_value_reads": 0,
+    "post_read_mutation_rejected": true,
+    "feature_header_and_token_mutations": 6,
+    "feature_header_and_token_mutations_rejected": 6
+  },
+  "private_destination": {
+    "explicit_environment_locator": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "unset_locator_rejected_by_finalizer": true,
+    "mismatched_locator_rejected_by_finalizer": true,
+    "inside_repository_destination_rejected_by_finalizer": true,
+    "inside_repository_locator_rejected_by_finalizer": true,
+    "same_output_path_rejected_by_finalizer": true,
+    "pre_value_read_validation": false
+  },
+  "atomic_materialization": {
+    "canonical_write_order": [
+      "private_registry_atomic_rename",
+      "local_locator_manifest_written_and_validated",
+      "private_registry_reopened_and_rehashed",
+      "public_receipt_written_last"
+    ],
+    "atomic_write_failure_injections": 3,
+    "public_receipt_written_early_cases": 0,
+    "partial_temp_files_accepted": 0,
+    "core_write_order": "PASS"
+  },
+  "builder_checkout": {
+    "required_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+    "required_source_git_blob": "b071678a151161f9585301472f5eb23d7ce2c246",
+    "required_source_raw_sha256": "f18eceabd1f0f5aee7755bff964b985014411b6a0b98425e424863a59256b30e",
+    "exact_source_match": true,
+    "internally_pinned": false,
+    "caller_selected_commit_accepted": true
+  },
+  "public_receipt": {
+    "canonical_receipt_has_numeric_values": false,
+    "canonical_receipt_has_absolute_private_paths": false,
+    "exact_closed_schema": false,
+    "disguised_synthetic_numeric_field_accepted": true,
+    "written_last_on_canonical_path": true
+  },
+  "finalized_authority_validation": {
+    "locator_content_private_path_outside_git_checked": true,
+    "locator_manifest_file_location_outside_git_checked": false,
+    "locator_builder_commit_cross_bound_to_receipt": false
+  },
+  "t2_boundary": {
+    "t2_utility_scope_authorized": false,
+    "t2_materialization_path_observed": false
+  },
+  "blocking_findings": [
+    {
+      "finding_id": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PRIVATE_LOCATOR_PRECHECK_AFTER_VALUE_PARSE",
+      "status": "OPEN",
+      "evidence": "The canonical materializer reaches both normal-file parsers before finalization checks the explicit private locator and destination.",
+      "impact": "An unset, mismatched, or unsafe locator can fail after authorized normal values have already been parsed."
+    },
+    {
+      "finding_id": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_BUILDER_COMMIT_CALLER_AUTHORITY",
+      "status": "OPEN",
+      "evidence": "verify_builder_checkout_v1 compares HEAD only with its caller-supplied expected_builder_commit; an arbitrary self-consistent HEAD is accepted.",
+      "impact": "Future materialization is not internally pinned to the audited builder commit."
+    },
+    {
+      "finding_id": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_PUBLIC_RECEIPT_OPEN_SCHEMA_LEAKAGE",
+      "status": "OPEN",
+      "evidence": "A self-rehashed receipt with an additional synthetic numeric field under a non-forbidden key validates.",
+      "impact": "The public receipt boundary does not fail closed against disguised numeric-value leakage."
+    },
+    {
+      "finding_id": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_FINAL_LOCATOR_PATH_NOT_REVALIDATED",
+      "status": "OPEN",
+      "evidence": "validate_finalized_authority_v1 accepts a locator-manifest file copied inside the Git repository because it validates only the private path stored in the document.",
+      "impact": "The local-only locator persistence boundary is not closed at final acceptance."
+    },
+    {
+      "finding_id": "BLOCKER_NORMAL_ONLY_AUTHORITY_V1_LOCATOR_RECEIPT_BUILDER_COMMIT_NOT_CROSS_BOUND",
+      "status": "OPEN",
+      "evidence": "A self-rehashed locator with a different valid builder commit remains accepted with the original receipt.",
+      "impact": "Final private, locator, and public custody do not agree on one builder identity."
+    }
+  ],
+  "access_counters": {
+    "hai_normal_values_accessed": 0,
+    "hai_test_values_accessed": 0,
+    "hai_labels_accessed": 0,
+    "attack_intervals_accessed": 0,
+    "real_authority_materialized": false,
+    "utility_computations": 0,
+    "provider_calls": 0,
+    "api_key_access": false,
+    "scientific_llm_calls": 0
+  },
+  "created_at": "2026-08-19T15:12:16+09:00"
+}

@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "128a874f92cc7d51a8e46f4eb2a9a1ae018ad6a807829233ec94add92e4ae58c",
+  "artifact_type": "task039e3_r2r_utility_normal_only_authority_v1_independent_bundle",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-NORMAL-ONLY-AUTHORITY-V1-INDEPENDENT-AUDIT",
+  "status": "blocked_task039e3_r2r_utility_normal_only_authority_v1_independent_audit",
+  "base_commit": "d58757b63d21519bc39398ddcf96be1682e8b01a",
+  "audit_commit_a": "8fdd30d57edfb824956662887453f4620fe200c3",
+  "frozen_authorities": {
+    "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "protocol_freeze_hash": "05ab58acaa73b462c6a29bd26ae394d7d77edfe6a3ba006106b83e8e0e21e428",
+    "contract_hash": "1ba69cc445bc22fe9b9387b1ccde97572d6b55694785b3e5629fa83561bb0902",
+    "synthetic_test_report_hash": "1cfa0a0cb35b0fb08b005ead3d81020d9192464a9d2917548236ca42a0368121",
+    "calibration_policy_hash": "4f2622050637e3e83205dec59400fa6bf9ed2bd1a41f6b8ceb1900dc9f69b881",
+    "common_executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "route_c_audit_hash": "eb2406391e189d3c53613e2c0074d4575cc91403fe047e54066b5a418906e415"
+  },
+  "audit_components": {
+    "science_audit_hash": "c375d0fa26ee13ad2a9c09c043df59dd3a17bd88be3a3aead35ef90a1c89a85e",
+    "identity_audit_hash": "6667b20283842a7c2a912fea0c267c79b8f96fd6db4c5c3a7691410694c97fc7",
+    "custody_audit_hash": "33089215defbae5a59f14e7b100bce8597cf05bd827e8f166c671b98b94e59ca",
+    "readiness_hash": "853b93006b50efad388220974ba35e1a60a9fff80e49264bf22db12b35e4c350",
+    "test_report_hash": "4465f8d947c934a896ba3c8e4bdbef9a7fb17a8f9d6cb40a3da7fa5c1e24ddfd"
+  },
+  "summary": {
+    "common_relations": 42,
+    "common_identity_matches": 42,
+    "historical_numeric_bindings": 462,
+    "utility_numeric_bindings": 420,
+    "independent_tests_total": 28,
+    "independent_tests_passed": 22,
+    "independent_tests_failed": 6,
+    "supplementary_tests_passed": 24,
+    "blocking_findings": 6,
+    "utility_status": "NOT_EXECUTED"
+  },
+  "created_at": "2026-08-19T15:12:16+09:00"
+}
