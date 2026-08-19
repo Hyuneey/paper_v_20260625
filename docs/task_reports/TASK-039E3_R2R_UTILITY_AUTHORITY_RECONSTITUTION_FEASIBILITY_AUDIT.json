@@ -1,0 +1,168 @@
+{
+  "artifact_hash": "eb2406391e189d3c53613e2c0074d4575cc91403fe047e54066b5a418906e415",
+  "artifact_type": "task039e3_r2r_utility_authority_reconstitution_feasibility_audit_v1",
+  "audit_date": "2026-08-19",
+  "authority_dependency_matrix_hash": "bbeffb23ec9310f9572e1ab6657d6d18b2ec93e62b18687a70567dcec6ccd74d",
+  "base_commit": "7ca6a241b1ed788529db66fc18c1675f23df9f4b",
+  "boundaries": {
+    "api_key_access": false,
+    "hai_label_accesses": 0,
+    "hai_test_feature_accesses": 0,
+    "private_artifact_reconstruction": false,
+    "provider_calls": 0,
+    "scientific_llm_calls": 0,
+    "utility_computations": 0
+  },
+  "common42_authority_check_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+  "common42_result": {
+    "accepted_no_rule": "42/0",
+    "authority_status": "FROZEN_EXECUTABLE_AUTHORITY_AVAILABLE",
+    "cohort_bound": true,
+    "executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "numeric_reference_roles_bound": true,
+    "numeric_values_available": false,
+    "relation_identity_bound": true
+  },
+  "e1_exact_rematerialization": {
+    "capable_in_principle_from_exact_original_inputs": true,
+    "current_exact_hash_reproducibility": "NOT_AVAILABLE_BECAUSE_ORIGINAL_PRIVATE_INPUT_LEDGERS_ARE_UNAVAILABLE",
+    "deterministic": true,
+    "does_not_read_hai_directly": true,
+    "exact_historical_hash": "0998c6600078b8a0aca7263b6e0b702808cc141b1cbcfe3d0026fddb98c408a7",
+    "exact_materializer_code": {
+      "availability": "AVAILABLE_COMMITTED_PUBLIC",
+      "execution_commit": "e8fd2ed47bb0214a0e364bf978eebe75ae4a79a3",
+      "git_blob": "af4401cbcf2240df8523a36c0ff69a197fdfae4b",
+      "unchanged_at_audit_base": true
+    },
+    "input_availability": [
+      {
+        "availability": "AVAILABLE_COMMITTED_PUBLIC",
+        "input": "E0 confirmed relation cohort"
+      },
+      {
+        "availability": "AVAILABLE_COMMITTED_PUBLIC",
+        "input": "D0 window constants and policies"
+      },
+      {
+        "availability": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+        "expected_hash": "3eb6ff199dbc67b183d35a804754e557bdfa869a899c754e551cd77e8dcfb304",
+        "input": "D1 source parameter private ledger"
+      },
+      {
+        "availability": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+        "expected_hash": "f36f4b424c85b228043f9685a22a25c73d6b165e28714b627cf51e8bbb77f96e",
+        "input": "D1 target parameter private ledger"
+      },
+      {
+        "availability": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+        "expected_hash": "e372d7ccf4a7dde5f7ccd91049cc73b443b3b19a3a0c563f451aea50e8faddc7",
+        "input": "D1 directional fit private ledger"
+      },
+      {
+        "availability": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+        "expected_hash": "d349421ae9a866b924c329dcb2546088466866e09f45851ec5d18090509dc062",
+        "input": "D2 confirmation private ledger"
+      }
+    ],
+    "original_serialization_contract_available": true,
+    "primary_classification": "RESTORE_ORIGINAL_ONLY"
+  },
+  "historical_state": {
+    "construction_result_validity": "UNCHANGED",
+    "current_private_locator_fact": "the original private authorities are unavailable in the current searched/authorized environment",
+    "scientific_result_evaluable": true,
+    "terminal_custody_validity": "UNCHANGED",
+    "utility_status": "NOT_EXECUTED"
+  },
+  "missing_authority_classifications": [
+    {
+      "locator_name": "TASK039E3_E1_PRIVATE_LEDGER",
+      "primary_classification": "RESTORE_ORIGINAL_ONLY"
+    },
+    {
+      "locator_name": "TASK039E3_UTILITY_NUMERIC_REGISTRY_V2",
+      "primary_classification": "RESTORE_ORIGINAL_ONLY"
+    },
+    {
+      "locator_name": "TASK039E3_SUCCESS_PUBLIC_ROOT",
+      "primary_classification": "PUBLIC_ATTESTATION_SUFFICIENT_IF_POLICY_VERSIONED"
+    },
+    {
+      "locator_name": "TASK039E3_SUCCESS_PRIVATE_ROOT",
+      "primary_classification": "NOT_REQUIRED_FOR_UTILITY_DATA_PLANE"
+    },
+    {
+      "locator_name": "TASK039E3_TERMINAL_CUSTODY_PUBLIC_ROOT",
+      "primary_classification": "PUBLIC_ATTESTATION_SUFFICIENT_IF_POLICY_VERSIONED"
+    },
+    {
+      "locator_name": "TASK039E3_TERMINAL_CUSTODY_PRIVATE_ROOT",
+      "primary_classification": "NOT_REQUIRED_FOR_UTILITY_DATA_PLANE"
+    }
+  ],
+  "new_normal_only_authority_feasibility": {
+    "classification": "NEW_NORMAL_ONLY_AUTHORITY_FEASIBLE_IN_PRINCIPLE",
+    "conditions": [
+      "later authorization verifies the exact frozen train1/train2 file identities before reading values; train3 confirmation remains frozen and is not rerun merely to derive numeric parameters",
+      "the frozen 42 relation identities, directions, horizons, and continuous-step calibration formulas are used without reinterpretation",
+      "the output is assigned a new authority version and new reference identities",
+      "the authority is independently audited before utility feature or label access",
+      "the utility scope is COMMON-42 unless exact T2 membership is separately restored and bound"
+    ],
+    "historical_e1_identity_restored": false,
+    "normal_data_values_accessed_in_this_audit": 0,
+    "supporting_public_evidence": [
+      "docs/task_reports/TASK-039D1_DATA_ACCESS_AUDIT.json",
+      "docs/task_reports/TASK-039D2_DATA_ACCESS_AUDIT.json",
+      "src/paperworks/v6/relation_profiling_protocol_v1.py",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json"
+    ]
+  },
+  "numeric_registry_exact_rematerialization": {
+    "additional_private_authority_beyond_e1": false,
+    "builder_code_availability": "AVAILABLE_COMMITTED_PUBLIC",
+    "builder_git_blob": "17520e8016d580c5ef8cbc0c7084330c95a1b2d1",
+    "builder_unchanged_at_audit_base": true,
+    "capable_in_principle_from_exact_e1_and_committed_equivalence": true,
+    "current_exact_hash_reproducibility": "NOT_AVAILABLE_BECAUSE_EXACT_E1_IS_UNAVAILABLE",
+    "dependency": [
+      "exact E1 private ledger",
+      "committed executable-equivalence artifact",
+      "frozen deterministic builder and serialization contract"
+    ],
+    "exact_historical_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+    "primary_classification": "RESTORE_ORIGINAL_ONLY"
+  },
+  "public_attestation_versioned_interface": {
+    "already_authorized": false,
+    "assessment": "FEASIBLE_TO_PROPOSE_NEW_VERSIONED_INTERFACE",
+    "conditions": [
+      "bind the successful execution receipt, accounting hash, terminal supplement hash, and terminal independent audit authority",
+      "bind the frozen COMMON-42 executable-equivalence artifact",
+      "bind an independently audited exact numeric authority",
+      "exclude exact T2 membership unless it is separately restored",
+      "complete a separate freeze and independent audit before any utility execution"
+    ],
+    "scope": "COMMON-42 construction-to-utility provenance boundary"
+  },
+  "repository_observations": {
+    "complete_real_data_utility_evaluator_committed": false,
+    "filesystem_locator_recovery_repeated": false,
+    "private_files_opened": 0,
+    "v4_artifacts_committed": false,
+    "v4_source_committed": false
+  },
+  "route_decision": {
+    "reasons": [
+      "ROUTE_A is unavailable because the authorized locator recovery was exhausted and no concrete remaining restoration path is known.",
+      "ROUTE_B is unavailable because exact D1/D2 private inputs needed to reproduce E1 are not available in the current environment.",
+      "Committed relation identities, executable semantics, normal-file identities, deterministic calibration formulas, and leakage boundaries support a scientifically new normal-only authority in principle.",
+      "Provider and terminal private custody are not COMMON-42 computation inputs after executable projection, although exact T2 membership remains unavailable."
+    ],
+    "selected_route": "ROUTE_C_NEW_NORMAL_ONLY_AUTHORITY_RECONSTITUTION_REQUIRED"
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_authority_reconstitution_feasibility_audit",
+  "task_id": "TASK-039E3-R2R-UTILITY-AUTHORITY-RECONSTITUTION-FEASIBILITY-AUDIT"
+}

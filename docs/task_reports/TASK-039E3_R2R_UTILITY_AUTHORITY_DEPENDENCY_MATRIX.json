@@ -1,0 +1,270 @@
+{
+  "artifact_hash": "bbeffb23ec9310f9572e1ab6657d6d18b2ec93e62b18687a70567dcec6ccd74d",
+  "artifact_type": "task039e3_r2r_utility_authority_dependency_matrix_v1",
+  "audit_date": "2026-08-19",
+  "base_commit": "7ca6a241b1ed788529db66fc18c1675f23df9f4b",
+  "current_environment_fact": "the original private authorities are unavailable in the current searched/authorized environment",
+  "data_plane": {
+    "computation_stages": [
+      {
+        "consumed_fields": [
+          "relation_binding_hash",
+          "semantic_execution_hash",
+          "source",
+          "target",
+          "source_step_direction",
+          "target_response_direction",
+          "selected_delay_horizon_seconds",
+          "source_threshold_reference",
+          "source_stability_reference",
+          "target_scale_reference",
+          "window_constant_references"
+        ],
+        "evidence": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json and src/paperworks/v6/task039e3_r2r_utility_protocol_v3.py:633-660",
+        "stage": "frozen_executable_selection"
+      },
+      {
+        "consumed_fields": [
+          "reference",
+          "numeric_role",
+          "numeric_value",
+          "relation_binding_hash",
+          "authoritative_e1_ledger_hash",
+          "provenance_identity"
+        ],
+        "evidence": "src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py:446-563",
+        "stage": "deterministic_numeric_reference_resolution"
+      },
+      {
+        "consumed_fields": [
+          "feature_identity",
+          "canonical_float_series",
+          "physical_row_count",
+          "file_identity",
+          "source_step_threshold",
+          "source_stability_tolerance"
+        ],
+        "evidence": "src/paperworks/v6/task039e3_r2r_utility_protocol_v3.py:799-900 and 1032-1229",
+        "stage": "source_event_and_opportunity_enumeration"
+      },
+      {
+        "consumed_fields": [
+          "bound_opportunity",
+          "target_baseline_window",
+          "target_response_window",
+          "target_noise_scale",
+          "file_and_split_coordinates"
+        ],
+        "evidence": "src/paperworks/v6/task039e3_r2r_utility_protocol_v3.py:921-1014",
+        "stage": "target_response_and_alarm_decision"
+      },
+      {
+        "consumed_fields": [
+          "strict_binary_label_vector",
+          "attack_event_intervals",
+          "normal_labeled_seconds",
+          "alarm_episode_intervals"
+        ],
+        "evidence": "src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py:836-1150",
+        "stage": "label_event_custody_and_utility_metrics"
+      }
+    ],
+    "minimal_required_artifact_classes": [
+      "frozen executable relation/signature authority",
+      "exact deterministic numeric values bound to the executable numeric references or a newly versioned replacement authority",
+      "verified feature, coordinate, split, event, and metric policies",
+      "future authorized HAI feature frame",
+      "future authorized strict-binary label custody"
+    ],
+    "provider_private_custody_exit_point": {
+      "common_42": "Provider-private construction custody ceases to be a computation input after verifier-admitted proposals are projected into the self-hashed COMMON-42 executable-equivalence artifact. The private custody remains provenance evidence.",
+      "evidence": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json; src/paperworks/v6/task039e3_r2r_utility_protocol_v1.py:88-148",
+      "t2_caveat": "The public projection preserves T2 aggregate 39/3 and equivalence for accepted cells but not the exact three-relation no_rule membership. A T2 coverage ablation still needs restored exact membership or a separately frozen scope decision."
+    },
+    "real_evaluator_status": "NO_COMPLETE_REAL_DATA_EVALUATOR_COMMITTED_OR_AUTHORIZED",
+    "utility_computation_performed": false
+  },
+  "dependency_role_definitions": {
+    "HISTORICAL_CUSTODY_ATTESTATION": "evidence that a completed historical construction or custody fact was valid",
+    "PRE_EXECUTION_PROVENANCE_GATE": "authority checked before a later utility run but not numerically consumed by rule evaluation",
+    "REPORT_ONLY": "used only to report or summarize a result",
+    "SCHEMA_VALIDATION_ONLY": "used to validate document identity, shape, or self-hash",
+    "UNKNOWN": "repository evidence does not determine the dependency",
+    "UTILITY_DATA_PLANE_INPUT": "a value or object directly consumed to form rule states, predictions, label custody, or metrics"
+  },
+  "missing_authorities": [
+    {
+      "current_locator_status": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+      "dependencies": [
+        {
+          "effect": "supplies the historical numeric-value and provenance preimages from which the utility registry was built",
+          "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py",
+          "roles": [
+            "PRE_EXECUTION_PROVENANCE_GATE",
+            "SCHEMA_VALIDATION_ONLY"
+          ],
+          "symbol_or_field": "build_private_numeric_registry_v2 / authoritative_e1_binding_preimage"
+        },
+        {
+          "effect": "historical construction used E1 records to project deterministic evidence and numeric bindings",
+          "path": "src/paperworks/v6/task039e3_scientific_execution_v1.py",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION"
+          ],
+          "symbol_or_field": "project_real_evidence_v1 and load_real_evidence_schedule_v1"
+        },
+        {
+          "effect": "the V3 opportunity and metric functions do not open or consume this ledger directly",
+          "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v3.py",
+          "roles": [
+            "SCHEMA_VALIDATION_ONLY"
+          ],
+          "symbol_or_field": "no direct ledger parameter in the canonical V3 computation functions"
+        }
+      ],
+      "direct_utility_data_plane_input": false,
+      "locator_name": "TASK039E3_E1_PRIVATE_LEDGER",
+      "primary_classification": "RESTORE_ORIGINAL_ONLY",
+      "rationale": "The ledger is an upstream source for the missing numeric registry, not a direct V3 evaluator input. Its exact deterministic rematerialization requires four original D1/D2 private ledgers whose locators are not available; therefore historical identity cannot presently be regenerated."
+    },
+    {
+      "current_locator_status": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+      "dependencies": [
+        {
+          "effect": "verifies 420 records and returns the finite numeric value for an exact reference and role",
+          "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v2.py",
+          "roles": [
+            "UTILITY_DATA_PLANE_INPUT",
+            "PRE_EXECUTION_PROVENANCE_GATE",
+            "SCHEMA_VALIDATION_ONLY"
+          ],
+          "symbol_or_field": "verify_private_numeric_registry_v2 and resolve_numeric_reference_v2"
+        },
+        {
+          "effect": "public report binds the absent registry to E1, the E1 cohort, and 420 exact resolutions without exposing values",
+          "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_REMEDIATION_NUMERIC_AUTHORITY.json",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION",
+            "REPORT_ONLY"
+          ],
+          "symbol_or_field": "private_registry_hash / references_checked / unique_resolutions"
+        }
+      ],
+      "direct_utility_data_plane_input": true,
+      "locator_name": "TASK039E3_UTILITY_NUMERIC_REGISTRY_V2",
+      "primary_classification": "RESTORE_ORIGINAL_ONLY",
+      "rationale": "This is the only missing locator whose records directly supply numeric values to the frozen resolver. It is deterministic from exact E1 plus the committed executable-equivalence artifact, but exact E1 is unavailable and cannot currently be rematerialized."
+    },
+    {
+      "current_locator_status": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+      "dependencies": [
+        {
+          "effect": "historically held the write-last execution receipt and seven bound public summaries",
+          "path": "src/paperworks/v6/task039e3_r2r_result_finalizer_v1.py",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION",
+            "REPORT_ONLY"
+          ],
+          "symbol_or_field": "PUBLIC_ARTIFACT_NAMES_R2R_V1 and finalize_successful_r2r_scientific_result_v1"
+        },
+        {
+          "effect": "committed audit report preserves all eight public artifact hashes and the exact execution receipt hash",
+          "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_PUBLIC.json",
+          "roles": [
+            "PRE_EXECUTION_PROVENANCE_GATE",
+            "HISTORICAL_CUSTODY_ATTESTATION"
+          ],
+          "symbol_or_field": "execution_receipt_hash / public_artifact_hashes / receipt_authority_bindings_exact"
+        }
+      ],
+      "direct_utility_data_plane_input": false,
+      "locator_name": "TASK039E3_SUCCESS_PUBLIC_ROOT",
+      "primary_classification": "PUBLIC_ATTESTATION_SUFFICIENT_IF_POLICY_VERSIONED",
+      "rationale": "The original directory is not needed to compute COMMON-42 predictions. Committed secondary attestations bind the completed successful execution strongly enough to propose, but not authorize, a new versioned boundary."
+    },
+    {
+      "current_locator_status": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+      "dependencies": [
+        {
+          "effect": "historically stored scientific-provider, proposal-validity, construction-outcome, and Direct-number ledgers",
+          "path": "src/paperworks/v6/task039e3_r2r_result_finalizer_v1.py",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION",
+            "PRE_EXECUTION_PROVENANCE_GATE"
+          ],
+          "symbol_or_field": "PRIVATE_ARTIFACT_NAMES_R2R_V1 / _private_snapshot / private_inputs"
+        },
+        {
+          "effect": "the public executable projection replaces provider/proposal payloads for COMMON-42 computation; raw private records are not accepted by V3 source, target, custody, or metric functions",
+          "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION"
+          ],
+          "symbol_or_field": "relation_records / semantic_execution_hash"
+        }
+      ],
+      "direct_utility_data_plane_input": false,
+      "locator_name": "TASK039E3_SUCCESS_PRIVATE_ROOT",
+      "primary_classification": "NOT_REQUIRED_FOR_UTILITY_DATA_PLANE",
+      "rationale": "Provider records, proposal envelopes, verifier records, and Direct-number outputs are not numerically consumed after COMMON-42 projection. The construction-outcome ledger would still be needed to restore exact private T2 39/3 membership, so the classification does not authorize a T2 ablation without an explicit scope decision."
+    },
+    {
+      "current_locator_status": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+      "dependencies": [
+        {
+          "effect": "historically held public remediation/audit manifests that attest 251 proposal record-hash preimages and result evaluability",
+          "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_CUSTODY_AUDIT_RECEIPT.json",
+          "roles": [
+            "PRE_EXECUTION_PROVENANCE_GATE",
+            "HISTORICAL_CUSTODY_ATTESTATION",
+            "REPORT_ONLY"
+          ],
+          "symbol_or_field": "supplemental_private_artifact_hash / record_hash_exact_matches / scientific_result_evaluable"
+        },
+        {
+          "effect": "the committed audit receipt and component reports already preserve the terminal public findings and hashes",
+          "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_CUSTODY_AUDIT_SUPPLEMENT.json",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION"
+          ],
+          "symbol_or_field": "supplement_artifact_hash / independent_envelope_matches"
+        }
+      ],
+      "direct_utility_data_plane_input": false,
+      "locator_name": "TASK039E3_TERMINAL_CUSTODY_PUBLIC_ROOT",
+      "primary_classification": "PUBLIC_ATTESTATION_SUFFICIENT_IF_POLICY_VERSIONED",
+      "rationale": "Terminal public artifacts prove the historical custody result; they do not provide rule parameters or feature values. Their committed copies can support a newly frozen provenance boundary, subject to separate audit."
+    },
+    {
+      "current_locator_status": "UNAVAILABLE_CURRENT_ENVIRONMENT",
+      "dependencies": [
+        {
+          "effect": "stored the 251-record supplemental proposal-envelope/hash preimages used to close historical result custody",
+          "path": "scripts/reconstruct_task039e3_r2r_terminal_custody_v1.py",
+          "roles": [
+            "HISTORICAL_CUSTODY_ATTESTATION",
+            "SCHEMA_VALIDATION_ONLY"
+          ],
+          "symbol_or_field": "reconstruct_supplement_v1 / proposal_envelope / proposal_hash / validity_hash"
+        },
+        {
+          "effect": "the V3 evaluator interfaces never accept terminal proposal envelopes or provider records",
+          "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v3.py",
+          "roles": [
+            "SCHEMA_VALIDATION_ONLY"
+          ],
+          "symbol_or_field": "source, target, opportunity, custody, and abstention interfaces"
+        }
+      ],
+      "direct_utility_data_plane_input": false,
+      "locator_name": "TASK039E3_TERMINAL_CUSTODY_PRIVATE_ROOT",
+      "primary_classification": "NOT_REQUIRED_FOR_UTILITY_DATA_PLANE",
+      "rationale": "The supplemental envelopes prove historical proposal-record integrity but are not consumed by deterministic rule evaluation or utility metrics."
+    }
+  ],
+  "private_paths_included": false,
+  "provider_content_included": false,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_authority_dependency_analysis",
+  "task_id": "TASK-039E3-R2R-UTILITY-AUTHORITY-RECONSTITUTION-FEASIBILITY-AUDIT"
+}

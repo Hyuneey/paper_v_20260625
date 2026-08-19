@@ -1,0 +1,54 @@
+{
+  "artifact_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+  "artifact_type": "task039e3_r2r_utility_common42_authority_check_v1",
+  "audit_date": "2026-08-19",
+  "authority_status": "FROZEN_EXECUTABLE_AUTHORITY_AVAILABLE",
+  "base_commit": "7ca6a241b1ed788529db66fc18c1675f23df9f4b",
+  "checks": {
+    "common_accepted": 42,
+    "common_arm_cells_exact_per_relation": true,
+    "common_no_rule": 0,
+    "e1_cohort_bound": true,
+    "e1_cohort_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+    "e1_manifest_entries_equal_cohort_entries": true,
+    "e1_public_manifest_hash": "ee8c5b7e9895f5f6afdd1be2563244e3b82dca9c3eadca502dd522940931e3ae",
+    "executable_equivalence_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "executable_equivalence_self_hash_valid": true,
+    "numeric_reference_roles_bound": 420,
+    "numeric_values_available_in_committed_public_authority": false,
+    "numeric_values_bound_by_historical_private_registry_hash": true,
+    "private_numeric_registry_hash": "59e81b261801f28eefc917256dc628af704a14b4064161972d01545968555271",
+    "relation_binding_set_exactly_matches_e1_manifest": true,
+    "relation_identities_bound_through_e1_manifest": true,
+    "relation_records": 42,
+    "semantic_execution_hashes_recomputed": 42,
+    "t2_accepted_equivalent": 39,
+    "t2_exact_membership_public": false,
+    "t2_no_rule": 3
+  },
+  "consequence_for_future_utility": {
+    "common_portfolio": "One deterministic COMMON-42 executable authority is sufficient for T0, T1, and T1-B prediction semantics; four provider-derived libraries are unnecessary.",
+    "direct_number": "EXCLUDED_FROM_UTILITY_NUMERIC_AUTHORITY",
+    "executable_representation_suitable": true,
+    "numeric_value_condition": "Evaluation still needs restored historical numeric values or a separately frozen new normal-only numeric authority.",
+    "t2_portfolio": "An optional T2 39-rule coverage ablation needs the exact historical accepted/no_rule membership; the committed public artifact binds only 39/3 aggregate status and the accepted-rule equivalence claim."
+  },
+  "historical_findings": {
+    "T0_equals_T1_equals_T1B": "42/42",
+    "T2_accepted_projection_matches_COMMON": "39/39",
+    "T2_no_rule": "3/3",
+    "historical_results_reinterpreted": false
+  },
+  "oracle_result": {
+    "cohort_to_private_ledger_hash": true,
+    "equivalence_to_manifest": true,
+    "manifest_to_e1_cohort": true,
+    "numeric_public_binding_to_cohort_and_ledger": true,
+    "public_numeric_values_inspected": 0,
+    "self_hashed_documents_verified": 4
+  },
+  "private_relation_mapping_included": false,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_common42_authority_check",
+  "task_id": "TASK-039E3-R2R-UTILITY-AUTHORITY-RECONSTITUTION-FEASIBILITY-AUDIT"
+}
