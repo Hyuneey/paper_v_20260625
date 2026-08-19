@@ -1,0 +1,14 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_independent_rule_state_audit",
+  "schema_version": "1.0.0",
+  "audit_commit_a": "41aa186d54121e05dfea2c3dad2484e957bafa42",
+  "result": "NOT_RUN_AFTER_BLOCKER",
+  "reason": "The task mandates STOP on the first accepted invalid case; the historical-identity prediction-artifact blocker was confirmed before this lane began.",
+  "rule_semantic_attacks": 0,
+  "state_provenance_attacks": 0,
+  "malformed_to_abstain_attacks": 0,
+  "accepted_invalid": null,
+  "claim": "NO_RULE_STATE_AUDIT_CONCLUSION",
+  "real_data_accesses": 0,
+  "artifact_hash": "bfbfaf356fc1baf002410668cefd27e36d40e9a2b0022749838031b2cbc6a860"
+}

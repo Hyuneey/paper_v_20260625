@@ -1,0 +1,28 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_independent_bundle",
+  "schema_version": "1.0.0",
+  "audit_commit_a": "41aa186d54121e05dfea2c3dad2484e957bafa42",
+  "component_hashes": {
+    "completion_audit": "1640f70cb9424ffe9cef7a8dc67f14283f0f9f2178ecfcc92964858123b63d50",
+    "authority_audit": "66e7f0c86bfcb5e2aa43a17c0ea4f1822dcb6277ba378ca5a534b51be370a155",
+    "census_opportunity_audit": "a767b1e6a6bab6ac85bbec9b4549d3884030690199a87dedff4a1147e599b977",
+    "rule_state_audit": "bfbfaf356fc1baf002410668cefd27e36d40e9a2b0022749838031b2cbc6a860",
+    "metric_artifact_audit": "371fc0dbff42ed90475503e5bc2a8743f458bdba6dd85643ab3eb6fe6e22ea63",
+    "side_effect_audit": "dace3003f04acc161a09fa6d554c6afcd4b22f80cf0045dc43e0896497b416d0",
+    "test_report": "36a6524dddd76009e9b1a48ba3960c3b7030e7f00343266a785c9746bfee79c6",
+    "readiness": "73c5f0f87b86c6be8672f64d98b490f926899cbcc91344afa10ecd7749d0917c"
+  },
+  "production_source_hashes": {
+    "types_raw_sha256": "b869222947e1f7fa983f6595225e71161942bfeb26fd77168a6c1ae5e10f9864",
+    "authority_raw_sha256": "717feae7021290a2133cb56a6d78868992c4501f7fba33349b805e708f18fcc8",
+    "input_raw_sha256": "07213dc4b18f0b4752552850332bef5a01fb86647908a6c8c2addda92880abc3",
+    "census_raw_sha256": "0b52d44472182f9bcadd85667773ed17d82ecb7ecaca678ae80437d9e67801f1",
+    "rule_engine_raw_sha256": "e9ca811b609ddc253f0298f38a6fdfe003400697a3c2a651a4ff934d81ea1849",
+    "metrics_raw_sha256": "6e6e34b6fff56fc1c4c79a049c9aa5371dcb98a6b6fbe20991f7eceb73b09479",
+    "facade_raw_sha256": "46487f9fc44c423d43a8c46c1f77df4cc99737f940e1233481a8841cf8cc1b5c"
+  },
+  "report_markdown_raw_sha256": "0b8282eb81fafb4e0d86e8a5640c19bce7de8d7d840b44f612c3de47ab78da9e",
+  "numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "artifact_hash": "283a05ba182016a43832ca25dd2826461b0814b5065bbd743eb0a82b74bb3491"
+}

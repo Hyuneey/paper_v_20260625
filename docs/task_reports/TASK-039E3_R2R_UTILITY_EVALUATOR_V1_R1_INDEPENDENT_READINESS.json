@@ -1,0 +1,21 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_independent_readiness",
+  "schema_version": "1.0.0",
+  "audit_commit_a": "41aa186d54121e05dfea2c3dad2484e957bafa42",
+  "status": "blocked_task039e3_r2r_utility_evaluator_v1_r1_independent_reaudit_and_completion",
+  "UTILITY_EVALUATOR_V1_IMPLEMENTED": true,
+  "UTILITY_EVALUATOR_V1_CONTROL_REVISION": "R1",
+  "UTILITY_EVALUATOR_V1_R1_REMEDIATED": true,
+  "UTILITY_EVALUATOR_V1_R1_FROZEN": true,
+  "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": false,
+  "UTILITY_EVALUATOR_V1_R1_FULL_AUDIT_COMPLETED": false,
+  "UTILITY_INNER_EXECUTION_AUTHORIZATION_READY": false,
+  "UTILITY_INNER_EXECUTION_AUTHORIZED": false,
+  "UTILITY_OUTER_EXECUTION_AUTHORIZATION_READY": false,
+  "UTILITY_OUTER_EXECUTION_AUTHORIZED": false,
+  "REAL_UTILITY_EXECUTION_AUTHORIZED": false,
+  "real_utility_status": "NOT_EXECUTED",
+  "blocker_count": 1,
+  "next_task": "NONE_AUTHORIZED_BLOCKED_PENDING_USER_ISSUED_REMEDIATION_TASK",
+  "artifact_hash": "73c5f0f87b86c6be8672f64d98b490f926899cbcc91344afa10ecd7749d0917c"
+}

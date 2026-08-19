@@ -1,0 +1,66 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r1_independent_completion_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R1-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "blocked_task039e3_r2r_utility_evaluator_v1_r1_independent_reaudit_and_completion",
+  "base_commit": "7c0db0550a7b134f810e149f4768e4e6b47486ad",
+  "original_evaluator_commit_a": "3363a5498f08b683dea66df169f9c825a639c6e9",
+  "original_evaluator_commit_b": "a12c41cc1a04fffe9c74d7d0ee607a7061e982bb",
+  "blocked_audit_commit_a": "db0911324ab0fed9e2e5ab586714c5860cf11143",
+  "blocked_audit_commit_b": "777971a3a09230e1636895aa3dc0e0ce4e4148a3",
+  "r1_commit_a": "623a355104d719633733ab7f9b6650f9e92ec3fd",
+  "r1_commit_b": "7c0db0550a7b134f810e149f4768e4e6b47486ad",
+  "audit_commit_a": "41aa186d54121e05dfea2c3dad2484e957bafa42",
+  "r1_control_revision": "R1",
+  "r1_implementation_identity": "64a6e7f0d210dc074bc85b0f389e61b45aaa512091532cf8f4d275ccaa35746a",
+  "original_implementation_identity": "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330",
+  "authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+  "r1_reported_closure_matrix_target": "f0c055018ee8249e23fdb784b0ea7d88a414d68d21c93301124de7c455b5afe2",
+  "historical_accepted_invalid": 10,
+  "historical_six_findings": [
+    {
+      "finding": "BLOCKER_EVALUATOR_AUTHORITY_BUNDLE_CALLER_RECONSTRUCTION_ACCEPTED",
+      "independent_result": "CLOSED",
+      "r1_accepted_invalid": 0
+    },
+    {
+      "finding": "BLOCKER_EVALUATOR_IMPLEMENTATION_AUTHORITY_CALLER_RECONSTRUCTION_ACCEPTED",
+      "independent_result": "CLOSED",
+      "r1_accepted_invalid": 0
+    },
+    {
+      "finding": "BLOCKER_EVALUATOR_V1_SYNTHETIC_FEATURE_PAIR_CONTAINER_WIDENING_ACCEPTED",
+      "independent_result": "NOT_RUN_AFTER_BLOCKER",
+      "r1_accepted_invalid": null
+    },
+    {
+      "finding": "BLOCKER_EVALUATOR_LABEL_CUSTODY_SELF_REHASH_REPLAY_BYPASS",
+      "independent_result": "NOT_RUN_AFTER_BLOCKER",
+      "r1_accepted_invalid": null
+    },
+    {
+      "finding": "BLOCKER_EVALUATOR_FAR_DUPLICATE_EPISODE_INJECTION",
+      "independent_result": "NOT_RUN_AFTER_BLOCKER",
+      "r1_accepted_invalid": null
+    },
+    {
+      "finding": "BLOCKER_EVALUATOR_BOUND_METRIC_SELF_REHASH_REPLAY_BYPASS",
+      "independent_result": "NOT_RUN_AFTER_BLOCKER",
+      "r1_accepted_invalid": null
+    }
+  ],
+  "unique_semantic_attack_classes_executed": 19,
+  "raw_adversarial_cases_executed": 19,
+  "rejected_invalid_cases": 18,
+  "accepted_invalid_cases": 1,
+  "blocker_code": "BLOCKER_EVALUATOR_R1_RULE_PREDICTION_HISTORICAL_IMPLEMENTATION_IDENTITY_ACCEPTED",
+  "blocker_component": "RulePredictionArtifactV1 factory and validator implementation-provenance binding",
+  "expected_authority": "Every current R1 prediction artifact must bind the exact current R1 implementation identity; the historical pre-R1 identity must reject.",
+  "observed_fail_open": "The public prediction-artifact factory issued an artifact carrying the historical implementation identity, and the issued artifact passed the production validator.",
+  "severity": "HIGH",
+  "real_utility_status": "NOT_EXECUTED",
+  "downstream_audit_lanes": "NOT_RUN_AFTER_BLOCKER",
+  "regressions": "NOT_RUN_AFTER_BLOCKER",
+  "next_task": "NONE_AUTHORIZED_BLOCKED_PENDING_USER_ISSUED_REMEDIATION_TASK",
+  "artifact_hash": "1640f70cb9424ffe9cef7a8dc67f14283f0f9f2178ecfcc92964858123b63d50"
+}
