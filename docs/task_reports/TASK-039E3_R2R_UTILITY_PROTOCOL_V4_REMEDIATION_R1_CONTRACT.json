@@ -1,0 +1,65 @@
+{
+  "artifact_hash": "d5e6a50d4e71e76f65cbaf55a22d2088ff4caf2d2f163364b54d0564b45b8071",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_remediation_r1_contract",
+  "canonical_coordinate_authority": {
+    "authority_hash": "6bfa5f41564cc09871463b24026b297ac12a347802b4fcecc8a094c94e3f15a0",
+    "caller_timestamp_authoritative": false,
+    "csv_structure_report_hash": "d4f43034e9402806a4f34da943a1e39191503f8f54465d6d1f98b9cdc31bb7c9",
+    "mapping": "first_timestamp_plus_physical_row_index_seconds",
+    "test1": {
+      "first_timestamp": "2022-08-12 16:00:01",
+      "last_timestamp": "2022-08-13 07:00:00",
+      "logical_file": "hai-test1.csv",
+      "row_count": 54000,
+      "sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be"
+    },
+    "test2": {
+      "first_timestamp": "2022-08-17 00:00:01",
+      "last_timestamp": "2022-08-19 16:00:00",
+      "logical_file": "hai-test2.csv",
+      "row_count": 230400,
+      "sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3"
+    }
+  },
+  "canonical_enumeration_contract": {
+    "caller_denominator_authorized": false,
+    "caller_opportunity_count_authorized": false,
+    "caller_opportunity_set_authorized": false,
+    "caller_relation_subset_authorized": false,
+    "contract_hash": "7f854ef13afb5c2e7f5864faac249ccdd3e39060f2d2b09811e8792481b9db5b",
+    "denominator_policy": "ALL_AUTOMATICALLY_ENUMERATED_APPLICABLE_CANONICAL_OPPORTUNITIES",
+    "real_enumeration_authority_available": false
+  },
+  "canonical_window_contract": {
+    "boundary_window_policy_hash": "40b4e4b158813f06b94ba14c50f6dece6082e8a69691ed64ac56b40eadcc6807",
+    "purge_policy_hash": "c7cdaa0c94523de4894ef08fbf45cdf0992cf77cdf473bbf4d0ee34ad0a526c3",
+    "source_window_caller_authoritative": false,
+    "target_window_caller_authoritative": false,
+    "within_split_caller_authoritative": false
+  },
+  "control_revision": "R1",
+  "new_v4_r1_canonical_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "recursive_internal_type_contract": {
+    "generic_sequence_authorized": false,
+    "list_widening_authorized": false,
+    "policy_hash": "d0f549f2ce9b9ac058aa362d9579068fec2fb03a2d2cde4a4495ecc3d70db7f0",
+    "raw_json_direct_internal_authority": false,
+    "set_widening_authorized": false,
+    "tuple_and_dataclass_types_exact": true
+  },
+  "runtime_evidence_contract": {
+    "caller_response_matched_authorized": false,
+    "contract_hash": "20c7247c31045dc38e99dcac147abce284e7f375799dd45e9232af318e10a15e",
+    "deterministic_coordinate_boundary_abstention_authorized": true,
+    "frozen_response_policy_hash": "92674c55757cc7d49700ce081972640b597b2ab5ad1f616f0a04315a012a1cf1",
+    "frozen_source_trigger_policy_hash": "6049632b103559e1fc7fe8de4d0824581f7204f8fdf5142a9944f29debc83acc",
+    "real_response_evidence_authority_available": false,
+    "real_source_evidence_authority_available": false,
+    "synthetic_helper_authority_scope": "SYNTHETIC_CONTRACT_ONLY",
+    "synthetic_helper_metric_custody_authorized": false,
+    "terminal_transition_policy_hash": "27090b1d202ee683b30e99ca76823609a9648abf3757fa2d2010b8c3c2887a41"
+  },
+  "schema_version": "1.0.0",
+  "scientific_change": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-BOUNDED-REMEDIATION-R1"
+}

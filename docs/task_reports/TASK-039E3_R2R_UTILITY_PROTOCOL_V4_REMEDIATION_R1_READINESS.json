@@ -1,0 +1,24 @@
+{
+  "artifact_hash": "519f60ad83aec6510c911a43c416eb67b7df2856df721f6be8689970b246135a",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_remediation_r1_readiness",
+  "blocker_matrix_hash": "fcb0cdc2da44a6de6dc5a23d1882d45123b474fcb31c0a3dbd9f3487758ac7cd",
+  "contract_hash": "d5e6a50d4e71e76f65cbaf55a22d2088ff4caf2d2f163364b54d0564b45b8071",
+  "control_revision": "R1",
+  "new_v4_r1_canonical_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "next_task": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-R1-FOCUSED-INDEPENDENT-REAUDIT",
+  "real_evaluator_execution_authorized": false,
+  "remaining_blockers": 0,
+  "remediation_hash": "da9c028c8ab1173dfe51238176d0d6f55790b608152bb8840130c77626d5de2e",
+  "schema_version": "1.0.0",
+  "source_git_blob": "8ce6e56215246a5ec14ae148de20cdf0680c1658",
+  "source_raw_sha256": "880bc1b08ea9941349042d664314184d8afa8337c13f778563b90404436429f9",
+  "state": {
+    "utility_evaluator_implementation_ready": false,
+    "utility_execution_authorization_ready": false,
+    "utility_protocol_v4_implemented": true,
+    "utility_protocol_v4_independently_audited": false
+  },
+  "status": "passed_task039e3_r2r_utility_protocol_v4_bounded_remediation_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-BOUNDED-REMEDIATION-R1",
+  "test_report_hash": "4f1a97f98be13fa373f3b3b5ef0d7ae9f1326c6d26f45f0f3e7a1dc5f9915330"
+}

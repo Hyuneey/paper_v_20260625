@@ -1,0 +1,38 @@
+{
+  "artifact_hash": "fcb0cdc2da44a6de6dc5a23d1882d45123b474fcb31c0a3dbd9f3487758ac7cd",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_remediation_r1_blocker_matrix",
+  "findings": [
+    {
+      "closure": "CLOSED_BY_PUBLIC_COORDINATE_REPLAY_R1",
+      "finding": "BLOCKER_V3_OPPORTUNITY_RECORD_SEMANTIC_IDENTITY_UNCHECKED",
+      "focused_evidence": "canonical first/last mappings pass; deprecated timestamp ignored; self-consistent timestamp and row substitutions reject",
+      "historical_root_cause": "timestamp identity was caller-selected and could be self-rehashed",
+      "result": "CLOSED"
+    },
+    {
+      "closure": "CLOSED_BY_CALLER_CENSUS_AUTHORITY_REMOVAL_R1",
+      "finding": "BLOCKER_V3_CANONICAL_FULL_CENSUS_PROVENANCE_BYPASS",
+      "focused_evidence": "empty, singleton, caller-39 and one-row-42 tuples all reject authoritative custody",
+      "historical_root_cause": "structurally valid caller tuples received a census hash",
+      "result": "CLOSED"
+    },
+    {
+      "closure": "CLOSED_BY_RECURSIVE_CANONICAL_TYPE_REPLAY_R1",
+      "finding": "BLOCKER_V3_CANONICAL_SCALAR_TYPE_POLICY_NOT_ENFORCED",
+      "focused_evidence": "eight historical list mutations plus outer/inner list, generator, set, scalar subtype and string-subclass attacks reject",
+      "historical_root_cause": "JSON normalization erased tuple/list distinctions before nested validation",
+      "result": "CLOSED"
+    },
+    {
+      "closure": "CLOSED_BY_EVALUATOR_EVIDENCE_AUTHORITY_BOUNDARY_R1",
+      "finding": "BLOCKER_V3_TARGET_TERMINAL_STATE_PROVENANCE_UNBOUND",
+      "focused_evidence": "window coordinates and boundary state derive publicly; all synthetic source/terminal objects reject authoritative metric custody",
+      "historical_root_cause": "caller window hashes and booleans could become self-hashed synthetic terminal states",
+      "result": "CLOSED"
+    }
+  ],
+  "remaining_blockers": 0,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-BOUNDED-REMEDIATION-R1",
+  "unchanged_closed_findings": 4
+}

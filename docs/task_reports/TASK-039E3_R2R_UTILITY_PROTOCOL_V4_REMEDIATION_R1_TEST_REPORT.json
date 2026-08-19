@@ -1,0 +1,40 @@
+{
+  "artifact_hash": "4f1a97f98be13fa373f3b3b5ef0d7ae9f1326c6d26f45f0f3e7a1dc5f9915330",
+  "artifact_type": "task039e3_r2r_utility_protocol_v4_remediation_r1_test_report",
+  "compileall": "PASS",
+  "focused_r1": {
+    "failed": 0,
+    "passed": 36,
+    "result": "PASS",
+    "total": 36
+  },
+  "git_diff_check": "PASS",
+  "normal_only_public_synthetic_regression": {
+    "failed": 0,
+    "passed": 106,
+    "result": "PASS",
+    "total": 106
+  },
+  "pip_check": "PASS",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-PROTOCOL-V4-BOUNDED-REMEDIATION-R1",
+  "v1_v2_regression": {
+    "failed": 0,
+    "passed": 40,
+    "result": "PASS_WITH_DOCUMENTED_SKIPS",
+    "skipped": 2,
+    "total": 42
+  },
+  "v3_regression": {
+    "failed": 0,
+    "passed": 27,
+    "result": "PASS",
+    "total": 27
+  },
+  "v4_implementation_regression": {
+    "failed": 0,
+    "passed": 51,
+    "result": "PASS",
+    "total": 51
+  }
+}
