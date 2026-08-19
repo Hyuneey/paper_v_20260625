@@ -68,6 +68,33 @@ AUTHORIZED_R1_CONTROL_SOURCE_RAW_SHA256: str | None = None
 AUTHORIZED_R1_FOCUSED_REAUDIT_RECEIPT_HASH: str | None = None
 R1_MATERIALIZATION_AUTHORIZED = False
 
+# Non-circular external authorization custody.  These are stable trust anchors
+# and fixed repository-relative locations, not the identity of a future
+# authorization document or of this source file after a future edit.
+PROTOCOL_AUDIT_CLOSURE_HASH = "e0d9975a4027cc08140b3b8fd1027580a6668c17eee967553ce604f303e63c36"
+PROTOCOL_AUDIT_RECEIPT_HASH = "5be947afa0456ab839e5955aeca238e3fe96ab451a4b8be8c2e7dafaa49c6647"
+MATERIALIZATION_AUTHORIZATION_SCOPE = (
+    "NORMAL_TRAIN1_TRAIN2_NUMERIC_AUTHORITY_MATERIALIZATION_ONLY"
+)
+MATERIALIZATION_AUTHORIZATION_ARTIFACT_TYPE = (
+    "task039e3_r2r_utility_normal_only_authority_v1_materialization_authorization"
+)
+MATERIALIZATION_AUTHORIZATION_SCHEMA_VERSION = "1.0.0"
+MATERIALIZATION_AUTHORIZATION_RELATIVE_PATH = (
+    "docs/task_reports/"
+    "TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZATION_AUTHORIZATION.json"
+)
+MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT_RELATIVE_PATH = (
+    "docs/task_reports/"
+    "TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT.json"
+)
+MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT_ARTIFACT_TYPE = (
+    "task039e3_r2r_utility_normal_only_authority_v1_materialization_authorization_interface_audit"
+)
+MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT_STATUS = (
+    "passed_task039e3_r2r_utility_normal_only_authority_v1_materialization_authorization_interface_audit"
+)
+
 SUCCESS_EXECUTION_RECEIPT = "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e"
 SUCCESS_EXECUTION_ACCOUNTING = "0e18526c8dbcaec26d67385b89c60826dc4388cac08727cd61a2c60b1b812ae2"
 TERMINAL_CUSTODY_SUPPLEMENT = "54d71edb6357e8c4d4a5479a9f0b130ca0f89f10ed4ff04ad9ba90122f3ff7c2"
@@ -320,18 +347,29 @@ class MaterializationExecutionAuthorizationR1:
     scientific_v1_source_raw_sha256: str
     common42_authority_definition_hash: str
     calibration_policy_hash: str
+    executable_equivalence_hash: str
     normal_input_identity_set_hash: str
+    protocol_audit_closure_hash: str
+    protocol_audit_receipt_hash: str
     authorized_control_commit: str | None
     authorized_control_source_blob: str | None
     authorized_control_source_raw_sha256: str | None
     focused_independent_reaudit_receipt_hash: str | None
+    scope: str
+    normal_train1_sha256: str
+    normal_train2_sha256: str
+    train3_access: bool
+    test_access: bool
+    label_access: bool
+    provider_access: bool
+    utility_execution: bool
     materialization_authorized: bool
     authorization_hash: str
 
     def payload(self) -> dict[str, object]:
         return {
-            "artifact_type": "task039e3_normal_only_materialization_execution_authorization_r1",
-            "schema_version": SCHEMA_VERSION,
+            "artifact_type": MATERIALIZATION_AUTHORIZATION_ARTIFACT_TYPE,
+            "schema_version": MATERIALIZATION_AUTHORIZATION_SCHEMA_VERSION,
             "authority_version": self.authority_version,
             "control_revision": self.control_revision,
             "scientific_v1_commit": self.scientific_v1_commit,
@@ -339,17 +377,24 @@ class MaterializationExecutionAuthorizationR1:
             "scientific_v1_source_raw_sha256": self.scientific_v1_source_raw_sha256,
             "common42_authority_definition_hash": self.common42_authority_definition_hash,
             "calibration_policy_hash": self.calibration_policy_hash,
+            "executable_equivalence_hash": self.executable_equivalence_hash,
             "normal_input_identity_set_hash": self.normal_input_identity_set_hash,
+            "protocol_audit_closure_hash": self.protocol_audit_closure_hash,
+            "protocol_audit_receipt_hash": self.protocol_audit_receipt_hash,
             "authorized_control_commit": self.authorized_control_commit,
             "authorized_control_source_blob": self.authorized_control_source_blob,
             "authorized_control_source_raw_sha256": self.authorized_control_source_raw_sha256,
             "focused_independent_reaudit_receipt_hash": self.focused_independent_reaudit_receipt_hash,
+            "scope": self.scope,
+            "normal_train1_sha256": self.normal_train1_sha256,
+            "normal_train2_sha256": self.normal_train2_sha256,
+            "train3_access": self.train3_access,
+            "test_access": self.test_access,
+            "label_access": self.label_access,
+            "provider_access": self.provider_access,
+            "utility_execution": self.utility_execution,
             "materialization_authorized": self.materialization_authorized,
-            "scope": "NORMAL_TRAIN1_TRAIN2_NUMERIC_AUTHORITY_MATERIALIZATION_ONLY",
             "private_locator_environment": PRIVATE_LOCATOR_ENV,
-            "real_hai_test_access": False,
-            "real_label_access": False,
-            "provider_access": False,
         }
 
     def to_dict(self) -> dict[str, object]:
@@ -388,8 +433,8 @@ def _git_oid(value: object, name: str) -> str:
 def canonical_materialization_execution_authorization_r1(
 ) -> MaterializationExecutionAuthorizationR1:
     payload: dict[str, object] = {
-        "artifact_type": "task039e3_normal_only_materialization_execution_authorization_r1",
-        "schema_version": SCHEMA_VERSION,
+        "artifact_type": MATERIALIZATION_AUTHORIZATION_ARTIFACT_TYPE,
+        "schema_version": MATERIALIZATION_AUTHORIZATION_SCHEMA_VERSION,
         "authority_version": AUTHORITY_VERSION,
         "control_revision": NORMAL_ONLY_AUTHORITY_CONTROL_REVISION,
         "scientific_v1_commit": SCIENTIFIC_V1_COMMIT,
@@ -397,17 +442,24 @@ def canonical_materialization_execution_authorization_r1(
         "scientific_v1_source_raw_sha256": SCIENTIFIC_V1_SOURCE_RAW_SHA256,
         "common42_authority_definition_hash": CANONICAL_AUTHORITY_DEFINITION_HASH,
         "calibration_policy_hash": CALIBRATION_POLICY_HASH,
+        "executable_equivalence_hash": EXECUTABLE_EQUIVALENCE_HASH,
         "normal_input_identity_set_hash": NORMAL_INPUT_IDENTITY_SET_HASH,
+        "protocol_audit_closure_hash": PROTOCOL_AUDIT_CLOSURE_HASH,
+        "protocol_audit_receipt_hash": PROTOCOL_AUDIT_RECEIPT_HASH,
         "authorized_control_commit": AUTHORIZED_R1_CONTROL_COMMIT,
         "authorized_control_source_blob": AUTHORIZED_R1_CONTROL_SOURCE_BLOB,
         "authorized_control_source_raw_sha256": AUTHORIZED_R1_CONTROL_SOURCE_RAW_SHA256,
         "focused_independent_reaudit_receipt_hash": AUTHORIZED_R1_FOCUSED_REAUDIT_RECEIPT_HASH,
-        "materialization_authorized": R1_MATERIALIZATION_AUTHORIZED,
-        "scope": "NORMAL_TRAIN1_TRAIN2_NUMERIC_AUTHORITY_MATERIALIZATION_ONLY",
-        "private_locator_environment": PRIVATE_LOCATOR_ENV,
-        "real_hai_test_access": False,
-        "real_label_access": False,
+        "scope": MATERIALIZATION_AUTHORIZATION_SCOPE,
+        "normal_train1_sha256": NORMAL_TRAIN1_IDENTITY.sha256,
+        "normal_train2_sha256": NORMAL_TRAIN2_IDENTITY.sha256,
+        "train3_access": False,
+        "test_access": False,
+        "label_access": False,
         "provider_access": False,
+        "utility_execution": False,
+        "materialization_authorized": R1_MATERIALIZATION_AUTHORIZED,
+        "private_locator_environment": PRIVATE_LOCATOR_ENV,
     }
     return MaterializationExecutionAuthorizationR1(
         authority_version=AUTHORITY_VERSION,
@@ -417,11 +469,22 @@ def canonical_materialization_execution_authorization_r1(
         scientific_v1_source_raw_sha256=SCIENTIFIC_V1_SOURCE_RAW_SHA256,
         common42_authority_definition_hash=CANONICAL_AUTHORITY_DEFINITION_HASH,
         calibration_policy_hash=CALIBRATION_POLICY_HASH,
+        executable_equivalence_hash=EXECUTABLE_EQUIVALENCE_HASH,
         normal_input_identity_set_hash=NORMAL_INPUT_IDENTITY_SET_HASH,
+        protocol_audit_closure_hash=PROTOCOL_AUDIT_CLOSURE_HASH,
+        protocol_audit_receipt_hash=PROTOCOL_AUDIT_RECEIPT_HASH,
         authorized_control_commit=AUTHORIZED_R1_CONTROL_COMMIT,
         authorized_control_source_blob=AUTHORIZED_R1_CONTROL_SOURCE_BLOB,
         authorized_control_source_raw_sha256=AUTHORIZED_R1_CONTROL_SOURCE_RAW_SHA256,
         focused_independent_reaudit_receipt_hash=AUTHORIZED_R1_FOCUSED_REAUDIT_RECEIPT_HASH,
+        scope=MATERIALIZATION_AUTHORIZATION_SCOPE,
+        normal_train1_sha256=NORMAL_TRAIN1_IDENTITY.sha256,
+        normal_train2_sha256=NORMAL_TRAIN2_IDENTITY.sha256,
+        train3_access=False,
+        test_access=False,
+        label_access=False,
+        provider_access=False,
+        utility_execution=False,
         materialization_authorized=R1_MATERIALIZATION_AUTHORIZED,
         authorization_hash=stable_hash_v1(payload),
     )
@@ -431,15 +494,13 @@ def validate_materialization_execution_authorization_r1(
     authorization: MaterializationExecutionAuthorizationR1,
     *,
     require_materialization_authorized: bool = True,
+    allow_external_authorization: bool = False,
 ) -> str:
     if type(authorization) is not MaterializationExecutionAuthorizationR1:
         raise NormalOnlyAuthorityV1Error("R1 execution authorization object type differs")
     observed = _sha(authorization.authorization_hash, "R1 execution authorization hash")
     if stable_hash_v1(authorization.payload()) != observed:
         raise NormalOnlyAuthorityV1Error("R1 execution authorization self-hash differs")
-    canonical = canonical_materialization_execution_authorization_r1()
-    if authorization != canonical:
-        raise NormalOnlyAuthorityV1Error("R1 execution authorization is not canonical")
     if (
         authorization.authority_version != AUTHORITY_VERSION
         or authorization.control_revision != NORMAL_ONLY_AUTHORITY_CONTROL_REVISION
@@ -449,12 +510,36 @@ def validate_materialization_execution_authorization_r1(
         or authorization.common42_authority_definition_hash
         != CANONICAL_AUTHORITY_DEFINITION_HASH
         or authorization.calibration_policy_hash != CALIBRATION_POLICY_HASH
+        or authorization.executable_equivalence_hash != EXECUTABLE_EQUIVALENCE_HASH
         or authorization.normal_input_identity_set_hash != NORMAL_INPUT_IDENTITY_SET_HASH
+        or authorization.protocol_audit_closure_hash != PROTOCOL_AUDIT_CLOSURE_HASH
+        or authorization.protocol_audit_receipt_hash != PROTOCOL_AUDIT_RECEIPT_HASH
+        or authorization.scope != MATERIALIZATION_AUTHORIZATION_SCOPE
+        or authorization.normal_train1_sha256 != NORMAL_TRAIN1_IDENTITY.sha256
+        or authorization.normal_train2_sha256 != NORMAL_TRAIN2_IDENTITY.sha256
+        or type(authorization.train3_access) is not bool
+        or authorization.train3_access is not False
+        or type(authorization.test_access) is not bool
+        or authorization.test_access is not False
+        or type(authorization.label_access) is not bool
+        or authorization.label_access is not False
+        or type(authorization.provider_access) is not bool
+        or authorization.provider_access is not False
+        or type(authorization.utility_execution) is not bool
+        or authorization.utility_execution is not False
+        or type(authorization.materialization_authorized) is not bool
     ):
         raise NormalOnlyAuthorityV1Error("R1 execution authorization authority differs")
-    if require_materialization_authorized:
-        if authorization.materialization_authorized is not True:
+    canonical = canonical_materialization_execution_authorization_r1()
+    if not allow_external_authorization:
+        if authorization != canonical:
+            raise NormalOnlyAuthorityV1Error("R1 execution authorization is not canonical")
+        if require_materialization_authorized:
             raise NormalOnlyAuthorityV1Error("real R1 materialization is not authorized")
+        return observed
+    if authorization.materialization_authorized is not True:
+        raise NormalOnlyAuthorityV1Error("external R1 materialization is not authorized")
+    if require_materialization_authorized:
         for value, name, validator in (
             (authorization.authorized_control_commit, "authorized control commit", _commit),
             (authorization.authorized_control_source_blob, "authorized control source blob", _git_oid),
@@ -471,6 +556,89 @@ def validate_materialization_execution_authorization_r1(
         ):
             validator(value, name)
     return observed
+
+
+MATERIALIZATION_AUTHORIZATION_ALLOWED_KEYS_R1 = frozenset(
+    canonical_materialization_execution_authorization_r1().to_dict()
+)
+
+
+def materialization_execution_authorization_from_document_r1(
+    document: Mapping[str, Any],
+) -> MaterializationExecutionAuthorizationR1:
+    """Parse the exact external authorization schema without trusting its self-hash alone."""
+
+    if type(document) is not dict or set(document) != MATERIALIZATION_AUTHORIZATION_ALLOWED_KEYS_R1:
+        raise NormalOnlyAuthorityV1Error("materialization authorization schema is not exactly closed")
+    string_keys = MATERIALIZATION_AUTHORIZATION_ALLOWED_KEYS_R1 - {
+        "train3_access",
+        "test_access",
+        "label_access",
+        "provider_access",
+        "utility_execution",
+        "materialization_authorized",
+    }
+    if any(type(document.get(key)) is not str for key in string_keys):
+        raise NormalOnlyAuthorityV1Error("materialization authorization string type differs")
+    for key in (
+        "train3_access",
+        "test_access",
+        "label_access",
+        "provider_access",
+        "utility_execution",
+        "materialization_authorized",
+    ):
+        if type(document.get(key)) is not bool:
+            raise NormalOnlyAuthorityV1Error("materialization authorization boolean type differs")
+    observed = _sha(document.get("artifact_hash"), "materialization authorization hash")
+    payload = {key: value for key, value in document.items() if key != "artifact_hash"}
+    if stable_hash_v1(payload) != observed:
+        raise NormalOnlyAuthorityV1Error("materialization authorization self-hash differs")
+    if (
+        document.get("artifact_type") != MATERIALIZATION_AUTHORIZATION_ARTIFACT_TYPE
+        or document.get("schema_version") != MATERIALIZATION_AUTHORIZATION_SCHEMA_VERSION
+        or document.get("private_locator_environment") != PRIVATE_LOCATOR_ENV
+    ):
+        raise NormalOnlyAuthorityV1Error("materialization authorization document identity differs")
+    authorization = MaterializationExecutionAuthorizationR1(
+        authority_version=str(document["authority_version"]),
+        control_revision=str(document["control_revision"]),
+        scientific_v1_commit=str(document["scientific_v1_commit"]),
+        scientific_v1_source_blob=str(document["scientific_v1_source_blob"]),
+        scientific_v1_source_raw_sha256=str(document["scientific_v1_source_raw_sha256"]),
+        common42_authority_definition_hash=str(
+            document["common42_authority_definition_hash"]
+        ),
+        calibration_policy_hash=str(document["calibration_policy_hash"]),
+        executable_equivalence_hash=str(document["executable_equivalence_hash"]),
+        normal_input_identity_set_hash=str(document["normal_input_identity_set_hash"]),
+        protocol_audit_closure_hash=str(document["protocol_audit_closure_hash"]),
+        protocol_audit_receipt_hash=str(document["protocol_audit_receipt_hash"]),
+        authorized_control_commit=str(document["authorized_control_commit"]),
+        authorized_control_source_blob=str(document["authorized_control_source_blob"]),
+        authorized_control_source_raw_sha256=str(
+            document["authorized_control_source_raw_sha256"]
+        ),
+        focused_independent_reaudit_receipt_hash=str(
+            document["focused_independent_reaudit_receipt_hash"]
+        ),
+        scope=str(document["scope"]),
+        normal_train1_sha256=str(document["normal_train1_sha256"]),
+        normal_train2_sha256=str(document["normal_train2_sha256"]),
+        train3_access=document["train3_access"],
+        test_access=document["test_access"],
+        label_access=document["label_access"],
+        provider_access=document["provider_access"],
+        utility_execution=document["utility_execution"],
+        materialization_authorized=document["materialization_authorized"],
+        authorization_hash=observed,
+    )
+    validate_materialization_execution_authorization_r1(
+        authorization,
+        require_materialization_authorized=True,
+        allow_external_authorization=True,
+    )
+    return authorization
 
 
 def _verify_self_hash(document: Mapping[str, Any], expected: str, name: str) -> str:
@@ -1225,7 +1393,9 @@ def public_receipt_document_v1(
         materialization_authorized = False
     else:
         execution_authorization_hash = validate_materialization_execution_authorization_r1(
-            execution_authorization, require_materialization_authorized=True
+            execution_authorization,
+            require_materialization_authorized=True,
+            allow_external_authorization=True,
         )
         if (
             builder_commit != execution_authorization.authorized_control_commit
@@ -1406,7 +1576,9 @@ def validate_public_receipt_v1(
         if execution_authorization is None:
             raise NormalOnlyAuthorityV1Error("authorized receipt lacks R1 execution authorization")
         authorization_hash = validate_materialization_execution_authorization_r1(
-            execution_authorization, require_materialization_authorized=True
+            execution_authorization,
+            require_materialization_authorized=True,
+            allow_external_authorization=True,
         )
         if (
             document["execution_authorization_hash"] != authorization_hash
@@ -1547,7 +1719,9 @@ def validate_local_locator_manifest_v1(
         if execution_authorization is None:
             raise NormalOnlyAuthorityV1Error("authorized locator lacks R1 execution authorization")
         expected_hash = validate_materialization_execution_authorization_r1(
-            execution_authorization, require_materialization_authorized=True
+            execution_authorization,
+            require_materialization_authorized=True,
+            allow_external_authorization=True,
         )
         if (
             authorization_hash != expected_hash
@@ -1826,8 +2000,15 @@ def finalize_materialization_atomically_v1(
         )
         materialization_authorized = False
     else:
+        committed_authorization = load_committed_materialization_execution_authorization_r1(
+            repository_root
+        )
+        if execution_authorization != committed_authorization:
+            raise NormalOnlyAuthorityV1Error("finalizer authorization differs from committed custody")
         execution_authorization_hash = validate_materialization_execution_authorization_r1(
-            execution_authorization, require_materialization_authorized=True
+            execution_authorization,
+            require_materialization_authorized=True,
+            allow_external_authorization=True,
         )
         if (
             builder_commit != execution_authorization.authorized_control_commit
@@ -1934,6 +2115,14 @@ def validate_finalized_authority_v1(
     """Accept only the exact final path plus locator plus write-last receipt."""
 
     validate_canonical_common42_authority_v1(authority)
+    if execution_authorization is not None:
+        committed_authorization = load_committed_materialization_execution_authorization_r1(
+            repository_root
+        )
+        if execution_authorization != committed_authorization:
+            raise NormalOnlyAuthorityV1Error(
+                "final authority authorization differs from committed custody"
+            )
     configured = os.environ.get(PRIVATE_LOCATOR_ENV)
     if private_destination.is_symlink():
         raise NormalOnlyAuthorityV1Error("private authority must not be a symlink")
@@ -2008,6 +2197,270 @@ def verify_builder_checkout_v1(
     return _git_oid(outputs[1], "builder source Git blob"), _file_sha256(repository_root / relative)
 
 
+AUTHORIZATION_INTERFACE_AUDIT_ALLOWED_KEYS_R1 = frozenset(
+    {
+        "artifact_hash",
+        "artifact_type",
+        "schema_version",
+        "status",
+        "interface_commit",
+        "interface_source_git_blob",
+        "interface_source_raw_sha256",
+        "independent_audit_commit",
+        "independent_tests_passed",
+        "independent_tests_failed",
+        "scientific_change",
+        "authorization_control_change",
+        "protocol_audit_closure_hash",
+        "protocol_audit_receipt_hash",
+        "remaining_blockers",
+        "access_counters",
+    }
+)
+AUTHORIZATION_INTERFACE_AUDIT_ACCESS_KEYS_R1 = frozenset(
+    {
+        "hai_normal_value_accesses",
+        "hai_test_value_accesses",
+        "hai_label_accesses",
+        "train3_value_accesses",
+        "utility_computations",
+        "provider_calls",
+        "api_key_access",
+        "scientific_llm_calls",
+    }
+)
+
+
+def validate_materialization_authorization_interface_audit_r1(
+    document: Mapping[str, Any],
+    authorization: MaterializationExecutionAuthorizationR1,
+) -> str:
+    """Validate the independent audit receipt that authorizes the control source."""
+
+    if type(document) is not dict or set(document) != AUTHORIZATION_INTERFACE_AUDIT_ALLOWED_KEYS_R1:
+        raise NormalOnlyAuthorityV1Error("authorization interface audit schema differs")
+    observed = _sha(document.get("artifact_hash"), "authorization interface audit hash")
+    if stable_hash_v1({key: value for key, value in document.items() if key != "artifact_hash"}) != observed:
+        raise NormalOnlyAuthorityV1Error("authorization interface audit self-hash differs")
+    counters = document.get("access_counters")
+    if (
+        type(counters) is not dict
+        or set(counters) != AUTHORIZATION_INTERFACE_AUDIT_ACCESS_KEYS_R1
+        or any(
+            type(value) is not bool if key == "api_key_access" else type(value) is not int
+            for key, value in counters.items()
+        )
+        or counters["api_key_access"] is not False
+        or any(value != 0 for key, value in counters.items() if key != "api_key_access")
+    ):
+        raise NormalOnlyAuthorityV1Error("authorization interface audit access boundary differs")
+    if (
+        document.get("artifact_type")
+        != MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT_ARTIFACT_TYPE
+        or document.get("schema_version") != MATERIALIZATION_AUTHORIZATION_SCHEMA_VERSION
+        or document.get("status") != MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT_STATUS
+        or type(document.get("interface_commit")) is not str
+        or document.get("interface_commit") != authorization.authorized_control_commit
+        or type(document.get("interface_source_git_blob")) is not str
+        or document.get("interface_source_git_blob")
+        != authorization.authorized_control_source_blob
+        or type(document.get("interface_source_raw_sha256")) is not str
+        or document.get("interface_source_raw_sha256")
+        != authorization.authorized_control_source_raw_sha256
+        or type(document.get("independent_audit_commit")) is not str
+        or type(document.get("independent_tests_passed")) is not int
+        or document.get("independent_tests_passed", 0) <= 0
+        or type(document.get("independent_tests_failed")) is not int
+        or document.get("independent_tests_failed") != 0
+        or type(document.get("scientific_change")) is not bool
+        or document.get("scientific_change") is not False
+        or type(document.get("authorization_control_change")) is not bool
+        or document.get("authorization_control_change") is not True
+        or document.get("protocol_audit_closure_hash") != PROTOCOL_AUDIT_CLOSURE_HASH
+        or document.get("protocol_audit_receipt_hash") != PROTOCOL_AUDIT_RECEIPT_HASH
+        or type(document.get("remaining_blockers")) is not int
+        or document.get("remaining_blockers") != 0
+        or observed != authorization.focused_independent_reaudit_receipt_hash
+    ):
+        raise NormalOnlyAuthorityV1Error("authorization interface audit authority differs")
+    _commit(document["interface_commit"], "authorization interface commit")
+    _git_oid(document["interface_source_git_blob"], "authorization interface source blob")
+    _sha(document["interface_source_raw_sha256"], "authorization interface source SHA-256")
+    _commit(document["independent_audit_commit"], "independent authorization audit commit")
+    return observed
+
+
+def _git_output_r1(root: Path, *args: str, binary: bool = False) -> str | bytes:
+    completed = subprocess.run(
+        ["git", "-C", str(root), *args],
+        check=True,
+        capture_output=True,
+        text=not binary,
+    )
+    return completed.stdout if binary else completed.stdout.strip()
+
+
+def _load_exact_committed_json_r1(
+    root: Path, relative: str, name: str
+) -> tuple[dict[str, Any], str]:
+    path = root / relative
+    if path.is_symlink() or not path.is_file():
+        raise NormalOnlyAuthorityV1Error(f"{name} must be a committed regular file")
+    resolved = path.resolve(strict=True)
+    if root not in resolved.parents:
+        raise NormalOnlyAuthorityV1Error(f"{name} path differs")
+    dirty = _git_output_r1(root, "status", "--porcelain", "--", relative)
+    if dirty:
+        raise NormalOnlyAuthorityV1Error(f"{name} working file is not clean")
+    blob = _git_oid(
+        _git_output_r1(root, "rev-parse", f"HEAD:{relative}"),
+        f"{name} Git blob",
+    )
+    committed_bytes = _git_output_r1(root, "show", f"HEAD:{relative}", binary=True)
+    working_bytes = path.read_bytes()
+    if committed_bytes != working_bytes:
+        raise NormalOnlyAuthorityV1Error(f"{name} working bytes differ from HEAD")
+    try:
+        document = json.loads(working_bytes.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise NormalOnlyAuthorityV1Error(f"{name} is not canonical UTF-8 JSON") from exc
+    if type(document) is not dict:
+        raise NormalOnlyAuthorityV1Error(f"{name} must contain an object")
+    return document, blob
+
+
+def _verify_authorized_builder_fields_r1(
+    root: Path, authorization: MaterializationExecutionAuthorizationR1
+) -> tuple[str, str]:
+    relative = SCIENTIFIC_V1_SOURCE_PATH
+    head = str(_git_output_r1(root, "rev-parse", "HEAD"))
+    ancestor = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "merge-base",
+            "--is-ancestor",
+            str(authorization.authorized_control_commit),
+            head,
+        ],
+        check=False,
+        capture_output=True,
+    )
+    current_blob = _git_oid(
+        _git_output_r1(root, "rev-parse", f"HEAD:{relative}"),
+        "current authorized control source blob",
+    )
+    control_blob = _git_oid(
+        _git_output_r1(
+            root,
+            "rev-parse",
+            f"{authorization.authorized_control_commit}:{relative}",
+        ),
+        "authorized control source blob",
+    )
+    control_bytes = _git_output_r1(
+        root,
+        "show",
+        f"{authorization.authorized_control_commit}:{relative}",
+        binary=True,
+    )
+    scientific_blob = _git_oid(
+        _git_output_r1(root, "rev-parse", f"{SCIENTIFIC_V1_COMMIT}:{relative}"),
+        "scientific V1 source blob",
+    )
+    scientific_bytes = _git_output_r1(
+        root, "show", f"{SCIENTIFIC_V1_COMMIT}:{relative}", binary=True
+    )
+    dirty = _git_output_r1(root, "status", "--porcelain", "--", relative)
+    if (
+        ancestor.returncode != 0
+        or current_blob != authorization.authorized_control_source_blob
+        or control_blob != authorization.authorized_control_source_blob
+        or sha256(control_bytes).hexdigest()
+        != authorization.authorized_control_source_raw_sha256
+        or _file_sha256(root / relative)
+        != authorization.authorized_control_source_raw_sha256
+        or dirty
+        or scientific_blob != SCIENTIFIC_V1_SOURCE_BLOB
+        or sha256(scientific_bytes).hexdigest() != SCIENTIFIC_V1_SOURCE_RAW_SHA256
+    ):
+        raise NormalOnlyAuthorityV1Error("authorized R1 builder checkout differs")
+    for dependency_path, expected_blob, expected_raw_sha256 in (
+        (
+            RELATION_PROFILING_SOURCE,
+            RELATION_PROFILING_GIT_BLOB,
+            RELATION_PROFILING_RAW_SHA256,
+        ),
+        (
+            E1_MATERIALIZATION_SOURCE,
+            E1_MATERIALIZATION_GIT_BLOB,
+            E1_MATERIALIZATION_RAW_SHA256,
+        ),
+    ):
+        dependency_blob = _git_oid(
+            _git_output_r1(root, "rev-parse", f"HEAD:{dependency_path}"),
+            "authorized calibration dependency blob",
+        )
+        dependency_bytes = _git_output_r1(
+            root, "show", f"HEAD:{dependency_path}", binary=True
+        )
+        dependency_dirty = _git_output_r1(
+            root, "status", "--porcelain", "--", dependency_path
+        )
+        if (
+            dependency_blob != expected_blob
+            or sha256(dependency_bytes).hexdigest() != expected_raw_sha256
+            or _file_sha256(root / dependency_path) != expected_raw_sha256
+            or dependency_dirty
+        ):
+            raise NormalOnlyAuthorityV1Error(
+                "authorized calibration dependency checkout differs"
+            )
+    return current_blob, str(authorization.authorized_control_source_raw_sha256)
+
+
+def load_committed_materialization_execution_authorization_r1(
+    repository_root: Path,
+) -> MaterializationExecutionAuthorizationR1:
+    """Load only the fixed, clean, committed external authorization document."""
+
+    if repository_root.is_symlink():
+        raise NormalOnlyAuthorityV1Error("repository root must not be a symlink")
+    root = repository_root.resolve(strict=True)
+    module_root = Path(__file__).resolve(strict=True).parents[3]
+    if root != module_root:
+        raise NormalOnlyAuthorityV1Error("repository root does not own the R1 implementation")
+    authorization_document, _ = _load_exact_committed_json_r1(
+        root,
+        MATERIALIZATION_AUTHORIZATION_RELATIVE_PATH,
+        "materialization authorization",
+    )
+    authorization = materialization_execution_authorization_from_document_r1(
+        authorization_document
+    )
+    audit_document, _ = _load_exact_committed_json_r1(
+        root,
+        MATERIALIZATION_AUTHORIZATION_INTERFACE_AUDIT_RELATIVE_PATH,
+        "materialization authorization interface audit",
+    )
+    validate_materialization_authorization_interface_audit_r1(
+        audit_document, authorization
+    )
+    audit_commit = _commit(
+        audit_document["independent_audit_commit"], "independent authorization audit commit"
+    )
+    head = str(_git_output_r1(root, "rev-parse", "HEAD"))
+    if subprocess.run(
+        ["git", "-C", str(root), "merge-base", "--is-ancestor", audit_commit, head],
+        check=False,
+        capture_output=True,
+    ).returncode != 0:
+        raise NormalOnlyAuthorityV1Error("independent authorization audit is not in execution lineage")
+    _verify_authorized_builder_fields_r1(root, authorization)
+    return authorization
+
+
 def verify_authorized_builder_checkout_r1(
     repository_root: Path,
     authorization: MaterializationExecutionAuthorizationR1,
@@ -2019,46 +2472,36 @@ def verify_authorized_builder_checkout_r1(
     separately authorized focused re-audit and authorization task complete.
     """
 
+    committed = load_committed_materialization_execution_authorization_r1(repository_root)
+    if authorization != committed:
+        raise NormalOnlyAuthorityV1Error("caller authorization differs from committed custody")
+    return _verify_authorized_builder_fields_r1(repository_root.resolve(strict=True), authorization)
+
+
+def _load_authorized_normal_features_r1(
+    *,
+    authority: NormalOnlyAuthorityDefinitionV1,
+    authorization: MaterializationExecutionAuthorizationR1,
+    train1_path: Path,
+    train2_path: Path,
+) -> tuple[dict[str, tuple[float, ...]], dict[str, tuple[float, ...]]]:
+    """Gate the historical parser to the exact authorized COMMON feature set."""
+
+    validate_canonical_common42_authority_v1(authority)
     validate_materialization_execution_authorization_r1(
-        authorization, require_materialization_authorized=True
+        authorization,
+        require_materialization_authorized=True,
+        allow_external_authorization=True,
     )
-    if repository_root.is_symlink():
-        raise NormalOnlyAuthorityV1Error("repository root must not be a symlink")
-    root = repository_root.resolve(strict=True)
-    module_root = Path(__file__).resolve(strict=True).parents[3]
-    if root != module_root:
-        raise NormalOnlyAuthorityV1Error("repository root does not own the R1 implementation")
-
-    relative = SCIENTIFIC_V1_SOURCE_PATH
-
-    def git_text(*args: str) -> str:
-        return subprocess.run(
-            ["git", "-C", str(root), *args],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
-
-    head = git_text("rev-parse", "HEAD")
-    current_blob = git_text("rev-parse", f"HEAD:{relative}")
-    dirty = git_text("status", "--porcelain", "--", relative)
-    scientific_blob = git_text("rev-parse", f"{SCIENTIFIC_V1_COMMIT}:{relative}")
-    scientific_bytes = subprocess.run(
-        ["git", "-C", str(root), "show", f"{SCIENTIFIC_V1_COMMIT}:{relative}"],
-        check=True,
-        capture_output=True,
-    ).stdout
-    if (
-        head != authorization.authorized_control_commit
-        or current_blob != authorization.authorized_control_source_blob
-        or _file_sha256(root / relative)
-        != authorization.authorized_control_source_raw_sha256
-        or dirty
-        or scientific_blob != SCIENTIFIC_V1_SOURCE_BLOB
-        or sha256(scientific_bytes).hexdigest() != SCIENTIFIC_V1_SOURCE_RAW_SHA256
-    ):
-        raise NormalOnlyAuthorityV1Error("authorized R1 builder checkout differs")
-    return current_blob, str(authorization.authorized_control_source_raw_sha256)
+    required_features = frozenset(
+        {item.source for item in authority.relations}
+        | {item.target for item in authority.relations}
+    )
+    return load_verified_normal_features_v1(
+        train1_path=train1_path,
+        train2_path=train2_path,
+        required_features=required_features,
+    )
 
 
 def materialize_normal_only_authority_r1(
@@ -2078,9 +2521,11 @@ def materialize_normal_only_authority_r1(
     repository_root: Path,
     execution_timestamp: str,
 ) -> AtomicMaterializationResultV1:
-    """Canonical R1 path; unavailable until a separate authorization is frozen."""
+    """Canonical R1 path using only fixed committed external authorization custody."""
 
-    authorization = canonical_materialization_execution_authorization_r1()
+    authorization = load_committed_materialization_execution_authorization_r1(
+        repository_root
+    )
     output_preflight = validate_materialization_output_preflight_r1(
         private_destination=private_destination,
         local_locator_manifest=local_locator_manifest,
@@ -2089,7 +2534,9 @@ def materialize_normal_only_authority_r1(
         execution_authorization_hash=authorization.authorization_hash,
     )
     validate_materialization_execution_authorization_r1(
-        authorization, require_materialization_authorized=True
+        authorization,
+        require_materialization_authorized=True,
+        allow_external_authorization=True,
     )
     validate_route_c_bindings_v1(feasibility_audit, dependency_matrix, common42_check)
     authority = build_common42_authority_v1(executable_equivalence, evidence_manifest)
@@ -2098,14 +2545,11 @@ def materialize_normal_only_authority_r1(
         repository_root, authorization
     )
     validate_normal_input_authorities_v1(dataset_manifest, d1_data_access_audit)
-    required_features = frozenset(
-        {item.source for item in authority.relations}
-        | {item.target for item in authority.relations}
-    )
-    train1, train2 = load_verified_normal_features_v1(
+    train1, train2 = _load_authorized_normal_features_r1(
+        authority=authority,
+        authorization=authorization,
         train1_path=train1_path,
         train2_path=train2_path,
-        required_features=required_features,
     )
     values = calibrate_all_role_values_v1(authority, train1, train2)
     registry = build_private_registry_document_v1(authority, values)
@@ -2234,6 +2678,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         parser.add_argument(f"--{option}", type=Path, required=True)
     parser.add_argument("--execution-timestamp", required=True)
     args = parser.parse_args(argv)
+    # Authorization custody is the first file read after argument parsing.
+    # Caller-selected scientific metadata is not opened until it passes.
+    load_committed_materialization_execution_authorization_r1(args.repository_root)
     result = materialize_normal_only_authority_r1(
         feasibility_audit=_load_json_document(args.feasibility_audit, "feasibility audit"),
         dependency_matrix=_load_json_document(args.dependency_matrix, "dependency matrix"),
@@ -2312,6 +2759,10 @@ __all__ = [
     "NORMAL_TRAIN1_IDENTITY",
     "NORMAL_TRAIN2_IDENTITY",
     "PRIVATE_LOCATOR_ENV",
+    "PROTOCOL_AUDIT_CLOSURE_HASH",
+    "PROTOCOL_AUDIT_RECEIPT_HASH",
+    "MATERIALIZATION_AUTHORIZATION_RELATIVE_PATH",
+    "MATERIALIZATION_AUTHORIZATION_SCOPE",
     "T2_UTILITY_SCOPE_AUTHORIZED",
     "UTILITY_NUMERIC_REFERENCE_COUNT",
     "UTILITY_NUMERIC_ROLES",
@@ -2330,6 +2781,8 @@ __all__ = [
     "derive_target_scale_normal_only_v1",
     "finalize_materialization_atomically_v1",
     "load_verified_normal_features_v1",
+    "load_committed_materialization_execution_authorization_r1",
+    "materialization_execution_authorization_from_document_r1",
     "materialize_normal_only_authority_r1",
     "materialize_normal_only_authority_v1",
     "new_reference_identity_v1",
@@ -2339,6 +2792,7 @@ __all__ = [
     "validate_local_locator_manifest_v1",
     "validate_local_locator_manifest_file_v1",
     "validate_materialization_execution_authorization_r1",
+    "validate_materialization_authorization_interface_audit_r1",
     "validate_materialization_output_preflight_r1",
     "validate_normal_input_authorities_v1",
     "validate_private_registry_document_v1",
