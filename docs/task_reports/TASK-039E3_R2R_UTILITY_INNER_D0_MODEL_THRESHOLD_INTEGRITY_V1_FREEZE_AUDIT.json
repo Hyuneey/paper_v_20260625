@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "fb05a7801f312ce629f8d684939e4755f2c0773d8b661c95cf554b94d700cac8",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_model_threshold_integrity_v1_freeze_audit",
+  "audit_commit_a": "0a5f8ef4a6eea38e2661fe2a6a3d24c849133f2d",
+  "created_at_utc": "2026-08-20T14:08:58Z",
+  "frozen_result_commit": "44ce989d7f50e2722eed70963e030ba1ba44fadf",
+  "frozen_result_commit_verified": true,
+  "implementation_git_blob": "9490c5785ae0f21caa503b9bc4a4becca312f055",
+  "implementation_source_sha256": "af36a3a5b8abccf61cd64c385b14df57adca0128e5c015d1bac74c191846172d",
+  "post_freeze_mutation_count": 0,
+  "production_changes_after_commit_a": 0,
+  "public_artifact_cross_hashes_valid": true,
+  "public_artifact_self_hashes_valid": true,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1"
+}

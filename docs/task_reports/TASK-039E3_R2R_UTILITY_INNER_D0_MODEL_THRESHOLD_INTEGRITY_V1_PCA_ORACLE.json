@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "e3bd67ebab5e90c431e5eb87ebc4400a203484d4eed1874675d0d3633ae5eea8",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_model_threshold_integrity_v1_pca_oracle",
+  "audit_authoritative_model_fits": 0,
+  "audit_pca_recomputations": 1,
+  "backend": "NUMPY_LINEAR_ALGEBRA",
+  "created_at_utc": "2026-08-20T14:08:58Z",
+  "covariance_denominator": 572400,
+  "covariance_symmetrized": true,
+  "exact_tied_cutoff_encountered": false,
+  "model_content_hash": "f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b",
+  "model_oracle_hash_match": true,
+  "pca_explained_variance_target": 0.95,
+  "residual_dimensions": 27,
+  "schema_version": "1.0.0",
+  "selected_k": 10,
+  "sign_canonicalization_match": true,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1"
+}

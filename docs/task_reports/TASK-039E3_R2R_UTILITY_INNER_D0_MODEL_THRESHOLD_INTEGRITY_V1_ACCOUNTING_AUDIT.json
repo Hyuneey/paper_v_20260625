@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "c861cc14a0f2c018d77be1f8171806289ea9346d77464ce186a7705a1721f02c",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_model_threshold_integrity_v1_accounting_audit",
+  "audit_authoritative_model_fits": 0,
+  "audit_authoritative_threshold_calibrations": 0,
+  "audit_train1_parses": 1,
+  "audit_train2_parses": 1,
+  "audit_train3_parses": 1,
+  "audit_train4_parses": 1,
+  "created_at_utc": "2026-08-20T14:08:58Z",
+  "d1_performance_reads": 0,
+  "label_accesses": 0,
+  "original_model_fit_attempts": 1,
+  "original_model_fit_retries": 0,
+  "original_threshold_calibration_attempts": 1,
+  "original_threshold_calibration_retries": 0,
+  "result_driven_changes": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1",
+  "test1_accesses": 0,
+  "test2_accesses": 0
+}

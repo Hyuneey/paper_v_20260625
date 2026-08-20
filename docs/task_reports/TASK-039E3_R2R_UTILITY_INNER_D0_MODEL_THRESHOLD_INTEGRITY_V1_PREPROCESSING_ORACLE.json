@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "c9cb4737e224b9a942b66f8267f5c9479dde4c6507b316553fe88db3c8f018c1",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_model_threshold_integrity_v1_preprocessing_oracle",
+  "audit_preprocessing_recomputations": 1,
+  "combined_fit_rows": 572400,
+  "created_at_utc": "2026-08-20T14:08:58Z",
+  "ddof": 0,
+  "feature_count": 37,
+  "feature_order_hash": "a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57",
+  "float_type": "float64",
+  "independent_reconstruction_hash_match": true,
+  "preprocessing_content_hash": "baae5495094b211731e4fcdf7bab2870e3c81e7c973bfe052fc87b457ccb6270",
+  "preprocessing_oracle_hash_match": true,
+  "scale_floor": 1e-12,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1",
+  "train1_hash_match": true,
+  "train2_hash_match": true
+}

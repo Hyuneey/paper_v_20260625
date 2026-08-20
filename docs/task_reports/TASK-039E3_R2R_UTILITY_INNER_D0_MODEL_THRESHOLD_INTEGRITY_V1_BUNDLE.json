@@ -1,0 +1,21 @@
+{
+  "accounting_audit_hash": "c861cc14a0f2c018d77be1f8171806289ea9346d77464ce186a7705a1721f02c",
+  "artifact_hash": "5769e397c078680ab66bff7f698ccbd0c65f929430465543320a06714b7707ce",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_model_threshold_integrity_v1_bundle",
+  "created_at_utc": "2026-08-20T14:08:58Z",
+  "d0_design_hash": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+  "freeze_audit_hash": "fb05a7801f312ce629f8d684939e4755f2c0773d8b661c95cf554b94d700cac8",
+  "independent_audit_hash": "7c0b2fe510e2806985985d68f45db534ce902b16dc26978cc45b631f5790025d",
+  "leakage_audit_hash": "bc70098b7775101151e8601607ccb6621febe09f70220214ac0285322286dfb8",
+  "model_content_hash": "f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b",
+  "pca_oracle_hash": "e3bd67ebab5e90c431e5eb87ebc4400a203484d4eed1874675d0d3633ae5eea8",
+  "preprocessing_content_hash": "baae5495094b211731e4fcdf7bab2870e3c81e7c973bfe052fc87b457ccb6270",
+  "preprocessing_oracle_hash": "c9cb4737e224b9a942b66f8267f5c9479dde4c6507b316553fe88db3c8f018c1",
+  "readiness_hash": "4849661e894bb3c6d31e3a97451ae3cb596bfb4cf231388514935e64ee460b19",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1",
+  "threshold_content_hash": "7ac0628cad5983b9864d31a9984bd414867b80f175248dbdf5cd69d7589f3695",
+  "threshold_oracle_hash": "43ee484a9a0f0ebc03699ddf6e201ca8c085081d938f3774e293e26db00b06c2",
+  "train4_oracle_hash": "57a1b8a8e55f61e1d50526028f5bbae965488c646f97d68fa6d3a2f3e88f05f4"
+}

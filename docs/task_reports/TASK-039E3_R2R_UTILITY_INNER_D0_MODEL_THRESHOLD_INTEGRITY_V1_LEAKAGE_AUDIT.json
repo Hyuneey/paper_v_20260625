@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "bc70098b7775101151e8601607ccb6621febe09f70220214ac0285322286dfb8",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_model_threshold_integrity_v1_leakage_audit",
+  "created_at_utc": "2026-08-20T14:08:58Z",
+  "labels_exposed": 0,
+  "private_paths_exposed": 0,
+  "private_pca_values_exposed": 0,
+  "private_preprocessing_values_exposed": 0,
+  "private_threshold_values_exposed": 0,
+  "raw_hai_rows_exposed": 0,
+  "raw_spe_scores_exposed": 0,
+  "schema_version": "1.0.0",
+  "status": "LEAK_SCAN_PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1"
+}
