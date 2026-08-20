@@ -10,43 +10,42 @@ separate authority layers.
 
 ## Current completed milestone
 
-Utility Evaluator V1 R3 has a complete independent audit. The exact HAI INNER
-feature and label payload has now also been reproducibly materialized from the
-pinned official source authority. Both frozen hashes and sizes match, the
-ignored local HAI binding is configured, and test2 payload access is zero.
+Utility Evaluator V1 R3 has a complete independent audit. The bounded portable
+custody control revision and its independent audit are frozen. Exact normal
+train1/train2 inputs reproduced the canonical 420-record MAIN registry and
+6-record source-census supplement without accessing test2.
 
 ## Current active task
 
-None. Code-materialized HAI recovery stopped at the mandatory private numeric
-authority binding gate before custody preflight.
+None. The portable recovery stopped after its single permitted real custody
+preflight failed closed and before authorization issuance.
 
 ## Latest blocker
 
-`AUTHORIZATION_RECOVERY_BLOCKED_MAIN_PRIVATE_BINDING_MISSING`. Neither the MAIN
-registry/locator pair nor the supplement registry/locator pair was present in
-the approved local binding layer. This is a private-custody availability
-blocker, not a HAI provenance, materialization, evaluator, contract, or
-scientific blocker.
+`PORTABLE_RECOVERY_BLOCKED_PREFLIGHT`. The exact failing custody subcondition
+is intentionally not disclosed. This is an operational custody-preflight
+blocker; it does not invalidate the evaluator, portable contract, frozen data,
+or exact registry rematerializations.
 
 ## Authorization boundary
 
-Authorized now: public continuity maintenance and retention/revalidation of the
-exact private HAI cache and ignored local HAI binding.
+Authorized now: public continuity maintenance and retention of the exact
+private local custody assets.
 
-Not authorized: custody preflight, D1, D0, D2, detector, fusion, test2/OUTER,
-recalibration, rule regeneration, metric changes, runtime LLM, or scientific
-result generation. No private authority may be regenerated in this task.
+Not authorized: D1, D0, D2, detector, fusion, test2/OUTER, recalibration, rule
+regeneration, metric changes, runtime LLM, or scientific utility generation.
+No authorization receipt or typed execution grant was issued.
 
 ## Exact next task
 
-`NONE`. A new explicit task must establish the exact existing MAIN and
-supplement private bindings without disclosure or regeneration before
-authorization recovery can resume.
+`NONE`. The failed preflight must not be retried in this coordinator context.
+A new explicit diagnostic or recovery authority is required.
 
 ## Canonical evidence
 
-- Materialization report: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_AUTHORIZATION_CODE_MATERIALIZED_HAI_V1_MATERIALIZATION.json`
-- Blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_AUTHORIZATION_CODE_MATERIALIZED_HAI_V1_BLOCKER.json`
+- Portable Contract Commit A: `1d7b47daf053ffbcbf69499b55b68ce7c2838e83`
+- Portable Independent Audit Commit B: `da3872530f45fb0093d815c9f50fe08216cc2fda`
+- Sanitized blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_PORTABLE_CUSTODY_V1_BLOCKER.json`
 - R3 independent receipt: `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_RECEIPT.json`
 
 ## No-claim boundary

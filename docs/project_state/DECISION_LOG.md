@@ -146,3 +146,25 @@ Append new entries; never rewrite historical decisions.
   current execution machine / none.
 - Canonical evidence: TASK-039A source receipt, TASK-039AR byte-equivalence
   receipt, and the code-materialized HAI recovery task.
+
+## DEC-CUSTODY-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: For rematerializable private numeric authorities, the frozen
+  private-registry content hash is the portable scientific authority. A local
+  locator is a machine-specific custody pointer whose self-hash is not
+  required to remain identical across machines.
+- Rationale: Registry content is deterministically derived from frozen normal
+  data, while locator bytes include disposable machine state. Conflating those
+  identities prevents exact cross-machine recovery without strengthening
+  scientific custody.
+- Consequence: Every fresh locator must remain local-only, canonical,
+  self-hashed, outside Git, regular and non-symlinked, point to the exact
+  validated registry, bind its frozen content hash, and bind the correct
+  materialization authority. Alternate numeric values remain prohibited.
+- Supersedes / Superseded by: historical locator self-hash as a current-machine
+  acceptance condition / none.
+- Canonical evidence: Portable Contract Commit A
+  `1d7b47daf053ffbcbf69499b55b68ce7c2838e83` and Portable Independent Audit
+  Commit B `da3872530f45fb0093d815c9f50fe08216cc2fda`.

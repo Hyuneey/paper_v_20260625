@@ -25,6 +25,22 @@ reports remain authoritative.
 MAIN is relation-execution numeric authority. The supplement is source-census
 isolation authority only; the two are not an interchangeable 426-record set.
 
+## Portable private custody control
+
+- Control revision: `R1_PORTABLE_PRIVATE_CUSTODY`.
+- Locator policy: `PORTABLE_PRIVATE_LOCATOR_POLICY_V1`.
+- Locator policy hash: `371386b03185a5642e8f6bfd04bc2f39c9e10aa6396dbaf6909d941bda72e6cd`.
+- MAIN recovery strategy:
+  `DETERMINISTIC_NORMAL_TRAIN1_TRAIN2_REMATERIALIZATION`.
+- Supplement recovery strategy:
+  `DETERMINISTIC_NORMAL_TRAIN1_TRAIN2_REMATERIALIZATION`.
+
+The frozen registry content hashes are portable scientific authority. Local
+locator self-hashes are machine-specific custody metadata; historical locator
+hashes remain provenance evidence only. Every fresh locator must still be
+canonical, self-hashed, outside Git, non-symlinked, and bound to the exact
+validated registry and materialization authority.
+
 ## INNER data authority
 
 - Dataset manifest: `5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2`
