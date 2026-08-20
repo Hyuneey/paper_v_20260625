@@ -1,0 +1,13 @@
+{
+  "artifact_hash": "f430d3233790f4befa3baeb024cce90eef08051358bd13771de4d73126f59692",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_detector_design_v1_independence",
+  "created_at_utc": "2026-08-20T12:43:41Z",
+  "d1_metric_artifact_read_for_design": false,
+  "d1_performance_used_for_design": false,
+  "d1_prediction_content_read_for_design": false,
+  "d1_rule_prediction_hash_bound_for_future_d2": true,
+  "detector_selected_for_expected_d1_outperformance": false,
+  "frozen_d1_rule_prediction_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "gdn_primary_detector": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1"
+}

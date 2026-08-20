@@ -1,0 +1,42 @@
+{
+  "artifact_hash": "3ffcec30d2bc605bf0b4ca15f80fcc3ed40aa283b6ae913e767c0ad9db18ece7",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_detector_design_v1_design",
+  "created_at_utc": "2026-08-20T12:43:41Z",
+  "d0_authorized": false,
+  "d0_detector_design_hash": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+  "d0_detector_id": "D0_PCA_SPE_V1",
+  "detector_family": "PCA_RECONSTRUCTION_SPE",
+  "detector_role": "REFERENCE_MULTIVARIATE_PROCESS_ANOMALY_DETECTOR",
+  "metric_policy": {
+    "alarm_episode_policy": "MAXIMAL_CONTIGUOUS_UNIQUE_ONE_SECOND_DECISION_INDICES_FILE_LOCAL",
+    "attack_event_recall_formula": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+    "normal_far_formula": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600"
+  },
+  "pca_policy": {
+    "anomaly_score": "SQUARED_PREDICTION_ERROR",
+    "backend_family": "NUMPY_LINEAR_ALGEBRA",
+    "component_policy": "SMALLEST_K_WITH_CUMULATIVE_EXPLAINED_VARIANCE_AT_LEAST_0_95_WITH_MANDATORY_RESIDUAL_DIMENSION",
+    "exact_eigenvalue_tie_at_cutoff": "FAIL_CLOSED_IF_CUTOFF_SPLITS_EXACT_TIED_EIGENVALUE_BLOCK",
+    "explained_variance_target": 0.95,
+    "randomized_pca": false
+  },
+  "preprocessing": {
+    "ddof": 0,
+    "fit_scope": "EXACT_TRAIN1_PLUS_TRAIN2",
+    "location": "POPULATION_MEAN",
+    "scale": "POPULATION_STANDARD_DEVIATION",
+    "scale_floor": 1e-12
+  },
+  "scientific_llm": false,
+  "status": "passed_task039e3_r2r_utility_inner_d0_detector_baseline_design_and_freeze_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1",
+  "threshold_policy": {
+    "alarm_comparison_operator": "score > threshold",
+    "alpha": 0.001,
+    "calibration_scope": "NORMAL_TRAIN3_ONLY",
+    "equality_is_alarm": false,
+    "order_statistic_index": "ceil(0.999*n)-1_zero_based_after_ascending_sort",
+    "upper_quantile": 0.999
+  },
+  "training_mode": "NORMAL_ONLY"
+}

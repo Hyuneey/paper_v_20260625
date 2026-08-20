@@ -1,0 +1,15 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "5375bd7730c92e117d8f08f221084f4b3804a453ddb4073a0c7784bdb78ec3f1",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_detector_design_v1_independent_audit",
+  "created_at_utc": "2026-08-20T12:43:41Z",
+  "d0_design_commit_a": "4bdb16701a84b383f713629524a20900bba27d95",
+  "independent_attacks": 71,
+  "independent_audit_commit_b": "4e4e904cca8779e5dde62bcea697e6d40d58a867",
+  "independent_test_methods": 6,
+  "production_changes_after_commit_a": 0,
+  "self_rehashed_semantic_attacks": true,
+  "static_test_methods": 12,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1"
+}

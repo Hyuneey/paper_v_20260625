@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "8fa5ab4b81a4dad0f7d1d13bd356b3aad21a45e747cd3b047ada697450ce3034",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_detector_design_v1_bundle",
+  "base_commit": "91a92fb3ca44d0e34c310b35ab8b6ec88c95be05",
+  "created_at_utc": "2026-08-20T12:43:41Z",
+  "d0_design_commit_a": "4bdb16701a84b383f713629524a20900bba27d95",
+  "d0_detector_design_hash": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+  "design_report_hash": "3ffcec30d2bc605bf0b4ca15f80fcc3ed40aa283b6ae913e767c0ad9db18ece7",
+  "feature_scope_hash": "4e9ba5a52733ae00f8cf755cda9918667c7065e0bc5b6eed2712aab97c3d6dd0",
+  "independence_hash": "f430d3233790f4befa3baeb024cce90eef08051358bd13771de4d73126f59692",
+  "independent_audit_commit_b": "4e4e904cca8779e5dde62bcea697e6d40d58a867",
+  "independent_audit_hash": "5375bd7730c92e117d8f08f221084f4b3804a453ddb4073a0c7784bdb78ec3f1",
+  "readiness_hash": "533e62761efce660e1d10726268187c2a9ba5e0d2b0763814b64bd75b0473c4e",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1"
+}
