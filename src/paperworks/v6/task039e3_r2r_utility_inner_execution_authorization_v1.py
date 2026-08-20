@@ -26,7 +26,7 @@ from paperworks.v6 import task039e3_r2r_utility_source_census_supplement_v1 as s
 
 TASK_ID = "TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1"
 AUTHORIZATION_VERSION = "TASK039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1"
-INNER_AUTHORIZATION_CONTROL_REVISION = "R1_PORTABLE_PRIVATE_CUSTODY"
+INNER_AUTHORIZATION_CONTROL_REVISION = "R2_PORTABLE_PREFLIGHT"
 AUTHORIZATION_SCOPE = "HAI_23_05_P1_TEST1_COMMON42_D1_RULE_ONLY_INNER_V1"
 PASS_STATUS = "passed_task039e3_r2r_utility_inner_execution_authorization_v1"
 BLOCK_STATUS = "blocked_task039e3_r2r_utility_inner_execution_authorization_v1"
@@ -710,6 +710,33 @@ def validate_portable_private_locator_custody_v1(
         ) from exc
 
 
+def _build_main_registry_validation_authority_v1(
+    repository_root: Path,
+) -> main_authority.NormalOnlyAuthorityDefinitionV1:
+    """Replay the exact public inputs required by the canonical MAIN validator.
+
+    The MAIN builder deliberately accepts no defaults.  Portable runtime
+    custody therefore supplies both frozen, self-hashed public documents
+    explicitly instead of treating a zero-argument builder invocation as a
+    registry failure.
+    """
+
+    executable_equivalence = _load_public_self_hashed_v1(
+        repository_root / _PUBLIC_V4_INPUTS["executable_equivalence"],
+        main_authority.EXECUTABLE_EQUIVALENCE_HASH,
+    )
+    evidence_manifest = _load_public_self_hashed_v1(
+        repository_root / _PUBLIC_V4_INPUTS["evidence_manifest"],
+        main_authority.E1_PUBLIC_MANIFEST_HASH,
+    )
+    authority = main_authority.build_common42_authority_v1(
+        executable_equivalence,
+        evidence_manifest,
+    )
+    main_authority.validate_canonical_common42_authority_v1(authority)
+    return authority
+
+
 _REAL_PREFLIGHT_ATTEMPTED = False
 
 
@@ -752,7 +779,7 @@ def perform_inner_execution_custody_preflight_v1(
         main_registry_bytes = _read_bytes_once_v1(main_registry_path)
         observed_main_registry = main_authority.validate_private_registry_document_v1(
             _json_from_custody_bytes_v1(main_registry_bytes),
-            main_authority.build_common42_authority_v1(),
+            _build_main_registry_validation_authority_v1(repository_root),
         )
 
         supplement_locator_custody = validate_portable_private_locator_custody_v1(
