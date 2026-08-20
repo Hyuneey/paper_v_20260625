@@ -1,15 +1,27 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Current canonical base: `ce7abfa8f1a5f59ea9e846e808eaaaad3e0cfde8`
+- Last committed continuity base:
+  `bf5284da64e33fd056beac71d56d187f715f3b48`
 - Completed: Utility Evaluator V1 R3 full independent audit PASS.
-- Current active task:
+- Latest task:
   `TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1-PATH-SILENT-RECOVERY`.
+- Latest status:
+  `blocked_task039e3_r2r_utility_inner_execution_authorization_v1_path_silent_recovery`.
+- Active task: `NONE`.
+- Exact next task: `NONE`.
 
-Recovery is required because the contract and independent audit passed, but
-the prior coordinator emitted one private path while attempting missing-locator
-recovery. No private file or scientific input was opened, and no authorization
-was issued.
+## Blocker
+
+The one fresh path-silent controller attempt returned
+`RECOVERY_BLOCKED_MISSING_HAI_DATA_ROOT`. It stopped on binding presence before
+locator-candidate discovery, real custody preflight, file hashing, or
+authorization issuance. Candidate reads, private paths emitted, test2 reads,
+scientific parsing, rule execution, and metric computation were all zero.
+
+Contract A and independent Audit B remain exact. Their combined 37 tests pass,
+109 invalid attacks are rejected, and accepted invalid is zero. D1 remains
+unauthorized and unexecuted.
 
 ## Read and replay
 
@@ -20,15 +32,14 @@ was issued.
 5. `TASKS/TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1-PATH-SILENT-RECOVERY.md`
 6. `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_RECEIPT.json`
 7. `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_COMPLETION_AUDIT.json`
-8. `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1_BLOCKER.json`
+8. `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1_PATH_SILENT_RECOVERY_BLOCKER.json`
 
-## Do not repeat
+## Safe recovery condition
 
-- Do not display environment values.
-- Do not recover custody from terminal history, old logs, or chat text.
-- Do not search the whole filesystem.
-- Do not reuse the previously exposed path.
-- Do not run D1 before exact authorization issuance.
+A user may establish the required HAI data-root environment binding and then
+issue a new path-silent recovery task in a fresh coordinator context. Do not
+retry this attempt, infer a path, search for data, recover from history/logs, or
+reuse prior path text.
 
-Exact next task after recovery PASS:
-`TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1`.
+Do not start `TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1`; no execution grant
+exists.

@@ -17,36 +17,36 @@ Utility Evaluator V1 R3 completed full independent re-audit at
 
 ## Current active task
 
-`TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1-PATH-SILENT-RECOVERY`
-preserves the passed authorization contract and independent audit, performs one
-path-silent custody preflight, and may issue only the exact INNER D1 grant.
+None. The path-silent recovery task is blocked and cannot be retried in its
+current coordinator context.
 
 ## Latest blocker
 
-The prior authorization task blocked because one private custody path appeared
-in coordinator output while recovering an absent locator binding. This was an
-operational privacy failure, not a scientific, evaluator, or contract failure.
-No custody file or scientific input was opened and no authorization was issued.
+`RECOVERY_BLOCKED_MISSING_HAI_DATA_ROOT`: the fresh controller found no current
+HAI data-root environment binding and stopped before locator discovery or real
+custody preflight. This is operational, not scientific. It emitted no private
+path, opened no custody/data file, and issued no authorization.
 
 ## Authorization boundary
 
-Authorized now: public replay, continuity bootstrap, immutable synthetic/static
-authorization tests, and the bounded coordinator-only custody recovery defined
-by the active task.
+Authorized now: public replay and repository continuity maintenance only. A
+new user-issued path-silent recovery task may begin only after the required HAI
+data-root binding is established in a fresh coordinator context.
 
 Not authorized now: D1 execution, D0, D2, detector, fusion, test2/OUTER,
 recalibration, rule regeneration, metric changes, runtime LLM, or scientific
 result generation.
 
-## Exact next task after PASS
+## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1`
+`NONE`. The D1 execution task is not authorized.
 
 ## Canonical receipts to replay
 
 - R3 independent receipt: `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_RECEIPT.json`
 - R3 completion audit: `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_COMPLETION_AUDIT.json`
 - Historical authorization blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1_BLOCKER.json`
+- Path-silent recovery blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1_PATH_SILENT_RECOVERY_BLOCKER.json`
 
 ## No-claim boundary
 

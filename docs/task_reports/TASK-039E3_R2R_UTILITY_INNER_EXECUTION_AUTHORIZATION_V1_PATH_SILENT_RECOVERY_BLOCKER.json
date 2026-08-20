@@ -1,0 +1,75 @@
+{
+  "artifact_type": "task039e3_r2r_utility_inner_execution_authorization_v1_path_silent_recovery_blocker",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1-PATH-SILENT-RECOVERY",
+  "status": "blocked_task039e3_r2r_utility_inner_execution_authorization_v1_path_silent_recovery",
+  "created_at_utc": "2026-08-20T04:32:59Z",
+  "branch": "task-039e3-r2r-utility-inner-execution-authorization-v1-path-silent-recovery",
+  "base_commit": "ce7abfa8f1a5f59ea9e846e808eaaaad3e0cfde8",
+  "continuity_commit_s": "bf5284da64e33fd056beac71d56d187f715f3b48",
+  "contract_commit_a": "f95ab2a1969b36b53aba5bb2053844f8724664c1",
+  "independent_audit_commit_b": "66a8f2a39ac6cc0365d405ce28a5d04d522ba898",
+  "historical_blocker_commit": "ce7abfa8f1a5f59ea9e846e808eaaaad3e0cfde8",
+  "historical_blocker_artifact": "e1c533de6ec5b749962c0415a0930697d8af4fb5eb45a05807a914d73a069a4a",
+  "static_gate": {
+    "contract_a_exact": true,
+    "independent_audit_b_exact": true,
+    "r3_evaluator_exact": true,
+    "static_tests_passed": 37,
+    "static_tests_total": 37,
+    "independent_invalid_attacks_rejected": 109,
+    "independent_invalid_attacks_total": 109,
+    "accepted_invalid": 0
+  },
+  "recovery": {
+    "controller_attempts": 1,
+    "visible_status_code": "RECOVERY_BLOCKED_MISSING_HAI_DATA_ROOT",
+    "path_silent_binding_resolution": "BLOCKED_MISSING_HAI_DATA_ROOT",
+    "path_silent_locator_candidate_reads": 0,
+    "real_custody_preflight_calls": 0,
+    "authorization_issuance_calls": 0,
+    "retry_performed": false,
+    "private_paths_emitted": 0
+  },
+  "custody_matches": {
+    "main_locator_hash_match": null,
+    "main_registry_hash_match": null,
+    "supplement_locator_hash_match": null,
+    "supplement_registry_hash_match": null,
+    "test1_feature_hash_match": null,
+    "test1_label_hash_match": null
+  },
+  "access_counters": {
+    "test2_reads": 0,
+    "scientific_feature_parses": 0,
+    "scientific_label_parses": 0,
+    "source_event_derivations": 0,
+    "attack_event_derivations": 0,
+    "rule_executions": 0,
+    "metric_computations": 0,
+    "detector_executions": 0,
+    "real_utility_computations": 0,
+    "private_numeric_values_exposed": 0,
+    "private_paths_exposed": 0
+  },
+  "authorization": {
+    "authorization_scope": null,
+    "custody_preflight_hash": null,
+    "authorization_hash": null,
+    "authorization_issued": false,
+    "d0_authorized": false,
+    "d1_authorized": false,
+    "d2_authorized": false,
+    "detector_authorized": false,
+    "outer_authorized": false,
+    "utility_inner_d1_executed": false,
+    "real_utility_execution_authorized": false
+  },
+  "blockers": [
+    "RECOVERY_BLOCKED_MISSING_HAI_DATA_ROOT"
+  ],
+  "safe_recovery_condition": "Establish the required HAI data-root environment binding, then issue a new path-silent recovery task in a fresh coordinator context.",
+  "exact_next_task": "NONE",
+  "scientific_result_claim": false,
+  "artifact_hash": "b5cbdee358c117ea805124f07bf0746fde038a79793528d07b1514b227ba3bdf"
+}
