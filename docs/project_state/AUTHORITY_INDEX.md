@@ -141,3 +141,19 @@ The private numeric artifacts and their local bindings are not public. One
 model fit and one threshold calibration completed with zero retries. Train4
 was evaluated only after freeze and caused no change. D0 INNER, D2, and OUTER
 remain unauthorized pending independent model/threshold integrity audit.
+
+## D0 model/threshold integrity authority
+
+- Audit Commit A: `0a5f8ef4a6eea38e2661fe2a6a3d24c849133f2d`.
+- Audit Report Commit B: `0dd53fbbc36b0483d90a5161caab7946ddd6d1fc`.
+- Freeze audit: `fb05a7801f312ce629f8d684939e4755f2c0773d8b661c95cf554b94d700cac8`.
+- Preprocessing oracle: `c9cb4737e224b9a942b66f8267f5c9479dde4c6507b316553fe88db3c8f018c1`.
+- PCA oracle: `e3bd67ebab5e90c431e5eb87ebc4400a203484d4eed1874675d0d3633ae5eea8`.
+- Threshold oracle: `43ee484a9a0f0ebc03699ddf6e201ca8c085081d938f3774e293e26db00b06c2`.
+- Train4 oracle: `57a1b8a8e55f61e1d50526028f5bbae965488c646f97d68fa6d3a2f3e88f05f4`.
+- Readiness: `4849661e894bb3c6d31e3a97451ae3cb596bfb4cf231388514935e64ee460b19`.
+- Bundle: `5769e397c078680ab66bff7f698ccbd0c65f929430465543320a06714b7707ce`.
+- Receipt: `4a66590a223f17bf363521f1d2e5e2b8f184b85d43500a8f6683b88f9648119c`.
+
+This authority certifies integrity and deterministic reproducibility only. It
+does not authorize D0 INNER execution, D2, or OUTER.

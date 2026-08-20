@@ -80,3 +80,22 @@ must not retrain, recalibrate, open test1, or authorize D0 INNER execution.
 This task certifies protocol-faithful normal-only training, calibration, and
 freeze. It does not certify model quality, authorize test evaluation, compare
 D0 with D1, or authorize D2/OUTER.
+
+## D0 model/threshold integrity audit PASS
+
+The exact frozen D0 preprocessing, PCA model, threshold, and Commit-C public
+bytes passed independent integrity audit. Audit-only NumPy recomputation
+reproduced all three private content hashes, selected `k=10`, 27 residual
+dimensions, no exact tied cutoff, `q_index=125873`, and the frozen train4
+sanity arithmetic. The audit performed zero authoritative fits and zero
+authoritative calibrations.
+
+- Audit Commit A: `0a5f8ef4a6eea38e2661fe2a6a3d24c849133f2d`
+- Audit Report Commit B: `0dd53fbbc36b0483d90a5161caab7946ddd6d1fc`
+- Readiness: `4849661e894bb3c6d31e3a97451ae3cb596bfb4cf231388514935e64ee460b19`
+- Bundle: `5769e397c078680ab66bff7f698ccbd0c65f929430465543320a06714b7707ce`
+- Receipt: `4a66590a223f17bf363521f1d2e5e2b8f184b85d43500a8f6683b88f9648119c`
+
+D0 INNER is authorization-ready but remains unauthorized and unexecuted. D2
+and OUTER remain unauthorized. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-V1`.

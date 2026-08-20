@@ -2,17 +2,17 @@
   "artifact_type": "paper_v_20260625_project_current_state",
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
-  "updated_at_utc": "2026-08-20T13:23:01Z",
-  "canonical_head": "44ce989d7f50e2722eed70963e030ba1ba44fadf",
-  "current_branch": "task-039e3-r2r-utility-inner-d0-detector-normal-training-calibration-v1",
-  "research_phase": "UTILITY_INNER_D0_MODEL_THRESHOLD_FROZEN_INTEGRITY_AUDIT_PENDING",
-  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1",
-  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d0_detector_normal_training_and_calibration_v1",
+  "updated_at_utc": "2026-08-20T14:08:58Z",
+  "canonical_head": "0dd53fbbc36b0483d90a5161caab7946ddd6d1fc",
+  "current_branch": "task-039e3-r2r-utility-inner-d0-model-threshold-integrity-audit-v1",
+  "research_phase": "UTILITY_INNER_D0_MODEL_THRESHOLD_INTEGRITY_AUDITED_AUTHORIZATION_READY",
+  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1",
+  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d0_detector_model_threshold_integrity_audit_v1",
   "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1",
   "latest_blocker": "NONE",
   "active_task": "NONE",
-  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1.md",
-  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1",
+  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1.md",
+  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-V1",
   "state_flags": {
     "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": true,
     "UTILITY_EVALUATOR_V1_FULL_INDEPENDENT_AUDIT_COMPLETED": true,
@@ -28,7 +28,8 @@
     "UTILITY_INNER_D0_MODEL_TRAINED": true,
     "UTILITY_INNER_D0_MODEL_FROZEN": true,
     "UTILITY_INNER_D0_THRESHOLD_FROZEN": true,
-    "UTILITY_INNER_D0_MODEL_THRESHOLD_INTEGRITY_AUDITED": false,
+    "UTILITY_INNER_D0_MODEL_THRESHOLD_INTEGRITY_AUDITED": true,
+    "UTILITY_INNER_D0_INNER_AUTHORIZATION_READY": true,
     "UTILITY_INNER_D0_EXECUTED": false,
     "UTILITY_INNER_D0_AUTHORIZED": false,
     "UTILITY_INNER_D2_AUTHORIZED": false,
@@ -82,7 +83,17 @@
     "d0_training_accounting": "ca7f038c1c91b24feee38101c9d8b19cfe97a3dc417c32cee879f47942eed5f4",
     "d0_training_readiness": "fcba1018b1e42ff7fdda9467a02a4f902ec6803486a3847675752508537cda29",
     "d0_training_bundle": "fa041f5e0006fc56665d22c82eb0fdea51917e573ffc4946c8a3f83bf4ada1e6",
-    "d0_training_receipt": "b4142789cbe99513c1763df15e0207588b75453829d2abe1aba4eaa60da75357"
+    "d0_training_receipt": "b4142789cbe99513c1763df15e0207588b75453829d2abe1aba4eaa60da75357",
+    "d0_model_threshold_integrity_audit_commit_a": "0a5f8ef4a6eea38e2661fe2a6a3d24c849133f2d",
+    "d0_model_threshold_integrity_report_commit_b": "0dd53fbbc36b0483d90a5161caab7946ddd6d1fc",
+    "d0_model_threshold_integrity_freeze_audit": "fb05a7801f312ce629f8d684939e4755f2c0773d8b661c95cf554b94d700cac8",
+    "d0_model_threshold_integrity_preprocessing_oracle": "c9cb4737e224b9a942b66f8267f5c9479dde4c6507b316553fe88db3c8f018c1",
+    "d0_model_threshold_integrity_pca_oracle": "e3bd67ebab5e90c431e5eb87ebc4400a203484d4eed1874675d0d3633ae5eea8",
+    "d0_model_threshold_integrity_threshold_oracle": "43ee484a9a0f0ebc03699ddf6e201ca8c085081d938f3774e293e26db00b06c2",
+    "d0_model_threshold_integrity_train4_oracle": "57a1b8a8e55f61e1d50526028f5bbae965488c646f97d68fa6d3a2f3e88f05f4",
+    "d0_model_threshold_integrity_readiness": "4849661e894bb3c6d31e3a97451ae3cb596bfb4cf231388514935e64ee460b19",
+    "d0_model_threshold_integrity_bundle": "5769e397c078680ab66bff7f698ccbd0c65f929430465543320a06714b7707ce",
+    "d0_model_threshold_integrity_receipt": "4a66590a223f17bf363521f1d2e5e2b8f184b85d43500a8f6683b88f9648119c"
   },
   "d1_result_state": {
     "scientific_status": "D1_RESULT_INTEGRITY_AUDITED",
@@ -130,7 +141,8 @@
     "model_trained": true,
     "model_frozen": true,
     "threshold_frozen": true,
-    "model_threshold_integrity_audited": false,
+    "model_threshold_integrity_audited": true,
+    "inner_authorization_ready": true,
     "inner_executed": false
   },
   "d0_normal_training_state": {
@@ -162,6 +174,28 @@
     "private_paths_exposed": 0,
     "private_numeric_values_exposed": 0
   },
+  "d0_model_threshold_integrity_audit": {
+    "post_freeze_mutations": 0,
+    "authoritative_private_artifacts_available": true,
+    "preprocessing_oracle_hash_match": true,
+    "model_oracle_hash_match": true,
+    "threshold_oracle_hash_match": true,
+    "selected_k": 10,
+    "residual_dimensions": 27,
+    "exact_tied_cutoff_encountered": false,
+    "threshold_q_index": 125873,
+    "train4_point_alarm_count": 15401,
+    "train4_alarm_episode_count": 479,
+    "audit_authoritative_model_fits": 0,
+    "audit_authoritative_threshold_calibrations": 0,
+    "test1_accesses": 0,
+    "label_accesses": 0,
+    "test2_accesses": 0,
+    "d1_performance_reads": 0,
+    "accepted_invalid": 0,
+    "private_paths_exposed": 0,
+    "private_numeric_values_exposed": 0
+  },
   "scientific_access": {
     "test2_accesses": 0,
     "test1_utility_feature_parses": 1,
@@ -173,5 +207,5 @@
     "detector_executions": 0,
     "real_utility_computations": 1
   },
-  "artifact_hash": "3357e53e6291d3868e622df6f42cf7dfcf6ff3bb0fc33914623ff1fc3d4e74e4"
+  "artifact_hash": "364de06d89db73795258ffae02b3c0c0880462356a5470d4349293df11a3f30b"
 }
