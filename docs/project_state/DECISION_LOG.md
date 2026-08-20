@@ -109,3 +109,20 @@ Append new entries; never rewrite historical decisions.
 - Consequence: Test2 access, hashing, parsing, and attack inspection remain zero.
 - Supersedes / Superseded by: none / none.
 - Canonical evidence: V4 R1 and active recovery task.
+
+## DEC-CONT-003
+
+- Date: 2026-08-20
+- Status: active
+- Decision: Machine-specific custody paths are maintained in a Git-ignored
+  `.env.custody.local` private continuity layer, while Git-tracked
+  `docs/project_state/` stores only public state and hashes.
+- Rationale: Chat and Codex sessions can disconnect; machine paths cannot
+  safely live in Git or chat; environment-only bindings disappear across
+  sessions; a local-only persisted binding file provides resumability without
+  public disclosure.
+- Consequence: Future private-custody tasks load bindings path-silently from
+  the local layer before attempting any separately authorized discovery.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: local custody binding bootstrap helper and
+  `LOCAL_PRIVATE_BINDING_GUIDE.md`.

@@ -62,3 +62,15 @@ decision, and save the issued task specification under `TASKS/`.
 This directory must never contain a private path, raw data, label details,
 attack intervals, or private numeric values. Detailed evidence stays in
 `docs/task_reports/`; summaries link to it instead of duplicating it.
+
+## Two-layer continuity
+
+Public research and authorization state lives in the Git-tracked
+`docs/project_state/` layer. Machine-specific custody bindings live only in
+the Git-ignored `.env.custody.local` layer described by
+`LOCAL_PRIVATE_BINDING_GUIDE.md`.
+
+A future session first reads and validates the Git continuity layer, then
+checks local binding-file presence path-silently. Binding values are never
+printed. When work moves to a new machine, the local layer is recreated only
+with `scripts/local/bootstrap_custody_bindings_v1.py` and its hidden prompt.

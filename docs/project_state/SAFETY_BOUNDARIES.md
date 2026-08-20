@@ -24,3 +24,15 @@ path-bearing command arguments are prohibited.
 Sensitive work runs in one path-silent process. It outputs only fixed status
 codes and explicitly allowed hashes, booleans, and counters. Any private path
 or numeric-value disclosure is a terminal blocker for that task.
+
+## Local private continuity
+
+- `.env.custody.local` is private, local-only, and must remain Git-ignored.
+- Its contents may never appear in chat, tool output, reports, or tracked
+  project-state files.
+- Never display, echo, stage, or commit the local binding file.
+- Never use shell history, prior logs, or broad discovery to recover it.
+- `scripts/local/bootstrap_custody_bindings_v1.py` is the only approved
+  interactive HAI root setup route.
+- Sensitive user input must use the helper's hidden prompt.
+- Test2 remains sealed during binding setup and authorization recovery.
