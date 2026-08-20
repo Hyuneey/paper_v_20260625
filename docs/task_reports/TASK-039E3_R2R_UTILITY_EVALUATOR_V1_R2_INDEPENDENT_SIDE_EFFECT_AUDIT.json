@@ -1,0 +1,23 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_independent_side_effect_audit",
+  "schema_version": "1.0.0",
+  "status": "ERROR_IN_FROZEN_AUDIT_FIXTURE",
+  "audit_commit_a": "534cfb09ffe7c9b8a1de1ac1c5ba119786e2014d",
+  "frozen_test_sha256": "c1deec344218f280e50a6950b743762efd44811ac1bda3e03c2eafc8ec5fd20b",
+  "tests_run": 10,
+  "tests_passed": 7,
+  "failures": 0,
+  "errors": 3,
+  "unique_semantic_classes": 18,
+  "fresh_import_modules_checked": 7,
+  "fresh_import_side_effects_observed": 0,
+  "unauthorized_real_facade_shapes_rejected_before_inspection": 6,
+  "unauthorized_side_effects_observed": 0,
+  "leakage_findings": 0,
+  "production_hashes_exact": "7/7",
+  "report_only_r2_freeze_verified": true,
+  "test_update_custody": "exactly two provenance-only existing test updates; no scientific assertions changed",
+  "fixture_error": "three helper paths called build_evaluator_authority_bundle_v1 without the required canonical V4 authority argument",
+  "unexecuted_semantic_classes": 4,
+  "artifact_hash": "47e86535516d21dd357ca070a95be29bcc10cb7a37f7d3add1b00b653c60cc8b"
+}

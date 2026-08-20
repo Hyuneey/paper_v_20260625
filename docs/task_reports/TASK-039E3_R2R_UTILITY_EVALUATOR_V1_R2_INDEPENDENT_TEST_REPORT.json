@@ -1,0 +1,25 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_independent_test_report",
+  "schema_version": "1.0.0",
+  "status": "BLOCKED_AND_STOPPED",
+  "audit_commit_a": "534cfb09ffe7c9b8a1de1ac1c5ba119786e2014d",
+  "new_suites": {
+    "authority_provenance": "NOT_RUN_AFTER_STOP",
+    "input_census_opportunity": "14_PASS_1_ERROR",
+    "rule_state_provenance": "NOT_RUN_AFTER_STOP",
+    "metric_artifact_d1_d2": "20_PASS_9_FAILURES_ACROSS_22_TESTS",
+    "side_effect_leakage": "7_PASS_3_ERRORS"
+  },
+  "frozen_unique_semantic_classes": 243,
+  "frozen_raw_adversarial_cases_minimum": 360,
+  "accepted_invalid": 9,
+  "previous_independent_regressions": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "r1_remediation_regressions": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "r2_remediation_regressions": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "original_evaluator_regressions": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "lower_regressions": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "compileall": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "pip_check": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "git_diff_check_before_audit_commit_a": "PASS",
+  "artifact_hash": "d07bc23560a300eb7dc850575388660a9987a20485a9fd303457babe81c9f660"
+}

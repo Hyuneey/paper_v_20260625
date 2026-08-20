@@ -1,0 +1,16 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_independent_receipt",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_evaluator_v1_r2_independent_reaudit_and_completion",
+  "audit_commit_a": "534cfb09ffe7c9b8a1de1ac1c5ba119786e2014d",
+  "completion_audit_hash": "0930aa395613560e50c0cc65577f948125d418367fddcd1160cd003df9bec65e",
+  "readiness_hash": "0a6b33cefebdcccdb3f79f0b2c7946a65bc78e8e4002880e0a6ad278810d290f",
+  "bundle_hash": "0f627b903f01c62761275b236f11820ee75c1514361faf3f15859be5208491d9",
+  "accepted_invalid": 9,
+  "blocker": "BLOCKER_EVALUATOR_R2_DETECTOR_PREDICTION_ARTIFACT_CUSTODY_AND_SELF_REHASH_ACCEPTED",
+  "production_modified": false,
+  "existing_audit_tests_modified": false,
+  "real_utility_status": "NOT_EXECUTED",
+  "exact_next_task": "NONE_AUTHORIZED_BLOCKED_PENDING_USER_ISSUED_REMEDIATION_TASK",
+  "artifact_hash": "fc86816c61b2c5a824fce2bc7882a0f51ac3d6885e37d9c2bf4d253f66d19c83"
+}

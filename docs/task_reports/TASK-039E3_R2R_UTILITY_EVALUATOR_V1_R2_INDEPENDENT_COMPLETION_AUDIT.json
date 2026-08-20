@@ -1,0 +1,27 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_independent_completion_audit",
+  "schema_version": "1.0.0",
+  "status": "blocked_task039e3_r2r_utility_evaluator_v1_r2_independent_reaudit_and_completion",
+  "base_commit": "9da3c2c8f3d3bc6b4a617efe0f1aca7fd56b8b19",
+  "r2_implementation_commit": "7c62206bc967e4ab0e101da474aee589e919551f",
+  "r2_freeze_commit": "9da3c2c8f3d3bc6b4a617efe0f1aca7fd56b8b19",
+  "audit_commit_a": "534cfb09ffe7c9b8a1de1ac1c5ba119786e2014d",
+  "r2_implementation_identity": "e7a61070c0be96e305f6706b90308c9976bc8d521c8b97adea93836c3fd28cef",
+  "r2_identity_independently_replayed": true,
+  "production_hashes_exact": 7,
+  "report_only_r2_freeze_verified": true,
+  "frozen_unique_semantic_classes": 243,
+  "frozen_raw_adversarial_cases_minimum": 360,
+  "observed_rejected_invalid_minimum": 228,
+  "observed_accepted_invalid": 9,
+  "primary_blocker": "BLOCKER_EVALUATOR_R2_DETECTOR_PREDICTION_ARTIFACT_CUSTODY_AND_SELF_REHASH_ACCEPTED",
+  "severity": "HIGH",
+  "audit_harness_errors": [
+    "BLOCKER_R2_INDEPENDENT_INPUT_AUDIT_FACTORY_ONLY_OPPORTUNITY_REPLACE_ERROR",
+    "BLOCKER_R2_INDEPENDENT_SIDE_EFFECT_AUDIT_FIXTURE_MISSING_V4_AUTHORITY"
+  ],
+  "remaining_outcome_suites": "NOT_RUN_AFTER_MANDATORY_STOP",
+  "real_utility_status": "NOT_EXECUTED",
+  "exact_next_task": "NONE_AUTHORIZED_BLOCKED_PENDING_USER_ISSUED_REMEDIATION_TASK",
+  "artifact_hash": "0930aa395613560e50c0cc65577f948125d418367fddcd1160cd003df9bec65e"
+}
