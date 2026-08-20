@@ -1,0 +1,100 @@
+{
+  "artifact_type": "task039e3_r2r_utility_inner_portable_custody_v1_blocker",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1",
+  "status": "blocked_task039e3_r2r_utility_inner_authorization_portable_private_authority_recovery_v1",
+  "created_at_utc": "2026-08-20T06:25:28Z",
+  "branch": "task-039e3-r2r-utility-inner-authorization-portable-private-authority-recovery-v1",
+  "base_commit": "9a7a479a4be14ad933149e834403950f5d291f1f",
+  "portable_contract_commit_a": "1d7b47daf053ffbcbf69499b55b68ce7c2838e83",
+  "portable_independent_audit_commit_b": "da3872530f45fb0093d815c9f50fe08216cc2fda",
+  "portable_contract": {
+    "control_revision": "R1_PORTABLE_PRIVATE_CUSTODY",
+    "historical_locator_exact_replay_required": false,
+    "authorization_static_tests_passed": 37,
+    "authorization_independent_invalid_attacks_rejected": 121,
+    "portable_contract_tests_passed": 11,
+    "portable_independent_tests_passed": 5,
+    "portable_independent_invalid_attacks_rejected": 44,
+    "accepted_invalid": 0,
+    "exact_r3_regression_passed": 111,
+    "v4_regression_passed": 149,
+    "r3_evaluator_modified": false
+  },
+  "normal_input_materialization": {
+    "train1_materialized": true,
+    "train1_hash_match": true,
+    "train2_materialized": true,
+    "train2_hash_match": true,
+    "test2_payload_fetches": 0,
+    "test2_file_opens": 0
+  },
+  "main_rematerialization": {
+    "historical_authorization_replayed": true,
+    "historical_control_commit_match": true,
+    "historical_source_blob_match": true,
+    "registry_rematerialized": true,
+    "registry_expected_hash": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "registry_observed_hash_match": true,
+    "record_count": 420,
+    "reference_set_match": true,
+    "fresh_locator_created": true
+  },
+  "supplement_rematerialization": {
+    "historical_authorization_replayed": true,
+    "implementation_commit_match": true,
+    "source_blob_match": true,
+    "registry_rematerialized": true,
+    "registry_expected_hash": "12ec7f50a953e097cd7cbe3ac93c7cabfb669130612d7f30ab3b19df85289aaf",
+    "registry_observed_hash_match": true,
+    "record_count": 6,
+    "reference_set_match": true,
+    "fresh_locator_created": true
+  },
+  "real_custody_preflight": {
+    "calls": 1,
+    "passed": false,
+    "sanitized_blocker": "PORTABLE_RECOVERY_BLOCKED_PREFLIGHT",
+    "subcondition": "NOT_DISCLOSED_FAIL_CLOSED",
+    "retry_performed": false,
+    "receipt_hash": null
+  },
+  "authorization": {
+    "issuance_calls": 0,
+    "authorization_hash": null,
+    "authorization_scope": null,
+    "d0_authorized": false,
+    "d1_authorized": false,
+    "d2_authorized": false,
+    "detector_authorized": false,
+    "outer_authorized": false
+  },
+  "access_counters": {
+    "main_train1_materialization_parses": 1,
+    "main_train2_materialization_parses": 1,
+    "supplement_train1_materialization_parses": 1,
+    "supplement_train2_materialization_parses": 1,
+    "test1_utility_feature_parses": 0,
+    "test1_utility_label_parses": 0,
+    "source_event_derivations_on_test1": 0,
+    "attack_event_derivations": 0,
+    "rule_executions": 0,
+    "metric_computations": 0,
+    "detector_executions": 0,
+    "real_utility_computations": 0,
+    "private_paths_emitted": 0,
+    "private_numeric_values_exposed": 0
+  },
+  "state_flags": {
+    "UTILITY_INNER_EXECUTION_AUTHORIZED": false,
+    "UTILITY_INNER_D1_EXECUTION_AUTHORIZATION_ISSUED": false,
+    "UTILITY_INNER_D1_EXECUTED": false,
+    "REAL_UTILITY_EXECUTION_AUTHORIZED": false
+  },
+  "blockers": [
+    "PORTABLE_RECOVERY_BLOCKED_PREFLIGHT"
+  ],
+  "exact_next_task": "NONE",
+  "scientific_result_claim": false,
+  "artifact_hash": "22e6f31afca58f77a4c4f403b092e54fda7d7b2442ff5855b48edf8043d7035d"
+}
