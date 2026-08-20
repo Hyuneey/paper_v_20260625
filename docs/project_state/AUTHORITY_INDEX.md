@@ -196,3 +196,25 @@ no scientific parsing. All D0 private bindings remained exact. One new-process
 preflight and one authorization issuance passed. D0 execution is authorized
 but not executed; D1 rerun, D2, test2, retraining, recalibration, and OUTER
 remain unauthorized.
+
+## Frozen D0 INNER result — integrity audit pending
+
+- Implementation Commit A: `c117087ec43d6e58167e77087e13b6a8a9226d42`.
+- Independent Audit Commit B: `f45c71c9990984f6fa0c552060c8ab51e1e5c9a4`.
+- Result Freeze Commit C: `78d758f50657413eed28dc838212be9a1edeffc7`.
+- Committed execution grant: `ed2077cae7a770cf28f3a576ea9298f7c4530769c58521241b36ffcb213e9671`.
+- Execution implementation identity: `8f00469a632643cd10cc4257f5d1fe380036c7763b03cb70b13d01815a287ee2`.
+- DetectorPrediction artifact: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
+- Score evidence: `ee9acb8de899fb8aa13fa70d1675ad61862982ef20ab8815702c7a3c620be91c`.
+- Private metric evidence: `628270f3413276d6d76c1ed3e1802679d37eae125898d250bb61524cba151176`.
+- Execution run: `0593d05790fef3b9264af587c451ece6186db438541a8b14edabbb2ee4bdeeb9`.
+- Implementation audit: `7ea381b8b1af3a792ef4a3f01c3d8b28644595b02da762bd8e102a1de981ac39`.
+- Accounting: `5ea9f8e0963a7e268f010a74aecc4c2a13a5c0bc0986e583fdbcee3eddf7379c`.
+- Readiness: `b25ec0663b8595cbbaff36c97b28e29a7364dc586adc0bfc8c7558f36de8ee18`.
+- Bundle: `253b78a7a76f45669dd9289e931c2e8719c14bcc3bdc1723d222de23ea9e0a23`.
+- Receipt: `62dab615ab8f95d7c65d4edfd605abd7543f28a09d54032b52ffd36f971b71da`.
+
+This authority freezes the first and only authorized D0 INNER test1 result. It
+does not certify result integrity or scientific interpretation. D1 remains
+unchanged; D2, test2, and OUTER remain unauthorized. The exact next task is
+`TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1`.
