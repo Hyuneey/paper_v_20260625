@@ -34,3 +34,19 @@ isolation authority only; the two are not an interchangeable 426-record set.
 
 No locator, registry, dataset-root, private registry content, or numeric
 threshold is recorded here.
+
+## Reproducible HAI INNER materialization
+
+- Strategy: `PINNED_OFFICIAL_SOURCE_REPRODUCIBLE_CACHE`.
+- Official repository: `https://github.com/icsdataset/hai`.
+- Pinned commit: `2a814cebc9a66b06c9e5cd545e2d72e65d383737`.
+- Frozen official fallback metadata:
+  `a7389cc123a544302b896c4c1ffc931a3c61c22318c0fa53c575cd1567d5fbfe`.
+- Frozen byte-equivalence receipt:
+  `7917f8736c119e774a945096f41f8abc18bce30267dd9e754c5a20157a5bf7a8`.
+- Materialization report:
+  `42c030775435a00ce127504d59de9767a85ed0bb612b4c3f024af8054764851d`.
+
+The cache location is disposable private machine state and is not authority.
+Only the frozen source, commit, payload allowlist, hashes, and sizes are public
+custody identity. This materialization does not itself grant execution.

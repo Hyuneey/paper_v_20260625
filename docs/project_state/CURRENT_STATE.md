@@ -3,56 +3,54 @@
 ## Research in one paragraph
 
 This project studies graph-guided agentic construction of verified rules for
-explainable multivariate time-series anomaly detection. HAI 23.05 P1 normal
-evidence and metadata support candidate relations, deterministic calibration,
-bounded rule construction, deterministic verification, and an LLM-free
-runtime. The current utility portfolio is COMMON-42; validity and utility are
+explainable multivariate time-series anomaly detection. The current portfolio
+is COMMON-42 for HAI 23.05 P1, with deterministic verification and LLM-free
+runtime. Rule validity, execution authorization, and label-aware utility remain
 separate authority layers.
 
 ## Current completed milestone
 
-Utility Evaluator V1 R3 completed full independent re-audit at
-`1a961eadc4813acfc959580c0558f0bf33aa5c7c`. Bootstrap Commit A
-`1d00e1abe1e081fa905f7d500a1752a271208895` adds the public, path-free local
-custody binding helper and two-layer continuity documentation.
+Utility Evaluator V1 R3 has a complete independent audit. The exact HAI INNER
+feature and label payload has now also been reproducibly materialized from the
+pinned official source authority. Both frozen hashes and sizes match, the
+ignored local HAI binding is configured, and test2 payload access is zero.
 
 ## Current active task
 
-None. The local binding bootstrap stopped before any private or data access
-because this coordinator cannot accept hidden interactive input.
+None. Code-materialized HAI recovery stopped at the mandatory private numeric
+authority binding gate before custody preflight.
 
 ## Latest blocker
 
-`LOCAL_BINDING_INPUT_REQUIRED`: no process HAI binding was available and this
-execution channel cannot provide the helper's hidden terminal prompt. This is
-operational, not scientific. The helper did not write a local binding file,
-open a HAI or private-authority asset, inspect optional binding values, or
-issue authorization.
+`AUTHORIZATION_RECOVERY_BLOCKED_MAIN_PRIVATE_BINDING_MISSING`. Neither the MAIN
+registry/locator pair nor the supplement registry/locator pair was present in
+the approved local binding layer. This is a private-custody availability
+blocker, not a HAI provenance, materialization, evaluator, contract, or
+scientific blocker.
 
 ## Authorization boundary
 
-Authorized now: public continuity maintenance and running the committed helper
-in a local interactive terminal.
+Authorized now: public continuity maintenance and retention/revalidation of the
+exact private HAI cache and ignored local HAI binding.
 
-Not authorized now: custody preflight, D1 execution, D0, D2, detector, fusion,
-test2/OUTER, recalibration, rule regeneration, metric changes, runtime LLM, or
-scientific result generation.
+Not authorized: custody preflight, D1, D0, D2, detector, fusion, test2/OUTER,
+recalibration, rule regeneration, metric changes, runtime LLM, or scientific
+result generation. No private authority may be regenerated in this task.
 
 ## Exact next task
 
-`NONE`. Run the committed bootstrap helper in a local terminal using its hidden
-prompt. Then begin a fresh validation/state-update context. The path-silent
-authorization recovery R2 task is available only after local bootstrap PASS.
+`NONE`. A new explicit task must establish the exact existing MAIN and
+supplement private bindings without disclosure or regeneration before
+authorization recovery can resume.
 
-## Canonical receipts to replay
+## Canonical evidence
 
+- Materialization report: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_AUTHORIZATION_CODE_MATERIALIZED_HAI_V1_MATERIALIZATION.json`
+- Blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_AUTHORIZATION_CODE_MATERIALIZED_HAI_V1_BLOCKER.json`
 - R3 independent receipt: `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_RECEIPT.json`
-- R3 completion audit: `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_COMPLETION_AUDIT.json`
-- Path-silent recovery blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1_PATH_SILENT_RECOVERY_BLOCKER.json`
-- Local bootstrap contract: `TASKS/TASK-039E3-R2R-LOCAL-CUSTODY-BINDING-BOOTSTRAP-V1.md`
 
 ## No-claim boundary
 
-The evaluator implementation is independently audited. Real utility has not
-executed. No real Attack-event recall, normal FAR, D0/D1/D2 comparison, or
-detector result exists. No INNER authorization has been issued.
+Real utility has not executed. No real Attack-event recall, normal FAR,
+D0/D1/D2 comparison, or detector result exists. No INNER authorization has
+been issued.
