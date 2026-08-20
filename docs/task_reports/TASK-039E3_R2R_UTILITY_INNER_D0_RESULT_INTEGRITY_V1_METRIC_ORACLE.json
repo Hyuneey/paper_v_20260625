@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "89f7b33e89d24cab74a589ec0efdaaf2c47acacc1693fff24729151a7a07bfaa",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_result_integrity_v1_metric_oracle",
+  "attack_event_recall_formula": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+  "attack_event_recall_formula_match": true,
+  "attack_event_recall_value": 0.7857142857142857,
+  "attack_event_recall_value_match": true,
+  "created_at_utc": "2026-08-20T22:54:02Z",
+  "normal_far_formula": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+  "normal_far_formula_match": true,
+  "normal_far_value": 0.4939336325682589,
+  "normal_far_value_match": true,
+  "private_metric_denominators_public": false,
+  "private_metric_evidence_hash": "628270f3413276d6d76c1ed3e1802679d37eae125898d250bb61524cba151176",
+  "private_metric_evidence_hash_match": true,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1"
+}

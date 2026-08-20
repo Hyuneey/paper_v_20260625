@@ -1,0 +1,20 @@
+{
+  "alarm_episode_match": true,
+  "alarm_episode_oracle": 46,
+  "artifact_hash": "d76903177a1595870c841086aa0aa6debd302f679b71163fa4b38686975b37bc",
+  "artifact_hash_match": true,
+  "artifact_type": "task039e3_r2r_utility_inner_d0_result_integrity_v1_prediction_audit",
+  "created_at_utc": "2026-08-20T22:54:02Z",
+  "detector_prediction_artifact_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6",
+  "label_blind_schema_pass": true,
+  "physical_index_closure": true,
+  "point_alarm_match": true,
+  "point_alarm_oracle": 876,
+  "private_score_values_exposed": 0,
+  "private_threshold_values_exposed": 0,
+  "record_count": 54000,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1",
+  "unique_row_count": 54000
+}

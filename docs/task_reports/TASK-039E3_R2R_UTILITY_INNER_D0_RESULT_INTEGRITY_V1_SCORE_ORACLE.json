@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "6c6e80549b9bc8f4e047c5db222af3de1647d7c0cee8684497d06eaff701df6e",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_result_integrity_v1_score_oracle",
+  "audit_authoritative_d0_executions": 0,
+  "audit_authoritative_model_fits": 0,
+  "audit_authoritative_threshold_calibrations": 0,
+  "created_at_utc": "2026-08-20T22:54:02Z",
+  "feature_count": 37,
+  "model_hash_match": true,
+  "numeric_backend": "NUMPY_LINEAR_ALGEBRA",
+  "numpy_version": "2.3.5",
+  "preprocessing_hash_match": true,
+  "python_version": "3.12.13",
+  "schema_version": "1.0.0",
+  "score_evidence_hash": "ee9acb8de899fb8aa13fa70d1675ad61862982ef20ab8815702c7a3c620be91c",
+  "score_evidence_hash_match": true,
+  "score_oracle_row_count": 54000,
+  "score_values_public": false,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1",
+  "test1_feature_hash_match": true,
+  "threshold_hash_match": true
+}

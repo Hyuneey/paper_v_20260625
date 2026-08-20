@@ -1,0 +1,12 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "d88148c61df8669a291d86e6f2bcd18838954f05b61d1f512ad05601db620361",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_result_integrity_v1_independent_audit",
+  "created_at_utc": "2026-08-20T22:54:02Z",
+  "independent_attacks": 33,
+  "private_data_used_by_attacks": false,
+  "public_artifact_mutations_only": true,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1"
+}

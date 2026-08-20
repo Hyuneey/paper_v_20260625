@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "84221c711b1635f5c2f31f40c3eef11b39df2f05835cff657ac583b650abb645",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_result_integrity_v1_leakage_audit",
+  "attack_intervals_exposed": 0,
+  "created_at_utc": "2026-08-20T22:54:02Z",
+  "label_vectors_exposed": 0,
+  "leak_scan_status": "LEAK_SCAN_PASS",
+  "private_metric_denominators_exposed": 0,
+  "private_paths_exposed": 0,
+  "private_pca_values_exposed": 0,
+  "private_preprocessing_values_exposed": 0,
+  "private_score_values_exposed": 0,
+  "private_threshold_values_exposed": 0,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1"
+}
