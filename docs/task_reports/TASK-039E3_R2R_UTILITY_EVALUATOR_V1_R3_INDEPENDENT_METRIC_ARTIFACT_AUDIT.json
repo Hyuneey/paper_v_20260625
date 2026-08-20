@@ -1,0 +1,39 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_independent_metric_artifact_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "PASS",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "event_policy": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+  "metric_policy": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+  "coverage": {
+    "test_methods": 30,
+    "unique_semantic_classes": 72,
+    "raw_adversarial_cases": 126,
+    "independent_oracle_cases": 36,
+    "detector_specific_classes": 24,
+    "accepted_invalid_cases": 0,
+    "harness_errors": 0
+  },
+  "oracles": {
+    "attack_event": "PASS",
+    "alarm_episode": "PASS",
+    "attack_event_recall": "PASS",
+    "normal_far_episodes_per_hour": "PASS"
+  },
+  "results": {
+    "label_custody_forgeries_accepted": 0,
+    "noncanonical_alarm_episodes_accepted": 0,
+    "duplicate_far_episode_inflation_accepted": 0,
+    "bound_metric_forgeries_accepted": 0,
+    "rule_prediction_forgeries_accepted": 0,
+    "detector_prediction_forgeries_accepted": 0,
+    "historical_detector_attacks_rejected": 9,
+    "forged_detector_comparison_entry_accepted": 0,
+    "d1_d2_rule_mismatch_accepted": 0,
+    "synthetic_to_scientific_promotions_accepted": 0
+  },
+  "real_label_reads": 0,
+  "detector_science_executions": 0,
+  "artifact_hash": "7c8324c8d3b93cc46506b7f3fa232089c4fe322d1ae08f4e345371b69f905899"
+}

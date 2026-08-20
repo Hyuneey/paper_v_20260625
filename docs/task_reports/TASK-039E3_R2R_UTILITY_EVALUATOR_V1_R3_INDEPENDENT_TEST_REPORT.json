@@ -1,0 +1,57 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_independent_test_report",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "PASS",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "new_independent_suites": {
+    "authority_provenance": "32/32",
+    "input_census_opportunity": "15/15",
+    "rule_state": "15/15",
+    "metric_artifact_d1_d2": "30/30",
+    "side_effect_leakage": "10/10",
+    "total": "102/102"
+  },
+  "coverage": {
+    "unique_semantic_classes": 325,
+    "raw_adversarial_cases": 552,
+    "rejected_invalid_cases": 552,
+    "accepted_invalid_cases": 0,
+    "new_harness_errors": 0
+  },
+  "historical_valid_independent_tests": {
+    "initial_six_finding_blocker_suites": "8/8",
+    "historical_rule_prediction_identity_blocker": "1/1"
+  },
+  "remediation_tests": {
+    "r1_authority": "7/7",
+    "r1_input": "4/4",
+    "r1_metrics": "11/11",
+    "r2_provenance": "10/10",
+    "r3_detector_custody": "9/9"
+  },
+  "original_evaluator_tests": {
+    "authority_resolver": "9/9",
+    "input_census": "13/13",
+    "rule_state": "6/6",
+    "metric_artifact": "11/11",
+    "integration": "6/6",
+    "total": "45/45"
+  },
+  "lower_regressions": {
+    "v4_r1_remediation": "36/36",
+    "v4_r1_focused_independent_reaudit": "62/62",
+    "v4_implementation": "51/51",
+    "normal_only": "8/8",
+    "supplement_focused": "13/13",
+    "supplement_independent": "15/15"
+  },
+  "checks": {
+    "compileall": "PASS",
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+    "git_diff_check": "PASS",
+    "production_immutability": "PASS_7_OF_7",
+    "existing_test_immutability": "PASS"
+  },
+  "artifact_hash": "72439ec0ade5bfec305c33bcaf6f7a79bbeca4a2d82e6500d43b23eba9b32d54"
+}

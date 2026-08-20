@@ -1,0 +1,31 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_harness_correction_receipt",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "PASS",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "historical_errata": [
+    {
+      "code": "R2_FACTORY_ONLY_CANONICAL_OPPORTUNITY_REPLACE",
+      "classification": "KNOWN_HARNESS_ERRATA_NOT_PRODUCTION_FAILURE",
+      "r3_correction": "factory-issued opportunities paired at evaluator envelope boundary",
+      "corrected_result": "PASS"
+    },
+    {
+      "code": "R2_SIDE_EFFECT_BUNDLE_MISSING_CANONICAL_V4",
+      "classification": "KNOWN_HARNESS_ERRATA_NOT_PRODUCTION_FAILURE",
+      "historical_affected_helpers": 3,
+      "r3_correction": "canonical V4 authority constructed before evaluator bundle",
+      "corrected_result": "PASS_3_OF_3"
+    },
+    {
+      "code": "R2_DETECTOR_RAW_AUTHORITY_FIXTURE",
+      "classification": "KNOWN_HARNESS_ERRATA_NOT_PRODUCTION_FAILURE",
+      "r3_correction": "canonical R3 synthetic detector factory without raw authority",
+      "corrected_result": "PASS"
+    }
+  ],
+  "frozen_historical_tests_modified": false,
+  "new_r3_harness_errors": 0,
+  "artifact_hash": "4a7c8d558669fad79d439c4f6d1788b9615f848fdcb2b89e8f41534375e1eae1"
+}

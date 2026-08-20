@@ -1,0 +1,42 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_independent_authority_provenance_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "PASS",
+  "base_commit": "25a87728a1b23f4a5ed862cc37a1be50aff260be",
+  "r3_implementation_commit": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "r3_freeze_commit": "25a87728a1b23f4a5ed862cc37a1be50aff260be",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "authority_bundle_hash": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+  "control_revision": "R3",
+  "implementation_identity": "af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5",
+  "synthetic_detector_authority": "99399ef47589871f5ffb37a83d63bc4fa414d79b41435b4bb61c679a243dbd7b",
+  "independent_replay": {
+    "authority_bundle": "PASS",
+    "r3_implementation_identity": "PASS",
+    "synthetic_detector_authority": "PASS"
+  },
+  "coverage": {
+    "test_methods": 32,
+    "unique_semantic_classes": 65,
+    "raw_adversarial_cases": 104,
+    "accepted_invalid_cases": 0,
+    "harness_errors": 0
+  },
+  "results": {
+    "bundle_reconstruction_accepted": 0,
+    "implementation_authority_reconstruction_accepted": 0,
+    "bare_original_identity_accepted": 0,
+    "bare_r1_identity_accepted": 0,
+    "bare_r2_identity_accepted": 0,
+    "bare_r3_identity_accepted": 0,
+    "cross_bundle_authority_accepted": 0,
+    "stale_issuance_accepted": 0,
+    "forged_rule_prediction_accepted": 0,
+    "forged_detector_prediction_accepted": 0,
+    "forged_detector_comparison_entry_accepted": 0,
+    "synthetic_to_scientific_promotions_accepted": 0
+  },
+  "real_private_access": 0,
+  "artifact_hash": "06d0f2b749121cc74c47bdbbb1a42a4aec38f50cdce87455b9b05048b84d216f"
+}

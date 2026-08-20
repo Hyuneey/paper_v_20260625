@@ -1,0 +1,40 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_independent_bundle",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_r3_independent_reaudit_and_completion",
+  "r3_implementation_commit": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "r3_freeze_commit": "25a87728a1b23f4a5ed862cc37a1be50aff260be",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "component_hashes": {
+    "completion_audit": "2992599eed2d2205bd9e2192515dff47168386281da865c511fbadb1bf55a1a7",
+    "authority_provenance": "06d0f2b749121cc74c47bdbbb1a42a4aec38f50cdce87455b9b05048b84d216f",
+    "census_opportunity": "f9a3425cb12bf55f353bdf219218247410b706bf3da01deae7b64adfbf9befd6",
+    "rule_state": "3d99cfcc37fc43b6f8752fa2ef362e976913c73af5e4f249d811da77c90538ad",
+    "metric_artifact": "7c8324c8d3b93cc46506b7f3fa232089c4fe322d1ae08f4e345371b69f905899",
+    "side_effect": "c6cf29d7a8de11bbd8aa76b39f3a02dcd5ea86c60773d83e5d9134dfdad746cc",
+    "harness_correction": "4a7c8d558669fad79d439c4f6d1788b9615f848fdcb2b89e8f41534375e1eae1",
+    "test_report": "72439ec0ade5bfec305c33bcaf6f7a79bbeca4a2d82e6500d43b23eba9b32d54",
+    "readiness": "0cf12f2bf819d3662b88dd2c960445e59fcf7d09faa10d5679d8670495a56fa2"
+  },
+  "report_markdown_raw_sha256": "465d2515bbe7764fe452a83707a1487688a9dc8195b3f30ae7f23f53c2881a74",
+  "test_source_raw_sha256": {
+    "authority": "691dc0e2744b9caa3e0dcebb1788268576f2bf1776417ce3e7fa9a67fc120a22",
+    "input_census": "27a2b057e1186f8cd35fdd465c4ad7f7f857a191741e7669bb3cc037f2951a09",
+    "rule_state": "1f6bf084a648c5769f282785268371912d3eda083197408636f583f3e0f72872",
+    "metric_artifact": "8d7f107495f0e42cb0c472390e9a636dc5b2a0c01cea01175b58a92265beb195",
+    "side_effect": "8a0f26f94dacfc17952aa42729019e871c8aa757779ef50f6a39594891ab61b1"
+  },
+  "production_raw_sha256": {
+    "types": "b869222947e1f7fa983f6595225e71161942bfeb26fd77168a6c1ae5e10f9864",
+    "authority": "3b84c63ce0f1505da37b7ed79995cf9260a119511edd9c321dea9ae90e7a0042",
+    "input": "07213dc4b18f0b4752552850332bef5a01fb86647908a6c8c2addda92880abc3",
+    "census": "0b52d44472182f9bcadd85667773ed17d82ecb7ecaca678ae80437d9e67801f1",
+    "rule_engine": "e9ca811b609ddc253f0298f38a6fdfe003400697a3c2a651a4ff934d81ea1849",
+    "metrics": "8a77d7c29a6ca67674c8e8c0c42f36cc9ea754dea84104ad0ef46cd4a4409731",
+    "facade": "6b13c78b42bb581cdc6fe01e92495a8c2105c71d4f0eedc3c8c469aafccad13e"
+  },
+  "access_boundary": "ZERO_REAL_PRIVATE_SCIENTIFIC_ACCESS",
+  "real_utility_status": "NOT_EXECUTED",
+  "artifact_hash": "c55cec5bac2fb8b700ae09beec521591e4be3ea9c8672bb8b213a41c26591035"
+}

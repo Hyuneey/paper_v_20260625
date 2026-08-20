@@ -1,0 +1,30 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_independent_rule_state_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "PASS",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "coverage": {
+    "test_methods": 15,
+    "unique_semantic_classes": 68,
+    "raw_adversarial_cases": 119,
+    "accepted_invalid_cases": 0,
+    "harness_errors": 0
+  },
+  "results": {
+    "common_rule_descriptor_oracle": "PASS_42_RELATIONS_420_REFERENCES",
+    "rule_semantic_forgeries_accepted": 0,
+    "supplement_numeric_role_escalations_accepted": 0,
+    "source_state_forgeries_accepted": 0,
+    "target_state_forgeries_accepted": 0,
+    "terminal_result_forgeries_accepted": 0,
+    "wrong_parent_chain_accepted": 0,
+    "wrong_coordinate_or_window_accepted": 0,
+    "wrong_implementation_or_computation_identity_accepted": 0,
+    "malformed_to_abstain_bypass": 0,
+    "canonical_unavailable_context_abstention": "PASS"
+  },
+  "scientific_semantics_changed": false,
+  "real_private_access": 0,
+  "artifact_hash": "3d99cfcc37fc43b6f8752fa2ef362e976913c73af5e4f249d811da77c90538ad"
+}

@@ -1,0 +1,40 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_independent_census_opportunity_audit",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "status": "PASS",
+  "audit_commit_a": "64a11a7f9c9cee6e6035d1deff2644af644c404d",
+  "lower_authorities": {
+    "v4_r1": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+    "portfolio": "COMMON-42",
+    "relations": 42,
+    "t2_authorized": false,
+    "combined_source_census": "cb53d0e4533ebadb61edbdc72b549fe47b46c8dcc4621841aac93a007660ced9",
+    "main_sources": 9,
+    "supplement_sources": 3,
+    "total_sources": 12
+  },
+  "coverage": {
+    "test_methods": 15,
+    "unique_semantic_classes": 90,
+    "raw_adversarial_and_oracle_cases": 136,
+    "source_event_oracle_cases": 11,
+    "supplement_offset_cases": 18,
+    "accepted_invalid_cases": 0,
+    "harness_errors": 0
+  },
+  "results": {
+    "strict_feature_container_or_schema_acceptances": 0,
+    "source_event_oracle": "PASS_11_OF_11",
+    "source_census": "PASS_EXACT_12",
+    "supplement_isolation": "PASS_3_OF_3_SOURCES",
+    "isolation_radius_boundaries": "PASS",
+    "supplement_relation_expansion": 0,
+    "caller_opportunity_authority_accepted": 0,
+    "caller_denominator_authority_accepted": 0,
+    "source_event_opportunity_cardinality_conflation": 0,
+    "corrected_factory_only_opportunity_harness": "PASS"
+  },
+  "real_private_access": 0,
+  "artifact_hash": "f9a3425cb12bf55f353bdf219218247410b706bf3da01deae7b64adfbf9befd6"
+}
