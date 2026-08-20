@@ -1,0 +1,42 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_detector_custody_remediation",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-BOUNDED-REMEDIATION-R3",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_bounded_remediation_r3",
+  "base_commit": "aa18c05329437087e8ac0b1ea1ae59c82e4a887e",
+  "r3_commit_a": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "blocker": "BLOCKER_EVALUATOR_R2_DETECTOR_PREDICTION_ARTIFACT_CUSTODY_AND_SELF_REHASH_ACCEPTED",
+  "severity": "HIGH",
+  "historical_accepted_invalid": 9,
+  "r3_accepted_invalid": 0,
+  "r3_focused_invalid_attacks": 35,
+  "factory_custody": "EXACT_WEAK_REFERENCE_PLUS_ISSUED_FIELD_BINDING_AND_SEMANTIC_REPLAY",
+  "forged_detector_comparison_entry_accepted": 0,
+  "r3_control_revision": "R3",
+  "r3_implementation_identity": "af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5",
+  "production_hashes": {
+    "types": "b869222947e1f7fa983f6595225e71161942bfeb26fd77168a6c1ae5e10f9864",
+    "authority": "3b84c63ce0f1505da37b7ed79995cf9260a119511edd9c321dea9ae90e7a0042",
+    "input": "07213dc4b18f0b4752552850332bef5a01fb86647908a6c8c2addda92880abc3",
+    "census": "0b52d44472182f9bcadd85667773ed17d82ecb7ecaca678ae80437d9e67801f1",
+    "rule_engine": "e9ca811b609ddc253f0298f38a6fdfe003400697a3c2a651a4ff934d81ea1849",
+    "metrics": "8a77d7c29a6ca67674c8e8c0c42f36cc9ea754dea84104ad0ef46cd4a4409731",
+    "facade": "6b13c78b42bb581cdc6fe01e92495a8c2105c71d4f0eedc3c8c469aafccad13e"
+  },
+  "lower_authorities": {
+    "authority_bundle": "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9",
+    "v4_r1": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+    "common_portfolio": "COMMON-42",
+    "common_relation_count": 42,
+    "t2_authorized": false,
+    "main_descriptor": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "main_reference_set": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "supplement_descriptor": "d45af926511c669ec04dd13c36823d454b67ccaa98ae0a7be2919b02652bd927",
+    "supplement_reference_set": "5139cae6e454318f0ca4317f3f5eaa5f775bd4f75261c4110ea610815929b580",
+    "combined_source_census": "cb53d0e4533ebadb61edbdc72b549fe47b46c8dcc4621841aac93a007660ced9"
+  },
+  "scientific_semantics_changed": false,
+  "real_utility_status": "NOT_EXECUTED",
+  "next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "artifact_hash": "a54df0fa3a5d146f14fc3bdbd31c4a2eb027c48073af12ccbef3b1a75a923b1b"
+}

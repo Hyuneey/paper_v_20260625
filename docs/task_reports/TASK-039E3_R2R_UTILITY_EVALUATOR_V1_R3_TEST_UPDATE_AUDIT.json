@@ -1,0 +1,31 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_test_update_audit",
+  "schema_version": "1.0.0",
+  "r3_commit_a": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "modified_existing_tests": [
+    {
+      "file": "tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py",
+      "previous_fixture": "caller_selected_detector_authority",
+      "replacement": "canonical_synthetic_detector_factory",
+      "scientific_assertion_changed": false
+    },
+    {
+      "file": "tests/test_task039e3_r2r_utility_evaluator_v1_remediation_r1_authority.py",
+      "previous_fixture": "current_r2_control_provenance",
+      "replacement": "current_r3_control_provenance",
+      "scientific_assertion_changed": false
+    },
+    {
+      "file": "tests/test_task039e3_r2r_utility_evaluator_v1_remediation_r2_provenance.py",
+      "previous_fixture": "current_r2_control_provenance",
+      "replacement": "current_r3_with_r2_as_historical_rejection",
+      "scientific_assertion_changed": false
+    }
+  ],
+  "independent_audit_tests_modified": false,
+  "negative_semantic_tests_removed": 0,
+  "metric_expected_values_changed": 0,
+  "census_or_rule_expected_values_changed": 0,
+  "result": "PASS",
+  "artifact_hash": "7c632c64b266d5189772d1655ef63a651e74dab4f86910b43f14ae7ac6b4de69"
+}

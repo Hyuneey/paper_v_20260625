@@ -1,0 +1,36 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_bundle",
+  "schema_version": "1.0.0",
+  "r3_commit_a": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "component_hashes": {
+    "detector_custody_remediation": "a54df0fa3a5d146f14fc3bdbd31c4a2eb027c48073af12ccbef3b1a75a923b1b",
+    "synthetic_detector_authority": "1700e3a38521151599790c38e46eecbcfb281161f1bc3b59ada14d549ec1df3c",
+    "comparison_boundary": "6064a74b31a29be56999fd98f23de56cd5153750ae414dea5ad60da83676ab90",
+    "test_update_audit": "7c632c64b266d5189772d1655ef63a651e74dab4f86910b43f14ae7ac6b4de69",
+    "audit_harness_errata": "ae6de38447eb87840bd09add06aeba5b09f926c451cb637e73b1349bf29bda40",
+    "regression_report": "2f438b1062003c98e45d9200895698f0b6fda63d48e36762e76841c2e10d4fc8",
+    "readiness": "843749ff2648076276cc8f9cfa7a0e8cda6089a5eab5c8d954a71e8c1e1abe69"
+  },
+  "report_markdown_raw_sha256": "cde2be1c7ee48fb1ed526a9476e341560832c9a49174d8e206fba3557daf0000",
+  "production_raw_sha256": {
+    "types": "b869222947e1f7fa983f6595225e71161942bfeb26fd77168a6c1ae5e10f9864",
+    "authority": "3b84c63ce0f1505da37b7ed79995cf9260a119511edd9c321dea9ae90e7a0042",
+    "input": "07213dc4b18f0b4752552850332bef5a01fb86647908a6c8c2addda92880abc3",
+    "census": "0b52d44472182f9bcadd85667773ed17d82ecb7ecaca678ae80437d9e67801f1",
+    "rule_engine": "e9ca811b609ddc253f0298f38a6fdfe003400697a3c2a651a4ff934d81ea1849",
+    "metrics": "8a77d7c29a6ca67674c8e8c0c42f36cc9ea754dea84104ad0ef46cd4a4409731",
+    "facade": "6b13c78b42bb581cdc6fe01e92495a8c2105c71d4f0eedc3c8c469aafccad13e"
+  },
+  "production_git_blobs": {
+    "types": "47deeccc1347902c3de4a2beb4b592f1176316dc",
+    "authority": "301e16ad9c81784198227da68e40edc2dd0323f1",
+    "input": "42b08fd7c46bf3208d990ccbac280957b96a32fd",
+    "census": "95638ddebde017dc2436bb99f691875d16172bfa",
+    "rule_engine": "446765531eba68bf5dd67ec0c36d2813c5d0a50a",
+    "metrics": "922653bc6ee5136ba9036ff3b32d44718e4ecaee",
+    "facade": "83ee43c2fa4cabe822cbfd524454ec19be238725"
+  },
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "artifact_hash": "b6290ff2a7a9ad9efe10854bf4cbafe76f848011be1fddbfd98a78eb5f1e70de"
+}

@@ -1,0 +1,21 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_audit_harness_errata",
+  "schema_version": "1.0.0",
+  "r3_commit_a": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "production_findings": 0,
+  "known_errata": [
+    "factory_only_CanonicalOpportunityV4_passed_to_dataclasses_replace",
+    "private_resolver_side_effect_helper_omitted_required_v4_authority",
+    "hai_loader_side_effect_helper_omitted_required_v4_authority",
+    "resolver_repr_side_effect_helper_omitted_required_v4_authority"
+  ],
+  "frozen_r2_detector_fixture": {
+    "status": "HISTORICAL_R2_SPECIFIC_NON_APPLICABLE_AFTER_R3_ROTATION",
+    "reason": "setUpClass pins R2 identity and helper supplies now-forbidden raw detector authority",
+    "file_modified": false,
+    "intended_nine_attacks_replayed_by_corrected_r3_suite": true
+  },
+  "next_audit_must_add_corrected_completion_tests": true,
+  "result": "RECORDED_NOT_PRODUCTION_BLOCKERS",
+  "artifact_hash": "ae6de38447eb87840bd09add06aeba5b09f926c451cb637e73b1349bf29bda40"
+}

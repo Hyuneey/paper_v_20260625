@@ -1,0 +1,17 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_comparison_boundary",
+  "schema_version": "1.0.0",
+  "r3_commit_a": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "canonical_synthetic_detector_accepted": true,
+  "detector_validated_before_comparison_issuance": true,
+  "reconstructed_detector_accepted": false,
+  "self_rehashed_detector_accepted": false,
+  "dataset_mismatch_accepted": false,
+  "split_mismatch_accepted": false,
+  "file_mismatch_accepted": false,
+  "d1_d2_same_rule_authority_preserved": true,
+  "fusion_authorized": false,
+  "scientific_eligible": false,
+  "result": "PASS",
+  "artifact_hash": "6064a74b31a29be56999fd98f23de56cd5153750ae414dea5ad60da83676ab90"
+}

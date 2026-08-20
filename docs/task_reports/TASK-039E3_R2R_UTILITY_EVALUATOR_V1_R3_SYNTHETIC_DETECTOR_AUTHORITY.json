@@ -1,0 +1,20 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r3_synthetic_detector_authority",
+  "schema_version": "1.0.0",
+  "r3_commit_a": "429a00358ea7a3fba416f1e82652b41963fe707d",
+  "authority_identity": "99399ef47589871f5ffb37a83d63bc4fa414d79b41435b4bb61c679a243dbd7b",
+  "authority_preimage": {
+    "artifact_type": "task039e3_r2r_utility_evaluator_v1_synthetic_detector_authority",
+    "evaluator_version": "TASK039E3_R2R_UTILITY_EVALUATOR_V1",
+    "execution_mode": "SYNTHETIC_CONTRACT_ONLY",
+    "scientific_eligibility": false,
+    "real_detector_authority": false,
+    "detector_science_executed": false
+  },
+  "caller_selected_authority_accepted": 0,
+  "scientific_detector_authority_created": false,
+  "detector_science_executed": false,
+  "contains_model_threshold_checkpoint_or_predictions": false,
+  "result": "PASS",
+  "artifact_hash": "1700e3a38521151599790c38e46eecbcfb281161f1bc3b59ada14d549ec1df3c"
+}
