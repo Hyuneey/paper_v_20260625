@@ -1,0 +1,37 @@
+{
+  "alarm_episode_count": 46,
+  "artifact_hash": "bec8629e2dbdc178d750e795ada7b74aaf0f1475c32c5881c13a2e65c0a92cbf",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_metrics_v1",
+  "attack_event_recall": {
+    "artifact_hash": "ffad1d979d5a49cb3e36d53fa45d0d747b1005a6f9ee439138f1cc4d0c5cb2fa",
+    "defined": true,
+    "formula_identity": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+    "metric_name": "attack_event_recall",
+    "private_evidence_hash": "628270f3413276d6d76c1ed3e1802679d37eae125898d250bb61524cba151176",
+    "undefined_reason": null,
+    "value": 0.7857142857142857
+  },
+  "attack_intervals_public": false,
+  "authorization_hash": "a155fbb2659dc2a8b233db179706a13338a58ae41610f5c6db01f90f3b76a1ef",
+  "created_at_utc": "2026-08-20T22:17:47Z",
+  "detector_id": "D0_PCA_SPE_V1",
+  "detector_prediction_artifact_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6",
+  "execution_mode": "REAL_INNER_D0_PCA_SPE",
+  "label_vector_public": false,
+  "normal_far_episodes_per_hour": {
+    "artifact_hash": "e32cb6dd8b1ea924c841d3e36d3e7faa2879420fb06cfd27b85f53c97a58307b",
+    "defined": true,
+    "formula_identity": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+    "metric_name": "normal_far_episodes_per_hour",
+    "private_evidence_hash": "628270f3413276d6d76c1ed3e1802679d37eae125898d250bb61524cba151176",
+    "undefined_reason": null,
+    "value": 0.4939336325682589
+  },
+  "point_alarm_count": 876,
+  "private_metric_denominators_public": false,
+  "private_metric_evidence_hash": "628270f3413276d6d76c1ed3e1802679d37eae125898d250bb61524cba151176",
+  "raw_scores_public": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-V1",
+  "threshold_value_public": false
+}
