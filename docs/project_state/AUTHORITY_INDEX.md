@@ -218,3 +218,25 @@ This authority freezes the first and only authorized D0 INNER test1 result. It
 does not certify result integrity or scientific interpretation. D1 remains
 unchanged; D2, test2, and OUTER remain unauthorized. The exact next task is
 `TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1`.
+
+## Frozen D0 INNER result — integrity audited
+
+- Audit Commit A: `346a9f1ec6d5b1d97a66da45fcff66f44353742e`.
+- Audit Report Commit B: `a1ff1929a86e95675431c2c32ace01efa2696a80`.
+- Freeze audit: `8e22cb39ba038d3492592f4a3f91cbb64d2640d146dc615b35aab1137635fdc5`.
+- Score oracle: `6c6e80549b9bc8f4e047c5db222af3de1647d7c0cee8684497d06eaff701df6e`.
+- Prediction audit: `d76903177a1595870c841086aa0aa6debd302f679b71163fa4b38686975b37bc`.
+- Label-independence audit: `9b57b0b7b8f40f2384dc7ce8d612ad5f4d24d954372fdeac6b6d13722b79014e`.
+- Metric oracle: `89f7b33e89d24cab74a589ec0efdaaf2c47acacc1693fff24729151a7a07bfaa`.
+- Accounting audit: `563bdecde07c2bf4c6d4543b2fa4d3dc42b250d7ff7e5e6bdd05c588fb138a89`.
+- Leakage audit: `84221c711b1635f5c2f31f40c3eef11b39df2f05835cff657ac583b650abb645`.
+- Independent audit: `d88148c61df8669a291d86e6f2bcd18838954f05b61d1f512ad05601db620361`.
+- Readiness: `b18ccca46ed84e09aedeb258f6089e07444da0c108a60f4da3160fb3a521282d`.
+- Bundle: `9b74f9c56571526870f274e0928516ce642e1bc0d692ee3cdd8dce0cceddafc7`.
+- Receipt: `15559141048efd729b3b4645b4f0baa4ac6d07ceedb2417cbd7915f49435da70`.
+- Remote state: `LOCAL_ONLY_NOT_PUSHED`.
+
+This authority certifies the exact local frozen D0 result's internal integrity,
+not detector quality or causal significance. Scientific interpretation may
+begin. D2 and OUTER remain unauthorized; D2 must be preregistered and consume
+the exact frozen D0 and D1 prediction artifacts without rerunning either arm.

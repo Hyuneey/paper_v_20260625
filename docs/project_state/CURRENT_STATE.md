@@ -5,43 +5,44 @@
 This project studies graph-guided agentic construction of verified rules for
 explainable multivariate time-series anomaly detection. The exact D1 Rule-only
 result remains frozen and integrity-audited. The independent
-`D0_PCA_SPE_V1` detector has now completed its first and only authorized INNER
-test1 execution. Its label-blind prediction and public result are frozen;
-result-integrity audit and scientific interpretation remain pending.
+`D0_PCA_SPE_V1` INNER test1 result is now also frozen and independently
+integrity-audited. Scientific interpretation of D0 versus D1 may begin, but no
+D2 design or execution is yet authorized.
 
-## D0 execution state
+## D0 result-integrity state
 
-- Status: `passed_task039e3_r2r_utility_inner_d0_execution_v1`.
-- Scientific state: `D0_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`.
-- Implementation Commit A: `c117087ec43d6e58167e77087e13b6a8a9226d42`.
-- Independent Audit Commit B: `f45c71c9990984f6fa0c552060c8ab51e1e5c9a4`.
-- Result Freeze Commit C: `78d758f50657413eed28dc838212be9a1edeffc7`.
-- Authorization: `a155fbb2659dc2a8b233db179706a13338a58ae41610f5c6db01f90f3b76a1ef`.
-- DetectorPrediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
-- Execution run: `0593d05790fef3b9264af587c451ece6186db438541a8b14edabbb2ee4bdeeb9`.
-- Readiness: `b25ec0663b8595cbbaff36c97b28e29a7364dc586adc0bfc8c7558f36de8ee18`.
-- Bundle: `253b78a7a76f45669dd9289e931c2e8719c14bcc3bdc1723d222de23ea9e0a23`.
-- Receipt: `62dab615ab8f95d7c65d4edfd605abd7543f28a09d54032b52ffd36f971b71da`.
+- Status: `passed_task039e3_r2r_utility_inner_d0_result_integrity_audit_v1`.
+- Scientific state: `D0_RESULT_INTEGRITY_AUDITED`.
+- Remote state: `LOCAL_ONLY_NOT_PUSHED`.
+- Audit Commit A: `346a9f1ec6d5b1d97a66da45fcff66f44353742e`.
+- Audit Report Commit B: `a1ff1929a86e95675431c2c32ace01efa2696a80`.
+- Freeze audit: `8e22cb39ba038d3492592f4a3f91cbb64d2640d146dc615b35aab1137635fdc5`.
+- Score oracle: `6c6e80549b9bc8f4e047c5db222af3de1647d7c0cee8684497d06eaff701df6e`.
+- Prediction audit: `d76903177a1595870c841086aa0aa6debd302f679b71163fa4b38686975b37bc`.
+- Metric oracle: `89f7b33e89d24cab74a589ec0efdaaf2c47acacc1693fff24729151a7a07bfaa`.
+- Readiness: `b18ccca46ed84e09aedeb258f6089e07444da0c108a60f4da3160fb3a521282d`.
+- Bundle: `9b74f9c56571526870f274e0928516ce642e1bc0d692ee3cdd8dce0cceddafc7`.
+- Receipt: `15559141048efd729b3b4645b4f0baa4ac6d07ceedb2417cbd7915f49435da70`.
 
-The run used the exact frozen 37-feature preprocessing, PCA model, and strict
-threshold under CPython 3.12.13 and NumPy 2.3.5. It produced 54,000 scores and
-54,000 label-blind prediction records. The prediction artifact was persisted
-and byte-validated before the label file was opened. The label was then parsed
-once for the two preregistered metrics. Scientific execution attempts were one,
-retries were zero, and result-driven changes were zero.
+The audit resolved the exact four local execution commits, reproduced the
+implementation identity and committed grant, and found zero Result-C
+mutations. One audit-only feature parse independently reproduced all 54,000
+PCA-SPE scores, the private score-evidence identity, 876 point alarms, 46 alarm
+episodes, both frozen metrics, and the private metric-evidence identity. It
+performed zero authoritative D0 executions, fits, or calibrations. All 33
+invalid mutations were rejected.
 
 ## Authority boundary
 
-D0 execution and result freeze are complete, but result integrity has not been
-independently audited and D0 result interpretation is not ready. D1 remains
-unchanged and frozen. D1 content reads, D1 executions, D2 executions, OUTER
-executions, and test2 accesses were all zero. D2 and OUTER remain
-unauthorized. Private paths, raw scores, model values, preprocessing values,
-threshold values, labels, and attack intervals remain outside Git.
+D0 execution, result freeze, result integrity, and interpretation readiness are
+true. D1 remains unchanged. D1 content reads, D1/D2/OUTER executions, test2
+accesses, result-driven changes, and private leakage were zero. D2 and OUTER
+remain unauthorized. The branch and all audit commits remain local-only; no
+push, PR, or upload occurred.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1`.
+`TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1`.
 
-It must independently audit the exact Commit-C bytes and must not rerun D0.
-Only after that audit passes may D0 and D1 be compared scientifically.
+It must preregister D2 before any D2 result and consume the exact frozen D0 and
+D1 prediction artifacts without rerunning either arm.

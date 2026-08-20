@@ -1,51 +1,55 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d0-execution-v1`
-- Exact base: `dd2d103d20e3d61aa31167740929cbe31cf8b942`
-- Implementation Commit A: `c117087ec43d6e58167e77087e13b6a8a9226d42`
-- Independent Audit Commit B: `f45c71c9990984f6fa0c552060c8ab51e1e5c9a4`
-- Result Freeze Commit C: `78d758f50657413eed28dc838212be9a1edeffc7`
-- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-V1`
-- Latest status: `passed_task039e3_r2r_utility_inner_d0_execution_v1`
-- Scientific state: `D0_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`
+- Branch: `task-039e3-r2r-utility-inner-d0-result-integrity-audit-v1`
+- Exact base: `c96adab1ae6f474472f73cc2de0a7c5dab63e24d`
+- Audit Commit A: `346a9f1ec6d5b1d97a66da45fcff66f44353742e`
+- Audit Report Commit B: `a1ff1929a86e95675431c2c32ace01efa2696a80`
+- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1`
+- Latest status: `passed_task039e3_r2r_utility_inner_d0_result_integrity_audit_v1`
+- Scientific state: `D0_RESULT_INTEGRITY_AUDITED`
+- Remote state: `LOCAL_ONLY_NOT_PUSHED`
 - Active task: `NONE`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1`
 
 ## What completed
 
-The complete committed D0 execution grant was replayed from the exact
-authorization artifact set and Authorization Freeze Commit. The frozen
-preprocessing, PCA model, threshold, numeric backend, feature order, and test1
-raw authority all matched. Static and independent attack gates passed with
-accepted invalid zero and numeric differential divergence zero.
+The audit resolved the exact local execution Commit A, independent Commit B,
+Result Freeze Commit C, and Continuity Commit D as one merge-free chain. Every
+Result-C byte and the execution implementation remained exact. The complete
+committed authorization set independently replayed to the frozen grant and
+implementation identities.
 
-Exactly one real D0 INNER test1 execution ran with zero retries. It parsed the
-54,000 by 37 feature frame once, computed exactly 54,000 float64 PCA-SPE
-scores, and froze a 54,000-record label-blind DetectorPrediction artifact
-before any label access. The label was then hashed and parsed once. Metrics
-were derived only from the reloaded frozen prediction bytes and the frozen
-event policies. The prediction bytes remained unchanged through result freeze.
+One coordinator-only audit parse of the exact 54,000 by 37 test1 feature frame
+independently recomputed all PCA-SPE scores and strict point alarms without
+calling the authoritative D0 execution entry point. The score-evidence hash,
+876-alarm set, 54,000-record prediction closure, label-blind schema, and 46
+alarm episodes matched exactly. Only then was label-test1 hashed and parsed
+once; attack events, Recall, Normal FAR, and private metric evidence all
+matched the frozen result.
 
-## Frozen result custody
+The audit performed zero authoritative D0 executions, model fits, or threshold
+calibrations. D1 content reads, D1/D2/OUTER executions, test2 accesses,
+result-driven changes, post-freeze mutations, and private leakage were zero.
+All 33 mutation attacks were rejected with accepted invalid zero.
 
-- Authorization: `a155fbb2659dc2a8b233db179706a13338a58ae41610f5c6db01f90f3b76a1ef`.
-- DetectorPrediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
-- Score evidence: `ee9acb8de899fb8aa13fa70d1675ad61862982ef20ab8815702c7a3c620be91c`.
-- Private metric evidence: `628270f3413276d6d76c1ed3e1802679d37eae125898d250bb61524cba151176`.
-- Execution run: `0593d05790fef3b9264af587c451ece6186db438541a8b14edabbb2ee4bdeeb9`.
-- Implementation audit: `7ea381b8b1af3a792ef4a3f01c3d8b28644595b02da762bd8e102a1de981ac39`.
-- Accounting: `5ea9f8e0963a7e268f010a74aecc4c2a13a5c0bc0986e583fdbcee3eddf7379c`.
-- Readiness: `b25ec0663b8595cbbaff36c97b28e29a7364dc586adc0bfc8c7558f36de8ee18`.
-- Bundle: `253b78a7a76f45669dd9289e931c2e8719c14bcc3bdc1723d222de23ea9e0a23`.
-- Receipt: `62dab615ab8f95d7c65d4edfd605abd7543f28a09d54032b52ffd36f971b71da`.
+## Frozen audit custody
 
-D1 content reads and executions, D2 executions, OUTER executions, and test2
-accesses were zero. No scientific parameter changed and no private path or
-private scientific value entered Git.
+- Freeze audit: `8e22cb39ba038d3492592f4a3f91cbb64d2640d146dc615b35aab1137635fdc5`.
+- Score oracle: `6c6e80549b9bc8f4e047c5db222af3de1647d7c0cee8684497d06eaff701df6e`.
+- Prediction audit: `d76903177a1595870c841086aa0aa6debd302f679b71163fa4b38686975b37bc`.
+- Label-independence audit: `9b57b0b7b8f40f2384dc7ce8d612ad5f4d24d954372fdeac6b6d13722b79014e`.
+- Metric oracle: `89f7b33e89d24cab74a589ec0efdaaf2c47acacc1693fff24729151a7a07bfaa`.
+- Accounting audit: `563bdecde07c2bf4c6d4543b2fa4d3dc42b250d7ff7e5e6bdd05c588fb138a89`.
+- Leakage audit: `84221c711b1635f5c2f31f40c3eef11b39df2f05835cff657ac583b650abb645`.
+- Independent audit: `d88148c61df8669a291d86e6f2bcd18838954f05b61d1f512ad05601db620361`.
+- Readiness: `b18ccca46ed84e09aedeb258f6089e07444da0c108a60f4da3160fb3a521282d`.
+- Bundle: `9b74f9c56571526870f274e0928516ce642e1bc0d692ee3cdd8dce0cceddafc7`.
+- Receipt: `15559141048efd729b3b4645b4f0baa4ac6d07ceedb2417cbd7915f49435da70`.
 
 ## Next-task boundary
 
-The next task must audit exact Commit-C bytes without rerunning D0 or accessing
-D1 content, D2, or test2. D0 result integrity remains unaudited and scientific
-interpretation is not ready. D2 and OUTER remain unauthorized.
+D0 and D1 may now be interpreted scientifically. D2 itself remains
+unauthorized. Its design must be preregistered before any result and must
+consume the exact frozen D0 and D1 predictions without rerunning either arm.
+Remote push remains separately user-authorized.
