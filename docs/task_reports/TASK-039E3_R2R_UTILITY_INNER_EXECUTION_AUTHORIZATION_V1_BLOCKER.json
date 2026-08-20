@@ -1,0 +1,69 @@
+{
+  "artifact_type": "task039e3_r2r_utility_inner_execution_authorization_v1_blocker",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1",
+  "status": "blocked_task039e3_r2r_utility_inner_execution_authorization_v1",
+  "created_at": "2026-08-20T03:43:40.0709562Z",
+  "branch": "task-039e3-r2r-utility-inner-execution-authorization-v1",
+  "base_commit": "1a961eadc4813acfc959580c0558f0bf33aa5c7c",
+  "contract_commit_a": "f95ab2a1969b36b53aba5bb2053844f8724664c1",
+  "independent_audit_commit_b": "66a8f2a39ac6cc0365d405ce28a5d04d522ba898",
+  "authorization_commit_c": null,
+  "authorization_scope": "HAI_23_05_P1_TEST1_COMMON42_D1_RULE_ONLY_INNER_V1",
+  "public_authority_replay": {
+    "r3_implementation_identity": "af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5",
+    "r3_independent_audit_receipt": "6f671aff17ea193ebf862af0739ee0bee22634f3f337944c14c90172acde34e0",
+    "r3_completion_audit": "2992599eed2d2205bd9e2192515dff47168386281da865c511fbadb1bf55a1a7",
+    "utility_evaluator_v1_independently_audited": true,
+    "utility_evaluator_v1_full_independent_audit_completed": true,
+    "utility_inner_execution_authorization_ready_replayed": true
+  },
+  "static_contract_audit": {
+    "contract_tests_passed": 30,
+    "independent_tests_passed": 7,
+    "combined_tests_passed": 37,
+    "independent_invalid_attacks": 109,
+    "accepted_invalid": 0
+  },
+  "blocker": {
+    "blocker_id": "BLOCKER_PRIVATE_PATH_DISCLOSURE_DURING_LOCATOR_RECOVERY",
+    "summary": "A local private custody path was emitted in coordinator tool output while recovering an absent MAIN environment locator binding.",
+    "private_path_value_retained": false,
+    "private_numeric_value_retained": false,
+    "pass_invariant_violated": "private paths exposed must equal 0",
+    "required_action": "stop without sensitive custody preflight or authorization issuance"
+  },
+  "custody_preflight": {
+    "performed": false,
+    "main_locator_reads": 0,
+    "main_registry_reads": 0,
+    "supplement_locator_reads": 0,
+    "supplement_registry_reads": 0,
+    "test1_feature_hash_passes": 0,
+    "test1_label_hash_passes": 0,
+    "test2_reads": 0,
+    "scientific_feature_parses": 0,
+    "scientific_label_parses": 0,
+    "attack_event_derivations": 0,
+    "rule_executions": 0,
+    "metric_computations": 0,
+    "detector_executions": 0,
+    "private_numeric_values_exposed": 0,
+    "private_paths_exposed": 1
+  },
+  "authorization_state": {
+    "authorization_hash": null,
+    "custody_preflight_hash": null,
+    "readiness_hash": null,
+    "bundle_hash": null,
+    "receipt_hash": null,
+    "utility_inner_execution_authorized": false,
+    "utility_inner_d1_execution_authorization_issued": false,
+    "utility_inner_d1_executed": false,
+    "real_utility_execution_authorized": false,
+    "utility_outer_execution_authorized": false
+  },
+  "scientific_result_claim": false,
+  "exact_next_task": null,
+  "artifact_hash": "e1c533de6ec5b749962c0415a0930697d8af4fb5eb45a05807a914d73a069a4a"
+}
