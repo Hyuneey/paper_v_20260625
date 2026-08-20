@@ -1,0 +1,53 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_regression_report",
+  "schema_version": "1.0.0",
+  "r2_commit_a": "7c62206bc967e4ab0e101da474aee589e919551f",
+  "r2_focused": {"passed": 10, "failed": 0},
+  "frozen_historical_blocker": {"passed": 1, "failed": 0},
+  "frozen_initial_blockers": {
+    "authority": {"passed": 2, "failed": 0},
+    "input": {"passed": 1, "failed": 0},
+    "metrics": {"passed": 5, "failed": 0},
+    "historical_accepted_invalid": 10,
+    "r2_accepted_invalid": 0
+  },
+  "r1_remediation": {
+    "authority": {"passed": 7, "failed": 0},
+    "input": {"passed": 4, "failed": 0},
+    "metrics": {"passed": 11, "failed": 0}
+  },
+  "original_evaluator": {
+    "authority": {"passed": 9, "failed": 0},
+    "input_census": {"passed": 13, "failed": 0},
+    "rule_state": {"passed": 6, "failed": 0},
+    "metric_artifact": {"passed": 11, "failed": 0},
+    "integration": {"passed": 6, "failed": 0},
+    "total": {"passed": 45, "failed": 0}
+  },
+  "lower_regressions": {
+    "v4_r1_remediation": {"passed": 36, "failed": 0},
+    "v4_r1_focused_reaudit": {"passed": 62, "failed": 0},
+    "v4_implementation": {"passed": 51, "failed": 0},
+    "normal_only_materialized_public": {"passed": 8, "failed": 0},
+    "supplement_focused": {"passed": 13, "failed": 0},
+    "supplement_independent": {"passed": 15, "failed": 0}
+  },
+  "canonical_output_equivalence": {
+    "source_events": 1,
+    "isolated_source_events": 1,
+    "relation_opportunities": 4,
+    "evaluated": 4,
+    "abstain": 0,
+    "errors": 0,
+    "final_states_unchanged": true,
+    "decision_coordinates_unchanged": true,
+    "metric_and_event_semantics_unchanged": true
+  },
+  "compileall": "PASS",
+  "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+  "git_diff_check": "PASS",
+  "import_side_effect_audit": {"modules": 7, "side_effect_calls": 0, "result": "PASS"},
+  "out_of_scope_production_immutability": "PASS",
+  "result": "PASS",
+  "artifact_hash": "46e6b033ec3de967430ad3aa05eb7d4519724f65dff0c0c15f660bbdf15d5a7a"
+}

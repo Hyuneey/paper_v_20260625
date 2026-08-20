@@ -1,0 +1,21 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_receipt",
+  "schema_version": "1.0.0",
+  "r2_commit_a": "7c62206bc967e4ab0e101da474aee589e919551f",
+  "status": "passed_task039e3_r2r_utility_evaluator_v1_bounded_remediation_r2",
+  "bundle_hash": "06be497ad11e19d57cce7d6ef32602c95675d8ca4ec70bb54302a960c1c81300",
+  "component_hashes": {
+    "provenance_remediation": "894dec95162f521fbcd3c27d2bd41e60c6b09d5e775b73201a8ff48f078b5420",
+    "implementation_authority": "7e32e1b659a648d55d8d1bfaf8ac15f1587fba84f9a7fc2f50e1853d7bb03b0e",
+    "rule_prediction_provenance": "fe48782cdd8d154e7dd360e83eebc348065aafd479c062df6523d614492919e0",
+    "test_update_audit": "0a3768b5cd133ac1ffbd0dff86dd2113ce76e016d94527b902b890978e2cbd25",
+    "regression_report": "46e6b033ec3de967430ad3aa05eb7d4519724f65dff0c0c15f660bbdf15d5a7a",
+    "readiness": "b97b213cce7821f0c389af9509ec0b64cfc1feec92db28991390420dffc129b4"
+  },
+  "focused_attacks": 20,
+  "accepted_invalid": 0,
+  "real_private_or_scientific_accesses": 0,
+  "real_utility_status": "NOT_EXECUTED",
+  "next_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R2-INDEPENDENT-REAUDIT-AND-COMPLETION",
+  "artifact_hash": "9d0c8c37096847ed7fe066524b3cd229d938f08bec2f412e29bd12ce1cb99d31"
+}

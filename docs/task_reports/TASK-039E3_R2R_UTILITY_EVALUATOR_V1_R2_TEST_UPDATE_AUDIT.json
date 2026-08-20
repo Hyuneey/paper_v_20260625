@@ -1,0 +1,29 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_test_update_audit",
+  "schema_version": "1.0.0",
+  "r2_commit_a": "7c62206bc967e4ab0e101da474aee589e919551f",
+  "modified_existing_tests": [
+    {
+      "file": "tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py",
+      "previous_fixture_behavior": "caller_generated_arbitrary_implementation_identity_sha",
+      "audit_finding": "caller_selected_prediction_implementation_provenance_is_unauthorized",
+      "r2_replacement": "factory_issued_current_r2_implementation_authority",
+      "factory_calls_updated": 3,
+      "scientific_assertion_changed": false
+    },
+    {
+      "file": "tests/test_task039e3_r2r_utility_evaluator_v1_remediation_r1_authority.py",
+      "previous_fixture_behavior": "positive_current_authority_assertion_hard_coded_r1_revision_and_identity",
+      "audit_finding": "mandatory_r2_control_rotation_makes_r1_current_provenance_noncanonical",
+      "r2_replacement": "positive_current_authority_assertion_uses_exact_r2_revision_and_identity",
+      "factory_calls_updated": 0,
+      "scientific_assertion_changed": false
+    }
+  ],
+  "unrelated_test_changes": 0,
+  "scientific_assertions_changed": 0,
+  "frozen_independent_tests_modified": false,
+  "frozen_historical_blocker_test_git_blob": "dcf84095f8eaf3f72623261d92175e8d68bc84c5",
+  "new_r2_focused_test_raw_sha256": "5f52de2c95af5e6dbffead346f54e32523d3833def7a7911dbbc46433070a81b",
+  "artifact_hash": "0a3768b5cd133ac1ffbd0dff86dd2113ce76e016d94527b902b890978e2cbd25"
+}

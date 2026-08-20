@@ -1,0 +1,48 @@
+{
+  "artifact_type": "task039e3_r2r_utility_evaluator_v1_r2_rule_prediction_provenance",
+  "schema_version": "1.0.0",
+  "r2_commit_a": "7c62206bc967e4ab0e101da474aee589e919551f",
+  "authoritative_factory_input": "factory_custodied_EvaluatorImplementationAuthorityV1",
+  "implementation_identity_derivation": "internal_after_exact_bundle_authority_validation",
+  "legacy_raw_identity_path": "FAIL_CLOSED_COMPATIBILITY_TRAP",
+  "issuance_metadata": [
+    "exact_artifact_weak_reference",
+    "artifact_hash",
+    "r2_implementation_identity",
+    "evaluator_authority_bundle_hash"
+  ],
+  "focused_attacks": 20,
+  "rejected_invalid": 20,
+  "accepted_invalid": 0,
+  "bare_identity_results": {
+    "historical": "REJECTED",
+    "r1": "REJECTED",
+    "r2": "REJECTED",
+    "random_sha": "REJECTED",
+    "malformed": "REJECTED",
+    "explicit_none": "REJECTED"
+  },
+  "authority_results": {
+    "factory_issued_r2": "ACCEPTED",
+    "missing": "REJECTED",
+    "raw_and_authority_together": "REJECTED",
+    "reconstructed": "REJECTED",
+    "deepcopy": "REJECTED",
+    "noop_replace": "REJECTED",
+    "cross_bundle": "REJECTED"
+  },
+  "artifact_results": {
+    "r2_identity_exact": true,
+    "historical_identity_self_rehash": "REJECTED",
+    "r1_identity_self_rehash": "REJECTED",
+    "random_identity_self_rehash": "REJECTED",
+    "reconstruction": "REJECTED",
+    "deepcopy": "REJECTED",
+    "noop_replace": "REJECTED",
+    "issued_identity_metadata_mutation": "REJECTED",
+    "issued_bundle_metadata_mutation": "REJECTED"
+  },
+  "unchanged_historical_blocker_test": "PASS",
+  "historical_invalid_artifact_now_issued": 0,
+  "artifact_hash": "fe48782cdd8d154e7dd360e83eebc348065aafd479c062df6523d614492919e0"
+}
