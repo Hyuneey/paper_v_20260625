@@ -2,17 +2,17 @@
   "artifact_type": "paper_v_20260625_project_current_state",
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
-  "updated_at_utc": "2026-08-20T11:31:55Z",
-  "canonical_head": "fd54c5cab69927e91d268f344c54f6614f28021f",
-  "current_branch": "task-039e3-r2r-utility-inner-d1-result-integrity-audit-v1",
-  "research_phase": "UTILITY_INNER_D1_RESULT_INTEGRITY_AUDITED",
-  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1",
-  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "updated_at_utc": "2026-08-20T12:43:41Z",
+  "canonical_head": "2528632fca2c64e1bd4a293d57bed56cc3e5665b",
+  "current_branch": "task-039e3-r2r-utility-inner-d0-detector-baseline-design-freeze-v1",
+  "research_phase": "UTILITY_INNER_D0_DETECTOR_DESIGN_FROZEN",
+  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1",
+  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d0_detector_baseline_design_and_freeze_v1",
   "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1",
   "latest_blocker": "NONE",
   "active_task": "NONE",
-  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1.md",
-  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1",
+  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1.md",
+  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1",
   "state_flags": {
     "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": true,
     "UTILITY_EVALUATOR_V1_FULL_INDEPENDENT_AUDIT_COMPLETED": true,
@@ -24,6 +24,10 @@
     "UTILITY_INNER_D1_RESULT_INTEGRITY_AUDITED": true,
     "UTILITY_INNER_D1_RESULT_INTERPRETATION_READY": true,
     "UTILITY_INNER_D1_REAL_EXECUTION_COMPLETED": true,
+    "UTILITY_INNER_D0_DETECTOR_DESIGN_FROZEN": true,
+    "UTILITY_INNER_D0_MODEL_TRAINED": false,
+    "UTILITY_INNER_D0_THRESHOLD_FROZEN": false,
+    "UTILITY_INNER_D0_EXECUTED": false,
     "UTILITY_INNER_D0_AUTHORIZED": false,
     "UTILITY_INNER_D2_AUTHORIZED": false,
     "UTILITY_OUTER_EXECUTION_AUTHORIZED": false,
@@ -55,7 +59,14 @@
     "result_integrity_report_commit_b": "fd54c5cab69927e91d268f344c54f6614f28021f",
     "result_integrity_readiness": "8c6eb7f7b099bc48537c78cf7cb5510dbf599dfd58c37efc44705a6a9fd0f5be",
     "result_integrity_bundle": "e38b56e877842c1678fccaea0e23e5e1c761265534ff9fe8ccc0f5c24552c4db",
-    "result_integrity_receipt": "1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f"
+    "result_integrity_receipt": "1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f",
+    "d0_design_commit_a": "4bdb16701a84b383f713629524a20900bba27d95",
+    "d0_design_independent_audit_commit_b": "4e4e904cca8779e5dde62bcea697e6d40d58a867",
+    "d0_design_freeze_commit_c": "2528632fca2c64e1bd4a293d57bed56cc3e5665b",
+    "d0_detector_design": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+    "d0_design_readiness": "533e62761efce660e1d10726268187c2a9ba5e0d2b0763814b64bd75b0473c4e",
+    "d0_design_bundle": "8fa5ab4b81a4dad0f7d1d13bd356b3aad21a45e747cd3b047ada697450ce3034",
+    "d0_design_receipt": "61299eba73c09faaf9396a6174ad487e4736c6271e274a2c18dd3cb60fd0c8b5"
   },
   "d1_result_state": {
     "scientific_status": "D1_RESULT_INTEGRITY_AUDITED",
@@ -82,6 +93,28 @@
     "private_paths_exposed": 0,
     "private_numeric_values_exposed": 0
   },
+  "d0_detector_design_state": {
+    "detector_id": "D0_PCA_SPE_V1",
+    "detector_family": "PCA_RECONSTRUCTION_SPE",
+    "design_hash": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+    "feature_count": 37,
+    "feature_set_hash": "6dea06e82c0d99f35a0d11c5e97503e8bb3a0fc8c1d9963b997986021fd23515",
+    "feature_order_hash": "a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57",
+    "model_fit_splits": [
+      "NORMAL_TRAIN1_MODEL_FIT",
+      "NORMAL_TRAIN2_MODEL_FIT"
+    ],
+    "threshold_calibration_split": "NORMAL_TRAIN3_THRESHOLD_CALIBRATION",
+    "normal_sanity_split": "NORMAL_TRAIN4_SANITY_EVALUATION_ONLY",
+    "pca_explained_variance_target": 0.95,
+    "normal_calibration_alpha": 0.001,
+    "d1_performance_used_for_design": false,
+    "d1_metric_artifact_read_for_design": false,
+    "d1_prediction_content_read_for_design": false,
+    "model_trained": false,
+    "threshold_frozen": false,
+    "inner_executed": false
+  },
   "scientific_access": {
     "test2_accesses": 0,
     "test1_utility_feature_parses": 1,
@@ -93,5 +126,5 @@
     "detector_executions": 0,
     "real_utility_computations": 1
   },
-  "artifact_hash": "0dd112470356989ecba67efd0867b8643a8603b791ad9ff68b2697de7d58e092"
+  "artifact_hash": "985c69d34e8cb7cf68588487d6d3b33b0559831178793815a986018e49a22d1b"
 }

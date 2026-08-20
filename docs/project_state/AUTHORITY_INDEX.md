@@ -97,3 +97,24 @@ The audit certifies that the exact frozen D1 result is internally consistent
 with its authorized execution protocol. It does not certify scientific quality
 or deployment value. D0, D2, detector, and OUTER remain unauthorized; the next
 task is independent D0 detector-baseline design and freeze.
+
+## Frozen D0 reference-detector design
+
+- Detector ID: `D0_PCA_SPE_V1`.
+- Family: `PCA_RECONSTRUCTION_SPE`.
+- Design hash: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`.
+- Design Commit A: `4bdb16701a84b383f713629524a20900bba27d95`.
+- Independent Audit Commit B: `4e4e904cca8779e5dde62bcea697e6d40d58a867`.
+- Design Freeze Commit C: `2528632fca2c64e1bd4a293d57bed56cc3e5665b`.
+- Feature count: `37`.
+- Feature set hash: `6dea06e82c0d99f35a0d11c5e97503e8bb3a0fc8c1d9963b997986021fd23515`.
+- Feature order hash: `a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57`.
+- Readiness: `533e62761efce660e1d10726268187c2a9ba5e0d2b0763814b64bd75b0473c4e`.
+- Bundle: `8fa5ab4b81a4dad0f7d1d13bd356b3aad21a45e747cd3b047ada697450ce3034`.
+- Receipt: `61299eba73c09faaf9396a6174ad487e4736c6271e274a2c18dd3cb60fd0c8b5`.
+
+The design fixes normal train1+train2 model fitting, normal train3 empirical
+threshold calibration, train4 sanity-only evaluation after freeze, population
+standardization, deterministic PCA at the `0.95` explained-variance target,
+SPE scoring, alpha `0.001`, and strict `score > threshold`. It performed no
+training or execution and grants no D0, D2, detector-runtime, or OUTER authority.

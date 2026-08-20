@@ -189,3 +189,23 @@ Append new entries; never rewrite historical decisions.
   `157bc470ba1850093a02b5baee3e5eb446071aea`, Independent Audit Commit B
   `bbbcf2fff841a33253b6732dd0cdc6af344d6a6f`, and root-cause artifact
   `653a0da64db57c88d54a318b3fc7df54cb1f201ae9baea67b55f964bb16b3a73`.
+
+## DEC-D0-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: The primary D0 reference detector is frozen as
+  `D0_PCA_SPE_V1` before any detector training, test evaluation, or D2 design.
+- Rationale: PCA-SPE is a standard, deterministic, normal-only multivariate
+  process-monitoring baseline that is reproducible, tractable, label-free in
+  fit/calibration, and scientifically distinct from the graph-guided rule
+  mechanism. Detector novelty is not the research contribution.
+- Consequence: Future D0 work must consume design hash
+  `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
+  without changing the feature scope, normal split roles, PCA target, score,
+  threshold, episode, or metric policies. D1 performance may not tune D0.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: Design Commit A
+  `4bdb16701a84b383f713629524a20900bba27d95`, Independent Audit Commit B
+  `4e4e904cca8779e5dde62bcea697e6d40d58a867`, and Design Freeze Commit C
+  `2528632fca2c64e1bd4a293d57bed56cc3e5665b`.

@@ -3,48 +3,64 @@
 ## Research in one paragraph
 
 This project studies graph-guided agentic construction of verified rules for
-explainable multivariate time-series anomaly detection. COMMON-42 on HAI 23.05
-P1 remains frozen, deterministic, and LLM-free at runtime. Rule validity,
-execution authorization, label-aware utility, and result-integrity audit remain
-separate authority layers.
+explainable multivariate time-series anomaly detection. COMMON-42 and the exact
+D1 Rule-only result remain frozen. The primary reference-detector design is now
+preregistered independently of D1 performance; training, calibration,
+execution, and comparison remain separate future authority layers.
 
 ## Current completed milestone
 
-The exact frozen D1 Rule-only INNER test1 result passed its independent
-integrity audit. The audit reproduced the full opportunity census, alarm
-episodes, attack-event recall, and normal FAR arithmetic without rerunning the
-D1 rule engine. Result Freeze Commit
-`9fe9192c6da4e2d1f3c7a42ecdd28006e8534449` remains byte-identical.
+The public/static D0 baseline design is frozen as `D0_PCA_SPE_V1`, family
+`PCA_RECONSTRUCTION_SPE`, under exact design hash
+`357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`.
+The full public P1 schema has 37 ordered features and replays the existing
+canonical order authority. The design used no HAI values, labels, D1
+performance, training, calibration, detector execution, or test2 access.
+
+## Frozen design
+
+- Model fit: exact normal train1 + train2.
+- Threshold calibration: exact normal train3 only.
+- Normal sanity evaluation: train4 only after model and threshold freeze.
+- INNER evaluation: test1 only under a later authorization.
+- Preprocessing: population mean/std (`ddof=0`), scale floor `1e-12`.
+- PCA: deterministic CPU linear algebra; smallest `k` reaching `0.95`, with a
+  mandatory residual dimension.
+- Score: squared prediction error.
+- Threshold: alpha `0.001`, non-interpolated empirical order statistic.
+- Alarm: strict `score > threshold`.
+- Episodes and primary metrics: exact frozen D1-compatible identities.
 
 ## Authorization boundary
 
-D1 execution authorization remains exact and was consumed without broadening.
-D0, D2, detector, fusion, test2/OUTER, recalibration, rule regeneration,
-metric modification, runtime LLM, and any retry remain unauthorized.
+D0 model training, threshold calibration, train4 sanity evaluation, INNER D0
+execution, D2, detector runtime authority, fusion, test2/OUTER, and any
+result-driven tuning remain unauthorized. The D1 result and COMMON-42 remain
+unchanged. The frozen R3 evaluator's real-execution authority remains false.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1`.
-Detector design must remain independent of D1 performance. D2 must later
-consume the exact frozen D1 RulePrediction artifact and must not rerun D1.
+`TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1`.
+It must consume the exact D0 design hash, use only authorized normal splits,
+freeze model and threshold artifacts before any test1 access, and remain
+independent of D1 performance.
 
 ## Canonical evidence
 
-- Authorization: `deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`
-- Execution Bridge Commit A: `936296cdcf9f5d87658a0c9993856ccc7d9222b2`
-- Independent Audit Commit B: `c880042d1a49c12e2a6788d618bfb9b5491e1be0`
-- Result Freeze Commit C: `9fe9192c6da4e2d1f3c7a42ecdd28006e8534449`
-- RulePrediction artifact: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`
-- Execution run: `97bc0ef15508957d32427188205d7446fa58bc2234cade577d0bc93c3ce52e73`
-- Result receipt: `0966c35ec6865ed9f97651092876b2ff67322f59daa8ff09a425614d28b74c8e`
-- Result-integrity Audit Commit A: `470b5ef7e51d26cc0fc947a6a37ab23d21860538`
-- Result-integrity Report Commit B: `fd54c5cab69927e91d268f344c54f6614f28021f`
-- Result-integrity receipt: `1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f`
+- D0 Design Commit A: `4bdb16701a84b383f713629524a20900bba27d95`
+- Independent Audit Commit B: `4e4e904cca8779e5dde62bcea697e6d40d58a867`
+- Design Freeze Commit C: `2528632fca2c64e1bd4a293d57bed56cc3e5665b`
+- D0 design hash: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
+- Feature set hash: `6dea06e82c0d99f35a0d11c5e97503e8bb3a0fc8c1d9963b997986021fd23515`
+- Feature order hash: `a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57`
+- Readiness: `533e62761efce660e1d10726268187c2a9ba5e0d2b0763814b64bd75b0473c4e`
+- Bundle: `8fa5ab4b81a4dad0f7d1d13bd356b3aad21a45e747cd3b047ada697450ce3034`
+- Receipt: `61299eba73c09faaf9396a6174ad487e4736c6271e274a2c18dd3cb60fd0c8b5`
+- Frozen D1 RulePrediction for future D2:
+  `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`
 
 ## No-claim boundary
 
-The audit certifies only that the frozen D1 result is internally consistent
-with the authorized execution protocol. It does not certify that D1 is
-scientifically good or deployment-ready. No D0/D1/D2 comparison or detector
-result exists. `REAL_UTILITY_EXECUTION_AUTHORIZED` remains false inside the
-frozen evaluator.
+The design freeze certifies a preregistered reference-detector contract only.
+It is not a trained detector, threshold, prediction, result, scientific
+comparison, deployment claim, or D0/D2 execution authorization.
