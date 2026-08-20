@@ -176,3 +176,23 @@ does not authorize D0 INNER execution, D2, or OUTER.
 This blocked artifact grants no execution authority. The next authority must
 restore only exact official test1 raw-byte custody and must not parse test
 values, retrain, recalibrate, or execute D0.
+
+## D0 execution authorization after test1 custody restoration
+
+- Historical blocker: `D0_AUTHORIZATION_BLOCKED_TEST1_RAW_CUSTODY_UNAVAILABLE`.
+- Restoration Commit A: `1a7933b32be138eee1184cac9017ce24070882b7`.
+- Authorization Freeze Commit B: `01cd15831246f94b2111fd3d9c0589e639f2d254`.
+- Restoration report: `dc25f9aa51dc1a31d068110399dd29a7698f273d7cff9621f1634d7e16715ab9`.
+- Fresh-process preflight: `033f1f9981bb5323e2830fa30d7e6613ce49b7a530e14a50ca2c4df75b848131`.
+- D0 authorization: `a155fbb2659dc2a8b233db179706a13338a58ae41610f5c6db01f90f3b76a1ef`.
+- Accounting: `98493fe49d1c816c713ae2068276717137d6bd321b92e65dd0b23e0ff91b47fe`.
+- Readiness: `3a105a529fc1adbb85fae1d2a1cfe2a5777e858059ef7cd6a51651b8bea5b93c`.
+- Bundle: `618f5add4ad13f8c999414add7a294ee25946323baa775b54e4b90838c97e1a0`.
+- Receipt: `10540956fe37ccd025d82d1e7a7c61eef26d869c1e9f97c7bda9b2415d4e12f2`.
+- Scope: `HAI_23_05_P1_TEST1_D0_PCA_SPE_INNER_V1`.
+
+The exact official test1 feature and label raw-byte custody was restored with
+no scientific parsing. All D0 private bindings remained exact. One new-process
+preflight and one authorization issuance passed. D0 execution is authorized
+but not executed; D1 rerun, D2, test2, retraining, recalibration, and OUTER
+remain unauthorized.

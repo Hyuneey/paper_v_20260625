@@ -6,8 +6,8 @@ This project studies graph-guided agentic construction of verified rules for
 explainable multivariate time-series anomaly detection. COMMON-42 and the exact
 D1 Rule-only result remain frozen and integrity-audited. The independent
 reference detector is frozen as `D0_PCA_SPE_V1`; its normal-only PCA model and
-normal-train3 threshold are frozen and integrity-audited. D0 execution remains
-unauthorized pending exact test1 raw-byte custody restoration.
+normal-train3 threshold are frozen and integrity-audited. Exact test1 raw-byte
+custody is restored and D0 INNER execution is authorized but not executed.
 
 ## Current authorization state
 
@@ -18,11 +18,14 @@ at `4229e7c108c350174c03e4de0023ede3da8c1034` and its independent audit at
 cross-bindings replayed; 90 static/regression tests passed and 88 independent
 invalid attacks were rejected.
 
-The sole real preflight failed closed because both exact test1 raw files were
-unavailable at the approved local HAI binding. The attempt was not retried and
-no authorization was issued. No test1 feature or label scientific parsing,
-detector execution, metric computation, D1/D2 execution, test2 access, or
-private path/value exposure occurred.
+The historical real preflight failed closed because both exact test1 raw files
+were unavailable at the approved local HAI binding. That attempt was not
+retried. This recovery restored only the exact official test1 feature and label
+payloads, preserved all D0 private bindings, reran the frozen 90-test and
+88-attack gates, and completed one fresh-process preflight with one exact D0
+authorization issuance. No test1 feature or label scientific parsing, detector
+execution, metric computation, D1/D2 execution, test2 access, or private
+path/value exposure occurred.
 
 ## Frozen custody
 
@@ -49,18 +52,18 @@ outside Git. Their hashes, not their local paths, are public custody identity.
 
 ## Authorization boundary
 
-D0 INNER execution remains unauthorized and unexecuted. D1 remains frozen,
+D0 INNER execution is authorized and remains unexecuted. D1 remains frozen,
 D2 and OUTER remain unauthorized, and test2 remains sealed. The frozen D0
 model and threshold were not retrained or recalibrated.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-TEST1-CUSTODY-RESTORATION-V1`.
+`TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-V1`.
 
-It must restore only the exact official test1 feature and label raw-byte
-custody at the approved ignored binding, verify their frozen sizes and hashes,
-and perform a newly authorized authorization preflight process. It must not
-parse scientific values, access test2, retrain, recalibrate, or execute D0.
+It must consume the exact committed authorization, use the frozen
+preprocessing/model/threshold without modification, freeze the label-blind D0
+prediction before label access, keep test2 sealed, and make no result-driven
+changes.
 
 ## Canonical evidence
 
@@ -71,6 +74,12 @@ parse scientific values, access test2, retrain, recalibrate, or execute D0.
 - D0 Authorization Independent Audit Commit B: `c6481e201a11708ed0ef3d746e8057f627fb97d0`
 - D0 Authorization Blocker Report Commit: `bb2e77c396bf321d61e1c9b7247582a0ccaa3636`
 - D0 Authorization Blocker: `480123d5398d064834ffe904c43611ec7043a1508581f5ec66487747dfb0a584`
+- D0 Authorization Restoration Commit A: `1a7933b32be138eee1184cac9017ce24070882b7`
+- D0 Authorization Freeze Commit B: `01cd15831246f94b2111fd3d9c0589e639f2d254`
+- D0 Authorization: `a155fbb2659dc2a8b233db179706a13338a58ae41610f5c6db01f90f3b76a1ef`
+- D0 Authorization Readiness: `3a105a529fc1adbb85fae1d2a1cfe2a5777e858059ef7cd6a51651b8bea5b93c`
+- D0 Authorization Bundle: `618f5add4ad13f8c999414add7a294ee25946323baa775b54e4b90838c97e1a0`
+- D0 Authorization Receipt: `10540956fe37ccd025d82d1e7a7c61eef26d869c1e9f97c7bda9b2415d4e12f2`
 - D0 design hash: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
 - Implementation audit: `545a9082e84dd350dfc2df941f70021932879e73020462cdb76075b6c20d58a5`
 - Accounting: `ca7f038c1c91b24feee38101c9d8b19cfe97a3dc417c32cee879f47942eed5f4`
