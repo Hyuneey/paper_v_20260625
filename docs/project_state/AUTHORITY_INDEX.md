@@ -118,3 +118,26 @@ threshold calibration, train4 sanity-only evaluation after freeze, population
 standardization, deterministic PCA at the `0.95` explained-variance target,
 SPE scoring, alpha `0.001`, and strict `score > threshold`. It performed no
 training or execution and grants no D0, D2, detector-runtime, or OUTER authority.
+
+## Frozen D0 PCA-SPE model and threshold — integrity audit pending
+
+- Training Implementation Commit A: `34edab1dc148fdd82a050c3446e87d6eda4f95fe`.
+- Independent Audit Commit B: `1041b6ed1efc335b8f5c5fe50dbfc22a87ec6d44`.
+- Model/Threshold Freeze Commit C: `44ce989d7f50e2722eed70963e030ba1ba44fadf`.
+- D0 design: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`.
+- Preprocessing content hash: `baae5495094b211731e4fcdf7bab2870e3c81e7c973bfe052fc87b457ccb6270`.
+- PCA model content hash: `f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b`.
+- Selected k: `10`; residual dimensions: `27`.
+- Threshold content hash: `7ac0628cad5983b9864d31a9984bd414867b80f175248dbdf5cd69d7589f3695`.
+- Model receipt: `913f4a4bcf1771146f9493cded893b10eb97d2d177fe224f855c289d81ef1362`.
+- Threshold receipt: `2ee6fc8aba25d23449c14b08deae2eca0c5b739f6a251e43ead41923c978d326`.
+- Train4 sanity: `fb58290c1a59d164d9ace673968910db0f8ab65331ef3dfacd837c39685921ee`.
+- Accounting: `ca7f038c1c91b24feee38101c9d8b19cfe97a3dc417c32cee879f47942eed5f4`.
+- Readiness: `fcba1018b1e42ff7fdda9467a02a4f902ec6803486a3847675752508537cda29`.
+- Bundle: `fa041f5e0006fc56665d22c82eb0fdea51917e573ffc4946c8a3f83bf4ada1e6`.
+- Receipt: `b4142789cbe99513c1763df15e0207588b75453829d2abe1aba4eaa60da75357`.
+
+The private numeric artifacts and their local bindings are not public. One
+model fit and one threshold calibration completed with zero retries. Train4
+was evaluated only after freeze and caused no change. D0 INNER, D2, and OUTER
+remain unauthorized pending independent model/threshold integrity audit.

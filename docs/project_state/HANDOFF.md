@@ -1,57 +1,59 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- D0 Design Commit A: `4bdb16701a84b383f713629524a20900bba27d95`
-- Independent Audit Commit B: `4e4e904cca8779e5dde62bcea697e6d40d58a867`
-- Design Freeze Commit C: `2528632fca2c64e1bd4a293d57bed56cc3e5665b`
-- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1`
-- Latest status: `passed_task039e3_r2r_utility_inner_d0_detector_baseline_design_and_freeze_v1`
-- Scientific status: `D0_DETECTOR_DESIGN_FROZEN`
+- Training Implementation Commit A: `34edab1dc148fdd82a050c3446e87d6eda4f95fe`
+- Independent Audit Commit B: `1041b6ed1efc335b8f5c5fe50dbfc22a87ec6d44`
+- Model/Threshold Freeze Commit C: `44ce989d7f50e2722eed70963e030ba1ba44fadf`
+- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1`
+- Latest status: `passed_task039e3_r2r_utility_inner_d0_detector_normal_training_and_calibration_v1`
+- Scientific status: `D0_MODEL_AND_THRESHOLD_FROZEN_INTEGRITY_AUDIT_PENDING`
 - Active task: `NONE`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1`
 
 ## What completed
 
-The reference D0 detector is preregistered as deterministic normal-only
-PCA-SPE. The exact complete P1 public feature schema, split roles,
-standardization, PCA component policy, SPE score, train3 order-statistic
-threshold, alarm episodes, and D1-compatible primary metrics are frozen.
-Static tests passed and 71 independent invalid mutations were rejected with
-accepted invalid equal to zero.
+The exact frozen `D0_PCA_SPE_V1` design and 37-feature P1 authority replayed.
+Exact train1 and train2 were parsed once and used in one deterministic float64
+PCA fit. The private preprocessing and model were frozen before train3. Exact
+train3 was then parsed once and used in one threshold calibration. The private
+threshold was frozen before exact train4 was parsed once for descriptive
+normal-only sanity.
 
-No feature value, label, test1 value, test2 value, or D1 performance artifact
-was read for design. No model fit, threshold computation, or detector execution
-occurred.
+The model selected `k=10`, leaving 27 residual dimensions; no exact tied
+eigenvalue cutoff occurred. Model-fit and calibration attempts were each one,
+with zero retries. Train4 caused no model, preprocessing, or threshold change.
 
-## Frozen D0 design custody
+## Frozen D0 model/threshold custody
 
-- Detector: `D0_PCA_SPE_V1`
-- Design hash: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
-- Feature count: `37`
-- Feature set hash: `6dea06e82c0d99f35a0d11c5e97503e8bb3a0fc8c1d9963b997986021fd23515`
-- Feature order hash: `a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57`
-- Readiness: `533e62761efce660e1d10726268187c2a9ba5e0d2b0763814b64bd75b0473c4e`
-- Bundle: `8fa5ab4b81a4dad0f7d1d13bd356b3aad21a45e747cd3b047ada697450ce3034`
-- Receipt: `61299eba73c09faaf9396a6174ad487e4736c6271e274a2c18dd3cb60fd0c8b5`
+- Design: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
+- Preprocessing: `baae5495094b211731e4fcdf7bab2870e3c81e7c973bfe052fc87b457ccb6270`
+- PCA model: `f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b`
+- Threshold: `7ac0628cad5983b9864d31a9984bd414867b80f175248dbdf5cd69d7589f3695`
+- Model receipt: `913f4a4bcf1771146f9493cded893b10eb97d2d177fe224f855c289d81ef1362`
+- Threshold receipt: `2ee6fc8aba25d23449c14b08deae2eca0c5b739f6a251e43ead41923c978d326`
+- Train4 sanity: `fb58290c1a59d164d9ace673968910db0f8ab65331ef3dfacd837c39685921ee`
+- Accounting: `ca7f038c1c91b24feee38101c9d8b19cfe97a3dc417c32cee879f47942eed5f4`
+- Readiness: `fcba1018b1e42ff7fdda9467a02a4f902ec6803486a3847675752508537cda29`
+- Bundle: `fa041f5e0006fc56665d22c82eb0fdea51917e573ffc4946c8a3f83bf4ada1e6`
+- Receipt: `b4142789cbe99513c1763df15e0207588b75453829d2abe1aba4eaa60da75357`
 
 ## Next-task mandate
 
-Consume the exact design authority; do not redesign it. Materialize only the
-authorized normal train1/train2/train3 inputs, fit deterministic PCA, select
-`k` under the frozen `0.95` policy, and freeze the normal-train3 empirical
-threshold at alpha `0.001`. Train4 may be evaluated only after model and
-threshold freeze and may not cause tuning.
+Audit the exact frozen private artifacts and Commit-C public bytes. Independently
+recompute preprocessing, covariance/eigendecomposition, selected k, loading
+sign canonicalization, train3 SPE/order statistic, and train4 sanity arithmetic
+under the frozen design. This is an integrity audit, not another authoritative
+fit or calibration.
 
 ## Mandatory boundaries
 
+- Do not retrain the authoritative model or recalibrate the threshold.
 - Do not open test1, label-test1, test2, or label-test2.
-- Do not read D1 metrics or prediction content.
-- Do not change detector family, P1 feature scope/order, scaler, PCA target,
-  threshold policy, episode policy, or metrics.
-- Do not authorize or execute D0 INNER, D2, fusion, detector runtime, or OUTER.
-- Keep private model/preprocessing/threshold numeric contents and paths out of
-  Git and public output; expose only sanctioned hashes and metadata.
-- Preserve exact frozen D1 RulePrediction
+- Do not read D1 performance or prediction content.
+- Do not change design, features, k policy, alpha, comparator, or episode policy.
+- Do not authorize or execute D0 INNER, D2, comparison, or OUTER.
+- Do not expose private preprocessing/model/threshold values or any private path.
+- Preserve frozen D1 RulePrediction
   `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`
   for future D2; do not rerun D1.
 
@@ -62,7 +64,6 @@ threshold freeze and may not cause tuning.
 3. `docs/project_state/CURRENT_STATE.json`
 4. this handoff
 5. the next user-issued task specification
-6. the D0 design receipt and report in Design Freeze Commit C
-7. the exact design module/config in Commit A
-8. the independent audit test in Commit B
-9. the frozen D1 result-integrity receipt and RulePrediction hash
+6. the frozen D0 design receipt/config/module
+7. Commit A training implementation and Commit B independent test
+8. Commit C model, threshold, train4, accounting, readiness, bundle, and receipt
