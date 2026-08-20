@@ -1,0 +1,20 @@
+{
+  "alarm_episode_count": 479,
+  "alarm_episode_policy": "MAXIMAL_CONTIGUOUS_UNIQUE_ONE_SECOND_DECISION_INDICES_FILE_LOCAL",
+  "artifact_hash": "fb58290c1a59d164d9ace673968910db0f8ab65331ef3dfacd837c39685921ee",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_training_v1_train4_sanity",
+  "created_at_utc": "2026-08-20T13:23:01Z",
+  "detector_id": "D0_PCA_SPE_V1",
+  "model_content_hash": "f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b",
+  "model_frozen_before_train4": true,
+  "normal_far_episodes_per_hour": 8.709090909090909,
+  "point_alarm_count": 15401,
+  "result_driven_change": false,
+  "row_count": 198000,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1",
+  "threshold_content_hash": "7ac0628cad5983b9864d31a9984bd414867b80f175248dbdf5cd69d7589f3695",
+  "threshold_frozen_before_train4": true,
+  "threshold_receipt_hash": "2ee6fc8aba25d23449c14b08deae2eca0c5b739f6a251e43ead41923c978d326",
+  "train4_sha256": "56658c83657d42a65db982b864362e0d0ffeb96d1f7b357d5e76e3a5c522d940"
+}

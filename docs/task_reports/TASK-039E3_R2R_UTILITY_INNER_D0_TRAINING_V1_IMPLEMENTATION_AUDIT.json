@@ -1,0 +1,29 @@
+{
+  "accepted_invalid": 0,
+  "acquisition_allowlist": [
+    "NORMAL_TRAIN1_MODEL_FIT",
+    "NORMAL_TRAIN2_MODEL_FIT",
+    "NORMAL_TRAIN3_THRESHOLD_CALIBRATION",
+    "NORMAL_TRAIN4_SANITY_EVALUATION_ONLY"
+  ],
+  "artifact_hash": "545a9082e84dd350dfc2df941f70021932879e73020462cdb76075b6c20d58a5",
+  "artifact_type": "task039e3_r2r_utility_inner_d0_training_v1_implementation_audit",
+  "created_at_utc": "2026-08-20T13:23:01Z",
+  "d0_design_hash": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+  "differential_divergences": 0,
+  "differential_semantic_cases": 14,
+  "implementation_commit_a": "34edab1dc148fdd82a050c3446e87d6eda4f95fe",
+  "independent_attacks": 32,
+  "independent_audit_commit_b": "1041b6ed1efc335b8f5c5fe50dbfc22a87ec6d44",
+  "numpy_version": "2.3.5",
+  "production_changes_after_commit_a": 0,
+  "python_version": "3.12.13",
+  "schema_version": "1.0.0",
+  "static_tests_passed": 18,
+  "static_tests_total": 18,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-NORMAL-TRAINING-AND-CALIBRATION-V1",
+  "test1_accesses": 0,
+  "label_accesses": 0,
+  "test2_accesses": 0
+}
