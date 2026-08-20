@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "6643aa93c0fe4cd4e5e6adb60a546905c467166a22e8f1450dca601194899e20",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_result_integrity_v1_census_audit",
+  "audit_census_replays": 1,
+  "audit_commit_a": "470b5ef7e51d26cc0fc947a6a37ab23d21860538",
+  "audit_rule_executions": 0,
+  "created_at_utc": "2026-08-20T10:59:33Z",
+  "independent_isolated_source_event_count": 3023,
+  "independent_opportunity_count": 6031,
+  "independent_raw_source_event_count": 27256,
+  "independent_retained_source_event_count": 5490,
+  "main_registry_hash_match": true,
+  "opportunity_set_and_order_match": true,
+  "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "supplement_registry_hash_match": true,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1",
+  "test1_feature_hash_match": true,
+  "test2_accesses": 0
+}

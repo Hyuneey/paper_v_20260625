@@ -1,0 +1,17 @@
+{
+  "artifact_hash": "2fb19c498f49da9939ad866fde14f9e2cf519b560d416306b189b78d50b8ab12",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_result_integrity_v1_metric_oracle",
+  "attack_event_recall_formula_match": true,
+  "attack_event_recall_value_match": true,
+  "audit_commit_a": "470b5ef7e51d26cc0fc947a6a37ab23d21860538",
+  "audit_metric_recomputations": 2,
+  "created_at_utc": "2026-08-20T10:59:33Z",
+  "normal_far_formula_match": true,
+  "normal_far_value_match": true,
+  "private_denominators_publicly_exposed": false,
+  "private_metric_evidence_hash": "2d865315d1c329ffb3e87ebed6a538dee82be123c32b7ee9ffe245c7eb234d2b",
+  "private_metric_evidence_hash_match": true,
+  "public_metrics_artifact_hash": "b11a785dd243f30cac8820c49b978e194d993282c728537137b6a803b16d70d1",
+  "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1"
+}

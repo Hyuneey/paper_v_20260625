@@ -1,0 +1,16 @@
+{
+  "alarm_episode_count_match": true,
+  "alarm_episode_oracle_count": 626,
+  "artifact_hash": "7bbc7d3e9b4aa0e23ab8f741d67f849689e214387aa8f2afc7549e2f1af3d025",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_result_integrity_v1_label_independence_audit",
+  "attack_event_oracle_pass": true,
+  "attack_intervals_publicly_exposed": 0,
+  "audit_commit_a": "470b5ef7e51d26cc0fc947a6a37ab23d21860538",
+  "bridge_control_flow_enforcement": true,
+  "created_at_utc": "2026-08-20T10:59:33Z",
+  "label_sha256_match": true,
+  "label_vector_publicly_exposed": 0,
+  "prediction_frozen_before_label_access": true,
+  "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1"
+}

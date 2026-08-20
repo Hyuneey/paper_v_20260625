@@ -1,0 +1,19 @@
+{
+  "abstain_count": 0,
+  "alarm_count": 788,
+  "artifact_hash": "7c688c18ac032a9c883ec044c7ee255a34c243267120a8ec9c6ed01020874b7c",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_result_integrity_v1_prediction_audit",
+  "audit_commit_a": "470b5ef7e51d26cc0fc947a6a37ab23d21860538",
+  "created_at_utc": "2026-08-20T10:59:33Z",
+  "error_count": 0,
+  "evaluated_count": 6031,
+  "label_blind_schema_pass": true,
+  "numeric_reference_closure": true,
+  "prediction_record_count": 6031,
+  "rule_prediction_artifact_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "rule_prediction_artifact_hash_match": true,
+  "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1",
+  "trace_count": 6031,
+  "unique_opportunity_count": 6031
+}

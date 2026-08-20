@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "32c268051a6e5d07b5ff374abb6e4b55771a953cabdcae62f18aa7a753f44a35",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_result_integrity_v1_leakage_audit",
+  "attack_intervals_publicly_exposed": 0,
+  "audit_commit_a": "470b5ef7e51d26cc0fc947a6a37ab23d21860538",
+  "created_at_utc": "2026-08-20T10:59:33Z",
+  "label_vector_publicly_exposed": 0,
+  "leak_scan_pass": true,
+  "private_metric_denominators_publicly_exposed": 0,
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "raw_hai_rows_publicly_exposed": 0,
+  "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1"
+}

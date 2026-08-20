@@ -1,0 +1,23 @@
+{
+  "accounting_artifact_hash": "533cb6a8cdf6406350ae6bf8eb5d65934c2870072e7c3d537624a535349062df",
+  "artifact_hash": "1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_result_integrity_v1_receipt",
+  "audit_commit_a": "470b5ef7e51d26cc0fc947a6a37ab23d21860538",
+  "audit_rule_executions": 0,
+  "authorization_hash": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+  "bridge_identity": "959de0f2ed781f404f583af75f7938bda56634024ddfbf23ecc9c38f5704edfe",
+  "bundle_hash": "e38b56e877842c1678fccaea0e23e5e1c761265534ff9fe8ccc0f5c24552c4db",
+  "committed_grant_hash": "642bcaedd513dab9c1e98f70633a276e86969819a2f2d6e52897f9c36f3bf856",
+  "created_at_utc": "2026-08-20T10:59:33Z",
+  "execution_run_hash": "97bc0ef15508957d32427188205d7446fa58bc2234cade577d0bc93c3ce52e73",
+  "metrics_artifact_hash": "b11a785dd243f30cac8820c49b978e194d993282c728537137b6a803b16d70d1",
+  "private_metric_evidence_hash": "2d865315d1c329ffb3e87ebed6a538dee82be123c32b7ee9ffe245c7eb234d2b",
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "readiness_hash": "8c6eb7f7b099bc48537c78cf7cb5510dbf599dfd58c37efc44705a6a9fd0f5be",
+  "rule_prediction_artifact_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "scientific_state": "D1_RESULT_INTEGRITY_AUDITED",
+  "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1",
+  "test2_accesses": 0
+}
