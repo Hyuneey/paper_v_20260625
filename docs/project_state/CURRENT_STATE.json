@@ -2,17 +2,17 @@
   "artifact_type": "paper_v_20260625_project_current_state",
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
-  "updated_at_utc": "2026-08-20T14:08:58Z",
-  "canonical_head": "0dd53fbbc36b0483d90a5161caab7946ddd6d1fc",
-  "current_branch": "task-039e3-r2r-utility-inner-d0-model-threshold-integrity-audit-v1",
-  "research_phase": "UTILITY_INNER_D0_MODEL_THRESHOLD_INTEGRITY_AUDITED_AUTHORIZATION_READY",
+  "updated_at_utc": "2026-08-20T15:05:00Z",
+  "canonical_head": "bb2e77c396bf321d61e1c9b7247582a0ccaa3636",
+  "current_branch": "task-039e3-r2r-utility-inner-d0-execution-authorization-v1",
+  "research_phase": "UTILITY_INNER_D0_EXECUTION_AUTHORIZATION_BLOCKED_TEST1_RAW_CUSTODY",
   "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1",
   "latest_completed_status": "passed_task039e3_r2r_utility_inner_d0_detector_model_threshold_integrity_audit_v1",
-  "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1",
-  "latest_blocker": "NONE",
+  "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-V1",
+  "latest_blocker": "D0_AUTHORIZATION_BLOCKED_TEST1_RAW_CUSTODY_UNAVAILABLE",
   "active_task": "NONE",
-  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1.md",
-  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-V1",
+  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-V1.md",
+  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-TEST1-CUSTODY-RESTORATION-V1",
   "state_flags": {
     "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": true,
     "UTILITY_EVALUATOR_V1_FULL_INDEPENDENT_AUDIT_COMPLETED": true,
@@ -30,6 +30,7 @@
     "UTILITY_INNER_D0_THRESHOLD_FROZEN": true,
     "UTILITY_INNER_D0_MODEL_THRESHOLD_INTEGRITY_AUDITED": true,
     "UTILITY_INNER_D0_INNER_AUTHORIZATION_READY": true,
+    "UTILITY_INNER_D0_EXECUTION_AUTHORIZATION_ISSUED": false,
     "UTILITY_INNER_D0_EXECUTED": false,
     "UTILITY_INNER_D0_AUTHORIZED": false,
     "UTILITY_INNER_D2_AUTHORIZED": false,
@@ -93,7 +94,11 @@
     "d0_model_threshold_integrity_train4_oracle": "57a1b8a8e55f61e1d50526028f5bbae965488c646f97d68fa6d3a2f3e88f05f4",
     "d0_model_threshold_integrity_readiness": "4849661e894bb3c6d31e3a97451ae3cb596bfb4cf231388514935e64ee460b19",
     "d0_model_threshold_integrity_bundle": "5769e397c078680ab66bff7f698ccbd0c65f929430465543320a06714b7707ce",
-    "d0_model_threshold_integrity_receipt": "4a66590a223f17bf363521f1d2e5e2b8f184b85d43500a8f6683b88f9648119c"
+    "d0_model_threshold_integrity_receipt": "4a66590a223f17bf363521f1d2e5e2b8f184b85d43500a8f6683b88f9648119c",
+    "d0_execution_authorization_contract_commit_a": "4229e7c108c350174c03e4de0023ede3da8c1034",
+    "d0_execution_authorization_independent_audit_commit_b": "c6481e201a11708ed0ef3d746e8057f627fb97d0",
+    "d0_execution_authorization_blocker_report_commit": "bb2e77c396bf321d61e1c9b7247582a0ccaa3636",
+    "d0_execution_authorization_blocker": "480123d5398d064834ffe904c43611ec7043a1508581f5ec66487747dfb0a584"
   },
   "d1_result_state": {
     "scientific_status": "D1_RESULT_INTEGRITY_AUDITED",
@@ -196,6 +201,25 @@
     "private_paths_exposed": 0,
     "private_numeric_values_exposed": 0
   },
+  "d0_execution_authorization_attempt": {
+    "status": "D0_INNER_EXECUTION_AUTHORIZATION_BLOCKED_NOT_ISSUED",
+    "blocker_code": "D0_AUTHORIZATION_BLOCKED_TEST1_RAW_CUSTODY_UNAVAILABLE",
+    "public_authority_artifacts": 26,
+    "public_cross_bindings": 50,
+    "static_regression_tests_passed": 90,
+    "independent_attacks": 88,
+    "accepted_invalid": 0,
+    "real_preflight_attempts": 1,
+    "real_preflight_retries": 0,
+    "authorization_issuances": 0,
+    "test1_feature_scientific_parses": 0,
+    "test1_label_scientific_parses": 0,
+    "detector_executions": 0,
+    "metric_computations": 0,
+    "test2_accesses": 0,
+    "private_paths_exposed": 0,
+    "private_numeric_values_exposed": 0
+  },
   "scientific_access": {
     "test2_accesses": 0,
     "test1_utility_feature_parses": 1,
@@ -207,5 +231,5 @@
     "detector_executions": 0,
     "real_utility_computations": 1
   },
-  "artifact_hash": "364de06d89db73795258ffae02b3c0c0880462356a5470d4349293df11a3f30b"
+  "artifact_hash": "3896f155f4ad37ea24cbce6dfd2d8104f6653f36addccfa20632ec4b6c86d86d"
 }

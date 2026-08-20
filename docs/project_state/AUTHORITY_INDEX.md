@@ -157,3 +157,22 @@ remain unauthorized pending independent model/threshold integrity audit.
 
 This authority certifies integrity and deterministic reproducibility only. It
 does not authorize D0 INNER execution, D2, or OUTER.
+
+## D0 execution-authorization contract and blocked custody attempt
+
+- Contract Commit A: `4229e7c108c350174c03e4de0023ede3da8c1034`.
+- Independent Audit Commit B: `c6481e201a11708ed0ef3d746e8057f627fb97d0`.
+- Blocker Report Commit: `bb2e77c396bf321d61e1c9b7247582a0ccaa3636`.
+- Blocker artifact: `480123d5398d064834ffe904c43611ec7043a1508581f5ec66487747dfb0a584`.
+- Scope: `HAI_23_05_P1_TEST1_D0_PCA_SPE_INNER_V1`.
+- Static gate: 90 tests passed; 88 independent attacks rejected; accepted
+  invalid zero.
+- Real preflight: one attempt, zero retry, failed closed before authorization
+  because exact test1 feature and label raw custody were unavailable at the
+  approved ignored binding.
+- Authorization issued: false; D0 executed: false; D2/OUTER authorized: false;
+  test2 access: zero.
+
+This blocked artifact grants no execution authority. The next authority must
+restore only exact official test1 raw-byte custody and must not parse test
+values, retrain, recalibrate, or execute D0.

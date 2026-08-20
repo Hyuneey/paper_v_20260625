@@ -6,22 +6,23 @@ This project studies graph-guided agentic construction of verified rules for
 explainable multivariate time-series anomaly detection. COMMON-42 and the exact
 D1 Rule-only result remain frozen and integrity-audited. The independent
 reference detector is frozen as `D0_PCA_SPE_V1`; its normal-only PCA model and
-normal-train3 threshold are now trained and frozen, pending an independent
-model/threshold integrity audit.
+normal-train3 threshold are frozen and integrity-audited. D0 execution remains
+unauthorized pending exact test1 raw-byte custody restoration.
 
-## Current completed milestone
+## Current authorization state
 
-The frozen D0 design hash
-`357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
-was replayed exactly. One deterministic float64 PCA fit used only exact HAI
-23.05 P1 train1 plus train2. It selected `k=10`, retaining 27 residual
-dimensions, and did not split an exact tied eigenvalue block. The private
-preprocessing and model artifacts were frozen before train3 access.
+The frozen D0 design, model, threshold, and model-threshold integrity
+authorities remain exact. The D0 execution-authorization contract was frozen
+at `4229e7c108c350174c03e4de0023ede3da8c1034` and its independent audit at
+`c6481e201a11708ed0ef3d746e8057f627fb97d0`. All 26 public artifacts and 50
+cross-bindings replayed; 90 static/regression tests passed and 88 independent
+invalid attacks were rejected.
 
-One exact train3 calibration froze the non-interpolated 0.999 empirical order
-statistic at index 125873 with strict `score > threshold`. Only after that
-freeze, exact normal train4 produced the descriptive sanity result recorded in
-the sanitized report. No result-driven change or retry occurred.
+The sole real preflight failed closed because both exact test1 raw files were
+unavailable at the approved local HAI binding. The attempt was not retried and
+no authorization was issued. No test1 feature or label scientific parsing,
+detector execution, metric computation, D1/D2 execution, test2 access, or
+private path/value exposure occurred.
 
 ## Frozen custody
 
@@ -48,26 +49,28 @@ outside Git. Their hashes, not their local paths, are public custody identity.
 
 ## Authorization boundary
 
-D0 INNER execution remains unauthorized. Test1, labels, test2, D2, detector
-comparison, and OUTER were not accessed or executed. The train4 result is
-descriptive normal-only sanity evidence and cannot tune the frozen model or
-threshold. The D1 result and COMMON-42 are unchanged.
+D0 INNER execution remains unauthorized and unexecuted. D1 remains frozen,
+D2 and OUTER remain unauthorized, and test2 remains sealed. The frozen D0
+model and threshold were not retrained or recalibrated.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-MODEL-THRESHOLD-INTEGRITY-AUDIT-V1`.
+`TASK-039E3-R2R-UTILITY-INNER-D0-EXECUTION-AUTHORIZATION-TEST1-CUSTODY-RESTORATION-V1`.
 
-It must independently verify the exact frozen design, normal-file custody,
-preprocessing/PCA arithmetic, selected k, sign canonicalization, train3 order
-statistic, private model/threshold content hashes, train4 sanity arithmetic,
-single-attempt accounting, zero test/label/test2 access, and Commit-C bytes. It
-must not retrain, recalibrate, open test1, or authorize D0 INNER execution.
+It must restore only the exact official test1 feature and label raw-byte
+custody at the approved ignored binding, verify their frozen sizes and hashes,
+and perform a newly authorized authorization preflight process. It must not
+parse scientific values, access test2, retrain, recalibrate, or execute D0.
 
 ## Canonical evidence
 
 - Training Implementation Commit A: `34edab1dc148fdd82a050c3446e87d6eda4f95fe`
 - Independent Audit Commit B: `1041b6ed1efc335b8f5c5fe50dbfc22a87ec6d44`
 - Model/Threshold Freeze Commit C: `44ce989d7f50e2722eed70963e030ba1ba44fadf`
+- D0 Authorization Contract Commit A: `4229e7c108c350174c03e4de0023ede3da8c1034`
+- D0 Authorization Independent Audit Commit B: `c6481e201a11708ed0ef3d746e8057f627fb97d0`
+- D0 Authorization Blocker Report Commit: `bb2e77c396bf321d61e1c9b7247582a0ccaa3636`
+- D0 Authorization Blocker: `480123d5398d064834ffe904c43611ec7043a1508581f5ec66487747dfb0a584`
 - D0 design hash: `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174`
 - Implementation audit: `545a9082e84dd350dfc2df941f70021932879e73020462cdb76075b6c20d58a5`
 - Accounting: `ca7f038c1c91b24feee38101c9d8b19cfe97a3dc417c32cee879f47942eed5f4`
