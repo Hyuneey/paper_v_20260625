@@ -5,46 +5,42 @@
 This project studies graph-guided agentic construction of verified rules for
 explainable multivariate time-series anomaly detection. COMMON-42 on HAI 23.05
 P1 remains frozen, deterministic, and LLM-free at runtime. Rule validity,
-execution authorization, and label-aware utility remain separate layers.
+execution authorization, label-aware utility, and result-integrity audit remain
+separate authority layers.
 
 ## Current completed milestone
 
-The portable INNER preflight failure was localized and closed. The exact MAIN
-and supplement registries and both test1 assets passed custody preflight. One
-typed authorization was issued for D1 Rule-only INNER test1 under control
-revision `R2_PORTABLE_PREFLIGHT`.
-
-## Root cause
-
-`CLASS_G_AUTHORIZATION_PREFLIGHT_LOGIC`: the authorization preflight invoked a
-two-input canonical MAIN authority builder without its frozen public inputs.
-The registry itself was exact. The bounded repair supplies those two committed,
-self-hashed public documents; no scientific authority or formula changed.
+The exact authorized D1 Rule-only INNER test1 experiment executed once. Its
+label-blind full-census RulePrediction artifact and frozen metric outputs are
+committed in Result Freeze Commit
+`9fe9192c6da4e2d1f3c7a42ecdd28006e8534449`. The result has not yet passed
+the required independent integrity audit.
 
 ## Authorization boundary
 
-Authorized: the next task may consume the exact committed authorization
-`deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`
-for COMMON-42 D1 Rule-only INNER test1.
-
-Not authorized: D0, D2, detector, fusion, test2/OUTER, recalibration, rule
-regeneration, metric modification, runtime LLM, or any alternate scope.
+D1 execution authorization remains exact and was consumed without broadening.
+D0, D2, detector, fusion, test2/OUTER, recalibration, rule regeneration,
+metric modification, runtime LLM, and any retry remain unauthorized.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1`. It must consume—not recreate—
-the issued authorization, keep test2 sealed, execute D1 once, then stop for a
-separate result-integrity audit.
+`TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1`. It must inspect
+the exact frozen result bytes and must not rerun D1.
 
 ## Canonical evidence
 
-- Authorization report commit: `7df8edf24993bf42401b487c56a188ce7546da91`
-- Custody preflight: `3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129`
 - Authorization: `deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`
-- Final receipt: `080823c300b3afc8b4660cf48dfc55b134ae05d599f1f851322710b20ebc1ab1`
+- Execution Bridge Commit A: `936296cdcf9f5d87658a0c9993856ccc7d9222b2`
+- Independent Audit Commit B: `c880042d1a49c12e2a6788d618bfb9b5491e1be0`
+- Result Freeze Commit C: `9fe9192c6da4e2d1f3c7a42ecdd28006e8534449`
+- RulePrediction artifact: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`
+- Execution run: `97bc0ef15508957d32427188205d7446fa58bc2234cade577d0bc93c3ce52e73`
+- Result receipt: `0966c35ec6865ed9f97651092876b2ff67322f59daa8ff09a425614d28b74c8e`
 
 ## No-claim boundary
 
-D1 has not executed. No real Attack-event recall, normal FAR, D0/D1/D2
-comparison, or detector result exists. `REAL_UTILITY_EXECUTION_AUTHORIZED`
-remains false in the frozen evaluator.
+The D1 outputs are frozen facts pending independent arithmetic, custody,
+label-independence, and full-census verification. They are not yet
+scientifically accepted or interpreted. No D0/D1/D2 comparison or detector
+result exists. `REAL_UTILITY_EXECUTION_AUTHORIZED` remains false inside the
+frozen evaluator.

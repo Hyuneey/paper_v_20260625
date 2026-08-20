@@ -74,3 +74,20 @@ threshold is recorded here.
 The cache location is disposable private machine state and is not authority.
 Only the frozen source, commit, payload allowlist, hashes, and sizes are public
 custody identity. This materialization does not itself grant execution.
+
+## Frozen INNER D1 result — integrity audit pending
+
+- Execution Bridge Commit A: `936296cdcf9f5d87658a0c9993856ccc7d9222b2`.
+- Independent Audit Commit B: `c880042d1a49c12e2a6788d618bfb9b5491e1be0`.
+- Result Freeze Commit C: `9fe9192c6da4e2d1f3c7a42ecdd28006e8534449`.
+- Bridge identity: `959de0f2ed781f404f583af75f7938bda56634024ddfbf23ecc9c38f5704edfe`.
+- RulePrediction artifact: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`.
+- Metric report: `b11a785dd243f30cac8820c49b978e194d993282c728537137b6a803b16d70d1`.
+- Execution run: `97bc0ef15508957d32427188205d7446fa58bc2234cade577d0bc93c3ce52e73`.
+- Readiness: `c76281465c61165a6b444fd3dc52b235379795a7129ab397e9e339cff46d87ed`.
+- Bundle: `361a9605279c46d66a69055904ee06f4266f5a29b30e5f6a1e5a81d2335c4f4e`.
+- Receipt: `0966c35ec6865ed9f97651092876b2ff67322f59daa8ff09a425614d28b74c8e`.
+
+The result is frozen but not yet scientifically accepted. The next authority
+step is an independent result-integrity audit; D0, D2, detector, and OUTER
+remain unauthorized.
