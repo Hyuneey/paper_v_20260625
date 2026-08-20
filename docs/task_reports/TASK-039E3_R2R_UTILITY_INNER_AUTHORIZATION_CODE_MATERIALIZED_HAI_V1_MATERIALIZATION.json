@@ -1,0 +1,77 @@
+{
+  "artifact_type": "task039e3_r2r_utility_inner_authorization_code_materialized_hai_v1_materialization",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-CODE-MATERIALIZED-HAI-RECOVERY-V1",
+  "status": "passed_hai_inner_materialization_only",
+  "created_at_utc": "2026-08-20T05:37:16Z",
+  "branch": "task-039e3-r2r-utility-inner-authorization-code-materialized-hai-recovery-v1",
+  "base_commit": "586267b1cee6ec949c32624c5a156618588ff98a",
+  "materialization_commit_m": "75d5616e55f4e521dad9cd91368703674da9f9c1",
+  "official_authority": {
+    "repository": "https://github.com/icsdataset/hai",
+    "pinned_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "official_source_match": true,
+    "pinned_commit_match": true,
+    "dataset_edition": "hai-23.05",
+    "acquisition_route": "OFFICIAL_KAGGLE_SELECTIVE_FALLBACK",
+    "task039ar_metadata_receipt": "a7389cc123a544302b896c4c1ffc931a3c61c22318c0fa53c575cd1567d5fbfe",
+    "task039ar_equivalence_receipt": "7917f8736c119e774a945096f41f8abc18bce30267dd9e754c5a20157a5bf7a8",
+    "git_lfs_available": true,
+    "existing_cache_reused": false
+  },
+  "payload": {
+    "feature": {
+      "relative_identity": "hai-23.05/hai-test1.csv",
+      "expected_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "observed_sha256": "78c7f1d4de1f2ab9ccc2f8c719f80f831033543adb0c81d0d78f84f40838d4be",
+      "hash_match": true,
+      "expected_size_bytes": 31255559,
+      "observed_size_bytes": 31255559,
+      "size_match": true,
+      "materialized": true
+    },
+    "label": {
+      "relative_identity": "hai-23.05/label-test1.csv",
+      "expected_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "observed_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+      "hash_match": true,
+      "expected_size_bytes": 1242017,
+      "observed_size_bytes": 1242017,
+      "size_match": true,
+      "materialized": true
+    }
+  },
+  "acquisition_counters": {
+    "official_git_fetches": 1,
+    "official_lfs_test1_fetches": 0,
+    "official_lfs_label_test1_fetches": 0,
+    "official_distribution_test1_fetches": 1,
+    "official_distribution_label_test1_fetches": 1,
+    "test2_lfs_payload_fetches": 0
+  },
+  "local_binding": {
+    "configured": true,
+    "ignored": true,
+    "tracked": false,
+    "main_registry_binding_present": false,
+    "main_locator_binding_present": false,
+    "supplement_registry_binding_present": false,
+    "supplement_locator_binding_present": false
+  },
+  "access_counters": {
+    "test2_file_opens": 0,
+    "test2_hashes": 0,
+    "scientific_feature_parses": 0,
+    "scientific_label_parses": 0,
+    "source_event_derivations": 0,
+    "attack_event_derivations": 0,
+    "rule_executions": 0,
+    "metric_computations": 0,
+    "detector_executions": 0,
+    "real_utility_computations": 0,
+    "private_paths_emitted": 0,
+    "private_numeric_values_exposed": 0
+  },
+  "scientific_result_claim": false,
+  "artifact_hash": "42c030775435a00ce127504d59de9767a85ed0bb612b4c3f024af8054764851d"
+}

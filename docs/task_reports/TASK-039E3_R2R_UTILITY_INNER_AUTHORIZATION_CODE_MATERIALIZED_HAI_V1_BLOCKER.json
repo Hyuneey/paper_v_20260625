@@ -1,0 +1,74 @@
+{
+  "artifact_type": "task039e3_r2r_utility_inner_authorization_code_materialized_hai_v1_blocker",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-CODE-MATERIALIZED-HAI-RECOVERY-V1",
+  "status": "blocked_task039e3_r2r_utility_inner_authorization_code_materialized_hai_recovery_v1",
+  "created_at_utc": "2026-08-20T05:37:16Z",
+  "branch": "task-039e3-r2r-utility-inner-authorization-code-materialized-hai-recovery-v1",
+  "base_commit": "586267b1cee6ec949c32624c5a156618588ff98a",
+  "materialization_commit_m": "75d5616e55f4e521dad9cd91368703674da9f9c1",
+  "materialization_report_hash": "42c030775435a00ce127504d59de9767a85ed0bb612b4c3f024af8054764851d",
+  "materialization_passed": true,
+  "static_gate": {
+    "materialization_tests_passed": 17,
+    "local_binding_tests_passed": 17,
+    "authorization_tests_passed": 37,
+    "independent_invalid_attacks_rejected": 109,
+    "accepted_invalid": 0,
+    "contract_a_exact": true,
+    "independent_audit_b_exact": true,
+    "r3_evaluator_exact": true
+  },
+  "private_binding_gate": {
+    "main_registry_binding_ready": false,
+    "main_locator_binding_ready": false,
+    "supplement_registry_binding_ready": false,
+    "supplement_locator_binding_ready": false,
+    "path_silent_locator_candidate_reads": 0,
+    "primary_blocker": "AUTHORIZATION_RECOVERY_BLOCKED_MAIN_PRIVATE_BINDING_MISSING",
+    "additional_blocker": "AUTHORIZATION_RECOVERY_BLOCKED_SUPPLEMENT_PRIVATE_BINDING_MISSING"
+  },
+  "custody_preflight": {
+    "calls": 0,
+    "main_locator_hash_match": null,
+    "main_registry_hash_match": null,
+    "supplement_locator_hash_match": null,
+    "supplement_registry_hash_match": null,
+    "test1_feature_hash_match": null,
+    "test1_label_hash_match": null
+  },
+  "authorization": {
+    "issuance_calls": 0,
+    "authorization_hash": null,
+    "authorization_scope": null,
+    "d0_authorized": false,
+    "d1_authorized": false,
+    "d2_authorized": false,
+    "detector_authorized": false,
+    "outer_authorized": false
+  },
+  "access_counters": {
+    "test2_lfs_payload_fetches": 0,
+    "test2_file_opens": 0,
+    "test2_hashes": 0,
+    "scientific_feature_parses": 0,
+    "scientific_label_parses": 0,
+    "source_event_derivations": 0,
+    "attack_event_derivations": 0,
+    "rule_executions": 0,
+    "metric_computations": 0,
+    "detector_executions": 0,
+    "real_utility_computations": 0,
+    "private_paths_emitted": 0,
+    "private_numeric_values_exposed": 0
+  },
+  "state_flags": {
+    "UTILITY_INNER_EXECUTION_AUTHORIZED": false,
+    "UTILITY_INNER_D1_EXECUTION_AUTHORIZATION_ISSUED": false,
+    "UTILITY_INNER_D1_EXECUTED": false,
+    "REAL_UTILITY_EXECUTION_AUTHORIZED": false
+  },
+  "exact_next_task": "NONE",
+  "scientific_result_claim": false,
+  "artifact_hash": "8d325823219f47616d7e99973cff47c4b8de1a2c16cb4e481a2e42bb6a46402e"
+}
