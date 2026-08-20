@@ -8,7 +8,7 @@ identity and purpose cannot be confused with either materialized authority.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any
 import weakref
 
@@ -18,9 +18,12 @@ from paperworks.v6.task039e3_r2r_utility_evaluator_types_v1 import (
     SYNTHETIC_AUTHORITY_IDENTITY,
     SYNTHETIC_CONTRACT_ONLY,
     UtilityEvaluatorV1Error,
+    dataclass_payload_v1,
     stable_hash_v1,
+    strict_bool_v1,
     strict_float_v1,
     strict_int_v1,
+    strict_sha256_v1,
     strict_str_v1,
     strict_tuple_v1,
 )
@@ -51,6 +54,9 @@ COMBINED_SOURCE_CENSUS_CONTRACT_HASH = "cb53d0e4533ebadb61edbdc72b549fe47b46c8dc
 SOURCE_CENSUS_EVENT_POLICY_HASH = "3fb20068feff44632be3e4e6917183d52fea5616feec68ede5e9b62f95ecb390"
 CROSS_SOURCE_ISOLATION_POLICY_HASH = "f62075523632a7573d28e95ca7f0402d87e62977f4a2f14f4eaf2b9a58f0e280"
 SUPPLEMENT_PURPOSE = "CROSS_SOURCE_ISOLATION_EVENT_CENSUS_ONLY"
+CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH = (
+    "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9"
+)
 
 CANONICAL_FEATURE_SCHEMA_HASH = "62fd76bd541437694aff274db865670f24eecbabf3c736f32893bd97081564b8"
 RUNTIME_FEATURE_SCHEMA_HASH = "e7a0c46d28491b9d03a333a0ad1e87d686a982bafba072861913e05fb6c50b58"
@@ -60,6 +66,23 @@ SUPPLEMENT_SOURCES = supplement.SUPPLEMENT_SOURCES
 EVALUATOR_SOURCE_CENSUS = tuple(sorted(MAIN_SOURCES + SUPPLEMENT_SOURCES))
 SOURCE_CENSUS_ROLES = supplement.SUPPLEMENT_ROLES
 MAIN_NUMERIC_ROLES = v4.UTILITY_NUMERIC_ROLES
+
+EVALUATOR_PRODUCTION_MODULES = (
+    "task039e3_r2r_utility_evaluator_types_v1.py",
+    "task039e3_r2r_utility_evaluator_authority_v1.py",
+    "task039e3_r2r_utility_evaluator_input_v1.py",
+    "task039e3_r2r_utility_evaluator_census_v1.py",
+    "task039e3_r2r_utility_evaluator_rule_engine_v1.py",
+    "task039e3_r2r_utility_evaluator_metrics_v1.py",
+    "task039e3_r2r_utility_evaluator_v1.py",
+)
+UTILITY_EVALUATOR_CONTROL_REVISION = "R2"
+ORIGINAL_EVALUATOR_IMPLEMENTATION_IDENTITY = (
+    "332e367cdc0da21b281c5de43f6a735d7dc68bc87efafe90976d89d7f9dc3330"
+)
+R1_EVALUATOR_IMPLEMENTATION_IDENTITY = (
+    "64a6e7f0d210dc074bc85b0f389e61b45aaa512091532cf8f4d275ccaa35746a"
+)
 
 
 @dataclass(frozen=True)
@@ -265,6 +288,140 @@ def validate_evaluator_authority_bundle_v1(bundle: EvaluatorAuthorityBundleV1) -
     if bundle != expected or bundle.to_public_dict() != expected.to_public_dict():
         raise UtilityEvaluatorV1Error("EVALUATOR_AUTHORITY_BUNDLE_REPLAY_REJECTED")
     return bundle.bundle_hash
+
+
+@dataclass(frozen=True)
+class EvaluatorImplementationAuthorityV1:
+    evaluator_version: str
+    control_revision: str
+    evaluator_authority_bundle_hash: str
+    v4_authority_hash: str
+    utility_portfolio: str
+    execution_mode: str
+    synthetic_authority_identity: str
+    production_modules: tuple[str, ...]
+    real_utility_execution_authorized: bool
+    implementation_identity: str
+
+
+def _implementation_payload(
+    value: EvaluatorImplementationAuthorityV1,
+) -> dict[str, object]:
+    return dataclass_payload_v1(value, exclude=("implementation_identity",))
+
+
+_ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES: dict[
+    int,
+    tuple[
+        weakref.ReferenceType[EvaluatorImplementationAuthorityV1],
+        str,
+        str,
+        weakref.ReferenceType[EvaluatorAuthorityBundleV1],
+    ],
+] = {}
+
+
+def _issue_evaluator_implementation_authority_v1(
+    authority: EvaluatorImplementationAuthorityV1,
+    bundle: EvaluatorAuthorityBundleV1,
+) -> EvaluatorImplementationAuthorityV1:
+    """Bind factory issuance to the exact authority and exact bundle objects."""
+
+    object_id = id(authority)
+
+    def cleanup(dead_ref: object) -> None:
+        issued = _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES.get(object_id)
+        if (
+            issued is not None
+            and len(issued) == 4
+            and (issued[0] is dead_ref or issued[3] is dead_ref)
+        ):
+            _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES.pop(object_id, None)
+
+    issued_ref = weakref.ref(authority, cleanup)
+    bundle_ref = weakref.ref(bundle, cleanup)
+    _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES[object_id] = (
+        issued_ref,
+        authority.implementation_identity,
+        authority.evaluator_authority_bundle_hash,
+        bundle_ref,
+    )
+    return authority
+
+
+def _build_expected_evaluator_implementation_authority_v1(
+    bundle_hash: str,
+) -> EvaluatorImplementationAuthorityV1:
+    """Pure semantic constructor; validation must never create issuance."""
+
+    provisional = EvaluatorImplementationAuthorityV1(
+        EVALUATOR_VERSION,
+        UTILITY_EVALUATOR_CONTROL_REVISION,
+        bundle_hash,
+        v4.CANONICAL_V4_AUTHORITY_HASH,
+        v4.UTILITY_MAIN_PORTFOLIO,
+        SYNTHETIC_CONTRACT_ONLY,
+        SYNTHETIC_AUTHORITY_IDENTITY,
+        EVALUATOR_PRODUCTION_MODULES,
+        False,
+        "",
+    )
+    return replace(
+        provisional,
+        implementation_identity=stable_hash_v1(_implementation_payload(provisional)),
+    )
+
+
+CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY = (
+    _build_expected_evaluator_implementation_authority_v1(
+        CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH
+    ).implementation_identity
+)
+
+
+def build_evaluator_implementation_authority_v1(
+    bundle: EvaluatorAuthorityBundleV1,
+) -> EvaluatorImplementationAuthorityV1:
+    bundle_hash = validate_evaluator_authority_bundle_v1(bundle)
+    return _issue_evaluator_implementation_authority_v1(
+        _build_expected_evaluator_implementation_authority_v1(bundle_hash),
+        bundle,
+    )
+
+
+def validate_evaluator_implementation_authority_v1(
+    authority: EvaluatorImplementationAuthorityV1,
+    bundle: EvaluatorAuthorityBundleV1,
+) -> str:
+    if type(authority) is not EvaluatorImplementationAuthorityV1:
+        raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_AUTHORITY_TYPE_REJECTED")
+    issued = _ISSUED_EVALUATOR_IMPLEMENTATION_AUTHORITIES.get(id(authority))
+    if (
+        issued is None
+        or len(issued) != 4
+        or issued[0]() is not authority
+        or issued[1] != authority.implementation_identity
+        or issued[2] != authority.evaluator_authority_bundle_hash
+        or issued[3]() is not bundle
+    ):
+        raise UtilityEvaluatorV1Error(
+            "EVALUATOR_IMPLEMENTATION_AUTHORITY_FACTORY_CUSTODY_REJECTED"
+        )
+    bundle_hash = validate_evaluator_authority_bundle_v1(bundle)
+    expected = _build_expected_evaluator_implementation_authority_v1(bundle_hash)
+    if authority != expected:
+        raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_AUTHORITY_REPLAY_REJECTED")
+    strict_str_v1(authority.control_revision, "evaluator control revision")
+    if authority.control_revision != UTILITY_EVALUATOR_CONTROL_REVISION:
+        raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_CONTROL_REVISION_REJECTED")
+    strict_sha256_v1(authority.implementation_identity, "implementation identity")
+    if authority.implementation_identity != CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY:
+        raise UtilityEvaluatorV1Error("EVALUATOR_IMPLEMENTATION_IDENTITY_REJECTED")
+    strict_bool_v1(
+        authority.real_utility_execution_authorized,
+        "real utility execution authorized",
+    )
+    return authority.implementation_identity
 
 
 @dataclass(frozen=True)
@@ -611,13 +768,22 @@ def open_real_private_numeric_resolver_v1(
 
 __all__ = [
     "EvaluatorAuthorityBundleV1",
+    "EvaluatorImplementationAuthorityV1",
     "SyntheticNumericRecordV1",
     "SyntheticNumericResolverV1",
     "build_evaluator_authority_bundle_v1",
     "validate_evaluator_authority_bundle_v1",
+    "build_evaluator_implementation_authority_v1",
+    "validate_evaluator_implementation_authority_v1",
     "build_synthetic_numeric_resolver_v1",
     "validate_synthetic_numeric_resolver_v1",
     "open_real_private_numeric_resolver_v1",
+    "EVALUATOR_PRODUCTION_MODULES",
+    "UTILITY_EVALUATOR_CONTROL_REVISION",
+    "ORIGINAL_EVALUATOR_IMPLEMENTATION_IDENTITY",
+    "R1_EVALUATOR_IMPLEMENTATION_IDENTITY",
+    "CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY",
+    "CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH",
     "MAIN_SOURCES",
     "SUPPLEMENT_SOURCES",
     "EVALUATOR_SOURCE_CENSUS",

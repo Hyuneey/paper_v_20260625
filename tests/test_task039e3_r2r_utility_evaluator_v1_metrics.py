@@ -12,6 +12,7 @@ from paperworks.v6.task039e3_r2r_utility_evaluator_authority_v1 import (
     SUPPLEMENT_PURPOSE,
     SyntheticNumericRecordV1,
     build_evaluator_authority_bundle_v1,
+    build_evaluator_implementation_authority_v1,
     build_synthetic_numeric_resolver_v1,
 )
 from paperworks.v6.task039e3_r2r_utility_evaluator_census_v1 import enumerate_full_census_v1
@@ -134,11 +135,11 @@ class UtilityEvaluatorV1MetricsTests(unittest.TestCase):
             execute_rule_v1(envelope, cls.census, cls.frame, cls.bundle, cls.resolver)
             for envelope in cls.census.relation_opportunities
         )
-        cls.implementation_identity = stable_hash_v1(
-            {"artifact_type": "synthetic_evaluator_implementation_fixture_v1"}
+        cls.implementation_authority = build_evaluator_implementation_authority_v1(
+            cls.bundle
         )
         cls.rule_artifact = build_rule_prediction_artifact_v1(
-            evaluator_implementation_identity=cls.implementation_identity,
+            evaluator_implementation_authority=cls.implementation_authority,
             bundle=cls.bundle,
             frame=cls.frame,
             census=cls.census,
@@ -217,7 +218,7 @@ class UtilityEvaluatorV1MetricsTests(unittest.TestCase):
 
     def test_rule_prediction_artifact_is_deterministic_and_synthetic_only(self) -> None:
         second = build_rule_prediction_artifact_v1(
-            evaluator_implementation_identity=self.implementation_identity,
+            evaluator_implementation_authority=self.implementation_authority,
             bundle=self.bundle,
             frame=self.frame,
             census=self.census,
@@ -302,7 +303,7 @@ class UtilityEvaluatorV1MetricsTests(unittest.TestCase):
         )
         with self.assertRaises(UtilityEvaluatorV1Error):
             build_rule_prediction_artifact_v1(
-                evaluator_implementation_identity=self.implementation_identity,
+                evaluator_implementation_authority=self.implementation_authority,
                 bundle=self.bundle,
                 frame=self.frame,
                 census=self.census,

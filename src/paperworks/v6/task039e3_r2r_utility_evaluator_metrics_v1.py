@@ -18,12 +18,16 @@ import math
 from weakref import ReferenceType, ref
 
 from paperworks.v6.task039e3_r2r_utility_evaluator_authority_v1 import (
+    CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH,
     COMBINED_SOURCE_CENSUS_CONTRACT_HASH,
+    CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY,
     MAIN_DESCRIPTOR_HASH,
     SUPPLEMENT_DESCRIPTOR_HASH,
     EvaluatorAuthorityBundleV1,
+    EvaluatorImplementationAuthorityV1,
     SyntheticNumericResolverV1,
     validate_evaluator_authority_bundle_v1,
+    validate_evaluator_implementation_authority_v1,
 )
 from paperworks.v6.task039e3_r2r_utility_evaluator_census_v1 import (
     validate_full_census_result_v1,
@@ -67,11 +71,14 @@ ATTACK_EVENT_POLICY = "MAXIMAL_CONTIGUOUS_STRICT_LABEL_ONE_RUNS_FILE_LOCAL"
 ATTACK_EVENT_RECALL_FORMULA = "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS"
 NORMAL_FAR_FORMULA = "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600"
 FULL_CENSUS_DENOMINATOR_POLICY = "ALL_AUTOMATICALLY_ENUMERATED_APPLICABLE_CANONICAL_OPPORTUNITIES"
-CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH = "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9"
 
 _FINAL_STATES = frozenset({"evaluated_expected_response", "evaluated_anomaly", "abstain"})
-_ISSUED_RULE_ARTIFACTS: dict[int, tuple[ReferenceType[RulePredictionArtifactV1], str]]
+_ISSUED_RULE_ARTIFACTS: dict[
+    int,
+    tuple[ReferenceType[RulePredictionArtifactV1], str, str, str],
+]
 _METRIC_ISSUANCE_TOKEN = object()
+_LEGACY_IMPLEMENTATION_IDENTITY_OMITTED = object()
 
 
 def _fail(code: str) -> None:
@@ -578,19 +585,29 @@ def _validate_execution_result_structure(result: RuleExecutionResultV1) -> None:
 
 def build_rule_prediction_artifact_v1(
     *,
-    evaluator_implementation_identity: str,
+    evaluator_implementation_authority: EvaluatorImplementationAuthorityV1 | None = None,
+    evaluator_implementation_identity: object = _LEGACY_IMPLEMENTATION_IDENTITY_OMITTED,
     bundle: EvaluatorAuthorityBundleV1,
     frame: SyntheticFeatureFrameV1,
     census: FullCensusResultV1,
     resolver: SyntheticNumericResolverV1,
     predictions: tuple[RuleExecutionResultV1, ...],
 ) -> RulePredictionArtifactV1:
+    if evaluator_implementation_identity is not _LEGACY_IMPLEMENTATION_IDENTITY_OMITTED:
+        _fail("PREDICTION_CALLER_IMPLEMENTATION_IDENTITY_NOT_AUTHORIZED")
+    if evaluator_implementation_authority is None:
+        _fail("PREDICTION_IMPLEMENTATION_AUTHORITY_REQUIRED")
     bundle_hash = validate_evaluator_authority_bundle_v1(bundle)
     if bundle_hash != CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH:
         _fail("PREDICTION_EVALUATOR_AUTHORITY_BUNDLE_REJECTED")
+    implementation_identity = validate_evaluator_implementation_authority_v1(
+        evaluator_implementation_authority,
+        bundle,
+    )
+    if implementation_identity != CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY:
+        _fail("PREDICTION_EVALUATOR_IMPLEMENTATION_AUTHORITY_REJECTED")
     validate_synthetic_feature_frame_v1(frame, bundle)
     validate_full_census_result_v1(census, frame, bundle, resolver)
-    strict_sha256_v1(evaluator_implementation_identity, "evaluator implementation identity")
     strict_tuple_v1(predictions, "rule predictions")
     if frame.execution_mode != SYNTHETIC_CONTRACT_ONLY or census.execution_mode != SYNTHETIC_CONTRACT_ONLY:
         _fail("PREDICTION_REAL_EXECUTION_NOT_AUTHORIZED")
@@ -628,7 +645,7 @@ def build_rule_prediction_artifact_v1(
         SYNTHETIC_AUTHORITY_IDENTITY,
         False,
         EVALUATOR_VERSION,
-        evaluator_implementation_identity,
+        implementation_identity,
         bundle_hash,
         CANONICAL_V4_AUTHORITY_HASH,
         UTILITY_MAIN_PORTFOLIO,
@@ -655,7 +672,12 @@ def build_rule_prediction_artifact_v1(
     def _discard(_reference: object, *, key: int = issued_id) -> None:
         _ISSUED_RULE_ARTIFACTS.pop(key, None)
 
-    _ISSUED_RULE_ARTIFACTS[issued_id] = (ref(issued, _discard), issued.artifact_hash)
+    _ISSUED_RULE_ARTIFACTS[issued_id] = (
+        ref(issued, _discard),
+        issued.artifact_hash,
+        implementation_identity,
+        bundle_hash,
+    )
     return issued
 
 
@@ -665,8 +687,11 @@ def validate_rule_prediction_artifact_v1(artifact: RulePredictionArtifactV1) -> 
     issuance = _ISSUED_RULE_ARTIFACTS.get(id(artifact))
     if (
         issuance is None
+        or len(issuance) != 4
         or issuance[0]() is not artifact
         or issuance[1] != artifact.artifact_hash
+        or issuance[2] != artifact.evaluator_implementation_identity
+        or issuance[3] != artifact.evaluator_authority_bundle_hash
     ):
         _fail("PREDICTION_ARTIFACT_FACTORY_CUSTODY_REJECTED")
     if (
@@ -675,6 +700,10 @@ def validate_rule_prediction_artifact_v1(artifact: RulePredictionArtifactV1) -> 
         or artifact.synthetic_authority_identity != SYNTHETIC_AUTHORITY_IDENTITY
         or artifact.scientific_eligible is not False
         or artifact.evaluator_version != EVALUATOR_VERSION
+        or (
+            artifact.evaluator_implementation_identity
+            != CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY
+        )
         or artifact.evaluator_authority_bundle_hash != CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH
         or artifact.v4_authority_hash != CANONICAL_V4_AUTHORITY_HASH
         or artifact.common_portfolio != UTILITY_MAIN_PORTFOLIO
