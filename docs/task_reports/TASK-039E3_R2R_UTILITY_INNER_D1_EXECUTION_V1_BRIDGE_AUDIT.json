@@ -1,0 +1,19 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "aacca1555d0ba492ae10422c4970a45fb77ed6c3d0a279ff730461738091dbf1",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_execution_v1_bridge_audit",
+  "authorization_module_control_revision": "R2_PORTABLE_PREFLIGHT",
+  "authorization_module_modified": false,
+  "bridge_identity": "959de0f2ed781f404f583af75f7938bda56634024ddfbf23ecc9c38f5704edfe",
+  "differential_semantic_cases": 32,
+  "differential_semantic_divergences": 0,
+  "execution_bridge_commit": "936296cdcf9f5d87658a0c9993856ccc7d9222b2",
+  "execution_bridge_source_sha256": "8ebe98b6e78626688a582abc98c6b7f75160bd0de6cce70ee6efa4cf55fe3a49",
+  "independent_attacks": 40,
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "r3_evaluator_modified": false,
+  "r3_implementation_identity": "af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5",
+  "status": "passed_static_bridge_and_differential_audit",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1"
+}

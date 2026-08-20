@@ -1,0 +1,43 @@
+{
+  "alarm_count": 788,
+  "alarm_episode_count": 626,
+  "artifact_hash": "b11a785dd243f30cac8820c49b978e194d993282c728537137b6a803b16d70d1",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_metrics_v1",
+  "attack_event_recall": {
+    "artifact_hash": "cb3214ffad8cf487a0c2d2d4ad2bbe4887c54aa06778853741d7d99b1471d38b",
+    "defined": true,
+    "formula_identity": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+    "metric_name": "attack_event_recall",
+    "private_evidence_hash": "2d865315d1c329ffb3e87ebed6a538dee82be123c32b7ee9ffe245c7eb234d2b",
+    "undefined_reason": null,
+    "value": 0.9285714285714286
+  },
+  "attack_intervals_publicly_exposed": false,
+  "authorization_hash": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+  "counts": {
+    "abstain_count": 0,
+    "error_count": 0,
+    "evaluated_count": 6031,
+    "isolated_source_event_count": 3023,
+    "raw_source_event_count": 27256,
+    "relation_opportunity_count": 6031,
+    "retained_source_event_count": 5490
+  },
+  "execution_mode": "REAL_INNER_D1_RULE_ONLY",
+  "label_vector_publicly_exposed": false,
+  "normal_far_episodes_per_hour": {
+    "artifact_hash": "1a5acbd59c6ed6bb046cb560dec2922d262a0f827ce0ab34de35917b9cd6d41a",
+    "defined": true,
+    "formula_identity": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+    "metric_name": "normal_false_alarm_rate_per_hour",
+    "private_evidence_hash": "2d865315d1c329ffb3e87ebed6a538dee82be123c32b7ee9ffe245c7eb234d2b",
+    "undefined_reason": null,
+    "value": 40.50255787059723
+  },
+  "normal_second_denominator_publicly_exposed": false,
+  "private_metric_evidence_hash": "2d865315d1c329ffb3e87ebed6a538dee82be123c32b7ee9ffe245c7eb234d2b",
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "rule_prediction_artifact_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1"
+}

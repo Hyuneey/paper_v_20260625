@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "0966c35ec6865ed9f97651092876b2ff67322f59daa8ff09a425614d28b74c8e",
+  "artifact_type": "task039e3_r2r_utility_inner_d1_execution_v1_receipt",
+  "authorization_hash": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+  "authorization_receipt_hash": "080823c300b3afc8b4660cf48dfc55b134ae05d599f1f851322710b20ebc1ab1",
+  "bundle_hash": "361a9605279c46d66a69055904ee06f4266f5a29b30e5f6a1e5a81d2335c4f4e",
+  "custody_preflight_hash": "3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129",
+  "execution_attempts": 1,
+  "execution_retries": 0,
+  "execution_run_hash": "97bc0ef15508957d32427188205d7446fa58bc2234cade577d0bc93c3ce52e73",
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "readiness_hash": "c76281465c61165a6b444fd3dc52b235379795a7129ab397e9e339cff46d87ed",
+  "rule_prediction_artifact_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "scientific_status": "D1_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING",
+  "status": "passed_task039e3_r2r_utility_inner_d1_execution_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1",
+  "test2_accesses": 0
+}
