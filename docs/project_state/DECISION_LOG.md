@@ -126,3 +126,23 @@ Append new entries; never rewrite historical decisions.
 - Supersedes / Superseded by: none / none.
 - Canonical evidence: local custody binding bootstrap helper and
   `LOCAL_PRIVATE_BINDING_GUIDE.md`.
+
+## DEC-DATA-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: The HAI INNER payload may be reproducibly reconstructed in a fresh
+  execution environment from the exact pinned official acquisition authority.
+  Local cache paths are disposable machine state; the official source commit
+  and exact payload hashes are scientific and custody authority.
+- Rationale: Reproducible official materialization removes machine-path
+  dependence without weakening provenance or asking users to disclose a local
+  path.
+- Consequence: Authorization recovery may create a private cache containing
+  only the authorized test1 feature and label payload, bind it locally, and
+  keep test2 sealed. Moving refs, mirrors, unverified archives, and cache paths
+  remain unauthorized.
+- Supersedes / Superseded by: the assumption that HAI must preexist on the
+  current execution machine / none.
+- Canonical evidence: TASK-039A source receipt, TASK-039AR byte-equivalence
+  receipt, and the code-materialized HAI recovery task.

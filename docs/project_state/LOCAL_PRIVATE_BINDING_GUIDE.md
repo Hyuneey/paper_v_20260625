@@ -26,3 +26,18 @@ separately authorized path-silent locator recovery.
 Deleting `.env.custody.local` removes the local binding state. The public
 `docs/project_state/` layer records only configured/not-configured booleans,
 never binding values.
+
+## Approved HAI binding routes
+
+There are two approved ways to establish `HAI_DATA_ROOT`:
+
+1. Use an existing local dataset through the hidden prompt in
+   `scripts/local/bootstrap_custody_bindings_v1.py`.
+2. Reconstruct only the authorized INNER test1 feature and label payload from
+   the pinned official source with
+   `scripts/local/materialize_hai_inner_payload_v1.py`.
+
+The code-materialized route is non-interactive. It freezes the official source
+and commit, limits payload acquisition to the two authorized files, validates
+their exact hashes and sizes, and stores the resulting disposable cache binding
+only in the ignored local layer. The cache location is never public authority.
