@@ -10,11 +10,11 @@ separate authority layers.
 
 ## Current completed milestone
 
-The exact authorized D1 Rule-only INNER test1 experiment executed once. Its
-label-blind full-census RulePrediction artifact and frozen metric outputs are
-committed in Result Freeze Commit
-`9fe9192c6da4e2d1f3c7a42ecdd28006e8534449`. The result has not yet passed
-the required independent integrity audit.
+The exact frozen D1 Rule-only INNER test1 result passed its independent
+integrity audit. The audit reproduced the full opportunity census, alarm
+episodes, attack-event recall, and normal FAR arithmetic without rerunning the
+D1 rule engine. Result Freeze Commit
+`9fe9192c6da4e2d1f3c7a42ecdd28006e8534449` remains byte-identical.
 
 ## Authorization boundary
 
@@ -24,8 +24,9 @@ metric modification, runtime LLM, and any retry remain unauthorized.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1`. It must inspect
-the exact frozen result bytes and must not rerun D1.
+`TASK-039E3-R2R-UTILITY-INNER-D0-DETECTOR-BASELINE-DESIGN-AND-FREEZE-V1`.
+Detector design must remain independent of D1 performance. D2 must later
+consume the exact frozen D1 RulePrediction artifact and must not rerun D1.
 
 ## Canonical evidence
 
@@ -36,11 +37,14 @@ the exact frozen result bytes and must not rerun D1.
 - RulePrediction artifact: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`
 - Execution run: `97bc0ef15508957d32427188205d7446fa58bc2234cade577d0bc93c3ce52e73`
 - Result receipt: `0966c35ec6865ed9f97651092876b2ff67322f59daa8ff09a425614d28b74c8e`
+- Result-integrity Audit Commit A: `470b5ef7e51d26cc0fc947a6a37ab23d21860538`
+- Result-integrity Report Commit B: `fd54c5cab69927e91d268f344c54f6614f28021f`
+- Result-integrity receipt: `1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f`
 
 ## No-claim boundary
 
-The D1 outputs are frozen facts pending independent arithmetic, custody,
-label-independence, and full-census verification. They are not yet
-scientifically accepted or interpreted. No D0/D1/D2 comparison or detector
+The audit certifies only that the frozen D1 result is internally consistent
+with the authorized execution protocol. It does not certify that D1 is
+scientifically good or deployment-ready. No D0/D1/D2 comparison or detector
 result exists. `REAL_UTILITY_EXECUTION_AUTHORIZED` remains false inside the
 frozen evaluator.

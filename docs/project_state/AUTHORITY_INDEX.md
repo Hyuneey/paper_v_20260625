@@ -75,7 +75,7 @@ The cache location is disposable private machine state and is not authority.
 Only the frozen source, commit, payload allowlist, hashes, and sizes are public
 custody identity. This materialization does not itself grant execution.
 
-## Frozen INNER D1 result — integrity audit pending
+## Frozen INNER D1 result — integrity audited
 
 - Execution Bridge Commit A: `936296cdcf9f5d87658a0c9993856ccc7d9222b2`.
 - Independent Audit Commit B: `c880042d1a49c12e2a6788d618bfb9b5491e1be0`.
@@ -87,7 +87,13 @@ custody identity. This materialization does not itself grant execution.
 - Readiness: `c76281465c61165a6b444fd3dc52b235379795a7129ab397e9e339cff46d87ed`.
 - Bundle: `361a9605279c46d66a69055904ee06f4266f5a29b30e5f6a1e5a81d2335c4f4e`.
 - Receipt: `0966c35ec6865ed9f97651092876b2ff67322f59daa8ff09a425614d28b74c8e`.
+- Result-integrity Audit Commit A: `470b5ef7e51d26cc0fc947a6a37ab23d21860538`.
+- Result-integrity Report Commit B: `fd54c5cab69927e91d268f344c54f6614f28021f`.
+- Result-integrity readiness: `8c6eb7f7b099bc48537c78cf7cb5510dbf599dfd58c37efc44705a6a9fd0f5be`.
+- Result-integrity bundle: `e38b56e877842c1678fccaea0e23e5e1c761265534ff9fe8ccc0f5c24552c4db`.
+- Result-integrity receipt: `1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f`.
 
-The result is frozen but not yet scientifically accepted. The next authority
-step is an independent result-integrity audit; D0, D2, detector, and OUTER
-remain unauthorized.
+The audit certifies that the exact frozen D1 result is internally consistent
+with its authorized execution protocol. It does not certify scientific quality
+or deployment value. D0, D2, detector, and OUTER remain unauthorized; the next
+task is independent D0 detector-baseline design and freeze.
