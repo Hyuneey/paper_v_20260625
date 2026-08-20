@@ -387,3 +387,14 @@ Stop and record the issue when:
 - generated code would need host execution;
 - a requested change would modify frozen ARGOS or legacy compatibility
   behavior without explicit authorization.
+
+## 14. Session Continuity
+
+Every new session must read, in order: this `AGENTS.md`,
+`docs/project_state/START_HERE.md`, `docs/project_state/CURRENT_STATE.json`,
+`docs/project_state/HANDOFF.md`, the active task file named by
+`CURRENT_STATE.json`, and the exact canonical receipts/reports referenced by
+`HANDOFF.md`. `docs/project_state/` is a summary and index, not replacement
+authority; `docs/task_reports/` retains the canonical detailed evidence. Never
+infer current execution authorization from chat memory. Replay exact state
+flags and the active receipt from Git before acting.

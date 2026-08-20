@@ -1,0 +1,111 @@
+# Decision log
+
+Append new entries; never rewrite historical decisions.
+
+## DEC-CONT-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: Repository state, not chat memory, is the continuation authority.
+- Rationale: Future sessions require deterministic, reviewable recovery.
+- Consequence: Sessions replay Git state and receipts before acting.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: this continuity bootstrap task and `START_HERE.md`.
+
+## DEC-CONT-002
+
+- Date: 2026-08-20
+- Status: active
+- Decision: `docs/task_reports/` remains canonical detailed evidence;
+  `docs/project_state/` is only an index and handoff layer.
+- Rationale: Mutable summaries must not displace immutable detailed receipts.
+- Consequence: Conflicts resolve in favor of exact committed receipts.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: `START_HERE.md` authority precedence.
+
+## DEC-UTILITY-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: COMMON-42 is the canonical utility portfolio; historical T2
+  membership is excluded.
+- Rationale: The frozen V4 R1 and evaluator authorities bind exactly 42 COMMON
+  relations with T2 false.
+- Consequence: Utility authorization must reject T2 or alternate portfolios.
+- Supersedes / Superseded by: historical T2 utility membership / none.
+- Canonical evidence: `AUTHORITY_INDEX.md` and R3 independent receipt.
+
+## DEC-UTILITY-002
+
+- Date: 2026-08-20
+- Status: active
+- Decision: MAIN 420 references are relation-execution authority; supplement
+  6 references are source-census isolation only. They are not one
+  interchangeable 426-record authority.
+- Rationale: Their roles and custody contracts are distinct.
+- Consequence: Execution and isolation validation must preserve both types.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: source-census final receipt and combined contract.
+
+## DEC-UTILITY-003
+
+- Date: 2026-08-20
+- Status: active
+- Decision: D1 Rule-only executes before detector and D2 work.
+- Rationale: D1 establishes the first bounded utility result independently.
+- Consequence: D0, D2, detector, and fusion remain unauthorized.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: active authorization recovery task.
+
+## DEC-UTILITY-004
+
+- Date: 2026-08-20
+- Status: active
+- Decision: D1 and future D2 must consume the same frozen RulePrediction
+  content.
+- Rationale: Comparison must not change rule predictions between arms.
+- Consequence: Future D2 binds the immutable D1 prediction artifact.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: R3 comparison boundary receipt.
+
+## DEC-UTILITY-005
+
+- Date: 2026-08-20
+- Status: active
+- Decision: Authorization and scientific execution are separate tasks.
+- Rationale: Custody and scope must freeze before any label-aware computation.
+- Consequence: This task cannot execute D1 even after issuing its grant.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: authorization contract and active recovery task.
+
+## DEC-PRIVACY-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: Any private path disclosure is a terminal task blocker even without
+  file access.
+- Rationale: Custody identity itself is sensitive.
+- Consequence: Stop, issue no authorization, and retain only a sanitized blocker.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: historical authorization blocker artifact.
+
+## DEC-PRIVACY-002
+
+- Date: 2026-08-20
+- Status: active
+- Decision: Private custody recovery occurs in a fresh, single-coordinator,
+  path-silent process.
+- Rationale: Path-bearing history is contamination, not authority.
+- Consequence: No log recovery, broad search, or path-bearing command output.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: active recovery task.
+
+## DEC-OUTER-001
+
+- Date: 2026-08-20
+- Status: active
+- Decision: Test2 remains sealed until separate OUTER authorization.
+- Rationale: INNER results must not influence sealed evaluation.
+- Consequence: Test2 access, hashing, parsing, and attack inspection remain zero.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: V4 R1 and active recovery task.
