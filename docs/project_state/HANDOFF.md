@@ -1,32 +1,45 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Portable Contract Commit A:
-  `1d7b47daf053ffbcbf69499b55b68ce7c2838e83`
-- Portable Independent Audit Commit B:
-  `da3872530f45fb0093d815c9f50fe08216cc2fda`
-- Sanitized blocker commit:
-  `b1daa7f915785b66ce07fa0a9c6fa91e9eba4738`
+- Authorization report commit:
+  `7df8edf24993bf42401b487c56a188ce7546da91`
+- Custody preflight:
+  `3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129`
+- Issued authorization:
+  `deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`
+- Receipt:
+  `080823c300b3afc8b4660cf48dfc55b134ae05d599f1f851322710b20ebc1ab1`
 - Latest task:
-  `TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1`
+  `TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1`
 - Latest status:
-  `blocked_task039e3_r2r_utility_inner_authorization_portable_private_authority_recovery_v1`
+  `passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1`
 - Active task: `NONE`
-- Exact next task: `NONE`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1`
 
 ## What passed
 
-The portable custody control revision and independent audit are frozen with
-accepted invalid equal to zero. Exact normal train1/train2 inputs reproduced
-the canonical MAIN 420-record registry and supplement 6-record registry. No
-private path or numeric value was exposed, and test2 payload access was zero.
+The initial D07 failure was an authorization-preflight invocation defect, not
+a registry defect. Commit A supplied the two required frozen public authority
+documents, Commit B independently rejected every attack, D01-D21 passed, and
+one real custody preflight plus one authorization issuance passed.
 
-## Blocker
+## Next-task authority
 
-The controller invoked the real custody preflight exactly once. It stopped
-with `PORTABLE_RECOVERY_BLOCKED_PREFLIGHT`, produced no receipt, made zero
-authorization issuance calls, and did not disclose the failing private
-subcondition. D1 remains unauthorized and unexecuted.
+Consume the exact issued authorization from
+`docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_PORTABLE_PREFLIGHT_R1_AUTHORIZATION.json`.
+Do not recreate or broaden it. D1 is the first real utility execution and must
+use only the authorized test1, label, MAIN registry, supplement registry, and
+COMMON-42 scope.
+
+## Mandatory boundaries
+
+- Keep test2 sealed.
+- Do not change thresholds, rules, policies, or metrics from results.
+- Do not enable D0, D2, detector, fusion, OUTER, or runtime LLM.
+- Preserve immutable trace and result custody.
+- Stop immediately after D1 for
+  `TASK-039E3-R2R-UTILITY-INNER-D1-RESULT-INTEGRITY-AUDIT-V1`.
+- Never print private bindings, paths, or numeric registry values.
 
 ## Read and replay
 
@@ -34,13 +47,7 @@ subcondition. D1 remains unauthorized and unexecuted.
 2. `docs/project_state/START_HERE.md`
 3. `docs/project_state/CURRENT_STATE.json`
 4. this handoff
-5. `TASKS/TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1.md`
-6. the sanitized blocker named above
+5. the next user-issued task specification
+6. the authorization, preflight, bundle, readiness, and receipt committed in
+   Authorization Report Commit C
 7. the R3 independent receipt
-
-## Safe continuation boundary
-
-Do not retry preflight in this coordinator context. Do not expose or inspect
-private paths or numeric values, access test2, issue authorization, or start
-D1. A new explicit task must authorize any diagnostic or recovery action. The
-exact next task is intentionally `NONE` until then.

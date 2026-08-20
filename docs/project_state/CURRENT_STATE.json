@@ -2,23 +2,23 @@
   "artifact_type": "paper_v_20260625_project_current_state",
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
-  "updated_at_utc": "2026-08-20T06:29:45Z",
-  "canonical_head": "b1daa7f915785b66ce07fa0a9c6fa91e9eba4738",
-  "current_branch": "task-039e3-r2r-utility-inner-authorization-portable-private-authority-recovery-v1",
-  "research_phase": "UTILITY_INNER_EXECUTION_AUTHORIZATION_RECOVERY",
-  "latest_completed_task": "TASK-039E3-R2R-UTILITY-EVALUATOR-V1-R3-INDEPENDENT-REAUDIT-AND-COMPLETION",
-  "latest_completed_status": "passed_task039e3_r2r_utility_evaluator_v1_r3_independent_reaudit_and_completion",
+  "updated_at_utc": "2026-08-20T07:16:51Z",
+  "canonical_head": "7df8edf24993bf42401b487c56a188ce7546da91",
+  "current_branch": "task-039e3-r2r-utility-inner-portable-preflight-diagnostic-remediation-r1",
+  "research_phase": "UTILITY_INNER_D1_EXECUTION_READY",
+  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1",
+  "latest_completed_status": "passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1",
   "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1",
-  "latest_blocker": "PORTABLE_RECOVERY_BLOCKED_PREFLIGHT",
+  "latest_blocker": "NONE",
   "active_task": "NONE",
-  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-AUTHORIZATION-PORTABLE-PRIVATE-AUTHORITY-RECOVERY-V1.md",
-  "exact_next_task_on_pass": "NONE",
+  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1.md",
+  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1",
   "state_flags": {
     "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": true,
     "UTILITY_EVALUATOR_V1_FULL_INDEPENDENT_AUDIT_COMPLETED": true,
     "UTILITY_INNER_EXECUTION_AUTHORIZATION_READY": true,
-    "UTILITY_INNER_EXECUTION_AUTHORIZED": false,
-    "UTILITY_INNER_D1_EXECUTION_AUTHORIZATION_ISSUED": false,
+    "UTILITY_INNER_EXECUTION_AUTHORIZED": true,
+    "UTILITY_INNER_D1_EXECUTION_AUTHORIZATION_ISSUED": true,
     "UTILITY_INNER_D1_EXECUTED": false,
     "UTILITY_OUTER_EXECUTION_AUTHORIZED": false,
     "REAL_UTILITY_EXECUTION_AUTHORIZED": false
@@ -33,34 +33,28 @@
   "canonical_receipts": {
     "r3_evaluator_independent_receipt": "6f671aff17ea193ebf862af0739ee0bee22634f3f337944c14c90172acde34e0",
     "r3_evaluator_completion_audit": "2992599eed2d2205bd9e2192515dff47168386281da865c511fbadb1bf55a1a7",
-    "historical_authorization_contract_commit": "f95ab2a1969b36b53aba5bb2053844f8724664c1",
-    "historical_authorization_independent_audit_commit": "66a8f2a39ac6cc0365d405ce28a5d04d522ba898",
-    "portable_authorization_contract_commit": "1d7b47daf053ffbcbf69499b55b68ce7c2838e83",
-    "portable_authorization_independent_audit_commit": "da3872530f45fb0093d815c9f50fe08216cc2fda",
-    "portable_recovery_blocker": "22e6f31afca58f77a4c4f403b092e54fda7d7b2442ff5855b48edf8043d7035d",
-    "portable_recovery_blocker_commit": "b1daa7f915785b66ce07fa0a9c6fa91e9eba4738"
+    "diagnostic_remediation_commit_a": "157bc470ba1850093a02b5baee3e5eb446071aea",
+    "independent_audit_commit_b": "bbbcf2fff841a33253b6732dd0cdc6af344d6a6f",
+    "authorization_report_commit_c": "7df8edf24993bf42401b487c56a188ce7546da91",
+    "diagnostic": "1656e6a8754d1cbfcde8cf8472ea948a648f79141ee7e577e07966fc5e6899cf",
+    "root_cause": "653a0da64db57c88d54a318b3fc7df54cb1f201ae9baea67b55f964bb16b3a73",
+    "custody_preflight": "3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129",
+    "inner_d1_authorization": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+    "readiness": "7a587c921f805cbc4b44f9b8f79416e86bf6596fa4aa2df6e9d3cb19b5351038",
+    "bundle": "6ffa905c3a838e0e76bdb002b94adef794d2ea78f74e17b2750bc29b6620e752",
+    "receipt": "080823c300b3afc8b4660cf48dfc55b134ae05d599f1f851322710b20ebc1ab1"
   },
   "portable_private_custody": {
-    "control_revision": "R1_PORTABLE_PRIVATE_CUSTODY",
+    "control_revision": "R2_PORTABLE_PREFLIGHT",
     "locator_policy": "PORTABLE_PRIVATE_LOCATOR_POLICY_V1",
     "locator_policy_hash": "371386b03185a5642e8f6bfd04bc2f39c9e10aa6396dbaf6909d941bda72e6cd",
-    "historical_locator_exact_replay_required": false,
-    "main_recovery_strategy": "DETERMINISTIC_NORMAL_TRAIN1_TRAIN2_REMATERIALIZATION",
-    "supplement_recovery_strategy": "DETERMINISTIC_NORMAL_TRAIN1_TRAIN2_REMATERIALIZATION",
+    "root_cause_class": "CLASS_G_AUTHORIZATION_PREFLIGHT_LOGIC",
+    "root_cause_code": "MAIN_REGISTRY_VALIDATOR_MISSING_FROZEN_PUBLIC_AUTHORITY_INPUTS",
+    "all_diagnostic_stages_pass": true,
     "main_registry_hash_match": true,
-    "main_record_count": 420,
-    "main_reference_set_match": true,
     "supplement_registry_hash_match": true,
-    "supplement_record_count": 6,
-    "supplement_reference_set_match": true
-  },
-  "normal_input_materialization": {
-    "train1_materialized": true,
-    "train1_hash_match": true,
-    "train2_materialized": true,
-    "train2_hash_match": true,
-    "test2_payload_fetches": 0,
-    "test2_file_opens": 0
+    "test1_feature_hash_match": true,
+    "test1_label_hash_match": true
   },
   "local_binding_state": {
     "local_private_binding_layer_configured": true,
@@ -74,29 +68,22 @@
   },
   "authorization_recovery": {
     "real_custody_preflight_calls": 1,
-    "real_custody_preflight_passed": false,
-    "preflight_subcondition": "NOT_DISCLOSED_FAIL_CLOSED",
-    "preflight_retry_performed": false,
-    "authorization_issuance_calls": 0,
-    "authorization_receipt_hash": null,
-    "authorization_hash": null,
-    "blockers": [
-      "PORTABLE_RECOVERY_BLOCKED_PREFLIGHT"
-    ]
+    "real_custody_preflight_passed": true,
+    "authorization_issuance_calls": 1,
+    "authorization_scope": "HAI_23_05_P1_TEST1_COMMON42_D1_RULE_ONLY_INNER_V1",
+    "authorization_hash": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+    "blockers": []
   },
   "scientific_access": {
-    "main_train1_materialization_parses": 1,
-    "main_train2_materialization_parses": 1,
-    "supplement_train1_materialization_parses": 1,
-    "supplement_train2_materialization_parses": 1,
+    "test2_accesses": 0,
     "test1_utility_feature_parses": 0,
     "test1_utility_label_parses": 0,
-    "source_event_derivations_on_test1": 0,
+    "source_event_derivations": 0,
     "attack_event_derivations": 0,
     "rule_executions": 0,
     "metric_computations": 0,
     "detector_executions": 0,
     "real_utility_computations": 0
   },
-  "artifact_hash": "ac36872538d1e1b6b53fea5b6deaaeb6bde22a222cda753a814e54ec652c677e"
+  "artifact_hash": "15628a13d6bf0545962ca4a3e1f157569ea5872b2e69c327dd6b4d56ce300835"
 }

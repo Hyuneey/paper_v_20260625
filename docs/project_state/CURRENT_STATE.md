@@ -3,53 +3,48 @@
 ## Research in one paragraph
 
 This project studies graph-guided agentic construction of verified rules for
-explainable multivariate time-series anomaly detection. The current portfolio
-is COMMON-42 for HAI 23.05 P1, with deterministic verification and LLM-free
-runtime. Rule validity, execution authorization, and label-aware utility remain
-separate authority layers.
+explainable multivariate time-series anomaly detection. COMMON-42 on HAI 23.05
+P1 remains frozen, deterministic, and LLM-free at runtime. Rule validity,
+execution authorization, and label-aware utility remain separate layers.
 
 ## Current completed milestone
 
-Utility Evaluator V1 R3 has a complete independent audit. The bounded portable
-custody control revision and its independent audit are frozen. Exact normal
-train1/train2 inputs reproduced the canonical 420-record MAIN registry and
-6-record source-census supplement without accessing test2.
+The portable INNER preflight failure was localized and closed. The exact MAIN
+and supplement registries and both test1 assets passed custody preflight. One
+typed authorization was issued for D1 Rule-only INNER test1 under control
+revision `R2_PORTABLE_PREFLIGHT`.
 
-## Current active task
+## Root cause
 
-None. The portable recovery stopped after its single permitted real custody
-preflight failed closed and before authorization issuance.
-
-## Latest blocker
-
-`PORTABLE_RECOVERY_BLOCKED_PREFLIGHT`. The exact failing custody subcondition
-is intentionally not disclosed. This is an operational custody-preflight
-blocker; it does not invalidate the evaluator, portable contract, frozen data,
-or exact registry rematerializations.
+`CLASS_G_AUTHORIZATION_PREFLIGHT_LOGIC`: the authorization preflight invoked a
+two-input canonical MAIN authority builder without its frozen public inputs.
+The registry itself was exact. The bounded repair supplies those two committed,
+self-hashed public documents; no scientific authority or formula changed.
 
 ## Authorization boundary
 
-Authorized now: public continuity maintenance and retention of the exact
-private local custody assets.
+Authorized: the next task may consume the exact committed authorization
+`deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`
+for COMMON-42 D1 Rule-only INNER test1.
 
-Not authorized: D1, D0, D2, detector, fusion, test2/OUTER, recalibration, rule
-regeneration, metric changes, runtime LLM, or scientific utility generation.
-No authorization receipt or typed execution grant was issued.
+Not authorized: D0, D2, detector, fusion, test2/OUTER, recalibration, rule
+regeneration, metric modification, runtime LLM, or any alternate scope.
 
 ## Exact next task
 
-`NONE`. The failed preflight must not be retried in this coordinator context.
-A new explicit diagnostic or recovery authority is required.
+`TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1`. It must consume—not recreate—
+the issued authorization, keep test2 sealed, execute D1 once, then stop for a
+separate result-integrity audit.
 
 ## Canonical evidence
 
-- Portable Contract Commit A: `1d7b47daf053ffbcbf69499b55b68ce7c2838e83`
-- Portable Independent Audit Commit B: `da3872530f45fb0093d815c9f50fe08216cc2fda`
-- Sanitized blocker: `docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_PORTABLE_CUSTODY_V1_BLOCKER.json`
-- R3 independent receipt: `docs/task_reports/TASK-039E3_R2R_UTILITY_EVALUATOR_V1_R3_INDEPENDENT_RECEIPT.json`
+- Authorization report commit: `7df8edf24993bf42401b487c56a188ce7546da91`
+- Custody preflight: `3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129`
+- Authorization: `deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`
+- Final receipt: `080823c300b3afc8b4660cf48dfc55b134ae05d599f1f851322710b20ebc1ab1`
 
 ## No-claim boundary
 
-Real utility has not executed. No real Attack-event recall, normal FAR,
-D0/D1/D2 comparison, or detector result exists. No INNER authorization has
-been issued.
+D1 has not executed. No real Attack-event recall, normal FAR, D0/D1/D2
+comparison, or detector result exists. `REAL_UTILITY_EXECUTION_AUTHORIZED`
+remains false in the frozen evaluator.

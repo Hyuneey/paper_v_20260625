@@ -27,7 +27,7 @@ isolation authority only; the two are not an interchangeable 426-record set.
 
 ## Portable private custody control
 
-- Control revision: `R1_PORTABLE_PRIVATE_CUSTODY`.
+- Control revision: `R2_PORTABLE_PREFLIGHT`.
 - Locator policy: `PORTABLE_PRIVATE_LOCATOR_POLICY_V1`.
 - Locator policy hash: `371386b03185a5642e8f6bfd04bc2f39c9e10aa6396dbaf6909d941bda72e6cd`.
 - MAIN recovery strategy:
@@ -40,6 +40,14 @@ locator self-hashes are machine-specific custody metadata; historical locator
 hashes remain provenance evidence only. Every fresh locator must still be
 canonical, self-hashed, outside Git, non-symlinked, and bound to the exact
 validated registry and materialization authority.
+
+The bounded R2 remediation supplies the frozen executable-equivalence and
+construction-evidence documents explicitly to the unchanged canonical MAIN
+registry validator. Its issued INNER D1 authorization is
+`deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834`,
+bound to custody preflight
+`3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129`.
+This grants D1 Rule-only INNER test1 only; it grants no scientific result.
 
 ## INNER data authority
 

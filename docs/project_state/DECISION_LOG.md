@@ -168,3 +168,24 @@ Append new entries; never rewrite historical decisions.
 - Canonical evidence: Portable Contract Commit A
   `1d7b47daf053ffbcbf69499b55b68ce7c2838e83` and Portable Independent Audit
   Commit B `da3872530f45fb0093d815c9f50fe08216cc2fda`.
+
+## DEC-CUSTODY-002
+
+- Date: 2026-08-20
+- Status: active
+- Decision: A runtime registry validator whose canonical authority builder
+  requires frozen public construction documents must receive those exact
+  documents explicitly. Missing builder arguments are an orchestration defect,
+  not evidence that an exact registry is invalid.
+- Rationale: The canonical MAIN registry artifact and self-hash were exact and
+  the unchanged validator accepted it when supplied the frozen executable-
+  equivalence and construction-evidence inputs.
+- Consequence: Portable preflight control revision `R2_PORTABLE_PREFLIGHT`
+  replays those two public inputs before registry validation. It does not add
+  defaults, weaken registry validation, or alter any numeric authority.
+- Supersedes / Superseded by: zero-argument MAIN authority builder invocation
+  in portable preflight / none.
+- Canonical evidence: Diagnostic/Remediation Commit A
+  `157bc470ba1850093a02b5baee3e5eb446071aea`, Independent Audit Commit B
+  `bbbcf2fff841a33253b6732dd0cdc6af344d6a6f`, and root-cause artifact
+  `653a0da64db57c88d54a318b3fc7df54cb1f201ae9baea67b55f964bb16b3a73`.
