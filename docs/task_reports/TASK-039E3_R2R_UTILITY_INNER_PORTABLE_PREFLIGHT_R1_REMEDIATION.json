@@ -1,0 +1,27 @@
+{
+  "artifact_hash": "60685713bde5400ce414647cde761da9e60423622d8f195381352d90c275d47a",
+  "artifact_type": "task039e3_r2r_utility_inner_portable_preflight_r1_remediation",
+  "authorization_control_revision": "R2_PORTABLE_PREFLIGHT",
+  "commit_a": "157bc470ba1850093a02b5baee3e5eb446071aea",
+  "created_at_utc": "2026-08-20T07:11:49Z",
+  "current_v4_r1_regression_passed": 149,
+  "diagnostic_tests_passed": 5,
+  "focused_remediation_tests_passed": 5,
+  "formulas_modified": false,
+  "main_authority_module_modified": false,
+  "modified_production_modules": [
+    "src/paperworks/v6/task039e3_r2r_utility_inner_execution_authorization_v1.py"
+  ],
+  "production_remediation_required": true,
+  "r3_evaluator_modified": false,
+  "remediation": "Supply the exact frozen executable-equivalence and construction-evidence documents to the unchanged canonical MAIN authority builder before validating the registry.",
+  "root_cause_hash": "653a0da64db57c88d54a318b3fc7df54cb1f201ae9baea67b55f964bb16b3a73",
+  "schema_version": "1.0.0",
+  "scientific_authorization_version_changed": false,
+  "scientific_scope_changed": false,
+  "status": "passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1",
+  "superseded_v4_oracle_baseline_unchanged": true,
+  "supplement_authority_module_modified": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1",
+  "v4_module_modified": false
+}

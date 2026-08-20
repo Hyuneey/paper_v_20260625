@@ -1,0 +1,147 @@
+{
+  "artifact_hash": "1656e6a8754d1cbfcde8cf8472ea948a648f79141ee7e577e07966fc5e6899cf",
+  "artifact_type": "task039e3_r2r_utility_inner_portable_preflight_r1_diagnostic",
+  "base_commit": "ad045dcc1c84f018522baf20ab23ba66ff1fe9ce",
+  "created_at_utc": "2026-08-20T07:11:49Z",
+  "initial_diagnostic": [
+    {
+      "stage": "D01_ENV_BINDINGS",
+      "status": "PASS"
+    },
+    {
+      "stage": "D02_MAIN_REGISTRY_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D03_MAIN_LOCATOR_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D04_MAIN_MATERIALIZATION_AUTHORITY",
+      "status": "PASS"
+    },
+    {
+      "stage": "D05_MAIN_LOCATOR_SCHEMA",
+      "status": "PASS"
+    },
+    {
+      "stage": "D06_MAIN_LOCATOR_REGISTRY_BINDING",
+      "status": "PASS"
+    },
+    {
+      "stage": "D07_MAIN_REGISTRY_DOCUMENT",
+      "status": "BLOCK"
+    }
+  ],
+  "initial_terminal_stage": "D07_MAIN_REGISTRY_DOCUMENT",
+  "initial_unrun_stages": [
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12",
+    "D13",
+    "D14",
+    "D15",
+    "D16",
+    "D17",
+    "D18",
+    "D19",
+    "D20",
+    "D21"
+  ],
+  "post_remediation_diagnostic": [
+    {
+      "stage": "D01_ENV_BINDINGS",
+      "status": "PASS"
+    },
+    {
+      "stage": "D02_MAIN_REGISTRY_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D03_MAIN_LOCATOR_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D04_MAIN_MATERIALIZATION_AUTHORITY",
+      "status": "PASS"
+    },
+    {
+      "stage": "D05_MAIN_LOCATOR_SCHEMA",
+      "status": "PASS"
+    },
+    {
+      "stage": "D06_MAIN_LOCATOR_REGISTRY_BINDING",
+      "status": "PASS"
+    },
+    {
+      "stage": "D07_MAIN_REGISTRY_DOCUMENT",
+      "status": "PASS"
+    },
+    {
+      "stage": "D08_MAIN_REGISTRY_CANONICAL_HASH",
+      "status": "PASS"
+    },
+    {
+      "stage": "D09_SUPPLEMENT_REGISTRY_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D10_SUPPLEMENT_LOCATOR_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D11_SUPPLEMENT_MATERIALIZATION_AUTHORITY",
+      "status": "PASS"
+    },
+    {
+      "stage": "D12_SUPPLEMENT_LOCATOR_SCHEMA",
+      "status": "PASS"
+    },
+    {
+      "stage": "D13_SUPPLEMENT_LOCATOR_REGISTRY_BINDING",
+      "status": "PASS"
+    },
+    {
+      "stage": "D14_SUPPLEMENT_REGISTRY_DOCUMENT",
+      "status": "PASS"
+    },
+    {
+      "stage": "D15_SUPPLEMENT_REGISTRY_CANONICAL_HASH",
+      "status": "PASS"
+    },
+    {
+      "stage": "D16_HAI_ROOT",
+      "status": "PASS"
+    },
+    {
+      "stage": "D17_TEST1_FEATURE_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D18_TEST1_FEATURE_HASH",
+      "status": "PASS"
+    },
+    {
+      "stage": "D19_TEST1_LABEL_FILE",
+      "status": "PASS"
+    },
+    {
+      "stage": "D20_TEST1_LABEL_HASH",
+      "status": "PASS"
+    },
+    {
+      "stage": "D21_FULL_PREFLIGHT_REPLAY",
+      "status": "PASS"
+    }
+  ],
+  "post_remediation_terminal_stage": "ALL_DIAGNOSTIC_STAGES_PASS",
+  "private_numeric_values_exposed": 0,
+  "private_paths_exposed": 0,
+  "production_preflight_calls_during_diagnostic": 0,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1",
+  "test2_accesses": 0
+}

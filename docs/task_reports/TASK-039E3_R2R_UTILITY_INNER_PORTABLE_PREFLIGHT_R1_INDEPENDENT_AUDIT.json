@@ -1,0 +1,18 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "78aa5d107eba99ddf349e647f0d41bc9186169c709b3799892e986e97f4945e4",
+  "artifact_type": "task039e3_r2r_utility_inner_portable_preflight_r1_independent_audit",
+  "commit_a": "157bc470ba1850093a02b5baee3e5eb446071aea",
+  "commit_b": "bbbcf2fff841a33253b6732dd0cdc6af344d6a6f",
+  "created_at_utc": "2026-08-20T07:11:49Z",
+  "existing_authorization_invalid_attacks_rejected": 121,
+  "existing_portable_invalid_attacks_rejected": 44,
+  "independent_invalid_attacks_rejected": 24,
+  "independent_tests_passed": 5,
+  "private_access": false,
+  "production_modified_after_commit_a": false,
+  "remediation_hash": "60685713bde5400ce414647cde761da9e60423622d8f195381352d90c275d47a",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1"
+}

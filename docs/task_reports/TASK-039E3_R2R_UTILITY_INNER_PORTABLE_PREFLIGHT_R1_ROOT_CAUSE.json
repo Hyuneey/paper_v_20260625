@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "653a0da64db57c88d54a318b3fc7df54cb1f201ae9baea67b55f964bb16b3a73",
+  "artifact_type": "task039e3_r2r_utility_inner_portable_preflight_r1_root_cause",
+  "created_at_utc": "2026-08-20T07:11:49Z",
+  "diagnostic_hash": "1656e6a8754d1cbfcde8cf8472ea948a648f79141ee7e577e07966fc5e6899cf",
+  "first_failing_stage": "D07_MAIN_REGISTRY_DOCUMENT",
+  "locator_change_required": false,
+  "main_registry_artifact_hash_match": true,
+  "main_registry_canonical_validation_with_required_public_inputs": true,
+  "main_registry_self_hash_match": true,
+  "registry_numeric_change_required": false,
+  "root_cause_class": "CLASS_G_AUTHORIZATION_PREFLIGHT_LOGIC",
+  "root_cause_code": "MAIN_REGISTRY_VALIDATOR_MISSING_FROZEN_PUBLIC_AUTHORITY_INPUTS",
+  "schema_version": "1.0.0",
+  "scientific_authority_mismatch": false,
+  "status": "passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1",
+  "summary": "The authorization preflight invoked a two-input canonical MAIN authority builder with zero inputs before registry validation.",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1"
+}

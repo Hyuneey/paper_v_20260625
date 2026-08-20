@@ -1,0 +1,37 @@
+{
+  "access_counters": {
+    "attack_event_derivations": 0,
+    "detector_executions": 0,
+    "metric_computations": 0,
+    "private_numeric_values_exposed": 0,
+    "private_paths_exposed": 0,
+    "real_utility_computations": 0,
+    "rule_executions": 0,
+    "source_event_derivations": 0,
+    "test1_utility_feature_parses": 0,
+    "test1_utility_label_parses": 0,
+    "test2_accesses": 0
+  },
+  "artifact_hash": "080823c300b3afc8b4660cf48dfc55b134ae05d599f1f851322710b20ebc1ab1",
+  "artifact_type": "task039e3_r2r_utility_inner_portable_preflight_r1_receipt",
+  "authorization_hash": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+  "authorization_scope": "HAI_23_05_P1_TEST1_COMMON42_D1_RULE_ONLY_INNER_V1",
+  "base_commit": "ad045dcc1c84f018522baf20ab23ba66ff1fe9ce",
+  "blockers": [],
+  "bundle_hash": "6ffa905c3a838e0e76bdb002b94adef794d2ea78f74e17b2750bc29b6620e752",
+  "created_at_utc": "2026-08-20T07:11:49Z",
+  "custody_preflight_hash": "3acff12cb2135b86539720e792d6e01075808ea84b6939b06909d397b1b43129",
+  "diagnostic_remediation_commit_a": "157bc470ba1850093a02b5baee3e5eb446071aea",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D1-EXECUTION-V1",
+  "independent_audit_commit_b": "bbbcf2fff841a33253b6732dd0cdc6af344d6a6f",
+  "readiness_hash": "7a587c921f805cbc4b44f9b8f79416e86bf6596fa4aa2df6e9d3cb19b5351038",
+  "schema_version": "1.0.0",
+  "state_flags": {
+    "REAL_UTILITY_EXECUTION_AUTHORIZED": false,
+    "UTILITY_INNER_D1_EXECUTED": false,
+    "UTILITY_INNER_D1_EXECUTION_AUTHORIZATION_ISSUED": true,
+    "UTILITY_INNER_EXECUTION_AUTHORIZED": true
+  },
+  "status": "passed_task039e3_r2r_utility_inner_portable_preflight_failure_localization_and_bounded_remediation_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-PORTABLE-PREFLIGHT-FAILURE-LOCALIZATION-AND-BOUNDED-REMEDIATION-R1"
+}
