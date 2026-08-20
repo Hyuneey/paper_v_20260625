@@ -59,6 +59,14 @@ class TestInnerExecutionAuthorizationV1(unittest.TestCase):
         )
         self.assertEqual(observed, self.authorization.authorization_hash)
         self.assertEqual(self.authorization.authorization_scope, subject.AUTHORIZATION_SCOPE)
+        self.assertEqual(
+            self.authorization.inner_authorization_control_revision,
+            subject.INNER_AUTHORIZATION_CONTROL_REVISION,
+        )
+        self.assertEqual(
+            self.authorization.portable_private_locator_policy_hash,
+            subject.PORTABLE_PRIVATE_LOCATOR_POLICY_HASH,
+        )
         self.assertEqual(self.authorization.experiment_arm, "D1")
         self.assertEqual(self.authorization.feature_filename, "hai-test1.csv")
         self.assertEqual(self.authorization.label_filename, "label-test1.csv")
@@ -76,6 +84,12 @@ class TestInnerExecutionAuthorizationV1(unittest.TestCase):
         self.assertEqual(self.receipt.test1_label_hash_passes, 0)
         self.assertFalse(self.receipt.test2_touched)
         self.assertFalse(self.receipt.scientific_parsing_performed)
+        self.assertTrue(self.receipt.main_locator_schema_valid)
+        self.assertTrue(self.receipt.main_locator_local_only)
+        self.assertTrue(self.receipt.main_locator_registry_binding_match)
+        self.assertTrue(self.receipt.supplement_locator_schema_valid)
+        self.assertTrue(self.receipt.supplement_locator_local_only)
+        self.assertTrue(self.receipt.supplement_locator_registry_binding_match)
 
     def test_real_validation_rejects_synthetic_contract(self) -> None:
         with self.assertRaises(subject.InnerExecutionAuthorizationV1Error):

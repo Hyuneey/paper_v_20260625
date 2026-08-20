@@ -234,6 +234,8 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
         wrong = "0" * 64
         mutations: tuple[tuple[str, dict[str, object]], ...] = (
             ("scope", {"authorization_scope": "HAI_23_05_P1_TEST2"}),
+            ("control_revision", {"inner_authorization_control_revision": "R0"}),
+            ("portable_policy", {"portable_private_locator_policy_hash": wrong}),
             ("test2_feature", {"feature_filename": "hai-test2.csv"}),
             ("test2_label", {"label_filename": "label-test2.csv"}),
             ("test2_authority", {"test2_authorized": True}),
@@ -277,7 +279,14 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
                 "main_registry",
                 {"main_private_registry_expected_hash": wrong},
             ),
-            ("main_locator", {"main_locator_expected_hash": wrong}),
+            (
+                "main_materialization_authorization",
+                {"main_materialization_authorization_hash": wrong},
+            ),
+            (
+                "main_historical_locator",
+                {"main_historical_materialization_locator_hash": wrong},
+            ),
             (
                 "supplement_version",
                 {"supplement_authority_version": "UNFROZEN"},
@@ -295,7 +304,14 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
                 "supplement_registry",
                 {"supplement_private_registry_expected_hash": wrong},
             ),
-            ("supplement_locator", {"supplement_locator_expected_hash": wrong}),
+            (
+                "supplement_materialization_authorization",
+                {"supplement_materialization_authorization_hash": wrong},
+            ),
+            (
+                "supplement_historical_locator",
+                {"supplement_historical_materialization_locator_hash": wrong},
+            ),
             (
                 "combined_census",
                 {"combined_source_census_contract_hash": wrong},
@@ -344,7 +360,7 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
                 )
                 if not self._authorization_is_rejected(candidate):
                     accepted.append(name)
-        self.assertEqual(len(mutations), 60)
+        self.assertEqual(len(mutations), 64)
         self.assertEqual(accepted, [], "accepted invalid authorization substitutions")
 
     def test_reconstructed_replaced_and_deepcopied_authorizations_rejected(self) -> None:
@@ -382,25 +398,57 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
         wrong = "0" * 64
         mutations: tuple[tuple[str, dict[str, object]], ...] = (
             ("scope", {"authorization_scope": "TEST2"}),
+            ("control_revision", {"inner_authorization_control_revision": "R0"}),
             ("mode", {"custody_mode": subject.REAL_CUSTODY_PREFLIGHT}),
+            ("portable_policy", {"portable_private_locator_policy_hash": wrong}),
             ("identity", {"sanitized_custody_identity": wrong}),
-            ("main_locator_expected", {"main_locator_expected_hash": wrong}),
-            ("main_locator_observed", {"main_locator_observed_hash": wrong}),
-            ("main_locator_match", {"main_locator_hash_match": False}),
+            (
+                "main_historical_locator",
+                {"main_historical_materialization_locator_hash": wrong},
+            ),
+            (
+                "main_materialization_authorization",
+                {"main_materialization_authorization_hash": wrong},
+            ),
+            ("main_locator_schema", {"main_locator_schema_valid": False}),
+            ("main_locator_local", {"main_locator_local_only": False}),
+            (
+                "main_locator_registry_binding",
+                {"main_locator_registry_binding_match": False},
+            ),
+            (
+                "main_locator_materialization_authority",
+                {"main_locator_materialization_authority_match": False},
+            ),
             ("main_registry_expected", {"main_registry_expected_hash": wrong}),
             ("main_registry_observed", {"main_registry_observed_hash": wrong}),
-            ("main_registry_match", {"main_registry_hash_match": False}),
             (
-                "supplement_locator_expected",
-                {"supplement_locator_expected_hash": wrong},
+                "main_registry_match",
+                {"main_registry_content_hash_match": False},
             ),
             (
-                "supplement_locator_observed",
-                {"supplement_locator_observed_hash": wrong},
+                "supplement_historical_locator",
+                {"supplement_historical_materialization_locator_hash": wrong},
             ),
             (
-                "supplement_locator_match",
-                {"supplement_locator_hash_match": False},
+                "supplement_materialization_authorization",
+                {"supplement_materialization_authorization_hash": wrong},
+            ),
+            (
+                "supplement_locator_schema",
+                {"supplement_locator_schema_valid": False},
+            ),
+            (
+                "supplement_locator_local",
+                {"supplement_locator_local_only": False},
+            ),
+            (
+                "supplement_locator_registry_binding",
+                {"supplement_locator_registry_binding_match": False},
+            ),
+            (
+                "supplement_locator_materialization_authority",
+                {"supplement_locator_materialization_authority_match": False},
             ),
             (
                 "supplement_registry_expected",
@@ -412,7 +460,7 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
             ),
             (
                 "supplement_registry_match",
-                {"supplement_registry_hash_match": False},
+                {"supplement_registry_content_hash_match": False},
             ),
             ("feature_expected", {"test1_feature_expected_hash": wrong}),
             ("feature_observed", {"test1_feature_observed_hash": wrong}),
@@ -450,7 +498,7 @@ class InnerExecutionAuthorizationV1IndependentAudit(unittest.TestCase):
                 candidate = _rehash_receipt(replace(self.receipt, **changes))
                 if not self._receipt_is_rejected(candidate):
                     accepted.append(name)
-        self.assertEqual(len(mutations), 38)
+        self.assertEqual(len(mutations), 46)
         self.assertEqual(accepted, [], "accepted forged custody receipt")
 
     def test_reconstructed_replaced_deepcopied_and_swapped_receipts_rejected(self) -> None:

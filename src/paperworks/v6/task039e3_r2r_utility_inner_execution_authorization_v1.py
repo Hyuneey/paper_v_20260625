@@ -26,6 +26,7 @@ from paperworks.v6 import task039e3_r2r_utility_source_census_supplement_v1 as s
 
 TASK_ID = "TASK-039E3-R2R-UTILITY-INNER-EXECUTION-AUTHORIZATION-V1"
 AUTHORIZATION_VERSION = "TASK039E3_R2R_UTILITY_INNER_EXECUTION_AUTHORIZATION_V1"
+INNER_AUTHORIZATION_CONTROL_REVISION = "R1_PORTABLE_PRIVATE_CUSTODY"
 AUTHORIZATION_SCOPE = "HAI_23_05_P1_TEST1_COMMON42_D1_RULE_ONLY_INNER_V1"
 PASS_STATUS = "passed_task039e3_r2r_utility_inner_execution_authorization_v1"
 BLOCK_STATUS = "blocked_task039e3_r2r_utility_inner_execution_authorization_v1"
@@ -55,7 +56,14 @@ MAIN_DESCRIPTOR_HASH = "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b327
 MAIN_REFERENCE_SET_HASH = "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae"
 MAIN_REFERENCE_COUNT = 420
 MAIN_PRIVATE_REGISTRY_HASH = "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0"
-MAIN_LOCATOR_HASH = "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4"
+MAIN_MATERIALIZATION_AUTHORIZATION_HASH = (
+    "dad4d6c39d5f317bed41fe3f780d4bb20bd7b33aea047b9a166614ac4acf42b9"
+)
+MAIN_HISTORICAL_MATERIALIZATION_LOCATOR_HASH = (
+    "b5588c04d08d88d4ee2a2d319708e62d10bc04330baeb7591876f076270e4ac4"
+)
+# Historical evidence only.  Never use this alias as a current-machine gate.
+MAIN_LOCATOR_HASH = MAIN_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
 MAIN_MATERIALIZED_AUDIT_RECEIPT_HASH = "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1"
 
 SUPPLEMENT_AUTHORITY_VERSION = "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1"
@@ -64,7 +72,14 @@ SUPPLEMENT_DESCRIPTOR_HASH = "d45af926511c669ec04dd13c36823d454b67ccaa98ae0a7be2
 SUPPLEMENT_REFERENCE_SET_HASH = "5139cae6e454318f0ca4317f3f5eaa5f775bd4f75261c4110ea610815929b580"
 SUPPLEMENT_REFERENCE_COUNT = 6
 SUPPLEMENT_PRIVATE_REGISTRY_HASH = "12ec7f50a953e097cd7cbe3ac93c7cabfb669130612d7f30ab3b19df85289aaf"
-SUPPLEMENT_LOCATOR_HASH = "8c11872dca6a0c8b2544c2988dd57c969ddc036f51b04578d936fdc3a60757ac"
+SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH = (
+    "232535401e4649a639bb614a922fb6fc0c6c3fde66856ba708d99dd019958cfa"
+)
+SUPPLEMENT_HISTORICAL_MATERIALIZATION_LOCATOR_HASH = (
+    "8c11872dca6a0c8b2544c2988dd57c969ddc036f51b04578d936fdc3a60757ac"
+)
+# Historical evidence only.  Never use this alias as a current-machine gate.
+SUPPLEMENT_LOCATOR_HASH = SUPPLEMENT_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
 
 COMBINED_SOURCE_CENSUS_CONTRACT_HASH = "cb53d0e4533ebadb61edbdc72b549fe47b46c8dcc4621841aac93a007660ced9"
 SOURCE_CENSUS_EVENT_POLICY_HASH = "3fb20068feff44632be3e4e6917183d52fea5616feec68ede5e9b62f95ecb390"
@@ -90,6 +105,31 @@ MAIN_REGISTRY_ENV = main_authority.PRIVATE_LOCATOR_ENV
 SUPPLEMENT_REGISTRY_ENV = supplement.PRIVATE_AUTHORITY_ENV
 MAIN_LOCATOR_ENV = "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1_LOCATOR"
 SUPPLEMENT_LOCATOR_ENV = "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1_LOCATOR"
+
+PORTABLE_PRIVATE_LOCATOR_POLICY_VERSION = "PORTABLE_PRIVATE_LOCATOR_POLICY_V1"
+PORTABLE_PRIVATE_LOCATOR_POLICY = {
+    "policy_version": PORTABLE_PRIVATE_LOCATOR_POLICY_VERSION,
+    "registry_content_hash_is_portable_scientific_authority": True,
+    "locator_schema_and_self_hash_required": True,
+    "locator_local_only_required": True,
+    "locator_outside_repository_required": True,
+    "locator_regular_non_symlink_required": True,
+    "locator_exact_registry_target_required": True,
+    "locator_expected_registry_hash_binding_required": True,
+    "locator_materialization_authority_binding_required": True,
+    "historical_locator_self_hash_is_current_acceptance_criterion": False,
+    "current_private_path_public": False,
+    "current_locator_self_hash_public_required": False,
+}
+PORTABLE_PRIVATE_LOCATOR_POLICY_HASH = stable_hash_v1(
+    PORTABLE_PRIVATE_LOCATOR_POLICY
+)
+
+_SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_RELATIVE_PATH = (
+    "docs/task_reports/"
+    "TASK-039E3_R2R_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1_"
+    "MATERIALIZATION_AUTHORIZATION.json"
+)
 
 _AUDIT_FILES = {
     "completion": (
@@ -212,21 +252,29 @@ def replay_required_evaluator_audit_authority_v1() -> EvaluatorAuditReplayV1:
 @dataclass(frozen=True)
 class InnerExecutionCustodyPreflightReceiptV1:
     authorization_version: str
+    inner_authorization_control_revision: str
     authorization_scope: str
     custody_mode: str
+    portable_private_locator_policy_hash: str
     sanitized_custody_identity: str
-    main_locator_expected_hash: str
-    main_locator_observed_hash: str
-    main_locator_hash_match: bool
+    main_historical_materialization_locator_hash: str
+    main_materialization_authorization_hash: str
+    main_locator_schema_valid: bool
+    main_locator_local_only: bool
+    main_locator_registry_binding_match: bool
+    main_locator_materialization_authority_match: bool
     main_registry_expected_hash: str
     main_registry_observed_hash: str
-    main_registry_hash_match: bool
-    supplement_locator_expected_hash: str
-    supplement_locator_observed_hash: str
-    supplement_locator_hash_match: bool
+    main_registry_content_hash_match: bool
+    supplement_historical_materialization_locator_hash: str
+    supplement_materialization_authorization_hash: str
+    supplement_locator_schema_valid: bool
+    supplement_locator_local_only: bool
+    supplement_locator_registry_binding_match: bool
+    supplement_locator_materialization_authority_match: bool
     supplement_registry_expected_hash: str
     supplement_registry_observed_hash: str
-    supplement_registry_hash_match: bool
+    supplement_registry_content_hash_match: bool
     test1_feature_expected_hash: str
     test1_feature_observed_hash: str
     test1_feature_hash_match: bool
@@ -264,7 +312,14 @@ class InnerExecutionCustodyPreflightReceiptV1:
 
 
 _ISSUED_PREFLIGHT_RECEIPTS: dict[
-    int, tuple[weakref.ReferenceType[InnerExecutionCustodyPreflightReceiptV1], str, str, str]
+    int,
+    tuple[
+        weakref.ReferenceType[InnerExecutionCustodyPreflightReceiptV1],
+        str,
+        str,
+        str,
+        str,
+    ],
 ] = {}
 
 
@@ -284,6 +339,7 @@ def _issue_preflight_receipt_v1(
         receipt.custody_preflight_hash,
         receipt.custody_mode,
         receipt.sanitized_custody_identity,
+        receipt.portable_private_locator_policy_hash,
     )
     return receipt
 
@@ -295,58 +351,93 @@ def _build_preflight_receipt_v1(*, custody_mode: str) -> InnerExecutionCustodyPr
     read_count = 1 if real else 0
     sanitized_identity = stable_hash_v1(
         {
-            "artifact_type": "task039e3_r2r_utility_inner_sanitized_custody_identity_v1",
+            "artifact_type": (
+                "task039e3_r2r_utility_inner_portable_sanitized_custody_identity_v1"
+            ),
+            "authorization_version": AUTHORIZATION_VERSION,
+            "inner_authorization_control_revision": (
+                INNER_AUTHORIZATION_CONTROL_REVISION
+            ),
             "authorization_scope": AUTHORIZATION_SCOPE,
-            "main_locator": MAIN_LOCATOR_HASH,
-            "main_registry": MAIN_PRIVATE_REGISTRY_HASH,
-            "supplement_locator": SUPPLEMENT_LOCATOR_HASH,
-            "supplement_registry": SUPPLEMENT_PRIVATE_REGISTRY_HASH,
+            "portable_private_locator_policy_hash": (
+                PORTABLE_PRIVATE_LOCATOR_POLICY_HASH
+            ),
+            "main_authority_version": MAIN_AUTHORITY_VERSION,
+            "main_private_registry_expected_hash": MAIN_PRIVATE_REGISTRY_HASH,
+            "main_materialization_authorization_hash": (
+                MAIN_MATERIALIZATION_AUTHORIZATION_HASH
+            ),
+            "supplement_authority_version": SUPPLEMENT_AUTHORITY_VERSION,
+            "supplement_private_registry_expected_hash": (
+                SUPPLEMENT_PRIVATE_REGISTRY_HASH
+            ),
+            "supplement_materialization_authorization_hash": (
+                SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH
+            ),
+            "dataset_manifest_id": DATASET_MANIFEST_ID,
+            "inner_split_id": INNER_SPLIT_ID,
             "test1_feature": TEST1_FEATURE_SHA256,
             "test1_label": TEST1_LABEL_SHA256,
             "test2_touched": False,
         }
     )
     provisional = InnerExecutionCustodyPreflightReceiptV1(
-        AUTHORIZATION_VERSION,
-        AUTHORIZATION_SCOPE,
-        custody_mode,
-        sanitized_identity,
-        MAIN_LOCATOR_HASH,
-        MAIN_LOCATOR_HASH,
-        True,
-        MAIN_PRIVATE_REGISTRY_HASH,
-        MAIN_PRIVATE_REGISTRY_HASH,
-        True,
-        SUPPLEMENT_LOCATOR_HASH,
-        SUPPLEMENT_LOCATOR_HASH,
-        True,
-        SUPPLEMENT_PRIVATE_REGISTRY_HASH,
-        SUPPLEMENT_PRIVATE_REGISTRY_HASH,
-        True,
-        TEST1_FEATURE_SHA256,
-        TEST1_FEATURE_SHA256,
-        True,
-        TEST1_LABEL_SHA256,
-        TEST1_LABEL_SHA256,
-        True,
-        read_count,
-        read_count,
-        read_count,
-        read_count,
-        read_count,
-        read_count,
-        False,
-        False,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        "",
+        authorization_version=AUTHORIZATION_VERSION,
+        inner_authorization_control_revision=INNER_AUTHORIZATION_CONTROL_REVISION,
+        authorization_scope=AUTHORIZATION_SCOPE,
+        custody_mode=custody_mode,
+        portable_private_locator_policy_hash=PORTABLE_PRIVATE_LOCATOR_POLICY_HASH,
+        sanitized_custody_identity=sanitized_identity,
+        main_historical_materialization_locator_hash=(
+            MAIN_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
+        ),
+        main_materialization_authorization_hash=(
+            MAIN_MATERIALIZATION_AUTHORIZATION_HASH
+        ),
+        main_locator_schema_valid=True,
+        main_locator_local_only=True,
+        main_locator_registry_binding_match=True,
+        main_locator_materialization_authority_match=True,
+        main_registry_expected_hash=MAIN_PRIVATE_REGISTRY_HASH,
+        main_registry_observed_hash=MAIN_PRIVATE_REGISTRY_HASH,
+        main_registry_content_hash_match=True,
+        supplement_historical_materialization_locator_hash=(
+            SUPPLEMENT_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
+        ),
+        supplement_materialization_authorization_hash=(
+            SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH
+        ),
+        supplement_locator_schema_valid=True,
+        supplement_locator_local_only=True,
+        supplement_locator_registry_binding_match=True,
+        supplement_locator_materialization_authority_match=True,
+        supplement_registry_expected_hash=SUPPLEMENT_PRIVATE_REGISTRY_HASH,
+        supplement_registry_observed_hash=SUPPLEMENT_PRIVATE_REGISTRY_HASH,
+        supplement_registry_content_hash_match=True,
+        test1_feature_expected_hash=TEST1_FEATURE_SHA256,
+        test1_feature_observed_hash=TEST1_FEATURE_SHA256,
+        test1_feature_hash_match=True,
+        test1_label_expected_hash=TEST1_LABEL_SHA256,
+        test1_label_observed_hash=TEST1_LABEL_SHA256,
+        test1_label_hash_match=True,
+        main_locator_reads=read_count,
+        main_registry_custody_validations=read_count,
+        supplement_locator_reads=read_count,
+        supplement_registry_custody_validations=read_count,
+        test1_feature_hash_passes=read_count,
+        test1_label_hash_passes=read_count,
+        test2_touched=False,
+        scientific_parsing_performed=False,
+        scientific_feature_parse_count=0,
+        scientific_label_parse_count=0,
+        attack_event_derivation_count=0,
+        rule_execution_count=0,
+        metric_computation_count=0,
+        detector_execution_count=0,
+        real_utility_computations=0,
+        private_numeric_values_exposed=0,
+        private_paths_exposed=0,
+        custody_preflight_hash="",
     )
     return replace(
         provisional,
@@ -377,6 +468,7 @@ def validate_inner_execution_custody_preflight_receipt_v1(
         or issued[1] != receipt.custody_preflight_hash
         or issued[2] != receipt.custody_mode
         or issued[3] != receipt.sanitized_custody_identity
+        or issued[4] != receipt.portable_private_locator_policy_hash
     ):
         raise InnerExecutionAuthorizationV1Error("custody preflight factory issuance differs")
     expected = _build_preflight_receipt_v1(custody_mode=receipt.custody_mode)
@@ -431,6 +523,193 @@ def _json_from_custody_bytes_v1(content: bytes) -> dict[str, Any]:
     return document
 
 
+@dataclass(frozen=True)
+class PortablePrivateLocatorCustodyV1:
+    """Path-free result of validating one current machine's local locator."""
+
+    authority_kind: str
+    authority_version: str
+    portable_private_locator_policy_hash: str
+    historical_materialization_locator_hash: str
+    private_registry_expected_hash: str
+    materialization_authorization_hash: str
+    locator_schema_valid: bool
+    locator_local_only: bool
+    locator_registry_binding_match: bool
+    locator_materialization_authority_match: bool
+    portable_custody_identity: str
+
+
+def _portable_locator_result_v1(authority_kind: str) -> PortablePrivateLocatorCustodyV1:
+    if authority_kind == "MAIN":
+        authority_version = MAIN_AUTHORITY_VERSION
+        historical_locator_hash = MAIN_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
+        registry_hash = MAIN_PRIVATE_REGISTRY_HASH
+        authorization_hash = MAIN_MATERIALIZATION_AUTHORIZATION_HASH
+    elif authority_kind == "SUPPLEMENT":
+        authority_version = SUPPLEMENT_AUTHORITY_VERSION
+        historical_locator_hash = (
+            SUPPLEMENT_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
+        )
+        registry_hash = SUPPLEMENT_PRIVATE_REGISTRY_HASH
+        authorization_hash = SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH
+    else:
+        raise InnerExecutionAuthorizationV1Error("private locator authority kind differs")
+    portable_identity = stable_hash_v1(
+        {
+            "artifact_type": "portable_private_locator_custody_identity_v1",
+            "authorization_scope": AUTHORIZATION_SCOPE,
+            "authority_kind": authority_kind,
+            "authority_version": authority_version,
+            "portable_private_locator_policy_hash": (
+                PORTABLE_PRIVATE_LOCATOR_POLICY_HASH
+            ),
+            "private_registry_expected_hash": registry_hash,
+            "materialization_authorization_hash": authorization_hash,
+            "dataset_manifest_id": DATASET_MANIFEST_ID,
+            "inner_split_id": INNER_SPLIT_ID,
+        }
+    )
+    return PortablePrivateLocatorCustodyV1(
+        authority_kind=authority_kind,
+        authority_version=authority_version,
+        portable_private_locator_policy_hash=PORTABLE_PRIVATE_LOCATOR_POLICY_HASH,
+        historical_materialization_locator_hash=historical_locator_hash,
+        private_registry_expected_hash=registry_hash,
+        materialization_authorization_hash=authorization_hash,
+        locator_schema_valid=True,
+        locator_local_only=True,
+        locator_registry_binding_match=True,
+        locator_materialization_authority_match=True,
+        portable_custody_identity=portable_identity,
+    )
+
+
+def _validate_portable_private_locator_custody_impl_v1(
+    authority_kind: str,
+    *,
+    locator_path: Path,
+    registry_path: Path,
+) -> PortablePrivateLocatorCustodyV1:
+    """Validate current local locator semantics without publishing its hash or path.
+
+    Registry document content is intentionally validated separately by the real
+    preflight.  This function proves that the local pointer itself is canonical,
+    local-only, outside Git, non-symlink, bound to the exact configured registry,
+    and bound to the frozen materialization authority and registry content hash.
+    """
+
+    repository_root = _repository_root_v1().resolve(strict=True)
+    locator = _resolve_regular_file_v1(
+        locator_path,
+        repository_root=repository_root,
+        outside_git=True,
+    )
+    registry = _resolve_regular_file_v1(
+        registry_path,
+        repository_root=repository_root,
+        outside_git=True,
+    )
+    document = _json_from_custody_bytes_v1(_read_bytes_once_v1(locator))
+    if authority_kind == "MAIN":
+        execution_authorization = (
+            main_authority.load_committed_materialization_execution_authorization_r1(
+                repository_root
+            )
+        )
+        if (
+            execution_authorization.authorization_hash
+            != MAIN_MATERIALIZATION_AUTHORIZATION_HASH
+        ):
+            raise InnerExecutionAuthorizationV1Error(
+                "MAIN materialization authorization differs"
+            )
+        main_authority.validate_local_locator_manifest_v1(
+            document,
+            repository_root=repository_root,
+            execution_authorization=execution_authorization,
+        )
+        embedded_registry_hash = document.get("private_authority_hash")
+        embedded_registry_path = document.get("absolute_private_authority_path")
+        embedded_authorization_hash = document.get("execution_authorization_hash")
+        if document.get("authority_version") != MAIN_AUTHORITY_VERSION:
+            raise InnerExecutionAuthorizationV1Error("MAIN locator authority differs")
+        expected_registry_hash = MAIN_PRIVATE_REGISTRY_HASH
+        expected_authorization_hash = MAIN_MATERIALIZATION_AUTHORIZATION_HASH
+    elif authority_kind == "SUPPLEMENT":
+        authorization = _load_public_self_hashed_v1(
+            repository_root / _SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_RELATIVE_PATH,
+            SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH,
+        )
+        if (
+            supplement.validate_materialization_authorization_document_v1(
+                authorization
+            )
+            != SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH
+        ):
+            raise InnerExecutionAuthorizationV1Error(
+                "supplement materialization authorization differs"
+            )
+        supplement.validate_local_locator_document_v1(
+            document,
+            repository_root=repository_root,
+        )
+        embedded_registry_hash = document.get("private_registry_hash")
+        embedded_registry_path = document.get("absolute_private_authority_path")
+        embedded_authorization_hash = document.get("authorization_hash")
+        if (
+            document.get("authority_version") != SUPPLEMENT_AUTHORITY_VERSION
+            or document.get("purpose") != SUPPLEMENT_PURPOSE
+        ):
+            raise InnerExecutionAuthorizationV1Error(
+                "supplement locator authority differs"
+            )
+        expected_registry_hash = SUPPLEMENT_PRIVATE_REGISTRY_HASH
+        expected_authorization_hash = SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH
+    else:
+        raise InnerExecutionAuthorizationV1Error("private locator authority kind differs")
+    if embedded_registry_hash != expected_registry_hash:
+        raise InnerExecutionAuthorizationV1Error(
+            "portable locator registry hash binding differs"
+        )
+    if embedded_authorization_hash != expected_authorization_hash:
+        raise InnerExecutionAuthorizationV1Error(
+            "portable locator materialization authority differs"
+        )
+    embedded_registry = _resolve_regular_file_v1(
+        Path(str(embedded_registry_path or "")),
+        repository_root=repository_root,
+        outside_git=True,
+    )
+    if embedded_registry != registry:
+        raise InnerExecutionAuthorizationV1Error(
+            "portable locator registry target differs"
+        )
+    return _portable_locator_result_v1(authority_kind)
+
+
+def validate_portable_private_locator_custody_v1(
+    authority_kind: str,
+    *,
+    locator_path: Path,
+    registry_path: Path,
+) -> PortablePrivateLocatorCustodyV1:
+    """Fail-closed public boundary for portable locator custody validation."""
+
+    try:
+        return _validate_portable_private_locator_custody_impl_v1(
+            authority_kind,
+            locator_path=locator_path,
+            registry_path=registry_path,
+        )
+    except InnerExecutionAuthorizationV1Error:
+        raise
+    except Exception as exc:
+        raise InnerExecutionAuthorizationV1Error(
+            "portable private locator custody differs"
+        ) from exc
+
+
 _REAL_PREFLIGHT_ATTEMPTED = False
 
 
@@ -465,49 +744,23 @@ def perform_inner_execution_custody_preflight_v1(
             outside_git=True,
         )
 
-        main_locator_document = _json_from_custody_bytes_v1(
-            _read_bytes_once_v1(main_locator_path)
+        main_locator_custody = validate_portable_private_locator_custody_v1(
+            "MAIN",
+            locator_path=main_locator_path,
+            registry_path=main_registry_path,
         )
-        main_execution_authorization = (
-            main_authority.load_committed_materialization_execution_authorization_r1(
-                repository_root
-            )
-        )
-        observed_main_locator = main_authority.validate_local_locator_manifest_v1(
-            main_locator_document,
-            repository_root=repository_root,
-            execution_authorization=main_execution_authorization,
-        )
-        embedded_main_registry = _resolve_regular_file_v1(
-            Path(str(main_locator_document.get("absolute_private_authority_path", ""))),
-            repository_root=repository_root,
-            outside_git=True,
-        )
-        if embedded_main_registry != main_registry_path:
-            raise InnerExecutionAuthorizationV1Error("MAIN locator target differs")
         main_registry_bytes = _read_bytes_once_v1(main_registry_path)
-        sha256(main_registry_bytes).hexdigest()
         observed_main_registry = main_authority.validate_private_registry_document_v1(
             _json_from_custody_bytes_v1(main_registry_bytes),
             main_authority.build_common42_authority_v1(),
         )
 
-        supplement_locator_document = _json_from_custody_bytes_v1(
-            _read_bytes_once_v1(supplement_locator_path)
+        supplement_locator_custody = validate_portable_private_locator_custody_v1(
+            "SUPPLEMENT",
+            locator_path=supplement_locator_path,
+            registry_path=supplement_registry_path,
         )
-        observed_supplement_locator = supplement.validate_local_locator_document_v1(
-            supplement_locator_document,
-            repository_root=repository_root,
-        )
-        embedded_supplement_registry = _resolve_regular_file_v1(
-            Path(str(supplement_locator_document.get("absolute_private_authority_path", ""))),
-            repository_root=repository_root,
-            outside_git=True,
-        )
-        if embedded_supplement_registry != supplement_registry_path:
-            raise InnerExecutionAuthorizationV1Error("supplement locator target differs")
         supplement_registry_bytes = _read_bytes_once_v1(supplement_registry_path)
-        sha256(supplement_registry_bytes).hexdigest()
         observed_supplement_registry = (
             supplement.validate_supplement_private_registry_document_v1(
                 _json_from_custody_bytes_v1(supplement_registry_bytes)
@@ -535,22 +788,24 @@ def perform_inner_execution_custody_preflight_v1(
         observed_label_hash = sha256(_read_bytes_once_v1(label_path)).hexdigest()
 
         observed = (
-            observed_main_locator,
             observed_main_registry,
-            observed_supplement_locator,
             observed_supplement_registry,
             observed_feature_hash,
             observed_label_hash,
         )
         expected = (
-            MAIN_LOCATOR_HASH,
             MAIN_PRIVATE_REGISTRY_HASH,
-            SUPPLEMENT_LOCATOR_HASH,
             SUPPLEMENT_PRIVATE_REGISTRY_HASH,
             TEST1_FEATURE_SHA256,
             TEST1_LABEL_SHA256,
         )
-        if observed != expected:
+        if (
+            observed != expected
+            or main_locator_custody
+            != _portable_locator_result_v1("MAIN")
+            or supplement_locator_custody
+            != _portable_locator_result_v1("SUPPLEMENT")
+        ):
             raise InnerExecutionAuthorizationV1Error("one or more custody identities differ")
     except InnerExecutionAuthorizationV1Error:
         raise
@@ -564,8 +819,10 @@ def perform_inner_execution_custody_preflight_v1(
 @dataclass(frozen=True)
 class InnerExecutionAuthorizationV1:
     authorization_version: str
+    inner_authorization_control_revision: str
     authorization_scope: str
     authorization_status: str
+    portable_private_locator_policy_hash: str
     r3_implementation_identity: str
     r3_independent_audit_receipt_hash: str
     r3_completion_audit_hash: str
@@ -578,13 +835,15 @@ class InnerExecutionAuthorizationV1:
     main_descriptor_hash: str
     main_reference_set_hash: str
     main_private_registry_expected_hash: str
-    main_locator_expected_hash: str
+    main_materialization_authorization_hash: str
+    main_historical_materialization_locator_hash: str
     supplement_authority_version: str
     supplement_purpose: str
     supplement_descriptor_hash: str
     supplement_reference_set_hash: str
     supplement_private_registry_expected_hash: str
-    supplement_locator_expected_hash: str
+    supplement_materialization_authorization_hash: str
+    supplement_historical_materialization_locator_hash: str
     combined_source_census_contract_hash: str
     source_census_event_policy_hash: str
     cross_source_isolation_policy_hash: str
@@ -699,72 +958,86 @@ def _build_expected_authorization_v1(
     real = receipt.custody_mode == REAL_CUSTODY_PREFLIGHT
     mode = FUTURE_INNER_D1_RULE_ONLY if real else SYNTHETIC_CONTRACT_ONLY
     provisional = InnerExecutionAuthorizationV1(
-        AUTHORIZATION_VERSION,
-        AUTHORIZATION_SCOPE,
-        PASS_STATUS if real else "synthetic_contract_only",
-        R3_IMPLEMENTATION_IDENTITY,
-        R3_INDEPENDENT_AUDIT_RECEIPT_HASH,
-        R3_COMPLETION_AUDIT_HASH,
-        EVALUATOR_AUTHORITY_BUNDLE_HASH,
-        V4_AUTHORITY_HASH,
-        COMMON_PORTFOLIO,
-        COMMON_RELATION_COUNT,
-        False,
-        MAIN_AUTHORITY_VERSION,
-        MAIN_DESCRIPTOR_HASH,
-        MAIN_REFERENCE_SET_HASH,
-        MAIN_PRIVATE_REGISTRY_HASH,
-        MAIN_LOCATOR_HASH,
-        SUPPLEMENT_AUTHORITY_VERSION,
-        SUPPLEMENT_PURPOSE,
-        SUPPLEMENT_DESCRIPTOR_HASH,
-        SUPPLEMENT_REFERENCE_SET_HASH,
-        SUPPLEMENT_PRIVATE_REGISTRY_HASH,
-        SUPPLEMENT_LOCATOR_HASH,
-        COMBINED_SOURCE_CENSUS_CONTRACT_HASH,
-        SOURCE_CENSUS_EVENT_POLICY_HASH,
-        CROSS_SOURCE_ISOLATION_POLICY_HASH,
-        DATASET_MANIFEST_ID,
-        INNER_SPLIT_ID,
-        TEST1_FEATURE_FILENAME,
-        TEST1_FEATURE_SHA256,
-        TEST1_LABEL_FILENAME,
-        TEST1_LABEL_SHA256,
-        EXPECTED_PHYSICAL_RANGE,
-        EXPECTED_LOGICAL_RANGE,
-        EXPECTED_PHYSICAL_ROW_COUNT,
-        VIRTUAL_PURGE_SECONDS,
-        v4.PURGE_POLICY_HASH,
-        UTILITY_EVENT_POLICY_HASH,
-        METRIC_POLICY_HASH,
-        RUNTIME_FEATURE_SCHEMA_COUNTS,
-        COMMON_MATERIALIZATION_FOOTPRINT,
-        mode,
-        "D1",
-        False,
-        real,
-        False,
-        False,
-        False,
-        False,
-        False,
-        False,
-        False,
-        False,
-        receipt.custody_preflight_hash,
-        True,
-        True,
-        True,
-        real,
-        real,
-        False,
-        False,
-        False,
-        False,
-        "",
-        receipt,
-        bundle,
-        implementation,
+        authorization_version=AUTHORIZATION_VERSION,
+        inner_authorization_control_revision=INNER_AUTHORIZATION_CONTROL_REVISION,
+        authorization_scope=AUTHORIZATION_SCOPE,
+        authorization_status=PASS_STATUS if real else "synthetic_contract_only",
+        portable_private_locator_policy_hash=PORTABLE_PRIVATE_LOCATOR_POLICY_HASH,
+        r3_implementation_identity=R3_IMPLEMENTATION_IDENTITY,
+        r3_independent_audit_receipt_hash=R3_INDEPENDENT_AUDIT_RECEIPT_HASH,
+        r3_completion_audit_hash=R3_COMPLETION_AUDIT_HASH,
+        evaluator_authority_bundle_hash=EVALUATOR_AUTHORITY_BUNDLE_HASH,
+        v4_authority_hash=V4_AUTHORITY_HASH,
+        common_portfolio=COMMON_PORTFOLIO,
+        common_relation_count=COMMON_RELATION_COUNT,
+        t2_authorized=False,
+        main_authority_version=MAIN_AUTHORITY_VERSION,
+        main_descriptor_hash=MAIN_DESCRIPTOR_HASH,
+        main_reference_set_hash=MAIN_REFERENCE_SET_HASH,
+        main_private_registry_expected_hash=MAIN_PRIVATE_REGISTRY_HASH,
+        main_materialization_authorization_hash=(
+            MAIN_MATERIALIZATION_AUTHORIZATION_HASH
+        ),
+        main_historical_materialization_locator_hash=(
+            MAIN_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
+        ),
+        supplement_authority_version=SUPPLEMENT_AUTHORITY_VERSION,
+        supplement_purpose=SUPPLEMENT_PURPOSE,
+        supplement_descriptor_hash=SUPPLEMENT_DESCRIPTOR_HASH,
+        supplement_reference_set_hash=SUPPLEMENT_REFERENCE_SET_HASH,
+        supplement_private_registry_expected_hash=(
+            SUPPLEMENT_PRIVATE_REGISTRY_HASH
+        ),
+        supplement_materialization_authorization_hash=(
+            SUPPLEMENT_MATERIALIZATION_AUTHORIZATION_HASH
+        ),
+        supplement_historical_materialization_locator_hash=(
+            SUPPLEMENT_HISTORICAL_MATERIALIZATION_LOCATOR_HASH
+        ),
+        combined_source_census_contract_hash=COMBINED_SOURCE_CENSUS_CONTRACT_HASH,
+        source_census_event_policy_hash=SOURCE_CENSUS_EVENT_POLICY_HASH,
+        cross_source_isolation_policy_hash=CROSS_SOURCE_ISOLATION_POLICY_HASH,
+        dataset_manifest_id=DATASET_MANIFEST_ID,
+        inner_split_id=INNER_SPLIT_ID,
+        feature_filename=TEST1_FEATURE_FILENAME,
+        feature_sha256=TEST1_FEATURE_SHA256,
+        label_filename=TEST1_LABEL_FILENAME,
+        label_sha256=TEST1_LABEL_SHA256,
+        expected_physical_range=EXPECTED_PHYSICAL_RANGE,
+        expected_logical_range=EXPECTED_LOGICAL_RANGE,
+        expected_physical_row_count=EXPECTED_PHYSICAL_ROW_COUNT,
+        virtual_purge_seconds=VIRTUAL_PURGE_SECONDS,
+        purge_policy_hash=v4.PURGE_POLICY_HASH,
+        utility_event_policy_hash=UTILITY_EVENT_POLICY_HASH,
+        metric_policy_hash=METRIC_POLICY_HASH,
+        runtime_feature_schema_counts=RUNTIME_FEATURE_SCHEMA_COUNTS,
+        common_materialization_footprint=COMMON_MATERIALIZATION_FOOTPRINT,
+        execution_mode=mode,
+        experiment_arm="D1",
+        d0_authorized=False,
+        d1_authorized=real,
+        d2_authorized=False,
+        detector_authorized=False,
+        outer_authorized=False,
+        fusion_authorized=False,
+        threshold_recalibration_authorized=False,
+        rule_regeneration_authorized=False,
+        metric_modification_authorized=False,
+        test2_authorized=False,
+        custody_preflight_hash=receipt.custody_preflight_hash,
+        utility_evaluator_v1_independently_audited=True,
+        utility_evaluator_v1_full_independent_audit_completed=True,
+        utility_inner_execution_authorization_ready=True,
+        utility_inner_execution_authorized=real,
+        utility_inner_d1_execution_authorization_issued=real,
+        utility_inner_d1_executed=False,
+        utility_outer_execution_authorization_ready=False,
+        utility_outer_execution_authorized=False,
+        real_utility_execution_authorized=False,
+        authorization_hash="",
+        _preflight_receipt=receipt,
+        _evaluator_bundle=bundle,
+        _implementation_authority=implementation,
     )
     return replace(
         provisional,
@@ -877,11 +1150,15 @@ __all__ = [
     "EXPECTED_PHYSICAL_ROW_COUNT",
     "FUTURE_INNER_D1_RULE_ONLY",
     "INNER_SPLIT_ID",
+    "INNER_AUTHORIZATION_CONTROL_REVISION",
     "InnerExecutionAuthorizationV1",
     "InnerExecutionAuthorizationV1Error",
     "InnerExecutionCustodyPreflightReceiptV1",
     "MAIN_LOCATOR_ENV",
     "PASS_STATUS",
+    "PORTABLE_PRIVATE_LOCATOR_POLICY_HASH",
+    "PORTABLE_PRIVATE_LOCATOR_POLICY_VERSION",
+    "PortablePrivateLocatorCustodyV1",
     "R3_IMPLEMENTATION_IDENTITY",
     "R3_INDEPENDENT_AUDIT_RECEIPT_HASH",
     "SUPPLEMENT_LOCATOR_ENV",
@@ -894,4 +1171,5 @@ __all__ = [
     "replay_required_evaluator_audit_authority_v1",
     "validate_inner_execution_authorization_v1",
     "validate_inner_execution_custody_preflight_receipt_v1",
+    "validate_portable_private_locator_custody_v1",
 ]
