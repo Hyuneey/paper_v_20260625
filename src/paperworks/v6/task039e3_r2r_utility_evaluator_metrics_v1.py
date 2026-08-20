@@ -71,6 +71,16 @@ ATTACK_EVENT_POLICY = "MAXIMAL_CONTIGUOUS_STRICT_LABEL_ONE_RUNS_FILE_LOCAL"
 ATTACK_EVENT_RECALL_FORMULA = "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS"
 NORMAL_FAR_FORMULA = "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600"
 FULL_CENSUS_DENOMINATOR_POLICY = "ALL_AUTOMATICALLY_ENUMERATED_APPLICABLE_CANONICAL_OPPORTUNITIES"
+SYNTHETIC_DETECTOR_AUTHORITY_IDENTITY = stable_hash_v1(
+    {
+        "artifact_type": "task039e3_r2r_utility_evaluator_v1_synthetic_detector_authority",
+        "evaluator_version": EVALUATOR_VERSION,
+        "execution_mode": SYNTHETIC_CONTRACT_ONLY,
+        "scientific_eligibility": False,
+        "real_detector_authority": False,
+        "detector_science_executed": False,
+    }
+)
 
 _FINAL_STATES = frozenset({"evaluated_expected_response", "evaluated_anomaly", "abstain"})
 _ISSUED_RULE_ARTIFACTS: dict[
@@ -79,6 +89,7 @@ _ISSUED_RULE_ARTIFACTS: dict[
 ]
 _METRIC_ISSUANCE_TOKEN = object()
 _LEGACY_IMPLEMENTATION_IDENTITY_OMITTED = object()
+_LEGACY_DETECTOR_AUTHORITY_IDENTITY_OMITTED = object()
 
 
 def _fail(code: str) -> None:
@@ -831,19 +842,64 @@ class DetectorPredictionArtifactV1:
     artifact_hash: str
 
 
+_ISSUED_DETECTOR_ARTIFACTS: dict[
+    int,
+    tuple[
+        ReferenceType[DetectorPredictionArtifactV1],
+        str,
+        str,
+        str,
+        str,
+        str,
+        str,
+    ],
+] = {}
+
+
 def _detector_payload(value: DetectorPredictionArtifactV1) -> dict[str, object]:
     return dataclass_payload_v1(value, exclude=("artifact_hash",))
 
 
+def _detector_prediction_vector_hash(point_predictions: tuple[bool, ...]) -> str:
+    return stable_hash_v1(
+        {
+            "artifact_type": "task039e3_r2r_synthetic_detector_prediction_vector_v1",
+            "execution_mode": SYNTHETIC_CONTRACT_ONLY,
+            "point_predictions": list(point_predictions),
+        }
+    )
+
+
+def _issue_detector_artifact(
+    artifact: DetectorPredictionArtifactV1,
+) -> DetectorPredictionArtifactV1:
+    issued_id = id(artifact)
+
+    def _discard(_reference: object, *, key: int = issued_id) -> None:
+        _ISSUED_DETECTOR_ARTIFACTS.pop(key, None)
+
+    _ISSUED_DETECTOR_ARTIFACTS[issued_id] = (
+        ref(artifact, _discard),
+        artifact.artifact_hash,
+        artifact.detector_authority_identity,
+        artifact.dataset_manifest_identity,
+        artifact.split_identity,
+        artifact.source_file_identity,
+        _detector_prediction_vector_hash(artifact.point_predictions),
+    )
+    return artifact
+
+
 def build_synthetic_detector_prediction_artifact_v1(
     *,
-    detector_authority_identity: str,
     dataset_manifest_identity: str,
     split_identity: str,
     source_file_identity: str,
     point_predictions: tuple[bool, ...],
+    detector_authority_identity: object = _LEGACY_DETECTOR_AUTHORITY_IDENTITY_OMITTED,
 ) -> DetectorPredictionArtifactV1:
-    strict_sha256_v1(detector_authority_identity, "detector authority identity")
+    if detector_authority_identity is not _LEGACY_DETECTOR_AUTHORITY_IDENTITY_OMITTED:
+        _fail("DETECTOR_CALLER_AUTHORITY_NOT_AUTHORIZED")
     strict_tuple_v1(point_predictions, "detector predictions")
     for value in point_predictions:
         strict_bool_v1(value, "detector prediction")
@@ -851,28 +907,48 @@ def build_synthetic_detector_prediction_artifact_v1(
         DETECTOR_PREDICTION_ARTIFACT_TYPE,
         SYNTHETIC_CONTRACT_ONLY,
         False,
-        detector_authority_identity,
+        SYNTHETIC_DETECTOR_AUTHORITY_IDENTITY,
         strict_str_v1(dataset_manifest_identity, "dataset manifest identity"),
         strict_str_v1(split_identity, "split identity"),
         strict_str_v1(source_file_identity, "source file identity"),
         point_predictions,
         "",
     )
-    return replace(result, artifact_hash=stable_hash_v1(_detector_payload(result)))
+    issued = replace(result, artifact_hash=stable_hash_v1(_detector_payload(result)))
+    return _issue_detector_artifact(issued)
 
 
 def validate_detector_prediction_artifact_v1(artifact: DetectorPredictionArtifactV1) -> str:
     if type(artifact) is not DetectorPredictionArtifactV1:
         _fail("DETECTOR_ARTIFACT_TYPE_REJECTED")
+    issuance = _ISSUED_DETECTOR_ARTIFACTS.get(id(artifact))
+    if (
+        issuance is None
+        or len(issuance) != 7
+        or issuance[0]() is not artifact
+        or issuance[1] != artifact.artifact_hash
+        or issuance[2] != artifact.detector_authority_identity
+        or issuance[3] != artifact.dataset_manifest_identity
+        or issuance[4] != artifact.split_identity
+        or issuance[5] != artifact.source_file_identity
+        or issuance[6] != _detector_prediction_vector_hash(artifact.point_predictions)
+    ):
+        _fail("DETECTOR_ARTIFACT_FACTORY_CUSTODY_REJECTED")
     if (
         artifact.artifact_type != DETECTOR_PREDICTION_ARTIFACT_TYPE
         or artifact.execution_mode != SYNTHETIC_CONTRACT_ONLY
         or artifact.scientific_eligible is not False
+        or artifact.detector_authority_identity != SYNTHETIC_DETECTOR_AUTHORITY_IDENTITY
     ):
         _fail("DETECTOR_ARTIFACT_AUTHORITY_REJECTED")
+    strict_sha256_v1(artifact.detector_authority_identity, "detector authority identity")
+    strict_str_v1(artifact.dataset_manifest_identity, "dataset manifest identity")
+    strict_str_v1(artifact.split_identity, "split identity")
+    strict_str_v1(artifact.source_file_identity, "source file identity")
     strict_tuple_v1(artifact.point_predictions, "detector predictions")
     for value in artifact.point_predictions:
         strict_bool_v1(value, "detector prediction")
+    strict_sha256_v1(artifact.artifact_hash, "detector artifact hash")
     expected = stable_hash_v1(_detector_payload(artifact))
     if artifact.artifact_hash != expected:
         _fail("DETECTOR_ARTIFACT_HASH_REJECTED")
@@ -945,6 +1021,7 @@ __all__ = [
     "ATTACK_EVENT_POLICY",
     "ATTACK_EVENT_RECALL_FORMULA",
     "NORMAL_FAR_FORMULA",
+    "SYNTHETIC_DETECTOR_AUTHORITY_IDENTITY",
     "CANONICAL_EVALUATOR_AUTHORITY_BUNDLE_HASH",
     "IntervalV1",
     "SyntheticLabelEventCustodyV1",

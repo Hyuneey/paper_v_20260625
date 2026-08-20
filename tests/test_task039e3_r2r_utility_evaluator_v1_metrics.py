@@ -263,7 +263,6 @@ class UtilityEvaluatorV1MetricsTests(unittest.TestCase):
 
     def test_detector_and_d1_d2_same_rule_artifact_contract(self) -> None:
         detector = build_synthetic_detector_prediction_artifact_v1(
-            detector_authority_identity="a" * 64,
             dataset_manifest_identity=self.frame.dataset_manifest_identity,
             split_identity=self.frame.split_identity,
             source_file_identity=self.frame.source_file_identity,
@@ -331,7 +330,6 @@ class UtilityEvaluatorV1MetricsTests(unittest.TestCase):
                 labels=(1,), detector_alarm_points=(0,), rule_alarm_points=(True,)
             ),
             lambda: build_synthetic_detector_prediction_artifact_v1(
-                detector_authority_identity="a" * 64,
                 dataset_manifest_identity="d",
                 split_identity="s",
                 source_file_identity="f",

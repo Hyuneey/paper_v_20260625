@@ -43,6 +43,9 @@ R1_IMPLEMENTATION_IDENTITY = (
 R2_IMPLEMENTATION_IDENTITY = (
     "e7a61070c0be96e305f6706b90308c9976bc8d521c8b97adea93836c3fd28cef"
 )
+R3_IMPLEMENTATION_IDENTITY = (
+    "af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5"
+)
 EXPECTED_BUNDLE_HASH = "0510da125dd8a799c988927ba49ecb784cad5ea12b05b41e31406effe23051c9"
 
 UNIQUE_PROVENANCE_ATTACK_CLASSES = 20
@@ -160,30 +163,31 @@ class UtilityEvaluatorV1R2ProvenanceTests(unittest.TestCase):
                 **self._artifact_kwargs(),
             )
 
-    def test_r2_implementation_authority_replays_exact_identity(self) -> None:
-        self.assertEqual(authority_v1.UTILITY_EVALUATOR_CONTROL_REVISION, "R2")
+    def test_current_r3_implementation_authority_replays_exact_identity(self) -> None:
+        self.assertEqual(authority_v1.UTILITY_EVALUATOR_CONTROL_REVISION, "R3")
         self.assertEqual(
             authority_v1.CURRENT_EVALUATOR_IMPLEMENTATION_IDENTITY,
-            R2_IMPLEMENTATION_IDENTITY,
+            R3_IMPLEMENTATION_IDENTITY,
         )
         self.assertEqual(self.bundle.bundle_hash, EXPECTED_BUNDLE_HASH)
         self.assertEqual(
             authority_v1.validate_evaluator_implementation_authority_v1(
                 self.implementation, self.bundle
             ),
-            R2_IMPLEMENTATION_IDENTITY,
+            R3_IMPLEMENTATION_IDENTITY,
         )
-        self.assertNotEqual(R2_IMPLEMENTATION_IDENTITY, R1_IMPLEMENTATION_IDENTITY)
-        self.assertNotEqual(R2_IMPLEMENTATION_IDENTITY, ORIGINAL_IMPLEMENTATION_IDENTITY)
+        self.assertNotEqual(R3_IMPLEMENTATION_IDENTITY, R2_IMPLEMENTATION_IDENTITY)
+        self.assertNotEqual(R3_IMPLEMENTATION_IDENTITY, R1_IMPLEMENTATION_IDENTITY)
+        self.assertNotEqual(R3_IMPLEMENTATION_IDENTITY, ORIGINAL_IMPLEMENTATION_IDENTITY)
 
-    def test_factory_issued_r2_authority_is_required_for_artifact(self) -> None:
+    def test_factory_issued_current_r3_authority_is_required_for_artifact(self) -> None:
         self.assertEqual(
             metrics_v1.validate_rule_prediction_artifact_v1(self.artifact),
             self.artifact.artifact_hash,
         )
         self.assertEqual(
             self.artifact.evaluator_implementation_identity,
-            R2_IMPLEMENTATION_IDENTITY,
+            R3_IMPLEMENTATION_IDENTITY,
         )
         self.assertEqual(
             self.artifact.evaluator_authority_bundle_hash,
@@ -195,6 +199,7 @@ class UtilityEvaluatorV1R2ProvenanceTests(unittest.TestCase):
             ORIGINAL_IMPLEMENTATION_IDENTITY,
             R1_IMPLEMENTATION_IDENTITY,
             R2_IMPLEMENTATION_IDENTITY,
+            R3_IMPLEMENTATION_IDENTITY,
             "f" * 64,
             "not-a-sha",
             None,
@@ -209,7 +214,7 @@ class UtilityEvaluatorV1R2ProvenanceTests(unittest.TestCase):
         self.assertArtifactBuildRejected()
         self.assertArtifactBuildRejected(
             evaluator_implementation_authority=self.implementation,
-            evaluator_implementation_identity=R2_IMPLEMENTATION_IDENTITY,
+            evaluator_implementation_identity=R3_IMPLEMENTATION_IDENTITY,
         )
 
     def test_reconstructed_copied_and_replaced_authorities_reject(self) -> None:
@@ -241,6 +246,7 @@ class UtilityEvaluatorV1R2ProvenanceTests(unittest.TestCase):
         for identity in (
             ORIGINAL_IMPLEMENTATION_IDENTITY,
             R1_IMPLEMENTATION_IDENTITY,
+            R2_IMPLEMENTATION_IDENTITY,
             "f" * 64,
         ):
             candidate = replace(
@@ -301,14 +307,18 @@ class UtilityEvaluatorV1R2ProvenanceTests(unittest.TestCase):
             resolver=self.resolver,
             frame=self.frame,
         )
-        self.assertEqual(run.evaluator_implementation_identity, R2_IMPLEMENTATION_IDENTITY)
+        self.assertEqual(run.evaluator_implementation_identity, R3_IMPLEMENTATION_IDENTITY)
         self.assertEqual(
             run.rule_prediction_artifact.evaluator_implementation_identity,
-            R2_IMPLEMENTATION_IDENTITY,
+            R3_IMPLEMENTATION_IDENTITY,
         )
         self.assertNotIn(
             run.rule_prediction_artifact.evaluator_implementation_identity,
-            {ORIGINAL_IMPLEMENTATION_IDENTITY, R1_IMPLEMENTATION_IDENTITY},
+            {
+                ORIGINAL_IMPLEMENTATION_IDENTITY,
+                R1_IMPLEMENTATION_IDENTITY,
+                R2_IMPLEMENTATION_IDENTITY,
+            },
         )
         self.assertEqual(
             (
