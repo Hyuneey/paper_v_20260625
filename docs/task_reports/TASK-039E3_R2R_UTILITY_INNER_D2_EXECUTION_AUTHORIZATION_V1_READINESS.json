@@ -1,0 +1,19 @@
+{
+  "accounting_hash": "856082f8f08a3c79cfbcb2b8d1332e047d2f4087a408f435fd4be456efcc5d19",
+  "artifact_hash": "72fe36cd9e5df8117c7db511c1ecd3c70c7d6dc0ec9db16f8c854baef0b05f65",
+  "artifact_type": "task039e3_r2r_d2_execution_authorization_v1_readiness",
+  "authorization_hash": "b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c",
+  "contract_hash": "9abe31f8163c2709275e25ca7e9516f8d3e108b7bf2a4e7a0a9d15ad645e4638",
+  "d2_authorized": true,
+  "d2_executed": false,
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1",
+  "independent_audit_hash": "a1f9c270bc36e8c4b64bc6aae2510a1c83034fc3b4abd805896e4dab98803e33",
+  "outer_authorized": false,
+  "preflight_hash": "5ec6ce95c38cfe313034882e3a9020c3846f71b9e368676627ded9094a41ad8e",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "source_map_hash": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1",
+  "test2_authorized": false
+}

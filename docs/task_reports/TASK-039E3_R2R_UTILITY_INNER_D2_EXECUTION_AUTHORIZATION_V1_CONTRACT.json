@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "9abe31f8163c2709275e25ca7e9516f8d3e108b7bf2a4e7a0a9d15ad645e4638",
+  "artifact_type": "task039e3_r2r_d2_execution_authorization_v1_contract",
+  "contract_commit_a": "a8679d1ddfca2d3e8885cffcc77ee699ae3401b5",
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "d2_executions": 0,
+  "fusion_computations": 0,
+  "implementation_git_blob": "391e6e92bca17db8a15f86ed7c15c7f272227965",
+  "implementation_source_sha256": "daf29ae737c0da78ef03f713c54a903d99896a4e8dc63a2dbc1d2b8320fa9bc3",
+  "provenance_clarification_hash": "f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10",
+  "schema_version": "1.0.0",
+  "static_tests": 31,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1",
+  "test2_accesses": 0
+}

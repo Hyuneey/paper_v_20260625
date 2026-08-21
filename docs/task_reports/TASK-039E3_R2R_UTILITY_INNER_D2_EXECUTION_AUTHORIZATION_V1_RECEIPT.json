@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "7d372987043e65d3038d06f318f5426cefd9a3bfee55fb27851aded0c52e6137",
+  "artifact_type": "task039e3_r2r_d2_execution_authorization_v1_receipt",
+  "authorization_hash": "b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c",
+  "blockers": [],
+  "bundle_hash": "61c33e2652734726fe408d7254068121ce1af5ef5de9372242a9b041276ad00d",
+  "d2_authorized": true,
+  "d2_executed": false,
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1",
+  "outer_authorized": false,
+  "push_attempted": false,
+  "readiness_hash": "72fe36cd9e5df8117c7db511c1ecd3c70c7d6dc0ec9db16f8c854baef0b05f65",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "report_body_hash": "5db2f0ff315d5578c32540df6044f19389fa3a784291d7df2317c3dff6446251",
+  "schema_version": "1.0.0",
+  "scientific_state": "D2_INNER_EXECUTION_AUTHORIZED_NOT_EXECUTED",
+  "status": "passed_task039e3_r2r_utility_inner_d2_execution_authorization_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1",
+  "test2_authorized": false
+}
