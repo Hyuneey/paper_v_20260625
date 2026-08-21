@@ -209,3 +209,27 @@ Append new entries; never rewrite historical decisions.
   `4bdb16701a84b383f713629524a20900bba27d95`, Independent Audit Commit B
   `4e4e904cca8779e5dde62bcea697e6d40d58a867`, and Design Freeze Commit C
   `2528632fca2c64e1bd4a293d57bed56cc3e5665b`.
+
+## DEC-D2-001
+
+- Date: 2026-08-21
+- Status: active
+- Decision: The primary D2 arm is frozen as detector-preserving,
+  exact-same-second multi-source verified-rule corroboration. A recovery alarm
+  requires at least two distinct canonical COMMON-42 source variables.
+- Rationale: Two is the minimum non-singleton distinct-source corroboration
+  count. It separates a single initiating source from cross-variable physical
+  corroboration without adding a learned threshold, temporal window, score
+  gate, or label-dependent choice.
+- Consequence: Every frozen D0 alarm is preserved. D1 contributes only positive
+  detector-miss recovery, using exact frozen D1 alarm records and their
+  relation bindings. D0 score access, D0 suppression, rule rerun, any-rule OR,
+  AND, weighting, temporal tolerance, and later INNER tuning are prohibited.
+- Independence: Frozen before D2 execution and without D0/D1 prediction
+  content, metric-artifact, test1, label, private, test2, or OUTER access.
+- Supersedes / Superseded by: none / none.
+- Canonical evidence: Design Commit A
+  `8bb227521f28101970e7ea19ae97987d94b3c7c3`, Independent Audit Commit B
+  `03e58a79842d6f6aa0675595e6f78fca86b76de6`, Design Freeze Commit C
+  `5ad1c2fb56432be637c177cf64449238fdc1b504`, and design hash
+  `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
