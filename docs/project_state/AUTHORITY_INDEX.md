@@ -236,7 +236,22 @@ unchanged; D2, test2, and OUTER remain unauthorized. The exact next task is
 - Receipt: `15559141048efd729b3b4645b4f0baa4ac6d07ceedb2417cbd7915f49435da70`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
 
-This authority certifies the exact local frozen D0 result's internal integrity,
-not detector quality or causal significance. Scientific interpretation may
-begin. D2 and OUTER remain unauthorized; D2 must be preregistered and consume
-the exact frozen D0 and D1 prediction artifacts without rerunning either arm.
+These artifacts preserve the matched numerical and scientific audit evidence,
+not detector quality or causal significance. Their prior final-certification
+label is superseded by the strict report-custody blocker below. D2 and OUTER
+remain unauthorized.
+
+## D0 INNER result audit — report-custody blocker
+
+- Blocker Report Commit: `69f902b380a2aa1b674ca70983bb131ad04f54ba`.
+- Blocker artifact: `b59c6e23e0a3bc5dfcf89a2a0b67f78f581958055efdfcf0a78200ad9299ae01`.
+- Blocker code: `D0_RESULT_INTEGRITY_BLOCKED_AUDIT_REPORT_SELF_HASH_MISSING`.
+- Frozen D0 result mutations: `0`.
+- Authoritative D0 audit executions: `0`.
+- D2 authorized: `false`; OUTER authorized: `false`.
+
+The numerical, prediction, label-independence, metric, accounting, and leakage
+audit evidence remains unchanged. Final integrity certification is fail-closed
+because the required Markdown audit report has no embedded self-hash and is
+not hash-bound by the audit bundle or receipt. The exact next task is
+`TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-REPORT-HASH-REMEDIATION-R1`.
