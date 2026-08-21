@@ -323,3 +323,28 @@ before D2 policy selection. No D2 candidate sweep, result observation, or
 outcome-driven tuning occurred. The original independence artifact and this
 R1 clarification must be read together. Test2 remains sealed, and no D2 or
 OUTER authority is granted.
+
+## D2 INNER execution authorization V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1`.
+- Base: `0c7335e3c24958f178f527367c7d901c1804124c`.
+- Authorization Contract Commit A: `a8679d1ddfca2d3e8885cffcc77ee699ae3401b5`.
+- Independent Audit Commit B: `50ff882a19aafea7a015ad8be2f09ef150cd104f`.
+- Authorization Freeze Commit C: `a412a0e7e893d23e7806e18831142f75cd5c0828`.
+- D2 design: `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
+- Provenance clarification: `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`.
+- Frozen D0 DetectorPrediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
+- Frozen D1 RulePrediction: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`.
+- Source map: `f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818`.
+- Preflight: `5ec6ce95c38cfe313034882e3a9020c3846f71b9e368676627ded9094a41ad8e`.
+- Authorization: `b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c`.
+- Readiness: `72fe36cd9e5df8117c7db511c1ecd3c70c7d6dc0ec9db16f8c854baef0b05f65`.
+- Bundle: `61c33e2652734726fe408d7254068121ce1af5ef5de9372242a9b041276ad00d`.
+- Receipt: `7d372987043e65d3038d06f318f5426cefd9a3bfee55fb27851aded0c52e6137`.
+
+This authority grants one future INNER D2 execution of the exact frozen
+detector-preserving multi-source corroboration policy. It grants no D0/D1
+rerun, label access before CombinedPrediction freeze, test1 feature access,
+test2 access, OUTER authority, policy change, or result-driven modification.
+D2 remains not executed. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1`.

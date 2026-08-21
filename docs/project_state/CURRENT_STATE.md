@@ -5,64 +5,49 @@
 This project studies graph-guided agentic construction of verified rules for
 explainable multivariate time-series anomaly detection. The exact D0
 DetectorPrediction and D1 RulePrediction results are frozen and
-integrity-audited. The primary D2 policy is now preregistered and frozen as
-detector-preserving, exact-same-second corroboration by at least two distinct
-COMMON-42 rule-source identities. Its provenance is clarified: project-level
-INNER baseline characterization preceded D2 policy selection, while no D2
-outcome existed before freeze. D2 execution and OUTER remain unauthorized.
+integrity-audited. The primary D2 detector-preserving, exact-same-second,
+multi-source corroboration design and its provenance clarification are frozen.
+One exact D2 INNER execution authorization has now been issued. D2 has not
+executed; test2 and OUTER remain sealed.
 
-## Frozen D2 design state
+## D2 execution authorization state
 
-- Status: `passed_task039e3_r2r_utility_inner_d2_design_provenance_clarification_r1`.
-- Scientific state: `D2_DESIGN_FROZEN_PROVENANCE_CLARIFIED_NOT_AUTHORIZED`.
+- Status: `passed_task039e3_r2r_utility_inner_d2_execution_authorization_v1`.
+- Scientific state: `D2_INNER_EXECUTION_AUTHORIZED_NOT_EXECUTED`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
-- Base: `1c2f9a6272ee711b70b44ed79b9210af1026d3af`.
-- Design Commit A: `8bb227521f28101970e7ea19ae97987d94b3c7c3`.
-- Independent Audit Commit B: `03e58a79842d6f6aa0675595e6f78fca86b76de6`.
-- Design Freeze Commit C: `5ad1c2fb56432be637c177cf64449238fdc1b504`.
-- D2 ID: `D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1`.
-- Fusion family: `DETECTOR_PRESERVING_MULTI_SOURCE_RULE_CORROBORATION`.
-- Design hash: `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
-- COMMON-42 source mapping: `f8c47a212dbf65946f843f7fb0c737ae394a28c08af9ff18f5ac20a58d8891b7`.
-- Design report: `74e6d66fc506cf9be0d40848d4f3d5b51b51f398ee0c8448c1453d5344bc0b94`.
-- Input authority: `6b483f8007db86f910524fea6204a6119f82c23ff6fa24d1302fc93e98c58fb9`.
-- Corroboration policy: `73069cade706c08065e4669dbe6b5c812f1e2d00d91d5e6ecc57e41d696a6751`.
-- Metric policy: `a684368a13efe7699862cc626c4c6a28cb5eca342efe3cc3f4bb77adbfbaa012`.
-- Independence: `4d684c5b2ea55ea6cd7280f5d64241b4f8483e4988319497388f193fd7db312e`.
-- Independent audit: `55599576c754c31f00519823d73ded39c924a114ac5eb94d006bba77ddc37932`.
-- Readiness: `50a9547cadf0b6dca779dea5f107c6368fdde7d4e1251253c9394e328c1d5aea`.
-- Bundle: `2b75563a57d89816b2936d4172762b9d3bca0cf1c8752c780d9c5ecc89cec675`.
-- Receipt: `d14feaa9a1fe402159806f29ef7499d9ca1e119902fbf1d12faad7b010b0e245`.
-
-## Provenance clarification R1
-
-- Clarification: `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`.
-- R1 readiness: `41a6dcf3428de7fa02284041a958be5926829db3f7527ccc1cd1a5f850a94211`.
-- R1 bundle: `b6e02a5319f78f15922a0d2f3239122ee11bcd33f6151ecfa80cc87741f63b83`.
-- R1 receipt: `bf049094ce211e86db22bdbdcfe78adddff76e1935cab792e594b09cf554355d`.
-
-The Codex design process performed no D0/D1 prediction-content or metric-
-artifact read. At project level, D0/D1 INNER baseline results were already
-known and informed the problem formulation before D2 policy selection. No D2
-candidate sweep, hyperparameter search, execution, prediction, metric, or
-result-driven adaptation occurred. The original independence artifact must be
-read together with this clarification.
+- Base: `0c7335e3c24958f178f527367c7d901c1804124c`.
+- Authorization Contract Commit A: `a8679d1ddfca2d3e8885cffcc77ee699ae3401b5`.
+- Independent Audit Commit B: `50ff882a19aafea7a015ad8be2f09ef150cd104f`.
+- Authorization Freeze Commit C: `a412a0e7e893d23e7806e18831142f75cd5c0828`.
+- Authorization version: `TASK039E3_R2R_D2_INNER_EXECUTION_AUTHORIZATION_V1`.
+- Authorization scope: `HAI_23_05_P1_TEST1_D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_INNER_V1`.
+- D2 design: `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
+- Provenance clarification: `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`.
+- Frozen D0 DetectorPrediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
+- Frozen D1 RulePrediction: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`.
+- Source map: `f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818`.
+- Preflight: `5ec6ce95c38cfe313034882e3a9020c3846f71b9e368676627ded9094a41ad8e`.
+- Authorization: `b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c`.
+- Accounting: `856082f8f08a3c79cfbcb2b8d1332e047d2f4087a408f435fd4be456efcc5d19`.
+- Readiness: `72fe36cd9e5df8117c7db511c1ecd3c70c7d6dc0ec9db16f8c854baef0b05f65`.
+- Bundle: `61c33e2652734726fe408d7254068121ce1af5ef5de9372242a9b041276ad00d`.
+- Receipt: `7d372987043e65d3038d06f318f5426cefd9a3bfee55fb27851aded0c52e6137`.
 
 ## Authority boundary
 
-The frozen design preserves every D0 alarm and permits a rule recovery only
-when at least two distinct source variables have alarming frozen D1 records at
-the exact same decision index. It uses no D0 score, label, temporal window,
-rule rerun, alternate fusion candidate, or hyperparameter search. This task
-performed no prediction-content or metric-artifact read, accessed no test or
-label data, performed no scientific execution, and made no remote push. That
-process-level statement does not claim project-level blindness to the already
-completed INNER baseline characterization.
+The authorization binds the exact frozen D0 and D1 prediction artifacts and a
+42-entry COMMON-42 relation-binding-to-source map. Future D2 execution must
+preserve every D0 alarm and may add a recovery only when alarming frozen D1
+records at the exact same decision index resolve to at least two distinct
+canonical sources. Labels remain unavailable until the CombinedPrediction is
+frozen. This authorization performed no fusion, D0/D1 rerun, metric
+computation, test1 feature access, label parsing, test2 access, or remote push.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1`.
+`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1`.
 
-That task may authorize only the exact frozen D2 design plus the exact frozen
-D0 and D1 prediction artifacts. It must keep test2 and OUTER sealed and must
-not rerun D0 or D1.
+That task may consume only this exact committed authorization and the exact
+frozen D0/D1 predictions, then freeze a label-blind CombinedPrediction before
+label evaluation. It must keep test2 and OUTER sealed and must not rerun D0 or
+D1.
