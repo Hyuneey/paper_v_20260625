@@ -1,17 +1,17 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-execution-authorization-v1`
-- Exact base: `0c7335e3c24958f178f527367c7d901c1804124c`
-- Authorization Contract Commit A: `a8679d1ddfca2d3e8885cffcc77ee699ae3401b5`
-- Independent Audit Commit B: `50ff882a19aafea7a015ad8be2f09ef150cd104f`
-- Authorization Freeze Commit C: `a412a0e7e893d23e7806e18831142f75cd5c0828`
-- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1`
-- Latest status: `passed_task039e3_r2r_utility_inner_d2_execution_authorization_v1`
-- Scientific state: `D2_INNER_EXECUTION_AUTHORIZED_NOT_EXECUTED`
+- Branch: `task-039e3-r2r-utility-inner-d2-execution-v1`
+- Exact base: `1b71e35b4938942bdb92ebbc769d59c04c43cf37`
+- Execution Implementation Commit A: `315eb5b578301d57c6ab90c0c2398e3df3dec3f5`
+- Independent Audit Commit B: `cd220a89f37e0a3913124116f49a90e0518c8b46`
+- Blocker Freeze Commit: `f42e706f712616e23f7a86d86cc2bd6cfc6f4ce8`
+- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1`
+- Latest status: `blocked_task039e3_r2r_utility_inner_d2_execution_v1`
+- Scientific state: `D2_EXECUTION_BLOCKED_BEFORE_COMBINED_PREDICTION_FREEZE`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
 - Active task: `NONE`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-BLOCKER-AUDIT-V1`
 
 ## Frozen D2 authorization custody
 
@@ -35,11 +35,16 @@ and D1 RulePrediction
 - Bundle: `61c33e2652734726fe408d7254068121ce1af5ef5de9372242a9b041276ad00d`.
 - Receipt: `7d372987043e65d3038d06f318f5426cefd9a3bfee55fb27851aded0c52e6137`.
 
-## Execution boundary
+## Blocked execution boundary
 
-The next task may consume only the exact committed authorization and frozen
-D0/D1 predictions. It must preserve every D0 alarm, add a recovery only for
-exact-same-second corroboration from at least two distinct canonical sources,
-and freeze a label-blind CombinedPrediction before label access. It must not
-rerun D0 or D1, access test1 features or test2, change the policy, or authorize
-OUTER. D2 has not executed in this task.
+One and only one D2 scientific execution attempt occurred. It validated and
+parsed the exact frozen D0/D1 prediction artifacts, replayed the source map,
+and computed the exact 54,000-row fusion in memory. The first private
+FusionEvidence write was denied before CombinedPrediction freeze. The attempt
+was not retried; no label or metric was accessed. One private path was exposed
+through the exception channel, while source sets and label values remained
+private.
+
+The next task is an independent audit of this blocker. It may not rerun D2,
+modify the fusion policy, rerun D0/D1, open labels or test1 features, access
+test2, authorize OUTER, or push.

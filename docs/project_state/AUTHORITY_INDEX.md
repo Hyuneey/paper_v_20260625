@@ -348,3 +348,28 @@ rerun, label access before CombinedPrediction freeze, test1 feature access,
 test2 access, OUTER authority, policy change, or result-driven modification.
 D2 remains not executed. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1`.
+
+## D2 INNER execution V1 blocked attempt
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1`.
+- Base: `1b71e35b4938942bdb92ebbc769d59c04c43cf37`.
+- Execution Implementation Commit A: `315eb5b578301d57c6ab90c0c2398e3df3dec3f5`.
+- Independent Audit Commit B: `cd220a89f37e0a3913124116f49a90e0518c8b46`.
+- Blocker Freeze Commit: `f42e706f712616e23f7a86d86cc2bd6cfc6f4ce8`.
+- Blocker artifact: `b721ddc45f0e7c97646b520eab9384d74c6c12231cb744c0f493fbf661111580`.
+- Blocker report self-hash: `5e56f352c6495dde6bfe1f00a7a6dae6eb4c031008c54519924aa99992699c90`.
+- Authorization: `b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c`.
+- D2 design: `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
+- Frozen D0 DetectorPrediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
+- Frozen D1 RulePrediction: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`.
+- Source map: `f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818`.
+
+The sole scientific attempt parsed each frozen prediction once and computed
+the 54,000-row fusion, then blocked when private FusionEvidence persistence was
+denied. No FusionEvidence, CombinedPrediction, metric artifact, readiness,
+bundle, or receipt was frozen. Label access and metric computation were zero;
+D0/D1 reruns, D1 metric reads, D0 score access, test1 feature access, test2,
+OUTER, retry, result-driven change, and push were zero. The exception channel
+exposed one private path. D2 authorization is no longer active after the failed
+one-shot attempt. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-BLOCKER-AUDIT-V1`.
