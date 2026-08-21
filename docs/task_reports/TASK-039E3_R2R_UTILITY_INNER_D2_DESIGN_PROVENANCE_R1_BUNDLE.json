@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "b6e02a5319f78f15922a0d2f3239122ee11bcd33f6151ecfa80cc87741f63b83",
+  "artifact_type": "task039e3_r2r_utility_inner_d2_design_provenance_r1_bundle",
+  "clarification_hash": "f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10",
+  "d0_detector_prediction_artifact_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6",
+  "d1_rule_prediction_artifact_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "original_d2_bundle_hash": "2b75563a57d89816b2936d4172762b9d3bca0cf1c8752c780d9c5ecc89cec675",
+  "original_d2_readiness_hash": "50a9547cadf0b6dca779dea5f107c6368fdde7d4e1251253c9394e328c1d5aea",
+  "original_d2_receipt_hash": "d14feaa9a1fe402159806f29ef7499d9ca1e119902fbf1d12faad7b010b0e245",
+  "readiness_hash": "41a6dcf3428de7fa02284041a958be5926829db3f7527ccc1cd1a5f850a94211",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "report_hash_scheme": "MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1",
+  "report_self_hash": "1ccdfc526078a09503866206673dc5bfea955b8805b1910f9c028c2d5d0bc99e",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-PROVENANCE-CLARIFICATION-R1"
+}
