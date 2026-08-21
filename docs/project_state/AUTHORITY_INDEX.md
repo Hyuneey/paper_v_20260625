@@ -255,3 +255,27 @@ audit evidence remains unchanged. Final integrity certification is fail-closed
 because the required Markdown audit report has no embedded self-hash and is
 not hash-bound by the audit bundle or receipt. The exact next task is
 `TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-REPORT-HASH-REMEDIATION-R1`.
+
+## D0 INNER result audit — report-provenance remediation R1
+
+- Corrected base: `eea8a0d76420ba058df2789b914a6347255c0db0`.
+- Historical blocker parent: `69f902b380a2aa1b674ca70983bb131ad04f54ba`.
+- Remediation Implementation Commit A: `a0f74b2064a1fdf600e402f183fd2a9045a2183f`.
+- Remediation Freeze Commit B: `4b7ab91529bd3ce19ee3e9b42db79ea04c7d8e3d`.
+- Report hash scheme: `MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1`.
+- Report self-hash: `fadaa840aedb5d2be96ea3a44ecb757e586578e4d25de2d2a82c244e7e8bcc51`.
+- R1 readiness: `869fa95d7dd6282e45e73dfd6f5ad6b977747d7b63de1d65bdd0e933c10005e6`.
+- R1 bundle: `ec25c4da9d162e1ca493332e5b8b51f40de6de2839afeb809a53781421ad6d66`.
+- R1 receipt: `8f11f019f04e812f3a06f048b466256dfed0ad9b4b219ea033911a155b5d5835`.
+- Remediation report: `2a6867dddb0e9a1d634fcb11556245a528f0607e985ccd9389bfaf4914d9a5f2`.
+- Status: `passed_task039e3_r2r_utility_inner_d0_result_integrity_audit_report_hash_remediation_r1`.
+- Scientific state: `D0_RESULT_INTEGRITY_AUDITED`.
+- Remote state: `LOCAL_ONLY_NOT_PUSHED`.
+
+The historical blocker remains part of the immutable authority chain. The
+original report body is byte-identical, its single footer binds the R1 bundle,
+receipt, and blocker, and all eight scientific audit JSON artifacts remain
+unchanged. This remediation performed no scientific/private access or result
+recomputation. D0 result interpretation is ready; D2 and OUTER remain
+unauthorized. The exact next task is
+`TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1`.
