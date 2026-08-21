@@ -2,16 +2,16 @@
   "artifact_type": "paper_v_20260625_project_current_state",
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
-  "updated_at_utc": "2026-08-21T12:51:55Z",
-  "canonical_head": "5ad1c2fb56432be637c177cf64449238fdc1b504",
-  "current_branch": "task-039e3-r2r-utility-inner-d2-design-and-freeze-v1",
-  "research_phase": "UTILITY_INNER_D2_DESIGN_FROZEN_NOT_AUTHORIZED",
-  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1",
-  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d2_design_and_freeze_v1",
+  "updated_at_utc": "2026-08-21T13:19:20Z",
+  "canonical_head": "809efa1fe256f4c16a063b39288ecd21ae61f61a",
+  "current_branch": "task-039e3-r2r-utility-inner-d2-design-provenance-clarification-r1",
+  "research_phase": "UTILITY_INNER_D2_DESIGN_FROZEN_PROVENANCE_CLARIFIED_NOT_AUTHORIZED",
+  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-PROVENANCE-CLARIFICATION-R1",
+  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d2_design_provenance_clarification_r1",
   "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-D0-RESULT-INTEGRITY-AUDIT-V1",
   "latest_blocker": "D0_RESULT_INTEGRITY_BLOCKED_AUDIT_REPORT_SELF_HASH_MISSING_RESOLVED_BY_R1",
   "active_task": "NONE",
-  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1.md",
+  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-PROVENANCE-CLARIFICATION-R1.md",
   "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1",
   "REMOTE_EGRESS_STATUS": "LOCAL_ONLY_NOT_PUSHED",
   "state_flags": {
@@ -41,6 +41,7 @@
     "UTILITY_OUTER_EXECUTION_AUTHORIZED": false,
     "REAL_UTILITY_EXECUTION_AUTHORIZED": false,
     "UTILITY_INNER_D2_DESIGN_FROZEN": true,
+    "UTILITY_INNER_D2_DESIGN_PROVENANCE_CLARIFIED": true,
     "UTILITY_INNER_D2_EXECUTED": false
   },
   "public_safety": {
@@ -161,7 +162,13 @@
     "d2_independent_audit": "55599576c754c31f00519823d73ded39c924a114ac5eb94d006bba77ddc37932",
     "d2_design_readiness": "50a9547cadf0b6dca779dea5f107c6368fdde7d4e1251253c9394e328c1d5aea",
     "d2_design_bundle": "2b75563a57d89816b2936d4172762b9d3bca0cf1c8752c780d9c5ecc89cec675",
-    "d2_design_receipt": "d14feaa9a1fe402159806f29ef7499d9ca1e119902fbf1d12faad7b010b0e245"
+    "d2_design_receipt": "d14feaa9a1fe402159806f29ef7499d9ca1e119902fbf1d12faad7b010b0e245",
+    "d2_design_provenance_clarification_commit_a": "cbc1da20ad3782e1a959aceaf42a8d779ba65167",
+    "d2_design_provenance_clarification_commit_b": "809efa1fe256f4c16a063b39288ecd21ae61f61a",
+    "d2_design_provenance_clarification": "f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10",
+    "d2_design_provenance_readiness": "41a6dcf3428de7fa02284041a958be5926829db3f7527ccc1cd1a5f850a94211",
+    "d2_design_provenance_bundle": "b6e02a5319f78f15922a0d2f3239122ee11bcd33f6151ecfa80cc87741f63b83",
+    "d2_design_provenance_receipt": "bf049094ce211e86db22bdbdcfe78adddff76e1935cab792e594b09cf554355d"
   },
   "d1_result_state": {
     "scientific_status": "D1_RESULT_INTEGRITY_AUDITED",
@@ -440,8 +447,8 @@
     "real_utility_computations": 2
   },
   "d2_design_state": {
-    "status": "passed_task039e3_r2r_utility_inner_d2_design_and_freeze_v1",
-    "scientific_state": "D2_DESIGN_FROZEN_NOT_AUTHORIZED",
+    "status": "passed_task039e3_r2r_utility_inner_d2_design_provenance_clarification_r1",
+    "scientific_state": "D2_DESIGN_FROZEN_PROVENANCE_CLARIFIED_NOT_AUTHORIZED",
     "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
     "d2_id": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
     "fusion_family": "DETECTOR_PRESERVING_MULTI_SOURCE_RULE_CORROBORATION",
@@ -460,6 +467,12 @@
     "d1_prediction_content_read_for_design": false,
     "d0_metric_artifact_read_for_design": false,
     "d1_metric_artifact_read_for_design": false,
+    "project_level_d0_inner_baseline_results_known_before_d2_policy_selection": true,
+    "project_level_d1_inner_baseline_results_known_before_d2_policy_selection": true,
+    "project_level_inner_baseline_characterization_informed_d2_problem_formulation": true,
+    "d2_design_stage_role": "INNER_DEVELOPMENT_POLICY_SELECTION",
+    "d2_confirmatory_stage": "OUTER_TEST2",
+    "provenance_clarification_hash": "f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10",
     "test1_used_for_design": false,
     "labels_used_for_design": false,
     "fusion_candidates_compared": 0,
@@ -476,5 +489,5 @@
     "private_numeric_values_exposed": 0,
     "push_attempted": false
   },
-  "artifact_hash": "a34de1bed117f3f73ef70153a72f7105ec7b8faf651c7a012c0326aeeb8eb620"
+  "artifact_hash": "8b823a1745eeb91fd5d86641a44626f8659d69f50c4af1c4e28a8b90a0dd2844"
 }

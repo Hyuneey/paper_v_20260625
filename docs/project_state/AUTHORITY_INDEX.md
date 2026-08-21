@@ -304,3 +304,22 @@ unauthorized. The exact next task is
 This authority freezes the D2 design only. It grants no D2 execution, D0/D1
 rerun, test2, or OUTER authority. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-AUTHORIZATION-V1`.
+
+## D2 design provenance clarification R1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-PROVENANCE-CLARIFICATION-R1`.
+- Base: `ea1dec8129b10d9941802359d2ab742d83d1f2ed`.
+- Implementation Commit A: `cbc1da20ad3782e1a959aceaf42a8d779ba65167`.
+- Freeze Commit B: `809efa1fe256f4c16a063b39288ecd21ae61f61a`.
+- Clarification: `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`.
+- Readiness: `41a6dcf3428de7fa02284041a958be5926829db3f7527ccc1cd1a5f850a94211`.
+- Bundle: `b6e02a5319f78f15922a0d2f3239122ee11bcd33f6151ecfa80cc87741f63b83`.
+- Receipt: `bf049094ce211e86db22bdbdcfe78adddff76e1935cab792e594b09cf554355d`.
+
+This higher-authority addendum preserves the original design bytes and
+semantics. It distinguishes process-level no-read evidence from project-level
+prior knowledge: completed INNER D0/D1 baseline characterization was known
+before D2 policy selection. No D2 candidate sweep, result observation, or
+outcome-driven tuning occurred. The original independence artifact and this
+R1 clarification must be read together. Test2 remains sealed, and no D2 or
+OUTER authority is granted.

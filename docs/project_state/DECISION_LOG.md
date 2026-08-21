@@ -233,3 +233,25 @@ Append new entries; never rewrite historical decisions.
   `03e58a79842d6f6aa0675595e6f78fca86b76de6`, Design Freeze Commit C
   `5ad1c2fb56432be637c177cf64449238fdc1b504`, and design hash
   `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
+
+## DEC-D2-002
+
+- Date: 2026-08-21
+- Status: active
+- Decision: D2 V1 is an INNER-development policy defined after D0/D1 INNER
+  baseline characterization but frozen before any D2 execution or D2 outcome.
+- Provenance: The Codex design process did not read D0/D1 prediction content
+  or metric artifacts. At project level, the completed INNER baseline results
+  were known and informed the D2 problem formulation before policy selection.
+- Tuning boundary: No D2 fusion candidate sweep, hyperparameter search,
+  execution, prediction, metric, or D2-result-based adaptation occurred. The
+  distinct-source count remains the structural minimum non-singleton value of
+  two, and the same-second policy remains exact.
+- Confirmatory boundary: OUTER/test2 remains sealed for future confirmatory
+  evaluation.
+- Authority rule: The original D2 independence artifact must be interpreted
+  together with provenance clarification R1.
+- Canonical evidence: clarification
+  `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`
+  and receipt
+  `bf049094ce211e86db22bdbdcfe78adddff76e1935cab792e594b09cf554355d`.
