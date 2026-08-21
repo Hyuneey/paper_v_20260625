@@ -1,0 +1,31 @@
+{
+  "added_normal_recovery_far_metric": "ADDED_NORMAL_RECOVERY_EPISODES_PER_HOUR",
+  "artifact_hash": "a684368a13efe7699862cc626c4c6a28cb5eca342efe3cc3f4bb77adbfbaa012",
+  "artifact_type": "task039e3_r2r_utility_inner_d2_design_v1_metric_policy",
+  "d0_missed_attack_recovery_metric": "D0_MISSED_ATTACK_RECOVERY_RATE",
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "incremental_far_metric": "INCREMENTAL_NORMAL_FAR_D2_MINUS_D0",
+  "incremental_recall_metric": "INCREMENTAL_ATTACK_EVENT_RECALL_D2_MINUS_D0",
+  "metric_computations": 0,
+  "metric_policy": {
+    "added_normal_recovery_far_formula": "RULE_RECOVERY_ALARM_EPISODES_WITH_ZERO_ATTACK_EVENT_OVERLAP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+    "alarm_episode_policy": "MAXIMAL_CONTIGUOUS_UNIQUE_ONE_SECOND_DECISION_INDICES_FILE_LOCAL",
+    "attack_event_recall_formula": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+    "corrected_event_policy_hash": "6e4a4467953c5c9bf973a0a8a18950669dc902310407b7b354128ad91febb2f4",
+    "corrected_metric_policy_hash": "4c7b6cfdb6b3889e56e7151be60b92a7e6f46ce0135de0ed65ebf3207a7b0d6a",
+    "d0_missed_attack_recovery_formula": "D0_MISSED_ATTACK_EVENTS_RECOVERED_BY_RULE_RECOVERY_DIVIDED_BY_ALL_D0_MISSED_ATTACK_EVENTS",
+    "d0_missed_attack_recovery_undefined_reason": "NO_D0_MISSED_ATTACK_EVENTS",
+    "incremental_attack_recall_formula": "D2_ATTACK_EVENT_RECALL_MINUS_D0_ATTACK_EVENT_RECALL",
+    "incremental_baseline": "D0_DETECTOR_ONLY",
+    "incremental_normal_far_formula": "D2_NORMAL_FAR_EPISODES_PER_HOUR_MINUS_D0_NORMAL_FAR_EPISODES_PER_HOUR",
+    "metrics_compute_during_design": false,
+    "normal_far_formula": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+    "point_adjustment_allowed": false
+  },
+  "observed_metric_values_included": false,
+  "primary_metric_1": "ATTACK_EVENT_RECALL",
+  "primary_metric_2": "NORMAL_FAR_EPISODES_PER_HOUR",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1"
+}

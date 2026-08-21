@@ -1,0 +1,62 @@
+{
+  "artifact_hash": "73069cade706c08065e4669dbe6b5c812f1e2d00d91d5e6ecc57e41d696a6751",
+  "artifact_type": "task039e3_r2r_utility_inner_d2_design_v1_corroboration_policy",
+  "d0_preservation_policy": "EVERY_FROZEN_D0_ALARM_IS_A_D2_ALARM",
+  "d0_rerun_dependency": false,
+  "d0_score_dependency": false,
+  "d1_rerun_dependency": false,
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "fusion": {
+    "and_gating_allowed": false,
+    "d0_alarm_boolean_only": true,
+    "d0_alarms_preserved": true,
+    "d0_score_access_allowed": false,
+    "d0_suppression_allowed": false,
+    "d1_numeric_reevaluation_allowed": false,
+    "fusion_candidates_compared": 0,
+    "hyperparameter_search_performed": false,
+    "label_aware_fusion": false,
+    "pointwise_formula": "D2_alarm(t)=D0_alarm(t) OR (cardinality(distinct(D1_alarming_sources_at_t))>=2)",
+    "raw_any_rule_or_allowed": false,
+    "rule_recovery_positive_direction_only": true,
+    "scientific_llm_runtime": false,
+    "trainable_fusion": false,
+    "weighted_fusion_allowed": false
+  },
+  "policy": {
+    "correction_direction": "DETECTOR_FALSE_NEGATIVE_RECOVERY",
+    "corroboration_count_rationale": "MINIMUM_NON_SINGLETON_DISTINCT_SOURCE_CORROBORATION",
+    "corroboration_count_search_allowed": false,
+    "count_distinct_source_variables": true,
+    "duplicate_rules_from_same_source_count_once": true,
+    "event_expansion_allowed": false,
+    "required_distinct_source_count": 2,
+    "rolling_window_allowed": false,
+    "same_second_policy": "EXACT_DECISION_PHYSICAL_ROW_INDEX_EQUALITY",
+    "temporal_dilation_allowed": false,
+    "temporal_tolerance_seconds": 0
+  },
+  "rule_numeric_reevaluation": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1",
+  "trigger_classes": [
+    "NONE",
+    "D0_ONLY",
+    "RULE_RECOVERY",
+    "D0_AND_RULE_CORROBORATION"
+  ],
+  "trigger_semantics": {
+    "allowed_trigger_classes": [
+      "NONE",
+      "D0_ONLY",
+      "RULE_RECOVERY",
+      "D0_AND_RULE_CORROBORATION"
+    ],
+    "d0_and_rule_corroboration_condition": "d0_and_corroborated",
+    "d0_only_condition": "d0_and_not_corroborated",
+    "none_condition": "not_d0_and_not_corroborated",
+    "rule_recovery_condition": "not_d0_and_corroborated",
+    "trigger_class_changes_alarm_semantics": false
+  }
+}

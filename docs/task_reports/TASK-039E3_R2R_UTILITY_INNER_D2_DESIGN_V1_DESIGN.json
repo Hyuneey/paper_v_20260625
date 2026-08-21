@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "74e6d66fc506cf9be0d40848d4f3d5b51b51f398ee0c8448c1453d5344bc0b94",
+  "artifact_type": "task039e3_r2r_utility_inner_d2_design_v1_design",
+  "base_commit": "1c2f9a6272ee711b70b44ed79b9210af1026d3af",
+  "correction_direction": "DETECTOR_FALSE_NEGATIVE_RECOVERY",
+  "d0_alarms_preserved": true,
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "d2_fusion_family": "DETECTOR_PRESERVING_MULTI_SOURCE_RULE_CORROBORATION",
+  "d2_id": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
+  "d2_role": "PRIMARY_COMBINED_DETECTOR_RULE_ARM",
+  "design_commit_a": "8bb227521f28101970e7ea19ae97987d94b3c7c3",
+  "independent_audit_commit_b": "03e58a79842d6f6aa0675595e6f78fca86b76de6",
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "required_distinct_source_count": 2,
+  "same_second_policy": "EXACT_DECISION_PHYSICAL_ROW_INDEX_EQUALITY",
+  "schema_version": "1.0.0",
+  "scientific_state": "D2_DESIGN_FROZEN_NOT_AUTHORIZED",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1"
+}
