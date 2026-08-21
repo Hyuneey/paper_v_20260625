@@ -15,3 +15,11 @@ The exact local frozen D0 result passed independent Git, authorization, implemen
 - Normal FAR episodes/hour oracle: `0.4939336325682589`
 
 Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-DESIGN-AND-FREEZE-V1`.
+<!-- BEGIN D0 RESULT INTEGRITY REPORT PROVENANCE V1 -->
+Report-Hash-Scheme: MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1
+Report-Self-Hash: fadaa840aedb5d2be96ea3a44ecb757e586578e4d25de2d2a82c244e7e8bcc51
+Remediation-Status: PASS
+R1-Bundle-Hash: ec25c4da9d162e1ca493332e5b8b51f40de6de2839afeb809a53781421ad6d66
+R1-Receipt-Hash: 8f11f019f04e812f3a06f048b466256dfed0ad9b4b219ea033911a155b5d5835
+Historical-Blocker-Hash: b59c6e23e0a3bc5dfcf89a2a0b67f78f581958055efdfcf0a78200ad9299ae01
+<!-- END D0 RESULT INTEGRITY REPORT PROVENANCE V1 -->
