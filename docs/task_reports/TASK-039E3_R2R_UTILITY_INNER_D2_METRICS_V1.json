@@ -1,0 +1,89 @@
+{
+  "alarm_episode_count": 49,
+  "artifact_hash": "dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d",
+  "artifact_type": "task039e3_r2r_utility_inner_d2_metrics_v1",
+  "attack_intervals_public": false,
+  "combined_prediction_hash": "cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5",
+  "corroboration_point_count": 3,
+  "created_at_utc": "2026-08-22T02:12:16Z",
+  "d0_prediction_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6",
+  "d1_prediction_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "d2_id": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
+  "execution_mode": "AUTHORIZED_INFRASTRUCTURE_RECOVERY_ATTEMPT",
+  "execution_version": "TASK039E3_R2R_D2_INNER_EXECUTION_RECOVERY_V1",
+  "fusion_evidence_hash": "f41d53b04ee33fcf719a442d707522438f0d4dcdfcc14eee3a416cc98267729b",
+  "label_vector_public": false,
+  "metrics": {
+    "added_normal_recovery_far_episodes_per_hour": {
+      "artifact_hash": "d1b7404d4c8e662a542807d3b7ecbb1abdd0ee354c1a57e1cd4d727ae8ceee8f",
+      "defined": true,
+      "formula_identity": "RULE_RECOVERY_ALARM_EPISODES_WITH_ZERO_ATTACK_EVENT_OVERLAP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+      "metric_name": "Added Normal Recovery FAR episodes/hour",
+      "private_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+      "undefined_reason": null,
+      "value": 0.21168584252925382
+    },
+    "d0_missed_attack_recovery_rate": {
+      "artifact_hash": "47951bcb1f70f775533c80d0900b4e2b24b0af062e5459ca6eab31658cc90a14",
+      "defined": true,
+      "formula_identity": "D0_MISSED_ATTACK_EVENTS_RECOVERED_BY_RULE_RECOVERY_DIVIDED_BY_ALL_D0_MISSED_ATTACK_EVENTS",
+      "metric_name": "D0-missed Attack Recovery Rate",
+      "private_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+      "undefined_reason": null,
+      "value": 0.0
+    },
+    "d2_attack_event_recall": {
+      "artifact_hash": "8fdc3a5cb8d58a81ccca8358d93291f0ee89e3232450ba012ded966f895d68ef",
+      "defined": true,
+      "formula_identity": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+      "metric_name": "D2 Attack-event Recall",
+      "private_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+      "undefined_reason": null,
+      "value": 0.7857142857142857
+    },
+    "d2_normal_far_episodes_per_hour": {
+      "artifact_hash": "bd701320214da38814b9e7e26c440f0a0cbce0d2df08cebb673003a387035491",
+      "defined": true,
+      "formula_identity": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+      "metric_name": "D2 Normal FAR episodes/hour",
+      "private_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+      "undefined_reason": null,
+      "value": 0.7056194750975128
+    },
+    "incremental_attack_event_recall": {
+      "artifact_hash": "eb1861608e8ec67845c55684d59260510fbd30d57059ae0d0c748d39d0a9b485",
+      "defined": true,
+      "formula_identity": "D2_ATTACK_EVENT_RECALL_MINUS_D0_ATTACK_EVENT_RECALL",
+      "metric_name": "Incremental Attack-event Recall",
+      "private_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+      "undefined_reason": null,
+      "value": 0.0
+    },
+    "incremental_normal_far_episodes_per_hour": {
+      "artifact_hash": "7ac89de3a890c4d0b76ddb4a9f758984a414fff37a0aec0b4182e2fe10094808",
+      "defined": true,
+      "formula_identity": "D2_NORMAL_FAR_EPISODES_PER_HOUR_MINUS_D0_NORMAL_FAR_EPISODES_PER_HOUR",
+      "metric_name": "Incremental Normal FAR episodes/hour",
+      "private_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+      "undefined_reason": null,
+      "value": 0.21168584252925388
+    }
+  },
+  "original_authorization_hash": "b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c",
+  "point_alarm_count": 879,
+  "private_event_evidence_public": false,
+  "private_metric_evidence_hash": "7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed",
+  "raw_rule_source_sets_public": false,
+  "recovery_authorization_hash": "0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141",
+  "rule_recovery_episode_count": 3,
+  "schema_version": "1.0.0",
+  "source_map_hash": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-RECOVERY-V1",
+  "trigger_class_counts": {
+    "D0_AND_RULE_CORROBORATION": 0,
+    "D0_ONLY": 876,
+    "NONE": 53121,
+    "RULE_RECOVERY": 3
+  }
+}
