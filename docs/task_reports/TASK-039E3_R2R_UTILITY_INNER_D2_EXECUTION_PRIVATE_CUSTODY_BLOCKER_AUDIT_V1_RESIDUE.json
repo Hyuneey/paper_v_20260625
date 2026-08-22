@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "81c7ac685596c0dc5eb2ca73140e278f1175127e85516aafaf90c482ff834c06",
+  "artifact_type": "task039e3_r2r_utility_inner_d2_execution_private_custody_blocker_audit_v1_residue",
+  "audit_commit_a": "316bc6086ea10712c2efebfac97287f082fe2575",
+  "authorization_hash": "b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c",
+  "blocker_hash": "b721ddc45f0e7c97646b520eab9384d74c6c12231cb744c0f493fbf661111580",
+  "combined_prediction_exists": false,
+  "d0_prediction_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6",
+  "d1_prediction_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "d2_design_hash": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+  "execution_implementation_commit_a": "315eb5b578301d57c6ab90c0c2398e3df3dec3f5",
+  "final_private_fusion_evidence_exists": false,
+  "partial_private_temp_exists": false,
+  "private_evidence_directory_residue": true,
+  "residue_deleted": false,
+  "schema_version": "1.0.0",
+  "source_map_hash": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+  "stale_private_residue_count": 0,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-BLOCKER-AUDIT-V1",
+  "zero_byte_private_target_exists": false
+}
