@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "1b51853f796b01fa0fa47c5c1a431c6d79997a62612b4569ba9a255045ca4355",
+  "artifact_type": "task039e3_r2r_d2_v2_execution_authorization_v1_path_redaction_audit",
+  "created_at_utc": "2026-08-22T08:41:25Z",
+  "path_redaction_pass": true,
+  "path_token_occurrences_exception": 0,
+  "path_token_occurrences_public_result": 0,
+  "path_token_occurrences_stderr": 0,
+  "path_token_occurrences_stdout": 0,
+  "private_paths_exposed": 0,
+  "raw_exception_args_exposed": false,
+  "raw_traceback_exposed": false,
+  "recovery_custody_module_identity": "c0e3faafdab0cb84e2f8e62b9380c243b0faee9ab38cc014de36fed5464d62e6",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1"
+}

@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "16198e7d11b241977031c73dd8ab3fb645c4620e75f446e6c57793ff49693b96",
+  "artifact_type": "task039e3_r2r_d2_v2_execution_authorization_v1_receipt",
+  "authorization_hash": "0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45",
+  "bundle_hash": "779a326715bbf5f7cebc94c06ea24b1b4538b75abb2117281a01cb65ec784472",
+  "created_at_utc": "2026-08-22T08:41:25Z",
+  "custody_preflight_hash": "1296c76458d498d0e35b209c4da9691f6d02e1899778906409d96d7c18d4e463",
+  "d2_v2_executed": false,
+  "d2_v2_inner_execution_authorized": true,
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-V1",
+  "outer_authorized": false,
+  "readiness_hash": "02ce6ebb6d71225160210772768a6f6a904a6df6f188ef7a7b47fe034bdf922a",
+  "report_hash_scheme": "MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1",
+  "report_self_hash": "40f63c01c8594f1ff4fbdd76d1373001191b1a408d96000f0707ebe6dc890830",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_execution_authorization_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1"
+}

@@ -1,0 +1,21 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "3ee5e6a3deefaa39365e9eb471789a0cde2cf60e4635b1743a176d45b48f9ee8",
+  "artifact_type": "task039e3_r2r_d2_v2_execution_authorization_v1_independent_audit",
+  "contract_commit_a": "ab1773f3d898e98ccb45585434e7fd0053366af9",
+  "created_at_utc": "2026-08-22T08:41:25Z",
+  "independent_attacks": 30,
+  "independent_attacks_rejected": 30,
+  "independent_audit_commit_b": "1a8dc972f1e267c53d143d6623c92dbaeb0249f1",
+  "label_scientific_parses": 0,
+  "outer_executions": 0,
+  "production_changes_after_commit_a": 0,
+  "schema_version": "1.0.0",
+  "scientific_controller_imports": 0,
+  "static_tests_passed": 50,
+  "static_tests_total": 50,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0,
+  "v2_fusion_computations": 0
+}
