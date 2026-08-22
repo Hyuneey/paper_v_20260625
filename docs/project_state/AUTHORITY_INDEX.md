@@ -463,3 +463,20 @@ It validates both private evidence hashes and preserves the permanent two-
 attempt history. D2 is interpretation-ready for the separate INNER scientific
 comparison task. No execution, third attempt, result modification,
 test1-feature/test2/OUTER access, or remote egress is authorized.
+
+## INNER D0/D1/D2 scientific comparison V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1`.
+- Commit A/B: `f1d26f83ab5d13c28a7f82909c4ae7e69d3b7aaf` / `f4e21a2a73adad16bd15898cbb5c01bb19646ba3`.
+- Arm metrics: `4704d3a526eab806ece1c511094fc2d2798ff63bac537273d35811ce4e9bbb81`.
+- Event overlap: `51589bbf1bd90b2f04504595af465eb7e514061ef21d16ad731e02508072f1b3`.
+- Recovery analysis: `32f008bfbcc0d1eea3efa3f27d6684823f6a02c1eab7b38333544198adc6892a`.
+- False-alarm tradeoff: `fc283c58c0426e85c16eef299d339f672170df6d97423e6f013b7bc36fa30a17`.
+- Interpretation: `c9516ad8233ab8d181f04f7f486bc04cb5073d80f90e3b51d004f9a1a7890885`.
+- Outer disposition: `5b9a96901e70ebc94edaebb8f7ebf78a4911af9a5da796a6df3febbc2c7b726b`.
+- Receipt: `d444ed1f7979270b945c03f2656b92e8ef7ebf8e98eca2f88f976999da00216e`.
+
+The comparison freezes the negative D2 V1 INNER result without redesign:
+D1 covered all three D0-missed events, D2 covered none, and D2 added three
+normal false-alarm episodes. OUTER remains unauthorized pending an INNER
+failure diagnostic.

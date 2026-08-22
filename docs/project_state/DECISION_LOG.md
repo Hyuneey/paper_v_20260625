@@ -324,3 +324,17 @@ Append new entries; never rewrite historical decisions.
   `c45db852c6d5571ec7930fc12d815b383a29e31939e711eb5f2e84c69807b448`.
 - Next authority: INNER D0/D1/D2 scientific comparison only; OUTER remains
   unauthorized and sealed.
+
+## DEC-D2-006
+
+- Date: 2026-08-22
+- Status: active
+- Decision: The canonical D2 V1 INNER comparison is complete. D1 detected all
+  three events missed by D0, but D2 retained none of that recovery potential
+  and added three normal false-alarm episodes.
+- Classification: `RULE_SIGNAL_HAS_DETECTOR_MISS_RECOVERY_POTENTIAL_BUT_D2_GATE_FAILED_TO_RETAIN_IT`.
+- Scientific conclusion: `CURRENT_D2_COMBINED_UTILITY_NOT_SUPPORTED_ON_INNER`.
+- Boundary: This is descriptive, not causal. No alternative fusion policy was
+  proposed or tested, and OUTER remains sealed.
+- Disposition: `HOLD_PENDING_INNER_D2_FAILURE_DIAGNOSTIC`.
+- Canonical evidence: receipt `d444ed1f7979270b945c03f2656b92e8ef7ebf8e98eca2f88f976999da00216e`.

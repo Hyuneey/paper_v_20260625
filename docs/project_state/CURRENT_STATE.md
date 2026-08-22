@@ -2,14 +2,12 @@
 
 ## Research in one paragraph
 
-The exact D0 DetectorPrediction, D1 RulePrediction, and D2 CombinedPrediction
-remain frozen. An independent local audit reproduced the exact 54,000-row D2
-fusion, trigger classes, episode sets, and six metrics, verified both private
-evidence hashes, and found zero prediction or metric divergence. Historical
-attempt 1 remains an immutable infrastructure-aborted attempt; recovery
-attempt 2 remains the only completed scientific execution. D2 result
-integrity is audited and INNER interpretation is ready. Test2 and OUTER remain
-sealed.
+The exact integrity-audited D0, D1, and D2 predictions remain frozen. The
+canonical INNER comparison shows that D1 detected all three attack events
+missed by D0, but the frozen D2 corroboration policy retained none of that
+potential recovery. D2 matched D0 recall while adding three normal false-
+alarm episodes. Current D2 V1 combined utility is not supported on INNER;
+OUTER remains sealed pending a non-redesign diagnostic of the lost signal.
 
 ## D2 result integrity audit
 
@@ -47,8 +45,20 @@ sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1`
 
-That task may interpret the three already-frozen INNER arms. It may not rerun
-D0, D1, or D2; alter predictions, metrics, or fusion policy; access test2 or
-OUTER; authorize another execution attempt; or push.
+That task may diagnose why the D1 recovery signal was not retained, using
+INNER evidence only. It may not execute alternative fusion policies, redesign
+D2, access test2 or OUTER, rerun any arm, or push.
+
+## Frozen INNER D0/D1/D2 comparison V1
+
+- Status: `passed_task039e3_r2r_utility_inner_d0_d1_d2_scientific_comparison_v1`.
+- Commit A/B: `f1d26f83ab5d13c28a7f82909c4ae7e69d3b7aaf` / `f4e21a2a73adad16bd15898cbb5c01bb19646ba3`.
+- D0/D1/D2 detected attack events: `11 / 13 / 11` of `14`.
+- D0/D1/D2 normal false-alarm episodes: `7 / 574 / 10`.
+- D0 misses detected by D1/D2: `3 / 0`.
+- Classification: `RULE_SIGNAL_HAS_DETECTOR_MISS_RECOVERY_POTENTIAL_BUT_D2_GATE_FAILED_TO_RETAIN_IT`.
+- D2 V1 incremental utility supported: `false`.
+- OUTER disposition: `HOLD_PENDING_INNER_D2_FAILURE_DIAGNOSTIC`.
+- Readiness/bundle/receipt: `4101e47bd2e93303c74f078e2b5cd21172a10b260554f6d2a3f84b32b7582023` / `168a3566f6e8310168a8c282c6927d2d992dbd674235952bb9b1aa9a79ff5469` / `d444ed1f7979270b945c03f2656b92e8ef7ebf8e98eca2f88f976999da00216e`.
