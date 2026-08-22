@@ -1,0 +1,32 @@
+{
+  "artifact_type": "task039e3_r2r_d2_v2_native_horizon_corroboration_config_v1",
+  "causal_token_policy": "decision_index<=t<=decision_index+native_horizon_seconds",
+  "config_hash": "a031e6e0707e4f57cc74e3a3a62f861052167d0269bf2c2927c58b564e2eadcb",
+  "d0_prediction_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6",
+  "d0_preservation": "EVERY_FROZEN_D0_ALARM_IS_A_D2_V2_ALARM",
+  "d0_score_dependency": false,
+  "d1_prediction_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682",
+  "d2_v2_design_hash": "ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4",
+  "d2_v2_execution_authorized": false,
+  "d2_v2_id": "D2_V2_D0_PLUS_NATIVE_HORIZON_MULTI_SOURCE_CORROBORATION_V1",
+  "label_aware_fusion": false,
+  "metric_identities": {
+    "added_normal_recovery_far": "RULE_RECOVERY_ALARM_EPISODES_WITH_ZERO_ATTACK_EVENT_OVERLAP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600",
+    "attack_event_recall": "ATTACK_EVENTS_OVERLAPPED_BY_AT_LEAST_ONE_ALARM_EPISODE_DIVIDED_BY_ALL_ATTACK_EVENTS",
+    "d0_missed_attack_recovery": "D0_MISSED_ATTACK_EVENTS_RECOVERED_BY_RULE_RECOVERY_DIVIDED_BY_ALL_D0_MISSED_ATTACK_EVENTS",
+    "incremental_attack_recall": "D2_ATTACK_EVENT_RECALL_MINUS_D0_ATTACK_EVENT_RECALL",
+    "incremental_normal_far": "D2_NORMAL_FAR_EPISODES_PER_HOUR_MINUS_D0_NORMAL_FAR_EPISODES_PER_HOUR",
+    "normal_far": "ALARM_EPISODES_WITH_NO_ATTACK_TIMESTAMP_DIVIDED_BY_NORMAL_LABELED_SECONDS_OVER_3600"
+  },
+  "native_horizon_authority_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+  "native_horizon_map_hash": "e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c",
+  "new_fixed_temporal_window": null,
+  "observed_test1_event_gaps_encoded": false,
+  "outer_authorized": false,
+  "required_distinct_source_count": 2,
+  "schema_version": "1.0.0",
+  "single_source_fallback": false,
+  "source_map_hash": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1",
+  "test2_authorized": false
+}
