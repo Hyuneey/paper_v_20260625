@@ -1,41 +1,42 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-execution-private-custody-remediation-recovery-authorization-v1`
-- Exact base: `ae566dae3124b352bdae85cc54a011adad6743f8`
-- Remediation Implementation Commit A: `7b749b68868193d2aed350f8ca0df91ff1dc807c`
-- Independent Audit Commit B: `0399012e28f97226821d76b7b35d2980ba4ac6c8`
-- Recovery Authorization Freeze Commit C: `4d24d72c8061d49c899bf3160781eeb86c8e7ac7`
-- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-REMEDIATION-AND-RECOVERY-AUTHORIZATION-V1`
-- Latest status: `passed_task039e3_r2r_utility_inner_d2_execution_private_custody_remediation_and_recovery_authorization_v1`
-- Scientific state: `D2_INFRASTRUCTURE_RECOVERY_AUTHORIZED_NOT_EXECUTED`
+- Branch: `task-039e3-r2r-utility-inner-d2-execution-recovery-v1`
+- Exact base: `adbac8a7b000fdf74d1d34fed920a6266e651926`
+- Recovery Execution Commit A: `6c52bbe1ace8895a8b5b27527e4f9fe2ca01b3e6`
+- Independent Audit Commit B: `9648f1d6415911800058b64f8084a2cfe1fc31a0`
+- Result Freeze Commit C: `9078c4a1639c35d848cad28194fb4195eb5daca5`
+- Latest task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-RECOVERY-V1`
+- Latest status: `passed_task039e3_r2r_utility_inner_d2_execution_recovery_v1`
+- Scientific state: `D2_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
 - Active task: `NONE`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-RECOVERY-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1`
 
-## Recovery authorization boundary
+## Frozen recovery result
 
-The original D2 design, authorization, execution implementation, D0 and D1
-predictions, source map, distinct-source count, same-second policy, D0
-preservation, and metric semantics are unchanged. The new custody module is
-infrastructure-only and the sentinel preflight accessed no prediction content,
-label, test data, fusion, or metric.
+The original D2 scientific implementation and both authorization sets were
+replayed exactly. The recovery bridge reused the frozen prediction parsers,
+source-map resolver, fusion builder, CombinedPrediction builder, label gate,
+episode policy, and metric builder. Only private evidence persistence used the
+recovery custody writer.
 
-The historical attempt remains one infrastructure-aborted attempt with zero
-completed scientific executions and zero retries. The new grant authorizes
-exactly one `AUTHORIZED_INFRASTRUCTURE_RECOVERY_ATTEMPT`. On success the next
-task must report two total attempts, one aborted infrastructure attempt, one
-completed scientific execution, and zero result-driven retries. If private
-persistence fails again, no third attempt is authorized.
+- Execution run: `64c9486d325b112198975d5d1c8b92c56213498a47fd67ba654257d99edf697e`.
+- FusionEvidence: `f41d53b04ee33fcf719a442d707522438f0d4dcdfcc14eee3a416cc98267729b`.
+- CombinedPrediction: `cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5`.
+- Private metric evidence: `7d2f24d4cf481d0202d0842d8c5521e8b7bcacf4a2aa01d22af2bf69c29795ed`.
+- Metrics: `dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d`.
+- Readiness/bundle/receipt: `8768e1daabe8517b1260a560f8c46a92816f8cc9198da328743892751c34540f` /
+  `655ae56707220086d35781c1a7de25abd68549923fc9c7a54b25be38abe1a45a` /
+  `c60d3d1707f4edb2332cfa57578a7f560c8369f2bb4f00600ac77b9896dfeb99`.
 
-- Recovery authorization: `0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141`.
-- Custody preflight: `945ff83f929d0f98ebc6ed942a0cbf1053dcb995fcc6ece40178793cc47cb917`.
-- Path-redaction audit: `33cb00918b266132e3520b42c63abae799119759de75e4693d953394bb8a32e6`.
-- Accounting: `8067ac5c62b95a8e261bd449026013dad30f159e151573915bdf654c9a7820a0`.
-- Readiness: `e81e25d5cce2129c21b83eca588dc0ae7fdc56ccfad3b6d682c91bcaf61950dc`.
-- Bundle: `d5dbfae507b00698983dbe9da4ba9fe1ecc63f84dd79f694339786b2219f39f0`.
-- Receipt: `9b028b0132a179c12ed921207e1b20f149a10482834897f0dc9851cadde497f2`.
+Historical attempt 1 remains permanently recorded as infrastructure-aborted.
+Recovery attempt 2 completed scientifically. Total attempts are two, completed
+scientific executions one, result-driven retries zero, and authorized attempts
+remaining zero. CombinedPrediction froze before the single label parse. No
+D0/D1 rerun, D0 score, rule reevaluation, test1 feature, test2, OUTER, result
+change, current path leak, or push occurred.
 
-Do not perform the recovery execution, parse D0/D1 predictions, open labels or
-test1 features, access test2/OUTER, alter fusion semantics, or push until the
-exact next task is explicitly issued.
+Do not interpret or compare the D2 result, rerun any scientific execution,
+authorize a third attempt, access test2/OUTER, alter frozen result bytes, or
+push before the exact result-integrity audit task is issued.

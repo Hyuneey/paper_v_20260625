@@ -410,3 +410,29 @@ test2 and OUTER remain sealed.
 - Readiness/bundle/receipt: `e81e25d5cce2129c21b83eca588dc0ae7fdc56ccfad3b6d682c91bcaf61950dc` / `d5dbfae507b00698983dbe9da4ba9fe1ecc63f84dd79f694339786b2219f39f0` / `9b028b0132a179c12ed921207e1b20f149a10482834897f0dc9851cadde497f2`.
 - Authority: one explicit infrastructure recovery attempt only; no scientific
   policy change, D0/D1 rerun, test2, OUTER, or third attempt.
+
+## Frozen D2 INNER recovery result V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-RECOVERY-V1`.
+- Base: `adbac8a7b000fdf74d1d34fed920a6266e651926`.
+- Commit A/B/C: `6c52bbe1ace8895a8b5b27527e4f9fe2ca01b3e6` /
+  `9648f1d6415911800058b64f8084a2cfe1fc31a0` /
+  `9078c4a1639c35d848cad28194fb4195eb5daca5`.
+- Execution run: `64c9486d325b112198975d5d1c8b92c56213498a47fd67ba654257d99edf697e`.
+- FusionEvidence: `f41d53b04ee33fcf719a442d707522438f0d4dcdfcc14eee3a416cc98267729b`.
+- CombinedPrediction: `cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5`.
+- Metrics: `dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d`.
+- Accounting/readiness/bundle/receipt:
+  `1ad805908d46006108c55a5007436fb384babaf472c007af49b32f640878ed9a` /
+  `8768e1daabe8517b1260a560f8c46a92816f8cc9198da328743892751c34540f` /
+  `655ae56707220086d35781c1a7de25abd68549923fc9c7a54b25be38abe1a45a` /
+  `c60d3d1707f4edb2332cfa57578a7f560c8369f2bb4f00600ac77b9896dfeb99`.
+- Report self-hash: `66b04243c9c6833be4407bf6a0ae1804a4e764342c9ec9faf7d9f4d7766bf851`.
+
+This authority freezes the exact recovery result after total D2 attempt two.
+Historical attempt one remains infrastructure-aborted; one scientific
+execution completed; result-driven retries and remaining attempts are zero.
+The result is not yet integrity-audited or interpretation-ready. It grants no
+third attempt, D0/D1 rerun, test1-feature/test2/OUTER access, tuning, result
+modification, comparison, or remote egress. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1`.

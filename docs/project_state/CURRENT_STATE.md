@@ -2,58 +2,56 @@
 
 ## Research in one paragraph
 
-The exact D0 DetectorPrediction and D1 RulePrediction results are frozen and
-integrity-audited. The D2 design and original execution authorization remain
-frozen. The first D2 attempt remains immutable historical evidence: fusion was
-computed in memory, private persistence failed for
-`PRIVATE_PARENT_PERMISSION_DENIED`, and no CombinedPrediction, label, metric,
-or result was frozen. A separate path-redacted private custody plane has now
-passed a non-scientific atomic sentinel preflight, and exactly one transparent
-infrastructure recovery attempt is authorized. D2 has not been executed to
-completion; test2 and OUTER remain sealed.
+The exact D0 DetectorPrediction and D1 RulePrediction remain frozen and
+integrity-audited. The D2 design, original authorization, and explicit
+recovery authorization remain unchanged. Historical attempt 1 remains an
+immutable infrastructure-aborted attempt. The sole authorized recovery ran as
+total attempt 2, persisted private FusionEvidence through the path-redacted
+custody plane, froze CombinedPrediction before label access, computed the
+frozen D2 metrics, and froze the result without tuning. D2 result integrity is
+not yet audited; test2 and OUTER remain sealed.
 
-## D2 recovery authorization
+## D2 recovery execution
 
-- Status: `passed_task039e3_r2r_utility_inner_d2_execution_private_custody_remediation_and_recovery_authorization_v1`.
-- Scientific state: `D2_INFRASTRUCTURE_RECOVERY_AUTHORIZED_NOT_EXECUTED`.
+- Status: `passed_task039e3_r2r_utility_inner_d2_execution_recovery_v1`.
+- Scientific state: `D2_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
-- Base: `ae566dae3124b352bdae85cc54a011adad6743f8`.
-- Remediation Implementation Commit A: `7b749b68868193d2aed350f8ca0df91ff1dc807c`.
-- Independent Audit Commit B: `0399012e28f97226821d76b7b35d2980ba4ac6c8`.
-- Recovery Authorization Freeze Commit C: `4d24d72c8061d49c899bf3160781eeb86c8e7ac7`.
+- Base: `adbac8a7b000fdf74d1d34fed920a6266e651926`.
+- Recovery Execution Commit A: `6c52bbe1ace8895a8b5b27527e4f9fe2ca01b3e6`.
+- Independent Audit Commit B: `9648f1d6415911800058b64f8084a2cfe1fc31a0`.
+- Result Freeze Commit C: `9078c4a1639c35d848cad28194fb4195eb5daca5`.
+- Original authorization: `b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c`.
 - Recovery authorization: `0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141`.
-- Custody preflight: `945ff83f929d0f98ebc6ed942a0cbf1053dcb995fcc6ece40178793cc47cb917`.
-- Path-redaction audit: `33cb00918b266132e3520b42c63abae799119759de75e4693d953394bb8a32e6`.
-- Accounting: `8067ac5c62b95a8e261bd449026013dad30f159e151573915bdf654c9a7820a0`.
-- Readiness: `e81e25d5cce2129c21b83eca588dc0ae7fdc56ccfad3b6d682c91bcaf61950dc`.
-- Bundle: `d5dbfae507b00698983dbe9da4ba9fe1ecc63f84dd79f694339786b2219f39f0`.
-- Receipt: `9b028b0132a179c12ed921207e1b20f149a10482834897f0dc9851cadde497f2`.
-- Report self-hash: `90df54a6a35977fcc6da34d93219d4556850448fee5ab331227c0f1f85fb3c31`.
+- Execution run: `64c9486d325b112198975d5d1c8b92c56213498a47fd67ba654257d99edf697e`.
+- CombinedPrediction: `cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5`.
+- Metrics: `dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d`.
+- Accounting: `1ad805908d46006108c55a5007436fb384babaf472c007af49b32f640878ed9a`.
+- Readiness: `8768e1daabe8517b1260a560f8c46a92816f8cc9198da328743892751c34540f`.
+- Bundle: `655ae56707220086d35781c1a7de25abd68549923fc9c7a54b25be38abe1a45a`.
+- Receipt: `c60d3d1707f4edb2332cfa57578a7f560c8369f2bb4f00600ac77b9896dfeb99`.
+- Report self-hash: `66b04243c9c6833be4407bf6a0ae1804a4e764342c9ec9faf7d9f4d7766bf851`.
 
-## Permanent historical accounting
+## Permanent attempt and safety accounting
 
-- Historical D2 execution attempts: `1`.
-- Historical infrastructure-aborted attempts: `1`.
-- Historical completed scientific executions: `0`.
-- Historical result-driven retries: `0`.
-- Historical fusion classification: `FUSION_COMPUTED_IN_MEMORY_BUT_NOT_PERSISTED`.
-- Historical path exposure: `EPHEMERAL_PRIVATE_PATH_DISCLOSURE`.
-- Tracked private-path leak: `false`.
-- Recovery class: `PATH_REDACTION_AND_CUSTODY_RECOVERY`.
-
-The recovery grant authorizes one additional attempt only. The maximum total
-D2 attempt count is two, the maximum completed scientific execution count is
-one, and result-driven retries remain zero. It grants no D2 design, fusion,
-source-map, corroboration-count, temporal-policy, D0/D1 prediction, rerun,
-test1-feature, test2, or OUTER change.
+- Historical D2 attempts: `1`.
+- Recovery D2 attempts: `1`.
+- Total D2 attempts: `2`.
+- Infrastructure-aborted attempts: `1`.
+- Completed scientific executions: `1`.
+- Result-driven retries: `0`.
+- Additional authorized attempts remaining: `0`.
+- Third attempt authorized: `false`.
+- Historical path exposure: `1`, `EPHEMERAL_PRIVATE_PATH_DISCLOSURE`.
+- Recovery private-path exposures: `0`.
+- Tracked private-path leaks: `0`.
+- D0/D1 reruns, D0 scores, rule reevaluation, test1 feature access, test2,
+  OUTER, result-driven changes, and push: `0`.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-RECOVERY-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1`
 
-That task must consume both the original D2 authorization and the recovery
-authorization, reuse the exact frozen fusion implementation, and differ only
-in the new path-redacted private persistence plumbing. It must transparently
-report two total attempts, one aborted infrastructure attempt, at most one
-completed scientific execution, and zero result-driven retries. No third
-attempt is authorized.
+That task must independently reproduce the frozen fusion, CombinedPrediction,
+episode sets, and six metrics while preserving both-attempt accounting and
+Commit-C bytes. It may not rerun D0/D1, access test1 features or test2, alter
+the result, authorize a third attempt, interpret D2, or push.

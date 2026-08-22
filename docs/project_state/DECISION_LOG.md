@@ -273,3 +273,30 @@ Append new entries; never rewrite historical decisions.
   `0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141`
   and receipt
   `9b028b0132a179c12ed921207e1b20f149a10482834897f0dc9851cadde497f2`.
+
+## DEC-D2-004
+
+- Date: 2026-08-22
+- Status: active
+- Decision: The sole authorized D2 infrastructure recovery completed as total
+  attempt two under the unchanged original D2 scientific semantics and the
+  separate path-redacted private custody plane.
+- Permanent accounting: One historical infrastructure-aborted attempt, one
+  recovery attempt, two total attempts, one completed scientific execution,
+  zero result-driven retries, zero remaining attempts, and no third attempt.
+- Ordering: Private FusionEvidence froze before CombinedPrediction;
+  CombinedPrediction froze before the single label parse and metric
+  computation.
+- Scientific boundary: The exact D2 design, original authorization, recovery
+  authorization, D0/D1 predictions, source map, corroboration count,
+  same-second policy, D0 preservation, episodes, and metric formulas were not
+  changed. Result magnitude was not a gate.
+- Safety boundary: D0/D1 reruns, D0 score access, rule reevaluation, test1
+  feature access, test2, OUTER, current private-path exposure, tracked leakage,
+  result-driven change, and push remained zero.
+- Canonical evidence: CombinedPrediction
+  `cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5`
+  and receipt
+  `c60d3d1707f4edb2332cfa57578a7f560c8369f2bb4f00600ac77b9896dfeb99`.
+- Next authority: Independent D2 result-integrity audit only; no comparison or
+  interpretation before that PASS.
