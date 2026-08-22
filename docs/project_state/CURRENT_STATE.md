@@ -3,11 +3,12 @@
 ## Research in one paragraph
 
 The exact integrity-audited D0, D1, and D2 predictions remain frozen. The
-canonical INNER comparison shows that D1 detected all three attack events
-missed by D0, but the frozen D2 corroboration policy retained none of that
-potential recovery. D2 matched D0 recall while adding three normal false-
-alarm episodes. Current D2 V1 combined utility is not supported on INNER;
-OUTER remains sealed pending a non-redesign diagnostic of the lost signal.
+failure diagnostic found mixed structural mismatch: one D0-missed recovery
+event was single-source-only; two had three sources event-wide but never two
+sources in the same second; same-source multi-relation collapse also appeared.
+All three normal D2 recovery false positives contained true exact-second
+multi-source corroboration. D2 V2 redesign is scientifically justified but
+not authorized; OUTER remains sealed.
 
 ## D2 result integrity audit
 
@@ -45,11 +46,21 @@ OUTER remains sealed pending a non-redesign diagnostic of the lost signal.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1`
 
-That task may diagnose why the D1 recovery signal was not retained, using
-INNER evidence only. It may not execute alternative fusion policies, redesign
-D2, access test2 or OUTER, rerun any arm, or push.
+That task may define one structurally motivated policy and preregister it. It
+may not execute candidates, sweep parameters, access test2 or OUTER, rerun any
+arm, or push.
+
+## Frozen D2 recovery-signal failure diagnostic V1
+
+- Status: `passed_task039e3_r2r_utility_inner_d2_recovery_signal_failure_diagnostic_v1`.
+- Commit A/B: `78e016d4ff781581d998b445022dd2c35f61491a` / `0c40a0118c1c5f14cf3ca2d42178c34875d4dbed`.
+- Failure classes: one `SINGLE_SOURCE_ONLY`, two `MULTI_SOURCE_ASYNCHRONOUS`.
+- Dominant mechanism: `GATE_FAIL_MIXED_MECHANISMS`.
+- Normal gate reference: `3 / 574` D1 false-alarm episodes satisfy the exact gate.
+- D2 V2 redesign scientifically justified: `true`; authorized: `false`.
+- Receipt: `58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e`.
 
 ## Frozen INNER D0/D1/D2 comparison V1
 

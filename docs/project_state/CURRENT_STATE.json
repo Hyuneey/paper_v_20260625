@@ -2,18 +2,18 @@
   "artifact_type": "paper_v_20260625_project_current_state",
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
-  "updated_at_utc": "2026-08-22T05:45:52Z",
-  "canonical_head": "f4e21a2a73adad16bd15898cbb5c01bb19646ba3",
-  "current_branch": "task-039e3-r2r-utility-inner-d0-d1-d2-scientific-comparison-v1",
-  "research_phase": "INNER_D0_D1_D2_COMPARISON_FROZEN",
-  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1",
-  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d0_d1_d2_scientific_comparison_v1",
+  "updated_at_utc": "2026-08-22T06:16:15Z",
+  "canonical_head": "0c40a0118c1c5f14cf3ca2d42178c34875d4dbed",
+  "current_branch": "task-039e3-r2r-utility-inner-d2-recovery-signal-failure-diagnostic-v1",
+  "research_phase": "D2_V1_FAILURE_MECHANISM_DIAGNOSED",
+  "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1",
+  "latest_completed_status": "passed_task039e3_r2r_utility_inner_d2_recovery_signal_failure_diagnostic_v1",
   "latest_blocked_task": "TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-V1",
   "latest_blocker": "D2_EXECUTION_BLOCKED_PRIVATE_FUSION_EVIDENCE_WRITE_DENIED",
   "active_task": "NONE",
-  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1.md",
-  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1",
-  "OUTER_DISPOSITION": "HOLD_PENDING_INNER_D2_FAILURE_DIAGNOSTIC",
+  "active_task_file": "TASKS/TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1.md",
+  "exact_next_task_on_pass": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1",
+  "OUTER_DISPOSITION": "HOLD_PENDING_INNER_D2_FAILURE_DIAGNOSTIC_AND_REDESIGN_DECISION",
   "REMOTE_EGRESS_STATUS": "LOCAL_ONLY_NOT_PUSHED",
   "state_flags": {
     "UTILITY_EVALUATOR_V1_INDEPENDENTLY_AUDITED": true,
@@ -51,7 +51,9 @@
     "UTILITY_INNER_D2_PRIVATE_CUSTODY_BLOCKER_AUDITED": true,
     "UTILITY_INNER_D2_RECOVERY_AUTHORIZATION_ISSUED": true,
     "UTILITY_INNER_D0_D1_D2_COMPARISON_FROZEN": true,
-    "UTILITY_INNER_D2_V1_INCREMENTAL_UTILITY_SUPPORTED": false
+    "UTILITY_INNER_D2_V1_INCREMENTAL_UTILITY_SUPPORTED": false,
+    "UTILITY_INNER_D2_FAILURE_DIAGNOSTIC_FROZEN": true,
+    "UTILITY_INNER_D2_V2_REDESIGN_JUSTIFIED": true
   },
   "public_safety": {
     "private_paths_present": false,
@@ -244,7 +246,20 @@
     "d0_d1_d2_comparison_readiness": "4101e47bd2e93303c74f078e2b5cd21172a10b260554f6d2a3f84b32b7582023",
     "d0_d1_d2_comparison_bundle": "168a3566f6e8310168a8c282c6927d2d992dbd674235952bb9b1aa9a79ff5469",
     "d0_d1_d2_comparison_receipt": "d444ed1f7979270b945c03f2656b92e8ef7ebf8e98eca2f88f976999da00216e",
-    "d0_d1_d2_comparison_report_self_hash": "86d8c1ee67e75461fab51fb43242f0532014e9c5585c5fab55a9da05c970966b"
+    "d0_d1_d2_comparison_report_self_hash": "86d8c1ee67e75461fab51fb43242f0532014e9c5585c5fab55a9da05c970966b",
+    "d2_failure_diagnostic_commit_a": "78e016d4ff781581d998b445022dd2c35f61491a",
+    "d2_failure_diagnostic_report_commit_b": "0c40a0118c1c5f14cf3ca2d42178c34875d4dbed",
+    "d2_failure_diagnostic_recovery_events": "b889b03655e00fdb71d9103a6217ec63719a17d058dc247d915e1783b008dd29",
+    "d2_failure_diagnostic_temporal_structure": "e60b102048cf3ecf25cba4fc8f1137ec6f15cc198728202406a60f0859a113cc",
+    "d2_failure_diagnostic_source_multiplicity": "25a462895d92885e23a645bb0468c24cf4415deabd6699f7580a16c027e2d7d4",
+    "d2_failure_diagnostic_normal_fp_reference": "b5d0ab43dad80a6903bd18e1a49f0c7566ed9a8a3c75ce5fe238d9480a136985",
+    "d2_failure_diagnostic_gate_failure": "b006b4c79262906087b7a5c52160b9a09926318776339940018d56b3077ef96a",
+    "d2_failure_diagnostic_redesign_disposition": "2792aec7adddf63244ef6547fa90d106bdbcdcac242bc28ef6fa36d52c18b85e",
+    "d2_failure_diagnostic_independent_audit": "8d5648ffbe9d1270695612f9d21bf790a54a296757d9251d7af6e64afc97fd39",
+    "d2_failure_diagnostic_readiness": "38ddd8ad7901a062e1cd01f8ef2f1baa1d983358655333d4611c4c9ccce55e79",
+    "d2_failure_diagnostic_bundle": "cccd157d039e902c6019bfbd69ec366e9127ddd2b2f385dd44f3cd7fcdd19cbc",
+    "d2_failure_diagnostic_receipt": "58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e",
+    "d2_failure_diagnostic_report_self_hash": "47eec6b500f78613f3254d785a7b404ecbd567f68831a03af9e584670bcde653"
   },
   "d1_result_state": {
     "scientific_status": "D1_RESULT_INTEGRITY_AUDITED",
@@ -514,9 +529,9 @@
   "scientific_access": {
     "test2_accesses": 0,
     "test1_utility_feature_parses": 2,
-    "test1_utility_label_parses": 5,
+    "test1_utility_label_parses": 6,
     "source_event_derivations": 1,
-    "attack_event_derivations": 5,
+    "attack_event_derivations": 6,
     "rule_executions": 6031,
     "metric_computations": 22,
     "detector_executions": 1,
@@ -836,5 +851,28 @@
     "push_attempted": false,
     "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1"
   },
-  "artifact_hash": "5ea81c195670978f49f11de7200d3e3886889d29efa0d11532b75055d5207236"
+  "d2_failure_diagnostic_state": {
+    "status": "passed_task039e3_r2r_utility_inner_d2_recovery_signal_failure_diagnostic_v1",
+    "scientific_state": "D2_V1_FAILURE_MECHANISM_DIAGNOSED",
+    "dominant_gate_failure_mechanism": "GATE_FAIL_MIXED_MECHANISMS",
+    "supported_mechanism_codes": [
+      "GATE_FAIL_SINGLE_SOURCE_RECOVERY_SIGNAL",
+      "GATE_FAIL_MULTI_SOURCE_TEMPORAL_DESYNCHRONIZATION",
+      "GATE_FAIL_SAME_SOURCE_MULTI_RELATION_COLLAPSE"
+    ],
+    "normal_false_positive_gate_mechanism": "NORMAL_FP_TRUE_SAME_SECOND_MULTI_SOURCE_CORROBORATION",
+    "recovery_miss_single_source_only_count": 1,
+    "recovery_miss_multi_source_asynchronous_count": 2,
+    "recovery_miss_same_second_present_count": 0,
+    "normal_d1_false_alarm_episode_count": 574,
+    "normal_d1_false_episodes_satisfying_exact_gate_count": 3,
+    "d2_v2_redesign_scientifically_justified": true,
+    "redesign_authorized": false,
+    "outer_authorized": false,
+    "test2_accesses": 0,
+    "independent_attacks": 40,
+    "accepted_invalid": 0,
+    "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1"
+  },
+  "artifact_hash": "f65a0ca8b42eab7de82aee7a5edc2fb226370f26c78af15f3796cbdd37ae5122"
 }

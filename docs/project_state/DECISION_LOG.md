@@ -338,3 +338,19 @@ Append new entries; never rewrite historical decisions.
   proposed or tested, and OUTER remains sealed.
 - Disposition: `HOLD_PENDING_INNER_D2_FAILURE_DIAGNOSTIC`.
 - Canonical evidence: receipt `d444ed1f7979270b945c03f2656b92e8ef7ebf8e98eca2f88f976999da00216e`.
+
+## DEC-D2-007
+
+- Date: 2026-08-22
+- Status: active
+- Decision: D2 V1 failure diagnosis is frozen as mixed mechanisms: one
+  recovery event was single-source-only, two were multi-source asynchronous,
+  and same-source multi-relation collapse was additionally observed.
+- Normal contrast: all three D2 normal recovery false positives satisfied true
+  exact-same-second multi-source corroboration; three of 574 normal D1 false-
+  alarm episodes satisfied the exact gate.
+- Interpretation: Complementary D1 signal and a specific structural gate
+  mismatch justify a D2 V2 redesign decision, but do not authorize redesign or
+  establish an optimal policy.
+- Boundary: D2 V1 remains immutable; test2 and OUTER remain sealed.
+- Canonical evidence: receipt `58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e`.

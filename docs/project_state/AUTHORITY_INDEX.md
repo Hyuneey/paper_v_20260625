@@ -480,3 +480,20 @@ The comparison freezes the negative D2 V1 INNER result without redesign:
 D1 covered all three D0-missed events, D2 covered none, and D2 added three
 normal false-alarm episodes. OUTER remains unauthorized pending an INNER
 failure diagnostic.
+
+## D2 recovery-signal failure diagnostic V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1`.
+- Commit A/B: `78e016d4ff781581d998b445022dd2c35f61491a` / `0c40a0118c1c5f14cf3ca2d42178c34875d4dbed`.
+- Recovery events: `b889b03655e00fdb71d9103a6217ec63719a17d058dc247d915e1783b008dd29`.
+- Temporal structure: `e60b102048cf3ecf25cba4fc8f1137ec6f15cc198728202406a60f0859a113cc`.
+- Source multiplicity: `25a462895d92885e23a645bb0468c24cf4415deabd6699f7580a16c027e2d7d4`.
+- Normal reference: `b5d0ab43dad80a6903bd18e1a49f0c7566ed9a8a3c75ce5fe238d9480a136985`.
+- Gate failure: `b006b4c79262906087b7a5c52160b9a09926318776339940018d56b3077ef96a`.
+- Redesign disposition: `2792aec7adddf63244ef6547fa90d106bdbcdcac242bc28ef6fa36d52c18b85e`.
+- Receipt: `58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e`.
+
+Mixed single-source and cross-source temporal desynchronization prevented the
+three recovery events from satisfying the exact gate. Redesign is justified
+but not authorized. D2 V1 remains the immutable negative baseline; OUTER and
+test2 remain sealed.
