@@ -300,3 +300,27 @@ Append new entries; never rewrite historical decisions.
   `c60d3d1707f4edb2332cfa57578a7f560c8369f2bb4f00600ac77b9896dfeb99`.
 - Next authority: Independent D2 result-integrity audit only; no comparison or
   interpretation before that PASS.
+
+## DEC-D2-005
+
+- Date: 2026-08-22
+- Status: active
+- Decision: The frozen D2 recovery result passes independent result-integrity
+  audit and is ready for separate INNER scientific comparison.
+- Evidence: An independent stdlib audit reconstructed the exact 54,000-row
+  fusion from immutable D0/D1 predictions and the source map, verified the
+  private FusionEvidence and MetricEvidence hashes, reproduced all trigger and
+  episode counts and all six metrics, and found zero divergences.
+- Permanent accounting: Historical attempt one remains infrastructure-aborted;
+  recovery attempt two remains the only completed scientific execution; result-
+  driven retries and remaining attempts remain zero; no third attempt is
+  authorized.
+- Safety boundary: No D0/D1/D2 execution, rule reevaluation, D0 score access,
+  test1 feature access, test2, OUTER, result change, new private leakage, or push
+  occurred during the audit.
+- Canonical evidence: readiness
+  `56e49e58eea4693bf23e2a8b0fb17851f68e679015aa84fbcc874ce07161111c`
+  and receipt
+  `c45db852c6d5571ec7930fc12d815b383a29e31939e711eb5f2e84c69807b448`.
+- Next authority: INNER D0/D1/D2 scientific comparison only; OUTER remains
+  unauthorized and sealed.

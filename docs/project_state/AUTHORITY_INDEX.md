@@ -436,3 +436,30 @@ The result is not yet integrity-audited or interpretation-ready. It grants no
 third attempt, D0/D1 rerun, test1-feature/test2/OUTER access, tuning, result
 modification, comparison, or remote egress. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1`.
+
+## D2 result integrity audit V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1`.
+- Base: `33202f21d47b6bf29b12156374c9a7760f5c70f1`.
+- Audit Commit A: `251fc953ad09f337a4e11bb956b3d1de1438e526`.
+- Audit Report Commit B: `f7ae8f10e8e69e631c43184d6ea9cd3604829a9c`.
+- Freeze audit: `ed2519a4023b6d258eaa8ad86f65b15e63c50336a8cf9b4f503027fd477e2496`.
+- Fusion oracle: `0c3148c2f651f5707f5aa39ae018400653b7c375f027cddb8c06a223fb76feb5`.
+- Prediction audit: `2bd70a56a7e9c5cfd255e54dda0d43697c7d5e3922d58a21e978614f74e2ea72`.
+- Ordering audit: `e5b6511bbd32cdea1c082e9ae71d91c005e32ceb7c5e66e8752157cc7e2e78bf`.
+- Episode oracle: `c20e9e32624950e786c055e6c2ba200ca20e78b06685812727e553e738f3f653`.
+- Metric oracle: `d933d62b4a067e0f71f6dac22b11b32ff1811857b047fde9e4d1f7e947116483`.
+- Attempt accounting: `668b33beaea66652752a4ea2df40bb3a4a64bb0cccc4b9371440da91cc929e21`.
+- Private custody audit: `195f8aca72ba95c8c90af563725dd7b5dfba9adf6b970b514f7452c47b7cc8f0`.
+- Readiness/bundle/receipt:
+  `56e49e58eea4693bf23e2a8b0fb17851f68e679015aa84fbcc874ce07161111c` /
+  `19ef39ab23c54f5e1c6a626f95f0e6d886e5fd22b7ac904e9221175d44477c91` /
+  `c45db852c6d5571ec7930fc12d815b383a29e31939e711eb5f2e84c69807b448`.
+- Report self-hash: `01f770f1a6304e1bbf5b43934a32bd44aee99cd7ac718d0b116e89908432bbed`.
+
+This independent audit reproduces the exact frozen fusion, 54,000-row
+CombinedPrediction, episode sets, and six metric values with zero divergence.
+It validates both private evidence hashes and preserves the permanent two-
+attempt history. D2 is interpretation-ready for the separate INNER scientific
+comparison task. No execution, third attempt, result modification,
+test1-feature/test2/OUTER access, or remote egress is authorized.

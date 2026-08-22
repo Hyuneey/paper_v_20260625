@@ -2,34 +2,32 @@
 
 ## Research in one paragraph
 
-The exact D0 DetectorPrediction and D1 RulePrediction remain frozen and
-integrity-audited. The D2 design, original authorization, and explicit
-recovery authorization remain unchanged. Historical attempt 1 remains an
-immutable infrastructure-aborted attempt. The sole authorized recovery ran as
-total attempt 2, persisted private FusionEvidence through the path-redacted
-custody plane, froze CombinedPrediction before label access, computed the
-frozen D2 metrics, and froze the result without tuning. D2 result integrity is
-not yet audited; test2 and OUTER remain sealed.
+The exact D0 DetectorPrediction, D1 RulePrediction, and D2 CombinedPrediction
+remain frozen. An independent local audit reproduced the exact 54,000-row D2
+fusion, trigger classes, episode sets, and six metrics, verified both private
+evidence hashes, and found zero prediction or metric divergence. Historical
+attempt 1 remains an immutable infrastructure-aborted attempt; recovery
+attempt 2 remains the only completed scientific execution. D2 result
+integrity is audited and INNER interpretation is ready. Test2 and OUTER remain
+sealed.
 
-## D2 recovery execution
+## D2 result integrity audit
 
-- Status: `passed_task039e3_r2r_utility_inner_d2_execution_recovery_v1`.
-- Scientific state: `D2_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`.
+- Status: `passed_task039e3_r2r_utility_inner_d2_result_integrity_audit_v1`.
+- Scientific state: `D2_RESULT_INTEGRITY_AUDITED`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
-- Base: `adbac8a7b000fdf74d1d34fed920a6266e651926`.
-- Recovery Execution Commit A: `6c52bbe1ace8895a8b5b27527e4f9fe2ca01b3e6`.
-- Independent Audit Commit B: `9648f1d6415911800058b64f8084a2cfe1fc31a0`.
-- Result Freeze Commit C: `9078c4a1639c35d848cad28194fb4195eb5daca5`.
-- Original authorization: `b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c`.
-- Recovery authorization: `0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141`.
-- Execution run: `64c9486d325b112198975d5d1c8b92c56213498a47fd67ba654257d99edf697e`.
-- CombinedPrediction: `cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5`.
-- Metrics: `dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d`.
-- Accounting: `1ad805908d46006108c55a5007436fb384babaf472c007af49b32f640878ed9a`.
-- Readiness: `8768e1daabe8517b1260a560f8c46a92816f8cc9198da328743892751c34540f`.
-- Bundle: `655ae56707220086d35781c1a7de25abd68549923fc9c7a54b25be38abe1a45a`.
-- Receipt: `c60d3d1707f4edb2332cfa57578a7f560c8369f2bb4f00600ac77b9896dfeb99`.
-- Report self-hash: `66b04243c9c6833be4407bf6a0ae1804a4e764342c9ec9faf7d9f4d7766bf851`.
+- Base: `33202f21d47b6bf29b12156374c9a7760f5c70f1`.
+- Audit Commit A: `251fc953ad09f337a4e11bb956b3d1de1438e526`.
+- Audit Report Commit B: `f7ae8f10e8e69e631c43184d6ea9cd3604829a9c`.
+- Freeze audit: `ed2519a4023b6d258eaa8ad86f65b15e63c50336a8cf9b4f503027fd477e2496`.
+- Fusion oracle: `0c3148c2f651f5707f5aa39ae018400653b7c375f027cddb8c06a223fb76feb5`.
+- Prediction audit: `2bd70a56a7e9c5cfd255e54dda0d43697c7d5e3922d58a21e978614f74e2ea72`.
+- Episode oracle: `c20e9e32624950e786c055e6c2ba200ca20e78b06685812727e553e738f3f653`.
+- Metric oracle: `d933d62b4a067e0f71f6dac22b11b32ff1811857b047fde9e4d1f7e947116483`.
+- Readiness: `56e49e58eea4693bf23e2a8b0fb17851f68e679015aa84fbcc874ce07161111c`.
+- Bundle: `19ef39ab23c54f5e1c6a626f95f0e6d886e5fd22b7ac904e9221175d44477c91`.
+- Receipt: `c45db852c6d5571ec7930fc12d815b383a29e31939e711eb5f2e84c69807b448`.
+- Report self-hash: `01f770f1a6304e1bbf5b43934a32bd44aee99cd7ac718d0b116e89908432bbed`.
 
 ## Permanent attempt and safety accounting
 
@@ -49,9 +47,8 @@ not yet audited; test2 and OUTER remain sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1`
 
-That task must independently reproduce the frozen fusion, CombinedPrediction,
-episode sets, and six metrics while preserving both-attempt accounting and
-Commit-C bytes. It may not rerun D0/D1, access test1 features or test2, alter
-the result, authorize a third attempt, interpret D2, or push.
+That task may interpret the three already-frozen INNER arms. It may not rerun
+D0, D1, or D2; alter predictions, metrics, or fusion policy; access test2 or
+OUTER; authorize another execution attempt; or push.
