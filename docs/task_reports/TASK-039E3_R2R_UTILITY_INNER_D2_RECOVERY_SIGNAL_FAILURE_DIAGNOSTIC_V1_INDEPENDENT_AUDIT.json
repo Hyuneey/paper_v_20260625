@@ -1,0 +1,22 @@
+{
+  "accepted_invalid": 0,
+  "alternative_fusion_policies_executed": 0,
+  "artifact_hash": "8d5648ffbe9d1270695612f9d21bf790a54a296757d9251d7af6e64afc97fd39",
+  "artifact_type": "task039e3_r2r_d2_recovery_signal_failure_diagnostic_v1_independent_audit",
+  "created_at_utc": "2026-08-22T06:15:22Z",
+  "fusion_executions": 0,
+  "hypothetical_performance_calculations": 0,
+  "independent_attacks": 40,
+  "label_parses": 1,
+  "model_executions": 0,
+  "new_temporal_windows_selected": 0,
+  "new_thresholds_selected": 0,
+  "outer_executions": 0,
+  "parameter_sweeps": 0,
+  "rule_reevaluations": 0,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0
+}

@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "b006b4c79262906087b7a5c52160b9a09926318776339940018d56b3077ef96a",
+  "artifact_type": "task039e3_r2r_d2_recovery_signal_failure_diagnostic_v1_gate_failure",
+  "causal_root_cause_claimed": false,
+  "created_at_utc": "2026-08-22T06:15:22Z",
+  "current_exact_gate_satisfied_inside_d0_missed_attack_events": false,
+  "d1_detector_miss_recovery_depends_on_multiple_sources": "YES_FOR_SOME",
+  "dominant_gate_failure_mechanism": "GATE_FAIL_MIXED_MECHANISMS",
+  "event_level_complementarity_supported": true,
+  "exact_gate_satisfied_in_all_normal_rule_recovery_episodes": true,
+  "failure_class_counts": {
+    "boundary_only": 0,
+    "multi_source_asynchronous": 2,
+    "other": 0,
+    "same_second_present": 0,
+    "single_source_only": 1,
+    "unresolved": 0
+  },
+  "multi_source_recovery_alarms_exact_same_second": "NO_FOR_ALL",
+  "naive_or_operational_utility_established": false,
+  "normal_false_positive_gate_mechanism": "NORMAL_FP_TRUE_SAME_SECOND_MULTI_SOURCE_CORROBORATION",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "supported_mechanism_codes": [
+    "GATE_FAIL_SINGLE_SOURCE_RECOVERY_SIGNAL",
+    "GATE_FAIL_MULTI_SOURCE_TEMPORAL_DESYNCHRONIZATION",
+    "GATE_FAIL_SAME_SOURCE_MULTI_RELATION_COLLAPSE"
+  ],
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1"
+}

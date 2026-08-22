@@ -1,0 +1,35 @@
+{
+  "artifact_hash": "25a462895d92885e23a645bb0468c24cf4415deabd6699f7580a16c027e2d7d4",
+  "artifact_type": "task039e3_r2r_d2_recovery_signal_failure_diagnostic_v1_source_multiplicity",
+  "created_at_utc": "2026-08-22T06:15:22Z",
+  "events": [
+    {
+      "dominant_source_alarm_record_share": 0.5,
+      "dominant_source_alarm_second_share": 0.5,
+      "event_wide_distinct_source_count": 3,
+      "identity": "RECOVERY_MISS_01",
+      "max_same_second_alarming_relation_count": 1,
+      "max_same_second_distinct_sources": 1
+    },
+    {
+      "dominant_source_alarm_record_share": 1.0,
+      "dominant_source_alarm_second_share": 1.0,
+      "event_wide_distinct_source_count": 1,
+      "identity": "RECOVERY_MISS_02",
+      "max_same_second_alarming_relation_count": 1,
+      "max_same_second_distinct_sources": 1
+    },
+    {
+      "dominant_source_alarm_record_share": 0.5,
+      "dominant_source_alarm_second_share": 0.3333333333333333,
+      "event_wide_distinct_source_count": 3,
+      "identity": "RECOVERY_MISS_03",
+      "max_same_second_alarming_relation_count": 2,
+      "max_same_second_distinct_sources": 1
+    }
+  ],
+  "exact_source_identities_public": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1"
+}

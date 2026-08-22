@@ -1,0 +1,13 @@
+{
+  "artifact_hash": "58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e",
+  "artifact_type": "task039e3_r2r_d2_recovery_signal_failure_diagnostic_v1_receipt",
+  "bundle_hash": "cccd157d039e902c6019bfbd69ec366e9127ddd2b2f385dd44f3cd7fcdd19cbc",
+  "created_at_utc": "2026-08-22T06:15:22Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1",
+  "readiness_hash": "38ddd8ad7901a062e1cd01f8ef2f1baa1d983358655333d4611c4c9ccce55e79",
+  "report_self_hash": "47eec6b500f78613f3254d785a7b404ecbd567f68831a03af9e584670bcde653",
+  "schema_version": "1.0.0",
+  "scientific_state": "D2_V1_FAILURE_MECHANISM_DIAGNOSED",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RECOVERY-SIGNAL-FAILURE-DIAGNOSTIC-V1"
+}
