@@ -2,55 +2,72 @@
 
 ## Research in one paragraph
 
-The integrity-audited D0, D1, and D2 V1 results remain frozen. D2 V1 remains
-the immutable negative-result baseline. After the frozen INNER diagnostic
-identified mixed single-source and asynchronous multi-source gate mismatch,
-one D2 V2 INNER-development policy was preregistered: causal evidence from an
-alarming D1 decision remains active for that relation's already-public,
-frozen native horizon, and two distinct active sources corroborate. No fixed
-test1-derived window, single-source fallback, performance calculation, V2
-execution, test2 access, OUTER authorization, or push occurred.
+The integrity-audited D0, D1, and D2 V1 results and the D2 V1 negative-result
+baseline remain immutable. One D2 V2 INNER-development policy is frozen and is
+now authorized for one future INNER execution: causal D1 evidence starts at
+the decision second, persists through each relation's exact public native
+horizon, collapses to distinct active sources, and requires two sources while
+preserving every D0 alarm. No fixed window, single-source fallback, horizon
+override, scientific parse, fusion, metric, test2/OUTER access, or push occurred
+in this authorization task.
 
-## Frozen D2 V2 design
+## D2 V2 execution authorization
 
-- Status: `passed_task039e3_r2r_utility_inner_d2_v2_redesign_decision_and_preregistration_v1`.
-- Scientific state: `D2_V2_DESIGN_FROZEN_NOT_AUTHORIZED`.
+- Status: `passed_task039e3_r2r_utility_inner_d2_v2_execution_authorization_v1`.
+- Scientific state: `D2_V2_INNER_EXECUTION_AUTHORIZED_NOT_EXECUTED`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
-- Base: `07c3b1a6f90a36c819621662a6bc1d5f33948716`.
-- Design Commit A: `d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d`.
-- Independent Audit Commit B: `784deb8a9042b14e603d675e22ab31b8c89c7ac7`.
-- Design Freeze Commit C: `52b195fd6fd593160118388a36a7c1f77072c1df`.
-- D2 V2 ID: `D2_V2_D0_PLUS_NATIVE_HORIZON_MULTI_SOURCE_CORROBORATION_V1`.
-- D2 V2 design hash: `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`.
-- Native horizon map: `e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c`.
-- Native temporal authority: 42 relations, zero missing, ambiguous, foreign,
+- Base: `488b14e3a7be8db70ef2cfa659bba41e94f3ff07`.
+- Authorization Contract Commit A: `ab1773f3d898e98ccb45585434e7fd0053366af9`.
+- Independent Audit Commit B: `1a8dc972f1e267c53d143d6623c92dbaeb0249f1`.
+- Authorization Freeze Commit C: `867738a3904d2bc110865df5dfe4f9fe3032eddf`.
+- Authorization version:
+  `TASK039E3_R2R_D2_V2_INNER_EXECUTION_AUTHORIZATION_V1`.
+- Authorization scope:
+  `HAI_23_05_P1_TEST1_D2_V2_NATIVE_HORIZON_CORROBORATION_INNER_V1`.
+- Authorization hash:
+  `0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45`.
+- D2 V2 design:
+  `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`.
+- Native horizon map:
+  `e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c`.
+- Native authority: 42 unique relations; zero missing, ambiguous,
   label-derived, or test1-derived horizons.
-- Required distinct sources: `2`.
-- Single-source fallback: `false`.
-- Backdating: `false`.
-- Fixed global temporal window: `none`.
-- V2 execution authorized/executed/result frozen: `false / false / false`.
-- OUTER authorized: `false`.
+- Token start: D1 decision second; expiry: decision plus native horizon,
+  inclusive; backdating: `false`.
+- Required distinct active sources: `2`; single-source fallback: `false`.
+- Fixed global temporal window: `none`; diagnostic gap parameter: `false`.
+- D0 preservation: exact; D0 score and rule reevaluation: unauthorized.
+- Real custody preflight: one attempt, zero retries, sentinel PASS, residue `0`.
+- Raw label custody: one hash read, hash match, scientific parses `0`.
+- Static/regression tests: `50 / 50`; independent attacks: `30 / 30`
+  rejected; accepted invalid: `0`.
+- Contract/native/preflight/path/audit/authorization/accounting hashes:
+  `89e4e2bdf91cea0ab5d67827945c0051c812d3740f8cbe038a078f601a19caa3` /
+  `2893972703172965caea957f8f7dbd0b8b89a1ce14f7e559b1ef606404d90d25` /
+  `1296c76458d498d0e35b209c4da9691f6d02e1899778906409d96d7c18d4e463` /
+  `1b51853f796b01fa0fa47c5c1a431c6d79997a62612b4569ba9a255045ca4355` /
+  `3ee5e6a3deefaa39365e9eb471789a0cde2cf60e4635b1743a176d45b48f9ee8` /
+  `0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45` /
+  `33239fd17c0266f4e18a1079a37560d16dd5143dd64062092a86ca27cfbbb419`.
 - Readiness/bundle/receipt:
-  `073df848a77991e7f6d0138d5e6978230c46358250348b00d39f7d4364c15707` /
-  `4e44860a3e3357965ec1ac04f5817ceefe90f41fe01fe6b86dac47d64b23fa6e` /
-  `df98ca12e6a83c5ae9d73c80f7a26f0b1189a3743101d5342ed908017304dd7f`.
-- Report self-hash: `b9378667241bd710251830bb8f6084abbf8fab5e04c4f755ef0939c261144c6c`.
+  `02ce6ebb6d71225160210772768a6f6a904a6df6f188ef7a7b47fe034bdf922a` /
+  `779a326715bbf5f7cebc94c06ea24b1b4538b75abb2117281a01cb65ec784472` /
+  `16198e7d11b241977031c73dd8ab3fb645c4620e75f446e6c57793ff49693b96`.
+- Report self-hash:
+  `40f63c01c8594f1ff4fbdd76d1373001191b1a408d96000f0707ebe6dc890830`.
 
 ## Permanent scientific provenance
 
-D2 V2 is explicitly an INNER label-informed development policy. The D2 V1
-negative result and failure diagnostic were known and motivated the V2
-mechanism. The label file was not reopened in this task. No V2 prediction or
-metric was observed before freeze; no alternative V2 policy, hypothetical
-performance calculation, parameter sweep, new threshold, or fixed temporal
-window was executed or selected.
+D2 V2 remains transparently INNER label-informed development motivated by the
+frozen D2 V1 diagnostic. The authorization grants only the exact frozen V2
+policy. It does not authorize a caller-selected policy, fixed diagnostic-gap
+window, horizon override, single-source fallback, result-driven change, test2,
+or OUTER. No V2 prediction or metric has been produced.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-V1`
 
-That task may authorize only the exact frozen V2 design and native-horizon
-map, with causal token semantics, two distinct sources, D0 preservation,
-prediction-before-label ordering, unchanged metrics, and test2 sealed. It may
-not execute D2 V2 automatically.
+That task may perform exactly one authorized V2 INNER execution, must freeze
+CombinedPredictionV2 before labels, and must stop for independent result-
+integrity audit. It must not start automatically.

@@ -523,3 +523,33 @@ The authority freezes one causal, detector-preserving V2 policy using each
 relation's already-public native selected horizon and two distinct active
 sources. It authorizes no execution. D2 V1 remains immutable; labels were not
 reopened; test2 and OUTER remain sealed.
+
+## D2 V2 INNER execution authorization V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1`.
+- Contract Commit A: `ab1773f3d898e98ccb45585434e7fd0053366af9`.
+- Independent Audit Commit B: `1a8dc972f1e267c53d143d6623c92dbaeb0249f1`.
+- Authorization Freeze Commit C: `867738a3904d2bc110865df5dfe4f9fe3032eddf`.
+- Version: `TASK039E3_R2R_D2_V2_INNER_EXECUTION_AUTHORIZATION_V1`.
+- Scope: `HAI_23_05_P1_TEST1_D2_V2_NATIVE_HORIZON_CORROBORATION_INNER_V1`.
+- Authorization: `0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45`.
+- Contract/native-horizon/custody/path-redaction/independent-audit hashes:
+  `89e4e2bdf91cea0ab5d67827945c0051c812d3740f8cbe038a078f601a19caa3` /
+  `2893972703172965caea957f8f7dbd0b8b89a1ce14f7e559b1ef606404d90d25` /
+  `1296c76458d498d0e35b209c4da9691f6d02e1899778906409d96d7c18d4e463` /
+  `1b51853f796b01fa0fa47c5c1a431c6d79997a62612b4569ba9a255045ca4355` /
+  `3ee5e6a3deefaa39365e9eb471789a0cde2cf60e4635b1743a176d45b48f9ee8`.
+- Accounting/readiness/bundle/receipt/report:
+  `33239fd17c0266f4e18a1079a37560d16dd5143dd64062092a86ca27cfbbb419` /
+  `02ce6ebb6d71225160210772768a6f6a904a6df6f188ef7a7b47fe034bdf922a` /
+  `779a326715bbf5f7cebc94c06ea24b1b4538b75abb2117281a01cb65ec784472` /
+  `16198e7d11b241977031c73dd8ab3fb645c4620e75f446e6c57793ff49693b96` /
+  `40f63c01c8594f1ff4fbdd76d1373001191b1a408d96000f0707ebe6dc890830`.
+
+The grant binds the exact V2 design, immutable D0/D1 predictions, COMMON-42
+source map, 42-entry public native-horizon map, causal token policy, two
+distinct active sources, D0 preservation, and prediction-before-label order.
+One non-scientific private sentinel and one raw label hash passed. No scientific
+prediction parse, token construction, fusion, metric, D2 V2 execution, test2,
+OUTER, private-path exposure, or push occurred. Exact next authority is the
+single D2 V2 INNER execution task.
