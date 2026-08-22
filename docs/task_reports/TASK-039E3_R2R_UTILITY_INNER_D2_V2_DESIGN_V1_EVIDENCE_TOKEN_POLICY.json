@@ -1,0 +1,20 @@
+{
+  "active_token_formula": "decision_index<=t<=decision_index+native_horizon_seconds",
+  "artifact_hash": "19324935f972ccc842a47d230dcc8e7328cd595d4c5e4cfe78de62bb286d3f61",
+  "artifact_type": "task039e3_r2r_d2_v2_design_v1_evidence_token_policy",
+  "backdated_rule_evidence": false,
+  "base_commit": "07c3b1a6f90a36c819621662a6bc1d5f33948716",
+  "causal_runtime": true,
+  "created_at_utc": "2026-08-22T07:35:23Z",
+  "design_commit_a": "d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d",
+  "diagnostic_gap_used_as_parameter": false,
+  "fixed_global_temporal_window": null,
+  "future_information_used": false,
+  "horizon_multiplier_allowed": false,
+  "independent_audit_commit_b": "784deb8a9042b14e603d675e22ab31b8c89c7ac7",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1",
+  "token_clip_policy": "PHYSICAL_SPLIT_END_ONLY",
+  "token_expiry_policy": "DECISION_PHYSICAL_ROW_INDEX_PLUS_FROZEN_NATIVE_HORIZON_INCLUSIVE",
+  "token_start_policy": "D1_DECISION_PHYSICAL_ROW_INDEX"
+}

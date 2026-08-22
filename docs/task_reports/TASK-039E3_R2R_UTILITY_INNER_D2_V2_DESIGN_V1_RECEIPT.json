@@ -1,0 +1,23 @@
+{
+  "artifact_hash": "df98ca12e6a83c5ae9d73c80f7a26f0b1189a3743101d5342ed908017304dd7f",
+  "artifact_type": "task039e3_r2r_d2_v2_design_v1_receipt",
+  "base_commit": "07c3b1a6f90a36c819621662a6bc1d5f33948716",
+  "bundle_hash": "4e44860a3e3357965ec1ac04f5817ceefe90f41fe01fe6b86dac47d64b23fa6e",
+  "created_at_utc": "2026-08-22T07:35:23Z",
+  "d2_v2_authorized": false,
+  "d2_v2_design_hash": "ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4",
+  "d2_v2_executed": false,
+  "d2_v2_result_frozen": false,
+  "design_commit_a": "d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1",
+  "independent_audit_commit_b": "784deb8a9042b14e603d675e22ab31b8c89c7ac7",
+  "native_horizon_map_hash": "e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c",
+  "outer_authorized": false,
+  "readiness_hash": "073df848a77991e7f6d0138d5e6978230c46358250348b00d39f7d4364c15707",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "report_self_hash": "b9378667241bd710251830bb8f6084abbf8fab5e04c4f755ef0939c261144c6c",
+  "schema_version": "1.0.0",
+  "scientific_state": "D2_V2_DESIGN_FROZEN_NOT_AUTHORIZED",
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_redesign_decision_and_preregistration_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1"
+}

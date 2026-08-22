@@ -1,0 +1,216 @@
+{
+  "ambiguous_horizon_count": 0,
+  "artifact_hash": "14aa91ff3f976fd86eca09c379ff10096fa7aae424ed4f926421888664c5eb8e",
+  "artifact_type": "task039e3_r2r_d2_v2_design_v1_native_horizon_authority",
+  "authority_available": true,
+  "authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+  "authority_field": "selected_horizon_seconds",
+  "authority_source_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+  "authority_type": "COMMON42_CANONICAL_RULE_DESCRIPTOR_SELECTED_HORIZON_SECONDS_V1",
+  "authority_validation": "PASS",
+  "base_commit": "07c3b1a6f90a36c819621662a6bc1d5f33948716",
+  "canonical_v4_authority_hash": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+  "created_at_utc": "2026-08-22T07:35:23Z",
+  "design_commit_a": "d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d",
+  "foreign_relation_count": 0,
+  "horizon_unit": "ONE_SECOND_UNITS",
+  "independent_audit_commit_b": "784deb8a9042b14e603d675e22ab31b8c89c7ac7",
+  "label_derived_horizon_count": 0,
+  "missing_horizon_count": 0,
+  "native_horizon_map": {
+    "ambiguous_count": 0,
+    "artifact_type": "task039e3_r2r_d2_v2_native_temporal_horizon_map_v1",
+    "authority_field": "selected_horizon_seconds",
+    "authority_source_hash": "3efdce159bc5ac39825d4e4654428237e47205307f83aae7a133db6c5789f60f",
+    "authority_type": "COMMON42_CANONICAL_RULE_DESCRIPTOR_SELECTED_HORIZON_SECONDS_V1",
+    "common42_authority_definition_hash": "6e7a286a37a5048a7887e8bea69f9ec0a9c3ff76c538cbb475e886fba276e4de",
+    "entries": [
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "0b2da257d89b11ace02f81328fdcbf10380130e35dd7cff1492194099bc6eb4b"
+      },
+      {
+        "native_horizon_seconds": 5,
+        "relation_binding_hash": "0e70af83f6bacd3432a230454f601e6386a2996fd816d18e75a79e757b7e1d0f"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "0f658a081aaf9d47eb15c8c0547fe31d23d49a43740911ed9f2c3b36a9a429c5"
+      },
+      {
+        "native_horizon_seconds": 10,
+        "relation_binding_hash": "1289d048e50ee131727a71788166be7feffb285d712e75403ee3046f5d22d9cc"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "16cb66eaedd4a1f8685f9d621e8515edbd112c86c635b37ba06e2a30fcc49ffc"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "1b68720367a8a6d29c858f5e59fea00736d9ebf8dfdf7ff48973b856fbca561e"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "204abd371c860fa8ad746e687b73e8cea948268fd0656435f031b3626ae967ed"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "21f6f2a96dd168711b5e0cca999a6b22683f504d8cfb2760888a4ab80fd84b51"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "30b80b42163722fbf0fe20f3d258f61ae889294b5a860c21114d6125f2cf62b0"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "3864585573b951ad9d9d2be170d6d6094c637e3029347b4851e06f45e8a1ab15"
+      },
+      {
+        "native_horizon_seconds": 5,
+        "relation_binding_hash": "3c9df59cb467ce444ee90616092ca0cc09cefc55a2bdf727a6938fe0033f9161"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "3dbc8a58c388b5c0784ad658db4a17dafa3f5b5cb28192f32f4ffba82256be31"
+      },
+      {
+        "native_horizon_seconds": 10,
+        "relation_binding_hash": "44a0a75f85e92223cd48c85e36e62974f26ac1b0e1b2b5b8b37c35010f9b0a8d"
+      },
+      {
+        "native_horizon_seconds": 30,
+        "relation_binding_hash": "48d74de36469bfcc3c077577adaa247f92346d8deedbd5ec803f39cfd37b99cc"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "49ffab3ee089c9d1d99fbb8d0d22dfaceb324207f727ba499475bef09afbf532"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "4a8e908cbb3fa7b844aaf7238862d047268fed3889a79b5c8b0b42443bc2b125"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "4f84d8bb244fcafb82b8a8fbe6c5dd397d329a9d5df311682a8a8ae2206e6680"
+      },
+      {
+        "native_horizon_seconds": 10,
+        "relation_binding_hash": "53645fb94519c2e374ee51f136f758d513c3c5b2c0fcc640b0b4d1845da53918"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "55a52946ca90609619c198ad3da8b1e47140d97dcf8184e22a4a747df669bdd5"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "5af9d8c43235f048c32f8dea66d75114e29edf35975ec2687333a8e1362657b5"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "5dfc20b41b38244a264cc74f915d4c62d14286db99e0a96921ce11d0698c339b"
+      },
+      {
+        "native_horizon_seconds": 5,
+        "relation_binding_hash": "5f4495927c0a79d685b710b4531542cdfa1583b5f2bf5fbd0e253201e3902cd0"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "75ee416429ab599aa7eb67fc6c045cc266c21fb8b35c2088d6ab810914463381"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "771cda117815b723c681559b33c60f7935774cd0b1f27970854b97971b2a10a5"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "7c39a5bb783bbcfd757f08a8808fcab0c128cae9ea16742ef6fbdf6d75a9642f"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "903262b61a1ed4c1324176ac0405590651941fb8c42c4e0585eba30ca6e72789"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "906cd998411c78071974a9e0c96d82d3094c844c4f8d67f97ea72c72496c9785"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "99d4230cba35d407b5ebac9fe47c0d0db9020444c1875cc55ab13eb59569dc9f"
+      },
+      {
+        "native_horizon_seconds": 10,
+        "relation_binding_hash": "9b985c0d4e95a2df49df445e1f5f5b47f54b50c946c168ce129eae595deec6e2"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "9c33b11c1095fce4aeda9a9865cb202813edc112fb25ab1385256c878911db8e"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "a84e45627c76351d6d867b20a7b00be6b3908dc53a38142c739d9c3480aa73d3"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "a8b45686f0af3335d1f7b7f3bebb00d051b296f885daaba647eca936ef5d7745"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "ad0d7c6e2e47966df473f98af02d3e9f35f0de9e696fa4e99cc05189dc0d4438"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "bc5160b571b18d7438a5855f83747f55a555574f13d458b2903abd656dd5d58b"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "bffb5b67d8b04ae8b235dbc7a5a15706c69d6aad34ccd71cc58b181e722ec935"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "c574e104acee0e509317e7cd66112725678ecf6bc1759a3e26915b8a8cd7c207"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "d6d807ea85531f60daeabc4df766012bffdbaeec004f675b74655965326db8f8"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "daaaee2795f7763ba55608107358506f561ccb44da9970be20eaa17cfcf4e63d"
+      },
+      {
+        "native_horizon_seconds": 1,
+        "relation_binding_hash": "db78e2c122ba53bd39a554c7efee83ec439f11da333e4f61df80da741df43dda"
+      },
+      {
+        "native_horizon_seconds": 30,
+        "relation_binding_hash": "e2fdbb7013bfbbd896c272e33bdddf96bcf420cbf000c9c103370e591c1be10d"
+      },
+      {
+        "native_horizon_seconds": 60,
+        "relation_binding_hash": "ed33b18de044e209f7d6db492cc52bc8ea1e782a659fc0747e5c92030a2b1222"
+      },
+      {
+        "native_horizon_seconds": 10,
+        "relation_binding_hash": "fde2a820965ad298c8d636286b5f85972d853a279c4801f991f94e5550eacac8"
+      }
+    ],
+    "entry_count": 42,
+    "horizon_unit": "ONE_SECOND_UNITS",
+    "label_derived_count": 0,
+    "map_hash": "e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c",
+    "missing_count": 0,
+    "schema_version": "1.0.0",
+    "source_map_hash": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+    "test1_derived_count": 0,
+    "values_public": true
+  },
+  "native_horizon_map_hash": "e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c",
+  "per_rule_horizon_values_public": true,
+  "private_horizon_artifact_hash": null,
+  "relation_count": 42,
+  "schema_version": "1.0.0",
+  "source_map_hash": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1",
+  "test1_derived_horizon_count": 0,
+  "unique_relation_count": 42
+}

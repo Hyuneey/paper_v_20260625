@@ -1,0 +1,29 @@
+{
+  "anti_fp_simultaneous_exclusion_allowed": false,
+  "artifact_hash": "ff64bfe98d32920305e759b4cf198355dfd96d7d56b25e341128d921a84cb726",
+  "artifact_type": "task039e3_r2r_d2_v2_design_v1_corroboration_policy",
+  "base_commit": "07c3b1a6f90a36c819621662a6bc1d5f33948716",
+  "created_at_utc": "2026-08-22T07:35:23Z",
+  "d0_preservation_policy": "EVERY_FROZEN_D0_ALARM_IS_A_D2_V2_ALARM",
+  "d0_score_dependency": false,
+  "design_commit_a": "d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d",
+  "distinct_source_formula": "native_horizon_rule_corroboration(t)=cardinality(S_t)>=2",
+  "exact_same_second_included": true,
+  "fusion_formula": "D2_V2_alarm(t)=D0_alarm(t) OR (cardinality(distinct(active_D1_sources_at_t))>=2)",
+  "independent_audit_commit_b": "784deb8a9042b14e603d675e22ab31b8c89c7ac7",
+  "required_distinct_source_count": 2,
+  "rule_reevaluation_dependency": false,
+  "same_source_duplicates_count_once": true,
+  "schema_version": "1.0.0",
+  "single_source_fallback": false,
+  "single_source_only_recovery_primary_target": false,
+  "source_count_search_allowed": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1",
+  "temporal_window_search_allowed": false,
+  "trigger_classes": [
+    "NONE",
+    "D0_ONLY",
+    "RULE_RECOVERY_NATIVE_HORIZON",
+    "D0_AND_RULE_CORROBORATION_NATIVE_HORIZON"
+  ]
+}
