@@ -255,3 +255,21 @@ Append new entries; never rewrite historical decisions.
   `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`
   and receipt
   `bf049094ce211e86db22bdbdcfe78adddff76e1935cab792e594b09cf554355d`.
+
+## DEC-D2-003
+
+- Date: 2026-08-22
+- Status: active
+- Decision: The audited `PRIVATE_PARENT_PERMISSION_DENIED` failure may receive
+  exactly one transparent infrastructure recovery attempt using a separate,
+  outside-Git, path-redacted private custody plane.
+- Historical accounting: One infrastructure-aborted attempt, zero completed
+  scientific executions, and zero result-driven retries remain permanent.
+- Recovery ceiling: Two total attempts, at most one completed scientific
+  execution, and no third attempt.
+- Scientific boundary: D2 design, original authorization, fusion, source map,
+  D0/D1 predictions, temporal policy, and metrics remain unchanged.
+- Canonical evidence: recovery authorization
+  `0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141`
+  and receipt
+  `9b028b0132a179c12ed921207e1b20f149a10482834897f0dc9851cadde497f2`.

@@ -398,3 +398,15 @@ residue and CombinedPrediction are absent. Recovery is eligible only as a
 separately authorized transparent second total attempt under
 `PATH_REDACTION_AND_CUSTODY_RECOVERY`. D2 remains unauthorized and unexecuted;
 test2 and OUTER remain sealed.
+
+## D2 infrastructure recovery authorization V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-REMEDIATION-AND-RECOVERY-AUTHORIZATION-V1`.
+- Base: `ae566dae3124b352bdae85cc54a011adad6743f8`.
+- Commit A/B/C: `7b749b68868193d2aed350f8ca0df91ff1dc807c` / `0399012e28f97226821d76b7b35d2980ba4ac6c8` / `4d24d72c8061d49c899bf3160781eeb86c8e7ac7`.
+- Recovery authorization: `0faa5c58073da28b0a3e1e9c4267aa4c16faa7723becf5d01b5ec9c391b7b141`.
+- Custody preflight: `945ff83f929d0f98ebc6ed942a0cbf1053dcb995fcc6ece40178793cc47cb917`.
+- Path-redaction audit: `33cb00918b266132e3520b42c63abae799119759de75e4693d953394bb8a32e6`.
+- Readiness/bundle/receipt: `e81e25d5cce2129c21b83eca588dc0ae7fdc56ccfad3b6d682c91bcaf61950dc` / `d5dbfae507b00698983dbe9da4ba9fe1ecc63f84dd79f694339786b2219f39f0` / `9b028b0132a179c12ed921207e1b20f149a10482834897f0dc9851cadde497f2`.
+- Authority: one explicit infrastructure recovery attempt only; no scientific
+  policy change, D0/D1 rerun, test2, OUTER, or third attempt.
