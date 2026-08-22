@@ -373,3 +373,28 @@ OUTER, retry, result-driven change, and push were zero. The exception channel
 exposed one private path. D2 authorization is no longer active after the failed
 one-shot attempt. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-BLOCKER-AUDIT-V1`.
+
+## D2 private FusionEvidence custody blocker audit V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-BLOCKER-AUDIT-V1`.
+- Base: `78639e1b8286b4ff16ac63530725a1ce3d1eb91c`.
+- Audit Commit A: `316bc6086ea10712c2efebfac97287f082fe2575`.
+- Audit Report Commit B: `c32246d0d4139e3fdb6ced98aeddbdcebfdc94cc`.
+- State audit: `8480d931df6cab7dff59ffd58a24be7a37751ce99d5685353acbefee120704db`.
+- Root-cause audit: `b936f646963be187cb96ab26c454e7ecfcac8fa01c445f548eae1f168bb2cd53`.
+- Path-exposure audit: `71ae3e1f3a327a5bb2b342d0c00f1f39254b15a0d957c1682212285f54e4475a`.
+- Residue audit: `81c7ac685596c0dc5eb2ca73140e278f1175127e85516aafaf90c482ff834c06`.
+- Recovery eligibility: `b7a0137ac5b090fc51215044a1d8cd8a8d2c1518d96990e59656df4501ca3e8b`.
+- Readiness: `0d63fb4be13583deef4c7fe6c013d89fdad06a2b3f25cfd016197b28aea2bee9`.
+- Bundle: `bb0d0f3a41194a86022f0097161ff7094e6fd217b09ef983532fe5e784a1dd56`.
+- Receipt: `45d3a318765e77ec15d68724aae72ec7b5d7aad6b15be78baa3ad39f6272e900`.
+- Report self-hash: `8993a5db909d2c89db6d16999a0f2180f4b523c0c13c99e9d24bc7229be437c6`.
+
+The audit proves that the frozen fusion completed only in memory and the
+private atomic create failed at the parent permission boundary before any
+CombinedPrediction, label, metric, or result state. The path disclosure was
+ephemeral and has zero tracked occurrences; exact task-owned final/temp
+residue and CombinedPrediction are absent. Recovery is eligible only as a
+separately authorized transparent second total attempt under
+`PATH_REDACTION_AND_CUSTODY_RECOVERY`. D2 remains unauthorized and unexecuted;
+test2 and OUTER remain sealed.

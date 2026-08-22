@@ -5,47 +5,56 @@
 This project studies graph-guided agentic construction of verified rules for
 explainable multivariate time-series anomaly detection. The exact D0
 DetectorPrediction and D1 RulePrediction results are frozen and
-integrity-audited. The primary D2 detector-preserving, exact-same-second,
-multi-source corroboration design, provenance clarification, and execution
-authorization are frozen. The sole D2 execution attempt is blocked before
-CombinedPrediction freeze because private FusionEvidence persistence was
-denied. No label or metric was accessed; test2 and OUTER remain sealed.
+integrity-audited. The D2 design and execution authorization are frozen. The
+sole D2 attempt remains blocked before CombinedPrediction freeze; an
+independent audit now establishes that fusion completed only in memory and the
+private atomic write failed for an infrastructure/custody permission reason.
+No D2 result was frozen or observed. Test2 and OUTER remain sealed.
 
-## D2 execution blocker state
+## D2 private-custody blocker audit
 
-- Status: `blocked_task039e3_r2r_utility_inner_d2_execution_v1`.
-- Scientific state: `D2_EXECUTION_BLOCKED_BEFORE_COMBINED_PREDICTION_FREEZE`.
+- Status: `passed_task039e3_r2r_utility_inner_d2_execution_private_custody_blocker_audit_v1`.
+- Scientific state: `D2_EXECUTION_BLOCKED_CUSTODY_AUDITED`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
-- Base: `1b71e35b4938942bdb92ebbc769d59c04c43cf37`.
-- Execution Implementation Commit A: `315eb5b578301d57c6ab90c0c2398e3df3dec3f5`.
-- Independent Audit Commit B: `cd220a89f37e0a3913124116f49a90e0518c8b46`.
-- Blocker Freeze Commit: `f42e706f712616e23f7a86d86cc2bd6cfc6f4ce8`.
-- Blocker: `D2_EXECUTION_BLOCKED_PRIVATE_FUSION_EVIDENCE_WRITE_DENIED`.
-- Blocker artifact: `b721ddc45f0e7c97646b520eab9384d74c6c12231cb744c0f493fbf661111580`.
-- Execution attempts/retries: `1` / `0`.
-- CombinedPrediction frozen: `false`.
-- Label parses / metric computations: `0` / `0`.
-- Private path exposures: `1`.
-- D2 design: `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51`.
-- Provenance clarification: `f0fbea249e11b6a3ae27a43b4b705d8537983511e2659d88f49b9c64dcf59e10`.
-- Frozen D0 DetectorPrediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
-- Frozen D1 RulePrediction: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`.
-- Source map: `f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818`.
-- Authorization: `b931d7bd89e923dc4d380e35ed2b3ff514679a701e0b94a75d426130a3c4427c`.
+- Base: `78639e1b8286b4ff16ac63530725a1ce3d1eb91c`.
+- Audit Commit A: `316bc6086ea10712c2efebfac97287f082fe2575`.
+- Audit Report Commit B: `c32246d0d4139e3fdb6ced98aeddbdcebfdc94cc`.
+- Historical blocker: `D2_EXECUTION_BLOCKED_PRIVATE_FUSION_EVIDENCE_WRITE_DENIED`.
+- Historical attempts/completed/retries: `1` / `0` / `0`.
+- Last completed state: `SOURCE_MAP_VALIDATED`.
+- Fusion classification: `FUSION_COMPUTED_IN_MEMORY_BUT_NOT_PERSISTED`.
+- Root cause: `PRIVATE_PARENT_PERMISSION_DENIED`.
+- Path exposure: `EPHEMERAL_PRIVATE_PATH_DISCLOSURE`.
+- Tracked private-path occurrences: `0`.
+- Final/temp/stale private evidence residue: `false` / `false` / `0`.
+- CombinedPrediction / label / metric states reached: `false` / `false` / `false`.
+- Recovery eligible: `true`.
+- Recovery class: `PATH_REDACTION_AND_CUSTODY_RECOVERY`.
+- State audit: `8480d931df6cab7dff59ffd58a24be7a37751ce99d5685353acbefee120704db`.
+- Root-cause audit: `b936f646963be187cb96ab26c454e7ecfcac8fa01c445f548eae1f168bb2cd53`.
+- Path-exposure audit: `71ae3e1f3a327a5bb2b342d0c00f1f39254b15a0d957c1682212285f54e4475a`.
+- Residue audit: `81c7ac685596c0dc5eb2ca73140e278f1175127e85516aafaf90c482ff834c06`.
+- Recovery eligibility: `b7a0137ac5b090fc51215044a1d8cd8a8d2c1518d96990e59656df4501ca3e8b`.
+- Readiness: `0d63fb4be13583deef4c7fe6c013d89fdad06a2b3f25cfd016197b28aea2bee9`.
+- Bundle: `bb0d0f3a41194a86022f0097161ff7094e6fd217b09ef983532fe5e784a1dd56`.
+- Receipt: `45d3a318765e77ec15d68724aae72ec7b5d7aad6b15be78baa3ad39f6272e900`.
 
 ## Authority boundary
 
-The exact committed D2 authorization was consumed by one scientific attempt.
-The exact D0/D1 predictions and 42-entry source map were parsed, and the frozen
-54,000-row fusion was computed in memory. Private FusionEvidence did not freeze,
-so no CombinedPrediction or D2 result exists. The attempt is not retryable in
-this task. D0/D1 reruns, D1 metric reads, D0 score access, test1 feature access,
-label access, test2 access, OUTER execution, and remote push remained zero.
+The blocked authorization remains consumed and D2 remains unauthorized and
+unexecuted. Recovery cannot be treated as attempt 1 or as an automatic retry.
+A future recovery authorization must preserve the exact D2 design,
+authorization semantics, D0/D1 predictions, source map, source-count rule,
+same-second policy, D0 preservation, and metric formulas. If a later recovery
+execution succeeds, accounting must state two total attempts: one aborted
+infrastructure attempt and one completed scientific attempt, with zero
+result-driven retries.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-BLOCKER-AUDIT-V1`.
+`TASK-039E3-R2R-UTILITY-INNER-D2-EXECUTION-PRIVATE-CUSTODY-REMEDIATION-AND-RECOVERY-AUTHORIZATION-V1`.
 
-That task must audit the failed one-attempt custody boundary and privacy
-exposure without rerunning D2 or changing the frozen fusion policy. It must
-keep labels, test1 features, test2, and OUTER sealed.
+That task may repair only the proven custody and path-redaction boundary,
+independently audit the fix, and issue one explicit recovery authorization. It
+must not perform fusion, execute D2, change scientific semantics, open labels
+or test1 features, access test2/OUTER, or push.
