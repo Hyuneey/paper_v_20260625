@@ -354,3 +354,26 @@ Append new entries; never rewrite historical decisions.
   establish an optimal policy.
 - Boundary: D2 V1 remains immutable; test2 and OUTER remain sealed.
 - Canonical evidence: receipt `58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e`.
+
+## DEC-D2-008
+
+- Date: 2026-08-22
+- Status: active
+- Decision: Freeze one D2 V2 INNER-development policy using causal active
+  evidence over each COMMON-42 relation's already-public canonical selected
+  horizon and requiring two distinct active source variables.
+- Diagnostic provenance: D2 V1's negative result and failure diagnostic were
+  known and motivated this V2. No label file was reopened, and no V2 outcome
+  was observed before freeze.
+- Restraint: No diagnostic gap became a parameter; no fixed global window,
+  horizon multiplier, source-count search, single-source fallback, anti-FP
+  simultaneous exclusion, D0 score, or rule reevaluation was introduced.
+- Baseline: D2 V1 remains the immutable thesis-visible negative result.
+- Confirmatory boundary: D2 V2 is not authorized or executed; test2 and OUTER
+  remain sealed.
+- Identifier note: `DEC-D2-005` was already occupied by the D2 V1 result-
+  integrity decision, so the append-only log uses the next unique identifier.
+- Canonical evidence: design
+  `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`
+  and receipt
+  `df98ca12e6a83c5ae9d73c80f7a26f0b1189a3743101d5342ed908017304dd7f`.

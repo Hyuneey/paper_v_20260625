@@ -2,74 +2,55 @@
 
 ## Research in one paragraph
 
-The exact integrity-audited D0, D1, and D2 predictions remain frozen. The
-failure diagnostic found mixed structural mismatch: one D0-missed recovery
-event was single-source-only; two had three sources event-wide but never two
-sources in the same second; same-source multi-relation collapse also appeared.
-All three normal D2 recovery false positives contained true exact-second
-multi-source corroboration. D2 V2 redesign is scientifically justified but
-not authorized; OUTER remains sealed.
+The integrity-audited D0, D1, and D2 V1 results remain frozen. D2 V1 remains
+the immutable negative-result baseline. After the frozen INNER diagnostic
+identified mixed single-source and asynchronous multi-source gate mismatch,
+one D2 V2 INNER-development policy was preregistered: causal evidence from an
+alarming D1 decision remains active for that relation's already-public,
+frozen native horizon, and two distinct active sources corroborate. No fixed
+test1-derived window, single-source fallback, performance calculation, V2
+execution, test2 access, OUTER authorization, or push occurred.
 
-## D2 result integrity audit
+## Frozen D2 V2 design
 
-- Status: `passed_task039e3_r2r_utility_inner_d2_result_integrity_audit_v1`.
-- Scientific state: `D2_RESULT_INTEGRITY_AUDITED`.
+- Status: `passed_task039e3_r2r_utility_inner_d2_v2_redesign_decision_and_preregistration_v1`.
+- Scientific state: `D2_V2_DESIGN_FROZEN_NOT_AUTHORIZED`.
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`.
-- Base: `33202f21d47b6bf29b12156374c9a7760f5c70f1`.
-- Audit Commit A: `251fc953ad09f337a4e11bb956b3d1de1438e526`.
-- Audit Report Commit B: `f7ae8f10e8e69e631c43184d6ea9cd3604829a9c`.
-- Freeze audit: `ed2519a4023b6d258eaa8ad86f65b15e63c50336a8cf9b4f503027fd477e2496`.
-- Fusion oracle: `0c3148c2f651f5707f5aa39ae018400653b7c375f027cddb8c06a223fb76feb5`.
-- Prediction audit: `2bd70a56a7e9c5cfd255e54dda0d43697c7d5e3922d58a21e978614f74e2ea72`.
-- Episode oracle: `c20e9e32624950e786c055e6c2ba200ca20e78b06685812727e553e738f3f653`.
-- Metric oracle: `d933d62b4a067e0f71f6dac22b11b32ff1811857b047fde9e4d1f7e947116483`.
-- Readiness: `56e49e58eea4693bf23e2a8b0fb17851f68e679015aa84fbcc874ce07161111c`.
-- Bundle: `19ef39ab23c54f5e1c6a626f95f0e6d886e5fd22b7ac904e9221175d44477c91`.
-- Receipt: `c45db852c6d5571ec7930fc12d815b383a29e31939e711eb5f2e84c69807b448`.
-- Report self-hash: `01f770f1a6304e1bbf5b43934a32bd44aee99cd7ac718d0b116e89908432bbed`.
+- Base: `07c3b1a6f90a36c819621662a6bc1d5f33948716`.
+- Design Commit A: `d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d`.
+- Independent Audit Commit B: `784deb8a9042b14e603d675e22ab31b8c89c7ac7`.
+- Design Freeze Commit C: `52b195fd6fd593160118388a36a7c1f77072c1df`.
+- D2 V2 ID: `D2_V2_D0_PLUS_NATIVE_HORIZON_MULTI_SOURCE_CORROBORATION_V1`.
+- D2 V2 design hash: `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`.
+- Native horizon map: `e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c`.
+- Native temporal authority: 42 relations, zero missing, ambiguous, foreign,
+  label-derived, or test1-derived horizons.
+- Required distinct sources: `2`.
+- Single-source fallback: `false`.
+- Backdating: `false`.
+- Fixed global temporal window: `none`.
+- V2 execution authorized/executed/result frozen: `false / false / false`.
+- OUTER authorized: `false`.
+- Readiness/bundle/receipt:
+  `073df848a77991e7f6d0138d5e6978230c46358250348b00d39f7d4364c15707` /
+  `4e44860a3e3357965ec1ac04f5817ceefe90f41fe01fe6b86dac47d64b23fa6e` /
+  `df98ca12e6a83c5ae9d73c80f7a26f0b1189a3743101d5342ed908017304dd7f`.
+- Report self-hash: `b9378667241bd710251830bb8f6084abbf8fab5e04c4f755ef0939c261144c6c`.
 
-## Permanent attempt and safety accounting
+## Permanent scientific provenance
 
-- Historical D2 attempts: `1`.
-- Recovery D2 attempts: `1`.
-- Total D2 attempts: `2`.
-- Infrastructure-aborted attempts: `1`.
-- Completed scientific executions: `1`.
-- Result-driven retries: `0`.
-- Additional authorized attempts remaining: `0`.
-- Third attempt authorized: `false`.
-- Historical path exposure: `1`, `EPHEMERAL_PRIVATE_PATH_DISCLOSURE`.
-- Recovery private-path exposures: `0`.
-- Tracked private-path leaks: `0`.
-- D0/D1 reruns, D0 scores, rule reevaluation, test1 feature access, test2,
-  OUTER, result-driven changes, and push: `0`.
+D2 V2 is explicitly an INNER label-informed development policy. The D2 V1
+negative result and failure diagnostic were known and motivated the V2
+mechanism. The label file was not reopened in this task. No V2 prediction or
+metric was observed before freeze; no alternative V2 policy, hypothetical
+performance calculation, parameter sweep, new threshold, or fixed temporal
+window was executed or selected.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-AUTHORIZATION-V1`
 
-That task may define one structurally motivated policy and preregister it. It
-may not execute candidates, sweep parameters, access test2 or OUTER, rerun any
-arm, or push.
-
-## Frozen D2 recovery-signal failure diagnostic V1
-
-- Status: `passed_task039e3_r2r_utility_inner_d2_recovery_signal_failure_diagnostic_v1`.
-- Commit A/B: `78e016d4ff781581d998b445022dd2c35f61491a` / `0c40a0118c1c5f14cf3ca2d42178c34875d4dbed`.
-- Failure classes: one `SINGLE_SOURCE_ONLY`, two `MULTI_SOURCE_ASYNCHRONOUS`.
-- Dominant mechanism: `GATE_FAIL_MIXED_MECHANISMS`.
-- Normal gate reference: `3 / 574` D1 false-alarm episodes satisfy the exact gate.
-- D2 V2 redesign scientifically justified: `true`; authorized: `false`.
-- Receipt: `58b0a68ad4a9e4e6938e14d031ae8f6e80a7e75a071081e651ac33e5f6872f0e`.
-
-## Frozen INNER D0/D1/D2 comparison V1
-
-- Status: `passed_task039e3_r2r_utility_inner_d0_d1_d2_scientific_comparison_v1`.
-- Commit A/B: `f1d26f83ab5d13c28a7f82909c4ae7e69d3b7aaf` / `f4e21a2a73adad16bd15898cbb5c01bb19646ba3`.
-- D0/D1/D2 detected attack events: `11 / 13 / 11` of `14`.
-- D0/D1/D2 normal false-alarm episodes: `7 / 574 / 10`.
-- D0 misses detected by D1/D2: `3 / 0`.
-- Classification: `RULE_SIGNAL_HAS_DETECTOR_MISS_RECOVERY_POTENTIAL_BUT_D2_GATE_FAILED_TO_RETAIN_IT`.
-- D2 V1 incremental utility supported: `false`.
-- OUTER disposition: `HOLD_PENDING_INNER_D2_FAILURE_DIAGNOSTIC`.
-- Readiness/bundle/receipt: `4101e47bd2e93303c74f078e2b5cd21172a10b260554f6d2a3f84b32b7582023` / `168a3566f6e8310168a8c282c6927d2d992dbd674235952bb9b1aa9a79ff5469` / `d444ed1f7979270b945c03f2656b92e8ef7ebf8e98eca2f88f976999da00216e`.
+That task may authorize only the exact frozen V2 design and native-horizon
+map, with causal token semantics, two distinct sources, D0 preservation,
+prediction-before-label ordering, unchanged metrics, and test2 sealed. It may
+not execute D2 V2 automatically.

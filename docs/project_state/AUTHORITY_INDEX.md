@@ -497,3 +497,29 @@ Mixed single-source and cross-source temporal desynchronization prevented the
 three recovery events from satisfying the exact gate. Redesign is justified
 but not authorized. D2 V1 remains the immutable negative baseline; OUTER and
 test2 remain sealed.
+
+## D2 V2 native-horizon design V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-REDESIGN-DECISION-AND-PREREGISTRATION-V1`.
+- Commit A/B/C: `d4846fea19aa69cb31bbf80eb4f6c6ce21ae366d` /
+  `784deb8a9042b14e603d675e22ab31b8c89c7ac7` /
+  `52b195fd6fd593160118388a36a7c1f77072c1df`.
+- D2 V2 design: `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`.
+- Native horizon map: `e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c`.
+- Design/input/horizon/token/corroboration/metric/provenance/audit hashes:
+  `cf68f4bb6a9eac5a717d3fd644a40a073478afc5c859dd6b41531192226fa8d0` /
+  `28dbbaef220962c70efdab9a607d47459c07006c5cc580b4ebd1b72eb7c44a83` /
+  `14aa91ff3f976fd86eca09c379ff10096fa7aae424ed4f926421888664c5eb8e` /
+  `19324935f972ccc842a47d230dcc8e7328cd595d4c5e4cfe78de62bb286d3f61` /
+  `ff64bfe98d32920305e759b4cf198355dfd96d7d56b25e341128d921a84cb726` /
+  `90c09592c524578332d13868770d70e887e7078c37eafe72bf43dd84d441811b` /
+  `a81bbf793d3e27ec67184887fb72938df11c209d7c2c0627972c13e584105676` /
+  `f613cad8feb501814c9a56fa912c4d7145491b83b81fcb2ce34cd17355ba866e`.
+- Readiness/bundle/receipt: `073df848a77991e7f6d0138d5e6978230c46358250348b00d39f7d4364c15707` /
+  `4e44860a3e3357965ec1ac04f5817ceefe90f41fe01fe6b86dac47d64b23fa6e` /
+  `df98ca12e6a83c5ae9d73c80f7a26f0b1189a3743101d5342ed908017304dd7f`.
+
+The authority freezes one causal, detector-preserving V2 policy using each
+relation's already-public native selected horizon and two distinct active
+sources. It authorizes no execution. D2 V1 remains immutable; labels were not
+reopened; test2 and OUTER remain sealed.
