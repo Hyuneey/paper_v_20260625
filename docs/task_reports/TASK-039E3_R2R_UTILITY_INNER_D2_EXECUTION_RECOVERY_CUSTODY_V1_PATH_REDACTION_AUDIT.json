@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "33cb00918b266132e3520b42c63abae799119759de75e4693d953394bb8a32e6",
+  "artifact_type": "D2RecoveryPathRedactionContractV1",
+  "exception_chaining_exposed": false,
+  "failure_codes": [
+    "D2_RECOVERY_PRIVATE_CUSTODY_ATOMIC_RENAME_FAILED",
+    "D2_RECOVERY_PRIVATE_CUSTODY_RESIDUE_DETECTED",
+    "D2_RECOVERY_PRIVATE_CUSTODY_ROOT_INVALID",
+    "D2_RECOVERY_PRIVATE_CUSTODY_SYMLINK_REJECTED",
+    "D2_RECOVERY_PRIVATE_CUSTODY_TARGET_EXISTS",
+    "D2_RECOVERY_PRIVATE_CUSTODY_UNEXPECTED",
+    "D2_RECOVERY_PRIVATE_CUSTODY_WRITE_DENIED"
+  ],
+  "raw_exception_args_exposed": false,
+  "raw_exception_string_exposed": false
+}
