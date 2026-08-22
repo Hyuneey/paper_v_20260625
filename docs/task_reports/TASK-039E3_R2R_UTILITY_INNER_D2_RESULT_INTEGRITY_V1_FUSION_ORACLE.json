@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "0c3148c2f651f5707f5aa39ae018400653b7c375f027cddb8c06a223fb76feb5",
+  "artifact_type": "task039e3_r2r_d2_result_integrity_v1_fusion_oracle",
+  "audit_d0_prediction_parses": 1,
+  "audit_d1_prediction_parses": 1,
+  "audit_fusion_oracle_computations": 54000,
+  "audit_source_map_reads": 1,
+  "corroboration_point_count": 3,
+  "created_at_utc": "2026-08-22T02:44:17Z",
+  "d0_preservation_violations": 0,
+  "d0_score_dependency": false,
+  "d2_point_alarm_count": 879,
+  "fusion_evidence_hash_match": true,
+  "required_distinct_source_count": 2,
+  "rule_reevaluation": false,
+  "same_second_policy": "EXACT_DECISION_PHYSICAL_ROW_INDEX_EQUALITY",
+  "same_source_duplicate_collapse": true,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1",
+  "temporal_tolerance": "NONE",
+  "trigger_class_counts": {
+    "D0_AND_RULE_CORROBORATION": 0,
+    "D0_ONLY": 876,
+    "NONE": 53121,
+    "RULE_RECOVERY": 3
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "195f8aca72ba95c8c90af563725dd7b5dfba9adf6b970b514f7452c47b7cc8f0",
+  "artifact_type": "task039e3_r2r_d2_result_integrity_v1_private_custody_audit",
+  "created_at_utc": "2026-08-22T02:44:17Z",
+  "fusion_evidence_hash_match": true,
+  "private_artifacts_outside_git": true,
+  "private_artifacts_regular": true,
+  "private_artifacts_symlink": false,
+  "private_contents_public": false,
+  "private_fusion_evidence_exists": true,
+  "private_metric_evidence_exists": true,
+  "private_metric_evidence_hash_match": true,
+  "private_paths_public": false,
+  "schema_version": "1.0.0",
+  "stale_recovery_residue_count": 0,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1",
+  "unexpected_temp_residue_count": 0,
+  "zero_byte_target_count": 0
+}

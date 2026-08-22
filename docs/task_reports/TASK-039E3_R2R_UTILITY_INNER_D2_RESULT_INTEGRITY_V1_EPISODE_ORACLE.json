@@ -1,0 +1,19 @@
+{
+  "alarm_episode_policy": "MAXIMAL_CONTIGUOUS_UNIQUE_ONE_SECOND_DECISION_INDICES_FILE_LOCAL",
+  "artifact_hash": "c20e9e32624950e786c055e6c2ba200ca20e78b06685812727e553e738f3f653",
+  "artifact_type": "task039e3_r2r_d2_result_integrity_v1_episode_oracle",
+  "attack_event_count": 14,
+  "attack_event_policy": "MAXIMAL_CONTIGUOUS_STRICT_LABEL_ONE_RUNS_FILE_LOCAL",
+  "audit_attack_event_derivations": 1,
+  "audit_d0_episode_derivations": 1,
+  "audit_d2_episode_derivations": 1,
+  "audit_rule_recovery_episode_derivations": 1,
+  "created_at_utc": "2026-08-22T02:44:17Z",
+  "d0_alarm_episode_count": 46,
+  "d2_alarm_episode_count": 49,
+  "event_coordinates_public": false,
+  "rule_recovery_episode_count": 3,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1"
+}

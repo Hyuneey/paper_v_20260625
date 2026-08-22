@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "2bd70a56a7e9c5cfd255e54dda0d43697c7d5e3922d58a21e978614f74e2ea72",
+  "artifact_type": "task039e3_r2r_d2_result_integrity_v1_prediction_audit",
+  "attack_fields_present": 0,
+  "combined_prediction_hash_match": true,
+  "created_at_utc": "2026-08-22T02:44:17Z",
+  "d0_preservation_violations": 0,
+  "d0_score_fields_present": 0,
+  "label_fields_present": 0,
+  "ordered_closure_exact": true,
+  "prediction_divergences": 0,
+  "private_source_set_fields_present": 0,
+  "record_count": 54000,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1",
+  "unique_physical_rows": 54000
+}

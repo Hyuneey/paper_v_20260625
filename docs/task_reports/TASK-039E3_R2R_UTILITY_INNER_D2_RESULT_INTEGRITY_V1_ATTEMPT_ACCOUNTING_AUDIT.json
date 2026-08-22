@@ -1,0 +1,22 @@
+{
+  "aborted_infrastructure_attempts": 1,
+  "additional_attempts_remaining": 0,
+  "artifact_hash": "668b33beaea66652752a4ea2df40bb3a4a64bb0cccc4b9371440da91cc929e21",
+  "artifact_type": "task039e3_r2r_d2_result_integrity_v1_attempt_accounting_audit",
+  "audit_authoritative_d0_executions": 0,
+  "audit_authoritative_d1_executions": 0,
+  "audit_authoritative_d2_executions": 0,
+  "completed_scientific_executions": 1,
+  "created_at_utc": "2026-08-22T02:44:17Z",
+  "historical_execution_attempts": 1,
+  "outer_executions": 0,
+  "recovery_execution_attempts": 1,
+  "result_driven_retries": 0,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-RESULT-INTEGRITY-AUDIT-V1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0,
+  "third_attempt_authorized": false,
+  "total_execution_attempts": 2
+}
