@@ -1,0 +1,13 @@
+{
+  "artifact_hash": "32f008bfbcc0d1eea3efa3f27d6684823f6a02c1eab7b38333544198adc6892a",
+  "artifact_type": "task039e3_r2r_inner_d0_d1_d2_comparison_v1_recovery_analysis",
+  "created_at_utc": "2026-08-22T05:45:03Z",
+  "d1_potential_d0_miss_recovery_rate": 1.0,
+  "d2_realized_d0_miss_recovery_rate": 0.0,
+  "d2_recovery_retention_from_d1_potential": 0.0,
+  "no_causal_mechanism_claimed": true,
+  "rule_signal_fusion_classification": "RULE_SIGNAL_HAS_DETECTOR_MISS_RECOVERY_POTENTIAL_BUT_D2_GATE_FAILED_TO_RETAIN_IT",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1"
+}

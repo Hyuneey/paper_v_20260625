@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "fc283c58c0426e85c16eef299d339f672170df6d97423e6f013b7bc36fa30a17",
+  "artifact_type": "task039e3_r2r_inner_d0_d1_d2_comparison_v1_false_alarm_tradeoff",
+  "created_at_utc": "2026-08-22T05:45:03Z",
+  "d1_d0_far_ratio": 82.0,
+  "d2_d0_far_ratio": 1.4285714285714286,
+  "d2_far_increase_percent_vs_d0": 42.85714285714286,
+  "d2_incremental_far": 0.21168584252925388,
+  "d2_incremental_normal_false_alarm_episodes": 3,
+  "d2_incremental_recall": 0.0,
+  "rule_recovery_normal_false_alarm_episodes": 3,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1"
+}

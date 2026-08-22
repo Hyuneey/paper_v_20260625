@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "51589bbf1bd90b2f04504595af465eb7e514061ef21d16ad731e02508072f1b3",
+  "artifact_type": "task039e3_r2r_inner_d0_d1_d2_comparison_v1_event_overlap",
+  "attack_count": 14,
+  "created_at_utc": "2026-08-22T05:45:03Z",
+  "d0_and_d1": 10,
+  "d0_and_d2": 11,
+  "d0_misses": 3,
+  "d0_only": 1,
+  "d0_only_vs_d2": 0,
+  "d1_only": 3,
+  "d2_only_vs_d0": 0,
+  "event_coordinates_public": false,
+  "miss_d1": 3,
+  "miss_d2": 0,
+  "miss_not_d1": 0,
+  "miss_not_d2": 3,
+  "neither": 0,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1"
+}

@@ -1,0 +1,17 @@
+{
+  "arm_metrics_hash": "4704d3a526eab806ece1c511094fc2d2798ff63bac537273d35811ce4e9bbb81",
+  "artifact_hash": "168a3566f6e8310168a8c282c6927d2d992dbd674235952bb9b1aa9a79ff5469",
+  "artifact_type": "task039e3_r2r_inner_d0_d1_d2_comparison_v1_bundle",
+  "created_at_utc": "2026-08-22T05:45:03Z",
+  "event_overlap_hash": "51589bbf1bd90b2f04504595af465eb7e514061ef21d16ad731e02508072f1b3",
+  "false_alarm_tradeoff_hash": "fc283c58c0426e85c16eef299d339f672170df6d97423e6f013b7bc36fa30a17",
+  "interpretation_hash": "c9516ad8233ab8d181f04f7f486bc04cb5073d80f90e3b51d004f9a1a7890885",
+  "outer_disposition_hash": "5b9a96901e70ebc94edaebb8f7ebf78a4911af9a5da796a6df3febbc2c7b726b",
+  "readiness_hash": "4101e47bd2e93303c74f078e2b5cd21172a10b260554f6d2a3f84b32b7582023",
+  "recovery_analysis_hash": "32f008bfbcc0d1eea3efa3f27d6684823f6a02c1eab7b38333544198adc6892a",
+  "report_hash_scheme": "MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1",
+  "report_self_hash": "86d8c1ee67e75461fab51fb43242f0532014e9c5585c5fab55a9da05c970966b",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1"
+}

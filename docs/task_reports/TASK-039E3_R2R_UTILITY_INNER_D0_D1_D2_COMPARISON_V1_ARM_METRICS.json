@@ -1,0 +1,40 @@
+{
+  "arms": {
+    "D0": {
+      "detected": 11,
+      "episodes": 46,
+      "false": 7,
+      "far": 0.4939336325682589,
+      "recall": 0.7857142857142857
+    },
+    "D1": {
+      "detected": 13,
+      "episodes": 626,
+      "false": 574,
+      "far": 40.50255787059723,
+      "recall": 0.9285714285714286
+    },
+    "D2": {
+      "detected": 11,
+      "episodes": 49,
+      "false": 10,
+      "far": 0.7056194750975128,
+      "recall": 0.7857142857142857
+    }
+  },
+  "artifact_hash": "4704d3a526eab806ece1c511094fc2d2798ff63bac537273d35811ce4e9bbb81",
+  "artifact_type": "task039e3_r2r_inner_d0_d1_d2_comparison_v1_arm_metrics",
+  "attack_event_count": 14,
+  "created_at_utc": "2026-08-22T05:45:03Z",
+  "fusion_executions": 0,
+  "label_parses": 1,
+  "model_executions": 0,
+  "normal_exposure_seconds": 51019,
+  "outer_executions": 0,
+  "rule_reevaluations": 0,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0
+}

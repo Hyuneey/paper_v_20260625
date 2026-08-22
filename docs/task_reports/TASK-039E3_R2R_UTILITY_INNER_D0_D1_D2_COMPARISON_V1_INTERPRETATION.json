@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "c9516ad8233ab8d181f04f7f486bc04cb5073d80f90e3b51d004f9a1a7890885",
+  "artifact_type": "task039e3_r2r_inner_d0_d1_d2_comparison_v1_interpretation",
+  "causal_failure_mechanism_claimed": false,
+  "created_at_utc": "2026-08-22T05:45:03Z",
+  "d1_interpretation": "HIGH_SENSITIVITY_HIGH_FALSE_ALARM_RULE_SIGNAL",
+  "d1_operational_false_alarm_limitation": "SUPPORTED",
+  "d1_rule_layer_sensitivity_evidence": "SUPPORTED",
+  "d2_false_alarm_conclusion": "POSITIVE_ADDITIONAL_INNER_FALSE_ALARM_COST",
+  "d2_recall_conclusion": "NO_OBSERVED_INNER_ATTACK_RECALL_GAIN",
+  "d2_v1_incremental_recovery": "UNSUPPORTED",
+  "d2_v1_incremental_utility_supported": false,
+  "redesign_authorized": false,
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D0-D1-D2-SCIENTIFIC-COMPARISON-V1",
+  "thesis_combined_utility_status": "CURRENT_D2_COMBINED_UTILITY_NOT_SUPPORTED_ON_INNER"
+}
