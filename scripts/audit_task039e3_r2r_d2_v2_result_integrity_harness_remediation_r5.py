@@ -535,11 +535,15 @@ def replay_compatibility() -> dict[str, Any]:
 
 def freeze_gate() -> dict[str, Any]:
     head = git("rev-parse", "HEAD")
-    if git("branch", "--show-current") != BRANCH or git("rev-parse", head + "^") != BASE:
+    if (git("branch", "--show-current") != BRANCH
+            or git("rev-list", "--count", BASE + ".." + head) != "2"
+            or git("merge-base", BASE, head) != BASE):
         fail("D2_V2_R5_BRANCH_OR_BASE_REJECTED")
     if git("status", "--porcelain"):
         fail("D2_V2_R5_WORKTREE_REJECTED")
-    if set(filter(None, git("diff-tree", "--no-commit-id", "--name-only", "-r", head).splitlines())) != {TASK_PATH, SCRIPT_PATH, *TEST_PATHS}:
+    cumulative = set(filter(None, git("diff", "--name-only", BASE, head).splitlines()))
+    correction = set(filter(None, git("diff-tree", "--no-commit-id", "--name-only", "-r", head).splitlines()))
+    if cumulative != {TASK_PATH, SCRIPT_PATH, *TEST_PATHS} or correction != {SCRIPT_PATH}:
         fail("D2_V2_R5_COMMIT_A_SCOPE_REJECTED")
     if git("rev-list", "--count", "--merges", EXEC_A + ".." + head) != "0":
         fail("D2_V2_R5_MERGE_REJECTED")
@@ -568,7 +572,7 @@ def replay_authorization() -> dict[str, Any]:
             "authorization_report_body_self_hash_match": authority["authorization_report_body_self_hash_match"],
             "authorization_footer_bundle_binding_match": authority["authorization_footer_bundle_binding_match"],
             "authorization_footer_receipt_binding_match": authority["authorization_footer_receipt_binding_match"],
-            "authorization_json_chain_pass": authority["authorization_json_chain_pass"],
+            "authorization_json_chain_pass": authority["authorization_chain_cross_bindings_pass"],
             "authorization_metadata_semantic_parses": 1,
             "authorization_markdown_raw_reads": guard.authorization_markdown_raw_reads,
             "authorization_footer_logical_parses": guard.authorization_footer_logical_parses}
@@ -578,7 +582,7 @@ def validate_ordering() -> dict[str, Any]:
     source = (ROOT / EXECUTION_SOURCE).read_text(encoding="utf-8")
     try:
         fusion = source.index("fusion_hash = _persist_private_v2")
-        combined = source.index("_persist_combined_prediction_v1")
+        combined = source.index("frozen_combined = _persist_combined_before_label_v1")
         label = source.index("custody = _load_label_custody_once_v1")
     except ValueError:
         fail("D2_V2_R5_ORDERING_SOURCE_REJECTED")
