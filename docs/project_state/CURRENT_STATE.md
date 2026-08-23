@@ -273,9 +273,9 @@ were not reopened; V2 integrity-audited and interpretation-ready remain false.
   `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r2`.
 - Blocker: `D2_V2_ACCOUNTING_SCHEMA_R2_R1_BLOCKER_STATUS_FIELD_ABSENT`.
 - AST Remediation Commit A:
-  `946b1d73a03a7065e2750b245a39ea5094971365`.
+  `946b1d7c487a7d08103d0eb1c6594462b4a57cf4`.
 - Blocker Freeze Commit B:
-  `d32aceb1131978df04381364809d0fb37b6e7851`.
+  `d32aceb90307c444dffbb9bb9fcf2861b711cb79`.
 - Blocker artifact:
   `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
 - Invocation / retries / completions: `1` / `0` / `0`.

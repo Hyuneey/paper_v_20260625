@@ -3,8 +3,8 @@
 - Repository: `Hyuneey/paper_v_20260625`
 - Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-schema-parser-remediation-r2`
 - Base: `c3329d92d4c296162e0f6af5aa2f31e1cc2706ea`
-- Accounting Schema Parser Remediation Commit A: `946b1d73a03a7065e2750b245a39ea5094971365`
-- Blocker Freeze Commit B: `d32aceb1131978df04381364809d0fb37b6e7851`
+- Accounting Schema Parser Remediation Commit A: `946b1d7c487a7d08103d0eb1c6594462b4a57cf4`
+- Blocker Freeze Commit B: `d32aceb90307c444dffbb9bb9fcf2861b711cb79`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
 - Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r2`
 - Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED`

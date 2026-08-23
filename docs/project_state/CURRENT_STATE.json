@@ -3,7 +3,7 @@
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
   "updated_at_utc": "2026-08-23T08:05:00Z",
-  "canonical_head": "d32aceb1131978df04381364809d0fb37b6e7851",
+  "canonical_head": "d32aceb90307c444dffbb9bb9fcf2861b711cb79",
   "current_branch": "task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-schema-parser-remediation-r2",
   "research_phase": "D2_V2_R5_ACCOUNTING_SCHEMA_R2_BLOCKED_R1_PUBLIC_STATUS_FIELD_REPLAY",
   "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1",
@@ -311,8 +311,8 @@
     "d2_v2_r5_accounting_remediation_r1_blocker_commit_b": "496c105efa27d34481c74879aa02d0f57a03576a",
     "d2_v2_r5_accounting_remediation_r1_blocker": "3c5b2da933ac4e00df4602aaf89c749d6e0aea856bf844f9f769cfb907c358f2",
     "d2_v2_r5_accounting_remediation_r1_blocker_report_self_hash": "b23666900a5a09d0425913df84ed82c5703b5ffd554d464447d8c632d37e85f6",
-    "d2_v2_r5_accounting_schema_r2_commit_a": "946b1d73a03a7065e2750b245a39ea5094971365",
-    "d2_v2_r5_accounting_schema_r2_blocker_commit_b": "d32aceb1131978df04381364809d0fb37b6e7851",
+    "d2_v2_r5_accounting_schema_r2_commit_a": "946b1d7c487a7d08103d0eb1c6594462b4a57cf4",
+    "d2_v2_r5_accounting_schema_r2_blocker_commit_b": "d32aceb90307c444dffbb9bb9fcf2861b711cb79",
     "d2_v2_r5_accounting_schema_r2_blocker": "f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982",
     "d2_v2_r5_accounting_schema_r2_blocker_report_self_hash": "2bba062b01f3484b8622c552210e939b32168112f0c5bab14225ec872c0c82eb"
   },
@@ -1594,8 +1594,8 @@
     "status": "blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r2",
     "scientific_state": "D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED",
     "base_commit": "c3329d92d4c296162e0f6af5aa2f31e1cc2706ea",
-    "accounting_schema_parser_remediation_commit_a": "946b1d73a03a7065e2750b245a39ea5094971365",
-    "blocker_freeze_commit_b": "d32aceb1131978df04381364809d0fb37b6e7851",
+    "accounting_schema_parser_remediation_commit_a": "946b1d7c487a7d08103d0eb1c6594462b4a57cf4",
+    "blocker_freeze_commit_b": "d32aceb90307c444dffbb9bb9fcf2861b711cb79",
     "blocker_hash": "f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982",
     "blocker_report_self_hash": "2bba062b01f3484b8622c552210e939b32168112f0c5bab14225ec872c0c82eb",
     "blocker_code": "D2_V2_ACCOUNTING_SCHEMA_R2_R1_BLOCKER_STATUS_FIELD_ABSENT",
@@ -1635,5 +1635,5 @@
     "push_attempted": false,
     "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R3"
   },
-  "artifact_hash": "52e8049fa2c33d02d02cd5f96c5a2a6ee591910f93280c4f8962a9ca1a29c370"
+  "artifact_hash": "782f26668280d80cb36131f11f8e9818ac91060e8eba3a727784300b2a07e8a9"
 }

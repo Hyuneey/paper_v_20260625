@@ -760,8 +760,8 @@ scientific or private authority was reopened, and no retry is authorized.
 - Task:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R2`.
 - Base: `c3329d92d4c296162e0f6af5aa2f31e1cc2706ea`.
-- AST remediation: `946b1d73a03a7065e2750b245a39ea5094971365`.
-- Blocker freeze: `d32aceb1131978df04381364809d0fb37b6e7851`.
+- AST remediation: `946b1d7c487a7d08103d0eb1c6594462b4a57cf4`.
+- Blocker freeze: `d32aceb90307c444dffbb9bb9fcf2861b711cb79`.
 - Blocker artifact:
   `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
 - Report self-hash:
