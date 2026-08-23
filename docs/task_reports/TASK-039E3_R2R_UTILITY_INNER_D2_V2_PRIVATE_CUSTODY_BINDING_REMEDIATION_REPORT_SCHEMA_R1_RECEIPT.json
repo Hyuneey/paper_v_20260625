@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "36732840373d040c0edd907b278b45503edc5ae30111074478091d1224e2b99a",
+  "artifact_type": "D2V2CustodyReportSchemaReceiptR1",
+  "bundle_artifact_sha256": "17d950f5d394302fd7b7dc4e68db24c600d8e8895089b27a70cb6a58db55fe54",
+  "compatibility_receipt_artifact_sha256": "f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8",
+  "created_at_utc": "2026-08-23T06:10:21Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5",
+  "outer_authorized": false,
+  "readiness_artifact_sha256": "66cfd0731c0b86a38d0b43caf695466a9a08f178e87a582dfab11011c52f167a",
+  "report_body_sha256": "f4dbd9d7259bf2502df3e41a7ff3b5258543521355953f2adae6bb98cb929775",
+  "report_hash_scheme": "MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1",
+  "schema_version": "1.0.0",
+  "scientific_execution_authorized": false,
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1"
+}

@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "2d6235601cfb2f3e475685727ca4c9795fbca35f526dc2096d6075aaad18c8ac",
+  "artifact_type": "D2V2CustodyReportSchemaAuditR1",
+  "canonical_self_hash_convention": "CANONICAL_COMPACT_JSON_EXCLUDING_ARTIFACT_HASH_V1",
+  "created_at_utc": "2026-08-23T06:10:21Z",
+  "duplicate_json_key_count": 0,
+  "historical_schema_modified": false,
+  "path_free_error_code": "CUSTODY_REPORT_SCHEMA_HASH_FIELD_COLLISION",
+  "referenced_hash_field_collision_count": 0,
+  "referenced_hash_field_policy": "ROLE_SPECIFIC_SHA256_FIELDS_V1",
+  "report_schema_remediation_identity_sha256": "824a71e00abef2d342e6f1cb7a5ca4de7c1a5f87e6f636e880aca58a7094de0d",
+  "reserved_self_hash_field": "artifact_hash",
+  "schema_version": "1.0.0",
+  "self_hash_field_collision_count": 0,
+  "semantic_custody_values_changed": false,
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1"
+}

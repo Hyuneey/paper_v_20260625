@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "fec9bee7d7f6ffcef29934fb1755715f6df374a399220d0669718f2a571e4ed2",
+  "artifact_type": "D2V2CustodyReportSchemaRootCauseR1",
+  "collision_stage": "SELF_HASH_INJECTION_BEFORE_CANONICAL_SERIALIZATION",
+  "created_at_utc": "2026-08-23T06:10:21Z",
+  "duplicate_hash_field_name": "artifact_hash",
+  "first_semantic_meaning": "REFERENCED_PRIVATE_EVIDENCE_ARTIFACT_IDENTITY",
+  "historical_artifacts_modified": false,
+  "historical_custody_blocker_match": true,
+  "historical_custody_blocker_sha256": "d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231",
+  "root_cause_class": "GENERIC_SELF_HASH_FIELD_COLLIDED_WITH_PAYLOAD_HASH_FIELD",
+  "root_cause_private_artifact_identity_related": false,
+  "root_cause_result_driven": false,
+  "root_cause_scientific": false,
+  "schema_version": "1.0.0",
+  "second_semantic_meaning": "NEW_PUBLIC_REPORT_ARTIFACT_SELF_HASH",
+  "semantic_value_lost_or_overwritten": false,
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1"
+}

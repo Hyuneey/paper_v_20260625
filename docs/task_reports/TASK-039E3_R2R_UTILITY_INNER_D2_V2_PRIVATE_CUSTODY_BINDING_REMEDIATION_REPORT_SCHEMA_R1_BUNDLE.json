@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "17d950f5d394302fd7b7dc4e68db24c600d8e8895089b27a70cb6a58db55fe54",
+  "artifact_type": "D2V2CustodyReportSchemaBundleR1",
+  "compatibility_receipt_artifact_sha256": "f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8",
+  "created_at_utc": "2026-08-23T06:10:21Z",
+  "field_classification_artifact_sha256": "638e7b4efd593f04db13922c24eb378fa9301ba0e7118ff89ecfd2c7e77dfce1",
+  "fusion_evidence_identity_artifact_sha256": "0b2d3644d91d6f2418189ec001450ce872ecf72248923842d4dbeb759a6d8767",
+  "independent_audit_artifact_sha256": "b6d2c87396ffb34c8d65b6ba29cebf3bea9e3d8767ec3c623ff84044940c2573",
+  "metric_evidence_identity_artifact_sha256": "d90e254c019ebeb41dede5625f855125a90164f80a61d914518d876f5a7c68a1",
+  "readiness_artifact_sha256": "66cfd0731c0b86a38d0b43caf695466a9a08f178e87a582dfab11011c52f167a",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "report_body_sha256": "f4dbd9d7259bf2502df3e41a7ff3b5258543521355953f2adae6bb98cb929775",
+  "report_hash_scheme": "MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1",
+  "root_cause_artifact_sha256": "fec9bee7d7f6ffcef29934fb1755715f6df374a399220d0669718f2a571e4ed2",
+  "schema_audit_artifact_sha256": "2d6235601cfb2f3e475685727ca4c9795fbca35f526dc2096d6075aaad18c8ac",
+  "schema_version": "1.0.0",
+  "security_audit_artifact_sha256": "6c05a04510d1018f7cba7dbe97603161ce14dc9334e4e179be6d73965949cd50",
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1"
+}

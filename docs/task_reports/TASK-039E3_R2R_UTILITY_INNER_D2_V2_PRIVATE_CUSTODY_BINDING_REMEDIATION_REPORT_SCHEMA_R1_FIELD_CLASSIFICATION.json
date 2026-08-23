@@ -1,0 +1,18 @@
+{
+  "absolute_path_equality_required": false,
+  "artifact_hash": "638e7b4efd593f04db13922c24eb378fa9301ba0e7118ff89ecfd2c7e77dfce1",
+  "artifact_type": "D2V2CustodyFieldClassificationCompletionR1",
+  "created_at_utc": "2026-08-23T06:10:21Z",
+  "environment_local_locator_field_count": 5,
+  "ephemeral_metadata_field_count": 4,
+  "r4_failed_binding_classification": "ENVIRONMENT_LOCAL_LOCATOR_ACCESS_PERMISSION",
+  "r4_failed_binding_field": "CANONICAL_RESOLVED_ROOT_LOCATOR",
+  "schema_version": "1.0.0",
+  "semantic_classifications_changed": false,
+  "stable_logical_custody_field_count": 5,
+  "stable_scientific_field_count": 9,
+  "stable_security_field_count": 6,
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1",
+  "unknown_field_count": 0
+}

@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "d90e254c019ebeb41dede5625f855125a90164f80a61d914518d876f5a7c68a1",
+  "artifact_type": "D2V2MetricEvidenceIdentityCompletionR1",
+  "created_at_utc": "2026-08-23T06:10:21Z",
+  "evidence_role": "METRIC_EVIDENCE_V2",
+  "exact_hash_match": true,
+  "identity_source": "IMMUTABLE_HISTORICAL_CUSTODY_REMEDIATION_BLOCKER",
+  "located": true,
+  "logical_namespace_match": true,
+  "metric_evidence_sha256": "3e3f20b5b1a9387cd3bed4ad17e4232e714cc588d7df1c2a37dfd69bcd1a8513",
+  "outside_git": true,
+  "regular_file": true,
+  "report_schema_revalidation_count": 0,
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1",
+  "symlink": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1",
+  "tracked_copy_count": 0
+}
