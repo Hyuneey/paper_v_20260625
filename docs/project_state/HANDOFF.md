@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-private-custody-binding-remediation-r1`
-- Base: `e20ac1891b7f30a9928f3de95b3ff364f7cec6dd`
-- Custody Remediation Commit A: `7c2539332b94986f52303691347cea3557e53152`
-- Blocker Freeze Commit B: `eb650be2fd3c31d67d79811bf7ee00f232ac5a2d`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-private-custody-binding-remediation-report-schema-r1`
+- Base: `e5d5bcb28a53177deedcb67a1285f1abaf5c791f`
+- Report-Schema Remediation Commit A: `615d3fc2b218fe576c85b8a2ab9a5f8379c1d218`
+- Report Freeze Commit B: `1823ff0179cafca4aa35546a1e5c80d016783e0b`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_r1`
-- Scientific state: `UNCHANGED_FROZEN_NOT_YET_INTEGRITY_AUDITED`
+- Status: `passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1`
+- Scientific state: `PRIVATE_CUSTODY_BINDING_COMPATIBILITY_VERIFIED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_REMEDIATION_REPORT_SCHEMA_TASK`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`
 
 ## Frozen V2 result
 
@@ -165,3 +165,32 @@ was copied, moved, rewritten, or re-persisted; no scientific authority, label,
 feature, test2, or OUTER data was parsed or executed. Integrity-audit attempt
 accounting remains five blocked and zero completed. No successor task is
 authorized pending an explicit report-schema remediation authority.
+
+## D2 V2 custody report-schema remediation R1 completion
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1`.
+- Report-Schema Remediation Commit A:
+  `615d3fc2b218fe576c85b8a2ab9a5f8379c1d218`.
+- Report Freeze Commit B:
+  `1823ff0179cafca4aa35546a1e5c80d016783e0b`.
+- Root-cause artifact:
+  `fec9bee7d7f6ffcef29934fb1755715f6df374a399220d0669718f2a571e4ed2`.
+- Schema audit:
+  `2d6235601cfb2f3e475685727ca4c9795fbca35f526dc2096d6075aaad18c8ac`.
+- Compatibility receipt:
+  `f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8`.
+- Readiness / bundle / receipt / report:
+  `66cfd0731c0b86a38d0b43caf695466a9a08f178e87a582dfab11011c52f167a` /
+  `17d950f5d394302fd7b7dc4e68db24c600d8e8895089b27a70cb6a58db55fe54` /
+  `36732840373d040c0edd907b278b45503edc5ae30111074478091d1224e2b99a` /
+  `f4dbd9d7259bf2502df3e41a7ff3b5258543521355953f2adae6bb98cb929775`.
+
+The historical blocker and all scientific artifacts remain byte-unchanged.
+The new schema reserves `artifact_hash` solely for each report's self-hash and
+uses role-specific SHA-256 fields for referenced authorities. Duplicate keys,
+self-hash collisions, referenced-hash collisions, accepted invalid cases,
+private revalidations, scientific parses, labels, features, test2, OUTER, and
+authoritative executions are all zero. R5 may consume the audit-only custody
+compatibility receipt; it must not compare absolute private paths or rerun D2
+V2.

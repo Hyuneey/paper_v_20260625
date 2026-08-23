@@ -61,11 +61,13 @@ push occurred.
 D2 V2 remains transparently INNER label-informed development motivated by the
 frozen D2 V1 diagnostic. Result magnitude did not alter the frozen policy.
 The result is frozen but not yet integrity-audited or interpretation-ready.
-D2 V1 remains immutable, while test2 and OUTER remain sealed.
+The private-custody binding is now compatibility-verified through a
+collision-free, audit-only receipt. D2 V1 remains immutable, while test2 and
+OUTER remain sealed.
 
 ## Exact next task
 
-`NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_REMEDIATION_REPORT_SCHEMA_TASK`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
@@ -190,3 +192,31 @@ status, non-symlink status, tracked-copy count zero, and residue count zero
 passed. No private evidence was copied, moved, rewritten, or re-persisted.
 The frozen V2 result remains unchanged and unaudited. No successor task is
 authorized pending an explicit remediation-report schema task.
+
+## D2 V2 private-custody report-schema remediation R1
+
+- Status:
+  `passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1`.
+- Custody state: `PRIVATE_CUSTODY_BINDING_COMPATIBILITY_VERIFIED`.
+- V2 result state: `UNCHANGED_FROZEN_INTEGRITY_AUDIT_PENDING`.
+- Report-Schema Remediation Commit A:
+  `615d3fc2b218fe576c85b8a2ab9a5f8379c1d218`.
+- Report Freeze Commit B:
+  `1823ff0179cafca4aa35546a1e5c80d016783e0b`.
+- Historical blocker preserved:
+  `d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231`.
+- Compatibility receipt:
+  `f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8`.
+- Bundle / receipt / report:
+  `17d950f5d394302fd7b7dc4e68db24c600d8e8895089b27a70cb6a58db55fe54` /
+  `36732840373d040c0edd907b278b45503edc5ae30111074478091d1224e2b99a` /
+  `f4dbd9d7259bf2502df3e41a7ff3b5258543521355953f2adae6bb98cb929775`.
+
+The defect was a generic `artifact_hash` collision between a referenced
+private-evidence identity and the new public report self-hash. New artifacts
+reserve `artifact_hash` exclusively for self-identity and use role-specific
+`*_sha256` reference fields. Duplicate keys and all self/reference hash
+collisions are zero. No custody semantic value or historical artifact changed.
+No private evidence was reopened or mutated, and all scientific/data-access
+counters remain zero. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`.

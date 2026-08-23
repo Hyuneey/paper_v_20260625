@@ -507,3 +507,28 @@ Append new entries; never rewrite historical decisions.
   `d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231`.
 - Next authority: none; an explicit custody-remediation report-schema task is
   required.
+
+## DEC-D2-015
+
+- Date: 2026-08-23
+- Status: accepted
+- Decision: Freeze the completed D2 V2 private-custody binding compatibility
+  finding after repairing only the new report self-hash schema.
+- Root cause: `artifact_hash` carried the referenced private evidence identity
+  in `PrivateIdentityR1` and was also reserved for the new public report's own
+  self-hash. The fail-closed collision occurred during self-hash injection
+  before canonical serialization; no semantic value was overwritten or lost.
+- Schema disposition: retain `artifact_hash` exclusively as the canonical
+  report self-hash and map referenced authorities to role-specific
+  `*_sha256` fields. Historical schemas and bytes remain unchanged.
+- Custody conclusion: exact private evidence identities, custody-module
+  identity, logical namespaces, stable scientific/security/logical bindings,
+  and environment-local locator classification remain PASS. Absolute path
+  equality is not scientific authority.
+- Accounting: one report-schema remediation attempt, zero private identity
+  revalidations, zero scientific/data parses or executions, 27 adversarial
+  cases rejected, and zero accepted invalid.
+- Evidence:
+  `f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`.

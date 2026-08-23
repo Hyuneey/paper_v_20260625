@@ -695,3 +695,29 @@ because the private identity object and self-hashed report envelope both used
 `artifact_hash`. No retry or scientific work occurred, and the frozen result
 remains unchanged. No successor is authorized pending an explicit
 remediation-report schema task.
+
+## D2 V2 private-custody report-schema remediation R1
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1`.
+- Base: `e5d5bcb28a53177deedcb67a1285f1abaf5c791f`.
+- Report-Schema Remediation Commit A:
+  `615d3fc2b218fe576c85b8a2ab9a5f8379c1d218`.
+- Report Freeze Commit B:
+  `1823ff0179cafca4aa35546a1e5c80d016783e0b`.
+- Root cause / schema audit:
+  `fec9bee7d7f6ffcef29934fb1755715f6df374a399220d0669718f2a571e4ed2` /
+  `2d6235601cfb2f3e475685727ca4c9795fbca35f526dc2096d6075aaad18c8ac`.
+- Compatibility receipt:
+  `f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8`.
+- Readiness / bundle / receipt / report:
+  `66cfd0731c0b86a38d0b43caf695466a9a08f178e87a582dfab11011c52f167a` /
+  `17d950f5d394302fd7b7dc4e68db24c600d8e8895089b27a70cb6a58db55fe54` /
+  `36732840373d040c0edd907b278b45503edc5ae30111074478091d1224e2b99a` /
+  `f4dbd9d7259bf2502df3e41a7ff3b5258543521355953f2adae6bb98cb929775`.
+
+The collision-free completion artifacts preserve the historical blocker and
+all custody/scientific semantics. `artifact_hash` is reserved solely for
+self-identity; referenced authorities use role-specific SHA-256 fields. The
+audit-only receipt verifies private-custody compatibility and authorizes no
+scientific execution. R5 is the exact next task; test2 and OUTER remain sealed.
