@@ -3,7 +3,7 @@
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
   "updated_at_utc": "2026-08-23T07:04:40Z",
-  "canonical_head": "7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4",
+  "canonical_head": "7fd05e06dc6e496d2ac18b4276cefe5859a7236c",
   "current_branch": "task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r5",
   "research_phase": "D2_V2_RESULT_INTEGRITY_AUDIT_R5_BLOCKED_ACCOUNTING_SCHEMA_REPLAY",
   "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-REPORT-SCHEMA-R1",
@@ -304,7 +304,7 @@
     "d2_v2_custody_report_schema_receipt": "36732840373d040c0edd907b278b45503edc5ae30111074478091d1224e2b99a",
     "d2_v2_custody_report_schema_report_self_hash": "f4dbd9d7259bf2502df3e41a7ff3b5258543521355953f2adae6bb98cb929775",
     "d2_v2_result_integrity_r5_harness_commit_a": "a29f9b54edf724fd2cc848250bb867fbcd76be2f",
-    "d2_v2_result_integrity_r5_blocker_commit_b": "7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4",
+    "d2_v2_result_integrity_r5_blocker_commit_b": "7fd05e06dc6e496d2ac18b4276cefe5859a7236c",
     "d2_v2_result_integrity_r5_blocker": "0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0",
     "d2_v2_result_integrity_r5_blocker_report_self_hash": "730d23ea6d29c679cab58165b9b8bbd6cb620c4cc9ba2ffc2bd0f31d61ed16dc"
   },
@@ -1487,7 +1487,7 @@
     "scientific_state": "D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED",
     "base_commit": "a64ce89b0fd9250e5afbdd1ef78a8ffcdf6f7287",
     "r5_harness_commit_a": "a29f9b54edf724fd2cc848250bb867fbcd76be2f",
-    "r5_blocker_freeze_commit_b": "7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4",
+    "r5_blocker_freeze_commit_b": "7fd05e06dc6e496d2ac18b4276cefe5859a7236c",
     "blocker_hash": "0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0",
     "blocker_report_self_hash": "730d23ea6d29c679cab58165b9b8bbd6cb620c4cc9ba2ffc2bd0f31d61ed16dc",
     "blocker_code": "D2_V2_R5_EXECUTION_ACCOUNTING_REJECTED",
@@ -1535,5 +1535,5 @@
     "push_attempted": false,
     "exact_next_task": "NONE_AUTHORIZED_PENDING_EXPLICIT_R5_ACCOUNTING_FIELD_REMEDIATION"
   },
-  "artifact_hash": "786b7a53881c0a40ca53c1fd1b364bd9c66226875b65c0537d1675d0603e3bd0"
+  "artifact_hash": "34931c1eb507f19d8a80a465242b942ca4ac6e4c2a5f1f70d748629765bbab4e"
 }

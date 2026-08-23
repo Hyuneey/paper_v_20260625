@@ -229,7 +229,7 @@ counters remain zero. Exact next task:
   `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r5`.
 - Blocker: `D2_V2_R5_EXECUTION_ACCOUNTING_REJECTED`.
 - R5 Harness Commit A: `a29f9b54edf724fd2cc848250bb867fbcd76be2f`.
-- Blocker Freeze Commit B: `7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4`.
+- Blocker Freeze Commit B: `7fd05e06dc6e496d2ac18b4276cefe5859a7236c`.
 - Blocker artifact:
   `0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0`.
 - Root cause: R5 required the non-schema field `d1_metric_reads`; the exact
