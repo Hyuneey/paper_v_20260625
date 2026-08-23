@@ -414,3 +414,25 @@ Append new entries; never rewrite historical decisions.
   `dc6d83a33bdf985389b6d2d1b75e54f2b703e59f515369dc41b5a499280b0990`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.
+
+## DEC-D2-011
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole R2 audit process at public authorization
+  report-provenance replay; do not retry R2.
+- Root cause: The frozen Markdown body hash excludes the single separator
+  newline immediately before its provenance footer. The R2 validator included
+  that newline, although the frozen report itself remains exact and valid.
+- Accounting: R2 invocations/retries/completions are `1`/`0`/`0`;
+  authorization semantic parses are `1`; all eight real scientific semantic
+  parse counters are `0`. Total integrity-audit attempts/blocked/completed are
+  `3`/`3`/`0`.
+- Preservation: Both historical blockers, authorization artifacts, and the
+  frozen D2 V2 result remain unchanged. Authoritative executions,
+  test1-feature/test2/OUTER access, result-driven changes, leakage, and push
+  remain zero.
+- Evidence:
+  `4e6526e382dbb0bf15bae9123eeeba3a090dcb59bfd767f3b19172fe3e353c0c`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`.

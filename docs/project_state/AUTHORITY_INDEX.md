@@ -619,3 +619,20 @@ The sole R1 process stopped before D0/D1/source/horizon/CombinedPredictionV2/
 FusionEvidenceV2/label/MetricEvidenceV2 semantic parsing. No retry occurred.
 The frozen V2 result remains unchanged and unaudited. Exact next authority:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.
+
+## D2 V2 result-integrity audit harness remediation R2 blocker
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.
+- Harness Remediation Commit A: `b14cb96a19f6474d9c10e02abbdfedf3dd7c7a73`.
+- Blocker Freeze Commit B: `1effce0b691b870c93e5195d930a26ec9ae92658`.
+- Blocker artifact:
+  `4e6526e382dbb0bf15bae9123eeeba3a090dcb59bfd767f3b19172fe3e353c0c`.
+- Report self-hash:
+  `ce0e3d5e7db0ba135989beeab97beb97f024ccfc5f5341a548fd33aa68fd04d1`.
+- Blocker code: `D2_V2_R2_AUTHORIZATION_REPORT_CHAIN_REJECTED`.
+- Root cause:
+  `R2_AUTHORIZATION_REPORT_BODY_HASH_VALIDATOR_INCLUDED_ONE_FOOTER_SEPARATOR_NEWLINE`.
+
+The frozen authorization report is valid and unchanged. The sole R2 process
+stopped before all scientific semantic parses; no retry occurred. Exact next
+authority is R3 report-provenance separator remediation only.

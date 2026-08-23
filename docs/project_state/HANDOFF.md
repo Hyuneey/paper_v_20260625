@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r1`
-- Base: `d158bab6bdbc5558f3483c52be5ef29967815cba`
-- R1 Harness Remediation Commit A: `e04ca7e7aee472c5450363f9a5e4a6a3fe2a6ef4`
-- R1 Blocker Freeze Commit B: `a4968c2d8af89232d141826e10bd5145567407a2`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r2`
+- Base: `18263247569d4c1bcd6b131b1b5c63e5aec9349e`
+- R2 Harness Remediation Commit A: `b14cb96a19f6474d9c10e02abbdfedf3dd7c7a73`
+- R2 Blocker Freeze Commit B: `1effce0b691b870c93e5195d930a26ec9ae92658`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r1`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r2`
 - Scientific state: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`
 
 ## Frozen V2 result
 
@@ -85,3 +85,22 @@ access test2 under the blocked authority.
 Do not rerun R1, interpret V2, compare V1/V2, authorize OUTER, or access test2.
 The next authority must explicitly authorize R2 and correct only the public
 authorization-report schema replay.
+
+## R2 remediation blocker handoff
+
+- Blocker artifact:
+  `4e6526e382dbb0bf15bae9123eeeba3a090dcb59bfd767f3b19172fe3e353c0c`.
+- Code: `D2_V2_R2_AUTHORIZATION_REPORT_CHAIN_REJECTED`.
+- Root cause: the R2 validator included one Markdown footer-separator newline
+  excluded from the frozen authorization report body hash.
+- The frozen report independently replays to the expected hash when that
+  separator newline is excluded; neither authorization nor science changed.
+- Sole R2 invocation / retries / completions: `1` / `0` / `0`.
+- R2 authorization semantic parses: `1`; D0, D1, source map, horizon map,
+  CombinedPredictionV2, FusionEvidenceV2, label, and MetricEvidenceV2 parses:
+  all `0`.
+- Total integrity-audit attempts / blocked / completed: `3` / `3` / `0`.
+
+Do not rerun R2, interpret V2, compare V1/V2, authorize OUTER, or access
+test2. The next authority must explicitly authorize R3 and correct only the
+public report body/footer separator handling.

@@ -65,7 +65,7 @@ D2 V1 remains immutable, while test2 and OUTER remain sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
@@ -109,3 +109,22 @@ The historical blocker and frozen V2 result remain unchanged; test1 feature,
 test2, OUTER, authoritative execution, result-driven changes, leakage, and push
 remain zero. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.
+
+## D2 V2 result-integrity audit harness remediation R2 blocker
+
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r2`.
+- Blocker: `D2_V2_R2_AUTHORIZATION_REPORT_CHAIN_REJECTED`.
+- Harness Remediation Commit A: `b14cb96a19f6474d9c10e02abbdfedf3dd7c7a73`.
+- Blocker Freeze Commit B: `1effce0b691b870c93e5195d930a26ec9ae92658`.
+- Blocker artifact: `4e6526e382dbb0bf15bae9123eeeba3a090dcb59bfd767f3b19172fe3e353c0c`.
+- Root cause: the R2 report-provenance validator included one separator newline
+  excluded by the frozen Markdown body-hash scheme.
+- The frozen authorization report remains valid and unchanged.
+- R2 invocations / retries / completed audits: `1` / `0` / `0`.
+- R2 authorization semantic parses: `1`; all eight scientific semantic parses: `0`.
+- Total integrity-audit attempts / blocked / completed: `3` / `3` / `0`.
+
+R2 was not retried. Both historical blockers and the frozen V2 result remain
+unchanged; authoritative execution, test1 feature, test2, OUTER, leakage,
+result-driven changes, and push remain zero. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`.
