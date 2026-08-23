@@ -67,12 +67,12 @@ OUTER remain sealed.
 
 ## Exact next task
 
-`NONE_AUTHORIZED_PENDING_EXPLICIT_R5_ACCOUNTING_FIELD_REMEDIATION`
+`NONE_AUTHORIZED_PENDING_EXPLICIT_ACCOUNTING_SCHEMA_PARSER_REMEDIATION`
 
-R5 audit attempt 6 failed closed after the full independent oracle, at a
-public accounting field-name mismatch in the audit harness. Do not rerun R5,
-interpret V2, compare V1/V2, authorize OUTER, or access test2 without a new
-explicit authority.
+The sole accounting-completion remediation invocation failed closed in its
+audit-only producer-schema parser. Do not retry it, rerun R5, interpret V2,
+compare V1/V2, authorize OUTER, or access test2 without a new explicit
+authority.
 
 ## D2 V2 result-integrity audit blocker
 
@@ -246,3 +246,23 @@ oracles, and verified MetricEvidenceV2. This is not a completed integrity
 audit. The frozen result and private evidence remain unchanged; authoritative
 executions, feature, test2, OUTER, result-driven changes, leakage, retry, and
 push remain zero.
+
+## D2 V2 R5 accounting-field remediation R1 blocker
+
+- Status:
+  `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_field_remediation_r1`.
+- Blocker: `D2_V2_ACCOUNTING_REMEDIATION_PRODUCER_SCHEMA_REJECTED`.
+- Accounting Remediation Commit A:
+  `844caaece5ab5a51f451d2d3e4d968d1c9dc5ff8`.
+- Blocker Freeze Commit B:
+  `496c105efa27d34481c74879aa02d0f57a03576a`.
+- Blocker artifact:
+  `3c5b2da933ac4e00df4602aaf89c749d6e0aea856bf844f9f769cfb907c358f2`.
+- Invocation / retries / completions: `1` / `0` / `0`.
+- Static tests: `14 / 14`; synthetic attacks: `21 / 21` rejected.
+
+The real invocation parsed the frozen public accounting metadata once and
+verified its self-hash, then stopped because the line-based producer-schema
+extractor captured only the first quoted key on source lines containing
+multiple keys. Completion eligibility was not evaluated. Scientific artifacts
+were not reopened; V2 integrity-audited and interpretation-ready remain false.

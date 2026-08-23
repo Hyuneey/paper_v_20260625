@@ -553,3 +553,27 @@ Append new entries; never rewrite historical decisions.
   `0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0`.
 - Next authority: none; explicit accounting-field remediation authority is
   required.
+
+## DEC-D2-017
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole R5 accounting-field completion remediation
+  invocation at its producer-schema parser; do not retry it.
+- Root cause: the parser enumerated at most one quoted key per physical source
+  line, while the frozen producer defines multiple accounting keys on some
+  lines. The exact frozen schema was therefore rejected before completion
+  eligibility.
+- Evidence before stop: the historical R5 blocker and report matched, and the
+  frozen public accounting artifact parsed once and passed its canonical
+  self-hash check.
+- Accounting: six historical integrity-audit attempts remain blocked; this is
+  one separate completion-remediation attempt with zero retry and zero
+  completion.
+- Preservation: no scientific artifact, label, feature, private evidence,
+  test2, or OUTER data was reopened; no scientific execution, result change,
+  leakage, retry, or push occurred.
+- Evidence:
+  `3c5b2da933ac4e00df4602aaf89c749d6e0aea856bf844f9f769cfb907c358f2`.
+- Next authority: none; an explicit accounting-schema parser remediation is
+  required.

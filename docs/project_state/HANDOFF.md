@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r5`
-- Base: `a64ce89b0fd9250e5afbdd1ef78a8ffcdf6f7287`
-- R5 Harness Commit A: `a29f9b54edf724fd2cc848250bb867fbcd76be2f`
-- R5 Blocker Freeze Commit B: `7fd05e06dc6e496d2ac18b4276cefe5859a7236c`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-field-remediation-r1`
+- Base: `551a35ea2ba7618812c4bc9154c32d4ed9f8562f`
+- Accounting Remediation Commit A: `844caaece5ab5a51f451d2d3e4d968d1c9dc5ff8`
+- Blocker Freeze Commit B: `496c105efa27d34481c74879aa02d0f57a03576a`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r5`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_field_remediation_r1`
 - Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_R5_ACCOUNTING_FIELD_REMEDIATION`
+- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_ACCOUNTING_SCHEMA_PARSER_REMEDIATION`
 
 ## Frozen V2 result
 
@@ -215,3 +215,20 @@ metric, and private MetricEvidence comparisons passed. The result remains
 frozen but is not integrity-audited or interpretation-ready. R5 was not
 retried. Authoritative executions, test1 feature, test2, OUTER, result-driven
 changes, leakage, private mutation, and push remain zero.
+
+## R5 accounting-field remediation R1 blocker handoff
+
+- Blocker artifact:
+  `3c5b2da933ac4e00df4602aaf89c749d6e0aea856bf844f9f769cfb907c358f2`.
+- Report self-hash:
+  `b23666900a5a09d0425913df84ed82c5703b5ffd554d464447d8c632d37e85f6`.
+- Code: `D2_V2_ACCOUNTING_REMEDIATION_PRODUCER_SCHEMA_REJECTED`.
+- Root cause: the audit-only line-based producer-schema extractor captured
+  only the first quoted key on physical lines containing multiple keys.
+- Sole remediation invocation / retries / completions: `1` / `0` / `0`.
+- Public accounting metadata parses: `1`; self-hash matched before stop.
+
+Completion eligibility was not evaluated and no completion receipt exists.
+Scientific artifacts, labels, private evidence, feature data, test2, and OUTER
+were not reopened or accessed. The historical six integrity-audit attempts and
+the frozen scientific execution counts remain unchanged.

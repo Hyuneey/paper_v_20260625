@@ -738,3 +738,19 @@ harness requested `d1_metric_reads`, which is not the exact frozen accounting
 field (`d1_metric_artifact_reads`). The scientific result, authorization,
 predictions, source/horizon maps, and private evidence remain unchanged. This
 blocker grants no retry, interpretation, test2, or OUTER authority.
+
+## D2 V2 R5 accounting-field remediation R1 blocker
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-FIELD-REMEDIATION-R1`.
+- Base: `551a35ea2ba7618812c4bc9154c32d4ed9f8562f`.
+- Remediation harness: `844caaece5ab5a51f451d2d3e4d968d1c9dc5ff8`.
+- Blocker freeze: `496c105efa27d34481c74879aa02d0f57a03576a`.
+- Blocker artifact:
+  `3c5b2da933ac4e00df4602aaf89c749d6e0aea856bf844f9f769cfb907c358f2`.
+- Blocker code: `D2_V2_ACCOUNTING_REMEDIATION_PRODUCER_SCHEMA_REJECTED`.
+
+The sole invocation verified the frozen public accounting artifact self-hash
+before its audit-only producer-schema parser rejected the source layout. It
+did not complete the schema audit or issue result-integrity completion. No
+scientific or private authority was reopened, and no retry is authorized.
