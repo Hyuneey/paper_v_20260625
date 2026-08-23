@@ -769,3 +769,22 @@ Append new entries; never rewrite historical decisions.
   `536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0`.
 - Exact next task:
   `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-RECOVERY-V1`.
+
+## DEC-OUTER-005 — scientific attempt consumed on feature custody rejection
+
+- Date: 2026-08-23.
+- Status: blocked after scientific-attempt start.
+- Decision: preserve the fixed path-free
+  `OUTER_TEST2_FEATURE_CUSTODY_REJECTED` outcome and consume the sole
+  authorized attempt under the preregistered zero-retry policy.
+- Access accounting: one feature-custody access, zero feature byte reads,
+  hashes, or parses, and zero label accesses.
+- Scientific accounting: D0 inference, D1 Rule evaluation, D2 V1 fusion,
+  D2 V2, prediction freezes, and metrics remain zero.
+- Change/leakage accounting: no result-driven change, redesign, new private
+  path exposure, private source-set exposure, or scientific private-value
+  leak.
+- Blocker:
+  `5949aa9aa16df04143bed4bd58a4061306f5e1ed392fc45b39b6cb23c3951d8e`.
+- Exact next task:
+  `TASK-039E3-R2R-UTILITY-OUTER-EXECUTION-FAILURE-DISPOSITION-V1`.

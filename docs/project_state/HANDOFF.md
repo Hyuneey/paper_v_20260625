@@ -1,156 +1,38 @@
 # Project handoff
 
-## Current authority: OUTER custody infrastructure ready
+## Current blocker: first and only OUTER attempt consumed
 
-R2 passed the local-binding and path-redaction remediation without accessing
-test2 or consuming the original one-shot scientific authorization. The exact
-frozen D0 model and threshold now resolve through the canonical eight-field
-local schema, and four OUTER private logical roles are ready on the approved
-outside-Git custody plane.
+The recovery implementation passed its complete pre-real gate and began the
+single authorized scientific attempt. The initial test2 feature-custody access
+failed closed with `OUTER_TEST2_FEATURE_CUSTODY_REJECTED` before any feature
+bytes were read. This is not a scientific result, but the attempt is consumed
+under the frozen no-retry policy.
 
-- Implementation / report freeze:
-  `5484791027c2a5797c373471b51c73ccc5b5a329` /
-  `9e8dba81fca933d2ac7d2404d6483346e9d619f1`.
-- [Compatibility receipt](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_R2_COMPATIBILITY_RECEIPT.json):
-  `536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0`.
-- Bundle / receipt / report:
-  `44e89690da724a0b3dd351904bb3b13e8a90f4cfa8d5c2ac7ed5335aec281b6c` /
-  `cfe23699eb2ad3e00058cec696a0ed8eaaad72a151a0f7b608f6d0c82f863702` /
-  `6a1a0f3ad610fb5214f0c42c9c61058ab991a29a21905554c027b5a9a7824ba0`.
-- R1 root cause: `R1_EXPECTED_OBSOLETE_LOCAL_BINDING_SCHEMA`; four
-  schema-proven legacy names were replaced by four current canonical names.
-- Canonical fields / unknown fields / fuzzy mappings: `8 / 0 / 0`.
-- D0 model / threshold hash and logical binding: `PASS / PASS`.
-- Custody sentinel attempts / retries / residue: `1 / 0 / 0`.
-- Tests: `34 / 34` static and `24 / 24` independent attacks; accepted
-  invalid: `0`.
-- Historical pre-scientific OUTER aborts: `2`.
-- Scientific attempts consumed / remaining / retries: `0 / 1 / 0`.
-- Test2 feature/label accesses and all scientific executions: `0`.
-- All new path and scientific-private-value exposure counts: `0`.
-- Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
-
-Exact next task:
-`TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-RECOVERY-V1`.
-
-Do not call this a second scientific attempt. It is the first and only
-authorized OUTER scientific attempt after two pre-scientific infrastructure
-aborts. Do not start it automatically and do not push.
-
-## Current blocker: OUTER custody remediation V1
-
-The historical OUTER execution remains a pre-scientific abort, and the
-original one-shot authorization remains unused. Remediation V1 made one
-infrastructure invocation and failed before D0 locator resolution because its
-binding allowlist expected legacy D1 keys rather than the current canonical
-local authority keys. The currently bound HAI custody root also has no frozen
-D0 private-artifact directory.
-
-- Implementation / blocker freeze:
-  `a5fa923fe457bbf7d23c723391ebf07317eb2128` /
-  `c8473503f4c37a65a5fd9ccff263186efe4f4a5b`.
-- [Sanitized blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_V1_BLOCKER.json):
-  `ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c`.
-- Tests: `32 / 32` static and `24 / 24` independent attacks passed;
-  accepted invalid: `0`.
-- Remediation attempts/retries: `1 / 0`; locator resolutions, identity
-  validations, and sentinel attempts: `0`.
-- OUTER scientific attempts consumed/remaining: `0 / 1`; retries: `0`.
-- Test2, scientific executions, predictions, metrics, result changes, new
-  path leakage, remote egress, and push: all `0`.
-
-Exact next task:
-`TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2`.
-
-Do not start OUTER recovery or access test2 until R2 freezes a complete
-path-free custody readiness receipt.
-
-## Current blocker: OUTER pre-real custody and redaction gate
-
-The three-arm OUTER execution remains authorized but did not start. The
-pre-real gate rejected incomplete local D0 private authority bindings and also
-recorded a path-redaction failure during diagnostics. This is a local custody
-preflight blocker, not an OUTER scientific result.
-
-- Execution bridge / independent audit:
-  `63b33ee3b9976177d3b00d8aa4ac0ec9ed83f5a7` /
-  `f1a3978f82ca57d3bc4f757f1974584a7f21e903`.
+- Implementation / independent audit:
+  `8ad78f7f49af90942a22585a6b4fcd8d383fc03a` /
+  `ee639394200e49ba256a4f5ddf354823779d4512`.
 - Blocker freeze:
-  `0f2f8812a1576d61c40ffae7eca091b61a690314`.
-- [Sanitized blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_V1_BLOCKER.json):
-  `5277ae39a2558344499abfca92906107f77b4416c457599c314f69f8e4c75d72`.
-- Tests: `113 / 113` focused tests passed; `26 / 26` independent attacks
-  rejected; accepted invalid: `0`.
-- Scientific attempts / retries: `0 / 0`.
-- Test2 feature and label accesses/parses: all `0`.
-- D0, D1, D2 V1, D2 V2, and OUTER executions: all `0`.
-- Prediction freezes and metric computations: all `0`.
-- Private path exposure count from diagnostics: `12`; actual paths are not
-  reproduced in any tracked artifact or handoff.
+  `c2670f0af2e8b457c2e37fde639ef0d2f2553116`.
+- [Sanitized blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json):
+  `5949aa9aa16df04143bed4bd58a4061306f5e1ed392fc45b39b6cb23c3951d8e`.
+- R2 compatibility authority remained exact:
+  `536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0`.
+- Historical pre-scientific aborts: `2`.
+- Scientific attempts consumed / remaining / retries: `1 / 0 / 0`.
+- Feature custody accesses / byte reads / hashes / parses: `1 / 0 / 0 / 0`.
+- Label accesses and parses: `0`.
+- D0 inference, D1 evaluation, D2 V1 fusion, D2 V2, prediction freezes, and
+  metrics: `0`.
+- Result-driven changes, redesigns, and new leakage: `0`.
+- Tests: `54 / 54` static, `44 / 44` attacks rejected, `209 / 209`
+  focused; accepted invalid `0`.
 - Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
 
-Exact next task:
-`TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-V1`.
-
-Do not access test2, consume the one-shot scientific authorization, execute an
-arm, or push before that explicit remediation passes.
-
-## Current authority
-
-One sealed OUTER confirmatory execution of exactly three frozen arms is
-authorized but not executed:
-
-1. D0 detector-only (`D0_PCA_SPE_V1`)
-2. D1 Rule-only (`COMMON-42`)
-3. D2 V1 combined (`D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1`)
-
-Authorization version:
-`TASK039E3_R2R_OUTER_D0_D1_D2V1_EXECUTION_AUTHORIZATION_V1`.
-
-Authorization scope:
-`HAI_23_05_P1_TEST2_D0_D1_D2V1_CONFIRMATORY_OUTER_V1`.
-
-Preregistration / authorization SHA-256:
-`66179921042faecf189fe93ddaf20bb06669afa6e27dbefb67c9b95eabb93427` /
-`fb8abb3a342c591873d15d4bcf28cbdcc7363fce77a228f486f122ef5933ac14`.
-
-Canonical receipt:
-[OUTER authorization receipt](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_RECEIPT.json),
-`1ef346ec824561def8d09c8c09211c11fa2eb5c2bb415c95d2008b4af6a03d4d`.
-
-## Frozen boundary
-
-- Dataset manifest:
-  `5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2`.
-- Test2 feature / label manifest SHA-256:
-  `b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3` /
-  `8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92`.
-- Expected test2 rows: `230400`.
-- D0 design / model / threshold:
-  `357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174` /
-  `f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b` /
-  `7ac0628cad5983b9864d31a9984bd414867b80f175248dbdf5cd69d7589f3695`.
-- D1 construction / descriptor / evaluator:
-  `1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343` /
-  `665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928` /
-  `af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5`.
-- D2 V1 design / source map:
-  `eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51` /
-  `f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818`.
-- Corroboration: at least `2` distinct sources at the exact same physical
-  second; D0-preserving; no tolerance, native-horizon memory, D0 score, or
-  label-aware fusion.
-- D2 V2 authorized: `false`.
-- OUTER attempts / retries authorized: `1 / 0`.
-- Post-OUTER redesign authorized: `false`.
-
-This preregistration task opened, hashed, and parsed no real test2 feature or
-label file and executed no scientific arm. Test2 remains sealed until the exact
-execution task replays this authorization.
+Do not retry, inspect or print private locators, access the label file, execute
+any arm, substitute D2 V2, or initiate final scientific synthesis.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-V1`
+`TASK-039E3-R2R-UTILITY-OUTER-EXECUTION-FAILURE-DISPOSITION-V1`
 
-Do not start result-integrity audit or final synthesis before that execution
-freezes its result. Do not push.
+This is a failure-disposition task, not a new execution authorization.
