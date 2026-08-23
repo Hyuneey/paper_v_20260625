@@ -1,5 +1,46 @@
 # Current project state
 
+## OUTER execution pre-real blocker
+
+The authorized three-arm OUTER execution did not start. The pre-real authority
+gate failed closed because the current local custody configuration did not
+provide the complete frozen D0 private bindings required for replay, and a
+diagnostic command violated the path-redaction boundary. No test2 feature or
+label file was accessed, no prediction was created, and no scientific attempt
+was consumed.
+
+- Status:
+  `blocked_task039e3_r2r_utility_outer_d0_d1_d2v1_execution_v1`.
+- Scientific state:
+  `OUTER_EXECUTION_AUTHORIZED_NOT_STARTED_PRE_REAL_CUSTODY_BLOCKED`.
+- Base: `65a9439ff4b16960368c21c9ef96da4394cecee7`.
+- Execution bridge Commit A:
+  `63b33ee3b9976177d3b00d8aa4ac0ec9ed83f5a7`.
+- Independent audit Commit B:
+  `f1a3978f82ca57d3bc4f757f1974584a7f21e903`.
+- Blocker freeze Commit C:
+  `0f2f8812a1576d61c40ffae7eca091b61a690314`.
+- Blocker SHA-256:
+  `5277ae39a2558344499abfca92906107f77b4416c457599c314f69f8e4c75d72`.
+- Static tests: `34 / 34`; independent attacks: `26 / 26` rejected;
+  combined focused tests: `113 / 113`; accepted invalid: `0`.
+- Scientific attempts / retries: `0 / 0`.
+- Test2 feature accesses / label accesses: `0 / 0`.
+- D0 / D1 / D2 V1 / D2 V2 executions: `0 / 0 / 0 / 0`.
+- Sanitized diagnostic private-path occurrences: `12`; no path is retained in
+  tracked output.
+- Authorization remains frozen; execution remains unstarted and result state
+  remains unfrozen.
+- Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
+
+## Exact next task
+
+`TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-V1`
+
+That remediation may restore only the missing local custody bindings and
+path-silent preflight. It must not access test2 or consume the one authorized
+scientific attempt.
+
 ## Research state
 
 INNER fusion development is closed. The frozen INNER disposition supports

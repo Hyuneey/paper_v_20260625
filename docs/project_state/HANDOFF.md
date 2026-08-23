@@ -1,5 +1,35 @@
 # Project handoff
 
+## Current blocker: OUTER pre-real custody and redaction gate
+
+The three-arm OUTER execution remains authorized but did not start. The
+pre-real gate rejected incomplete local D0 private authority bindings and also
+recorded a path-redaction failure during diagnostics. This is a local custody
+preflight blocker, not an OUTER scientific result.
+
+- Execution bridge / independent audit:
+  `63b33ee3b9976177d3b00d8aa4ac0ec9ed83f5a7` /
+  `f1a3978f82ca57d3bc4f757f1974584a7f21e903`.
+- Blocker freeze:
+  `0f2f8812a1576d61c40ffae7eca091b61a690314`.
+- [Sanitized blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_V1_BLOCKER.json):
+  `5277ae39a2558344499abfca92906107f77b4416c457599c314f69f8e4c75d72`.
+- Tests: `113 / 113` focused tests passed; `26 / 26` independent attacks
+  rejected; accepted invalid: `0`.
+- Scientific attempts / retries: `0 / 0`.
+- Test2 feature and label accesses/parses: all `0`.
+- D0, D1, D2 V1, D2 V2, and OUTER executions: all `0`.
+- Prediction freezes and metric computations: all `0`.
+- Private path exposure count from diagnostics: `12`; actual paths are not
+  reproduced in any tracked artifact or handoff.
+- Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
+
+Exact next task:
+`TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-V1`.
+
+Do not access test2, consume the one-shot scientific authorization, execute an
+arm, or push before that explicit remediation passes.
+
 ## Current authority
 
 One sealed OUTER confirmatory execution of exactly three frozen arms is

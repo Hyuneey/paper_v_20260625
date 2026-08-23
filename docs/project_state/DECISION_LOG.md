@@ -710,3 +710,20 @@ Append new entries; never rewrite historical decisions.
   `1ef346ec824561def8d09c8c09211c11fa2eb5c2bb415c95d2008b4af6a03d4d`.
 - Exact next task:
   `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-V1`.
+
+## DEC-OUTER-002 — pre-real custody and redaction blocker
+
+- Date: 2026-08-23
+- Status: blocked before scientific attempt.
+- Decision: fail closed before test2 access because the current local custody
+  configuration lacks complete frozen D0 private bindings and the diagnostic
+  path-redaction boundary was violated.
+- Scientific preservation: OUTER attempts/retries remain `0 / 0`; test2
+  feature and label accesses/parses, all arm executions, prediction freezes,
+  and metric computations remain `0`.
+- Authorization disposition: the frozen one-shot authorization is unchanged;
+  it was not consumed and no result was observed.
+- Blocker:
+  `5277ae39a2558344499abfca92906107f77b4416c457599c314f69f8e4c75d72`.
+- Exact next task:
+  `TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-V1`.

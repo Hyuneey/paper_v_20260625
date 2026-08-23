@@ -893,3 +893,22 @@ Exactly one coordinated sealed OUTER execution is authorized for D0, D1, and
 D2 V1. D2 V2, retries, recalibration, redesign, and post-OUTER development are
 not authorized. Authorization issuance accessed no real test2 feature or label
 file and performed no scientific execution.
+
+## OUTER D0/D1/D2 V1 execution pre-real blocker
+
+- Execution bridge Commit A:
+  `63b33ee3b9976177d3b00d8aa4ac0ec9ed83f5a7`.
+- Independent audit Commit B:
+  `f1a3978f82ca57d3bc4f757f1974584a7f21e903`.
+- Blocker freeze Commit C:
+  `0f2f8812a1576d61c40ffae7eca091b61a690314`.
+- Blocker authority:
+  [OUTER pre-real blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_V1_BLOCKER.json),
+  `5277ae39a2558344499abfca92906107f77b4416c457599c314f69f8e4c75d72`.
+
+The pre-real gate failed before a scientific attempt because complete frozen
+D0 private custody bindings were unavailable and diagnostics violated the
+path-redaction boundary. Test2 feature/label access, scientific execution,
+prediction freezing, and metric computation remained zero. The authorization
+is preserved but cannot be exercised until the explicit private-custody and
+path-redaction remediation passes.
