@@ -636,3 +636,22 @@ The frozen V2 result remains unchanged and unaudited. Exact next authority:
 The frozen authorization report is valid and unchanged. The sole R2 process
 stopped before all scientific semantic parses; no retry occurred. Exact next
 authority is R3 report-provenance separator remediation only.
+
+## D2 V2 result-integrity audit harness remediation R3 blocker
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`.
+- Harness Remediation Commit A: `10f6b179438e70646ff94ca82fdc96ac63d2ba4a`.
+- Blocker Freeze Commit B: `1d7a189a6926643217a62950fc2180ace331ab93`.
+- Blocker artifact:
+  `2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a`.
+- Report self-hash:
+  `e20b49b6f6b6f22eb3f40b9433710ba85df37893677941debfdded84adab33a4`.
+- Blocker code: `D2_V2_R3_REPORT_PROVENANCE_SEPARATOR_NOT_CANONICAL`.
+- Root cause:
+  `FROZEN_AUTHORIZATION_REPORT_RAW_BYTES_USE_CRLF_SEPARATOR_WHILE_R3_REQUIRES_EXACT_SINGLE_LF_SEPARATOR`.
+
+The R3 public gate rejected the committed CRLF separator without normalizing
+it. Authorization identity and JSON chain passed; all scientific semantic
+parse counters remained zero. The frozen result remains unchanged and
+unaudited. Exact next authority must explicitly reconcile stored report bytes
+with the frozen body-hash writer convention in R4.

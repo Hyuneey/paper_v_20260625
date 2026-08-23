@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r2`
-- Base: `18263247569d4c1bcd6b131b1b5c63e5aec9349e`
-- R2 Harness Remediation Commit A: `b14cb96a19f6474d9c10e02abbdfedf3dd7c7a73`
-- R2 Blocker Freeze Commit B: `1effce0b691b870c93e5195d930a26ec9ae92658`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r3`
+- Base: `4bfe423dfdf8041a3100248b8dd2db84d6880796`
+- R3 Harness Remediation Commit A: `10f6b179438e70646ff94ca82fdc96ac63d2ba4a`
+- R3 Blocker Freeze Commit B: `1d7a189a6926643217a62950fc2180ace331ab93`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r2`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r3`
 - Scientific state: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`
 
 ## Frozen V2 result
 
@@ -104,3 +104,22 @@ authorization-report schema replay.
 Do not rerun R2, interpret V2, compare V1/V2, authorize OUTER, or access
 test2. The next authority must explicitly authorize R3 and correct only the
 public report body/footer separator handling.
+
+## R3 remediation blocker handoff
+
+- Blocker artifact:
+  `2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a`.
+- Code: `D2_V2_R3_REPORT_PROVENANCE_SEPARATOR_NOT_CANONICAL`.
+- Root cause: the committed authorization report uses a CRLF raw-byte footer
+  separator, whereas R3 authorizes only a single LF and forbids normalization.
+- Authorization identity/self-hash and the JSON authorization chain passed.
+- Sole R3 invocation / retries / completions: `1` / `0` / `0`.
+- R3 authorization semantic parses: `1`; D0, D1, source map, horizon map,
+  CombinedPredictionV2, FusionEvidenceV2, label, and MetricEvidenceV2 parses:
+  all `0`.
+- Total integrity-audit attempts / blocked / completed: `4` / `4` / `0`.
+
+Do not rerun R3, interpret V2, compare V1/V2, authorize OUTER, or access
+test2. R4 must explicitly resolve whether committed CRLF bytes or canonical
+writer-normalized LF bytes are the controlling Markdown authority, without
+modifying the frozen authorization or scientific result.

@@ -436,3 +436,24 @@ Append new entries; never rewrite historical decisions.
   `4e6526e382dbb0bf15bae9123eeeba3a090dcb59bfd767f3b19172fe3e353c0c`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`.
+
+## DEC-D2-012
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole R3 audit at the public raw-byte Markdown
+  separator gate; do not normalize the report or retry R3.
+- Root cause: The committed authorization report has a CRLF immediately before
+  its footer marker. R3 requires exactly one LF, rejects CRLF, and forbids
+  newline normalization, so canonical extraction cannot proceed under R3.
+- Accounting: R3 invocations/retries/completions are `1`/`0`/`0`;
+  authorization semantic parses are `1`; all eight scientific semantic parse
+  counters are `0`. Total integrity-audit attempts/blocked/completed are
+  `4`/`4`/`0`.
+- Preservation: All prior blockers, authorization artifacts, and the frozen D2
+  V2 result remain unchanged. Authoritative executions, test1-feature/test2/
+  OUTER access, result-driven changes, leakage, and push remain zero.
+- Evidence:
+  `2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`.

@@ -65,7 +65,7 @@ D2 V1 remains immutable, while test2 and OUTER remain sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
@@ -128,3 +128,21 @@ R2 was not retried. Both historical blockers and the frozen V2 result remain
 unchanged; authoritative execution, test1 feature, test2, OUTER, leakage,
 result-driven changes, and push remain zero. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`.
+
+## D2 V2 result-integrity audit harness remediation R3 blocker
+
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r3`.
+- Blocker: `D2_V2_R3_REPORT_PROVENANCE_SEPARATOR_NOT_CANONICAL`.
+- Harness Remediation Commit A: `10f6b179438e70646ff94ca82fdc96ac63d2ba4a`.
+- Blocker Freeze Commit B: `1d7a189a6926643217a62950fc2180ace331ab93`.
+- Blocker artifact: `2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a`.
+- Root cause: the frozen authorization report contains a CRLF raw-byte footer
+  separator, while R3 requires exactly one LF and forbids normalization.
+- R3 invocation / retry / completion: `1` / `0` / `0`.
+- Authorization semantic parses: `1`; all eight scientific semantic parses: `0`.
+- Total integrity-audit attempts / blocked / completed: `4` / `4` / `0`.
+
+R3 was not retried. All prior blockers and the frozen V2 result remain
+unchanged; authoritative execution, test1 feature, test2, OUTER, leakage,
+result-driven changes, and push remain zero. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`.
