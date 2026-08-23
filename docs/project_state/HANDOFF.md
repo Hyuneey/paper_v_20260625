@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-field-remediation-r1`
-- Base: `551a35ea2ba7618812c4bc9154c32d4ed9f8562f`
-- Accounting Remediation Commit A: `844caaece5ab5a51f451d2d3e4d968d1c9dc5ff8`
-- Blocker Freeze Commit B: `496c105efa27d34481c74879aa02d0f57a03576a`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-schema-parser-remediation-r2`
+- Base: `c3329d92d4c296162e0f6af5aa2f31e1cc2706ea`
+- Accounting Schema Parser Remediation Commit A: `946b1d73a03a7065e2750b245a39ea5094971365`
+- Blocker Freeze Commit B: `d32aceb1131978df04381364809d0fb37b6e7851`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_field_remediation_r1`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r2`
 - Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_ACCOUNTING_SCHEMA_PARSER_REMEDIATION`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R3`
 
 ## Frozen V2 result
 
@@ -232,3 +232,20 @@ Completion eligibility was not evaluated and no completion receipt exists.
 Scientific artifacts, labels, private evidence, feature data, test2, and OUTER
 were not reopened or accessed. The historical six integrity-audit attempts and
 the frozen scientific execution counts remain unchanged.
+
+## R5 accounting-schema parser remediation R2 blocker handoff
+
+- Blocker artifact:
+  `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
+- Report self-hash:
+  `2bba062b01f3484b8622c552210e939b32168112f0c5bab14225ec872c0c82eb`.
+- Code: `D2_V2_ACCOUNTING_SCHEMA_R2_R1_BLOCKER_STATUS_FIELD_ABSENT`.
+- Root cause: R2 required a `status` member absent from the frozen R1 blocker
+  schema; the R1 blocker canonical self-hash matched before stop.
+- Sole R2 invocation / retries / completions: `1` / `0` / `0`.
+- Public accounting parses in the real invocation: `0`.
+
+The AST implementation remains frozen and its 43 tests pass. The real
+invocation was not retried. Scientific artifacts, labels, private evidence,
+features, test2, and OUTER were not opened or accessed. Result-integrity and
+interpretation-ready remain false.

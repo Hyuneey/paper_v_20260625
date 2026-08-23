@@ -266,3 +266,25 @@ verified its self-hash, then stopped because the line-based producer-schema
 extractor captured only the first quoted key on source lines containing
 multiple keys. Completion eligibility was not evaluated. Scientific artifacts
 were not reopened; V2 integrity-audited and interpretation-ready remain false.
+
+## D2 V2 R5 accounting-schema parser remediation R2 blocker
+
+- Status:
+  `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r2`.
+- Blocker: `D2_V2_ACCOUNTING_SCHEMA_R2_R1_BLOCKER_STATUS_FIELD_ABSENT`.
+- AST Remediation Commit A:
+  `946b1d73a03a7065e2750b245a39ea5094971365`.
+- Blocker Freeze Commit B:
+  `d32aceb1131978df04381364809d0fb37b6e7851`.
+- Blocker artifact:
+  `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
+- Invocation / retries / completions: `1` / `0` / `0`.
+- Static tests: `43 / 43`; adversarial attacks: `18 / 18` rejected.
+
+The AST-only static gate recovered all producer keys, including multiple keys
+on one physical line. The single real invocation preserved the R1 blocker
+self-hash but failed before the public accounting parse because the R2 harness
+required a `status` member absent from the frozen R1 blocker schema. No retry
+occurred. Scientific artifacts, private evidence, labels, features, test2, and
+OUTER remained unopened; V2 integrity-audited and interpretation-ready remain
+false.

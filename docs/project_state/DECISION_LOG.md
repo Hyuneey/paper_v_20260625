@@ -577,3 +577,24 @@ Append new entries; never rewrite historical decisions.
   `3c5b2da933ac4e00df4602aaf89c749d6e0aea856bf844f9f769cfb907c358f2`.
 - Next authority: none; an explicit accounting-schema parser remediation is
   required.
+
+## DEC-D2-018
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Preserve the AST-only R2 implementation boundary and fail closed
+  the sole real invocation without retry.
+- Root cause: R2 required a historical `status` member that is absent from the
+  frozen R1 blocker schema, even though the R1 blocker canonical self-hash
+  matched.
+- Evidence before stop: the R5 blocker/report and R1 blocker self-hash passed;
+  the public accounting artifact was not parsed by the real invocation.
+- Accounting: six historical full integrity audits remain blocked; completion
+  remediations are now two, with zero completed evidence sets.
+- Preservation: no scientific artifact, label, feature, private evidence,
+  test2, or OUTER data was opened; no scientific execution, result change,
+  leakage, retry, or push occurred.
+- Evidence:
+  `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R3`.

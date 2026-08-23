@@ -754,3 +754,20 @@ The sole invocation verified the frozen public accounting artifact self-hash
 before its audit-only producer-schema parser rejected the source layout. It
 did not complete the schema audit or issue result-integrity completion. No
 scientific or private authority was reopened, and no retry is authorized.
+
+## D2 V2 R5 accounting-schema parser remediation R2 blocker
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R2`.
+- Base: `c3329d92d4c296162e0f6af5aa2f31e1cc2706ea`.
+- AST remediation: `946b1d73a03a7065e2750b245a39ea5094971365`.
+- Blocker freeze: `d32aceb1131978df04381364809d0fb37b6e7851`.
+- Blocker artifact:
+  `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
+- Report self-hash:
+  `2bba062b01f3484b8622c552210e939b32168112f0c5bab14225ec872c0c82eb`.
+- Code: `D2_V2_ACCOUNTING_SCHEMA_R2_R1_BLOCKER_STATUS_FIELD_ABSENT`.
+
+This is a public-metadata replay defect only. It grants no scientific reparse,
+execution, result-integrity completion, interpretation, test2, or OUTER
+authority.
