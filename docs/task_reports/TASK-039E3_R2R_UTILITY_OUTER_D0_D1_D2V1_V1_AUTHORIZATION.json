@@ -1,0 +1,31 @@
+{
+  "artifact_hash": "bbd1c08323ab8d66f342ebb4cbcda4c3b375a7ba1956389c0dc8b642e02f0fa9",
+  "artifact_type": "OuterThreeArmExecutionAuthorizationArtifactV1",
+  "authorization": {
+    "authorization_scope": "HAI_23_05_P1_TEST2_D0_D1_D2V1_CONFIRMATORY_OUTER_V1",
+    "authorization_version": "TASK039E3_R2R_OUTER_D0_D1_D2V1_EXECUTION_AUTHORIZATION_V1",
+    "d0_recalibration_authorized": false,
+    "d0_training_authorized": false,
+    "d1_rule_generation_authorized": false,
+    "d1_rule_recalibration_authorized": false,
+    "d1_rule_selection_authorized": false,
+    "d2_fusion_change_authorized": false,
+    "outer_d0_execution_authorized": true,
+    "outer_d1_execution_authorized": true,
+    "outer_d2_v1_execution_authorized": true,
+    "outer_d2_v2_execution_authorized": false,
+    "outer_execution_authorized": true,
+    "outer_preregistration_sha256": "66179921042faecf189fe93ddaf20bb06669afa6e27dbefb67c9b95eabb93427",
+    "outer_retry_authorized": false,
+    "parameter_search_authorized": false,
+    "post_outer_redesign_authorized": false,
+    "test2_feature_access_authorized_for_execution": true,
+    "test2_label_access_authorized_only_after_prediction_freeze": true
+  },
+  "authorization_issuances": 1,
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "outer_authorization_sha256": "fb8abb3a342c591873d15d4bcf28cbdcc7363fce77a228f486f122ef5933ac14",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1"
+}

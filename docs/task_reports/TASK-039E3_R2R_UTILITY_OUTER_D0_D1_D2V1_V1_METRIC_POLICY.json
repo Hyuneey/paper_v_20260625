@@ -1,0 +1,28 @@
+{
+  "artifact_hash": "c3f2bfa9a868985ab25ac2b755df9e5d8dce53361e1da18fe1464f87b2a12a91",
+  "artifact_type": "OuterMetricPolicyReportV1",
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "metric_policy": {
+    "alarm_episode_policy": "MAXIMAL_CONTIGUOUS_UNIQUE_ONE_SECOND_DECISION_INDICES_FILE_LOCAL",
+    "artificial_pass_threshold_defined": false,
+    "attack_event_policy": "MAXIMAL_CONTIGUOUS_STRICT_LABEL_ONE_RUNS_FILE_LOCAL",
+    "primary_metrics": [
+      "ATTACK_EVENT_RECALL",
+      "NORMAL_FAR_EPISODES_PER_HOUR"
+    ],
+    "result_driven_redesign_authorized": false,
+    "secondary_metrics": [
+      "D0_MISSED_ATTACKS_DETECTED_BY_D1",
+      "D1_POTENTIAL_D0_MISS_RECOVERY_RATE",
+      "D0_D1_ATTACK_EVENT_UNION_COVERAGE",
+      "D2_D0_MISSED_ATTACK_RECOVERY_RATE",
+      "D2_INCREMENTAL_ATTACK_EVENT_RECALL_VERSUS_D0",
+      "D2_ADDED_NORMAL_RULE_RECOVERY_FAR_PER_HOUR",
+      "D2_INCREMENTAL_NORMAL_FAR_PER_HOUR_VERSUS_D0"
+    ],
+    "weighted_score_authorized": false
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1"
+}

@@ -1,0 +1,30 @@
+{
+  "artifact_hash": "f211634a3a3374b0e1fc8b47870c0d11e3747a71eb6553e25662408aaf9e607d",
+  "artifact_type": "OuterD2V1AuthorityReportV1",
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "d2_v1_authority": {
+    "d0_preservation_policy": "EVERY_FROZEN_D0_ALARM_IS_A_D2_V1_ALARM",
+    "d0_score_dependency": false,
+    "d2_id": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
+    "d2_v2_execution_authorized": false,
+    "design_sha256": "eb559a91350fd046204d223d6820ef7f0590ad4beb7a2b17114a496859758e51",
+    "fusion_family": "DETECTOR_PRESERVING_MULTI_SOURCE_RULE_CORROBORATION",
+    "label_aware_fusion": false,
+    "native_horizon_memory": false,
+    "required_distinct_source_count": 2,
+    "source_map_distinct_source_count": 9,
+    "source_map_entry_count": 42,
+    "source_map_sha256": "f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818",
+    "temporal_corroboration_policy": "EXACT_SAME_PHYSICAL_SECOND",
+    "temporal_tolerance_seconds": 0,
+    "trigger_classes": [
+      "NONE",
+      "D0_ONLY",
+      "RULE_RECOVERY",
+      "D0_AND_RULE_CORROBORATION"
+    ]
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1"
+}

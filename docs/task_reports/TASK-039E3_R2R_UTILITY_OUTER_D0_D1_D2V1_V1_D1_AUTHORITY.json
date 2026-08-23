@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "7993a835b3abb7ca955d1b5f6ba0dbd1a488e2ca385caf9fedcd00082397e678",
+  "artifact_type": "OuterD1AuthorityReportV1",
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "d1_authority": {
+    "construction_authority_sha256": "1a6200adce791ddd9be8d87b566d47b65e78c1735829d0f91f4ea22127ad1343",
+    "descriptor_sha256": "665af1d58d672dfe8109c01e5dcb4e8f19aa2303a8f6100bfd20b3272c3bd928",
+    "evaluator_accepted_invalid": 0,
+    "evaluator_adversarial_cases": 552,
+    "evaluator_identity": "af74bf3bd9ae240f21c57630b4804eabb997021353f15e7c402904b94f783fb5",
+    "evaluator_semantic_classes": 325,
+    "portfolio": "COMMON-42",
+    "prediction_timestamp_authority": "decision_physical_row_index",
+    "private_registry_sha256": "9b9ca67d858cb88ce934d1d8a6e0b563b7dc9bb01437d2835b68e2d1e61483d0",
+    "reference_count": 420,
+    "reference_set_sha256": "d14cf57a33a4e7018cbd2342f1a5fb9fc78dfd9d86f912512a903740316c73ae",
+    "relation_count": 42,
+    "rule_generation_authorized": false,
+    "rule_recalibration_authorized": false,
+    "rule_selection_authorized": false,
+    "scientific_llm": false
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1"
+}

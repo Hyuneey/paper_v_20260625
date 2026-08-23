@@ -1,0 +1,16 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "636eb532c495940391c4bdd1f1c8061e87c3d6b9a6b103d730697dc2c24be043",
+  "artifact_type": "OuterAuthorizationIndependentAuditV1",
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "independent_attacks": 22,
+  "independent_attacks_rejected": 22,
+  "outer_executions": 0,
+  "schema_version": "1.0.0",
+  "scientific_executions": 0,
+  "static_tests": 31,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1",
+  "test2_feature_accesses": 0,
+  "test2_label_accesses": 0
+}

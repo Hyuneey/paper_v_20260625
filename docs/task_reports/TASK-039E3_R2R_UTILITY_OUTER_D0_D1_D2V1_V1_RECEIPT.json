@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "1ef346ec824561def8d09c8c09211c11fa2eb5c2bb415c95d2008b4af6a03d4d",
+  "artifact_type": "OuterAuthorizationReceiptV1",
+  "authorization_scope": "HAI_23_05_P1_TEST2_D0_D1_D2V1_CONFIRMATORY_OUTER_V1",
+  "authorization_version": "TASK039E3_R2R_OUTER_D0_D1_D2V1_EXECUTION_AUTHORIZATION_V1",
+  "bundle_sha256": "ad097159efb87e5ac3420bf106147898de5bad0b3021dd31dc8aade6228d6d64",
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-V1",
+  "outer_authorization_sha256": "fb8abb3a342c591873d15d4bcf28cbdcc7363fce77a228f486f122ef5933ac14",
+  "outer_executed": false,
+  "outer_execution_authorized": true,
+  "outer_preregistration_sha256": "66179921042faecf189fe93ddaf20bb06669afa6e27dbefb67c9b95eabb93427",
+  "report_body_sha256": "6c379c3c138d2b662d05271dbe0a6004ac61723341e4e137252ea22ee12e22ba",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1",
+  "test2_feature_accesses": 0,
+  "test2_label_accesses": 0
+}

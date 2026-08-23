@@ -1,0 +1,20 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "adf99cd2f45c07b680af49b31e9bd0264854ee8a1415fd2f4c074961e6a8f97c",
+  "artifact_type": "OuterAuthorizationReadinessV1",
+  "blockers": [],
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-V1",
+  "outer_executed": false,
+  "outer_execution_authorization_issued": true,
+  "outer_execution_authorized": true,
+  "outer_preregistration_frozen": true,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "scientific_executions": 0,
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1",
+  "test2_feature_accesses": 0,
+  "test2_label_accesses": 0
+}

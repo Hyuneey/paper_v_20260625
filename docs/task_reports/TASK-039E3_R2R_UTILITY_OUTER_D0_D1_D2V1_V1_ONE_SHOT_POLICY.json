@@ -1,0 +1,18 @@
+{
+  "artifact_hash": "00eaba370898ed3a634ffd15a2f6578d90391c1e90389e7db6905e1976dc5a9a",
+  "artifact_type": "OuterOneShotPolicyReportV1",
+  "created_at_utc": "2026-08-23T10:11:34Z",
+  "one_shot_policy": {
+    "coordinated_outer_scientific_attempts": 1,
+    "coordinated_outer_scientific_retries": 0,
+    "future_d0_inference_executions": 1,
+    "future_d1_rule_evaluation_executions": 1,
+    "future_d2_v1_fusion_executions": 1,
+    "post_outer_redesign_authorized": false,
+    "retry_after_feature_semantic_parse_authorized": false,
+    "second_outer_candidate_authorized": false
+  },
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1"
+}
