@@ -601,3 +601,21 @@ Two audit-harness preflight defects surfaced only after independent prediction
 and authority reads began. Exactly-once audit accounting can no longer be
 certified in this task. The frozen D2 V2 result remains unchanged; labels,
 test1 features, test2, OUTER, and authoritative executions remained zero.
+
+## D2 V2 result-integrity audit harness remediation R1 blocker
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R1`.
+- Harness Commit A: `e04ca7e7aee472c5450363f9a5e4a6a3fe2a6ef4`.
+- Blocker Freeze Commit B: `a4968c2d8af89232d141826e10bd5145567407a2`.
+- Blocker artifact:
+  `dc6d83a33bdf985389b6d2d1b75e54f2b703e59f515369dc41b5a499280b0990`.
+- Blocker code: `D2_V2_R1_PUBLIC_AUTHORITY_REJECTED`.
+- Classification:
+  `AUDIT_HARNESS_PUBLIC_AUTHORIZATION_SCHEMA_REPLAY_DEFECT_BEFORE_SCIENTIFIC_PARSE`.
+- Historical blocker preserved:
+  `592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879`.
+
+The sole R1 process stopped before D0/D1/source/horizon/CombinedPredictionV2/
+FusionEvidenceV2/label/MetricEvidenceV2 semantic parsing. No retry occurred.
+The frozen V2 result remains unchanged and unaudited. Exact next authority:
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.

@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-execution-v1`
-- Base: `8898c5d4b497931562bc225c287274a2c6512ffe`
-- Execution Implementation Commit A: `2bbb3dcaced47c8d15337e45eb0e0b741c1a3ed1`
-- Independent Audit Commit B: `b3acf3cbb0b6bcb21548daa319fd37923357b952`
-- Result Freeze Commit C: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `passed_task039e3_r2r_utility_inner_d2_v2_execution_v1`
-- Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r1`
+- Base: `d158bab6bdbc5558f3483c52be5ef29967815cba`
+- R1 Harness Remediation Commit A: `e04ca7e7aee472c5450363f9a5e4a6a3fe2a6ef4`
+- R1 Blocker Freeze Commit B: `a4968c2d8af89232d141826e10bd5145567407a2`
+- Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r1`
+- Scientific state: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`
 
 ## Frozen V2 result
 
@@ -65,3 +65,23 @@ V2 or authorize OUTER.
 
 Do not rerun this audit, interpret V2, compare V1/V2, authorize OUTER, or
 access test2 under the blocked authority.
+
+## R1 remediation blocker handoff
+
+- Harness Commit A: `e04ca7e7aee472c5450363f9a5e4a6a3fe2a6ef4`.
+- Blocker Freeze Commit B: `a4968c2d8af89232d141826e10bd5145567407a2`.
+- Blocker artifact:
+  `dc6d83a33bdf985389b6d2d1b75e54f2b703e59f515369dc41b5a499280b0990`.
+- Code: `D2_V2_R1_PUBLIC_AUTHORITY_REJECTED`.
+- Root cause: R1 expected a redundant `authorization_hash` field in the public
+  authorization report, whose exact authorization identity is instead its
+  self-hashed `artifact_hash`.
+- Sole R1 invocation failed before any guarded scientific semantic parse;
+  retries `0`, completed R1 audits `0`.
+- Total integrity-audit attempts / blocked / completed: `2` / `2` / `0`.
+- Frozen D2 V2 result modifications, authoritative executions, test1-feature,
+  test2, OUTER, private leakage, result-driven changes, and push: all `0`.
+
+Do not rerun R1, interpret V2, compare V1/V2, authorize OUTER, or access test2.
+The next authority must explicitly authorize R2 and correct only the public
+authorization-report schema replay.

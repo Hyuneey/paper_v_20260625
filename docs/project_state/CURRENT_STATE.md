@@ -65,7 +65,7 @@ D2 V1 remains immutable, while test2 and OUTER remain sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-V1`
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
@@ -86,3 +86,26 @@ V2 again.
 The result remains frozen but unaudited and uninterpretable. No further oracle
 run is permitted under this task. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R1`.
+
+## D2 V2 result-integrity audit harness remediation R1 blocker
+
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r1`.
+- Blocker: `D2_V2_R1_PUBLIC_AUTHORITY_REJECTED`.
+- Harness Commit A: `e04ca7e7aee472c5450363f9a5e4a6a3fe2a6ef4`.
+- Blocker Freeze Commit B: `a4968c2d8af89232d141826e10bd5145567407a2`.
+- Blocker artifact:
+  `dc6d83a33bdf985389b6d2d1b75e54f2b703e59f515369dc41b5a499280b0990`.
+- Root cause: the public authorization report uses its self-hashed
+  `artifact_hash` as the authorization identity and contains no redundant
+  `authorization_hash` field; R1 incorrectly required that redundant field.
+- R1 real invocations / retries / completed audits: `1` / `0` / `0`.
+- R1 semantic parses of D0, D1, source map, horizon map, CombinedPredictionV2,
+  FusionEvidenceV2, label, and MetricEvidenceV2: all `0`.
+- Total integrity-audit attempts / blocked / completed: `2` / `2` / `0`.
+- Scientific V2 execution attempts / retries remain `1` / `0`.
+
+The R1 process failed before its parse guard was created. It was not retried.
+The historical blocker and frozen V2 result remain unchanged; test1 feature,
+test2, OUTER, authoritative execution, result-driven changes, leakage, and push
+remain zero. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.

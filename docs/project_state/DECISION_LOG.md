@@ -392,3 +392,25 @@ Append new entries; never rewrite historical decisions.
   `592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R1`.
+
+## DEC-D2-010
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the R1 single-pass audit after its sole fresh process
+  rejected the public authorization-report schema before any guarded
+  scientific semantic parse.
+- Root cause: The exact authorization report uses its self-hashed
+  `artifact_hash` as the authorization identity and has no redundant
+  `authorization_hash` field; the R1 harness incorrectly required both.
+- Accounting: R1 invocations/retries/completions are `1`/`0`/`0`; all eight R1
+  real scientific semantic-parse counters are `0`. Total integrity-audit
+  attempts/blocked/completed are `2`/`2`/`0`.
+- Preservation: The historical blocker and frozen D2 V2 result remain
+  unchanged. Scientific V2 execution attempts/retries remain `1`/`0`.
+  Authoritative executions, test1-feature/test2/OUTER access, result-driven
+  changes, private leakage, and push remain zero.
+- Evidence:
+  `dc6d83a33bdf985389b6d2d1b75e54f2b703e59f515369dc41b5a499280b0990`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R2`.
