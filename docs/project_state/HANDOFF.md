@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r4`
-- Base: `1a7edb29719768197c8fd3b6ca0556d9bb73d491`
-- R4 Harness Remediation Commit A: `bd0599c6bb6b377d34147a2ede490be061421c9a`
-- R4 Blocker Freeze Commit B: `f40f2539782af78d5808835da1159b81075cde69`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-private-custody-binding-remediation-r1`
+- Base: `e20ac1891b7f30a9928f3de95b3ff364f7cec6dd`
+- Custody Remediation Commit A: `7c2539332b94986f52303691347cea3557e53152`
+- Blocker Freeze Commit B: `eb650be2fd3c31d67d79811bf7ee00f232ac5a2d`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r4`
-- Scientific state: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_r1`
+- Scientific state: `UNCHANGED_FROZEN_NOT_YET_INTEGRITY_AUDITED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_BINDING_REMEDIATION_TASK`
+- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_REMEDIATION_REPORT_SCHEMA_TASK`
 
 ## Frozen V2 result
 
@@ -142,3 +142,26 @@ modifying the frozen authorization or scientific result.
 Do not rerun R4, interpret V2, compare V1/V2, authorize OUTER, or access
 test2. No successor task is authorized until an explicit custody-binding
 remediation task is issued.
+
+## D2 V2 private-custody binding remediation R1 blocker
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-R1`.
+- Custody Remediation Commit A: `7c2539332b94986f52303691347cea3557e53152`.
+- Blocker Freeze Commit B: `eb650be2fd3c31d67d79811bf7ee00f232ac5a2d`.
+- Blocker artifact:
+  `d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231`.
+- Report self-hash:
+  `3a0c8cfc9685232b723f354716329037be22cba3c9a10bdfe7e07888f796077b`.
+- Blocker code: `CUSTODY_REMEDIATION_DUPLICATE_HASH_FIELD`.
+- Root cause:
+  `PRIVATE_IDENTITY_ARTIFACT_HASH_FIELD_COLLIDED_WITH_PUBLIC_REPORT_ENVELOPE_ARTIFACT_HASH`.
+
+The single remediation invocation established path-silently that both frozen
+private evidence artifacts have exact hashes, correct logical V2 custody
+bindings, and passing security properties. It then failed while building the
+public self-hashed reports because the identity object and report envelope
+both owned `artifact_hash`. The process was not retried. No private artifact
+was copied, moved, rewritten, or re-persisted; no scientific authority, label,
+feature, test2, or OUTER data was parsed or executed. Integrity-audit attempt
+accounting remains five blocked and zero completed. No successor task is
+authorized pending an explicit report-schema remediation authority.

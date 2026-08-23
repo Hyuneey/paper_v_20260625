@@ -674,3 +674,24 @@ gate, then stopped at the local private-custody binding replay before any
 scientific semantic parse. R4 was not retried. The frozen V2 result remains
 unchanged and unaudited. No successor task is authorized pending explicit
 custody-binding remediation authority.
+
+## D2 V2 private-custody binding remediation R1 blocker
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-R1`.
+- Base: `e20ac1891b7f30a9928f3de95b3ff364f7cec6dd`.
+- Custody Remediation Commit A: `7c2539332b94986f52303691347cea3557e53152`.
+- Blocker Freeze Commit B: `eb650be2fd3c31d67d79811bf7ee00f232ac5a2d`.
+- Blocker artifact:
+  `d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231`.
+- Blocker report self-hash:
+  `3a0c8cfc9685232b723f354716329037be22cba3c9a10bdfe7e07888f796077b`.
+- Code: `CUSTODY_REMEDIATION_DUPLICATE_HASH_FIELD`.
+
+The one real invocation verified the exact frozen FusionEvidenceV2 and
+MetricEvidenceV2 identities plus their logical namespace and security
+properties. R4's earlier failure was localized to environment-local locator
+access, not stable authority mismatch. Public report construction then failed
+because the private identity object and self-hashed report envelope both used
+`artifact_hash`. No retry or scientific work occurred, and the frozen result
+remains unchanged. No successor is authorized pending an explicit
+remediation-report schema task.

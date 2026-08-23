@@ -481,3 +481,29 @@ Append new entries; never rewrite historical decisions.
   `34acc0c252b13054b15f3ac6fb1a560fdf0c653f2580305c9d582f6a52e863fc`.
 - Next authority: none; explicit custody-binding remediation authorization is
   required.
+
+## DEC-D2-014
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole D2 V2 private-custody binding remediation R1
+  invocation during public report construction; do not retry this task.
+- Forensic result: R4 failed during environment-local strict locator
+  resolution under access denial, not because of a stable scientific,
+  security, logical namespace, or artifact-identity mismatch.
+- Private identity result: both frozen evidence hashes, logical V2 namespaces,
+  outside-Git status, regular-file status, non-symlink status, tracked-copy
+  count zero, and residue count zero passed path-silently.
+- Root cause:
+  `PRIVATE_IDENTITY_ARTIFACT_HASH_FIELD_COLLIDED_WITH_PUBLIC_REPORT_ENVELOPE_ARTIFACT_HASH`.
+- Accounting: custody remediation attempts/retries/completions are `1`/`0`/`0`;
+  integrity-audit attempts/completions remain `5`/`0`; scientific V2 execution
+  attempts/retries remain `1`/`0`.
+- Preservation: no private evidence was copied, moved, rewritten, or
+  re-persisted. Scientific parses, labels, features, metrics, test2, OUTER,
+  authoritative executions, private-path exposure, result changes, and push
+  remained zero.
+- Evidence:
+  `d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231`.
+- Next authority: none; an explicit custody-remediation report-schema task is
+  required.

@@ -65,7 +65,7 @@ D2 V1 remains immutable, while test2 and OUTER remain sealed.
 
 ## Exact next task
 
-`NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_BINDING_REMEDIATION_TASK`
+`NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_REMEDIATION_REPORT_SCHEMA_TASK`
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
@@ -165,3 +165,28 @@ R4 was not retried. All prior blockers and the frozen V2 result remain
 unchanged; authoritative execution, test1 feature, label, test2, OUTER,
 leakage, result-driven changes, and push remain zero. No successor task is
 authorized pending an explicit private-custody binding remediation authority.
+
+## D2 V2 private-custody binding remediation R1 blocker
+
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_r1`.
+- Blocker: `CUSTODY_REMEDIATION_DUPLICATE_HASH_FIELD`.
+- Custody Remediation Commit A: `7c2539332b94986f52303691347cea3557e53152`.
+- Blocker Freeze Commit B: `eb650be2fd3c31d67d79811bf7ee00f232ac5a2d`.
+- Blocker artifact: `d7b68359865cff0b8bd25ede0274fd2904729a4591d8361d17cedaf4ceb41231`.
+- Report self-hash: `3a0c8cfc9685232b723f354716329037be22cba3c9a10bdfe7e07888f796077b`.
+- Root cause: the private identity record and public self-hashed report
+  envelope both used `artifact_hash`, producing a duplicate-field collision
+  after both private artifacts had passed identity and custody validation.
+- Remediation attempts / retries / completed: `1` / `0` / `0`.
+- Integrity-audit attempts / completed remain: `5` / `0`.
+- Private identity-envelope parses: FusionEvidenceV2 `1`, MetricEvidenceV2
+  `1`; every scientific parse, label parse, metric computation, feature/test2
+  access, and authoritative execution remained `0`.
+
+The R4 failure was traced to environment-local locator access under the R4
+runtime, not to a stable scientific or logical custody mismatch. Both frozen
+private artifact hashes, logical namespaces, outside-Git status, regular-file
+status, non-symlink status, tracked-copy count zero, and residue count zero
+passed. No private evidence was copied, moved, rewritten, or re-persisted.
+The frozen V2 result remains unchanged and unaudited. No successor task is
+authorized pending an explicit remediation-report schema task.
