@@ -721,3 +721,20 @@ all custody/scientific semantics. `artifact_hash` is reserved solely for
 self-identity; referenced authorities use role-specific SHA-256 fields. The
 audit-only receipt verifies private-custody compatibility and authorizes no
 scientific execution. R5 is the exact next task; test2 and OUTER remain sealed.
+
+## D2 V2 R5 result-integrity audit blocker
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`.
+- Base: `a64ce89b0fd9250e5afbdd1ef78a8ffcdf6f7287`.
+- Harness freeze: `a29f9b54edf724fd2cc848250bb867fbcd76be2f`.
+- Blocker freeze: `7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4`.
+- Blocker artifact:
+  `0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0`.
+- Blocker code: `D2_V2_R5_EXECUTION_ACCOUNTING_REJECTED`.
+
+R5 completed the single-pass scientific oracle and failed only when its audit
+harness requested `d1_metric_reads`, which is not the exact frozen accounting
+field (`d1_metric_artifact_reads`). The scientific result, authorization,
+predictions, source/horizon maps, and private evidence remain unchanged. This
+blocker grants no retry, interpretation, test2, or OUTER authority.

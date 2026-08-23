@@ -532,3 +532,24 @@ Append new entries; never rewrite historical decisions.
   `f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`.
+
+## DEC-D2-016
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole R5 result-integrity audit invocation at the
+  frozen public execution-accounting schema gate; do not retry R5.
+- Root cause: the R5 audit harness required `d1_metric_reads`, while the exact
+  frozen accounting artifact uses `d1_metric_artifact_reads`.
+- Oracle state before stop: all eight scientific authorities were parsed once;
+  token, fusion, private FusionEvidence, CombinedPrediction, ordering,
+  event/episode, six-metric, and private MetricEvidence checks passed.
+- Accounting: integrity-audit attempts/blocked/completed are `6`/`6`/`0`;
+  scientific V2 execution attempts/retries remain `1`/`0`.
+- Preservation: zero result mutation, private evidence mutation, authoritative
+  execution, feature/test2/OUTER access, result-driven change, leakage, retry,
+  or push.
+- Evidence:
+  `0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0`.
+- Next authority: none; explicit accounting-field remediation authority is
+  required.

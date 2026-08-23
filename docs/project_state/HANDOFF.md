@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-private-custody-binding-remediation-report-schema-r1`
-- Base: `e5d5bcb28a53177deedcb67a1285f1abaf5c791f`
-- Report-Schema Remediation Commit A: `615d3fc2b218fe576c85b8a2ab9a5f8379c1d218`
-- Report Freeze Commit B: `1823ff0179cafca4aa35546a1e5c80d016783e0b`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r5`
+- Base: `a64ce89b0fd9250e5afbdd1ef78a8ffcdf6f7287`
+- R5 Harness Commit A: `a29f9b54edf724fd2cc848250bb867fbcd76be2f`
+- R5 Blocker Freeze Commit B: `7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `passed_task039e3_r2r_utility_inner_d2_v2_private_custody_binding_remediation_report_schema_r1`
-- Scientific state: `PRIVATE_CUSTODY_BINDING_COMPATIBILITY_VERIFIED`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r5`
+- Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`
+- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_R5_ACCOUNTING_FIELD_REMEDIATION`
 
 ## Frozen V2 result
 
@@ -47,8 +47,8 @@ access, rule reevaluation, test1 feature access, test2, OUTER, private leakage,
 result-driven changes, and push remained zero.
 
 D2 V1 remains immutable. Do not interpret V2 or compare it with V1 yet. The
-next task is an independent frozen-result integrity audit and must not rerun
-V2 or authorize OUTER.
+R5 audit is blocked and must not be retried. No task may rerun V2, interpret
+V2, compare V1/V2, authorize OUTER, or access test2 without new authority.
 
 ## Current blocker handoff
 
@@ -194,3 +194,24 @@ private revalidations, scientific parses, labels, features, test2, OUTER, and
 authoritative executions are all zero. R5 may consume the audit-only custody
 compatibility receipt; it must not compare absolute private paths or rerun D2
 V2.
+
+## R5 final single-pass integrity-audit blocker handoff
+
+- Blocker artifact:
+  `0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0`.
+- Code: `D2_V2_R5_EXECUTION_ACCOUNTING_REJECTED`.
+- Root cause class:
+  `AUDIT_HARNESS_PUBLIC_ACCOUNTING_FIELD_NAME_MISMATCH_AFTER_FULL_ORACLE`.
+- Exact mismatch: R5 required `d1_metric_reads`; the frozen accounting schema
+  uses `d1_metric_artifact_reads`.
+- Sole R5 invocation / retries / completions: `1` / `0` / `0`.
+- Total integrity-audit attempts / blocked / completed: `6` / `6` / `0`.
+- D0, D1, source map, horizon map, CombinedPredictionV2, FusionEvidenceV2,
+  label-test1, and MetricEvidenceV2 were each parsed exactly once.
+
+The oracle reached the public accounting gate only after exact token/fusion,
+private FusionEvidence, CombinedPrediction, ordering, event/episode, all-six-
+metric, and private MetricEvidence comparisons passed. The result remains
+frozen but is not integrity-audited or interpretation-ready. R5 was not
+retried. Authoritative executions, test1 feature, test2, OUTER, result-driven
+changes, leakage, private mutation, and push remain zero.

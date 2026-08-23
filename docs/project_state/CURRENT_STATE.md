@@ -67,10 +67,12 @@ OUTER remain sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`
+`NONE_AUTHORIZED_PENDING_EXPLICIT_R5_ACCOUNTING_FIELD_REMEDIATION`
 
-That task must independently audit the frozen result and must not execute D2
-V2 again.
+R5 audit attempt 6 failed closed after the full independent oracle, at a
+public accounting field-name mismatch in the audit harness. Do not rerun R5,
+interpret V2, compare V1/V2, authorize OUTER, or access test2 without a new
+explicit authority.
 
 ## D2 V2 result-integrity audit blocker
 
@@ -220,3 +222,27 @@ collisions are zero. No custody semantic value or historical artifact changed.
 No private evidence was reopened or mutated, and all scientific/data-access
 counters remain zero. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R5`.
+
+## D2 V2 result-integrity audit harness remediation R5 blocker
+
+- Status:
+  `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r5`.
+- Blocker: `D2_V2_R5_EXECUTION_ACCOUNTING_REJECTED`.
+- R5 Harness Commit A: `a29f9b54edf724fd2cc848250bb867fbcd76be2f`.
+- Blocker Freeze Commit B: `7fd05e0e8d0f4163d448368bb46a30f13b7b8bb4`.
+- Blocker artifact:
+  `0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0`.
+- Root cause: R5 required the non-schema field `d1_metric_reads`; the exact
+  frozen accounting authority uses `d1_metric_artifact_reads`.
+- R5 invocation / retries / completions: `1` / `0` / `0`.
+- Total integrity-audit attempts / blocked / completed: `6` / `6` / `0`.
+- All eight R5 scientific semantic parses: exactly `1` each.
+
+Before the accounting stop, R5 reproduced 788 tokens and 54,000 fusion rows,
+verified private FusionEvidenceV2 and CombinedPredictionV2 with zero
+prediction, preservation, or trigger divergences, proved prediction-before-
+label ordering, parsed the label once, reproduced all episode and metric
+oracles, and verified MetricEvidenceV2. This is not a completed integrity
+audit. The frozen result and private evidence remain unchanged; authoritative
+executions, feature, test2, OUTER, result-driven changes, leakage, retry, and
+push remain zero.
