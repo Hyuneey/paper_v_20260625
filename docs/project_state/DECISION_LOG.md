@@ -727,3 +727,21 @@ Append new entries; never rewrite historical decisions.
   `5277ae39a2558344499abfca92906107f77b4416c457599c314f69f8e4c75d72`.
 - Exact next task:
   `TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-V1`.
+
+## DEC-OUTER-003 — custody remediation V1 binding-schema blocker
+
+- Date: 2026-08-23
+- Status: blocked before private locator resolution.
+- Decision: preserve the single V1 infrastructure invocation as failed and do
+  not retry it. The remediation allowlist used legacy D1 binding-key names and
+  rejected the current canonical local authority-key schema.
+- Additional custody finding: the currently bound HAI custody root contains no
+  frozen D0 private-artifact directory; exact D0 locators must be recovered
+  from their approved environment-local custody source.
+- Scientific preservation: OUTER attempts consumed/remaining remain `0 / 1`;
+  test2 access, model/threshold validation, sentinel execution, inference,
+  Rule evaluation, fusion, metrics, result change, and new leakage remain `0`.
+- Blocker:
+  `ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c`.
+- Exact next task:
+  `TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2`.

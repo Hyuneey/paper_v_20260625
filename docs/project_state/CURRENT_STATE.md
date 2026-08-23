@@ -1,5 +1,44 @@
 # Current project state
 
+## OUTER custody remediation V1 blocker
+
+The first pre-execution custody remediation invocation failed closed before
+any D0 private locator resolution. Its allowlist used legacy D1 binding-key
+names and rejected the current canonical D1 authority-key schema. A
+path-silent diagnostic also confirmed that the currently bound HAI custody
+root does not contain the frozen D0 private-artifact directory, so exact D0
+locator recovery remains necessary.
+
+- Status:
+  `blocked_task039e3_r2r_utility_outer_pre_execution_private_custody_and_path_redaction_remediation_v1`.
+- Implementation Commit A:
+  `a5fa923fe457bbf7d23c723391ebf07317eb2128`.
+- Blocker Freeze Commit B:
+  `c8473503f4c37a65a5fd9ccff263186efe4f4a5b`.
+- Blocker SHA-256:
+  `ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c`.
+- Static tests: `32 / 32`; independent attacks: `24 / 24` rejected;
+  accepted invalid: `0`.
+- Remediation attempts / retries: `1 / 0`; no retry was performed.
+- D0 model/threshold locator resolutions and identity validations: all `0`.
+- Custody sentinel attempts: `0`.
+- Scientific attempts consumed / remaining: `0 / 1`.
+- Test2 feature/label accesses: `0 / 0`.
+- D0 inference, D1 rule evaluation, D2 fusion, and metrics: all `0`.
+- New private-path occurrences and scientific private-value leaks: all `0`.
+- Historical twelve ephemeral diagnostic path occurrences remain recorded;
+  tracked occurrences and scientific-value leaks remain `0`.
+- Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
+
+## Exact next task after the blocker
+
+`TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2`
+
+R2 must accept the current canonical local binding-key schema and recover the
+exact frozen D0 locators from their approved environment-local custody source.
+It must not retry this V1 invocation, touch test2, or consume the OUTER
+scientific attempt.
+
 ## OUTER execution pre-real blocker
 
 The authorized three-arm OUTER execution did not start. The pre-real authority

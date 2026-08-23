@@ -912,3 +912,19 @@ path-redaction boundary. Test2 feature/label access, scientific execution,
 prediction freezing, and metric computation remained zero. The authorization
 is preserved but cannot be exercised until the explicit private-custody and
 path-redaction remediation passes.
+
+## OUTER pre-execution custody remediation V1 blocker
+
+- Implementation Commit A:
+  `a5fa923fe457bbf7d23c723391ebf07317eb2128`.
+- Blocker Freeze Commit B:
+  `c8473503f4c37a65a5fd9ccff263186efe4f4a5b`.
+- Blocker authority:
+  [remediation V1 blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_V1_BLOCKER.json),
+  `ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c`.
+
+The one real infrastructure invocation rejected the current canonical local
+D1 authority-key schema because the V1 remediation allowlist retained legacy
+D1 binding-key names. It stopped before D0 locator resolution, model/threshold
+identity validation, or custody sentinel execution. The scientific attempt
+remains unused, test2 remains untouched, and all new path-leak counts are zero.

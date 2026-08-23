@@ -1,5 +1,33 @@
 # Project handoff
 
+## Current blocker: OUTER custody remediation V1
+
+The historical OUTER execution remains a pre-scientific abort, and the
+original one-shot authorization remains unused. Remediation V1 made one
+infrastructure invocation and failed before D0 locator resolution because its
+binding allowlist expected legacy D1 keys rather than the current canonical
+local authority keys. The currently bound HAI custody root also has no frozen
+D0 private-artifact directory.
+
+- Implementation / blocker freeze:
+  `a5fa923fe457bbf7d23c723391ebf07317eb2128` /
+  `c8473503f4c37a65a5fd9ccff263186efe4f4a5b`.
+- [Sanitized blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_V1_BLOCKER.json):
+  `ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c`.
+- Tests: `32 / 32` static and `24 / 24` independent attacks passed;
+  accepted invalid: `0`.
+- Remediation attempts/retries: `1 / 0`; locator resolutions, identity
+  validations, and sentinel attempts: `0`.
+- OUTER scientific attempts consumed/remaining: `0 / 1`; retries: `0`.
+- Test2, scientific executions, predictions, metrics, result changes, new
+  path leakage, remote egress, and push: all `0`.
+
+Exact next task:
+`TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2`.
+
+Do not start OUTER recovery or access test2 until R2 freezes a complete
+path-free custody readiness receipt.
+
 ## Current blocker: OUTER pre-real custody and redaction gate
 
 The three-arm OUTER execution remains authorized but did not start. The
