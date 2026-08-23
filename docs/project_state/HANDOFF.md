@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-accounting-r5-report-render-remediation-r1`
-- Base: `a44e8809da7c7888ead28a2669d7d5e87f087ad8`
-- Report Render Remediation Commit A: `02c9f4c9b8bdd29c71dff12eed700e4db54c8c10`
-- Completion Report Freeze Commit B: `228f1e94baed531ae8d9503cb3c5ec0a3aa47f6b`
+- Branch: `task-039e3-r2r-utility-inner-d2-v1-v2-scientific-disposition-v1`
+- Base: `9287d5f63dc8df2811c53429b1f141634dd971bc`
+- Disposition Commit A: `3d1de19075b28d78e95593fab1ed3461066cb874`
+- Disposition Report Freeze Commit B: `743a5599fb8e7fc503c2a08000292a382c3305b3`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `passed_task039e3_r2r_utility_inner_d2_v2_r5_accounting_r5_report_render_remediation_r1`
-- Scientific state: `D2_V2_RESULT_INTEGRITY_AUDITED`
+- Status: `passed_task039e3_r2r_utility_inner_d2_v1_v2_scientific_disposition_v1`
+- Scientific state: `INNER_FUSION_DEVELOPMENT_CLOSED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1`
 
 ## Frozen V2 result
 
@@ -323,3 +323,20 @@ subsequently froze the canonical completion authority
 D2 V2 is now integrity-audited and interpretation-ready. OUTER is still
 unauthorized. The exact next task is
 `TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`.
+
+## Final INNER scientific disposition
+
+- Rule complementarity: `SUPPORTED`.
+- Rule-only operational utility: `UNSUPPORTED`.
+- Combined incremental utility: `UNSUPPORTED`.
+- D2 V2 disposition: `RETAIN_AS_DEVELOPMENTAL_NEGATIVE_ABLATION`.
+- Final combined candidate: `D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1`.
+- INNER fusion development: `CLOSED`.
+- Proposed OUTER arms: D0 detector-only, D1 Rule-only, D2 V1 combined.
+- OUTER execution authorized: `false`.
+- Receipt:
+  `4f670ed37aafaeaa7324b18fdae0272d6390bd9ad0e53b5a708207e06ed5e9cc`.
+
+Do not build D2 V3, tune on INNER, access test2, or execute OUTER. The next task
+may preregister and authorize one sealed three-arm OUTER evaluation, but must
+stop before execution.

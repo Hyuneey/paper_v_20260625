@@ -362,3 +362,29 @@ result-integrity evidence set. OUTER remains unauthorized.
 
 Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`.
+
+## INNER D2 V1/V2 scientific disposition
+
+- Status:
+  `passed_task039e3_r2r_utility_inner_d2_v1_v2_scientific_disposition_v1`.
+- Disposition Commit A / Report Freeze Commit B:
+  `3d1de19075b28d78e95593fab1ed3461066cb874` /
+  `743a5599fb8e7fc503c2a08000292a382c3305b3`.
+- Rule complementarity on INNER: `SUPPORTED`.
+- Rule-only operational utility: `UNSUPPORTED`.
+- Combined incremental utility on INNER: `UNSUPPORTED`.
+- D2 V2: `RETAIN_AS_DEVELOPMENTAL_NEGATIVE_ABLATION`.
+- Final combined candidate:
+  `D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1`.
+- OUTER disposition:
+  `PREREGISTER_D0_D1_D2V1_THREE_ARM_CONFIRMATORY_EVALUATION`.
+- OUTER authorized: `false`.
+
+D1 detected all three events missed by D0 and the union covered all 14 INNER
+events, but its FAR burden was high. Both D2 variants recovered 0/3 D0 misses.
+V1 and V2 had equal recall, while V2 FAR was approximately 9.8 times V1 FAR;
+V1 therefore Pareto-dominates V2 on the frozen primary utility dimensions.
+Further INNER fusion development and parameter search are closed.
+
+Exact next task:
+`TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1`.

@@ -663,3 +663,25 @@ Append new entries; never rewrite historical decisions.
   `b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`.
+
+## DEC-D2-022 — final disposition addendum to DEC-D2-006
+
+- Date: 2026-08-23
+- Status: passed
+- Decision: Freeze D1 detector-complementary event information as supported,
+  Rule-only operational utility as unsupported, and combined incremental INNER
+  utility for both D2 V1 and D2 V2 as unsupported.
+- Comparison: V1 and V2 recall are equal and both recover 0/3 D0 misses; V1
+  has materially lower FAR and Pareto-dominates V2 on primary INNER utility.
+- Development disposition: retain V2 as a developmental negative ablation,
+  retain V1 only as the final combined confirmatory candidate, and close all
+  further INNER fusion redesign and parameter search.
+- Thesis boundary: remove or downgrade any combined-improvement claim; the
+  complementary rule-evidence contribution and transparent negative fusion
+  result remain scientifically supportable. This is not a fatal thesis blocker.
+- OUTER: recommend a separately preregistered D0/D1/D2-V1 three-arm sealed
+  evaluation. OUTER execution remains unauthorized.
+- Receipt:
+  `4f670ed37aafaeaa7324b18fdae0272d6390bd9ad0e53b5a708207e06ed5e9cc`.
+- Exact next task:
+  `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1`.

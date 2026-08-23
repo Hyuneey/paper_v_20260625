@@ -836,3 +836,28 @@ This authority serializes the already-completed R5 scientific oracle and R4
 public accounting evidence. It adds no scientific execution or accounting
 audit. D2 V2 result integrity is audited and interpretation-ready; OUTER
 remains unauthorized pending the exact V1/V2 scientific disposition task.
+
+## INNER D2 V1/V2 scientific disposition V1
+
+- Implementation / report freeze:
+  `3d1de19075b28d78e95593fab1ed3461066cb874` /
+  `743a5599fb8e7fc503c2a08000292a382c3305b3`.
+- Primary comparison / rule signal / fusion finding:
+  `bc72768fb01c1f4d1f0a6f36de1be146d5b62ec5b4bc73f7b64f7b774d26e3d3` /
+  `bec8681a9b25bcb9a64859d3cebfdb0168b855d3f137735d2224d237e08fb125` /
+  `cdba306dbf0bd9b81373544135a1deed6629f0b5a190316d45e8cca6e8e321c9`.
+- V1/V2 comparison / thesis claims / OUTER candidate:
+  `eb7903565c35ce7832b699d2012f251991ecb9d30a9add22899fbca5df1f0225` /
+  `4c68919f6430f914fb0449495adfde2c52efc9b1a4f72897249d829fe496bf70` /
+  `1bbd479ce6db1a597f441e151428a069895f9a3cef6a2ff0e78552f23c16ca20`.
+- Independent audit / readiness / bundle / receipt / report:
+  `cfe440e887e9bd9d8961f9c8f4e6040ee396eaa5a20e18dd4ef221a762790888` /
+  `fc976dfb3cb645ea29e0054530c0b1f3cf0427cb383b37899601fe768bbac476` /
+  `051d9b64988bd15b2e7d9b6b318ee5574896645f434a4a21f8940f1c6391efcf` /
+  `4f670ed37aafaeaa7324b18fdae0272d6390bd9ad0e53b5a708207e06ed5e9cc` /
+  `4dfe4410d0b417895f5f03469dce69708c4ae3e340afeb1581d3785108d9b8fd`.
+
+The rule layer has complementary INNER event information, but neither D2
+variant has positive incremental utility. INNER fusion development is closed.
+D2 V1 is retained only as the simpler, lower-FAR confirmatory combined
+candidate; OUTER remains unauthorized.
