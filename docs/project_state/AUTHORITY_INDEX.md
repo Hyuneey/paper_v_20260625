@@ -553,3 +553,38 @@ One non-scientific private sentinel and one raw label hash passed. No scientific
 prediction parse, token construction, fusion, metric, D2 V2 execution, test2,
 OUTER, private-path exposure, or push occurred. Exact next authority is the
 single D2 V2 INNER execution task.
+
+## D2 V2 INNER execution V1
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-V1`.
+- Commit A/B/C: `2bbb3dcaced47c8d15337e45eb0e0b741c1a3ed1` /
+  `b3acf3cbb0b6bcb21548daa319fd37923357b952` /
+  `55d41c543e110a9a6f0f5e2e2671857dba938aaa`.
+- Execution version / implementation:
+  `TASK039E3_R2R_D2_V2_INNER_EXECUTION_V1` /
+  `9016e5c8be9fa0e56af6a5d1870617f1937e557b7eabd0afa5b20722e89ded62`.
+- Authorization / committed grant:
+  `0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45` /
+  `9136c3b5432d471181765848619771f5234fae1d1a0c22d60eb584d3b8617392`.
+- FusionEvidenceV2 / CombinedPredictionV2 / private metric evidence:
+  `9fd5563b76cb4af0cf68383e1e2b9d10da9e6fd35a667d4a68d6eb5f8db2e8cb` /
+  `31035da56e140141917437df5b3473b803153621c7e1022830cccde52f61c0b3` /
+  `3e3f20b5b1a9387cd3bed4ad17e4232e714cc588d7df1c2a37dfd69bcd1a8513`.
+- Public metric / implementation / accounting:
+  `8fabdccc0c9a9b502497aa58163131647303d5e27acefb995a06ca9d43850ba7` /
+  `fe601aaa195222470e8e746a6c9ba318b338172bc750bff1194bd4164f201ea1` /
+  `7059e2b4e54ec53d0b72c072c71487b19efe056ce382357615dc152bf2382aca`.
+- Execution / readiness / bundle / receipt / report:
+  `c41957d8e9805afe0e39a0b28b01faaf8fa2ec82d8e4774083f6d7881d5036fc` /
+  `59246da5731bad310c588945326a9f5d44ed9394ed7bf1312086f043566e37bc` /
+  `ded276981ce75ebe5e947bd7a409d14b03208e7e23f1c8e3ddc1cd3070cb915f` /
+  `e6f10713d467c4733422f5d4d548035f20b0ebc7e9e10e6ed3d73506375509bf` /
+  `e45479ec778414a7e4a3d21b348f898176584abad7f2271baec5f34a21bb6fd6`.
+
+Exactly one V2 execution froze 788 causal evidence tokens, 1,335
+corroboration points, a 54,000-row label-blind CombinedPredictionV2, and all
+six preregistered metrics. Result magnitude did not alter the policy. Zero
+retry, D0/D1/D2 V1 rerun, D0 score, rule reevaluation, test1 feature, test2,
+OUTER, private leakage, result-driven change, or push occurred. Result
+integrity remains pending; the exact next task is
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-V1`.

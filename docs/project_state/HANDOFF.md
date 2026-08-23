@@ -1,47 +1,51 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-execution-authorization-v1`
-- Base: `488b14e3a7be8db70ef2cfa659bba41e94f3ff07`
-- Authorization Contract Commit A: `ab1773f3d898e98ccb45585434e7fd0053366af9`
-- Independent Audit Commit B: `1a8dc972f1e267c53d143d6623c92dbaeb0249f1`
-- Authorization Freeze Commit C: `867738a3904d2bc110865df5dfe4f9fe3032eddf`
-- Status: `passed_task039e3_r2r_utility_inner_d2_v2_execution_authorization_v1`
-- Scientific state: `D2_V2_INNER_EXECUTION_AUTHORIZED_NOT_EXECUTED`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-execution-v1`
+- Base: `8898c5d4b497931562bc225c287274a2c6512ffe`
+- Execution Implementation Commit A: `2bbb3dcaced47c8d15337e45eb0e0b741c1a3ed1`
+- Independent Audit Commit B: `b3acf3cbb0b6bcb21548daa319fd37923357b952`
+- Result Freeze Commit C: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
+- Status: `passed_task039e3_r2r_utility_inner_d2_v2_execution_v1`
+- Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_PENDING`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-V1`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-V1`
 
-## Frozen V2 execution grant
+## Frozen V2 result
 
-- Version: `TASK039E3_R2R_D2_V2_INNER_EXECUTION_AUTHORIZATION_V1`.
-- Scope: `HAI_23_05_P1_TEST1_D2_V2_NATIVE_HORIZON_CORROBORATION_INNER_V1`.
-- Authorization: `0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45`.
-- V2 design: `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`.
-- D0 prediction: `a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6`.
-- D1 prediction: `58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682`.
-- Source map: `f866176000c3d5a943053ac3125d2700b0b72f25b5a0539d8f4713435a959818`.
-- Native horizon map: `e9825a578495396d935397e79d8c50717dccb47f069f13e93f6306f992a9407c`.
-- Token start is the D1 decision second; expiry is decision plus exact native
-  horizon, inclusive. Backdating is false.
-- Corroboration requires two distinct active sources; same-source duplicates
-  collapse; single-source fallback and fixed global windows are absent.
-- Every D0 alarm is preserved. D0 score access, rule reevaluation, horizon or
-  fusion override, policy search, test2, and OUTER are unauthorized.
+- Execution version / implementation:
+  `TASK039E3_R2R_D2_V2_INNER_EXECUTION_V1` /
+  `9016e5c8be9fa0e56af6a5d1870617f1937e557b7eabd0afa5b20722e89ded62`.
+- Authorization / grant:
+  `0f909480cfe3db8afc4042909258fe041f36ad021a917907008ee7e5023f2f45` /
+  `9136c3b5432d471181765848619771f5234fae1d1a0c22d60eb584d3b8617392`.
+- FusionEvidenceV2 / CombinedPredictionV2:
+  `9fd5563b76cb4af0cf68383e1e2b9d10da9e6fd35a667d4a68d6eb5f8db2e8cb` /
+  `31035da56e140141917437df5b3473b803153621c7e1022830cccde52f61c0b3`.
+- Metric evidence / public metrics:
+  `3e3f20b5b1a9387cd3bed4ad17e4232e714cc588d7df1c2a37dfd69bcd1a8513` /
+  `8fabdccc0c9a9b502497aa58163131647303d5e27acefb995a06ca9d43850ba7`.
+- Evidence tokens / corroboration points: `788` / `1335`.
+- Trigger counts: recovery `1272`, D0-only `813`, combined `63`, none `51852`.
+- Point alarms / alarm episodes / recovery episodes: `2148` / `143` / `98`.
+- Recall / Normal FAR: `0.7857142857142857` / `6.915070855955625`.
+- D0-missed recovery / incremental Recall: `0.0` / `0.0`.
+- Added recovery FAR / incremental FAR: `6.4916991708971175` / `6.421137223387365`.
+- Execution run / readiness / bundle / receipt:
+  `c41957d8e9805afe0e39a0b28b01faaf8fa2ec82d8e4774083f6d7881d5036fc` /
+  `59246da5731bad310c588945326a9f5d44ed9394ed7bf1312086f043566e37bc` /
+  `ded276981ce75ebe5e947bd7a409d14b03208e7e23f1c8e3ddc1cd3070cb915f` /
+  `e6f10713d467c4733422f5d4d548035f20b0ebc7e9e10e6ed3d73506375509bf`.
 
-## Custody and accounting
+## Accounting and boundary
 
-One path-silent real sentinel passed with zero residue and zero retries. One
-raw-byte label hash matched; label-value parses remained zero. Exactly one
-authorization was issued. Scientific prediction parses, token construction,
-fusion, CombinedPredictionV2 freeze, metrics, D0/D1/D2 executions, test1
-feature access, test2, OUTER, private-path exposure, result-driven changes, and
-pushes remained zero.
+Exactly one V2 scientific attempt completed with zero retry. D0 and D1
+predictions, source map, and native-horizon map were each parsed/read once;
+54,000 fusion decisions were computed; CombinedPredictionV2 froze before the
+single label parse; all six metrics froze. D0/D1/D2 V1 execution, D0 score
+access, rule reevaluation, test1 feature access, test2, OUTER, private leakage,
+result-driven changes, and push remained zero.
 
-Readiness/bundle/receipt:
-`02ce6ebb6d71225160210772768a6f6a904a6df6f188ef7a7b47fe034bdf922a` /
-`779a326715bbf5f7cebc94c06ea24b1b4538b75abb2117281a01cb65ec784472` /
-`16198e7d11b241977031c73dd8ab3fb645c4620e75f446e6c57793ff49693b96`.
-
-D2 V1 remains the immutable negative-result baseline. D2 V2 is authorized but
-not executed. Do not start execution automatically; replay the exact committed
-authorization in the next task.
+D2 V1 remains immutable. Do not interpret V2 or compare it with V1 yet. The
+next task is an independent frozen-result integrity audit and must not rerun
+V2 or authorize OUTER.
