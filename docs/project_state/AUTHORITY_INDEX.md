@@ -861,3 +861,35 @@ The rule layer has complementary INNER event information, but neither D2
 variant has positive incremental utility. INNER fusion development is closed.
 D2 V1 is retained only as the simpler, lower-FAR confirmatory combined
 candidate; OUTER remains unauthorized.
+
+## OUTER D0/D1/D2 V1 preregistration and authorization V1
+
+- Preregistration Commit A / Authorization Freeze Commit B:
+  `1aa619a798e69d9e817830bfdf7b3408908af472` /
+  `5c14e5f5a1d49ba2e3f0c5bbaf4f5f72e4874627`.
+- Preregistration / authorization SHA-256:
+  `66179921042faecf189fe93ddaf20bb06669afa6e27dbefb67c9b95eabb93427` /
+  `fb8abb3a342c591873d15d4bcf28cbdcc7363fce77a228f486f122ef5933ac14`.
+- Dataset / D0 / D1 / D2 authority reports:
+  `bbf306169f3d1318b343b057bffbe9f30b804b875b82c6632ac456bd7d612f48` /
+  `2bf7a0168094178e0f694bdf644e3e9147cf099029d1fc82ac88133aa4c54440` /
+  `7993a835b3abb7ca955d1b5f6ba0dbd1a488e2ca385caf9fedcd00082397e678` /
+  `f211634a3a3374b0e1fc8b47870c0d11e3747a71eb6553e25662408aaf9e607d`.
+- Ordering / metric / one-shot reports:
+  `78bb0e805319ab37701b3a5a4a602c1f36e56c1dcc6f5b038090da7e04c7a90f` /
+  `c3f2bfa9a868985ab25ac2b755df9e5d8dce53361e1da18fe1464f87b2a12a91` /
+  `00eaba370898ed3a634ffd15a2f6578d90391c1e90389e7db6905e1976dc5a9a`.
+- Preregistration / authorization artifact reports:
+  `74611ced3ef1e6cec71d3cd04fd8f5d13b323b159fd0f03ca118b2af72f24a89` /
+  `bbd1c08323ab8d66f342ebb4cbcda4c3b375a7ba1956389c0dc8b642e02f0fa9`.
+- Independent audit / readiness / bundle / receipt / report:
+  `636eb532c495940391c4bdd1f1c8061e87c3d6b9a6b103d730697dc2c24be043` /
+  `adf99cd2f45c07b680af49b31e9bd0264854ee8a1415fd2f4c074961e6a8f97c` /
+  `ad097159efb87e5ac3420bf106147898de5bad0b3021dd31dc8aade6228d6d64` /
+  `1ef346ec824561def8d09c8c09211c11fa2eb5c2bb415c95d2008b4af6a03d4d` /
+  `6c379c3c138d2b662d05271dbe0a6004ac61723341e4e137252ea22ee12e22ba`.
+
+Exactly one coordinated sealed OUTER execution is authorized for D0, D1, and
+D2 V1. D2 V2, retries, recalibration, redesign, and post-OUTER development are
+not authorized. Authorization issuance accessed no real test2 feature or label
+file and performed no scientific execution.

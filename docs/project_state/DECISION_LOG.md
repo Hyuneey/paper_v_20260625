@@ -685,3 +685,28 @@ Append new entries; never rewrite historical decisions.
   `4f670ed37aafaeaa7324b18fdae0272d6390bd9ad0e53b5a708207e06ed5e9cc`.
 - Exact next task:
   `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1`.
+
+## DEC-OUTER-001 authorization addendum
+
+- Date: 2026-08-23
+- Status: passed
+- Decision: Freeze and authorize one sealed HAI-23.05 test2 confirmatory
+  execution of exactly D0 detector-only, D1 COMMON-42 Rule-only, and D2 V1
+  exact-same-second two-source detector-preserving fusion.
+- Authority boundary: the execution must use one shared immutable feature
+  snapshot, freeze and durably validate all three predictions before label
+  access, and apply only the preregistered event, episode, primary, and
+  descriptive secondary metrics.
+- One-shot boundary: one coordinated scientific attempt, zero retries, no D2
+  V2, no recalibration, no fusion change, no parameter search, and no
+  post-OUTER redesign.
+- Seal preservation: this authorization task used frozen manifest metadata
+  only; real test2 feature and label accesses, parses, scientific executions,
+  and OUTER executions all remained zero.
+- Preregistration / authorization:
+  `66179921042faecf189fe93ddaf20bb06669afa6e27dbefb67c9b95eabb93427` /
+  `fb8abb3a342c591873d15d4bcf28cbdcc7363fce77a228f486f122ef5933ac14`.
+- Receipt:
+  `1ef346ec824561def8d09c8c09211c11fa2eb5c2bb415c95d2008b4af6a03d4d`.
+- Exact next task:
+  `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-V1`.
