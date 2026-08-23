@@ -74,8 +74,8 @@ V2 again.
 
 - Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_v1`.
 - Blocker: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED_EXACTLY_ONCE_ORACLE_ACCOUNTING_EXCEEDED`.
-- Audit Commit A: `5374cc8f92a3c36e707fae8680623df29007831a`.
-- Blocker Freeze Commit B: `e54abe8591aa088e2bb1c7170426240163f67d02`.
+- Audit Commit A: `5374cc8293ce970738f2f3320abdbf1d9fbdb150`.
+- Blocker Freeze Commit B: `e54abe8a2170b48e7eb437b4a4935c32e6cd9341`.
 - Blocker artifact:
   `592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879`.
 - Audit reads before stop: D0 prediction `2`, D1 prediction `2`, source map

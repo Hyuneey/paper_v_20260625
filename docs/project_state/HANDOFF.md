@@ -54,8 +54,8 @@ V2 or authorize OUTER.
 
 - Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-v1`.
 - Base: `615fde528644f14d1654f98031cfc2bfd4f3c8ec`.
-- Audit Commit A: `5374cc8f92a3c36e707fae8680623df29007831a`.
-- Blocker Freeze Commit B: `e54abe8591aa088e2bb1c7170426240163f67d02`.
+- Audit Commit A: `5374cc8293ce970738f2f3320abdbf1d9fbdb150`.
+- Blocker Freeze Commit B: `e54abe8a2170b48e7eb437b4a4935c32e6cd9341`.
 - Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_v1`.
 - Blocker: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED_EXACTLY_ONCE_ORACLE_ACCOUNTING_EXCEEDED`.
 - Frozen result modified: `false`.
