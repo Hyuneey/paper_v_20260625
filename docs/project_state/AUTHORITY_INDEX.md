@@ -928,3 +928,32 @@ D1 authority-key schema because the V1 remediation allowlist retained legacy
 D1 binding-key names. It stopped before D0 locator resolution, model/threshold
 identity validation, or custody sentinel execution. The scientific attempt
 remains unused, test2 remains untouched, and all new path-leak counts are zero.
+
+## OUTER pre-execution local-binding custody remediation R2
+
+- Implementation / report freeze:
+  `5484791027c2a5797c373471b51c73ccc5b5a329` /
+  `9e8dba81fca933d2ac7d2404d6483346e9d619f1`.
+- Root-cause / canonical local-binding schema:
+  `cf613022fbd6068bb55cd5dda901058b8555e0cd00eda4a4e66470bb96758b2e` /
+  `f8bf60d9a3a69628f13361372820fb9dd1cf0c367085360bdf20a4a84c9f773f`.
+- D0 model / threshold binding:
+  `b97d4899f0869a20c1aacc147acdcfe537b84d6b8f72f5dd2b29aa159229bed5` /
+  `34e8eaffd80b4f9688a1d50835f6aa7d31767f8ac1201af949da6738757d1b2c`.
+- Private namespace / sentinel / path-redaction audits:
+  `dedc2c7829122e5fc6bf8d623c2d0df68ed35c31e516a41e5942ec36b1d48279` /
+  `84ce4999af15b3e052bece2577c3e9811859149bcfd491273631fb5aa65681fa` /
+  `6df121d976f5512c8d7999f35e4140abb04ac919b9d3df07428156e8f3f9080b`.
+- Compatibility / independent audit / readiness:
+  `536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0` /
+  `140d2d61cefea1cdfe82bad99d7a4e3a89eb2ffa0c53e7f7343658def05459f9` /
+  `05aa268559a4c1830896e07f42fb6661b007c0c398ea6439fadbb98cddd82e59`.
+- Bundle / receipt / report:
+  `44e89690da724a0b3dd351904bb3b13e8a90f4cfa8d5c2ac7ed5335aec281b6c` /
+  `cfe23699eb2ad3e00058cec696a0ed8eaaad72a151a0f7b608f6d0c82f863702` /
+  `6a1a0f3ad610fb5214f0c42c9c61058ab991a29a21905554c027b5a9a7824ba0`.
+
+This audit-only authority proves the canonical eight-field local binding,
+exact frozen D0 model/threshold identity, four ready private roles, and one
+clean infrastructure sentinel. It authorizes no new science and leaves the
+original one-shot OUTER authorization unused with one attempt remaining.

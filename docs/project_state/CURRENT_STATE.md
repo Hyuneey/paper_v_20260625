@@ -1,5 +1,44 @@
 # Current project state
 
+## OUTER local-binding custody remediation R2 passed
+
+The R1 mismatch was non-scientific: its allowlist expected four legacy D1
+private-binding keys, while the current frozen resolver uses four canonical
+authority/locator keys. R2 recovered the complete eight-field schema from
+frozen producer and resolver code, accepted no fuzzy mapping, and validated
+the exact frozen D0 model and threshold path-silently.
+
+- Status:
+  `passed_task039e3_r2r_utility_outer_pre_execution_private_custody_and_path_redaction_remediation_r2`.
+- Implementation Commit A:
+  `5484791027c2a5797c373471b51c73ccc5b5a329`.
+- Report Freeze Commit B:
+  `9e8dba81fca933d2ac7d2404d6483346e9d619f1`.
+- Canonical schema identity:
+  `533627b18c29be21435f9641b6ec8583f88586af1cd766bd41fab67ea0cecbd1`.
+- Canonical fields / unknown fields / explicit mappings: `8 / 0 / 4`.
+- D0 model and threshold identity and logical binding: `PASS / PASS`.
+- Four OUTER private roles: ready on one approved outside-Git custody plane.
+- Sentinel attempts / retries / residue: `1 / 0 / 0`; atomic create, rename,
+  reopen, and cleanup passed.
+- Static tests: `34 / 34`; independent attacks: `24 / 24` rejected;
+  accepted invalid: `0`.
+- Historical private-path accounting remains `12` ephemeral, `0` tracked,
+  and `0` scientific private-value leaks; every new exposure count is `0`.
+- Scientific OUTER attempts consumed / remaining / retries: `0 / 1 / 0`.
+- Test2 feature/label accesses: `0 / 0`.
+- D0 inference, D1 Rule evaluation, D2 fusion, and metrics: all `0`.
+- Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
+
+## Exact next task after R2
+
+`TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-RECOVERY-V1`
+
+That task must reuse the original preregistration, one-shot authorization, and
+frozen scientific execution implementation while consuming the R2
+compatibility receipt. R2 itself did not access test2 or consume the one
+authorized scientific attempt.
+
 ## OUTER custody remediation V1 blocker
 
 The first pre-execution custody remediation invocation failed closed before

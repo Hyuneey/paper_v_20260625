@@ -1,5 +1,42 @@
 # Project handoff
 
+## Current authority: OUTER custody infrastructure ready
+
+R2 passed the local-binding and path-redaction remediation without accessing
+test2 or consuming the original one-shot scientific authorization. The exact
+frozen D0 model and threshold now resolve through the canonical eight-field
+local schema, and four OUTER private logical roles are ready on the approved
+outside-Git custody plane.
+
+- Implementation / report freeze:
+  `5484791027c2a5797c373471b51c73ccc5b5a329` /
+  `9e8dba81fca933d2ac7d2404d6483346e9d619f1`.
+- [Compatibility receipt](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_R2_COMPATIBILITY_RECEIPT.json):
+  `536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0`.
+- Bundle / receipt / report:
+  `44e89690da724a0b3dd351904bb3b13e8a90f4cfa8d5c2ac7ed5335aec281b6c` /
+  `cfe23699eb2ad3e00058cec696a0ed8eaaad72a151a0f7b608f6d0c82f863702` /
+  `6a1a0f3ad610fb5214f0c42c9c61058ab991a29a21905554c027b5a9a7824ba0`.
+- R1 root cause: `R1_EXPECTED_OBSOLETE_LOCAL_BINDING_SCHEMA`; four
+  schema-proven legacy names were replaced by four current canonical names.
+- Canonical fields / unknown fields / fuzzy mappings: `8 / 0 / 0`.
+- D0 model / threshold hash and logical binding: `PASS / PASS`.
+- Custody sentinel attempts / retries / residue: `1 / 0 / 0`.
+- Tests: `34 / 34` static and `24 / 24` independent attacks; accepted
+  invalid: `0`.
+- Historical pre-scientific OUTER aborts: `2`.
+- Scientific attempts consumed / remaining / retries: `0 / 1 / 0`.
+- Test2 feature/label accesses and all scientific executions: `0`.
+- All new path and scientific-private-value exposure counts: `0`.
+- Remote egress: `LOCAL_ONLY_NOT_PUSHED`; push attempted: `false`.
+
+Exact next task:
+`TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-RECOVERY-V1`.
+
+Do not call this a second scientific attempt. It is the first and only
+authorized OUTER scientific attempt after two pre-scientific infrastructure
+aborts. Do not start it automatically and do not push.
+
 ## Current blocker: OUTER custody remediation V1
 
 The historical OUTER execution remains a pre-scientific abort, and the

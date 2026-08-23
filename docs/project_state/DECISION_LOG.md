@@ -745,3 +745,27 @@ Append new entries; never rewrite historical decisions.
   `ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c`.
 - Exact next task:
   `TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2`.
+
+## DEC-OUTER-004 — canonical local binding and custody readiness
+
+- Date: 2026-08-23
+- Status: passed before scientific attempt.
+- Decision: accept the eight-field schema recovered from frozen D0/D1
+  producer and resolver authorities and freeze four explicit legacy-to-current
+  field classifications; fuzzy mapping remains prohibited.
+- R1 disposition: `R1_EXPECTED_OBSOLETE_LOCAL_BINDING_SCHEMA`; the defect was
+  non-scientific, non-result-driven, and unrelated to test2.
+- Custody finding: exact D0 model and threshold cryptographic/logical bindings
+  pass, all four OUTER private roles are ready, and one shared-root atomic
+  sentinel passed with zero residue.
+- Exposure preservation: the historical `12` diagnostic occurrences remain
+  ephemeral with `0` tracked and `0` scientific private-value leaks; all new
+  stdout, stderr, exception, public-report, continuity, and scientific-value
+  exposure counts are `0`.
+- Scientific preservation: OUTER attempts consumed/remaining/retries remain
+  `0 / 1 / 0`; test2 feature/label accesses, D0 inference, D1 Rule evaluation,
+  D2 fusion, and metric computation remain `0`.
+- Compatibility receipt:
+  `536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0`.
+- Exact next task:
+  `TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-RECOVERY-V1`.
