@@ -1,0 +1,29 @@
+{
+  "artifact_hash": "502038520b62c4fca0e5ddb868be89c951e1248596f32ca89627f9fe7738c7fb",
+  "artifact_type": "D2V2ReportRenderR1RootCauseV1",
+  "canonical_completion_fields": [
+    "added_normal_rule_recovery_far",
+    "d0_missed_recovery_rate",
+    "incremental_attack_event_recall",
+    "incremental_normal_far",
+    "v2_attack_event_recall",
+    "v2_normal_far"
+  ],
+  "classification": "RENDERER_USED_LEGACY_FIELD_NAME",
+  "created_at_utc": "2026-08-23T09:37:01Z",
+  "legacy_renderer_fields": [
+    "added_recovery_far",
+    "incremental_far",
+    "incremental_recall",
+    "recovery_rate",
+    "v2_far",
+    "v2_recall"
+  ],
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "root_cause_accounting_semantic": false,
+  "root_cause_result_driven": false,
+  "root_cause_scientific": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1"
+}

@@ -1,0 +1,18 @@
+{
+  "accepted_invalid": 0,
+  "accounting_semantic_recomputations": 0,
+  "artifact_hash": "7c80d73e73245d1d05c05d3547ed3db18b7928585d38e3b77ad82780421b8692",
+  "artifact_type": "D2V2ResultIntegrityRenderIndependentAuditR1",
+  "created_at_utc": "2026-08-23T09:37:01Z",
+  "independent_attacks": 21,
+  "independent_attacks_rejected": 21,
+  "label_accesses": 0,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "scientific_data_accesses": 0,
+  "static_tests_pass": true,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0
+}

@@ -1,0 +1,22 @@
+{
+  "accounting_semantic_recomputations": 0,
+  "artifact_hash": "511deb9ac02f73ffb85fa89895048306e19b3b1352376c1ac1e54ff77570ef0a",
+  "artifact_type": "D2V2ResultIntegrityRenderCompletionAuditR1",
+  "authoritative_scientific_executions": 0,
+  "canonical_completion_sha256": "b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06",
+  "created_at_utc": "2026-08-23T09:37:01Z",
+  "custody_compatibility_authority_sha256": "f7ca9d29c7e8d65359781534790c008bec436dc35e521f7de3342b7215e28cd8",
+  "label_parses": 0,
+  "public_leakage_completion_pass": true,
+  "push_attempted": false,
+  "r4_blocker_authority_sha256": "4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853",
+  "r5_blocker_authority_sha256": "0ab5479d8e2f6367e214ddeceded63826d2d89d377f2aac00d2d909d5ab322e0",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "result_driven_changes": false,
+  "result_freeze_mutations": 0,
+  "schema_version": "1.0.0",
+  "scientific_artifacts_reopened": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0
+}

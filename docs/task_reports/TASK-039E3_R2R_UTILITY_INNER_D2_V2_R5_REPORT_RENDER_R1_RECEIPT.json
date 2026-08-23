@@ -1,0 +1,20 @@
+{
+  "accounting_authority_sha256": "7059e2b4e54ec53d0b72c072c71487b19efe056ce382357615dc152bf2382aca",
+  "accounting_snapshot_sha256": "8518e94c01da688f750b9c897c62cc25c61a8032c507eead9763aac3fbafbfe4",
+  "artifact_hash": "41d20caec7e63a5e0d1e3b8190823514bf9ad608e4171f203cbb7c650609d707",
+  "artifact_type": "D2V2ResultIntegrityRenderCompletionReceiptR1",
+  "bundle_sha256": "a0b241914ceee485f8b60f008af7b4264ee2b4520372296e43412ac1a6f71fa0",
+  "canonical_completion_sha256": "b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06",
+  "completion_audit_sha256": "511deb9ac02f73ffb85fa89895048306e19b3b1352376c1ac1e54ff77570ef0a",
+  "completion_method": "R5_FULL_SCIENTIFIC_ORACLE_PLUS_R4_PUBLIC_ACCOUNTING_PLUS_RENDER_R1",
+  "completion_result": "PASS",
+  "created_at_utc": "2026-08-23T09:37:01Z",
+  "field_mapping_sha256": "43e44fa20fe9c4f7993be9c3c7b65c98e831f785085e3fa4ccdf20937ed4baf9",
+  "push_attempted": false,
+  "r4_blocker_authority_sha256": "4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "result_freeze_commit_sha1": "55d41c543e110a9a6f0f5e2e2671857dba938aaa",
+  "schema_version": "1.0.0",
+  "scientific_snapshot_sha256": "22e69d6f3f8d2d9a366aab5fd0a0ab3b582e5795241f43c11c9eb9ae25417ee2",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1"
+}

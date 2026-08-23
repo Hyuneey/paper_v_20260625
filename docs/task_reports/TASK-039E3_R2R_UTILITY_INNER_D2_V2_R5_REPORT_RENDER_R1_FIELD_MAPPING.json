@@ -1,0 +1,472 @@
+{
+  "artifact_hash": "43e44fa20fe9c4f7993be9c3c7b65c98e831f785085e3fa4ccdf20937ed4baf9",
+  "artifact_type": "D2V2ResultIntegrityCompletionFieldMappingR1",
+  "closure_pass": true,
+  "created_at_utc": "2026-08-23T09:37:01Z",
+  "mapping": [
+    {
+      "completion_semantic_name": "result_integrity",
+      "completion_source_field": "FROZEN_AUTHORITY_CONSTANT",
+      "expected_type": "str",
+      "mapping_status": "PASS",
+      "report_target_field": "result_integrity",
+      "source_value": "PASS",
+      "transformation_identity": "FROZEN_AUTHORITY_CONSTANT",
+      "transformed": true
+    },
+    {
+      "completion_semantic_name": "completion_method",
+      "completion_source_field": "FROZEN_AUTHORITY_CONSTANT",
+      "expected_type": "str",
+      "mapping_status": "PASS",
+      "report_target_field": "completion_method",
+      "source_value": "R5_FULL_SCIENTIFIC_ORACLE_PLUS_R4_PUBLIC_ACCOUNTING_PLUS_RENDER_R1",
+      "transformation_identity": "FROZEN_AUTHORITY_CONSTANT",
+      "transformed": true
+    },
+    {
+      "completion_semantic_name": "scientific_oracle_complete",
+      "completion_source_field": "r5_full_scientific_oracle_snapshot_pass",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "scientific_oracle_complete",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": true
+    },
+    {
+      "completion_semantic_name": "scientific_divergence_count",
+      "completion_source_field": "r5_scientific_divergence_count",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "scientific_divergence_count",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": true
+    },
+    {
+      "completion_semantic_name": "accounting_semantics_pass",
+      "completion_source_field": "all_execution_accounting_semantics_pass",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "accounting_semantics_pass",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": true
+    },
+    {
+      "completion_semantic_name": "result_freeze_mutations",
+      "completion_source_field": "result_freeze_mutations",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "result_freeze_mutations",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "prediction_divergences",
+      "completion_source_field": "prediction_divergences",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "prediction_divergences",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_preservation_violations",
+      "completion_source_field": "d0_preservation_violations",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_preservation_violations",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "trigger_class_violations",
+      "completion_source_field": "trigger_class_violations",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "trigger_class_violations",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "prediction_before_label_pass",
+      "completion_source_field": "prediction_before_label_pass",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "prediction_before_label_pass",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "attack_event_count",
+      "completion_source_field": "attack_event_count",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "attack_event_count",
+      "source_value": 14,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "v2_alarm_episodes",
+      "completion_source_field": "v2_alarm_episodes",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "v2_alarm_episodes",
+      "source_value": 143,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_alarm_episodes",
+      "completion_source_field": "d0_alarm_episodes",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_alarm_episodes",
+      "source_value": 46,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "v2_rule_recovery_episodes",
+      "completion_source_field": "v2_rule_recovery_episodes",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "v2_rule_recovery_episodes",
+      "source_value": 98,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "v2_detected_attack_events",
+      "completion_source_field": "v2_detected_attack_events",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "v2_detected_attack_events",
+      "source_value": 11,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "v2_attack_event_recall",
+      "completion_source_field": "v2_attack_event_recall",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "v2_attack_event_recall",
+      "source_value": 0.7857142857142857,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "v2_normal_false_alarm_episodes",
+      "completion_source_field": "v2_normal_false_alarm_episodes",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "v2_normal_false_alarm_episodes",
+      "source_value": 98,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "normal_exposure_seconds",
+      "completion_source_field": "normal_exposure_seconds",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "normal_exposure_seconds",
+      "source_value": 51019,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "v2_normal_far",
+      "completion_source_field": "v2_normal_far",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "v2_normal_far",
+      "source_value": 6.915070855955625,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_attack_event_recall",
+      "completion_source_field": "d0_attack_event_recall",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_attack_event_recall",
+      "source_value": 0.7857142857142857,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_normal_far",
+      "completion_source_field": "d0_normal_far",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_normal_far",
+      "source_value": 0.4939336325682589,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_missed_attack_events",
+      "completion_source_field": "d0_missed_attack_events",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_missed_attack_events",
+      "source_value": 3,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_misses_recovered_by_v2",
+      "completion_source_field": "d0_misses_recovered_by_v2",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_misses_recovered_by_v2",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "d0_missed_recovery_rate",
+      "completion_source_field": "d0_missed_recovery_rate",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "d0_missed_recovery_rate",
+      "source_value": 0.0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "incremental_attack_event_recall",
+      "completion_source_field": "incremental_attack_event_recall",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "incremental_attack_event_recall",
+      "source_value": 0.0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "normal_v2_rule_recovery_false_alarm_episodes",
+      "completion_source_field": "normal_v2_rule_recovery_false_alarm_episodes",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "normal_v2_rule_recovery_false_alarm_episodes",
+      "source_value": 92,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "added_normal_rule_recovery_far",
+      "completion_source_field": "added_normal_rule_recovery_far",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "added_normal_rule_recovery_far",
+      "source_value": 6.4916991708971175,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "incremental_normal_false_alarm_episodes",
+      "completion_source_field": "incremental_normal_false_alarm_episodes",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "incremental_normal_false_alarm_episodes",
+      "source_value": 91,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "incremental_normal_far",
+      "completion_source_field": "incremental_normal_far",
+      "expected_type": "float",
+      "mapping_status": "PASS",
+      "report_target_field": "incremental_normal_far",
+      "source_value": 6.421137223387365,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "fusion_evidence_v2_hash_match",
+      "completion_source_field": "fusion_evidence_v2_hash_match",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "fusion_evidence_v2_hash_match",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "combined_prediction_v2_hash_match",
+      "completion_source_field": "combined_prediction_v2_hash_match",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "combined_prediction_v2_hash_match",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "metric_evidence_v2_hash_match",
+      "completion_source_field": "metric_evidence_v2_hash_match",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "metric_evidence_v2_hash_match",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "custody_compatibility_pass",
+      "completion_source_field": "custody_compatibility_pass",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "custody_compatibility_pass",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "public_leakage_completion_pass",
+      "completion_source_field": "public_leakage_completion_pass",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "public_leakage_completion_pass",
+      "source_value": true,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "scientific_artifacts_reopened",
+      "completion_source_field": "scientific_artifacts_reopened",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "scientific_artifacts_reopened",
+      "source_value": false,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "accounting_semantic_recomputations",
+      "completion_source_field": "accounting_semantic_recomputations",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "accounting_semantic_recomputations",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "label_parses",
+      "completion_source_field": "label_parses",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "label_parses",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "test1_feature_accesses",
+      "completion_source_field": "test1_feature_accesses",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "test1_feature_accesses",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "test2_accesses",
+      "completion_source_field": "test2_accesses",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "test2_accesses",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "authoritative_scientific_executions",
+      "completion_source_field": "authoritative_scientific_executions",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "authoritative_scientific_executions",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "result_driven_changes",
+      "completion_source_field": "result_driven_changes",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "result_driven_changes",
+      "source_value": false,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "private_leakage",
+      "completion_source_field": "private_leakage",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "private_leakage",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "scientific_v2_execution_attempts",
+      "completion_source_field": "scientific_v2_execution_attempts",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "scientific_v2_execution_attempts",
+      "source_value": 1,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "scientific_v2_execution_retries",
+      "completion_source_field": "scientific_v2_execution_retries",
+      "expected_type": "int",
+      "mapping_status": "PASS",
+      "report_target_field": "scientific_v2_execution_retries",
+      "source_value": 0,
+      "transformation_identity": "IDENTITY",
+      "transformed": false
+    },
+    {
+      "completion_semantic_name": "outer_authorized",
+      "completion_source_field": "FROZEN_AUTHORITY_CONSTANT",
+      "expected_type": "bool",
+      "mapping_status": "PASS",
+      "report_target_field": "outer_authorized",
+      "source_value": false,
+      "transformation_identity": "FROZEN_AUTHORITY_CONSTANT",
+      "transformed": true
+    },
+    {
+      "completion_semantic_name": "exact_next_task",
+      "completion_source_field": "FROZEN_AUTHORITY_CONSTANT",
+      "expected_type": "str",
+      "mapping_status": "PASS",
+      "report_target_field": "exact_next_task",
+      "source_value": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1",
+      "transformation_identity": "FROZEN_AUTHORITY_CONSTANT",
+      "transformed": true
+    }
+  ],
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1"
+}

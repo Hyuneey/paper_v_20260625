@@ -1,0 +1,20 @@
+{
+  "accounting_value_mutation_count": 0,
+  "artifact_hash": "8ab0a02628fb5ec1b2b978083afb43d47774c59ce3cf961018e71620fa9cb7cb",
+  "artifact_type": "D2V2ResultIntegrityCompletionInputSchemaR1",
+  "authority_hash_mutation_count": 0,
+  "created_at_utc": "2026-08-23T09:37:01Z",
+  "duplicate_semantic_mappings": 0,
+  "mapped_report_fields": 46,
+  "missing_report_fields": 0,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "renderer_schema_recovered": true,
+  "required_report_fields": 46,
+  "schema_version": "1.0.0",
+  "scientific_value_mutation_count": 0,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1",
+  "unknown_report_fields": 0,
+  "wrong_type_count": 0,
+  "wrong_value_count": 0
+}
