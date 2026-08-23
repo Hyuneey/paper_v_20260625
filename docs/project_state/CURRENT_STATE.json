@@ -3,7 +3,7 @@
   "schema_version": "1.0.0",
   "repository": "Hyuneey/paper_v_20260625",
   "updated_at_utc": "2026-08-23T03:47:10Z",
-  "canonical_head": "1d7a189a6926643217a62950fc2180ace331ab93",
+  "canonical_head": "1d7a189755a70fabfbd00e66c320373b0ae05f4b",
   "current_branch": "task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r3",
   "research_phase": "D2_V2_RESULT_INTEGRITY_AUDIT_HARNESS_REMEDIATION_R3_BLOCKED",
   "latest_completed_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-EXECUTION-V1",
@@ -1228,7 +1228,7 @@
     "blocker_class": "PUBLIC_AUTHORITY_RAW_BYTE_SEPARATOR_CONTRACT_MISMATCH_BEFORE_SCIENTIFIC_PARSE",
     "root_cause": "FROZEN_AUTHORIZATION_REPORT_RAW_BYTES_USE_CRLF_SEPARATOR_WHILE_R3_REQUIRES_EXACT_SINGLE_LF_SEPARATOR",
     "harness_remediation_commit_a": "10f6b179438e70646ff94ca82fdc96ac63d2ba4a",
-    "blocker_freeze_commit_b": "1d7a189a6926643217a62950fc2180ace331ab93",
+    "blocker_freeze_commit_b": "1d7a189755a70fabfbd00e66c320373b0ae05f4b",
     "blocker_artifact_hash": "2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a",
     "blocker_report_self_hash": "e20b49b6f6b6f22eb3f40b9433710ba85df37893677941debfdded84adab33a4",
     "historical_v1_blocker_hash": "592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879",
@@ -1277,5 +1277,5 @@
     "push_attempted": false,
     "exact_next_task": "TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4"
   },
-  "artifact_hash": "f497af2c890a4c1fcb2047fa105c292dd469e3e3c1394c5747fe7e9c0ed71281"
+  "artifact_hash": "8cf15dddf150486bd71b3211edcbb8255011a2604effabc303a91b36bf67f39c"
 }

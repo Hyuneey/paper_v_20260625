@@ -641,7 +641,7 @@ authority is R3 report-provenance separator remediation only.
 
 - Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R3`.
 - Harness Remediation Commit A: `10f6b179438e70646ff94ca82fdc96ac63d2ba4a`.
-- Blocker Freeze Commit B: `1d7a189a6926643217a62950fc2180ace331ab93`.
+- Blocker Freeze Commit B: `1d7a189755a70fabfbd00e66c320373b0ae05f4b`.
 - Blocker artifact:
   `2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a`.
 - Report self-hash:
