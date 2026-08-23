@@ -72,6 +72,8 @@ class CustodyBindingRemediationR1Tests(unittest.TestCase):
     def test_report_contract_has_no_scientific_authority(self) -> None:
         source = (subject.ROOT / "scripts/remediate_task039e3_r2r_d2_v2_private_custody_binding_r1.py").read_text(encoding="utf-8")
         self.assertIn('"scientific_execution_authorized": False', source)
+        self.assertIn('"merge-base", "--is-ancestor", BASE, head', source)
+        self.assertIn("implementation_scope != allowed_scope", source)
         self.assertNotIn("execute_authorized_d2_v2_inner_v1(", source)
         self.assertNotIn("compute_metric_values_v1(", source)
 

@@ -350,7 +350,18 @@ def git(*args: str) -> str:
 
 
 def validate_git_and_history() -> dict[str, Any]:
-    if git("rev-parse", "HEAD") != BASE or git("status", "--porcelain"):
+    head = git("rev-parse", "HEAD")
+    ancestry = subprocess.run(["git", "merge-base", "--is-ancestor", BASE, head],
+                              cwd=ROOT, stdout=subprocess.DEVNULL,
+                              stderr=subprocess.DEVNULL).returncode == 0
+    allowed_scope = {
+        "TASKS/TASK-039E3-R2R-UTILITY-INNER-D2-V2-PRIVATE-CUSTODY-BINDING-REMEDIATION-R1.md",
+        "scripts/remediate_task039e3_r2r_d2_v2_private_custody_binding_r1.py",
+        "tests/test_task039e3_r2r_d2_v2_private_custody_binding_remediation_r1.py",
+        "tests/test_task039e3_r2r_d2_v2_private_custody_binding_remediation_r1_independent.py",
+    }
+    implementation_scope = set(git("diff", "--name-only", BASE, head).splitlines())
+    if not ancestry or implementation_scope != allowed_scope or git("status", "--porcelain"):
         fail("CUSTODY_REMEDIATION_GIT_STATE_REJECTED")
     blocker = read_public_document(R4_BLOCKER_PATH, R4_BLOCKER_HASH)
     if blocker.get("blocker_code") != "D2_V2_R4_BINDING_REJECTED":
