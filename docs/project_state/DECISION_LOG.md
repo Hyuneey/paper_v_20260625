@@ -457,3 +457,27 @@ Append new entries; never rewrite historical decisions.
   `2baed348b67ec7567ea57d1892c4e605728120e65480728ca562528c822e9f4a`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`.
+
+## DEC-D2-013
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole R4 audit at local private-custody binding
+  replay; do not retry R4.
+- Public gate: The authorization artifact identity, JSON chain, frozen
+  producer semantics, canonical Markdown hash view, and footer bundle/receipt
+  bindings passed without modifying frozen bytes.
+- Root cause class:
+  `LOCAL_PRIVATE_CUSTODY_BINDING_REPLAY_REJECTED_BEFORE_SCIENTIFIC_PARSE`.
+- Accounting: R4 invocations/retries/completions are `1`/`0`/`0`;
+  authorization JSON/Markdown/footer parses are `1`/`1`/`1`; all eight
+  scientific semantic parse counters are `0`. Total integrity-audit
+  attempts/blocked/completed are `5`/`5`/`0`.
+- Preservation: All four prior blockers, authorization artifacts, and the
+  frozen D2 V2 result remain unchanged. Authoritative executions,
+  test1-feature/label/test2/OUTER access, result-driven changes, leakage, and
+  push remain zero.
+- Evidence:
+  `34acc0c252b13054b15f3ac6fb1a560fdf0c653f2580305c9d582f6a52e863fc`.
+- Next authority: none; explicit custody-binding remediation authorization is
+  required.

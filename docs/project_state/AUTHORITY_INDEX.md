@@ -655,3 +655,22 @@ it. Authorization identity and JSON chain passed; all scientific semantic
 parse counters remained zero. The frozen result remains unchanged and
 unaudited. Exact next authority must explicitly reconcile stored report bytes
 with the frozen body-hash writer convention in R4.
+
+## D2 V2 result-integrity audit harness remediation R4 blocker
+
+- Task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`.
+- Harness Remediation Commit A: `bd0599c6bb6b377d34147a2ede490be061421c9a`.
+- Blocker Freeze Commit B: `f40f2539782af78d5808835da1159b81075cde69`.
+- Blocker artifact:
+  `34acc0c252b13054b15f3ac6fb1a560fdf0c653f2580305c9d582f6a52e863fc`.
+- Report self-hash:
+  `56430aecc90244483cac4f58ef521dfd3e826b9be7fd2df5ca5246847e7c99d0`.
+- Blocker code: `D2_V2_R4_BINDING_REJECTED`.
+- Blocker class:
+  `LOCAL_PRIVATE_CUSTODY_BINDING_REPLAY_REJECTED_BEFORE_SCIENTIFIC_PARSE`.
+
+The sole R4 process passed the public authorization and Markdown provenance
+gate, then stopped at the local private-custody binding replay before any
+scientific semantic parse. R4 was not retried. The frozen V2 result remains
+unchanged and unaudited. No successor task is authorized pending explicit
+custody-binding remediation authority.

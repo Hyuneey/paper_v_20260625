@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r3`
-- Base: `4bfe423dfdf8041a3100248b8dd2db84d6880796`
-- R3 Harness Remediation Commit A: `10f6b179438e70646ff94ca82fdc96ac63d2ba4a`
-- R3 Blocker Freeze Commit B: `1d7a189755a70fabfbd00e66c320373b0ae05f4b`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-result-integrity-audit-harness-remediation-r4`
+- Base: `1a7edb29719768197c8fd3b6ca0556d9bb73d491`
+- R4 Harness Remediation Commit A: `bd0599c6bb6b377d34147a2ede490be061421c9a`
+- R4 Blocker Freeze Commit B: `f40f2539782af78d5808835da1159b81075cde69`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r3`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r4`
 - Scientific state: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`
+- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_BINDING_REMEDIATION_TASK`
 
 ## Frozen V2 result
 
@@ -123,3 +123,22 @@ Do not rerun R3, interpret V2, compare V1/V2, authorize OUTER, or access
 test2. R4 must explicitly resolve whether committed CRLF bytes or canonical
 writer-normalized LF bytes are the controlling Markdown authority, without
 modifying the frozen authorization or scientific result.
+
+## R4 remediation blocker handoff
+
+- Blocker artifact:
+  `34acc0c252b13054b15f3ac6fb1a560fdf0c653f2580305c9d582f6a52e863fc`.
+- Code: `D2_V2_R4_BINDING_REJECTED`.
+- Public gate: authorization identity, JSON chain, producer semantics,
+  canonical Markdown body hash, and footer bundle/receipt bindings passed.
+- Root cause class:
+  `LOCAL_PRIVATE_CUSTODY_BINDING_REPLAY_REJECTED_BEFORE_SCIENTIFIC_PARSE`.
+- Sole R4 invocation / retries / completions: `1` / `0` / `0`.
+- R4 authorization JSON / Markdown raw / footer parses: `1` / `1` / `1`;
+  D0, D1, source map, horizon map, CombinedPredictionV2, FusionEvidenceV2,
+  label, and MetricEvidenceV2 semantic parses: all `0`.
+- Total integrity-audit attempts / blocked / completed: `5` / `5` / `0`.
+
+Do not rerun R4, interpret V2, compare V1/V2, authorize OUTER, or access
+test2. No successor task is authorized until an explicit custody-binding
+remediation task is issued.

@@ -65,7 +65,7 @@ D2 V1 remains immutable, while test2 and OUTER remain sealed.
 
 ## Exact next task
 
-`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`
+`NONE_AUTHORIZED_PENDING_EXPLICIT_CUSTODY_BINDING_REMEDIATION_TASK`
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
@@ -146,3 +146,22 @@ R3 was not retried. All prior blockers and the frozen V2 result remain
 unchanged; authoritative execution, test1 feature, test2, OUTER, leakage,
 result-driven changes, and push remain zero. Exact next task:
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R4`.
+
+## D2 V2 result-integrity audit harness remediation R4 blocker
+
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_harness_remediation_r4`.
+- Blocker: `D2_V2_R4_BINDING_REJECTED`.
+- Harness Remediation Commit A: `bd0599c6bb6b377d34147a2ede490be061421c9a`.
+- Blocker Freeze Commit B: `f40f2539782af78d5808835da1159b81075cde69`.
+- Blocker artifact: `34acc0c252b13054b15f3ac6fb1a560fdf0c653f2580305c9d582f6a52e863fc`.
+- The authorization artifact, JSON chain, historical producer semantics,
+  canonical Markdown hash view, and footer bindings passed before the stop.
+- R4 invocation / retry / completion: `1` / `0` / `0`.
+- Authorization JSON / Markdown raw / footer parses: `1` / `1` / `1`;
+  all eight scientific semantic parses: `0`.
+- Total integrity-audit attempts / blocked / completed: `5` / `5` / `0`.
+
+R4 was not retried. All prior blockers and the frozen V2 result remain
+unchanged; authoritative execution, test1 feature, label, test2, OUTER,
+leakage, result-driven changes, and push remain zero. No successor task is
+authorized pending an explicit private-custody binding remediation authority.
