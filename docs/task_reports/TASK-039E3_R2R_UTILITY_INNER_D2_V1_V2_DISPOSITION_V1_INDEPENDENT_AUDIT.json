@@ -1,0 +1,17 @@
+{
+  "accepted_invalid": 0,
+  "artifact_hash": "cfe440e887e9bd9d8961f9c8f4e6040ee396eaa5a20e18dd4ef221a762790888",
+  "artifact_type": "D2V1V2DispositionIndependentAuditV1",
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "independent_attacks": 18,
+  "independent_attacks_rejected": 18,
+  "label_parses": 0,
+  "outer_executions": 0,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "scientific_executions": 0,
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1",
+  "test1_feature_accesses": 0,
+  "test2_accesses": 0
+}

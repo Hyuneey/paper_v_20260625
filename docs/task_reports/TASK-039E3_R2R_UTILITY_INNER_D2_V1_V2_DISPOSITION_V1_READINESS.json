@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "fc976dfb3cb645ea29e0054530c0b1f3cf0427cb383b37899601fe768bbac476",
+  "artifact_type": "D2V1V2DispositionReadinessV1",
+  "blockers": [],
+  "combined_incremental_utility_supported": false,
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1",
+  "inner_fusion_development_closed": true,
+  "outer_authorized": false,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "status": "passed_task039e3_r2r_utility_inner_d2_v1_v2_scientific_disposition_v1",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1"
+}

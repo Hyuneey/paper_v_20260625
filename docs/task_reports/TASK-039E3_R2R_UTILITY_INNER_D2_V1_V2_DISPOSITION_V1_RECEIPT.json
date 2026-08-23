@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "4f670ed37aafaeaa7324b18fdae0272d6390bd9ad0e53b5a708207e06ed5e9cc",
+  "artifact_type": "D2V1V2DispositionReceiptV1",
+  "authority_sha256s": [
+    "32f008bfbcc0d1eea3efa3f27d6684823f6a02c1eab7b38333544198adc6892a",
+    "4704d3a526eab806ece1c511094fc2d2798ff63bac537273d35811ce4e9bbb81",
+    "51589bbf1bd90b2f04504595af465eb7e514061ef21d16ad731e02508072f1b3",
+    "b006b4c79262906087b7a5c52160b9a09926318776339940018d56b3077ef96a",
+    "b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06",
+    "d933d62b4a067e0f71f6dac22b11b32ff1811857b047fde9e4d1f7e947116483"
+  ],
+  "bundle_sha256": "051d9b64988bd15b2e7d9b6b318ee5574896645f434a4a21f8940f1c6391efcf",
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-PREREGISTRATION-AND-AUTHORIZATION-V1",
+  "final_combined_candidate": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
+  "outer_authorized": false,
+  "outer_disposition": "PREREGISTER_D0_D1_D2V1_THREE_ARM_CONFIRMATORY_EVALUATION",
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1"
+}

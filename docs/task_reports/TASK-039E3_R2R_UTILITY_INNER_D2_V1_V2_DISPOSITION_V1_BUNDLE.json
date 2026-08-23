@@ -1,0 +1,19 @@
+{
+  "artifact_hash": "051d9b64988bd15b2e7d9b6b318ee5574896645f434a4a21f8940f1c6391efcf",
+  "artifact_type": "D2V1V2DispositionBundleV1",
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "fusion_finding_sha256": "cdba306dbf0bd9b81373544135a1deed6629f0b5a190316d45e8cca6e8e321c9",
+  "independent_audit_sha256": "cfe440e887e9bd9d8961f9c8f4e6040ee396eaa5a20e18dd4ef221a762790888",
+  "outer_candidate_sha256": "1bbd479ce6db1a597f441e151428a069895f9a3cef6a2ff0e78552f23c16ca20",
+  "primary_comparison_sha256": "bc72768fb01c1f4d1f0a6f36de1be146d5b62ec5b4bc73f7b64f7b774d26e3d3",
+  "push_attempted": false,
+  "readiness_sha256": "fc976dfb3cb645ea29e0054530c0b1f3cf0427cb383b37899601fe768bbac476",
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "report_body_sha256": "4dfe4410d0b417895f5f03469dce69708c4ae3e340afeb1581d3785108d9b8fd",
+  "report_hash_scheme": "MARKDOWN_BODY_SHA256_BEFORE_INTEGRITY_FOOTER_V1",
+  "rule_signal_sha256": "bec8681a9b25bcb9a64859d3cebfdb0168b855d3f137735d2224d237e08fb125",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1",
+  "thesis_claims_sha256": "4c68919f6430f914fb0449495adfde2c52efc9b1a4f72897249d829fe496bf70",
+  "v1_v2_comparison_sha256": "eb7903565c35ce7832b699d2012f251991ecb9d30a9add22899fbca5df1f0225"
+}

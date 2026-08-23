@@ -1,0 +1,60 @@
+{
+  "arms": [
+    {
+      "arm_id": "D0_PCA_SPE_V1",
+      "d0_miss_count": null,
+      "d0_misses_recovered": null,
+      "detected_attack_events": 11,
+      "incremental_normal_far_vs_d0": null,
+      "incremental_recall_vs_d0": null,
+      "normal_false_alarm_episodes": 7,
+      "normal_far_per_hour": 0.4939336325682589,
+      "recall": 0.7857142857142857,
+      "role": "REFERENCE_DETECTOR_BASELINE"
+    },
+    {
+      "arm_id": "COMMON_42_VERIFIED_RULE_ONLY",
+      "d0_miss_count": 3,
+      "d0_misses_recovered": 3,
+      "detected_attack_events": 13,
+      "incremental_normal_far_vs_d0": null,
+      "incremental_recall_vs_d0": null,
+      "normal_false_alarm_episodes": 574,
+      "normal_far_per_hour": 40.50255787059723,
+      "recall": 0.9285714285714286,
+      "role": "HIGH_SENSITIVITY_HIGH_FALSE_ALARM_COMPLEMENTARY_RULE_SIGNAL"
+    },
+    {
+      "arm_id": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
+      "d0_miss_count": 3,
+      "d0_misses_recovered": 0,
+      "detected_attack_events": 11,
+      "incremental_normal_far_vs_d0": 0.21168584252925388,
+      "incremental_recall_vs_d0": 0.0,
+      "normal_false_alarm_episodes": 10,
+      "normal_far_per_hour": 0.7056194750975128,
+      "recall": 0.7857142857142857,
+      "role": "COMBINED_V1_NO_INCREMENTAL_UTILITY"
+    },
+    {
+      "arm_id": "D2_V2_D0_PLUS_NATIVE_HORIZON_MULTI_SOURCE_CORROBORATION_V1",
+      "d0_miss_count": 3,
+      "d0_misses_recovered": 0,
+      "detected_attack_events": 11,
+      "incremental_normal_far_vs_d0": 6.421137223387365,
+      "incremental_recall_vs_d0": 0.0,
+      "normal_false_alarm_episodes": 98,
+      "normal_far_per_hour": 6.915070855955625,
+      "recall": 0.7857142857142857,
+      "role": "COMBINED_V2_NO_INCREMENTAL_UTILITY_HIGHER_FALSE_ALARM_COST"
+    }
+  ],
+  "artifact_hash": "bc72768fb01c1f4d1f0a6f36de1be146d5b62ec5b4bc73f7b64f7b774d26e3d3",
+  "artifact_type": "D2V1V2PrimaryComparisonV1",
+  "attack_event_count": 14,
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1"
+}

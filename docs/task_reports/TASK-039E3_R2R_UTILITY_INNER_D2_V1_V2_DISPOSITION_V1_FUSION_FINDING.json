@@ -1,0 +1,14 @@
+{
+  "artifact_hash": "cdba306dbf0bd9b81373544135a1deed6629f0b5a190316d45e8cca6e8e321c9",
+  "artifact_type": "D2V1V2FusionFindingV1",
+  "combined_incremental_utility_supported_on_inner": false,
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "d2_v2_fixed_v1_recovery_failure": false,
+  "further_inner_d2_fusion_redesign_recommended": false,
+  "further_inner_fusion_parameter_search_authorized": false,
+  "inner_fusion_development_stop": true,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1"
+}

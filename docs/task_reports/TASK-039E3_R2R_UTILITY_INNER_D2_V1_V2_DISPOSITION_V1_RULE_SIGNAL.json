@@ -1,0 +1,14 @@
+{
+  "artifact_hash": "bec8681a9b25bcb9a64859d3cebfdb0168b855d3f137735d2224d237e08fb125",
+  "artifact_type": "D2V1V2RuleSignalDispositionV1",
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "d0_d1_union_coverage": "14/14",
+  "d0_misses_detected_by_d1": 3,
+  "finding": "RULE_SIGNAL_PRESENT_BUT_CURRENT_FUSION_UTILITY_UNSUPPORTED",
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "rule_layer_complementary_event_information_supported": true,
+  "rule_only_operational_utility_supported": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1"
+}

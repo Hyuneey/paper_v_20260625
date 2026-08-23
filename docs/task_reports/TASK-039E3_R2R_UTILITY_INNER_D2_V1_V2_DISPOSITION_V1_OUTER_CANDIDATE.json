@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "1bbd479ce6db1a597f441e151428a069895f9a3cef6a2ff0e78552f23c16ca20",
+  "artifact_type": "D2V1V2OuterCandidateV1",
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "d2_v2_in_primary_outer": false,
+  "final_combined_policy_candidate": "D2_D0_PLUS_VERIFIED_RULE_CORROBORATION_V1",
+  "outer_authorized": false,
+  "outer_disposition": "PREREGISTER_D0_D1_D2V1_THREE_ARM_CONFIRMATORY_EVALUATION",
+  "proposed_outer_arms": [
+    "D0_DETECTOR_ONLY",
+    "D1_RULE_ONLY",
+    "D2_V1_COMBINED"
+  ],
+  "proposed_outer_primary_arm_count": 3,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "selection_provenance": "SELECTED_AFTER_COMPLETED_INNER_DEVELOPMENT_COMPARISON",
+  "selection_reason": "SIMPLER_SAME_RECALL_SUBSTANTIALLY_LOWER_FAR_THAN_V2",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1"
+}

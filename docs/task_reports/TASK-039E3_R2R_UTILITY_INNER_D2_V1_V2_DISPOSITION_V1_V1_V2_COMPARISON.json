@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "eb7903565c35ce7832b699d2012f251991ecb9d30a9add22899fbca5df1f0225",
+  "artifact_type": "D2V1V2ComparisonV1",
+  "created_at_utc": "2026-08-23T09:53:45Z",
+  "d2_v2_disposition": "RETAIN_AS_DEVELOPMENTAL_NEGATIVE_ABLATION",
+  "d2_v2_pareto_dominated_by_d2_v1_on_inner_primary_utility": true,
+  "push_attempted": false,
+  "remote_egress_status": "LOCAL_ONLY_NOT_PUSHED",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1",
+  "v1_far": 0.7056194750975128,
+  "v1_recall_equals_v2_recall": true,
+  "v1_v2_d0_miss_recovery_equal_zero": true,
+  "v2_far": 6.915070855955625,
+  "v2_v1_far_ratio": 9.799999999999999
+}
