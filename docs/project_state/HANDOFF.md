@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-schema-parser-remediation-r3`
-- Base: `9672aaf15eb00761b334ea96eb9024e058940d27`
-- Accounting Schema R3 Commit A: `453e379ab32b3a700b30db9507a068dc6b002982`
-- Blocker Freeze Commit B: `9b102d531e5cc8b108809e4ea3823bfce39e0e56`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-schema-parser-remediation-r4`
+- Base: `100b894728624040603de9e9aff4c528d58789d1`
+- Accounting Schema R4 Commit A: `f36704ab575725d86aa46b2fa2b57ce138341e8f`
+- Blocker Freeze Commit B: `0b1a88d85860413412e8757765ff56d6379b54d1`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r3`
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r4`
 - Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_ACCOUNTING_SCHEMA_R4_REMEDIATION`
+- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_ACCOUNTING_SCHEMA_R5_REPORT_RENDER_REMEDIATION`
 
 ## Frozen V2 result
 
@@ -268,3 +268,24 @@ blocker code/hash passed before stop. The invocation was not retried.
 Scientific artifacts, labels, private evidence, features, test2, and OUTER
 were not opened or accessed. Result-integrity and interpretation-ready remain
 false.
+
+## R5 accounting-schema parser remediation R4 blocker handoff
+
+- Blocker artifact:
+  `4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853`.
+- Report self-hash:
+  `d8e94c9813b8fd2f25bc27b3704c19c213947fa2e7a03487b44584e268df67ff`.
+- Code: `D2_V2_ACCOUNTING_R4_REPORT_RENDER_INPUT_SCHEMA_REJECTED`.
+- Root cause: the final report body requested `v2_recall`; the canonical
+  completion object names the field `v2_attack_event_recall`.
+- Sole R4 invocation / retries / completions: `1` / `0` / `0`.
+- Public accounting parses: `1`; all 28 semantics passed.
+- Static tests: `46 / 46`; adversarial attacks: `24 / 24` rejected.
+
+R4 correctly removed legacy lifecycle reconstruction from the scientific pass
+gate. Historical hash/ancestry preservation, the committed R5 oracle snapshot,
+custody compatibility, Result Freeze immutability, and public leakage all
+passed. The renderer then failed before writing any completion artifact. No
+retry, scientific/private/label/feature/test2/OUTER access, scientific
+execution, result change, leakage, or push occurred. Result-integrity and
+interpretation-ready remain false.

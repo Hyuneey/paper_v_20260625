@@ -618,3 +618,26 @@ Append new entries; never rewrite historical decisions.
 - Evidence:
   `863e6204325087a0560f9fbed330580931003f517b951a79ae721c6e745bff4b`.
 - Next authority: none pending an explicit accounting-schema R4 remediation.
+
+## DEC-D2-020
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Treat legacy blocker lifecycle reconstruction as non-gating
+  historical provenance, while retaining exact blocker hash and freeze-ancestry
+  preservation as mandatory.
+- Evidence: the sole R4 invocation validated all historical identities, the
+  AST-only 36-field accounting producer, all 28 accounting semantics, the R5
+  full-oracle snapshot, custody compatibility, Result Freeze immutability, and
+  public leakage.
+- Blocker: final Markdown rendering requested `v2_recall`, but the canonical
+  completion object exposes `v2_attack_event_recall`; no completion artifacts
+  were written and the invocation was not retried.
+- Accounting: six historical full audits remain blocked; accounting completion
+  remediation attempts are four and completed evidence sets remain zero.
+- Preservation: no scientific artifact, label, feature, private evidence,
+  test2, or OUTER data was opened; no scientific execution, result change,
+  leakage, retry, or push occurred.
+- Evidence:
+  `4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853`.
+- Next authority: none pending an explicit report-render remediation.

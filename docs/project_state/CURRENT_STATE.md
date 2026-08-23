@@ -310,3 +310,27 @@ task ID to be duplicated in current continuity. The task ledger already binds
 that exact task ID, freeze commit, blocker hash, and BLOCK state. No retry or
 scientific access occurred; integrity-audited and interpretation-ready remain
 false.
+
+## D2 V2 R5 accounting-schema parser remediation R4 blocker
+
+- Status:
+  `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r4`.
+- Blocker: `D2_V2_ACCOUNTING_R4_REPORT_RENDER_INPUT_SCHEMA_REJECTED`.
+- Accounting Schema R4 Commit A:
+  `f36704ab575725d86aa46b2fa2b57ce138341e8f`.
+- Blocker Freeze Commit B:
+  `0b1a88d85860413412e8757765ff56d6379b54d1`.
+- Blocker artifact:
+  `4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853`.
+- Invocation / retries / completions: `1` / `0` / `0`.
+- Static tests: `46 / 46`; adversarial attacks: `24 / 24` rejected.
+
+R4 correctly made legacy blocker lifecycle reconstruction non-gating. The
+single public-only invocation then validated exact blocker preservation, the
+36-field AST accounting producer, all 28 required accounting semantics, the
+committed R5 full-oracle snapshot, custody compatibility, Result Freeze
+immutability, and public leakage. It stopped only when the Markdown renderer
+requested `v2_recall` from a canonical completion object that names the field
+`v2_attack_event_recall`. No completion report or canonical completion
+artifact was written. No retry or scientific access occurred; integrity-
+audited and interpretation-ready remain false.

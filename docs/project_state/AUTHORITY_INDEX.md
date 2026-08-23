@@ -788,3 +788,21 @@ authority.
 This public-only harness blocker grants no accounting retry, scientific
 reparse, result-integrity completion, interpretation, test2, or OUTER
 authority.
+
+## D2 V2 R5 accounting-schema parser remediation R4 blocker
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R4`.
+- Base: `100b894728624040603de9e9aff4c528d58789d1`.
+- R4 implementation: `f36704ab575725d86aa46b2fa2b57ce138341e8f`.
+- Blocker freeze: `0b1a88d85860413412e8757765ff56d6379b54d1`.
+- Blocker artifact:
+  `4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853`.
+- Report self-hash:
+  `d8e94c9813b8fd2f25bc27b3704c19c213947fa2e7a03487b44584e268df67ff`.
+- Code: `D2_V2_ACCOUNTING_R4_REPORT_RENDER_INPUT_SCHEMA_REJECTED`.
+
+All scientifically relevant public accounting and committed-oracle gates
+passed. The remaining blocker is a report-render field-name mismatch. This
+authority grants no retry, result-integrity completion, interpretation, test2,
+or OUTER authority.
