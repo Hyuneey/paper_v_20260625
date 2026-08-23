@@ -1,0 +1,21 @@
+{
+  "artifact_hash": "6df121d976f5512c8d7999f35e4140abb04ac919b9d3df07428156e8f3f9080b",
+  "artifact_type": "OuterPrivatePathRedactionAuditR2",
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "historical_ephemeral_path_exposures": 12,
+  "historical_private_path_exposures": 12,
+  "historical_root_cause": "DIAGNOSTIC_SEARCH_EMITTED_PRIVATE_LOCATOR_ASSIGNMENT_LINES_TO_TOOL_STDOUT",
+  "historical_scientific_private_value_leaks": 0,
+  "historical_tracked_path_exposures": 0,
+  "new_continuity_occurrences": 0,
+  "new_exception_occurrences": 0,
+  "new_public_json_occurrences": 0,
+  "new_public_markdown_occurrences": 0,
+  "new_scientific_private_value_leaks": 0,
+  "new_stderr_occurrences": 0,
+  "new_stdout_occurrences": 0,
+  "policy": "OuterPrivatePathRedactionR2",
+  "result": "PASS",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2"
+}

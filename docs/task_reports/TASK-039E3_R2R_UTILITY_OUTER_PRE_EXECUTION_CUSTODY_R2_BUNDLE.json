@@ -1,0 +1,22 @@
+{
+  "artifact_hash": "44e89690da724a0b3dd351904bb3b13e8a90f4cfa8d5c2ac7ed5335aec281b6c",
+  "artifact_type": "OuterPreExecutionCustodyBundleR2",
+  "component_hashes": {
+    "compatibility": "536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0",
+    "independent": "140d2d61cefea1cdfe82bad99d7a4e3a89eb2ffa0c53e7f7343658def05459f9",
+    "model": "b97d4899f0869a20c1aacc147acdcfe537b84d6b8f72f5dd2b29aa159229bed5",
+    "namespaces": "dedc2c7829122e5fc6bf8d623c2d0df68ed35c31e516a41e5942ec36b1d48279",
+    "readiness": "05aa268559a4c1830896e07f42fb6661b007c0c398ea6439fadbb98cddd82e59",
+    "redaction": "6df121d976f5512c8d7999f35e4140abb04ac919b9d3df07428156e8f3f9080b",
+    "root_cause": "cf613022fbd6068bb55cd5dda901058b8555e0cd00eda4a4e66470bb96758b2e",
+    "schema": "f8bf60d9a3a69628f13361372820fb9dd1cf0c367085360bdf20a4a84c9f773f",
+    "sentinel": "84ce4999af15b3e052bece2577c3e9811859149bcfd491273631fb5aa65681fa",
+    "threshold": "34e8eaffd80b4f9688a1d50835f6aa7d31767f8ac1201af949da6738757d1b2c"
+  },
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "implementation_commit_a": "5484791027c2a5797c373471b51c73ccc5b5a329",
+  "implementation_source_sha256": "b0853e5857298645e1f71d9ef037589090090e8e548260d49b759a2013e0552c",
+  "report_body_sha256": "6a1a0f3ad610fb5214f0c42c9c61058ab991a29a21905554c027b5a9a7824ba0",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2"
+}

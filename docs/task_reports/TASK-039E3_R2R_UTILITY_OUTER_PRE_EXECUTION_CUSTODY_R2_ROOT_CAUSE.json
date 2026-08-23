@@ -1,0 +1,15 @@
+{
+  "artifact_hash": "cf613022fbd6068bb55cd5dda901058b8555e0cd00eda4a4e66470bb96758b2e",
+  "artifact_type": "OuterLocalBindingRootCauseR2",
+  "classification": "R1_EXPECTED_OBSOLETE_LOCAL_BINDING_SCHEMA",
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "exact_explanation": "REMEDIATION_ALLOWLIST_USED_LEGACY_D1_PRIVATE_BINDING_KEYS_AND_REJECTED_CURRENT_CANONICAL_D1_BINDING_KEYS",
+  "mismatch_dimension": "FIELD_NAME",
+  "obsolete_field_count": 4,
+  "r1_blocker_sha256": "ab428d3167608dda96225c9d9b7c89b4c65760cc2cc99fc054aa317d2126c65c",
+  "root_cause_result_driven": false,
+  "root_cause_scientific": false,
+  "root_cause_test2_related": false,
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2"
+}

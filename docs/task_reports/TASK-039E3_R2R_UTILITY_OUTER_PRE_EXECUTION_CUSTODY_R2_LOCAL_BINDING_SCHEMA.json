@@ -1,0 +1,95 @@
+{
+  "artifact_hash": "f8bf60d9a3a69628f13361372820fb9dd1cf0c367085360bdf20a4a84c9f773f",
+  "artifact_type": "OuterLocalBindingSchemaAuditR2",
+  "binding_schema_static_recoveries": 3,
+  "canonical_binding_field_count": 8,
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "explicit_mappings": {
+    "TASK039E3_UTILITY_NORMAL_ONLY_PRIVATE_LOCATOR_V1": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1_LOCATOR",
+    "TASK039E3_UTILITY_NORMAL_ONLY_PRIVATE_REGISTRY_V1": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_PRIVATE_LOCATOR_V1": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1_LOCATOR",
+    "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_PRIVATE_REGISTRY_V1": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1"
+  },
+  "explicit_schema_mapping_count": 4,
+  "fields": [
+    {
+      "aliases": [],
+      "canonical_name": "HAI_DATA_ROOT",
+      "required": true,
+      "semantic_role": "DATASET_LOCAL_ROOT",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [
+        "TASK039E3_UTILITY_NORMAL_ONLY_PRIVATE_REGISTRY_V1"
+      ],
+      "canonical_name": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+      "required": true,
+      "semantic_role": "D1_MAIN_PRIVATE_REGISTRY",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [
+        "TASK039E3_UTILITY_NORMAL_ONLY_PRIVATE_LOCATOR_V1"
+      ],
+      "canonical_name": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1_LOCATOR",
+      "required": true,
+      "semantic_role": "D1_MAIN_PRIVATE_LOCATOR",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [
+        "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_PRIVATE_REGISTRY_V1"
+      ],
+      "canonical_name": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1",
+      "required": true,
+      "semantic_role": "D1_SUPPLEMENT_PRIVATE_REGISTRY",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [
+        "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_PRIVATE_LOCATOR_V1"
+      ],
+      "canonical_name": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1_LOCATOR",
+      "required": true,
+      "semantic_role": "D1_SUPPLEMENT_PRIVATE_LOCATOR",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [],
+      "canonical_name": "TASK039E3_D0_PCA_SPE_PREPROCESSING_V1",
+      "required": true,
+      "semantic_role": "D0_PREPROCESSING_AUTHORITY",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [],
+      "canonical_name": "TASK039E3_D0_PCA_SPE_MODEL_V1",
+      "required": true,
+      "semantic_role": "D0_MODEL_AUTHORITY",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    },
+    {
+      "aliases": [],
+      "canonical_name": "TASK039E3_D0_PCA_SPE_THRESHOLD_V1",
+      "required": true,
+      "semantic_role": "D0_THRESHOLD_AUTHORITY",
+      "stability_class": "ENVIRONMENT_LOCAL_LOCATOR",
+      "value_type": "NONEMPTY_PATH_STRING"
+    }
+  ],
+  "fuzzy_mappings_used": false,
+  "r1_obsolete_or_incorrect_field_count": 4,
+  "schema_identity": "533627b18c29be21435f9641b6ec8583f88586af1cd766bd41fab67ea0cecbd1",
+  "schema_recovery_method": "PYTHON_AST_STRUCTURAL_EXTRACTION",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2",
+  "unknown_canonical_binding_fields": 0
+}

@@ -1,0 +1,21 @@
+{
+  "absolute_path_equality_required": false,
+  "artifact_hash": "b97d4899f0869a20c1aacc147acdcfe537b84d6b8f72f5dd2b29aa159229bed5",
+  "artifact_type": "OuterD0ModelBindingAuditR2",
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "d0_design_sha256": "357d19d02dee73273d52c7b147b5ddcfa11ead43a7198f2bf089ec78c2d8e174",
+  "d0_implementation_identity": "8f00469a632643cd10cc4257f5d1fe380036c7763b03cb70b13d01815a287ee2",
+  "expected_model_sha256": "f32943cc2172100c77514d9ce8f6731978b51934e753234b2d34b5154127b54b",
+  "located": true,
+  "logical_binding_pass": true,
+  "logical_role": "task039e3_r2r_d0_pca_model_artifact_v1",
+  "observed_model_sha256_match": true,
+  "outside_git": true,
+  "private_path_exposed": false,
+  "regular_file": true,
+  "schema_version": "1.0.0",
+  "security_policy_pass": true,
+  "symlink": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2",
+  "tracked_copy_count": 0
+}

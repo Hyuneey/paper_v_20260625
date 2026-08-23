@@ -1,0 +1,20 @@
+{
+  "artifact_hash": "84ce4999af15b3e052bece2577c3e9811859149bcfd491273631fb5aa65681fa",
+  "artifact_type": "OuterCustodySentinelAuditR2",
+  "atomic_create": true,
+  "atomic_rename": true,
+  "attempts": 1,
+  "cleanup": true,
+  "configured": true,
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "outside_git": true,
+  "preflight_sha256": "945ff83f929d0f98ebc6ed942a0cbf1053dcb995fcc6ece40178793cc47cb917",
+  "reopen": true,
+  "residue_count": 0,
+  "retries": 0,
+  "schema_version": "1.0.0",
+  "symlink": false,
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2",
+  "test2_accesses": 0,
+  "writable": true
+}

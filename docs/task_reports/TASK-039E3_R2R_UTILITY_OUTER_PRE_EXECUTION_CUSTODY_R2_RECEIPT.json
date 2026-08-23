@@ -1,0 +1,16 @@
+{
+  "artifact_hash": "cfe23699eb2ad3e00058cec696a0ed8eaaad72a151a0f7b608f6d0c82f863702",
+  "artifact_type": "OuterPreExecutionCustodyReceiptR2",
+  "bundle_sha256": "44e89690da724a0b3dd351904bb3b13e8a90f4cfa8d5c2ac7ed5335aec281b6c",
+  "compatibility_receipt_sha256": "536a156a085968234db86c6650bff3c65dc3c210ce9914432c35b3f17d4872b0",
+  "created_at_utc": "2026-08-23T13:02:11Z",
+  "exact_next_task": "TASK-039E3-R2R-UTILITY-OUTER-D0-D1-D2V1-EXECUTION-RECOVERY-V1",
+  "report_body_sha256": "6a1a0f3ad610fb5214f0c42c9c61058ab991a29a21905554c027b5a9a7824ba0",
+  "schema_version": "1.0.0",
+  "scientific_attempts_consumed": 0,
+  "scientific_attempts_remaining": 1,
+  "scientific_state": "OUTER_ONE_SHOT_AUTHORIZATION_UNUSED_AND_INFRASTRUCTURE_READY",
+  "status": "passed_task039e3_r2r_utility_outer_pre_execution_private_custody_and_path_redaction_remediation_r2",
+  "task_id": "TASK-039E3-R2R-UTILITY-OUTER-PRE-EXECUTION-PRIVATE-CUSTODY-AND-PATH-REDACTION-REMEDIATION-R2",
+  "test2_accesses": 0
+}
