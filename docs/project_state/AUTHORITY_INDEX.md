@@ -771,3 +771,20 @@ scientific or private authority was reopened, and no retry is authorized.
 This is a public-metadata replay defect only. It grants no scientific reparse,
 execution, result-integrity completion, interpretation, test2, or OUTER
 authority.
+
+## D2 V2 R5 accounting-schema parser remediation R3 blocker
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R3`.
+- Base: `9672aaf15eb00761b334ea96eb9024e058940d27`.
+- R3 implementation: `453e379ab32b3a700b30db9507a068dc6b002982`.
+- Blocker freeze: `9b102d531e5cc8b108809e4ea3823bfce39e0e56`.
+- Blocker artifact:
+  `863e6204325087a0560f9fbed330580931003f517b951a79ae721c6e745bff4b`.
+- Report self-hash:
+  `4e46af59ea4c72a21f97cf801b5b5bf73d8f505ea4c50655ec428e14084c03f4`.
+- Code: `D2_V2_ACCOUNTING_R3_BLOCKER_LIFECYCLE_REJECTED`.
+
+This public-only harness blocker grants no accounting retry, scientific
+reparse, result-integrity completion, interpretation, test2, or OUTER
+authority.

@@ -598,3 +598,23 @@ Append new entries; never rewrite historical decisions.
   `f4cacb56f9d9225874ca46cde376ea3e22df309c32047dd1805c63425ca1c982`.
 - Next authority:
   `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-EXECUTION-ACCOUNTING-SCHEMA-PARSER-REMEDIATION-R3`.
+
+## DEC-D2-019
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the sole R3 completion invocation without retry after
+  its historical lifecycle triangulation overrequired duplicate continuity.
+- Root cause: R3 required the full older R1 task ID in current continuity even
+  though the exact committed task ledger already binds that task ID, blocker
+  freeze commit, blocker hash, and BLOCK lifecycle state.
+- Evidence before stop: R1 blocker self-hash, report, freeze paths, ledger
+  binding, and continuity blocker code/hash all passed.
+- Accounting: six historical full audits remain blocked; accounting completion
+  remediation attempts are three and completed evidence sets remain zero.
+- Preservation: the public accounting artifact was not parsed; no scientific
+  artifact, label, feature, private evidence, test2, or OUTER data was opened;
+  no retry, result change, leakage, or push occurred.
+- Evidence:
+  `863e6204325087a0560f9fbed330580931003f517b951a79ae721c6e745bff4b`.
+- Next authority: none pending an explicit accounting-schema R4 remediation.

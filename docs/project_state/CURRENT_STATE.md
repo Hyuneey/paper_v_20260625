@@ -288,3 +288,25 @@ required a `status` member absent from the frozen R1 blocker schema. No retry
 occurred. Scientific artifacts, private evidence, labels, features, test2, and
 OUTER remained unopened; V2 integrity-audited and interpretation-ready remain
 false.
+
+## D2 V2 R5 accounting-schema parser remediation R3 blocker
+
+- Status:
+  `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r3`.
+- Blocker: `D2_V2_ACCOUNTING_R3_BLOCKER_LIFECYCLE_REJECTED`.
+- Accounting Schema R3 Commit A:
+  `453e379ab32b3a700b30db9507a068dc6b002982`.
+- Blocker Freeze Commit B:
+  `9b102d531e5cc8b108809e4ea3823bfce39e0e56`.
+- Blocker artifact:
+  `863e6204325087a0560f9fbed330580931003f517b951a79ae721c6e745bff4b`.
+- Invocation / retries / completions: `1` / `0` / `0`.
+- Static tests: `34 / 34`; adversarial attacks: `21 / 21` rejected.
+
+The real invocation validated the exact R1 blocker hash, report, freeze paths,
+task-ledger lifecycle binding, and continuity blocker code/hash. It stopped
+before the accounting parse because R3 additionally required the full older R1
+task ID to be duplicated in current continuity. The task ledger already binds
+that exact task ID, freeze commit, blocker hash, and BLOCK state. No retry or
+scientific access occurred; integrity-audited and interpretation-ready remain
+false.
