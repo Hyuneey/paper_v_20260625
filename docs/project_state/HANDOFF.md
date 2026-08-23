@@ -12,7 +12,7 @@ under the frozen no-retry policy.
   `8ad78f7f49af90942a22585a6b4fcd8d383fc03a` /
   `ee639394200e49ba256a4f5ddf354823779d4512`.
 - Blocker freeze:
-  `c2670f0af2e8b457c2e37fde639ef0d2f2553116`.
+  `c2670f0a49fb704799e62648805188983fb6ef83`.
 - [Sanitized blocker](../task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json):
   `5949aa9aa16df04143bed4bd58a4061306f5e1ed392fc45b39b6cb23c3951d8e`.
 - R2 compatibility authority remained exact:

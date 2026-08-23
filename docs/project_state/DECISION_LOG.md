@@ -788,3 +788,8 @@ Append new entries; never rewrite historical decisions.
   `5949aa9aa16df04143bed4bd58a4061306f5e1ed392fc45b39b6cb23c3951d8e`.
 - Exact next task:
   `TASK-039E3-R2R-UTILITY-OUTER-EXECUTION-FAILURE-DISPOSITION-V1`.
+
+Continuity identity correction: the blocker Freeze Commit C is
+`c2670f0a49fb704799e62648805188983fb6ef83`. This append-only correction
+changes no blocker content, scientific accounting, access accounting, or next
+task.
