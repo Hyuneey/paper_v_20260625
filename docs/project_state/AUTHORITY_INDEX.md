@@ -806,3 +806,33 @@ All scientifically relevant public accounting and committed-oracle gates
 passed. The remaining blocker is a report-render field-name mismatch. This
 authority grants no retry, result-integrity completion, interpretation, test2,
 or OUTER authority.
+
+## D2 V2 result-integrity report-render completion R1
+
+- Task:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-R5-ACCOUNTING-R5-REPORT-RENDER-REMEDIATION-R1`.
+- Implementation / report freeze:
+  `02c9f4c9b8bdd29c71dff12eed700e4db54c8c10` /
+  `228f1e94baed531ae8d9503cb3c5ec0a3aa47f6b`.
+- Root cause / input schema / field mapping:
+  `502038520b62c4fca0e5ddb868be89c951e1248596f32ca89627f9fe7738c7fb` /
+  `8ab0a02628fb5ec1b2b978083afb43d47774c59ce3cf961018e71620fa9cb7cb` /
+  `43e44fa20fe9c4f7993be9c3c7b65c98e831f785085e3fa4ccdf20937ed4baf9`.
+- Scientific / accounting snapshots:
+  `22e69d6f3f8d2d9a366aab5fd0a0ab3b582e5795241f43c11c9eb9ae25417ee2` /
+  `8518e94c01da688f750b9c897c62cc25c61a8032c507eead9763aac3fbafbfe4`.
+- Completion / independent / readiness:
+  `511deb9ac02f73ffb85fa89895048306e19b3b1352376c1ac1e54ff77570ef0a` /
+  `7c80d73e73245d1d05c05d3547ed3db18b7928585d38e3b77ad82780421b8692` /
+  `df6d2b25332610bd8a58730422732bee2e92045d157168c88e1209929ab95e1f`.
+- Bundle / receipt / report:
+  `a0b241914ceee485f8b60f008af7b4264ee2b4520372296e43412ac1a6f71fa0` /
+  `41d20caec7e63a5e0d1e3b8190823514bf9ad608e4171f203cbb7c650609d707` /
+  `6f178e5189ded72745d8982076bcf240d36bb594ff2b1ec77bcf9e4c286f5522`.
+- Canonical result-integrity completion:
+  `b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06`.
+
+This authority serializes the already-completed R5 scientific oracle and R4
+public accounting evidence. It adds no scientific execution or accounting
+audit. D2 V2 result integrity is audited and interpretation-ready; OUTER
+remains unauthorized pending the exact V1/V2 scientific disposition task.

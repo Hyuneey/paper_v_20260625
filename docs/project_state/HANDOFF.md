@@ -1,15 +1,15 @@
 # Session handoff
 
 - Repository: `Hyuneey/paper_v_20260625`
-- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-execution-accounting-schema-parser-remediation-r4`
-- Base: `100b894728624040603de9e9aff4c528d58789d1`
-- Accounting Schema R4 Commit A: `f36704ab575725d86aa46b2fa2b57ce138341e8f`
-- Blocker Freeze Commit B: `0b1a88d85860413412e8757765ff56d6379b54d1`
+- Branch: `task-039e3-r2r-utility-inner-d2-v2-r5-accounting-r5-report-render-remediation-r1`
+- Base: `a44e8809da7c7888ead28a2669d7d5e87f087ad8`
+- Report Render Remediation Commit A: `02c9f4c9b8bdd29c71dff12eed700e4db54c8c10`
+- Completion Report Freeze Commit B: `228f1e94baed531ae8d9503cb3c5ec0a3aa47f6b`
 - Preserved V2 Result Freeze Commit: `55d41c543e110a9a6f0f5e2e2671857dba938aaa`
-- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_r5_execution_accounting_schema_parser_remediation_r4`
-- Scientific state: `D2_V2_EXECUTED_RESULT_INTEGRITY_AUDIT_BLOCKED`
+- Status: `passed_task039e3_r2r_utility_inner_d2_v2_r5_accounting_r5_report_render_remediation_r1`
+- Scientific state: `D2_V2_RESULT_INTEGRITY_AUDITED`
 - Remote state: `LOCAL_ONLY_NOT_PUSHED`
-- Exact next task: `NONE_AUTHORIZED_PENDING_EXPLICIT_ACCOUNTING_SCHEMA_R5_REPORT_RENDER_REMEDIATION`
+- Exact next task: `TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`
 
 ## Frozen V2 result
 
@@ -46,9 +46,11 @@ single label parse; all six metrics froze. D0/D1/D2 V1 execution, D0 score
 access, rule reevaluation, test1 feature access, test2, OUTER, private leakage,
 result-driven changes, and push remained zero.
 
-D2 V1 remains immutable. Do not interpret V2 or compare it with V1 yet. The
-R5 audit is blocked and must not be retried. No task may rerun V2, interpret
-V2, compare V1/V2, authorize OUTER, or access test2 without new authority.
+D2 V1 remains immutable. The historical R5 audit remains blocked and must not
+be retried, but its completed oracle evidence plus the R4 accounting evidence
+is now covered by the canonical completion authority. Do not rerun V2 or
+access test2. V1/V2 interpretation is authorized only through the exact next
+scientific disposition task; OUTER remains unauthorized.
 
 ## Current blocker handoff
 
@@ -250,6 +252,29 @@ invocation was not retried. Scientific artifacts, labels, private evidence,
 features, test2, and OUTER were not opened or accessed. Result-integrity and
 interpretation-ready remain false.
 
+## Final D2 V2 result-integrity completion handoff
+
+- Completion method:
+  `R5_FULL_SCIENTIFIC_ORACLE_PLUS_R4_PUBLIC_ACCOUNTING_PLUS_RENDER_R1`.
+- Canonical completion:
+  `b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06`.
+- Root cause / schema / mapping:
+  `502038520b62c4fca0e5ddb868be89c951e1248596f32ca89627f9fe7738c7fb` /
+  `8ab0a02628fb5ec1b2b978083afb43d47774c59ce3cf961018e71620fa9cb7cb` /
+  `43e44fa20fe9c4f7993be9c3c7b65c98e831f785085e3fa4ccdf20937ed4baf9`.
+- Bundle / receipt / report:
+  `a0b241914ceee485f8b60f008af7b4264ee2b4520372296e43412ac1a6f71fa0` /
+  `41d20caec7e63a5e0d1e3b8190823514bf9ad608e4171f203cbb7c650609d707` /
+  `6f178e5189ded72745d8982076bcf240d36bb594ff2b1ec77bcf9e4c286f5522`.
+
+The renderer mismatch was non-scientific and non-accounting-semantic. The
+single render invocation mapped all 46 required fields, rejected 21 attacks,
+and validated JSON self-hashes plus Markdown bundle/receipt provenance. It did
+not reopen scientific artifacts, re-audit accounting, parse labels, or access
+test1 features/test2. Historical blocked audit/remediation records remain
+immutable. Proceed only with the exact V1/V2 scientific disposition task; do
+not execute OUTER.
+
 ## R5 accounting-schema parser remediation R3 blocker handoff
 
 - Blocker artifact:
@@ -289,3 +314,12 @@ passed. The renderer then failed before writing any completion artifact. No
 retry, scientific/private/label/feature/test2/OUTER access, scientific
 execution, result change, leakage, or push occurred. Result-integrity and
 interpretation-ready remain false.
+
+## Current disposition after render remediation R1
+
+The historical R4 blocker above remains immutable. Render remediation R1
+subsequently froze the canonical completion authority
+`b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06`.
+D2 V2 is now integrity-audited and interpretation-ready. OUTER is still
+unauthorized. The exact next task is
+`TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`.

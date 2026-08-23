@@ -641,3 +641,25 @@ Append new entries; never rewrite historical decisions.
 - Evidence:
   `4974d124e48a74f4f4c82f71a4839c8429469047699c2a62122f222393713853`.
 - Next authority: none pending an explicit report-render remediation.
+
+## DEC-D2-021
+
+- Date: 2026-08-23
+- Status: passed
+- Decision: Accept the committed R5 full scientific oracle plus the completed
+  R4 public accounting audit as one D2 V2 result-integrity evidence set after
+  repairing only the final typed report-render mapping.
+- Root cause disposition: `RENDERER_USED_LEGACY_FIELD_NAME`; the defect was
+  neither scientific, accounting-semantic, nor result-driven.
+- Evidence: all `46 / 46` report fields mapped exactly, all closure and
+  mutation counts were zero, `46 / 46` static tests passed, and `21 / 21`
+  adversarial attacks were rejected.
+- Preservation: six historical blocked full audits remain immutable; the
+  scientific V2 execution remains one attempt and zero retries. No scientific
+  artifact or label was reopened, no accounting semantic was recomputed, and
+  test1 feature, test2, OUTER, result-driven change, leakage, and push remained
+  zero.
+- Completion authority:
+  `b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V1-V2-SCIENTIFIC-DISPOSITION-V1`.
