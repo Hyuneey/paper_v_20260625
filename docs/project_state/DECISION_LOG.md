@@ -377,3 +377,18 @@ Append new entries; never rewrite historical decisions.
   `ace631af367ee2abe1b0ee7658875eeb59a2a8d906d09ce8ea92e8f2d83e31e4`
   and receipt
   `df98ca12e6a83c5ae9d73c80f7a26f0b1189a3743101d5342ed908017304dd7f`.
+
+## DEC-D2-009
+
+- Date: 2026-08-23
+- Status: blocked
+- Decision: Fail closed the D2 V2 result-integrity audit because two audit
+  harness preflight defects were exposed only after scientific authority reads
+  began, making the required exactly-once audit accounting unattainable.
+- Preservation: The D2 V2 result and execution code remain byte-unchanged;
+  authoritative executions, label parsing, test1-feature/test2/OUTER access,
+  result-driven changes, and push remained zero.
+- Evidence:
+  `592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879`.
+- Next authority:
+  `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R1`.

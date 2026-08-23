@@ -588,3 +588,16 @@ retry, D0/D1/D2 V1 rerun, D0 score, rule reevaluation, test1 feature, test2,
 OUTER, private leakage, result-driven change, or push occurred. Result
 integrity remains pending; the exact next task is
 `TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-V1`.
+
+## D2 V2 result-integrity audit — fail-closed harness blocker
+
+- Audit Commit A: `5374cc8f92a3c36e707fae8680623df29007831a`.
+- Blocker Freeze Commit B: `e54abe8591aa088e2bb1c7170426240163f67d02`.
+- Blocker:
+  `592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879`.
+- Code: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED_EXACTLY_ONCE_ORACLE_ACCOUNTING_EXCEEDED`.
+
+Two audit-harness preflight defects surfaced only after independent prediction
+and authority reads began. Exactly-once audit accounting can no longer be
+certified in this task. The frozen D2 V2 result remains unchanged; labels,
+test1 features, test2, OUTER, and authoritative executions remained zero.

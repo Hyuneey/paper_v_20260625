@@ -69,3 +69,20 @@ D2 V1 remains immutable, while test2 and OUTER remain sealed.
 
 That task must independently audit the frozen result and must not execute D2
 V2 again.
+
+## D2 V2 result-integrity audit blocker
+
+- Status: `blocked_task039e3_r2r_utility_inner_d2_v2_result_integrity_audit_v1`.
+- Blocker: `D2_V2_RESULT_INTEGRITY_AUDIT_BLOCKED_EXACTLY_ONCE_ORACLE_ACCOUNTING_EXCEEDED`.
+- Audit Commit A: `5374cc8f92a3c36e707fae8680623df29007831a`.
+- Blocker Freeze Commit B: `e54abe8591aa088e2bb1c7170426240163f67d02`.
+- Blocker artifact:
+  `592344d430b50724a7ae4f81ed0e73423ec1473586d0d9a15d2ff68f6009f879`.
+- Audit reads before stop: D0 prediction `2`, D1 prediction `2`, source map
+  `2`, native-horizon map `2`; label parses `0`.
+- Authoritative D0/D1/D2 V1/D2 V2 executions: `0`; frozen-result
+  modifications: `0`; test1 feature/test2/OUTER accesses: `0`.
+
+The result remains frozen but unaudited and uninterpretable. No further oracle
+run is permitted under this task. Exact next task:
+`TASK-039E3-R2R-UTILITY-INNER-D2-V2-RESULT-INTEGRITY-AUDIT-HARNESS-REMEDIATION-R1`.
