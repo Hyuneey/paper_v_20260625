@@ -535,7 +535,9 @@ def main() -> int:
     report_path.write_text(report, encoding="utf-8", newline="\n")
     report_hash = sha256(report.encode("utf-8")).hexdigest()
 
-    python = "C:\\Users\\hyun\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe"
+    # Public reports record the logical interpreter role, never a machine-local
+    # user-home path. The historical generated receipt remains immutable.
+    python = "<BUNDLED_PYTHON>"
     test_runs = [
         {
             "name": "r0_forensics_and_serialization_reproduction",
