@@ -973,3 +973,17 @@ The sole scientific attempt started and was consumed. Initial test2 feature
 custody failed before byte read, hash, or semantic parse. Labels, all three
 arms, predictions, and metrics remained untouched. Retry is prohibited; the
 exact next authority is the explicit OUTER execution failure disposition.
+
+## Professor first-results reporting package
+
+- Package commit: `f1aa767fffc8cce679527274b486457255d06874`.
+- Entry point: [one-page executive summary](../professor_first_results_v1/01_ONE_PAGE_EXECUTIVE_SUMMARY.md).
+- Main report: [first-results report](../professor_first_results_v1/03_FIRST_RESULTS_REPORT.md).
+- Scope: public frozen-result synthesis, implementation inventory,
+  hyperparameter provenance, claim boundaries, and professor decision agenda.
+- Scientific/access accounting: executions `0`, test2 accesses `0`, result
+  changes `0`, new private path/value exposures `0`.
+
+This package is documentation and preservation metadata only. It does not
+replace frozen scientific receipts, authorize OUTER, or modify the existing
+feature-custody blocker.

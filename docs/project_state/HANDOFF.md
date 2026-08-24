@@ -1,5 +1,27 @@
 # Project handoff
 
+## Professor first-results synthesis ready
+
+The human-readable reporting package is available in
+`docs/professor_first_results_v1/` at commit
+`f1aa767fffc8cce679527274b486457255d06874`. It is the briefing entry point;
+the detailed immutable receipts remain scientific authority.
+
+- Frozen INNER conclusion:
+  `RULE_SIGNAL_PRESENT_BUT_CURRENT_FUSION_UTILITY_UNSUPPORTED`.
+- D1 detects all three D0-missed attack events, but D2 V1 and D2 V2 each
+  recover `0 / 3`; combined detector improvement is unsupported on INNER.
+- TSFM and ARTIST-style segment selection are not implemented.
+- OUTER produced no prediction or metric because feature custody failed before
+  any byte read; this is not a negative OUTER scientific result.
+- Reporting activity: zero scientific executions, zero test2 accesses, zero
+  result changes, and zero new private path/value exposures.
+- Recommended default: `THESIS_FIRST_PENDING_PROFESSOR_FEEDBACK`.
+
+The next decision is professor scope selection across contribution framing,
+explanation interface, OUTER necessity, and detector baseline strength. No
+follow-on experiment is authorized by this handoff.
+
 ## Current blocker: first and only OUTER attempt consumed
 
 The recovery implementation passed its complete pre-real gate and began the

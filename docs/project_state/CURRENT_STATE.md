@@ -1,5 +1,26 @@
 # Current project state
 
+## Professor first-results package ready; scope decision pending
+
+The professor-ready first-results package is frozen under
+`docs/professor_first_results_v1/`. It summarizes the professor's original
+feedback, current method and implementation status, frozen INNER results,
+hyperparameter provenance, claim boundaries, OUTER unavailability, and four
+scope decisions. The recommended default is
+`THESIS_FIRST_PENDING_PROFESSOR_FEEDBACK`.
+
+- Reporting package commit: `f1aa767fffc8cce679527274b486457255d06874`.
+- Scientific conclusion:
+  `RULE_SIGNAL_PRESENT_BUT_CURRENT_FUSION_UTILITY_UNSUPPORTED`.
+- Scientific executions / test2 accesses / result changes: `0 / 0 / 0`.
+- New private path or private scientific-value exposures: `0`.
+- OUTER result: unavailable; generalization remains unconfirmed.
+- OUTER authorization: `false`; no retry or new study is authorized.
+
+The existing `OUTER_TEST2_FEATURE_CUSTODY_REJECTED` blocker and its exact
+attempt/access accounting remain unchanged. This reporting task creates no new
+scientific authority.
+
 ## OUTER scientific attempt consumed: feature custody rejected
 
 The first and only authorized sealed OUTER scientific attempt started and
@@ -34,10 +55,12 @@ and metrics all remained unexecuted.
 The scientific attempt is consumed. No retry, second test2 access, policy
 change, D2 V2 substitution, or post-OUTER redesign is authorized.
 
-## Exact next task
+## Exact next decision point
 
-`TASK-039E3-R2R-UTILITY-OUTER-EXECUTION-FAILURE-DISPOSITION-V1`
+Professor decision on: (1) thesis contribution framing, (2) temporal-rule
+trace versus ARTIST-style segment selection, (3) INNER-scoped thesis drafting
+versus a newly preregistered independent OUTER study, and (4) whether PCA-SPE
+is sufficient or one stronger detector baseline is required.
 
-That task may disposition the path-free custody failure and frozen attempt
-history only. It must not rerun test2, execute an arm, parse labels, modify a
-scientific policy, or authorize another attempt automatically.
+No scientific execution, OUTER retry, D2 V3, dataset expansion, or stronger
+baseline is authorized until that decision is recorded.

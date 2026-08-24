@@ -793,3 +793,22 @@ Continuity identity correction: the blocker Freeze Commit C is
 `c2670f0a49fb704799e62648805188983fb6ef83`. This append-only correction
 changes no blocker content, scientific accounting, access accounting, or next
 task.
+
+## DEC-PROF-001 — thesis-first briefing pending professor scope decision
+
+- Date: 2026-08-24.
+- Status: pending professor decision.
+- Decision: freeze a professor-ready synthesis of the existing public evidence
+  and recommend `THESIS_FIRST_PENDING_PROFESSOR_FEEDBACK`; do not initiate new
+  science automatically.
+- Scientific conclusion:
+  `RULE_SIGNAL_PRESENT_BUT_CURRENT_FUSION_UTILITY_UNSUPPORTED`.
+- Rationale: D1 demonstrates detector-complementary event signal on INNER, but
+  neither D2 V1 nor D2 V2 recovers a D0 miss, and OUTER generalization is
+  unavailable because no feature bytes were read.
+- Decisions required: contribution framing, explanation interface, need for a
+  newly preregistered independent OUTER study, and detector baseline strength.
+- Consequence: no D2 V3, test2 retry, TSFM, ARTIST component, dataset expansion,
+  or stronger baseline is authorized before professor feedback.
+- Evidence: `docs/professor_first_results_v1/` at commit
+  `f1aa767fffc8cce679527274b486457255d06874`.
