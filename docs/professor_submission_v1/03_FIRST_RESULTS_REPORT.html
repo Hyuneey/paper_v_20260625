@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>그래프 유도 검증 시간 규칙 — 1차 연구 결과</title>
+  <style>
+    :root { --ink:#172033; --muted:#566175; --blue:#1d4ed8; --pale:#eef4ff; --line:#d8deea; --good:#146c43; --warn:#9a5b00; --bad:#a12828; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:#f4f6fa; font-family:"Noto Sans KR","Malgun Gothic",Arial,sans-serif; line-height:1.65; }
+    main { max-width:980px; margin:32px auto; background:white; padding:52px 64px; box-shadow:0 8px 28px rgba(23,32,51,.08); }
+    h1 { margin:0 0 8px; font-size:2rem; letter-spacing:-.04em; }
+    h2 { margin-top:42px; padding-bottom:8px; border-bottom:2px solid var(--blue); font-size:1.35rem; }
+    h3 { margin-top:26px; }
+    p, li { word-break:keep-all; }
+    .subtitle { color:var(--muted); margin-bottom:26px; }
+    .key { background:var(--pale); border-left:5px solid var(--blue); padding:18px 22px; margin:24px 0; }
+    .flow { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; align-items:stretch; margin:22px 0; }
+    .flow div { padding:12px 8px; text-align:center; border:1px solid #aac0ed; border-radius:8px; background:#f7faff; font-size:.87rem; }
+    table { width:100%; border-collapse:collapse; margin:18px 0; font-size:.93rem; }
+    th, td { border:1px solid var(--line); padding:10px 11px; vertical-align:top; }
+    th { background:#f2f5fa; text-align:left; }
+    td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0; }
+    .card { border:1px solid var(--line); border-radius:8px; padding:15px; }
+    .good h3 { color:var(--good); } .warn h3 { color:var(--warn); } .bad h3 { color:var(--bad); }
+    .decision { border:1px solid var(--line); border-radius:9px; padding:15px 18px; margin:12px 0; }
+    .tag { display:inline-block; padding:3px 9px; border-radius:999px; background:#e8eefb; color:#27447c; font-size:.78rem; font-weight:700; }
+    .foot { color:var(--muted); font-size:.87rem; margin-top:40px; padding-top:14px; border-top:1px solid var(--line); }
+    @media (max-width:760px) { main{margin:0;padding:28px 20px}.flow{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}table{font-size:.82rem} }
+    @media print { body{background:white} main{box-shadow:none;margin:0;max-width:none;padding:20mm} a{color:inherit;text-decoration:none} }
+  </style>
+</head>
+<body>
+<main>
+  <span class="tag">PROVISIONAL_PENDING_PROFESSOR_APPROVAL</span>
+  <h1>그래프 유도 검증 시간 규칙</h1>
+  <p class="subtitle">설명 가능한 다변량 이상탐지를 위한 1차 연구 결과</p>
+
+  <div class="key">
+    <strong>핵심 결론</strong><br>
+    RULE_SIGNAL_PRESENT_BUT_CURRENT_FUSION_UTILITY_UNSUPPORTED<br>
+    규칙 계층은 기준 탐지기의 미탐에 보완 신호를 보였지만, 현재 두
+    결합 정책은 이를 incremental detector utility로 전환하지 못했습니다.
+  </div>
+
+  <h2>1. 연구 문제와 접근</h2>
+  <p>다변량 탐지기의 경보를 사람에게 읽히는 시간 변수 관계로 설명하기
+  위해, 정상 운전 데이터에서 delayed-response 관계를 발견하고 실행
+  가능한 verified temporal rule로 변환합니다. LLM은 제한된 구조만
+  제안하며 숫자, 최종 validity, runtime은 결정론적으로 통제됩니다.</p>
+  <div class="flow">
+    <div>그래프 유도<br>후보 발견</div><div>정상 데이터<br>관계 프로파일링</div>
+    <div>제한된<br>규칙 구성</div><div>결정론적<br>수치·검증</div>
+    <div>42개 검증<br>시간 규칙</div><div>LLM-free 실행<br>만족 trace</div>
+  </div>
+  <p>교수님 피드백 이후 자유로운 LLM 생성에서 통제 가능한 규칙 구성으로
+  방향을 바꿨습니다. TSFM은 사용하지 않았고 ARTIST식 segment selection도
+  구현하지 않았습니다.</p>
+
+  <h2>2. 구현된 범위</h2>
+  <ul>
+    <li>HAI 23.05 P1 Boiler의 144개 후보쌍과 정상 데이터 관계 profiling</li>
+    <li>23개 변수쌍, 42개 방향 관계의 verified temporal rule portfolio</li>
+    <li>bounded rule construction, normal-only numeric control, deterministic verifier</li>
+    <li>D0 PCA-SPE, D1 rule detector, D2 V1/V2 combined fusion</li>
+    <li>event recall, normal FAR/hour, rule-satisfaction trace</li>
+  </ul>
+
+  <h2>3. 첫 INNER 결과</h2>
+  <table>
+    <thead><tr><th>방법</th><th class="num">Attack-event Recall</th><th class="num">Normal FAR/hour</th><th class="num">D0 미탐 회복</th></tr></thead>
+    <tbody>
+      <tr><td>D0 reference detector</td><td class="num">0.7857142857142857</td><td class="num">0.4939336325682589</td><td class="num">기준</td></tr>
+      <tr><td>D1 verified rules</td><td class="num">0.9285714285714286</td><td class="num">40.50255787059723</td><td class="num">3/3</td></tr>
+      <tr><td>D2 V1 same-second fusion</td><td class="num">0.7857142857142857</td><td class="num">0.7056194750975128</td><td class="num">0/3</td></tr>
+      <tr><td>D2 V2 native-horizon fusion</td><td class="num">0.7857142857142857</td><td class="num">6.915070855955625</td><td class="num">0/3</td></tr>
+    </tbody>
+  </table>
+  <p>D0와 D1이 함께 탐지한 이벤트는 10개, D0만 1개, D1만 3개,
+  둘 다 놓친 이벤트는 0개로 합집합은 14/14였습니다. 다만 D1의
+  false alarm 부담이 매우 컸고, D2 V1/V2의 recall은 D0보다 높지
+  않았습니다. 14개 이벤트만으로 통계적 우월성을 주장하지 않습니다.</p>
+
+  <div class="cards">
+    <section class="card good"><h3>작동한 것</h3><p>관계 발견, 42-rule 구성·검증·실행,
+    만족 trace, INNER 이벤트 수준 보완성</p></section>
+    <section class="card bad"><h3>작동하지 않은 것</h3><p>rule-only 오경보 수준,
+    V1/V2의 D0 미탐 회복과 incremental recall</p></section>
+    <section class="card warn"><h3>불확실한 것</h3><p>held-out 일반화, 강한 baseline,
+    TSFM/ARTIST 효과, 사람 설명 유용성</p></section>
+  </div>
+
+  <h2>4. 핵심 파라미터와 한계</h2>
+  <table>
+    <tbody>
+      <tr><th>관계 horizon</th><td>1, 5, 10, 30, 60초</td></tr>
+      <tr><th>관계 acceptance</th><td>정상 데이터 support, consistency, effect-ratio gates</td></tr>
+      <tr><th>PCA-SPE</th><td>0.95 explained variance, 0.999 threshold quantile</td></tr>
+      <tr><th>D2 corroboration</th><td>서로 다른 source 2개; V1 same-second, V2 native-horizon persistence</td></tr>
+    </tbody>
+  </table>
+  <p>이 값들은 결과를 본 뒤 변경하지 않았으나 전체 sensitivity가 완료된
+  것은 아닙니다. 특히 V1/V2 fusion에는 구조적 한계가 관측됐습니다.</p>
+
+  <h2>5. OUTER와 주장 범위</h2>
+  <p>사전등록된 held-out 평가는 과학 결과를 만들지 못했습니다. 실행은
+  test2 feature bytes나 labels를 읽기 전 데이터 관리 경계에서
+  중단됐습니다. 따라서 held-out outcome은 관측되지 않았고 현재
+  실증 주장은 INNER 평가로 제한됩니다. 이는 부정적 OUTER 과학 결과가
+  아닙니다.</p>
+  <p>지원되는 기여는 그래프 유도 관계 발견, 정상 데이터 수치 통제,
+  실행 가능한 검증 규칙, deterministic verification, LLM-free runtime,
+  INNER event-level complementarity와 transparent negative fusion evidence입니다.
+  combined improvement, causal root cause, held-out generalization은 주장하지 않습니다.</p>
+
+  <h2>6. 교수님께 요청드리는 네 결정</h2>
+  <div class="decision"><strong>1. 기여 framing</strong> — graph-guided rule construction와 deterministic verification로 둘까요? <strong>권고: YES.</strong></div>
+  <div class="decision"><strong>2. 설명 interface</strong> — temporal rules와 satisfaction traces로 충분한가요, ARTIST식 segment selection이 필수인가요? <strong>권고: 현재 interface 유지.</strong></div>
+  <div class="decision"><strong>3. 검증 순서</strong> — INNER 범위 논문 초안을 먼저 쓸까요, 새 OUTER 연구를 먼저 할까요? <strong>권고: THESIS_FIRST.</strong></div>
+  <div class="decision"><strong>4. detector baseline</strong> — PCA-SPE로 충분한가요, 강한 baseline 하나가 더 필요한가요? <strong>권고: 요청 시 1개 추가.</strong></div>
+
+  <p class="foot">본 문서는 이미 동결된 INNER 결과의 교수 보고용 요약입니다.
+  새로운 과학 실행, 파라미터 변경 또는 held-out 데이터 접근을 포함하지 않습니다.</p>
+</main>
+</body>
+</html>
