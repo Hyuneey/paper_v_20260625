@@ -1,0 +1,17 @@
+parameter,value,scientific_role,source_rationale,label_used,freeze_point,sensitivity_performed,current_assessment,risk,possible_future_action
+candidate Top-K,"primary 20; views 10/20/40",candidate budget,bounded candidate protocol,no,C0 protocol,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,candidate omission,document limitation
+profiling horizons,"1;5;10;30;60 seconds",delayed response search,continuous-step preregistration,no,BR1,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,missed timescales,future independent study
+source refractory,10 seconds,step event clustering,frozen continuous-step policy,no,BR1,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,event-count sensitivity,future robustness
+cross-source isolation radius,"2 seconds inclusive",event isolation,frozen isolation policy,no,BR1,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,remove simultaneous controls,future robustness
+fit support,"pooled >=20; each train >=5",minimum evidence,normal-only fit gate,no,D0 profiling,no,JUSTIFIED_AND_AUDITED,rare relations excluded,revisit with more data
+fit consistency,"pooled >=0.70; each train >=0.60",direction stability,preregistered normal gate,no,D0 profiling,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,boundary dependence,future sensitivity
+fit effect ratio,">=2.0",response-to-noise effect,robust normal gate,no,D0 profiling,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,scale bias,future sensitivity
+calibration support,">=5",train3 confirmation support,frozen confirmation policy,no,D0/D2 confirmation,no,JUSTIFIED_AND_AUDITED,low support,external confirmation
+calibration consistency,">=0.60",train3 direction confirmation,frozen confirmation policy,no,D0/D2 confirmation,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,boundary dependence,future sensitivity
+calibration effect ratio,">=1.0",train3 effect maintenance,frozen confirmation policy,no,D0/D2 confirmation,no,REASONABLE_BUT_SENSITIVITY_UNTESTED,weak relations,future sensitivity
+PCA variance target,0.95,D0 subspace,reference detector convention,no,D0 design,no,REFERENCE_BASELINE_ONLY,detector-choice dependence,stronger baseline decision
+PCA selected k,10,D0 retained components,normal train4 selection,no,D0 training,integrity replay only,JUSTIFIED_AND_AUDITED,split specificity,new preregistration for another split
+D0 threshold quantile,0.999,SPE alarm threshold,normal train4 quantile,no,D0 design/training,no,REFERENCE_BASELINE_ONLY,FAR-recall sensitivity,preregistered baseline study
+D2 distinct-source count,2,rule corroboration,single-source fallback forbidden,"prior INNER informed problem; no tuning",D2 design,no,STRUCTURAL_MISMATCH_OBSERVED,signal suppression versus false alarms,no automatic V3
+D2 V1 same-second policy,exact same-second,conservative temporal corroboration,fixed design,no result seen,D2 V1 design,no,STRUCTURAL_MISMATCH_OBSERVED,asynchronous misses,V2 tested diagnosed mechanism
+D2 V2 native-horizon policy,per-rule causal inclusive horizon,asynchronous memory,frozen COMMON-42 authority,"prior diagnostic only; no new window",D2 V2 preregistration,no,STRUCTURAL_MISMATCH_OBSERVED,high FAR no recovery,stop fusion engineering pending feedback

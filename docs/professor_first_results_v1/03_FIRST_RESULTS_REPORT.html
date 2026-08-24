@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그래프 유도 검증 규칙 구성 — 첫 연구 결과</title>
+<style>
+:root{--ink:#172033;--muted:#5e6b7d;--blue:#3159a5;--green:#147d64;--red:#b44545;--paper:#fff;--wash:#f4f7fb;--line:#d9e0ea}*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.65 system-ui,"Noto Sans KR",sans-serif}main{max-width:1080px;margin:auto;background:var(--paper);padding:48px 56px 72px}h1{font-size:2.3rem;line-height:1.2;margin:0 0 12px}h2{margin-top:42px;border-bottom:2px solid var(--line);padding-bottom:8px}h3{color:var(--blue)}.lead{font-size:1.18rem;color:var(--muted)}.verdict{border-left:7px solid var(--blue);background:#edf3ff;padding:18px 22px;margin:28px 0;font-weight:700}table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{padding:16px;border:1px solid var(--line);border-radius:8px;background:#fafcff}.card b{font-size:1.35rem;display:block}.d0{border-top:5px solid #3159a5}.d1{border-top:5px solid #147d64}.v1{border-top:5px solid #c18731}.v2{border-top:5px solid #b44545}.overlap{display:grid;grid-template-columns:10fr 1fr 3fr;gap:3px;color:white;text-align:center;font-weight:700;margin:20px 0}.overlap span{padding:20px 6px}.both{background:#566b95}.d0only{background:#3159a5}.d1only{background:#147d64}.none{color:var(--muted);margin-left:8px}.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0}.flow span{background:#eef2f7;border:1px solid var(--line);padding:9px 12px;border-radius:6px}.flow i{color:var(--blue);font-style:normal;font-weight:700}.tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#eef2f7;font-size:.85rem}.yes{color:var(--green)}.no{color:var(--red)}footer{margin-top:50px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}@media(max-width:760px){main{padding:28px 20px}.grid{grid-template-columns:1fr 1fr}table{font-size:.82rem}}@media print{body{background:white}main{max-width:none;padding:10mm}.grid{break-inside:avoid}}
+</style>
+</head>
+<body><main>
+<p class="tag">교수님 10–15분 브리핑 · 2026-08-24</p>
+<h1>그래프 유도 검증 규칙 구성<br>첫 연구 결과</h1>
+<p class="lead">정상 데이터에서 시간적 변수 관계를 발견하고, LLM의 권한을 제한한 실행 규칙으로 구성·검증해 이상탐지기 미탐 보완 가능성을 평가했습니다.</p>
+<div class="verdict">RULE_SIGNAL_PRESENT_BUT_CURRENT_FUSION_UTILITY_UNSUPPORTED<br><small>규칙의 보완 신호는 확인됐지만 현재 두 결합 정책의 유용성은 지지되지 않았습니다.</small></div>
+
+<h2>1. 연구 방향의 변화</h2>
+<p>ARGOS 재현 검토와 교수님 피드백 이후, 자유 Python·LLM 작성 임계값 중심 구조에서 <b>그래프 후보 → 정상 데이터 수치 권한 → 제한된 규칙 구성 → 결정론적 verifier → LLM 없는 runtime</b>으로 방향을 바꿨습니다. 현재 기여는 새 detector가 아니라 검증 가능한 규칙 구성입니다. TSFM과 ARTIST식 segment selection은 구현하지 않았습니다.</p>
+
+<h2>2. 구현 아키텍처</h2>
+<div class="flow"><span>HAI/P1 contracts</span><i>→</i><span>144 pairs</span><i>→</i><span>META·STAT·GDN</span><i>→</i><span>normal profiling</span><i>→</i><span>T0·T1·T1-B·T2</span><i>→</i><span>numeric authority</span><i>→</i><span>verifier</span><i>→</i><span>COMMON-42</span></div>
+<div class="flow"><span>D0 PCA-SPE</span><i>+</i><span>D1 rule runtime</span><i>→</i><span>D2 V1/V2</span><i>→</i><span>event/episode metrics</span><i>+</i><span>satisfaction trace</span></div>
+
+<h2>3. INNER 결과</h2>
+<div class="grid">
+<div class="card d0"><b>D0</b>Recall 0.7857<br>FAR/h 0.4939<br>11/14</div>
+<div class="card d1"><b>D1</b>Recall 0.9286<br>FAR/h 40.5026<br>13/14</div>
+<div class="card v1"><b>D2 V1</b>Recall 0.7857<br>FAR/h 0.7056<br>recovery 0/3</div>
+<div class="card v2"><b>D2 V2</b>Recall 0.7857<br>FAR/h 6.9151<br>recovery 0/3</div>
+</div>
+<h3>이벤트 집합 중첩</h3>
+<div class="overlap"><span class="both">D0 ∩ D1: 10</span><span class="d0only">D0 only: 1</span><span class="d1only">D1 only: 3</span></div><span class="none">Neither: 0 · Union: 14/14</span>
+<p>D1은 D0 미탐 3개를 모두 포착했지만 정상 false alarm이 574 episodes였다. V1은 같은 초 두 source gate, V2는 native-horizon memory를 사용했으나 둘 다 미탐 회복 0/3이었다. V2는 recall을 늘리지 못한 채 FAR 부담을 더 키웠다. 표본은 공격 이벤트 14개이므로 통계적 우월성은 주장하지 않는다.</p>
+
+<h2>4. 설명 인터페이스</h2>
+<table><thead><tr><th>대표 관계</th><th>시간 의미</th><th>trace가 설명하는 것</th><th>증명하지 않는 것</th></tr></thead><tbody>
+<tr><td>P1_FCV01D step-up → P1_FT02 decrease</td><td>1초</td><td>밸브 전이 후 유량 기대 방향의 충족/위반</td><td>인과 root cause</td></tr>
+<tr><td>P1_PCV01D step-up → P1_PIT01 increase</td><td>60초</td><td>느린 압력 반응 window와 outcome</td><td>공격 주체</td></tr>
+<tr><td>P1_LCV01D step-up → P1_PIT01 decrease</td><td>10초</td><td>교차 변수 시간 관계의 국소화</td><td>사람 유용성</td></tr>
+</tbody></table>
+
+<h2>5. 주장 경계</h2>
+<table><thead><tr><th class="yes">지원</th><th class="no">지원 안 됨/미확인</th></tr></thead><tbody><tr><td>graph-guided candidates<br>executable verified rules<br>normal-only numeric authority<br>deterministic verifier<br>LLM-free runtime<br>INNER rule sensitivity와 complementarity<br>재현 가능한 negative fusion evidence</td><td>combined detector 향상<br>rule-only 운용 가능성<br>D2 우월성<br>TSFM·ARTIST 효과<br>held-out 일반화<br>causal root cause<br>human usefulness</td></tr></tbody></table>
+
+<h2>6. OUTER 상태</h2>
+<p>허가된 1회 시도는 test2 feature custody에서 <b>byte read 전</b> 거부됐습니다. feature bytes/semantic parse 0, label access 0, D0/D1/D2 execution 0, prediction·metric 없음입니다. 따라서 부정적 OUTER 결과가 아니라 <b>OUTER 결과 부재, 일반화 미확인</b>입니다.</p>
+
+<h2>7. 교수님께 요청드릴 네 결정</h2>
+<ol><li>기여를 graph-guided rule construction과 deterministic verification로 확정할지</li><li>rule + satisfaction trace를 주 설명으로 인정할지, ARTIST segment selection을 요구할지</li><li>새 OUTER 연구를 먼저 할지, INNER-scoped thesis를 먼저 쓸지</li><li>PCA-SPE 외 stronger detector baseline 하나가 필요한지</li></ol>
+<p class="verdict">권고 기본안: THESIS_FIRST_PENDING_PROFESSOR_FEEDBACK</p>
+<footer>공개 동결 artifact만 사용한 synthesis. 과학 실행 0 · test2 access 0 · 결과 변경 0 · private path/value exposure 0.</footer>
+</main></body></html>
+
