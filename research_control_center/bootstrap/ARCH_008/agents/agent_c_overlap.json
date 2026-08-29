@@ -1,0 +1,17 @@
+{
+  "agent": "C — D0 / D1 Overlap Auditor",
+  "verdict": "PASS",
+  "method": "read_only_frozen_evidence_and_static_source_audit",
+  "both": 10,
+  "d0_only": 1,
+  "d1_only": 3,
+  "neither": 0,
+  "d0_misses": 3,
+  "d1_response_to_d0_misses": 3,
+  "classification": "VERIFIED_PILOT_OBSERVATION",
+  "union_count_explicitly_frozen": false,
+  "complementarity": "PILOT_SIGNAL_ONLY",
+  "scientific_executions": 0,
+  "test2_accesses": 0,
+  "files_changed": 0
+}

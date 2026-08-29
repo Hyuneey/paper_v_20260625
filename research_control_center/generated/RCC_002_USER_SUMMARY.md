@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ab9076a8c78900eea12110d3f3a98e5e9bfc027e86c18a09ae4f4e7c5a908366 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,19 +70,20 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **ARCH-009 — D2 Detector + Rule Fusion Deep Audit** 이고, 이후 전체
+구조 검토는 **ARCH-009 — D2 Detector + Rule Fusion Deep Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain why PCA is used.
-- Explain SPE.
-- Explain where the threshold comes from.
-- Explain why test1 labels do not set the threshold.
-- Distinguish point alarm, episode, and attack event.
-- Explain why D0 is only a reference baseline.
-- Explain why a stronger detector is needed later.
-- Approve or defer starting ARCH-008.
+- Explain what D1 actually is.
+- Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.
+- Explain 13/14 attack-event response.
+- Explain Normal FAR/hour.
+- Explain why high Recall does not establish detector superiority.
+- Explain the D0/D1 event overlap.
+- Explain pilot versus validated complementarity.
+- Explain why D1 is not Agentic Rule-only.
+- Approve or defer starting ARCH-009.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

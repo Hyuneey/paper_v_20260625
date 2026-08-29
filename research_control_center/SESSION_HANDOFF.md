@@ -13,16 +13,16 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-005 — Deterministic Verifier / COMMON-42 / Runtime Authorization Deep Audit`
+`ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit`
 
 ## What changed
 
-- Mapped all 20 canonical VerifierV1 stages and its explicit guarantee boundary.
-- Classified task-specific validity and canonical verification as partially overlapping but non-equivalent.
-- Proved COMMON-42 is the T0/T1/T1-B shared 42-descriptor V4 portfolio and excludes T2.
-- Separated canonical runtime authorization from the V4/evaluator/committed-grant authority used by frozen D1.
-- Verified the three frozen T2 no_rule cases while preserving the broader taxonomy code-fix risk.
-- Added verifier, portfolio, hash, authorization and terminology maps without executing verifier or runtime.
+- Identified the exact D1 evaluated object as COMMON-42 Verified Relational Rule-only.
+- Separated 6,031 opportunities, 788 anomalous rule records, 630 alarm seconds, 626 total episodes, and 574 normal false episodes.
+- Verified 13/14 attack-event response and the D0/D1 overlap of 10 both, 1 D0-only, 3 D1-only, and 0 neither.
+- Preserved the very high 40.50255787059723 Normal FAR/hour as a separate burden axis.
+- Classified response diversity and pilot complementarity signal as observed while general and operational complementarity remain unvalidated.
+- Preserved the in-memory prediction-before-label qualification and future durable-gate requirement.
 
 ## Decisions made
 
@@ -34,9 +34,9 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-007 added static source, frozen
-public-metadata lineage, D0 mathematical/threshold semantics, and prediction
-custody evidence only.
+No new scientific outcome was produced. ARCH-008 added static source and frozen
+public-metadata lineage, count semantics, overlap interpretation, and claim
+boundaries only.
 
 ## Open risks
 
@@ -55,15 +55,15 @@ custody evidence only.
 
 ## User actions
 
-- Explain why PCA is used and what SPE means.
-- Explain that train1+train2 fit the model and normal train3 calibrates q=.999.
-- Explain why test1 labels cannot influence the frozen threshold or point alarms.
-- Distinguish 876 point alarms, 46 alarm episodes, 7 normal false episodes, and 11/14 attack-event response.
-- Explain why D0 is a simple reference rather than a SOTA detector.
-- Approve or defer ARCH-008.
+- Explain what D1 is and why it is not T2 Agentic Rule-only.
+- Distinguish 788 rule records, 630 alarm seconds, 626 total episodes, and 574 normal false episodes.
+- Explain 13/14 attack-event response and 40.50255787059723 FAR/hour.
+- Explain the D0/D1 event overlap and pilot-versus-validated complementarity boundary.
+- Explain why high Recall does not establish detector superiority.
+- Approve or defer ARCH-009.
 
 ## Exact next task
 
-`ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit`
+`ARCH-009 — D2 Detector + Rule Fusion Deep Audit`
 
-Do not start it until the user has reviewed ARCH-007.
+Do not start it until the user has reviewed ARCH-008.

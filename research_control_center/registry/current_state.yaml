@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -68,7 +68,7 @@
     "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
     "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
     "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "runtime_trace_explanation": {
     "authority": "Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.",
@@ -89,7 +89,7 @@
     "explanation": "A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.",
     "human_usefulness": "UNVALIDATED",
     "warning": "The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.",
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "d0_detector": {
     "detector_id": "D0_PCA_SPE_V1",
@@ -121,7 +121,35 @@
     "validation": "PILOT_ONLY",
     "fresh_machine_reproducibility": "INCOMPLETE",
     "warning": "D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.",
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
+  },
+  "d1_evaluation": {
+    "preferred_name": "COMMON-42 Verified Relational Rule-only",
+    "korean_name": "검증된 관계 규칙 단독 방식",
+    "portfolio": "42 frozen CanonicalRuleDescriptorV4 descriptors under the V4 runtime authority plane",
+    "prediction_authority": "ScientificRulePredictionArtifactV1; complete label-blind object validated and shallow-frozen in memory before label access",
+    "evaluation_split": "test1 INNER development pilot",
+    "pilot_events": 14,
+    "opportunities": 6031,
+    "anomalous_rule_records": 788,
+    "unique_alarm_seconds": 630,
+    "total_alarm_episodes": 626,
+    "normal_false_episodes": 574,
+    "normal_exposure_seconds": 51019,
+    "attack_events_detected": 13,
+    "attack_event_recall": 0.9285714285714286,
+    "normal_far_episodes_per_hour": 40.50255787059723,
+    "overlap": {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0},
+    "d1_response_to_d0_misses": "VERIFIED_PILOT_OBSERVATION; 3 of 3 D0-missed events had D1 response",
+    "complementarity": "Response diversity and a pilot complementarity signal are observed; statistical and operational complementarity remain unvalidated.",
+    "rule_only_utility": "UNVALIDATED; high pilot attack-event response coexists with a very high normal false-episode burden.",
+    "durable_freeze": false,
+    "governance_classification": "NO_VERIFIED_LEAKAGE_FOUND_PILOT; STRONGER_DURABLE_GATE_REQUIRED_FOR_FUTURE_VALIDATION",
+    "llm_rule_only": "NOT_DIRECTLY_TESTED",
+    "agentic_rule_only": "MISLEADING_NOT_APPLICABLE",
+    "held_out_generalization": "UNCONFIRMED",
+    "warning": "Higher pilot Recall does not establish superior operational utility. D1 is not T2 Agentic Rule-only.",
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -159,7 +187,7 @@
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "relation_numeric_authority": {
     "candidate_pairs": 47,
@@ -177,7 +205,7 @@
     "authority_relationship": "PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES",
     "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
     "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "rule_construction_authority": {
     "evidence_view": "42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata",
@@ -193,7 +221,7 @@
     "no_rule_contract_gap": "The three frozen T2 no_rule cases were non-repairable validity outcomes, but the task-specific orchestrator also collapses explicit response/schema, verifier and budget failures into no_rule; generic/frozen protocol semantics require those failure classes to remain distinct.",
     "reproducibility": "T0 is deterministic from frozen input. LLM arms bind model/config, prompt, request, evidence, response and ledger hashes but use temperature 0.7 with no seed; they are traceable, not deterministic reproductions.",
     "warning": "Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.",
-    "next_deep_review": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit"
+    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -307,32 +335,34 @@
     "Resolve fresh-machine reproducibility gaps before held-out evaluation."
   ],
   "user_todo_items": [
-    {"id": "USER-ARCH007-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why PCA is used?", "why": "D0 models normal multivariate structure as a simple reference, not the thesis contribution.", "linked": "ARCH_007_D0_ROLE.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain SPE?", "why": "SPE is squared residual magnitude in standardized PCA space, not a probability.", "linked": "ARCH_007_SPE_DEFINITION.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain where the threshold comes from?", "why": "Normal train3 supplies a no-interpolation q=.999 order statistic.", "linked": "ARCH_007_REPORT.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why test1 labels do not set the threshold?", "why": "Fit and calibration are normal-only and frozen before test1 prediction or label access.", "linked": "ARCH_007_FREEZE_BOUNDARY.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish point alarm, episode, and attack event?", "why": "876 points, 46 episodes, and 11 of 14 events are different populations.", "linked": "ARCH_007_OUTPUT_LEVELS.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D0 is only a reference baseline?", "why": "PCA-SPE is simple and deterministic but does not represent all contemporary TSAD methods.", "linked": "ARCH_007_D0_ROLE.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-007", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Can I explain why a stronger detector is needed later?", "why": "Current evidence cannot establish comparison against strong contemporary multivariate detectors.", "linked": "ARCH_007_REPORT.md", "status": "OPEN"},
-    {"id": "USER-ARCH007-008", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-008.", "why": "The next audit evaluates the D1 verified relational Rule-only result path.", "linked": "ARCH-008", "status": "OPEN"}
+    {"id": "USER-ARCH008-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what D1 actually is?", "why": "D1 evaluates the frozen COMMON-42 verified relational portfolio, not a direct T2 arm.", "linked": "ARCH_008_D1_EVALUATED_OBJECT.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish 788, 630, and 626?", "why": "They count rule records, unique alarm seconds, and grouped episodes.", "linked": "ARCH_008_OUTPUT_LEVELS.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain 13/14?", "why": "It is attack-event overlap recall, not point recall or precision.", "linked": "ARCH_008_ATTACK_EVENT_EVALUATION.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain FAR/hour?", "why": "It is normal false alarm episodes divided by normal labeled exposure hours.", "linked": "ARCH_008_NORMAL_FALSE_ALARMS.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why high Recall does not mean a superior detector?", "why": "Attack sensitivity must be considered separately from a very high normal false-alarm burden.", "linked": "ARCH_008_RULE_ONLY_UTILITY.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the D0/D1 overlap?", "why": "The frozen pilot separates both, D0-only, D1-only, and neither event categories.", "linked": "ARCH_008_D0_D1_OVERLAP.csv", "status": "OPEN"},
+    {"id": "USER-ARCH008-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain pilot complementarity versus validated complementarity?", "why": "Observed D1-only events are a signal, not independent statistical or operational validation.", "linked": "ARCH_008_COMPLEMENTARITY_BOUNDARY.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-008", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 is not Agentic Rule-only?", "why": "T2 is excluded from COMMON-42 and no direct T2 runtime result was evaluated.", "linked": "ARCH_008_PROFESSOR_RULE_ONLY_NOTE.md", "status": "OPEN"},
+    {"id": "USER-ARCH008-009", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-009.", "why": "The next audit maps D2 detector-plus-rule fusion without redesigning it.", "linked": "ARCH-009", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain why PCA is used.",
-    "Explain SPE.",
-    "Explain where the threshold comes from.",
-    "Explain why test1 labels do not set the threshold.",
-    "Distinguish point alarm, episode, and attack event.",
-    "Explain why D0 is only a reference baseline.",
-    "Explain why a stronger detector is needed later.",
-    "Approve or defer starting ARCH-008."
+    "Explain what D1 actually is.",
+    "Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.",
+    "Explain 13/14 attack-event response.",
+    "Explain Normal FAR/hour.",
+    "Explain why high Recall does not establish detector superiority.",
+    "Explain the D0/D1 event overlap.",
+    "Explain pilot versus validated complementarity.",
+    "Explain why D1 is not Agentic Rule-only.",
+    "Approve or defer starting ARCH-009."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit",
-  "recommended_next_architecture_task": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit",
-  "last_completed_task": "ARCH-007",
-  "exact_next_task": "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit",
+  "recommended_next_management_task": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit",
+  "recommended_next_architecture_task": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit",
+  "last_completed_task": "ARCH-008",
+  "exact_next_task": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

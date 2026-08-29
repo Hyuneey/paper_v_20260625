@@ -62,6 +62,11 @@ ARCHITECTURE_FILES = (
     "07_d0_detector/ARCH_007_ARTIFACT_LINEAGE.csv",
     "07_d0_detector/ARCH_007_FUNCTION_CATALOG.csv",
     "07_d0_detector/ARCH_007_IO_CONTRACTS.csv",
+    "08_d1_rule_only/ARCH_008_D0_D1_OVERLAP.csv",
+    "08_d1_rule_only/ARCH_008_ARTIFACT_LINEAGE.csv",
+    "08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv",
+    "08_d1_rule_only/ARCH_008_FUNCTION_CATALOG.csv",
+    "08_d1_rule_only/ARCH_008_IO_CONTRACTS.csv",
 )
 
 
@@ -377,6 +382,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     verifier = state["verifier_common42_authority"]
     runtime = state["runtime_trace_explanation"]
     d0 = state["d0_detector"]
+    d1 = state["d1_evaluation"]
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -427,7 +433,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -570,6 +576,33 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">{_escape(d0['warning'])}</aside>
       <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">Open the deep D0 audit</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE definition</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">Prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">Output levels</a></p>
       <p><strong>Next deep review:</strong> {_escape(d0['next_deep_review'])}</p>
+    </section>
+
+    <section id="d1-evaluation" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">D1</p><h2>VERIFIED RELATIONAL RULE-ONLY PILOT</h2></div>
+      <p class="architecture-flow">COMMON-42 → label-blind prediction (6,031 opportunities / 788 anomalous records) → label access → 626 episodes → metrics; static prediction audit: 630 unique alarm seconds</p>
+      <div class="status-snapshot">
+        <div><span>Preferred name</span><strong>{_escape(d1['preferred_name'])}</strong></div>
+        <div><span>Pilot events</span><strong>{d1['pilot_events']}</strong></div>
+        <div><span>Attack-event Recall</span><strong>{d1['attack_events_detected']}/{d1['pilot_events']}</strong></div>
+        <div><span>Normal FAR/hour</span><strong>{d1['normal_far_episodes_per_hour']}</strong></div>
+        <div><span>Held-out</span><strong>{_escape(d1['held_out_generalization'])}</strong></div>
+        <div><span>Direct T2 Agentic result</span><strong>NO</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Attack sensitivity</h3><dl class="architecture-contract">
+        <div><dt>ATTACK EVENTS</dt><dd>{d1['attack_events_detected']} of {d1['pilot_events']} overlapped by at least one D1 alarm episode</dd></div>
+        <div><dt>D0 / D1 OVERLAP</dt><dd>both {d1['overlap']['both']}; D0-only {d1['overlap']['d0_only']}; D1-only {d1['overlap']['d1_only']}; neither {d1['overlap']['neither']}</dd></div>
+        <div><dt>D0 MISSES</dt><dd>{_escape(d1['d1_response_to_d0_misses'])}</dd></div>
+      </dl></div><div><h3>Normal false-alarm burden</h3><dl class="architecture-contract">
+        <div><dt>RULE RECORDS</dt><dd>{d1['anomalous_rule_records']}</dd></div>
+        <div><dt>ALARM SECONDS</dt><dd>{d1['unique_alarm_seconds']}</dd></div>
+        <div><dt>TOTAL EPISODES</dt><dd>{d1['total_alarm_episodes']}</dd></div>
+        <div><dt>NORMAL FALSE EPISODES</dt><dd>{d1['normal_false_episodes']} over {d1['normal_exposure_seconds']} normal seconds</dd></div>
+      </dl></div></div>
+      <aside class="principle">Higher pilot Recall does not establish superior operational utility.</aside>
+      <aside class="principle">D1 = COMMON-42 Verified Relational Rule-only, not T2 Agentic Rule-only.</aside>
+      <p><a href="../architecture/08_d1_rule_only/ARCH_008_REPORT.md">Open the deep D1 evaluation audit</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_OUTPUT_LEVELS.md">Output levels</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_COMPLEMENTARITY_BOUNDARY.md">Complementarity boundary</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv">Claim matrix</a></p>
+      <p><strong>Next deep review:</strong> {_escape(d1['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -773,8 +806,8 @@ E3 exposes a fixed relation, horizon, and normal-only references to a closed pro
 ## Frozen D1 runtime boundary
 
 Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse to 630 seconds
-and 626 metric episodes. Prediction preceded labels but was not durably persisted; its trace is
-not `RuntimeTraceV1`, and no D1 explanation was rendered.
+and 626 metric episodes; 574 were normal false episodes. It is COMMON-42 Verified Relational
+Rule-only, not T2 Agentic Rule-only. Prediction preceded labels but was not durably persisted.
 
 ## Frozen D0 detector boundary
 
@@ -793,13 +826,12 @@ HAI P1, META/STAT/GDN, normal-only profiling and numeric authority led to COMMON
 
 {_md_bullets(state['established_facts'])}
 
-The frozen discovery and construction counts establish pipeline execution and custody,
-not causality, physical truth, unique GDN benefit, or agentic-feedback advantage. T2
-performed zero feedback actions in the current cohort.
+Frozen discovery and construction counts establish execution and custody, not causality,
+physical truth, unique GDN benefit, or agentic-feedback advantage. T2 feedback actions: zero.
 
 ## Frozen INNER pilot observations
 
-The INNER evaluation contains 14 independent attack events. D0 PCA-SPE responded to
+The INNER evaluation contains 14 operational attack events. D0 PCA-SPE responded to
 11/14 with Normal FAR 0.4939336325682589 episodes/hour. D1 verified Rule-only responded
 to 13/14 with Normal FAR 40.50255787059723 episodes/hour. Their event overlap was both
 10, D0-only 1, D1-only 3, neither 0. D2 V1 and D2 V2 each responded to 11/14 and each
@@ -1437,6 +1469,87 @@ Rule-only 기여를 설득력 있게 평가하려면 새 독립 사전등록에�
 """
 
 
+def render_arch008_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    d1 = state["d1_evaluation"]
+    return f"""{_markdown_marker(state, digest)}
+# D1 검증된 관계 규칙 단독 평가를 쉽게 이해하기
+
+## 1. D1은 정확히 무엇인가?
+
+D1은 COMMON-42의 42개 verified relational descriptor를 V4 고정 runtime으로 실행한
+Rule-only 방식이다. 직접 T2 Agentic arm이나 특정 LLM arm의 runtime 결과가 아니다.
+
+## 2. 788, 630, 626은 왜 다른가?
+
+| 숫자 | 뜻 |
+|---:|---|
+| 6,031 | Rule을 실제로 평가할 수 있었던 relation opportunity |
+| 788 | anomaly로 끝난 rule-opportunity record |
+| 630 | 여러 Rule의 같은 시점 경보를 합친 unique alarm second |
+| 626 | 연속 alarm second를 묶은 total alarm episode |
+| 574 | 626 episode 중 attack timestamp와 겹치지 않은 normal false episode |
+
+## 3. 13/14는 무슨 뜻인가?
+
+Test1의 14개 연속 label-one attack event 중 13개가 적어도 하나의 D1 alarm episode와
+직접 겹쳤다는 attack-event Recall이다. Point recall이나 precision이 아니다.
+
+## 4. 40.5 FAR/hour는 무슨 뜻인가?
+
+51,019 normal labeled second에서 나온 574 normal false episode를 normal exposure hour로
+나눈 값이 `{d1['normal_far_episodes_per_hour']}`이다. Point false-positive rate가 아니다.
+
+## 5. 공격은 많이 잡으면서 오경보도 많은 이유는?
+
+현재 증거가 보장하는 것은 **그 두 현상이 동시에 관찰되었다**는 사실뿐이다. Frozen report에는
+high FAR의 일반적 원인 분석이 없으므로 trigger, tolerance, duplication 중 하나를 원인으로 단정하면
+안 된다. 상태는 `CAUSE_NOT_YET_ANALYZED`다.
+
+## 6. D1은 D0보다 좋은가?
+
+그렇게 결론내릴 수 없다. D1은 event response가 13/14로 D0의 11/14보다 높았지만, normal FAR은
+40.50255787059723으로 D0의 0.4939336325682589보다 훨씬 높았다. 민감도와 false-alarm burden은
+별도 축이다.
+
+## 7. D1은 D0와 다른 정보를 보는가?
+
+현재 pilot response는 다르다. 둘 다 10개, D0만 1개, D1만 3개, 둘 다 놓친 사건 0개였다.
+이는 response diversity를 보여주지만 원인이나 일반화는 증명하지 않는다.
+
+## 8. D1이 D0가 놓친 3개 사건에 반응했다는 의미는?
+
+현재 14-event INNER pilot에서만 확인된 중요한 signal이다. Allowed wording은 “D1이 D0 miss 3개
+모두에 반응했다”이다. “Rule이 일반적으로 detector miss를 복구한다”는 아직 금지된 표현이다.
+
+## 9. Complementarity가 입증됐는가?
+
+아니다. Pilot complementarity signal은 있지만 statistical/general complementarity와 operational
+utility는 **UNVALIDATED**다. D2의 실제 fusion 결과도 별도 ARCH-009에서 다뤄야 한다.
+
+## 10. D1은 LLM Rule-only 또는 Agentic Rule-only인가?
+
+직접 LLM-arm runtime은 `NOT_DIRECTLY_TESTED`다. T2는 COMMON-42에서 제외되므로 Agentic Rule-only는
+`MISLEADING_NOT_APPLICABLE`이다. 현재 이름은 **{d1['preferred_name']}**이다.
+
+## 11. Prediction은 label보다 먼저 정해졌는가?
+
+완전한 label-blind prediction object가 label open 전에 검증되었다. 그러나 그 시점에 atomic file로
+durably persisted되지는 않았다. 현재 pilot에서 verified leakage는 없지만 future validation에는 더 강한
+durable gate가 필요하다.
+
+## 12. 앞으로 무엇을 검증해야 하는가?
+
+더 큰 독립 사건 집합, validation/final-test 분리, durable pre-label persistence, stronger detector,
+사전 고정된 comparison/fusion policy가 필요하다.
+
+기억할 한 문장: **D1은 D0와 다른 pilot event response를 보였지만 normal false-alarm 부담이 매우 높아,
+Rule-only utility와 complementarity는 아직 검증되지 않았다.**
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
 def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -2018,6 +2131,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_005_USER_SUMMARY.md": render_arch005_user_summary(data, digest),
         "ARCH_006_USER_SUMMARY.md": render_arch006_user_summary(data, digest),
         "ARCH_007_USER_SUMMARY.md": render_arch007_user_summary(data, digest),
+        "ARCH_008_USER_SUMMARY.md": render_arch008_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

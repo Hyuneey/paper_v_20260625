@@ -1,0 +1,19 @@
+flowchart TD
+    A[COMMON-42<br/>42 Verified Relational Descriptors] --> B[V4 D1 Runtime Authority]
+    B --> C[Frozen D1 Prediction<br/>6031 opportunities]
+    C --> D[788 anomalous rule records]
+    subgraph BLIND["LABEL-BLIND PILOT RUNTIME"]
+      A
+      B
+      C
+      D
+    end
+    D --> G{{LABEL ACCESS}}
+    C -. static prediction audit .-> E[630 unique alarm seconds]
+    G --> F[Derive attack events and form<br/>626 total alarm episodes]
+    F --> H[Attack-event evaluation<br/>13 of 14]
+    F --> I[Normal false-episode evaluation<br/>574 episodes]
+    I --> J[Normal FAR<br/>40.50255787059723 per hour]
+    H --> K[D0 and D1 overlap<br/>10 both / 1 D0-only / 3 D1-only / 0 neither]
+    H -. PILOT ONLY .-> L[No held-out generalization]
+    J -. PILOT ONLY .-> L

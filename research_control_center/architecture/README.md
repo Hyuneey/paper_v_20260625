@@ -168,4 +168,23 @@ q=.999 order statistic and alarms use strict `score > threshold`. Its frozen
 prediction was durably persisted before labels. Current results remain 14-event
 pilot evidence and do not support a SOTA or generalization claim.
 
-Exact next task: `ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit`.
+## Completed D1 Rule-only evaluation audit
+
+- [Korean report](08_d1_rule_only/ARCH_008_REPORT.md)
+- [Evaluated object](08_d1_rule_only/ARCH_008_D1_EVALUATED_OBJECT.md)
+- [Output levels](08_d1_rule_only/ARCH_008_OUTPUT_LEVELS.md)
+- [Attack-event evaluation](08_d1_rule_only/ARCH_008_ATTACK_EVENT_EVALUATION.md)
+- [Normal false alarms](08_d1_rule_only/ARCH_008_NORMAL_FALSE_ALARMS.md)
+- [D0/D1 overlap](08_d1_rule_only/ARCH_008_D0_D1_OVERLAP.csv)
+- [Complementarity boundary](08_d1_rule_only/ARCH_008_COMPLEMENTARITY_BOUNDARY.md)
+- [Rule-only utility](08_d1_rule_only/ARCH_008_RULE_ONLY_UTILITY.md)
+- [Claim matrix](08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv)
+- [Mismatch register](08_d1_rule_only/ARCH_008_MISMATCHES.md)
+
+D1 produced a 13/14 attack-event response and responded to all three D0-missed
+events in the frozen INNER pilot, but also produced 574 normal false episodes
+and 40.50255787059723 FAR/hour. This is a response-diversity pilot signal, not
+validated complementarity or operational utility. D1 remains COMMON-42 Verified
+Relational Rule-only, not T2 Agentic Rule-only.
+
+Exact next task: `ARCH-009 — D2 Detector + Rule Fusion Deep Audit`.

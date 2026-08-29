@@ -1,0 +1,15 @@
+{
+  "agent": "D — Result Integrity / Claim Boundary Auditor",
+  "verdict": "PASS_WITH_CORRECTIONS",
+  "lineage": "COMMON42_TO_V4_TO_PREDICTION_TO_LABEL_METRICS_TO_POSTHOC_COMPARISON_VERIFIED",
+  "prediction_before_label": true,
+  "durable_pre_label_file": false,
+  "pilot_implication": "NO_VERIFIED_LEAKAGE_FOUND",
+  "future_requirement": "ATOMIC_DURABLE_PREDICTION_BEFORE_LABEL_GATE",
+  "comparison_integrity": "FROZEN_SELF_HASHED_EVIDENCE_REVIEWED; NO_SEPARATE_RESULT_INTEGRITY_AUDIT_FOUND",
+  "terminology": "COMMON-42 Verified Relational Rule-only",
+  "corrections_applied": 9,
+  "scientific_executions": 0,
+  "test2_accesses": 0,
+  "files_changed": 0
+}

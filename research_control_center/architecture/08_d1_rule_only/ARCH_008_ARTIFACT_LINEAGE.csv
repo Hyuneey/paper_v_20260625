@@ -1,0 +1,10 @@
+artifact,producer,input,role,frozen,persisted,hash_bound,consumer,label_blind,audited,notes
+COMMON-42 portfolio,COMMON42_FREEZE,42 confirmed relations and V4 authority,Rule-only descriptor cohort,true,true,true,V4 D1 evaluator,true,true,T2 excluded
+Utility V4 numeric registry,normal-only authority preparation,normal profiling authority,Runtime numeric resolver,true,private,true,V4 D1 evaluator,true,true,Values not exposed
+D1 execution authorization,committed authorization task,frozen authorities and custody,One-attempt INNER grant,true,true,true,D1 execution,true,true,No new execution in ARCH-008
+D1 prediction object,V4 D1 execution,COMMON-42 plus test1 features,6031 rule-opportunity records,shallow_in_memory,in_memory_pre_label,true,Label custody and original metrics,true,true,Public file written after metrics
+D1 prediction artifact,public report writer,frozen prediction object,Sanitized prediction record artifact,true,true,true,Integrity audit and later comparison,true,true,Hash 58c3c49f...
+D1 metrics,metric handoff,D1 prediction plus labels after freeze,Event recall and Normal FAR,true,true,true,Integrity audit and reporting,false,true,Private numerator and denominator hidden in original D1 report
+D1 integrity audit,independent audit,frozen prediction and metrics,Census ordering arithmetic and immutability evidence,true,true,true,RCC,true,true,No utility validation
+D0 D1 event overlap,scientific comparison,exact frozen D0 and D1 predictions plus one label parse,Four-cell event overlap,true,true,true,RCC,false,evidence_reviewed_frozen,Coordinates private; no separate result-integrity audit found
+D0 D1 arm metrics,scientific comparison,exact frozen predictions plus one label parse,Common event and FAR interface,true,true,true,RCC,false,evidence_reviewed_frozen,Public source for 574 false episodes and 51019 normal seconds

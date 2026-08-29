@@ -1,0 +1,32 @@
+{
+  "agent": "E — Independent ARCH-008 QA Reviewer",
+  "verdict": "PASS",
+  "questions_satisfactory": 20,
+  "questions_total": 20,
+  "pre_pass_corrections": [
+    "moved episode formation to the post-label phase in Mermaid and dashboard chronology",
+    "replaced statistical-independence wording with operational event-unit wording",
+    "removed unsupported explicit union-count wording",
+    "updated the nine-item user TODO contract and materialized QA outputs"
+  ],
+  "counts": {"opportunities": 6031, "anomalous_rule_records": 788, "unique_alarm_seconds": 630, "total_episodes": 626, "normal_false_episodes": 574},
+  "overlap": {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0},
+  "scientific_boundaries": {
+    "terminology": "COMMON-42_VERIFIED_RELATIONAL_RULE_ONLY",
+    "complementarity": "PILOT_SIGNAL_ONLY",
+    "utility": "UNVALIDATED",
+    "held_out": "UNCONFIRMED",
+    "high_far_cause": "CAUSE_NOT_YET_ANALYZED"
+  },
+  "coordinator_final_validation": {"registry": "PASS", "refresh_all": "PASS", "rcc_tests": "86/86 PASS", "privacy": "PASS"},
+  "safety": {
+    "scientific_executions": 0,
+    "test1_feature_accesses": 0,
+    "test1_label_accesses": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_result_changes": 0,
+    "private_exposures": 0,
+    "remote_egress": 0
+  }
+}

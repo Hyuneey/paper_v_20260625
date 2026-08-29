@@ -136,6 +136,23 @@ REQUIRED_RCC_FILES = (
     "bootstrap/ARCH_007/agents/agent_b_calibration.json",
     "bootstrap/ARCH_007/agents/agent_c_prediction_result.json",
     "bootstrap/ARCH_007/agents/agent_d_qa.json",
+    "bootstrap/ARCH_008/ARCH_008_REPORT.md",
+    "bootstrap/ARCH_008/ARCH_008_ATTACK_EVENT_AUDIT.md",
+    "bootstrap/ARCH_008/ARCH_008_NORMAL_FALSE_ALARM_AUDIT.md",
+    "bootstrap/ARCH_008/ARCH_008_D0_D1_OVERLAP_AUDIT.md",
+    "bootstrap/ARCH_008/ARCH_008_RESULT_INTEGRITY_AUDIT.md",
+    "bootstrap/ARCH_008/ARCH_008_COMPLEMENTARITY_BOUNDARY.md",
+    "bootstrap/ARCH_008/ARCH_008_RULE_ONLY_UTILITY.md",
+    "bootstrap/ARCH_008/ARCH_008_PROFESSOR_RULE_ONLY_NOTE.md",
+    "bootstrap/ARCH_008/ARCH_008_MISMATCHES.md",
+    "bootstrap/ARCH_008/ARCH_008_QA_REPORT.md",
+    "bootstrap/ARCH_008/ARCH_008_MULTI_AGENT_REVIEW.md",
+    "bootstrap/ARCH_008/ARCH_008_EVIDENCE.json",
+    "bootstrap/ARCH_008/agents/agent_a_attack_events.json",
+    "bootstrap/ARCH_008/agents/agent_b_false_alarms.json",
+    "bootstrap/ARCH_008/agents/agent_c_overlap.json",
+    "bootstrap/ARCH_008/agents/agent_d_integrity_claims.json",
+    "bootstrap/ARCH_008/agents/agent_e_qa.json",
 )
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
@@ -146,6 +163,7 @@ GENERATED_FILES = (
     "generated/ARCH_005_USER_SUMMARY.md",
     "generated/ARCH_006_USER_SUMMARY.md",
     "generated/ARCH_007_USER_SUMMARY.md",
+    "generated/ARCH_008_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -162,6 +180,7 @@ REQUIRED_RCC_DIRS = (
     "architecture/05_verifier_common42", "bootstrap/ARCH_005", "bootstrap/ARCH_005/agents",
     "architecture/06_runtime_trace_explanation", "bootstrap/ARCH_006", "bootstrap/ARCH_006/agents",
     "architecture/07_d0_detector", "bootstrap/ARCH_007", "bootstrap/ARCH_007/agents",
+    "architecture/08_d1_rule_only", "bootstrap/ARCH_008", "bootstrap/ARCH_008/agents",
 )
 
 
@@ -240,10 +259,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-007 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-007 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-007", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 9, "top_user_todo must contain exactly nine ARCH-008 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 9, "ARCH-008 must leave nine user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-008", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-009 — D2 Detector + Rule Fusion Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -256,8 +275,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-009 — D2 Detector + Rule Fusion Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-009 — D2 Detector + Rule Fusion Deep Audit", "next architecture task mismatch")
     relation = state.get("relation_numeric_authority", {})
     result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
     result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
@@ -290,6 +309,16 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(d0.get("point_alarms") == 876 and d0.get("alarm_episodes") == 46, "ARCH-007 point/episode counts mismatch")
     result.require(d0.get("attack_event_response") == "11/14" and d0.get("normal_false_alarm_episodes") == 7, "ARCH-007 frozen pilot semantics mismatch")
     result.require(d0.get("validation") == "PILOT_ONLY" and d0.get("fresh_machine_reproducibility") == "INCOMPLETE", "ARCH-007 scientific boundary mismatch")
+    d1 = state.get("d1_evaluation", {})
+    result.require(d1.get("preferred_name") == "COMMON-42 Verified Relational Rule-only", "ARCH-008 preferred D1 terminology mismatch")
+    result.require(d1.get("opportunities") == 6031 and d1.get("anomalous_rule_records") == 788, "ARCH-008 opportunity or rule-record count mismatch")
+    result.require(d1.get("unique_alarm_seconds") == 630 and d1.get("total_alarm_episodes") == 626, "ARCH-008 alarm second or episode count mismatch")
+    result.require(d1.get("normal_false_episodes") == 574 and d1.get("normal_exposure_seconds") == 51019, "ARCH-008 normal false-alarm evidence mismatch")
+    result.require(d1.get("attack_events_detected") == 13 and d1.get("pilot_events") == 14, "ARCH-008 attack-event evidence mismatch")
+    result.require(d1.get("overlap") == {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0}, "ARCH-008 D0/D1 overlap mismatch")
+    result.require(d1.get("durable_freeze") is False, "ARCH-008 must preserve the durable-freeze limitation")
+    result.require(d1.get("llm_rule_only") == "NOT_DIRECTLY_TESTED" and d1.get("agentic_rule_only") == "MISLEADING_NOT_APPLICABLE", "ARCH-008 arm terminology boundary mismatch")
+    result.require(d1.get("held_out_generalization") == "UNCONFIRMED", "ARCH-008 held-out status mismatch")
     governance = state.get("data_governance", {})
     result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
     result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
@@ -666,8 +695,9 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_003_USER_SUMMARY.md": ("47개 후보는 어떻게 42개 실행 관계가 되는가", "train3", "Numeric authority", "causal relation"),
         "generated/ARCH_004_USER_SUMMARY.md": ("Rule은 어떻게 만들어지는가", "Evidence Pack", "39/42", "runtime authorization"),
         "generated/ARCH_005_USER_SUMMARY.md": ("COMMON-42", "20단계", "runtime authorization", "다음 task"),
-        "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "ARCH-008"),
-        "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "ARCH-008"),
+        "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "ARCH-009"),
+        "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "ARCH-009"),
+        "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "ARCH-009"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -946,6 +976,43 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     result.require(d0_flow.startswith("flowchart ") and "LABEL-BLIND DURABLE FREEZE" in d0_flow, "ARCH-007 Mermaid omits flow or label boundary")
     result.require("score == threshold" in (d0_dir / "ARCH_007_D0_STATE_MACHINE.md").read_text(encoding="utf-8"), "ARCH-007 threshold equality semantics missing")
     result.require("FAR/hour" in (d0_dir / "ARCH_007_OUTPUT_LEVELS.md").read_text(encoding="utf-8"), "ARCH-007 output-level distinction missing")
+
+    d1_dir = rcc_root / "architecture" / "08_d1_rule_only"
+    required_d1 = {
+        "ARCH_008_REPORT.md", "ARCH_008_D1_EVALUATED_OBJECT.md", "ARCH_008_OUTPUT_LEVELS.md",
+        "ARCH_008_ATTACK_EVENT_EVALUATION.md", "ARCH_008_NORMAL_FALSE_ALARMS.md",
+        "ARCH_008_D0_D1_OVERLAP.csv", "ARCH_008_COMPLEMENTARITY_BOUNDARY.md",
+        "ARCH_008_RULE_ONLY_UTILITY.md", "ARCH_008_RESULT_LINEAGE.md",
+        "ARCH_008_ARTIFACT_LINEAGE.csv", "ARCH_008_CLAIM_MATRIX.csv",
+        "ARCH_008_PROFESSOR_RULE_ONLY_NOTE.md", "ARCH_008_FUNCTION_CATALOG.csv",
+        "ARCH_008_IO_CONTRACTS.csv", "ARCH_008_D1_EVALUATION_FLOW.mmd", "ARCH_008_MISMATCHES.md",
+    }
+    for name in required_d1:
+        result.require((d1_dir / name).is_file(), f"ARCH-008 output missing: {name}")
+    if not d1_dir.is_dir() or any(not (d1_dir / name).is_file() for name in required_d1):
+        return
+    with (d1_dir / "ARCH_008_D0_D1_OVERLAP.csv").open("r", encoding="utf-8", newline="") as handle:
+        overlap_rows = list(csv.DictReader(handle))
+    with (d1_dir / "ARCH_008_ARTIFACT_LINEAGE.csv").open("r", encoding="utf-8", newline="") as handle:
+        d1_artifacts = list(csv.DictReader(handle))
+    with (d1_dir / "ARCH_008_CLAIM_MATRIX.csv").open("r", encoding="utf-8", newline="") as handle:
+        d1_claims = list(csv.DictReader(handle))
+    with (d1_dir / "ARCH_008_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        d1_functions = list(csv.DictReader(handle))
+    with (d1_dir / "ARCH_008_IO_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        d1_contracts = list(csv.DictReader(handle))
+    result.require([(row["category"], int(row["count"])) for row in overlap_rows] == [("BOTH", 10), ("D0_ONLY", 1), ("D1_ONLY", 3), ("NEITHER", 0)], "ARCH-008 overlap table mismatch")
+    result.require(len(d1_artifacts) >= 9, "ARCH-008 artifact lineage is incomplete")
+    result.require(len(d1_claims) >= 9, "ARCH-008 claim matrix is incomplete")
+    result.require(len(d1_functions) >= 9 and all(is_safe_relative_path(row["path"]) for row in d1_functions), "ARCH-008 function catalog is incomplete or unsafe")
+    result.require(len(d1_contracts) >= 10, "ARCH-008 IO contracts are incomplete")
+    d1_flow = (d1_dir / "ARCH_008_D1_EVALUATION_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(d1_flow.startswith("flowchart ") and "LABEL ACCESS" in d1_flow and "PILOT ONLY" in d1_flow, "ARCH-008 Mermaid omits flow or pilot label boundary")
+    output_levels = (d1_dir / "ARCH_008_OUTPUT_LEVELS.md").read_text(encoding="utf-8")
+    for marker in ("6,031", "788", "630", "626", "574", "40.50255787059723"):
+        result.require(marker in output_levels, f"ARCH-008 output levels omit {marker}")
+    result.require("UNVALIDATED" in (d1_dir / "ARCH_008_RULE_ONLY_UTILITY.md").read_text(encoding="utf-8"), "ARCH-008 utility boundary missing")
+    result.require("T2 Agentic Rule-only" in (d1_dir / "ARCH_008_PROFESSOR_RULE_ONLY_NOTE.md").read_text(encoding="utf-8"), "ARCH-008 professor terminology boundary missing")
 
 
 def validate_registry(

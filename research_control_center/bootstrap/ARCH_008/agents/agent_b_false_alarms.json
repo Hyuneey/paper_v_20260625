@@ -1,0 +1,16 @@
+{
+  "agent": "B — D1 Normal False-Alarm Auditor",
+  "verdict": "PASS",
+  "method": "read_only_frozen_evidence_and_static_source_audit",
+  "opportunities": 6031,
+  "anomalous_rule_records": 788,
+  "unique_alarm_seconds": 630,
+  "total_alarm_episodes": 626,
+  "normal_false_episodes": 574,
+  "normal_exposure_seconds": 51019,
+  "normal_far_episodes_per_hour": 40.50255787059723,
+  "high_far_cause": "CAUSE_NOT_YET_ANALYZED",
+  "scientific_executions": 0,
+  "test2_accesses": 0,
+  "files_changed": 0
+}

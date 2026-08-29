@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ab9076a8c78900eea12110d3f3a98e5e9bfc027e86c18a09ae4f4e7c5a908366 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -55,8 +55,8 @@ E3 exposes a fixed relation, horizon, and normal-only references to a closed pro
 ## Frozen D1 runtime boundary
 
 Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse to 630 seconds
-and 626 metric episodes. Prediction preceded labels but was not durably persisted; its trace is
-not `RuntimeTraceV1`, and no D1 explanation was rendered.
+and 626 metric episodes; 574 were normal false episodes. It is COMMON-42 Verified Relational
+Rule-only, not T2 Agentic Rule-only. Prediction preceded labels but was not durably persisted.
 
 ## Frozen D0 detector boundary
 
@@ -78,13 +78,12 @@ HAI P1, META/STAT/GDN, normal-only profiling and numeric authority led to COMMON
 - D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.
 - The OUTER path has a blocker record and no scientific result.
 
-The frozen discovery and construction counts establish pipeline execution and custody,
-not causality, physical truth, unique GDN benefit, or agentic-feedback advantage. T2
-performed zero feedback actions in the current cohort.
+Frozen discovery and construction counts establish execution and custody, not causality,
+physical truth, unique GDN benefit, or agentic-feedback advantage. T2 feedback actions: zero.
 
 ## Frozen INNER pilot observations
 
-The INNER evaluation contains 14 independent attack events. D0 PCA-SPE responded to
+The INNER evaluation contains 14 operational attack events. D0 PCA-SPE responded to
 11/14 with Normal FAR 0.4939336325682589 episodes/hour. D1 verified Rule-only responded
 to 13/14 with Normal FAR 40.50255787059723 episodes/hour. Their event overlap was both
 10, D0-only 1, D1-only 3, neither 0. D2 V1 and D2 V2 each responded to 11/14 and each
@@ -144,14 +143,15 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain why PCA is used.
-- Explain SPE.
-- Explain where the threshold comes from.
-- Explain why test1 labels do not set the threshold.
-- Distinguish point alarm, episode, and attack event.
-- Explain why D0 is only a reference baseline.
-- Explain why a stronger detector is needed later.
-- Approve or defer starting ARCH-008.
+- Explain what D1 actually is.
+- Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.
+- Explain 13/14 attack-event response.
+- Explain Normal FAR/hour.
+- Explain why high Recall does not establish detector superiority.
+- Explain the D0/D1 event overlap.
+- Explain pilot versus validated complementarity.
+- Explain why D1 is not Agentic Rule-only.
+- Approve or defer starting ARCH-009.
 
 ## Source-policy boundary
 
@@ -162,9 +162,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit**
+Management: **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
 
-Following architecture review: **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit**
+Following architecture review: **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

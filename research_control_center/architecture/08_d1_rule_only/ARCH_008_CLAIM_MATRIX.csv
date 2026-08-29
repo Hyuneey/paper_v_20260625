@@ -1,0 +1,10 @@
+claim,status,evidence,allowed_wording,forbidden_wording
+D1 detected 13 of 14 current pilot attack events,PILOT_SUPPORTED,Frozen D1 metrics and integrity audit,In the 14-event INNER pilot D1 overlapped 13 events,D1 has validated 92.9 percent performance
+D1 had higher current attack-event recall than D0,PILOT_SUPPORTED_DESCRIPTIVE,Frozen arm comparison,D1 was 13/14 and D0 was 11/14 in this pilot,D1 is superior to detector-only
+D1 responds differently from D0,PILOT_SUPPORTED,Frozen four-cell overlap,Three events were D1-only and one was D0-only in this pilot,D1 generally complements D0
+D1 generally complements D0,UNVALIDATED,Small development event set and no independent validation,Pilot response diversity motivates validation,Complementarity is proven
+D1 is operationally useful,UNVALIDATED,574 normal false episodes and no held-out result,Operational utility remains unresolved,D1 is a good detector
+Rule-only is superior to detector-only,NOT_SUPPORTED,Recall and false-alarm dimensions conflict,No superiority conclusion is supported,Rule-only is superior
+Agentic Rule-only performs well,NOT_APPLICABLE_MISLEADING,T2 excluded from COMMON-42,D1 is not a T2 Agentic runtime result,Agentic Rule-only achieved 13/14
+LLM Rule-only performs well,NOT_DIRECTLY_TESTED,COMMON-42 is shared T0 T1 T1-B executable-equivalent portfolio,Direct LLM-arm runtime performance was not tested,LLM Rule-only achieved 13/14
+Verified relational rules may contain additional event information,PILOT_SIGNAL_ONLY,D1-only equals 3 in frozen overlap,The pilot suggests additional event response information,Rules generally recover misses

@@ -1,0 +1,11 @@
+producer,output_schema,consumer,authority,label_access,failure_behavior,artifact,notes
+COMMON-42 freeze,42 CanonicalRuleDescriptorV4,V4 D1 evaluator,Frozen descriptor and portfolio identities,NONE,Fail closed on authority mismatch,COMMON-42 portfolio,T2 excluded
+Utility V4 custody,Normal-only runtime numeric resolver,V4 D1 evaluator,Private registry and V4 authority hashes,NONE,Fail closed on missing or mismatched reference,Private registry,Values not public
+V4 D1 evaluator,RealRuleExecutionResultV1 sequence,Prediction builder,Committed execution grant,NONE,Explicit error state,In-memory results,One result per opportunity
+Prediction builder,ScientificRulePredictionArtifactV1,Label custody,Self-hash and count validation,NONE,Reject before label open,In-memory prediction,6031 records
+Label custody,Attack event and alarm episode hashes,Metric evidence,Authorized test1 label hash,READ_AFTER_PREDICTION,Fail closed on hash schema or row mismatch,Private custody,No coordinates public
+Metric evidence,ScientificMetricV1 attack recall,Public D1 metrics,Frozen metric formula,READ,Undefined on zero events,D1 metrics,13 of 14
+Metric evidence,ScientificMetricV1 normal FAR,Public D1 metrics,Frozen metric formula,READ,Undefined on zero normal exposure,D1 metrics,574 false episodes
+Frozen D0 D1 D2 prediction artifacts plus labels,Arm metrics,Scientific comparison,Exact pinned prediction hashes,LABEL_READ_ONCE,Reject hash closure or expected-metric divergence,Arm metrics,Zero arm or rule re-execution; source of 574
+Frozen D0 and D1 prediction artifacts plus labels,Four-cell overlap,Scientific comparison,Exact pinned prediction hashes,LABEL_READ_ONCE,Reject inconsistent partition,Event overlap,Event identity sets derived inside comparison
+Scientific comparison,Sanitized report,RCC and thesis,Public-safe report bundle,NO_NEW_ACCESS,No stronger claim than interpretation artifact,Comparison report,Pilot only

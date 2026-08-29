@@ -1,0 +1,17 @@
+{
+  "agent": "A — D1 Attack-Event Coverage Auditor",
+  "verdict": "PASS",
+  "method": "read_only_frozen_evidence_and_static_source_audit",
+  "attack_events": 14,
+  "detected": 13,
+  "missed": 1,
+  "recall": 0.9285714285714286,
+  "event_definition": "maximal file-local contiguous run of exact label 1",
+  "hit_rule": "at least one exact interval overlap with a maximal D1 alarm episode",
+  "boundary_tolerance_seconds": 0,
+  "timing": "NOT_FROZEN",
+  "d0_d1_statistical_test": "NOT_FROZEN",
+  "scientific_executions": 0,
+  "test2_accesses": 0,
+  "files_changed": 0
+}

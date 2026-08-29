@@ -1,0 +1,5 @@
+category,count,meaning,source_artifact,pilot_interpretation
+BOTH,10,Attack events overlapped by both D0 and D1 alarm episodes,docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_EVENT_OVERLAP.json,Observed shared response only
+D0_ONLY,1,Attack event overlapped by D0 but not D1,docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_EVENT_OVERLAP.json,D1 is not a superset of D0
+D1_ONLY,3,Attack events overlapped by D1 but not D0,docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_EVENT_OVERLAP.json,VERIFIED_PILOT_OBSERVATION of response diversity
+NEITHER,0,Attack events overlapped by neither D0 nor D1,docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_EVENT_OVERLAP.json,No event was in the neither category in the frozen four-cell table
