@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=a2dc415791dab575e45a9027f5d53efe20b96316a9f026068ecb7c66136d9ba3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -13,6 +13,20 @@ ARCHITECTURE_COMPLETE → **EVALUATION_SCOPE_EXPANSION (CURRENT)** → HYPOTHESI
 Architecture implementation and pilot operation are complete. Scientific validation is partial,
 held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
 
+## HOW TO READ STATUS
+
+- Implemented and Executed describe engineering state.
+- Evidence-reviewed is the backward-compatible component `audited` field: source or evidence
+  status was reviewed. It does not mean performance validation.
+- Result-integrity audited applies only to an explicit result-specific integrity artifact and
+  checks custody and arithmetic. It does not mean scientific validation.
+- Independently reproduced is a separate state and is currently zero at component level.
+- `claims.csv` alone controls authoritative scientific claim status. Component `claim_ready`
+  supports narrow implementation or contract wording only.
+
+These states are not a single completion percentage. Evidence-reviewed can exceed Executed
+because governance and documentation evidence can be reviewed without scientific execution.
+
 ## WHAT EXISTS
 
 The pinned repository contains the end-to-end HAI 23.05 P1 INNER path: provenance and
@@ -23,7 +37,7 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 
 ## WHAT WAS EXECUTED
 
-- All three discovery arms produced audited top-20 rankings.
+- All three discovery arms produced evidence-reviewed top-20 rankings.
 - Profiling produced 23 pair contexts and 42 frozen directed relations.
 - T0, T1, T1-B, and T2 executed; their accepted counts were 42, 42, 42, and 39.
 - Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.

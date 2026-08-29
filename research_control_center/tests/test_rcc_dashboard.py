@@ -85,11 +85,43 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_dashboard_has_population_counts_and_architecture_nodes(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
-        for label in ("Implemented", "Executed", "Audited", "Reproduced", "Claim-ready"):
+        for label in ("Implemented", "Executed", "Evidence-reviewed", "Independently reproduced"):
             self.assertIn(label, rendered)
+        self.assertNotIn("Claim-ready", rendered)
         for component_id in ("DATA_PROVENANCE", "GDN_DISCOVERY", "D0_PCA_SPE", "D1_RULE_ONLY"):
             name = next(row["name"] for row in load_registry(RCC_ROOT)["components"] if row["component_id"] == component_id)
             self.assertIn(name, rendered)
+
+    def test_status_semantics_are_non_linear_and_claim_registry_authoritative(self) -> None:
+        data = load_registry(RCC_ROOT)
+        rendered = render_dashboard(data, registry_digest(RCC_ROOT))
+        self.assertIn("These counts are not a single completion percentage.", rendered)
+        self.assertIn(
+            "Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.",
+            rendered,
+        )
+        self.assertIn("source or evidence status was reviewed", rendered)
+        self.assertIn("explicit scientific result-integrity audits are shown separately", rendered)
+        self.assertIn("claims.csv", rendered)
+        self.assertNotRegex(rendered, r"\b\d+(?:\.\d+)?\s*%")
+        self.assertGreater(
+            sum(row["audited"] == "true" for row in data["components"]),
+            sum(row["executed"] == "true" for row in data["components"]),
+        )
+
+    def test_claim_headline_counts_derive_from_claims_registry(self) -> None:
+        data = load_registry(RCC_ROOT)
+        rendered = render_dashboard(data, registry_digest(RCC_ROOT))
+        expected = {
+            "Supported implementation": "SUPPORTED_IMPLEMENTATION",
+            "Pilot only": "PILOT_ONLY",
+            "Unvalidated": "UNVALIDATED",
+            "Not supported": "NOT_SUPPORTED",
+            "Conditional": "CONDITIONAL",
+        }
+        for label, status in expected.items():
+            count = sum(row["status"] == status for row in data["claims"])
+            self.assertIn(f"<dt>{label}</dt><dd>{count}</dd>", rendered)
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)

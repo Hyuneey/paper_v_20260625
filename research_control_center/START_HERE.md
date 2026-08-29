@@ -37,17 +37,20 @@ validation remain incomplete. This is not a claim of final thesis validation.
 
 ## Important distinction
 
-`Implemented` means code exists. `Executed` means an authorized run exists.
-`Audited` means that execution or artifact passed its defined checks.
-`Reproduced` means it was independently recreated under the required custody.
-`Claim-ready` means the evidence supports the permitted research wording.
+`Implemented` and `Executed` are engineering states. `Evidence-reviewed` means
+the component's source or evidence status was reviewed against the pinned
+authority; it is not performance validation. `Result-integrity audited` is a
+separate result-specific check of custody, immutability, ordering, and
+arithmetic. `Independently reproduced` requires a separate reproduction under
+the required environment and custody. Scientific claim status comes only from
+`registry/claims.csv`.
 
-These states are not interchangeable:
+The compatibility field `component.claim_ready` supports narrow implementation
+or contract wording only. It does not mean scientifically validated performance.
 
-`CODE EXISTS != EXECUTED`
-`EXECUTED != VALIDATED`
-`VALIDATED != GENERALIZED`
-`GENERALIZED != CLAIM_READY`
+These counts are not a single completion percentage. Code existence, execution,
+evidence review, result-integrity audit, independent reproduction, and
+scientific validation are separate states.
 
 ## How to update RCC
 

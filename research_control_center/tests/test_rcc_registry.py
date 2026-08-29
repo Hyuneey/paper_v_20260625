@@ -61,6 +61,16 @@ class RegistryValidationTests(unittest.TestCase):
             data["state"]["safety_counters"],
         )
 
+    def test_status_semantics_separate_review_integrity_reproduction_and_validation(self) -> None:
+        state = load_registry(RCC_ROOT)["state"]
+        semantics = state["status_semantics"]
+        self.assertIn("source or evidence status", semantics["audited_field"])
+        self.assertIn("not a performance-validation flag", semantics["audited_field"])
+        self.assertIn("explicit result-specific integrity artifacts", semantics["result_integrity_audit"])
+        self.assertIn("independent reproduction", semantics["reproduced_field"])
+        self.assertIn("claims.csv", semantics["scientific_validation"])
+        self.assertIn("narrow implementation or contract claim", semantics["claim_ready_field"])
+
     def test_every_scientific_source_commit_is_pinned(self) -> None:
         data = load_registry(RCC_ROOT)
         for name in ("experiments", "claims", "risks"):

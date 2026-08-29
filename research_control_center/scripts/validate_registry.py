@@ -184,7 +184,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain exactly three entries")
-    result.require(state.get("last_completed_task") == "RCC-002", "last completed task mismatch")
+    result.require(state.get("last_completed_task") == "RCC-002A", "last completed task mismatch")
     result.require(state.get("exact_next_task") == "RCC-003 — Research Timeline & Decision Backfill", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
@@ -200,6 +200,27 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
     result.require(state.get("recommended_next_management_task") == "RCC-003 — Research Timeline & Decision Backfill", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "ARCH-000 — Full Architecture Overview Audit", "next architecture task mismatch")
+    semantics = state.get("status_semantics", {})
+    result.require(
+        set(semantics) == {
+            "implementation_engineering_state", "audited_field", "result_integrity_audit",
+            "claim_ready_field", "reproduced_field", "scientific_validation",
+        },
+        "status semantics contract is incomplete",
+    )
+    if semantics:
+        result.require("source or evidence status" in semantics["audited_field"], "audited field semantics are ambiguous")
+        result.require("not a performance-validation flag" in semantics["audited_field"], "audited field could imply performance validation")
+        result.require("explicit result-specific integrity artifacts" in semantics["result_integrity_audit"], "result-integrity semantics are not artifact-specific")
+        result.require("claims.csv" in semantics["claim_ready_field"], "claim_ready does not defer to claims.csv")
+        result.require("narrow implementation or contract claim" in semantics["claim_ready_field"], "claim_ready is not narrowly scoped")
+        result.require("independent reproduction" in semantics["reproduced_field"], "reproduction semantics are ambiguous")
+        result.require("claims.csv" in semantics["scientific_validation"], "scientific validation is not claim-registry bound")
+    summary = state.get("research_status_summary", {})
+    result.require(
+        set(summary) == {"engineering", "result_integrity", "scientific_validation", "reproducibility", "generalization", "claims"},
+        "research status summary does not separate required dimensions",
+    )
     result.require(
         state.get("safety_counters") == {
             "scientific_executions": 0,
@@ -435,12 +456,30 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         dashboard = html_path.read_text(encoding="utf-8")
         result.require("https://" not in dashboard and "http://" not in dashboard, "dashboard contains an external network resource")
         result.require("NOT AUTHORITATIVE" in dashboard, "dashboard omits historical-checkout warning")
+        result.require("These counts are not a single completion percentage." in dashboard, "dashboard omits the no-completion-percentage warning")
+        result.require("Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states." in dashboard, "dashboard does not separate status concepts")
+        result.require("Evidence-reviewed" in dashboard, "dashboard does not translate the component audited field")
+        result.require("Result integrity" in dashboard, "dashboard does not display result integrity separately")
+        result.require("claims.csv" in dashboard, "dashboard does not identify the authoritative claim registry")
+        result.require("Claim-ready" not in dashboard, "dashboard still headlines component claim-ready status")
+        result.require(not re.search(r"\b\d+(?:\.\d+)?\s*%", dashboard), "dashboard contains an overall-looking percentage")
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
             "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
+    required_semantic_outputs = {
+        "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "not a single completion percentage"),
+        "generated/GPT_BRIEF.md": ("Evidence-reviewed", "Result-integrity audit", "claims.csv", "not a single completion percentage"),
+        "generated/RCC_002_USER_SUMMARY.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "하나의 연구 완료율"),
+    }
+    for relative, phrases in required_semantic_outputs.items():
+        path = rcc_root / relative
+        if path.is_file():
+            payload = path.read_text(encoding="utf-8")
+            for phrase in phrases:
+                result.require(phrase in payload, f"{relative} omits status-semantic phrase {phrase!r}")
 
 
 def validate_registry(

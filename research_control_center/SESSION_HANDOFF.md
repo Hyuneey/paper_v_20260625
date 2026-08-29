@@ -13,7 +13,7 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`RCC-002 — Current-State Registry Population`
+`RCC-002A — Status Semantics Normalization`
 
 ## What changed
 
@@ -24,6 +24,10 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 - Regenerated the dashboard, GPT brief, current context, user TODO, decision
   inbox, current status, change summary, and Korean user summary.
 - Added a high-level registry-driven architecture map and status summary cards.
+- Normalized dashboard terminology so component evidence review cannot be
+  mistaken for result-integrity audit or performance validation.
+- Removed component `claim_ready` from headline counts and made `claims.csv`
+  the explicit authoritative scientific claim view.
 
 ## Decisions made
 

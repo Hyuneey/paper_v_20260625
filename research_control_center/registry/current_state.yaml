@@ -14,6 +14,22 @@
   "phase_progression": ["ARCHITECTURE_COMPLETE", "EVALUATION_SCOPE_EXPANSION", "HYPOTHESIS_VALIDATION"],
   "current_phase_statement": "Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.",
   "current_scope": {"dataset": "HAI 23.05", "process": "P1 Boiler", "evaluation_stage": "Frozen INNER pilot; OUTER scientific result unavailable"},
+  "status_semantics": {
+    "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
+    "audited_field": "The backward-compatible component audited field means source or evidence status was reviewed against the pinned authority; it is not a performance-validation flag.",
+    "result_integrity_audit": "Scientific result integrity is recorded only by explicit result-specific integrity artifacts and means custody, immutability, ordering, and arithmetic were checked; it does not validate scientific performance.",
+    "claim_ready_field": "The backward-compatible component claim_ready field means the component supports at least one currently allowable narrow implementation or contract claim; authoritative scientific claim status comes only from claims.csv.",
+    "reproduced_field": "The component reproduced field means independent reproduction under the required environment and custody, not source review or result-integrity audit.",
+    "scientific_validation": "Scientific validation requires adequate independent evidence for the stated hypothesis and is represented through claims.csv boundaries rather than inferred from component lifecycle fields."
+  },
+  "research_status_summary": {
+    "engineering": "Architecture substantially implemented; most frozen INNER paths executed.",
+    "result_integrity": "Explicit integrity audits exist for frozen D0, D1, D2 V1, and D2 V2 INNER results; this checks result custody and arithmetic, not performance validity.",
+    "scientific_validation": "Partial and incomplete; major performance and contribution hypotheses remain unvalidated or unsupported.",
+    "reproducibility": "Fresh-machine independent reproduction remains pending.",
+    "generalization": "Held-out generalization remains unconfirmed because no OUTER scientific result exists.",
+    "claims": "Only narrow implementation or contract claims are supported; claims.csv is the authoritative claim view."
+  },
   "architecture_flow": "HAI provenance and P1 scope -> role universe -> META / STAT / GDN -> candidate union -> normal temporal profiling -> normal-only numeric references -> evidence pack -> T0 / T1 / T1-B / T2 construction -> deterministic verifier -> COMMON-42 -> rule runtime -> D1; HAI -> D0 PCA-SPE; D0 + D1 -> D2 policies -> event / episode metrics -> integrity audit",
   "architecture_overview": [
     {"lane": "Evidence and discovery", "nodes": ["DATA_PROVENANCE", "VARIABLE_ROLE_UNIVERSE", "META_DISCOVERY", "STAT_DISCOVERY", "GDN_DISCOVERY", "CANDIDATE_UNION"]},
@@ -21,7 +37,7 @@
     {"lane": "Runtime and evaluation", "nodes": ["RULE_RUNTIME", "D1_RULE_ONLY", "D0_PCA_SPE", "D2_V1", "D2_V2", "EPISODE_CONSTRUCTION", "ATTACK_EVENT_RECALL", "NORMAL_FAR", "RESULT_INTEGRITY"]}
   ],
   "current_established": [
-    "The pinned HAI 23.05 P1 INNER architecture is implemented and its frozen pilot execution paths are audited.",
+    "The pinned HAI 23.05 P1 INNER architecture is implemented; component evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.",
     "A 144-pair role universe produced three top-20 discovery arms and a 47-pair unscored candidate union.",
     "Normal-only profiling and authority controls produced 23 pair contexts and 42 frozen directed relations in COMMON-42.",
     "T0, T1, T1-B, and T2 construction paths were executed on the frozen cohort; T2 performed no feedback action.",
@@ -29,7 +45,7 @@
     "The OUTER record is a blocker and custody record; it is not a held-out scientific result."
   ],
   "established_facts": [
-    "The pinned HAI 23.05 P1 INNER architecture is implemented and its frozen pilot execution paths are audited.",
+    "The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.",
     "Normal-only evidence was transformed into 42 frozen executable verified relational rules under bounded authority controls.",
     "D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.",
     "The OUTER path has a blocker record and no scientific result."
@@ -68,7 +84,7 @@
   "fresh_machine_reproducibility": "incomplete",
   "recommended_next_management_task": "RCC-003 — Research Timeline & Decision Backfill",
   "recommended_next_architecture_task": "ARCH-000 — Full Architecture Overview Audit",
-  "last_completed_task": "RCC-002",
+  "last_completed_task": "RCC-002A",
   "exact_next_task": "RCC-003 — Research Timeline & Decision Backfill",
   "safety_counters": {"scientific_executions": 0, "test2_feature_accesses": 0, "test2_label_accesses": 0, "new_private_exposures": 0}
 }

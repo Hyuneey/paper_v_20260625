@@ -91,8 +91,33 @@ def _badge_class(status: str) -> str:
     return "badge-gray"
 
 
-def _badge(status: str) -> str:
-    return f'<span class="badge {_badge_class(status)}">{_escape(status.replace("_", " "))}</span>'
+COMPONENT_STATUS_LABELS = {
+    "IMPLEMENTED_EXECUTED_AUDITED": "CODE PRESENT · EXECUTED · EVIDENCE REVIEWED",
+    "IMPLEMENTED_EXECUTED": "CODE PRESENT · EXECUTED",
+    "IMPLEMENTED_NOT_EXECUTED": "CODE PRESENT · NOT EXECUTED",
+    "RESEARCH_ONLY": "RESEARCH SCOPE ONLY",
+    "DESIGN_ONLY": "DESIGNED ONLY",
+    "PARTIAL": "PARTIAL",
+    "BLOCKED": "BLOCKED",
+    "LEGACY_OR_SUPERSEDED": "LEGACY OR SUPERSEDED",
+    "UNKNOWN": "UNKNOWN",
+}
+
+EXPERIMENT_STATUS_LABELS = {
+    "NOT_STARTED": "NOT STARTED",
+    "DESIGN_ONLY": "DESIGNED ONLY",
+    "IMPLEMENTED_NOT_EXECUTED": "CODE PRESENT · COMPARISON NOT EXECUTED",
+    "EXECUTED_NOT_AUDITED": "EXECUTED · EVIDENCE REVIEW PENDING",
+    "EXECUTED_AUDITED_PILOT": "EXECUTED · EVIDENCE-REVIEWED PILOT",
+    "BLOCKED": "BLOCKED",
+    "SUPERSEDED": "SUPERSEDED",
+    "UNKNOWN": "UNKNOWN",
+}
+
+
+def _badge(status: str, label: str | None = None) -> str:
+    displayed = label or status.replace("_", " ")
+    return f'<span class="badge {_badge_class(status)}">{_escape(displayed)}</span>'
 
 
 def _cards(
@@ -102,6 +127,7 @@ def _cards(
     id_key: str,
     status_key: str,
     body_keys: Sequence[tuple[str, str]],
+    status_labels: Mapping[str, str] | None = None,
 ) -> str:
     rendered: list[str] = []
     for row in rows:
@@ -117,7 +143,7 @@ def _cards(
                     f'<article class="registry-card" data-status="{_escape(status)}" data-search="{_escape(searchable)}">',
                     '<div class="card-heading">',
                     f'<div><p class="eyebrow">{_escape(row[id_key])}</p><h3>{_escape(row[title_key])}</h3></div>',
-                    _badge(status),
+                    _badge(status, (status_labels or {}).get(status)),
                     "</div>",
                     f"<dl>{details}</dl>",
                     "</article>",
@@ -162,7 +188,8 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         title_key="name",
         id_key="component_id",
         status_key="status",
-        body_keys=(("Role", "research_role"), ("Lifecycle", "lifecycle_stage"), ("Next", "next_action")),
+        body_keys=(("Role", "research_role"), ("Recorded lifecycle token", "lifecycle_stage"), ("Next", "next_action")),
+        status_labels=COMPONENT_STATUS_LABELS,
     )
     experiment_cards = _cards(
         data["experiments"],
@@ -170,6 +197,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         id_key="experiment_id",
         status_key="status",
         body_keys=(("Question", "research_question"), ("Evidence", "current_evidence"), ("Limit", "limitations"), ("Next", "next_action")),
+        status_labels=EXPERIMENT_STATUS_LABELS,
     )
     claim_cards = _cards(
         data["claims"],
@@ -206,9 +234,8 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         "Total": len(components),
         "Implemented": sum(row["status"].startswith("IMPLEMENTED") for row in components),
         "Executed": sum(row["executed"] == "true" for row in components),
-        "Audited": sum(row["audited"] == "true" for row in components),
-        "Reproduced": sum(row["reproduced"] == "true" for row in components),
-        "Claim-ready*": sum(row["claim_ready"] == "true" for row in components),
+        "Evidence-reviewed": sum(row["audited"] == "true" for row in components),
+        "Independently reproduced": sum(row["reproduced"] == "true" for row in components),
     }
     experiment_counts = {
         "Total": len(data["experiments"]),
@@ -284,14 +311,16 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <div class="section-heading"><p class="eyebrow">01</p><h2>CURRENT STATE</h2></div>
       <div class="two-column"><div><h3>Established</h3>{_bullet_list(state['established_facts'])}</div><div><h3>Not established</h3>{_bullet_list(state['not_established'])}</div></div>
       <div class="status-snapshot">
-        <div><span>Architecture</span><strong>Implemented · pilot operational</strong></div>
-        <div><span>Scientific validation</span><strong>Partial · incomplete</strong></div>
-        <div><span>Held-out</span><strong>Unconfirmed</strong></div>
-        <div><span>Fresh-machine</span><strong>Incomplete</strong></div>
+        <div><span>Engineering</span><strong>{_escape(state['research_status_summary']['engineering'])}</strong></div>
+        <div><span>Result integrity</span><strong>{_escape(state['research_status_summary']['result_integrity'])}</strong></div>
+        <div><span>Scientific validation</span><strong>{_escape(state['research_status_summary']['scientific_validation'])}</strong></div>
+        <div><span>Reproducibility</span><strong>{_escape(state['research_status_summary']['reproducibility'])}</strong></div>
+        <div><span>Generalization</span><strong>{_escape(state['research_status_summary']['generalization'])}</strong></div>
+        <div><span>Claims</span><strong>{_escape(state['research_status_summary']['claims'])}</strong></div>
       </div>
       <div class="summary-grid">{summary_markup}</div>
-      <p class="summary-note">* Claim-ready is bounded to narrow implementation or contract wording; it is not a validated-performance label.</p>
-      <aside class="principle">CODE EXISTS ≠ EXECUTED · EXECUTED ≠ VALIDATED · VALIDATED ≠ GENERALIZED · GENERALIZED ≠ CLAIM READY</aside>
+      <p class="summary-note">These counts are not a single completion percentage. Component Evidence-reviewed means source or evidence status was reviewed; explicit scientific result-integrity audits are shown separately. Scientific claim counts come only from <code>claims.csv</code>.</p>
+      <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
     </section>
 
     <section id="my-tasks" class="section">
@@ -319,15 +348,21 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     </section>
 
     <section id="components" class="section">
-      <div class="section-heading"><p class="eyebrow">05</p><h2>COMPONENT STATUS</h2></div><div class="card-grid">{component_cards}</div>
+      <div class="section-heading"><p class="eyebrow">05</p><h2>COMPONENT STATUS</h2></div>
+      <p class="section-intro">Legacy component tokens are translated for display. Evidence-reviewed is source/evidence review, not performance validation. A result-integrity audit requires an explicit result-specific artifact.</p>
+      <div class="card-grid">{component_cards}</div>
     </section>
 
     <section id="experiments" class="section">
-      <div class="section-heading"><p class="eyebrow">06</p><h2>EXPERIMENT STATUS</h2></div><div class="card-grid">{experiment_cards}</div>
+      <div class="section-heading"><p class="eyebrow">06</p><h2>EXPERIMENT STATUS</h2></div>
+      <p class="section-intro">An evidence-reviewed pilot has checked evidence and artifacts within its recorded scope; it is not automatically a scientifically validated finding.</p>
+      <div class="card-grid">{experiment_cards}</div>
     </section>
 
     <section id="claims" class="section">
-      <div class="section-heading"><p class="eyebrow">07</p><h2>CLAIM &amp; EVIDENCE</h2></div><div class="card-grid">{claim_cards}</div>
+      <div class="section-heading"><p class="eyebrow">07</p><h2>CLAIM &amp; EVIDENCE</h2></div>
+      <p class="section-intro"><code>claims.csv</code> is the authoritative scientific claim view. Component compatibility fields do not determine scientific claim status.</p>
+      <div class="card-grid">{claim_cards}</div>
     </section>
 
     <section id="risks" class="section">
@@ -371,11 +406,11 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
     experiments = "\n".join(
-        f"- **{row['experiment_id']} · {row['name']}** — `{row['status']}`. {row['current_evidence']}"
+        f"- **{row['experiment_id']} · {row['name']}** — `{EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`. {row['current_evidence']}"
         for row in data["experiments"]
     )
     claims = "\n".join(
-        f"- **{row['claim_id']} · {row['status']}** — {row['allowed_wording']} Forbidden: {row['forbidden_wording']}"
+        f"- **{row['claim_id']} · {row['status']}** — {row['allowed_wording']}"
         for row in data["claims"]
     )
     risks = "\n".join(
@@ -402,6 +437,19 @@ Phase progression: {' → '.join(state['phase_progression'])}.
 
 The architecture is implemented and pilot-operational. Scientific validation is partial,
 held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+
+## How to read RCC status
+
+Implementation and engineering state is separate from scientific evidence state.
+`audited=true` on a component is displayed as **Evidence-reviewed**: source or evidence
+status was reviewed against the pinned authority. It is not a performance-validation flag.
+An explicit **Result-integrity audit** checks custody, immutability, ordering, and arithmetic
+for a named frozen result; it still does not establish scientific performance. Independent
+reproduction is a separate state and remains absent at component level. Scientific claim
+status comes only from `claims.csv`. The compatibility `claim_ready` field supports narrow
+implementation or contract wording only and is not a scientific-validation state.
+
+These counts are not a single completion percentage.
 
 ## Architecture in one line
 
@@ -486,13 +534,25 @@ then separately test GDN stability and an actually activated budget-matched feed
 def render_current_status(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
+    components = data["components"]
+    component_summary = {
+        "Implemented": sum(row["status"].startswith("IMPLEMENTED") for row in components),
+        "Executed": sum(row["executed"] == "true" for row in components),
+        "Evidence-reviewed": sum(row["audited"] == "true" for row in components),
+        "Independently reproduced": sum(row["reproduced"] == "true" for row in components),
+    }
+    component_summary_rows = "\n".join(f"- **{label}:** {value}" for label, value in component_summary.items())
     component_rows = "\n".join(
-        f"| {row['component_id']} | {row['status']} | {row['lifecycle_stage']} | {row['next_action']} |"
-        for row in data["components"]
+        f"| {row['component_id']} | {COMPONENT_STATUS_LABELS.get(row['status'], row['status'])} | {row['next_action']} |"
+        for row in components
     )
     experiment_rows = "\n".join(
-        f"| {row['experiment_id']} | {row['status']} | {row['result_scope']} |"
+        f"| {row['experiment_id']} | {EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])} | {row['result_scope']} |"
         for row in data["experiments"]
+    )
+    claim_rows = "\n".join(
+        f"| {row['claim_id']} | {row['status']} | {row['allowed_wording']} |"
+        for row in data["claims"]
     )
     return f"""{_markdown_marker(state, digest)}
 # RCC Current Status
@@ -507,17 +567,55 @@ Registry snapshot: `{state['generated_at']}`
 
 {state['current_phase_statement']}
 
+## How to read status
+
+- **Implemented / executed:** engineering state only.
+- **Evidence-reviewed:** the backward-compatible component `audited` field; source or
+  evidence status was reviewed against the pinned authority. This is not performance validation.
+- **Result-integrity audited:** only explicit result-specific integrity artifacts; custody,
+  immutability, ordering, and arithmetic checks. This is not scientific validation.
+- **Independently reproduced:** an independent reproduction under required environment and custody.
+- **Scientifically validated:** adequate independent evidence for a stated hypothesis; never
+  inferred from component status and governed by `claims.csv`.
+
+These counts are not a single completion percentage. An evidence-reviewed governance or
+documentation component need not be a scientific executable, so Evidence-reviewed may exceed Executed.
+
+## Component summary
+
+{component_summary_rows}
+
 ## Components
 
-| Component | Status | Lifecycle | Next action |
-|---|---|---|---|
+| Component | Engineering / evidence display | Next action |
+|---|---|---|
 {component_rows}
+
+The compatibility field `claim_ready` is intentionally omitted from this headline. It means
+only that a component supports at least one narrow implementation or contract claim.
 
 ## Experiments
 
 | Experiment | Status | Result scope |
 |---|---|---|
 {experiment_rows}
+
+## Authoritative claim view
+
+Claim status comes only from `registry/claims.csv`.
+
+| Claim | Status | Allowed wording |
+|---|---|---|
+{claim_rows}
+
+## Research dimensions
+
+- **Engineering:** {state['research_status_summary']['engineering']}
+- **Result integrity:** {state['research_status_summary']['result_integrity']}
+- **Scientific validation:** {state['research_status_summary']['scientific_validation']}
+- **Reproducibility:** {state['research_status_summary']['reproducibility']}
+- **Generalization:** {state['research_status_summary']['generalization']}
+- **Claims:** {state['research_status_summary']['claims']}
 
 ## Boundaries
 
@@ -574,6 +672,20 @@ ARCHITECTURE_COMPLETE → **EVALUATION_SCOPE_EXPANSION (CURRENT)** → HYPOTHESI
 Architecture implementation and pilot operation are complete. Scientific validation is partial,
 held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
 
+## HOW TO READ STATUS
+
+- Implemented and Executed describe engineering state.
+- Evidence-reviewed is the backward-compatible component `audited` field: source or evidence
+  status was reviewed. It does not mean performance validation.
+- Result-integrity audited applies only to an explicit result-specific integrity artifact and
+  checks custody and arithmetic. It does not mean scientific validation.
+- Independently reproduced is a separate state and is currently zero at component level.
+- `claims.csv` alone controls authoritative scientific claim status. Component `claim_ready`
+  supports narrow implementation or contract wording only.
+
+These states are not a single completion percentage. Evidence-reviewed can exceed Executed
+because governance and documentation evidence can be reviewed without scientific execution.
+
 ## WHAT EXISTS
 
 The pinned repository contains the end-to-end HAI 23.05 P1 INNER path: provenance and
@@ -584,7 +696,7 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 
 ## WHAT WAS EXECUTED
 
-- All three discovery arms produced audited top-20 rankings.
+- All three discovery arms produced evidence-reviewed top-20 rankings.
 - Profiling produced 23 pair contexts and 42 frozen directed relations.
 - T0, T1, T1-B, and T2 executed; their accepted counts were 42, 42, 42, and 39.
 - Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.
@@ -675,6 +787,19 @@ def render_user_summary(data: Mapping[str, Any], digest: str) -> str:
 
 HAI 23.05 P1을 대상으로 한 전체 INNER 연구 경로는 구현되고 예비 실행 및 무결성
 감사까지 끝났지만, 과학적 가설 검증·홀드아웃 일반화·새 컴퓨터 재현은 아직 끝나지 않았다.
+
+## 상태 라벨 읽는 법
+
+- **구현됨 / 실행됨**은 엔지니어링 상태다. 성능 검증을 뜻하지 않는다.
+- **Evidence-reviewed**는 소스나 공개 증거 상태를 고정 권한과 대조했다는 뜻이다.
+  과학적 성능을 감사하거나 검증했다는 뜻이 아니다.
+- **Result-integrity audited**는 명시된 고정 결과의 보관·불변성·순서·산술을 확인했다는
+  뜻이다. 우수성이나 일반화를 입증하지 않는다.
+- **Independently reproduced**는 필요한 환경과 custody에서 독립 재현했다는 별도 상태다.
+- 과학적 주장의 허용 범위는 오직 `claims.csv`가 결정한다. 구성요소의 호환용
+  `claim_ready` 필드는 좁은 구현·계약 문구만 지원하며 과학적 성능 검증을 뜻하지 않는다.
+
+이 숫자들은 하나의 연구 완료율이 아니다.
 
 ## 이미 만들어진 것
 

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=a2dc415791dab575e45a9027f5d53efe20b96316a9f026068ecb7c66136d9ba3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -11,53 +11,106 @@ Registry snapshot: `2026-08-29T06:30:00Z`
 
 Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.
 
+## How to read status
+
+- **Implemented / executed:** engineering state only.
+- **Evidence-reviewed:** the backward-compatible component `audited` field; source or
+  evidence status was reviewed against the pinned authority. This is not performance validation.
+- **Result-integrity audited:** only explicit result-specific integrity artifacts; custody,
+  immutability, ordering, and arithmetic checks. This is not scientific validation.
+- **Independently reproduced:** an independent reproduction under required environment and custody.
+- **Scientifically validated:** adequate independent evidence for a stated hypothesis; never
+  inferred from component status and governed by `claims.csv`.
+
+These counts are not a single completion percentage. An evidence-reviewed governance or
+documentation component need not be a scientific executable, so Evidence-reviewed may exceed Executed.
+
+## Component summary
+
+- **Implemented:** 30
+- **Executed:** 29
+- **Evidence-reviewed:** 30
+- **Independently reproduced:** 0
+
 ## Components
 
-| Component | Status | Lifecycle | Next action |
-|---|---|---|---|
-| DATA_PROVENANCE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Rehearse public-safe restoration on a fresh machine |
-| SPLIT_GOVERNANCE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Review later experiment entry points against the split contract |
-| VARIABLE_ROLE_UNIVERSE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Review role semantics in ARCH-000 without changing the universe |
-| META_DISCOVERY | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Compare unique confirmed contribution and stability |
-| STAT_DISCOVERY | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Measure split stability and unique confirmed contribution |
-| GDN_DISCOVERY | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Validate stable unique contribution and masking behavior |
-| CANDIDATE_UNION | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Review overlap semantics without treating membership as validation |
-| RELATION_PROFILING | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Compare criteria and stability without physical-truth claims |
-| NUMERIC_AUTHORITY | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Keep values private and compare criteria in a new protocol |
-| EVIDENCE_PACK | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Review completeness and claim boundaries in ARCH work |
-| RULE_DSL | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Keep COMMON-42 within Rule v1 and avoid scope drift |
-| T0_TEMPLATE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Retain as preregistered comparator |
-| T1_ONE_SHOT | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Reproduce under frozen provider policy before comparison claims |
-| T1B_REPEAT | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Preserve budget equivalence in expanded comparison |
-| T2_AGENTIC_FEEDBACK | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Design a comparable cohort that actually exercises feedback |
-| DETERMINISTIC_VERIFIER | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Keep scientific and causal claims outside verifier authority |
-| COMMON42_FREEZE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Preserve exact authority bytes |
-| RULE_RUNTIME | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Do not generalize fixed-runtime properties to future modes |
-| SATISFACTION_TRACE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Audit trace-to-outcome completeness |
-| EXPLANATION_RENDERER | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Evaluate faithfulness separately from human usefulness |
-| D0_PCA_SPE | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Add a stronger baseline only in a new preregistered study |
-| D1_RULE_ONLY | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Expand utility evaluation without changing the frozen pilot |
-| D2_V1 | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Retain as negative pilot evidence without tuning |
-| D2_V2 | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Do not create result-driven V3 inside RCC |
-| EPISODE_CONSTRUCTION | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Preserve the frozen episode policy |
-| ATTACK_EVENT_RECALL | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Expand beyond the current 14-event pilot |
-| NORMAL_FAR | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Treat D1 FAR as a primary operational risk |
-| RESULT_INTEGRITY | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Keep integrity separate from external reproduction |
-| OUTER_EVALUATION | BLOCKED | CODE_IMPLEMENTED | Require separate approval and preregistration before any held-out study |
-| REPRODUCIBILITY | PARTIAL | AUDITED | Run a separately authorized fresh-machine rehearsal |
-| PROFESSOR_REPORTING | IMPLEMENTED_EXECUTED_AUDITED | AUDITED | Keep wording synchronized with RCC claims |
-| THESIS_DRAFT | IMPLEMENTED_NOT_EXECUTED | CODE_IMPLEMENTED | Review all result wording against the checkpoint |
+| Component | Engineering / evidence display | Next action |
+|---|---|---|
+| DATA_PROVENANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Rehearse public-safe restoration on a fresh machine |
+| SPLIT_GOVERNANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review later experiment entry points against the split contract |
+| VARIABLE_ROLE_UNIVERSE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review role semantics in ARCH-000 without changing the universe |
+| META_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare unique confirmed contribution and stability |
+| STAT_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Measure split stability and unique confirmed contribution |
+| GDN_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Validate stable unique contribution and masking behavior |
+| CANDIDATE_UNION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review overlap semantics without treating membership as validation |
+| RELATION_PROFILING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare criteria and stability without physical-truth claims |
+| NUMERIC_AUTHORITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep values private and compare criteria in a new protocol |
+| EVIDENCE_PACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review completeness and claim boundaries in ARCH work |
+| RULE_DSL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep COMMON-42 within Rule v1 and avoid scope drift |
+| T0_TEMPLATE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Retain as preregistered comparator |
+| T1_ONE_SHOT | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Reproduce under frozen provider policy before comparison claims |
+| T1B_REPEAT | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve budget equivalence in expanded comparison |
+| T2_AGENTIC_FEEDBACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Design a comparable cohort that actually exercises feedback |
+| DETERMINISTIC_VERIFIER | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep scientific and causal claims outside verifier authority |
+| COMMON42_FREEZE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve exact authority bytes |
+| RULE_RUNTIME | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Do not generalize fixed-runtime properties to future modes |
+| SATISFACTION_TRACE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit trace-to-outcome completeness |
+| EXPLANATION_RENDERER | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Evaluate faithfulness separately from human usefulness |
+| D0_PCA_SPE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Add a stronger baseline only in a new preregistered study |
+| D1_RULE_ONLY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand utility evaluation without changing the frozen pilot |
+| D2_V1 | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Retain as negative pilot evidence without tuning |
+| D2_V2 | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Do not create result-driven V3 inside RCC |
+| EPISODE_CONSTRUCTION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve the frozen episode policy |
+| ATTACK_EVENT_RECALL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand beyond the current 14-event pilot |
+| NORMAL_FAR | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Treat D1 FAR as a primary operational risk |
+| RESULT_INTEGRITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep integrity separate from external reproduction |
+| OUTER_EVALUATION | BLOCKED | Require separate approval and preregistration before any held-out study |
+| REPRODUCIBILITY | PARTIAL | Run a separately authorized fresh-machine rehearsal |
+| PROFESSOR_REPORTING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep wording synchronized with RCC claims |
+| THESIS_DRAFT | CODE PRESENT · NOT EXECUTED | Review all result wording against the checkpoint |
+
+The compatibility field `claim_ready` is intentionally omitted from this headline. It means
+only that a component supports at least one narrow implementation or contract claim.
 
 ## Experiments
 
 | Experiment | Status | Result scope |
 |---|---|---|
-| EXP-01 | IMPLEMENTED_NOT_EXECUTED | Discovery artifacts exist; the comparative contribution experiment has not been performed. |
-| EXP-02 | IMPLEMENTED_NOT_EXECUTED | Current references support deterministic execution but do not establish optimal criteria. |
-| EXP-03 | EXECUTED_AUDITED_PILOT | One frozen construction cohort; validity and cost observations only. |
-| EXP-04 | EXECUTED_AUDITED_PILOT | Single frozen 14-event INNER pilot. |
-| EXP-05 | IMPLEMENTED_NOT_EXECUTED | Implementation-level automated grounding evidence only. |
-| EXP-06 | DESIGN_ONLY | No experimental outcome. |
+| EXP-01 | CODE PRESENT · COMPARISON NOT EXECUTED | Discovery artifacts exist; the comparative contribution experiment has not been performed. |
+| EXP-02 | CODE PRESENT · COMPARISON NOT EXECUTED | Current references support deterministic execution but do not establish optimal criteria. |
+| EXP-03 | EXECUTED · EVIDENCE-REVIEWED PILOT | One frozen construction cohort; validity and cost observations only. |
+| EXP-04 | EXECUTED · EVIDENCE-REVIEWED PILOT | Single frozen 14-event INNER pilot. |
+| EXP-05 | CODE PRESENT · COMPARISON NOT EXECUTED | Implementation-level automated grounding evidence only. |
+| EXP-06 | DESIGNED ONLY | No experimental outcome. |
+
+## Authoritative claim view
+
+Claim status comes only from `registry/claims.csv`.
+
+| Claim | Status | Allowed wording |
+|---|---|---|
+| CLAIM-A | SUPPORTED_IMPLEMENTATION | The pinned HAI P1 INNER architecture and its frozen execution paths were implemented. |
+| CLAIM-B | SUPPORTED_IMPLEMENTATION | The implemented pipeline transformed confirmed normal-data relation evidence into frozen executable rules under deterministic authority controls. |
+| CLAIM-C | SUPPORTED_IMPLEMENTATION | The verifier deterministically checks the frozen structural evidence parameter split and operational contract. |
+| CLAIM-D | SUPPORTED_IMPLEMENTATION | Given frozen rule numeric-reference authorization and input artifacts the current rule runtime evaluates without an LLM and produces deterministic traces. |
+| CLAIM-E | UNVALIDATED | The frozen GDN arm contributed set-unique candidates; their unique scientific usefulness remains unvalidated. |
+| CLAIM-F | NOT_SUPPORTED | The current pilot did not establish a feedback advantage and the feedback mechanism was not empirically exercised. |
+| CLAIM-G | PILOT_ONLY | In the current 14-event INNER pilot D1 responded to three D0-missed events and D0 responded to one D1-missed event. |
+| CLAIM-H | UNVALIDATED | Rule-only showed high event response and high normal false-alarm burden in the INNER pilot; practical utility remains unvalidated. |
+| CLAIM-I | NOT_SUPPORTED | The two frozen D2 policies did not improve D0 attack-event recall in the current INNER pilot. |
+| CLAIM-J | NOT_SUPPORTED | Held-out generalization remains unconfirmed because no OUTER scientific result is available. |
+| CLAIM-K | CONDITIONAL | The implemented renderer is deterministically bound to frozen rule and trace information; comprehensive faithfulness remains to be evaluated. |
+| CLAIM-L | UNVALIDATED | A trace-grounded explanation interface is implemented; human usefulness has not been evaluated. |
+| CLAIM-M | NOT_SUPPORTED | The system records bounded temporal relation evidence and trace-grounded violations without causal attribution. |
+
+## Research dimensions
+
+- **Engineering:** Architecture substantially implemented; most frozen INNER paths executed.
+- **Result integrity:** Explicit integrity audits exist for frozen D0, D1, D2 V1, and D2 V2 INNER results; this checks result custody and arithmetic, not performance validity.
+- **Scientific validation:** Partial and incomplete; major performance and contribution hypotheses remain unvalidated or unsupported.
+- **Reproducibility:** Fresh-machine independent reproduction remains pending.
+- **Generalization:** Held-out generalization remains unconfirmed because no OUTER scientific result exists.
+- **Claims:** Only narrow implementation or contract claims are supported; claims.csv is the authoritative claim view.
 
 ## Boundaries
 

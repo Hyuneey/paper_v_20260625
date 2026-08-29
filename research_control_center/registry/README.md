@@ -22,16 +22,48 @@ inventory entries.
   `user_todo_items` holds structured user actions; and `top_user_todo` holds
   exactly three research-owner review actions for the dashboard and handoff.
 
-## Lifecycle model
+## Two-axis status model
 
-The lifecycle stages are distinct and not interchangeable:
+RCC status is not one linear lifecycle and must never be converted to a single
+completion percentage.
 
-`DESIGN_COMPLETE`, `CODE_IMPLEMENTED`, `INTEGRATED`, `EXECUTED`, `AUDITED`,
-`REPRODUCED`, `CLAIM_READY`.
+**Implementation / engineering state** describes whether a component is
+designed, present in code, integrated, or used in an execution path:
 
-Code existing does not mean it ran. Execution does not mean validation.
-Validation does not mean generalization. Generalization does not automatically
-make a thesis claim ready.
+`DESIGN_COMPLETE`, `CODE_IMPLEMENTED`, `INTEGRATED`, `EXECUTED`.
+
+**Scientific evidence state** describes what kind of evidence exists:
+
+`SOURCE_EVIDENCE_REVIEWED`, `RESULT_INTEGRITY_AUDITED`,
+`INDEPENDENTLY_REPRODUCED`, `SCIENTIFICALLY_VALIDATED`.
+
+These axes are independent. A governance or documentation component can have
+its source evidence reviewed without being a scientific executable. Code
+existing does not mean it ran; execution does not mean performance validation;
+result-integrity audit does not mean independent reproduction; and reproduction
+does not automatically establish a broad scientific claim.
+
+### Backward-compatible component fields
+
+- `audited=true` means the component's source or evidence status was reviewed
+  against the pinned authority. In the dashboard this is called
+  **Evidence-reviewed**. It does not mean a scientific result was audited and
+  does not validate performance. This is why the evidence-reviewed count may
+  exceed the executed count.
+- A **Result-integrity audit** exists only when an explicit result-specific
+  integrity artifact is registered. It checks custody, immutability, access
+  ordering, and metric arithmetic. It does not establish superiority,
+  generalization, or scientific performance validity.
+- `reproduced=true` means an independent reproduction was completed under its
+  required environment and custody. Source review and integrity audit are not
+  reproduction.
+- `claim_ready=true` is retained for schema compatibility. It means only that
+  the component supports at least one allowable narrow implementation or
+  contract claim. It is not shown as a component headline and never means that
+  the component's scientific performance is validated.
+- `claims.csv` is the sole authoritative scientific claim view. A scientific
+  claim's status must not be inferred from component `status`, `audited`, or
+  `claim_ready` fields.
 
 Component `status` values:
 

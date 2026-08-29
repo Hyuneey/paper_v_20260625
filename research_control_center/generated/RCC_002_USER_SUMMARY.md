@@ -1,10 +1,23 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=a2dc415791dab575e45a9027f5d53efe20b96316a9f026068ecb7c66136d9ba3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
 
 HAI 23.05 P1을 대상으로 한 전체 INNER 연구 경로는 구현되고 예비 실행 및 무결성
 감사까지 끝났지만, 과학적 가설 검증·홀드아웃 일반화·새 컴퓨터 재현은 아직 끝나지 않았다.
+
+## 상태 라벨 읽는 법
+
+- **구현됨 / 실행됨**은 엔지니어링 상태다. 성능 검증을 뜻하지 않는다.
+- **Evidence-reviewed**는 소스나 공개 증거 상태를 고정 권한과 대조했다는 뜻이다.
+  과학적 성능을 감사하거나 검증했다는 뜻이 아니다.
+- **Result-integrity audited**는 명시된 고정 결과의 보관·불변성·순서·산술을 확인했다는
+  뜻이다. 우수성이나 일반화를 입증하지 않는다.
+- **Independently reproduced**는 필요한 환경과 custody에서 독립 재현했다는 별도 상태다.
+- 과학적 주장의 허용 범위는 오직 `claims.csv`가 결정한다. 구성요소의 호환용
+  `claim_ready` 필드는 좁은 구현·계약 문구만 지원하며 과학적 성능 검증을 뜻하지 않는다.
+
+이 숫자들은 하나의 연구 완료율이 아니다.
 
 ## 이미 만들어진 것
 
