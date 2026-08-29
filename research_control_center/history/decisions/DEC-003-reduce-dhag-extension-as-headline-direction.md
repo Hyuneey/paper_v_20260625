@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-003 — Reduce DHAG extension as headline direction
 
 ## Date
@@ -20,11 +20,11 @@ A DHAG-centered proof of concept reportedly encountered structural limitations.
 
 ## Decision
 
-Record the DHAG headline direction as superseded pending confirmation of the exact limitation and whether it was abandoned or deferred.
+Record DHAG as superseded as the main thesis direction after PoC-reported structural limitations.
 
 ## Why
 
-Only user context supports the period and broad pivot; no repository artifact supplies the detailed rationale.
+The research owner confirms the broad decision while the detailed limitation list remains user context.
 
 ## Consequence
 
@@ -32,7 +32,7 @@ The current method does not claim DHAG as its authority or implemented core.
 
 ## Current Relevance
 
-Historical only; the possible lesson about structural constraints requires user confirmation.
+Confirmed historical pivot; detailed limitations remain intentionally unspecified.
 
 ## Supersedes
 
@@ -44,12 +44,12 @@ DEC-006
 
 ## Evidence
 
-Source class: `USER_CONTEXT`
+Source class: `USER_CONFIRMED_CONTEXT`
 
-Reference: RCC-003 task user-context seed
+Reference: ARCH-000 confirmation 1
 
 Source commit: `NONE`
 
 ## Confidence
 
-`LOW`
+`MEDIUM`

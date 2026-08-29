@@ -30,6 +30,13 @@ REGISTRY_FILES = (
     "history.yaml",
 )
 
+ARCHITECTURE_FILES = (
+    "00_overview/ARCH_000_SOURCE_MAP.csv",
+    "00_overview/ARCH_000_DATAFLOW.csv",
+    "00_overview/ARCH_000_ARTIFACT_LINEAGE.csv",
+    "00_overview/ARCH_000_COMPONENT_DETAIL.csv",
+)
+
 
 def default_rcc_root() -> Path:
     return Path(__file__).resolve().parents[1]
@@ -46,7 +53,7 @@ def load_registry(rcc_root: Path) -> dict[str, Any]:
     registry_dir = rcc_root / "registry"
     state = json.loads((registry_dir / "current_state.yaml").read_text(encoding="utf-8"))
     history = json.loads((registry_dir / "history.yaml").read_text(encoding="utf-8"))
-    return {
+    data = {
         "state": state,
         "history": history,
         "components": _read_csv(registry_dir / "components.csv"),
@@ -57,6 +64,9 @@ def load_registry(rcc_root: Path) -> dict[str, Any]:
         "decisions": _read_csv(registry_dir / "decisions.csv"),
         "timeline": _read_csv(registry_dir / "timeline.csv"),
     }
+    detail = rcc_root / "architecture" / "00_overview" / "ARCH_000_COMPONENT_DETAIL.csv"
+    data["architecture_details"] = _read_csv(detail) if detail.is_file() else []
+    return data
 
 
 def registry_digest(rcc_root: Path) -> str:
@@ -66,6 +76,16 @@ def registry_digest(rcc_root: Path) -> str:
     registry_dir = rcc_root / "registry"
     for name in REGISTRY_FILES:
         payload = (registry_dir / name).read_bytes()
+        digest.update(name.encode("utf-8"))
+        digest.update(b"\x00")
+        digest.update(len(payload).to_bytes(8, "big"))
+        digest.update(payload)
+    architecture_dir = rcc_root / "architecture"
+    for name in ARCHITECTURE_FILES:
+        path = architecture_dir / name
+        if not path.is_file():
+            continue
+        payload = path.read_bytes()
         digest.update(name.encode("utf-8"))
         digest.update(b"\x00")
         digest.update(len(payload).to_bytes(8, "big"))
@@ -283,11 +303,21 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     )
     component_by_id = {row["component_id"]: row for row in components}
     architecture_markup = "".join(
-        '<div class="architecture-lane"><h3>' + _escape(lane["lane"]) + '</h3><div class="architecture-nodes">' + "".join(
-            f'<a class="architecture-node {_badge_class(component_by_id[node]["status"])}" href="#components" title="{_escape(component_by_id[node]["status"])}">{_escape(component_by_id[node]["name"])}</a>'
-            for node in lane["nodes"]
-        ) + "</div></div>"
-        for lane in state["architecture_overview"]
+        "\n".join((
+            f'<details class="architecture-detail" id="arch-{_slug(row["section_id"])}">',
+            f'<summary><span>{_escape(row["section_id"])}</span><strong>{_escape(row["name"])}</strong></summary>',
+            '<dl class="architecture-contract">',
+            f'<div><dt>ROLE</dt><dd>{_escape(row["role"])}</dd></div>',
+            f'<div><dt>INPUT</dt><dd>{_escape(row["input"])}</dd></div>',
+            f'<div><dt>OUTPUT</dt><dd>{_escape(row["output"])}</dd></div>',
+            f'<div><dt>CODE</dt><dd><code>{_escape(row["code"])}</code></dd></div>',
+            f'<div><dt>EXECUTED?</dt><dd>{_badge("IMPLEMENTED_EXECUTED" if row["executed"] == "true" else "UNKNOWN", row["executed"].upper())}</dd></div>',
+            f'<div><dt>FROZEN RESULT USED?</dt><dd>{_badge("AUDITED" if row["frozen_result_used"] == "true" else "DESIGN_ONLY", row["frozen_result_used"].upper())}</dd></div>',
+            f'<div><dt>VALIDATION STATE</dt><dd>{_escape(row["validation_state"])}</dd></div>',
+            f'<div><dt>NEXT DEEP REVIEW</dt><dd>{_escape(row["next_deep_review"])}</dd></div>',
+            '</dl></details>',
+        ))
+        for row in data["architecture_details"]
     )
     marker = _source_marker(state, digest)
 
@@ -356,8 +386,9 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     <section id="architecture" class="section panel-dark">
       <div class="section-heading"><p class="eyebrow">04</p><h2>ARCHITECTURE OVERVIEW</h2></div>
       <p class="architecture-flow">{_escape(state['architecture_flow'])}</p>
-      <div class="architecture-map">{architecture_markup}</div>
-      <p>Node color follows the component registry. Open <code>../architecture/</code> for the future deep review; this is a high-level RCC view only.</p>
+      <p class="section-intro">ARCH-000 verified real source, execution, and artifact lineage. Open a domain to see its high-level contract; unverified links remain visible in the detailed maps.</p>
+      <div class="architecture-detail-grid">{architecture_markup}</div>
+      <p><a href="../architecture/00_overview/ARCH_000_REPORT.md">Open the full architecture audit</a> · <a href="../architecture/00_overview/ARCH_000_MISMATCHES.md">Review documented mismatches</a> · <a href="../architecture/00_overview/DEEP_REVIEW_INDEX.md">Deep-review index</a></p>
     </section>
 
     <section class="section explorer" aria-label="Registry explorer">

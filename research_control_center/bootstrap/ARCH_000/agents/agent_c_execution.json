@@ -1,0 +1,480 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-000",
+  "agent_role": "EXECUTION_AND_RESULT_LINEAGE_AUDITOR",
+  "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "audit_mode": "READ_ONLY_STATIC_AND_PUBLIC_SAFE_FROZEN_REPORT_AUDIT",
+  "verdict": "PASS_WITH_EXPLICIT_LINEAGE_QUALIFICATIONS",
+  "method": {
+    "source_use": [
+      "git show and git grep at the pinned scientific authority",
+      "static source symbol and call-order inspection",
+      "public-safe frozen reports, receipts, predictions, metrics, and integrity records"
+    ],
+    "not_evidence": [
+      "file existence by itself",
+      "RCC prose without pinned source or frozen-report corroboration",
+      "private payload contents"
+    ]
+  },
+  "execution_chains": [
+    {
+      "chain_id": "EXEC-META",
+      "scope": "META candidate discovery",
+      "entrypoint": "scripts/run_task039c_meta.py::run/main",
+      "scientific_symbols": [
+        "paperworks.candidates.metadata_candidate_discovery_v1"
+      ],
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039C_META_RESULT.json",
+        "status": "passed_task039c_metadata_candidate_discovery",
+        "execution_code_commit": "2b3df4443619b8d0d19434bbcd1ded3b31a1b8ea",
+        "artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf"
+      },
+      "downstream": "TASK-039C public three-arm integration",
+      "lineage_status": "VERIFIED_EXECUTED",
+      "notes": "Metadata-only candidate evidence; no HAI feature values were used by this arm."
+    },
+    {
+      "chain_id": "EXEC-STAT",
+      "scope": "STAT candidate discovery",
+      "entrypoint": "scripts/run_task039c_stat.py::main",
+      "scientific_symbols": [
+        "paperworks.candidates.statistical_candidate_discovery_v1"
+      ],
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039C_STAT_RESULT.json",
+        "status": "passed_task039c_statistical_candidate_discovery",
+        "execution_code_commit": "629f022d35bb0db6130e7e69faaf48408b49aa9a",
+        "artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+      },
+      "downstream": "TASK-039C public three-arm integration",
+      "lineage_status": "VERIFIED_EXECUTED",
+      "notes": "Train1/train2 statistical candidate evidence; frozen report records labels/test/train3/train4 as not accessed."
+    },
+    {
+      "chain_id": "EXEC-GDN",
+      "scope": "GDN candidate discovery",
+      "entrypoint": "scripts/run_task039c_gdn.py::main",
+      "scientific_symbols": [
+        "paperworks.candidates.gdn_candidate_discovery_v1",
+        "paperworks.gdn.upstream_candidate_backend_v1",
+        "paperworks.gdn.fidelity_v1.GDNFidelityFreezeV1"
+      ],
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039C_GDN_RESULT.json",
+        "status": "passed_task039c_gdn_candidate_discovery",
+        "execution_code_commit": "6790505e08ea06d6b3f6d34f9fd533d381696b1f",
+        "artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+        "completed_seed_ids": [11, 23, 37]
+      },
+      "downstream": "TASK-039C public three-arm integration",
+      "lineage_status": "VERIFIED_EXECUTED",
+      "notes": "Frozen report classifies the result as GDN candidate evidence, not causal or final relation evidence."
+    },
+    {
+      "chain_id": "EXEC-CANDIDATE-UNION",
+      "scope": "META/STAT/GDN candidate cohort union",
+      "entrypoint": "scripts/run_task039c_integration.py::main",
+      "scientific_symbols": [
+        "paperworks.candidates.candidate_integration_v1.load_merged_public_inputs_v1",
+        "paperworks.candidates.candidate_integration_v1.build_task039c_integration_v1"
+      ],
+      "input_artifacts": [
+        "TASK-039C_META_RESULT.json",
+        "TASK-039C_STAT_RESULT.json",
+        "TASK-039C_GDN_RESULT.json"
+      ],
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039C_INTEGRATION_RECEIPT.json",
+        "status": "passed_task039c_three_arm_candidate_cohort_freeze",
+        "execution_code_commit": "75a4899ba67e067a88dd363d9bb90554add82cf2",
+        "artifact_hash": "5d53e19542c0334381e0cba1e163f07f89d81092b30af65e706634c08eb1cdb5",
+        "candidate_count": 47
+      },
+      "output_artifact": "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json",
+      "downstream": "TASK-039D1 relation fit profiling",
+      "lineage_status": "VERIFIED_EXECUTED"
+    },
+    {
+      "chain_id": "EXEC-RELATION-PROFILING",
+      "scope": "Normal relation profiling and one-way confirmation",
+      "entrypoints": [
+        "scripts/run_task039d1_fit_profiling.py::main",
+        "scripts/run_task039d2_confirmation.py::main"
+      ],
+      "scientific_symbols": [
+        "paperworks.profiling.task039d1_fit_v1",
+        "paperworks.profiling.task039d1_execution_optimization_v1",
+        "paperworks.profiling.task039d2_real_execution_v1",
+        "paperworks.profiling.task039d2_result_recovery_v1"
+      ],
+      "execution_evidence": [
+        {
+          "path": "docs/task_reports/TASK-039D1_EXECUTION_RECEIPT.json",
+          "status": "passed_task039d1_normal_relation_fit_profiling",
+          "execution_code_commit": "edf2727d33d30f615aa2be48756fc209afdcd95c",
+          "artifact_hash": "51d6dacf27f4b6779c88074f4978e8578fc4541d71b4e8077a78e591d2ff24a2"
+        },
+        {
+          "path": "docs/task_reports/TASK-039D2_EXECUTION_RECEIPT.json",
+          "status": "passed_task039d2_one_way_train3_confirmation",
+          "execution_code_commit": "5524262d8a666093f948f7f01491b4a0b03e568e",
+          "artifact_hash": "c2f6214106e9e2cd5e09ec81ef2659c404d1dd3df3c0f9db26d7f4b9086a78e5"
+        }
+      ],
+      "output_artifact": "docs/task_reports/TASK-039D2_RESULT.json",
+      "downstream": "TASK-039E1 evidence materialization and COMMON-42 authority chain",
+      "lineage_status": "VERIFIED_EXECUTED"
+    },
+    {
+      "chain_id": "EXEC-EVIDENCE-MATERIALIZATION",
+      "scope": "Construction evidence materialization",
+      "entrypoint": "scripts/run_task039e1_evidence_materialization.py::main",
+      "scientific_symbols": [
+        "paperworks.v6.task039e1_evidence_materialization_v1"
+      ],
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039E1_EXECUTION_RECEIPT.json",
+        "status": "passed_task039e1_evidence_materialization",
+        "execution_code_commit": "e8fd2ed47bb0214a0e364bf978eebe75ae4a79a3",
+        "artifact_hash": "5d09cc438344222bdb2a70644ccb3a5a5b7d7b8342ba9a906ba9c8097343f9c7"
+      },
+      "output_artifacts": [
+        "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_COHORT.json",
+        "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_MANIFEST.json"
+      ],
+      "downstream": "T0/T1/T1-B/T2 construction execution",
+      "lineage_status": "VERIFIED_EXECUTED"
+    },
+    {
+      "chain_id": "EXEC-T0-T1-T1B-T2",
+      "scope": "Four-arm rule construction cohort",
+      "entrypoint": "scripts/run_task039e3_r2r_scientific_execution_v1.py::run_future_live_path_v1/main",
+      "controller_symbols": [
+        "paperworks.v6.task039e3_r2r_precontact_v1.run_r2r_live_execution_path_v1",
+        "paperworks.v6.task039e3_r2r_execution_v1.run_fresh_r2r_cohort_v1",
+        "paperworks.v6.task039e3_r2r_execution_v1._run_t1_r2r_v1",
+        "paperworks.v6.task039e3_r2r_execution_v1._run_t1b_r2r_v1",
+        "paperworks.v6.task039e3_r2r_execution_v1._run_t2_r2r_v1",
+        "paperworks.v6.task039e3_r2r_result_finalizer_v1.finalize_successful_r2r_scientific_result_v1"
+      ],
+      "execution_evidence": [
+        {
+          "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_PUBLIC.json",
+          "execution_receipt_hash": "d164f00da3121e345907fe9076e62f4697493f26dde7448cc8527b895cbffa6e",
+          "public_artifact_count": 8,
+          "public_leak_scan": "PASS"
+        },
+        {
+          "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_CUSTODY_AUDIT_RECEIPT.json",
+          "status": "passed_task039e3_r2r_terminal_custody_independent_audit",
+          "artifact_hash": "5578202038dbd2e04972447467afc021a230c08dd6a821e81d9dd23bfb2b8986",
+          "scientific_result_evaluable": true
+        },
+        {
+          "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_RECEIPT.json",
+          "status": "passed_task039e3_r2r_scientific_result_analysis",
+          "artifact_hash": "d9df904bcc0f823780c82c0a594f124939fe56354e50606c866a71e0e05e999f"
+        }
+      ],
+      "public_result_projection": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CONSTRUCTION.json",
+      "arm_execution_status": {
+        "T0": "EXECUTED_42_RELATIONS",
+        "T1": "EXECUTED_42_RELATIONS",
+        "T1-B": "EXECUTED_42_RELATIONS",
+        "T2": "EXECUTED_42_RELATIONS_WITH_39_ACCEPTED_AND_3_NO_RULE"
+      },
+      "downstream": "COMMON-42 authority reconstitution and utility execution",
+      "lineage_status": "VERIFIED_EXECUTED",
+      "qualification": "The public lineage binds aggregate and hash evidence; individual provider proposals and numeric payloads remain private and were not opened in this audit."
+    },
+    {
+      "chain_id": "EXEC-COMMON42",
+      "scope": "COMMON-42 executable authority",
+      "source_symbols": [
+        "paperworks.v6.task039e3_r2r_utility_normal_only_authority_v1.replay_common42_authority_v1",
+        "paperworks.v6.task039e3_r2r_utility_protocol_v4",
+        "paperworks.v6.task039e3_r2r_utility_inner_execution_authorization_v1"
+      ],
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json",
+        "status": "passed_task039e3_r2r_utility_common42_authority_check",
+        "authority_status": "FROZEN_EXECUTABLE_AUTHORITY_AVAILABLE",
+        "artifact_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff"
+      },
+      "downstream": "D1 COMMON-42 deterministic runtime",
+      "lineage_status": "VERIFIED_WITH_PRIVATE_NUMERIC_BINDING",
+      "qualification": "COMMON-42 is a frozen identity and executable binding, not a single public file containing all private numeric values. T0/T1/T1-B executable semantics are bound as equivalent; T2 is an optional 39-rule ablation and is not the main D1 portfolio."
+    }
+  ],
+  "result_lineage": {
+    "D0": {
+      "source_code": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py",
+      "entrypoint": "execute_authorized_d0_inner_v1",
+      "key_symbols": [
+        "compute_spe_float64_v1",
+        "strict_alarm_mask_v1",
+        "_build_scientific_prediction_v1",
+        "_persist_prediction_before_label_v1",
+        "_load_label_custody_once_v1",
+        "metric_arithmetic_v1"
+      ],
+      "implementation_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_EXECUTION_V1_IMPLEMENTATION_AUDIT.json",
+        "implementation_identity": "8f00469a632643cd10cc4257f5d1fe380036c7763b03cb70b13d01815a287ee2",
+        "status": "PASS"
+      },
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_EXECUTION_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d0_execution_v1",
+        "scientific_execution_attempts": 1,
+        "scientific_execution_retries": 0,
+        "test2_accesses": 0
+      },
+      "input_authority": "Frozen D0 preprocessing/model/threshold plus exact test1 feature authority; private values not inspected here.",
+      "prediction_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_DETECTOR_PREDICTION_ARTIFACT_V1.json",
+        "artifact_hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6"
+      },
+      "label_access_order": "PERSISTED_PREDICTION_BEFORE_LABEL; state machine rejects label access before PREDICTION_FROZEN and metrics reload persisted prediction bytes.",
+      "metric_implementation": "task039e3_r2r_d0_inner_execution_v1.metric_arithmetic_v1 plus task039e3_r2r_utility_evaluator_metrics_v1 episode policy",
+      "metric_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_METRICS_V1.json",
+        "artifact_hash": "bec8629e2dbdc178d750e795ada7b74aaf0f1475c32c5881c13a2e65c0a92cbf"
+      },
+      "integrity_audit": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_RESULT_INTEGRITY_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d0_result_integrity_audit_v1",
+        "artifact_hash": "15559141048efd729b3b4645b4f0baa4ac6d07ceedb2417cbd7915f49435da70"
+      },
+      "lineage_status": "VERIFIED_SOURCE_TO_AUDITED_RESULT"
+    },
+    "D1": {
+      "source_code": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py",
+      "entrypoint": "execute_authorized_inner_d1_v1",
+      "key_symbols": [
+        "enumerate_real_full_census_v1",
+        "execute_real_rule_v1",
+        "build_scientific_rule_prediction_artifact_v1",
+        "_load_real_label_custody_v1",
+        "_build_private_metric_evidence_v1"
+      ],
+      "runtime_dependencies": [
+        "task039e3_r2r_utility_evaluator_census_v1",
+        "task039e3_r2r_utility_evaluator_rule_engine_v1",
+        "task039e3_r2r_utility_evaluator_metrics_v1",
+        "task039e3_r2r_utility_normal_only_authority_v1"
+      ],
+      "implementation_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_BRIDGE_AUDIT.json",
+        "bridge_identity": "959de0f2ed781f404f583af75f7938bda56634024ddfbf23ecc9c38f5704edfe",
+        "execution_bridge_commit": "936296cdcf9f5d87658a0c9993856ccc7d9222b2",
+        "status": "passed_static_bridge_and_differential_audit"
+      },
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d1_execution_v1",
+        "execution_attempts": 1,
+        "execution_retries": 0,
+        "test2_accesses": 0
+      },
+      "input_authority": "COMMON-42 canonical authority plus main and supplemental frozen normal-only numeric authorities and exact test1 feature authority.",
+      "prediction_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RULE_PREDICTION_ARTIFACT_V1.json",
+        "artifact_hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682"
+      },
+      "label_access_order": "LABEL_BLIND_PREDICTION_OBJECT_BUILT_AND_VALIDATED_BEFORE_LABEL; the result-integrity audit reports prediction_frozen_before_label_access=true. Static source does not show the public prediction file being persisted before label access, so documentation must not strengthen this into the D0-style persistent-file ordering claim.",
+      "metric_implementation": "task039e3_r2r_utility_evaluator_metrics_v1 via _build_private_metric_evidence_v1",
+      "metric_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_METRICS_V1.json",
+        "artifact_hash": "b11a785dd243f30cac8820c49b978e194d993282c728537137b6a803b16d70d1"
+      },
+      "integrity_audit": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RESULT_INTEGRITY_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d1_result_integrity_audit_v1",
+        "artifact_hash": "1f42fecce799f09e2dfd73b2bc041f7f7bafd60522d95c004f27aa35b7846a4f"
+      },
+      "lineage_status": "VERIFIED_SOURCE_TO_AUDITED_RESULT_WITH_ORDERING_WORDING_QUALIFICATION"
+    },
+    "D2_V1": {
+      "original_source_code": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py",
+      "completed_source_code": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_recovery_v1.py",
+      "entrypoint": "execute_authorized_d2_inner_recovery_v1",
+      "reused_scientific_symbols": [
+        "_parse_frozen_d0_prediction_v1",
+        "_parse_frozen_d1_prediction_v1",
+        "_parse_frozen_source_map_v1",
+        "_build_fusion_evidence_v1",
+        "_build_combined_prediction_v1",
+        "_persist_combined_prediction_before_label_v1",
+        "_load_label_custody_once_v1",
+        "metric_policy_v1.form_alarm_episodes_v1",
+        "_build_private_metric_evidence_v1"
+      ],
+      "implementation_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_EXECUTION_RECOVERY_V1_IMPLEMENTATION_AUDIT.json",
+        "original_implementation_identity": "03d3d8c3a2586e1eeaadbbc367f756c973920c3b7e84afd384eb7f45684aa733",
+        "recovery_implementation_identity": "115042dadd2020cc86a2676439111fa0125baf7b381eb66e82df2aebbe2dc166",
+        "recovery_commit": "6c52bbe1ace8895a8b5b27527e4f9fe2ca01b3e6",
+        "status": "PASS"
+      },
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_EXECUTION_RECOVERY_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d2_execution_recovery_v1",
+        "historical_attempt_1": "INFRASTRUCTURE_ABORTED",
+        "authorized_recovery_attempt_2": "COMPLETED_SCIENTIFIC",
+        "result_driven_retries": 0,
+        "test2_accesses": 0
+      },
+      "input_authority": "Exact frozen D0 and D1 prediction artifacts plus frozen D2 source map; no D0/D1 rerun or rule reevaluation.",
+      "prediction_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_COMBINED_PREDICTION_ARTIFACT_V1.json",
+        "artifact_hash": "cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5"
+      },
+      "label_access_order": "PERSISTED_COMBINED_PREDICTION_BEFORE_LABEL; recovery source freezes and rereads CombinedPrediction before label and metrics.",
+      "metric_implementation": "Original D2 metric policy reused by recovery bridge; D0 reference reloaded from frozen bytes.",
+      "metric_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_METRICS_V1.json",
+        "artifact_hash": "dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d"
+      },
+      "integrity_audit": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_RESULT_INTEGRITY_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d2_result_integrity_audit_v1",
+        "artifact_hash": "c45db852c6d5571ec7930fc12d815b383a29e31939e711eb5f2e84c69807b448",
+        "ordering_audit": "PASS",
+        "fusion_oracle": "PASS",
+        "metric_oracle": "PASS"
+      },
+      "lineage_status": "VERIFIED_SOURCE_TO_AUDITED_RESULT_VIA_AUTHORIZED_RECOVERY",
+      "qualification": "A map that points only to execute_authorized_d2_inner_v1 is incomplete; the frozen result was completed by the recovery entrypoint after one infrastructure-aborted attempt."
+    },
+    "D2_V2": {
+      "source_code": "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py",
+      "entrypoint": "execute_authorized_d2_v2_inner_v1",
+      "key_symbols": [
+        "_parse_frozen_d0_prediction_v1",
+        "_parse_frozen_d1_prediction_v1",
+        "build_evidence_tokens_v1",
+        "fuse_native_horizon_timeline_v1",
+        "_build_combined_prediction_v1",
+        "_persist_combined_before_label_v1",
+        "_load_label_custody_once_v1",
+        "compute_metric_values_v1"
+      ],
+      "implementation_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_EXECUTION_V1_IMPLEMENTATION_AUDIT.json",
+        "implementation_identity": "9016e5c8be9fa0e56af6a5d1870617f1937e557b7eabd0afa5b20722e89ded62",
+        "execution_commit": "2bbb3dcaced47c8d15337e45eb0e0b741c1a3ed1"
+      },
+      "execution_evidence": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_EXECUTION_V1_RECEIPT.json",
+        "status": "passed_task039e3_r2r_utility_inner_d2_v2_execution_v1",
+        "d2_v2_executed": true
+      },
+      "input_authority": "Exact frozen D0 and D1 predictions plus frozen source and native-horizon maps; no predecessor rerun or rule reevaluation.",
+      "prediction_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_COMBINED_PREDICTION_ARTIFACT_V1.json",
+        "artifact_hash": "31035da56e140141917437df5b3473b803153621c7e1022830cccde52f61c0b3"
+      },
+      "label_access_order": "PERSISTED_COMBINED_PREDICTION_BEFORE_LABEL; state machine requires COMBINED_PREDICTION_V2_FROZEN before label custody.",
+      "metric_implementation": "task039e3_r2r_d2_v2_inner_execution_v1.compute_metric_values_v1 plus shared episode policy",
+      "metric_artifact": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_METRICS_V1.json",
+        "artifact_hash": "8fabdccc0c9a9b502497aa58163131647303d5e27acefb995a06ca9d43850ba7"
+      },
+      "integrity_audit": {
+        "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_RESULT_INTEGRITY_COMPLETION_V1.json",
+        "result_integrity": "PASS",
+        "artifact_hash": "b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06",
+        "completion_method": "R5_FULL_SCIENTIFIC_ORACLE_PLUS_R4_PUBLIC_ACCOUNTING_PLUS_RENDER_R1",
+        "blocked_full_audit_attempts": 6,
+        "authoritative_scientific_executions_during_integrity_completion": 0
+      },
+      "lineage_status": "VERIFIED_SOURCE_TO_COMPOSITE_INTEGRITY_COMPLETION",
+      "qualification": "The final PASS is a composite completion record after blocked audit-harness attempts; it did not rerun or modify the frozen scientific result."
+    }
+  },
+  "shared_metric_lineage": {
+    "module": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py",
+    "role": "Shared attack-event and alarm-episode policy plus metric artifact contracts used by D0, D1, D2 V1, and D2 V2 bridges.",
+    "execution_evidence": "Each arm-specific frozen metric artifact and independent metric-oracle audit binds its prediction artifact.",
+    "recomputation_in_this_audit": false
+  },
+  "integrity_lineage": [
+    {
+      "arm": "D0",
+      "audit_entrypoint": "scripts/audit_task039e3_r2r_d0_result_integrity_v1.py",
+      "result": "PASS"
+    },
+    {
+      "arm": "D1",
+      "audit_entrypoint": "scripts/audit_task039e3_r2r_utility_inner_d1_result_integrity_v1.py",
+      "result": "PASS"
+    },
+    {
+      "arm": "D2_V1",
+      "audit_entrypoint": "scripts/audit_task039e3_r2r_d2_result_integrity_v1.py",
+      "result": "PASS"
+    },
+    {
+      "arm": "D2_V2",
+      "audit_entrypoint": "scripts/audit_task039e3_r2r_d2_v2_result_integrity_v1.py plus remediation-specific audit harnesses",
+      "result": "PASS_VIA_COMPOSITE_COMPLETION_RECORD"
+    }
+  ],
+  "lineage_gaps_and_qualifications": [
+    {
+      "id": "LG-EXEC-001",
+      "severity": "MEDIUM",
+      "subject": "COMMON-42 public payload",
+      "finding": "The public authority proves the 42-member executable identity and equivalence bindings, while numeric values remain privately bound. A public-only architecture audit cannot reproduce the full rule payload.",
+      "impact": "Show COMMON-42 as verified frozen authority with private numeric binding, not as a standalone public rule file."
+    },
+    {
+      "id": "LG-EXEC-002",
+      "severity": "MEDIUM",
+      "subject": "D1 prediction-before-label wording",
+      "finding": "Source constructs and validates the label-blind prediction object before label custody, and the integrity audit calls it frozen. Unlike D0/D2, the execution source does not visibly persist the public prediction file before label access.",
+      "impact": "Do not claim D0-style persistent-file ordering for D1 without a deeper ARCH-008 audit."
+    },
+    {
+      "id": "LG-EXEC-003",
+      "severity": "LOW",
+      "subject": "D2 V1 recovery lineage",
+      "finding": "The first D2 attempt aborted on infrastructure/private persistence. The frozen result came from an explicitly authorized recovery bridge reusing the original scientific functions.",
+      "impact": "Architecture and result lineage must name both original semantics and recovery entrypoint."
+    },
+    {
+      "id": "LG-EXEC-004",
+      "severity": "LOW",
+      "subject": "D2 V2 integrity completion topology",
+      "finding": "The final integrity PASS is a composite of scientific oracle, public accounting, and report-render evidence after six blocked audit attempts, not a single uninterrupted audit run.",
+      "impact": "Present as audited with composite completion provenance; do not imply a result rerun."
+    },
+    {
+      "id": "LG-EXEC-005",
+      "severity": "LOW",
+      "subject": "Construction proposal-level public lineage",
+      "finding": "Public reports bind aggregate construction outcomes and private ledger hashes, but the individual proposal payloads are intentionally private.",
+      "impact": "Public architecture can verify execution and aggregate outcomes, not inspect every provider proposal."
+    }
+  ],
+  "negative_findings": {
+    "source_files_treated_as_executed_without_receipt": 0,
+    "authoritative_result_recomputations": 0,
+    "hidden_critical_lineage_gaps": 0,
+    "D0_D1_D2_result_lineages_traced": 4
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "scientific_metric_recomputations": 0,
+    "test2_feature_accesses": 0,
+    "test2_label_accesses": 0,
+    "private_payload_opens": 0,
+    "private_paths_exposed": 0,
+    "scientific_source_changes": 0,
+    "frozen_result_changes": 0,
+    "remote_pushes": 0
+  }
+}

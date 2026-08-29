@@ -199,9 +199,9 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain exactly three entries")
-    result.require(state.get("last_completed_task") == "RCC-003", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-000 — Full Architecture Overview Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 5, "top_user_todo must contain exactly five ARCH-000 review entries")
+    result.require(state.get("last_completed_task") == "ARCH-000", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-001 — Data / Provenance / Split Governance Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -214,8 +214,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-000 — Full Architecture Overview Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-000 — Full Architecture Overview Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-001 — Data / Provenance / Split Governance Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-001 — Data / Provenance / Split Governance Deep Audit", "next architecture task mismatch")
     semantics = state.get("status_semantics", {})
     result.require(
         set(semantics) == {
@@ -272,8 +272,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     for registry in ("decisions", "timeline"):
         for row in data[registry]:
-            if row["source"] == "USER_CONTEXT":
-                result.require(row["source_commit"] == "NONE", f"{registry} USER_CONTEXT row must not claim a Git commit")
+            if row["source"] in {"USER_CONTEXT", "USER_CONFIRMED_CONTEXT"}:
+                result.require(row["source_commit"] == "NONE", f"{registry} context-only row must not claim a Git commit")
             else:
                 result.require(
                     row["source_commit"] in {AUTHORITY_COMMIT, OVERLAY_COMMIT, "e81baadcfd6cf6b9f23d307056455e024876c2ed"},
@@ -420,10 +420,10 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     for item in questions:
         result.require(item["confidence"] in {"LOW", "MEDIUM"}, "history confirmation question has invalid confidence")
     professor = {item["date"]: item for item in history.get("professor_feedback_lineage", [])}
-    result.require(professor.get("2026-08-18", {}).get("classification") == "NOT_PROFESSOR_FEEDBACK", "August 18 is mislabeled as professor feedback")
-    result.require(professor.get("2026-08-26", {}).get("classification") == "NOT_PROFESSOR_FEEDBACK", "August 26 is mislabeled as professor feedback")
+    result.require(professor.get("2026-08-18", {}).get("classification", "").endswith("NOT_PROFESSOR_FEEDBACK"), "August 18 is mislabeled as professor feedback")
+    result.require(professor.get("2026-08-26", {}).get("classification", "").endswith("NOT_PROFESSOR_FEEDBACK"), "August 26 is mislabeled as professor feedback")
     august_four = professor.get("2026-08-04", {})
-    result.require("USER_CONTEXT" in august_four.get("classification", ""), "August 4 feedback source uncertainty is missing")
+    result.require("CONTEXT" in august_four.get("classification", ""), "August 4 feedback context boundary is missing")
     result.require("reinforced" in august_four.get("interpretation", ""), "August 4 feedback is incorrectly presented as originating pairwise design")
     for row in data["timeline"]:
         if row["source"].startswith("USER_CONTEXT"):
@@ -584,7 +584,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
         "history/TERMINOLOGY_GUIDE.md": ("Historical Terminology Guide", "Current preferred meaning"),
-        "history/HISTORY_CONFIRMATION_NEEDED.md": ("History Confirmation Needed", "HIST-Q001"),
+        "history/HISTORY_CONFIRMATION_NEEDED.md": ("History Confirmation Needed", "HIST-Q002"),
     }
     for relative, phrases in required_semantic_outputs.items():
         path = rcc_root / relative
@@ -600,6 +600,46 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
     for path in decision_files:
         payload = path.read_text(encoding="utf-8")
         result.require(marker in payload, f"decision record is stale or unbound: {path.name}")
+
+
+def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
+    overview = rcc_root / "architecture" / "00_overview"
+    required = {
+        "ARCH_000_SOURCE_MAP.csv", "ARCH_000_ENTRYPOINT_MAP.csv", "ARCH_000_DATAFLOW.csv",
+        "ARCH_000_ARTIFACT_LINEAGE.csv", "ARCH_000_RESULT_LINEAGE.md",
+        "ARCH_000_CORE_GOVERNANCE_MAP.md", "ARCH_000_LEGACY_AND_GAPS.md",
+        "ARCH_000_ARCHITECTURE.mmd", "ARCH_000_REPORT.md", "ARCH_000_MISMATCHES.md",
+        "ARCH_000_COMPONENT_DETAIL.csv", "DEEP_REVIEW_INDEX.md",
+    }
+    if not overview.is_dir():
+        return
+    for name in required:
+        result.require((overview / name).is_file(), f"ARCH-000 output missing: {name}")
+    if result.errors:
+        return
+    def rows(name: str) -> list[dict[str, str]]:
+        with (overview / name).open("r", encoding="utf-8", newline="") as handle:
+            return list(csv.DictReader(handle))
+    source = rows("ARCH_000_SOURCE_MAP.csv")
+    edges = rows("ARCH_000_DATAFLOW.csv")
+    artifacts = rows("ARCH_000_ARTIFACT_LINEAGE.csv")
+    details = rows("ARCH_000_COMPONENT_DETAIL.csv")
+    component_ids = {row["component_id"] for row in data["components"]}
+    result.require(len(source) == 32 and {row["component_id"] for row in source} == component_ids, "ARCH-000 source map does not cover 32 RCC components")
+    result.require(len(details) == 11, "ARCH-000 dashboard detail map does not cover 11 review domains")
+    result.require(all(row["verified"] in {"TRUE", "UNKNOWN"} for row in edges), "ARCH-000 dataflow contains an invalid verification state")
+    for row in edges:
+        result.require(row["from_component"] in component_ids and row["to_component"] in component_ids, f"ARCH-000 edge {row['edge_id']} has an unknown component")
+    result.require(len({row["edge_id"] for row in edges}) == len(edges), "ARCH-000 edge IDs are not unique")
+    result.require(len({row["artifact_id"] for row in artifacts}) == len(artifacts), "ARCH-000 artifact IDs are not unique")
+    for row in source:
+        result.require(is_safe_relative_path(row["path"]), f"ARCH-000 source path for {row['component_id']} is unsafe")
+        if check_git:
+            result.require(_git_has_path(repo_root, row["source_commit"], row["path"]), f"ARCH-000 source path for {row['component_id']} is absent from its pinned tree")
+    mermaid = (overview / "ARCH_000_ARCHITECTURE.mmd").read_text(encoding="utf-8")
+    result.require(mermaid.startswith("flowchart "), "ARCH-000 Mermaid does not declare a flowchart")
+    result.require("-." in mermaid, "ARCH-000 Mermaid omits dotted unverified/documented-only edges")
+    result.require((rcc_root / "generated" / "ARCH_000_USER_SUMMARY.md").is_file(), "ARCH-000 user summary is missing")
 
 
 def validate_registry(
@@ -633,6 +673,7 @@ def validate_registry(
     _validate_references(data, result)
     _validate_history(data, result, repository, check_git)
     _validate_paths(data, result, repository, check_git)
+    _validate_architecture(root, data, result, repository, check_git)
     if check_git:
         _validate_git_authorities(repository, result)
     if check_outputs:

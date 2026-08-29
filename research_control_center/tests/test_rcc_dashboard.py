@@ -82,7 +82,7 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(31, len(summaries))
+            self.assertEqual(32, len(summaries))
             self.assertTrue(all(path.is_file() for path in summaries))
             self.assertTrue((root / "history" / "PROJECT_TIMELINE.md").is_file())
             self.assertTrue((root / "generated" / "RCC_003_HISTORY_SUMMARY.md").is_file())
@@ -95,6 +95,14 @@ class DashboardGenerationTests(unittest.TestCase):
         for component_id in ("DATA_PROVENANCE", "GDN_DISCOVERY", "D0_PCA_SPE", "D1_RULE_ONLY"):
             name = next(row["name"] for row in load_registry(RCC_ROOT)["components"] if row["component_id"] == component_id)
             self.assertIn(name, rendered)
+
+    def test_arch000_dashboard_exposes_clickable_contracts(self) -> None:
+        data = load_registry(RCC_ROOT)
+        rendered = render_dashboard(data, registry_digest(RCC_ROOT))
+        for section in ("DATA", "DISCOVERY", "RELATION", "RULE", "VERIFIER", "RUNTIME", "D0", "D1", "D2", "METRICS", "REPRODUCIBILITY"):
+            self.assertIn(f'id="arch-{section.lower()}"', rendered)
+        for label in ("ROLE", "INPUT", "OUTPUT", "CODE", "EXECUTED?", "FROZEN RESULT USED?", "VALIDATION STATE", "NEXT DEEP REVIEW"):
+            self.assertIn(label, rendered)
 
     def test_status_semantics_are_non_linear_and_claim_registry_authoritative(self) -> None:
         data = load_registry(RCC_ROOT)
@@ -129,7 +137,7 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
-        self.assertEqual(31, len(generated))
+        self.assertEqual(32, len(generated))
         user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
         context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
         self.assertIn("14", user_summary)

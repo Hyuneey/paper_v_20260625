@@ -1,0 +1,35 @@
+{
+  "schema_version": "arch-000-evidence-v1",
+  "task_id": "ARCH-000",
+  "status": "PASS",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base": "c837d7c6b2acd5a711be9e5fe883e4e90492818b",
+  "counts": {
+    "components": 32,
+    "entrypoints": 18,
+    "verified_edges": 35,
+    "unverified_or_indirect_edges": 10,
+    "artifact_lineages": 37,
+    "result_lineages": 4,
+    "mismatches": 15,
+    "critical_mismatches": 0,
+    "high_mismatches": 8,
+    "medium_mismatches": 6,
+    "low_mismatches": 1
+  },
+  "result_lineage": {
+    "D0": "VERIFIED_SOURCE_TO_AUDITED_RESULT",
+    "D1": "VERIFIED_SOURCE_TO_AUDITED_RESULT_WITH_ORDERING_WORDING_QUALIFICATION",
+    "D2_V1": "VERIFIED_SOURCE_TO_AUDITED_RESULT_VIA_AUTHORIZED_RECOVERY",
+    "D2_V2": "VERIFIED_SOURCE_TO_COMPOSITE_INTEGRITY_COMPLETION"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_result_changes": 0,
+    "private_exposures": 0,
+    "remote_pushes": 0
+  },
+  "agent_e_qa": "PASS_NO_BLOCKING_ARCHITECTURE_INCONSISTENCY"
+}

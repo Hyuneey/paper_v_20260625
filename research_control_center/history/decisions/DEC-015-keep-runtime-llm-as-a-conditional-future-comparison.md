@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-015 — Keep runtime LLM as a conditional future comparison
 
 ## Date
@@ -11,7 +11,7 @@
 
 ## Context
 
-User context says runtime LLM was left open while current authority later froze an LLM-free runtime.
+The research owner confirms runtime LLM was left open while current authority froze an LLM-free runtime.
 
 ## Alternatives Considered
 
@@ -20,11 +20,11 @@ User context says runtime LLM was left open while current authority later froze 
 
 ## Decision
 
-Keep the current R0 and D1 runtime LLM-free; any runtime-LLM study requires a separate design authority and must not receive prohibited outcomes.
+Keep current R0 and D1 runtime LLM-free; any runtime-LLM study requires separate design authority and cannot receive prohibited outcomes.
 
 ## Why
 
-Historical intent is not fully evidenced but current runtime authority is unambiguous.
+The historical option is user-confirmed and the current runtime prohibition is source-backed.
 
 ## Consequence
 
@@ -44,9 +44,9 @@ NONE
 
 ## Evidence
 
-Source class: `USER_CONTEXT_WITH_CURRENT_BOUNDARY`
+Source class: `USER_CONFIRMED_CONTEXT_WITH_CURRENT_BOUNDARY`
 
-Reference: RCC-003 task seed;docs/v6/V6_CANONICAL_ARCHITECTURE.md
+Reference: ARCH-000 confirmation 4;docs/v6/V6_CANONICAL_ARCHITECTURE.md
 
 Source commit: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -54,7 +54,7 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 | DETERMINISTIC_VERIFIER | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep scientific and causal claims outside verifier authority |
 | COMMON42_FREEZE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve exact authority bytes |
 | RULE_RUNTIME | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Do not generalize fixed-runtime properties to future modes |
-| SATISFACTION_TRACE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit trace-to-outcome completeness |
+| SATISFACTION_TRACE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit canonical-to-real trace representation in ARCH-006 and ARCH-008 |
 | EXPLANATION_RENDERER | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Evaluate faithfulness separately from human usefulness |
 | D0_PCA_SPE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Add a stronger baseline only in a new preregistered study |
 | D1_RULE_ONLY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand utility evaluation without changing the frozen pilot |
@@ -125,4 +125,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-000 — Full Architecture Overview Audit**
+**ARCH-001 — Data / Provenance / Split Governance Deep Audit**

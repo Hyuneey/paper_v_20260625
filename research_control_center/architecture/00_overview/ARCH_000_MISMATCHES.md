@@ -1,0 +1,21 @@
+# ARCH-000 Mismatches
+
+No critical hidden contradiction was found. These are documentation-to-source or lineage qualifications; the audit did not remediate scientific code.
+
+| ID | Documented architecture | Actual source evidence | Type | Scientific impact | Priority | Recommended action |
+|---|---|---|---|---|---|---|
+| M-001 | Generic candidate universe shown as frozen C0 authority | Frozen C0 uses CandidateUniversePolicyV1 | DOC_CODE | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-002 | NormalRelationEvidenceV1 shown as direct executed pack | E3 executes a PrivateConstructionEvidenceV1 to RealConstructionEvidenceV1 projection | DOC_CODE | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-003 | Canonical Rule v1 shown as direct D1 payload | D1 consumes CanonicalRuleDescriptorV4 | DOC_CODE | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-004 | Canonical verifier shown as T0-T2 verifier | Executed arms call task039e0_validity_v2 | CODE_EXECUTION | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-005 | Synthetic/canonical runtime shown as real D1 runtime | Frozen D1 uses execute_real_rule_v1 | CODE_EXECUTION | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-006 | Typed RuntimeTraceV1 shown in frozen D1 path | Frozen D1 exposes a task-specific trace hash; direct typed link not found | EXECUTION_ARTIFACT | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-007 | Explanation renderer implied in result path | Implemented/tested canonical renderer was not used by frozen D1 | CODE_EXECUTION | Traceability/interpretation | MEDIUM | Review in assigned deep-review Part |
+| M-008 | One numeric-authority stage implied | Construction and utility runtime numeric authorities are separate stages | DOC_CODE | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-009 | All construction arms flow to COMMON-42 | T2 was excluded from utility; T0/T1/T1-B equivalence binds COMMON-42 | ARTIFACT_RESULT | Traceability/interpretation | HIGH | Review in assigned deep-review Part |
+| M-010 | D2 V1 original entrypoint shown as result producer | Frozen result completed through authorized recovery entrypoint | EXECUTION_ARTIFACT | Traceability/interpretation | MEDIUM | Review in assigned deep-review Part |
+| M-011 | D1 ordering may sound identical to D0 persistence | Source proves label-blind object ordering, not D0-style public-file persistence | STATUS_SEMANTIC | Traceability/interpretation | MEDIUM | Review in assigned deep-review Part |
+| M-012 | Representative split guard implied in every frozen bridge | Task-specific execution guards are used; direct calls were not found | DOC_CODE | Traceability/interpretation | MEDIUM | Review in assigned deep-review Part |
+| M-013 | COMMON-42 public artifact may appear to contain executable values | Public artifact is metadata authority over private custody | ARTIFACT_RESULT | Traceability/interpretation | MEDIUM | Review in assigned deep-review Part |
+| M-014 | One metric implementation implied | Shared policy is combined with arm-specific bridge arithmetic | DOC_CODE | Traceability/interpretation | MEDIUM | Review in assigned deep-review Part |
+| M-015 | D2 V2 integrity shown as a single ordinary audit | PASS is a composite completion after blocked audit-harness attempts and no rerun | STATUS_SEMANTIC | Traceability/interpretation | LOW | Review in assigned deep-review Part |

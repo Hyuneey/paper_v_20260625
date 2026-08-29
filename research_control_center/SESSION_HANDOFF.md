@@ -13,28 +13,22 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`RCC-003 — Research Timeline & Decision Backfill`
+`ARCH-000 — Full Architecture Overview Audit`
 
 ## What changed
 
-- Populated all 32 components and separated implementation, execution, audit,
-  reproduction, and bounded claim readiness.
-- Registered six current experiments, thirteen conservative claims, ten risks,
-  and all 26 RCC-000 artifact inventory entries.
-- Regenerated the dashboard, GPT brief, current context, user TODO, decision
-  inbox, current status, change summary, and Korean user summary.
-- Added a high-level registry-driven architecture map and status summary cards.
-- Normalized dashboard terminology so component evidence review cannot be
-  mistaken for result-integrity audit or performance validation.
-- Removed component `claim_ready` from headline counts and made `claims.csv`
-  the explicit authoritative scientific claim view.
-- Backfilled 28 curated historical milestones and 18 consequential decisions.
-- Added a full research-evolution narrative, professor-feedback lineage,
-  superseded-direction index, terminology guide, and five high-value history
-  confirmation questions.
-- Kept early DHAG, LLMAD, Faithfulness Verifier, May feedback, August 18, and
-  August 26 details explicitly user-context or retrospective where Git did not
-  independently establish them.
+- Mapped all 32 RCC components to pinned real source or document paths.
+- Reconstructed 18 entrypoints, 35 verified dataflow edges, 10 explicitly
+  indirect or unknown edges, and 37 public-safe artifact lineages.
+- Traced D0, D1, D2 V1, and D2 V2 from source through frozen results and
+  integrity evidence without scientific recomputation.
+- Corrected RCC representative pointers for the frozen C0 universe, executed
+  construction evidence, task verifier, real D1 runtime, and D2 V1 recovery.
+- Recorded 15 architecture mismatches without modifying scientific code.
+- Upgraded the dashboard with 11 clickable architecture domains and assigned
+  ARCH-001 through ARCH-011 deep-review Parts.
+- Applied the five user-confirmed RCC-003 history interpretations; only the
+  exact March–April LLMAD work set remains unresolved.
 
 ## Decisions made
 
@@ -46,8 +40,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific evidence was produced. RCC-003 reconstructed history from
-Git and public-safe reports and preserved uncertain early stages as user context.
+No new scientific evidence was produced. ARCH-000 added static source,
+entrypoint, artifact, and result-lineage evidence only.
 
 ## Open risks
 
@@ -59,14 +53,14 @@ Git and public-safe reports and preserved uncertain early stages as user context
 
 ## User actions
 
-- Review the full current-state summary and challenge any component status.
-- Approve or adjust conservative claim boundaries before thesis use.
-- Identify architecture components that need explanation before ARCH-000.
-- Confirm or correct the five high-value questions in
-  `history/HISTORY_CONFIRMATION_NEEDED.md`.
+- Explain the full architecture flow in your own words.
+- Confirm that each major input and output is understandable.
+- Identify the hardest component and the mismatch that deserves priority.
+- Approve or defer ARCH-001.
+- If known, identify the unresolved March–April LLMAD works.
 
 ## Exact next task
 
-`ARCH-000 — Full Architecture Overview Audit`
+`ARCH-001 — Data / Provenance / Split Governance Deep Audit`
 
-Do not start it until the user has reviewed RCC-003 history.
+Do not start it until the user has reviewed ARCH-000.

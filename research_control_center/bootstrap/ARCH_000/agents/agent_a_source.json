@@ -1,0 +1,724 @@
+{
+  "task_id": "ARCH-000",
+  "agent_role": "Agent A - Source Architecture Auditor",
+  "status": "PASS_WITH_SOURCE_GAPS_RECORDED",
+  "authority": {
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "documentation_overlay_ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+    "documentation_overlay_commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+    "inspection_method": "git show, git ls-tree, git grep, and static source reading only",
+    "current_checkout_used_as_scientific_authority": false
+  },
+  "audit_scope": {
+    "components_requested": 32,
+    "components_mapped": 32,
+    "representative_registry_paths_present_at_scientific_commit": 31,
+    "overlay_only_representative_paths": 1,
+    "scientific_execution_performed": false,
+    "artifact_payload_opened": false,
+    "private_payload_opened": false
+  },
+  "classification_semantics": {
+    "SCIENTIFIC_CORE": "Reusable or task-specific code that performs scientific candidate, relation, rule, detector, fusion, or metric computation.",
+    "BASELINE": "Scientific reference arm rather than the claimed research contribution.",
+    "CONDITIONAL_RESEARCH": "Implemented research comparison path whose contribution remains unvalidated or provider-dependent.",
+    "GOVERNANCE": "Authority, custody, split, freeze, or integrity control; not scientific computation by itself.",
+    "REPORTING": "Documentation or synthesis that consumes public-safe evidence.",
+    "REFERENCE_LEGACY": "Import-compatible or historical source outside the current HAI/v6 path."
+  },
+  "components": [
+    {
+      "component_id": "DATA_PROVENANCE",
+      "classification": "GOVERNANCE",
+      "actual_sources": [
+        {"path": "src/paperworks/data/hai_provenance_v1.py", "module": "paperworks.data.hai_provenance_v1", "symbol": "build_hai_dataset_manifest_v2", "line": 1342, "role": "Builds a DatasetManifestV2 from already-audited public records."},
+        {"path": "scripts/audit_hai_2305.py", "module": "script", "symbol": "main/build_hai_dataset_manifest_v2 call", "line": 428, "role": "Static caller and provenance audit driver."}
+      ],
+      "caller": "scripts/audit_hai_2305.py",
+      "callees": ["DatasetManifestV2 construction", "HAI CSV/label/LFS structural validation"],
+      "input": "Public audit records and source identities",
+      "output": "DatasetManifestV2",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": "YES_AS_DATASET_AUTHORITY",
+      "tests": ["tests/test_task039a_manifest_schemas.py", "tests/test_task039a_reports.py"],
+      "gaps": ["The builder validates already-observed records; it is not the raw-data scientific parser."]
+    },
+    {
+      "component_id": "SPLIT_GOVERNANCE",
+      "classification": "GOVERNANCE",
+      "actual_sources": [
+        {"path": "src/paperworks/data/splits_v2.py", "module": "paperworks.data.splits_v2", "symbol": "assert_operation_permitted_v2", "line": 85, "role": "Checks DataOperationV2 against SplitManifestV2 roles."}
+      ],
+      "caller": "No production caller of assert_operation_permitted_v2 was found outside exports; tests call it directly.",
+      "callees": ["OPERATION_PERMISSIONS_V2", "sealed access check"],
+      "input": "SplitManifestV2 and DataOperationV2",
+      "output": "Fail-closed permission decision",
+      "source_exists": true,
+      "structurally_connected": "CONTRACT_EXISTS_BUT_FROZEN_TASK_MODULES_USE_TASK_SPECIFIC_GUARDS",
+      "executed": "REPORTED_BY_GOVERNANCE_EVIDENCE_NOT_PROVEN_BY_STATIC_CALL",
+      "frozen_result_used": "INDIRECT_POLICY_BINDING",
+      "tests": ["tests/test_task039p1a_splits_v2.py", "tests/test_task039br2_contracts_and_boundaries.py"],
+      "gaps": ["No direct static call from the D0/D1/D2 real execution modules to this representative function was found."]
+    },
+    {
+      "component_id": "VARIABLE_ROLE_UNIVERSE",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/candidate_discovery_protocol_v1.py", "module": "paperworks.v6.candidate_discovery_protocol_v1", "symbol": "CandidateUniversePolicyV1", "line": 255, "role": "Actual frozen 12-source by 12-target C0 policy and pair set."},
+        {"path": "src/paperworks/v6/candidate_discovery_protocol_v1.py", "module": "paperworks.v6.candidate_discovery_protocol_v1", "symbol": "build_default_candidate_discovery_bundle_v1", "line": 1334, "role": "Builds the frozen C0 protocol bundle."},
+        {"path": "src/paperworks/candidates/universe.py", "module": "paperworks.candidates.universe", "symbol": "build_candidate_universe", "line": 198, "role": "Older reusable generic producer; not the frozen C0 universe authority."}
+      ],
+      "caller": "scripts/freeze_task039c0_candidate_protocol.py:main at line 215",
+      "callees": ["eligible_pair_records_v1", "eligible_pair_universe_hash_v1"],
+      "input": "Reviewed P1 role identities and C0 policy",
+      "output": "CandidateDiscoveryProtocolBundleV1 and CandidateUniversePolicyV1",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039c0_candidate_protocol.py", "tests/test_task039c0_reports.py"],
+      "gaps": ["RCC-002 representative_path points to the generic universe builder rather than the actual C0 frozen authority."]
+    },
+    {
+      "component_id": "META_DISCOVERY",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py", "module": "paperworks.candidates.metadata_candidate_discovery_v1", "symbol": "rank_supported_metadata_records_v1", "line": 809, "role": "Ranks supported metadata records without score padding."},
+        {"path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py", "module": "paperworks.candidates.metadata_candidate_discovery_v1", "symbol": "build_metadata_candidate_result_v1", "line": 917, "role": "Builds the self-hashed META result."}
+      ],
+      "caller": "scripts/run_task039c_meta.py:main at line 252",
+      "callees": ["rank_metadata_candidates_v1", "derive_candidate_budget_views_v1"],
+      "input": "CandidateUniversePolicyV1 and approved metadata records",
+      "output": "META candidate result with bounded views",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039c_meta.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "STAT_DISCOVERY",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py", "module": "paperworks.candidates.statistical_candidate_discovery_v1", "symbol": "rank_pair_evidence_v1", "line": 779, "role": "Ranks supported normal-only pair evidence."}
+      ],
+      "caller": "scripts/run_task039c_stat.py:main at line 137",
+      "callees": ["select_statistical_horizon_v1", "rank_statistical_candidates_v1"],
+      "input": "C0 universe and authorized train1/train2 feature evidence",
+      "output": "STAT ranked candidate result",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039c_stat.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "GDN_DISCOVERY",
+      "classification": "CONDITIONAL_RESEARCH",
+      "actual_sources": [
+        {"path": "src/paperworks/gdn/upstream_candidate_backend_v1.py", "module": "paperworks.gdn.upstream_candidate_backend_v1", "symbol": "train_upstream_aligned_seed_v1", "line": 950, "role": "Frozen upstream-aligned seed training and learned-graph candidate projection."}
+      ],
+      "caller": "Multiple historical/remediation drivers exist, including scripts/run_task039c_gdn_remediation.py:main at line 1218 and scripts/run_task039c_gdnp.py:main at line 1096.",
+      "callees": ["_segment_windows_v1", "_load_runtime_types_v1", "torch.topk learned-embedding projection"],
+      "input": "Authorized normal segments, feature order, candidate pair mask, frozen seed/config",
+      "output": "TrainedSeedGraphV1 candidate edges and similarities",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039c_gdn_candidates.py", "tests/test_task039c_gdn_fidelity.py", "tests/test_task039c_gdn_remediation_execution.py"],
+      "gaps": ["Static source alone does not select which of the multiple GDN driver/remediation scripts produced the final frozen artifact; execution lineage must resolve it.", "Candidate edges are learned-graph candidate evidence, not causal relations."]
+    },
+    {
+      "component_id": "CANDIDATE_UNION",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/candidates/candidate_integration_v1.py", "module": "paperworks.candidates.candidate_integration_v1", "symbol": "build_task039c_integration_v1", "line": 1146, "role": "Validates exact arm inputs and builds an unscored provenance-preserving union."}
+      ],
+      "caller": "scripts/run_task039c_integration.py:main at line 96",
+      "callees": ["reconstruct_audited_preview_v1", "integrate_candidate_union_v1"],
+      "input": "C0, META, STAT, GDN and audit artifacts",
+      "output": "IntegrationBuildResultV1 candidate cohort",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039c_three_arm_integration.py", "tests/test_task039c_integration_reports.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "RELATION_PROFILING",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/profiling/task039d1_fit_v1.py", "module": "paperworks.profiling.task039d1_fit_v1", "symbol": "build_fit_result_v1", "line": 1051, "role": "Builds fit-stage result from normal-only relation outcomes."},
+        {"path": "src/paperworks/profiling/task039d2_confirmation_v1.py", "module": "paperworks.profiling.task039d2_confirmation_v1", "symbol": "apply_exact_confirmation_gate_v1", "line": 504, "role": "Applies one-way train3 confirmation."}
+      ],
+      "caller": "scripts/run_task039d1_fit_profiling.py:main at line 432; scripts/run_task039d2_confirmation.py:main at line 296",
+      "callees": ["optimized_target_response_v1", "extract_train3_source_events_v1", "evaluate_train3_target_response_window_v1"],
+      "input": "Integrated candidate cohort and normal fit/confirmation splits",
+      "output": "Fit artifacts then confirmed relation cohort",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039d1_fit_engine.py", "tests/test_task039d1_independent_replay.py", "tests/test_task039d2_real_engine.py"],
+      "gaps": ["RCC collapses the fit and one-way confirmation implementations into one component; both are required for the actual 42-relation lineage."]
+    },
+    {
+      "component_id": "NUMERIC_AUTHORITY",
+      "classification": "SCIENTIFIC_CORE_WITH_GOVERNANCE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py", "module": "paperworks.v6.task039e1_evidence_materialization_v1", "symbol": "materialize_from_ledgers_v1", "line": 517, "role": "Derives private numeric bindings from normal-only ledgers."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_normal_only_authority_v1", "symbol": "materialize_normal_only_authority_v1", "line": 2572, "role": "Materializes the later COMMON-42 utility numeric authority."}
+      ],
+      "caller": "scripts/run_task039e1_evidence_materialization.py:main at line 191; task-specific materialization/audit harness for the utility authority",
+      "callees": ["_derive_numeric_bindings", "private authority validation and public receipt builders"],
+      "input": "Confirmed normal relations and normal fit/confirmation ledgers",
+      "output": "Private numeric registry plus sanitized public identities/receipts",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e1_real_materialization.py", "tests/test_task039e3_r2r_utility_normal_only_authority_v1.py"],
+      "gaps": ["There are two lineage layers: E1 construction evidence numeric bindings and later utility runtime numeric authority; documentation should not collapse their identities."]
+    },
+    {
+      "component_id": "EVIDENCE_PACK",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py", "module": "paperworks.v6.task039e1_evidence_materialization_v1", "symbol": "PrivateConstructionEvidenceV1", "line": 363, "role": "Actual private evidence record used by scientific construction."},
+        {"path": "src/paperworks/v6/task039e3_scientific_execution_v1.py", "module": "paperworks.v6.task039e3_scientific_execution_v1", "symbol": "RealConstructionEvidenceV1/project_real_evidence_v1", "line": 187, "role": "Projects the E1 record into the executed construction interface; projection function starts at line 260."},
+        {"path": "src/paperworks/v6/normal_evidence_v1.py", "module": "paperworks.v6.normal_evidence_v1", "symbol": "NormalRelationEvidenceV1", "line": 333, "role": "Canonical typed normal-evidence contract used by collection/outcome adapters, but not directly imported by the E3 execution path."}
+      ],
+      "caller": "load_real_evidence_schedule_v1 in task039e3_scientific_execution_v1",
+      "callees": ["ConfirmedRelationPrimitiveV1", "ApprovedNumericEvidenceBundleV1", "ConstructionInputViewV1"],
+      "input": "Confirmed relation identity and private normal-only numeric bindings",
+      "output": "RealConstructionEvidenceV1 rendered bounded view",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e1_real_materialization.py", "tests/test_task039e3_main_arms.py"],
+      "gaps": ["RCC-002 names NormalRelationEvidenceV1 as the executed pack, but the executed E3 path uses PrivateConstructionEvidenceV1 projected to RealConstructionEvidenceV1."]
+    },
+    {
+      "component_id": "RULE_DSL",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/contracts/rule_v1.py", "module": "paperworks.contracts.rule_v1", "symbol": "DelayedResponseRuleV1", "line": 133, "role": "Canonical Rule v1 contract."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py", "module": "paperworks.v6.task039e3_r2r_utility_protocol_v4", "symbol": "CanonicalRuleDescriptorV4", "line": 952, "role": "Task-specific rule descriptor actually consumed by the COMMON-42 utility runtime."}
+      ],
+      "caller": "Canonical vertical slice and authority modules call Rule v1; Utility V4 builds descriptors at build_canonical_rule_descriptors_v4 line 1016.",
+      "callees": ["Rule v1 serialization/validation", "V4 numeric reference binding"],
+      "input": "Bounded relation semantics and parameter references",
+      "output": "Canonical Rule v1 object or V4 runtime rule descriptor",
+      "source_exists": true,
+      "structurally_connected": "TWO_REPRESENTATION_LAYERS",
+      "executed": "RULE_CONSTRUCTION_AND_V4_DESCRIPTOR_PATHS_REPORTED_EXECUTED",
+      "frozen_result_used": "V4_DESCRIPTOR_YES; DELAYED_RESPONSE_RULE_V1_DIRECT_USE_NOT_FOUND_IN_D1",
+      "tests": ["tests/test_task032b_delayed_response_rule_v1.py", "tests/test_task039e3_r2r_utility_protocol_v4.py"],
+      "gaps": ["The real D1 path consumes CanonicalRuleDescriptorV4, not DelayedResponseRuleV1 directly. The canonical-to-utility representation boundary needs ARCH-004/005 review."]
+    },
+    {
+      "component_id": "T0_TEMPLATE",
+      "classification": "BASELINE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_scientific_execution_v1.py", "module": "paperworks.v6.task039e3_scientific_execution_v1", "symbol": "run_real_t0_v1", "line": 212, "role": "Authorized real T0 adapter."},
+        {"path": "src/paperworks/v6/task039e3_orchestration_v1.py", "module": "paperworks.v6.task039e3_orchestration_v1", "symbol": "run_t0_v1", "line": 457, "role": "Frozen orchestration semantics."}
+      ],
+      "caller": "run_authorized_scientific_execution_v1 at line 517",
+      "callees": ["generate_synthetic_t0_core_v1", "wrap_and_verify_core_v1"],
+      "input": "RealConstructionEvidenceV1",
+      "output": "ConstructionOutcomeRecordV1 and proposal ledger record",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": "CONSTRUCTION_RESULT_YES; DIRECT_D1_CONSUMPTION_IS_INDIRECT",
+      "tests": ["tests/test_task039e3_main_arms.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "T1_ONE_SHOT",
+      "classification": "CONDITIONAL_RESEARCH",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_orchestration_v1.py", "module": "paperworks.v6.task039e3_orchestration_v1", "symbol": "run_t1_v1", "line": 491, "role": "One-call bounded construction arm."}
+      ],
+      "caller": "run_authorized_scientific_execution_v1 at line 517",
+      "callees": ["execute_mock_provider_slot_v1/live injected transport", "wrap_and_verify_core_v1"],
+      "input": "Bounded evidence view, provider transport, fixed call slot",
+      "output": "ConstructionOutcomeRecordV1",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": "CONSTRUCTION_RESULT_YES",
+      "tests": ["tests/test_task039e3_main_arms.py", "tests/test_task039e3_r2r_live_execution_v1.py"],
+      "gaps": ["Provider reproduction remains incomplete; source presence and one execution do not establish scientific advantage."]
+    },
+    {
+      "component_id": "T1B_REPEAT",
+      "classification": "CONDITIONAL_RESEARCH",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_orchestration_v1.py", "module": "paperworks.v6.task039e3_orchestration_v1", "symbol": "run_t1b_v1", "line": 557, "role": "Three independent budget-matched generations with deterministic selection."}
+      ],
+      "caller": "run_authorized_scientific_execution_v1 at line 517",
+      "callees": ["execute_mock_provider_slot_v1/live injected transport", "T1BSelectionPolicyV1", "wrap_and_verify_core_v1"],
+      "input": "Bounded evidence view and three fixed call slots",
+      "output": "Selected ConstructionOutcomeRecordV1",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": "CONSTRUCTION_RESULT_YES",
+      "tests": ["tests/test_task039e3_main_arms.py", "tests/test_task039e3_r2r_scientific_result_analysis.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "T2_AGENTIC_FEEDBACK",
+      "classification": "CONDITIONAL_RESEARCH",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_orchestration_v1.py", "module": "paperworks.v6.task039e3_orchestration_v1", "symbol": "run_t2_v1", "line": 654, "role": "Bounded revise/retrieve/no-rule controller."}
+      ],
+      "caller": "run_authorized_scientific_execution_v1 at line 517",
+      "callees": ["wrap_and_verify_core_v1", "T2DeterministicControllerPolicyV1.next_action", "retrieve_existing_evidence_v1"],
+      "input": "Bounded evidence, verifier issues, fixed call budget",
+      "output": "ConstructionOutcomeRecordV1 with feedback accounting",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": "CONSTRUCTION_RESULT_YES",
+      "tests": ["tests/test_task039e3_main_arms.py", "tests/test_task039e3_r2r_scientific_result_analysis.py"],
+      "gaps": ["The current cohort did not exercise a feedback action, so agentic benefit remains unvalidated."]
+    },
+    {
+      "component_id": "DETERMINISTIC_VERIFIER",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e0_validity_v2.py", "module": "paperworks.v6.task039e0_validity_v2", "symbol": "verify_prepared_rule_proposal_v2", "line": 113, "role": "Verifier actually called by wrap_and_verify_core_v1 in T0-T2 construction."},
+        {"path": "src/paperworks/contracts/verifier_v1.py", "module": "paperworks.contracts.verifier_v1", "symbol": "verify_delayed_response_rule", "line": 329, "role": "Canonical verifier used by vertical-slice/runtime-authority contracts, but not directly imported by T0-T2 orchestration."}
+      ],
+      "caller": "task039e3_orchestration_v1.wrap_and_verify_core_v1 at line 278",
+      "callees": ["proposal, relation, numeric evidence, provenance, budget and variable checks"],
+      "input": "Prepared proposal plus frozen evidence/policy",
+      "output": "PreparedValidityResultV2",
+      "source_exists": true,
+      "structurally_connected": "EXECUTED_TASK_VERIFIER_AND_CANONICAL_VERIFIER_ARE_SEPARATE",
+      "executed": "TASK039E0_VALIDITY_V2_REPORTED_EXECUTED",
+      "frozen_result_used": "YES_VIA_PREPARED_VALIDITY_V2",
+      "tests": ["tests/test_task039e0_validity_v2.py", "tests/test_task032d_verifier_v1.py"],
+      "gaps": ["RCC-002 points at contracts/verifier_v1.py, while the executed construction call graph uses task039e0_validity_v2.py. Their authority relationship needs deep review."]
+    },
+    {
+      "component_id": "COMMON42_FREEZE",
+      "classification": "SCIENTIFIC_CORE_WITH_GOVERNANCE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py", "module": "paperworks.v6.task039e3_r2r_utility_protocol_v4", "symbol": "build_common42_public_authority_v4", "line": 817, "role": "Replays the exact public COMMON-42 authority."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py", "module": "paperworks.v6.task039e3_r2r_utility_protocol_v4", "symbol": "build_canonical_rule_descriptors_v4", "line": 1016, "role": "Builds the 42 runtime descriptors."}
+      ],
+      "caller": "Utility protocol V4 authority builders and audit script",
+      "callees": ["build_common42_authority_v1", "validate_canonical_common42_authority_v1", "NumericAuthorityDescriptorV4"],
+      "input": "Executable-equivalence/evidence manifests and numeric authority receipt",
+      "output": "NormalOnlyAuthorityDefinitionV1 plus 42 CanonicalRuleDescriptorV4 objects",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_utility_protocol_v4.py"],
+      "gaps": ["The builder consumes frozen manifest-level authority rather than proposal objects directly; construction-to-COMMON lineage is artifact-mediated."]
+    },
+    {
+      "component_id": "RULE_RUNTIME",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_inner_d1_execution_v1", "symbol": "execute_real_rule_v1", "line": 1509, "role": "Real INNER D1 per-opportunity rule evaluation."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_rule_engine_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_evaluator_rule_engine_v1", "symbol": "execute_rule_v1", "line": 227, "role": "Audited synthetic contract-only oracle whose semantics are ported into the real bridge."},
+        {"path": "src/paperworks/contracts/runtime_v1.py", "module": "paperworks.contracts.runtime_v1", "symbol": "execute_delayed_response_rule", "line": 288, "role": "Canonical Rule v1 runtime used by the canonical vertical slice, not by real D1 directly."}
+      ],
+      "caller": "execute_authorized_inner_d1_v1 at line 2523 calls enumerate_real_full_census_v1 then execute_real_rule_v1",
+      "callees": ["real census enumeration", "source qualification", "target evaluation", "private numeric resolver"],
+      "input": "Real feature frame, canonical opportunity, V4 authority and private resolver",
+      "output": "RealRuleExecutionResultV1",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REAL_BRIDGE_REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_utility_inner_d1_execution_v1.py", "tests/test_task039e3_r2r_utility_evaluator_v1_rule_engine.py", "tests/test_task032e_runtime_v1.py"],
+      "gaps": ["Three runtime layers exist: canonical Rule v1 runtime, synthetic R3 evaluator, and a copied/ported real D1 implementation. The frozen result uses the real bridge, not the RCC representative execute_rule_v1."]
+    },
+    {
+      "component_id": "SATISFACTION_TRACE",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/contracts/runtime_v1.py", "module": "paperworks.contracts.runtime_v1", "symbol": "RuntimeTraceV1", "line": 104, "role": "Canonical typed satisfaction trace."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_inner_d1_execution_v1", "symbol": "RealRuleExecutionResultV1", "line": 665, "role": "Real D1 result contains outcome identities and a trace hash, but is not RuntimeTraceV1."}
+      ],
+      "caller": "Canonical runtime constructs RuntimeTraceV1; the real D1 bridge constructs a task-specific trace-hash payload.",
+      "callees": ["runtime trace serialization/hashing", "D1 decision identity hashing"],
+      "input": "Rule evaluation facts",
+      "output": "RuntimeTraceV1 in canonical path or trace hash in D1 bridge",
+      "source_exists": true,
+      "structurally_connected": "CANONICAL_TRACE_EXISTS; REAL_D1_TYPED_TRACE_LINK_NOT_FOUND",
+      "executed": "TRACE_SEMANTICS_REPORTED_EXECUTED_BUT_REPRESENTATIVE_TYPE_NOT_IN_FROZEN_D1_CALL_GRAPH",
+      "frozen_result_used": "TRACE_HASH_YES; RUNTIME_TRACE_V1_DIRECTLY_NO",
+      "tests": ["tests/test_task032e_runtime_v1.py", "tests/test_task039p1c_verifier_runtime.py"],
+      "gaps": ["Documentation presents a typed satisfaction-trace path, but static inspection found only a task-specific trace hash in the real D1 result path."]
+    },
+    {
+      "component_id": "EXPLANATION_RENDERER",
+      "classification": "CONDITIONAL_RESEARCH",
+      "actual_sources": [
+        {"path": "src/paperworks/contracts/explanation_v1.py", "module": "paperworks.contracts.explanation_v1", "symbol": "render_delayed_response_explanation", "line": 180, "role": "Deterministic canonical Rule v1/RuntimeTrace explanation renderer."},
+        {"path": "src/paperworks/contracts/vertical_slice_v1.py", "module": "paperworks.contracts.vertical_slice_v1", "symbol": "render_delayed_response_explanation call", "line": 435, "role": "Only non-test current source caller found."}
+      ],
+      "caller": "contracts/vertical_slice_v1.py",
+      "callees": ["RuntimeTraceV1 validation", "deterministic text/record rendering"],
+      "input": "Canonical rule bundle, runtime execution and window",
+      "output": "Trace-grounded explanation record",
+      "source_exists": true,
+      "structurally_connected": "CONNECTED_TO_CANONICAL_VERTICAL_SLICE_NOT_REAL_D1",
+      "executed": "IMPLEMENTATION/TEST_EXECUTION_REPORTED; REAL_D1_FROZEN_USE_NOT_FOUND",
+      "frozen_result_used": false,
+      "tests": ["tests/test_task032e_explanation_v1.py"],
+      "gaps": ["No call from the D1 real bridge or D0/D2 result paths to render_delayed_response_explanation was found. The professor package's explanation path is implementation-level, not a frozen D1 result lineage."]
+    },
+    {
+      "component_id": "D0_PCA_SPE",
+      "classification": "BASELINE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d0_inner_execution_v1", "symbol": "execute_authorized_d0_inner_v1", "line": 2459, "role": "Single-attempt real D0 orchestration."},
+        {"path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d0_inner_execution_v1", "symbol": "compute_spe_float64_v1", "line": 1251, "role": "Float64 standardize/project/residual/SPE kernel."},
+        {"path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d0_inner_execution_v1", "symbol": "strict_alarm_mask_v1", "line": 1290, "role": "Strict greater-than decision."}
+      ],
+      "caller": "Public no-argument module entrypoint; no separate production CLI caller was found.",
+      "callees": ["committed grant replay", "private authority load", "feature parse", "SPE", "prediction freeze", "post-freeze label metrics"],
+      "input": "Authorized test1 frame and frozen private PCA authorities",
+      "output": "Label-blind D0 prediction, metric artifacts and run receipt",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED_AND_RESULT_INTEGRITY_AUDITED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_d0_inner_execution_v1.py", "tests/test_task039e3_r2r_d0_result_integrity_v1_independent.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "D1_RULE_ONLY",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_inner_d1_execution_v1", "symbol": "execute_authorized_inner_d1_v1", "line": 2523, "role": "Single-attempt real Rule-only execution."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_inner_d1_execution_v1", "symbol": "enumerate_real_full_census_v1", "line": 1313, "role": "Real opportunity enumeration."},
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_inner_d1_execution_v1", "symbol": "execute_real_rule_v1", "line": 1509, "role": "Real per-rule interpreter."}
+      ],
+      "caller": "Public no-argument module entrypoint; no separate production CLI caller was found.",
+      "callees": ["grant replay", "real feature loader", "real census", "real rule evaluation", "prediction freeze", "post-freeze label metrics"],
+      "input": "COMMON-42 authority, private numeric resolver and authorized test1 frame",
+      "output": "Label-blind ScientificRulePredictionArtifactV1 and metric/run receipts",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED_AND_RESULT_INTEGRITY_AUDITED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_utility_inner_d1_execution_v1.py", "tests/test_task039e3_r2r_utility_inner_d1_result_integrity_v1_independent.py"],
+      "gaps": ["RCC-002 representative_symbol points to the synthetic evaluator execute_rule_v1 rather than the real frozen-result entrypoint/callee set."]
+    },
+    {
+      "component_id": "D2_V1",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d2_inner_execution_v1", "symbol": "execute_authorized_d2_inner_v1", "line": 1826, "role": "Consumes frozen D0/D1 predictions, fuses, freezes, then evaluates."}
+      ],
+      "caller": "Public no-argument module entrypoint; no separate production CLI caller was found.",
+      "callees": ["frozen prediction parsers", "_build_combined_prediction_v1", "metric_policy_v1.form_alarm_episodes_v1", "compute_metric_values_v1"],
+      "input": "Frozen D0 and D1 public predictions plus authorized post-freeze labels",
+      "output": "Combined prediction V1 and metric/run receipts",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED_AND_RESULT_INTEGRITY_AUDITED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_d2_inner_execution_v1.py", "tests/test_task039e3_r2r_d2_result_integrity_v1_independent.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "D2_V2",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d2_v2_inner_execution_v1", "symbol": "execute_authorized_d2_v2_inner_v1", "line": 1338, "role": "Native-horizon fusion execution."},
+        {"path": "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d2_v2_inner_execution_v1", "symbol": "fuse_native_horizon_timeline_v1", "line": 701, "role": "V2 fusion kernel."}
+      ],
+      "caller": "Public no-argument module entrypoint; no separate production CLI caller was found.",
+      "callees": ["_parse_frozen_d0_prediction_v1", "_parse_frozen_d1_prediction_v1", "fuse_native_horizon_timeline_v1", "prediction freeze", "post-freeze metrics"],
+      "input": "Frozen D0/D1 predictions and frozen V2 evidence authority",
+      "output": "ScientificCombinedPredictionArtifactV2 and metrics",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED_AND_RESULT_INTEGRITY_AUDITED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_d2_v2_inner_execution_v1.py", "tests/test_task039e3_r2r_d2_v2_result_integrity_v1_independent.py"],
+      "gaps": ["Many later audit-harness remediation scripts exist; execution and governance source identities must stay distinct."]
+    },
+    {
+      "component_id": "EPISODE_CONSTRUCTION",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_evaluator_metrics_v1", "symbol": "form_alarm_episodes_v1", "line": 134, "role": "Forms maximal contiguous half-open alarm episodes."}
+      ],
+      "caller": "D0, D2 V1, D2 V2 and integrity-audit implementations; D1 has bridge-local metric custody around the shared policy.",
+      "callees": ["IntervalV1"],
+      "input": "Ordered alarm indices",
+      "output": "Canonical IntervalV1 tuple",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py"],
+      "gaps": []
+    },
+    {
+      "component_id": "ATTACK_EVENT_RECALL",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_evaluator_metrics_v1", "symbol": "attack_event_recall_v1", "line": 480, "role": "Shared frozen metric contract."},
+        {"path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d0_inner_execution_v1", "symbol": "metric_arithmetic_v1", "line": 1990, "role": "D0 bridge metric arithmetic."},
+        {"path": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d2_inner_execution_v1", "symbol": "compute_metric_values_v1", "line": 1343, "role": "D2 V1 bridge metric arithmetic."}
+      ],
+      "caller": "Frozen D0/D1/D2 post-prediction metric stages",
+      "callees": ["attack-event/episode overlap"],
+      "input": "Post-freeze attack events and alarm episodes",
+      "output": "Attack-event Recall metric",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py"],
+      "gaps": ["Task-specific real bridges reimplement arithmetic instead of calling one shared public metric function in all arms; integrity oracles are therefore essential."]
+    },
+    {
+      "component_id": "NORMAL_FAR",
+      "classification": "SCIENTIFIC_CORE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py", "module": "paperworks.v6.task039e3_r2r_utility_evaluator_metrics_v1", "symbol": "normal_far_episodes_per_hour_v1", "line": 502, "role": "Shared frozen metric contract."},
+        {"path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_d0_inner_execution_v1", "symbol": "metric_arithmetic_v1", "line": 1990, "role": "D0 bridge metric arithmetic."}
+      ],
+      "caller": "Frozen D0/D1/D2 post-prediction metric stages",
+      "callees": ["non-overlap episode count", "normal exposure conversion"],
+      "input": "Post-freeze labels and alarm episodes",
+      "output": "Normal FAR episodes/hour metric",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py"],
+      "gaps": ["Like Recall, real bridges contain task-local arithmetic implementations bound by independent audits."]
+    },
+    {
+      "component_id": "RESULT_INTEGRITY",
+      "classification": "GOVERNANCE",
+      "actual_sources": [
+        {"path": "scripts/audit_task039e3_r2r_d0_result_integrity_v1.py", "module": "script", "symbol": "run_audit_v1", "line": 1364, "role": "Independent D0 result oracle and freeze audit."},
+        {"path": "scripts/audit_task039e3_r2r_utility_inner_d1_result_integrity_v1.py", "module": "script", "symbol": "main/run audit helpers", "line": 1008, "role": "Independent D1 result integrity audit path."},
+        {"path": "scripts/audit_task039e3_r2r_d2_result_integrity_v1.py", "module": "script", "symbol": "run_audit_v1", "line": 1087, "role": "Independent D2 V1 audit."},
+        {"path": "scripts/audit_task039e3_r2r_d2_v2_result_integrity_v1.py", "module": "script", "symbol": "D2 V2 audit entry", "line": 1, "role": "D2 V2 result audit lineage, followed by frozen harness remediations."}
+      ],
+      "caller": "Audit scripts are standalone entrypoints and deliberately avoid authoritative execution entrypoints.",
+      "callees": ["static AST checks", "independent prediction/metric oracles", "self-hash and Git freeze checks"],
+      "input": "Frozen public artifacts and approved audit-only custody",
+      "output": "Sanitized integrity audit reports",
+      "source_exists": true,
+      "structurally_connected": true,
+      "executed": "REPORTED_EXECUTED",
+      "frozen_result_used": "AUDITS_EXIST_FOR_D0_D1_D2V1_D2V2",
+      "tests": ["tests/test_task039e3_r2r_d0_result_integrity_v1_independent.py", "tests/test_task039e3_r2r_utility_inner_d1_result_integrity_v1_independent.py", "tests/test_task039e3_r2r_d2_result_integrity_v1_independent.py", "tests/test_task039e3_r2r_d2_v2_result_integrity_v1_independent.py"],
+      "gaps": ["RCC representative path names only D0 even though the component covers four separate audit implementations."]
+    },
+    {
+      "component_id": "OUTER_EVALUATION",
+      "classification": "GOVERNANCE",
+      "actual_sources": [
+        {"path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_v1.py", "module": "paperworks.v6.task039e3_r2r_outer_d0_d1_d2v1_execution_v1", "symbol": "outer execution implementation", "line": 1, "role": "Implemented governed outer bridge."},
+        {"path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py", "module": "paperworks.v6.task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1", "symbol": "RecoveryAttemptBoundaryV1", "line": 218, "role": "Recovery/blocker accounting, not a scientific outcome."}
+      ],
+      "caller": "Authorization/recovery workflow only",
+      "callees": ["custody and one-attempt boundary checks"],
+      "input": "Preregistered authority and private custody prerequisites",
+      "output": "Sanitized blocker/recovery records only",
+      "source_exists": true,
+      "structurally_connected": "IMPLEMENTED_GOVERNANCE_PATH",
+      "executed": false,
+      "frozen_result_used": false,
+      "tests": ["tests/test_task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py"],
+      "gaps": ["No OUTER prediction or metric artifact exists; this component must not be displayed as a completed scientific evaluation."]
+    },
+    {
+      "component_id": "REPRODUCIBILITY",
+      "classification": "GOVERNANCE",
+      "actual_sources": [
+        {"path": "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md", "module": "documentation", "symbol": "not_applicable_document", "line": 1, "role": "Public assessment of pins, portability and fresh-machine gaps."}
+      ],
+      "caller": "Reporting layer",
+      "callees": [],
+      "input": "Pinned repository and public-safe environment evidence",
+      "output": "Reproducibility assessment",
+      "source_exists": true,
+      "structurally_connected": "DOCUMENTATION_ONLY",
+      "executed": false,
+      "frozen_result_used": false,
+      "tests": ["tests/test_professor_first_results_v1.py"],
+      "gaps": ["Fresh-machine reproduction is explicitly incomplete; evidence review is not independent reproduction."]
+    },
+    {
+      "component_id": "PROFESSOR_REPORTING",
+      "classification": "REPORTING",
+      "actual_sources": [
+        {"path": "docs/professor_submission_v1/03_FIRST_RESULTS_REPORT.md", "module": "documentation", "symbol": "not_applicable_document", "line": 1, "role": "Public-safe synthesis of frozen pilot observations."}
+      ],
+      "caller": "Reporting/package generation and review tests",
+      "callees": [],
+      "input": "Frozen public result and claim-audit artifacts",
+      "output": "Professor-facing first-results package",
+      "source_exists": true,
+      "structurally_connected": "ARTIFACT_MEDIATED_REPORTING",
+      "executed": "REPORT_GENERATED",
+      "frozen_result_used": true,
+      "tests": ["tests/test_professor_first_results_v1.py", "tests/test_task038f_professor_package.py"],
+      "gaps": ["Reporting does not itself validate scientific performance."]
+    },
+    {
+      "component_id": "THESIS_DRAFT",
+      "classification": "REPORTING",
+      "actual_sources": [
+        {"path": "docs/thesis_draft_v1/15_FULL_THESIS_WORKING_DRAFT.md", "module": "documentation overlay", "symbol": "not_applicable_document", "line": 1, "role": "Narrative-only overlay; path exists at ebc5a57..., not at scientific authority commit."}
+      ],
+      "caller": "Human documentation workflow",
+      "callees": [],
+      "input": "Documentation overlay narrative and safe references",
+      "output": "Provisional thesis draft",
+      "source_exists": true,
+      "structurally_connected": "OVERLAY_ONLY",
+      "executed": false,
+      "frozen_result_used": false,
+      "tests": [],
+      "gaps": ["The representative path is absent at the scientific authority and must never be presented as scientific source evidence."]
+    }
+  ],
+  "verified_static_edges": [
+    {"from": "VARIABLE_ROLE_UNIVERSE", "to": "META_DISCOVERY", "evidence": "metadata_candidate_discovery_v1 imports CandidateUniversePolicyV1 from candidate_discovery_protocol_v1", "verified": true},
+    {"from": "VARIABLE_ROLE_UNIVERSE", "to": "STAT_DISCOVERY", "evidence": "statistical_candidate_discovery_v1 imports the C0 protocol contracts", "verified": true},
+    {"from": "VARIABLE_ROLE_UNIVERSE", "to": "GDN_DISCOVERY", "evidence": "GDN drivers import the C0 protocol and pass the candidate mask", "verified": true},
+    {"from": "META_DISCOVERY", "to": "CANDIDATE_UNION", "evidence": "build_task039c_integration_v1 accepts and validates meta_result", "verified": true},
+    {"from": "STAT_DISCOVERY", "to": "CANDIDATE_UNION", "evidence": "build_task039c_integration_v1 accepts and validates stat_result", "verified": true},
+    {"from": "GDN_DISCOVERY", "to": "CANDIDATE_UNION", "evidence": "build_task039c_integration_v1 accepts and validates gdn_result", "verified": true},
+    {"from": "CANDIDATE_UNION", "to": "RELATION_PROFILING", "evidence": "fit-stage source binds exact candidate cohort identities and the integration artifact", "verified": true},
+    {"from": "RELATION_PROFILING", "to": "RELATION_PROFILING", "evidence": "task039d2_confirmation_v1 imports optimized_target_response_v1 from task039d1_fit_v1", "verified": true, "notes": "Fit-to-confirmation internal edge."},
+    {"from": "RELATION_PROFILING", "to": "EVIDENCE_PACK", "evidence": "task039e1 materialization consumes confirmed relation and fit/confirmation ledgers", "verified": true},
+    {"from": "EVIDENCE_PACK", "to": "T0_TEMPLATE", "evidence": "project_real_evidence_v1 produces RealConstructionEvidenceV1 consumed by run_real_t0_v1", "verified": true},
+    {"from": "EVIDENCE_PACK", "to": "T1_ONE_SHOT", "evidence": "run_authorized_scientific_execution_v1 passes projected evidence to run_t1_v1", "verified": true},
+    {"from": "EVIDENCE_PACK", "to": "T1B_REPEAT", "evidence": "run_authorized_scientific_execution_v1 passes projected evidence to run_t1b_v1", "verified": true},
+    {"from": "EVIDENCE_PACK", "to": "T2_AGENTIC_FEEDBACK", "evidence": "run_authorized_scientific_execution_v1 passes projected evidence to run_t2_v1", "verified": true},
+    {"from": "T0_TEMPLATE", "to": "DETERMINISTIC_VERIFIER", "evidence": "run_real_t0_v1 calls wrap_and_verify_core_v1, which calls verify_prepared_rule_proposal_v2", "verified": true},
+    {"from": "T1_ONE_SHOT", "to": "DETERMINISTIC_VERIFIER", "evidence": "run_t1_v1 calls wrap_and_verify_core_v1", "verified": true},
+    {"from": "T1B_REPEAT", "to": "DETERMINISTIC_VERIFIER", "evidence": "run_t1b_v1 calls wrap_and_verify_core_v1", "verified": true},
+    {"from": "T2_AGENTIC_FEEDBACK", "to": "DETERMINISTIC_VERIFIER", "evidence": "run_t2_v1 calls wrap_and_verify_core_v1 and uses verifier issues for bounded next action", "verified": true},
+    {"from": "NUMERIC_AUTHORITY", "to": "COMMON42_FREEZE", "evidence": "Utility V4 builds NumericAuthorityDescriptorV4 and canonical rule descriptors from the materialized authority receipt", "verified": true},
+    {"from": "COMMON42_FREEZE", "to": "D1_RULE_ONLY", "evidence": "D1 real bridge loads Utility V4 public authority and uses rule_by_binding", "verified": true},
+    {"from": "D1_RULE_ONLY", "to": "EPISODE_CONSTRUCTION", "evidence": "D1 real execution builds alarm episodes from its frozen prediction for metrics", "verified": true},
+    {"from": "D0_PCA_SPE", "to": "EPISODE_CONSTRUCTION", "evidence": "D0 real entrypoint calls metric_policy_v1.form_alarm_episodes_v1 after prediction reload", "verified": true},
+    {"from": "D0_PCA_SPE", "to": "D2_V1", "evidence": "D2 V1 parses the frozen D0 prediction", "verified": true},
+    {"from": "D1_RULE_ONLY", "to": "D2_V1", "evidence": "D2 V1 parses the frozen D1 prediction", "verified": true},
+    {"from": "D0_PCA_SPE", "to": "D2_V2", "evidence": "D2 V2 _parse_frozen_d0_prediction_v1", "verified": true},
+    {"from": "D1_RULE_ONLY", "to": "D2_V2", "evidence": "D2 V2 _parse_frozen_d1_prediction_v1", "verified": true},
+    {"from": "D0_PCA_SPE", "to": "ATTACK_EVENT_RECALL", "evidence": "D0 metric_arithmetic_v1 after prediction freeze", "verified": true},
+    {"from": "D0_PCA_SPE", "to": "NORMAL_FAR", "evidence": "D0 metric_arithmetic_v1 after prediction freeze", "verified": true},
+    {"from": "D1_RULE_ONLY", "to": "ATTACK_EVENT_RECALL", "evidence": "D1 private metric evidence builder after prediction freeze", "verified": true},
+    {"from": "D1_RULE_ONLY", "to": "NORMAL_FAR", "evidence": "D1 private metric evidence builder after prediction freeze", "verified": true},
+    {"from": "D2_V1", "to": "ATTACK_EVENT_RECALL", "evidence": "D2 V1 compute_metric_values_v1 after combined prediction freeze", "verified": true},
+    {"from": "D2_V2", "to": "ATTACK_EVENT_RECALL", "evidence": "D2 V2 compute_metric_values_v1 after combined prediction freeze", "verified": true},
+    {"from": "D0_PCA_SPE", "to": "RESULT_INTEGRITY", "evidence": "Independent D0 audit statically forbids authoritative entrypoint use and reconstructs its own oracle", "verified": true},
+    {"from": "D1_RULE_ONLY", "to": "RESULT_INTEGRITY", "evidence": "Independent D1 audit script binds frozen D1 artifacts", "verified": true},
+    {"from": "D2_V1", "to": "RESULT_INTEGRITY", "evidence": "Independent D2 V1 audit script binds frozen artifacts", "verified": true},
+    {"from": "D2_V2", "to": "RESULT_INTEGRITY", "evidence": "D2 V2 audit and remediation harnesses bind the frozen V2 result", "verified": true}
+  ],
+  "unsupported_or_indirect_edges": [
+    {"from": "DATA_PROVENANCE", "to": "SPLIT_GOVERNANCE", "status": "ARTIFACT/POLICY_LINK_NOT_A_DIRECT_FUNCTION_CALL", "reason": "The components share DatasetManifest/SplitManifest contracts, but no direct call from the provenance builder to assert_operation_permitted_v2 was found."},
+    {"from": "SPLIT_GOVERNANCE", "to": "VARIABLE_ROLE_UNIVERSE", "status": "DOCUMENTED_POLICY_EDGE", "reason": "Frozen C0 code carries task-specific lineage constants; it does not call the RCC representative split guard."},
+    {"from": "DETERMINISTIC_VERIFIER", "to": "COMMON42_FREEZE", "status": "ARTIFACT_MEDIATED", "reason": "Utility V4 consumes executable-equivalence/evidence manifests rather than PreparedValidityResultV2 objects directly."},
+    {"from": "RULE_DSL", "to": "COMMON42_FREEZE", "status": "REPRESENTATION_BOUNDARY", "reason": "COMMON-42 runtime uses CanonicalRuleDescriptorV4; direct DelayedResponseRuleV1 consumption was not found."},
+    {"from": "RULE_RUNTIME", "to": "SATISFACTION_TRACE", "status": "PARTIAL", "reason": "Real D1 emits a trace hash payload but not canonical RuntimeTraceV1."},
+    {"from": "SATISFACTION_TRACE", "to": "EXPLANATION_RENDERER", "status": "CANONICAL_VERTICAL_SLICE_ONLY", "reason": "No real D1 caller of render_delayed_response_explanation was found."},
+    {"from": "T0_TEMPLATE", "to": "COMMON42_FREEZE", "status": "ARTIFACT_MEDIATED", "reason": "Construction-to-COMMON lineage is represented through frozen public equivalence artifacts rather than a direct code call."},
+    {"from": "T1_ONE_SHOT", "to": "COMMON42_FREEZE", "status": "ARTIFACT_MEDIATED", "reason": "No direct object edge; frozen equivalence authority must prove the relation."},
+    {"from": "T1B_REPEAT", "to": "COMMON42_FREEZE", "status": "ARTIFACT_MEDIATED", "reason": "No direct object edge; frozen equivalence authority must prove the relation."},
+    {"from": "T2_AGENTIC_FEEDBACK", "to": "COMMON42_FREEZE", "status": "ARTIFACT_MEDIATED", "reason": "No direct object edge; frozen equivalence authority must prove the relation."}
+  ],
+  "entrypoints": [
+    {"id": "EP-DATA-AUDIT", "path": "scripts/audit_hai_2305.py", "symbol": "main", "kind": "GOVERNANCE", "status": "CURRENT_FOR_PROVENANCE"},
+    {"id": "EP-C0-FREEZE", "path": "scripts/freeze_task039c0_candidate_protocol.py", "symbol": "main", "kind": "GOVERNANCE", "status": "FROZEN"},
+    {"id": "EP-META", "path": "scripts/run_task039c_meta.py", "symbol": "main", "kind": "SCIENTIFIC", "status": "EXECUTION_DRIVER"},
+    {"id": "EP-STAT", "path": "scripts/run_task039c_stat.py", "symbol": "main", "kind": "SCIENTIFIC", "status": "EXECUTION_DRIVER"},
+    {"id": "EP-GDN", "path": "scripts/run_task039c_gdn_remediation.py", "symbol": "main", "kind": "SCIENTIFIC", "status": "MULTIPLE_HISTORICAL_DRIVERS_EXACT_FINAL_REQUIRES_LINEAGE_AUDIT"},
+    {"id": "EP-C-INTEGRATION", "path": "scripts/run_task039c_integration.py", "symbol": "main", "kind": "SCIENTIFIC", "status": "EXECUTION_DRIVER"},
+    {"id": "EP-D1-FIT", "path": "scripts/run_task039d1_fit_profiling.py", "symbol": "main", "kind": "SCIENTIFIC", "status": "EXECUTION_DRIVER"},
+    {"id": "EP-D2-CONFIRM", "path": "scripts/run_task039d2_confirmation.py", "symbol": "main", "kind": "SCIENTIFIC", "status": "EXECUTION_DRIVER"},
+    {"id": "EP-E1-MATERIALIZE", "path": "scripts/run_task039e1_evidence_materialization.py", "symbol": "main", "kind": "SCIENTIFIC_WITH_CUSTODY", "status": "EXECUTION_DRIVER"},
+    {"id": "EP-E3-CONSTRUCT", "path": "scripts/run_task039e3_r2r_scientific_execution_v1.py", "symbol": "main", "kind": "SCIENTIFIC_WITH_GOVERNANCE", "status": "LIVE_INJECTED_EXECUTION_DRIVER"},
+    {"id": "EP-D0", "path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py", "symbol": "execute_authorized_d0_inner_v1", "kind": "SCIENTIFIC_WITH_GOVERNANCE", "status": "PUBLIC_NO_ARGUMENT_FUNCTION"},
+    {"id": "EP-D1", "path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py", "symbol": "execute_authorized_inner_d1_v1", "kind": "SCIENTIFIC_WITH_GOVERNANCE", "status": "PUBLIC_NO_ARGUMENT_FUNCTION"},
+    {"id": "EP-D2V1", "path": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py", "symbol": "execute_authorized_d2_inner_v1", "kind": "SCIENTIFIC_WITH_GOVERNANCE", "status": "PUBLIC_NO_ARGUMENT_FUNCTION"},
+    {"id": "EP-D2V2", "path": "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py", "symbol": "execute_authorized_d2_v2_inner_v1", "kind": "SCIENTIFIC_WITH_GOVERNANCE", "status": "PUBLIC_NO_ARGUMENT_FUNCTION"},
+    {"id": "EP-D0-AUDIT", "path": "scripts/audit_task039e3_r2r_d0_result_integrity_v1.py", "symbol": "run_audit_v1/main", "kind": "AUDIT", "status": "INDEPENDENT"},
+    {"id": "EP-D1-AUDIT", "path": "scripts/audit_task039e3_r2r_utility_inner_d1_result_integrity_v1.py", "symbol": "main", "kind": "AUDIT", "status": "INDEPENDENT"},
+    {"id": "EP-D2V1-AUDIT", "path": "scripts/audit_task039e3_r2r_d2_result_integrity_v1.py", "symbol": "run_audit_v1/main", "kind": "AUDIT", "status": "INDEPENDENT"},
+    {"id": "EP-OUTER-RECOVERY", "path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py", "symbol": "RecoveryAttemptBoundaryV1", "kind": "GOVERNANCE", "status": "BLOCKER_ONLY"}
+  ],
+  "legacy_duplicate_and_gap_findings": [
+    {"id": "SRC-GAP-001", "category": "STATUS_SEMANTIC", "severity": "HIGH", "finding": "VARIABLE_ROLE_UNIVERSE points to candidates/universe.py, while the frozen C0 universe is CandidateUniversePolicyV1 in v6/candidate_discovery_protocol_v1.py.", "recommended_deep_review": "ARCH-002"},
+    {"id": "SRC-GAP-002", "category": "DUPLICATE_ENTRYPOINT", "severity": "HIGH", "finding": "The deterministic verifier named by RCC is contracts/verifier_v1.py, but the executed T0-T2 call graph invokes task039e0_validity_v2.verify_prepared_rule_proposal_v2.", "recommended_deep_review": "ARCH-004 and ARCH-005"},
+    {"id": "SRC-GAP-003", "category": "DUPLICATE_ENTRYPOINT", "severity": "HIGH", "finding": "Real D1 ports audited semantics into execute_real_rule_v1; it does not call the synthetic evaluator execute_rule_v1 or canonical contracts/runtime_v1 directly.", "recommended_deep_review": "ARCH-006 and ARCH-008"},
+    {"id": "SRC-GAP-004", "category": "CODE_EXECUTION", "severity": "HIGH", "finding": "Canonical RuntimeTraceV1 and explanation renderer are not in the real D1 frozen-result static call graph. Real D1 retains a task-specific trace hash only.", "recommended_deep_review": "ARCH-006 and ARCH-008"},
+    {"id": "SRC-GAP-005", "category": "STATUS_SEMANTIC", "severity": "MEDIUM", "finding": "NormalRelationEvidenceV1 is a canonical contract, but executed construction uses PrivateConstructionEvidenceV1 projected to RealConstructionEvidenceV1.", "recommended_deep_review": "ARCH-003 and ARCH-004"},
+    {"id": "SRC-GAP-006", "category": "STATUS_SEMANTIC", "severity": "HIGH", "finding": "Canonical DelayedResponseRuleV1 and the Utility V4 CanonicalRuleDescriptorV4 are separate representations; real D1 consumes the V4 descriptor.", "recommended_deep_review": "ARCH-004 through ARCH-006"},
+    {"id": "SRC-GAP-007", "category": "MISSING_LINK", "severity": "MEDIUM", "finding": "assert_operation_permitted_v2 has no static production caller in the frozen D0/D1/D2 path; task-specific modules enforce their own boundaries.", "recommended_deep_review": "ARCH-001"},
+    {"id": "SRC-GAP-008", "category": "DUPLICATE_ENTRYPOINT", "severity": "MEDIUM", "finding": "Multiple GDN execution/remediation drivers remain. Static source cannot identify the final result producer without commit/artifact lineage.", "recommended_deep_review": "ARCH-002"},
+    {"id": "SRC-GAP-009", "category": "LEGACY", "severity": "LOW", "finding": "src/paperworks/dsl, src/paperworks/verification, src/paperworks/runtime, src/paperworks/planning/refiner.py, and src/paperworks/e2e remain import-compatible historical paths and must not be shown as current v6 core.", "recommended_deep_review": "No refactor in ARCH-000"},
+    {"id": "SRC-GAP-010", "category": "REFERENCE_ONLY", "severity": "LOW", "finding": "experiments/argos_reproduction is a large frozen historical reference track, not a dependency of the current HAI/v6 kernel.", "recommended_deep_review": "No refactor in ARCH-000"},
+    {"id": "SRC-GAP-011", "category": "SUPERSEDED", "severity": "MEDIUM", "finding": "Utility protocol v1-v3 remain beside v4; current frozen runtime imports v4 while v3 retains label parser semantics. Version-specific dependencies must be shown, not collapsed.", "recommended_deep_review": "ARCH-005, ARCH-008, ARCH-010"},
+    {"id": "SRC-GAP-012", "category": "GOVERNANCE_COUPLING", "severity": "MEDIUM", "finding": "D0/D1/D2 entry modules combine authorization, custody, computation, persistence, metrics and reporting in large task-specific modules.", "recommended_deep_review": "ARCH-007 through ARCH-010"},
+    {"id": "SRC-GAP-013", "category": "OVERLAY_ONLY", "severity": "LOW", "finding": "THESIS_DRAFT path exists only in the documentation overlay, not the scientific authority commit.", "recommended_deep_review": "Keep narrative-only"},
+    {"id": "SRC-GAP-014", "category": "IMPLEMENTED_NOT_USED", "severity": "MEDIUM", "finding": "The canonical explanation renderer is implemented and tested but not statically connected to the frozen D1 scientific result path.", "recommended_deep_review": "ARCH-006"},
+    {"id": "SRC-GAP-015", "category": "BLOCKED", "severity": "HIGH", "finding": "OUTER source/governance exists, but no scientific OUTER result path completed; recovery source produced blocker accounting only.", "recommended_deep_review": "ARCH-011"}
+  ],
+  "summary_counts": {
+    "components": 32,
+    "components_with_real_source_or_document_path": 32,
+    "components_with_scientific_commit_path": 31,
+    "overlay_only_components": 1,
+    "verified_static_edges": 35,
+    "unsupported_or_indirect_edges": 10,
+    "entrypoints_mapped": 18,
+    "source_gap_findings": 15,
+    "high_findings": 6,
+    "medium_findings": 6,
+    "low_findings": 3,
+    "critical_findings": 0
+  },
+  "coordinator_notes": [
+    "Do not copy RCC-002 representative paths blindly into ARCH_000_SOURCE_MAP.csv; use the corrected executed-path mappings above.",
+    "Result and artifact usage statuses marked REPORTED must be cross-checked by Agent B/C against frozen artifacts; this source audit did not open payloads.",
+    "The strongest source-level issue is representation/bridge multiplicity, not a proven scientific failure: generic versus C0 universe, canonical versus task verifier, canonical/synthetic/real runtime, and Rule v1 versus Utility V4 descriptors.",
+    "The actual static architecture is task-artifact mediated at several boundaries. Those edges should be drawn as artifact edges or dotted until Agent B/C verifies them."
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "model_training_runs": 0,
+    "candidate_regenerations": 0,
+    "rule_regenerations": 0,
+    "metric_recomputations": 0,
+    "test2_feature_accesses": 0,
+    "test2_label_accesses": 0,
+    "private_payload_accesses": 0,
+    "private_paths_exposed": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0
+  }
+}

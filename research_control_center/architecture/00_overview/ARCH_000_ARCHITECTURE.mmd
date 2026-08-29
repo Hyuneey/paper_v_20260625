@@ -1,0 +1,40 @@
+flowchart LR
+  DATA["HAI provenance / split<br/>IMPLEMENTED · GOVERNANCE"] -. "custody and policy mediated" .-> ROLES["P1 role universe<br/>EXECUTED · CURRENT CORE"]
+  ROLES --> META["META<br/>EXECUTED"]
+  ROLES --> STAT["STAT<br/>EXECUTED"]
+  ROLES --> GDN["GDN<br/>EXECUTED · CONTRIBUTION UNVALIDATED"]
+  META --> UNION["Candidate union<br/>EXECUTED"]
+  STAT --> UNION
+  GDN --> UNION
+  UNION --> REL["Relation profiling<br/>EXECUTED"]
+  REL --> CNUM["Construction numeric evidence<br/>FROZEN PRIVATE CUSTODY"]
+  CNUM --> EVID["Construction evidence projection<br/>EXECUTED"]
+  EVID --> T0["T0<br/>EXECUTED"]
+  EVID --> T1["T1 / T1-B<br/>EXECUTED"]
+  EVID --> T2["T2<br/>EXECUTED · FEEDBACK 0"]
+  T0 --> VER["Task verifier<br/>EXECUTED"]
+  T1 --> VER
+  T2 --> VER
+  VER -. "artifact/equivalence mediated" .-> COMMON["COMMON-42 metadata authority<br/>FROZEN"]
+  T2 -. "not selected for utility" .-> COMMON
+  COMMON --> NUM["Private runtime numeric authority<br/>FROZEN GOVERNANCE"]
+  NUM --> RUNTIME["Real D1 runtime<br/>EXECUTED"]
+  RUNTIME --> D1["D1 prediction<br/>FROZEN · AUDITED"]
+  DATA --> D0["D0 PCA-SPE<br/>FROZEN · AUDITED"]
+  D0 --> D2["D2 V1 / V2<br/>FROZEN · AUDITED PILOT"]
+  D1 --> D2
+  D0 --> MET["Episode / event metrics<br/>FROZEN PILOT"]
+  D1 --> MET
+  D2 --> MET
+  MET --> AUDIT["Result integrity<br/>GOVERNANCE"]
+  RUNTIME -. "typed RuntimeTraceV1 link not found" .-> TRACE["Canonical trace / explanation<br/>IMPLEMENTED · NOT FROZEN D1 USED"]
+  DATA -. "blocked custody" .-> OUTER["OUTER<br/>BLOCKED · NO RESULT"]
+
+  classDef core fill:#dbeafe,stroke:#1d4ed8,color:#172554;
+  classDef baseline fill:#dcfce7,stroke:#15803d,color:#14532d;
+  classDef governance fill:#fef3c7,stroke:#b45309,color:#78350f;
+  classDef conditional fill:#f3f4f6,stroke:#6b7280,color:#374151,stroke-dasharray:5 5;
+  class DATA,CNUM,NUM,AUDIT governance;
+  class ROLES,META,STAT,GDN,UNION,REL,EVID,T0,T1,T2,VER,COMMON,RUNTIME core;
+  class D0,D1,D2,MET baseline;
+  class TRACE,OUTER conditional;

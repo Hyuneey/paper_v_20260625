@@ -13,13 +13,13 @@
       "source_class": "USER_CONTEXT_ONLY",
       "goal": "Explore a DHAG-centered extension and proof of concept.",
       "investigated": "The task seed records an extension period but supplies no repository artifact or detailed experiment record.",
-      "problem": "Multiple structural limitations were reportedly found; their exact nature and severity are not yet evidenced.",
-      "decision": "Treat the headline direction as superseded pending user confirmation of whether it was abandoned or deferred.",
+      "problem": "PoC-reported structural limitations were found; their exact nature and severity remain user context.",
+      "decision": "Supersede DHAG as the main thesis direction while preserving uncertainty about the detailed limitation list.",
       "survived": "A possible lesson that structural claims require explicit bounded contracts; this inheritance is interpretive.",
       "abandoned_or_deferred": "DHAG is not a component, authority, or current claim in the scientific checkpoint.",
       "status": "SUPERSEDED",
-      "confidence": "LOW",
-      "evidence": "RCC-003 user-context seed"
+      "confidence": "MEDIUM",
+      "evidence": "ARCH-000 user confirmation 1"
     },
     {
       "phase_id": "PHASE-02",
@@ -46,12 +46,12 @@
       "goal": "Frame explanation faithfulness or a verifier-centered mechanism as the headline contribution.",
       "investigated": "The named Faithfulness Verifier period is supplied by user context; current code strongly evidences a narrower deterministic verifier.",
       "problem": "Explanation-fidelity ground truth was reportedly ill-posed and verifier admission could be mistaken for scientific truth.",
-      "decision": "Demote the headline framing while retaining deterministic verifier-admissibility.",
-      "survived": "Structural, evidence, parameter, split, runtime, and claim-boundary checks with fail-closed admission.",
+      "decision": "Supersede the headline framing without erasing its narrower verification and consistency principles.",
+      "survived": "Deterministic verification, evidence binding, explanation or trace-consistency evaluation, and fail-closed admission.",
       "abandoned_or_deferred": "No claim that verifier acceptance proves faithfulness, causality, physical truth, or performance.",
       "status": "SUPERSEDED",
-      "confidence": "LOW",
-      "evidence": "RCC-003 user-context seed; docs/thesis/THESIS_FRAMING_V1.md"
+      "confidence": "MEDIUM",
+      "evidence": "ARCH-000 user confirmation 3; docs/thesis/THESIS_FRAMING_V1.md"
     },
     {
       "phase_id": "PHASE-04",
@@ -60,14 +60,14 @@
       "date_precision": "MONTH",
       "source_class": "USER_CONTEXT_WITH_RETROSPECTIVE_SUPPORT",
       "goal": "Recenter the work on anomaly detection and temporal localization rather than verifier-only novelty.",
-      "investigated": "User context references ARTIST and anomaly-detector framing; later reports explicitly distinguish trace localization from unimplemented ARTIST selection.",
-      "problem": "No contemporaneous May feedback record is present in the pinned repository.",
-      "decision": "Use anomaly detection as application context and keep ARTIST-style learned segment selection conditional.",
+      "investigated": "The research owner confirms ARTIST, anomaly-detection-model, and localization-oriented reframing reached formal Method Sketch-level planning.",
+      "problem": "The intermediate segment or localization direction did not become the current executable core, and no contemporaneous May record is in the pinned repository.",
+      "decision": "Preserve it as a formal intermediate direction later superseded by the relational-rule architecture.",
       "survived": "Transitions, horizons, variable relations, and satisfaction traces provide a bounded localization interface.",
-      "abandoned_or_deferred": "ARTIST-style segment proposal and human-usefulness claims remain unimplemented or unvalidated.",
-      "status": "HISTORICAL",
-      "confidence": "LOW",
-      "evidence": "RCC-003 user-context seed; retrospective professor response matrix"
+      "abandoned_or_deferred": "ARTIST-style learned segment selection is superseded as current core; human-usefulness claims remain unvalidated.",
+      "status": "SUPERSEDED",
+      "confidence": "MEDIUM",
+      "evidence": "ARCH-000 user confirmations 4 and 5; retrospective professor response matrix"
     },
     {
       "phase_id": "PHASE-05",
@@ -167,21 +167,21 @@
     }
   ],
   "professor_feedback_lineage": [
-    {"date": "2026-05", "date_precision": "MONTH", "classification": "USER_CONTEXT_ONLY", "feedback": "Reframe around anomaly detection and consider ARTIST or localization.", "interpretation": "Verifier-only novelty was too narrow or difficult to ground.", "decision_ref": "DEC-005;DEC-006", "effect": "Current method uses relation traces while ARTIST-style selection remains unimplemented.", "confidence": "LOW"},
+    {"date": "2026-05", "date_precision": "MONTH", "classification": "USER_CONFIRMED_CONTEXT", "feedback": "ARTIST, anomaly-detection-model, and localization-oriented reframing.", "interpretation": "Verifier-only novelty was superseded and segment or localization reached formal Method Sketch-level planning.", "decision_ref": "DEC-005;DEC-019", "effect": "The intermediate direction was later superseded by relational rules; bounded trace localization survived.", "confidence": "MEDIUM"},
     {"date": "2026-07-14", "date_precision": "DAY", "classification": "DOCUMENT_COMMIT_DATE_NOT_PROVEN_DELIVERY_DATE", "feedback": "Explain ARGOS, Rule-only behavior, detector combination, thresholds, and rule control.", "interpretation": "Reference reproduction and proposed-method safeguards had to be separated.", "decision_ref": "DEC-004;DEC-006;DEC-012;DEC-014", "effect": "ARGOS audits and a controlled CPS extension contract followed.", "confidence": "HIGH"},
     {"date": "2026-07-24", "date_precision": "DAY", "classification": "DECISION_REQUEST_COMMIT_DATE", "feedback": "Decide whether to freeze ARGOS and preserve sealed confirmation.", "interpretation": "Further exposed-reference tuning had diminishing value.", "decision_ref": "DEC-004", "effect": "ARGOS became a frozen partial-support reference.", "confidence": "HIGH"},
-    {"date": "2026-08-04", "date_precision": "DAY", "classification": "USER_CONTEXT_WITH_REPOSITORY_CORROBORATED_CONSEQUENCES", "feedback": "Pairwise first, Rule-only priority, and narrower verifier, validation, runtime-LLM, GDN, and agent terminology.", "interpretation": "The feedback reinforced and clarified scope; the pairwise protocol had already frozen on August 3.", "decision_ref": "DEC-009;DEC-010;DEC-012;DEC-014;DEC-015;DEC-016", "effect": "Later P1 work kept pairwise evidence, separate D1, candidate-only GDN, deterministic verification, and conservative agentic claims.", "confidence": "MEDIUM"},
-    {"date": "2026-08-18", "date_precision": "DAY", "classification": "NOT_PROFESSOR_FEEDBACK", "feedback": "NONE", "interpretation": "User context identifies an internal progress update.", "decision_ref": "NONE", "effect": "No professor-feedback decision is attributed to this date.", "confidence": "MEDIUM"},
+    {"date": "2026-08-04", "date_precision": "DAY", "classification": "USER_CONFIRMED_CONTEXT_WITH_REPOSITORY_CORROBORATED_CONSEQUENCES", "feedback": "Pairwise first, Rule-only visibility, Detector or Detector+Rule or Rule-only comparison, deterministic-verifier and validation clarification, runtime-LLM openness, GDN extraction clarification, and narrow agent terminology.", "interpretation": "The feedback reinforced and clarified scope; the pairwise protocol had already frozen on August 3.", "decision_ref": "DEC-009;DEC-010;DEC-012;DEC-014;DEC-015;DEC-016", "effect": "Later P1 work kept pairwise evidence, separate D1, candidate-only GDN, deterministic verification, and conservative agentic claims.", "confidence": "HIGH"},
+    {"date": "2026-08-18", "date_precision": "DAY", "classification": "USER_CONFIRMED_NOT_PROFESSOR_FEEDBACK", "feedback": "NONE", "interpretation": "The research owner confirms an internal progress update.", "decision_ref": "NONE", "effect": "No professor-feedback decision is attributed to this date.", "confidence": "HIGH"},
     {"date": "2026-08-24", "date_precision": "DAY", "classification": "PROFESSOR_PACKAGE_PREPARATION_NOT_APPROVAL", "feedback": "A retrospective matrix and agenda organized unresolved professor decisions.", "interpretation": "Current results supported narrow framing while major scientific questions remained open.", "decision_ref": "DEC-016;DEC-017;DEC-018", "effect": "A professor-ready synthesis was frozen without authorizing new science.", "confidence": "HIGH"},
-    {"date": "2026-08-26", "date_precision": "DAY", "classification": "NOT_PROFESSOR_FEEDBACK", "feedback": "NONE", "interpretation": "User context identifies integrated report preparation rather than new feedback.", "decision_ref": "NONE", "effect": "No new professor decision is inferred.", "confidence": "MEDIUM"}
+    {"date": "2026-08-26", "date_precision": "DAY", "classification": "USER_CONFIRMED_NOT_PROFESSOR_FEEDBACK", "feedback": "NONE", "interpretation": "The research owner confirms integrated report preparation or update rather than new feedback.", "decision_ref": "NONE", "effect": "No new professor decision is inferred.", "confidence": "HIGH"}
   ],
   "superseded_directions": [
-    {"direction": "DHAG extension as headline method", "period": "2025-10 ~ 2026-02", "why_explored": "User-context proof of concept", "why_reduced": "Reported structural limitations; details unconfirmed", "survived": "Possible lesson about explicit structural constraints", "replacement": "Project-owned verified relational-rule architecture", "status": "SUPERSEDED", "current_claim": false},
+    {"direction": "DHAG extension as headline method", "period": "2025-10 ~ 2026-02", "why_explored": "User-context proof of concept", "why_reduced": "User-confirmed PoC-reported structural limitations; details remain unverified", "survived": "Possible lesson about explicit structural constraints", "replacement": "Project-owned verified relational-rule architecture", "status": "SUPERSEDED", "current_claim": false},
     {"direction": "Faithfulness Verifier as headline contribution", "period": "2026-04 ~ 2026-05", "why_explored": "Explanation-fidelity framing", "why_reduced": "Reported ground-truth ambiguity", "survived": "Deterministic verifier-admissibility", "replacement": "Evidence-bound rule construction and governance", "status": "SUPERSEDED", "current_claim": false},
     {"direction": "Direct ARGOS reproduction as primary thesis path", "period": "2026-07-13 ~ 2026-07-24", "why_explored": "Related executable-rule and agent concepts", "why_reduced": "Only partial methodological support and exposed reference evaluation", "survived": "Executable rules, bounded repair or review, no-op, deterministic runtime", "replacement": "ARGOS-informed multivariate CPS method", "status": "HISTORICAL", "current_claim": false},
     {"direction": "Binary or discrete control delayed-response on HAI", "period": "2026-08-02", "why_explored": "Original preregistered MVP family", "why_reduced": "Zero eligible reviewed nonconstant sources", "survived": "Pairwise delayed-response and normal-only discipline", "replacement": "continuous_step_delayed_response_v1", "status": "SUPERSEDED", "current_claim": false},
     {"direction": "Construction-only final thesis boundary", "period": "2026-08-14 ~ 2026-08-19", "why_explored": "Utility protocol was stopped before execution", "why_reduced": "Later authority closure and INNER pilot superseded the never-executed statement", "survived": "Construction validity and governance remain defensible layers", "replacement": "Current architecture plus pilot-only utility observations", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "ARTIST-style learned segment selection as current core", "period": "2026-05 onward", "why_explored": "Professor or planning interest in localization", "why_reduced": "Not implemented or evaluated", "survived": "Trace-based transition and horizon localization", "replacement": "Current rule and satisfaction-trace interface", "status": "CONDITIONAL", "current_claim": false}
+    {"direction": "Segment or localization Method Sketch as headline direction", "period": "2026-05 onward", "why_explored": "Professor-driven ARTIST and anomaly-detection-model reframing", "why_reduced": "User-confirmed formal intermediate direction later superseded before becoming current implementation", "survived": "Trace-based transition and horizon localization", "replacement": "Current relational-rule and satisfaction-trace architecture", "status": "SUPERSEDED", "current_claim": false}
   ],
   "terminology": [
     {"term": "Faithfulness Verifier", "historical": "User-context explanation-fidelity headline", "current": "Deterministic verifier-admissibility", "deprecated": "Proves faithfulness causality or scientific validity"},
@@ -194,11 +194,7 @@
     {"term": "segment or localization", "historical": "Possible ARTIST or segment-selection direction", "current": "Source transition target relation horizon and trace localization", "deprecated": "Current method implements learned segment selection or causal localization"}
   ],
   "confirmation_questions": [
-    {"id": "HIST-Q001", "question": "What exact DHAG limitation or result caused the direction to be reduced, and was it abandoned or deferred?", "why": "This determines the first pivot's status and rationale.", "evidence": "User-context seed only; no DHAG artifact in local Git.", "suggested": "Keep superseded with approximate dates and no detailed failure claim.", "confidence": "LOW"},
-    {"id": "HIST-Q002", "question": "Which LLMAD papers or method family were reviewed in March to April 2026, and did they trigger a formal decision?", "why": "The repository formalizes ARGOS later but not the broader exploration.", "evidence": "User-context seed only for LLMAD.", "suggested": "Treat as exploratory context rather than a formal milestone.", "confidence": "LOW"},
-    {"id": "HIST-Q003", "question": "Was Faithfulness Verifier formally abandoned, renamed, or narrowed into the current deterministic verifier principle?", "why": "This controls how much conceptual inheritance can be claimed.", "evidence": "Current verifier is evidenced; historical name and decision are absent.", "suggested": "Keep headline framing superseded and the inheritance interpretive.", "confidence": "LOW"},
-    {"id": "HIST-Q004", "question": "What contemporaneous source confirms the May 2026 professor feedback and the exact August 4 feedback wording?", "why": "Later response matrices cannot establish original dates or quotations.", "evidence": "User context plus retrospective August reports.", "suggested": "Retain user-context attribution and paraphrase only.", "confidence": "LOW"},
-    {"id": "HIST-Q005", "question": "Did the segment or localization rethink become a formal decision, or was it exploratory framing only?", "why": "This distinguishes a superseded decision from a conditional idea.", "evidence": "User context; current ARTIST-style selection is explicitly unimplemented.", "suggested": "Keep conditional until a decision record is supplied.", "confidence": "LOW"}
+    {"id": "HIST-Q002", "question": "Which LLMAD papers or method family were reviewed in March to April 2026, and did they trigger a formal decision?", "why": "The repository formalizes ARGOS later but not the broader exploration.", "evidence": "User context only for the broader LLMAD set.", "suggested": "Treat as exploratory context and do not guess paper titles.", "confidence": "LOW"}
   ],
   "dashboard_event_ids": ["EVENT-001", "EVENT-002", "EVENT-003", "EVENT-005", "EVENT-008", "EVENT-009", "EVENT-013", "EVENT-014", "EVENT-020", "EVENT-021", "EVENT-022", "EVENT-025"],
   "current_method_inheritance": {

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T09:00:00Z`.
@@ -34,7 +34,7 @@ These counts are not a single completion percentage.
 
 ## Architecture in one line
 
-HAI provenance and P1 scope -> role universe -> META / STAT / GDN -> candidate union -> normal temporal profiling -> normal-only numeric references -> evidence pack -> T0 / T1 / T1-B / T2 construction -> deterministic verifier -> COMMON-42 -> rule runtime -> D1; HAI -> D0 PCA-SPE; D0 + D1 -> D2 policies -> event / episode metrics -> integrity audit
+HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unscored candidate union -> normal relation profiling -> construction evidence -> T0 / T1 / T1-B / T2 -> task deterministic verifier; T0 / T1 / T1-B equivalence -> COMMON-42 metadata plus private runtime numeric authority -> real D1; HAI plus frozen detector authority -> D0; frozen D0 + D1 -> D2 policies -> event / episode metrics -> result-integrity governance
 
 ## How we got here
 
@@ -127,9 +127,11 @@ include at least one stronger multivariate detector baseline under a new preregi
 
 ## Top user TODO
 
-- Review the full current-state summary and challenge any unsupported component status.
-- Approve or adjust the conservative claim boundaries before thesis wording uses them.
-- Inspect the architecture overview and identify components that need explanation before ARCH-000.
+- Confirm that you can explain the full architecture flow.
+- Confirm that you understand each major input and output.
+- Identify the component that is hardest to understand.
+- Choose which architecture mismatch deserves priority.
+- Approve or defer starting ARCH-001.
 
 ## Source-policy boundary
 
@@ -140,9 +142,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-000 — Full Architecture Overview Audit**
+Management: **ARCH-001 — Data / Provenance / Split Governance Deep Audit**
 
-Following architecture review: **ARCH-000 — Full Architecture Overview Audit**
+Following architecture review: **ARCH-001 — Data / Provenance / Split Governance Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

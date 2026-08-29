@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-000",
+  "agent_role": "Agent D - Missing / Legacy / Dead-Path Auditor",
+  "status": "PASS_WITH_EXPLICIT_LEGACY_AND_GAP_FINDINGS",
+  "authority": {
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "inspection_mode": "READ_ONLY_STATIC_AND_PUBLIC_SAFE_REPORT_AUDIT",
+    "inspection_methods": [
+      "git show at the pinned scientific commit",
+      "git ls-tree at the pinned scientific commit",
+      "git grep at the pinned scientific commit",
+      "static source and public-safe report inspection"
+    ],
+    "current_checkout_used_as_scientific_authority": false
+  },
+  "classification_semantics": {
+    "LEGACY": "Import-compatible historical implementation that must not be shown as the current HAI/v6 path.",
+    "SUPERSEDED": "Earlier task or recovery implementation replaced for active execution while retained for immutable lineage.",
+    "REFERENCE_ONLY": "Historical research track that may inform context but is not a dependency of the current HAI/v6 kernel.",
+    "DESIGN_ONLY": "Documented or typed future scope without current scientific execution evidence.",
+    "IMPLEMENTED_NOT_USED": "Code and tests exist, but the symbol is not in the frozen current-result call graph.",
+    "DUPLICATE_ENTRYPOINT": "Multiple surfaces exist for similar roles and must be resolved by exact execution lineage.",
+    "POSSIBLE_DEAD_PATH": "No current-core static caller or frozen-result use was found; this is not a deletion authorization.",
+    "MISSING_LINK": "A documented edge is absent, indirect, or uses a different object or symbol than stated.",
+    "UNKNOWN": "The public static evidence does not establish current execution use."
+  },
+  "findings": [
+    {
+      "finding_id": "LEGACY-001",
+      "path": "src/paperworks/dsl/*",
+      "symbols": ["RuleAst", "RuleSchemaRegistry", "MinimalRuleEvaluator"],
+      "category": "LEGACY",
+      "severity": "LOW",
+      "evidence": "AGENTS.md explicitly classifies this package as legacy read-only compatibility. Static search found it used by the old planning, verification, runtime, and e2e packages, not by current v6 scientific modules.",
+      "current_risk": "Old RuleAst terminology can be mistaken for the current canonical Rule v1 or COMMON-42 descriptor authority.",
+      "recommended_future_action": "Keep import-compatible and label as legacy; do not use it in current architecture diagrams.",
+      "deep_review_part": "ARCH-004"
+    },
+    {
+      "finding_id": "LEGACY-002",
+      "path": "src/paperworks/verification/*",
+      "symbols": ["verify_rule", "VerificationReport"],
+      "category": "LEGACY",
+      "severity": "LOW",
+      "evidence": "The package imports the legacy DSL and is explicitly legacy in AGENTS.md. No current v6 source import was found.",
+      "current_risk": "Its generic verifier can be confused with the executed task039e0 validity verifier or canonical verifier_v1 contract.",
+      "recommended_future_action": "Retain for compatibility and map separately from the current deterministic construction verifier.",
+      "deep_review_part": "ARCH-005"
+    },
+    {
+      "finding_id": "LEGACY-003",
+      "path": "src/paperworks/runtime/*",
+      "symbols": ["RuntimeRuleEngine", "VerifiedRuleLibrary"],
+      "category": "LEGACY",
+      "severity": "LOW",
+      "evidence": "The package consumes legacy RuleAst and is listed as legacy read-only in AGENTS.md. No v6 frozen-result module imports it.",
+      "current_risk": "The legacy runtime name can be mistaken for either contracts/runtime_v1.py or the real D1 utility runtime.",
+      "recommended_future_action": "Show as historical compatibility only and preserve unchanged until an explicit compatibility task.",
+      "deep_review_part": "ARCH-006"
+    },
+    {
+      "finding_id": "LEGACY-004",
+      "path": "src/paperworks/e2e/*",
+      "symbols": ["run_staging_dry_run", "run_rule_evidence_audit", "run_template_feasibility"],
+      "category": "LEGACY",
+      "severity": "LOW",
+      "evidence": "All six tracked files depend on the legacy DSL/verifier/runtime stack; AGENTS.md classifies historical e2e orchestration as legacy.",
+      "current_risk": "The directory name can imply that it is the current end-to-end HAI execution path.",
+      "recommended_future_action": "Keep out of the current-core flow and label as earlier staging/test orchestration.",
+      "deep_review_part": "ARCH-011"
+    },
+    {
+      "finding_id": "LEGACY-005",
+      "path": "src/paperworks/planning/{template.py,llm.py,refiner.py}",
+      "symbols": ["legacy template planner", "legacy LLM planner", "legacy refiner"],
+      "category": "LEGACY",
+      "severity": "LOW",
+      "evidence": "These modules import RuleAst and the old verifier path. AGENTS.md explicitly identifies legacy template/LLM planners and planning/refiner.py as compatibility paths.",
+      "current_risk": "They can be mistaken for current T0/T1/T1-B/T2 construction arms.",
+      "recommended_future_action": "Do not use as current arm entrypoints; preserve for historical tests only.",
+      "deep_review_part": "ARCH-004"
+    },
+    {
+      "finding_id": "REFERENCE-001",
+      "path": "experiments/argos_reproduction/*",
+      "symbols": ["123 tracked reference files"],
+      "category": "REFERENCE_ONLY",
+      "severity": "LOW",
+      "evidence": "AGENTS.md freezes this track as reference-only and prohibits continuation without new authorization. No import from current src/paperworks/v6 or current execution scripts was found.",
+      "current_risk": "The large executable-looking tree may be presented as part of the current HAI architecture or as current evidence.",
+      "recommended_future_action": "Keep in a separate historical-reference lane; do not merge its paths into the HAI/v6 kernel map.",
+      "deep_review_part": "NONE_CURRENT_REFERENCE_ONLY"
+    },
+    {
+      "finding_id": "REFERENCE-002",
+      "path": "src/paperworks/{evaluation/harness.py,profiling/relations.py}",
+      "symbols": ["EvaluationConfig", "RelationProfilingConfig"],
+      "category": "IMPLEMENTED_NOT_USED",
+      "severity": "MEDIUM",
+      "evidence": "Static search found only package __init__ exports and no current v6 or execution-script callers. Current HAI profiling and metrics use task039d1/task039d2 and task039e3 utility modules instead.",
+      "current_risk": "Generic older helpers can be mistaken for the code that produced frozen HAI profiles or pilot metrics.",
+      "recommended_future_action": "Classify as reusable/historical support until a future adapter explicitly consumes them.",
+      "deep_review_part": "ARCH-003 and ARCH-010"
+    },
+    {
+      "finding_id": "GDN-LEGACY-001",
+      "path": "src/paperworks/gdn/{masked.py,torch_backend.py}",
+      "symbols": ["fit_deterministic_embedding_checkpoint", "fit_torch_gdn_embedding_checkpoint"],
+      "category": "IMPLEMENTED_NOT_USED",
+      "severity": "MEDIUM",
+      "evidence": "Both modules identify smoke or GDN-style support. The frozen GDN drivers import upstream_candidate_backend_v1 and candidate gdn_candidate_discovery_v1 instead; no current driver import of these smoke trainers was found.",
+      "current_risk": "A smoke backend could be mislabeled as the executed upstream-aligned GDN arm.",
+      "recommended_future_action": "Show these as engineering/test support and name upstream_candidate_backend_v1 as the frozen candidate-ranking implementation.",
+      "deep_review_part": "ARCH-002"
+    },
+    {
+      "finding_id": "DISCOVERY-001",
+      "path": "src/paperworks/candidates/universe.py",
+      "symbols": ["build_candidate_universe"],
+      "category": "MISSING_LINK",
+      "severity": "HIGH",
+      "evidence": "The RCC representative path is the generic earlier universe builder, while the frozen 12-by-12 C0 authority is CandidateUniversePolicyV1 in v6/candidate_discovery_protocol_v1.py.",
+      "current_risk": "The architecture can point to a real but non-authoritative producer for the frozen candidate universe.",
+      "recommended_future_action": "Map the C0 protocol symbol as current authority and retain the generic producer as reusable support.",
+      "deep_review_part": "ARCH-002"
+    },
+    {
+      "finding_id": "CONTRACT-001",
+      "path": "src/paperworks/contracts/task039e0_* through task039e3_execution_prep_v1.py",
+      "symbols": ["canonical-path adapters and facades"],
+      "category": "DUPLICATE_ENTRYPOINT",
+      "severity": "LOW",
+      "evidence": "Twelve similarly named files in contracts are thin wildcard re-export facades over paperworks.v6 modules rather than independent implementations.",
+      "current_risk": "Static inventories can double-count one implementation as two scientific authorities.",
+      "recommended_future_action": "Treat the contracts files as import facades and the v6 origin symbols as implementations.",
+      "deep_review_part": "ARCH-004"
+    },
+    {
+      "finding_id": "CONTRACT-002",
+      "path": "src/paperworks/contracts/{phase1_adapters.py,collection_adapters_v1.py,legacy_adapter.py}",
+      "symbols": ["ContractAdapterResult", "LegacyDelayedResponseCollectionAdapterV1", "LegacyMigrationAssessment"],
+      "category": "LEGACY",
+      "severity": "LOW",
+      "evidence": "The modules explicitly describe Phase-1 or legacy compatibility and remain re-exported from contracts/__init__.py.",
+      "current_risk": "A broad import of paperworks.contracts exposes compatibility surfaces beside canonical contracts.",
+      "recommended_future_action": "Document the facade boundary; do not remove or alter during architecture audit.",
+      "deep_review_part": "ARCH-004"
+    },
+    {
+      "finding_id": "RULE-REPRESENTATION-001",
+      "path": "src/paperworks/contracts/rule_v1.py and src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py",
+      "symbols": ["DelayedResponseRuleV1", "CanonicalRuleDescriptorV4"],
+      "category": "MISSING_LINK",
+      "severity": "HIGH",
+      "evidence": "No v6 scientific module import of contracts.rule_v1 was found. Real D1 consumes V4 rule descriptors through its rule_by_binding authority. The executed task039e0 verifier records canonical_rule_materialized=false.",
+      "current_risk": "A diagram may incorrectly show canonical RuleV1 objects flowing directly into COMMON-42 and D1.",
+      "recommended_future_action": "Show the explicit proposal/equivalence/V4 descriptor representation boundary and audit it in ARCH-004 through ARCH-006.",
+      "deep_review_part": "ARCH-004 through ARCH-006"
+    },
+    {
+      "finding_id": "VERIFIER-001",
+      "path": "src/paperworks/contracts/verifier_v1.py and src/paperworks/v6/task039e0_validity_v2.py",
+      "symbols": ["canonical verifier_v1 API", "verify_prepared_rule_proposal_v2"],
+      "category": "DUPLICATE_ENTRYPOINT",
+      "severity": "HIGH",
+      "evidence": "The frozen T0/T1/T1-B/T2 orchestration imports and calls verify_prepared_rule_proposal_v2. Static search did not find a v6 construction call to contracts.verifier_v1; that contract is used by runtime authority and the synthetic vertical slice.",
+      "current_risk": "RCC currently names the canonical verifier contract as the executed construction verifier, obscuring the actual task-specific verifier path.",
+      "recommended_future_action": "Map the executed task039e0 verifier and canonical verifier contract as separate layers until ARCH-005 proves their exact relationship.",
+      "deep_review_part": "ARCH-004 and ARCH-005"
+    },
+    {
+      "finding_id": "RUNTIME-001",
+      "path": "src/paperworks/contracts/runtime_v1.py and src/paperworks/v6/task039e3_r2r_utility_evaluator_rule_engine_v1.py",
+      "symbols": ["execute_delayed_response_rule", "execute_rule_v1"],
+      "category": "DUPLICATE_ENTRYPOINT",
+      "severity": "HIGH",
+      "evidence": "The canonical runtime is exercised by TASK-032 tests and vertical_slice_v1. The frozen real D1 bridge ports evaluator semantics into its own execute_real_rule_v1 and does not call either canonical execute_delayed_response_rule or synthetic execute_rule_v1 as its real controller.",
+      "current_risk": "A single RULE_RUNTIME node can hide canonical, synthetic-evaluator, and real-D1 execution surfaces.",
+      "recommended_future_action": "Draw three distinct surfaces and bind the frozen D1 result to execute_real_rule_v1.",
+      "deep_review_part": "ARCH-006 and ARCH-008"
+    },
+    {
+      "finding_id": "TRACE-001",
+      "path": "src/paperworks/contracts/runtime_v1.py and src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py",
+      "symbols": ["RuntimeTraceV1", "task039e3_r2r_real_rule_execution_trace_v1 hash payload"],
+      "category": "MISSING_LINK",
+      "severity": "HIGH",
+      "evidence": "The real D1 module creates a task-specific trace hash payload. Static search found no real D1 import or construction of RuntimeTraceV1, and the public D1 prediction exposes only sanitized decision records.",
+      "current_risk": "The RCC Satisfaction Trace component can imply a frozen canonical trace artifact that was not found.",
+      "recommended_future_action": "Classify canonical trace as implemented/tested, real trace as task-specific/private or hashed, and record the absence of a standalone frozen public trace artifact.",
+      "deep_review_part": "ARCH-006 and ARCH-008"
+    },
+    {
+      "finding_id": "EXPLANATION-001",
+      "path": "src/paperworks/contracts/explanation_v1.py",
+      "symbols": ["render_delayed_response_explanation", "ExplanationRecordV1"],
+      "category": "IMPLEMENTED_NOT_USED",
+      "severity": "MEDIUM",
+      "evidence": "The renderer is called by contracts/vertical_slice_v1.py and tests, but no current v6 scientific execution caller was found. No result-specific frozen explanation artifact was identified.",
+      "current_risk": "Implementation/test execution may be mistaken for explanation participation in the frozen D1 pilot or for human-usefulness validation.",
+      "recommended_future_action": "Keep frozen-result-used=false and evaluate trace-to-explanation and human usefulness separately.",
+      "deep_review_part": "ARCH-006"
+    },
+    {
+      "finding_id": "VERTICAL-SLICE-001",
+      "path": "src/paperworks/contracts/vertical_slice_v1.py",
+      "symbols": ["run_task032f_vertical_slice"],
+      "category": "IMPLEMENTED_NOT_USED",
+      "severity": "LOW",
+      "evidence": "This module composes canonical verifier, runtime, and explanation contracts for the TASK-032 synthetic vertical slice. It is not imported by the real D1/D0/D2 modules.",
+      "current_risk": "A complete synthetic path can be mistaken for the frozen real HAI execution path.",
+      "recommended_future_action": "Label as synthetic contract integration evidence, not frozen pilot lineage.",
+      "deep_review_part": "ARCH-006"
+    },
+    {
+      "finding_id": "PROTOCOL-001",
+      "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v1.py through utility_protocol_v4.py",
+      "symbols": ["Protocol V1", "Protocol V2", "Protocol V3", "Protocol V4"],
+      "category": "SUPERSEDED",
+      "severity": "MEDIUM",
+      "evidence": "V2 and V3 are documented additive closures over earlier versions; V4 is the canonical COMMON-42/numeric-authority closure. V4 still imports V2 and V3, and D1/D2 modules consume both current V4 authority and selected V3 policy helpers.",
+      "current_risk": "Calling V1-V3 dead or collapsing all versions into V4 would hide live lineage dependencies and version-specific responsibilities.",
+      "recommended_future_action": "Represent V1-V3 as historical dependency layers, V4 as current authority, and annotate which runtime helpers still come from V3.",
+      "deep_review_part": "ARCH-005, ARCH-008, and ARCH-010"
+    },
+    {
+      "finding_id": "CONSTRUCTION-001",
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py plus task039e3_scientific_execution_v1.py and recovery_execution_v1/v2/v3.py",
+      "symbols": ["run_t0_v1", "run_t1_v1", "run_t1b_v1", "run_t2_v1", "run_guarded_execution_v3"],
+      "category": "DUPLICATE_ENTRYPOINT",
+      "severity": "HIGH",
+      "evidence": "orchestration_v1 declares deterministic mock preparation semantics. scientific_execution_v1 adds the real evidence/custody plane. Recovery V1 and V2 are earlier recovery generations; public source-freeze evidence identifies V3 and its runner as the successful final recovery composition.",
+      "current_risk": "Using orchestration_v1 alone as the representative executed path omits the real scientific and recovery-control layers; treating every recovery generation as current would also be wrong.",
+      "recommended_future_action": "Map the semantic core, scientific projection, and successful V3 runner separately; keep V1/V2 as immutable superseded recovery lineage.",
+      "deep_review_part": "ARCH-004"
+    },
+    {
+      "finding_id": "D2V1-001",
+      "path": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py and task039e3_r2r_d2_inner_execution_recovery_v1.py",
+      "symbols": ["execute_authorized_d2_inner_v1", "execute_authorized_d2_inner_recovery_v1"],
+      "category": "DUPLICATE_ENTRYPOINT",
+      "severity": "MEDIUM",
+      "evidence": "The original module owns frozen scientific fusion semantics. The first attempt aborted on infrastructure/private persistence; the authorized recovery bridge reuses named original scientific functions and produced the sole completed scientific result.",
+      "current_risk": "Showing only the original entrypoint misstates result provenance; showing only the recovery bridge hides the scientific implementation.",
+      "recommended_future_action": "Bind D2 V1 to both original scientific semantics and the successful recovery entrypoint, explicitly recording one infrastructure-aborted attempt and one completed scientific execution.",
+      "deep_review_part": "ARCH-009"
+    },
+    {
+      "finding_id": "D2V2-001",
+      "path": "scripts/audit_task039e3_r2r_d2_v2_result_integrity_v1.py and remediation-specific audit scripts",
+      "symbols": ["D2V2ResultIntegrityCompletionV1"],
+      "category": "GOVERNANCE_COUPLING",
+      "severity": "MEDIUM",
+      "evidence": "The frozen execution is direct V2, while final integrity PASS is a composite completion record assembled after six blocked audit-harness attempts. The completion artifact reports zero authoritative scientific executions during audit completion.",
+      "current_risk": "Many remediation modules can look like repeated science or alternative V2 implementations.",
+      "recommended_future_action": "Show one frozen V2 scientific execution and a separate composite governance/audit-remediation lineage.",
+      "deep_review_part": "ARCH-009 and ARCH-010"
+    },
+    {
+      "finding_id": "OUTER-001",
+      "path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_v1.py and execution_recovery_v1.py",
+      "symbols": ["execute_authorized_outer_v1", "RecoveryAttemptBoundaryV1"],
+      "category": "IMPLEMENTED_NOT_USED",
+      "severity": "HIGH",
+      "evidence": "A one-shot OUTER scientific controller and recovery bridge exist, but public blocker records show no D0 inference, D1 evaluation, D2 fusion, prediction, or metric result. The recovery stopped at test2 custody before byte read.",
+      "current_risk": "Code presence can be misreported as a held-out scientific result or generalization evidence.",
+      "recommended_future_action": "Terminate the architecture lineage at the blocker and retain held-out generalization as unconfirmed.",
+      "deep_review_part": "ARCH-011"
+    },
+    {
+      "finding_id": "SCOPE-001",
+      "path": "NO_CURRENT_RULE_V2_IMPLEMENTATION",
+      "symbols": ["Rule v2"],
+      "category": "DESIGN_ONLY",
+      "severity": "LOW",
+      "evidence": "AGENTS.md states Rule v1 remains unchanged and Rule v2 remains a migration plan. No Rule v2 current authority was found.",
+      "current_risk": "Future relation-family plans could be shown as implemented current architecture.",
+      "recommended_future_action": "Keep Rule v2 outside current-core diagrams until explicitly authorized and implemented.",
+      "deep_review_part": "ARCH-004"
+    },
+    {
+      "finding_id": "SCOPE-002",
+      "path": "CURRENT_V6_RELATION_FAMILY_BOUNDARY",
+      "symbols": ["increase-only delayed-response bridge", "decrease and complex relation families"],
+      "category": "DESIGN_ONLY",
+      "severity": "MEDIUM",
+      "evidence": "AGENTS.md states the current v6 bridge supports increase relations only; decrease support remains a future family/version decision. Complex hierarchy/tree relations remain conditional in RCC history.",
+      "current_risk": "The pairwise pilot can be described as a generalized multistage relation engine.",
+      "recommended_future_action": "Show only the implemented pairwise continuous-step family and draw future families as conditional/dotted.",
+      "deep_review_part": "ARCH-003 and ARCH-004"
+    },
+    {
+      "finding_id": "GOVERNANCE-001",
+      "path": "src/paperworks/v6/task039e3_r2r_{d0,d1,d2,d2_v2,outer}_*execution*.py",
+      "symbols": ["authorization replay", "custody", "state machine", "computation", "persistence", "metrics", "reporting"],
+      "category": "GOVERNANCE_COUPLING",
+      "severity": "MEDIUM",
+      "evidence": "The task-specific execution modules combine scientific kernels with authorization, local custody, Git replay, persistent freeze, metric ordering, and report generation.",
+      "current_risk": "Governance volume can be mistaken for scientific-method complexity, and shared policy can be mistaken for a shared function call.",
+      "recommended_future_action": "Classify concerns explicitly in ARCH-000; defer packaging/refactoring until after deep audits.",
+      "deep_review_part": "ARCH-007 through ARCH-011"
+    },
+    {
+      "finding_id": "REPORTING-001",
+      "path": "docs/professor_* and documentation-overlay thesis paths",
+      "symbols": ["professor package", "thesis draft"],
+      "category": "REFERENCE_ONLY",
+      "severity": "LOW",
+      "evidence": "These paths consume public-safe evidence for communication. The thesis draft representative path exists in the documentation overlay rather than the scientific authority commit.",
+      "current_risk": "Narrative completeness can be mistaken for scientific execution or current source authority.",
+      "recommended_future_action": "Keep reporting and overlay nodes outside the scientific core and display their source authority separately.",
+      "deep_review_part": "NONE_REPORTING"
+    },
+    {
+      "finding_id": "REPRO-001",
+      "path": "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md",
+      "symbols": ["fresh-machine reproduction assessment"],
+      "category": "MISSING_LINK",
+      "severity": "HIGH",
+      "evidence": "The pinned completeness report classifies portability as partial or weak for several scientific stages, and no complete fresh-machine independent reproduction artifact was found.",
+      "current_risk": "Frozen integrity and source review can be mistaken for independent reproduction.",
+      "recommended_future_action": "Keep reproduced=false and schedule the fresh-machine path only under a dedicated authorization.",
+      "deep_review_part": "ARCH-011"
+    }
+  ],
+  "explicit_non_dead_lineage": [
+    {
+      "path_group": "utility protocol V1-V3",
+      "reason_not_dead": "V4 and real execution modules import selected constants, schemas, and policy helpers from V2/V3."
+    },
+    {
+      "path_group": "task039e3_scientific_execution_v1.py",
+      "reason_not_dead": "Recovery coordinators reuse its frozen scientific construction functions."
+    },
+    {
+      "path_group": "D2 V1 original execution module",
+      "reason_not_dead": "The successful recovery bridge delegates the original scientific functions."
+    },
+    {
+      "path_group": "canonical runtime/explanation stack",
+      "reason_not_dead": "It remains implemented and tested through the synthetic vertical slice, although it is not in the frozen D1 result path."
+    }
+  ],
+  "architecture_edges_requiring_qualification": [
+    {
+      "from": "RULE_DSL",
+      "to": "DETERMINISTIC_VERIFIER",
+      "status": "REPRESENTATION_BOUNDARY",
+      "reason": "The executed verifier consumes prepared proposal contracts, not a demonstrated DelayedResponseRuleV1 object."
+    },
+    {
+      "from": "DETERMINISTIC_VERIFIER",
+      "to": "COMMON42_FREEZE",
+      "status": "ARTIFACT_MEDIATED",
+      "reason": "COMMON-42 is reconstructed through frozen executable-equivalence and authority artifacts rather than a direct verifier-result object call."
+    },
+    {
+      "from": "COMMON42_FREEZE",
+      "to": "RULE_RUNTIME",
+      "status": "VERIFIED_WITH_PRIVATE_NUMERIC_BINDING",
+      "reason": "Real D1 consumes V4 descriptors and separately bound private numeric authority, not a standalone public rule library payload."
+    },
+    {
+      "from": "RULE_RUNTIME",
+      "to": "SATISFACTION_TRACE",
+      "status": "PARTIAL_TASK_SPECIFIC_TRACE",
+      "reason": "Real D1 emits task-specific trace hashes rather than canonical RuntimeTraceV1 records."
+    },
+    {
+      "from": "SATISFACTION_TRACE",
+      "to": "EXPLANATION_RENDERER",
+      "status": "UNVERIFIED_FOR_FROZEN_RESULT",
+      "reason": "Only synthetic vertical-slice/test calls were found; no frozen D1 explanation artifact exists."
+    },
+    {
+      "from": "T2_AGENTIC_FEEDBACK",
+      "to": "D1_RULE_ONLY",
+      "status": "NOT_CURRENT_UTILITY_EDGE",
+      "reason": "Current utility scope is COMMON-42; exact T2 39-member mapping is not a public/current D1 input authority."
+    },
+    {
+      "from": "OUTER_EVALUATION",
+      "to": "HELD_OUT_RESULT",
+      "status": "BLOCKED_NO_RESULT",
+      "reason": "Only custody/blocker evidence exists; no prediction, metric, or result artifact exists."
+    }
+  ],
+  "summary_counts": {
+    "findings": 27,
+    "critical": 0,
+    "high": 8,
+    "medium": 8,
+    "low": 11,
+    "legacy": 6,
+    "superseded": 1,
+    "reference_only": 2,
+    "design_only": 2,
+    "implemented_not_used": 5,
+    "duplicate_entrypoint": 5,
+    "possible_dead_path": 0,
+    "missing_link": 4,
+    "governance_coupling": 2,
+    "unknown": 0,
+    "qualified_edges": 7,
+    "hidden_critical_architecture_gaps": 0
+  },
+  "coordinator_notes": [
+    "The strongest architecture issue is not a missing scientific system; it is the coexistence of canonical, compatibility, task-specific, synthetic, and real-execution representations.",
+    "Do not label an unreferenced path dead when immutable recovery or compatibility lineage still imports it.",
+    "Correct RCC representative paths for the candidate universe, deterministic verifier, real D1 runtime, and real D1 trace before presenting those components as executed.",
+    "Show the explanation renderer as implemented and tested but not used by the frozen D1 result.",
+    "Show D2 V1 as original scientific semantics plus authorized recovery execution, and D2 V2 integrity as a composite audit completion rather than repeated science.",
+    "OUTER implementation exists, but the current lineage ends at a custody blocker and provides no held-out result."
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "model_training_runs": 0,
+    "candidate_regenerations": 0,
+    "rule_regenerations": 0,
+    "common42_regenerations": 0,
+    "metric_recomputations": 0,
+    "test2_feature_accesses": 0,
+    "test2_label_accesses": 0,
+    "private_payload_accesses": 0,
+    "private_paths_exposed": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_registry_changes": 0,
+    "remote_pushes": 0
+  }
+}

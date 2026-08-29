@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Research Evolution
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -13,7 +13,7 @@ their approximate dates and confidence labels; later Git milestones use exact ev
 
 **Source class:** `USER_CONTEXT_ONLY`
 
-**Status:** `SUPERSEDED` · **Confidence:** `LOW`
+**Status:** `SUPERSEDED` · **Confidence:** `MEDIUM`
 
 ### Goal at the time
 
@@ -25,11 +25,11 @@ The task seed records an extension period but supplies no repository artifact or
 
 ### What problem was found
 
-Multiple structural limitations were reportedly found; their exact nature and severity are not yet evidenced.
+PoC-reported structural limitations were found; their exact nature and severity remain user context.
 
 ### Decision
 
-Treat the headline direction as superseded pending user confirmation of whether it was abandoned or deferred.
+Supersede DHAG as the main thesis direction while preserving uncertainty about the detailed limitation list.
 
 ### What survived into the current method
 
@@ -41,7 +41,7 @@ DHAG is not a component, authority, or current claim in the scientific checkpoin
 
 ### Evidence
 
-RCC-003 user-context seed
+ARCH-000 user confirmation 1
 
 ## 2. ARGOS / LLMAD Exploration
 
@@ -85,7 +85,7 @@ RCC-003 user-context seed; retrospective ARGOS bridge
 
 **Source class:** `USER_CONTEXT_ONLY_WITH_CURRENT_BOUNDARY`
 
-**Status:** `SUPERSEDED` · **Confidence:** `LOW`
+**Status:** `SUPERSEDED` · **Confidence:** `MEDIUM`
 
 ### Goal at the time
 
@@ -101,11 +101,11 @@ Explanation-fidelity ground truth was reportedly ill-posed and verifier admissio
 
 ### Decision
 
-Demote the headline framing while retaining deterministic verifier-admissibility.
+Supersede the headline framing without erasing its narrower verification and consistency principles.
 
 ### What survived into the current method
 
-Structural, evidence, parameter, split, runtime, and claim-boundary checks with fail-closed admission.
+Deterministic verification, evidence binding, explanation or trace-consistency evaluation, and fail-closed admission.
 
 ### What was abandoned or deferred
 
@@ -113,7 +113,7 @@ No claim that verifier acceptance proves faithfulness, causality, physical truth
 
 ### Evidence
 
-RCC-003 user-context seed; docs/thesis/THESIS_FRAMING_V1.md
+ARCH-000 user confirmation 3; docs/thesis/THESIS_FRAMING_V1.md
 
 ## 4. Professor-Driven Reframing
 
@@ -121,7 +121,7 @@ RCC-003 user-context seed; docs/thesis/THESIS_FRAMING_V1.md
 
 **Source class:** `USER_CONTEXT_WITH_RETROSPECTIVE_SUPPORT`
 
-**Status:** `HISTORICAL` · **Confidence:** `LOW`
+**Status:** `SUPERSEDED` · **Confidence:** `MEDIUM`
 
 ### Goal at the time
 
@@ -129,15 +129,15 @@ Recenter the work on anomaly detection and temporal localization rather than ver
 
 ### What was implemented / investigated
 
-User context references ARTIST and anomaly-detector framing; later reports explicitly distinguish trace localization from unimplemented ARTIST selection.
+The research owner confirms ARTIST, anomaly-detection-model, and localization-oriented reframing reached formal Method Sketch-level planning.
 
 ### What problem was found
 
-No contemporaneous May feedback record is present in the pinned repository.
+The intermediate segment or localization direction did not become the current executable core, and no contemporaneous May record is in the pinned repository.
 
 ### Decision
 
-Use anomaly detection as application context and keep ARTIST-style learned segment selection conditional.
+Preserve it as a formal intermediate direction later superseded by the relational-rule architecture.
 
 ### What survived into the current method
 
@@ -145,11 +145,11 @@ Transitions, horizons, variable relations, and satisfaction traces provide a bou
 
 ### What was abandoned or deferred
 
-ARTIST-style segment proposal and human-usefulness claims remain unimplemented or unvalidated.
+ARTIST-style learned segment selection is superseded as current core; human-usefulness claims remain unvalidated.
 
 ### Evidence
 
-RCC-003 user-context seed; retrospective professor response matrix
+ARCH-000 user confirmations 4 and 5; retrospective professor response matrix
 
 ## 5. CPS Relational Rule Foundation
 
@@ -373,4 +373,4 @@ RCC-001 RCC-002 RCC-002A and RCC-003 local history
 The architecture is substantially implemented and the INNER path has frozen pilot
 observations. Scientific validation remains partial, held-out generalization remains
 unconfirmed, and fresh-machine reproduction remains incomplete. The exact next task is
-**ARCH-000 — Full Architecture Overview Audit**.
+**ARCH-001 — Data / Provenance / Split Governance Deep Audit**.

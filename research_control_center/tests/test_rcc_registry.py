@@ -45,7 +45,7 @@ class RegistryValidationTests(unittest.TestCase):
         result = validator.ValidationResult()
         validator._validate_authority(data, result)
         self.assertEqual([], result.errors)
-        self.assertEqual(3, len(data["state"]["top_user_todo"]))
+        self.assertEqual(5, len(data["state"]["top_user_todo"]))
         self.assertEqual(32, len(data["components"]))
         self.assertEqual(6, len(data["experiments"]))
         self.assertEqual(13, len(data["claims"]))
@@ -136,8 +136,8 @@ class RegistryValidationTests(unittest.TestCase):
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
         self.assertEqual(28, len(data["timeline"]))
-        self.assertEqual(18, len(data["decisions"]))
-        self.assertEqual(5, len(data["history"]["confirmation_questions"]))
+        self.assertEqual(19, len(data["decisions"]))
+        self.assertEqual(1, len(data["history"]["confirmation_questions"]))
         result = validator.ValidationResult()
         validator._validate_dates(data, result)
         validator._validate_references(data, result)
@@ -148,11 +148,11 @@ class RegistryValidationTests(unittest.TestCase):
         data = load_registry(RCC_ROOT)
         early = [row for row in data["timeline"] if row["event_id"] in {"EVENT-001", "EVENT-002", "EVENT-003", "EVENT-004"}]
         self.assertTrue(all(row["date_precision"] in {"MONTH", "RANGE"} for row in early))
-        self.assertTrue(all(row["source"] == "USER_CONTEXT" for row in early))
+        self.assertTrue(all(row["source"] in {"USER_CONTEXT", "USER_CONFIRMED_CONTEXT"} for row in early))
         self.assertTrue(all(row["source_commit"] == "NONE" for row in early))
         decisions = {row["decision_id"]: row for row in data["decisions"]}
-        for decision_id in ("DEC-003", "DEC-005", "DEC-015"):
-            self.assertEqual("false", decisions[decision_id]["user_approved"])
+        for decision_id in ("DEC-003", "DEC-005", "DEC-015", "DEC-019"):
+            self.assertEqual("true", decisions[decision_id]["user_approved"])
         self.assertEqual("true", decisions["DEC-009"]["user_approved"])
         self.assertEqual("HIGH", decisions["DEC-009"]["confidence"])
 
@@ -166,9 +166,16 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_august_feedback_temporal_corrections_are_explicit(self) -> None:
         lineage = {row["date"]: row for row in load_registry(RCC_ROOT)["history"]["professor_feedback_lineage"]}
-        self.assertEqual("NOT_PROFESSOR_FEEDBACK", lineage["2026-08-18"]["classification"])
-        self.assertEqual("NOT_PROFESSOR_FEEDBACK", lineage["2026-08-26"]["classification"])
+        self.assertTrue(lineage["2026-08-18"]["classification"].endswith("NOT_PROFESSOR_FEEDBACK"))
+        self.assertTrue(lineage["2026-08-26"]["classification"].endswith("NOT_PROFESSOR_FEEDBACK"))
         self.assertIn("reinforced", lineage["2026-08-04"]["interpretation"])
+
+    def test_arch000_component_map_and_deep_review_parts(self) -> None:
+        data = load_registry(RCC_ROOT)
+        self.assertEqual(32, len(data["components"]))
+        self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
+        self.assertEqual(11, len(data["architecture_details"]))
+        self.assertEqual("ARCH-001 — Data / Provenance / Split Governance Deep Audit", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

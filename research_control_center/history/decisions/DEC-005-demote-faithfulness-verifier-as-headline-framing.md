@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-005 — Demote Faithfulness Verifier as headline framing
 
 ## Date
@@ -11,28 +11,28 @@
 
 ## Context
 
-User context records concern that explanation-fidelity ground truth was ill-posed.
+The verifier-centered explanation-fidelity direction risked overstating what its ground truth could establish.
 
 ## Alternatives Considered
 
 - Retain verifier as headline
-- abandon verification entirely
+- erase verification entirely
 
 ## Decision
 
-Treat the historical headline framing as superseded while preserving deterministic verification as a narrower admission principle.
+Supersede Faithfulness Verifier as headline framing while preserving deterministic verification, evidence binding, and explanation or trace-consistency evaluation ideas.
 
 ## Why
 
-The historical rationale is user-context only; current evidence supports verifier-admissibility but not scientific proof of faithfulness or causality.
+The research owner confirms narrowing rather than erasure; current evidence supports verifier-admissibility but not proof of faithfulness or causality.
 
 ## Consequence
 
-Verifier checks survive in bounded construction governance rather than as a standalone validated explanation claim.
+Verifier and trace-consistency principles survive in bounded construction governance and evaluation.
 
 ## Current Relevance
 
-Historical linkage requires confirmation; current verifier scope is active under DEC-012.
+Confirmed historical linkage; current verifier scope is active under DEC-012.
 
 ## Supersedes
 
@@ -44,12 +44,12 @@ DEC-012
 
 ## Evidence
 
-Source class: `USER_CONTEXT_WITH_CURRENT_BOUNDARY`
+Source class: `USER_CONFIRMED_CONTEXT_WITH_CURRENT_BOUNDARY`
 
-Reference: RCC-003 task seed;docs/thesis/THESIS_FRAMING_V1.md
+Reference: ARCH-000 confirmation 3;docs/thesis/THESIS_FRAMING_V1.md
 
 Source commit: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 
 ## Confidence
 
-`LOW`
+`MEDIUM`

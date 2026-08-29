@@ -73,6 +73,15 @@ main { padding: 1rem 0 5rem; }
 .architecture-lane h3 { color: #b8d7c9; font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; }
 .architecture-nodes { display: flex; flex-wrap: wrap; gap: .45rem; }
 .architecture-node { color: white; text-decoration: none; border-radius: 5px; padding: .45rem .6rem; font-size: .74rem; font-weight: 700; }
+.architecture-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.architecture-detail { border: 1px solid rgba(255,255,255,.22); border-radius: 8px; background: rgba(255,255,255,.05); }
+.architecture-detail summary { cursor: pointer; display: grid; gap: .2rem; padding: .9rem; }
+.architecture-detail summary span { color: #80c9ab; font-size: .68rem; letter-spacing: .1em; font-weight: 800; }
+.architecture-detail summary strong { font-size: .95rem; }
+.architecture-contract { margin: 0; padding: 0 .9rem .9rem; }
+.architecture-contract > div { border-top: 1px solid rgba(255,255,255,.14); padding: .55rem 0; }
+.architecture-contract dt { color: #9fc4b5; font-size: .65rem; letter-spacing: .08em; font-weight: 800; }
+.architecture-contract dd { margin: .15rem 0 0; font-size: .78rem; }
 
 .explorer { display: grid; grid-template-columns: minmax(250px, 2fr) minmax(200px, 1fr) auto; gap: 1rem; align-items: end; background: #e7ebe7; position: sticky; top: 3.4rem; z-index: 9; box-shadow: 0 8px 20px rgba(20,42,58,.1); }
 .explorer div { display: grid; gap: .3rem; }
@@ -115,7 +124,7 @@ main { padding: 1rem 0 5rem; }
 footer { padding: 1rem 0 3rem; color: var(--muted); font-size: .78rem; }
 
 @media (max-width: 760px) {
-  .authority-strip, .two-column, .card-grid, .authority-detail dl, .status-snapshot, .summary-grid { grid-template-columns: 1fr; }
+  .authority-strip, .two-column, .card-grid, .authority-detail dl, .status-snapshot, .summary-grid, .architecture-detail-grid { grid-template-columns: 1fr; }
   .phase-track { grid-template-columns: 1fr; }
   .section { padding: 1.35rem; }
   .explorer { grid-template-columns: 1fr; position: static; }
