@@ -62,10 +62,13 @@ class DashboardGenerationTests(unittest.TestCase):
     def test_gpt_brief_has_required_recovery_boundary_and_word_budget(self) -> None:
         brief = render_gpt_brief(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
         self.assertIn("Chat memory must not override the scientific authority or RCC registry.", brief)
+        self.assertIn("14 attack events are pilot evidence only", brief)
+        self.assertIn("Graph-Guided and Agentic remain provisional contribution labels.", brief)
         self.assertIn("## Research objective", brief)
         self.assertIn("## Claim boundaries", brief)
         self.assertIn("## Exact next task", brief)
-        self.assertLessEqual(len(brief.split()), 2000)
+        self.assertGreaterEqual(len(brief.split()), 800)
+        self.assertLessEqual(len(brief.split()), 1500)
 
     def test_builders_write_all_outputs(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -77,8 +80,26 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(3, len(summaries))
+            self.assertEqual(7, len(summaries))
             self.assertTrue(all(path.is_file() for path in summaries))
+
+    def test_dashboard_has_population_counts_and_architecture_nodes(self) -> None:
+        rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
+        for label in ("Implemented", "Executed", "Audited", "Reproduced", "Claim-ready"):
+            self.assertIn(label, rendered)
+        for component_id in ("DATA_PROVENANCE", "GDN_DISCOVERY", "D0_PCA_SPE", "D1_RULE_ONLY"):
+            name = next(row["name"] for row in load_registry(RCC_ROOT)["components"] if row["component_id"] == component_id)
+            self.assertIn(name, rendered)
+
+    def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
+        generated = generate_summaries(RCC_ROOT)
+        self.assertEqual(7, len(generated))
+        user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
+        context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
+        self.assertIn("14", user_summary)
+        self.assertIn("예비", user_summary)
+        for heading in ("WHAT EXISTS", "WHAT WAS EXECUTED", "WHAT WAS OBSERVED", "WHAT IS VALIDATED", "WHAT REMAINS UNKNOWN"):
+            self.assertIn(heading, context)
 
     def test_generated_outputs_match_current_registry_digest(self) -> None:
         result = validator.validate_registry(RCC_ROOT, check_git=True, check_outputs=True)

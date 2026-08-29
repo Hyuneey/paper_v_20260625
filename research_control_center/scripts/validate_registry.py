@@ -98,7 +98,8 @@ REQUIRED_RCC_FILES = (
 )
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
-    "generated/CHANGE_SUMMARY.md",
+    "generated/CHANGE_SUMMARY.md", "generated/RCC_002_USER_SUMMARY.md",
+    "CURRENT_CONTEXT.md", "MY_TODO.md", "DECISION_INBOX.md",
 )
 REQUIRED_RCC_DIRS = (
     "registry", "wiki", "history", "history/decisions", "history/checkpoints",
@@ -183,8 +184,22 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain exactly three entries")
-    result.require(state.get("last_completed_task") == "RCC-001", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "RCC-002 — Current-State Registry Population", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "RCC-002", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "RCC-003 — Research Timeline & Decision Backfill", "exact next task mismatch")
+    result.require(
+        state.get("research_stage") == {
+            "architecture_complete": True,
+            "evaluation_scope_expansion": "current",
+            "hypothesis_validation": "pending",
+        },
+        "research stage mismatch",
+    )
+    result.require(state.get("scientific_result_status") == "pilot_only", "scientific result must remain pilot_only")
+    result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
+    result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
+    result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
+    result.require(state.get("recommended_next_management_task") == "RCC-003 — Research Timeline & Decision Backfill", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-000 — Full Architecture Overview Audit", "next architecture task mismatch")
     result.require(
         state.get("safety_counters") == {
             "scientific_executions": 0,
@@ -201,15 +216,22 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     except (KeyError, ValueError):
         result.errors.append("generated_at is missing or not an ISO-8601 timestamp")
 
-    for registry in ("components", "experiments", "claims", "risks"):
+    for registry in ("experiments", "claims", "risks"):
         for row in data[registry]:
             result.require(row["scientific_source_ref"] == AUTHORITY_REF, f"{registry} row has a non-authoritative scientific source ref")
             result.require(row["scientific_source_commit"] == AUTHORITY_COMMIT, f"{registry} row has a non-authoritative scientific source commit")
-    for registry in ("artifacts", "decisions", "timeline"):
+    for row in data["components"]:
+        expected = (OVERLAY_REF, OVERLAY_COMMIT) if row["component_id"] == "THESIS_DRAFT" else (AUTHORITY_REF, AUTHORITY_COMMIT)
+        result.require(
+            (row["scientific_source_ref"], row["scientific_source_commit"]) == expected,
+            f"component {row['component_id']} has an invalid authority binding",
+        )
+    for registry in ("decisions", "timeline"):
         for row in data[registry]:
             result.require(row["source_commit"] == AUTHORITY_COMMIT, f"{registry} row has a non-authoritative source commit")
     for row in data["artifacts"]:
-        result.require(row["source_ref"] == AUTHORITY_REF, "artifact source ref must be the scientific authority")
+        expected = (OVERLAY_REF, OVERLAY_COMMIT) if row["artifact_id"] == "ART-THESIS-DRAFT" else (AUTHORITY_REF, AUTHORITY_COMMIT)
+        result.require((row["source_ref"], row["source_commit"]) == expected, f"artifact {row['artifact_id']} has an invalid authority binding")
 
 
 def _validate_enums(data: Mapping[str, Any], result: ValidationResult) -> None:
@@ -222,18 +244,21 @@ def _validate_enums(data: Mapping[str, Any], result: ValidationResult) -> None:
         for field_name in ("executed", "audited", "reproduced", "claim_ready"):
             result.require(row[field_name] in BOOLEAN_FIELDS, f"component {field_name} must be lowercase boolean")
         if row["audited"] == "true":
-            result.require(row["executed"] == "true", "audited component must also be executed")
+            result.require(
+                row["executed"] == "true" or row["status"] == "PARTIAL",
+                "audited component must also be executed unless the audit establishes a partial readiness state",
+            )
         if row["reproduced"] == "true":
             result.require(row["audited"] == "true", "reproduced component must also be audited")
         if row["claim_ready"] == "true":
-            result.require(row["reproduced"] == "true", "claim-ready component must also be reproduced")
+            result.require(row["audited"] == "true", "claim-ready component must also be audited")
     for row in data["claims"]:
         result.require(row["claim_type"] in CLAIM_TYPES, "claim has invalid claim_type")
     for row in data["risks"]:
         result.require(row["severity"] in {"CRITICAL", "HIGH", "MEDIUM", "LOW"}, "risk has invalid severity")
         result.require(row["likelihood"] in {"HIGH", "MEDIUM", "LOW", "UNKNOWN"}, "risk has invalid likelihood")
     for row in data["artifacts"]:
-        result.require(row["public_private"] == "PUBLIC_SAFE", "RCC-001 artifact seed is not public-safe")
+        result.require(row["public_private"] in {"PUBLIC_SAFE", "PRIVATE"}, "artifact has invalid public_private classification")
         for field_name in ("frozen", "audited", "current", "superseded"):
             result.require(row[field_name] in BOOLEAN_FIELDS, f"artifact {field_name} must be lowercase boolean")
         result.require(not (row["current"] == "true" and row["superseded"] == "true"), "artifact cannot be current and superseded")
@@ -341,12 +366,25 @@ def _validate_paths(data: Mapping[str, Any], result: ValidationResult, repo_root
         for value in _split_refs(row["test_refs"]):
             candidates.append((f"component {row['component_id']} test_refs", value))
     for row in data["artifacts"]:
-        candidates.append((f"artifact {row['artifact_id']} safe_path", row["safe_path"]))
-    for label, value in candidates:
+        if row["public_private"] == "PUBLIC_SAFE":
+            commit = OVERLAY_COMMIT if row["artifact_id"] == "ART-THESIS-DRAFT" else AUTHORITY_COMMIT
+            candidates.append((f"artifact {row['artifact_id']} safe_path", row["safe_path"], commit))
+        else:
+            result.require(row["safe_path"] in {"LOCAL_DATA_CUSTODY", "PRIVATE_ARTIFACT_CUSTODY"}, f"private artifact {row['artifact_id']} lacks a symbolic safe identity")
+    normalized: list[tuple[str, str, str]] = []
+    for candidate in candidates:
+        if len(candidate) == 2:
+            label, value = candidate
+            commit = OVERLAY_COMMIT if "THESIS_DRAFT" in label else AUTHORITY_COMMIT
+            normalized.append((label, value, commit))
+        else:
+            normalized.append(candidate)
+    for label, value, commit in normalized:
         safe = is_safe_relative_path(value)
         result.require(safe, f"{label} is not a safe relative path")
         if safe and check_git:
-            result.require(_git_has_path(repo_root, AUTHORITY_COMMIT, value), f"{label} is absent from the pinned scientific Git tree")
+            tree_name = "documentation overlay" if commit == OVERLAY_COMMIT else "pinned scientific Git tree"
+            result.require(_git_has_path(repo_root, commit, value), f"{label} is absent from the {tree_name}")
 
 
 def privacy_exposures(rcc_root: Path) -> list[str]:

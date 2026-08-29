@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd83e73b74bbb4e177955acbc9bf7b8ae18848a3fd98c3b8beaa198b5b4a72a4 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=a2dc415791dab575e45a9027f5d53efe20b96316a9f026068ecb7c66136d9ba3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
-Generated from RCC registry version `0.1.0` at `2026-08-29T02:29:54Z`.
+Generated from RCC registry version `0.1.0` at `2026-08-29T06:30:00Z`.
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -12,55 +12,110 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 ## Current phase
 
-**EVALUATION_SCOPE_EXPANSION** — Architecture implementation and pilot feasibility are complete. Expanded evaluation and hypothesis validation remain incomplete.
+**EVALUATION_SCOPE_EXPANSION** — Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.
 
 Phase progression: ARCHITECTURE_COMPLETE → EVALUATION_SCOPE_EXPANSION → HYPOTHESIS_VALIDATION.
 
+The architecture is implemented and pilot-operational. Scientific validation is partial,
+held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+
 ## Architecture in one line
 
-HAI provenance and P1 scope -> META, STAT, and GDN candidate discovery -> normal relation evidence -> bounded rule construction -> deterministic verification and governance -> COMMON-42 -> LLM-free D1 runtime -> D0 and preregistered D2 pilot evaluation
+HAI provenance and P1 scope -> role universe -> META / STAT / GDN -> candidate union -> normal temporal profiling -> normal-only numeric references -> evidence pack -> T0 / T1 / T1-B / T2 construction -> deterministic verifier -> COMMON-42 -> rule runtime -> D1; HAI -> D0 PCA-SPE; D0 + D1 -> D2 policies -> event / episode metrics -> integrity audit
 
 ## Established facts
 
-- The pinned HAI P1 scientific architecture is implemented.
-- The GDN discovery, D0 detector, and D1 rule-only components have executed and audited pilot evidence.
-- The current detector-plus-rule pilot does not support an improvement claim.
-- The held-out OUTER path has a blocker record, not a scientific result.
+- The pinned HAI 23.05 P1 INNER architecture is implemented and its frozen pilot execution paths are audited.
+- Normal-only evidence was transformed into 42 frozen executable verified relational rules under bounded authority controls.
+- D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.
+- The OUTER path has a blocker record and no scientific result.
+
+The frozen discovery flow began with 12 reviewed sources and 12 reviewed targets (144
+possible pairs). META, STAT, and GDN each produced a top-20 ranking. Their union is an
+unscored 47-pair candidate cohort. Normal-only profiling led to 23 pair contexts and 42
+directed temporal relations, which were bound into COMMON-42. These counts establish
+pipeline execution and custody. They do not establish causality, physical truth, or a
+unique contribution from the graph arm.
+
+The four construction routes ran on the same 42-relation cohort: T0, T1, and T1-B each
+produced 42 accepted outcomes; T2 produced 39 accepted outcomes and 3 no-rule outcomes.
+T2 executed zero revise, retrieve, follow-up, or recovery actions, so the present cohort
+did not empirically exercise the verifier-feedback mechanism. The existence of an
+agentic controller therefore cannot be translated into an agentic-benefit finding.
+
+## Frozen INNER pilot observations
+
+The INNER evaluation contains 14 independent attack events. D0 PCA-SPE responded to
+11/14 with Normal FAR 0.4939336325682589 episodes/hour. D1 verified Rule-only responded
+to 13/14 with Normal FAR 40.50255787059723 episodes/hour. Their event overlap was both
+10, D0-only 1, D1-only 3, neither 0. D2 V1 and D2 V2 each responded to 11/14 and each
+recovered 0/3 D0-missed events; their Normal FAR values were 0.7056194750975128 and
+6.915070855955625 episodes/hour respectively. These are exact public frozen pilot
+observations, not new calculations.
+
+> 14 attack events are pilot evidence only. Do not describe current detection numbers as validated performance.
 
 ## Unresolved scientific questions
 
-- GDN unique scientific contribution
-- Agentic feedback advantage
-- Practical Rule-only utility
+- GDN unique and stable scientific contribution beyond META and STAT
+- Agentic verifier-feedback advantage
+- Practical Rule-only operational utility
 - Detector-plus-Rule improvement
 - Held-out generalization
 - Human explanation usefulness
 
+Graph-Guided and Agentic remain provisional contribution labels. GDN produced candidate
+evidence, but unique stable downstream usefulness remains unvalidated. The T2 control
+path exists, but current evidence does not support a verifier-feedback advantage.
+
 ## Current experiments
 
-- **GDN contribution validation** — NOT_STARTED: Implementation and pilot candidate evidence exist but unique contribution is untested Limitation: No isolated ablation currently establishes unique benefit
-- **Rule-only utility** — EXECUTED_AUDITED_PILOT: Frozen audited INNER rule-only evidence exists Limitation: High normal false-fire prevents an operational-utility claim
-- **Detector plus Rule fusion utility** — EXECUTED_AUDITED_PILOT: The audited pilot did not support detector improvement Limitation: Current policies do not establish improvement or generalization
+- **EXP-01 · 변수 관계 탐색 방법 비교** — `IMPLEMENTED_NOT_EXECUTED`. All three arms executed and were audited; each produced a top-20 and their unscored union contains 47 pairs. This establishes diversity rather than unique useful contribution.
+- **EXP-02 · 규칙 수치 기준 비교** — `IMPLEMENTED_NOT_EXECUTED`. Normal-only numeric authority and frozen references are implemented and audited. Formal comparative validation is incomplete.
+- **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED_AUDITED_PILOT`. T0 T1 and T1-B accepted 42 of 42; T2 accepted 39 of 42. T2 performed zero feedback actions so feedback was not empirically exercised.
+- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED_AUDITED_PILOT`. Integrity-audited INNER results exist. D1 responded to 13 of 14 with high FAR; D2 V1 and V2 responded to 11 of 14 and recovered none of three D0 misses.
+- **EXP-05 · 규칙 설명의 일치성 검증** — `IMPLEMENTED_NOT_EXECUTED`. A deterministic renderer and trace bindings are implemented and audited. A comprehensive explanation-consistency experiment has not run.
+- **EXP-06 · 실시간 LLM 활용 비교** — `DESIGN_ONLY`. The deployed fixed-rule runtime is LLM-free. No scientific authority establishes a real-time LLM detection comparison.
+
+Professor-driven priority is the scientific status of verified Rule-only behavior: it
+showed distinct pilot event responses, but its high normal false-alarm burden prevents an
+operational-utility claim. Expanded validation should preserve event-level metrics and
+include at least one stronger multivariate detector baseline under a new preregistration.
 
 ## Claim boundaries
 
-- **SUPPORTED_IMPLEMENTATION** — The pinned HAI P1 architecture is implemented Do not claim: The thesis is fully validated
-- **UNVALIDATED** — GDN candidate discovery is implemented and audited Do not claim: GDN uniquely improves detection or discovers causes
-- **UNVALIDATED** — Agentic construction paths are implemented Do not claim: Agentic feedback has proven performance advantage
-- **NOT_SUPPORTED** — The current INNER pilot does not support detector-plus-Rule improvement Do not claim: Fusion can never improve detection
-- **UNVALIDATED** — Held-out generalization remains unconfirmed Do not claim: The method generalizes to held-out data
+- **CLAIM-A · SUPPORTED_IMPLEMENTATION** — The pinned HAI P1 INNER architecture and its frozen execution paths were implemented. Forbidden: The thesis method is fully validated or generalized.
+- **CLAIM-B · SUPPORTED_IMPLEMENTATION** — The implemented pipeline transformed confirmed normal-data relation evidence into frozen executable rules under deterministic authority controls. Forbidden: The pipeline discovered physically true or causal rules.
+- **CLAIM-C · SUPPORTED_IMPLEMENTATION** — The verifier deterministically checks the frozen structural evidence parameter split and operational contract. Forbidden: The verifier scientifically proves the rule is valid or proves a causal relation.
+- **CLAIM-D · SUPPORTED_IMPLEMENTATION** — Given frozen rule numeric-reference authorization and input artifacts the current rule runtime evaluates without an LLM and produces deterministic traces. Forbidden: All current or future research runtime modes are LLM-free.
+- **CLAIM-E · UNVALIDATED** — The frozen GDN arm contributed set-unique candidates; their unique scientific usefulness remains unvalidated. Forbidden: GDN uniquely improves detection finds causal relations or is superior to META and STAT.
+- **CLAIM-F · NOT_SUPPORTED** — The current pilot did not establish a feedback advantage and the feedback mechanism was not empirically exercised. Forbidden: Agentic feedback improved rule quality or optimized performance.
+- **CLAIM-G · PILOT_ONLY** — In the current 14-event INNER pilot D1 responded to three D0-missed events and D0 responded to one D1-missed event. Forbidden: Rule-only generally complements or outperforms the detector.
+- **CLAIM-H · UNVALIDATED** — Rule-only showed high event response and high normal false-alarm burden in the INNER pilot; practical utility remains unvalidated. Forbidden: Rule-only is operationally deployable or practically useful as is.
+- **CLAIM-I · NOT_SUPPORTED** — The two frozen D2 policies did not improve D0 attack-event recall in the current INNER pilot. Forbidden: Detector-plus-Rule improves detection or fusion can never work.
+- **CLAIM-J · NOT_SUPPORTED** — Held-out generalization remains unconfirmed because no OUTER scientific result is available. Forbidden: The method generalizes to held-out attacks or OUTER performance failed.
+- **CLAIM-K · CONDITIONAL** — The implemented renderer is deterministically bound to frozen rule and trace information; comprehensive faithfulness remains to be evaluated. Forbidden: All explanations are scientifically faithful complete or useful to humans.
+- **CLAIM-L · UNVALIDATED** — A trace-grounded explanation interface is implemented; human usefulness has not been evaluated. Forbidden: The explanations improve understanding diagnosis trust or operations.
+- **CLAIM-M · NOT_SUPPORTED** — The system records bounded temporal relation evidence and trace-grounded violations without causal attribution. Forbidden: The graph identifies causes causal relations or root causes.
 
 ## Current risks
 
-- **HIGH / OPEN** — Fresh-machine reproducibility is incomplete Mitigation: Create and independently rehearse a public-safe bootstrap capsule
-- **CRITICAL / MITIGATING** — The visible historical checkout is not the scientific authority Mitigation: Keep every RCC view pinned to the approved authority commit
-- **MEDIUM / OPEN** — Some continuity documentation predates the canonical checkpoint Mitigation: Use frozen receipts and the post-push audit until RCC-002 reconciles summaries
+- **HIGH / OPEN** — The INNER pilot contains only 14 independent attack events so stable performance and superiority cannot be inferred.
+- **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
+- **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
+- **MEDIUM / OPEN** — Agentic feedback benefit is unvalidated because T2 activated zero feedback-repair actions.
+- **MEDIUM / OPEN** — D2 V1 and V2 recovered none of the three D0-missed pilot events and do not support improvement.
+- **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
+- **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
+- **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
+- **MEDIUM / OPEN** — Automated trace grounding does not establish human explanation usefulness.
+- **MEDIUM / MITIGATING** — Stale continuity and historical checkout context can be mistaken for current scientific authority.
 
 ## Top user TODO
 
-- Review the RCC-001 navigation, phase statement, and source-authority display.
-- Review the conservative claim wording and lifecycle distinctions.
-- Approve or reject moving to RCC-002 after reviewing this skeleton.
+- Review the full current-state summary and challenge any unsupported component status.
+- Approve or adjust the conservative claim boundaries before thesis wording uses them.
+- Inspect the architecture overview and identify components that need explanation before ARCH-000.
 
 ## Source-policy boundary
 
@@ -71,4 +126,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-**RCC-002 — Current-State Registry Population**
+Management: **RCC-003 — Research Timeline & Decision Backfill**
+
+Following architecture review: **ARCH-000 — Full Architecture Overview Audit**
+
+Scientific direction: preregister expanded Rule-only and detector comparison evidence,
+then separately test GDN stability and an actually activated budget-matched feedback arm.

@@ -1,0 +1,585 @@
+{
+  "task_id": "RCC-002",
+  "agent_role": "Agent B - Experiment and Claim Auditor",
+  "audit_mode": "READ_ONLY_PUBLIC_SAFE_EVIDENCE_COLLECTION",
+  "schema_status": "STAGING_EVIDENCE_ONLY_NOT_OFFICIAL_REGISTRY",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "documentation_overlay": {
+    "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+    "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+    "role": "NARRATIVE_CONTEXT_ONLY"
+  },
+  "source_precedence": [
+    "SCIENTIFIC_AUTHORITY_SOURCE_CODE_AND_ARTIFACTS",
+    "IMMUTABLE_AUDIT_TAG_EVIDENCE",
+    "FROZEN_PUBLIC_SAFE_RESULT_AND_AUDIT_REPORTS",
+    "RCC_000_INVENTORY",
+    "PROJECT_STATE_CONTINUITY",
+    "THESIS_DOCUMENTATION_OVERLAY_NARRATIVE_ONLY"
+  ],
+  "verified_public_observations": {
+    "candidate_universe_pairs": 144,
+    "candidate_top20_counts": {
+      "META": 20,
+      "STAT": 20,
+      "GDN": 20
+    },
+    "candidate_union_pairs": 47,
+    "candidate_union_gdn_only_pairs": 18,
+    "candidate_claim_boundary": "CANDIDATE_EVIDENCE_NOT_CAUSALITY_OR_UNIQUE_UTILITY",
+    "construction_relations": 42,
+    "construction_acceptance": {
+      "T0": "42/42",
+      "T1": "42/42",
+      "T1-B": "42/42",
+      "T2": "39/42"
+    },
+    "t2_feedback_actions": 0,
+    "inner_attack_events": 14,
+    "d0_attack_event_response": "11/14",
+    "d0_normal_far_episodes_per_hour": 0.4939336325682589,
+    "d1_attack_event_response": "13/14",
+    "d1_normal_far_episodes_per_hour": 40.50255787059723,
+    "d0_d1_event_overlap": {
+      "both": 10,
+      "d0_only": 1,
+      "d1_only": 3,
+      "neither": 0
+    },
+    "d2_v1_attack_event_response": "11/14",
+    "d2_v1_normal_far_episodes_per_hour": 0.7056194750975128,
+    "d2_v1_d0_miss_recovery": "0/3",
+    "d2_v2_attack_event_response": "11/14",
+    "d2_v2_normal_far_episodes_per_hour": 6.915070855955625,
+    "d2_v2_d0_miss_recovery": "0/3",
+    "outer_scientific_outcome": "UNAVAILABLE",
+    "held_out_generalization": "UNCONFIRMED",
+    "observation_scope": "FROZEN_INNER_PILOT_ONLY"
+  },
+  "experiments": [
+    {
+      "experiment_id": "EXP-01",
+      "name": "변수 관계 탐색 방법 비교",
+      "research_question": "Do META, STAT, and upstream-aligned GDN contribute distinct and useful candidate relations under one frozen universe and budget?",
+      "comparison": "META versus STAT versus GDN at the common top-20 budget, followed by contribution and stability analysis",
+      "dataset_scope": "HAI 23.05 P1 normal-only discovery; current outputs use the frozen 144-pair universe",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "current_evidence": "All three discovery arms executed and were audited; each produced a top-20 list and the unscored union contains 47 pairs, including 18 GDN-only candidates. This establishes candidate diversity, not unique useful contribution.",
+      "result_scope": "Discovery-arm and union artifacts exist; the comparative scientific contribution experiment has not been performed.",
+      "primary_metrics": "Seed and split stability; unique confirmed-relation contribution; downstream executable-rule yield; edge and source masking functional analysis",
+      "limitations": "No isolated ablation establishes whether GDN-only candidates are stable, physically meaningful, or downstream-useful. GDN outputs are candidate evidence and not causal graphs.",
+      "next_action": "Preregister the contribution comparison with fixed seeds, splits, masks, and downstream confirmation outcomes before execution.",
+      "claim_impact": "GDN implementation and candidate diversity are supportable; GDN unique scientific benefit is unvalidated.",
+      "linked_component_ids": [
+        "META_DISCOVERY",
+        "STAT_DISCOVERY",
+        "GDN_DISCOVERY",
+        "CANDIDATE_UNION",
+        "RELATION_PROFILING"
+      ],
+      "supporting_source_paths": [
+        "docs/task_reports/TASK-039C_META_RESULT.json",
+        "docs/task_reports/TASK-039C_STAT_RESULT.json",
+        "docs/task_reports/TASK-039C_GDN_RESULT.json",
+        "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json",
+        "docs/professor_first_results_v1/05_IMPLEMENTATION_STATUS_MATRIX.md"
+      ]
+    },
+    {
+      "experiment_id": "EXP-02",
+      "name": "규칙 수치 기준 비교",
+      "research_question": "How do frozen relation-rule numeric criteria for response time or lag, tolerance, and persistence affect validity and utility?",
+      "comparison": "Alternative preregistered relation-rule numeric criteria; D0 PCA threshold tuning is explicitly outside this experiment",
+      "dataset_scope": "Normal-only P1 profiling and calibration authorities, with any later utility evaluation separately authorized",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "current_evidence": "Normal-only numeric authority and frozen reference bindings are implemented, materialized, and audited for the current COMMON-42 runtime. Formal comparative sensitivity validation is incomplete.",
+      "result_scope": "Current numeric references support deterministic execution; they do not establish optimal numeric criteria.",
+      "primary_metrics": "Validity retention; abstention and firing behavior; normal false-alarm burden; attack-event response under separately frozen evaluation",
+      "limitations": "Current fit, confirmation, lag, tolerance, and persistence choices are mostly preregistered but sensitivity remains untested. Labels must not select numeric authority.",
+      "next_action": "Design a new normal-data-only comparative protocol and freeze candidate criteria before any label-aware evaluation.",
+      "claim_impact": "Numeric provenance and deterministic binding are supportable; optimality or superiority of the chosen criteria is not.",
+      "linked_component_ids": [
+        "RELATION_PROFILING",
+        "NUMERIC_AUTHORITY",
+        "EVIDENCE_PACK",
+        "RULE_RUNTIME"
+      ],
+      "supporting_source_paths": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZED_REPORT.md",
+        "docs/professor_first_results_v1/06_HYPERPARAMETER_PROVENANCE_REGISTER.md"
+      ]
+    },
+    {
+      "experiment_id": "EXP-03",
+      "name": "검증 피드백 기반 규칙 생성 비교",
+      "research_question": "Does bounded verifier feedback improve rule construction relative to deterministic, one-shot, and budget-matched independent-generation controls?",
+      "comparison": "T0 versus T1 versus T1-B versus T2",
+      "dataset_scope": "Frozen 42-relation construction cohort",
+      "status": "EXECUTED_AUDITED_PILOT",
+      "current_evidence": "T0, T1, and T1-B accepted 42 of 42 relations; T2 accepted 39 of 42. T2 performed zero revise, retrieve, follow-up, or recovery actions, so its feedback mechanism was not empirically exercised.",
+      "result_scope": "One frozen construction cohort and provider realization; validity and cost observations only, not downstream utility.",
+      "primary_metrics": "Accepted-relation yield; no-rule count; validity issue distribution; feedback actions and recoveries; provider-call cost; downstream rule quality under a future preregistered test",
+      "limitations": "The current cohort does not contain an exercised feedback-recovery path. T2 did not outperform T1 or T1-B, and utility was not tested in the construction comparison.",
+      "next_action": "If retained as a thesis hypothesis, preregister an independent cohort with repairable cases and measure activated feedback recovery against a budget-matched T1-B control.",
+      "claim_impact": "The four construction paths were implemented and executed; agentic verifier-feedback advantage is not established by the current pilot.",
+      "linked_component_ids": [
+        "T0_TEMPLATE",
+        "T1_ONE_SHOT",
+        "T1B_REPEAT",
+        "T2_AGENTIC_FEEDBACK",
+        "DETERMINISTIC_VERIFIER"
+      ],
+      "supporting_source_paths": [
+        "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CONSTRUCTION.json",
+        "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CLAIMS.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json",
+        "docs/professor_first_results_v1/04_METHOD_AND_CODE_ARCHITECTURE.md"
+      ]
+    },
+    {
+      "experiment_id": "EXP-04",
+      "name": "검증된 관계 규칙의 이상탐지 성능 비교",
+      "research_question": "Can verified relational rules detect attack events while controlling normal false-alarm episodes, alone or combined with a detector?",
+      "comparison": "D0 detector-only versus D1 verified Rule-only versus D2 detector-plus-Rule policies",
+      "dataset_scope": "HAI 23.05 P1 INNER; 14 independent attack events; held-out OUTER outcome unavailable",
+      "status": "EXECUTED_AUDITED_PILOT",
+      "current_evidence": "Frozen audited INNER results exist for D0, D1, D2 V1, and D2 V2. D1 responded to 13 of 14 events but had high normal FAR; D2 V1 and V2 each responded to 11 of 14 and recovered none of the three D0-missed events.",
+      "result_scope": "A single 14-event INNER pilot with integrity-audited frozen artifacts.",
+      "primary_metrics": "Attack-event Recall and Normal FAR episodes per hour; D0-miss recovery is a secondary fusion metric",
+      "limitations": "The event count is small; D1 normal FAR is high; D2 V1 and V2 do not establish improvement; there is no held-out result and PCA-SPE is a simple reference baseline.",
+      "next_action": "After new preregistration, expand event evidence and include at least one stronger multivariate detector baseline before making performance claims.",
+      "claim_impact": "Rule signal and D0-D1 event-level complementarity are pilot observations; operational Rule-only utility, fusion improvement, and generalization remain unsupported or unvalidated.",
+      "linked_component_ids": [
+        "D0_PCA_SPE",
+        "D1_RULE_ONLY",
+        "D2_V1",
+        "D2_V2",
+        "ATTACK_EVENT_RECALL",
+        "NORMAL_FAR",
+        "RESULT_INTEGRITY"
+      ],
+      "supporting_source_paths": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_REPORT.md",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_ARM_METRICS.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_EVENT_OVERLAP.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_REPORT.md"
+      ]
+    },
+    {
+      "experiment_id": "EXP-05",
+      "name": "규칙 설명의 일치성 검증",
+      "research_question": "Does the explanation output faithfully and reproducibly represent the frozen rule, runtime trace, numeric provenance, and evaluated outcome without unsupported content?",
+      "comparison": "Automated explanation conformance across PASS, FAIL, and abstain outcomes; human usefulness is a separate future question",
+      "dataset_scope": "Synthetic and representative trace-grounded explanation artifacts; no human-expert evaluation",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "current_evidence": "A deterministic explanation renderer and trace-binding checks are implemented and audited, with representative explanation records. A formal comprehensive explanation-consistency experiment has not been executed.",
+      "result_scope": "Implementation-level automated grounding evidence only.",
+      "primary_metrics": "Source and target match; direction and time-criterion match; numeric provenance; PASS, FAIL, and abstain consistency; outcome consistency; omission; unsupported number, variable, or causal claim; deterministic reproducibility",
+      "limitations": "Representative automated artifacts do not establish complete faithfulness across the scientific corpus and do not evaluate human understanding or operational usefulness.",
+      "next_action": "Preregister automated corpus-level faithfulness checks; add a human study only if the thesis scope requires a human-usefulness claim.",
+      "claim_impact": "Trace-grounded deterministic rendering is an implementation fact; explanation faithfulness is conditional and human usefulness is unvalidated.",
+      "linked_component_ids": [
+        "SATISFACTION_TRACE",
+        "EXPLANATION_RENDERER",
+        "RULE_RUNTIME"
+      ],
+      "supporting_source_paths": [
+        "src/paperworks/contracts/explanation_v1.py",
+        "docs/task_reports/TASK-032E_EXPLANATION_REPORT.json",
+        "docs/professor_first_results_v1/04_METHOD_AND_CODE_ARCHITECTURE.md",
+        "docs/post_push_checkpoint_v1/08_IMPLEMENTATION_COMPLETENESS.md"
+      ]
+    },
+    {
+      "experiment_id": "EXP-06",
+      "name": "실시간 LLM 활용 비교",
+      "research_question": "Can a future live-LLM arm be compared as an independent detection path without receiving the fixed-rule arm's outcome or ground truth?",
+      "comparison": "Future R0 fixed deterministic runtime versus a separately authorized R1 live-LLM mode under strict information separation",
+      "dataset_scope": "CONDITIONAL_FUTURE; no current scientific result",
+      "status": "DESIGN_ONLY",
+      "current_evidence": "The current deployed fixed-rule runtime is LLM-free. No authority evidence establishes a current real-time LLM detection comparison.",
+      "result_scope": "No experimental outcome.",
+      "primary_metrics": "To be preregistered only after role, input, output, latency, cost, and leakage boundaries are frozen",
+      "limitations": "R1 must not receive the R0 final alarm or normal decision, final violation or satisfied outcome, test labels, or ground-truth outcome; otherwise it is explanation generation rather than an independent detection comparison.",
+      "next_action": "Keep conditional and outside the current core contribution unless the user separately approves a preregistered design.",
+      "claim_impact": "No live-LLM detection benefit claim is supportable; LLM-free wording applies to the current fixed-rule runtime only.",
+      "linked_component_ids": [
+        "RULE_RUNTIME",
+        "EXPLANATION_RENDERER"
+      ],
+      "supporting_source_paths": [
+        "src/paperworks/contracts/runtime_v1.py",
+        "docs/professor_first_results_v1/04_METHOD_AND_CODE_ARCHITECTURE.md",
+        "docs/post_push_checkpoint_v1/08_IMPLEMENTATION_COMPLETENESS.md"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLAIM-A",
+      "claim_text": "The end-to-end HAI P1 INNER architecture has been implemented.",
+      "claim_type": "IMPLEMENTATION",
+      "status": "SUPPORTED_IMPLEMENTATION",
+      "supporting_evidence": [
+        "docs/post_push_checkpoint_v1/08_IMPLEMENTATION_COMPLETENESS.md",
+        "docs/professor_first_results_v1/05_IMPLEMENTATION_STATUS_MATRIX.md",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_REPORT.md"
+      ],
+      "contradicting_evidence": [
+        "Empirical validation is partial, OUTER has no scientific result, and fresh-machine portability is weak."
+      ],
+      "allowed_wording": "The pinned HAI P1 INNER architecture and its frozen execution paths were implemented.",
+      "forbidden_wording": "The thesis method is fully validated or generalized.",
+      "validation_needed": "Expanded independent evaluation remains required for scientific-performance and generalization claims.",
+      "linked_experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-B",
+      "claim_text": "Normal data can be processed into executable verified relational rules within the implemented pipeline.",
+      "claim_type": "IMPLEMENTATION",
+      "status": "SUPPORTED_IMPLEMENTATION",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZED_REPORT.md",
+        "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CONSTRUCTION.json"
+      ],
+      "contradicting_evidence": [
+        "The evidence is for the frozen P1 delayed-response family and does not establish physical truth or general rule-family coverage."
+      ],
+      "allowed_wording": "The implemented pipeline transformed confirmed normal-data relation evidence into frozen executable rules under deterministic authority controls.",
+      "forbidden_wording": "The pipeline discovered physically true or causal rules.",
+      "validation_needed": "Broader datasets and rule families require separate preregistration and evaluation.",
+      "linked_experiment_ids": [
+        "EXP-02",
+        "EXP-03"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-C",
+      "claim_text": "The deterministic verifier checks structural, evidence-bound, parameter, split, and execution-contract validity.",
+      "claim_type": "IMPLEMENTATION",
+      "status": "SUPPORTED_IMPLEMENTATION",
+      "supporting_evidence": [
+        "src/paperworks/contracts/verifier_v1.py",
+        "docs/professor_first_results_v1/04_METHOD_AND_CODE_ARCHITECTURE.md",
+        "docs/professor_first_results_v1/07_CLAIM_MATRIX.md"
+      ],
+      "contradicting_evidence": [
+        "Verifier acceptance is not scientific, causal, or deployment-safety proof."
+      ],
+      "allowed_wording": "The verifier deterministically checks the frozen structural, evidence, parameter, split, and operational contract.",
+      "forbidden_wording": "The verifier scientifically proves the rule valid or proves a causal relation.",
+      "validation_needed": "No additional validation is needed for the narrow implementation claim; scientific utility remains separate.",
+      "linked_experiment_ids": [
+        "EXP-03",
+        "EXP-05"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-D",
+      "claim_text": "Fixed-rule runtime execution is LLM-free and deterministic given frozen rule, reference, and input authorities.",
+      "claim_type": "IMPLEMENTATION",
+      "status": "SUPPORTED_IMPLEMENTATION",
+      "supporting_evidence": [
+        "src/paperworks/contracts/runtime_v1.py",
+        "src/paperworks/v6/task039e3_r2r_utility_evaluator_rule_engine_v1.py",
+        "docs/professor_first_results_v1/04_METHOD_AND_CODE_ARCHITECTURE.md"
+      ],
+      "contradicting_evidence": [
+        "This claim applies to the frozen fixed-rule runtime and does not characterize any future live-LLM mode."
+      ],
+      "allowed_wording": "Given frozen rule, numeric-reference, authorization, and input artifacts, the current rule runtime evaluates without an LLM and produces deterministic traces.",
+      "forbidden_wording": "All current or future research runtime modes are LLM-free.",
+      "validation_needed": "Fresh-machine reproduction is still needed for portability, not for the narrow code-path characterization.",
+      "linked_experiment_ids": [
+        "EXP-04",
+        "EXP-05",
+        "EXP-06"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-E",
+      "claim_text": "GDN provides unique useful relations beyond META and STAT.",
+      "claim_type": "SCIENTIFIC_CONTRIBUTION",
+      "status": "UNVALIDATED",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039C_GDN_RESULT.json",
+        "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json"
+      ],
+      "contradicting_evidence": [
+        "Eighteen GDN-only top-20 union candidates show set uniqueness, but no isolated stability, confirmation, rule-yield, or utility study establishes useful unique contribution."
+      ],
+      "allowed_wording": "The frozen GDN arm contributed candidates not present in the META or STAT top-20 sets; their unique scientific usefulness remains unvalidated.",
+      "forbidden_wording": "GDN uniquely improves detection, finds causal relations, or is superior to META and STAT.",
+      "validation_needed": "Preregistered seed and split stability, isolated unique-confirmation yield, and edge or source masking ablations.",
+      "linked_experiment_ids": [
+        "EXP-01"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-F",
+      "claim_text": "Agentic verifier feedback improves rule quality.",
+      "claim_type": "SCIENTIFIC_CONTRIBUTION",
+      "status": "NOT_SUPPORTED",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CONSTRUCTION.json",
+        "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CLAIMS.json"
+      ],
+      "contradicting_evidence": [
+        "T2 performed zero feedback actions and accepted 39 of 42 relations while T0, T1, and T1-B each accepted 42 of 42 in the current cohort."
+      ],
+      "allowed_wording": "The current pilot did not establish an advantage from verifier feedback, and the feedback mechanism was not empirically exercised.",
+      "forbidden_wording": "Agentic feedback improved rule quality or optimized performance.",
+      "validation_needed": "An independent, budget-matched, preregistered cohort containing repairable cases must exercise and measure actual feedback recoveries.",
+      "linked_experiment_ids": [
+        "EXP-03"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-G",
+      "claim_text": "Verified Rule-only showed different attack-event responses from D0 in the current INNER pilot.",
+      "claim_type": "UTILITY",
+      "status": "PILOT_ONLY",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_EVENT_OVERLAP.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_REPORT.md"
+      ],
+      "contradicting_evidence": [
+        "The comparison covers only 14 INNER events and D1 has a high normal false-alarm burden."
+      ],
+      "allowed_wording": "In the current 14-event INNER pilot, D1 responded to three events missed by D0 and D0 responded to one event missed by D1.",
+      "forbidden_wording": "Rule-only generally complements or outperforms the detector.",
+      "validation_needed": "Independent expanded-event and held-out evaluation with frozen metrics.",
+      "linked_experiment_ids": [
+        "EXP-04"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-H",
+      "claim_text": "Rule-only is operationally useful.",
+      "claim_type": "UTILITY",
+      "status": "UNVALIDATED",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_ARM_METRICS.json"
+      ],
+      "contradicting_evidence": [
+        "D1 normal FAR was approximately 40.5026 episodes per hour in the 14-event INNER pilot, so the current configuration does not support operational deployment."
+      ],
+      "allowed_wording": "Rule-only produced high event sensitivity and high normal false-alarm burden in the current INNER pilot; practical utility remains unvalidated.",
+      "forbidden_wording": "Rule-only is operationally deployable or practically useful as is.",
+      "validation_needed": "A separately preregistered operational evaluation with acceptable false-alarm criteria, expanded events, and held-out evidence.",
+      "linked_experiment_ids": [
+        "EXP-04"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-I",
+      "claim_text": "Detector plus Rule improves detection performance.",
+      "claim_type": "UTILITY",
+      "status": "NOT_SUPPORTED",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_REPORT.md",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_THESIS_CLAIMS.json"
+      ],
+      "contradicting_evidence": [
+        "D2 V1 and D2 V2 each matched D0's 11 of 14 event response, recovered zero of three D0 misses, and added normal false-alarm cost in the current INNER pilot."
+      ],
+      "allowed_wording": "The two frozen D2 policies did not improve D0 attack-event recall in the current INNER pilot.",
+      "forbidden_wording": "Detector-plus-Rule improves detection, or fusion can never work.",
+      "validation_needed": "Any broader fusion claim requires a new preregistered policy and independent data; current INNER tuning is closed.",
+      "linked_experiment_ids": [
+        "EXP-04"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-J",
+      "claim_text": "Held-out generalization has been demonstrated.",
+      "claim_type": "GENERALIZATION",
+      "status": "NOT_SUPPORTED",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json",
+        "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md"
+      ],
+      "contradicting_evidence": [
+        "The authorized OUTER attempt stopped at feature-custody access before byte reads, parsing, model execution, predictions, labels, or metrics; no scientific outcome exists."
+      ],
+      "allowed_wording": "Held-out generalization remains unconfirmed because no OUTER scientific result is available.",
+      "forbidden_wording": "The method generalizes to held-out attacks, or OUTER performance failed.",
+      "validation_needed": "A newly authorized and preregistered held-out study with valid custody and no reuse of the consumed attempt.",
+      "linked_experiment_ids": [
+        "EXP-04"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-K",
+      "claim_text": "The explanation faithfully reproduces frozen rule and runtime-trace information.",
+      "claim_type": "IMPLEMENTATION",
+      "status": "CONDITIONAL",
+      "supporting_evidence": [
+        "src/paperworks/contracts/explanation_v1.py",
+        "docs/task_reports/TASK-032E_EXPLANATION_REPORT.json"
+      ],
+      "contradicting_evidence": [
+        "Representative deterministic grounding checks exist, but no comprehensive corpus-level omission and faithfulness evaluation is frozen."
+      ],
+      "allowed_wording": "The renderer is deterministically bound to the accepted rule, verifier result, numeric references, runtime trace, and input window in the implemented contract.",
+      "forbidden_wording": "All generated explanations are scientifically faithful, complete, or useful to humans.",
+      "validation_needed": "Execute a preregistered automated faithfulness audit across all relevant outcomes and error classes.",
+      "linked_experiment_ids": [
+        "EXP-05"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-L",
+      "claim_text": "The explanation improves human understanding or operations.",
+      "claim_type": "HUMAN_EVALUATION",
+      "status": "UNVALIDATED",
+      "supporting_evidence": [
+        "docs/post_push_checkpoint_v1/08_IMPLEMENTATION_COMPLETENESS.md",
+        "docs/professor_first_results_v1/07_CLAIM_MATRIX.md"
+      ],
+      "contradicting_evidence": [
+        "No human-expert usefulness evaluation has been performed."
+      ],
+      "allowed_wording": "A trace-grounded explanation interface is implemented; human usefulness has not been evaluated.",
+      "forbidden_wording": "The explanations improve understanding, diagnosis, trust, or operations.",
+      "validation_needed": "A separate human-subject or expert evaluation if this claim becomes thesis-essential.",
+      "linked_experiment_ids": [
+        "EXP-05"
+      ]
+    },
+    {
+      "claim_id": "CLAIM-M",
+      "claim_text": "The discovered relations are causal or root-cause relationships.",
+      "claim_type": "SCIENTIFIC_CONTRIBUTION",
+      "status": "NOT_SUPPORTED",
+      "supporting_evidence": [
+        "docs/task_reports/TASK-039C_META_RESULT.json",
+        "docs/task_reports/TASK-039C_STAT_RESULT.json",
+        "src/paperworks/contracts/explanation_v1.py"
+      ],
+      "contradicting_evidence": [
+        "Discovery artifacts explicitly limit outputs to candidate or statistical evidence, and explanation contracts prohibit causal and root-cause claims."
+      ],
+      "allowed_wording": "The system records bounded temporal relation evidence and trace-grounded rule violations without causal attribution.",
+      "forbidden_wording": "The graph identifies causes, causal relations, or root causes.",
+      "validation_needed": "Causal claims would require a separate causal design and evidence authority not present in the current project.",
+      "linked_experiment_ids": [
+        "EXP-01",
+        "EXP-05"
+      ]
+    }
+  ],
+  "mismatches": [
+    {
+      "mismatch_id": "MM-B-01",
+      "severity": "HIGH",
+      "category": "PILOT_LANGUAGE",
+      "finding": "Professor-facing wording that says rule-signal complementarity was confirmed can be read as broader validation.",
+      "evidence_path": "docs/professor_first_results_v1/01_ONE_PAGE_EXECUTIVE_SUMMARY.md",
+      "required_rcc_treatment": "State that D0-D1 complementarity was observed only in the frozen 14-event INNER pilot."
+    },
+    {
+      "mismatch_id": "MM-B-02",
+      "severity": "HIGH",
+      "category": "GDN_CONTRIBUTION",
+      "finding": "A completed and audited GDN discovery arm plus 18 GDN-only top-20 union candidates does not establish unique stable or useful scientific contribution.",
+      "evidence_path": "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json",
+      "required_rcc_treatment": "Separate executed candidate diversity from the unperformed EXP-01 contribution validation."
+    },
+    {
+      "mismatch_id": "MM-B-03",
+      "severity": "HIGH",
+      "category": "AGENTIC_WORDING",
+      "finding": "The T2 arm is structurally a verifier-feedback controller, but the current cohort exercised zero feedback actions and provides no agentic-advantage evidence.",
+      "evidence_path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CLAIMS.json",
+      "required_rcc_treatment": "Do not describe current Rule-only utility or construction success as an Agentic benefit."
+    },
+    {
+      "mismatch_id": "MM-B-04",
+      "severity": "HIGH",
+      "category": "RULE_ONLY_UTILITY",
+      "finding": "D1 responded to 13 of 14 events but its normal FAR was approximately 40.5026 episodes per hour.",
+      "evidence_path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_REPORT.md",
+      "required_rcc_treatment": "Present sensitivity and false-alarm burden together; do not call Rule-only operationally useful."
+    },
+    {
+      "mismatch_id": "MM-B-05",
+      "severity": "HIGH",
+      "category": "FUSION_GENERALIZATION",
+      "finding": "Current D2 V1 and V2 results support a negative finding only for two frozen policies on the INNER pilot, not for fusion in general.",
+      "evidence_path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_REPORT.md",
+      "required_rcc_treatment": "Use policy-specific, INNER-scoped wording and prohibit both improvement and universal-impossibility claims."
+    },
+    {
+      "mismatch_id": "MM-B-06",
+      "severity": "HIGH",
+      "category": "OUTER_RESULT",
+      "finding": "The old OUTER path has no scientific performance outcome; it stopped at custody access before feature bytes, semantic parsing, labels, predictions, or metrics.",
+      "evidence_path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json",
+      "required_rcc_treatment": "Record OUTER as unavailable and generalization as unconfirmed, not as failed performance."
+    },
+    {
+      "mismatch_id": "MM-B-07",
+      "severity": "MEDIUM",
+      "category": "VERIFIER_SCOPE",
+      "finding": "The term validity can be misread as scientific truth, causality, or deployment safety, while the verifier checks deterministic contract admissibility.",
+      "evidence_path": "src/paperworks/contracts/verifier_v1.py",
+      "required_rcc_treatment": "Always qualify validity as structural, evidence-bound, parameter, split, and operational-contract validity."
+    },
+    {
+      "mismatch_id": "MM-B-08",
+      "severity": "MEDIUM",
+      "category": "EXPLANATION_SCOPE",
+      "finding": "A completed deterministic explanation renderer and representative grounding artifacts do not establish human usefulness or full-corpus faithfulness.",
+      "evidence_path": "docs/task_reports/TASK-032E_EXPLANATION_REPORT.json",
+      "required_rcc_treatment": "Separate renderer implementation from EXP-05 faithfulness validation and human evaluation."
+    },
+    {
+      "mismatch_id": "MM-B-09",
+      "severity": "MEDIUM",
+      "category": "RUNTIME_SCOPE",
+      "finding": "LLM-free runtime is true for the current frozen fixed-rule execution path but cannot be generalized to the conditional future live-LLM comparison.",
+      "evidence_path": "src/paperworks/contracts/runtime_v1.py",
+      "required_rcc_treatment": "Scope LLM-free wording to the current D1 fixed-rule runtime."
+    },
+    {
+      "mismatch_id": "MM-B-10",
+      "severity": "MEDIUM",
+      "category": "REPRODUCIBILITY_SCOPE",
+      "finding": "Frozen result integrity and traceability are strong, but fresh-machine portability remains weak; audited artifacts are not equivalent to an independent fresh-machine reproduction.",
+      "evidence_path": "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md",
+      "required_rcc_treatment": "Keep reproduced and fresh-machine portable statuses distinct."
+    }
+  ],
+  "coordinator_notes": [
+    "EXP-01, EXP-02, and EXP-05 classify the comparative experiment as not executed even though their supporting components and artifacts exist.",
+    "EXP-03 and EXP-04 classify the existing outcomes as audited pilots, not validated or generalized findings.",
+    "EXP-06 is conditional and future; no current live-LLM detection outcome exists.",
+    "CLAIM-F and CLAIM-I use NOT_SUPPORTED for the affirmative improvement propositions; the broader research questions may still be tested only under new preregistration.",
+    "CLAIM-K uses CONDITIONAL because structural trace grounding is implemented but comprehensive explanation-faithfulness evaluation is incomplete.",
+    "The current contribution should remain centered on graph-guided rule construction and deterministic verification, with Rule-only utility treated as a professor-prioritized but unresolved scientific question."
+  ],
+  "safety_counters": {
+    "scientific_executions": 0,
+    "metric_recomputations": 0,
+    "test2_feature_accesses": 0,
+    "test2_label_accesses": 0,
+    "private_payload_accesses": 0,
+    "private_exposures": 0,
+    "official_registry_edits": 0,
+    "production_code_edits": 0,
+    "remote_operations": 0
+  },
+  "verdict": "PASS_STAGING_EVIDENCE_READY_FOR_COORDINATOR_REVIEW"
+}

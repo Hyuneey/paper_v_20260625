@@ -31,9 +31,9 @@ is a read-only narrative overlay, not scientific authority. See
 
 **EVALUATION_SCOPE_EXPANSION**
 
-Architecture implementation and pilot feasibility are complete. Expanded
-evaluation and hypothesis validation remain incomplete. This is not a claim
-of final thesis validation.
+Architecture implementation and frozen INNER pilot operation are complete.
+Scientific validation is partial; expanded evaluation and hypothesis
+validation remain incomplete. This is not a claim of final thesis validation.
 
 ## Important distinction
 

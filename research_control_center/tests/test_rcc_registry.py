@@ -46,6 +46,11 @@ class RegistryValidationTests(unittest.TestCase):
         validator._validate_authority(data, result)
         self.assertEqual([], result.errors)
         self.assertEqual(3, len(data["state"]["top_user_todo"]))
+        self.assertEqual(32, len(data["components"]))
+        self.assertEqual(6, len(data["experiments"]))
+        self.assertEqual(13, len(data["claims"]))
+        self.assertEqual(10, len(data["risks"]))
+        self.assertEqual(26, len(data["artifacts"]))
         self.assertEqual(
             {
                 "scientific_executions": 0,
@@ -58,10 +63,22 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_every_scientific_source_commit_is_pinned(self) -> None:
         data = load_registry(RCC_ROOT)
-        for name in ("components", "experiments", "claims", "risks"):
+        for name in ("experiments", "claims", "risks"):
             self.assertEqual({AUTHORITY_COMMIT}, {row["scientific_source_commit"] for row in data[name]})
-        for name in ("artifacts", "decisions", "timeline"):
+        self.assertEqual(
+            {validator.OVERLAY_COMMIT},
+            {row["scientific_source_commit"] for row in data["components"] if row["component_id"] == "THESIS_DRAFT"},
+        )
+        self.assertEqual(
+            {AUTHORITY_COMMIT},
+            {row["scientific_source_commit"] for row in data["components"] if row["component_id"] != "THESIS_DRAFT"},
+        )
+        for name in ("decisions", "timeline"):
             self.assertEqual({AUTHORITY_COMMIT}, {row["source_commit"] for row in data[name]})
+        self.assertEqual(
+            {validator.OVERLAY_COMMIT},
+            {row["source_commit"] for row in data["artifacts"] if row["artifact_id"] == "ART-THESIS-DRAFT"},
+        )
 
     def test_path_safety_accepts_only_repository_relative_posix_paths(self) -> None:
         self.assertTrue(validator.is_safe_relative_path("docs/report.md"))
@@ -75,6 +92,13 @@ class RegistryValidationTests(unittest.TestCase):
         result = validator.ValidationResult()
         validator._validate_paths(data, result, RCC_ROOT.parent, True)
         self.assertEqual([], result.errors)
+
+    def test_no_stale_seed_identifiers_remain(self) -> None:
+        data = load_registry(RCC_ROOT)
+        self.assertNotIn("EXP-GDN-CONTRIBUTION", {row["experiment_id"] for row in data["experiments"]})
+        self.assertNotIn("CLAIM-ARCH-IMPLEMENTED", {row["claim_id"] for row in data["claims"]})
+        self.assertEqual({f"EXP-{index:02d}" for index in range(1, 7)}, {row["experiment_id"] for row in data["experiments"]})
+        self.assertEqual({f"CLAIM-{letter}" for letter in "ABCDEFGHIJKLM"}, {row["claim_id"] for row in data["claims"]})
 
     def test_local_authority_refs_resolve_to_exact_pins(self) -> None:
         result = validator.ValidationResult()

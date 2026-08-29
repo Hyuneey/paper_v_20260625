@@ -35,6 +35,6 @@ may still be unexecuted; an audited pilot may still be unreproduced; and a
 reproduced result may still be too narrow for a thesis claim. The registry and
 dashboard preserve these distinctions component by component.
 
-RCC-001 intentionally provides an overview rather than a complete component
-catalog. RCC-002 will populate the detailed architecture inventory from the
-pinned scientific source.
+RCC-002 populates the high-level 32-component inventory from the pinned source.
+Function-level dependencies, ownership, and gaps remain deferred to
+`ARCH-000 — Full Architecture Overview Audit` after user approval.

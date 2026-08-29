@@ -2,64 +2,73 @@
   "schema_version": "rcc-current-state-v1",
   "rcc_version": "0.1.0",
   "registry_version": "0.1.0",
-  "generated_at": "2026-08-29T02:29:54Z",
+  "generated_at": "2026-08-29T06:30:00Z",
+  "last_updated": "2026-08-29",
   "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
-  "scientific_authority": {
-    "ref": "origin/research-v6-thesis-checkpoint",
-    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
-  },
-  "immutable_scientific_pin": {
-    "tag": "thesis-v1-post-push-audit",
-    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
-  },
-  "documentation_overlay": {
-    "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
-    "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
-    "role": "READ_ONLY_DOCUMENTATION_OVERLAY"
-  },
-  "non_authoritative_checkout": {
-    "ref": "task-039c-gdn",
-    "commit": "c0efdb6218385ec326be1a929371242314e63cb6",
-    "authoritative": false
-  },
+  "scientific_authority": {"ref": "origin/research-v6-thesis-checkpoint", "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"},
+  "immutable_scientific_pin": {"tag": "thesis-v1-post-push-audit", "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"},
+  "documentation_overlay": {"ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1", "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743", "role": "READ_ONLY_DOCUMENTATION_OVERLAY"},
+  "non_authoritative_checkout": {"ref": "task-039c-gdn", "commit": "c0efdb6218385ec326be1a929371242314e63cb6", "authoritative": false},
+  "research_stage": {"architecture_complete": true, "evaluation_scope_expansion": "current", "hypothesis_validation": "pending"},
   "current_phase": "EVALUATION_SCOPE_EXPANSION",
-  "phase_progression": [
-    "ARCHITECTURE_COMPLETE",
-    "EVALUATION_SCOPE_EXPANSION",
-    "HYPOTHESIS_VALIDATION"
+  "phase_progression": ["ARCHITECTURE_COMPLETE", "EVALUATION_SCOPE_EXPANSION", "HYPOTHESIS_VALIDATION"],
+  "current_phase_statement": "Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.",
+  "current_scope": {"dataset": "HAI 23.05", "process": "P1 Boiler", "evaluation_stage": "Frozen INNER pilot; OUTER scientific result unavailable"},
+  "architecture_flow": "HAI provenance and P1 scope -> role universe -> META / STAT / GDN -> candidate union -> normal temporal profiling -> normal-only numeric references -> evidence pack -> T0 / T1 / T1-B / T2 construction -> deterministic verifier -> COMMON-42 -> rule runtime -> D1; HAI -> D0 PCA-SPE; D0 + D1 -> D2 policies -> event / episode metrics -> integrity audit",
+  "architecture_overview": [
+    {"lane": "Evidence and discovery", "nodes": ["DATA_PROVENANCE", "VARIABLE_ROLE_UNIVERSE", "META_DISCOVERY", "STAT_DISCOVERY", "GDN_DISCOVERY", "CANDIDATE_UNION"]},
+    {"lane": "Rule construction", "nodes": ["RELATION_PROFILING", "NUMERIC_AUTHORITY", "EVIDENCE_PACK", "T0_TEMPLATE", "T1_ONE_SHOT", "T1B_REPEAT", "T2_AGENTIC_FEEDBACK", "DETERMINISTIC_VERIFIER", "COMMON42_FREEZE"]},
+    {"lane": "Runtime and evaluation", "nodes": ["RULE_RUNTIME", "D1_RULE_ONLY", "D0_PCA_SPE", "D2_V1", "D2_V2", "EPISODE_CONSTRUCTION", "ATTACK_EVENT_RECALL", "NORMAL_FAR", "RESULT_INTEGRITY"]}
   ],
-  "current_phase_statement": "Architecture implementation and pilot feasibility are complete. Expanded evaluation and hypothesis validation remain incomplete.",
-  "architecture_flow": "HAI provenance and P1 scope -> META, STAT, and GDN candidate discovery -> normal relation evidence -> bounded rule construction -> deterministic verification and governance -> COMMON-42 -> LLM-free D1 runtime -> D0 and preregistered D2 pilot evaluation",
+  "current_established": [
+    "The pinned HAI 23.05 P1 INNER architecture is implemented and its frozen pilot execution paths are audited.",
+    "A 144-pair role universe produced three top-20 discovery arms and a 47-pair unscored candidate union.",
+    "Normal-only profiling and authority controls produced 23 pair contexts and 42 frozen directed relations in COMMON-42.",
+    "T0, T1, T1-B, and T2 construction paths were executed on the frozen cohort; T2 performed no feedback action.",
+    "Frozen integrity-audited INNER pilot artifacts exist for D0, D1, D2 V1, and D2 V2.",
+    "The OUTER record is a blocker and custody record; it is not a held-out scientific result."
+  ],
   "established_facts": [
-    "The pinned HAI P1 scientific architecture is implemented.",
-    "The GDN discovery, D0 detector, and D1 rule-only components have executed and audited pilot evidence.",
-    "The current detector-plus-rule pilot does not support an improvement claim.",
-    "The held-out OUTER path has a blocker record, not a scientific result."
+    "The pinned HAI 23.05 P1 INNER architecture is implemented and its frozen pilot execution paths are audited.",
+    "Normal-only evidence was transformed into 42 frozen executable verified relational rules under bounded authority controls.",
+    "D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.",
+    "The OUTER path has a blocker record and no scientific result."
   ],
-  "not_established": [
-    "GDN unique scientific contribution",
-    "Agentic feedback advantage",
-    "Practical Rule-only utility",
-    "Detector-plus-Rule improvement",
-    "Held-out generalization",
-    "Human explanation usefulness"
+  "current_unvalidated": ["GDN unique and stable scientific contribution beyond META and STAT", "Agentic verifier-feedback advantage", "Practical Rule-only operational utility", "Detector-plus-Rule improvement beyond the tested negative pilot policies", "Held-out generalization", "Human explanation usefulness"],
+  "not_established": ["GDN unique and stable scientific contribution beyond META and STAT", "Agentic verifier-feedback advantage", "Practical Rule-only operational utility", "Detector-plus-Rule improvement", "Held-out generalization", "Human explanation usefulness"],
+  "pilot_observations": {
+    "candidate_universe": "12 sources x 12 targets = 144 possibilities",
+    "discovery": "META top-20; STAT top-20; GDN top-20; unscored union 47",
+    "relation_cohort": "23 pair contexts; 42 directed temporal relations",
+    "construction": "T0 42/42; T1 42/42; T1-B 42/42; T2 39/42; T2 feedback actions 0",
+    "inner_event_count": 14,
+    "d0": "11/14 attack-event response; Normal FAR 0.4939336325682589 episodes/hour",
+    "d1": "13/14 attack-event response; Normal FAR 40.50255787059723 episodes/hour",
+    "overlap": "both 10; D0-only 1; D1-only 3; neither 0",
+    "d2_v1": "11/14; Normal FAR 0.7056194750975128 episodes/hour; D0-miss recovery 0/3",
+    "d2_v2": "11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3",
+    "scope_warning": "All detection numbers are frozen 14-event INNER pilot observations and are not validated performance conclusions."
+  },
+  "top_priorities": [
+    "Preregister expanded Rule-only and detector comparison evidence with more independent events and a stronger multivariate detector baseline.",
+    "Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.",
+    "Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study."
   ],
-  "highest_priority_work": [
-    "Populate the complete current-state registry in RCC-002.",
-    "Preregister expanded comparisons for GDN and agentic contribution hypotheses.",
-    "Review fresh-machine reproducibility gaps before any new held-out study."
+  "highest_priority_work": ["Expand independent Rule-only and detector comparison evidence under a new preregistration.", "Validate GDN and agentic contribution hypotheses without reusing pilot outcomes for tuning.", "Resolve fresh-machine reproducibility gaps before held-out evaluation."],
+  "user_todo_items": [
+    {"id": "USER-REVIEW-01", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Review the full current-state summary and flag any component status that conflicts with your understanding.", "why": "The research owner must approve the human-readable current-state baseline.", "linked": "PROJECT_WIDE", "status": "OPEN"},
+    {"id": "USER-REVIEW-02", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or adjust the conservative claim boundaries before they guide thesis prose.", "why": "Claim scope is a research judgment and not a code-generation decision.", "linked": "CLAIM-A through CLAIM-M", "status": "OPEN"},
+    {"id": "USER-REVIEW-03", "category": "UNDERSTANDING NEEDED", "priority": "MEDIUM", "task": "Inspect the high-level architecture flow and identify components that need explanation before ARCH-000.", "why": "The deep audit should prioritize areas the research owner cannot yet explain confidently.", "linked": "ARCH-000", "status": "OPEN"},
+    {"id": "USER-REVIEW-04", "category": "REVIEW NEEDED", "priority": "MEDIUM", "task": "Approve the scope of RCC-003 history and decision backfill.", "why": "Backfill should preserve rather than rewrite prior scientific history.", "linked": "RCC-003", "status": "OPEN"},
+    {"id": "CODEX-WAIT-01", "category": "WAITING ON CODEX", "priority": "MEDIUM", "task": "Prepare RCC-003 and ARCH-000 only after explicit approval.", "why": "Implementation work belongs to Codex after user review.", "linked": "RCC-003;ARCH-000", "status": "WAITING"}
   ],
-  "top_user_todo": [
-    "Review the RCC-001 navigation, phase statement, and source-authority display.",
-    "Review the conservative claim wording and lifecycle distinctions.",
-    "Approve or reject moving to RCC-002 after reviewing this skeleton."
-  ],
-  "last_completed_task": "RCC-001",
-  "exact_next_task": "RCC-002 — Current-State Registry Population",
-  "safety_counters": {
-    "scientific_executions": 0,
-    "test2_feature_accesses": 0,
-    "test2_label_accesses": 0,
-    "new_private_exposures": 0
-  }
+  "top_user_todo": ["Review the full current-state summary and challenge any unsupported component status.", "Approve or adjust the conservative claim boundaries before thesis wording uses them.", "Inspect the architecture overview and identify components that need explanation before ARCH-000."],
+  "scientific_result_status": "pilot_only",
+  "held_out_generalization": "unconfirmed",
+  "fresh_machine_reproducibility": "incomplete",
+  "recommended_next_management_task": "RCC-003 — Research Timeline & Decision Backfill",
+  "recommended_next_architecture_task": "ARCH-000 — Full Architecture Overview Audit",
+  "last_completed_task": "RCC-002",
+  "exact_next_task": "RCC-003 — Research Timeline & Decision Backfill",
+  "safety_counters": {"scientific_executions": 0, "test2_feature_accesses": 0, "test2_label_accesses": 0, "new_private_exposures": 0}
 }

@@ -150,6 +150,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     all_statuses = sorted(
         {row["status"] for group in (data["components"], data["experiments"], data["claims"]) for row in group}
         | {row["severity"] for row in data["risks"]}
+        | {"CRITICAL"}
     )
     status_options = "".join(
         f'<option value="{_escape(status)}">{_escape(status.replace("_", " "))}</option>'
@@ -200,6 +201,48 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         f'<li class="phase-step {"phase-current" if phase == state["current_phase"] else ""}">{_escape(phase.replace("_", " "))}</li>'
         for phase in state["phase_progression"]
     )
+    components = data["components"]
+    component_counts = {
+        "Total": len(components),
+        "Implemented": sum(row["status"].startswith("IMPLEMENTED") for row in components),
+        "Executed": sum(row["executed"] == "true" for row in components),
+        "Audited": sum(row["audited"] == "true" for row in components),
+        "Reproduced": sum(row["reproduced"] == "true" for row in components),
+        "Claim-ready*": sum(row["claim_ready"] == "true" for row in components),
+    }
+    experiment_counts = {
+        "Total": len(data["experiments"]),
+        "Pilot": sum(row["status"] == "EXECUTED_AUDITED_PILOT" for row in data["experiments"]),
+        "Unvalidated": sum(row["status"] == "IMPLEMENTED_NOT_EXECUTED" for row in data["experiments"]),
+        "Conditional": sum(row["status"] == "DESIGN_ONLY" for row in data["experiments"]),
+    }
+    claim_counts = {
+        "Supported implementation": sum(row["status"] == "SUPPORTED_IMPLEMENTATION" for row in data["claims"]),
+        "Pilot only": sum(row["status"] == "PILOT_ONLY" for row in data["claims"]),
+        "Unvalidated": sum(row["status"] == "UNVALIDATED" for row in data["claims"]),
+        "Not supported": sum(row["status"] == "NOT_SUPPORTED" for row in data["claims"]),
+        "Conditional": sum(row["status"] == "CONDITIONAL" for row in data["claims"]),
+    }
+    risk_counts = {
+        "Critical / high": sum(row["severity"] in {"CRITICAL", "HIGH"} for row in data["risks"]),
+        "Medium": sum(row["severity"] == "MEDIUM" for row in data["risks"]),
+        "Low": sum(row["severity"] == "LOW" for row in data["risks"]),
+    }
+    summaries = (("Components", component_counts), ("Experiments", experiment_counts), ("Claims", claim_counts), ("Risks", risk_counts))
+    summary_markup = "".join(
+        '<article class="summary-card"><h3>' + _escape(title) + "</h3><dl>" + "".join(
+            f'<div><dt>{_escape(label)}</dt><dd>{count}</dd></div>' for label, count in counts.items()
+        ) + "</dl></article>"
+        for title, counts in summaries
+    )
+    component_by_id = {row["component_id"]: row for row in components}
+    architecture_markup = "".join(
+        '<div class="architecture-lane"><h3>' + _escape(lane["lane"]) + '</h3><div class="architecture-nodes">' + "".join(
+            f'<a class="architecture-node {_badge_class(component_by_id[node]["status"])}" href="#components" title="{_escape(component_by_id[node]["status"])}">{_escape(component_by_id[node]["name"])}</a>'
+            for node in lane["nodes"]
+        ) + "</div></div>"
+        for lane in state["architecture_overview"]
+    )
     marker = _source_marker(state, digest)
 
     return f"""<!doctype html>
@@ -240,6 +283,14 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     <section id="current-state" class="section panel-feature">
       <div class="section-heading"><p class="eyebrow">01</p><h2>CURRENT STATE</h2></div>
       <div class="two-column"><div><h3>Established</h3>{_bullet_list(state['established_facts'])}</div><div><h3>Not established</h3>{_bullet_list(state['not_established'])}</div></div>
+      <div class="status-snapshot">
+        <div><span>Architecture</span><strong>Implemented · pilot operational</strong></div>
+        <div><span>Scientific validation</span><strong>Partial · incomplete</strong></div>
+        <div><span>Held-out</span><strong>Unconfirmed</strong></div>
+        <div><span>Fresh-machine</span><strong>Incomplete</strong></div>
+      </div>
+      <div class="summary-grid">{summary_markup}</div>
+      <p class="summary-note">* Claim-ready is bounded to narrow implementation or contract wording; it is not a validated-performance label.</p>
       <aside class="principle">CODE EXISTS ≠ EXECUTED · EXECUTED ≠ VALIDATED · VALIDATED ≠ GENERALIZED · GENERALIZED ≠ CLAIM READY</aside>
     </section>
 
@@ -257,7 +308,8 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     <section id="architecture" class="section panel-dark">
       <div class="section-heading"><p class="eyebrow">04</p><h2>ARCHITECTURE OVERVIEW</h2></div>
       <p class="architecture-flow">{_escape(state['architecture_flow'])}</p>
-      <p>Open <code>../architecture/</code> for progressively populated architecture documentation. RCC-001 records only the minimum navigation layer.</p>
+      <div class="architecture-map">{architecture_markup}</div>
+      <p>Node color follows the component registry. Open <code>../architecture/</code> for the future deep review; this is a high-level RCC view only.</p>
     </section>
 
     <section class="section explorer" aria-label="Registry explorer">
@@ -319,15 +371,15 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
     experiments = "\n".join(
-        f"- **{row['name']}** — {row['status']}: {row['current_evidence']} Limitation: {row['limitations']}"
+        f"- **{row['experiment_id']} · {row['name']}** — `{row['status']}`. {row['current_evidence']}"
         for row in data["experiments"]
     )
     claims = "\n".join(
-        f"- **{row['status']}** — {row['allowed_wording']} Do not claim: {row['forbidden_wording']}"
+        f"- **{row['claim_id']} · {row['status']}** — {row['allowed_wording']} Forbidden: {row['forbidden_wording']}"
         for row in data["claims"]
     )
     risks = "\n".join(
-        f"- **{row['severity']} / {row['status']}** — {row['description']} Mitigation: {row['mitigation']}"
+        f"- **{row['severity']} / {row['status']}** — {row['description']}"
         for row in data["risks"]
     )
     return f"""{_markdown_marker(state, digest)}
@@ -348,6 +400,9 @@ Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 Phase progression: {' → '.join(state['phase_progression'])}.
 
+The architecture is implemented and pilot-operational. Scientific validation is partial,
+held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+
 ## Architecture in one line
 
 {state['architecture_flow']}
@@ -356,13 +411,47 @@ Phase progression: {' → '.join(state['phase_progression'])}.
 
 {_md_bullets(state['established_facts'])}
 
+The frozen discovery flow began with 12 reviewed sources and 12 reviewed targets (144
+possible pairs). META, STAT, and GDN each produced a top-20 ranking. Their union is an
+unscored 47-pair candidate cohort. Normal-only profiling led to 23 pair contexts and 42
+directed temporal relations, which were bound into COMMON-42. These counts establish
+pipeline execution and custody. They do not establish causality, physical truth, or a
+unique contribution from the graph arm.
+
+The four construction routes ran on the same 42-relation cohort: T0, T1, and T1-B each
+produced 42 accepted outcomes; T2 produced 39 accepted outcomes and 3 no-rule outcomes.
+T2 executed zero revise, retrieve, follow-up, or recovery actions, so the present cohort
+did not empirically exercise the verifier-feedback mechanism. The existence of an
+agentic controller therefore cannot be translated into an agentic-benefit finding.
+
+## Frozen INNER pilot observations
+
+The INNER evaluation contains 14 independent attack events. D0 PCA-SPE responded to
+11/14 with Normal FAR 0.4939336325682589 episodes/hour. D1 verified Rule-only responded
+to 13/14 with Normal FAR 40.50255787059723 episodes/hour. Their event overlap was both
+10, D0-only 1, D1-only 3, neither 0. D2 V1 and D2 V2 each responded to 11/14 and each
+recovered 0/3 D0-missed events; their Normal FAR values were 0.7056194750975128 and
+6.915070855955625 episodes/hour respectively. These are exact public frozen pilot
+observations, not new calculations.
+
+> 14 attack events are pilot evidence only. Do not describe current detection numbers as validated performance.
+
 ## Unresolved scientific questions
 
 {_md_bullets(state['not_established'])}
 
+Graph-Guided and Agentic remain provisional contribution labels. GDN produced candidate
+evidence, but unique stable downstream usefulness remains unvalidated. The T2 control
+path exists, but current evidence does not support a verifier-feedback advantage.
+
 ## Current experiments
 
 {experiments}
+
+Professor-driven priority is the scientific status of verified Rule-only behavior: it
+showed distinct pilot event responses, but its high normal false-alarm burden prevents an
+operational-utility claim. Expanded validation should preserve event-level metrics and
+include at least one stronger multivariate detector baseline under a new preregistration.
 
 ## Claim boundaries
 
@@ -385,7 +474,12 @@ The historical checkout `{state['non_authoritative_checkout']['ref']}` @
 
 ## Exact next task
 
-**{state['exact_next_task']}**
+Management: **{state['recommended_next_management_task']}**
+
+Following architecture review: **{state['recommended_next_architecture_task']}**
+
+Scientific direction: preregister expanded Rule-only and detector comparison evidence,
+then separately test GDN stability and an actually activated budget-matched feedback arm.
 """
 
 
@@ -461,6 +555,179 @@ Registry version: `{state['registry_version']}`
 """
 
 
+def render_current_context(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    authority = state["scientific_authority"]
+    pilot = state["pilot_observations"]
+    return f"""{_markdown_marker(state, digest)}
+# Current Research Context
+
+Last updated: {state['last_updated']}
+Scientific authority: `{authority['ref']}` @ `{authority['commit']}`
+Documentation overlay: `{state['documentation_overlay']['ref']}` @ `{state['documentation_overlay']['commit']}`
+RCC version: `{state['rcc_version']}`
+
+## Current Phase
+
+ARCHITECTURE_COMPLETE → **EVALUATION_SCOPE_EXPANSION (CURRENT)** → HYPOTHESIS_VALIDATION
+
+Architecture implementation and pilot operation are complete. Scientific validation is partial,
+held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+
+## WHAT EXISTS
+
+The pinned repository contains the end-to-end HAI 23.05 P1 INNER path: provenance and
+split governance, a 144-pair role universe, META/STAT/GDN candidate discovery, a 47-pair
+union, normal temporal profiling, normal-only numeric authority, typed evidence, bounded
+T0/T1/T1-B/T2 construction, deterministic verification, COMMON-42, LLM-free fixed-rule
+runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
+
+## WHAT WAS EXECUTED
+
+- All three discovery arms produced audited top-20 rankings.
+- Profiling produced 23 pair contexts and 42 frozen directed relations.
+- T0, T1, T1-B, and T2 executed; their accepted counts were 42, 42, 42, and 39.
+- Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.
+- The OUTER bridge produced a blocker record only; it produced no scientific outcome.
+
+## WHAT WAS OBSERVED
+
+- D0: {pilot['d0']}
+- D1: {pilot['d1']}
+- Event overlap: {pilot['overlap']}.
+- D2 V1: {pilot['d2_v1']}.
+- D2 V2: {pilot['d2_v2']}.
+- T2 feedback actions: zero; the current cohort did not exercise feedback recovery.
+
+These are frozen observations from 14 independent INNER attack events. They are pilot
+evidence only and are not validated performance conclusions.
+
+## WHAT IS VALIDATED
+
+The narrow implementation statements are supported: deterministic authority controls exist;
+normal-data evidence can be transformed into bounded executable rules; the verifier checks
+structural, evidence, parameter, split, and operational contracts; and the current fixed-rule
+runtime is LLM-free and deterministic given frozen authorities. Integrity audits validate
+artifact custody and arithmetic, not generalization, superiority, causality, or human usefulness.
+
+## WHAT REMAINS UNKNOWN
+
+{_md_bullets(state['current_unvalidated'])}
+
+## Current highest-priority work
+
+{_md_bullets(state['top_priorities'])}
+
+Exact next management task: **{state['recommended_next_management_task']}**
+Following architecture task: **{state['recommended_next_architecture_task']}**
+"""
+
+
+def render_my_todo(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    grouped: dict[str, list[Mapping[str, str]]] = {}
+    for item in state["user_todo_items"]:
+        grouped.setdefault(item["category"], []).append(item)
+    headings = ("DECISION NEEDED", "UNDERSTANDING NEEDED", "REVIEW NEEDED", "WAITING ON CODEX")
+    sections: list[str] = []
+    for heading in headings:
+        items = grouped.get(heading, [])
+        body = "\n\n".join(
+            f"- **ID:** {item['id']}\n  **Priority:** {item['priority']}\n  **Task:** {item['task']}\n  **Why your involvement is required:** {item['why']}\n  **Linked:** {item['linked']}\n  **Status:** {item['status']}"
+            for item in items
+        ) or "No items."
+        sections.append(f"## {heading.title()}\n\n{body}")
+    return f"""{_markdown_marker(state, digest)}
+# My Research TODO
+
+This page contains research-owner actions, not low-level development chores.
+
+{chr(10).join(sections)}
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+"""
+
+
+def render_decision_inbox(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    unresolved = [row for row in data["decisions"] if row["status"] == "OPEN"]
+    body = "\n\n".join(
+        f"## {row['decision_id']} — {row['title']}\n\n{row['decision']}\n\nReason: {row['reason']}"
+        for row in unresolved
+    ) or "There are no unresolved user decisions. RCC-000 decisions 001 and 002 remain approved in `registry/decisions.csv`."
+    return f"""{_markdown_marker(state, digest)}
+# Decision Inbox
+
+{body}
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+"""
+
+
+def render_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    pilot = state["pilot_observations"]
+    top_risks = [row["description"] for row in data["risks"] if row["severity"] in {"CRITICAL", "HIGH"}][:5]
+    return f"""{_markdown_marker(state, digest)}
+# 지금 연구는 어디까지 왔나
+
+## 한 문장 상태
+
+HAI 23.05 P1을 대상으로 한 전체 INNER 연구 경로는 구현되고 예비 실행 및 무결성
+감사까지 끝났지만, 과학적 가설 검증·홀드아웃 일반화·새 컴퓨터 재현은 아직 끝나지 않았다.
+
+## 이미 만들어진 것
+
+데이터 출처와 분할 통제에서 시작해 META·STAT·GDN 후보 탐색, 관계 프로파일링,
+normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고정 규칙, LLM 없는
+고정 규칙 런타임, D0/D1/D2 평가와 결과 무결성 감사까지 이어지는 구조가 있다.
+
+## 실제 실행된 것
+
+- 144개 가능한 관계에서 META·STAT·GDN이 각각 top-20을 만들었고 합집합은 47개였다.
+- 23개 pair context에서 42개 방향성 시간 관계가 확인되어 COMMON-42로 고정되었다.
+- T0/T1/T1-B/T2 규칙 생성 경로가 모두 실행되었고 승인 수는 42/42/42/39였다.
+- D0, D1, D2 V1, D2 V2의 INNER 결과가 고정되고 독립 무결성 감사를 받았다.
+- OUTER는 실행 결과가 아니라 차단 기록만 있다.
+
+## 현재 관찰된 결과
+
+- D0: {pilot['d0']}.
+- D1: {pilot['d1']}.
+- 두 신호의 사건 겹침: {pilot['overlap']}.
+- D2 V1: {pilot['d2_v1']}.
+- D2 V2: {pilot['d2_v2']}.
+
+이 수치는 독립 공격 사건 14개의 INNER 예비 관찰이다. 검증된 일반 성능으로 표현하면 안 된다.
+
+## 아직 증명되지 않은 것
+
+{_md_bullets(state['current_unvalidated'])}
+
+특히 GDN의 고유 기여와 Agentic 피드백의 이점은 아직 가설이다. 현재 T2에서는 피드백
+행동이 0회였으므로 Agentic 장점이 실험된 것으로 볼 수 없다. D1은 D0와 다른 사건에
+반응했지만 정상 FAR가 높아 실용성을 주장할 수 없다. 현재 D2 정책도 개선 주장을 지지하지 않는다.
+
+## 가장 큰 위험 5개
+
+{_md_bullets(top_risks)}
+
+## 다음에 해야 할 것
+
+{_md_bullets(state['top_priorities'])}
+
+관리 작업의 다음 단계는 **{state['recommended_next_management_task']}** 이고, 이후 전체
+구조 검토는 **{state['recommended_next_architecture_task']}** 이다. 둘 다 사용자 승인 전에
+자동으로 시작하지 않는다.
+
+## 내가 직접 확인할 것
+
+{_md_bullets(state['top_user_todo'])}
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+"""
+
+
 def build_dashboard(rcc_root: Path) -> Path:
     data = load_registry(rcc_root)
     digest = registry_digest(rcc_root)
@@ -479,10 +746,20 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "GPT_BRIEF.md": render_gpt_brief(data, digest),
         "CURRENT_STATUS.md": render_current_status(data, digest),
         "CHANGE_SUMMARY.md": render_change_summary(data, digest),
+        "RCC_002_USER_SUMMARY.md": render_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():
         path = generated / name
+        path.write_text(payload, encoding="utf-8", newline="\n")
+        paths.append(path)
+    navigation_outputs = {
+        "CURRENT_CONTEXT.md": render_current_context(data, digest),
+        "MY_TODO.md": render_my_todo(data, digest),
+        "DECISION_INBOX.md": render_decision_inbox(data, digest),
+    }
+    for name, payload in navigation_outputs.items():
+        path = rcc_root / name
         path.write_text(payload, encoding="utf-8", newline="\n")
         paths.append(path)
     return paths
