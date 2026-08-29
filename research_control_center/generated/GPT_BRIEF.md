@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -16,8 +16,8 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 Phase progression: ARCHITECTURE_COMPLETE → EVALUATION_SCOPE_EXPANSION → HYPOTHESIS_VALIDATION.
 
-The architecture is pilot-operational. Scientific validation is partial, held-out
-generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+Pilot-operational architecture; scientific validation, held-out generalization, and
+fresh-machine reproduction remain incomplete.
 
 ## How to read RCC status
 
@@ -72,7 +72,7 @@ History explains this lineage but cannot override RCC-002 current state or `clai
 ## Established facts
 
 - The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.
-- Normal-only evidence was transformed into 42 frozen executable verified relational rules under bounded authority controls.
+- Normal-only evidence was transformed into a 42-descriptor COMMON-42 V4 executable relation portfolio under task-specific authority controls.
 - D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.
 - The OUTER path has a blocker record and no scientific result.
 
@@ -142,14 +142,15 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain the Evidence Pack boundary.
-- Explain what the LLM can and cannot change.
-- Explain why a closed Rule DSL is required.
-- Distinguish T0, T1, T1-B, and T2.
-- Explain bounded verifier-feedback capability.
-- Explain why zero observed feedback blocks an improvement claim.
-- Explain why construction acceptance is not detection performance.
-- Approve or defer starting ARCH-005.
+- Explain proposal versus canonical Rule.
+- Explain what the verifier checks and cannot prove.
+- Explain accepted versus runtime authorized.
+- Explain COMMON-42 and its arm mapping.
+- Explain why D1 terminology matters.
+- Explain the no_rule taxonomy risk.
+- Review the unresolved canonical/task-specific bridge gap.
+- Review runtime authority separation before ARCH-006.
+- Approve or defer starting ARCH-006.
 
 ## Source-policy boundary
 
@@ -160,9 +161,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**
+Management: **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
 
-Following architecture review: **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**
+Following architecture review: **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

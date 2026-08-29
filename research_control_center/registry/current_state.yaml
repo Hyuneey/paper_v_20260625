@@ -56,7 +56,19 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
+    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
+  },
+  "verifier_common42_authority": {
+    "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
+    "task_canonical_relationship": "PARTIALLY_OVERLAPPING; NON_EQUIVALENT_BY_DESIGN; no tracked lossless proposal-to-DelayedResponseRuleV1 bridge in the frozen construction/D1 path.",
+    "common42": "42 V4 CanonicalRuleDescriptorV4 objects representing the executable projection shared by T0, T1, and T1-B, rebound to normal-only runtime numeric authority.",
+    "t2_boundary": "T2 is excluded from utility authority: 39 accepted projections match COMMON counterparts and 3 are no_rule; this does not change COMMON-42 cardinality.",
+    "d1_authority": "Frozen D1 used V4 authority, evaluator bundle, private numeric resolver custody, and a committed one-attempt INNER execution grant; it did not use canonical RuntimeAuthorizationBundleV1.",
+    "numeric_rebinding": "420 construction/runtime shared values matched exactly in the focused audit, while runtime reference and authority identities were separately rebound; horizon remains descriptor-bound.",
+    "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
+    "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
+    "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
+    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -94,7 +106,7 @@
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
+    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
   },
   "relation_numeric_authority": {
     "candidate_pairs": 47,
@@ -112,7 +124,7 @@
     "authority_relationship": "PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES",
     "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
     "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
-    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
+    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
   },
   "rule_construction_authority": {
     "evidence_view": "42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata",
@@ -128,7 +140,7 @@
     "no_rule_contract_gap": "The three frozen T2 no_rule cases were non-repairable validity outcomes, but the task-specific orchestrator also collapses explicit response/schema, verifier and budget failures into no_rule; generic/frozen protocol semantics require those failure classes to remain distinct.",
     "reproducibility": "T0 is deterministic from frozen input. LLM arms bind model/config, prompt, request, evidence, response and ledger hashes but use temperature 0.7 with no seed; they are traceable, not deterministic reproductions.",
     "warning": "Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.",
-    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
+    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -198,7 +210,7 @@
   ],
   "established_facts": [
     "The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.",
-    "Normal-only evidence was transformed into 42 frozen executable verified relational rules under bounded authority controls.",
+    "Normal-only evidence was transformed into a 42-descriptor COMMON-42 V4 executable relation portfolio under task-specific authority controls.",
     "D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.",
     "The OUTER path has a blocker record and no scientific result."
   ],
@@ -242,32 +254,34 @@
     "Resolve fresh-machine reproducibility gaps before held-out evaluation."
   ],
   "user_todo_items": [
-    {"id": "USER-ARCH004-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain Evidence Pack?", "why": "It is the bounded normal-only construction view, not raw data or evaluation evidence.", "linked": "ARCH_004_EVIDENCE_PACK_SCHEMA.md", "status": "OPEN"},
-    {"id": "USER-ARCH004-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what the LLM can and cannot change?", "why": "The proposal must preserve the relation and approved references; it cannot become scientific or runtime authority.", "linked": "ARCH_004_RULE_DSL.md", "status": "OPEN"},
-    {"id": "USER-ARCH004-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why the DSL exists?", "why": "The closed schema turns model output into bounded data rather than executable code.", "linked": "ARCH_004_RULE_DSL.md", "status": "OPEN"},
-    {"id": "USER-ARCH004-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish T0, T1, T1-B, and T2?", "why": "They differ in generation and feedback policy, not in evidence authority or runtime authority.", "linked": "ARCH_004_ARM_OUTCOMES.csv", "status": "OPEN"},
-    {"id": "USER-ARCH004-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain verifier-feedback capability?", "why": "T2 has a bounded deterministic controller around the proposal/verifier loop.", "linked": "ARCH_004_T2_FEEDBACK_LOOP.md", "status": "OPEN"},
-    {"id": "USER-ARCH004-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why zero observed feedback blocks an Agentic improvement claim?", "why": "A capability that did not activate cannot supply evidence of improvement.", "linked": "ARCH_004_AGENTIC_CLAIM_BOUNDARY.md", "status": "OPEN"},
-    {"id": "USER-ARCH004-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why construction acceptance is not detection performance?", "why": "Proposal validity, portfolio authority, runtime behavior, and utility are separate stages.", "linked": "ARCH_004_REPORT.md", "status": "OPEN"},
-    {"id": "USER-ARCH004-008", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-005.", "why": "The deterministic verifier and COMMON-42 freeze are the next authority boundary.", "linked": "ARCH-005", "status": "OPEN"}
+    {"id": "USER-ARCH005-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain proposal versus canonical Rule?", "why": "They are different schemas and no lossless frozen bridge was found.", "linked": "ARCH_005_CANONICAL_RULE_SCHEMA.md", "status": "OPEN"},
+    {"id": "USER-ARCH005-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what the verifier checks?", "why": "It checks deterministic contracts and bindings, not performance.", "linked": "ARCH_005_VERIFIER_STAGES.csv", "status": "OPEN"},
+    {"id": "USER-ARCH005-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what the verifier cannot prove?", "why": "Scientific truth, causality, utility and generalization require empirical evidence.", "linked": "ARCH_005_REPORT.md", "status": "OPEN"},
+    {"id": "USER-ARCH005-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain accepted versus runtime authorized?", "why": "Execution needs separate portfolio and authority checks.", "linked": "ARCH_005_RUNTIME_AUTHORIZATION.md", "status": "OPEN"},
+    {"id": "USER-ARCH005-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain COMMON-42?", "why": "It is a V4 descriptor portfolio, not 42 canonical RuleV1 objects.", "linked": "ARCH_005_COMMON42.md", "status": "OPEN"},
+    {"id": "USER-ARCH005-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain COMMON-42's relationship to T0, T1, T1-B and T2?", "why": "T2 is excluded even though 39 projections match.", "linked": "ARCH_005_ARM_PORTFOLIO_MAPPING.csv", "status": "OPEN"},
+    {"id": "USER-ARCH005-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 terminology matters?", "why": "Agentic or LLM Rule-only would misattribute the frozen portfolio.", "linked": "ARCH_005_PROFESSOR_TERMINOLOGY.md", "status": "OPEN"},
+    {"id": "USER-ARCH005-008", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the no_rule taxonomy risk?", "why": "A generic no_rule may hide materially different construction failures.", "linked": "ARCH_005_NO_RULE_TAXONOMY.md", "status": "OPEN"},
+    {"id": "USER-ARCH005-009", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-006.", "why": "Runtime trace and explanation are the next deep authority boundary.", "linked": "ARCH-006", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain the Evidence Pack boundary.",
-    "Explain what the LLM can and cannot change.",
-    "Explain why a closed Rule DSL is required.",
-    "Distinguish T0, T1, T1-B, and T2.",
-    "Explain bounded verifier-feedback capability.",
-    "Explain why zero observed feedback blocks an improvement claim.",
-    "Explain why construction acceptance is not detection performance.",
-    "Approve or defer starting ARCH-005."
+    "Explain proposal versus canonical Rule.",
+    "Explain what the verifier checks and cannot prove.",
+    "Explain accepted versus runtime authorized.",
+    "Explain COMMON-42 and its arm mapping.",
+    "Explain why D1 terminology matters.",
+    "Explain the no_rule taxonomy risk.",
+    "Review the unresolved canonical/task-specific bridge gap.",
+    "Review runtime authority separation before ARCH-006.",
+    "Approve or defer starting ARCH-006."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit",
-  "recommended_next_architecture_task": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit",
-  "last_completed_task": "ARCH-004",
-  "exact_next_task": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit",
+  "recommended_next_management_task": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit",
+  "recommended_next_architecture_task": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit",
+  "last_completed_task": "ARCH-005",
+  "exact_next_task": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

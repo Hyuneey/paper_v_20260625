@@ -1,0 +1,12 @@
+producer,object_schema,consumer,authority,hash_binding,failure_behavior,artifact,notes
+E3 construction bridge,TASK-039E closed proposal view,T0/T1/T1-B/T2,E3 evidence authority,evidence+relation+budget hashes,reject construction input,E3 frozen input,no labels or utility
+construction arm,proposal mapping,task validity V2,arm protocol,proposal+provenance hash,admissible or rejected,E0 result,not canonical RuleV1
+task validity,PreparedValidityResultV2,E0 outcome freeze,TASK-039E validity policy,result hash,bounded issues,E0 validity artifact,no runtime authority
+utility equivalence,ExecutableSignatureV1 projection,COMMON relation authority,utility protocol,equivalence self-hash,reject mismatch,executable equivalence,T0/T1/T1-B common
+normal-only authority,CommonRelationAuthorityV1,V4 descriptor builder,COMMON authority,relation+semantic+reference hashes,reject mismatch,authority definition,no private values
+V4 builder,CanonicalRuleDescriptorV4,evaluator,UtilityProtocolV4CanonicalAuthority,descriptor+portfolio+authority hashes,reject stale/substitute,V4 freeze,42 ordered descriptors
+evaluator factory,EvaluatorAuthorityBundleV1,D1 bridge,evaluator authority,bundle factory custody+replay,reject mismatch,evaluator bundle,T2 false
+D1 grant,CommittedInnerD1ExecutionGrantV1,real D1 bridge,committed authorization,grant hash+token,one-attempt fail closed,execution grant,exact INNER scope
+canonical parser,DelayedResponseRuleV1,VerifierV1,canonical Rule v1,verification subject hash,schema failure,canonical rule,parallel plane
+VerifierV1,RuleVerificationOutcomeV1,canonical runtime authority,canonical verifier,result self-hash+subject binding,accepted/repair/reject,verifier result,never runtime authorized itself
+runtime authority,RuntimeAuthorizationBundleV1,canonical synthetic runtime,canonical runtime authority,bundle+receipt hashes,fail closed,bundle+receipt,not frozen D1 authority

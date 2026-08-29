@@ -50,6 +50,12 @@ ARCHITECTURE_FILES = (
     "04_rule_construction/ARCH_004_ARM_OUTCOMES.csv",
     "04_rule_construction/ARCH_004_FUNCTION_CATALOG.csv",
     "04_rule_construction/ARCH_004_IO_CONTRACTS.csv",
+    "05_verifier_common42/ARCH_005_VERIFIER_STAGES.csv",
+    "05_verifier_common42/ARCH_005_VALIDITY_EQUIVALENCE.csv",
+    "05_verifier_common42/ARCH_005_ARM_PORTFOLIO_MAPPING.csv",
+    "05_verifier_common42/ARCH_005_HASH_CHAIN.csv",
+    "05_verifier_common42/ARCH_005_FUNCTION_CATALOG.csv",
+    "05_verifier_common42/ARCH_005_IO_CONTRACTS.csv",
 )
 
 
@@ -362,6 +368,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     )
     relation = state["relation_numeric_authority"]
     construction = state["rule_construction_authority"]
+    verifier = state["verifier_common42_authority"]
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -472,6 +479,32 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">{_escape(construction['agentic_claim'])}</aside>
       <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
       <p><strong>Next deep review:</strong> {_escape(construction['next_deep_review'])}</p>
+    </section>
+
+    <section id="verifier-common42" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">VERIFIER</p><h2>VERIFIER / COMMON-42 / AUTHORIZATION</h2></div>
+      <p class="architecture-flow">Proposal → Task Validity → Executable Equivalence → COMMON-42 V4 Portfolio → Evaluator Authority → Committed D1 Grant</p>
+      <div class="status-snapshot">
+        <div><span>Canonical Verifier</span><strong>20 deterministic stages</strong></div>
+        <div><span>Task ↔ Canonical</span><strong>PARTIALLY OVERLAPPING</strong></div>
+        <div><span>COMMON-42</span><strong>42 V4 descriptors</strong></div>
+        <div><span>T2 utility</span><strong>NOT AUTHORIZED</strong></div>
+        <div><span>Frozen D1 authority</span><strong>V4 + evaluator + committed grant</strong></div>
+        <div><span>Preferred D1 term</span><strong>{_escape(verifier['preferred_d1_term'])}</strong></div>
+      </div>
+      <div class="two-column"><div><h3>What is bound</h3><dl class="architecture-contract">
+        <div><dt>COMMON-42</dt><dd>{_escape(verifier['common42'])}</dd></div>
+        <div><dt>D1 AUTHORITY</dt><dd>{_escape(verifier['d1_authority'])}</dd></div>
+        <div><dt>NUMERIC REBINDING</dt><dd>{_escape(verifier['numeric_rebinding'])}</dd></div>
+      </dl></div><div><h3>What remains separate</h3><dl class="architecture-contract">
+        <div><dt>TASK VS CANONICAL</dt><dd>{_escape(verifier['task_canonical_relationship'])}</dd></div>
+        <div><dt>T2</dt><dd>{_escape(verifier['t2_boundary'])}</dd></div>
+        <div><dt>NO_RULE</dt><dd>{_escape(verifier['no_rule'])}</dd></div>
+      </dl></div></div>
+      <aside class="principle">Verifier acceptance is not scientific validation.</aside>
+      <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
+      <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
+      <p><strong>Next deep review:</strong> {_escape(verifier['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -636,8 +669,8 @@ Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 Phase progression: {' → '.join(state['phase_progression'])}.
 
-The architecture is pilot-operational. Scientific validation is partial, held-out
-generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+Pilot-operational architecture; scientific validation, held-out generalization, and
+fresh-machine reproduction remain incomplete.
 
 ## How to read RCC status
 
@@ -1140,6 +1173,36 @@ fail-closed outcome이며 runtime `abstain`과 다르다.
 
 T0는 frozen input에서 deterministic하다. LLM arms는 model/config, prompt, evidence, request,
 response와 ledger hash가 추적되지만 temperature 0.7, seed 없음이므로 bitwise deterministic하지 않다.
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
+def render_arch005_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    verifier = state["verifier_common42_authority"]
+    return f"""{_markdown_marker(state, digest)}
+# Proposal부터 COMMON-42와 D1까지
+
+Proposal은 frozen relation에 묶인 construction 후보이고, canonical `DelayedResponseRuleV1`은
+graph/evidence/parameter/output까지 포함하는 다른 계약이다. 두 validity layer는
+`PARTIALLY_OVERLAPPING`이며 frozen path에서 lossless bridge는 발견되지 않았다.
+
+Canonical `VerifierV1`은 20단계로 contract와 binding을 검사하지만 scientific truth, causality,
+utility, optimality 또는 generalization을 증명하지 않는다. Accepted도 runtime authorization이 아니다.
+
+COMMON-42는 T0/T1/T1-B가 공통으로 가진 42개 executable projection을 하나의 V4 descriptor
+portfolio로 중복 제거한 것이다. T2는 39 accepted와 3 no_rule이며 D1 utility authority에서
+제외됐다. 따라서 D1 권장 명칭은 **{verifier['preferred_d1_term']}**이다.
+
+Frozen D1은 canonical RuntimeAuthorizationBundleV1이 아니라 V4 authority, evaluator bundle,
+private numeric custody와 committed one-attempt INNER grant를 사용했다. 420 shared values는 exact
+match였지만 runtime authority/reference identity는 별도로 rebound됐다.
+
+세 frozen T2 no_rule은 unsupported-variable non-repairable validity outcome으로 확인됐다. 그러나
+일반 orchestration은 response/parse/rejection/budget failure도 no_rule로 합칠 수 있어 code-fix risk가 남는다.
+
+기억할 한 문장: **Verifier acceptance는 scientific validation도 runtime authorization도 아니다.**
 
 다음 task는 **{state['exact_next_task']}**이다.
 """
@@ -1714,6 +1777,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_002_USER_SUMMARY.md": render_arch002_user_summary(data, digest),
         "ARCH_003_USER_SUMMARY.md": render_arch003_user_summary(data, digest),
         "ARCH_004_USER_SUMMARY.md": render_arch004_user_summary(data, digest),
+        "ARCH_005_USER_SUMMARY.md": render_arch005_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

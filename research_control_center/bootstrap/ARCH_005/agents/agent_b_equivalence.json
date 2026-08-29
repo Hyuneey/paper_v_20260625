@@ -1,0 +1,445 @@
+{
+  "task_id": "ARCH-005",
+  "agent_role": "Agent B - Task-Specific Validity vs Canonical Verifier Auditor",
+  "audit_mode": "READ_ONLY_STATIC_AND_PUBLIC_SAFE_ARTIFACT_AUDIT",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "classification": {
+    "equivalence": "PARTIALLY_OVERLAPPING",
+    "authority_relationship": "NON_EQUIVALENT_BY_DESIGN",
+    "proposal_to_canonical_bridge": "NOT_IMPLEMENTED_IN_FROZEN_CONSTRUCTION_PATH",
+    "lossless_transformation": "NOT_PROVEN",
+    "summary": "The task-specific adapter validates a closed construction proposal against one frozen relation, numeric-evidence bundle, construction provenance and budget. The canonical verifier validates a materially richer DelayedResponseRuleV1 plus graph, evidence, normal-reference, parameter and policy artifacts through twenty stages. Their shared concepts do not make their objects, decisions or authority equivalent."
+  },
+  "implementation_layers": {
+    "task_specific": {
+      "module": "src/paperworks/v6/task039e0_validity_v2.py",
+      "entrypoint": "verify_prepared_rule_proposal_v2",
+      "delegates_to": "src/paperworks/v6/task039e0_validity_v1.py::verify_prepared_rule_proposal_v1",
+      "input_object": "RuleProposalEnvelopeV1-like closed mapping plus ConfirmedRelationPrimitiveV1, ApprovedNumericEvidenceBundleV1, ProposalConstructionProvenanceV1, budget and allowed variables",
+      "output_object": "PreparedValidityResultV2",
+      "statuses": [
+        "admissible",
+        "rejected"
+      ],
+      "authority_boundary": {
+        "canonical_rule_materialized": false,
+        "validity_authority_granted": false,
+        "runtime_authority_granted": false
+      }
+    },
+    "canonical": {
+      "rule_module": "src/paperworks/contracts/rule_v1.py",
+      "rule_object": "DelayedResponseRuleV1",
+      "verifier_module": "src/paperworks/contracts/verifier_v1.py",
+      "entrypoint": "verify_delayed_response_rule",
+      "input_object": "DelayedResponseRuleV1 plus DelayedResponseArtifactCollectionProtocolV1, verifier policy and accepted library",
+      "output_object": "RuleVerificationOutcomeV1 with VerifierResultV1 and optional accepted DelayedResponseRuleV1",
+      "statuses": [
+        "accepted",
+        "needs_repair",
+        "rejected"
+      ],
+      "stage_count": 20,
+      "runtime_authorized": false
+    },
+    "runtime_authorization": {
+      "module": "src/paperworks/contracts/runtime_authority.py",
+      "entrypoint": "authorize_delayed_response_runtime",
+      "input_object": "accepted DelayedResponseRuleV1, accepted canonical verifier result, bound artifacts and verifier policy",
+      "output_object": "RuntimeAuthorizationBundleV1 and self-hashed RuntimeAuthorizationReceiptV1",
+      "additional_v6_entrypoint": "authorize_v6_delayed_response_runtime",
+      "separate_authority": true
+    }
+  },
+  "task_specific_only_checks": [
+    "exact TASK-039E proposal field closure and DSL-family identity",
+    "construction-arm identity and frozen arm-protocol provenance",
+    "budget-policy hash and construction-provenance hash",
+    "exact confirmed-relation binding hash and relation identity",
+    "exact source step direction and target response direction",
+    "exact selected delay horizon from the confirmed relation",
+    "exact TASK-039E numeric-origin and reference set, including fit, confirmation and preregistered window references",
+    "empty numeric-literal list and exact task runtime-logic family",
+    "absence of free-text runtime logic and prohibited-data references",
+    "explicit rejection of label or utility input arguments",
+    "explicit rejection of canonical-materialization, validity-authority or runtime-authority preclaims"
+  ],
+  "canonical_only_checks": [
+    "canonical Rule v1 JSON schema and MVP trigger/effect/output/cardinality constraints",
+    "source actuator and target continuous-sensor type compatibility",
+    "graph-variable existence, subsystem agreement, exact directed edge and self-edge exclusion",
+    "candidate-edge and delayed-response relation-family compatibility",
+    "parameter and rule unit compatibility",
+    "lag, window and persistence value-to-parameter binding",
+    "parameter existence, approval, stability, uncertainty, support and role completeness",
+    "parameter dataset, relation, variable, regime, normal-reference and self-hash provenance",
+    "evidence and parameter split policy",
+    "evidence identity, variables, regime, dataset, label-free selection policy and raw-value prohibition",
+    "normal-reference existence, policy and evidence-source binding",
+    "accepted-library conflict and structural-duplicate checks",
+    "declared complexity budget",
+    "binary missing-response output and abstention contract",
+    "future explanation provenance completeness",
+    "explicit causal-claim and authority-boundary checks"
+  ],
+  "validity_matrix": [
+    {
+      "concept": "schema",
+      "task_specific": "CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "CHECKED",
+      "note": "Different schemas are reparsed at each boundary; passing one schema does not satisfy another."
+    },
+    {
+      "concept": "variable_identity",
+      "task_specific": "CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "TRANSFORMED",
+      "note": "Task validity binds the confirmed relation; canonical validity binds graph nodes and typed roles; runtime binds the accepted verification subject."
+    },
+    {
+      "concept": "relation_id",
+      "task_specific": "CHECKED",
+      "canonical": "NOT_CHECKED",
+      "runtime_authorization": "NOT_APPLICABLE",
+      "note": "Canonical Rule v1 has rule, graph-edge and evidence identities but no TASK-039E relation_identity field."
+    },
+    {
+      "concept": "direction",
+      "task_specific": "CHECKED",
+      "canonical": "TRANSFORMED",
+      "runtime_authorization": "TRANSFORMED",
+      "note": "Task signs are explicit. Canonical MVP uses trigger state, graph direction and an increase-only expected-effect contract, so direct sign equivalence is not established."
+    },
+    {
+      "concept": "horizon",
+      "task_specific": "CHECKED",
+      "canonical": "TRANSFORMED",
+      "runtime_authorization": "TRANSFORMED",
+      "note": "Task validity requires one exact selected horizon; canonical validity binds fixed or interval lag to approved parameters and graph/evidence ranges."
+    },
+    {
+      "concept": "numeric_reference",
+      "task_specific": "CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "CHECKED",
+      "note": "Reference families and authority identities differ; equality cannot be inferred from the common concept."
+    },
+    {
+      "concept": "unit",
+      "task_specific": "NOT_CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "TRANSFORMED",
+      "note": "Task proposal validity compares reference identities, while canonical stages inspect time, target, count and severity units."
+    },
+    {
+      "concept": "operator_and_execution_semantics",
+      "task_specific": "CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "TRANSFORMED",
+      "note": "Task validity fixes one runtime-logic family; canonical validity separately checks trigger, lag, window, persistence and output semantics."
+    },
+    {
+      "concept": "evidence_provenance",
+      "task_specific": "CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "CHECKED",
+      "note": "Task validity binds the E1-derived bundle and construction provenance; canonical validity binds canonical evidence, normal reference and parameter artifacts."
+    },
+    {
+      "concept": "causal_wording",
+      "task_specific": "TRANSFORMED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "NOT_APPLICABLE",
+      "note": "Task proposal schema excludes free text; canonical stage 20 explicitly enforces the non-causal claim boundary."
+    },
+    {
+      "concept": "hash_integrity",
+      "task_specific": "CHECKED",
+      "canonical": "CHECKED",
+      "runtime_authorization": "CHECKED",
+      "note": "Each layer uses distinct hashes over distinct subjects."
+    },
+    {
+      "concept": "portfolio_identity",
+      "task_specific": "NOT_CHECKED",
+      "canonical": "NOT_CHECKED",
+      "runtime_authorization": "TRANSFORMED",
+      "note": "COMMON-42 is a later executable-equivalence portfolio, not an input to either construction validity implementation."
+    },
+    {
+      "concept": "runtime_registry_identity",
+      "task_specific": "NOT_CHECKED",
+      "canonical": "NOT_CHECKED",
+      "runtime_authorization": "CHECKED",
+      "note": "Runtime registry and receipt identity belong to the later authorization layer."
+    },
+    {
+      "concept": "execution_permission",
+      "task_specific": "NOT_CHECKED",
+      "canonical": "NOT_CHECKED",
+      "runtime_authorization": "CHECKED",
+      "note": "Both validity layers explicitly leave runtime unauthorized; only a separate authorization receipt can grant permission."
+    }
+  ],
+  "bidirectional_failure_analysis": {
+    "task_admissible_can_fail_canonical": {
+      "answer": true,
+      "direct_object_case": "A TASK-039E proposal mapping is not a DelayedResponseRuleV1 document and fails canonical schema parsing if passed directly.",
+      "after_hypothetical_projection": [
+        "task proposals may encode decrease responses while canonical Rule v1 MVP requires expected-effect direction increase",
+        "task admissibility does not establish canonical graph node types, subsystem, edge, evidence, normal-reference or parameter-artifact bindings",
+        "task admissibility does not establish canonical units, parameter approval/stability/split, duplicate policy, complexity, output, abstention or explanation fields"
+      ]
+    },
+    "canonical_valid_can_fail_task_specific": {
+      "answer": true,
+      "direct_object_case": "A canonical Rule v1 document does not have the exact TASK-039E proposal field set and is malformed for task validity.",
+      "after_hypothetical_projection": [
+        "canonical Rule v1 does not carry TASK-039E construction arm, budget, relation-binding identity or construction-provenance envelope",
+        "canonical Rule v1 numeric parameter references are not the exact TASK-039E reference family",
+        "canonical fixed or interval lag semantics do not themselves prove equality to the frozen relation selected-horizon field"
+      ]
+    }
+  },
+  "proposal_to_canonical_transformation": {
+    "tracked_bridge_found": false,
+    "source_search_result": "No src/paperworks/v6 call to parse_delayed_response_rule, materialize_accepted_rule, verify_delayed_response_rule or authorize_delayed_response_runtime was found in the frozen construction lineage.",
+    "material_fields_missing_from_proposal": [
+      "canonical rule and dataset/subsystem identity",
+      "operating regime",
+      "canonical trigger representation",
+      "canonical lag/window/persistence structures",
+      "canonical parameter, graph-edge, evidence and normal-reference collections",
+      "output, severity, abstention and complexity policies",
+      "review history and canonical verifier hash"
+    ],
+    "task_fields_not_preserved_by_canonical_schema_without_an_explicit_mapping": [
+      "construction arm and arm protocol",
+      "TASK-039E relation identity and binding hash",
+      "construction provenance and budget binding",
+      "fit and confirmation reference identities",
+      "TASK-039E window-reference bundle as such"
+    ],
+    "verdict": "LOSSLESSNESS_UNKNOWN_AND_NOT_PROVEN"
+  },
+  "frozen_execution_lineage": {
+    "construction_semantic_binding": "task039e0_validity_v2",
+    "canonical_verifier_applied_to_frozen_arm_outputs": false,
+    "canonical_rule_materialized_by_frozen_arm_outputs": false,
+    "common42_creation_basis": "post-result executable-signature equivalence over T0, T1 and T1-B task-specific accepted proposals, with T2 recorded as a matching 39-relation subset plus three no_rule cells",
+    "common42_object_boundary": "ExecutableSignatureV1 metadata projection, not DelayedResponseRuleV1",
+    "verifier_that_governed_common42_input_admissibility": "task039e0_validity_v2",
+    "additional_common42_control": "self-hashed executable-equivalence freeze and later utility authority checks",
+    "canonical_verifier_v1_governed_common42": false,
+    "evidence_strength": "VERIFIED_FROM_TRACKED_SOURCE_AND_FROZEN_PUBLIC_ARTIFACTS"
+  },
+  "error_state_mapping": {
+    "task_specific_validity": {
+      "internal": [
+        "admissible",
+        "rejected with bounded issue codes and repair/action classes"
+      ],
+      "construction_orchestration": [
+        "accepted_proposal",
+        "no_rule"
+      ],
+      "risk": "The orchestration mapping can collapse parser/response failure, validity rejection and budget exhaustion into no_rule."
+    },
+    "canonical_verifier": {
+      "statuses": [
+        "accepted",
+        "needs_repair",
+        "rejected"
+      ],
+      "rule": "Only all-repairable violations yield needs_repair; any non-repairable violation yields rejected."
+    },
+    "mapping_equivalence": "NON_EQUIVALENT",
+    "no_rule_canonical_equivalent": "NONE"
+  },
+  "high_risk_carryovers": [
+    {
+      "source": "ARCH-000 M-003",
+      "issue": "canonical Rule v1 shown as direct D1 payload",
+      "disposition": "RESOLVED",
+      "reason": "Frozen utility uses COMMON-42 executable signatures/descriptors rather than canonical DelayedResponseRuleV1 objects."
+    },
+    {
+      "source": "ARCH-000 M-004",
+      "issue": "canonical verifier shown as T0-T2 verifier",
+      "disposition": "RESOLVED",
+      "reason": "Executed construction explicitly uses task039e0_validity_v2."
+    },
+    {
+      "source": "ARCH-000 multiple verifier and runtime entrypoints",
+      "issue": "parallel canonical and task-specific authority paths",
+      "disposition": "PARTIALLY_RESOLVED",
+      "reason": "Their roles are distinct and non-equivalent, but no tracked proposal-to-canonical bridge closes the architecture."
+    },
+    {
+      "source": "ARCH-000 M-006",
+      "issue": "task-specific D1 trace versus canonical RuntimeTraceV1",
+      "disposition": "DEFER_TO_ARCH_006",
+      "reason": "This audit proves the canonical verifier path was not the frozen D1 path but does not audit runtime trace semantics."
+    },
+    {
+      "source": "ARCH-003 A003-05",
+      "issue": "construction and runtime numeric authority identities",
+      "disposition": "PARTIALLY_RESOLVED",
+      "reason": "Task and canonical validity use different reference/artifact families; later runtime value equivalence does not make their authority identities equal."
+    },
+    {
+      "source": "ARCH-004 A004-M09",
+      "issue": "one-to-one canonical materialization assumed",
+      "disposition": "RESOLVED",
+      "reason": "No such frozen bridge exists and the contracts are not one-to-one, including the decrease-response incompatibility."
+    },
+    {
+      "source": "ARCH-004 A004-M10",
+      "issue": "explicit construction failures collapsed into no_rule",
+      "disposition": "REQUIRES_CODE_FIX",
+      "reason": "Canonical verifier statuses do not repair the task-specific orchestration taxonomy; no fix is authorized here."
+    }
+  ],
+  "scientific_claim_boundary": {
+    "supported": [
+      "A deterministic task-specific proposal-admissibility adapter governed the frozen construction arms.",
+      "A separate deterministic twenty-stage canonical verifier implementation exists and is tested with synthetic canonical fixtures.",
+      "COMMON-42 preserves task-specific executable-signature equivalence and is not proof that 42 canonical Rule v1 objects passed VerifierV1."
+    ],
+    "not_supported": [
+      "Task-specific admissibility is canonical verifier acceptance.",
+      "COMMON-42 is a canonical Rule v1 accepted library.",
+      "Verifier acceptance proves physical truth, causal truth, detection utility or generalization."
+    ]
+  },
+  "source_evidence": [
+    {
+      "path": "src/paperworks/v6/task039e0_validity_v1.py",
+      "symbols": [
+        "PROPOSAL_FIELDS",
+        "ValidityIssueCodeV1",
+        "verify_prepared_rule_proposal_v1"
+      ],
+      "supports": "task-specific field closure, exact relation/reference/provenance checks and explicit no-authority boundary"
+    },
+    {
+      "path": "src/paperworks/v6/task039e0_validity_v2.py",
+      "symbols": [
+        "PreparedValidityResultV2",
+        "verify_prepared_rule_proposal_v2"
+      ],
+      "supports": "V2 budget binding, admissible/rejected status and zero canonical/runtime authority"
+    },
+    {
+      "path": "src/paperworks/v6/task039e2_execution_configuration_v1.py",
+      "symbols": [
+        "ProviderProposalCoreV1",
+        "RuleProposalEnvelopeV1",
+        "MainStructuredOutputPolicyV1"
+      ],
+      "supports": "closed proposal object and semantic_binding_verified_by task039e0_validity_v2"
+    },
+    {
+      "path": "src/paperworks/contracts/rule_v1.py",
+      "symbols": [
+        "DelayedResponseRuleV1",
+        "parse_delayed_response_rule",
+        "_validate_mvp"
+      ],
+      "supports": "canonical object/schema and increase-only MVP boundary"
+    },
+    {
+      "path": "src/paperworks/contracts/verifier_v1.py",
+      "symbols": [
+        "verify_delayed_response_rule",
+        "_stage_1 through _stage_20"
+      ],
+      "supports": "twenty-stage canonical checks, accepted/needs_repair/rejected semantics and no runtime authority"
+    },
+    {
+      "path": "src/paperworks/contracts/accepted_rule.py",
+      "symbols": [
+        "canonical_rule_verification_subject_sha256",
+        "materialize_accepted_rule"
+      ],
+      "supports": "canonical accepted-rule materialization and authority-field-free verification hash"
+    },
+    {
+      "path": "src/paperworks/contracts/runtime_authority.py",
+      "symbols": [
+        "authorize_delayed_response_runtime",
+        "authorize_v6_delayed_response_runtime",
+        "verify_runtime_authorization_bundle"
+      ],
+      "supports": "separate fail-closed runtime authority"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py",
+      "symbols": [
+        "build_prepared_proposal_v1",
+        "run_t0_v1",
+        "run_t1_v1",
+        "run_t1b_v1",
+        "run_t2_v1"
+      ],
+      "supports": "task validity invocation and accepted_proposal/no_rule mapping"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v1.py",
+      "symbols": [
+        "ExecutableSignatureV1"
+      ],
+      "supports": "COMMON-42 executable-signature object differs from canonical Rule v1"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json",
+      "symbols": [
+        "portfolio_class",
+        "T0_T1_T1B_equivalence_verified",
+        "relation_records"
+      ],
+      "supports": "COMMON-42 arm-equivalence scope and T2 subset semantics"
+    },
+    {
+      "path": "docs/task_reports/TASK-039P1C_REPORT.md",
+      "symbols": [
+        "Authority Boundary",
+        "Safety"
+      ],
+      "supports": "canonical v6 bridge was synthetic-only with no scientific consumer migration"
+    }
+  ],
+  "relevant_tests": [
+    "tests/test_task039e0_validity.py",
+    "tests/test_task039e0_validity_v2.py",
+    "tests/test_task032d_verifier_v1.py",
+    "tests/test_task032d_authority_hash.py",
+    "tests/test_task032e_runtime_authority.py",
+    "tests/test_task039p1c_verifier_runtime.py",
+    "tests/test_task039p1c_canonical_context.py"
+  ],
+  "unknowns": [
+    "No tracked frozen implementation defines a complete TASK-039E accepted-proposal to DelayedResponseRuleV1 mapping.",
+    "No tracked evidence shows the canonical twenty-stage verifier was applied to the 42 frozen construction-arm proposals.",
+    "Whether a future implementation should materialize an increase-only canonical subset or version the canonical rule family for decrease responses remains a separate design decision.",
+    "The exact future reconciliation between canonical RuntimeAuthorizationBundleV1 and the task-specific frozen D1 runtime authority is outside this agent scope and belongs to ARCH-006."
+  ],
+  "counters": {
+    "llm_calls": 0,
+    "provider_calls": 0,
+    "scientific_executions": 0,
+    "verifier_executions": 0,
+    "runtime_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_reads": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_files_modified": 0,
+    "staging_files_written": 1
+  },
+  "agent_verdict": "PASS_WITH_HIGH_NON_EQUIVALENCE_AND_MISSING_BRIDGE_FINDING"
+}

@@ -13,15 +13,16 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit`
+`ARCH-005 — Deterministic Verifier / COMMON-42 / Runtime Authorization Deep Audit`
 
 ## What changed
 
-- Mapped the E1 private evidence record and exact E3 model-visible construction view.
-- Separated the closed proposal candidate from canonical Rule v1 materialization and runtime authority.
-- Audited T0/T1/T1-B/T2 budgets, parsers, validity handoff and exact frozen outcomes.
-- Verified T2 revise, retrieve, follow-up and feedback recovery counts were all zero.
-- Added construction catalogs, flow, dashboard, and user learning summary without provider or scientific execution.
+- Mapped all 20 canonical VerifierV1 stages and its explicit guarantee boundary.
+- Classified task-specific validity and canonical verification as partially overlapping but non-equivalent.
+- Proved COMMON-42 is the T0/T1/T1-B shared 42-descriptor V4 portfolio and excludes T2.
+- Separated canonical runtime authorization from the V4/evaluator/committed-grant authority used by frozen D1.
+- Verified the three frozen T2 no_rule cases while preserving the broader taxonomy code-fix risk.
+- Added verifier, portfolio, hash, authorization and terminology maps without executing verifier or runtime.
 
 ## Decisions made
 
@@ -33,8 +34,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-004 added static source, contract,
-frozen construction-result lineage, lifecycle and claim-boundary evidence only.
+No new scientific outcome was produced. ARCH-005 added static source, frozen
+public-metadata lineage, lifecycle, authority and terminology evidence only.
 
 ## Open risks
 
@@ -53,15 +54,15 @@ frozen construction-result lineage, lifecycle and claim-boundary evidence only.
 
 ## User actions
 
-- Explain the Evidence Pack and its withheld fields.
-- Explain what the LLM can and cannot change and why the closed DSL exists.
-- Distinguish T0, T1, T1-B and T2.
-- Explain why feedback action zero prevents an improvement claim.
-- Explain why accepted proposal is not detection performance or runtime authority.
-- Approve or defer ARCH-005.
+- Explain proposal versus canonical Rule.
+- Explain what VerifierV1 checks and cannot prove.
+- Explain accepted versus runtime authorized.
+- Explain COMMON-42 and its T0/T1/T1-B/T2 relationship.
+- Explain why D1 terminology and no_rule taxonomy matter.
+- Approve or defer ARCH-006.
 
 ## Exact next task
 
-`ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit`
+`ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit`
 
-Do not start it until the user has reviewed ARCH-004.
+Do not start it until the user has reviewed ARCH-005.

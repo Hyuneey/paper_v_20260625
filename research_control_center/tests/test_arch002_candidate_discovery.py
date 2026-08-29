@@ -68,7 +68,7 @@ class Arch002CandidateDiscoveryTests(unittest.TestCase):
         self.assertFalse(discovery["posthoc_xai_used"])
         self.assertEqual("unscored provenance-preserving set union of 47 unique pairs", discovery["union"])
         self.assertIn("GDN unique", state["current_unvalidated"][0])
-        self.assertTrue(state["exact_next_task"].startswith("ARCH-005"))
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-005", "ARCH-006")))
 
     def test_generated_user_and_dashboard_views_are_explicit(self) -> None:
         summary = (RCC_ROOT / "generated" / "ARCH_002_USER_SUMMARY.md").read_text(encoding="utf-8")

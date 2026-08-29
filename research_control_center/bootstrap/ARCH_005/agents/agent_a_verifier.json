@@ -1,0 +1,387 @@
+{
+  "task_id": "ARCH-005",
+  "agent_role": "Agent A - Canonical Deterministic Verifier Auditor",
+  "audit_mode": "READ_ONLY_STATIC_AUTHORITY_AUDIT",
+  "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "verdict": "VERIFIED_WITH_FROZEN_EXECUTION_LINEAGE_GAP",
+  "summary": {
+    "canonical_verifier_exists": true,
+    "actual_stage_count": 20,
+    "stage_count_source_supported": true,
+    "input_type": "DelayedResponseRuleV1 plus a bound delayed-response artifact collection, verifier policy, and optional accepted-library outcomes",
+    "output_type": "RuleVerificationOutcomeV1 containing stage records, a self-hashed VerifierResultV1, and an accepted rule only when all stages pass",
+    "result_statuses": [
+      "accepted",
+      "needs_repair",
+      "rejected"
+    ],
+    "no_rule_is_canonical_verifier_status": false,
+    "runtime_authority_granted": false,
+    "classification": "DETERMINISTIC_CONTRACT_AND_BINDING_VALIDITY_ONLY"
+  },
+  "canonical_rule_schema": {
+    "schema_version": "1.0.0",
+    "artifact_type": "rule_dsl",
+    "python_type": "DelayedResponseRuleV1",
+    "transport": "canonical compact JSON with sorted keys and no NaN",
+    "unknown_fields_rejected": true,
+    "typed_non_executable_representation": true,
+    "mvp_constraints": [
+      "exactly one source and one target",
+      "source and target must differ",
+      "relation_type is delayed_response",
+      "trigger_type is state_changes_to and trigger variable equals source",
+      "trigger state is required and trigger parameter references are absent",
+      "effect_type is delayed_change and canonical MVP effect direction is increase",
+      "output is binary_anomaly with missing_expected_response violation direction",
+      "lag is fixed or interval with consistent bounds",
+      "window is event_relative or persistence",
+      "nested parameter references must be included in top-level parameter_refs"
+    ],
+    "authority_fields": {
+      "candidate_input_required_status": [
+        "candidate",
+        "needs_repair"
+      ],
+      "candidate_verified_rule_hash": null,
+      "accepted_status": "accepted",
+      "accepted_verified_rule_hash": "SHA-256 over all non-authority rule fields",
+      "runtime_authorized_property": false
+    },
+    "arbitrary_python_field": false,
+    "free_form_expression_field": false,
+    "file_or_network_action_field": false,
+    "free_form_causal_claim_field": false,
+    "source_evidence": [
+      "schemas/rule_dsl_schema.json",
+      "src/paperworks/contracts/rule_v1.py:DelayedResponseRuleV1",
+      "src/paperworks/contracts/rule_v1.py:parse_delayed_response_rule",
+      "src/paperworks/contracts/rule_v1.py:_validate_mvp",
+      "src/paperworks/contracts/accepted_rule.py:materialize_accepted_rule",
+      "src/paperworks/contracts/accepted_rule.py:canonical_rule_verification_subject_sha256"
+    ]
+  },
+  "verifier_entrypoints": [
+    {
+      "path": "src/paperworks/contracts/verifier_v1.py",
+      "symbol": "verify_delayed_response_rule",
+      "role": "run the ordered twenty-stage deterministic verification and materialize an accepted Rule v1 only on zero violations"
+    },
+    {
+      "path": "src/paperworks/contracts/verifier_v1.py",
+      "symbol": "verify_verifier_result_binding",
+      "role": "revalidate verifier-result self-hash, rule subject binding, policy version, and deterministic result identifier"
+    },
+    {
+      "path": "src/paperworks/contracts/verifier_v1.py",
+      "symbol": "canonical_verifier_binding_id",
+      "role": "bind rule subject, status, graph, evidence, parameters, policy, and issues into deterministic verifier-result identity"
+    },
+    {
+      "path": "src/paperworks/contracts/verifier_v1.py",
+      "symbol": "parse_verifier_result",
+      "role": "schema-validate and self-hash-validate persisted verifier results"
+    }
+  ],
+  "execution_semantics": {
+    "stage_order_fixed": true,
+    "stage_1_failure_behavior": "stages 2 through 20 are recorded as skipped_due_to_prior_failure",
+    "later_stage_failure_behavior": "issues are accumulated deterministically; later stages are not skipped merely because stages 2 through 20 fail",
+    "issue_sort_order": "stage, code, field, message, repairability",
+    "accepted_condition": "zero violations",
+    "needs_repair_condition": "one or more violations and every violation is repairable",
+    "rejected_condition": "at least one non_repairable violation",
+    "accepted_materialization": "status becomes accepted and verified_rule_hash is the verification-subject hash",
+    "runtime_authorized": false,
+    "no_rule_mapping": "none in canonical verifier"
+  },
+  "stages": [
+    {
+      "order": 1,
+      "name": "structural_schema_validation",
+      "symbol": "_stage_1",
+      "checks": "reparse rule, graph, evidence, and every parameter through canonical structural/hash validators",
+      "issue_codes": ["STRUCTURAL_BINDING_INVALID"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 2,
+      "name": "type_validation",
+      "symbol": "_stage_2",
+      "checks": "source is a binary/boolean actuator and target is a continuous sensor",
+      "issue_codes": ["SOURCE_TYPE_MISMATCH", "TARGET_TYPE_MISMATCH"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 3,
+      "name": "variable_allowlist",
+      "symbol": "_stage_3",
+      "checks": "every rule source/target variable occurs exactly once in the bound graph",
+      "issue_codes": ["VARIABLE_NOT_FOUND"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 4,
+      "name": "subsystem_compatibility",
+      "symbol": "_stage_4",
+      "checks": "rule, evidence, source node, and target node share one subsystem",
+      "issue_codes": ["SUBSYSTEM_MISMATCH"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 5,
+      "name": "graph_edge_validation",
+      "symbol": "_stage_5",
+      "checks": "exactly one existing directed non-self edge matches source and target and remains candidate-only",
+      "issue_codes": ["GRAPH_EDGE_CARDINALITY", "GRAPH_EDGE_NOT_FOUND", "GRAPH_DIRECTION_MISMATCH", "GRAPH_SELF_EDGE", "GRAPH_CAUSAL_CLAIM"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 6,
+      "name": "relation_family_compatibility",
+      "symbol": "_stage_6",
+      "checks": "delayed_response is supported by rule, edge, parameters, and evidence claims",
+      "issue_codes": ["RELATION_FAMILY_UNSUPPORTED", "EDGE_RELATION_UNSUPPORTED", "PARAMETER_RELATION_MISMATCH", "EVIDENCE_CLAIMS_INSUFFICIENT"],
+      "repairability": "mixed",
+      "fail_closed": true
+    },
+    {
+      "order": 7,
+      "name": "unit_compatibility",
+      "symbol": "_stage_7",
+      "checks": "time roles use convertible time units, tolerance matches target unit, support uses count unit, severity uses score-like unit, and rule lag/window use supported time units",
+      "issue_codes": ["TIME_UNIT_MISMATCH", "TOLERANCE_UNIT_MISMATCH", "SUPPORT_UNIT_MISMATCH", "SEVERITY_UNIT_MISMATCH", "RULE_TIME_UNIT_UNSUPPORTED"],
+      "repairability": "repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 8,
+      "name": "lag_bound_validation",
+      "symbol": "_stage_8",
+      "checks": "lag role/value/interval binds to parameter and remains inside graph and evidence candidate ranges under policy tolerance",
+      "issue_codes": ["FIXED_LAG_ROLE_MISMATCH", "FIXED_LAG_VALUE_MISMATCH", "LAG_MAXIMUM_MISMATCH", "LAG_MINIMUM_MISMATCH", "LAG_INTERVAL_UNCERTAINTY_MISMATCH", "LAG_BINDING_INCOMPLETE", "LAG_OUTSIDE_GRAPH_RANGE", "LAG_OUTSIDE_EVIDENCE_RANGE", "LAG_UNIT_CONVERSION_FAILED"],
+      "repairability": "repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 9,
+      "name": "window_and_persistence_validation",
+      "symbol": "_stage_9",
+      "checks": "window binds persistence_duration, contains lag when event-relative, uses supported type/unit, and shares persistence reference",
+      "issue_codes": ["WINDOW_DURATION_ROLE_MISMATCH", "WINDOW_DURATION_MISMATCH", "WINDOW_TOO_SHORT", "WINDOW_UNIT_CONVERSION_FAILED", "WINDOW_TYPE_UNSUPPORTED", "PERSISTENCE_REFERENCE_MISMATCH"],
+      "repairability": "repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 10,
+      "name": "parameter_existence_and_approval",
+      "symbol": "_stage_10",
+      "checks": "referenced parameters exist, are approved/stable, satisfy uncertainty policy, include required roles, and meet minimum support",
+      "issue_codes": ["PARAMETER_MISSING", "PARAMETER_NOT_APPROVED", "PARAMETER_UNSTABLE", "PARAMETER_UNCERTAINTY_PROHIBITED", "PARAMETER_ROLE_INCOMPLETE", "INSUFFICIENT_SUPPORT"],
+      "repairability": "mixed",
+      "fail_closed": true
+    },
+    {
+      "order": 11,
+      "name": "parameter_provenance",
+      "symbol": "_stage_11",
+      "checks": "dataset, relation, variables, regime, normal references, and parameter self-hash bind to the rule context",
+      "issue_codes": ["PARAMETER_DATASET_MISMATCH", "PARAMETER_RELATION_MISMATCH", "PARAMETER_VARIABLE_MISMATCH", "PARAMETER_REGIME_MISMATCH", "PARAMETER_NORMAL_REFERENCE_MISMATCH", "PARAMETER_HASH_INVALID"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 12,
+      "name": "split_policy_validation",
+      "symbol": "_stage_12",
+      "checks": "evidence split is train/calibration/normal_relation_calibration and numeric parameters use calibration split",
+      "issue_codes": ["EVIDENCE_SPLIT_PROHIBITED", "PARAMETER_SPLIT_PROHIBITED"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 13,
+      "name": "evidence_reference_validation",
+      "symbol": "_stage_13",
+      "checks": "exactly one evidence reference binds variables, regime, dataset, preregistered label-free deterministic selection, and excludes raw values",
+      "issue_codes": ["EVIDENCE_REFERENCE_INVALID", "EVIDENCE_VARIABLE_MISMATCH", "EVIDENCE_REGIME_MISMATCH", "EVIDENCE_DATASET_MISMATCH", "EVIDENCE_SELECTION_POLICY_INVALID", "EVIDENCE_RAW_VALUES_PROHIBITED"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 14,
+      "name": "normal_reference_validation",
+      "symbol": "_stage_14",
+      "checks": "one normal reference exists in evidence/collection, is used by parameters, is label-free/deterministic, and binds v6 normal evidence and regime",
+      "issue_codes": ["NORMAL_REFERENCE_INVALID", "PARAMETER_NORMAL_REFERENCE_MISMATCH", "NORMAL_REFERENCE_POLICY_INVALID", "NORMAL_REFERENCE_BINDING_MISMATCH", "NORMAL_REGIME_MISMATCH"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 15,
+      "name": "conflict_detection",
+      "symbol": "_stage_15",
+      "checks": "same conflict key in accepted library cannot carry a different semantic projection without repair",
+      "issue_codes": ["STRUCTURAL_CONFLICT"],
+      "repairability": "repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 16,
+      "name": "duplicate_and_subsumption_detection",
+      "symbol": "_stage_16",
+      "checks": "exact semantic-projection duplicate in accepted library is rejected as structural duplicate",
+      "issue_codes": ["STRUCTURAL_DUPLICATE"],
+      "repairability": "non_repairable",
+      "fail_closed": true,
+      "note": "implementation checks structural duplicate only; it does not establish behavioral equivalence or general subsumption"
+    },
+    {
+      "order": 17,
+      "name": "complexity_budget_validation",
+      "symbol": "_stage_17",
+      "checks": "declared variable count and operator/variable/depth/score budgets satisfy policy",
+      "issue_codes": ["COMPLEXITY_VARIABLE_COUNT", "COMPLEXITY_OPERATOR_BUDGET", "COMPLEXITY_VARIABLE_BUDGET", "COMPLEXITY_DEPTH_BUDGET", "COMPLEXITY_SCORE_INVALID"],
+      "repairability": "repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 18,
+      "name": "output_contract_validation",
+      "symbol": "_stage_18",
+      "checks": "binary anomaly output, missing-expected-response violation, and complete boolean abstention policy",
+      "issue_codes": ["OUTPUT_TYPE_INVALID", "VIOLATION_DIRECTION_INVALID", "ABSTENTION_POLICY_INCOMPLETE"],
+      "repairability": "repairable",
+      "fail_closed": true
+    },
+    {
+      "order": 19,
+      "name": "explanation_provenance_validation",
+      "symbol": "_stage_19",
+      "checks": "future explanation can bind edge, evidence, normal reference, and all parameters",
+      "issue_codes": ["EXPLANATION_EDGE_MISSING", "EXPLANATION_EVIDENCE_MISSING", "EXPLANATION_NORMAL_REFERENCE_MISSING", "EXPLANATION_PARAMETER_MISSING"],
+      "repairability": "mixed",
+      "fail_closed": true
+    },
+    {
+      "order": 20,
+      "name": "claim_and_authority_boundary",
+      "symbol": "_stage_20",
+      "checks": "candidate does not preclaim authority, edge does not authorize causality, required prohibited claims exist, raw/label evidence is excluded, and neither evidence nor input claims runtime authority",
+      "issue_codes": ["RULE_AUTHORITY_PRECLAIMED", "CAUSAL_CLAIM_PROHIBITED", "CLAIM_BOUNDARY_INCOMPLETE", "RAW_VALUES_PROHIBITED", "EVIDENCE_AUTHORITY_BOUNDARY", "RUNTIME_AUTHORITY_PROHIBITED"],
+      "repairability": "non_repairable",
+      "fail_closed": true
+    }
+  ],
+  "guarantee_boundary": {
+    "can_establish": [
+      "canonical schema and MVP rule-contract validity",
+      "source/target type, graph membership, edge direction, and subsystem consistency",
+      "delayed-response family, lag/window/persistence, unit, and output-contract consistency",
+      "parameter existence, approval, stability, uncertainty, support, provenance, and self-hash checks",
+      "label-free split/evidence/normal-reference bindings",
+      "deterministic structural conflict/duplicate and complexity checks",
+      "claim and authority boundaries including candidate-only graph semantics",
+      "deterministic verifier-result identity bound to rule subject, artifacts, policy, status, and issues"
+    ],
+    "cannot_establish": [
+      "physical truth",
+      "causal or root-cause truth",
+      "anomaly-detection utility",
+      "false-alarm or recall performance",
+      "parameter or horizon optimality",
+      "held-out generalization",
+      "runtime authorization",
+      "portfolio or governance selection",
+      "behavioral duplicate equivalence"
+    ],
+    "requires_empirical_validation": [
+      "relation usefulness",
+      "normal false-fire behavior",
+      "attack-event response",
+      "detector complementarity",
+      "construction-arm advantage",
+      "generalization and reproducibility"
+    ]
+  },
+  "forbidden_construct_boundary": {
+    "arbitrary_python": "NO_SCHEMA_FIELD; rejected as unknown structure before semantic stages",
+    "dynamic_eval_or_exec": "NO_SCHEMA_FIELD; canonical verifier does not execute rule code",
+    "file_access": "NO_SCHEMA_FIELD",
+    "network_access": "NO_SCHEMA_FIELD",
+    "new_sensor": "fails exact graph membership/type/edge checks",
+    "unapproved_number": "numeric values must bind approved CalibrationParameterV1 artifacts and roles",
+    "unapproved_horizon": "fails lag parameter and graph/evidence range checks",
+    "causal_claim": "canonical document has no free-form causal text; causal graph authority and incomplete prohibited-claim boundary are rejected"
+  },
+  "hash_and_authority_observations": [
+    "canonical rule transport hash is explicitly not verifier authority",
+    "verification-subject hash removes only status and verified_rule_hash and binds every other rule field",
+    "accepted-rule materialization refuses preclaimed authority and sets the verified_rule_hash deterministically",
+    "verifier result carries its own artifact hash and deterministic result identifier",
+    "verify_verifier_result_binding rechecks result self-hash, rule ID/hash, verifier policy version, and result identifier",
+    "RuleVerificationOutcomeV1 and VerifierResultV1 expose runtime_authorized as false"
+  ],
+  "tests_and_lineage": {
+    "canonical_tests": [
+      "tests/test_task032d_verifier_v1.py",
+      "tests/test_task039p1c_verifier_runtime.py",
+      "tests/test_task039p1c_legacy_compatibility.py",
+      "tests/test_task039p1c_outcome_bindings.py",
+      "tests/test_task039p1c_schema_and_boundaries.py"
+    ],
+    "test_evidence": [
+      "TASK-032D tests mutate graph direction/types, evidence, normal reference, parameter approval/stability/provenance/units/lag/window/support and structural duplicates",
+      "TASK-039P1C test asserts one canonical v6 fixture passes exactly twenty stages and remains runtime unauthorized",
+      "TASK-039P1C test asserts rule/graph/evidence/parameter mutation fails closed before synthetic-only authorization"
+    ],
+    "public_report": "docs/task_reports/TASK-039P1C_REPORT.md",
+    "frozen_execution_lineage": "The authority commit proves canonical v6 context binding and synthetic contract tests. Static search found canonical verifier calls in tests/support, not in the task039e2/task039e3 scientific construction orchestration. Therefore use of VerifierV1 for COMMON-42 or frozen D1 is NOT_ESTABLISHED by this Agent A audit and must not be inferred from verifier existence.",
+    "scientific_consumer_migration": "TASK-039P1C report explicitly states none"
+  },
+  "findings": [
+    {
+      "severity": "HIGH",
+      "id": "A005-VER-001",
+      "finding": "Canonical VerifierV1 is a twenty-stage contract verifier, but its invocation over the frozen COMMON-42/D1 scientific cohort is not evidenced by the canonical verifier module, v6 construction orchestration, or P1C report inspected here.",
+      "impact": "Verifier existence must not be used as proof that frozen task-specific construction outcomes passed canonical verification.",
+      "disposition": "Cross-check with Agent B task-specific equivalence and Agent C COMMON-42 lineage."
+    },
+    {
+      "severity": "MEDIUM",
+      "id": "A005-VER-002",
+      "finding": "Stage 16 is named duplicate_and_subsumption_detection but implements exact structural projection duplicate detection only.",
+      "impact": "Documentation must not claim behavioral duplicate or general subsumption validation.",
+      "disposition": "Use structural-duplicate terminology."
+    },
+    {
+      "severity": "LOW",
+      "id": "A005-VER-003",
+      "finding": "Causal wording is controlled indirectly through the typed schema, candidate-edge flag, and evidence prohibited-claims boundary; there is no free-form text classifier because the canonical Rule has no free-form claim field.",
+      "impact": "Attribute the boundary to schema and authority checks, not semantic scientific verification.",
+      "disposition": "Document enforcement layer precisely."
+    }
+  ],
+  "uncertainties": [
+    "Whether every frozen construction proposal was projected losslessly into DelayedResponseRuleV1 is outside Agent A evidence and requires Agent B.",
+    "Which artifact defines COMMON-42 and which verifier governed it requires Agent C lineage evidence.",
+    "Which runtime authorization path governed frozen D1 requires Agent D and later ARCH-006 evidence."
+  ],
+  "safety_counters": {
+    "verifier_executions": 0,
+    "runtime_executions": 0,
+    "scientific_executions": 0,
+    "llm_calls": 0,
+    "test2_accesses": 0,
+    "private_payload_reads": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_file_changes": 0,
+    "staging_json_files_written": 1
+  }
+}

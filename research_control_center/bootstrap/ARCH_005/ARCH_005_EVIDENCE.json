@@ -1,0 +1,16 @@
+{
+  "task_id": "ARCH-005",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "audit_mode": "READ_ONLY_STATIC_AND_FROZEN_PUBLIC_METADATA",
+  "verdict": "PASS_WITH_HIGH_DOCUMENTED_GAPS",
+  "canonical_verifier_stages": 20,
+  "task_canonical_relationship": "PARTIALLY_OVERLAPPING_NON_EQUIVALENT_BY_DESIGN",
+  "common42_descriptors": 42,
+  "t2_utility_authorized": false,
+  "t2_accepted": 39,
+  "t2_no_rule": 3,
+  "frozen_t2_cases_verified_unsupported_variable": 3,
+  "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
+  "mismatches": {"total": 11, "critical": 0, "high": 9, "medium": 2, "low": 0},
+  "safety": {"llm_calls": 0, "verifier_executions": 0, "runtime_executions": 0, "scientific_executions": 0, "test2_accesses": 0, "scientific_source_changes": 0, "frozen_artifact_changes": 0, "private_exposures": 0}
+}

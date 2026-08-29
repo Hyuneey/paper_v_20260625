@@ -1,0 +1,18 @@
+flowchart TD
+  R[Confirmed relation] --> E[Evidence Pack]
+  E --> A[T0 / T1 / T1-B / T2 proposal]
+  A --> TV[Task validity V2]
+  TV --> AP[accepted_proposal]
+  TV --> NR[no_rule / collapsed failure risk]
+  AP --> EQ[T0/T1/T1-B executable equivalence]
+  EQ --> C42[COMMON-42: 42 V4 descriptors]
+  C42 --> EV[Evaluator authority bundle]
+  EV --> G[Committed D1 execution grant]
+  G --> D1[Task-specific real D1 executor]
+  T2[T2: 39 accepted + 3 no_rule] -. utility unauthorized .-> C42
+  CR[DelayedResponseRuleV1 candidate] --> CV[Canonical VerifierV1: 20 stages]
+  CV --> AR[Accepted canonical RuleV1]
+  AR --> RA[Canonical runtime authorization]
+  RA --> SR[Synthetic canonical runtime]
+  AP -. no tracked materialization bridge .-> CR
+  AR -. not the frozen D1 object .-> C42

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리가 어떤 데이터를 쓰고 있는가
 
 ## 한 문장 답
@@ -69,4 +69,4 @@ enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossib
 3. label-blind object와 durable prediction file은 서로 다른 보장이다.
 4. test1은 pilot이고 test2는 결과가 없다.
 
-다음 task는 **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**이다.
+다음 task는 **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**이다.

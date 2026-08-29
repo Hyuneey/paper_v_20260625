@@ -124,4 +124,24 @@ Rule v1 materialization, COMMON-42 membership, runtime authority, or detection
 performance. T2 has a bounded feedback capability, but the frozen cohort used
 zero revise/retrieve actions.
 
-Exact next task: `ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit`.
+## Completed verifier / COMMON-42 audit
+
+- [Korean report](05_verifier_common42/ARCH_005_REPORT.md)
+- [Rule lifecycle](05_verifier_common42/ARCH_005_RULE_LIFECYCLE.md)
+- [Canonical Rule schema](05_verifier_common42/ARCH_005_CANONICAL_RULE_SCHEMA.md)
+- [20 verifier stages](05_verifier_common42/ARCH_005_VERIFIER_STAGES.csv)
+- [Task/canonical matrix](05_verifier_common42/ARCH_005_VALIDITY_EQUIVALENCE.csv)
+- [COMMON-42 definition](05_verifier_common42/ARCH_005_COMMON42.md)
+- [Arm/portfolio mapping](05_verifier_common42/ARCH_005_ARM_PORTFOLIO_MAPPING.csv)
+- [Runtime authorization](05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md)
+- [No-rule taxonomy](05_verifier_common42/ARCH_005_NO_RULE_TAXONOMY.md)
+- [Prior HIGH-risk disposition](05_verifier_common42/ARCH_005_HIGH_RISK_DISPOSITION.md)
+- [Mismatch register](05_verifier_common42/ARCH_005_MISMATCHES.md)
+
+The general canonical RuleV1/verifier/runtime-authority plane and the frozen D1
+V4/evaluator/committed-grant plane are separate. COMMON-42 is the 42 executable
+projections shared by T0/T1/T1-B; T2 is excluded. Preferred D1 terminology is
+`COMMON-42 Verified Relational Rule-only`, with verified limited to contract,
+provenance, authority and integrity.
+
+Exact next task: `ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit`.

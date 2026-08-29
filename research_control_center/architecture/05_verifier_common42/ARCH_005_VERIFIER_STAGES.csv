@@ -1,0 +1,21 @@
+stage_order,stage_name,function_symbol,input,check,failure_code,repairable,no_rule_possible,fail_closed,downstream_state,test,notes
+1,structural_schema_validation,_stage_1,rule+bound collection,reparse all canonical artifacts and hashes,STRUCTURAL_BINDING_INVALID,no,no,yes,continue-or-skip,tests/test_task039p1c_verifier_v1.py,only stage whose failure skips all later stages
+2,type_validation,_stage_2,typed variables,source actuator and target continuous sensor,SOURCE_TYPE_MISMATCH|TARGET_TYPE_MISMATCH,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+3,variable_allowlist,_stage_3,graph nodes,source and target occur exactly once,VARIABLE_NOT_FOUND,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+4,subsystem_compatibility,_stage_4,rule+evidence+nodes,one subsystem,SUBSYSTEM_MISMATCH,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+5,graph_edge_validation,_stage_5,graph edges,one directed non-self candidate edge,GRAPH_EDGE_NOT_FOUND|GRAPH_DIRECTION_MISMATCH,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,edge is not causal evidence
+6,relation_family_compatibility,_stage_6,rule+edge+evidence+parameters,delayed-response family agreement,RELATION_FAMILY_UNSUPPORTED|EVIDENCE_CLAIMS_INSUFFICIENT,mixed,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+7,unit_compatibility,_stage_7,rule+parameters,time target count and severity units,TIME_UNIT_MISMATCH|TOLERANCE_UNIT_MISMATCH,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+8,lag_bound_validation,_stage_8,lag+artifacts,lag binding and allowed ranges,LAG_BINDING_INCOMPLETE|LAG_OUTSIDE_EVIDENCE_RANGE,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+9,window_and_persistence_validation,_stage_9,window+parameters,window contains lag and binds persistence,WINDOW_TOO_SHORT|PERSISTENCE_REFERENCE_MISMATCH,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+10,parameter_existence_and_approval,_stage_10,parameter collection,existence approval stability uncertainty roles and support,PARAMETER_MISSING|PARAMETER_NOT_APPROVED|INSUFFICIENT_SUPPORT,mixed,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+11,parameter_provenance,_stage_11,parameters,dataset relation variable regime normal-reference and hash binding,PARAMETER_DATASET_MISMATCH|PARAMETER_HASH_INVALID,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+12,split_policy_validation,_stage_12,evidence+parameters,normal/calibration split policy,EVIDENCE_SPLIT_PROHIBITED|PARAMETER_SPLIT_PROHIBITED,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+13,evidence_reference_validation,_stage_13,evidence,identity variables regime dataset selection and raw-value exclusion,EVIDENCE_REFERENCE_INVALID|EVIDENCE_RAW_VALUES_PROHIBITED,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+14,normal_reference_validation,_stage_14,normal reference,existence policy evidence-source and regime binding,NORMAL_REFERENCE_INVALID|NORMAL_REFERENCE_BINDING_MISMATCH,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+15,conflict_detection,_stage_15,accepted library,same conflict key cannot change semantic projection,STRUCTURAL_CONFLICT,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+16,duplicate_and_subsumption_detection,_stage_16,accepted library,exact semantic-projection duplicate,STRUCTURAL_DUPLICATE,no,no,yes,continue,tests/test_task039p1c_verifier_v1.py,does not implement general subsumption
+17,complexity_budget_validation,_stage_17,rule+policy,operator variable depth and score budgets,COMPLEXITY_OPERATOR_BUDGET|COMPLEXITY_SCORE_INVALID,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+18,output_contract_validation,_stage_18,output policy,binary missing-response and abstention contract,OUTPUT_TYPE_INVALID|ABSTENTION_POLICY_INCOMPLETE,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+19,explanation_provenance_validation,_stage_19,rule+evidence,explanation references are complete and evidence-bound,EXPLANATION_PROVENANCE_INCOMPLETE,yes,no,yes,continue,tests/test_task039p1c_verifier_v1.py,
+20,claim_and_authority_boundary,_stage_20,rule+evidence,no causal/root-cause/raw/label-performance or premature authority claims,CAUSAL_CLAIM_PROHIBITED|AUTHORITY_PRECLAIMED,no,no,yes,accepted-needs_repair-rejected,tests/test_task039p1c_verifier_v1.py,verifier still does not establish scientific truth

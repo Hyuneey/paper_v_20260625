@@ -54,8 +54,8 @@ class ARCH004RuleConstructionTests(unittest.TestCase):
 
     def test_current_state_and_generated_view(self) -> None:
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertEqual("ARCH-004", state["last_completed_task"])
-        self.assertTrue(state["exact_next_task"].startswith("ARCH-005"))
+        self.assertIn(state["last_completed_task"], {"ARCH-004", "ARCH-005"})
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-005", "ARCH-006")))
         self.assertEqual(0, state["rule_construction_authority"]["observed_feedback_actions"])
         summary = (RCC / "generated" / "ARCH_004_USER_SUMMARY.md").read_text(encoding="utf-8")
         self.assertIn("39/42", summary)

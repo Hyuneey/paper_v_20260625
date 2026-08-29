@@ -1,0 +1,15 @@
+concept,TASK_SPECIFIC,CANONICAL,RUNTIME_AUTHORIZATION,notes
+schema,CHECKED,CHECKED,CHECKED,different schemas at each boundary
+variable_identity,CHECKED,CHECKED,TRANSFORMED,relation binding versus typed graph roles
+relation_id,CHECKED,NOT_CHECKED,TRANSFORMED,canonical Rule has other artifact identities
+direction,CHECKED,TRANSFORMED,TRANSFORMED,task signs versus narrower canonical MVP
+horizon,CHECKED,TRANSFORMED,TRANSFORMED,exact task horizon versus lag structures
+numeric_reference,CHECKED,CHECKED,CHECKED,different authority families
+unit,NOT_CHECKED,CHECKED,TRANSFORMED,task validity checks reference identity rather than first-class units
+operator,CHECKED,CHECKED,CHECKED,closed execution semantics
+evidence_provenance,CHECKED,CHECKED,CHECKED,different evidence objects and hashes
+causal_wording,NOT_CHECKED,CHECKED,NOT_APPLICABLE,canonical verifier claim boundary
+hash,CHECKED,CHECKED,CHECKED,different subjects and identities
+portfolio_identity,NOT_CHECKED,NOT_CHECKED,CHECKED,COMMON-42 is later V4 governance
+runtime_registry_identity,NOT_CHECKED,NOT_CHECKED,CHECKED,later evaluator/authorization layer
+execution_permission,NOT_CHECKED,NOT_CHECKED,CHECKED,both validity layers explicitly grant none

@@ -1,0 +1,5 @@
+arm,proposal_artifact,task_specific_accepted,canonicalized,canonical_verifier_applied,portfolio_candidate,COMMON42_member_source,runtime_used,D1_used,notes
+T0,E0 frozen construction result,42,no,no,yes,shared executable projection,shared_projection_only,shared_projection_only,D1 loads one V4 descriptor portfolio; no T0 artifact or canonical RuleV1 library is loaded
+T1,E0 frozen provider result,42,no,no,yes,shared executable projection,shared_projection_only,shared_projection_only,D1 loads one V4 descriptor portfolio; no provider payload or canonical RuleV1 library is loaded
+T1-B,E0 frozen repeated-generation result,42,no,no,yes,shared executable projection,shared_projection_only,shared_projection_only,D1 loads one V4 descriptor portfolio; repeated proposals are not independent predictions
+T2,E0 frozen feedback-arm result,39,no,no,no,no,no,no,39 descriptively equivalent and 3 no_rule; utility explicitly unauthorized

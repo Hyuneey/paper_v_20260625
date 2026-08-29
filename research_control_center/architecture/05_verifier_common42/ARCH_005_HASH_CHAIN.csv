@@ -1,0 +1,15 @@
+name,producer,input,purpose,consumer,required_for_verifier,required_for_runtime,frozen,failure_behavior
+relation_cohort_hash,E0 confirmed cohort,42 relation identities,bind relation cohort,executable equivalence,no,yes,yes,replay reject
+proposal_hash,E0 construction,closed proposal,construction identity,task validity,task-specific,no,yes,reject
+validity_result_hash,E0 validity,proposal+issues,bind admissibility,E0 result,task-specific,no,yes,reject
+executable_equivalence_hash,utility protocol,T0/T1/T1-B projections,prove shared semantics,COMMON authority,no,yes,yes,reject
+semantic_execution_hash,V4,relation executable projection,bind runtime semantics,V4 descriptor,no,yes,yes,reject
+numeric_reference_set_hash,normal-only authority,420 relation-role refs,bind reference census,evaluator,no,yes,yes,reject
+numeric_authority_descriptor_hash,normal-only authority,registry metadata,bind private custody,V4/evaluator,no,yes,yes,reject
+rule_descriptor_hash,V4,relation+semantics+refs,bind one runtime descriptor,census/evaluator,no,yes,yes,reject
+portfolio_hash,V4 full census,42 descriptors+policies,bind COMMON-42 plan,evaluator,no,yes,yes,reject
+v4_authority_hash,V4 factory,all V4 authority,exact replay,evaluator,no,yes,yes,reject
+evaluator_bundle_hash,evaluator factory,V4+schemas+registries+policies,bind execution inputs,D1 bridge,no,yes,yes,reject
+committed_grant_hash,D1 authorization,scope+committed artifacts,one real execution,D1 token,no,yes,yes,reject
+canonical_rule_subject_hash,canonical verifier,RuleV1 non-authority fields,bind VerifierV1 decision,canonical runtime,yes,yes,not D1,reject
+canonical_verifier_result_hash,canonical verifier,subject+policy+issues,bind accepted decision,canonical runtime,yes,yes,not D1,reject

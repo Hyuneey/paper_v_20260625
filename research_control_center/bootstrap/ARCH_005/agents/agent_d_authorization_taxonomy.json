@@ -1,0 +1,554 @@
+{
+  "task_id": "ARCH-005",
+  "agent_role": "Agent D - Runtime Authorization, Binding, and Failure-Taxonomy Auditor",
+  "audit_mode": "READ_ONLY_STATIC_AND_FROZEN_PUBLIC_METADATA_AUDIT",
+  "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "verdict": "PASS_WITH_HIGH_NO_RULE_TAXONOMY_RISK",
+  "summary": {
+    "canonical_rule_v1_runtime_authorization_mapped": true,
+    "frozen_d1_runtime_authorization_mapped": true,
+    "authorization_lanes_are_identical": false,
+    "frozen_d1_used_canonical_runtime_authority_module": false,
+    "frozen_d1_used_canonical_verifier_result": false,
+    "frozen_d1_authority": "Dedicated committed INNER D1 execution authorization plus V4 evaluator authority, COMMON-42 CanonicalRuleDescriptorV4 objects, exact private numeric resolver custody, and the real D1 execution bridge",
+    "stale_or_mismatched_numeric_authority_behavior": "FAIL_CLOSED",
+    "frozen_t2_three_cases": "VERIFIED_AS_NON_REPAIRABLE_UNSUPPORTED_VARIABLE_REJECTIONS",
+    "general_no_rule_taxonomy": "CONFLATES_SEVERAL_DISTINCT_CONSTRUCTION_FAILURE_CLASSES",
+    "risk_level": "HIGH"
+  },
+  "authorization_lanes": [
+    {
+      "lane": "GENERAL_CANONICAL_RULE_V1_RUNTIME_AUTHORIZATION",
+      "module": "src/paperworks/contracts/runtime_authority.py",
+      "entrypoints": [
+        "authorize_delayed_response_runtime",
+        "authorize_v6_delayed_response_runtime",
+        "verify_runtime_authorization_bundle"
+      ],
+      "input_rule_object": "paperworks.contracts.rule_v1.DelayedResponseRuleV1 with accepted status and verified_rule_hash",
+      "required_verifier_object": "accepted paperworks.contracts.verifier_v1.VerifierResultV1 bound to the same verification subject",
+      "required_artifacts": "bound graph, evidence, exact parameter set, verifier policy, and for v6 a selected deployable governance binding",
+      "scope": "synthetic_only",
+      "authorization_output": "RuntimeAuthorizationBundleV1 with a self-hashed RuntimeAuthorizationReceiptV1; v6 additionally returns a deployment binding",
+      "fail_closed_checks": [
+        "accepted rule and accepted verifier result are both required",
+        "accepted rule hash must equal the recomputed canonical verification subject and verifier rule hash",
+        "verifier-result binding is replayed",
+        "parameter, verified edge, evidence, and normal-reference sets must match exactly",
+        "dataset, operating regime, source, and target context must match",
+        "authorization ID and self-hash must recompute",
+        "rule, verifier, graph, evidence, parameters, policy, version, and scope must match the receipt",
+        "all bound inputs are reparsed before execution",
+        "v6 evidence cannot use the historical entrypoint without selected governance authority"
+      ],
+      "frozen_d1_used": false,
+      "qualification": "This reusable canonical contract lane is real code, but the audited frozen D1 path did not materialize DelayedResponseRuleV1 objects or consume canonical VerifierResultV1/runtime bundles. It therefore must not be presented as the authority that governed frozen D1."
+    },
+    {
+      "lane": "TASK039E3_V4_FROZEN_D1_AUTHORIZATION",
+      "modules": [
+        "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py",
+        "src/paperworks/v6/task039e3_r2r_utility_evaluator_authority_v1.py",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_execution_authorization_v1.py",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py"
+      ],
+      "input_rule_object": "Utility Protocol V4 CanonicalRuleDescriptorV4 selected from the COMMON-42 authority by exact relation_binding_hash",
+      "required_verifier_object": "No canonical VerifierResultV1 is consumed by the frozen D1 bridge; V4 relies on prior task-specific construction validity and executable-equivalence audit lineage",
+      "authorization_layers": [
+        "V4 metadata authority binds COMMON-42, executable equivalence, event/metric policies, and the new normal-only numeric authority",
+        "EvaluatorAuthorityBundleV1 binds V4 plus audited main/supplement authority descriptors and evaluator policies",
+        "InnerExecutionAuthorizationV1 issues a dedicated one-shot D1-only grant after private custody preflight",
+        "RealPrivateNumericResolverV1 is factory-issued, process-custodied, non-copyable, non-serializable, and binds exact private registry hashes and reference sets",
+        "execute_authorized_inner_d1_v1 uses the dedicated authorization, exact feature/census custody, execute_real_rule_v1, prediction freeze, and label access only after prediction"
+      ],
+      "authorization_scope": "HAI_23_05_P1_TEST1_COMMON42_D1_RULE_ONLY_INNER_V1",
+      "dedicated_authorization_hash": "deb08014de20c398d2dcde046e14b505a65af2d52cb6eb309fc8188f020b5834",
+      "important_flag_semantics": {
+        "d1_authorized": true,
+        "utility_inner_execution_authorized": true,
+        "utility_inner_d1_execution_authorization_issued": true,
+        "real_utility_execution_authorized": false,
+        "explanation": "The global evaluator flag remains false while a narrower committed INNER D1 grant is true. Treating the false global flag as evidence that frozen D1 lacked authority would be incorrect; treating it as a general real-utility authorization would also be incorrect."
+      },
+      "explicitly_unauthorized": [
+        "D0",
+        "D2",
+        "detector",
+        "fusion",
+        "OUTER",
+        "test2",
+        "rule regeneration",
+        "threshold recalibration",
+        "metric modification"
+      ],
+      "frozen_d1_used": true,
+      "frozen_result_integrity": "AUDITED",
+      "qualification": "This is a task-specific scientific execution lane, not an invocation of the general canonical Rule-v1 runtime authorization contract."
+    }
+  ],
+  "numeric_rebinding": {
+    "construction_side": {
+      "authority": "Frozen construction/evidence lineage and executable-equivalence projection",
+      "common_portfolio": "COMMON-42",
+      "relation_count": 42,
+      "roles_per_relation": 10,
+      "reference_count": 420,
+      "private_numeric_values_in_public_v4": false
+    },
+    "runtime_side": {
+      "authority": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1 rebound through NumericAuthorityDescriptorV4 and the exact private registry",
+      "descriptor_object": "NumericAuthorityDescriptorV4",
+      "rule_object": "CanonicalRuleDescriptorV4",
+      "relation_binding_key": "relation_binding_hash",
+      "lookup_key": "relation_binding_hash plus numeric role plus exact reference identity",
+      "relation_count": 42,
+      "roles_per_relation": 10,
+      "reference_count": 420
+    },
+    "relationship": "SEPARATE_AUTHORITY_IDENTITIES_WITH_AUDITED_EXECUTABLE_EQUIVALENCE_AND_EXACT_REFERENCE_REBINDING",
+    "historical_e1_identity_restored": false,
+    "historical_numeric_identity_restored": false,
+    "t2_utility_scope_authorized": false,
+    "binding_checks": [
+      "NumericAuthorityDescriptorV4 binds private registry content hash, materialization audit receipt, authority definition, calibration policy, COMMON-42 authority, executable-equivalence hash, normal-input set, and new-reference set",
+      "historical E1 and historical numeric authority substitution is rejected",
+      "every V4 rule descriptor binds relation identity, relation binding hash, semantic execution hash, direction, horizon, exactly ten role/reference pairs, and the numeric authority descriptor hash",
+      "the real resolver validates both private registry documents against their frozen hashes and expected authority definitions",
+      "the real resolver reconstructs the expected 420 relation-role bindings from V4 descriptors",
+      "every private record new_reference_identity must equal the V4 expected reference",
+      "the relation-role key set must close exactly at 420",
+      "process-local resolver issuance, object identity, bound bundle identity, relation count, and source-census closure are revalidated",
+      "each runtime lookup rejects a wrong relation, role, or reference identity"
+    ],
+    "stale_or_mismatch_behavior": [
+      {
+        "case": "wrong main or supplement registry bytes/hash",
+        "behavior": "REJECT"
+      },
+      {
+        "case": "historical E1 or historical numeric authority substituted",
+        "behavior": "REJECT"
+      },
+      {
+        "case": "reference identity differs from V4 descriptor",
+        "behavior": "REJECT"
+      },
+      {
+        "case": "missing, duplicate-collapsed, or foreign relation-role key prevents exact 420 closure",
+        "behavior": "REJECT"
+      },
+      {
+        "case": "resolver is copied, serialized, reconstructed outside factory custody, or bound to another bundle",
+        "behavior": "REJECT"
+      },
+      {
+        "case": "rule descriptor or opportunity fails V4 replay",
+        "behavior": "REJECT"
+      }
+    ],
+    "can_stale_authority_execute": false,
+    "residual_limit": "The fail-closed conclusion applies to the frozen V4 D1 bridge and its exact authorities; it is not evidence that every legacy or future runtime entrypoint shares this implementation."
+  },
+  "hash_and_integrity_chain": [
+    {
+      "identity": "canonical_rule_verification_subject_sha256",
+      "lane": "GENERAL_CANONICAL_RULE_V1",
+      "purpose": "bind accepted Rule v1 and canonical verifier result",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "RuntimeAuthorizationReceiptV1.authorization_hash and authorization_id",
+      "lane": "GENERAL_CANONICAL_RULE_V1",
+      "purpose": "self-hash and bind rule, verifier, graph, evidence, parameters, policy, version, scope, and time",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "NumericAuthorityDescriptorV4.descriptor_hash",
+      "lane": "TASK039E3_V4_D1",
+      "purpose": "bind the new normal-only numeric authority and its audited source identities",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "CanonicalRuleDescriptorV4.descriptor_hash",
+      "lane": "TASK039E3_V4_D1",
+      "purpose": "bind relation semantics and the exact ten numeric reference identities",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "EvaluatorAuthorityBundleV1.bundle_hash",
+      "lane": "TASK039E3_V4_D1",
+      "purpose": "bind V4, main/supplement authority, census, schema, event, metric, and purge policies",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "InnerExecutionAuthorizationV1.artifact_hash",
+      "lane": "TASK039E3_V4_D1",
+      "purpose": "bind the exact D1-only committed execution scope and private custody preflight",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "RealPrivateNumericResolverV1.resolver_identity",
+      "lane": "TASK039E3_V4_D1",
+      "purpose": "process-local binding of authority bundle, registry hashes, relation references, source references, and zero exposure",
+      "required_for_runtime": true
+    },
+    {
+      "identity": "RealRuleExecutionResultV1.computation_identity and trace_hash",
+      "lane": "TASK039E3_V4_D1",
+      "purpose": "bind opportunity, rule descriptor, numeric reference identities, frame, and deterministic result trace",
+      "required_for_runtime": false,
+      "required_for_frozen_prediction_lineage": true
+    }
+  ],
+  "failure_taxonomy": [
+    {
+      "failure_class": "PROVIDER_TRANSPORT_ERROR_OR_NO_RECEIVED_RESPONSE",
+      "origin": "task039e3_execution_prep_v1.execute_mock_provider_slot_v1 and live executor transport control",
+      "persisted_result": "ExecutionFailureReceiptV1 plus ScientificRunAbortV1/full-run termination",
+      "counted_as_no_rule": false,
+      "recoverable": "Only under the separately frozen transport retry policy; the scientific run does not skip the slot or reinterpret failure as no_rule",
+      "scientific_interpretation": "SYSTEM_OR_TRANSPORT_FAILURE"
+    },
+    {
+      "failure_class": "PROVIDER_REFUSAL",
+      "origin": "ParsedProviderProposalV1.parse_status provider_refusal",
+      "persisted_result": "ConstructionOutcomeRecordV1 outcome no_rule with scientific_response:provider_refusal in T1/T2; T1-B records an inadmissible draw and may later collapse to none_admissible_among_3",
+      "counted_as_no_rule": true,
+      "recoverable": false,
+      "scientific_interpretation": "NOT_A_SEMANTIC_INSUFFICIENT_EVIDENCE_RESULT",
+      "risk": "Distinct provider refusal is collapsed into the same headline no_rule outcome."
+    },
+    {
+      "failure_class": "RESPONSE_MISSING_OR_INCOMPLETE",
+      "origin": "ParsedProviderProposalV1.parse_status incomplete_response",
+      "persisted_result": "ConstructionOutcomeRecordV1 outcome no_rule with scientific_response:incomplete_response in T1/T2; T1-B may collapse at arm outcome level",
+      "counted_as_no_rule": true,
+      "recoverable": false,
+      "scientific_interpretation": "INCOMPLETE_PROVIDER_RESPONSE",
+      "risk": "Outcome-level no_rule is broader than the underlying cause."
+    },
+    {
+      "failure_class": "SCHEMA_OR_JSON_PARSE_FAILURE",
+      "origin": "ParsedProviderProposalV1.parse_status schema_parse_failure",
+      "persisted_result": "ConstructionOutcomeRecordV1 outcome no_rule with scientific_response:schema_parse_failure in T1/T2; T1-B consumes the draw, retains cause in call accounting, but final all-failed outcome is none_admissible_among_3",
+      "counted_as_no_rule": true,
+      "recoverable": "T1-B still uses its fixed remaining independent calls; T2 terminates immediately on absent parsed core",
+      "scientific_interpretation": "PARSE_FAILURE_NOT_RULE_EVIDENCE"
+    },
+    {
+      "failure_class": "TASK_SPECIFIC_INVALID_PROPOSAL_OR_VERIFIER_REJECTION",
+      "origin": "task039e0 validity result rejected",
+      "persisted_result": "T0/T1 outcome no_rule with verifier-rejection reason; T1-B may collapse to none_admissible_among_3; T2 routes repairable issues to revise/retrieve and non-repairable issues to no_rule",
+      "counted_as_no_rule": true,
+      "recoverable": "Only repairable T2 issues within the three-call/retrieval budget",
+      "scientific_interpretation": "INVALID_OR_NON_ADMISSIBLE_PROPOSAL",
+      "risk": "Verifier rejection and intentional no-rule construction are not separate top-level outcome states."
+    },
+    {
+      "failure_class": "CANONICAL_VERIFIER_REJECTED",
+      "origin": "paperworks.contracts.verifier_v1",
+      "persisted_result": "rejected or needs_repair canonical VerifierResultV1 status",
+      "counted_as_no_rule": false,
+      "recoverable": "depends on canonical issue repairability outside frozen D1 construction",
+      "scientific_interpretation": "CANONICAL_CONTRACT_FAILURE",
+      "qualification": "This canonical state did not govern the frozen TASK-039E construction/D1 lane."
+    },
+    {
+      "failure_class": "NON_REPAIRABLE_T2_VALIDITY_ISSUE",
+      "origin": "T2 controller next_action no_rule",
+      "persisted_result": "outcome no_rule, reason non_repairable_issue",
+      "counted_as_no_rule": true,
+      "recoverable": false,
+      "scientific_interpretation": "FAIL_CLOSED_INVALID_PROPOSAL",
+      "qualification": "It is safe termination but does not by itself mean the relation evidence was insufficient."
+    },
+    {
+      "failure_class": "BUDGET_EXHAUSTED_AFTER_REPAIRABLE_T2_REJECTIONS",
+      "origin": "T2 controller at call three",
+      "persisted_result": "outcome no_rule, reason budget_exhaustion, budget_exhaustion_count 1",
+      "counted_as_no_rule": true,
+      "recoverable": false,
+      "scientific_interpretation": "BUDGET_EXHAUSTION_NOT_SEMANTIC_NO_RULE"
+    },
+    {
+      "failure_class": "RETRIEVAL_INTEGRITY_FAILURE_OR_MISSING_RETRIEVAL_IDENTITY",
+      "origin": "retrieve_existing_evidence_v1 or run_t2_v1",
+      "persisted_result": "TASK039E3PreparationError abort path",
+      "counted_as_no_rule": false,
+      "recoverable": false,
+      "scientific_interpretation": "ORCHESTRATION_OR_INTEGRITY_FAILURE"
+    },
+    {
+      "failure_class": "INTENTIONAL_SEMANTIC_NO_RULE",
+      "origin": "project policy defines no_rule as construction termination when evidence is insufficient",
+      "persisted_result": "No uniquely separate top-level implementation state was found in the frozen orchestration outcome enum, which contains only accepted_proposal and no_rule",
+      "counted_as_no_rule": true,
+      "recoverable": false,
+      "scientific_interpretation": "INTENDED_POLICY_STATE_BUT_NOT_IMPLEMENTATION-DISTINGUISHABLE_FROM_ALL_OTHER_NO_RULE_CAUSES",
+      "risk": "A future scientific analysis must use reason/call/proposal ledgers and must not interpret aggregate no_rule count as evidence insufficiency."
+    }
+  ],
+  "no_rule_taxonomy_assessment": {
+    "intended_policy": "no_rule is a valid construction termination due to insufficient evidence; provider failure, invalid JSON, verifier rejection, and budget exhaustion are explicit failures",
+    "implemented_top_level_outcomes": [
+      "accepted_proposal",
+      "no_rule"
+    ],
+    "implemented_reason_detail": [
+      "t0_verifier_rejection",
+      "scientific_response:provider_refusal",
+      "scientific_response:incomplete_response",
+      "scientific_response:schema_parse_failure",
+      "verifier_rejection",
+      "none_admissible_among_3",
+      "non_repairable_issue",
+      "budget_exhaustion"
+    ],
+    "transport_failure_separate": true,
+    "canonical_verifier_no_rule_status": false,
+    "outcome_level_conflation": true,
+    "cause_recoverability": "PARTIAL_BECAUSE_PROVIDER_CALL_AND_PROPOSAL_LEDGERS_RETAIN_MORE DETAIL_THAN_THE_HEADLINE_OUTCOME",
+    "severity": "HIGH",
+    "recommended_future_action": "Introduce explicit persisted terminal classes for semantic no_rule, provider refusal/incomplete/parse failure, task-specific rejection, budget exhaustion, retrieval/integrity failure, and transport/system failure while preserving frozen historical artifacts unchanged."
+  },
+  "frozen_t2_three_cases": {
+    "cohort_count": 3,
+    "anonymous_cases": [
+      {
+        "case": "T2-NR-01",
+        "classification": "VERIFIED",
+        "issue_code": "VALIDITY_UNSUPPORTED_VARIABLE",
+        "repairability": "non_repairable",
+        "controller_action": "no_rule",
+        "terminated_after_call": 1,
+        "feedback_action": false,
+        "budget_exhaustion": false
+      },
+      {
+        "case": "T2-NR-02",
+        "classification": "VERIFIED",
+        "issue_code": "VALIDITY_UNSUPPORTED_VARIABLE",
+        "repairability": "non_repairable",
+        "controller_action": "no_rule",
+        "terminated_after_call": 1,
+        "feedback_action": false,
+        "budget_exhaustion": false
+      },
+      {
+        "case": "T2-NR-03",
+        "classification": "VERIFIED",
+        "issue_code": "VALIDITY_UNSUPPORTED_VARIABLE",
+        "repairability": "non_repairable",
+        "controller_action": "no_rule",
+        "terminated_after_call": 1,
+        "feedback_action": false,
+        "budget_exhaustion": false
+      }
+    ],
+    "aggregate_public_evidence": {
+      "accepted": 39,
+      "no_rule": 3,
+      "provider_calls": 42,
+      "valid_structured": 42,
+      "verifier_rejections": 3,
+      "non_repairable_no_rule": 3,
+      "revise_actions": 0,
+      "retrieve_actions": 0,
+      "followup_calls": 0,
+      "budget_exhaustion": 0
+    },
+    "interpretation": "All three frozen cases are traceable to structured proposals rejected for unsupported-variable validity and safely terminated without feedback or extra calls. They are not provider/system failures and not budget exhaustion. They should be described as non-repairable invalid-proposal no_rule outcomes, not as proof that underlying relation evidence was insufficient.",
+    "privacy": "No relation identities or private evidence are included."
+  },
+  "prior_risk_disposition": [
+    {
+      "risk": "canonical versus task-specific verifier/runtime authority ambiguity",
+      "disposition": "RESOLVED",
+      "result": "The lanes are non-equivalent and separate. Frozen D1 uses V4/task-specific authority, not canonical Rule-v1 verifier/runtime_authority.py."
+    },
+    {
+      "risk": "multiple construction and recovery entrypoints",
+      "disposition": "PARTIALLY_RESOLVED",
+      "result": "The frozen path is traceable through task-specific construction, V4 closure, committed INNER authorization, and the real D1 bridge, but parallel reusable canonical and task-specific paths remain a maintainability and terminology risk."
+    },
+    {
+      "risk": "D1 task-specific trace versus canonical runtime trace",
+      "disposition": "DEFER_TO_ARCH_006",
+      "result": "Frozen D1 emits RealRuleExecutionResultV1 computation and trace hashes rather than the generic canonical runtime trace object; semantic trace equivalence requires runtime/trace deep audit."
+    },
+    {
+      "risk": "construction versus runtime numeric authority identities",
+      "disposition": "RESOLVED_FOR_FROZEN_D1",
+      "result": "They are separate by design but bound by audited executable equivalence, V4 descriptor hashes, exact 420-reference rebinding, private registry validation, and exact resolver lookup."
+    },
+    {
+      "risk": "stale numeric or authority artifact could execute",
+      "disposition": "RESOLVED_FOR_FROZEN_D1",
+      "result": "Hash replay, historical-authority rejection, exact reference/closure checks, and process-local resolver custody fail closed."
+    },
+    {
+      "risk": "no_rule conflates failure categories",
+      "disposition": "REQUIRES_CODE_FIX",
+      "result": "The broader implementation maps refusal, incomplete/parse failure, task validity rejection, non-repairable issue, and budget exhaustion into the same headline no_rule outcome, despite detailed reason/accounting fields. Frozen artifacts must not be rewritten."
+    },
+    {
+      "risk": "frozen T2 three no_rule cases are uninterpretable",
+      "disposition": "RESOLVED_FOR_FROZEN_COHORT",
+      "result": "All three are anonymously verified as call-one, non-repairable VALIDITY_UNSUPPORTED_VARIABLE rejections with zero feedback/retrieval/followup and zero budget exhaustion."
+    }
+  ],
+  "guarantee_boundary": {
+    "established": [
+      "The general canonical runtime lane has explicit accepted-rule, accepted-verifier, artifact, governance, hash, scope, and replay checks and is synthetic-only.",
+      "Frozen D1 used a distinct committed D1-only authorization and V4 descriptor/resolver bridge.",
+      "Frozen D1 runtime numeric references are exact, authority-bound, process-custodied, and fail closed on stale or mismatched identity.",
+      "The original frozen D1 scientific execution occurred once and its result integrity was independently audited.",
+      "The three frozen T2 no_rule cells are non-repairable unsupported-variable proposal rejections."
+    ],
+    "not_established": [
+      "Canonical Rule-v1 verifier acceptance or general runtime authorization governed frozen D1.",
+      "All no_rule outcomes mean insufficient relation evidence.",
+      "A verifier-accepted construction proposal is scientifically valid, useful, causal, generalizable, or runtime authorized.",
+      "The frozen D1 task-specific trace is equivalent to the generic canonical runtime trace before ARCH-006.",
+      "Fail-closed behavior of the frozen D1 bridge proves the same for every legacy or future execution path."
+    ]
+  },
+  "source_evidence": [
+    {
+      "path": "src/paperworks/contracts/runtime_authority.py",
+      "symbols": [
+        "authorize_delayed_response_runtime",
+        "_authorize_delayed_response_runtime_core",
+        "authorize_v6_delayed_response_runtime",
+        "verify_runtime_authorization_bundle"
+      ],
+      "supports": "general canonical Rule-v1 authorization, governance gate, receipt binding, replay, stale mismatch rejection"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py",
+      "symbols": [
+        "NumericAuthorityDescriptorV4",
+        "build_numeric_authority_descriptor_v4",
+        "CanonicalRuleDescriptorV4",
+        "build_canonical_rule_descriptors_v4",
+        "validate_canonical_rule_descriptor_v4"
+      ],
+      "supports": "V4 numeric authority identity and 42 by 10 reference rebinding"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_authority_v1.py",
+      "symbols": [
+        "EvaluatorAuthorityBundleV1",
+        "EvaluatorImplementationAuthorityV1",
+        "validate_evaluator_authority_bundle_v1"
+      ],
+      "supports": "V4 evaluator bundle and process-local authority custody"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_inner_execution_authorization_v1.py",
+      "symbols": [
+        "InnerExecutionAuthorizationV1",
+        "_build_expected_authorization_v1",
+        "issue_inner_execution_authorization_v1",
+        "validate_inner_execution_authorization_v1"
+      ],
+      "supports": "dedicated D1-only committed authorization and exact replay"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py",
+      "symbols": [
+        "RealPrivateNumericResolverV1",
+        "build_real_private_numeric_resolver_v1",
+        "validate_real_private_numeric_resolver_v1",
+        "execute_real_rule_v1",
+        "execute_authorized_inner_d1_v1"
+      ],
+      "supports": "actual frozen D1 V4 rule execution bridge, numeric custody, exact lookup, one-shot execution"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_execution_prep_v1.py",
+      "symbols": [
+        "ParsedProviderProposalV1",
+        "ExecutionFailureReceiptV1",
+        "ScientificRunAbortV1",
+        "execute_mock_provider_slot_v1"
+      ],
+      "supports": "parse/refusal/incomplete statuses and separate transport/full-run failure behavior"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py",
+      "symbols": [
+        "ConstructionOutcomeRecordV1",
+        "run_t0_v1",
+        "run_t1_v1",
+        "run_t1b_v1",
+        "run_t2_v1",
+        "retrieve_existing_evidence_v1"
+      ],
+      "supports": "mapping of parse, validity, repair, retrieval, budget, and rejection states to persisted outcomes"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E0_VALIDITY_POLICY.json",
+      "supports": "repairability and controller mapping for task-specific issue codes"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E0_CONSTRUCTION_METRIC_POLICY.json",
+      "supports": "intended separation of no_rule, verifier rejection, and budget exhaustion metrics"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E0_PROTOCOL_BUNDLE.json",
+      "supports": "intended semantic no_rule boundary"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_T2.json",
+      "supports": "aggregate frozen T2 issue category, repairability, controller action, and feedback count"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_METRICS.json",
+      "supports": "frozen arm counts, parse states, verifier rejections, T2 call-one termination, zero followups and budget exhaustion"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_V4_REPORT.md",
+      "supports": "COMMON-42 V4 authority, 420 reference closure, T2 exclusion, metadata-only original closure"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_PORTABLE_PREFLIGHT_R1_AUTHORIZATION.json",
+      "supports": "exact successful dedicated INNER D1 authorization scope and flags"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_REPORT.md",
+      "supports": "one frozen real D1 execution and prohibited-action counters"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RESULT_INTEGRITY_V1_REPORT.md",
+      "supports": "independent frozen D1 result-integrity audit and zero audit rule executions"
+    }
+  ],
+  "tests_and_static_coverage": [
+    "tests/test_runtime_authority.py",
+    "tests/test_task039e3_r2r_utility_protocol_v4.py",
+    "tests/test_task039e3_r2r_utility_inner_execution_authorization_v1.py",
+    "tests/test_task039e3_r2r_utility_inner_d1_execution_v1.py",
+    "tests/test_task039e3_orchestration_v1.py"
+  ],
+  "uncertainties": [
+    "ARCH-006 must determine whether RealRuleExecutionResultV1 trace semantics are equivalent to or intentionally separate from the generic canonical runtime trace contract.",
+    "This audit did not inspect private numeric payloads; exact values remain intentionally undisclosed and were not needed for identity/closure analysis.",
+    "Pair-level identities of the three frozen T2 no_rule cases remain intentionally undisclosed; only the public aggregate category supports anonymous case classification.",
+    "A semantic no_rule originating from genuine evidence insufficiency is not uniquely distinguishable from all other top-level no_rule outcomes in the current frozen orchestration enum."
+  ],
+  "safety_counters": {
+    "llm_calls": 0,
+    "scientific_executions": 0,
+    "verifier_executions": 0,
+    "runtime_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_reads": 0,
+    "private_paths_exposed": 0,
+    "private_numeric_values_exposed": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_file_changes": 0,
+    "staging_files_written": 1
+  }
+}

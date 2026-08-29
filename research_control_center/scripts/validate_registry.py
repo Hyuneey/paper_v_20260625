@@ -115,6 +115,7 @@ GENERATED_FILES = (
     "generated/RCC_003_HISTORY_SUMMARY.md", "generated/ARCH_001_USER_SUMMARY.md",
     "generated/ARCH_002_USER_SUMMARY.md", "generated/ARCH_003_USER_SUMMARY.md",
     "generated/ARCH_004_USER_SUMMARY.md",
+    "generated/ARCH_005_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -128,6 +129,7 @@ REQUIRED_RCC_DIRS = (
     "architecture/02_candidate_discovery", "bootstrap/ARCH_002", "bootstrap/ARCH_002/agents",
     "architecture/03_relation_and_numeric", "bootstrap/ARCH_003", "bootstrap/ARCH_003/agents",
     "architecture/04_rule_construction", "bootstrap/ARCH_004", "bootstrap/ARCH_004/agents",
+    "architecture/05_verifier_common42", "bootstrap/ARCH_005", "bootstrap/ARCH_005/agents",
 )
 
 
@@ -206,10 +208,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-004 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-004 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-004", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 9, "top_user_todo must contain exactly nine ARCH-005 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 9, "ARCH-005 must leave nine user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-005", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -222,8 +224,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit", "next architecture task mismatch")
     relation = state.get("relation_numeric_authority", {})
     result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
     result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
@@ -232,6 +234,12 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(construction.get("observed_feedback_actions") == 0, "ARCH-004 feedback action count mismatch")
     result.require("not detection performance" in construction.get("warning", ""), "ARCH-004 construction/utility boundary is missing")
     result.require("runtime authority" in construction.get("lifecycle", ""), "ARCH-004 lifecycle boundary is missing")
+    verifier = state.get("verifier_common42_authority", {})
+    result.require("20 ordered" in verifier.get("canonical_verifier", ""), "ARCH-005 verifier stage summary mismatch")
+    result.require("PARTIALLY_OVERLAPPING" in verifier.get("task_canonical_relationship", ""), "ARCH-005 validity relationship mismatch")
+    result.require("42 V4" in verifier.get("common42", ""), "ARCH-005 COMMON-42 definition mismatch")
+    result.require(verifier.get("preferred_d1_term") == "COMMON-42 Verified Relational Rule-only", "ARCH-005 D1 terminology mismatch")
+    result.require("committed one-attempt INNER execution grant" in verifier.get("d1_authority", ""), "ARCH-005 D1 authority summary mismatch")
     governance = state.get("data_governance", {})
     result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
     result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
@@ -607,6 +615,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_002_USER_SUMMARY.md": ("관계 후보는 왜 세 방식으로 고르는가", "META", "STAT", "GDN", "47개"),
         "generated/ARCH_003_USER_SUMMARY.md": ("47개 후보는 어떻게 42개 실행 관계가 되는가", "train3", "Numeric authority", "causal relation"),
         "generated/ARCH_004_USER_SUMMARY.md": ("Rule은 어떻게 만들어지는가", "Evidence Pack", "39/42", "runtime authorization"),
+        "generated/ARCH_005_USER_SUMMARY.md": ("COMMON-42", "20단계", "runtime authorization", "ARCH-006"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -789,6 +798,47 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     mermaid_construction = (construction / "ARCH_004_RULE_CONSTRUCTION_FLOW.mmd").read_text(encoding="utf-8")
     result.require(mermaid_construction.startswith("flowchart "), "ARCH-004 Mermaid does not declare a flowchart")
     result.require("revise 0 / retrieve 0" in mermaid_construction and "later authority" in mermaid_construction, "ARCH-004 Mermaid omits feedback or lifecycle boundary")
+
+    verifier = rcc_root / "architecture" / "05_verifier_common42"
+    required_verifier = {
+        "ARCH_005_REPORT.md", "ARCH_005_RULE_LIFECYCLE.md", "ARCH_005_CANONICAL_RULE_SCHEMA.md",
+        "ARCH_005_VERIFIER_STAGES.csv", "ARCH_005_VALIDITY_EQUIVALENCE.csv", "ARCH_005_COMMON42.md",
+        "ARCH_005_ARM_PORTFOLIO_MAPPING.csv", "ARCH_005_PORTFOLIO_FREEZE.md",
+        "ARCH_005_RUNTIME_AUTHORIZATION.md", "ARCH_005_HASH_CHAIN.csv", "ARCH_005_NO_RULE_TAXONOMY.md",
+        "ARCH_005_PROFESSOR_TERMINOLOGY.md", "ARCH_005_FUNCTION_CATALOG.csv",
+        "ARCH_005_IO_CONTRACTS.csv", "ARCH_005_VERIFIER_PORTFOLIO_FLOW.mmd", "ARCH_005_MISMATCHES.md",
+        "ARCH_005_HIGH_RISK_DISPOSITION.md",
+    }
+    for name in required_verifier:
+        result.require((verifier / name).is_file(), f"ARCH-005 output missing: {name}")
+    if not verifier.is_dir() or any(not (verifier / name).is_file() for name in required_verifier):
+        return
+    with (verifier / "ARCH_005_VERIFIER_STAGES.csv").open("r", encoding="utf-8", newline="") as handle:
+        stage_rows = list(csv.DictReader(handle))
+    with (verifier / "ARCH_005_VALIDITY_EQUIVALENCE.csv").open("r", encoding="utf-8", newline="") as handle:
+        validity_rows = list(csv.DictReader(handle))
+    with (verifier / "ARCH_005_ARM_PORTFOLIO_MAPPING.csv").open("r", encoding="utf-8", newline="") as handle:
+        mapping_rows = list(csv.DictReader(handle))
+    with (verifier / "ARCH_005_HASH_CHAIN.csv").open("r", encoding="utf-8", newline="") as handle:
+        hash_rows = list(csv.DictReader(handle))
+    with (verifier / "ARCH_005_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        function_rows = list(csv.DictReader(handle))
+    with (verifier / "ARCH_005_IO_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        contract_rows = list(csv.DictReader(handle))
+    result.require(len(stage_rows) == 20 and [int(row["stage_order"]) for row in stage_rows] == list(range(1, 21)), "ARCH-005 verifier stage map must contain ordered stages 1-20")
+    result.require(len(validity_rows) >= 14, "ARCH-005 validity equivalence matrix is incomplete")
+    result.require([row["arm"] for row in mapping_rows] == ["T0", "T1", "T1-B", "T2"], "ARCH-005 arm mapping is incomplete")
+    result.require(mapping_rows[3]["D1_used"] == "no", "ARCH-005 T2 must remain outside D1 authority")
+    result.require(all(row["D1_used"] == "shared_projection_only" for row in mapping_rows[:3]), "ARCH-005 common arms must not imply direct artifact loading")
+    result.require(len(hash_rows) >= 12, "ARCH-005 hash chain is incomplete")
+    result.require(len(function_rows) >= 15 and all(is_safe_relative_path(row["path"]) for row in function_rows), "ARCH-005 function catalog is incomplete or unsafe")
+    result.require(len(contract_rows) >= 10, "ARCH-005 IO contracts are incomplete")
+    mermaid_verifier = (verifier / "ARCH_005_VERIFIER_PORTFOLIO_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(mermaid_verifier.startswith("flowchart "), "ARCH-005 Mermaid does not declare a flowchart")
+    result.require("no tracked materialization bridge" in mermaid_verifier and "T2: 39 accepted + 3 no_rule" in mermaid_verifier, "ARCH-005 Mermaid omits the authority or T2 boundary")
+    disposition = (verifier / "ARCH_005_HIGH_RISK_DISPOSITION.md").read_text(encoding="utf-8")
+    for status in ("RESOLVED", "PARTIALLY_RESOLVED", "DEFER_TO_ARCH_006", "REQUIRES_CODE_FIX"):
+        result.require(status in disposition, f"ARCH-005 carryover disposition omits {status}")
 
 
 def validate_registry(
