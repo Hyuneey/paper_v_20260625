@@ -1,0 +1,140 @@
+{
+  "schema_version": "RCC_003_AGENT_D_HISTORY_QA_V1",
+  "role": "independent_read_only_historical_consistency_reviewer",
+  "reviewed_head": "e81baadcfd6cf6b9f23d307056455e024876c2ed",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "verdict": "PASS",
+  "summary": "The historical reconstruction is structurally sound, conservative, internally validated, and satisfactory on all twelve required historical-consistency questions. The coordinator corrected all three issues identified during the initial review.",
+  "qa_questions": [
+    {
+      "id": 1,
+      "question": "Are exact dates supported?",
+      "answer": "SATISFACTORY",
+      "finding": "All Git-backed DAY events sampled from EVENT-005 through EVENT-028 match the cited commit dates. Exact August 4, 18, and 26 dates that are not independently established by Git are explicitly attributed to USER_CONTEXT or USER_CONTEXT_WITH_RETROSPECTIVE_SUPPORT rather than presented as Git proof."
+    },
+    {
+      "id": 2,
+      "question": "Are approximate dates honestly marked?",
+      "answer": "SATISFACTORY",
+      "finding": "The early DHAG, ARGOS/LLMAD, Faithfulness Verifier, and May professor-reframing stages use RANGE or MONTH precision, LOW confidence, and explicit USER_CONTEXT source classes."
+    },
+    {
+      "id": 3,
+      "question": "Is Aug 18 correctly treated as internal progress update?",
+      "answer": "SATISFACTORY",
+      "finding": "EVENT-019 and PROFESSOR_FEEDBACK_LINEAGE classify 2026-08-18 as an internal progress update and NOT_PROFESSOR_FEEDBACK, with no professor decision inferred."
+    },
+    {
+      "id": 4,
+      "question": "Is Aug 26 correctly treated as integrated report work rather than automatically professor feedback?",
+      "answer": "SATISFACTORY",
+      "finding": "EVENT-027 and PROFESSOR_FEEDBACK_LINEAGE classify 2026-08-26 as integrated report preparation and NOT_PROFESSOR_FEEDBACK."
+    },
+    {
+      "id": 5,
+      "question": "Are old methods clearly marked as historical?",
+      "answer": "SATISFACTORY",
+      "finding": "DHAG and Faithfulness Verifier headline framings are SUPERSEDED; direct ARGOS reproduction is HISTORICAL; conditional ideas such as ARTIST-style selection remain explicitly conditional."
+    },
+    {
+      "id": 6,
+      "question": "Are current claims protected from old stronger wording?",
+      "answer": "SATISFACTORY",
+      "finding": "PROJECT_TIMELINE states that history cannot replace current_state.yaml or claims.csv; claims.csv is unchanged from RCC-002A; terminology and superseded-direction guards prohibit stronger historical wording from becoming current claims."
+    },
+    {
+      "id": 7,
+      "question": "Does each major pivot have evidence?",
+      "answer": "SATISFACTORY_WITH_LOW_CONFIDENCE_BOUNDARIES",
+      "finding": "Every major pivot names an evidence class and reference. Early pivots rely on the user-context seed and are labeled LOW confidence; repository-backed pivots cite Git or frozen reports. No early user-context rationale is presented as independently Git-proven."
+    },
+    {
+      "id": 8,
+      "question": "Does the timeline distinguish event from retrospective interpretation?",
+      "answer": "SATISFACTORY",
+      "finding": "The timeline, professor lineage, and narrative distinguish contemporaneous Git evidence, retrospective response matrices, and user-context interpretation. The August 4 entry explicitly says later implementation corroborates consequences but not exact wording."
+    },
+    {
+      "id": 9,
+      "question": "Are abandoned versus conditional or deferred directions distinguished?",
+      "answer": "SATISFACTORY",
+      "finding": "SUPERSEDED, HISTORICAL, ACTIVE_CONTEXT, and CONDITIONAL are used distinctly. Complex relations, runtime LLM, and ARTIST-style selection are deferred or conditional rather than called failed."
+    },
+    {
+      "id": 10,
+      "question": "Are current GDN and Agentic claims still conservative?",
+      "answer": "SATISFACTORY",
+      "finding": "GDN remains candidate evidence without causal, physical-truth, stability, uniqueness, or superiority claims. Agentic remains a provisional bounded T2 label, and the zero-feedback-action cohort does not support feedback advantage."
+    },
+    {
+      "id": 11,
+      "question": "Is old OUTER represented as result unavailable rather than negative scientific result?",
+      "answer": "SATISFACTORY",
+      "finding": "EVENT-025, DEC-018, PROJECT_TIMELINE, dashboard, GPT brief, and user summary all describe a custody blocker with no scientific result and no negative performance interpretation."
+    },
+    {
+      "id": 12,
+      "question": "Is the current 14-event evaluation still pilot-only?",
+      "answer": "SATISFACTORY",
+      "finding": "DEC-017 and every result-facing generated view label the 14-event evidence as pilot-only and prohibit validated-performance, operational-utility, fusion-improvement, and generalization claims."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "QA-FINDING-001",
+      "severity": "MEDIUM",
+      "area": "generated user summary",
+      "finding": "RCC_003_HISTORY_SUMMARY.md is required to use plain Korean, but the five current-method-inheritance bullets are emitted in English.",
+      "resolution": "The five inheritance bullets now render in plain Korean without changing scientific meaning."
+    },
+    {
+      "id": "QA-FINDING-002",
+      "severity": "MEDIUM",
+      "area": "dashboard history",
+      "finding": "The dashboard's curated 12-milestone history omits EVENT-013, the explicit 2026-08-04 professor-feedback milestone. A separate link exists, but the main history does not itself show the professor-feedback-driven change required by RCC-003.",
+      "resolution": "EVENT-013 now appears in the 12-item curated dashboard history, replacing EVENT-016 while the full timeline retains every event."
+    },
+    {
+      "id": "QA-FINDING-003",
+      "severity": "MEDIUM",
+      "area": "decision provenance",
+      "finding": "DEC-003 and DEC-005 are LOW-confidence user-context decisions that explicitly remain in HISTORY_CONFIRMATION_NEEDED, yet decisions.csv marks user_approved=true. This can imply approval of interpretations the history itself says require confirmation.",
+      "resolution": "DEC-003, DEC-005, and DEC-015 now use user_approved=false. DEC-009 remains true because its current pairwise-first decision is independently authority-backed; its professor-feedback attribution remains separately qualified."
+    }
+  ],
+  "structural_checks": {
+    "timeline_event_count": 28,
+    "decision_count": 18,
+    "decision_record_count": 18,
+    "decision_record_required_sections_complete": true,
+    "timeline_ids_unique": true,
+    "decision_ids_unique": true,
+    "timeline_decision_cross_references_valid": true,
+    "decision_supersession_references_valid": true,
+    "timeline_supersession_references_valid": true,
+    "dashboard_curated_milestone_count": 12,
+    "dashboard_milestone_range_valid": true,
+    "dashboard_professor_feedback_milestone_visible": true,
+    "gpt_brief_history_section_present": true,
+    "user_history_summary_present": true,
+    "current_scientific_fact_csvs_changed": false,
+    "diff_rcc_only": true,
+    "bootstrap_prior_tasks_changed": false,
+    "production_changes": 0,
+    "frozen_result_changes": 0,
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "new_private_exposures": 0
+  },
+  "validation": {
+    "registry_validator": "PASS",
+    "registry_validator_private_exposures": 0,
+    "rcc_tests": "PASS",
+    "rcc_test_count": 32,
+    "diff_check": "PASS",
+    "git_date_spot_check": "PASS",
+    "official_files_modified_by_qa": false
+  },
+  "blocking_findings": [],
+  "final_assessment": "PASS: chronology, evidence classes, status distinctions, current-claim safeguards, generated history views, decision records, and safety boundaries satisfy RCC-003."
+}

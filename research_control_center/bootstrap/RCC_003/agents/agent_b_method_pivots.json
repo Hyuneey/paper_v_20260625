@@ -1,0 +1,632 @@
+{
+  "agent": "RCC-003 Agent B - Research Direction / Method Pivot Historian",
+  "mode": "READ_ONLY_EVIDENCE_COLLECTION_WITH_STAGING_OUTPUT_ONLY",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "documentation_overlay": {
+    "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+    "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+    "role": "NARRATIVE_CONTEXT_ONLY"
+  },
+  "audit_boundary": {
+    "official_registry_edits": 0,
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "finding": "Repository evidence starts on 2026-06-25. Earlier DHAG, LLMAD, Faithfulness Verifier, and May professor-reframing stages are not independently evidenced in the pinned Git history and must remain USER_CONTEXT unless another canonical source is supplied."
+  },
+  "method_pivots": [
+    {
+      "pivot_id": "MP-001",
+      "period": "2025-10 ~ 2026-02",
+      "date_precision": "RANGE",
+      "title": "DHAG extension and proof-of-concept period",
+      "historical_goal": "Extend or test a DHAG-centered research direction.",
+      "problem_or_limitation": "The task seed says multiple structural limitations were discovered, but neither the limitations nor the decision rationale appear in the pinned repository.",
+      "decision_or_transition": "Candidate interpretation: the direction was reduced or superseded before the current repository began.",
+      "status": "USER_CONTEXT_ONLY_SUPERSEDED_CANDIDATE",
+      "what_survived": [
+        "A general concern with structural limitations may have motivated later bounded and verifiable architecture, but this inheritance is not independently proven."
+      ],
+      "what_did_not_survive": [
+        "No DHAG-named component, artifact, claim, or current method authority exists in the scientific checkpoint."
+      ],
+      "evidence": [
+        {
+          "source_type": "USER_CONTEXT",
+          "reference": "RCC-003 task section 4 user-context seed",
+          "supports": "Approximate period and broad direction only."
+        },
+        {
+          "source_type": "NEGATIVE_REPOSITORY_SEARCH",
+          "reference": "git grep and git log -S DHAG across all local refs",
+          "supports": "No repository corroboration was found."
+        }
+      ],
+      "confidence": "LOW",
+      "confirmation_needed": true
+    },
+    {
+      "pivot_id": "MP-002",
+      "period": "2026-03 ~ 2026-04",
+      "date_precision": "RANGE",
+      "title": "ARGOS and LLMAD exploration before repository formalization",
+      "historical_goal": "Explore closely related LLM-assisted anomaly-detection and rule-generation work and reconsider differentiation.",
+      "problem_or_limitation": "The LLMAD label and this exact period are not present in the pinned repository. The later repository does show deliberate ARGOS reuse boundaries, but that does not independently prove the earlier sequence.",
+      "decision_or_transition": "Treat this as a discovery period, not yet as the formal ARGOS reproduction track that began in Git in July.",
+      "status": "USER_CONTEXT_ONLY_HISTORICAL",
+      "what_survived": [
+        "Executable rule artifacts, training-time proposal/refinement, detector correction, and low-cost deterministic runtime later appear in the repository-supported ARGOS bridge."
+      ],
+      "what_did_not_survive": [
+        "Unrestricted generated Python, LLM-authored authoritative numbers, and LLM self-approval are prohibited in the repository method."
+      ],
+      "evidence": [
+        {
+          "source_type": "USER_CONTEXT",
+          "reference": "RCC-003 task section 4 user-context seed",
+          "supports": "Approximate pre-repository exploration period."
+        },
+        {
+          "source_type": "RETROSPECTIVE_REPOSITORY_EVIDENCE",
+          "reference": "REVISION_NOTES.md and README.md at 9af7839",
+          "supports": "By 2026-06-25 ARGOS was already restricted to architectural concepts and unsafe generated-code execution was prohibited."
+        }
+      ],
+      "confidence": "LOW_TO_MEDIUM",
+      "confirmation_needed": true
+    },
+    {
+      "pivot_id": "MP-003",
+      "period": "2026-04 ~ 2026-05",
+      "date_precision": "RANGE",
+      "title": "Faithfulness Verifier-centered framing",
+      "historical_goal": "Use explanation faithfulness or a verifier-centered idea as the headline research contribution.",
+      "problem_or_limitation": "The task seed identifies an ill-posed explanation-fidelity ground-truth concern. The phrase Faithfulness Verifier and its contemporaneous rationale are absent from Git.",
+      "decision_or_transition": "Candidate interpretation: demote the verifier from a standalone explanation-faithfulness claim while retaining deterministic verification as a bounded engineering and governance authority.",
+      "status": "USER_CONTEXT_ONLY_SUPERSEDED_CANDIDATE",
+      "what_survived": [
+        "Deterministic structural, evidence-binding, parameter-provenance, split, and claim-boundary checks.",
+        "Fail-closed admission and separation of verifier acceptance from downstream utility."
+      ],
+      "what_did_not_survive": [
+        "No current artifact supports treating verifier acceptance as proof of explanation fidelity, causal validity, or scientific rule truth."
+      ],
+      "evidence": [
+        {
+          "source_type": "USER_CONTEXT",
+          "reference": "RCC-003 task section 4 user-context seed",
+          "supports": "Period, historical label, and broad concern only."
+        },
+        {
+          "source_type": "CURRENT_BOUNDARY_EVIDENCE",
+          "reference": "docs/thesis/THESIS_FRAMING_V1.md; docs/thesis/THESIS_CONTRIBUTIONS_V1.md",
+          "supports": "Current verifier-admissibility is explicitly narrower than downstream validity, utility, or performance."
+        }
+      ],
+      "confidence": "LOW",
+      "confirmation_needed": true
+    },
+    {
+      "pivot_id": "MP-004",
+      "period": "2026-05",
+      "date_precision": "MONTH",
+      "title": "Professor-driven demotion of verifier-as-headline framing",
+      "historical_goal": "Reframe around anomaly detection and consider ARTIST or temporal localization rather than a standalone verifier contribution.",
+      "problem_or_limitation": "The exact May feedback record is not present. Later professor-facing documents discuss ARTIST and explicitly keep it unimplemented, but they are retrospective and cannot establish the exact May event or wording.",
+      "decision_or_transition": "Candidate interpretation: move from verifier-as-headline toward anomaly-detection application and relational-rule architecture; retain ARTIST-style segment selection as conditional future work.",
+      "status": "USER_CONTEXT_ONLY_WITH_RETROSPECTIVE_SUPPORT",
+      "what_survived": [
+        "Anomaly detection remains the application context.",
+        "Temporal variable-relation localization through transitions, horizons, and satisfaction traces remains the implemented explanation interface."
+      ],
+      "what_did_not_survive": [
+        "ARTIST-style learned segment proposal or selection is not part of the current implementation.",
+        "The verifier is not presented as scientific proof of explanation faithfulness."
+      ],
+      "evidence": [
+        {
+          "source_type": "USER_CONTEXT",
+          "reference": "RCC-003 task section 4 user-context seed",
+          "supports": "Approximate date and claimed feedback direction."
+        },
+        {
+          "source_type": "RETROSPECTIVE_SCIENTIFIC_AUTHORITY",
+          "reference": "docs/professor_first_results_v1/01_ONE_PAGE_EXECUTIVE_SUMMARY.md; docs/post_push_checkpoint_v1/09_CLAIM_AUDIT.md",
+          "supports": "Current framing constrains LLM authority and does not claim ARTIST implementation or benefit."
+        }
+      ],
+      "confidence": "LOW_TO_MEDIUM",
+      "confirmation_needed": true
+    },
+    {
+      "pivot_id": "MP-005",
+      "period": "2026-06-25",
+      "date_precision": "DAY",
+      "title": "Repository formalizes graph-guided verified-rule prototype",
+      "historical_goal": "Build a feasibility-first graph-guided, training-time agentic verified-rule pipeline with a deterministic path before LLM assistance.",
+      "problem_or_limitation": "The method needed strict data, split, candidate-mask, safe DSL, verifier, and runtime boundaries; ARGOS and GDN could not be copied wholesale.",
+      "decision_or_transition": "Freeze a project-owned architecture with candidate masking, relation profiling, typed rules, deterministic verifier, LLM-free runtime, and delayed provider-assisted construction.",
+      "status": "ACTIVE_FOUNDATION_WITH_LEGACY_IMPLEMENTATION",
+      "what_survived": [
+        "Candidate-universe masking and GDN-as-candidate-evidence policy.",
+        "Safe structured DSL rather than generated Python.",
+        "Deterministic verifier authority and LLM-free runtime.",
+        "Separation of detector-only, rule-only, and fusion evaluation."
+      ],
+      "what_did_not_survive": [
+        "SWaT as the immediate primary implementation dataset was later replaced by HAI 23.05 for the MVP.",
+        "The initial binary actuator to continuous sensor assumption was later superseded by a versioned continuous-step family for HAI."
+      ],
+      "evidence": [
+        {
+          "source_type": "GIT_COMMIT_AND_SOURCE",
+          "reference": "9af7839; README.md; IMPLEMENTATION_PLAN.md; REVISION_NOTES.md",
+          "supports": "Exact repository starting point and method boundaries on 2026-06-25."
+        },
+        {
+          "source_type": "IMPLEMENTATION_COMMITS",
+          "reference": "TASK-001 through TASK-014 commits dated 2026-06-25 to 2026-06-29",
+          "supports": "Initial deterministic and mock-assisted architecture was implemented in stages."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-006",
+      "period": "2026-07-13 ~ 2026-07-24",
+      "date_precision": "RANGE",
+      "title": "Formal ARGOS reproduction and component-validity track",
+      "historical_goal": "Test whether ARGOS component ideas were operational and scientifically useful under safer project-owned controls.",
+      "problem_or_limitation": "The complete Repair-plus-Review branch was not robust across unresolved detector variants; FP correction could remove true-positive or event evidence; the work was not an exact ARGOS reproduction and had no sealed confirmation.",
+      "decision_or_transition": "Classify the track as partial methodological support and freeze it as a historical reference rather than continue tuning against the exposed outer partition.",
+      "status": "HISTORICAL_REFERENCE_FROZEN",
+      "what_survived": [
+        "Training-time-only LLM use.",
+        "Executable rule artifacts.",
+        "Bounded repair for operability and review for candidate refinement.",
+        "Detector-preserving directional correction, explicit no-op, and frozen LLM-free runtime."
+      ],
+      "what_did_not_survive": [
+        "Exact ARGOS reproduction claim.",
+        "Unrestricted Python rule execution.",
+        "LLM final approval and uncontrolled numeric authority.",
+        "General superiority of the complete agentic Aggregator."
+      ],
+      "evidence": [
+        {
+          "source_type": "GIT_RANGE",
+          "reference": "7154ea9 through 3377690",
+          "supports": "Formal ARGOS work began 2026-07-13 and the validity synthesis froze on 2026-07-24."
+        },
+        {
+          "source_type": "FROZEN_REPORT",
+          "reference": "docs/argos_reproduction/ARGOS_METHODOLOGICAL_VALIDITY_REPORT.md",
+          "supports": "Partial-methodological-support classification and component-level findings."
+        },
+        {
+          "source_type": "FROZEN_DECISION",
+          "reference": "docs/argos_reproduction/ARGOS_REFERENCE_TRACK_FREEZE.md",
+          "supports": "Reference-track freeze and anti-overfitting rationale."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-007",
+      "period": "2026-07-14",
+      "date_precision": "DAY",
+      "title": "ARGOS-informed multivariate CPS contract replaces direct reproduction as primary method path",
+      "historical_goal": "Translate useful ARGOS ideas into a controlled multivariate CPS method contract.",
+      "problem_or_limitation": "ARGOS used unrestricted Python, LLM-authored parameters, LLM-based approval, and objectives insufficient for safe CPS rule governance.",
+      "decision_or_transition": "Specify typed relational DSL, deterministic calibration, deterministic verifier authority, graph-guided pair restriction, matched normal evidence, explicit FN/FP direction, guarded composition, satisfaction traces, and provenance-bound explanation.",
+      "status": "ACTIVE_METHOD_LINEAGE",
+      "what_survived": [
+        "The retain/modify/add bridge is visible in the current architecture.",
+        "ARGOS remains a methodological reference rather than the scientific authority for the current method."
+      ],
+      "what_did_not_survive": [
+        "The task itself was specification only; later v6 implementation superseded its incomplete implementation state."
+      ],
+      "evidence": [
+        {
+          "source_type": "GIT_COMMIT",
+          "reference": "317a43a",
+          "supports": "TASK-030 contract was committed on 2026-07-14."
+        },
+        {
+          "source_type": "METHOD_BRIDGE",
+          "reference": "docs/argos_reproduction/ARGOS_TO_PROPOSED_METHOD_BRIDGE.md",
+          "supports": "Explicit retained, modified, and added elements."
+        },
+        {
+          "source_type": "TASK_REPORT",
+          "reference": "TASKS/TASK-030_ARGOS_INFORMED_CPS_EXTENSION_CONTRACT.md",
+          "supports": "Specification scope and non-implementation boundary."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-008",
+      "period": "2026-07-31",
+      "date_precision": "DAY",
+      "title": "V6 canonical architecture separates evidence, construction, validity, utility, and runtime",
+      "historical_goal": "Migrate the earlier Phase-1 implementation into canonical, dataset-neutral authority layers for HAI-oriented work.",
+      "problem_or_limitation": "Phase-1 contracts carried SWaT assumptions; evidence was anomaly-anchored; GDN fidelity and optional imports were unresolved; validity and utility needed explicit separation.",
+      "decision_or_transition": "Freeze a five-stage v6 architecture: normal evidence, bounded construction, deterministic validity plus separate governance, LLM-free runtime, and detector FN correction with trace-grounded explanation.",
+      "status": "ACTIVE",
+      "what_survived": [
+        "Canonical Rule v1, verifier, runtime authority, and reusable producer concepts through explicit adapters.",
+        "T0/T1/T1-B/T2 controlled construction-arm design.",
+        "Normal-only core evidence and explicit detector-error context separation."
+      ],
+      "what_did_not_survive": [
+        "Legacy Phase-1 DSL, verifier, runtime, planner, and e2e paths remain compatibility-only and cannot define future HAI work.",
+        "The then-current GDN trainers were smoke-only and could not establish a production GDN scientific arm."
+      ],
+      "evidence": [
+        {
+          "source_type": "GIT_COMMITS",
+          "reference": "1c8a7f4, 5971545, ebe5e9a, b386ffe, 5ac59b9",
+          "supports": "P0/P1A/P1B/P1C/P1D alignment and foundation sequence."
+        },
+        {
+          "source_type": "ARCHITECTURE_DOCUMENT",
+          "reference": "docs/v6/V6_CANONICAL_ARCHITECTURE.md",
+          "supports": "Five-stage architecture and canonical/legacy/frozen boundaries."
+        },
+        {
+          "source_type": "REPORT",
+          "reference": "docs/task_reports/TASK-039P1D_REPORT.md",
+          "supports": "GDN optional dependency and fidelity claim boundary."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-009",
+      "period": "2026-08-02 ~ 2026-08-04",
+      "date_precision": "RANGE",
+      "title": "HAI source morphology forces a versioned continuous-step relation family",
+      "historical_goal": "Apply the original binary or discrete control-to-sensor delayed-response MVP to HAI P1/P3.",
+      "problem_or_limitation": "The preregistered discrete-source feasibility gate found zero eligible nonconstant reviewed discrete control sources. The blocked result was preserved instead of weakening the gate.",
+      "decision_or_transition": "Diagnose the mismatch, preregister continuous_step_delayed_response_v1, and execute it without changing Rule v1. P1 alone passed and became the selected process.",
+      "status": "ACTIVE_REPLACEMENT_ROUTE",
+      "what_survived": [
+        "Pairwise source-target delayed-response semantics.",
+        "Normal-only evidence, deterministic thresholds, one-way confirmation, and strict authority staging.",
+        "P1 Boiler as the selected HAI process for the bounded MVP."
+      ],
+      "what_did_not_survive": [
+        "The binary/discrete source assumption as the HAI MVP route.",
+        "P3 as a selected process under the frozen feasibility gate."
+      ],
+      "evidence": [
+        {
+          "source_type": "BLOCKED_RESULT",
+          "reference": "6543ca5; TASK-039B result summarized in docs/task_reports/TASK-039BR0_REPORT.md",
+          "supports": "Original HAI discrete-source route was blocked without selecting a process."
+        },
+        {
+          "source_type": "ROOT_CAUSE_AND_DECISION",
+          "reference": "1cd670f; docs/v6/RULE_FAMILY_ROUTE_DECISION.md",
+          "supports": "Continuous source morphology and versioned route decision."
+        },
+        {
+          "source_type": "PROTOCOL_AND_RESULT",
+          "reference": "7c046a5; c417dec; docs/task_reports/TASK-039BR1_REPORT.md; docs/task_reports/TASK-039BR2_REPORT.md",
+          "supports": "Preregistered family and P1-only process selection."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-010",
+      "period": "2026-08-10 ~ 2026-08-11",
+      "date_precision": "RANGE",
+      "title": "META, STAT, and GDN become separated candidate-evidence arms",
+      "historical_goal": "Construct a diverse candidate cohort without treating a single discovery source as physical truth.",
+      "problem_or_limitation": "Metadata, statistical association, and learned-graph evidence have non-comparable meanings; GDN dependency/API compatibility and fidelity required explicit closure.",
+      "decision_or_transition": "Use the same 144-pair P1 universe, isolate each arm, preserve arm-local evidence, and integrate top-20 results as an unscored provenance-preserving union.",
+      "status": "ACTIVE",
+      "what_survived": [
+        "Three-arm candidate discovery and the 47-pair union feed normal-only relation profiling.",
+        "GDN edges remain learned-graph candidate evidence only."
+      ],
+      "what_did_not_survive": [
+        "No merged global score, causal interpretation, physical-truth interpretation, or GDN-superiority claim is authorized.",
+        "Early blocked/failed compatibility attempts are preserved as superseded attempts, not rewritten as the final result."
+      ],
+      "evidence": [
+        {
+          "source_type": "PROTOCOL_COMMIT",
+          "reference": "b6522fb; docs/task_reports/TASK-039C0_REPORT.md",
+          "supports": "Common universe and separated-arm policy."
+        },
+        {
+          "source_type": "GDN_RESULT_AND_AUDIT",
+          "reference": "1204ff4; eab10de; docs/task_reports/TASK-039C_GDNP_REPORT.md; docs/task_reports/TASK-039C_GDN_FINAL_AUDIT.md",
+          "supports": "Compatibility-closed learned-graph evidence and its non-causal claim boundary."
+        },
+        {
+          "source_type": "INTEGRATION_COMMITS",
+          "reference": "75a4899; 9ac4578",
+          "supports": "Unscored three-arm cohort integration and freeze."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-011",
+      "period": "2026-08-14 ~ 2026-08-19",
+      "date_precision": "RANGE",
+      "title": "Temporary construction-only thesis narrowing after utility gate stop, followed by authorized reopening",
+      "historical_goal": "Evaluate downstream labeled utility after a construction-validity comparison whose endpoint was saturated for several arms.",
+      "problem_or_limitation": "On 2026-08-14 the utility protocol remained unaudited, so the thesis was narrowed to construction, deterministic calibration, verification, and governance without implying a negative utility result.",
+      "decision_or_transition": "Freeze the narrowed thesis position at the stop; later reopen only the unresolved protocol blockers under new staged authority. Do not retroactively describe the stop as a utility failure or result.",
+      "status": "SUPERSEDED_CURRENT_FRAMING_BUT_VALID_HISTORICAL_GATE",
+      "what_survived": [
+        "Construction-governance remains a defensible contribution layer.",
+        "Validity, utility, and runtime authority remain separate.",
+        "T2 remains a bounded architecture with no demonstrated feedback advantage."
+      ],
+      "what_did_not_survive": [
+        "The statement that labeled utility was never executed became historical after later authorized INNER executions.",
+        "The stop must not be rewritten as a negative utility outcome."
+      ],
+      "evidence": [
+        {
+          "source_type": "GIT_COMMITS",
+          "reference": "3e998b1 and a3d9e8d",
+          "supports": "Construction-only consolidation on 2026-08-14 and explicit utility-protocol reopening on 2026-08-19."
+        },
+        {
+          "source_type": "HISTORICAL_DECISION_MEMO",
+          "reference": "docs/thesis/THESIS_DECISION_MEMO_AFTER_UTILITY_STOP.md",
+          "supports": "Exact boundary and rationale at the time of the stop."
+        },
+        {
+          "source_type": "CURRENT_AUTHORITY",
+          "reference": "docs/post_push_checkpoint_v1/02_END_TO_END_ARCHITECTURE_AUDIT.md",
+          "supports": "Later D0/D1/D2 INNER paths and metrics were connected and used."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    },
+    {
+      "pivot_id": "MP-012",
+      "period": "2026-08-20 ~ 2026-08-24",
+      "date_precision": "RANGE",
+      "title": "Current architecture reaches audited INNER pilot but not generalized validation",
+      "historical_goal": "Test D0 detector-only, COMMON-42 D1 rule-only, and preregistered D2 fusion under frozen event and false-alarm metrics.",
+      "problem_or_limitation": "Rule-only has a high normal false-alarm burden, D2 V1/V2 do not improve D0 in the current pilot, and no scientific OUTER result exists.",
+      "decision_or_transition": "Keep the current method as an implemented and audited pilot architecture; classify performance, GDN contribution, Agentic advantage, human usefulness, and held-out generalization conservatively.",
+      "status": "ACTIVE_CURRENT_CONTEXT",
+      "what_survived": [
+        "Graph-guided candidate curation, normal-only relation profiling, deterministic numeric authority, bounded construction, deterministic verification, COMMON-42, LLM-free D1 runtime, D0 baseline, D2 policies, and integrity-audited metrics.",
+        "The thesis contribution remains verified rule construction and governance rather than a new detector."
+      ],
+      "what_did_not_survive": [
+        "No claim that D2 improves D0.",
+        "No claim of rule-only operational readiness.",
+        "No claim of held-out generalization, causality, GDN unique contribution, Agentic benefit, ARTIST benefit, or human explanation usefulness."
+      ],
+      "evidence": [
+        {
+          "source_type": "CURRENT_CHECKPOINT",
+          "reference": "2dc7e6c; docs/post_push_checkpoint_v1/02_END_TO_END_ARCHITECTURE_AUDIT.md; docs/post_push_checkpoint_v1/09_CLAIM_AUDIT.md",
+          "supports": "Connected current architecture and claim boundaries."
+        },
+        {
+          "source_type": "FROZEN_DISPOSITION",
+          "reference": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_THESIS_CLAIMS.json",
+          "supports": "INNER-supported and unsupported claim inventory."
+        }
+      ],
+      "confidence": "HIGH",
+      "confirmation_needed": false
+    }
+  ],
+  "terminology_shifts": [
+    {
+      "term": "Faithfulness Verifier",
+      "historical_meaning": "User-context label for an earlier explanation-fidelity-centered direction.",
+      "current_preferred_meaning": "Deterministic verifier-admissibility: structural, evidence, numeric-provenance, split, operational-contract, and claim-boundary checks.",
+      "deprecated_or_guarded_wording": "Do not say the verifier proves scientific validity, explanation faithfulness, causality, or utility.",
+      "evidence_confidence": "LOW_FOR_HISTORICAL_HIGH_FOR_CURRENT"
+    },
+    {
+      "term": "Agentic",
+      "historical_meaning": "Broad headline language for training-time proposal, repair, or review workflows.",
+      "current_preferred_meaning": "A technical label for bounded T2 verifier-feedback architecture only.",
+      "deprecated_or_guarded_wording": "Do not use Agentic as the primary contribution or imply empirical feedback advantage; the current cohort exercised zero feedback actions.",
+      "evidence_confidence": "HIGH"
+    },
+    {
+      "term": "Graph-Guided",
+      "historical_meaning": "The broad project architecture used GDN or graph evidence to restrict candidate relationships.",
+      "current_preferred_meaning": "Multi-source candidate curation in which META, STAT, and GDN are evidence sources and GDN is learned-graph candidate evidence.",
+      "deprecated_or_guarded_wording": "Do not imply causality, root cause, physical truth, or unique GDN benefit.",
+      "evidence_confidence": "HIGH"
+    },
+    {
+      "term": "ARGOS reproduction",
+      "historical_meaning": "A paper-aligned, leakage-corrected component reproduction track using project-owned safety controls.",
+      "current_preferred_meaning": "Frozen historical reference track with partial methodological support.",
+      "deprecated_or_guarded_wording": "Do not call it exact reproduction or current proposed-method validation.",
+      "evidence_confidence": "HIGH"
+    },
+    {
+      "term": "Rule-only",
+      "historical_meaning": "In the ARGOS track, univariate KPI rule-only generation and validation modes.",
+      "current_preferred_meaning": "D1: fixed COMMON-42 relational-rule runtime evaluated separately from D0 and D2.",
+      "deprecated_or_guarded_wording": "Do not conflate ARGOS KPI rule-only evidence with current HAI D1, and do not call current D1 operationally useful without expanded validation.",
+      "evidence_confidence": "HIGH"
+    },
+    {
+      "term": "OUTER",
+      "historical_meaning": "ARGOS track outer partitions were used for descriptive follow-up and became exposed.",
+      "current_preferred_meaning": "HAI held-out one-way evaluation stage requiring independent preregistration and authority.",
+      "deprecated_or_guarded_wording": "Do not treat the old HAI OUTER blocker as a negative performance result; no current scientific OUTER result exists.",
+      "evidence_confidence": "HIGH"
+    },
+    {
+      "term": "segment or localization",
+      "historical_meaning": "User context references segment/localization-oriented reconsideration and professor interest in ARTIST.",
+      "current_preferred_meaning": "Time-variable-relation localization through source transition, target relation, horizon, and satisfaction trace.",
+      "deprecated_or_guarded_wording": "Do not call the current trace interface ARTIST-style learned segment selection or causal localization.",
+      "evidence_confidence": "LOW_FOR_PRE_REPO_HIGH_FOR_CURRENT"
+    },
+    {
+      "term": "LLM rule",
+      "historical_meaning": "Could mean unconstrained generated Python or provider-authored rule logic in related work.",
+      "current_preferred_meaning": "A bounded structured proposal whose variables and numeric references are constrained and whose admission is deterministic.",
+      "deprecated_or_guarded_wording": "Do not imply the LLM authors authoritative numbers, approves itself, or executes at runtime.",
+      "evidence_confidence": "HIGH"
+    }
+  ],
+  "superseded_direction_candidates": [
+    {
+      "direction": "DHAG extension as headline method",
+      "period": "2025-10 ~ 2026-02",
+      "classification": "USER_CONTEXT_ONLY_SUPERSEDED_CANDIDATE",
+      "why_reduced_or_abandoned": "Multiple structural limitations per user seed; exact limitations not repository-evidenced.",
+      "what_survived": "Only a possible general lesson about structural constraints; confirmation required.",
+      "replacement": "Repository-formalized graph-guided verified relational-rule architecture.",
+      "do_not_use_as_current_claim": true
+    },
+    {
+      "direction": "Faithfulness Verifier as headline contribution",
+      "period": "2026-04 ~ 2026-05",
+      "classification": "USER_CONTEXT_ONLY_SUPERSEDED_CANDIDATE",
+      "why_reduced_or_abandoned": "Ill-posed explanation-fidelity ground truth concern per user seed.",
+      "what_survived": "Deterministic bounded verification at the construction-admission layer.",
+      "replacement": "Evidence-bound verified rule construction and governance.",
+      "do_not_use_as_current_claim": true
+    },
+    {
+      "direction": "Direct ARGOS reproduction as primary thesis path",
+      "period": "2026-07-13 ~ 2026-07-24",
+      "classification": "HISTORICAL_REFERENCE_FROZEN",
+      "why_reduced_or_abandoned": "Only partial methodological support, unresolved detector identity, exposed outer partition, unsafe or mismatched upstream assumptions, and no sealed confirmation.",
+      "what_survived": "Executable rules, bounded repair/review concepts, detector correction, no-op, and LLM-free runtime.",
+      "replacement": "Project-owned ARGOS-informed multivariate CPS method.",
+      "do_not_use_as_current_claim": true
+    },
+    {
+      "direction": "Binary or discrete control delayed-response MVP on HAI",
+      "period": "2026-08-02",
+      "classification": "SUPERSEDED_BY_VERSIONED_ROUTE",
+      "why_reduced_or_abandoned": "Frozen feasibility found no eligible nonconstant reviewed discrete control sources in P1 or P3.",
+      "what_survived": "Pairwise delayed-response concept and normal-only protocol discipline.",
+      "replacement": "continuous_step_delayed_response_v1 with P1 Boiler.",
+      "do_not_use_as_current_claim": true
+    },
+    {
+      "direction": "Construction-only final thesis boundary after utility stop",
+      "period": "2026-08-14 ~ 2026-08-19",
+      "classification": "SUPERSEDED_CURRENT_FRAMING_HISTORICALLY_VALID",
+      "why_reduced_or_abandoned": "Later separately authorized protocol closure and INNER utility executions made the never-executed utility statement obsolete.",
+      "what_survived": "Construction validity, calibration, verification, governance, and strict claim separation remain core contributions.",
+      "replacement": "Current architecture plus clearly pilot-only D0/D1/D2 INNER observations.",
+      "do_not_use_as_current_claim": true
+    },
+    {
+      "direction": "ARTIST-style segment selection as current core",
+      "period": "2026-05 onward",
+      "classification": "CONDITIONAL_NOT_IMPLEMENTED",
+      "why_reduced_or_abandoned": "Repository evidence retains it as a future option; no implementation or evaluation exists.",
+      "what_survived": "Trace-based time-variable-relation localization.",
+      "replacement": "Current transition, horizon, relation, and satisfaction-trace explanation interface.",
+      "do_not_use_as_current_claim": true
+    }
+  ],
+  "high_value_uncertainties": [
+    {
+      "question_id": "HIST-Q-B01",
+      "question": "What exact DHAG limitation or result caused the direction to be reduced, and was it abandoned or merely deferred?",
+      "why_it_matters": "Without this, the first historical pivot cannot distinguish methodological failure, scope mismatch, or strategic reprioritization.",
+      "evidence_found": "Only the RCC-003 user-context seed; no DHAG string or artifact in local Git history.",
+      "suggested_interpretation": "Keep as a user-confirmed superseded direction with approximate dates and no detailed rationale until confirmed.",
+      "confidence": "LOW"
+    },
+    {
+      "question_id": "HIST-Q-B02",
+      "question": "Which specific LLMAD papers or method family were reviewed in 2026-03 to 2026-04, and did they trigger a formal decision?",
+      "why_it_matters": "The current repository formalizes ARGOS, but not the broader LLMAD exploration or its differentiation logic.",
+      "evidence_found": "User-context seed only for LLMAD; repository ARGOS evidence begins later.",
+      "suggested_interpretation": "Describe the period as exploratory context rather than a repository-established milestone.",
+      "confidence": "LOW"
+    },
+    {
+      "question_id": "HIST-Q-B03",
+      "question": "Was Faithfulness Verifier formally abandoned, renamed, or narrowed into the current deterministic verifier principle?",
+      "why_it_matters": "This determines whether the current verifier is an inherited concept or a separate implementation that should not be connected retrospectively.",
+      "evidence_found": "Current deterministic verifier is strongly evidenced; the historical Faithfulness Verifier name and decision are absent.",
+      "suggested_interpretation": "Say the headline framing is superseded and the deterministic verification principle may have survived, while marking the causal link as interpretive.",
+      "confidence": "LOW"
+    },
+    {
+      "question_id": "HIST-Q-B04",
+      "question": "What is the canonical contemporaneous source for the May 2026 professor feedback involving ARTIST and anomaly-detector framing?",
+      "why_it_matters": "Later reports discuss ARTIST, but they cannot establish the exact date, wording, or immediate decision.",
+      "evidence_found": "User-context seed plus retrospective August professor-facing reports; no dated May record in the pinned repository.",
+      "suggested_interpretation": "Preserve May as user-context month and avoid quoting or attributing detailed feedback until a canonical record is supplied.",
+      "confidence": "LOW"
+    },
+    {
+      "question_id": "HIST-Q-B05",
+      "question": "Did the segment/localization rethink become a real research decision before the relational-rule direction, or was it exploratory framing only?",
+      "why_it_matters": "This determines whether it belongs in decisions.csv or only in the narrative timeline as a conditional exploration.",
+      "evidence_found": "User-context seed; current repository explicitly says ARTIST-style selection is unimplemented and trace localization is different.",
+      "suggested_interpretation": "Keep it CONDITIONAL/HISTORICAL unless user supplies a decision record.",
+      "confidence": "LOW"
+    }
+  ],
+  "historical_mismatch_findings": [
+    {
+      "finding_id": "HM-B01",
+      "severity": "NOTABLE",
+      "finding": "The user-context evolution precedes the repository, but Git starts with a graph-guided verified-rule architecture already defined. The official history must not claim Git independently demonstrates the DHAG-to-LLMAD-to-Verifier sequence."
+    },
+    {
+      "finding_id": "HM-B02",
+      "severity": "NOTABLE",
+      "finding": "The current architecture was not created only after the July ARGOS track: core graph, DSL, verifier, runtime, and evaluation ideas were already present on 2026-06-25. July ARGOS evidence refined and justified the project-owned extension."
+    },
+    {
+      "finding_id": "HM-B03",
+      "severity": "NOTABLE",
+      "finding": "The 2026-08-14 construction-only thesis documents are historically valid but superseded as current state after authorized utility work resumed on 2026-08-19. They must not overwrite RCC-002 current state."
+    },
+    {
+      "finding_id": "HM-B04",
+      "severity": "NOTABLE",
+      "finding": "ARGOS outer evidence and current HAI OUTER are different authorities. ARGOS outer was descriptive and exposed; current HAI scientific OUTER has no result."
+    },
+    {
+      "finding_id": "HM-B05",
+      "severity": "NOTABLE",
+      "finding": "Historically broad Agentic and Graph-Guided wording must be narrowed: current evidence does not establish T2 feedback benefit or GDN unique scientific contribution."
+    }
+  ],
+  "coordinator_recommendations": [
+    "Use MP-005 through MP-012 as repository-supported timeline/decision evidence.",
+    "Use MP-001 through MP-004 only with source=USER_CONTEXT and the stated precision/confidence.",
+    "Do not create an exact May professor-feedback event without an additional contemporaneous source.",
+    "Separate the July ARGOS reference-track freeze from the July project-owned CPS contract; the former is historical evidence and the latter is active lineage.",
+    "Preserve the blocked TASK-039B route as a meaningful negative feasibility result rather than rewriting the continuous-step family as the original plan.",
+    "Preserve the August utility-stop thesis framing as historically valid and later superseded, not erroneous.",
+    "Use current claims.csv and RCC-002 as current authority; these findings explain history only."
+  ]
+}

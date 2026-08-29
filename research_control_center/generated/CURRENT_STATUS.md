@@ -1,9 +1,9 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
-Registry snapshot: `2026-08-29T06:30:00Z`
+Registry snapshot: `2026-08-29T09:00:00Z`
 
 ## Current phase
 
@@ -125,4 +125,4 @@ Not established:
 
 ## Exact next task
 
-**RCC-003 — Research Timeline & Decision Backfill**
+**ARCH-000 — Full Architecture Overview Audit**

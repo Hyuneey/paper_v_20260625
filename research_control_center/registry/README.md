@@ -8,6 +8,12 @@ RCC-002 populates the current 32-component inventory, six-experiment plan,
 conservative claim boundary, ten principal risks, and all 26 RCC-000 artifact
 inventory entries.
 
+RCC-003 adds a separate historical layer: 15–30 curated milestone events,
+10–20 consequential decisions, major method phases, professor-feedback lineage,
+superseded directions, terminology safeguards, and a small user-confirmation
+queue. Historical records explain current architecture; they never overwrite
+RCC-002 current state or promote a claim in `claims.csv`.
+
 ## Serialization
 
 - CSV files use UTF-8, LF, RFC 4180 quoting, and their exact frozen headers.
@@ -18,6 +24,8 @@ inventory entries.
   `@`. Generated HTML escapes every registry value.
 - `current_state.yaml` is a JSON-compatible YAML 1.2 document so the RCC has no
   PyYAML dependency.
+- `history.yaml` is the JSON-compatible historical narrative registry used to
+  generate full history views and decision records.
 - `top_priorities` holds exactly three scientific priorities;
   `user_todo_items` holds structured user actions; and `top_user_todo` holds
   exactly three research-owner review actions for the dashboard and handoff.
@@ -82,6 +90,20 @@ Claim `status` values:
 `SUPPORTED_IMPLEMENTATION`, `PILOT_ONLY`, `UNVALIDATED`, `NOT_SUPPORTED`,
 `CONDITIONAL`, `SUPERSEDED`.
 
+Timeline `status` values:
+
+`ACTIVE_CONTEXT`, `HISTORICAL`, `SUPERSEDED`, `ABANDONED`, `CONDITIONAL`.
+
+Decision `status` values:
+
+`ACTIVE`, `SUPERSEDED`, `ABANDONED`, `CONDITIONAL`, `OPEN`.
+
+Historical date precision is explicit: `DAY`, `MONTH`, `RANGE`, or
+`APPROXIMATE`. A range or month may not be rewritten as an exact day. A
+`USER_CONTEXT` source must not claim a Git commit and must carry conservative
+confidence. Later retrospective documents may interpret an event but do not
+replace contemporaneous evidence.
+
 Risk severity is `CRITICAL|HIGH|MEDIUM|LOW`; likelihood is
 `HIGH|MEDIUM|LOW|UNKNOWN`; risk status is
 `OPEN|MITIGATING|ACCEPTED|CLOSED`.
@@ -95,8 +117,12 @@ Risk severity is `CRITICAL|HIGH|MEDIUM|LOW`; likelihood is
   bindings.
 - `risks.csv`: all task-specified fields plus authority bindings.
 - `artifacts.csv`: public-safe artifacts and symbolic private-custody identities.
-- `decisions.csv`: all task-specified fields plus source commit.
-- `timeline.csv`: all task-specified fields plus source commit.
+- `decisions.csv`: context, alternatives, consequence, current relevance,
+  reciprocal supersession, source class/ref/commit, confidence, and approval.
+- `timeline.csv`: date precision, event class, source class/ref/commit,
+  component and decision references, status, supersession, and evidence notes.
+- `history.yaml`: major phases, professor lineage, superseded directions,
+  terminology, confirmation questions, dashboard curation, and zero safety counters.
 
 Every header is required. Human-readable cells must not be empty. The permitted
 `NONE` fields are documented by the validator and include absent representative
@@ -112,6 +138,8 @@ not supersede another decision.
   `PROJECT_GOVERNANCE`, `EXTERNAL_GIT`, or `RCC`.
 - Typed references use `artifact:<id>`, `experiment:<id>`, or
   `component:<id>` and must resolve.
+- Timeline component and decision references must resolve. Decision
+  `supersedes` and `superseded_by` links are reciprocal.
 - Public source paths are POSIX repository-relative paths. Drive paths, UNC paths,
   root paths, home expansion, environment expansion, backslashes, and `..` are
   rejected. Source paths are checked against the pinned Git tree, never the
@@ -122,3 +150,17 @@ not supersede another decision.
 Private artifacts use only the `PRIVATE` classification and one approved
 symbolic custody identity. No raw data, private locations, private model values,
 labels, scores, or hidden metric evidence belong in these registries.
+
+## Historical source classes
+
+- `GIT_*`, `SCIENTIFIC_AUTHORITY`, and frozen-report classes establish only the
+  fact supported by their cited commit or report.
+- `DOCUMENTATION_OVERLAY` supplies narrative context only.
+- `USER_CONTEXT` preserves high-value history that Git does not independently
+  prove. It must state date precision and confidence and may not be quoted as a
+  repository-established fact.
+- `LOCAL_RCC_GIT` records RCC governance milestones after the scientific pin;
+  it cannot establish a scientific result.
+
+The dashboard shows 8–12 curated milestones rather than every event. Full
+history belongs in `history/PROJECT_TIMELINE.md`; old documents remain unchanged.

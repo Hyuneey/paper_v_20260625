@@ -13,7 +13,7 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`RCC-002A — Status Semantics Normalization`
+`RCC-003 — Research Timeline & Decision Backfill`
 
 ## What changed
 
@@ -28,6 +28,13 @@ the thesis overlay cannot override the scientific authority or RCC registry.
   mistaken for result-integrity audit or performance validation.
 - Removed component `claim_ready` from headline counts and made `claims.csv`
   the explicit authoritative scientific claim view.
+- Backfilled 28 curated historical milestones and 18 consequential decisions.
+- Added a full research-evolution narrative, professor-feedback lineage,
+  superseded-direction index, terminology guide, and five high-value history
+  confirmation questions.
+- Kept early DHAG, LLMAD, Faithfulness Verifier, May feedback, August 18, and
+  August 26 details explicitly user-context or retrospective where Git did not
+  independently establish them.
 
 ## Decisions made
 
@@ -39,8 +46,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific evidence was produced. RCC-002 reconciled existing public-safe
-frozen evidence into the human-readable control layer without recomputing metrics.
+No new scientific evidence was produced. RCC-003 reconstructed history from
+Git and public-safe reports and preserved uncertain early stages as user context.
 
 ## Open risks
 
@@ -55,11 +62,11 @@ frozen evidence into the human-readable control layer without recomputing metric
 - Review the full current-state summary and challenge any component status.
 - Approve or adjust conservative claim boundaries before thesis use.
 - Identify architecture components that need explanation before ARCH-000.
+- Confirm or correct the five high-value questions in
+  `history/HISTORY_CONFIRMATION_NEEDED.md`.
 
 ## Exact next task
 
-`RCC-003 — Research Timeline & Decision Backfill`
+`ARCH-000 — Full Architecture Overview Audit`
 
-Following: `ARCH-000 — Full Architecture Overview Audit`.
-
-Do not start either task until the user has reviewed RCC-002.
+Do not start it until the user has reviewed RCC-003 history.

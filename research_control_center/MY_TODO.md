@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # My Research TODO
 
 This page contains research-owner actions, not low-level development chores.
@@ -32,17 +32,17 @@ No items.
 
 - **ID:** USER-REVIEW-04
   **Priority:** MEDIUM
-  **Task:** Approve the scope of RCC-003 history and decision backfill.
-  **Why your involvement is required:** Backfill should preserve rather than rewrite prior scientific history.
-  **Linked:** RCC-003
+  **Task:** Review the RCC-003 history and confirm the high-value pre-repository uncertainties.
+  **Why your involvement is required:** Early DHAG, LLMAD, Faithfulness Verifier, and May feedback details are not independently preserved in Git.
+  **Linked:** RCC-003;HIST-Q001 through HIST-Q005
   **Status:** OPEN
 ## Waiting On Codex
 
 - **ID:** CODEX-WAIT-01
   **Priority:** MEDIUM
-  **Task:** Prepare RCC-003 and ARCH-000 only after explicit approval.
-  **Why your involvement is required:** Implementation work belongs to Codex after user review.
-  **Linked:** RCC-003;ARCH-000
+  **Task:** Prepare ARCH-000 only after explicit approval.
+  **Why your involvement is required:** The deep architecture audit belongs to Codex after user review of the history baseline.
+  **Linked:** ARCH-000
   **Status:** WAITING
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

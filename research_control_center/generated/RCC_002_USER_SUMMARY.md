@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,7 +70,7 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **RCC-003 — Research Timeline & Decision Backfill** 이고, 이후 전체
+관리 작업의 다음 단계는 **ARCH-000 — Full Architecture Overview Audit** 이고, 이후 전체
 구조 검토는 **ARCH-000 — Full Architecture Overview Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 

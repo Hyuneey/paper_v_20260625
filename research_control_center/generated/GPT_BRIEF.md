@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=93ddaa0c7385abceb61ec01206dde8da50c0ad53a077752bbd036ea6035069ff authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b380205348b41f990ba655212b073ee8315d25e8e5404a91ce600b585361f7ce authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
-Generated from RCC registry version `0.1.0` at `2026-08-29T06:30:00Z`.
+Generated from RCC registry version `0.1.0` at `2026-08-29T09:00:00Z`.
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -36,6 +36,20 @@ These counts are not a single completion percentage.
 
 HAI provenance and P1 scope -> role universe -> META / STAT / GDN -> candidate union -> normal temporal profiling -> normal-only numeric references -> evidence pack -> T0 / T1 / T1-B / T2 construction -> deterministic verifier -> COMMON-42 -> rule runtime -> D1; HAI -> D0 PCA-SPE; D0 + D1 -> D2 policies -> event / episode metrics -> integrity audit
 
+## How we got here
+
+The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. The first four stages are partly or wholly
+`USER_CONTEXT`: Git does not independently prove their exact dates or motivations. The
+repository-supported lineage begins on 2026-06-25 with graph-constrained candidates,
+typed rules, a deterministic verifier, and an LLM-free runtime foundation. The July ARGOS
+track was frozen as partial methodological support rather than copied wholesale. Its useful
+ideas survived inside a project-owned CPS contract. HAI provenance and the failed discrete-
+source gate then led to a separately preregistered continuous-step family and P1 selection.
+META, STAT, and GDN remained distinct candidate-evidence arms; normal-only profiling and
+numeric authority produced COMMON-42. D1, D0, and D2 were finally executed as a frozen
+14-event INNER pilot. The OUTER attempt produced a custody blocker, not a scientific result.
+History explains this lineage but cannot override RCC-002 current state or `claims.csv`.
+
 ## Established facts
 
 - The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.
@@ -43,18 +57,9 @@ HAI provenance and P1 scope -> role universe -> META / STAT / GDN -> candidate u
 - D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.
 - The OUTER path has a blocker record and no scientific result.
 
-The frozen discovery flow began with 12 reviewed sources and 12 reviewed targets (144
-possible pairs). META, STAT, and GDN each produced a top-20 ranking. Their union is an
-unscored 47-pair candidate cohort. Normal-only profiling led to 23 pair contexts and 42
-directed temporal relations, which were bound into COMMON-42. These counts establish
-pipeline execution and custody. They do not establish causality, physical truth, or a
-unique contribution from the graph arm.
-
-The four construction routes ran on the same 42-relation cohort: T0, T1, and T1-B each
-produced 42 accepted outcomes; T2 produced 39 accepted outcomes and 3 no-rule outcomes.
-T2 executed zero revise, retrieve, follow-up, or recovery actions, so the present cohort
-did not empirically exercise the verifier-feedback mechanism. The existence of an
-agentic controller therefore cannot be translated into an agentic-benefit finding.
+The frozen discovery and construction counts establish pipeline execution and custody,
+not causality, physical truth, unique GDN benefit, or agentic-feedback advantage. T2
+performed zero feedback actions in the current cohort.
 
 ## Frozen INNER pilot observations
 
@@ -116,13 +121,9 @@ include at least one stronger multivariate detector baseline under a new preregi
 - **HIGH / OPEN** — The INNER pilot contains only 14 independent attack events so stable performance and superiority cannot be inferred.
 - **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
-- **MEDIUM / OPEN** — Agentic feedback benefit is unvalidated because T2 activated zero feedback-repair actions.
-- **MEDIUM / OPEN** — D2 V1 and V2 recovered none of the three D0-missed pilot events and do not support improvement.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
 - **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
-- **MEDIUM / OPEN** — Automated trace grounding does not establish human explanation usefulness.
-- **MEDIUM / MITIGATING** — Stale continuity and historical checkout context can be mistaken for current scientific authority.
 
 ## Top user TODO
 
@@ -139,7 +140,7 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **RCC-003 — Research Timeline & Decision Backfill**
+Management: **ARCH-000 — Full Architecture Overview Audit**
 
 Following architecture review: **ARCH-000 — Full Architecture Overview Audit**
 

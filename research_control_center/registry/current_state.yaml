@@ -2,7 +2,7 @@
   "schema_version": "rcc-current-state-v1",
   "rcc_version": "0.1.0",
   "registry_version": "0.1.0",
-  "generated_at": "2026-08-29T06:30:00Z",
+  "generated_at": "2026-08-29T09:00:00Z",
   "last_updated": "2026-08-29",
   "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
   "scientific_authority": {"ref": "origin/research-v6-thesis-checkpoint", "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"},
@@ -75,16 +75,16 @@
     {"id": "USER-REVIEW-01", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Review the full current-state summary and flag any component status that conflicts with your understanding.", "why": "The research owner must approve the human-readable current-state baseline.", "linked": "PROJECT_WIDE", "status": "OPEN"},
     {"id": "USER-REVIEW-02", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or adjust the conservative claim boundaries before they guide thesis prose.", "why": "Claim scope is a research judgment and not a code-generation decision.", "linked": "CLAIM-A through CLAIM-M", "status": "OPEN"},
     {"id": "USER-REVIEW-03", "category": "UNDERSTANDING NEEDED", "priority": "MEDIUM", "task": "Inspect the high-level architecture flow and identify components that need explanation before ARCH-000.", "why": "The deep audit should prioritize areas the research owner cannot yet explain confidently.", "linked": "ARCH-000", "status": "OPEN"},
-    {"id": "USER-REVIEW-04", "category": "REVIEW NEEDED", "priority": "MEDIUM", "task": "Approve the scope of RCC-003 history and decision backfill.", "why": "Backfill should preserve rather than rewrite prior scientific history.", "linked": "RCC-003", "status": "OPEN"},
-    {"id": "CODEX-WAIT-01", "category": "WAITING ON CODEX", "priority": "MEDIUM", "task": "Prepare RCC-003 and ARCH-000 only after explicit approval.", "why": "Implementation work belongs to Codex after user review.", "linked": "RCC-003;ARCH-000", "status": "WAITING"}
+    {"id": "USER-REVIEW-04", "category": "REVIEW NEEDED", "priority": "MEDIUM", "task": "Review the RCC-003 history and confirm the high-value pre-repository uncertainties.", "why": "Early DHAG, LLMAD, Faithfulness Verifier, and May feedback details are not independently preserved in Git.", "linked": "RCC-003;HIST-Q001 through HIST-Q005", "status": "OPEN"},
+    {"id": "CODEX-WAIT-01", "category": "WAITING ON CODEX", "priority": "MEDIUM", "task": "Prepare ARCH-000 only after explicit approval.", "why": "The deep architecture audit belongs to Codex after user review of the history baseline.", "linked": "ARCH-000", "status": "WAITING"}
   ],
   "top_user_todo": ["Review the full current-state summary and challenge any unsupported component status.", "Approve or adjust the conservative claim boundaries before thesis wording uses them.", "Inspect the architecture overview and identify components that need explanation before ARCH-000."],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "RCC-003 — Research Timeline & Decision Backfill",
+  "recommended_next_management_task": "ARCH-000 — Full Architecture Overview Audit",
   "recommended_next_architecture_task": "ARCH-000 — Full Architecture Overview Audit",
-  "last_completed_task": "RCC-002A",
-  "exact_next_task": "RCC-003 — Research Timeline & Decision Backfill",
+  "last_completed_task": "RCC-003",
+  "exact_next_task": "ARCH-000 — Full Architecture Overview Audit",
   "safety_counters": {"scientific_executions": 0, "test2_feature_accesses": 0, "test2_label_accesses": 0, "new_private_exposures": 0}
 }

@@ -1,0 +1,43 @@
+{
+  "schema_version": "RCC_003_EVIDENCE_V1",
+  "status": "PASS",
+  "authority": {
+    "rcc_base_head": "e81baadcfd6cf6b9f23d307056455e024876c2ed",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "documentation_overlay_commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
+  },
+  "counts": {
+    "timeline_events": 28,
+    "major_phases": 10,
+    "decisions": 18,
+    "professor_lineage_rows": 7,
+    "superseded_or_conditional_directions": 6,
+    "terminology_safeguards": 8,
+    "confirmation_questions": 5,
+    "historical_mismatches": 8,
+    "critical_mismatches": 0,
+    "dashboard_milestones": 12
+  },
+  "source_boundaries": {
+    "pre_repository_context_marked_user_context": true,
+    "august_4_feedback_not_claimed_git_proven": true,
+    "august_4_feedback_not_origin_of_august_3_pairwise_protocol": true,
+    "august_18_not_professor_feedback": true,
+    "august_26_not_professor_feedback": true,
+    "current_claim_registry_unchanged": true
+  },
+  "validation": {
+    "registry": "PASS",
+    "tests": "32_PASS",
+    "independent_qa": "PASS_12_OF_12",
+    "privacy": "PASS"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "scientific_code_changes": 0,
+    "frozen_result_changes": 0,
+    "new_private_exposures": 0,
+    "remote_operations": 0
+  }
+}

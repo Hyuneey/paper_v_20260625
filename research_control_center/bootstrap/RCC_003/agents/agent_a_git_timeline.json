@@ -1,0 +1,427 @@
+{
+  "task_id": "RCC-003",
+  "agent": "Agent A - Git / Implementation Milestone Historian",
+  "mode": "READ_ONLY_PUBLIC_SAFE_EVIDENCE_COLLECTION",
+  "authority": {
+    "rcc_head": "e81baadcfd6cf6b9f23d307056455e024876c2ed",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "documentation_overlay": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
+  },
+  "method": {
+    "source_priority": [
+      "Git commit and ref metadata",
+      "Frozen public task and audit reports",
+      "RCC-002 public evidence"
+    ],
+    "date_rule": "DAY is used only where a Git commit timestamp or dated frozen public artifact supports the day.",
+    "interpretation_rule": "Records state technical facts and explicit report boundaries; they do not infer research motivation."
+  },
+  "candidate_events": [
+    {
+      "event_id": "GIT-EV-001",
+      "date": "2026-06-25",
+      "date_precision": "DAY",
+      "event_type": "IMPLEMENTATION_MILESTONE",
+      "title": "Initial graph-to-rule implementation skeleton established",
+      "summary": "The repository work order and first implementation sequence added data contracts, metadata, candidate-universe and masked graph extraction, relation profiling, a rule DSL, template construction, a deterministic verifier, a deterministic runtime, and a synthetic end-to-end feasibility path.",
+      "source": "GIT_METADATA",
+      "source_ref": "9af7839225ace5b6a9df2b94ca546e84adea897e through ee7432b7b3f155e6035529d90649d8a9b6d42ab3",
+      "status": "HISTORICAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-002",
+      "date": "2026-06-29",
+      "date_precision": "DAY",
+      "event_type": "EXPERIMENT_MILESTONE",
+      "title": "SWaT staging milestone bounded as implementation evidence",
+      "summary": "The TASK-017 through TASK-021 staging sequence demonstrated local pipeline plumbing and synthetic runtime behavior but explicitly excluded official benchmark, anomaly-performance, explanation-quality, and final thesis claims.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-021_REPORT.md; 5ce664712e552f9fd0c3aee245fd4149ef8ce570",
+      "status": "SUPERSEDED",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-003",
+      "date": "2026-07-13",
+      "date_precision": "DAY",
+      "event_type": "IMPLEMENTATION_MILESTONE",
+      "title": "ARGOS reproduction audit track opened",
+      "summary": "TASK-022 and TASK-023 added a pinned ARGOS paper-code audit protocol and offline reproduction harness. The reports explicitly withheld any claim of faithful reproduction or real LLM validation.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-022_REPORT.md; 7154ea9a4555279c03f3574fdfaf9f79b967368f; 88d930127283a8f067c3d3c6a6e6228610d89107",
+      "status": "HISTORICAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-004",
+      "date": "2026-07-14",
+      "date_precision": "DAY",
+      "event_type": "IMPLEMENTATION_MILESTONE",
+      "title": "Multivariate CPS contract path defined",
+      "summary": "TASK-030 through TASK-032F added the multivariate CPS extension contract and a deterministic synthetic vertical slice from serialized mappings through verification, runtime authorization, traces, and explanations. The result remained synthetic contract plumbing only.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-032F_REPORT.md; 317a43a0bfe0be59caad611edf895c0f3ddc6e37; 7943a8fd35f528725fe06cad3d2b2abfdee85346",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-005",
+      "date": "2026-07-24",
+      "date_precision": "DAY",
+      "event_type": "AUDIT_MILESTONE",
+      "title": "ARGOS reference track frozen as partial methodological support",
+      "summary": "TASK-038F classified the ARGOS evidence as partial methodological support, not exact reproduction or proposed-method validation, and recommended freezing the reference track while directing primary work toward the graph-guided verifier-governed multivariate CPS method.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-038F_REPORT.md; 337769066f62b8f4fcd8e48a9a8f8d3651e3818a",
+      "status": "HISTORICAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-006",
+      "date": "2026-08-01",
+      "date_precision": "DAY",
+      "event_type": "DATASET_DECISION",
+      "title": "Initial official HAI provenance attempt preserved as blocked",
+      "summary": "The first TASK-039A lineage preserved an acquisition block and a blocked Git-LFS provenance result before the later selective-payload remediation.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039AR_REPORT.md; 14f3d3d12ae2e3140758b49b6770c423f3de6c12",
+      "status": "HISTORICAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-007",
+      "date": "2026-08-02",
+      "date_precision": "DAY",
+      "event_type": "DATASET_DECISION",
+      "title": "HAI 23.05 official provenance verified",
+      "summary": "TASK-039AR established byte equivalence for the ten approved files and TASK-039A passed official HAI 23.05 source, integrity, schema, label-custody, and public-provenance audit boundaries.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039A_REPORT.md; docs/task_reports/TASK-039AR_REPORT.md; b1f1d8b4e044a54ceb7e801ac8c3c469b8f6a581",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-008",
+      "date": "2026-08-02",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "Original binary-discrete delayed-response feasibility blocked",
+      "summary": "TASK-039B recorded zero eligible reviewed nonconstant binary or discrete control sources for P1 and P3, selected no process, and froze the result as blocked rather than weakening the gate.",
+      "source": "GIT_AND_FROZEN_SUCCESSOR_REPORT",
+      "source_ref": "6543ca5b88779262d01c5e0c24e51216dd0835e9; docs/task_reports/TASK-039BR0_REPORT.md",
+      "status": "SUPERSEDED",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-009",
+      "date": "2026-08-03",
+      "date_precision": "DAY",
+      "event_type": "METHOD_DECISION",
+      "title": "Continuous-step delayed-response recovery route selected",
+      "summary": "TASK-039BR0 diagnosed the source-morphology mismatch and recommended versioned continuous-step delayed-response semantics on HAI while keeping the blocked TASK-039B result unchanged.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039BR0_REPORT.md; 1cd670fe81f627dad79590709a7f7eaea2671460",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-010",
+      "date": "2026-08-03",
+      "date_precision": "DAY",
+      "event_type": "GOVERNANCE_MILESTONE",
+      "title": "Continuous-step relation protocol preregistered",
+      "summary": "TASK-039BR1 froze continuous_step_delayed_response_v1 and a normal-only P1/P3 feasibility protocol without real HAI feature access, process selection, rule generation, or runtime authority.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039BR1_REPORT.md; 7c046a5988156f194fefc5953d99ffa5b8a38244",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-011",
+      "date": "2026-08-04",
+      "date_precision": "DAY",
+      "event_type": "DATASET_DECISION",
+      "title": "P1 Boiler selected by frozen feasibility gate",
+      "summary": "TASK-039BR2 executed the preregistered normal-only train1-train3 protocol. P1 alone passed and was selected with reason only_P1_feasible; P3 remained infeasible.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039BR2_REPORT.md; c417dec4b35f900ac5a614e57716b44991a3b0e0",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-012",
+      "date": "2026-08-10",
+      "date_precision": "DAY",
+      "event_type": "AUDIT_MILESTONE",
+      "title": "P1 feasibility result independently audited",
+      "summary": "The read-only TASK-039BR2 audit verified lineage, protocol compliance, private-ledger bindings, aggregate reconstruction, P1 selection, and zero prohibited accesses without rerunning real HAI feasibility.",
+      "source": "FROZEN_AUDIT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039BR2_INDEPENDENT_AUDIT.md; 1a55b1aabcfcd4c2a21dc881a9c5d20b6c5c5d81",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-013",
+      "date": "2026-08-10",
+      "date_precision": "DAY",
+      "event_type": "METHOD_DECISION",
+      "title": "Three-arm P1 candidate-discovery protocol frozen",
+      "summary": "TASK-039C0 froze a 144-pair P1 universe with separate META, STAT, and upstream-aligned GDN candidate arms and unscored-union integration boundaries.",
+      "source": "GIT_AND_PUBLIC_RECEIPT",
+      "source_ref": "b6522fb83c4cb92d355f98af778f9a6a3c73362f; docs/task_reports/TASK-039C_INTEGRATION_RECEIPT.json",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-014",
+      "date": "2026-08-11",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "META STAT and GDN candidate cohort frozen",
+      "summary": "The three candidate arms were integrated without a merged score or global rank, producing a frozen cohort of 47 unique candidate identities.",
+      "source": "FROZEN_RECEIPT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039C_INTEGRATION_RECEIPT.json; 9ac4578603b81385dc9592cd5db5076d83a3fb66",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-015",
+      "date": "2026-08-11",
+      "date_precision": "DAY",
+      "event_type": "IMPLEMENTATION_MILESTONE",
+      "title": "Normal relation profiling executed after complexity recovery",
+      "summary": "TASK-039D1R repaired a non-scientific repeated whole-sequence validation cost while preserving formulas, then executed normal relation fit profiling; the later D2 confirmation stage was independently audited.",
+      "source": "FROZEN_RECEIPT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039D1R_EXECUTION_COMPLEXITY_RECEIPT.json; 360cf4b84ed2c18e026186be00f2312508a8fb85; e655e161c82715638c6c6d398d52dc0babbec7c0",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-016",
+      "date": "2026-08-11",
+      "date_precision": "DAY",
+      "event_type": "IMPLEMENTATION_MILESTONE",
+      "title": "Construction evidence materialized for 42 relations",
+      "summary": "TASK-039E1 materialized and independently audited 42 confirmed directional relation primitives across 23 pair contexts, with 42 private evidence records and frozen normal-only numeric references; no rules or LLM calls occurred in this stage.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E1_REPORT.md; docs/task_reports/TASK-039E1_FINAL_AUDIT.md; 4a6b5875b59bdcc7c3bd0957e90fa27b71e0e9fb",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-017",
+      "date": "2026-08-13",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "Rule-construction arm result analyzed",
+      "summary": "The frozen construction analysis reported 42 of 42 admissible relations for T0, T1, and T1-B, 39 of 42 for T2, and zero activated T2 feedback actions. It explicitly rejected an empirical superiority claim for the feedback agent and required utility evaluation.",
+      "source": "FROZEN_DECISION_MEMO_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_THESIS_DECISION.md; bc3d930237f1e6b52c6afc02d643d4b6cc1bb0d8",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-018",
+      "date": "2026-08-14",
+      "date_precision": "DAY",
+      "event_type": "GOVERNANCE_MILESTONE",
+      "title": "Rule-utility protocol and thesis framing checkpointed",
+      "summary": "The utility protocol was frozen and independently audited, and thesis documents consolidated the construction result while keeping utility unexecuted at that checkpoint.",
+      "source": "GIT_METADATA",
+      "source_ref": "c021768fc29a4560bd1bc52f5ed61462731be1c7; 65f3e651947c36f21322612b85a6337c3cbded67; 3e998b12941e2b7065408d1796c5c416461b1e7a",
+      "status": "HISTORICAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-019",
+      "date": "2026-08-19",
+      "date_precision": "DAY",
+      "event_type": "GOVERNANCE_MILESTONE",
+      "title": "COMMON-42 and normal-only numeric authority restored",
+      "summary": "The authority audit confirmed one frozen executable COMMON-42 portfolio for T0, T1, and T1-B semantics, with T2 aggregate coverage of 39 accepted and 3 no_rule, followed by materialization and independent audit of normal-only numeric authority.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json; e971c8c8543f49b31aba2a57cf60257d190b76d5",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-020",
+      "date": "2026-08-20",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "First INNER D1 Rule-only result executed and audited",
+      "summary": "One authorized D1 execution produced a frozen RulePrediction and pilot metrics, followed by a result-integrity audit. The audit verified internal consistency but explicitly did not establish scientific quality or deployment usefulness.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_REPORT.md; docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RESULT_INTEGRITY_V1_REPORT.md; f53e1c41d3e91a36a74e5cb078cce850dd499aa0; 91a92fb3ca44d0e34c310b35ab8b6ec88c95be05",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-021",
+      "date": "2026-08-21",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "First INNER D0 PCA-SPE result executed and audited",
+      "summary": "One authorized D0 execution produced a frozen DetectorPrediction and pilot metrics. An independent result-integrity audit verified score, alarm, ordering, metric, accounting, and leakage consistency without rerunning authoritative D0.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_EXECUTION_V1_REPORT.md; docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_RESULT_INTEGRITY_V1_REPORT.md; c96adab1ae6f474472f73cc2de0a7c5dab63e24d; 1c2f9a6272ee711b70b44ed79b9210af1026d3af",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-022",
+      "date": "2026-08-22",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "D2 V1 integrity and three-arm INNER comparison completed",
+      "summary": "The frozen D2 V1 result passed integrity audit, then D0, D1, and D2 were compared over the 14-event INNER pilot. The comparison found D1 event complementarity but no D2 V1 recall gain and explicitly withheld operational superiority and generalization claims.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_RESULT_INTEGRITY_V1_REPORT.md; docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_D1_D2_COMPARISON_V1_REPORT.md; 37a8df9360cd97c079f86bf6b235c186aa77ce52",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-023",
+      "date": "2026-08-23",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "D2 V2 native-horizon pilot executed",
+      "summary": "The single authorized D2 V2 execution retained D0 recall, recovered none of the D0-missed events, and increased normal FAR under its frozen native-horizon policy; no result-driven redesign occurred.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_EXECUTION_V1_REPORT.md; 615fde528644f14d1654f98031cfc2bfd4f3c8ec",
+      "status": "HISTORICAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-024",
+      "date": "2026-08-23",
+      "date_precision": "DAY",
+      "event_type": "METHOD_DECISION",
+      "title": "Further INNER fusion tuning closed",
+      "summary": "The D2 V1/V2 disposition retained V1 only as the simpler lower-FAR pilot candidate, did not call either fusion policy an improvement, and closed D2 V3 or further same-INNER policy search to limit post-hoc overfitting.",
+      "source": "FROZEN_REPORT_AND_GIT",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_REPORT.md; 634231bb91c57df39eded6d869abe6a2853ae1d1",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-025",
+      "date": "2026-08-23",
+      "date_precision": "DAY",
+      "event_type": "RESULT_MILESTONE",
+      "title": "Sealed OUTER protocol authorized but produced no result",
+      "summary": "A one-shot D0/D1/D2 V1 OUTER evaluation was preregistered. Execution first stopped at private-custody and path-redaction gates; the authorized recovery attempt then stopped at test2 feature custody before any feature byte read, inference, label access, or metric computation. No OUTER scientific outcome exists.",
+      "source": "FROZEN_REPORT_AND_BLOCKERS",
+      "source_ref": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_REPORT.md; docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_V1_BLOCKER.json; docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json; 70811efe44246796797299d58125720298e3a380",
+      "status": "CONDITIONAL",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-026",
+      "date": "2026-08-24",
+      "date_precision": "DAY",
+      "event_type": "THESIS_MILESTONE",
+      "title": "First-results professor package finalized",
+      "summary": "The repository finalized a first-results reporting package and a professor submission QA package from frozen public evidence; Git records these as reporting-package work, not as a new professor-feedback event.",
+      "source": "GIT_METADATA",
+      "source_ref": "3f1775745512e5ed1872d727376874248292a81a; 87033702d0c16abaf141c03983098f69e6a8cb16",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-027",
+      "date": "2026-08-24",
+      "date_precision": "DAY",
+      "event_type": "AUDIT_MILESTONE",
+      "title": "Canonical scientific checkpoint audited",
+      "summary": "The post-push audit froze commit 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e as the canonical scientific checkpoint later adopted by the RCC authority policy.",
+      "source": "GIT_METADATA_AND_RCC_POLICY",
+      "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e; research_control_center/SOURCE_AUTHORITY.md",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-028",
+      "date": "2026-08-24",
+      "date_precision": "DAY",
+      "event_type": "THESIS_MILESTONE",
+      "title": "Read-only thesis documentation overlay created",
+      "summary": "A thesis draft scaffold was committed after the scientific checkpoint; RCC policy treats it as a read-only narrative overlay that cannot redefine scientific evidence.",
+      "source": "GIT_METADATA_AND_RCC_POLICY",
+      "source_ref": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743; research_control_center/SOURCE_AUTHORITY.md",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    },
+    {
+      "event_id": "GIT-EV-029",
+      "date": "2026-08-29",
+      "date_precision": "DAY",
+      "event_type": "GOVERNANCE_MILESTONE",
+      "title": "Research Control Center established and normalized",
+      "summary": "RCC-001 created the control-center skeleton, RCC-002 populated the current-state registries, and RCC-002A separated engineering execution, evidence review, result integrity, reproduction, and scientific validation semantics.",
+      "source": "GIT_METADATA_AND_RCC_EVIDENCE",
+      "source_ref": "9f3e1287de47a4d3a9b7dd1f482a57257d20353a; e45a952187115a8760add1bee3db49ce03c46e74; e81baadcfd6cf6b9f23d307056455e024876c2ed",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH"
+    }
+  ],
+  "ambiguous_or_unverified_dates": [
+    {
+      "topic": "DHAG extension period",
+      "user_context_period": "2025-10 ~ 2026-02",
+      "git_finding": "No commit in the available Git object history independently dates this period or its pivot rationale.",
+      "recommended_handling": "Retain RANGE precision with USER_CONTEXT source unless a contemporaneous non-Git record is found."
+    },
+    {
+      "topic": "ARGOS and LLMAD exploration period",
+      "user_context_period": "2026-03 ~ 2026-04",
+      "git_finding": "The objective repository ARGOS audit and harness sequence begins on 2026-07-13; Git does not independently establish the earlier discussion period.",
+      "recommended_handling": "Separate the earlier user-recalled exploration period from the July implementation and audit track."
+    },
+    {
+      "topic": "Faithfulness Verifier period",
+      "user_context_period": "2026-04 ~ 2026-05",
+      "git_finding": "Git proves deterministic verifier implementation on 2026-06-25 and a binding verifier on 2026-07-14, but does not prove the earlier headline framing or its exact demotion date.",
+      "recommended_handling": "Use USER_CONTEXT and approximate precision for the framing period; use exact Git dates only for implementation milestones."
+    },
+    {
+      "topic": "May professor-driven reframing",
+      "user_context_period": "2026-05",
+      "git_finding": "No examined Git commit alone proves the professor-feedback date or motivation.",
+      "recommended_handling": "Require dated professor-facing evidence or retain USER_CONTEXT with MEDIUM or LOW confidence."
+    },
+    {
+      "topic": "2026-08-04 professor feedback",
+      "user_context_period": "2026-08-04",
+      "git_finding": "Git on that day proves the BR2 P1 feasibility result; it does not by itself distinguish contemporaneous professor feedback from later retrospective reporting.",
+      "recommended_handling": "Agent C should establish this as a separate PROFESSOR_FEEDBACK event from dated feedback records, not from the BR2 commit."
+    },
+    {
+      "topic": "2026-08-18 and 2026-08-26 labels",
+      "user_context_period": "2026-08-18 / 2026-08-26",
+      "git_finding": "No Git evidence reviewed here warrants labeling either date as professor feedback.",
+      "recommended_handling": "Preserve the task correction: August 18 is internal progress and August 26 is integrated-report work unless contemporaneous feedback evidence says otherwise."
+    }
+  ],
+  "collection_summary": {
+    "candidate_event_count": 29,
+    "day_precision_events": 29,
+    "ambiguous_date_topics": 6,
+    "current_state_registry_edits": 0,
+    "official_timeline_edits": 0,
+    "official_decision_edits": 0
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "metric_recomputations": 0,
+    "test2_feature_content_accesses": 0,
+    "test2_label_accesses": 0,
+    "private_artifact_accesses": 0,
+    "production_code_changes": 0,
+    "frozen_result_changes": 0,
+    "remote_operations": 0,
+    "new_private_exposures": 0
+  }
+}

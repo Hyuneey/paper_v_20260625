@@ -1,0 +1,429 @@
+{
+  "schema_version": "RCC_003_AGENT_C_PROFESSOR_DECISIONS_V1",
+  "agent_role": "Professor Feedback / Decision Historian",
+  "mode": "READ_ONLY_EVIDENCE_COLLECTION",
+  "generated_date": "2026-08-29",
+  "authority": {
+    "scientific_source_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_source_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "documentation_overlay_ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+    "documentation_overlay_commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+    "documentation_overlay_role": "NARRATIVE_CONTEXT_ONLY",
+    "user_context_role": "DISCOVERY_GUIDE_NOT_AUTOMATIC_REPOSITORY_FACT"
+  },
+  "scope_and_safety": {
+    "official_registry_edits": 0,
+    "official_history_edits": 0,
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "remote_operations": 0,
+    "output_file_count": 1
+  },
+  "date_policy": {
+    "exact_feedback_date_rule": "An exact professor-feedback date requires a contemporaneous dated feedback record or an explicit user-context attribution; a Git commit date establishes the document or implementation milestone date, not automatically the date feedback was delivered.",
+    "retrospective_rule": "Later response matrices may explain earlier feedback but do not replace contemporaneous evidence.",
+    "august_classification": {
+      "2026-08-04": "USER_CONTEXT_EXACT_DATE_REPOSITORY_WORDING_NOT_INDEPENDENTLY_CORROBORATED",
+      "2026-08-18": "USER_CONTEXT_INTERNAL_PROGRESS_UPDATE_NOT_PROFESSOR_FEEDBACK",
+      "2026-08-26": "USER_CONTEXT_INTEGRATED_REPORT_PREPARATION_NOT_AUTOMATICALLY_PROFESSOR_FEEDBACK"
+    }
+  },
+  "source_inventory": [
+    {
+      "source_id": "SRC-PROF-001",
+      "path": "docs/professor_feedback/ARGOS_FEEDBACK_RESPONSE.md",
+      "git_commit": "b773b528872835e11641498d82acce1daf18a871",
+      "commit_date": "2026-07-14",
+      "date_precision": "DAY",
+      "source_kind": "CONTEMPORANEOUS_FEEDBACK_RESPONSE",
+      "relevant_lines": ["3-18", "20-31", "33-46", "48-76", "78-82"],
+      "supports": "ARGOS-first review; Rule-only and detector/rule/combined questions; threshold and validation-selection distinctions; structured DSL and deterministic-verifier opportunity; explicit non-validation boundary."
+    },
+    {
+      "source_id": "SRC-PROF-002",
+      "path": "docs/professor_feedback/ARGOS_AND_EXTENSION_MEETING_BRIEF.md",
+      "git_commit": "b773b528872835e11641498d82acce1daf18a871",
+      "commit_date": "2026-07-14",
+      "date_precision": "DAY",
+      "source_kind": "MEETING_BRIEF",
+      "relevant_lines": ["3-10", "12-33", "35-64", "66-81"],
+      "supports": "ARGOS interpretation; detector-error correction; typed DSL, deterministic calibration/verifier, LLM-free runtime; comparison sequence."
+    },
+    {
+      "source_id": "SRC-PROF-003",
+      "path": "docs/professor_feedback/PROFESSOR_DECISION_REQUEST.md",
+      "git_commit": "337769066f62b8f4fcd8e48a9a8f8d3651e3818a",
+      "commit_date": "2026-07-24",
+      "date_precision": "DAY",
+      "source_kind": "DECISION_REQUEST",
+      "relevant_lines": ["3-26", "28-43", "45-68"],
+      "supports": "Freeze ARGOS reference track; preserve sealed test unless separately approved; prioritize graph restriction, typed DSL, deterministic calibration/verifier, no-op/abstain, and bounded training-time agents."
+    },
+    {
+      "source_id": "SRC-PROF-004",
+      "path": "docs/professor_first_results_v1/02_PROFESSOR_FEEDBACK_RESPONSE_MATRIX.md",
+      "git_commit": "f1aa767fffc8cce679527274b486457255d06874",
+      "commit_date": "2026-08-24",
+      "date_precision": "DAY",
+      "source_kind": "RETROSPECTIVE_FEEDBACK_RESPONSE_MATRIX",
+      "relevant_lines": ["3-18"],
+      "supports": "Retrospective mapping from feedback topics to current implementation and unresolved professor decisions; not proof of the original feedback date or exact wording."
+    },
+    {
+      "source_id": "SRC-PROF-005",
+      "path": "docs/professor_first_results_v1/09_PROFESSOR_DECISION_AGENDA.md",
+      "git_commit": "f1aa767fffc8cce679527274b486457255d06874",
+      "commit_date": "2026-08-24",
+      "date_precision": "DAY",
+      "source_kind": "PENDING_PROFESSOR_DECISION_AGENDA",
+      "relevant_lines": ["3-19"],
+      "supports": "Graph-guided construction and deterministic verification as proposed framing; rule-trace explanation scope; thesis-first versus new OUTER; baseline-strength decisions remain pending."
+    },
+    {
+      "source_id": "SRC-PROF-006",
+      "path": "docs/project_state/DECISION_LOG.md",
+      "git_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "commit_date": "2026-08-24",
+      "date_precision": "DAY",
+      "source_kind": "CURRENT_DECISION_CONTINUITY",
+      "relevant_lines": ["50-68", "667-687", "797-814"],
+      "supports": "D1 Rule-only first; frozen prediction comparability; combined INNER utility not supported; thesis-first briefing pending professor scope decision."
+    },
+    {
+      "source_id": "SRC-PROF-007",
+      "path": "docs/v6/V6_CANONICAL_ARCHITECTURE.md",
+      "git_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "commit_date": "2026-08-24",
+      "date_precision": "DAY",
+      "source_kind": "CURRENT_ARCHITECTURE_AUTHORITY",
+      "relevant_lines": ["5-18", "41-46", "61-68"],
+      "supports": "Pairwise delayed-response first family; normal-only construction; deterministic validity/governance; LLM-free current runtime; bounded T0/T1/T1-B/T2 arms."
+    },
+    {
+      "source_id": "SRC-PROF-008",
+      "path": "docs/RESEARCH_INVARIANTS.md",
+      "git_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "commit_date": "2026-08-24",
+      "date_precision": "DAY",
+      "source_kind": "CURRENT_GOVERNANCE_AUTHORITY",
+      "relevant_lines": ["5-23", "29-35"],
+      "supports": "Validation leakage prohibition; GDN edges as candidate evidence, not truth; LLM-free runtime; constrained LLM output."
+    },
+    {
+      "source_id": "SRC-PROF-009",
+      "path": "docs/thesis/THESIS_FRAMING_V1.md",
+      "git_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "commit_date": "2026-08-24",
+      "date_precision": "DAY",
+      "source_kind": "CURRENT_CLAIM_BOUNDARY",
+      "relevant_lines": ["45-83", "100-119", "121-128"],
+      "supports": "Avoid agentic-superiority framing; use bounded verifier-feedback terminology; keep validity, utility, runtime, and deployment claims separate."
+    },
+    {
+      "source_id": "SRC-PROF-010",
+      "path": "GIT_OBJECT_DATABASE",
+      "git_commit": "7c046a5988156f194fefc5953d99ffa5b8a38244",
+      "commit_date": "2026-08-03",
+      "date_precision": "DAY",
+      "source_kind": "IMPLEMENTATION_MILESTONE",
+      "relevant_lines": [],
+      "supports": "TASK-039BR1 froze the continuous-step protocol on August 3; TASK-039BR2 then evaluated HAI continuous-step feasibility at c417dec4b35f900ac5a614e57716b44991a3b0e0 on August 4. Therefore pairwise-first architecture cannot be attributed as originating in August 4 feedback."
+    }
+  ],
+  "feedback_lineage": [
+    {
+      "lineage_id": "PF-LIN-001",
+      "date": "2026-07-14",
+      "date_precision": "DAY",
+      "date_basis": "DOCUMENT_COMMIT_DATE_NOT_PROVEN_FEEDBACK_DELIVERY_DATE",
+      "feedback_or_question": "Reproduce and audit ARGOS first; explain why detector and rule are combined; determine whether Rule-only operates; explain threshold and rule-generation control.",
+      "interpretation": "The reference method had to be understood at source/protocol level before proposing a multivariate extension, and detector-only, Rule-only, and combined evidence had to remain distinct.",
+      "decision": "Audit ARGOS as a frozen reference and develop a more controlled extension using typed rules, deterministic numeric authority, and an independent deterministic verifier.",
+      "implementation_or_experiment_effect": "ARGOS reference audits were completed; later architecture separated candidate evidence, numeric authority, proposal, verifier admission, runtime, and utility.",
+      "status": "HISTORICAL_ACTIVE_INHERITANCE",
+      "source_ids": ["SRC-PROF-001", "SRC-PROF-002"],
+      "confidence": "HIGH"
+    },
+    {
+      "lineage_id": "PF-LIN-002",
+      "date": "2026-07-24",
+      "date_precision": "DAY",
+      "date_basis": "DECISION_REQUEST_COMMIT_DATE",
+      "feedback_or_question": "Should the exposed ARGOS reference study be frozen, should sealed confirmation be preserved, and should the controlled multivariate-method safeguards be prioritized?",
+      "interpretation": "More tuning of the exposed reference track offered diminishing scientific value and could compromise clean confirmation; the proposed method needed explicit authority boundaries.",
+      "decision": "Recommend freezing ARGOS, preserving the sealed partition unless separately approved, and prioritizing graph-constrained candidates, typed DSL, deterministic calibration/verifier, no-op/abstain, and bounded training-time repair/review.",
+      "implementation_or_experiment_effect": "ARGOS became a frozen reference track with partial methodological support; current architecture retained bounded construction ideas but not unrestricted Python or LLM final authority.",
+      "status": "ACTIVE",
+      "source_ids": ["SRC-PROF-003"],
+      "confidence": "HIGH"
+    },
+    {
+      "lineage_id": "PF-LIN-003",
+      "date": "2026-08-04",
+      "date_precision": "DAY",
+      "date_basis": "USER_CONTEXT_ONLY",
+      "feedback_or_question": "Pairwise first and complex relations later; prioritize Rule-only comparison; clarify deterministic verifier, validation use, runtime LLM, GDN relation extraction, and what is meant by agent without multi-agent overclaim.",
+      "interpretation": "The immediate scientific unit should be an auditable pairwise temporal relation, Rule-only should be independently visible before fusion, and overloaded graph/agent/verifier terms require narrow operational definitions.",
+      "decision": "Treat the feedback as reinforcement and scope clarification for pairwise-first HAI work, independently execute Rule-only before D0/D2, use GDN only as candidate evidence, retain code-based verifier authority, and avoid agentic or multi-agent superiority claims.",
+      "implementation_or_experiment_effect": "The pairwise continuous-step protocol was already frozen on August 3 and feasibility ran on August 4, so this feedback must not be presented as the origin of pairwise-first design. Later authority separated META/STAT/GDN candidate arms, executed D1 before D0/D2, and kept the current runtime LLM-free. Complex relations and any alternate runtime-LLM study remain conditional and unauthorized.",
+      "status": "USER_CONTEXT_WITH_REPOSITORY_CORROBORATED_CONSEQUENCES",
+      "source_ids": ["SRC-PROF-006", "SRC-PROF-007", "SRC-PROF-008", "SRC-PROF-009", "SRC-PROF-010"],
+      "confidence": "MEDIUM",
+      "caution": "Repository evidence corroborates later decisions and implementation, but no contemporaneous repository record independently establishes the exact 2026-08-04 feedback wording. Pairwise protocol freeze predates that date. Do not present the wording as a Git-proven quotation or the origin of pairwise-first design."
+    },
+    {
+      "lineage_id": "PF-LIN-004",
+      "date": "2026-08-18",
+      "date_precision": "DAY",
+      "date_basis": "USER_CONTEXT_ONLY",
+      "feedback_or_question": null,
+      "interpretation": "This date is identified as an internal progress update, not professor feedback.",
+      "decision": "Do not create a professor-feedback event for this date without a direct dated source.",
+      "implementation_or_experiment_effect": "May be retained as an internal reporting milestone only if another historian locates supporting evidence.",
+      "status": "NOT_PROFESSOR_FEEDBACK",
+      "source_ids": [],
+      "confidence": "MEDIUM",
+      "caution": "No repository file or Git commit dated 2026-08-18 was found in this scoped pass."
+    },
+    {
+      "lineage_id": "PF-LIN-005",
+      "date": "2026-08-24",
+      "date_precision": "DAY",
+      "date_basis": "GIT_COMMIT_DATE",
+      "feedback_or_question": "A first-results package retrospectively organized earlier feedback and requested four new professor scope decisions.",
+      "interpretation": "Current results support a narrow construction/governance contribution, while combined improvement, operational Rule-only utility, held-out generalization, and human usefulness remain unsupported.",
+      "decision": "Recommend thesis-first reporting pending professor decisions on framing, explanation interface, independent OUTER evaluation, and baseline strength; authorize no new science automatically.",
+      "implementation_or_experiment_effect": "Professor-facing synthesis and decision agenda were created. This was preparation for feedback, not evidence that the professor approved the recommendations.",
+      "status": "PENDING_PROFESSOR_DECISION",
+      "source_ids": ["SRC-PROF-004", "SRC-PROF-005", "SRC-PROF-006"],
+      "confidence": "HIGH"
+    },
+    {
+      "lineage_id": "PF-LIN-006",
+      "date": "2026-08-26",
+      "date_precision": "DAY",
+      "date_basis": "USER_CONTEXT_ONLY",
+      "feedback_or_question": null,
+      "interpretation": "This date is identified as integrated report preparation or update, not automatically new professor feedback.",
+      "decision": "Do not label 2026-08-26 as professor feedback unless a direct feedback record is later supplied.",
+      "implementation_or_experiment_effect": "The Git-supported professor-package milestone in this checkout is 2026-08-24; any 2026-08-26 update requires separate evidence.",
+      "status": "NOT_PROFESSOR_FEEDBACK",
+      "source_ids": ["SRC-PROF-004", "SRC-PROF-005"],
+      "confidence": "MEDIUM",
+      "caution": "No repository file or Git commit dated 2026-08-26 was found in this scoped pass."
+    }
+  ],
+  "decision_candidates": [
+    {
+      "candidate_id": "DEC-CAND-PROF-001",
+      "title": "Freeze ARGOS as a reference track",
+      "proposed_date": "2026-07-24",
+      "date_precision": "DAY",
+      "status": "ACTIVE",
+      "decision": "Preserve ARGOS as partial methodological support and prohibit further tuning or winner selection on its exposed outer partition.",
+      "why": "The reference-track component questions were sufficient for design decisions, while more tuning would have diminishing value and threaten confirmation boundaries.",
+      "consequence": "ARGOS informs the current architecture but is not the current method, an exact reproduction, or a performance winner.",
+      "source_ids": ["SRC-PROF-003"],
+      "confidence": "HIGH"
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-002",
+      "title": "Separate detector-only, Rule-only, and combined evaluation",
+      "proposed_date": "2026-07-14",
+      "date_precision": "DAY",
+      "status": "ACTIVE",
+      "decision": "Evaluate detector-only, Rule-only, and combined arms under a fixed comparable protocol before making any combination-superiority claim.",
+      "why": "ARGOS used directional FN/FP correction, but source structure alone could not establish utility or superiority.",
+      "consequence": "The later HAI INNER program created D0, D1, and D2 as separate frozen arms; current D2 improvement remains unsupported.",
+      "source_ids": ["SRC-PROF-001", "SRC-PROF-002", "SRC-PROF-004", "SRC-PROF-006"],
+      "confidence": "HIGH"
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-003",
+      "title": "Prioritize Rule-only visibility before fusion",
+      "proposed_date": "2026-08-20",
+      "date_precision": "DAY",
+      "status": "ACTIVE",
+      "decision": "Execute D1 Rule-only as its own bounded result before D0 and D2, and preserve its prediction artifact for later comparison.",
+      "why": "Rule-only utility must be independently observable rather than hidden inside detector fusion.",
+      "consequence": "D1 was executed first; its event complementarity and high false-alarm cost remain distinct from combined utility.",
+      "source_ids": ["SRC-PROF-006"],
+      "confidence": "HIGH",
+      "historical_link_caution": "The repository proves the 2026-08-20 decision. Attribution of its priority specifically to 2026-08-04 professor feedback remains user-context supported rather than independently Git-proven."
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-004",
+      "title": "Use pairwise temporal relations first",
+      "proposed_date": "2026-08-03",
+      "date_precision": "DAY",
+      "status": "ACTIVE",
+      "decision": "Use a bounded pairwise continuous-step delayed-response family for the first HAI MVP; defer multi-stage, tree, hierarchy, and feedback-loop relations.",
+      "why": "A pairwise first unit is easier to profile, bind, verify, execute, and compare without claiming unsupported complex dynamics.",
+      "consequence": "The current architecture uses source-target pair evidence and explicitly leaves more complex relation families outside the first scope.",
+      "source_ids": ["SRC-PROF-004", "SRC-PROF-007", "SRC-PROF-010"],
+      "confidence": "HIGH",
+      "feedback_link_caution": "The pairwise protocol freeze predates the user-context August 4 feedback. Treat that feedback as reinforcement or scope clarification unless a source proves a different chronology."
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-005",
+      "title": "Make deterministic code the final verifier authority",
+      "proposed_date": "2026-07",
+      "date_precision": "MONTH",
+      "status": "ACTIVE",
+      "decision": "An LLM may propose bounded structure, but deterministic code separately validates schema, evidence, parameters, split, runtime, and claim boundaries and retains final admission authority.",
+      "why": "Prompt-only control and LLM-authored variables, thresholds, imports, and control flow were insufficient for semantic control, provenance, and reproducibility.",
+      "consequence": "The current verifier is not an LLM reviewer and does not scientifically prove causal or performance validity.",
+      "source_ids": ["SRC-PROF-001", "SRC-PROF-002", "SRC-PROF-003", "SRC-PROF-004"],
+      "confidence": "HIGH"
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-006",
+      "title": "Separate numeric authority from LLM generation",
+      "proposed_date": "2026-07",
+      "date_precision": "MONTH",
+      "status": "ACTIVE",
+      "decision": "Derive numeric references deterministically from authorized normal data and prohibit LLM-authored scientific thresholds or parameter approval.",
+      "why": "The ARGOS audit distinguished LLM-written rule thresholds from label-selected evaluation thresholds and found no deterministic rule-threshold calibration in the pinned route.",
+      "consequence": "Current proposals bind to versioned normal-derived references instead of inventing numbers.",
+      "source_ids": ["SRC-PROF-001", "SRC-PROF-002", "SRC-PROF-003"],
+      "confidence": "HIGH"
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-007",
+      "title": "Treat GDN output as candidate evidence",
+      "proposed_date": "2026-08",
+      "date_precision": "MONTH",
+      "status": "ACTIVE",
+      "decision": "Use an upstream-aligned learned graph to rank candidate pairs; do not treat GDN edges or attention weights as confirmed physical, causal, or final relation evidence.",
+      "why": "Candidate generation and normal temporal relation confirmation are separate evidence layers.",
+      "consequence": "META, STAT, and GDN remain separate discovery arms merged by unscored provenance-preserving union; downstream profiling determines supported temporal relations.",
+      "source_ids": ["SRC-PROF-008"],
+      "confidence": "HIGH",
+      "feedback_link_caution": "The current governance is repository-proven; the exact 2026-08-04 professor wording about GDN extraction is user-context only."
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-008",
+      "title": "Keep current fixed-rule runtime LLM-free",
+      "proposed_date": "2026-07",
+      "date_precision": "MONTH",
+      "status": "ACTIVE_WITH_CONDITIONAL_FUTURE_ALTERNATIVE",
+      "decision": "Use a deterministic LLM-free R0 runtime for frozen rules. Any alternate online/runtime LLM comparison is a separate conditional future experiment and is not current runtime authority.",
+      "why": "Final evaluation must be reproducible and trace-bound; LLM proposal and deterministic execution are separate phases.",
+      "consequence": "The current D1 runtime has no LLM. Historical wording that runtime LLM was left open must not be read as authorization for the current path.",
+      "source_ids": ["SRC-PROF-002", "SRC-PROF-004", "SRC-PROF-007", "SRC-PROF-008"],
+      "confidence": "HIGH"
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-009",
+      "title": "Use agentic terminology narrowly",
+      "proposed_date": "2026-08",
+      "date_precision": "MONTH",
+      "status": "ACTIVE",
+      "decision": "Describe T2 technically as bounded verifier-feedback construction; do not claim an autonomous multi-agent system or agentic superiority.",
+      "why": "The deterministic verifier, not an agent, holds final authority, and the current cohort does not establish feedback advantage.",
+      "consequence": "Graph-Guided and Agentic remain provisional labels; claims must name the bounded construction mechanism and evidence layer.",
+      "source_ids": ["SRC-PROF-004", "SRC-PROF-009"],
+      "confidence": "HIGH",
+      "feedback_link_caution": "The repository establishes the conservative current terminology, but not a verbatim professor statement using the phrase multi-agent."
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-010",
+      "title": "Keep validation roles and held-out claims separate",
+      "proposed_date": "2026-07",
+      "date_precision": "MONTH",
+      "status": "ACTIVE",
+      "decision": "Separate construction evidence, validation selection, INNER utility, and one-way held-out confirmation; do not convert previously exposed or unavailable OUTER evidence into a generalization claim.",
+      "why": "The ARGOS audit found label-based validation selection and test evaluation during training iterations, and the current project requires clean staged authority.",
+      "consequence": "Current INNER observations remain pilot-only; old OUTER has no scientific outcome; any new held-out study requires independent preregistration.",
+      "source_ids": ["SRC-PROF-001", "SRC-PROF-002", "SRC-PROF-003", "SRC-PROF-005", "SRC-PROF-008"],
+      "confidence": "HIGH"
+    },
+    {
+      "candidate_id": "DEC-CAND-PROF-011",
+      "title": "Keep professor-facing thesis scope decisions pending",
+      "proposed_date": "2026-08-24",
+      "date_precision": "DAY",
+      "status": "CONDITIONAL",
+      "decision": "Recommend a thesis-first path while awaiting professor decisions on contribution framing, explanation interface, independent OUTER evaluation, and baseline strength.",
+      "why": "The current implementation and pilot support narrow method/contract claims but not general combined performance, held-out generalization, or human explanation usefulness.",
+      "consequence": "Do not treat the recommendations as professor-approved and do not automatically start D2 V3, OUTER retry, TSFM/ARTIST, dataset expansion, or a stronger baseline.",
+      "source_ids": ["SRC-PROF-004", "SRC-PROF-005", "SRC-PROF-006"],
+      "confidence": "HIGH"
+    }
+  ],
+  "terminology_findings": [
+    {
+      "term": "deterministic verifier",
+      "historical_risk": "Could be confused with an LLM ReviewAgent or with scientific proof of rule truth.",
+      "current_preferred_meaning": "Independent code-based admission checks over bounded structural, evidence, parameter, split, runtime, and claim contracts.",
+      "deprecated_or_forbidden": ["LLM reviewer as final authority", "scientifically proves causal validity", "proves performance"]
+    },
+    {
+      "term": "Rule-only",
+      "historical_risk": "Could refer to source-path existence, executable behavior, or operationally useful detection without distinguishing evidence level.",
+      "current_preferred_meaning": "D1 execution of the frozen COMMON-42 rule portfolio independently of D0 and D2.",
+      "deprecated_or_forbidden": ["operationally useful without FAR qualification", "Agentic Rule-only when arm-specific evidence is absent"]
+    },
+    {
+      "term": "runtime LLM",
+      "historical_risk": "A feedback question left open could be mistaken for current authorization.",
+      "current_preferred_meaning": "Current R0/D1 runtime is deterministic and LLM-free; any runtime-LLM comparison is a conditional, separately designed future experiment.",
+      "deprecated_or_forbidden": ["runtime LLM is currently active", "current D1 uses an LLM"]
+    },
+    {
+      "term": "GDN relation",
+      "historical_risk": "Could imply a confirmed physical or causal relationship.",
+      "current_preferred_meaning": "Upstream-aligned learned-graph candidate-ranking evidence only.",
+      "deprecated_or_forbidden": ["causal edge", "root cause", "attention weight as final relation truth"]
+    },
+    {
+      "term": "Agentic",
+      "historical_risk": "Could imply autonomous multi-agent operation or empirically superior feedback.",
+      "current_preferred_meaning": "Technical identifier only for the bounded T2 verifier-feedback construction path.",
+      "deprecated_or_forbidden": ["agentic superiority", "multi-agent contribution", "autonomous agent authority"]
+    }
+  ],
+  "uncertainties": [
+    {
+      "uncertainty_id": "HIST-Q-PROF-001",
+      "question": "Is there a contemporaneous note, email, or meeting record that confirms the exact 2026-08-04 professor-feedback date and wording?",
+      "why_it_matters": "The repository corroborates later decisions but cannot independently attribute every topic or exact phrase to that date.",
+      "evidence_found": "User-context seed plus later response matrices and implementation consequences. The pairwise continuous-step protocol was already frozen on 2026-08-03.",
+      "suggested_interpretation": "Record 2026-08-04 as USER_CONTEXT until a direct source is supplied; paraphrase rather than quote, and treat pairwise-first as pre-existing rather than caused by this feedback.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "uncertainty_id": "HIST-Q-PROF-002",
+      "question": "What artifact, if any, records the 2026-08-18 internal progress update?",
+      "why_it_matters": "It may be a useful internal milestone, but it must not be labeled professor feedback.",
+      "evidence_found": "User-context classification only; no scoped repository file or Git commit dated 2026-08-18.",
+      "suggested_interpretation": "Omit or mark USER_CONTEXT internal update unless another historian locates a source.",
+      "confidence": "LOW"
+    },
+    {
+      "uncertainty_id": "HIST-Q-PROF-003",
+      "question": "Does a separate artifact support a 2026-08-26 integrated-report milestone?",
+      "why_it_matters": "The repository supports an August 24 professor-package milestone, while the task seed identifies August 26 as report preparation rather than new feedback.",
+      "evidence_found": "User-context classification for August 26; Git-supported package commits on August 24.",
+      "suggested_interpretation": "Use August 24 for the repository-evidenced package; keep August 26 USER_CONTEXT and explicitly non-professor unless sourced.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "uncertainty_id": "HIST-Q-PROF-004",
+      "question": "When professor feedback left runtime LLM open, was the intent to permit a future comparison or to leave the current runtime design undecided?",
+      "why_it_matters": "Current authority unambiguously requires an LLM-free runtime, but historical intent should not be retroactively rewritten.",
+      "evidence_found": "User-context says open; repository architecture and invariants require current runtime LLM-free.",
+      "suggested_interpretation": "Current R0 remains LLM-free; describe any runtime-LLM alternative only as conditional future work.",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "coordinator_recommendations": {
+    "professor_feedback_lineage_rows": 6,
+    "decision_candidates": 11,
+    "recommended_official_professor_feedback_events": ["PF-LIN-001", "PF-LIN-002", "PF-LIN-003", "PF-LIN-005"],
+    "recommended_non_professor_events": ["PF-LIN-004", "PF-LIN-006"],
+    "date_guard": "Do not turn the user-context-only August 4 wording into a quotation or claim that Git independently proves it. Pairwise continuous-step protocol freeze occurred August 3, so the August 4 feedback can at most reinforce or clarify that direction on current evidence.",
+    "current_claim_guard": "Professor-facing recommendations remain pending unless an approval record is found. Current GDN and Agentic claims must remain conservative, current results remain pilot-only, and old OUTER remains unavailable rather than a negative performance result."
+  }
+}

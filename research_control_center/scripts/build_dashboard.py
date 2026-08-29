@@ -12,6 +12,7 @@ import csv
 import hashlib
 import html
 import json
+import re
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -26,6 +27,7 @@ REGISTRY_FILES = (
     "artifacts.csv",
     "decisions.csv",
     "timeline.csv",
+    "history.yaml",
 )
 
 
@@ -43,8 +45,10 @@ def load_registry(rcc_root: Path) -> dict[str, Any]:
 
     registry_dir = rcc_root / "registry"
     state = json.loads((registry_dir / "current_state.yaml").read_text(encoding="utf-8"))
+    history = json.loads((registry_dir / "history.yaml").read_text(encoding="utf-8"))
     return {
         "state": state,
+        "history": history,
         "components": _read_csv(registry_dir / "components.csv"),
         "experiments": _read_csv(registry_dir / "experiments.csv"),
         "claims": _read_csv(registry_dir / "claims.csv"),
@@ -78,11 +82,11 @@ def _short_commit(commit: str) -> str:
 
 
 def _badge_class(status: str) -> str:
-    if status in {"IMPLEMENTED_EXECUTED_AUDITED", "AUDITED", "REPRODUCED", "CLAIM_READY", "COMPLETED"}:
+    if status in {"IMPLEMENTED_EXECUTED_AUDITED", "AUDITED", "REPRODUCED", "CLAIM_READY", "COMPLETED", "ACTIVE", "ACTIVE_CONTEXT"}:
         return "badge-green"
     if status in {"IMPLEMENTED_EXECUTED", "IMPLEMENTED_NOT_EXECUTED", "CODE_IMPLEMENTED", "INTEGRATED", "SUPPORTED_IMPLEMENTATION"}:
         return "badge-blue"
-    if status in {"PARTIAL", "EXECUTED_AUDITED_PILOT", "PILOT_ONLY", "CONDITIONAL", "MITIGATING", "CURRENT"}:
+    if status in {"PARTIAL", "EXECUTED_AUDITED_PILOT", "PILOT_ONLY", "CONDITIONAL", "MITIGATING", "CURRENT", "HISTORICAL"}:
         return "badge-yellow"
     if status in {"BLOCKED", "HIGH"}:
         return "badge-orange"
@@ -171,8 +175,12 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
     checkout = state["non_authoritative_checkout"]
-    unresolved = [row for row in data["decisions"] if row["status"] != "APPROVED"]
-    current_events = sorted(data["timeline"], key=lambda row: (row["date"], row["event_id"]), reverse=True)
+    unresolved = [row for row in data["decisions"] if row["status"] == "OPEN"]
+    current_events = sorted(
+        (row for row in data["timeline"] if row["date_precision"] == "DAY"),
+        key=lambda row: (row["date"], row["event_id"]),
+        reverse=True,
+    )
     all_statuses = sorted(
         {row["status"] for group in (data["components"], data["experiments"], data["claims"]) for row in group}
         | {row["severity"] for row in data["risks"]}
@@ -220,6 +228,17 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         status_key="status",
         body_keys=(("Decision", "decision"), ("Reason", "reason")),
     ) if unresolved else '<p class="empty-state">No unresolved user decisions.</p>'
+    event_by_id = {row["event_id"]: row for row in data["timeline"]}
+    history_events = [event_by_id[event_id] for event_id in data["history"]["dashboard_event_ids"]]
+    history_markup = "".join(
+        f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(row["title"])}</strong><p>{_escape(row["summary"])}</p><small>{_escape(row["source"])} · {_escape(row["notes"])}</small></div>{_badge(row["status"])}</article>'
+        for row in history_events
+    )
+    active_decisions = [row for row in data["decisions"] if row["status"] in {"ACTIVE", "CONDITIONAL"}]
+    key_decisions_markup = "".join(
+        f'<li><strong>{_escape(row["decision_id"])} · {_escape(row["title"])}</strong><span>{_escape(row["current_relevance"])}</span></li>'
+        for row in active_decisions[-8:]
+    )
     recent = current_events[:3]
     recent_markup = "".join(
         f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(row["title"])}</strong><p>{_escape(row["summary"])}</p></div>{_badge(row["status"])}</article>'
@@ -303,7 +322,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     <a href="#current-state">Current state</a><a href="#my-tasks">My tasks</a>
     <a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
-    <a href="#claims">Claims</a><a href="#risks">Risks</a>
+    <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
 
   <main id="main">
@@ -369,8 +388,17 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <div class="section-heading"><p class="eyebrow">08</p><h2>RISKS</h2></div><div class="card-grid">{risk_cards}</div>
     </section>
 
+    <section id="history" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">09</p><h2>RESEARCH HISTORY</h2></div>
+      <p class="section-intro">A curated history of pivots and decisions, not an exhaustive commit log. USER_CONTEXT entries preserve uncertainty and never override current <code>claims.csv</code>.</p>
+      <div class="timeline history-timeline">{history_markup}</div>
+      <h3>Key active or conditional decisions</h3>
+      <ul class="decision-list">{key_decisions_markup}</ul>
+      <p><a href="../history/PROJECT_TIMELINE.md">Open the full research evolution</a> · <a href="../history/PROFESSOR_FEEDBACK_LINEAGE.md">Professor-feedback lineage</a> · <a href="../history/SUPERSEDED_DIRECTIONS.md">Superseded directions</a></p>
+    </section>
+
     <section id="source-authority" class="section authority-detail">
-      <div class="section-heading"><p class="eyebrow">09</p><h2>SOURCE AUTHORITY</h2></div>
+      <div class="section-heading"><p class="eyebrow">10</p><h2>SOURCE AUTHORITY</h2></div>
       <dl>
         <div><dt>Scientific source</dt><dd>{_escape(authority['ref'])}<br><code>{_escape(authority['commit'])}</code></dd></div>
         <div><dt>Immutable pin</dt><dd>{_escape(state['immutable_scientific_pin']['tag'])}<br><code>{_escape(state['immutable_scientific_pin']['commit'])}</code></dd></div>
@@ -380,7 +408,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     </section>
 
     <section id="recent-change" class="section">
-      <div class="section-heading"><p class="eyebrow">10</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
+      <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline">{recent_markup}</div>
       <div class="next-task"><span>Exact next task</span><strong>{_escape(state['exact_next_task'])}</strong></div>
     </section>
@@ -402,6 +430,10 @@ def _md_bullets(values: Iterable[object]) -> str:
     return "\n".join(f"- {item}" for item in items) if items else "- None recorded."
 
 
+def _slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
 def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -415,8 +447,10 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     )
     risks = "\n".join(
         f"- **{row['severity']} / {row['status']}** — {row['description']}"
-        for row in data["risks"]
+        for row in data["risks"] if row["severity"] in {"CRITICAL", "HIGH"}
     )
+    phases = data["history"]["phases"]
+    phase_names = " → ".join(phase["title"] for phase in phases[:9])
     return f"""{_markdown_marker(state, digest)}
 # GPT Brief — Research Control Center
 
@@ -455,22 +489,27 @@ These counts are not a single completion percentage.
 
 {state['architecture_flow']}
 
+## How we got here
+
+The recorded evolution is **{phase_names}**. The first four stages are partly or wholly
+`USER_CONTEXT`: Git does not independently prove their exact dates or motivations. The
+repository-supported lineage begins on 2026-06-25 with graph-constrained candidates,
+typed rules, a deterministic verifier, and an LLM-free runtime foundation. The July ARGOS
+track was frozen as partial methodological support rather than copied wholesale. Its useful
+ideas survived inside a project-owned CPS contract. HAI provenance and the failed discrete-
+source gate then led to a separately preregistered continuous-step family and P1 selection.
+META, STAT, and GDN remained distinct candidate-evidence arms; normal-only profiling and
+numeric authority produced COMMON-42. D1, D0, and D2 were finally executed as a frozen
+14-event INNER pilot. The OUTER attempt produced a custody blocker, not a scientific result.
+History explains this lineage but cannot override RCC-002 current state or `claims.csv`.
+
 ## Established facts
 
 {_md_bullets(state['established_facts'])}
 
-The frozen discovery flow began with 12 reviewed sources and 12 reviewed targets (144
-possible pairs). META, STAT, and GDN each produced a top-20 ranking. Their union is an
-unscored 47-pair candidate cohort. Normal-only profiling led to 23 pair contexts and 42
-directed temporal relations, which were bound into COMMON-42. These counts establish
-pipeline execution and custody. They do not establish causality, physical truth, or a
-unique contribution from the graph arm.
-
-The four construction routes ran on the same 42-relation cohort: T0, T1, and T1-B each
-produced 42 accepted outcomes; T2 produced 39 accepted outcomes and 3 no-rule outcomes.
-T2 executed zero revise, retrieve, follow-up, or recovery actions, so the present cohort
-did not empirically exercise the verifier-feedback mechanism. The existence of an
-agentic controller therefore cannot be translated into an agentic-benefit finding.
+The frozen discovery and construction counts establish pipeline execution and custody,
+not causality, physical truth, unique GDN benefit, or agentic-feedback advantage. T2
+performed zero feedback actions in the current cohort.
 
 ## Frozen INNER pilot observations
 
@@ -853,6 +892,303 @@ Scientific authority: `{state['scientific_authority']['commit']}`
 """
 
 
+def render_project_timeline(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    phase_sections = []
+    for index, phase in enumerate(data["history"]["phases"], start=1):
+        phase_sections.append(
+            f"""## {index}. {phase['title']}
+
+**Period:** {phase['period']} (`{phase['date_precision']}`)
+
+**Source class:** `{phase['source_class']}`
+
+**Status:** `{phase['status']}` · **Confidence:** `{phase['confidence']}`
+
+### Goal at the time
+
+{phase['goal']}
+
+### What was implemented / investigated
+
+{phase['investigated']}
+
+### What problem was found
+
+{phase['problem']}
+
+### Decision
+
+{phase['decision']}
+
+### What survived into the current method
+
+{phase['survived']}
+
+### What was abandoned or deferred
+
+{phase['abandoned_or_deferred']}
+
+### Evidence
+
+{phase['evidence']}
+"""
+        )
+    return f"""{_markdown_marker(state, digest)}
+# Research Evolution
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+
+This narrative explains why the architecture changed. It is not a replacement for
+`registry/current_state.yaml` or `registry/claims.csv`. Early user-context stages keep
+their approximate dates and confidence labels; later Git milestones use exact evidence.
+
+{chr(10).join(phase_sections)}
+
+## Current State
+
+The architecture is substantially implemented and the INNER path has frozen pilot
+observations. Scientific validation remains partial, held-out generalization remains
+unconfirmed, and fresh-machine reproduction remains incomplete. The exact next task is
+**{state['exact_next_task']}**.
+"""
+
+
+def render_professor_feedback_lineage(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    rows = "\n".join(
+        f"| {item['date']} ({item['date_precision']}) | {item['feedback']} | {item['interpretation']} | {item['decision_ref']} | {item['effect']} | {item['classification']} / {item['confidence']} |"
+        for item in data["history"]["professor_feedback_lineage"]
+    )
+    return f"""{_markdown_marker(state, digest)}
+# Professor Feedback Lineage
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+
+This is a decision lineage, not an email archive. Dates describe the evidence basis shown
+in the final column. Retrospective response matrices do not create contemporaneous proof.
+
+| Date | Professor feedback or record | Research interpretation | Decision | Implementation / experiment effect | Evidence class |
+|---|---|---|---|---|---|
+{rows}
+
+## Temporal safeguards
+
+- The pairwise continuous-step protocol was frozen on **2026-08-03**. The user-context
+  2026-08-04 feedback may have reinforced or clarified pairwise-first scope; it did not
+  originate the already-frozen protocol.
+- **2026-08-18** is an internal progress update, not professor feedback.
+- **2026-08-24** is the Git-supported professor-package preparation milestone, not proof
+  of professor approval.
+- **2026-08-26** is integrated report preparation in user context, not automatically new
+  professor feedback.
+"""
+
+
+def render_superseded_directions(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    rows = "\n".join(
+        f"| {item['direction']} | {item['period']} | {item['why_explored']} | {item['why_reduced']} | {item['survived']} | {item['replacement']} | {item['status']} | {'Yes' if not item['current_claim'] else 'No'} |"
+        for item in data["history"]["superseded_directions"]
+    )
+    return f"""{_markdown_marker(state, digest)}
+# Superseded and Conditional Directions
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+
+Old documents may use these framings. Preserve them historically; do not reuse them as
+current claims without current evidence.
+
+| Direction | Period | Why explored | Why reduced or abandoned | What survived | Replacement | Status | Do not use as current claim? |
+|---|---|---|---|---|---|---|---|
+{rows}
+"""
+
+
+def render_terminology_guide(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    rows = "\n".join(
+        f"| {item['term']} | {item['historical']} | {item['current']} | {item['deprecated']} |"
+        for item in data["history"]["terminology"]
+    )
+    return f"""{_markdown_marker(state, digest)}
+# Historical Terminology Guide
+
+Scientific authority: `{state['scientific_authority']['commit']}`
+
+| Term | Historical meaning | Current preferred meaning | Deprecated or guarded wording |
+|---|---|---|---|
+{rows}
+
+Historical documents remain untouched. This guide controls current-facing interpretation.
+"""
+
+
+def render_history_confirmation(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    questions = []
+    for item in data["history"]["confirmation_questions"]:
+        questions.append(
+            f"""## {item['id']}
+
+**Question:** {item['question']}
+
+**Why it matters:** {item['why']}
+
+**Evidence found:** {item['evidence']}
+
+**Suggested interpretation:** {item['suggested']}
+
+**Confidence:** `{item['confidence']}`
+"""
+        )
+    return f"""{_markdown_marker(state, digest)}
+# History Confirmation Needed
+
+Only high-value uncertainties are listed. Until confirmed, the conservative interpretation
+in each item remains the RCC history boundary.
+
+{chr(10).join(questions)}
+"""
+
+
+def render_decision_record(row: Mapping[str, str], state: Mapping[str, Any], digest: str) -> str:
+    return f"""{_markdown_marker(state, digest)}
+# {row['decision_id']} — {row['title']}
+
+## Date
+
+{row['date']} (`{row['date_precision']}`)
+
+## Status
+
+`{row['status']}`
+
+## Context
+
+{row['context']}
+
+## Alternatives Considered
+
+{_md_bullets(row['alternatives_considered'].split(';'))}
+
+## Decision
+
+{row['decision']}
+
+## Why
+
+{row['reason']}
+
+## Consequence
+
+{row['consequence']}
+
+## Current Relevance
+
+{row['current_relevance']}
+
+## Supersedes
+
+{row['supersedes']}
+
+## Superseded By
+
+{row['superseded_by']}
+
+## Evidence
+
+Source class: `{row['source']}`
+
+Reference: {row['source_ref']}
+
+Source commit: `{row['source_commit']}`
+
+## Confidence
+
+`{row['confidence']}`
+"""
+
+
+def render_rcc003_history_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    inheritance = data["history"]["current_method_inheritance"]
+    return f"""{_markdown_marker(state, digest)}
+# 우리 연구가 어떻게 여기까지 왔나
+
+## 처음 무엇을 하려 했는가
+
+사용자 기록에 따르면 2025년 말부터 DHAG 확장과 PoC를 검토했고, 2026년 봄에는
+ARGOS·LLMAD 같은 관련 연구와 설명 충실도 검증 중심의 방향을 탐색했다. 이 초기
+시기는 Git에 동시대 기록이 충분하지 않으므로 정확한 실패 원인이나 날짜를 확정하지
+않는다.
+
+## 왜 방향이 바뀌었는가
+
+자유로운 LLM 규칙이나 설명을 과학적 권한으로 쓰면 변수·숫자·검증·실행의 책임이
+불명확해진다. 7월의 저장소 기록은 ARGOS를 그대로 복제하기보다 유용한 요소만 남기고,
+규칙 구조·수치 근거·검증·런타임을 분리하는 CPS 관계 규칙 방향을 보여 준다. HAI에서
+기존 이산 제어원 가정이 실패했을 때도 기준을 완화하지 않고 연속 step-response 계열을
+새로 사전등록했으며, 그 결과 P1만 선택되었다.
+
+## 지금 방법에 남은 핵심 아이디어
+
+- DHAG 시기: {inheritance['from_dhag']}
+- ARGOS 탐색: {inheritance['from_argos']}
+- Verifier 시기: {inheritance['from_verifier']}
+- 교수님 피드백 재정리: {inheritance['from_professor_reframing']}
+- 현재 조합: {inheritance['current_combination']}
+
+## 버린 것 / 보류한 것
+
+현재 핵심에서 제외된 것은 DHAG를 전면 방법으로 삼는 주장, Faithfulness Verifier가
+과학적 진실을 증명한다는 주장, ARGOS의 직접 복제, HAI 이산 제어원 경로, 그리고
+ARTIST식 학습 기반 segment 선택이다. 복잡한 관계와 runtime LLM은 틀렸다고 판정한
+것이 아니라 별도 설계가 필요한 조건부 과제로 남아 있다.
+
+## 교수님 피드백이 실제로 바꾼 것
+
+2026-08-04 피드백은 사용자 기록으로 보존한다. pairwise-first 프로토콜은 이미
+8월 3일 고정되어 있었으므로 이 피드백은 그 기원을 만든 사건이라기보다 범위와 표현을
+강화한 것으로 기록한다. Rule-only를 fusion 안에 숨기지 않고 별도로 보며, verifier와
+GDN과 agent라는 단어를 좁게 쓰고, 실행과 검증을 구분하는 방향이 이후 구현에 남았다.
+8월 18일은 내부 진행 업데이트이고, 8월 26일은 통합 보고서 준비이지 새 교수님 피드백이 아니다.
+
+## 현재 위치
+
+HAI 23.05 P1에서 후보 탐색, normal-only 관계·수치 근거, COMMON-42, 고정 규칙 런타임,
+D0/D1/D2 INNER 예비 평가와 결과 무결성 감사까지 구현되었다. 그러나 14개 사건 수치는
+pilot evidence일 뿐이다. Rule-only 실용성, D2 개선, GDN 고유 기여, Agentic 이점,
+사람 대상 설명 유용성, 홀드아웃 일반화는 아직 검증되지 않았다.
+
+## 앞으로는 무엇을 검증해야 하는가
+
+새 독립 사전등록 아래 더 많은 사건과 더 강한 다변량 탐지기 기준선으로 Rule-only와
+detector 비교를 확장해야 한다. GDN 안정성과 고유 기여, 실제 피드백이 발생하는 T2 비교,
+fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **{state['exact_next_task']}**이다.
+"""
+
+
+def generate_history_documents(rcc_root: Path, data: Mapping[str, Any], digest: str) -> list[Path]:
+    history_dir = rcc_root / "history"
+    decisions_dir = history_dir / "decisions"
+    history_dir.mkdir(parents=True, exist_ok=True)
+    decisions_dir.mkdir(parents=True, exist_ok=True)
+    payloads = {
+        history_dir / "PROJECT_TIMELINE.md": render_project_timeline(data, digest),
+        history_dir / "PROFESSOR_FEEDBACK_LINEAGE.md": render_professor_feedback_lineage(data, digest),
+        history_dir / "SUPERSEDED_DIRECTIONS.md": render_superseded_directions(data, digest),
+        history_dir / "TERMINOLOGY_GUIDE.md": render_terminology_guide(data, digest),
+        history_dir / "HISTORY_CONFIRMATION_NEEDED.md": render_history_confirmation(data, digest),
+    }
+    for row in data["decisions"]:
+        name = f"{row['decision_id']}-{_slug(row['title'])}.md"
+        payloads[decisions_dir / name] = render_decision_record(row, data["state"], digest)
+    for path, payload in payloads.items():
+        path.write_text(payload, encoding="utf-8", newline="\n")
+    return list(payloads)
+
+
 def build_dashboard(rcc_root: Path) -> Path:
     data = load_registry(rcc_root)
     digest = registry_digest(rcc_root)
@@ -872,6 +1208,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "CURRENT_STATUS.md": render_current_status(data, digest),
         "CHANGE_SUMMARY.md": render_change_summary(data, digest),
         "RCC_002_USER_SUMMARY.md": render_user_summary(data, digest),
+        "RCC_003_HISTORY_SUMMARY.md": render_rcc003_history_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():
@@ -887,6 +1224,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         path = rcc_root / name
         path.write_text(payload, encoding="utf-8", newline="\n")
         paths.append(path)
+    paths.extend(generate_history_documents(rcc_root, data, digest))
     return paths
 
 

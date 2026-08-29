@@ -38,7 +38,7 @@ class DashboardGenerationTests(unittest.TestCase):
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             self.assertIn(heading, rendered)
         self.assertIn(AUTHORITY_COMMIT, rendered)
@@ -66,6 +66,8 @@ class DashboardGenerationTests(unittest.TestCase):
         self.assertIn("Graph-Guided and Agentic remain provisional contribution labels.", brief)
         self.assertIn("## Research objective", brief)
         self.assertIn("## Claim boundaries", brief)
+        self.assertIn("## How we got here", brief)
+        self.assertIn("History explains this lineage but cannot override", brief)
         self.assertIn("## Exact next task", brief)
         self.assertGreaterEqual(len(brief.split()), 800)
         self.assertLessEqual(len(brief.split()), 1500)
@@ -80,8 +82,10 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(7, len(summaries))
+            self.assertEqual(31, len(summaries))
             self.assertTrue(all(path.is_file() for path in summaries))
+            self.assertTrue((root / "history" / "PROJECT_TIMELINE.md").is_file())
+            self.assertTrue((root / "generated" / "RCC_003_HISTORY_SUMMARY.md").is_file())
 
     def test_dashboard_has_population_counts_and_architecture_nodes(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
@@ -125,13 +129,36 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
-        self.assertEqual(7, len(generated))
+        self.assertEqual(31, len(generated))
         user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
         context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
         self.assertIn("14", user_summary)
         self.assertIn("예비", user_summary)
         for heading in ("WHAT EXISTS", "WHAT WAS EXECUTED", "WHAT WAS OBSERVED", "WHAT IS VALIDATED", "WHAT REMAINS UNKNOWN"):
             self.assertIn(heading, context)
+
+    def test_history_dashboard_is_curated_and_registry_derived(self) -> None:
+        data = load_registry(RCC_ROOT)
+        rendered = render_dashboard(data, registry_digest(RCC_ROOT))
+        self.assertEqual(12, len(data["history"]["dashboard_event_ids"]))
+        self.assertIn("EVENT-013", data["history"]["dashboard_event_ids"])
+        self.assertIn("RESEARCH HISTORY", rendered)
+        self.assertIn("USER_CONTEXT entries preserve uncertainty", rendered)
+        for event_id in data["history"]["dashboard_event_ids"]:
+            event = next(row for row in data["timeline"] if row["event_id"] == event_id)
+            self.assertIn(event["title"], rendered)
+
+    def test_generated_history_preserves_temporal_corrections(self) -> None:
+        generate_summaries(RCC_ROOT)
+        lineage = (RCC_ROOT / "history" / "PROFESSOR_FEEDBACK_LINEAGE.md").read_text(encoding="utf-8")
+        summary = (RCC_ROOT / "generated" / "RCC_003_HISTORY_SUMMARY.md").read_text(encoding="utf-8")
+        self.assertIn("2026-08-18", lineage)
+        self.assertIn("not professor feedback", lineage)
+        self.assertIn("2026-08-26", lineage)
+        self.assertIn("8월 3일 고정", summary)
+        self.assertIn("pilot evidence", summary)
+        self.assertIn("구조적 한계를 명시적인 계약", summary)
+        self.assertNotIn("Only a possible lesson", summary)
 
     def test_generated_outputs_match_current_registry_digest(self) -> None:
         result = validator.validate_registry(RCC_ROOT, check_git=True, check_outputs=True)

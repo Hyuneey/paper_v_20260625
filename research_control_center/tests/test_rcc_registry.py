@@ -83,8 +83,12 @@ class RegistryValidationTests(unittest.TestCase):
             {AUTHORITY_COMMIT},
             {row["scientific_source_commit"] for row in data["components"] if row["component_id"] != "THESIS_DRAFT"},
         )
+        allowed_history_commits = {AUTHORITY_COMMIT, "NONE", "e81baadcfd6cf6b9f23d307056455e024876c2ed"}
         for name in ("decisions", "timeline"):
-            self.assertEqual({AUTHORITY_COMMIT}, {row["source_commit"] for row in data[name]})
+            self.assertLessEqual({row["source_commit"] for row in data[name]}, allowed_history_commits)
+            for row in data[name]:
+                if row["source"] == "USER_CONTEXT":
+                    self.assertEqual("NONE", row["source_commit"])
         self.assertEqual(
             {validator.OVERLAY_COMMIT},
             {row["source_commit"] for row in data["artifacts"] if row["artifact_id"] == "ART-THESIS-DRAFT"},
@@ -128,6 +132,43 @@ class RegistryValidationTests(unittest.TestCase):
         result = validator.ValidationResult()
         validator._validate_enums(data, result)
         self.assertTrue(any("event_type" in error for error in result.errors))
+
+    def test_history_counts_precision_and_cross_references(self) -> None:
+        data = load_registry(RCC_ROOT)
+        self.assertEqual(28, len(data["timeline"]))
+        self.assertEqual(18, len(data["decisions"]))
+        self.assertEqual(5, len(data["history"]["confirmation_questions"]))
+        result = validator.ValidationResult()
+        validator._validate_dates(data, result)
+        validator._validate_references(data, result)
+        validator._validate_history(data, result, RCC_ROOT.parent, True)
+        self.assertEqual([], result.errors)
+
+    def test_user_context_does_not_claim_false_precision_or_git_authority(self) -> None:
+        data = load_registry(RCC_ROOT)
+        early = [row for row in data["timeline"] if row["event_id"] in {"EVENT-001", "EVENT-002", "EVENT-003", "EVENT-004"}]
+        self.assertTrue(all(row["date_precision"] in {"MONTH", "RANGE"} for row in early))
+        self.assertTrue(all(row["source"] == "USER_CONTEXT" for row in early))
+        self.assertTrue(all(row["source_commit"] == "NONE" for row in early))
+        decisions = {row["decision_id"]: row for row in data["decisions"]}
+        for decision_id in ("DEC-003", "DEC-005", "DEC-015"):
+            self.assertEqual("false", decisions[decision_id]["user_approved"])
+        self.assertEqual("true", decisions["DEC-009"]["user_approved"])
+        self.assertEqual("HIGH", decisions["DEC-009"]["confidence"])
+
+    def test_history_cannot_promote_current_claims(self) -> None:
+        data = load_registry(RCC_ROOT)
+        claim_status = {row["claim_id"]: row["status"] for row in data["claims"]}
+        self.assertEqual("UNVALIDATED", claim_status["CLAIM-E"])
+        self.assertEqual("NOT_SUPPORTED", claim_status["CLAIM-F"])
+        self.assertEqual("NOT_SUPPORTED", claim_status["CLAIM-I"])
+        self.assertEqual("NOT_SUPPORTED", claim_status["CLAIM-J"])
+
+    def test_august_feedback_temporal_corrections_are_explicit(self) -> None:
+        lineage = {row["date"]: row for row in load_registry(RCC_ROOT)["history"]["professor_feedback_lineage"]}
+        self.assertEqual("NOT_PROFESSOR_FEEDBACK", lineage["2026-08-18"]["classification"])
+        self.assertEqual("NOT_PROFESSOR_FEEDBACK", lineage["2026-08-26"]["classification"])
+        self.assertIn("reinforced", lineage["2026-08-04"]["interpretation"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

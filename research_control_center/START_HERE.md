@@ -15,8 +15,9 @@ Scientific authority: `origin/research-v6-thesis-checkpoint` at
 1. [CURRENT_CONTEXT.md](CURRENT_CONTEXT.md)
 2. [MY_TODO.md](MY_TODO.md)
 3. [dashboard/index.html](dashboard/index.html)
-4. [architecture/](architecture/README.md)
-5. [registry/](registry/README.md)
+4. [history/PROJECT_TIMELINE.md](history/PROJECT_TIMELINE.md)
+5. [architecture/](architecture/README.md)
+6. [registry/](registry/README.md)
 
 ## Scientific source authority
 
@@ -61,3 +62,7 @@ scientific validation are separate states.
 4. Record material decisions and checkpoints under `history/`.
 5. Commit only RCC changes after validation; never edit generated views by
    hand when their source is registry data.
+
+History is curated rather than exhaustive. User-context-only events must keep
+their approximate precision and confidence, and they may not override current
+state or `claims.csv`.

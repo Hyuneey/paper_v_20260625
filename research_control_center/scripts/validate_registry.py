@@ -26,7 +26,15 @@ FORMULA_MARKERS = ("=", "+", "@")
 BOOLEAN_FIELDS = {"true", "false"}
 CONTROL_CHARS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 CLAIM_TYPES = {"IMPLEMENTATION", "SCIENTIFIC_CONTRIBUTION", "UTILITY", "GENERALIZATION", "HUMAN_EVALUATION"}
-EVENT_TYPES = {"CHECKPOINT", "DECISION", "IMPLEMENTATION", "EXECUTION", "AUDIT", "BLOCKER", "DOCUMENTATION"}
+EVENT_TYPES = {
+    "RESEARCH_PIVOT", "PROFESSOR_FEEDBACK", "METHOD_DECISION", "DATASET_DECISION",
+    "IMPLEMENTATION_MILESTONE", "EXPERIMENT_MILESTONE", "RESULT_MILESTONE",
+    "AUDIT_MILESTONE", "THESIS_MILESTONE", "GOVERNANCE_MILESTONE",
+}
+DATE_PRECISIONS = {"DAY", "MONTH", "RANGE", "APPROXIMATE"}
+HISTORY_STATUSES = {"ACTIVE_CONTEXT", "HISTORICAL", "SUPERSEDED", "ABANDONED", "CONDITIONAL"}
+DECISION_STATUSES = {"ACTIVE", "SUPERSEDED", "ABANDONED", "CONDITIONAL", "OPEN"}
+CONFIDENCE_LEVELS = {"HIGH", "MEDIUM", "LOW"}
 
 EXPECTED_HEADERS = {
     "components": (
@@ -57,11 +65,15 @@ EXPECTED_HEADERS = {
         "public_private", "frozen", "audited", "current", "superseded", "safe_path",
     ),
     "decisions": (
-        "decision_id", "date", "title", "decision", "reason", "status", "source",
-        "source_commit", "affected_components", "supersedes", "user_approved",
+        "decision_id", "date", "date_precision", "title", "status", "context",
+        "alternatives_considered", "decision", "reason", "consequence",
+        "current_relevance", "source", "source_ref", "source_commit",
+        "affected_components", "supersedes", "superseded_by", "user_approved", "confidence",
     ),
     "timeline": (
-        "event_id", "date", "event_type", "title", "summary", "source", "source_commit", "status",
+        "event_id", "date", "date_precision", "event_type", "title", "summary", "source",
+        "source_ref", "source_commit", "affected_components", "decision_refs", "status",
+        "superseded_by", "notes",
     ),
 }
 
@@ -79,8 +91,8 @@ STATUS_ENUMS = {
         "CONDITIONAL", "SUPERSEDED",
     },
     "risks": {"OPEN", "MITIGATING", "ACCEPTED", "CLOSED"},
-    "decisions": {"OPEN", "APPROVED", "SUPERSEDED"},
-    "timeline": {"PLANNED", "CURRENT", "COMPLETED", "BLOCKED", "SUPERSEDED"},
+    "decisions": DECISION_STATUSES,
+    "timeline": HISTORY_STATUSES,
 }
 
 LIFECYCLE_STAGES = {
@@ -91,6 +103,7 @@ REQUIRED_RCC_FILES = (
     "MY_TODO.md", "DECISION_INBOX.md", "registry/README.md", "registry/current_state.yaml",
     "registry/components.csv", "registry/experiments.csv", "registry/claims.csv",
     "registry/risks.csv", "registry/artifacts.csv", "registry/decisions.csv", "registry/timeline.csv",
+    "registry/history.yaml",
     "wiki/README.md", "history/README.md", "architecture/README.md",
     "dashboard/assets/rcc.css", "dashboard/assets/rcc.js",
     "scripts/build_dashboard.py", "scripts/validate_registry.py", "scripts/refresh_all.py",
@@ -99,12 +112,15 @@ REQUIRED_RCC_FILES = (
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
     "generated/CHANGE_SUMMARY.md", "generated/RCC_002_USER_SUMMARY.md",
+    "generated/RCC_003_HISTORY_SUMMARY.md", "history/PROJECT_TIMELINE.md",
+    "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
+    "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
     "CURRENT_CONTEXT.md", "MY_TODO.md", "DECISION_INBOX.md",
 )
 REQUIRED_RCC_DIRS = (
     "registry", "wiki", "history", "history/decisions", "history/checkpoints",
     "architecture", "dashboard", "dashboard/assets", "generated", "scripts",
-    "bootstrap/RCC_000",
+    "bootstrap/RCC_000", "bootstrap/RCC_003", "bootstrap/RCC_003/agents",
 )
 
 
@@ -184,8 +200,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain exactly three entries")
-    result.require(state.get("last_completed_task") == "RCC-002A", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "RCC-003 — Research Timeline & Decision Backfill", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "RCC-003", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-000 — Full Architecture Overview Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -198,7 +214,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "RCC-003 — Research Timeline & Decision Backfill", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-000 — Full Architecture Overview Audit", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "ARCH-000 — Full Architecture Overview Audit", "next architecture task mismatch")
     semantics = state.get("status_semantics", {})
     result.require(
@@ -247,9 +263,22 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
             (row["scientific_source_ref"], row["scientific_source_commit"]) == expected,
             f"component {row['component_id']} has an invalid authority binding",
         )
+    history = data.get("history", {})
+    result.require(history.get("schema_version") == "rcc-history-v1", "history schema mismatch")
+    result.require(history.get("scientific_authority") == {"ref": AUTHORITY_REF, "commit": AUTHORITY_COMMIT}, "history authority mismatch")
+    result.require(
+        history.get("documentation_overlay") == {"ref": OVERLAY_REF, "commit": OVERLAY_COMMIT, "role": "NARRATIVE_CONTEXT_ONLY"},
+        "history overlay mismatch",
+    )
     for registry in ("decisions", "timeline"):
         for row in data[registry]:
-            result.require(row["source_commit"] == AUTHORITY_COMMIT, f"{registry} row has a non-authoritative source commit")
+            if row["source"] == "USER_CONTEXT":
+                result.require(row["source_commit"] == "NONE", f"{registry} USER_CONTEXT row must not claim a Git commit")
+            else:
+                result.require(
+                    row["source_commit"] in {AUTHORITY_COMMIT, OVERLAY_COMMIT, "e81baadcfd6cf6b9f23d307056455e024876c2ed"},
+                    f"{registry} row has an unsupported source commit",
+                )
     for row in data["artifacts"]:
         expected = (OVERLAY_REF, OVERLAY_COMMIT) if row["artifact_id"] == "ART-THESIS-DRAFT" else (AUTHORITY_REF, AUTHORITY_COMMIT)
         result.require((row["source_ref"], row["source_commit"]) == expected, f"artifact {row['artifact_id']} has an invalid authority binding")
@@ -285,19 +314,27 @@ def _validate_enums(data: Mapping[str, Any], result: ValidationResult) -> None:
         result.require(not (row["current"] == "true" and row["superseded"] == "true"), "artifact cannot be current and superseded")
     for row in data["decisions"]:
         result.require(row["user_approved"] in BOOLEAN_FIELDS, "decision user_approved must be lowercase boolean")
+        result.require(row["date_precision"] in DATE_PRECISIONS, "decision has invalid date_precision")
+        result.require(row["confidence"] in CONFIDENCE_LEVELS, "decision has invalid confidence")
     for row in data["timeline"]:
         result.require(row["event_type"] in EVENT_TYPES, "timeline has invalid event_type")
+        result.require(row["date_precision"] in DATE_PRECISIONS, "timeline has invalid date_precision")
 
 
 def _validate_dates(data: Mapping[str, Any], result: ValidationResult) -> None:
     for registry in ("decisions", "timeline"):
         for row in data[registry]:
-            try:
-                parsed = datetime.strptime(row["date"], "%Y-%m-%d")
-            except ValueError:
-                result.errors.append(f"{registry} has an invalid ISO date")
-                continue
-            result.require(parsed.strftime("%Y-%m-%d") == row["date"], f"{registry} date is not canonical YYYY-MM-DD")
+            precision = row["date_precision"]
+            value = row["date"]
+            if precision == "DAY":
+                pattern = r"\d{4}-\d{2}-\d{2}"
+            elif precision == "MONTH":
+                pattern = r"\d{4}-\d{2}"
+            elif precision == "RANGE":
+                pattern = r"\d{4}(?:-\d{2})?(?:-\d{2})? ~ \d{4}(?:-\d{2})?(?:-\d{2})?"
+            else:
+                pattern = r"(?:approximately )?\d{4}(?:-Q[1-4]|-\d{2})?"
+            result.require(bool(re.fullmatch(pattern, value)), f"{registry} date does not match {precision} precision")
 
 
 def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> None:
@@ -305,6 +342,7 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
     experiment_ids = {row["experiment_id"] for row in data["experiments"]}
     artifact_ids = {row["artifact_id"] for row in data["artifacts"]}
     decision_ids = {row["decision_id"] for row in data["decisions"]}
+    event_ids = {row["event_id"] for row in data["timeline"]}
     component_targets = component_ids | {"PROJECT_WIDE"}
     artifact_actors = component_ids | {"PROJECT_GOVERNANCE", "EXTERNAL_GIT", "RCC"}
 
@@ -331,7 +369,75 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
     for row in data["decisions"]:
         result.require(set(_split_refs(row["affected_components"])) <= component_targets, f"decision {row['decision_id']} has broken affected_components")
         result.require(set(_split_refs(row["supersedes"])) <= decision_ids, f"decision {row['decision_id']} has broken supersedes")
+        result.require(set(_split_refs(row["superseded_by"])) <= decision_ids, f"decision {row['decision_id']} has broken superseded_by")
         result.require(row["decision_id"] not in _split_refs(row["supersedes"]), f"decision {row['decision_id']} cannot supersede itself")
+        result.require(row["decision_id"] not in _split_refs(row["superseded_by"]), f"decision {row['decision_id']} cannot be superseded by itself")
+    for row in data["timeline"]:
+        result.require(set(_split_refs(row["affected_components"])) <= component_targets, f"timeline {row['event_id']} has broken affected_components")
+        result.require(set(_split_refs(row["decision_refs"])) <= decision_ids, f"timeline {row['event_id']} has broken decision_refs")
+        result.require(set(_split_refs(row["superseded_by"])) <= event_ids, f"timeline {row['event_id']} has broken superseded_by")
+        result.require(row["event_id"] not in _split_refs(row["superseded_by"]), f"timeline {row['event_id']} cannot supersede itself")
+    for row in data["decisions"]:
+        for target in _split_refs(row["supersedes"]):
+            target_row = next(item for item in data["decisions"] if item["decision_id"] == target)
+            result.require(row["decision_id"] in _split_refs(target_row["superseded_by"]), f"decision supersedes relation is not reciprocal for {target}")
+        for target in _split_refs(row["superseded_by"]):
+            target_row = next(item for item in data["decisions"] if item["decision_id"] == target)
+            result.require(row["decision_id"] in _split_refs(target_row["supersedes"]), f"decision superseded_by relation is not reciprocal for {row['decision_id']}")
+
+
+def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
+    history = data["history"]
+    result.require(15 <= len(data["timeline"]) <= 30, "timeline must contain 15 to 30 meaningful events")
+    result.require(10 <= len(data["decisions"]) <= 20, "decision registry must contain 10 to 20 meaningful decisions")
+    result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
+    result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")
+    dashboard_ids = history.get("dashboard_event_ids", [])
+    result.require(8 <= len(dashboard_ids) <= 12, "dashboard history must select 8 to 12 milestones")
+    result.require(len(dashboard_ids) == len(set(dashboard_ids)), "dashboard history contains duplicate event IDs")
+    event_ids = {row["event_id"] for row in data["timeline"]}
+    result.require(set(dashboard_ids) <= event_ids, "dashboard history references an unknown event")
+    result.require("EVENT-013" in dashboard_ids, "dashboard history omits the August 4 professor-feedback milestone")
+    result.require(
+        history.get("safety_counters") == {
+            "scientific_executions": 0,
+            "test2_accesses": 0,
+            "private_payload_accesses": 0,
+            "production_changes": 0,
+            "frozen_result_changes": 0,
+            "new_private_exposures": 0,
+        },
+        "history safety counters must remain zero",
+    )
+    for item in history.get("phases", []):
+        result.require(item["date_precision"] in DATE_PRECISIONS, "history phase has invalid date precision")
+        result.require(item["status"] in HISTORY_STATUSES, "history phase has invalid status")
+        result.require(item["confidence"] in CONFIDENCE_LEVELS, "history phase has invalid confidence")
+        if item["source_class"].startswith("USER_CONTEXT"):
+            result.require(item["confidence"] in {"LOW", "MEDIUM"}, "user-context phase has overstated confidence")
+    questions = history.get("confirmation_questions", [])
+    result.require(len({item["id"] for item in questions}) == len(questions), "history confirmation IDs are not unique")
+    for item in questions:
+        result.require(item["confidence"] in {"LOW", "MEDIUM"}, "history confirmation question has invalid confidence")
+    professor = {item["date"]: item for item in history.get("professor_feedback_lineage", [])}
+    result.require(professor.get("2026-08-18", {}).get("classification") == "NOT_PROFESSOR_FEEDBACK", "August 18 is mislabeled as professor feedback")
+    result.require(professor.get("2026-08-26", {}).get("classification") == "NOT_PROFESSOR_FEEDBACK", "August 26 is mislabeled as professor feedback")
+    august_four = professor.get("2026-08-04", {})
+    result.require("USER_CONTEXT" in august_four.get("classification", ""), "August 4 feedback source uncertainty is missing")
+    result.require("reinforced" in august_four.get("interpretation", ""), "August 4 feedback is incorrectly presented as originating pairwise design")
+    for row in data["timeline"]:
+        if row["source"].startswith("USER_CONTEXT"):
+            result.require("confidence" in row["notes"].lower(), f"timeline {row['event_id']} lacks user-context confidence")
+        if check_git:
+            for commit in re.findall(r"\b[0-9a-f]{40}\b", row["source_ref"]):
+                completed = subprocess.run(["git", "-C", str(repo_root), "cat-file", "-e", commit], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                result.require(completed.returncode == 0, f"timeline {row['event_id']} cites an unresolved commit")
+    for row in data["decisions"]:
+        if row["source"].startswith("USER_CONTEXT"):
+            result.require(row["user_approved"] == "false", f"decision {row['decision_id']} overstates user approval for unresolved user context")
+    result.require(any(row["status"] == "SUPERSEDED" for row in data["decisions"]), "decision history lacks superseded decisions")
+    result.require(any(row["status"] == "CONDITIONAL" for row in data["decisions"]), "decision history lacks conditional decisions")
+    result.require(all(row["status"] != "OPEN" for row in data["decisions"]), "decision registry contains an unresolved decision; use the confirmation queue for historical uncertainty")
 
 
 def _git_resolves_to(repo_root: Path, revision: str, expected: str) -> bool:
@@ -466,13 +572,19 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
         "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "not a single completion percentage"),
         "generated/GPT_BRIEF.md": ("Evidence-reviewed", "Result-integrity audit", "claims.csv", "not a single completion percentage"),
         "generated/RCC_002_USER_SUMMARY.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "하나의 연구 완료율"),
+        "generated/RCC_003_HISTORY_SUMMARY.md": ("우리 연구가 어떻게 여기까지 왔나", "pilot evidence", "홀드아웃 일반화"),
+        "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
+        "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
+        "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
+        "history/TERMINOLOGY_GUIDE.md": ("Historical Terminology Guide", "Current preferred meaning"),
+        "history/HISTORY_CONFIRMATION_NEEDED.md": ("History Confirmation Needed", "HIST-Q001"),
     }
     for relative, phrases in required_semantic_outputs.items():
         path = rcc_root / relative
@@ -480,6 +592,14 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
             payload = path.read_text(encoding="utf-8")
             for phrase in phrases:
                 result.require(phrase in payload, f"{relative} omits status-semantic phrase {phrase!r}")
+    decision_files = sorted((rcc_root / "history" / "decisions").glob("DEC-*.md"))
+    result.require(len(decision_files) == len(data["decisions"]), "generated decision-record count does not match decisions.csv")
+    expected_prefixes = {row["decision_id"] for row in data["decisions"]}
+    actual_prefixes = {"-".join(path.stem.split("-")[:2]) for path in decision_files}
+    result.require(actual_prefixes == expected_prefixes, "generated decision records do not cover every decision ID")
+    for path in decision_files:
+        payload = path.read_text(encoding="utf-8")
+        result.require(marker in payload, f"decision record is stale or unbound: {path.name}")
 
 
 def validate_registry(
@@ -511,6 +631,7 @@ def validate_registry(
     _validate_enums(data, result)
     _validate_dates(data, result)
     _validate_references(data, result)
+    _validate_history(data, result, repository, check_git)
     _validate_paths(data, result, repository, check_git)
     if check_git:
         _validate_git_authorities(repository, result)

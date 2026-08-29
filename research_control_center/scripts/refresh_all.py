@@ -36,11 +36,12 @@ def refresh(rcc_root: Path) -> None:
     _run(scripts / "validate_registry.py", "--rcc-root", root_arg)
 
     data = load_registry(root)
-    unresolved = sum(row["status"] != "APPROVED" for row in data["decisions"])
+    unresolved = sum(row["status"] == "OPEN" for row in data["decisions"])
     print(
         "RCC_REFRESH_PASS "
         f"components={len(data['components'])} experiments={len(data['experiments'])} "
-        f"claims={len(data['claims'])} unresolved_decisions={unresolved} "
+        f"claims={len(data['claims'])} history_events={len(data['timeline'])} "
+        f"history_decisions={len(data['decisions'])} unresolved_decisions={unresolved} "
         "scientific_executions=0 private_exposures=0"
     )
 
