@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 관계 후보는 왜 세 방식으로 고르는가
 
 ## 한 문장 답
@@ -63,4 +63,4 @@ STAT-only 8, GDN-only 18, 두 arm 공통 13, 세 arm 공통 0으로 총 47이다
 47개 cohort를 normal delayed-response profiling에 넘겨 step event, response direction,
 horizon과 안정성을 별도로 확인한다. 그 전에는 최종 relation이라고 부르면 안 된다.
 
-다음 task는 **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**이다.
+다음 task는 **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**이다.

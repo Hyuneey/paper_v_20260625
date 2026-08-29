@@ -46,6 +46,10 @@ ARCHITECTURE_FILES = (
     "03_relation_and_numeric/ARCH_003_NUMERIC_AUTHORITY.csv",
     "03_relation_and_numeric/ARCH_003_FUNCTION_CATALOG.csv",
     "03_relation_and_numeric/ARCH_003_IO_CONTRACTS.csv",
+    "04_rule_construction/ARCH_004_EVIDENCE_LINEAGE.csv",
+    "04_rule_construction/ARCH_004_ARM_OUTCOMES.csv",
+    "04_rule_construction/ARCH_004_FUNCTION_CATALOG.csv",
+    "04_rule_construction/ARCH_004_IO_CONTRACTS.csv",
 )
 
 
@@ -357,6 +361,26 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         for arm in discovery["arms"]
     )
     relation = state["relation_numeric_authority"]
+    construction = state["rule_construction_authority"]
+    construction_arms = (
+        ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
+        ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
+        ("T1-B", "YES", "3 fixed", "NO FEEDBACK", "0", "42/42 selected proposals"),
+        ("T2", "YES", "3 max", "REVISE / RETRIEVE", "0", "39/42 accepted; 3 no_rule"),
+    )
+    construction_markup = "".join(
+        '<article class="summary-card"><p class="eyebrow">'
+        + _escape(arm)
+        + "</p><dl>"
+        + f'<div><dt>LLM?</dt><dd>{_escape(llm)}</dd></div>'
+        + f'<div><dt>CALL BUDGET</dt><dd>{_escape(budget)}</dd></div>'
+        + f'<div><dt>FEEDBACK CAPABILITY</dt><dd>{_escape(feedback)}</dd></div>'
+        + f'<div><dt>OBSERVED FEEDBACK</dt><dd>{_escape(observed)}</dd></div>'
+        + f'<div><dt>FROZEN OUTCOME</dt><dd>{_escape(outcome)}</dd></div>'
+        + '<div><dt>SCIENTIFIC CLAIM</dt><dd>IMPLEMENTATION / PILOT ONLY</dd></div>'
+        + "</dl></article>"
+        for arm, llm, budget, feedback, observed, outcome in construction_arms
+    )
     marker = _source_marker(state, digest)
 
     return f"""<!doctype html>
@@ -388,7 +412,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -437,6 +461,17 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">{_escape(relation['warning'])}</aside>
       <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
       <p><strong>Next deep review:</strong> {_escape(relation['next_deep_review'])}</p>
+    </section>
+
+    <section id="rule-construction" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">RULE</p><h2>EVIDENCE-BOUND RULE CONSTRUCTION</h2></div>
+      <p class="architecture-flow">Evidence Pack → closed Rule DSL → T0 / T1 / T1-B / T2 → deterministic validity handoff</p>
+      <div class="two-column"><div><h3>What enters</h3><p>{_escape(construction['evidence_view'])}</p></div><div><h3>What stays out</h3><p>{_escape(construction['withheld'])}</p></div></div>
+      <div class="summary-grid">{construction_markup}</div>
+      <aside class="principle">{_escape(construction['warning'])}</aside>
+      <aside class="principle">{_escape(construction['agentic_claim'])}</aside>
+      <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
+      <p><strong>Next deep review:</strong> {_escape(construction['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -601,16 +636,16 @@ Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 Phase progression: {' → '.join(state['phase_progression'])}.
 
-The architecture is implemented and pilot-operational. Scientific validation is partial,
-held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+The architecture is pilot-operational. Scientific validation is partial, held-out
+generalization is unconfirmed, and fresh-machine reproduction is incomplete.
 
 ## How to read RCC status
 
 Engineering and scientific evidence are separate. Component `audited=true` means
-**Evidence-reviewed**, not performance validated. A named **Result-integrity audit** checks
-custody and arithmetic, not generalization. Reproduction remains separate and absent at
-component level. Scientific claim status comes only from `claims.csv`; `claim_ready` supports
-only narrow implementation or contract wording.
+**Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
+and arithmetic, not generalization. Reproduction remains absent at component level. Scientific
+claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
+contract wording.
 
 These counts are not a single completion percentage.
 
@@ -620,26 +655,29 @@ These counts are not a single completion percentage.
 
 ## Data and split boundary
 
-HAI 23.05 P1 is the selected scope. train1/train2 provide normal fit evidence; train3
-performs one-way relation confirmation and separate D0 calibration; train4 is a normal guard.
-test1 is pilot evidence. OUTER read zero test2 bytes or labels and produced no outcome.
-No verified leakage was found. D0/D2 durably freeze predictions before labels; D1 has a
-label-blind object but a documented durable-file ordering gap. D2 V2 is test1-informed.
+HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
+separately calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero
+test2 bytes or labels and produced no outcome. D0/D2 freeze predictions before labels; D1 has
+a documented durable-file ordering gap. D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-The 144-pair P1 universe is ranked separately by META metadata priors, STAT normal lagged
-association, and GDN embedding-cosine graph edges. Three Top-20 views form an unscored
-47-pair union. Attention is not ranking evidence; no post-hoc XAI is used. These are proposals,
-not causal relations, and GDN contribution remains unvalidated.
+META metadata priors, STAT normal lagged association, and GDN embedding-cosine edges rank
+the 144-pair universe separately. Their Top-20 views form an unscored 47-pair union. Attention
+is not ranking evidence and no post-hoc XAI is used. GDN contribution remains unvalidated.
 
 ## Relation and numeric-authority boundary
 
-The relation lineage is 47 pairs → 94 source directions → 25/45 fit-supported → 23/42
-train3-confirmed. Confirmation cannot search or retune. E1 has 462 construction-only
-references; frozen D1 uses a separate 420-reference normal-only authority plus descriptor
-horizon. All 420 shared values matched E1, but authority identities remain separate. Repeated
-normal response is not causal proof or numeric optimality.
+The relation lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 confirmed.
+Confirmation cannot search or retune. E1 has 462 construction references; frozen D1 uses a
+separate 420-reference normal-only authority plus horizon. Shared values matched, but authority
+identities remain separate. Repeated normal response is not causal proof.
+
+## Rule-construction boundary
+
+E3 exposes a fixed relation, horizon, and ten normal-only value/reference bindings to a closed
+proposal schema. `accepted_proposal` grants neither canonical materialization, runtime authority,
+nor detection performance. T2 feedback actions were zero.
 
 ## How we got here
 
@@ -1051,6 +1089,62 @@ root-cause를 검증하지 않았다. Held-out 일반화도 아직 확인되지 
 """
 
 
+def render_arch004_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    construction = state["rule_construction_authority"]
+    return f"""{_markdown_marker(state, digest)}
+# Rule은 어떻게 만들어지는가
+
+## Evidence Pack
+
+정상 데이터에서 확인한 relation을 제한된 construction view로 만든다. E1의 11개 role 중
+horizon은 fixed relation field로, 나머지 10개는 값과 reference로 보인다. raw HAI, label,
+attack, test/utility outcome, D0/D1 result와 runtime authority는 포함되지 않는다.
+
+## LLM과 DSL 경계
+
+LLM은 값을 볼 수 있지만 output에는 승인 reference만 반환한다. strict proposal schema에는
+arbitrary numeric literal, Python, file/network access, 새 operator, free-form runtime logic가 없다.
+새 variable이나 relation/horizon mismatch는 뒤의 deterministic validity가 거부한다.
+
+## 네 construction arm
+
+| Arm | LLM | Call policy | Frozen relation outcome |
+|---|---|---|---|
+| T0 | no | local deterministic template | 42/42 accepted proposal |
+| T1 | yes | one call | 42/42 accepted proposal |
+| T1-B | yes | three stateless calls, earliest admissible | 42/42 selected proposal |
+| T2 | yes | maximum three, bounded feedback | 39/42 accepted; 3 no_rule |
+
+T1-B는 126 calls를 모두 썼고, T2는 42 calls 모두 call 1에서 종료했다. 따라서 maximum
+opportunity budget은 비교 가능하지만 realized cost가 같다고 말할 수 없다.
+
+## Feedback은 실제 사용됐는가?
+
+{construction['agentic_claim']}
+
+T2의 세 no_rule은 unsupported-variable non-repairable validity issue였다. revise 0, retrieve 0,
+follow-up 0이다. 따라서 “feedback improved quality”라고 말할 수 없다.
+
+주의: task-specific orchestrator는 response/schema failure, verifier rejection, budget exhaustion도
+`no_rule`로 합칠 수 있다. 이는 generic/frozen protocol의 explicit-failure 분리와 맞지 않는 HIGH
+contract gap이며, frozen 세 건의 구체 원인을 바꾸지는 않는다.
+
+## 42/42의 정확한 뜻
+
+relation-level `accepted_proposal` 수다. canonical Rule v1 materialization, COMMON-42 membership,
+runtime authorization 또는 detection performance 수가 아니다. `no_rule`은 construction의
+fail-closed outcome이며 runtime `abstain`과 다르다.
+
+## 재현성
+
+T0는 frozen input에서 deterministic하다. LLM arms는 model/config, prompt, evidence, request,
+response와 ledger hash가 추적되지만 temperature 0.7, seed 없음이므로 bitwise deterministic하지 않다.
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
 def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -1132,6 +1226,13 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **GDN:** embedding-cosine learned-graph candidate ranking; attention is internal message passing, not final evidence; post-hoc XAI is absent.
 - **Union:** {state['candidate_discovery']['union']}.
 - **Boundary:** {state['candidate_discovery']['warning']}
+
+## RULE CONSTRUCTION FOUNDATION
+
+- **Evidence view:** {state['rule_construction_authority']['evidence_view']}.
+- **Withheld:** {state['rule_construction_authority']['withheld']}.
+- **Lifecycle:** {state['rule_construction_authority']['lifecycle']}.
+- **Agentic boundary:** {state['rule_construction_authority']['agentic_claim']}
 
 ## WHAT WAS EXECUTED
 
@@ -1612,6 +1713,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_001_USER_SUMMARY.md": render_arch001_user_summary(data, digest),
         "ARCH_002_USER_SUMMARY.md": render_arch002_user_summary(data, digest),
         "ARCH_003_USER_SUMMARY.md": render_arch003_user_summary(data, digest),
+        "ARCH_004_USER_SUMMARY.md": render_arch004_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

@@ -1,0 +1,5 @@
+relation_id,evidence_pack_id,relation_reference,numeric_authority_reference,provenance_reference,construction_arm,artifact,hash_binding,verified,notes
+COHORT-42,E1-VIEW-COHORT,confirmed-relation-cohort,E1-private-ledger,E1-public-manifest,T0,ART-CONSTRUCTION-ANALYSIS,relation+evidence+proposal+validity,true,42 private records; values not public
+COHORT-42,E1-VIEW-COHORT,confirmed-relation-cohort,E1-private-ledger,E1-public-manifest,T1,ART-CONSTRUCTION-ANALYSIS,relation+evidence+request+response+proposal+validity,true,shared initial view
+COHORT-42,E1-VIEW-COHORT,confirmed-relation-cohort,E1-private-ledger,E1-public-manifest,T1-B,ART-CONSTRUCTION-ANALYSIS,relation+evidence+three requests+responses+proposals+validity,true,three stateless calls
+COHORT-42,E1-VIEW-COHORT,confirmed-relation-cohort,E1-private-ledger,E1-public-manifest,T2,ART-CONSTRUCTION-ANALYSIS,relation+evidence+request+response+proposal+validity+controller,true,no follow-up activated

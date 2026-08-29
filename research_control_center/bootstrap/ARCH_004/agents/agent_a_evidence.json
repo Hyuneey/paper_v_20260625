@@ -1,0 +1,258 @@
+{
+  "agent": "Agent A - Evidence Pack and Provenance Auditor",
+  "task_id": "ARCH-004",
+  "status": "PASS_WITH_FINDINGS",
+  "authority": {
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "audited_rcc_head": "e1592d3e21568c738aeaf7d2162bfdeb9b769555",
+    "relevant_bytes_match_scientific_authority": true
+  },
+  "scope": {
+    "component": "EVIDENCE_PACK",
+    "audit_only": true,
+    "private_payload_opened": false,
+    "provider_or_llm_called": false,
+    "scientific_execution_run": false,
+    "test2_accessed": false
+  },
+  "layered_evidence_contract": [
+    {
+      "layer": "E1 public construction-evidence cohort",
+      "visibility": "PUBLIC_REFERENCE_ONLY",
+      "content": [
+        "42 confirmed relation primitives",
+        "42 approved numeric-evidence bundles",
+        "42 public manifest entries",
+        "462 numeric-reference bindings",
+        "relation identity/source/target/directions/selected horizon",
+        "fit and confirmation evidence references",
+        "numeric roles and references",
+        "source/target/private-record/window-bundle hash bindings"
+      ],
+      "raw_numeric_values": false,
+      "rule_authority": false,
+      "runtime_authority": false,
+      "evidence": [
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:517-610",
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:663-697",
+        "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_COHORT.json:1-20"
+      ]
+    },
+    {
+      "layer": "E1 private construction-evidence ledger",
+      "visibility": "PRIVATE_OUTSIDE_GIT",
+      "content": [
+        "one self-hashed record per confirmed relation",
+        "eleven numeric bindings per relation",
+        "numeric role/value/reference/origin",
+        "relation, source-parameter, target-parameter, fit, confirmation and window-bundle hash bindings"
+      ],
+      "numeric_roles": [
+        "source_step_threshold",
+        "source_stability_tolerance",
+        "target_noise_scale",
+        "selected_delay_horizon_seconds",
+        "source_pre_window_seconds",
+        "source_post_window_seconds",
+        "minimum_source_stability_fraction",
+        "source_refractory_seconds",
+        "cross_source_isolation_radius_seconds",
+        "target_baseline_window_seconds",
+        "target_response_window_seconds"
+      ],
+      "raw_numeric_values": true,
+      "publicly_exposed": false,
+      "runtime_authority": false,
+      "evidence": [
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:312-410",
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:425-513",
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:635-673",
+        "tests/test_task039e1_real_materialization.py:22-99"
+      ]
+    },
+    {
+      "layer": "E3 frozen ConstructionInputViewV1",
+      "visibility": "PRIVATE_MODEL_VISIBLE_FOR_T1_T1B_T2; INTERNAL_FOR_T0",
+      "content": [
+        "relation identity",
+        "source and source step direction",
+        "target and expected target response direction",
+        "selected delay horizon as an explicit numeric field",
+        "ten numeric bindings, each containing role, approved value, reference and evidence identity",
+        "numeric reference map",
+        "ten approved evidence identities",
+        "bounded semantic metadata: process identity, relation family, construction-evidence status",
+        "explicit false boundary flags for raw HAI, labels, utility and candidate-method performance"
+      ],
+      "numeric_values_visible": true,
+      "numeric_references_visible": true,
+      "selected_horizon_binding_projection": "E1 has eleven bindings; E3 removes selected_delay_horizon_seconds from numeric_bindings and carries the same horizon as a separately bound relation field, leaving ten bindings",
+      "evidence": [
+        "src/paperworks/v6/task039e3_execution_prep_v1.py:374-474",
+        "src/paperworks/v6/task039e3_scientific_execution_v1.py:187-209",
+        "src/paperworks/v6/task039e3_scientific_execution_v1.py:260-321",
+        "tests/test_task039e3_live_execution.py:26-101"
+      ]
+    }
+  ],
+  "field_audit": {
+    "relation_identity": "PRESENT",
+    "source": "PRESENT",
+    "source_direction": "PRESENT",
+    "target": "PRESENT",
+    "target_expected_direction": "PRESENT",
+    "horizon": "PRESENT_AS_EXPLICIT_RELATION_FIELD",
+    "numeric_values": "PRESENT_IN_PRIVATE_MODEL_VIEW",
+    "numeric_references": "PRESENT",
+    "units": "ABSENT_FROM_MODEL_VIEW",
+    "fit_evidence_reference": "BOUND_UPSTREAM_BUT_ABSENT_FROM_MODEL_VIEW",
+    "confirmation_evidence_reference": "BOUND_UPSTREAM_BUT_ABSENT_FROM_MODEL_VIEW",
+    "relation_binding_hash": "BOUND_UPSTREAM_BUT_ABSENT_FROM_MODEL_VIEW",
+    "support_summary": "ABSENT_FROM_MODEL_VIEW",
+    "consistency_summary": "ABSENT_FROM_MODEL_VIEW",
+    "effect_summary": "ABSENT_FROM_MODEL_VIEW",
+    "candidate_arm_provenance": "ABSENT_AND_CANDIDATE_METHOD_RESULTS_PROHIBITED",
+    "bounded_semantic_metadata": "PRESENT; THREE FIXED SAFE FIELDS IN FROZEN REAL ADAPTER",
+    "attack_labels": "ABSENT",
+    "test1_labels": "ABSENT",
+    "test1_outcomes": "ABSENT",
+    "d0_prediction_or_result": "ABSENT",
+    "d1_runtime_prediction_or_utility": "ABSENT",
+    "runtime_results": "ABSENT",
+    "final_metrics": "ABSENT",
+    "runtime_authority": "NOT_GRANTED"
+  },
+  "consumer_visibility": {
+    "T0": "uses the same rendered evidence object internally but emits the deterministic proposal from bound identities/references; no model receives it",
+    "T1": "full ConstructionInputViewV1 is serialized in the initial model content",
+    "T1_B": "same initial model content contract as T1, repeated independently by the arm controller",
+    "T2_initial": "same initial model content contract as T1/T1-B",
+    "T2_followup": "original view plus bounded issue codes, affected fields, prior proposal hash and optional re-presentation of already authorized evidence",
+    "evidence": [
+      "src/paperworks/v6/task039e2_execution_configuration_v1.py:70-97",
+      "src/paperworks/v6/task039e2_execution_configuration_v1.py:675-705",
+      "src/paperworks/v6/task039e3_r2r_request_contract_v1.py:130-160",
+      "src/paperworks/v6/task039e3_scientific_execution_v1.py:211-258"
+    ]
+  },
+  "lineage": [
+    {
+      "step": 1,
+      "from": "E0 confirmed relation cohort",
+      "to": "E1 materializer",
+      "binding": "exact self-hashed relation identity plus D1 fit and D2 confirmation record references"
+    },
+    {
+      "step": 2,
+      "from": "D1 source/target/directional ledgers and D2 confirmation ledger",
+      "to": "E1 private numeric bindings",
+      "binding": "role-specific value origins and source/target/fit/confirmation/window hashes"
+    },
+    {
+      "step": 3,
+      "from": "E1 private record",
+      "to": "E1 public primitive, numeric bundle and manifest",
+      "binding": "private-record hash, relation-binding hash and numeric references; public documents omit values"
+    },
+    {
+      "step": 4,
+      "from": "E1 private/public artifacts",
+      "to": "RealConstructionEvidenceV1",
+      "binding": "project_real_evidence_v1 validates private self-hash, public/private record hash, relation binding and public bundle hash"
+    },
+    {
+      "step": 5,
+      "from": "RealConstructionEvidenceV1",
+      "to": "ConstructionInputViewV1",
+      "binding": "ten value/reference bindings plus fixed relation fields and fixed safe semantic metadata"
+    },
+    {
+      "step": 6,
+      "from": "ConstructionInputViewV1",
+      "to": "T0 or shared T1/T1-B/T2 request",
+      "binding": "evidence hash/model-visible-content hash and downstream project envelope validation"
+    }
+  ],
+  "normal_only_and_withholding": {
+    "normal_only_origin": "VERIFIED_BY_UPSTREAM_E1_LEDGER_AND_HASH_BINDINGS; NO DATA REREAD IN E1",
+    "labels_or_attacks_in_e1": false,
+    "labels_or_attacks_in_frozen_e3_view": false,
+    "test_or_utility_outcomes_in_frozen_e3_view": false,
+    "candidate_method_results_in_frozen_e3_view": false,
+    "raw_hai_in_frozen_e3_view": false,
+    "evidence": [
+      "src/paperworks/v6/task039e1_evidence_materialization_v1.py:635-649",
+      "docs/task_reports/TASK-039E1_DATA_ACCESS_AUDIT.json:1-24",
+      "src/paperworks/v6/task039e3_execution_prep_v1.py:120-137",
+      "src/paperworks/v6/task039e3_execution_prep_v1.py:460-474",
+      "tests/test_task039e2_input_prompts_retrieval.py:120-140"
+    ]
+  },
+  "findings": [
+    {
+      "id": "A-EVID-001",
+      "severity": "INFORMATIONAL",
+      "finding": "The phrase evidence pack names three different layers. E1 public evidence is reference-only, E1 private evidence contains calibrated values, and the frozen E3 model view deliberately combines approved private values with references. Documentation must not say either that the LLM receives only hashes or that private values are publicly exposed."
+    },
+    {
+      "id": "A-EVID-002",
+      "severity": "MEDIUM",
+      "finding": "Fit/confirmation references, relation-binding hash, units, and support/consistency/effect summaries are bound upstream but are not serialized in the frozen real ConstructionInputViewV1. The project verifier can recover upstream authority from RealConstructionEvidenceV1, but the model-visible pack itself is not a full human-readable provenance record."
+    },
+    {
+      "id": "A-EVID-003",
+      "severity": "LOW",
+      "finding": "ConstructionInputViewV1 protects semantic metadata with an exact-key denylist rather than a schema-closed metadata vocabulary. The frozen real adapter is safe because it hard-codes exactly three benign metadata fields; a future adapter should preserve that closure rather than relying only on the denylist."
+    },
+    {
+      "id": "A-EVID-004",
+      "severity": "INFORMATIONAL",
+      "finding": "The public E1 cohort reports 42 relations, 462 numeric bindings, no candidate-origin filtering, no scientific ranking, no rule generation and no runtime authority. It is construction input authority, not validity, runtime or utility authority."
+    },
+    {
+      "id": "A-EVID-005",
+      "severity": "INFORMATIONAL",
+      "finding": "Frozen construction-result artifacts show construction acceptance only and explicitly leave utility untested; the evidence pack contains no basis for detection-performance claims."
+    }
+  ],
+  "frozen_evidence_cross_checks": {
+    "e1_cohort_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+    "relation_records": 42,
+    "numeric_reference_bindings": 462,
+    "runtime_authority": false,
+    "construction_arm_accepted_relations": {
+      "T0": 42,
+      "T1": 42,
+      "T1-B": 42,
+      "T2": 39
+    },
+    "utility_tested": false,
+    "source": [
+      "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_COHORT.json",
+      "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_CONSTRUCTION.json"
+    ]
+  },
+  "unknowns": [
+    "Units are not explicit in the model-visible construction view and were not inferred from private values.",
+    "Support, consistency and effect summaries are not visible in the frozen construction view; this audit does not infer that the LLM received them through hashes.",
+    "No private numeric payload was opened, printed or independently compared by this audit.",
+    "This lane did not determine arm-level parser/verifier/runtime-authorization semantics; those belong to Agents B-D and ARCH-005."
+  ],
+  "recommended_official_wording": {
+    "evidence_pack": "The frozen construction input binds one confirmed normal delayed-response relation to approved calibrated values and references. The LLM-facing main-arm view includes those approved values and references, but excludes raw HAI rows, labels, test/utility outcomes, candidate-arm results and runtime authority.",
+    "numeric_authority": "The LLM may reason over approved calibrated values but must return approved references; it is not the numeric authority.",
+    "claim_boundary": "Construction evidence and proposal acceptance do not establish runtime authorization or detection utility."
+  },
+  "counters": {
+    "llm_calls": 0,
+    "provider_contacts": 0,
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_reads": 0,
+    "production_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_files_modified": 0,
+    "agent_staging_files_written": 1
+  }
+}

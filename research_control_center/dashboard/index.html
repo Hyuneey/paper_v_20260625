@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e">
+  <meta name="rcc-registry-digest" content="8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -75,7 +75,18 @@
       </div>
       <aside class="principle">Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.</aside>
       <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit</p>
+    </section>
+
+    <section id="rule-construction" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">RULE</p><h2>EVIDENCE-BOUND RULE CONSTRUCTION</h2></div>
+      <p class="architecture-flow">Evidence Pack → closed Rule DSL → T0 / T1 / T1-B / T2 → deterministic validity handoff</p>
+      <div class="two-column"><div><h3>What enters</h3><p>42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata</p></div><div><h3>What stays out</h3><p>raw HAI rows, labels, attacks, test or utility outcomes, candidate-arm performance, D0/D1 results, and runtime authority</p></div></div>
+      <div class="summary-grid"><article class="summary-card"><p class="eyebrow">T0</p><dl><div><dt>LLM?</dt><dd>NO</dd></div><div><dt>CALL BUDGET</dt><dd>0</dd></div><div><dt>FEEDBACK CAPABILITY</dt><dd>NONE</dd></div><div><dt>OBSERVED FEEDBACK</dt><dd>0</dd></div><div><dt>FROZEN OUTCOME</dt><dd>42/42 accepted proposals</dd></div><div><dt>SCIENTIFIC CLAIM</dt><dd>IMPLEMENTATION / PILOT ONLY</dd></div></dl></article><article class="summary-card"><p class="eyebrow">T1</p><dl><div><dt>LLM?</dt><dd>YES</dd></div><div><dt>CALL BUDGET</dt><dd>1</dd></div><div><dt>FEEDBACK CAPABILITY</dt><dd>NONE</dd></div><div><dt>OBSERVED FEEDBACK</dt><dd>0</dd></div><div><dt>FROZEN OUTCOME</dt><dd>42/42 accepted proposals</dd></div><div><dt>SCIENTIFIC CLAIM</dt><dd>IMPLEMENTATION / PILOT ONLY</dd></div></dl></article><article class="summary-card"><p class="eyebrow">T1-B</p><dl><div><dt>LLM?</dt><dd>YES</dd></div><div><dt>CALL BUDGET</dt><dd>3 fixed</dd></div><div><dt>FEEDBACK CAPABILITY</dt><dd>NO FEEDBACK</dd></div><div><dt>OBSERVED FEEDBACK</dt><dd>0</dd></div><div><dt>FROZEN OUTCOME</dt><dd>42/42 selected proposals</dd></div><div><dt>SCIENTIFIC CLAIM</dt><dd>IMPLEMENTATION / PILOT ONLY</dd></div></dl></article><article class="summary-card"><p class="eyebrow">T2</p><dl><div><dt>LLM?</dt><dd>YES</dd></div><div><dt>CALL BUDGET</dt><dd>3 max</dd></div><div><dt>FEEDBACK CAPABILITY</dt><dd>REVISE / RETRIEVE</dd></div><div><dt>OBSERVED FEEDBACK</dt><dd>0</dd></div><div><dt>FROZEN OUTCOME</dt><dd>39/42 accepted; 3 no_rule</dd></div><div><dt>SCIENTIFIC CLAIM</dt><dd>IMPLEMENTATION / PILOT ONLY</dd></div></dl></article></div>
+      <aside class="principle">Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.</aside>
+      <aside class="principle">Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.</aside>
+      <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
+      <p><strong>Next deep review:</strong> ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -91,7 +102,7 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -107,13 +118,13 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">META</p><h3>M1/M2/M3 deterministic domain-prior ranking</h3><dl><div><dt>INPUT</dt><dd>reviewed P1 metadata and public physical graph</dd></div><div><dt>OUTPUT</dt><dd>metadata-supported pair candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">STAT</p><h3>file-local first-difference lagged Pearson stability</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2</dd></div><div><dt>OUTPUT</dt><dd>directional lagged-association candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">GDN</p><h3>next-value prediction plus embedding-cosine learned graph</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2 full 37-node context</dd></div><div><dt>OUTPUT</dt><dd>learned-graph candidate edges</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article></div>
       <aside class="principle">Candidate discovery proposes relationships. It does not establish causal or final temporal relations.</aside>
       <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain candidate versus confirmed relation.</li><li>Explain source event and target response.</li><li>Explain the selected horizon boundary.</li><li>Explain support, consistency, and effect.</li><li>Explain why train3 is one-way confirmation.</li><li>Explain numeric authority.</li><li>Explain construction versus runtime numeric authority.</li><li>Approve or defer starting ARCH-004.</li></ul>
+      <ul><li>Explain the Evidence Pack boundary.</li><li>Explain what the LLM can and cannot change.</li><li>Explain why a closed Rule DSL is required.</li><li>Distinguish T0, T1, T1-B, and T2.</li><li>Explain bounded verifier-feedback capability.</li><li>Explain why zero observed feedback blocks an improvement claim.</li><li>Explain why construction acceptance is not detection performance.</li><li>Approve or defer starting ARCH-005.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -322,21 +333,21 @@
 </div>
 <dl><div class="card-field"><dt>Role</dt><dd>Binds timing tolerance persistence and scale references</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Keep values private and compare criteria in a new protocol</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="evidence_pack normal relation evidence pack carries normal-only support stability and parameter references implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_scientific_execution_v1.py realconstructionevidencev1/project_real_evidence_v1 confirmed relations and normal fit summaries typed evidence for bounded rule construction art-confirmed-relations;art-numeric-authority-receipt tests/test_task039p1b_normal_evidence.py;tests/test_task039e1_final_audit_results.py true true false true low review completeness and claim boundaries in arch work arch-004">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="evidence_pack normal relation evidence pack carries a frozen relation plus normal-only numeric value/reference bindings and bounded provenance implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_scientific_execution_v1.py realconstructionevidencev1/project_real_evidence_v1 e1 private relation and numeric custody label-blind bounded construction view with fixed horizon plus ten value/reference bindings art-confirmed-relations;art-numeric-authority-receipt tests/test_task039e1_real_materialization.py;tests/test_task039e3_live_execution.py true true false true low preserve the rendered-view boundary and inspect canonical handoff arch-004">
 <div class="card-heading">
 <div><p class="eyebrow">EVIDENCE_PACK</p><h3>Normal relation evidence pack</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Carries normal-only support stability and parameter references</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Review completeness and claim boundaries in ARCH work</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Carries a frozen relation plus normal-only numeric value/reference bindings and bounded provenance</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Preserve the rendered-view boundary and inspect canonical handoff</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="rule_dsl canonical rule v1 dsl defines bounded typed serializable rule contracts implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py canonicalruledescriptorv4 bounded construction output and parameter references immutable rule v1 documents with provenance art-common42 tests/test_task032b_delayed_response_rule_v1.py;tests/test_task039e0_validity_v2.py true true false true low keep common-42 within rule v1 and avoid scope drift arch-004">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="rule_dsl construction proposal dsl and downstream canonical rule v1 boundary defines a closed proposal candidate while keeping canonical materialization separate implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e2_execution_configuration_v1.py providerproposalcorev1 bounded relation facts and numeric references strict candidate proposal; canonical rule v1 and runtime authority remain later stages art-construction-analysis tests/test_task039e2_structured_output_t0.py;tests/test_task039e0_validity_v2.py true true false true medium audit canonical materialization and common-42 authority bridge arch-004">
 <div class="card-heading">
-<div><p class="eyebrow">RULE_DSL</p><h3>Canonical Rule v1 DSL</h3></div>
+<div><p class="eyebrow">RULE_DSL</p><h3>Construction proposal DSL and downstream canonical Rule v1 boundary</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Defines bounded typed serializable rule contracts</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Keep COMMON-42 within Rule v1 and avoid scope drift</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Defines a closed proposal candidate while keeping canonical materialization separate</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Audit canonical materialization and COMMON-42 authority bridge</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="t0_template t0 deterministic template deterministic construction comparator implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_orchestration_v1.py run_t0_v1 frozen evidence and template policy 42 of 42 accepted pilot construction outcomes art-construction-analysis tests/test_task039e3_main_arms.py true true false false medium retain as preregistered comparator arch-004">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="t0_template t0 deterministic template deterministic construction comparator implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_scientific_execution_v1.py run_real_t0_v1 frozen evidence and template policy 42 of 42 relation-level accepted proposal outcomes art-construction-analysis tests/test_task039e3_live_execution.py true true false false medium retain as preregistered comparator arch-004">
 <div class="card-heading">
 <div><p class="eyebrow">T0_TEMPLATE</p><h3>T0 deterministic template</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
@@ -737,7 +748,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit</strong></div>
     </section>
   </main>
 

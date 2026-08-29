@@ -1,0 +1,590 @@
+{
+  "task_id": "ARCH-004",
+  "agent_role": "Agent B — Rule DSL / Parser / Contract Auditor",
+  "audit_mode": "READ_ONLY_STATIC_SOURCE_AND_PUBLIC_EVIDENCE",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "source_tree_diff_from_authority": 0
+  },
+  "scope": [
+    "canonical Rule v1 typed JSON contract",
+    "TASK-039E construction proposal core and envelope",
+    "provider response parser",
+    "prepared deterministic validity adapter",
+    "accepted-rule materialization and runtime-authorization separation",
+    "no_rule versus runtime abstain semantics"
+  ],
+  "authorities_distinguished": {
+    "canonical_rule_v1": {
+      "artifact_type": "rule_dsl",
+      "schema_version": "1.0.0",
+      "typed_model": "DelayedResponseRuleV1",
+      "parser": "parse_delayed_response_rule",
+      "purpose": "typed, non-executable canonical delayed-response rule document",
+      "source_citations": [
+        "schemas/rule_dsl_schema.json:1-164",
+        "src/paperworks/contracts/rule_v1.py:133-190",
+        "src/paperworks/contracts/rule_v1.py:443-528"
+      ]
+    },
+    "construction_candidate_contract": {
+      "provider_core": "ProviderProposalCoreV1",
+      "provider_schema": "MAIN_PROVIDER_SCHEMA_V1",
+      "project_envelope_artifact_type": "task039e0_rule_proposal_envelope_v1",
+      "dsl_family_label": "canonical_delayed_response_rule_v1_candidate",
+      "purpose": "closed proposal candidate for prepared deterministic validity; not a materialized canonical Rule v1",
+      "source_citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:542-608",
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:807-868",
+        "src/paperworks/v6/task039e3_execution_prep_v1.py:945-998",
+        "src/paperworks/v6/task039e3_orchestration_v1.py:145-185"
+      ]
+    },
+    "prepared_validity": {
+      "verifier": "verify_prepared_rule_proposal_v2",
+      "underlying_checks": "verify_prepared_rule_proposal_v1",
+      "statuses": [
+        "admissible",
+        "rejected"
+      ],
+      "grants_validity_authority": false,
+      "grants_runtime_authority": false,
+      "canonical_rule_materialized": false,
+      "source_citations": [
+        "src/paperworks/v6/task039e0_validity_v1.py:313-574",
+        "src/paperworks/v6/task039e0_validity_v2.py:38-126",
+        "docs/task_reports/TASK-039E0_VALIDITY_POLICY.json:1"
+      ]
+    }
+  },
+  "canonical_rule_v1_schema": {
+    "closed_object": true,
+    "unknown_fields_rejected": true,
+    "free_form_expression_field": false,
+    "required_groups": [
+      "identity and status",
+      "dataset/subsystem context",
+      "source and target variables",
+      "operating regime",
+      "typed trigger",
+      "typed expected effect",
+      "lag/window/persistence",
+      "parameter, normal-reference, evidence, and graph-edge references",
+      "output semantics",
+      "severity and abstention policies",
+      "complexity",
+      "provenance and bounded review history",
+      "verified rule hash"
+    ],
+    "schema_level_enums": {
+      "trigger_type": [
+        "state_equals",
+        "state_changes_to",
+        "crosses_above",
+        "crosses_below",
+        "enters_range",
+        "exits_range",
+        "sustained_condition"
+      ],
+      "effect_direction": [
+        "increase",
+        "decrease",
+        "stable",
+        "same",
+        "opposite",
+        "transition",
+        "recover"
+      ],
+      "lag_type": [
+        "fixed",
+        "interval",
+        "calibrated_distribution"
+      ],
+      "window_type": [
+        "rolling",
+        "event_relative",
+        "persistence",
+        "recovery"
+      ],
+      "output_type": [
+        "binary_anomaly",
+        "violation_score",
+        "abstain"
+      ]
+    },
+    "mvp_parser_narrowing": {
+      "relation_type": "delayed_response only",
+      "source_cardinality": 1,
+      "target_cardinality": 1,
+      "self_relation": "rejected",
+      "trigger_type": "state_changes_to only",
+      "trigger_variable": "must equal source",
+      "expected_effect_type": "delayed_change only",
+      "expected_effect_direction": "increase only",
+      "output_type": "binary_anomaly only",
+      "violation_direction": "missing_expected_response only",
+      "lag_type": "fixed or interval",
+      "window_type": "event_relative or persistence",
+      "parameter_reference_closure": "all nested parameter refs must appear at top level",
+      "source_citation": "src/paperworks/contracts/rule_v1.py:443-528"
+    },
+    "operator_semantics": "There is no executable expression AST or arbitrary operator string. Operations are represented by closed trigger/effect/lag/window/output enums; complexity.operator_count is metadata and not code.",
+    "runtime_authorized_property": false,
+    "runtime_authority_note": "Parsing, status=accepted, and a serialized verified_rule_hash do not authorize execution.",
+    "test_citations": [
+      "tests/test_task032b_delayed_response_rule_v1.py:89-98",
+      "tests/test_task032b_delayed_response_rule_v1.py:100-203",
+      "tests/test_task032b_delayed_response_rule_v1.py:206-224"
+    ]
+  },
+  "construction_proposal_schema": {
+    "provider_core_fields": [
+      "dsl_family",
+      "relation_identity",
+      "source",
+      "source_step_direction",
+      "target",
+      "target_response_direction",
+      "selected_delay_horizon_seconds",
+      "source_threshold_reference",
+      "source_stability_reference",
+      "target_scale_reference",
+      "window_constant_references",
+      "variables",
+      "runtime_logic_family"
+    ],
+    "closed_object": true,
+    "allowed_horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "runtime_logic_family": "missing_expected_delayed_response",
+    "raw_numeric_values_in_main_proposal": false,
+    "numeric_references_only": true,
+    "projected_fields_forced_by_project_code": {
+      "numeric_origin": "deterministic_calibrated_evidence",
+      "free_text_runtime_logic": null,
+      "numeric_literals": [],
+      "prohibited_data_references": [],
+      "canonical_rule_materialized": false,
+      "validity_authority_granted": false,
+      "runtime_authority_granted": false
+    },
+    "parser_behavior": {
+      "transport_form": "JSON object only",
+      "successful_status": "valid_structured",
+      "rejected_statuses": [
+        "provider_refusal",
+        "incomplete_response",
+        "schema_parse_failure"
+      ],
+      "unknown_or_missing_fields": "schema_parse_failure",
+      "arbitrary_code_execution": false
+    },
+    "source_citations": [
+      "schemas/v6/task039e2_provider_proposal_core_v1_schema.json:1-135",
+      "schemas/v6/task039e2_structured_rule_proposal_v1_schema.json:1-51",
+      "src/paperworks/v6/task039e2_execution_configuration_v1.py:542-608",
+      "src/paperworks/v6/task039e3_execution_prep_v1.py:945-998",
+      "src/paperworks/v6/task039e3_orchestration_v1.py:145-185"
+    ]
+  },
+  "capability_enforcement_matrix": [
+    {
+      "capability": "ARBITRARY_PYTHON",
+      "verdict": "NO",
+      "primary_enforcement": "closed typed JSON schema and hard-coded parser/runtime interpreter",
+      "layers": [
+        "DSL_SCHEMA",
+        "PARSER",
+        "RUNTIME"
+      ],
+      "evidence": "Canonical schema is explicitly non-executable; unknown python fields fail. Provider core has no code/expression field. Relevant parser uses json.loads and typed construction, not eval/exec/compile.",
+      "citations": [
+        "schemas/rule_dsl_schema.json:5-8",
+        "src/paperworks/contracts/rule_v1.py:169-190",
+        "src/paperworks/v6/task039e3_execution_prep_v1.py:964-998",
+        "tests/test_task032b_delayed_response_rule_v1.py:89-98"
+      ]
+    },
+    {
+      "capability": "DYNAMIC_EVAL_OR_COMPILE",
+      "verdict": "NO",
+      "primary_enforcement": "no executable expression representation and deterministic runtime implementation",
+      "layers": [
+        "DSL_SCHEMA",
+        "RUNTIME"
+      ],
+      "evidence": "No eval, exec, compile, dynamic import, or generated-code callback is present in the canonical rule parser/runtime path.",
+      "citations": [
+        "src/paperworks/contracts/rule_v1.py:169-334",
+        "src/paperworks/contracts/runtime_v1.py:288-386"
+      ]
+    },
+    {
+      "capability": "FILE_ACCESS_BY_RULE",
+      "verdict": "NO",
+      "primary_enforcement": "no file/path primitive in DSL or provider core",
+      "layers": [
+        "DSL_SCHEMA",
+        "RUNTIME"
+      ],
+      "evidence": "A host may explicitly load a JSON rule or runtime window, but a rule cannot select or open a file.",
+      "citations": [
+        "schemas/rule_dsl_schema.json:8-164",
+        "src/paperworks/contracts/rule_v1.py:195-219",
+        "src/paperworks/contracts/runtime_v1.py:135-217"
+      ]
+    },
+    {
+      "capability": "NETWORK_ACCESS_BY_RULE",
+      "verdict": "NO",
+      "primary_enforcement": "no network/tool primitive in DSL and deterministic runtime",
+      "layers": [
+        "DSL_SCHEMA",
+        "RUNTIME"
+      ],
+      "evidence": "Provider transport belongs to construction orchestration; it is not a rule/runtime capability.",
+      "citations": [
+        "schemas/rule_dsl_schema.json:5-164",
+        "src/paperworks/contracts/runtime_v1.py:288-386"
+      ]
+    },
+    {
+      "capability": "NEW_SENSOR_NAME",
+      "verdict": "LATER_VERIFIER_CONTROL",
+      "primary_enforcement": "prepared deterministic validity",
+      "layers": [
+        "PROVIDER_SCHEMA_PERMITS_NONEMPTY_STRING",
+        "VALIDITY_REJECTS_MISMATCH"
+      ],
+      "evidence": "The generic provider schema cannot enumerate relation-specific values. The prepared verifier requires source/target equal the confirmed relation, requires both to be in allowed_variables, and requires variables exactly equal the source-target set.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:565-604",
+        "src/paperworks/v6/task039e0_validity_v1.py:389-452",
+        "src/paperworks/v6/task039e0_validity_v1.py:492-505",
+        "tests/test_task039e0_validity.py:73-92",
+        "tests/test_task039e0_validity.py:124-132"
+      ]
+    },
+    {
+      "capability": "UNAPPROVED_NUMBER",
+      "verdict": "NO_FOR_RAW_LITERAL_AND_LATER_VERIFIER_CONTROL_FOR_FORGED_REFERENCE",
+      "primary_enforcement": "closed provider schema, project projection, exact numeric-reference validity binding",
+      "layers": [
+        "PROVIDER_SCHEMA",
+        "PROJECT_PROJECTION",
+        "VALIDITY"
+      ],
+      "evidence": "Main proposal contains hashes rather than calibrated values; numeric_literals is project-forced empty; every numeric reference must exactly match the approved evidence bundle.",
+      "citations": [
+        "src/paperworks/v6/task039e3_orchestration_v1.py:145-185",
+        "src/paperworks/v6/task039e0_validity_v1.py:453-491",
+        "tests/test_task039e0_validity.py:64-71",
+        "tests/test_task039e0_validity.py:149-164",
+        "tests/test_task039e2_structured_output_t0.py:22-45"
+      ]
+    },
+    {
+      "capability": "CHANGE_SOURCE_OR_TARGET_DIRECTION",
+      "verdict": "LATER_VERIFIER_CONTROL",
+      "primary_enforcement": "exact relation binding in prepared validity",
+      "layers": [
+        "PROVIDER_SCHEMA_ENUM",
+        "VALIDITY_EXACT_MATCH"
+      ],
+      "evidence": "The schema permits only step_up/step_down and increase/decrease, but validity rejects a direction different from the frozen relation.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:570-582",
+        "src/paperworks/v6/task039e0_validity_v1.py:423-452",
+        "tests/test_task039e0_validity.py:94-115"
+      ]
+    },
+    {
+      "capability": "CHANGE_HORIZON",
+      "verdict": "LATER_VERIFIER_CONTROL",
+      "primary_enforcement": "provider enum plus exact confirmed-relation validity binding",
+      "layers": [
+        "PROVIDER_SCHEMA_ENUM",
+        "VALIDITY_EXACT_MATCH"
+      ],
+      "evidence": "Provider may emit only 1/5/10/30/60, but any value other than the relation-selected horizon is rejected.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:577-581",
+        "src/paperworks/v6/task039e0_validity_v1.py:438-452",
+        "tests/test_task039e0_validity.py:94-115"
+      ]
+    },
+    {
+      "capability": "UNAPPROVED_OPERATOR_OR_RUNTIME_LOGIC",
+      "verdict": "NO",
+      "primary_enforcement": "single runtime_logic_family enum and closed proposal",
+      "layers": [
+        "PROVIDER_SCHEMA",
+        "VALIDITY"
+      ],
+      "evidence": "The construction provider core exposes no operator field; runtime logic is fixed to missing_expected_delayed_response. Canonical Rule v1 operations are closed enums and further MVP-narrowed.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:600-604",
+        "src/paperworks/v6/task039e0_validity_v1.py:506-513",
+        "schemas/rule_dsl_schema.json:30-128",
+        "src/paperworks/contracts/rule_v1.py:443-518"
+      ]
+    },
+    {
+      "capability": "FREE_FORM_CAUSAL_CLAIM",
+      "verdict": "NO",
+      "primary_enforcement": "no provider-core prose field; projected free_text_runtime_logic is null; validity rejects non-null text",
+      "layers": [
+        "PROVIDER_SCHEMA",
+        "PROJECT_PROJECTION",
+        "VALIDITY"
+      ],
+      "evidence": "Neither the construction candidate nor canonical runtime semantics has a causal-claim field. Free-form runtime logic is prohibited.",
+      "citations": [
+        "src/paperworks/v6/task039e3_orchestration_v1.py:145-185",
+        "src/paperworks/v6/task039e0_validity_v1.py:506-522",
+        "tests/test_task039e0_validity.py:134-147",
+        "tests/test_task039e2_structured_output_t0.py:46-84"
+      ]
+    },
+    {
+      "capability": "PROVIDER_CHOOSES_REVISE_RETRIEVE_NO_RULE",
+      "verdict": "NO",
+      "primary_enforcement": "provider adapter; project-owned deterministic controller",
+      "layers": [
+        "PROVIDER_ADAPTER",
+        "CONTROLLER"
+      ],
+      "evidence": "Provider output containing controller_action, revise, retrieve, or no_rule is rejected; those are project-controller actions.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_freeze_prep_v1.py:1323-1338",
+        "tests/test_task039e2_structured_output_t0.py:56-84"
+      ]
+    }
+  ],
+  "no_rule_and_abstain": {
+    "no_rule": {
+      "layer": "construction outcome/controller state",
+      "serialized_inside_rule_dsl": false,
+      "semantics": "no accepted proposal for that construction arm/relation under the bounded protocol",
+      "not_transport_failure": true,
+      "not_runtime_abstention": true,
+      "not_runtime_alarm_state": true,
+      "caveat": "Generic outcomes_v1 reserves no_rule for insufficient or unstable normal evidence and rejects provider/output failure as no_rule; TASK-039E construction orchestration also maps bounded deterministic validity rejection to no_rule under its task-specific policy. Reports must name the concrete reason rather than erase this distinction.",
+      "citations": [
+        "docs/task_reports/TASK-039E0_CONSTRUCTION_METRIC_POLICY.json:1",
+        "docs/task_reports/TASK-039E0_PROTOCOL_BUNDLE.json:1",
+        "src/paperworks/v6/outcomes_v1.py:303-334",
+        "src/paperworks/v6/task039e3_orchestration_v1.py:450-766"
+      ]
+    },
+    "abstain": {
+      "layer": "runtime evaluation trace under an authorized rule",
+      "serialized_policy_inside_canonical_rule": true,
+      "runtime_conditions_include": [
+        "regime mismatch",
+        "input variable mismatch",
+        "missing input",
+        "parameter uncertainty",
+        "missing pre-trigger baseline",
+        "multiple triggers",
+        "insufficient post-trigger coverage"
+      ],
+      "construction_equivalent": false,
+      "citations": [
+        "schemas/rule_dsl_schema.json:91-128",
+        "src/paperworks/contracts/runtime_v1.py:288-410"
+      ]
+    }
+  },
+  "lifecycle": [
+    {
+      "stage": "PROPOSED_CORE",
+      "actual_code_state": "ProviderProposalCoreV1 or deterministic T0 core",
+      "authority": "none"
+    },
+    {
+      "stage": "PARSED",
+      "actual_code_state": "ParsedProviderProposalV1.parse_status=valid_structured",
+      "authority": "none"
+    },
+    {
+      "stage": "PROJECT_ENVELOPE",
+      "actual_code_state": "task039e0_rule_proposal_envelope_v1 with proposal hash and frozen evidence/provenance bindings",
+      "authority": "canonical_rule_materialized=false, validity_authority_granted=false, runtime_authority_granted=false"
+    },
+    {
+      "stage": "PREPARED_VALIDITY",
+      "actual_code_state": "PreparedValidityResultV2.status=admissible or rejected",
+      "authority": "deterministic proposal admissibility only; not canonical VerifierV1 acceptance"
+    },
+    {
+      "stage": "CONSTRUCTION_OUTCOME",
+      "actual_code_state": "accepted_proposal or no_rule",
+      "authority": "construction result only"
+    },
+    {
+      "stage": "CANONICAL_RULE_MATERIALIZATION",
+      "actual_code_state": "separate materialize_accepted_rule path for DelayedResponseRuleV1",
+      "authority": "accepted rule remains runtime unauthorized"
+    },
+    {
+      "stage": "PORTFOLIO_OR_GOVERNANCE",
+      "actual_code_state": "separate later selection/freeze layer",
+      "authority": "not granted by TASK-039E proposal validity"
+    },
+    {
+      "stage": "RUNTIME_AUTHORIZATION",
+      "actual_code_state": "authorize_delayed_response_runtime or authorize_v6_delayed_response_runtime issues a bound receipt/bundle",
+      "authority": "explicit and separate"
+    }
+  ],
+  "lifecycle_citations": [
+    "src/paperworks/v6/task039e3_execution_prep_v1.py:945-998",
+    "src/paperworks/v6/task039e3_orchestration_v1.py:145-340",
+    "src/paperworks/v6/task039e0_validity_v2.py:38-126",
+    "src/paperworks/contracts/accepted_rule.py:55-71",
+    "src/paperworks/contracts/rule_v1.py:162-166",
+    "src/paperworks/contracts/runtime_authority.py:138-318"
+  ],
+  "critical_semantic_distinctions": [
+    {
+      "left": "valid_structured",
+      "right": "admissible",
+      "difference": "parser closure/type success versus deterministic evidence/relation/binding validity"
+    },
+    {
+      "left": "admissible / accepted_proposal",
+      "right": "canonical VerifierV1 accepted rule",
+      "difference": "TASK-039E prepared proposal validity explicitly materializes no canonical rule and grants no validity/runtime authority"
+    },
+    {
+      "left": "accepted rule",
+      "right": "runtime authorized rule",
+      "difference": "accepted status/hash still needs a separate bound runtime authorization receipt"
+    },
+    {
+      "left": "no_rule",
+      "right": "abstain",
+      "difference": "construction termination versus runtime inability to evaluate an authorized rule/window"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "DSL-F01",
+      "severity": "HIGH",
+      "title": "TASK-039E accepted proposals are not materialized canonical Rule v1 documents",
+      "evidence": "The proposal DSL family is named canonical_delayed_response_rule_v1_candidate, but project proposal documents force canonical_rule_materialized=false and both authority flags false. The prepared validity result repeats those false flags. No TASK-039E construction path invokes parse_delayed_response_rule or materialize_accepted_rule.",
+      "impact": "Calling 42/42 or 39/42 'canonical rules accepted/authorized' would overstate the artifact lifecycle. Correct wording is relation-level prepared-validity admissible proposals / accepted_proposal outcomes.",
+      "recommended_wording": "The frozen construction arms produced evidence-bound proposal candidates that passed the TASK-039E deterministic prepared-validity adapter; this does not itself materialize canonical Rule v1 or grant runtime authority.",
+      "citations": [
+        "src/paperworks/v6/task039e3_orchestration_v1.py:145-185",
+        "src/paperworks/v6/task039e0_validity_v2.py:38-107",
+        "docs/task_reports/TASK-039E0_VALIDITY_POLICY.json:1"
+      ]
+    },
+    {
+      "finding_id": "DSL-F02",
+      "severity": "HIGH",
+      "title": "Construction candidate semantics are broader than canonical Rule v1 MVP materialization",
+      "evidence": "Provider core permits step_up/step_down and target increase/decrease. Canonical DelayedResponseRuleV1 MVP parser requires expected effect direction increase and trigger state_changes_to. Therefore the candidate label must not be read as a proven one-to-one canonical materialization contract.",
+      "impact": "A direct proposal-to-canonical-rule bridge is not established by this construction audit; later utility/runtime projections must remain separately named and bound.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:570-582",
+        "src/paperworks/contracts/rule_v1.py:452-485",
+        "tests/test_task032b_delayed_response_rule_v1.py:124-165"
+      ]
+    },
+    {
+      "finding_id": "DSL-F03",
+      "severity": "MEDIUM",
+      "title": "Generic provider schema intentionally cannot prevent relation substitution alone",
+      "evidence": "source, target, and relation_identity are generic nonempty strings to avoid answer leakage. Exact identities, directions, horizon, and reference hashes are enforced only after parsing by prepared deterministic validity.",
+      "impact": "Documentation must attribute these guarantees to the verifier/binding layer, not the provider JSON schema or parser.",
+      "citations": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:565-604",
+        "src/paperworks/v6/task039e0_validity_v1.py:389-491"
+      ]
+    },
+    {
+      "finding_id": "DSL-F04",
+      "severity": "LOW",
+      "title": "Canonical schema breadth exceeds the currently supported MVP parser",
+      "evidence": "The JSON schema enumerates multiple triggers, relations, effects, windows, and output types, while _validate_mvp accepts a much smaller subset.",
+      "impact": "UI/reporting should document actual parser-supported semantics rather than reproduce schema enums as implemented capability.",
+      "citations": [
+        "schemas/rule_dsl_schema.json:30-164",
+        "src/paperworks/contracts/rule_v1.py:443-518"
+      ]
+    }
+  ],
+  "claim_boundaries": {
+    "supported": [
+      "The construction proposal format is closed, typed, reference-bound, and non-executable.",
+      "Prepared deterministic validity rejects unsupported variables, relation changes, direction/horizon changes, unapproved numeric references/literals, free-form runtime logic, prohibited data references, stale hashes, and authority preclaims.",
+      "Runtime authorization is a separate explicit authority layer."
+    ],
+    "not_supported": [
+      "An accepted TASK-039E proposal is already a canonical Rule v1.",
+      "Prepared-validity admissibility is equivalent to canonical VerifierV1 acceptance.",
+      "Verifier acceptance automatically authorizes runtime.",
+      "The broad schema enum set is fully implemented by the current MVP parser.",
+      "no_rule and abstain are interchangeable."
+    ]
+  },
+  "unknowns": [
+    {
+      "unknown_id": "DSL-U01",
+      "question": "Which exact later portfolio/governance artifact, if any, formally converts each TASK-039E accepted_proposal into canonical DelayedResponseRuleV1?",
+      "status": "NOT_PROVEN_IN_CONSTRUCTION_PATH",
+      "routing": "ARCH-005 verifier/COMMON-42 and ARCH-006 runtime audit"
+    },
+    {
+      "unknown_id": "DSL-U02",
+      "question": "Whether the later COMMON-42 executable projection intentionally bypasses canonical Rule v1 materialization because the continuous-step family includes decrease relations.",
+      "status": "NOT_RESOLVED_HERE",
+      "routing": "ARCH-005/ARCH-006"
+    }
+  ],
+  "test_evidence": [
+    {
+      "path": "tests/test_task032b_delayed_response_rule_v1.py",
+      "coverage": "unknown/executable fields, MVP semantic narrowing, parameter closure, accepted status does not grant authority"
+    },
+    {
+      "path": "tests/test_task039e0_validity.py",
+      "coverage": "numeric literals, source/target/direction/horizon, malformed DSL, unsupported variables, free text, prohibited data, numeric references/origin, labels/utility, authority preclaims"
+    },
+    {
+      "path": "tests/test_task039e0_validity_v2.py",
+      "coverage": "repairability/action mapping and V2 budget-bound validity"
+    },
+    {
+      "path": "tests/test_task039e2_structured_output_t0.py",
+      "coverage": "closed structured output, reference-only values, provider controller exclusion, no runtime preclaim"
+    },
+    {
+      "path": "tests/test_task039e3_transport_parser_custody.py",
+      "coverage": "provider JSON parser statuses and response custody"
+    }
+  ],
+  "counters": {
+    "llm_calls": 0,
+    "provider_calls": 0,
+    "scientific_executions": 0,
+    "verifier_scientific_reruns": 0,
+    "runtime_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_files_modified": 0,
+    "agent_staging_files_written": 1
+  },
+  "agent_verdict": "PASS_WITH_TWO_HIGH_LIFECYCLE_CLARIFICATIONS"
+}

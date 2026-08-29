@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -16,16 +16,16 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 Phase progression: ARCHITECTURE_COMPLETE → EVALUATION_SCOPE_EXPANSION → HYPOTHESIS_VALIDATION.
 
-The architecture is implemented and pilot-operational. Scientific validation is partial,
-held-out generalization is unconfirmed, and fresh-machine reproduction is incomplete.
+The architecture is pilot-operational. Scientific validation is partial, held-out
+generalization is unconfirmed, and fresh-machine reproduction is incomplete.
 
 ## How to read RCC status
 
 Engineering and scientific evidence are separate. Component `audited=true` means
-**Evidence-reviewed**, not performance validated. A named **Result-integrity audit** checks
-custody and arithmetic, not generalization. Reproduction remains separate and absent at
-component level. Scientific claim status comes only from `claims.csv`; `claim_ready` supports
-only narrow implementation or contract wording.
+**Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
+and arithmetic, not generalization. Reproduction remains absent at component level. Scientific
+claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
+contract wording.
 
 These counts are not a single completion percentage.
 
@@ -35,26 +35,29 @@ HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unsc
 
 ## Data and split boundary
 
-HAI 23.05 P1 is the selected scope. train1/train2 provide normal fit evidence; train3
-performs one-way relation confirmation and separate D0 calibration; train4 is a normal guard.
-test1 is pilot evidence. OUTER read zero test2 bytes or labels and produced no outcome.
-No verified leakage was found. D0/D2 durably freeze predictions before labels; D1 has a
-label-blind object but a documented durable-file ordering gap. D2 V2 is test1-informed.
+HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
+separately calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero
+test2 bytes or labels and produced no outcome. D0/D2 freeze predictions before labels; D1 has
+a documented durable-file ordering gap. D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-The 144-pair P1 universe is ranked separately by META metadata priors, STAT normal lagged
-association, and GDN embedding-cosine graph edges. Three Top-20 views form an unscored
-47-pair union. Attention is not ranking evidence; no post-hoc XAI is used. These are proposals,
-not causal relations, and GDN contribution remains unvalidated.
+META metadata priors, STAT normal lagged association, and GDN embedding-cosine edges rank
+the 144-pair universe separately. Their Top-20 views form an unscored 47-pair union. Attention
+is not ranking evidence and no post-hoc XAI is used. GDN contribution remains unvalidated.
 
 ## Relation and numeric-authority boundary
 
-The relation lineage is 47 pairs → 94 source directions → 25/45 fit-supported → 23/42
-train3-confirmed. Confirmation cannot search or retune. E1 has 462 construction-only
-references; frozen D1 uses a separate 420-reference normal-only authority plus descriptor
-horizon. All 420 shared values matched E1, but authority identities remain separate. Repeated
-normal response is not causal proof or numeric optimality.
+The relation lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 confirmed.
+Confirmation cannot search or retune. E1 has 462 construction references; frozen D1 uses a
+separate 420-reference normal-only authority plus horizon. Shared values matched, but authority
+identities remain separate. Repeated normal response is not causal proof.
+
+## Rule-construction boundary
+
+E3 exposes a fixed relation, horizon, and ten normal-only value/reference bindings to a closed
+proposal schema. `accepted_proposal` grants neither canonical materialization, runtime authority,
+nor detection performance. T2 feedback actions were zero.
 
 ## How we got here
 
@@ -139,14 +142,14 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain candidate versus confirmed relation.
-- Explain source event and target response.
-- Explain the selected horizon boundary.
-- Explain support, consistency, and effect.
-- Explain why train3 is one-way confirmation.
-- Explain numeric authority.
-- Explain construction versus runtime numeric authority.
-- Approve or defer starting ARCH-004.
+- Explain the Evidence Pack boundary.
+- Explain what the LLM can and cannot change.
+- Explain why a closed Rule DSL is required.
+- Distinguish T0, T1, T1-B, and T2.
+- Explain bounded verifier-feedback capability.
+- Explain why zero observed feedback blocks an improvement claim.
+- Explain why construction acceptance is not detection performance.
+- Approve or defer starting ARCH-005.
 
 ## Source-policy boundary
 
@@ -157,9 +160,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
+Management: **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**
 
-Following architecture review: **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
+Following architecture review: **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

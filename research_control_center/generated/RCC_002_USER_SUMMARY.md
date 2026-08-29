@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,19 +70,19 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit** 이고, 이후 전체
+구조 검토는 **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain candidate versus confirmed relation.
-- Explain source event and target response.
-- Explain the selected horizon boundary.
-- Explain support, consistency, and effect.
-- Explain why train3 is one-way confirmation.
-- Explain numeric authority.
-- Explain construction versus runtime numeric authority.
-- Approve or defer starting ARCH-004.
+- Explain the Evidence Pack boundary.
+- Explain what the LLM can and cannot change.
+- Explain why a closed Rule DSL is required.
+- Distinguish T0, T1, T1-B, and T2.
+- Explain bounded verifier-feedback capability.
+- Explain why zero observed feedback blocks an improvement claim.
+- Explain why construction acceptance is not detection performance.
+- Approve or defer starting ARCH-005.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

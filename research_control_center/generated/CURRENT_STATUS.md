@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -53,8 +53,8 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 | CANDIDATE_UNION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit exact relation-profiling consumption in ARCH-003 |
 | RELATION_PROFILING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare criteria and stability without physical-truth claims |
 | NUMERIC_AUTHORITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep values private and compare criteria in a new protocol |
-| EVIDENCE_PACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review completeness and claim boundaries in ARCH work |
-| RULE_DSL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep COMMON-42 within Rule v1 and avoid scope drift |
+| EVIDENCE_PACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve the rendered-view boundary and inspect canonical handoff |
+| RULE_DSL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit canonical materialization and COMMON-42 authority bridge |
 | T0_TEMPLATE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Retain as preregistered comparator |
 | T1_ONE_SHOT | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Reproduce under frozen provider policy before comparison claims |
 | T1B_REPEAT | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve budget equivalence in expanded comparison |
@@ -133,4 +133,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
+**ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**

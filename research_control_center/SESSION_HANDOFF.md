@@ -13,16 +13,15 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-003 — Relation Profiling & Numeric Authority Deep Audit`
+`ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit`
 
 ## What changed
 
-- Mapped source-event extraction, target response, five-horizon selection, and all gates.
-- Reconstructed 47 pairs → 94 source directions → 25/45 fit-supported → 23/42 confirmed.
-- Verified train3 as fixed one-way confirmation with no search, fallback, or retuning.
-- Separated 462 construction references from the 420-reference runtime authority.
-- Verified 420 exact shared-value matches while preserving separate authority identities.
-- Added relation/numeric catalogs, flow, dashboard, and user learning summary without execution.
+- Mapped the E1 private evidence record and exact E3 model-visible construction view.
+- Separated the closed proposal candidate from canonical Rule v1 materialization and runtime authority.
+- Audited T0/T1/T1-B/T2 budgets, parsers, validity handoff and exact frozen outcomes.
+- Verified T2 revise, retrieve, follow-up and feedback recovery counts were all zero.
+- Added construction catalogs, flow, dashboard, and user learning summary without provider or scientific execution.
 
 ## Decisions made
 
@@ -34,8 +33,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-003 added static source,
-contract, frozen-artifact lineage, numeric-custody, and authority-binding evidence only.
+No new scientific outcome was produced. ARCH-004 added static source, contract,
+frozen construction-result lineage, lifecycle and claim-boundary evidence only.
 
 ## Open risks
 
@@ -54,14 +53,15 @@ contract, frozen-artifact lineage, numeric-custody, and authority-binding eviden
 
 ## User actions
 
-- Explain candidate versus confirmed relation.
-- Explain source event, target response, and horizon.
-- Explain support, consistency, effect, and train3 confirmation.
-- Explain numeric authority and construction versus runtime identity.
-- Approve or defer ARCH-004.
+- Explain the Evidence Pack and its withheld fields.
+- Explain what the LLM can and cannot change and why the closed DSL exists.
+- Distinguish T0, T1, T1-B and T2.
+- Explain why feedback action zero prevents an improvement claim.
+- Explain why accepted proposal is not detection performance or runtime authority.
+- Approve or defer ARCH-005.
 
 ## Exact next task
 
-`ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit`
+`ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit`
 
-Do not start it until the user has reviewed ARCH-003.
+Do not start it until the user has reviewed ARCH-004.

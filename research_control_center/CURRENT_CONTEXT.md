@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -52,6 +52,13 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Union:** unscored provenance-preserving set union of 47 unique pairs.
 - **Boundary:** Candidate discovery proposes relationships. It does not establish causal or final temporal relations.
 
+## RULE CONSTRUCTION FOUNDATION
+
+- **Evidence view:** 42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata.
+- **Withheld:** raw HAI rows, labels, attacks, test or utility outcomes, candidate-arm performance, D0/D1 results, and runtime authority.
+- **Lifecycle:** provider or template proposal -> strict parse -> task039e0 validity V2 -> accepted proposal or no_rule; canonical Rule v1 materialization, portfolio freeze, and runtime authority are separate later stages.
+- **Agentic boundary:** Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.
+
 ## WHAT WAS EXECUTED
 
 - All three discovery arms produced evidence-reviewed top-20 rankings.
@@ -95,5 +102,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-Exact next management task: **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
-Following architecture task: **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
+Exact next management task: **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**
+Following architecture task: **ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit**

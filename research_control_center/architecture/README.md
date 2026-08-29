@@ -105,4 +105,23 @@ XAI is absent. Candidate discovery remains proposal, not confirmation or causali
 - [Relation flow](03_relation_and_numeric/ARCH_003_RELATION_FLOW.mmd)
 - [Mismatch register](03_relation_and_numeric/ARCH_003_MISMATCHES.md)
 
-Exact next task: `ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit`.
+## Completed rule-construction audit
+
+- [Korean report](04_rule_construction/ARCH_004_REPORT.md)
+- [Evidence Pack schema](04_rule_construction/ARCH_004_EVIDENCE_PACK_SCHEMA.md)
+- [Evidence lineage](04_rule_construction/ARCH_004_EVIDENCE_LINEAGE.csv)
+- [Rule DSL boundary](04_rule_construction/ARCH_004_RULE_DSL.md)
+- [Arm outcomes](04_rule_construction/ARCH_004_ARM_OUTCOMES.csv)
+- [T2 feedback loop](04_rule_construction/ARCH_004_T2_FEEDBACK_LOOP.md)
+- [Agentic claim boundary](04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md)
+- [Function catalog](04_rule_construction/ARCH_004_FUNCTION_CATALOG.csv)
+- [I/O contracts](04_rule_construction/ARCH_004_IO_CONTRACTS.csv)
+- [Construction flow](04_rule_construction/ARCH_004_RULE_CONSTRUCTION_FLOW.mmd)
+- [Mismatch register](04_rule_construction/ARCH_004_MISMATCHES.md)
+
+`accepted_proposal` is task-specific validity admissibility. It is not canonical
+Rule v1 materialization, COMMON-42 membership, runtime authority, or detection
+performance. T2 has a bounded feedback capability, but the frozen cohort used
+zero revise/retrieve actions.
+
+Exact next task: `ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit`.

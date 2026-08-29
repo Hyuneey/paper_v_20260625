@@ -1,0 +1,22 @@
+{
+  "task_id": "ARCH-004",
+  "status": "PASS",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "authority_head": "e1592d3e21568c738aeaf7d2162bfdeb9b769555",
+  "components": ["EVIDENCE_PACK", "RULE_DSL", "T0_TEMPLATE", "T1_ONE_SHOT", "T1B_REPEAT", "T2_AGENTIC_FEEDBACK"],
+  "e1_relations": 42,
+  "e1_numeric_roles_per_relation": 11,
+  "e3_model_visible_numeric_bindings": 10,
+  "e3_horizon_separate_relation_field": true,
+  "arm_accepted_relations": {"T0": 42, "T1": 42, "T1-B": 42, "T2": 39},
+  "arm_llm_calls": {"T0": 0, "T1": 42, "T1-B": 126, "T2": 42},
+  "t2_no_rule": 3,
+  "t2_revise": 0,
+  "t2_retrieve": 0,
+  "t2_followup": 0,
+  "runtime_authority_granted": false,
+  "utility_tested_by_construction": false,
+  "mismatches": {"total": 10, "critical": 0, "high": 7, "medium": 3, "low": 0},
+  "qa": {"questions": 18, "satisfactory": 18, "blocking_findings": 0},
+  "safety": {"llm_calls": 0, "scientific_executions": 0, "test2_accesses": 0, "scientific_source_changes": 0, "frozen_artifact_changes": 0, "private_exposures": 0}
+}

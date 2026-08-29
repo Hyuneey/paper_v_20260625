@@ -1,0 +1,204 @@
+{
+  "task_id": "ARCH-004",
+  "agent_role": "Agent E - Independent QA Reviewer",
+  "verdict": "PASS",
+  "audit_mode": "READ_ONLY_STATIC_SOURCE_PUBLIC_EVIDENCE_AND_RCC_VALIDATION",
+  "authority": {
+    "rcc_start_head": "e1592d3e21568c738aeaf7d2162bfdeb9b769555",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "authority_resolved": true
+  },
+  "scope_reviewed": [
+    "architecture/04_rule_construction official reports and catalogs",
+    "generated RCC views and dashboard",
+    "bootstrap ARCH-004 evidence and specialist staging",
+    "pinned E0/E1/E2/E3 source and frozen public reports",
+    "RCC registry validator and all RCC unit tests"
+  ],
+  "qa_corrections": [
+    {
+      "id": "QA-004-01",
+      "severity": "MEDIUM",
+      "issue": "One mismatch row described eleven model-visible numeric bindings instead of ten bindings plus a separate fixed horizon field.",
+      "resolution": "Coordinator corrected the official wording to ten bindings plus the separate relation horizon.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "QA-004-02",
+      "severity": "HIGH",
+      "issue": "The arm-outcome CSV used verifier_accepted for task039e0 proposal admissibility, risking confusion with canonical verifier acceptance.",
+      "resolution": "Coordinator renamed the field task_specific_admissible and preserved the later-authority boundary.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "QA-004-03",
+      "severity": "HIGH",
+      "issue": "The task-specific orchestrator collapses response or schema failure, verifier rejection, and exhausted call budget into no_rule even though the generic outcome contract and frozen protocol require explicit failure separation.",
+      "resolution": "Coordinator recorded A004-M10 as a HIGH implementation-contract gap in the official mismatch, DSL, T2-loop, report, state, generated view, bootstrap evidence, and tests. No production repair was attempted in this audit.",
+      "status": "RECORDED_NONBLOCKING_ARCHITECTURE_GAP"
+    }
+  ],
+  "question_answers": [
+    {
+      "question_id": 1,
+      "question": "Is evidence-pack schema accurately mapped?",
+      "answer": "PASS",
+      "evidence_summary": "E1 has eleven private normal-only numeric roles per relation; E3 projects the selected horizon to a fixed relation field and renders ten value-reference bindings plus relation identity, approved evidence identities, and bounded metadata."
+    },
+    {
+      "question_id": 2,
+      "question": "Are labels and outcomes excluded?",
+      "answer": "PASS",
+      "evidence_summary": "The rendered view and request boundary exclude raw HAI, labels, attacks, test1 or utility outcomes, D0 or D1 results, candidate-arm performance, and runtime authority."
+    },
+    {
+      "question_id": 3,
+      "question": "Is numeric authority accurately represented?",
+      "answer": "PASS",
+      "evidence_summary": "E1 normal-only custody supplies approved values and references. Values are model-visible for bounded reasoning, while proposal output contains references and no numeric-literal field; the LLM is not numeric authority."
+    },
+    {
+      "question_id": 4,
+      "question": "Are DSL restrictions accurately represented?",
+      "answer": "PASS",
+      "evidence_summary": "The closed ProviderProposalCoreV1 schema, parser, project projection, and task-specific validity layers are separately documented."
+    },
+    {
+      "question_id": 5,
+      "question": "Is arbitrary code capability resolved?",
+      "answer": "PASS",
+      "evidence_summary": "No arbitrary Python, dynamic eval, code field, file operator, network operator, or free-form runtime-logic field exists in the candidate DSL."
+    },
+    {
+      "question_id": 6,
+      "question": "Are T0 semantics correct?",
+      "answer": "PASS",
+      "evidence_summary": "Frozen real T0 used run_real_t0_v1, zero LLM calls, deterministic reference mapping, and 42 task-specific admissible relation outcomes."
+    },
+    {
+      "question_id": 7,
+      "question": "Are T1 semantics correct?",
+      "answer": "PASS",
+      "evidence_summary": "T1 made one stateless constrained call per relation: 42 calls, 42 parsed proposals, and 42 task-specific admissible relation outcomes."
+    },
+    {
+      "question_id": 8,
+      "question": "Are T1-B semantics correct?",
+      "answer": "PASS",
+      "evidence_summary": "T1-B made three same-request feedback-free calls per relation, selected the earliest admissible proposal, and obtained 42 relation-level accepted outcomes from 126 calls; 125 parsed and 122 proposals were admissible."
+    },
+    {
+      "question_id": 9,
+      "question": "Is T1-B and T2 budget comparability accurately stated?",
+      "answer": "PASS",
+      "evidence_summary": "They share a maximum three-call opportunity budget and initial request condition, but fixed T1-B sampling versus T2 early stop produced unequal realized calls, so only budget-cap comparability is claimed."
+    },
+    {
+      "question_id": 10,
+      "question": "Is the T2 state machine correct?",
+      "answer": "PASS",
+      "evidence_summary": "The project-owned deterministic controller implements accept, bounded revise, same-corpus retrieve, and no_rule with early stop; the over-broad no_rule implementation mapping is explicitly recorded as A004-M10."
+    },
+    {
+      "question_id": 11,
+      "question": "Are feedback limits correct?",
+      "answer": "PASS",
+      "evidence_summary": "Maximum three model calls, maximum two follow-up generations, maximum one retrieval action, and no result-dependent budget extension are source-supported."
+    },
+    {
+      "question_id": 12,
+      "question": "Is the actual feedback-action count correct?",
+      "answer": "PASS",
+      "evidence_summary": "All 42 T2 relations stopped after call one: revise 0, retrieve 0, follow-up 0, feedback recovery 0."
+    },
+    {
+      "question_id": 13,
+      "question": "Are 42/42 and 39/42 semantics resolved?",
+      "answer": "PASS",
+      "evidence_summary": "Counts are relation-level accepted_proposal outcomes after task-specific admissibility: T0 42, T1 42, T1-B 42, T2 39. They are not canonical Rule v1, COMMON-42, runtime-authorized, or detection-success counts."
+    },
+    {
+      "question_id": 14,
+      "question": "Are no_rule cases conservatively interpreted?",
+      "answer": "PASS",
+      "evidence_summary": "The three frozen T2 cases are non-repairable unsupported-variable validity outcomes, not intrinsic relation invalidity. The broader implementation conflation with explicit failures is separately disclosed as a HIGH gap."
+    },
+    {
+      "question_id": 15,
+      "question": "Is verifier acceptance separated from runtime authorization?",
+      "answer": "PASS",
+      "evidence_summary": "Official outputs use task_specific_admissible and state canonical_rule_materialized=false and runtime_authority_granted=false; the exact authority bridge is deferred to ARCH-005."
+    },
+    {
+      "question_id": 16,
+      "question": "Is Agentic capability separated from Agentic effect?",
+      "answer": "PASS",
+      "evidence_summary": "Bounded feedback capability is implemented, observed activation is zero, and scientific improvement is not demonstrated."
+    },
+    {
+      "question_id": 17,
+      "question": "Is construction success separated from detection performance?",
+      "answer": "PASS",
+      "evidence_summary": "Reports and dashboard explicitly state that construction acceptance is not detection utility or performance and record utility_tested=false."
+    },
+    {
+      "question_id": 18,
+      "question": "Did the audit make zero LLM calls?",
+      "answer": "PASS",
+      "evidence_summary": "No provider or LLM contact occurred; the audit used static source, frozen public evidence, and RCC-only validation."
+    }
+  ],
+  "independent_cross_checks": {
+    "e1_relation_count": 42,
+    "e1_roles_per_relation": 11,
+    "e3_numeric_bindings": 10,
+    "horizon_is_separate_relation_field": true,
+    "arm_task_specific_admissible": {
+      "T0": 42,
+      "T1": 42,
+      "T1-B": 42,
+      "T2": 39
+    },
+    "arm_llm_calls": {
+      "T0": 0,
+      "T1": 42,
+      "T1-B": 126,
+      "T2": 42
+    },
+    "t2_no_rule": 3,
+    "t2_feedback_actions": 0,
+    "runtime_authority_from_construction": false,
+    "construction_detection_utility_tested": false
+  },
+  "validation": {
+    "registry_validator": "PASS",
+    "refresh_all": "PASS",
+    "rcc_tests": "PASS",
+    "rcc_test_count": 66,
+    "compileall": "PASS",
+    "privacy": "PASS",
+    "private_exposures": 0,
+    "blocking_findings": 0
+  },
+  "remaining_recorded_risks": [
+    {
+      "id": "A004-M10",
+      "severity": "HIGH",
+      "summary": "Task-specific no_rule handling conflates semantic construction absence with explicit response, verifier, and budget failure classes.",
+      "audit_disposition": "VISIBLE_AND_DEFERRED; production code was not changed."
+    }
+  ],
+  "counters": {
+    "llm_calls": 0,
+    "provider_contacts": 0,
+    "scientific_executions": 0,
+    "verifier_scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_reads": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_files_modified_by_qa": 0,
+    "qa_staging_files_written": 1
+  }
+}

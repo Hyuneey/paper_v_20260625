@@ -1,0 +1,16 @@
+flowchart TD
+    E["Evidence Pack\n42 normal-only bound views"] --> T0["T0\nlocal deterministic template"]
+    E --> T1["T1\none-shot LLM"]
+    E --> T1B["T1-B\n3 stateless LLM draws"]
+    E --> T2["T2\nmax 3 calls"]
+    T0 --> P["Closed proposal core"]
+    T1 --> P
+    T1B --> P
+    T2 --> P
+    P --> J["Strict parser + project projection"]
+    J --> V["task039e0 validity V2"]
+    V --> A["accepted_proposal"]
+    V --> N["no_rule"]
+    V -. "implemented revise/retrieve capability" .-> T2
+    Z["Frozen observation\nrevise 0 / retrieve 0"] -.-> T2
+    A -. "later authority, not granted here" .-> C["Canonical rule / portfolio / runtime"]

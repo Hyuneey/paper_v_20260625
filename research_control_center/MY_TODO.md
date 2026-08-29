@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8f39bb264f1b038380c05f9bb9d0ca6c4cc856321454ab41356740095378addb authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # My Research TODO
 
 This page contains research-owner actions, not low-level development chores.
@@ -8,61 +8,61 @@ This page contains research-owner actions, not low-level development chores.
 No items.
 ## Understanding Needed
 
-- **ID:** USER-ARCH003-001
+- **ID:** USER-ARCH004-001
   **Priority:** HIGH
-  **Task:** Can I explain candidate versus confirmed relation?
-  **Why your involvement is required:** A proposed pair, fit-supported direction, and train3-confirmed relation have different evidence states.
-  **Linked:** ARCH_003_RELATION_SCHEMA.md
+  **Task:** Can I explain Evidence Pack?
+  **Why your involvement is required:** It is the bounded normal-only construction view, not raw data or evaluation evidence.
+  **Linked:** ARCH_004_EVIDENCE_PACK_SCHEMA.md
   **Status:** OPEN
 
-- **ID:** USER-ARCH003-002
+- **ID:** USER-ARCH004-002
   **Priority:** HIGH
-  **Task:** Can I explain source event and target response?
-  **Why your involvement is required:** The relation evidence is event-anchored and uses distinct source and target windows.
-  **Linked:** ARCH_003_REPORT.md
+  **Task:** Can I explain what the LLM can and cannot change?
+  **Why your involvement is required:** The proposal must preserve the relation and approved references; it cannot become scientific or runtime authority.
+  **Linked:** ARCH_004_RULE_DSL.md
   **Status:** OPEN
 
-- **ID:** USER-ARCH003-003
+- **ID:** USER-ARCH004-003
   **Priority:** HIGH
-  **Task:** Can I explain horizon?
-  **Why your involvement is required:** The selected row delay is a deterministic winner from a frozen grid, not proven physical optimality.
-  **Linked:** ARCH_003_METRIC_DEFINITIONS.md
+  **Task:** Can I explain why the DSL exists?
+  **Why your involvement is required:** The closed schema turns model output into bounded data rather than executable code.
+  **Linked:** ARCH_004_RULE_DSL.md
   **Status:** OPEN
 
-- **ID:** USER-ARCH003-004
+- **ID:** USER-ARCH004-004
   **Priority:** HIGH
-  **Task:** Can I explain support, consistency, and effect?
-  **Why your involvement is required:** These three conjunctive gates define fit and confirmation evidence.
-  **Linked:** ARCH_003_METRIC_DEFINITIONS.md
+  **Task:** Can I distinguish T0, T1, T1-B, and T2?
+  **Why your involvement is required:** They differ in generation and feedback policy, not in evidence authority or runtime authority.
+  **Linked:** ARCH_004_ARM_OUTCOMES.csv
   **Status:** OPEN
 
-- **ID:** USER-ARCH003-005
+- **ID:** USER-ARCH004-005
   **Priority:** HIGH
-  **Task:** Can I explain why train3 exists?
-  **Why your involvement is required:** It confirms a frozen relation one way and cannot search, retune, or add relations.
-  **Linked:** ARCH_003_RELATION_FLOW.mmd
+  **Task:** Can I explain verifier-feedback capability?
+  **Why your involvement is required:** T2 has a bounded deterministic controller around the proposal/verifier loop.
+  **Linked:** ARCH_004_T2_FEEDBACK_LOOP.md
   **Status:** OPEN
 
-- **ID:** USER-ARCH003-006
+- **ID:** USER-ARCH004-006
   **Priority:** HIGH
-  **Task:** Can I explain numeric authority?
-  **Why your involvement is required:** An authoritative number includes its relation, split, derivation, artifact, and hash provenance.
-  **Linked:** ARCH_003_NUMERIC_AUTHORITY.csv
+  **Task:** Can I explain why zero observed feedback blocks an Agentic improvement claim?
+  **Why your involvement is required:** A capability that did not activate cannot supply evidence of improvement.
+  **Linked:** ARCH_004_AGENTIC_CLAIM_BOUNDARY.md
   **Status:** OPEN
 
-- **ID:** USER-ARCH003-007
+- **ID:** USER-ARCH004-007
   **Priority:** HIGH
-  **Task:** Can I explain construction versus runtime numeric authority?
-  **Why your involvement is required:** The 420 shared values match exactly, but the two authority versions and reference identities are not identical.
-  **Linked:** ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md
+  **Task:** Can I explain why construction acceptance is not detection performance?
+  **Why your involvement is required:** Proposal validity, portfolio authority, runtime behavior, and utility are separate stages.
+  **Linked:** ARCH_004_REPORT.md
   **Status:** OPEN
 ## Review Needed
 
-- **ID:** USER-ARCH003-008
+- **ID:** USER-ARCH004-008
   **Priority:** HIGH
-  **Task:** Approve or defer starting ARCH-004.
-  **Why your involvement is required:** Evidence pack, Rule DSL, and T0/T1/T1-B/T2 are the next independent architecture boundary.
-  **Linked:** ARCH-004
+  **Task:** Approve or defer starting ARCH-005.
+  **Why your involvement is required:** The deterministic verifier and COMMON-42 freeze are the next authority boundary.
+  **Linked:** ARCH-005
   **Status:** OPEN
 ## Waiting On Codex
 

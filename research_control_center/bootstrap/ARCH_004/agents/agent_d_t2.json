@@ -1,0 +1,275 @@
+{
+  "agent": "D",
+  "task": "ARCH-004 T2 verifier-feedback and provider-governance read-only audit",
+  "authority": {
+    "rcc_head": "e1592d3e21568c738aeaf7d2162bfdeb9b769555",
+    "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "audit_mode": "READ_ONLY_STATIC_AND_FROZEN_PUBLIC_EVIDENCE"
+  },
+  "verdict": "PASS_WITH_CONSERVATIVE_AGENTIC_BOUNDARY",
+  "design": {
+    "mode": "bounded_verifier_feedback_construction",
+    "controller": "project_owned_deterministic_code",
+    "provider_controls_orchestration": false,
+    "maximum_generation_calls_per_relation": 3,
+    "maximum_followup_generations_per_relation": 2,
+    "maximum_retrieval_actions_per_relation": 1,
+    "result_dependent_budget_extension": false,
+    "early_stop": [
+      "admissible proposal",
+      "non-repairable validity issue",
+      "provider refusal or non-structured scientific response",
+      "three-call budget exhaustion"
+    ],
+    "allowed_controller_actions": [
+      "accept",
+      "revise",
+      "retrieve",
+      "no_rule"
+    ],
+    "issue_action_map": {
+      "revise": [
+        "VALIDITY_MALFORMED_DSL",
+        "VALIDITY_SERIALIZATION_HASH_MISMATCH",
+        "VALIDITY_CONSTRUCTION_PROVENANCE_INVALID"
+      ],
+      "retrieve": [
+        "VALIDITY_NUMERIC_EVIDENCE_BUNDLE_INVALID",
+        "VALIDITY_NUMERIC_REFERENCE_MISMATCH"
+      ],
+      "no_rule": "all other frozen validity issue codes, any mixed issue set containing a no_rule class, or exhausted three-call budget"
+    },
+    "action_precedence": [
+      "admissible -> accept",
+      "calls_consumed >= 3 -> no_rule",
+      "any no_rule-class issue -> no_rule",
+      "retrieve-only issues with unused retrieval and available slice -> retrieve",
+      "otherwise repairable -> revise"
+    ],
+    "followup_input_fields": [
+      "original frozen construction input",
+      "bounded verifier issue codes",
+      "affected field identifiers",
+      "approved same-corpus retrieved evidence",
+      "previous proposal hash"
+    ],
+    "affected_fields_allowlist": [
+      "relation_binding_hash",
+      "source",
+      "source_step_direction",
+      "target",
+      "target_response_direction",
+      "selected_delay_horizon_seconds",
+      "source_threshold_reference",
+      "source_stability_reference",
+      "target_scale_reference",
+      "preregistered_window_constant_references",
+      "variables",
+      "runtime_logic",
+      "construction_provenance_hash"
+    ],
+    "retrieval_semantics": "targeted re-presentation of evidence already present in the initial approved E1 corpus",
+    "retrieval_introduces_new_scientific_information": false,
+    "retrieval_invokes_provider": false,
+    "chain_of_thought_feedback_allowed": false,
+    "human_feedback_allowed": false,
+    "labels_or_utility_outcomes_allowed": false,
+    "provider_may_emit_controller_action": false,
+    "fail_closed_semantics": {
+      "provider_refusal": "no_rule_and_stop",
+      "invalid_or_incomplete_structured_output": "scientific_response status -> no_rule_and_stop",
+      "non_repairable_validity_issue": "no_rule_and_stop",
+      "budget_exhaustion": "no_rule",
+      "fourth_call": "hard prohibited"
+    }
+  },
+  "observed_frozen_execution": {
+    "relations_attempted": 42,
+    "provider_calls": 42,
+    "initial_generations": 42,
+    "followup_generations": 0,
+    "valid_structured_responses": 42,
+    "parse_failures": 0,
+    "verifier_invocations": 42,
+    "verifier_accepted": 39,
+    "verifier_rejected": 3,
+    "accepted_proposals": 39,
+    "no_rule": 3,
+    "revise_actions": 0,
+    "retrieve_actions": 0,
+    "feedback_eligible_rejections": 0,
+    "feedback_recoveries": 0,
+    "all_terminated_after_call_1": true,
+    "terminal_categories": {
+      "accepted_proposal_call_1": 39,
+      "no_rule_non_repairable_issue": 3
+    },
+    "sanitized_no_rule_reason": {
+      "issue_code": "VALIDITY_UNSUPPORTED_VARIABLE",
+      "field_category": "variables",
+      "repairability": "non_repairable",
+      "controller_action": "no_rule",
+      "count": 3
+    },
+    "budget_exhaustion_count": 0,
+    "transport_retries": 0,
+    "scientific_generation_retries": 0,
+    "runtime_authorized_by_construction_execution": false,
+    "rule_v2_authorized": false
+  },
+  "outcome_semantics": {
+    "39_of_42_means": "39 of 42 eligible frozen relations produced verifier-admissible construction proposals",
+    "39_of_42_does_not_mean": [
+      "runtime-authorized rules",
+      "detector performance",
+      "scientific utility",
+      "feedback recovery"
+    ],
+    "no_rule_is": "valid fail-closed construction-absence outcome under the frozen protocol",
+    "no_rule_is_not": [
+      "runtime abstention",
+      "transport failure",
+      "proof that the underlying relation is invalid"
+    ],
+    "cross_arm_counterevidence": "T0, T1, and T1-B accepted the same three relations for which T2 emitted no_rule; therefore the three relations must not be characterized as intrinsically invalid"
+  },
+  "provider_and_reproducibility": {
+    "provider": "OpenAI",
+    "exact_model_snapshot": "gpt-5.4-2026-03-05",
+    "returned_model_match": true,
+    "api_family": "chat_completions",
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "n": 1,
+      "seed": null,
+      "seed_used": false,
+      "seed_determinism_claimed": false,
+      "reasoning_effort": "none",
+      "tools": [],
+      "store": false,
+      "stream": false
+    },
+    "request_state": {
+      "stateless": true,
+      "previous_response_id_used": false,
+      "provider_managed_conversation": false,
+      "cross_arm_output_visibility": false,
+      "t2_own_validity_feedback_only": true
+    },
+    "frozen_identity_controls": [
+      "exact model snapshot",
+      "prompt template hashes",
+      "sampling configuration hash",
+      "evidence and request hashes",
+      "structured output schema",
+      "per-call receipt fields",
+      "transactional provider ledger hash chain"
+    ],
+    "raw_model_output_public_policy": "not committed; structured parsed response retained",
+    "terminal_custody": {
+      "provider_records": 252,
+      "t2_records": 42,
+      "transactional_hash_chain_verified": true,
+      "proposal_envelope_preimage_gap": "closed by additive terminal custody remediation without scientific rerun or result rewrite"
+    },
+    "classification": "EXACT_FROZEN_EXECUTION_RECONSTRUCTABLE_BUT_FRESH_PROVIDER_REPRODUCTION_NOT_DETERMINISTIC",
+    "reason": "temperature 0.7 with no seed and no seed-determinism claim prevents describing a new provider run as deterministic"
+  },
+  "agentic_claim_boundary": {
+    "capability": "VERIFIED_IMPLEMENTED: a bounded project-owned controller can route repairable verifier issues to revise or same-corpus retrieve followups",
+    "observed_activation": "NOT_ACTIVATED: zero revise, retrieve, or followup generations in the frozen 42-relation cohort",
+    "observed_effect": "NOT_DEMONSTRATED",
+    "allowed_wording": "A bounded verifier-feedback construction path was implemented; in the frozen cohort, three non-repairable first-call rejections failed closed to no_rule and the feedback-repair path did not activate.",
+    "forbidden_wording": [
+      "Agentic feedback improved rule quality",
+      "T2 feedback recovery was validated",
+      "T2 improved construction acceptance",
+      "The three no_rule relations were invalid",
+      "39/42 demonstrates detection performance"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "src/paperworks/v6/task039e0_rule_construction_protocol_v1.py",
+      "lines": "387-414",
+      "supports": "closed revise/retrieve/no_rule issue-action classes"
+    },
+    {
+      "path": "src/paperworks/v6/task039e0_rule_construction_protocol_v1.py",
+      "lines": "465-538",
+      "supports": "deterministic controller action precedence, call/retrieval ceilings, same-corpus slices, followup fields, no chain-of-thought"
+    },
+    {
+      "path": "src/paperworks/v6/task039e2_execution_freeze_prep_v1.py",
+      "lines": "41-50,123-139,824-965,1048-1161,1556-1605",
+      "supports": "3-call and one-retrieval caps, affected-field allowlist, stateless prompt-family permissions, followup envelope validation, no provider-selected controller action"
+    },
+    {
+      "path": "src/paperworks/v6/task039e2_execution_configuration_v1.py",
+      "lines": "82-91,684-705,1033-1057,1214-1236,1298-1314,1408-1431",
+      "supports": "followup prompt content boundary, exact followup payload, shared initial prompt policy, execution schedule, response failure handling, stateless treatment rationale"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py",
+      "lines": "624-793,888-965",
+      "supports": "actual T2 state machine, same-corpus retrieval, fail-closed outcome records, aggregate feedback metrics"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E2_PROVIDER_MODEL_FREEZE.json",
+      "lines": "1-23",
+      "supports": "frozen provider and exact model identity"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E2_EXECUTION_CONFIGURATION.json",
+      "lines": "1-60",
+      "supports": "sampling, statelessness, prompt/schema/policy hash bindings"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E2_PROVIDER_RESPONSE_CUSTODY_POLICY.json",
+      "lines": "1-44",
+      "supports": "per-call custody fields, raw-output policy, fail-closed response handling"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_T2.json",
+      "lines": "1-23",
+      "supports": "39 accepted, 3 no_rule, 42 calls, zero feedback actions, exact sanitized issue category"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_METRICS.json",
+      "lines": "1-76",
+      "supports": "independent exact T2 parse, validity, call-one termination, and zero-feedback counters"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_CUSTODY.json",
+      "lines": "1-31",
+      "supports": "returned exact model, 42 T2 provider records, zero transport retries, verified transactional chain"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_THESIS_DECISION.md",
+      "lines": "1-48",
+      "supports": "conservative agentic interpretation and cross-arm warning against treating no_rule relations as intrinsically invalid"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_CUSTODY_AUDIT_REPORT.md",
+      "lines": "1-14",
+      "supports": "additive custody remediation independently reconstructed all proposal envelopes and preserved result semantics"
+    }
+  ],
+  "unknowns": [
+    "A fresh provider rerun is not authorized and, because no deterministic seed is frozen, would not be expected to reproduce byte-identical T2 proposals.",
+    "The public construction result intentionally does not expose relation-level identities for the three T2 no_rule cells; only the aggregate membership hash/status is safe and available.",
+    "Because no repairable T2 rejection occurred, empirical repair success, retrieval usefulness, followup latency, and followup token cost remain unobserved rather than zero-effect estimates."
+  ],
+  "counters": {
+    "llm_or_provider_calls_by_this_audit": 0,
+    "scientific_executions_by_this_audit": 0,
+    "verifier_executions_by_this_audit": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_files_modified": 0,
+    "agent_staging_files_written": 1
+  }
+}

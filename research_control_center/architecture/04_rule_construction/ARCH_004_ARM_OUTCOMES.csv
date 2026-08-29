@@ -1,0 +1,5 @@
+arm,relations_attempted,initial_generations,additional_generations,parsed,task_specific_admissible,no_rule,rejected,feedback_actions,retrieval_actions,LLM_calls,runtime_authorized,outcome_semantics,notes
+T0,42,42,0,42,42,0,0,0,0,0,false,relation-level accepted_proposal,local template; 42 validity invocations
+T1,42,42,0,42,42,0,0,0,0,42,false,relation-level accepted_proposal,one call per relation
+T1-B,42,126,84,125,42,0,3,0,0,126,false,earliest admissible proposal selected per relation,122 admissible proposals; one parse failure; three rejected proposals
+T2,42,42,0,42,39,3,3,0,0,42,false,39 relation-level accepted_proposal plus 3 no_rule,all terminated on call 1; unsupported-variable non-repairable issues

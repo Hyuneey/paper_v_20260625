@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit"
+    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -94,7 +94,7 @@
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit"
+    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
   },
   "relation_numeric_authority": {
     "candidate_pairs": 47,
@@ -112,7 +112,23 @@
     "authority_relationship": "PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES",
     "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
     "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
-    "next_deep_review": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit"
+    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
+  },
+  "rule_construction_authority": {
+    "evidence_view": "42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata",
+    "withheld": "raw HAI rows, labels, attacks, test or utility outcomes, candidate-arm performance, D0/D1 results, and runtime authority",
+    "proposal_dsl": "closed canonical_delayed_response_rule_v1_candidate proposal core; fixed relation, reference-only numeric output, fixed missing_expected_delayed_response logic, no free-text runtime code",
+    "lifecycle": "provider or template proposal -> strict parse -> task039e0 validity V2 -> accepted proposal or no_rule; canonical Rule v1 materialization, portfolio freeze, and runtime authority are separate later stages",
+    "t0": "deterministic local template; zero provider calls; 42/42 relation-level accepted proposals",
+    "t1": "one frozen initial request per relation; 42 calls; 42/42 relation-level accepted proposals",
+    "t1b": "three stateless independent requests per relation; 126 calls; earliest admissible selection; 42/42 relation-level accepted proposals",
+    "t2": "maximum three calls and one same-corpus retrieval per relation; deterministic revise/retrieve/no_rule controller; 39/42 relation-level accepted proposals and 3 non-repairable no_rule outcomes",
+    "observed_feedback_actions": 0,
+    "agentic_claim": "Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.",
+    "no_rule_contract_gap": "The three frozen T2 no_rule cases were non-repairable validity outcomes, but the task-specific orchestrator also collapses explicit response/schema, verifier and budget failures into no_rule; generic/frozen protocol semantics require those failure classes to remain distinct.",
+    "reproducibility": "T0 is deterministic from frozen input. LLM arms bind model/config, prompt, request, evidence, response and ledger hashes but use temperature 0.7 with no seed; they are traceable, not deterministic reproductions.",
+    "warning": "Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.",
+    "next_deep_review": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -226,96 +242,32 @@
     "Resolve fresh-machine reproducibility gaps before held-out evaluation."
   ],
   "user_todo_items": [
-    {
-      "id": "USER-ARCH003-001",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain candidate versus confirmed relation?",
-      "why": "A proposed pair, fit-supported direction, and train3-confirmed relation have different evidence states.",
-      "linked": "ARCH_003_RELATION_SCHEMA.md",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-002",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain source event and target response?",
-      "why": "The relation evidence is event-anchored and uses distinct source and target windows.",
-      "linked": "ARCH_003_REPORT.md",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-003",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain horizon?",
-      "why": "The selected row delay is a deterministic winner from a frozen grid, not proven physical optimality.",
-      "linked": "ARCH_003_METRIC_DEFINITIONS.md",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-004",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain support, consistency, and effect?",
-      "why": "These three conjunctive gates define fit and confirmation evidence.",
-      "linked": "ARCH_003_METRIC_DEFINITIONS.md",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-005",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain why train3 exists?",
-      "why": "It confirms a frozen relation one way and cannot search, retune, or add relations.",
-      "linked": "ARCH_003_RELATION_FLOW.mmd",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-006",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain numeric authority?",
-      "why": "An authoritative number includes its relation, split, derivation, artifact, and hash provenance.",
-      "linked": "ARCH_003_NUMERIC_AUTHORITY.csv",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-007",
-      "category": "UNDERSTANDING NEEDED",
-      "priority": "HIGH",
-      "task": "Can I explain construction versus runtime numeric authority?",
-      "why": "The 420 shared values match exactly, but the two authority versions and reference identities are not identical.",
-      "linked": "ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH003-008",
-      "category": "REVIEW NEEDED",
-      "priority": "HIGH",
-      "task": "Approve or defer starting ARCH-004.",
-      "why": "Evidence pack, Rule DSL, and T0/T1/T1-B/T2 are the next independent architecture boundary.",
-      "linked": "ARCH-004",
-      "status": "OPEN"
-    }
+    {"id": "USER-ARCH004-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain Evidence Pack?", "why": "It is the bounded normal-only construction view, not raw data or evaluation evidence.", "linked": "ARCH_004_EVIDENCE_PACK_SCHEMA.md", "status": "OPEN"},
+    {"id": "USER-ARCH004-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what the LLM can and cannot change?", "why": "The proposal must preserve the relation and approved references; it cannot become scientific or runtime authority.", "linked": "ARCH_004_RULE_DSL.md", "status": "OPEN"},
+    {"id": "USER-ARCH004-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why the DSL exists?", "why": "The closed schema turns model output into bounded data rather than executable code.", "linked": "ARCH_004_RULE_DSL.md", "status": "OPEN"},
+    {"id": "USER-ARCH004-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish T0, T1, T1-B, and T2?", "why": "They differ in generation and feedback policy, not in evidence authority or runtime authority.", "linked": "ARCH_004_ARM_OUTCOMES.csv", "status": "OPEN"},
+    {"id": "USER-ARCH004-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain verifier-feedback capability?", "why": "T2 has a bounded deterministic controller around the proposal/verifier loop.", "linked": "ARCH_004_T2_FEEDBACK_LOOP.md", "status": "OPEN"},
+    {"id": "USER-ARCH004-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why zero observed feedback blocks an Agentic improvement claim?", "why": "A capability that did not activate cannot supply evidence of improvement.", "linked": "ARCH_004_AGENTIC_CLAIM_BOUNDARY.md", "status": "OPEN"},
+    {"id": "USER-ARCH004-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why construction acceptance is not detection performance?", "why": "Proposal validity, portfolio authority, runtime behavior, and utility are separate stages.", "linked": "ARCH_004_REPORT.md", "status": "OPEN"},
+    {"id": "USER-ARCH004-008", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-005.", "why": "The deterministic verifier and COMMON-42 freeze are the next authority boundary.", "linked": "ARCH-005", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain candidate versus confirmed relation.",
-    "Explain source event and target response.",
-    "Explain the selected horizon boundary.",
-    "Explain support, consistency, and effect.",
-    "Explain why train3 is one-way confirmation.",
-    "Explain numeric authority.",
-    "Explain construction versus runtime numeric authority.",
-    "Approve or defer starting ARCH-004."
+    "Explain the Evidence Pack boundary.",
+    "Explain what the LLM can and cannot change.",
+    "Explain why a closed Rule DSL is required.",
+    "Distinguish T0, T1, T1-B, and T2.",
+    "Explain bounded verifier-feedback capability.",
+    "Explain why zero observed feedback blocks an improvement claim.",
+    "Explain why construction acceptance is not detection performance.",
+    "Approve or defer starting ARCH-005."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit",
-  "recommended_next_architecture_task": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit",
-  "last_completed_task": "ARCH-003",
-  "exact_next_task": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit",
+  "recommended_next_management_task": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit",
+  "recommended_next_architecture_task": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit",
+  "last_completed_task": "ARCH-004",
+  "exact_next_task": "ARCH-005 — Deterministic Verifier / COMMON-42 Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

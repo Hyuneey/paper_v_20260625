@@ -1,0 +1,388 @@
+{
+  "task_id": "ARCH-004",
+  "agent_role": "t0_t1_t1b_comparative_read_only_auditor",
+  "verdict": "PASS_WITH_CONSTRUCTION_OUTCOME_AND_RUNTIME_AUTHORITY_SEPARATED",
+  "authority": {
+    "rcc_head": "e1592d3e21568c738aeaf7d2162bfdeb9b769555",
+    "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "scope": [
+      "T0_TEMPLATE",
+      "T1_ONE_SHOT",
+      "T1B_REPEAT"
+    ],
+    "excluded": [
+      "T2_DEEP_AUDIT",
+      "DETECTION_UTILITY",
+      "VERIFIER_INTERNALS_BEYOND_ARM_HANDOFF",
+      "RUNTIME_EXECUTION"
+    ]
+  },
+  "shared_construction_contract": {
+    "relation_count": 42,
+    "proposal_core": "ProviderProposalCoreV1 serialized through the R2R recovery main schema V2 for provider arms",
+    "proposal_envelope": "RuleProposalEnvelopeV1 added by project code after provider parsing",
+    "deterministic_admission": "task039e0_validity_v2",
+    "main_prompt_scope": "one bounded delayed-response proposal using only ConstructionInputViewV1; exact relation, directions, horizon, approved references, window references, and runtime-logic family",
+    "main_prompt_prohibitions": [
+      "replacement numeric literals",
+      "project provenance",
+      "arm identity",
+      "call number",
+      "controller actions",
+      "free-text runtime code",
+      "authority claims",
+      "unsupported variables"
+    ],
+    "provider_configuration": {
+      "provider": "openai",
+      "model": "gpt-5.4-2026-03-05",
+      "reasoning_effort": "none",
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "maximum_completion_tokens": 1024,
+      "n": 1,
+      "seed": null,
+      "seed_determinism_claimed": false,
+      "stateless_requests": true,
+      "tools": [],
+      "store": false,
+      "stream": false
+    },
+    "scientific_generation_retry": 0,
+    "transport_retry": {
+      "maximum_retries_per_request": 2,
+      "fixed_delays_seconds": [
+        2,
+        4
+      ],
+      "eligibility": "no-model-response transport failures only",
+      "scientific_or_schema_or_verifier_failure_retryable": false,
+      "observed_in_frozen_r2r": 0
+    },
+    "initial_request_fairness": {
+      "relations_checked": 42,
+      "requests_compared_per_relation": 5,
+      "requests": [
+        "T1 call 1",
+        "T1-B call 1",
+        "T1-B call 2",
+        "T1-B call 3",
+        "T2 call 1"
+      ],
+      "identical_model_visible_request_hashes": 42,
+      "mismatches": 0,
+      "arm_identity_model_visible": false
+    }
+  },
+  "t0": {
+    "llm_used": false,
+    "provider_calls_per_relation": 0,
+    "mechanism": "The authorized real adapter deterministically copies the frozen relation identity, source/target and directions, selected horizon, ten approved numeric/window reference identities, variables, and fixed runtime-logic family into ProviderProposalCoreV1, then invokes the deterministic validity layer.",
+    "search_used": false,
+    "fallback_used": false,
+    "numeric_literals": "prohibited; approved E1 reference identities are copied",
+    "failure_behavior": "verifier rejection becomes construction outcome no_rule with reason t0_verifier_rejection",
+    "frozen_outcome": {
+      "relations_attempted": 42,
+      "proposal_cores_materialized": 42,
+      "provider_parse": "NOT_APPLICABLE",
+      "verifier_invocations": 42,
+      "verifier_admissible_proposals": 42,
+      "verifier_rejected_proposals": 0,
+      "accepted_relation_outcomes": 42,
+      "no_rule_relation_outcomes": 0
+    },
+    "meaning_of_42_42": "42 of 42 scheduled relations ended with an accepted_proposal after deterministic validity admission; it is not a detection result and did not itself grant runtime authority.",
+    "reproducibility": {
+      "classification": "DETERMINISTIC_FROM_EXACT_FROZEN_INPUT_AND_CODE",
+      "basis": "zero provider calls, fixed template mapping, frozen template hash, approved-reference copying, deterministic verifier",
+      "caveat": "E2's helper named generate_synthetic_t0_core_v1 was synthetic-locked; real execution used the separate authorized run_real_t0_v1 adapter. These must not be conflated."
+    }
+  },
+  "t1": {
+    "llm_used": true,
+    "generation_calls_per_relation": 1,
+    "maximum_and_realized_provider_calls": 42,
+    "mechanism": "Render the frozen evidence view once, send one strict structured-output request, parse one ProviderProposalCoreV1, wrap it with project-owned provenance, then invoke deterministic validity once. No verifier feedback or second scientific generation is allowed.",
+    "feedback": false,
+    "second_call_allowed": false,
+    "failure_behavior": {
+      "parse_or_nonproposal": "no_rule with scientific_response:<parse_status>; verifier is not invoked",
+      "verifier_rejection": "no_rule with verifier_rejection",
+      "scientific_retry": false
+    },
+    "frozen_outcome": {
+      "relations_attempted": 42,
+      "provider_responses": 42,
+      "valid_structured_proposals": 42,
+      "schema_parse_failures": 0,
+      "verifier_invocations": 42,
+      "verifier_admissible_proposals": 42,
+      "verifier_rejected_proposals": 0,
+      "accepted_relation_outcomes": 42,
+      "no_rule_relation_outcomes": 0
+    },
+    "meaning_of_42_42": "42 of 42 relation-level outcomes were accepted_proposal: each response parsed and its proposal was verifier-admissible. This does not mean 42 runtime-authorized rules or 42 detected attacks.",
+    "reproducibility": {
+      "classification": "PROVENANCE_REPLAYABLE_BUT_PROVIDER_OUTPUT_NOT_BITWISE_DETERMINISTIC",
+      "frozen_controls": [
+        "model snapshot",
+        "sampling configuration",
+        "prompt hash",
+        "evidence binding/hash",
+        "response/proposal/validity custody hashes",
+        "serial call order"
+      ],
+      "nondeterminism": "temperature 0.7 with null seed; seed determinism explicitly not claimed",
+      "scientific_rerun_equivalence_claimed": false
+    }
+  },
+  "t1b": {
+    "llm_used": true,
+    "generation_calls_per_relation": 3,
+    "fixed_provider_calls": 126,
+    "all_calls_run_after_early_admissible": true,
+    "mechanism": "Send three stateless, feedback-free calls with the same rendered initial request and model configuration. Parse and independently verify each available proposal. Select the lowest admissible call index after all three calls; if none is admissible, return no_rule.",
+    "independence_contract": {
+      "calls_declared_independent": true,
+      "same_initial_evidence_view": true,
+      "same_prompt_template": true,
+      "same_model_configuration": true,
+      "prior_proposal_visible": false,
+      "verifier_feedback_visible": false,
+      "cross_call_memory": false,
+      "empirical_statistical_independence_proven": false,
+      "interpretation": "Independent means isolated stateless draws with no cross-call information, not seeded repeatability or a proof of statistical independence."
+    },
+    "selection": {
+      "rule": "lowest admissible call index",
+      "utility_based": false,
+      "none_admissible": "no_rule"
+    },
+    "frozen_outcome": {
+      "relations_attempted": 42,
+      "provider_responses": 126,
+      "valid_structured_proposals": 125,
+      "schema_parse_failures": 1,
+      "verifier_invocations": 125,
+      "verifier_admissible_proposals": 122,
+      "verifier_rejected_proposals": 3,
+      "accepted_relation_outcomes": 42,
+      "no_rule_relation_outcomes": 0,
+      "selected_call_distribution": {
+        "1": 41,
+        "2": 0,
+        "3": 1
+      },
+      "one_parse_failure_handling": "call consumed without fabricating a proposal or invoking verifier; the relation remained accepted through its admissible call 1 proposal"
+    },
+    "meaning_of_42_42": "All 42 relations had at least one admissible proposal among the three draws and therefore a selected accepted_proposal relation outcome. It does not mean all 126 responses parsed or were admissible: 125 parsed, 122 were admissible, 3 were rejected, and 1 failed schema parsing.",
+    "reproducibility": {
+      "classification": "PROVENANCE_REPLAYABLE_REPEATED_SAMPLING_NOT_BITWISE_DETERMINISTIC",
+      "basis": "same immutable request/model configuration and full call/response/proposal/validity custody",
+      "nondeterminism": "temperature 0.7, null seed, no seed-determinism claim",
+      "repeated_sampling_is_reproduction": false
+    }
+  },
+  "t1b_vs_t2_fairness": {
+    "classification": "FAIR_BY_CONTRACT",
+    "contract_level": "Both have the same precommitted maximum of three scientific generation calls per relation, the same first-call evidence/prompt/model view, and no result-dependent budget extension. T1-B is the feedback-free repeated-generation comparator.",
+    "structural_difference": "T1-B always spends all three calls and selects earliest admissible; T2 may stop early after deterministic accept or no_rule and may use later calls only through its bounded feedback/retrieval treatment.",
+    "realized_run": "T1-B spent 126 calls; T2 spent 42 because every T2 relation terminated after call 1. No T2 feedback-eligible rejection occurred.",
+    "realized_feedback_effect_evaluability": "NOT_EVALUABLE",
+    "scientific_interpretation": "The frozen realized comparison is best-of-three sampling versus one draw plus deterministic abstention. It does not identify a verifier-feedback effect; yield-versus-call-cost alone is explicitly incomparable without a declared trade-off metric.",
+    "agentic_advantage_supported": false
+  },
+  "lifecycle_separation": {
+    "PROPOSED": {
+      "T0": 42,
+      "T1": 42,
+      "T1-B": 125
+    },
+    "PARSED": {
+      "T0": "NOT_APPLICABLE_PROVIDER_PARSE",
+      "T1": 42,
+      "T1-B": 125
+    },
+    "VERIFIER_ACCEPTED_PROPOSALS": {
+      "T0": 42,
+      "T1": 42,
+      "T1-B": 122
+    },
+    "ACCEPTED_RELATION_OUTCOMES": {
+      "T0": 42,
+      "T1": 42,
+      "T1-B": 42
+    },
+    "PORTFOLIO_FROZEN": "A later exact executable-signature audit froze T0/T1/T1-B as one shared COMMON-42 projection; the construction-stage 42/42 outcome is not itself that portfolio freeze.",
+    "RUNTIME_AUTHORIZED": "False at construction. task039e0_validity_v2 explicitly does not auto-grant runtime authority. Later D1 runtime authority is a separate governance layer, not an automatic property of accepted proposals.",
+    "DETECTION_PERFORMANCE": "NOT_MEASURED_BY_THESE_COUNTS"
+  },
+  "claims": {
+    "supported": [
+      "A deterministic template baseline was implemented and yielded verifier-admissible proposals for all 42 frozen relations.",
+      "The one-shot constrained construction path yielded one parsed verifier-admissible proposal for each frozen relation in this cohort.",
+      "The feedback-free repeat path executed three isolated draws per relation and selected an admissible proposal for all 42 relations.",
+      "Project-owned deterministic validity, not the provider response, determined accepted_proposal versus no_rule."
+    ],
+    "pilot_only_or_partial": [
+      "Repeated sampling recovered one relation only on call 3 after the first draw was not admissible; this is limited construction-validity evidence."
+    ],
+    "not_supported": [
+      "LLM construction is superior to the deterministic template.",
+      "T1-B is more scientifically useful than T1 or T2.",
+      "Construction acceptance demonstrates anomaly-detection performance.",
+      "Verifier acceptance automatically grants runtime authority.",
+      "The provider outputs are exactly reproducible by rerunning the model."
+    ]
+  },
+  "key_risks_and_unknowns": [
+    {
+      "severity": "HIGH",
+      "finding": "Human-facing 42/42 wording can collapse relation-level accepted_proposal, proposal-level parsing/admissibility, later COMMON-42 portfolio freeze, and runtime authorization into one misleading state.",
+      "required_wording": "Report 42/42 as relation-level verifier-admitted construction outcomes only."
+    },
+    {
+      "severity": "MEDIUM",
+      "finding": "T1-B and T2 share maximum budget and first-call input but fixed three-call sampling versus adaptive early stop means realized call cost and treatment exposure differ.",
+      "required_wording": "FAIR_BY_CONTRACT for the precommitted construction comparison; current realized run is not a feedback-effect test."
+    },
+    {
+      "severity": "MEDIUM",
+      "finding": "Provider construction is custody-reproducible but not bitwise generation-reproducible because seed is null and temperature is nonzero.",
+      "required_wording": "Do not call T1/T1-B deterministic or independently reproduced by generation replay."
+    },
+    {
+      "severity": "LOW",
+      "finding": "The generic helper name generate_synthetic_t0_core_v1 can obscure that real execution used run_real_t0_v1.",
+      "required_wording": "Name the real adapter explicitly in architecture documentation."
+    }
+  ],
+  "source_symbols": [
+    {
+      "path": "src/paperworks/v6/task039e3_scientific_execution_v1.py",
+      "symbol": "run_real_t0_v1",
+      "lines": "212-257",
+      "evidence": "Authorized deterministic real T0 adapter, proposal wrapping, verifier admission, and relation-level outcome."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py",
+      "symbol": "run_t1_v1",
+      "lines": "491-554",
+      "evidence": "Single request, parse/no_rule branch, deterministic verify, and accepted/no_rule outcome."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_orchestration_v1.py",
+      "symbol": "run_t1b_v1",
+      "lines": "557-621",
+      "evidence": "Exactly three same-request calls, parse handling, per-proposal verification, and lowest-admissible selection."
+    },
+    {
+      "path": "src/paperworks/v6/task039e0_rule_construction_protocol_v1.py",
+      "symbol": "FairGenerationBudgetPolicyV2",
+      "lines": "242-335",
+      "evidence": "0/1/3/maximum-3 arm budgets, one retrieval maximum, zero scientific generation retries, and pre-result budget freeze."
+    },
+    {
+      "path": "src/paperworks/v6/task039e0_rule_construction_protocol_v1.py",
+      "symbol": "T1BSelectionPolicyV1",
+      "lines": "346-379",
+      "evidence": "Three independent feedback-free calls, no cross-call memory, all calls required, earliest admissible selection."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_execution_v1.py",
+      "symbol": "R2R_ARM_RUNNERS_V1",
+      "lines": "63-84",
+      "evidence": "R2R routes T0 to real adapter and T1/T1-B/T2 to shared orchestration with recovery request builders."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_request_contract_v1.py",
+      "symbol": "build_r2r_main_request_v1",
+      "lines": "129-137",
+      "evidence": "Shared T1, T1-B, and initial-T2 recovery request contract."
+    }
+  ],
+  "public_artifact_evidence": [
+    {
+      "path": "prompts/task039e2/main_initial_v1.txt",
+      "lines": "1-7",
+      "evidence": "Evidence-only structured proposal instruction and explicit prohibitions on replacement numbers, provenance, controller state, free-text runtime code, authority claims, and unsupported variables."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_METRICS.json",
+      "lines": "2-67",
+      "evidence": "Accepted/no_rule counts, call counts, parse statuses, proposal validity counts, T1-B selection distribution, and verifier invocation counts."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_REPORT.md",
+      "lines": "5-45",
+      "evidence": "Frozen relation-level outcomes, initial request equality, call efficiency, T1-B recovery, and T2 no-feedback interpretation."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_TERMINAL_AUDIT_ACCOUNTING.json",
+      "lines": "8-21",
+      "evidence": "Fresh and lifetime logical-call accounting, zero generation/transport retries, and unchanged post-contact integrity."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E2_EXECUTION_CONFIGURATION.json",
+      "lines": "18-53",
+      "evidence": "Agentic-treatment definition, exact model/sampling configuration, null seed, shared provider-arm configuration, and stateless requests."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E2_T0_TEMPLATE_POLICY.json",
+      "lines": "4-33",
+      "evidence": "No LLM/search/fallback, fixed identity/reference mapping, and prohibited numeric literals."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E2_TRANSPORT_RETRY_POLICY.json",
+      "lines": "4-32",
+      "evidence": "Bounded no-response transport retries and zero scientific-generation retries."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E0_T1B_SELECTION_POLICY.json",
+      "lines": "1-1",
+      "evidence": "Frozen T1-B independence, feedback visibility, all-calls, and selection contract."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E0_VALIDITY_POLICY.json",
+      "lines": "1-1",
+      "evidence": "Deterministic project-owned validity checks, label/utility-free status, and validity_auto_grants_runtime=false."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_RESULT_ANALYSIS_EFFICIENCY.json",
+      "lines": "4-18",
+      "evidence": "Construction-validity/call-cost-only scope and explicit T1-B/T2 yield-cost incomparability."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_REPORT.md",
+      "lines": "18-24",
+      "evidence": "Later COMMON-42 executable-signature freeze; T0/T1/T1-B are one shared projection rather than independent prediction authorities."
+    }
+  ],
+  "test_coverage": [
+    "tests/test_task039e0_authoritative_protocol.py",
+    "tests/test_task039e2_structured_output_t0.py",
+    "tests/test_task039e2_authoritative_prompts.py",
+    "tests/test_task039e2_schedule_transport.py",
+    "tests/test_task039e3_main_arms.py",
+    "tests/test_task039e3_live_execution.py",
+    "tests/test_task039e3_metrics_schedule_public.py",
+    "tests/test_task039e3_r2r_request_contract_v1.py",
+    "tests/test_task039e3_r2r_independent_audit_science.py",
+    "tests/test_task039e3_r2r_terminal_metrics_audit.py",
+    "tests/test_task039e3_r2r_terminal_custody_independent_reconstruction.py",
+    "tests/test_task039e3_r2r_scientific_result_analysis.py"
+  ],
+  "audit_counters": {
+    "llm_calls": 0,
+    "provider_calls": 0,
+    "scientific_executions": 0,
+    "verifier_executions": 0,
+    "test2_accesses": 0,
+    "private_artifact_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_registry_or_report_writes": 0,
+    "staging_evidence_files_written": 1
+  }
+}

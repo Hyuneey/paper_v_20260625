@@ -1,0 +1,12 @@
+producer,output_schema,consumer,required_authority,failure_behavior,artifact,hash,notes
+confirmed relation cohort,ConfirmedRelationPrimitiveV1,E1 materializer,frozen relation cohort,reject identity mismatch,ART-CONFIRMED-RELATIONS,bound,normal-only
+E1 materializer,PrivateConstructionEvidenceV1,E3 evidence projector,E1 execution authority,reject role/reference/provenance mismatch,ART-NUMERIC-AUTHORITY-RECEIPT,self-hashed,eleven bindings per relation
+E3 evidence projector,ConstructionInputViewV1,T0/T1/T1-B/T2,E1 ledger plus E2 schedule,reject prohibited metadata or roles,private construction view,evidence_hash,values and references visible
+main request builder,FrozenProviderRequestV1,T1/T1-B/T2 slot executor,E2 prompt/model/schema freeze,block request mismatch,provider call ledger,request hash,same initial content across LLM arms
+T0 adapter,ProviderProposalCoreV1,proposal projector,E0 template policy,fail closed,private proposal ledger,proposal hash,zero LLM calls
+provider response parser,ProviderProposalCoreV1,proposal projector,E2 strict output policy,response status consumes call,provider/proposal ledgers,response hash,unknown fields rejected
+proposal projector,RuleProposalEnvelopeV1 plus project proposal,task039e0 validity,E0/E1/E2 provenance,reject hash/binding mismatch,private proposal ledger,proposal and provenance hashes,canonical rule not materialized
+task039e0 validity,PreparedValidityResultV2,T1/T1-B/T2 outcome controller,E0 validity policy,admissible or bounded rejection,private validity ledger,validity hash,no runtime authority
+T1-B selection,selected admissible index or null,outcome ledger,E0 fair budget,no_rule if none admissible,private outcome ledger,outcome hash,all three calls run
+T2 controller,accept/revise/retrieve/no_rule,T2 orchestration,E0 budget and issue-action map,no_rule on non-repairable or exhausted budget,private outcome ledger,outcome hash,max three calls one retrieval
+outcome aggregator,construction metrics,public result analysis,frozen metric policy,UNKNOWN fields stay separate,ART-CONSTRUCTION-ANALYSIS,self-hashed,construction utility_tested false
