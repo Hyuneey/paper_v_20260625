@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932">
+  <meta name="rcc-registry-digest" content="e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -112,7 +112,7 @@
       <aside class="principle">Verifier acceptance is not scientific validation.</aside>
       <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
       <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
-      <p><strong>Next deep review:</strong> ARCH-009 — D2 Detector + Rule Fusion Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</p>
     </section>
 
     <section id="runtime-trace-explanation" class="section panel-feature">
@@ -199,6 +199,32 @@
       <p><strong>Next deep review:</strong> ARCH-009 — D2 Detector + Rule Fusion Deep Audit</p>
     </section>
 
+    <section id="d2-fusion" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">D2</p><h2>DETECTOR + RULE FUSION PILOT</h2></div>
+      <p class="architecture-flow">Frozen D0 + frozen D1 evidence → deterministic V1 / V2 → durable combined prediction → label access → pilot metrics</p>
+      <div class="summary-grid">
+        <article class="summary-card"><p class="eyebrow">D0</p><h3>Reference detector</h3><dl>
+          <div><dt>POLICY</dt><dd>Frozen PCA-SPE</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>11/14</dd></div>
+          <div><dt>NORMAL FAR/HOUR</dt><dd>0.4939336325682589</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>N/A</dd></div>
+          <div><dt>STATUS</dt><dd>PILOT BASELINE</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        </dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>Exact-index corroboration</h3><dl>
+          <div><dt>POLICY</dt><dd>Exact decision_physical_row_index equality; at least 2 distinct canonical D1 sources</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>11/14</dd></div>
+          <div><dt>NORMAL FAR/HOUR</dt><dd>0.7056194750975128</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>0/3</dd></div>
+          <div><dt>STATUS</dt><dd>FROZEN_INNER_PILOT_POLICY</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        </dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>Native-horizon corroboration</h3><dl>
+          <div><dt>POLICY</dt><dd>At least 2 distinct active D1 sources under each relation&#x27;s native-horizon token</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>11/14</dd></div>
+          <div><dt>NORMAL FAR/HOUR</dt><dd>6.915070855955625</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>0/3</dd></div>
+          <div><dt>STATUS</dt><dd>TEST1_INFORMED_DEVELOPMENT</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        </dl></article>
+      </div>
+      <aside class="principle">D1 response diversity was observed, but current V1/V2 policies did not convert it into incremental attack-event recall.</aside>
+      <aside class="principle">V2 is test1-informed development, not independent confirmation.</aside>
+      <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">Open the deep D2 audit</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">Policy comparison</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">Miss recovery</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">Claim matrix</a></p>
+      <p><strong>Next deep review:</strong> ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</p>
+    </section>
+
     <section id="data-governance" class="section panel-history">
       <div class="section-heading"><p class="eyebrow">DATA</p><h2>DATA GOVERNANCE</h2></div>
       <div class="status-snapshot">
@@ -212,7 +238,7 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-009 — D2 Detector + Rule Fusion Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -234,7 +260,7 @@
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain what D1 actually is.</li><li>Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.</li><li>Explain 13/14 attack-event response.</li><li>Explain Normal FAR/hour.</li><li>Explain why high Recall does not establish detector superiority.</li><li>Explain the D0/D1 event overlap.</li><li>Explain pilot versus validated complementarity.</li><li>Explain why D1 is not Agentic Rule-only.</li><li>Approve or defer starting ARCH-009.</li></ul>
+      <ul><li>Explain why D2 exists.</li><li>Explain V1 exact-index two-source admission.</li><li>Explain V2 native-horizon active-source admission.</li><li>Explain why a D1 response can fail D2 admission.</li><li>Explain why V2 is test1-informed rather than independent validation.</li><li>Compare D0, V1, and V2 on Recall and FAR.</li><li>Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.</li><li>Approve or defer starting ARCH-010.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -630,12 +656,12 @@
 </div>
 <dl><div class="card-field"><dt>Question</dt><dd>Does bounded verifier feedback improve rule construction over deterministic one-shot and budget-matched controls?</dd></div><div class="card-field"><dt>Evidence</dt><dd>T0 T1 and T1-B accepted 42 of 42; T2 accepted 39 of 42. T2 performed zero feedback actions so feedback was not empirically exercised.</dd></div><div class="card-field"><dt>Limit</dt><dd>The current cohort contains no exercised feedback-recovery path and utility was not tested in this comparison.</dd></div><div class="card-field"><dt>Next</dt><dd>If retained then preregister an independent repairable cohort with a budget-matched T1-B control.</dd></div></dl>
 </article>
-<article class="registry-card" data-status="EXECUTED_AUDITED_PILOT" data-search="exp-04 검증된 관계 규칙의 이상탐지 성능 비교 can verified rules detect attacks while controlling normal false-alarm episodes alone or with a detector? d0 detector-only versus d1 rule-only versus d2 policies hai 23.05 p1 inner with 14 independent attack events; no outer result executed_audited_pilot integrity-audited inner results exist. d1 responded to 13 of 14 with high far; d2 v1 and v2 responded to 11 of 14 and recovered none of three d0 misses. single frozen 14-event inner pilot. attack-event recall; normal far episodes/hour; secondary d0-miss recovery small event count; high d1 far; negative d2 results; no held-out result; simple pca-spe baseline. expand independent event evidence and add a stronger multivariate detector after new preregistration. rule signal and d0-d1 complementarity are pilot observations; operational utility and fusion improvement are unsupported or unvalidated. origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e d0_pca_spe;d1_rule_only;d2_v1;d2_v2;attack_event_recall;normal_far;result_integrity art-d0-metrics;art-d1-metrics;art-d2v1-metrics;art-d2v2-metrics">
+<article class="registry-card" data-status="EXECUTED_AUDITED_PILOT" data-search="exp-04 검증된 관계 규칙의 이상탐지 성능 비교 can verified rules detect attacks while controlling normal false-alarm episodes alone or with a detector? d0 detector-only versus d1 rule-only versus d2 policies hai 23.05 p1 inner with 14 contiguous attack-event units; statistical independence not established; no outer result executed_audited_pilot integrity-audited inner results exist. d1 responded to 13 of 14 with high far; d2 v1 and v2 responded to 11 of 14 and recovered none of three d0 misses. single frozen 14-unit inner pilot. attack-event recall; normal far episodes/hour; secondary d0-miss recovery small event-unit count; high d1 far; negative d2 results; no held-out result; simple pca-spe baseline. expand independently evaluated event evidence and add a stronger multivariate detector after new preregistration. rule signal and d0-d1 complementarity are pilot observations; operational utility and fusion improvement are unsupported or unvalidated. origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e d0_pca_spe;d1_rule_only;d2_v1;d2_v2;attack_event_recall;normal_far;result_integrity art-d0-metrics;art-d1-metrics;art-d2v1-metrics;art-d2v2-metrics">
 <div class="card-heading">
 <div><p class="eyebrow">EXP-04</p><h3>검증된 관계 규칙의 이상탐지 성능 비교</h3></div>
 <span class="badge badge-yellow">EXECUTED · EVIDENCE-REVIEWED PILOT</span>
 </div>
-<dl><div class="card-field"><dt>Question</dt><dd>Can verified rules detect attacks while controlling normal false-alarm episodes alone or with a detector?</dd></div><div class="card-field"><dt>Evidence</dt><dd>Integrity-audited INNER results exist. D1 responded to 13 of 14 with high FAR; D2 V1 and V2 responded to 11 of 14 and recovered none of three D0 misses.</dd></div><div class="card-field"><dt>Limit</dt><dd>Small event count; high D1 FAR; negative D2 results; no held-out result; simple PCA-SPE baseline.</dd></div><div class="card-field"><dt>Next</dt><dd>Expand independent event evidence and add a stronger multivariate detector after new preregistration.</dd></div></dl>
+<dl><div class="card-field"><dt>Question</dt><dd>Can verified rules detect attacks while controlling normal false-alarm episodes alone or with a detector?</dd></div><div class="card-field"><dt>Evidence</dt><dd>Integrity-audited INNER results exist. D1 responded to 13 of 14 with high FAR; D2 V1 and V2 responded to 11 of 14 and recovered none of three D0 misses.</dd></div><div class="card-field"><dt>Limit</dt><dd>Small event-unit count; high D1 FAR; negative D2 results; no held-out result; simple PCA-SPE baseline.</dd></div><div class="card-field"><dt>Next</dt><dd>Expand independently evaluated event evidence and add a stronger multivariate detector after new preregistration.</dd></div></dl>
 </article>
 <article class="registry-card" data-status="IMPLEMENTED_NOT_EXECUTED" data-search="exp-05 규칙 설명의 일치성 검증 does explanation output faithfully represent frozen rule trace numeric provenance and outcome without unsupported content? automated conformance across pass fail and abstain; human usefulness is separate synthetic and representative trace-grounded artifacts; no human study implemented_not_executed a deterministic renderer and trace bindings are implemented and audited. a comprehensive explanation-consistency experiment has not run. implementation-level automated grounding evidence only. source and target match; direction and timing; provenance; outcome consistency; omission; unsupported content; reproducibility representative artifacts do not establish corpus-wide faithfulness or human understanding. preregister corpus-level faithfulness checks; add human evaluation only if thesis-essential. trace-grounded rendering is an implementation fact; broad faithfulness is conditional and human usefulness unvalidated. origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e satisfaction_trace;explanation_renderer;rule_runtime art-professor-results;art-claim-audit">
 <div class="card-heading">
@@ -750,9 +776,9 @@
     </section>
 
     <section id="risks" class="section">
-      <div class="section-heading"><p class="eyebrow">08</p><h2>RISKS</h2></div><div class="card-grid"><article class="registry-card" data-status="HIGH" data-search="risk-01 validity the inner pilot contains only 14 independent attack events so stable performance and superiority cannot be inferred. high high result_integrity artifact:art-professor-results expand preregistered independent evaluation without pilot-driven tuning. research_owner open origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
+      <div class="section-heading"><p class="eyebrow">08</p><h2>RISKS</h2></div><div class="card-grid"><article class="registry-card" data-status="HIGH" data-search="risk-01 validity the inner pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred. high high result_integrity artifact:art-professor-results expand preregistered independent evaluation without pilot-driven tuning. research_owner open origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
 <div class="card-heading">
-<div><p class="eyebrow">RISK-01</p><h3>The INNER pilot contains only 14 independent attack events so stable performance and superiority cannot be inferred.</h3></div>
+<div><p class="eyebrow">RISK-01</p><h3>The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.</h3></div>
 <span class="badge badge-orange">HIGH</span>
 </div>
 <dl><div class="card-field"><dt>Status</dt><dd>OPEN</dd></div><div class="card-field"><dt>Likelihood</dt><dd>HIGH</dd></div><div class="card-field"><dt>Evidence</dt><dd>artifact:ART-PROFESSOR-RESULTS</dd></div><div class="card-field"><dt>Mitigation</dt><dd>Expand preregistered independent evaluation without pilot-driven tuning.</dd></div><div class="card-field"><dt>Owner</dt><dd>RESEARCH_OWNER</dd></div></dl>
@@ -858,7 +884,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-009 — D2 Detector + Rule Fusion Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</strong></div>
     </section>
   </main>
 

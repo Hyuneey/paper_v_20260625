@@ -153,6 +153,22 @@ REQUIRED_RCC_FILES = (
     "bootstrap/ARCH_008/agents/agent_c_overlap.json",
     "bootstrap/ARCH_008/agents/agent_d_integrity_claims.json",
     "bootstrap/ARCH_008/agents/agent_e_qa.json",
+    "bootstrap/ARCH_009/ARCH_009_REPORT.md",
+    "bootstrap/ARCH_009/ARCH_009_V1_POLICY_AUDIT.md",
+    "bootstrap/ARCH_009/ARCH_009_V2_POLICY_AUDIT.md",
+    "bootstrap/ARCH_009/ARCH_009_INPUT_FREEZE_AUDIT.md",
+    "bootstrap/ARCH_009/ARCH_009_MISS_RECOVERY_AUDIT.md",
+    "bootstrap/ARCH_009/ARCH_009_COMPLEMENTARITY_INTERPRETATION.md",
+    "bootstrap/ARCH_009/ARCH_009_CLAIM_MATRIX.csv",
+    "bootstrap/ARCH_009/ARCH_009_MISMATCHES.md",
+    "bootstrap/ARCH_009/ARCH_009_QA_REPORT.md",
+    "bootstrap/ARCH_009/ARCH_009_MULTI_AGENT_REVIEW.md",
+    "bootstrap/ARCH_009/ARCH_009_EVIDENCE.json",
+    "bootstrap/ARCH_009/agents/agent_a_v1.json",
+    "bootstrap/ARCH_009/agents/agent_b_v2.json",
+    "bootstrap/ARCH_009/agents/agent_c_authority_freeze.json",
+    "bootstrap/ARCH_009/agents/agent_d_result_claims.json",
+    "bootstrap/ARCH_009/agents/agent_e_qa.json",
 )
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
@@ -164,6 +180,7 @@ GENERATED_FILES = (
     "generated/ARCH_006_USER_SUMMARY.md",
     "generated/ARCH_007_USER_SUMMARY.md",
     "generated/ARCH_008_USER_SUMMARY.md",
+    "generated/ARCH_009_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -181,6 +198,7 @@ REQUIRED_RCC_DIRS = (
     "architecture/06_runtime_trace_explanation", "bootstrap/ARCH_006", "bootstrap/ARCH_006/agents",
     "architecture/07_d0_detector", "bootstrap/ARCH_007", "bootstrap/ARCH_007/agents",
     "architecture/08_d1_rule_only", "bootstrap/ARCH_008", "bootstrap/ARCH_008/agents",
+    "architecture/09_d2_fusion", "bootstrap/ARCH_009", "bootstrap/ARCH_009/agents",
 )
 
 
@@ -259,10 +277,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 9, "top_user_todo must contain exactly nine ARCH-008 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 9, "ARCH-008 must leave nine user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-008", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-009 — D2 Detector + Rule Fusion Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-009 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-009 must leave eight user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-009", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -275,8 +293,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-009 — D2 Detector + Rule Fusion Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-009 — D2 Detector + Rule Fusion Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit", "next architecture task mismatch")
     relation = state.get("relation_numeric_authority", {})
     result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
     result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
@@ -319,6 +337,16 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(d1.get("durable_freeze") is False, "ARCH-008 must preserve the durable-freeze limitation")
     result.require(d1.get("llm_rule_only") == "NOT_DIRECTLY_TESTED" and d1.get("agentic_rule_only") == "MISLEADING_NOT_APPLICABLE", "ARCH-008 arm terminology boundary mismatch")
     result.require(d1.get("held_out_generalization") == "UNCONFIRMED", "ARCH-008 held-out status mismatch")
+    d2 = state.get("d2_fusion", {})
+    result.require(d2.get("event_unit_count") == 14 and "independence not established" in d2.get("event_unit_definition", ""), "ARCH-009 event-unit terminology mismatch")
+    result.require(d2.get("raw_features_used") is False and d2.get("labels_used_in_fusion") is False, "ARCH-009 fusion boundary mismatch")
+    result.require("VERIFIED_POINTWISE" in d2.get("d0_preservation", ""), "ARCH-009 D0 preservation missing")
+    result.require(d2.get("v1", {}).get("threshold") == 2 and d2.get("v1", {}).get("attack_event_response") == "11/14", "ARCH-009 V1 policy/result mismatch")
+    result.require(d2.get("v1", {}).get("normal_far_episodes_per_hour") == 0.7056194750975128 and d2.get("v1", {}).get("d0_miss_recovery") == "0/3", "ARCH-009 V1 FAR/recovery mismatch")
+    result.require(d2.get("v2", {}).get("threshold") == 2 and d2.get("v2", {}).get("attack_event_response") == "11/14", "ARCH-009 V2 policy/result mismatch")
+    result.require(d2.get("v2", {}).get("normal_far_episodes_per_hour") == 6.915070855955625 and d2.get("v2", {}).get("d0_miss_recovery") == "0/3", "ARCH-009 V2 FAR/recovery mismatch")
+    result.require(d2.get("v1", {}).get("durable_pre_label_freeze") is True and d2.get("v2", {}).get("durable_pre_label_freeze") is True, "ARCH-009 durable freeze mismatch")
+    result.require(d2.get("v2", {}).get("independent_confirmation") is False, "ARCH-009 V2 independence boundary mismatch")
     governance = state.get("data_governance", {})
     result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
     result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
@@ -682,7 +710,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "DETECTOR + RULE FUSION PILOT", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -695,9 +723,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_003_USER_SUMMARY.md": ("47개 후보는 어떻게 42개 실행 관계가 되는가", "train3", "Numeric authority", "causal relation"),
         "generated/ARCH_004_USER_SUMMARY.md": ("Rule은 어떻게 만들어지는가", "Evidence Pack", "39/42", "runtime authorization"),
         "generated/ARCH_005_USER_SUMMARY.md": ("COMMON-42", "20단계", "runtime authorization", "다음 task"),
-        "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "ARCH-009"),
-        "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "ARCH-009"),
-        "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "ARCH-009"),
+        "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
+        "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
+        "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "ARCH-010"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -1013,6 +1042,38 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
         result.require(marker in output_levels, f"ARCH-008 output levels omit {marker}")
     result.require("UNVALIDATED" in (d1_dir / "ARCH_008_RULE_ONLY_UTILITY.md").read_text(encoding="utf-8"), "ARCH-008 utility boundary missing")
     result.require("T2 Agentic Rule-only" in (d1_dir / "ARCH_008_PROFESSOR_RULE_ONLY_NOTE.md").read_text(encoding="utf-8"), "ARCH-008 professor terminology boundary missing")
+
+    d2_dir = rcc_root / "architecture" / "09_d2_fusion"
+    required_d2 = {
+        "ARCH_009_REPORT.md", "ARCH_009_D2_ROLE.md", "ARCH_009_INPUT_AUTHORITY.md",
+        "ARCH_009_D0_PRESERVATION.md", "ARCH_009_V1_POLICY.md", "ARCH_009_V2_POLICY.md",
+        "ARCH_009_POLICY_COMPARISON.csv", "ARCH_009_D2_PREDICTION_SCHEMA.md",
+        "ARCH_009_ADDED_ALARM_TAXONOMY.md", "ARCH_009_MISS_RECOVERY.md",
+        "ARCH_009_COMPLEMENTARITY_INTERPRETATION.md", "ARCH_009_RESULT_LINEAGE.md",
+        "ARCH_009_CLAIM_MATRIX.csv", "ARCH_009_FUNCTION_CATALOG.csv",
+        "ARCH_009_IO_CONTRACTS.csv", "ARCH_009_FUSION_FLOW.mmd", "ARCH_009_MISMATCHES.md",
+    }
+    for name in required_d2:
+        result.require((d2_dir / name).is_file(), f"ARCH-009 output missing: {name}")
+    if not d2_dir.is_dir() or any(not (d2_dir / name).is_file() for name in required_d2):
+        return
+    with (d2_dir / "ARCH_009_POLICY_COMPARISON.csv").open("r", encoding="utf-8", newline="") as handle:
+        d2_comparison = list(csv.DictReader(handle))
+    with (d2_dir / "ARCH_009_CLAIM_MATRIX.csv").open("r", encoding="utf-8", newline="") as handle:
+        d2_claims = list(csv.DictReader(handle))
+    with (d2_dir / "ARCH_009_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        d2_functions = list(csv.DictReader(handle))
+    with (d2_dir / "ARCH_009_IO_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        d2_contracts = list(csv.DictReader(handle))
+    result.require(len(d2_comparison) >= 13, "ARCH-009 policy comparison is incomplete")
+    result.require(len(d2_claims) >= 10, "ARCH-009 claim matrix is incomplete")
+    result.require(len(d2_functions) >= 10 and all(is_safe_relative_path(row["path"]) for row in d2_functions), "ARCH-009 function catalog is incomplete or unsafe")
+    result.require(len(d2_contracts) >= 10, "ARCH-009 IO contracts are incomplete")
+    d2_flow = (d2_dir / "ARCH_009_FUSION_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(d2_flow.startswith("flowchart ") and "LABEL ACCESS" in d2_flow and "TEST1-INFORMED" in d2_flow, "ARCH-009 Mermaid omits label or development boundary")
+    result.require("decision_physical_row_index" in (d2_dir / "ARCH_009_V1_POLICY.md").read_text(encoding="utf-8"), "ARCH-009 V1 same-second semantics missing")
+    result.require("TEST1_INFORMED_DEVELOPMENT" in (d2_dir / "ARCH_009_V2_POLICY.md").read_text(encoding="utf-8"), "ARCH-009 V2 chronology boundary missing")
+    result.require("0/3" in (d2_dir / "ARCH_009_MISS_RECOVERY.md").read_text(encoding="utf-8"), "ARCH-009 miss recovery missing")
 
 
 def validate_registry(

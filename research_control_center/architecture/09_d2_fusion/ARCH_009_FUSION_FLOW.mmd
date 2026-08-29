@@ -1,0 +1,17 @@
+flowchart TD
+  D0A["Frozen D0 prediction"] --> V1["V1: exact-index >=2 sources\nPILOT POLICY"]
+  D1A["Frozen D1 evidence"] --> V1
+  V1 --> F1["Durable frozen D2 V1"]
+  D0B["Frozen D0 prediction"] --> V2["V2: native-horizon active >=2 sources\nTEST1-INFORMED DEVELOPMENT"]
+  D1B["Frozen D1 evidence"] --> V2
+  H["Frozen normal-derived horizon map"] --> V2
+  V2 --> F2["Durable frozen D2 V2"]
+  F1 --> B["LABEL ACCESS BOUNDARY"]
+  F2 --> B
+  B --> M["Event and normal-episode metrics\nPILOT ONLY"]
+  classDef frozen fill:#dff4ff,stroke:#175b75
+  classDef development fill:#fff0cc,stroke:#8a5a00
+  classDef boundary fill:#ffe1e1,stroke:#9b2525
+  class D0A,D1A,D0B,D1B,H,F1 frozen
+  class V1,V2,F2 development
+  class B boundary

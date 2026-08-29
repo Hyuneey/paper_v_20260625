@@ -187,4 +187,23 @@ and 40.50255787059723 FAR/hour. This is a response-diversity pilot signal, not
 validated complementarity or operational utility. D1 remains COMMON-42 Verified
 Relational Rule-only, not T2 Agentic Rule-only.
 
-Exact next task: `ARCH-009 — D2 Detector + Rule Fusion Deep Audit`.
+## Completed D2 fusion audit
+
+- [Korean report](09_d2_fusion/ARCH_009_REPORT.md)
+- [D2 role](09_d2_fusion/ARCH_009_D2_ROLE.md)
+- [Input authority](09_d2_fusion/ARCH_009_INPUT_AUTHORITY.md)
+- [V1 policy](09_d2_fusion/ARCH_009_V1_POLICY.md)
+- [V2 policy](09_d2_fusion/ARCH_009_V2_POLICY.md)
+- [Policy comparison](09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv)
+- [Miss recovery](09_d2_fusion/ARCH_009_MISS_RECOVERY.md)
+- [Claim matrix](09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv)
+- [Fusion flow](09_d2_fusion/ARCH_009_FUSION_FLOW.mmd)
+- [Mismatch register](09_d2_fusion/ARCH_009_MISMATCHES.md)
+
+V1 uses exact-row two-distinct-source corroboration. V2 keeps each alarming D1
+record active through its frozen native horizon and applies the same source
+threshold. Both preserve D0 pointwise and durably freeze prediction before
+labels. Both produced 11/14 and recovery 0/3; V2 is test1-informed development,
+not independent confirmation.
+
+Exact next task: `ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit`.

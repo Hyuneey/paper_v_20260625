@@ -1,0 +1,14 @@
+dimension,V1,V2
+D0 preserved,"YES; pointwise OR","YES; pointwise OR"
+D1 input,"frozen alarming rule records","same frozen alarming rule records"
+time alignment,"exact decision_physical_row_index","inclusive active interval from decision index through native horizon"
+source aggregation,"deduplicated canonical source identity","deduplicated active canonical source identity"
+persistence,"none beyond same row","one token persists through its frozen relation horizon"
+horizon aware,NO,YES
+threshold,"2 distinct sources","2 distinct sources"
+label blind,YES,YES
+durable freeze,"combined artifact before labels","combined artifact before labels"
+designed before test1 outcome,"YES for frozen V1 design authority","NO; V1/test1 diagnostic informed formulation"
+independent evaluation,NO,NO
+frozen result,"11/14; FAR 0.7056194750975128; recovery 0/3","11/14; FAR 6.915070855955625; recovery 0/3"
+scientific status,PILOT_POLICY,TEST1_INFORMED_DEVELOPMENT

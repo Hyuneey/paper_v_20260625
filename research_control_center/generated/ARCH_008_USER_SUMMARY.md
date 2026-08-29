@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D1 검증된 관계 규칙 단독 평가를 쉽게 이해하기
 
 ## 1. D1은 정확히 무엇인가?
@@ -51,7 +51,7 @@ high FAR의 일반적 원인 분석이 없으므로 trigger, tolerance, duplicat
 ## 9. Complementarity가 입증됐는가?
 
 아니다. Pilot complementarity signal은 있지만 statistical/general complementarity와 operational
-utility는 **UNVALIDATED**다. D2의 실제 fusion 결과도 별도 ARCH-009에서 다뤄야 한다.
+utility는 **UNVALIDATED**다. D2 fusion policy와 결과 lineage는 ARCH-009에서 별도로 감사됐다.
 
 ## 10. D1은 LLM Rule-only 또는 Agentic Rule-only인가?
 
@@ -72,4 +72,4 @@ durable gate가 필요하다.
 기억할 한 문장: **D1은 D0와 다른 pilot event response를 보였지만 normal false-alarm 부담이 매우 높아,
 Rule-only utility와 complementarity는 아직 검증되지 않았다.**
 
-다음 task는 **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**이다.
+다음 task는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**이다.

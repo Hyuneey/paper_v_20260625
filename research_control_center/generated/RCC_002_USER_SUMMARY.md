@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -41,7 +41,8 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - D2 V1: 11/14; Normal FAR 0.7056194750975128 episodes/hour; D0-miss recovery 0/3.
 - D2 V2: 11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3.
 
-이 수치는 독립 공격 사건 14개의 INNER 예비 관찰이다. 검증된 일반 성능으로 표현하면 안 된다.
+이 수치는 통계적 독립성이 입증되지 않은 14개 연속 attack-event unit의 INNER 예비 관찰이다.
+검증된 일반 성능으로 표현하면 안 된다.
 
 ## 아직 증명되지 않은 것
 
@@ -58,7 +59,7 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 가장 큰 위험 5개
 
-- The INNER pilot contains only 14 independent attack events so stable performance and superiority cannot be inferred.
+- The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
 - Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - Held-out generalization is unavailable because no OUTER scientific result exists.
@@ -70,20 +71,19 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-009 — D2 Detector + Rule Fusion Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-009 — D2 Detector + Rule Fusion Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit** 이고, 이후 전체
+구조 검토는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain what D1 actually is.
-- Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.
-- Explain 13/14 attack-event response.
-- Explain Normal FAR/hour.
-- Explain why high Recall does not establish detector superiority.
-- Explain the D0/D1 event overlap.
-- Explain pilot versus validated complementarity.
-- Explain why D1 is not Agentic Rule-only.
-- Approve or defer starting ARCH-009.
+- Explain why D2 exists.
+- Explain V1 exact-index two-source admission.
+- Explain V2 native-horizon active-source admission.
+- Explain why a D1 response can fail D2 admission.
+- Explain why V2 is test1-informed rather than independent validation.
+- Compare D0, V1, and V2 on Recall and FAR.
+- Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.
+- Approve or defer starting ARCH-010.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

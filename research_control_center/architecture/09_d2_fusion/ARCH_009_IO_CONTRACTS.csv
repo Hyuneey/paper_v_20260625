@@ -1,0 +1,11 @@
+producer,input,consumer,policy,authority,output,failure_behavior,artifact,notes
+frozen D0 execution,"54,000 ordered Boolean decisions",V1 fusion,V1,"committed bytes plus artifact hash","FrozenD0PredictionInputV1",fail_closed,"ScientificDetectorPredictionArtifactV1","no score or feature read"
+frozen D1 execution,"alarming opportunity records",V1 fusion,V1,"committed bytes plus artifact hash","FrozenD1PredictionInputV1",fail_closed,"ScientificRulePredictionArtifactV1","no D1 re-evaluation"
+source-map freeze,"42 relation-to-source bindings",V1 fusion,V1,"source-map hash","deduplicated source sets by row",fail_closed,"D2SourceResolutionMapV1","same-index grouping"
+V1 fusion,"D0 plus same-index source sets",prediction builder,V1,"design and authorization hashes","54,000 combined decisions",fail_closed,"ScientificCombinedPredictionArtifactV1","D0 pointwise preserved"
+V1 persistence,"combined decisions",label custody,V1,"artifact self-hash and durable reopen","frozen V1 prediction",block_label_access,"public combined prediction","labels only after persistence"
+native-horizon freeze,"42 relation horizons",V2 token builder,V2,"native-horizon-map hash","active token intervals",fail_closed,"native horizon map","normal-derived authority"
+V2 token builder,"D1 alarms plus source/horizon maps",V2 fusion,V2,"bound D1 and temporal hashes","active distinct sources by row",fail_closed,"private evidence tokens","inclusive endpoint"
+V2 fusion,"D0 plus active source sets",prediction builder,V2,"separate V2 design/authorization","54,000 combined decisions",fail_closed,"ScientificCombinedPredictionArtifactV2","D0 pointwise preserved"
+V2 persistence,"combined decisions",label custody,V2,"artifact self-hash and durable reopen","frozen V2 prediction",block_label_access,"public combined prediction","labels only after persistence"
+metric handoff,"frozen V1 or V2 prediction plus labels",result reports,"V1/V2","label custody after prediction","event recall and normal FAR",fail_closed,"frozen metrics","episode logic deferred ARCH-010"

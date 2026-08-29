@@ -1,0 +1,1 @@
+{"agent":"B","role":"D2 V2 policy auditor","mode":"read_only","verdict":"VERIFIED_DEVELOPMENT_POLICY","token_interval":"decision_index<=t<=decision_index+native_horizon","threshold":2,"test1_informed":true,"recovery":"0/3","scientific_executions":0,"writes":0}

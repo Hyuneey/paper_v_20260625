@@ -63,12 +63,13 @@ class DashboardGenerationTests(unittest.TestCase):
     def test_gpt_brief_has_required_recovery_boundary_and_word_budget(self) -> None:
         brief = render_gpt_brief(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
         self.assertIn("Chat memory must not override the scientific authority or RCC registry.", brief)
-        self.assertIn("14 attack events are pilot evidence only", brief)
+        self.assertIn("14 contiguous attack-event units", brief)
+        self.assertIn("statistical independence is", brief)
         self.assertIn("Graph-Guided and Agentic remain provisional contribution labels.", brief)
         self.assertIn("## Research objective", brief)
         self.assertIn("## Claim boundaries", brief)
         self.assertIn("## How we got here", brief)
-        self.assertIn("History explains this lineage but cannot override", brief)
+        self.assertIn("History cannot override current state", brief)
         self.assertIn("## Exact next task", brief)
         self.assertGreaterEqual(len(brief.split()), 800)
         self.assertLessEqual(len(brief.split()), 1500)
@@ -83,7 +84,7 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(40, len(summaries))
+            self.assertEqual(41, len(summaries))
             self.assertTrue(all(path.is_file() for path in summaries))
             self.assertTrue((root / "history" / "PROJECT_TIMELINE.md").is_file())
             self.assertTrue((root / "generated" / "RCC_003_HISTORY_SUMMARY.md").is_file())
@@ -138,7 +139,7 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
-        self.assertEqual(40, len(generated))
+        self.assertEqual(41, len(generated))
         user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
         context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
         self.assertIn("14", user_summary)

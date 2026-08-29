@@ -67,6 +67,10 @@ ARCHITECTURE_FILES = (
     "08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv",
     "08_d1_rule_only/ARCH_008_FUNCTION_CATALOG.csv",
     "08_d1_rule_only/ARCH_008_IO_CONTRACTS.csv",
+    "09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv",
+    "09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv",
+    "09_d2_fusion/ARCH_009_FUNCTION_CATALOG.csv",
+    "09_d2_fusion/ARCH_009_IO_CONTRACTS.csv",
 )
 
 
@@ -383,6 +387,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     runtime = state["runtime_trace_explanation"]
     d0 = state["d0_detector"]
     d1 = state["d1_evaluation"]
+    d2 = state["d2_fusion"]
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -605,6 +610,32 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <p><strong>Next deep review:</strong> {_escape(d1['next_deep_review'])}</p>
     </section>
 
+    <section id="d2-fusion" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">D2</p><h2>DETECTOR + RULE FUSION PILOT</h2></div>
+      <p class="architecture-flow">Frozen D0 + frozen D1 evidence → deterministic V1 / V2 → durable combined prediction → label access → pilot metrics</p>
+      <div class="summary-grid">
+        <article class="summary-card"><p class="eyebrow">D0</p><h3>Reference detector</h3><dl>
+          <div><dt>POLICY</dt><dd>Frozen PCA-SPE</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>11/14</dd></div>
+          <div><dt>NORMAL FAR/HOUR</dt><dd>{d0['normal_far_episodes_per_hour']}</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>N/A</dd></div>
+          <div><dt>STATUS</dt><dd>PILOT BASELINE</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        </dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>Exact-index corroboration</h3><dl>
+          <div><dt>POLICY</dt><dd>{_escape(d2['v1']['policy'])}</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>{_escape(d2['v1']['attack_event_response'])}</dd></div>
+          <div><dt>NORMAL FAR/HOUR</dt><dd>{d2['v1']['normal_far_episodes_per_hour']}</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>{_escape(d2['v1']['d0_miss_recovery'])}</dd></div>
+          <div><dt>STATUS</dt><dd>{_escape(d2['v1']['development_status'])}</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        </dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>Native-horizon corroboration</h3><dl>
+          <div><dt>POLICY</dt><dd>{_escape(d2['v2']['policy'])}</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>{_escape(d2['v2']['attack_event_response'])}</dd></div>
+          <div><dt>NORMAL FAR/HOUR</dt><dd>{d2['v2']['normal_far_episodes_per_hour']}</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>{_escape(d2['v2']['d0_miss_recovery'])}</dd></div>
+          <div><dt>STATUS</dt><dd>{_escape(d2['v2']['development_status'])}</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        </dl></article>
+      </div>
+      <aside class="principle">D1 response diversity was observed, but current V1/V2 policies did not convert it into incremental attack-event recall.</aside>
+      <aside class="principle">V2 is test1-informed development, not independent confirmation.</aside>
+      <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">Open the deep D2 audit</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">Policy comparison</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">Miss recovery</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">Claim matrix</a></p>
+      <p><strong>Next deep review:</strong> {_escape(d2['next_deep_review'])}</p>
+    </section>
+
     <section id="data-governance" class="section panel-history">
       <div class="section-heading"><p class="eyebrow">DATA</p><h2>DATA GOVERNANCE</h2></div>
       <div class="status-snapshot">
@@ -735,8 +766,7 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     authority = state["scientific_authority"]
     experiments = "\n".join(
         f"- **{row['experiment_id']} · {row['name']}** — "
-        f"`{EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`; "
-        f"scope: {row['result_scope']}."
+        f"`{EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`."
         for row in data["experiments"]
     )
     claims = "\n".join(
@@ -815,12 +845,19 @@ D0 is a 37-feature normal-only PCA-SPE reference. Train1+train2 fit custom NumPy
 calibrates a no-interpolation q=.999 threshold; test1 uses strict `score > threshold`. Prediction
 bytes were frozen before labels. The 11/14 pilot is neither SOTA nor thesis-contribution evidence.
 
+## Frozen D2 fusion boundary
+
+V1 uses exact-row two-distinct-source corroboration; V2 keeps each D1 alarm active through its
+frozen native relation horizon and applies the same source threshold. Both preserve D0 pointwise
+and durably freeze combined predictions before labels. Both returned 11/14 and recovered 0/3 D0
+misses while increasing normal FAR. V2 is test1-informed development, not independent confirmation.
+
 ## How we got here
 
 The recorded evolution is **{phase_names}**. Early motives remain partly `USER_CONTEXT`.
 ARGOS became partial support; deterministic verification survived the earlier Verifier framing.
-HAI P1, META/STAT/GDN, normal-only profiling and numeric authority led to COMMON-42 and the
-14-event pilot. OUTER ended in a custody blocker. History explains this lineage but cannot override current state.
+Normal-only profiling and numeric authority led to COMMON-42 and the 14-unit pilot; OUTER
+ended in a custody blocker. History cannot override current state.
 
 ## Established facts
 
@@ -831,7 +868,8 @@ physical truth, unique GDN benefit, or agentic-feedback advantage. T2 feedback a
 
 ## Frozen INNER pilot observations
 
-The INNER evaluation contains 14 operational attack events. D0 PCA-SPE responded to
+The INNER evaluation contains 14 contiguous attack-event units; statistical independence is
+not established. D0 PCA-SPE responded to
 11/14 with Normal FAR 0.4939336325682589 episodes/hour. D1 verified Rule-only responded
 to 13/14 with Normal FAR 40.50255787059723 episodes/hour. Their event overlap was both
 10, D0-only 1, D1-only 3, neither 0. D2 V1 and D2 V2 each responded to 11/14 and each
@@ -839,7 +877,7 @@ recovered 0/3 D0-missed events; their Normal FAR values were 0.7056194750975128 
 6.915070855955625 episodes/hour respectively. These are exact public frozen pilot
 observations, not new calculations.
 
-> 14 attack events are pilot evidence only. Do not describe current detection numbers as validated performance.
+> These 14 units are pilot evidence only, not validated performance.
 
 ## Unresolved scientific questions
 
@@ -867,10 +905,9 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Source-policy boundary
 
-The read-only documentation overlay is `{state['documentation_overlay']['ref']}` @
-`{state['documentation_overlay']['commit']}`. It provides narrative context only.
-The historical checkout `{state['non_authoritative_checkout']['ref']}` @
-`{state['non_authoritative_checkout']['commit']}` is not an authority for scientific claims.
+Documentation overlay `{state['documentation_overlay']['ref']}` @ `{state['documentation_overlay']['commit']}`
+is context only; `{state['non_authoritative_checkout']['ref']}` @ `{state['non_authoritative_checkout']['commit']}`
+is non-authoritative.
 
 ## Exact next task
 
@@ -952,6 +989,15 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 - **Freeze:** {state['runtime_trace_explanation']['freeze_classification']}; durable pre-label persistence = no.
 - **Trace:** {state['runtime_trace_explanation']['canonical_trace_relationship']}
 - **Explanation:** {state['runtime_trace_explanation']['explanation']}
+
+## Frozen D2 fusion audit
+
+- **Role:** {state['d2_fusion']['role']}
+- **V1:** {state['pilot_observations']['d2_v1']}.
+- **V2:** {state['pilot_observations']['d2_v2']}.
+- **D0 preservation:** {state['d2_fusion']['d0_preservation']}
+- **Freeze / labels:** V1 and V2 both use durable prediction-file-before-label gates.
+- **Boundary:** {state['d2_fusion']['warning']}
 
 ## Components
 
@@ -1439,7 +1485,7 @@ Interpolation은 없고, 정확한 판정은 `score > threshold`다. 같은 값�
 |---|---|
 | Point alarm | 876개 row가 threshold를 넘음 |
 | Alarm episode | 연속 alarm point를 묶은 46개 구간 |
-| Attack-event response | 14개 독립 사건 중 11개가 alarm episode와 겹침 |
+| Attack-event response | 통계적 독립성이 미확인된 14개 연속 사건 단위 중 11개가 alarm episode와 겹침 |
 | Normal false episode | 46개 중 attack timestamp와 겹치지 않은 7개 |
 | Normal FAR/hour | 7개 normal false episode를 normal exposure hour로 나눈 `{d0['normal_far_episodes_per_hour']}` |
 
@@ -1525,7 +1571,7 @@ high FAR의 일반적 원인 분석이 없으므로 trigger, tolerance, duplicat
 ## 9. Complementarity가 입증됐는가?
 
 아니다. Pilot complementarity signal은 있지만 statistical/general complementarity와 operational
-utility는 **UNVALIDATED**다. D2의 실제 fusion 결과도 별도 ARCH-009에서 다뤄야 한다.
+utility는 **UNVALIDATED**다. D2 fusion policy와 결과 lineage는 ARCH-009에서 별도로 감사됐다.
 
 ## 10. D1은 LLM Rule-only 또는 Agentic Rule-only인가?
 
@@ -1545,6 +1591,89 @@ durable gate가 필요하다.
 
 기억할 한 문장: **D1은 D0와 다른 pilot event response를 보였지만 normal false-alarm 부담이 매우 높아,
 Rule-only utility와 complementarity는 아직 검증되지 않았다.**
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
+def render_arch009_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    d2 = state["d2_fusion"]
+    return f"""{_markdown_marker(state, digest)}
+# D2에서 Detector와 Rule을 어떻게 합쳤는가
+
+## 1. 왜 D0와 D1을 합치려고 했는가?
+
+D0가 놓친 3개 attack-event unit에 D1은 모두 반응했다. 그래서 D0 alarm은 지키면서 신뢰할 만한
+D1 evidence만 추가하면 detector miss를 줄일 수 있는지 시험했다. D2는 이 질문을 위한
+deterministic fusion-policy pilot이다.
+
+## 2. D2 V1은 무엇인가?
+
+같은 `decision_physical_row_index`, 즉 같은 1초 decision row에서 alarm을 낸 D1 source를 센다.
+같은 source의 여러 rule은 한 번만 세고, 서로 다른 source가 2개 이상이면 D1 alarm을 추가한다.
+D0가 이미 alarm이면 항상 유지한다.
+
+## 3. 왜 distinct sources >= 2를 쓰는가?
+
+한 source의 여러 relation record가 우연히 중복되어도 여러 독립 source evidence처럼 세지 않기 위한
+frozen corroboration contract다. 이 threshold가 과학적으로 최적이라는 뜻은 아니다.
+
+## 4. “same-second”는 정확히 무엇인가?
+
+D1 record의 `decision_physical_row_index`가 정확히 같은 경우다. Source trigger 시점이나 attack
+episode 전체가 아니다. Rolling window나 tolerance도 없다.
+
+## 5. D2 V2는 V1과 무엇이 다른가?
+
+V2는 D1 alarm을 한 row에서만 보지 않고 relation의 frozen native horizon 끝까지 active token으로
+유지한다. 그 시간에 동시에 active한 서로 다른 source가 2개 이상이면 추가한다. D0 preservation과
+source threshold 2는 그대로다.
+
+## 6. native horizon/persistence는 실제 무엇인가?
+
+Alarm decision index가 `i`, frozen relation horizon이 `h`라면 token은 `i <= t <= i+h`에서 active다.
+별도의 연속 alarm 횟수 threshold나 learned persistence model은 없다.
+
+## 7. D1은 3개를 잡았는데 왜 D2는 못 잡았는가?
+
+V1에서는 두 unit의 여러 source alarm이 같은 row에 맞지 않았고 한 unit은 source가 하나뿐이었다.
+V2는 temporal activity를 늘렸지만 frozen result상 세 unit 어디에도 추가 alarm을 admit하지 못했다.
+Single-source unit은 정책상 제외되며, 나머지 두 unit의 V2 상세 원인은 public frozen trace만으로는
+확정할 수 없다. 핵심은 **D1 response와 D2 admission은 다른 조건**이라는 점이다.
+
+## 8. D2 V1 결과는 D0보다 좋은가?
+
+현재 pilot metric으로는 아니다. D0와 같은 11/14였고 Normal FAR은
+{d2['v1']['normal_far_episodes_per_hour']}로 D0의 0.4939336325682589보다 높았다. Recovery는
+{d2['v1']['d0_miss_recovery']}였다.
+
+## 9. D2 V2 결과는 D0보다 좋은가?
+
+아니다. V2도 11/14, recovery {d2['v2']['d0_miss_recovery']}였고 Normal FAR은
+{d2['v2']['normal_far_episodes_per_hour']}로 더 높았다. 이는 현재 test1 descriptive result이며
+새로운 통계 비교를 한 것이 아니다.
+
+## 10. 왜 V2는 독립 검증이 아닌가?
+
+V1 negative result와 test1 diagnostic이 V2 문제 설정을 informed했고 동일 test1에서 평가됐다.
+V2 결과 자체는 freeze 전에 보지 않았지만 validation/final-test가 분리되지 않았으므로
+`TEST1_INFORMED_DEVELOPMENT`이다.
+
+## 11. 현재 Detector+Rule에 대해 무엇을 말할 수 있는가?
+
+D0/D1 response diversity는 pilot에서 관찰됐다. 하지만 현재 V1/V2는 그 diversity를 incremental
+attack-event recall로 바꾸지 못했고 normal FAR을 늘렸다. 이것은 현재 두 policy의 negative pilot
+result이지 Detector+Rule 전체가 쓸모없다는 증거가 아니다.
+
+## 12. 앞으로 무엇을 검증해야 하는가?
+
+더 큰 evaluation scope, event-unit definition freeze, validation/final-test 분리, final test 전에 고정된
+fusion policy, stronger detector, durable upstream prediction, preregistered incremental Recall/FAR와
+D0-miss recovery가 필요하다.
+
+기억할 한 문장: **D1의 다른 response가 관찰됐지만, 현재 V1/V2 gate는 이를 recall 증가로 바꾸지
+못했고 V2는 독립 검증이 아니다.**
 
 다음 task는 **{state['exact_next_task']}**이다.
 """
@@ -1665,8 +1794,8 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - D2 V2: {pilot['d2_v2']}.
 - T2 feedback actions: zero; the current cohort did not exercise feedback recovery.
 
-These are frozen observations from 14 independent INNER attack events. They are pilot
-evidence only and are not validated performance conclusions.
+These are frozen observations from 14 contiguous INNER attack-event units. Statistical
+independence is not established; they are pilot evidence only and are not validated performance conclusions.
 
 ## WHAT IS VALIDATED
 
@@ -1777,7 +1906,8 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - D2 V1: {pilot['d2_v1']}.
 - D2 V2: {pilot['d2_v2']}.
 
-이 수치는 독립 공격 사건 14개의 INNER 예비 관찰이다. 검증된 일반 성능으로 표현하면 안 된다.
+이 수치는 통계적 독립성이 입증되지 않은 14개 연속 attack-event unit의 INNER 예비 관찰이다.
+검증된 일반 성능으로 표현하면 안 된다.
 
 ## 아직 증명되지 않은 것
 
@@ -2132,6 +2262,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_006_USER_SUMMARY.md": render_arch006_user_summary(data, digest),
         "ARCH_007_USER_SUMMARY.md": render_arch007_user_summary(data, digest),
         "ARCH_008_USER_SUMMARY.md": render_arch008_user_summary(data, digest),
+        "ARCH_009_USER_SUMMARY.md": render_arch009_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

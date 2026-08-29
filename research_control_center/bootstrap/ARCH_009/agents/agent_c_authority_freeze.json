@@ -1,0 +1,1 @@
+{"agent":"C","role":"input authority freeze and label auditor","mode":"read_only","verdict":"PASS_WITH_INHERITED_D1_LIMITATION","v1_durable_gate":true,"v2_durable_gate":true,"labels_in_fusion":false,"raw_features_in_fusion":false,"scientific_executions":0,"writes":0}

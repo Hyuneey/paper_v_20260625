@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -48,6 +48,15 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 - **Trace:** NON_EQUIVALENT; only the terminal outcome semantics partially overlap canonical RuntimeTraceV1.
 - **Explanation:** A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.
 
+## Frozen D2 fusion audit
+
+- **Role:** Deterministic detector-preserving fusion-policy pilot
+- **V1:** 11/14; Normal FAR 0.7056194750975128 episodes/hour; D0-miss recovery 0/3.
+- **V2:** 11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3.
+- **D0 preservation:** VERIFIED_POINTWISE; D2(t)=D0(t) OR policy_admits_D1(t)
+- **Freeze / labels:** V1 and V2 both use durable prediction-file-before-label gates.
+- **Boundary:** V2 is test1-informed development, not independent confirmation. Current V1/V2 results do not establish that Detector-plus-Rule is generally useless.
+
 ## Components
 
 | Component | Engineering / evidence display | Next action |
@@ -95,7 +104,7 @@ only that a component supports at least one narrow implementation or contract cl
 | EXP-01 | CODE PRESENT · COMPARISON NOT EXECUTED | Discovery artifacts exist; the comparative contribution experiment has not been performed. |
 | EXP-02 | CODE PRESENT · COMPARISON NOT EXECUTED | Current references support deterministic execution but do not establish optimal criteria. |
 | EXP-03 | EXECUTED · EVIDENCE-REVIEWED PILOT | One frozen construction cohort; validity and cost observations only. |
-| EXP-04 | EXECUTED · EVIDENCE-REVIEWED PILOT | Single frozen 14-event INNER pilot. |
+| EXP-04 | EXECUTED · EVIDENCE-REVIEWED PILOT | Single frozen 14-unit INNER pilot. |
 | EXP-05 | CODE PRESENT · COMPARISON NOT EXECUTED | Implementation-level automated grounding evidence only. |
 | EXP-06 | DESIGNED ONLY | No experimental outcome. |
 
@@ -141,4 +150,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
+**ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**

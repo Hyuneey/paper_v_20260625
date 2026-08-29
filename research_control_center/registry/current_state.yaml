@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
+    "next_deep_review": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit"
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -68,7 +68,48 @@
     "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
     "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
     "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
-    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
+    "next_deep_review": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit"
+  },
+  "d2_fusion": {
+    "role": "Deterministic detector-preserving fusion-policy pilot",
+    "event_unit_count": 14,
+    "event_unit_definition": "contiguous attack-event units; statistical independence not established",
+    "input_authority": "Exact frozen D0 Boolean prediction and D1 alarm records plus frozen relation-to-source mapping; V2 additionally binds a frozen normal-derived native-horizon map",
+    "raw_features_used": false,
+    "labels_used_in_fusion": false,
+    "d0_preservation": "VERIFIED_POINTWISE; D2(t)=D0(t) OR policy_admits_D1(t)",
+    "v1": {
+      "policy": "Exact decision_physical_row_index equality; at least 2 distinct canonical D1 sources",
+      "same_second": "same D1 decision/alarm row on the one-second grid",
+      "threshold": 2,
+      "attack_event_response": "11/14",
+      "normal_false_episodes": 10,
+      "normal_far_episodes_per_hour": 0.7056194750975128,
+      "d0_miss_recovery": "0/3",
+      "point_alarms": 879,
+      "alarm_episodes": 49,
+      "durable_pre_label_freeze": true,
+      "development_status": "FROZEN_INNER_PILOT_POLICY"
+    },
+    "v2": {
+      "policy": "At least 2 distinct active D1 sources under each relation's native-horizon token",
+      "persistence": "inclusive decision_index through decision_index plus selected_horizon_seconds",
+      "threshold": 2,
+      "attack_event_response": "11/14",
+      "normal_false_episodes": 98,
+      "normal_far_episodes_per_hour": 6.915070855955625,
+      "d0_miss_recovery": "0/3",
+      "point_alarms": 2148,
+      "alarm_episodes": 143,
+      "durable_pre_label_freeze": true,
+      "development_status": "TEST1_INFORMED_DEVELOPMENT",
+      "independent_confirmation": false
+    },
+    "miss_recovery": "D1 responded to 3/3 D0 misses; V1 and V2 admitted 0/3. D1 response does not imply D2 policy admission.",
+    "complementarity": "Response diversity is pilot-observed; current V1/V2 fusion utility is not supported; general and operational complementarity remain unvalidated.",
+    "frozen_significance_test": false,
+    "warning": "V2 is test1-informed development, not independent confirmation. Current V1/V2 results do not establish that Detector-plus-Rule is generally useless.",
+    "next_deep_review": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit"
   },
   "runtime_trace_explanation": {
     "authority": "Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.",
@@ -322,7 +363,7 @@
     "overlap": "both 10; D0-only 1; D1-only 3; neither 0",
     "d2_v1": "11/14; Normal FAR 0.7056194750975128 episodes/hour; D0-miss recovery 0/3",
     "d2_v2": "11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3",
-    "scope_warning": "All detection numbers are frozen 14-event INNER pilot observations and are not validated performance conclusions."
+    "scope_warning": "All detection numbers are frozen observations on 14 contiguous attack-event units; statistical independence is not established and these are not validated performance conclusions."
   },
   "top_priorities": [
     "Preregister expanded Rule-only and detector comparison evidence with more independent events and a stronger multivariate detector baseline.",
@@ -335,34 +376,32 @@
     "Resolve fresh-machine reproducibility gaps before held-out evaluation."
   ],
   "user_todo_items": [
-    {"id": "USER-ARCH008-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what D1 actually is?", "why": "D1 evaluates the frozen COMMON-42 verified relational portfolio, not a direct T2 arm.", "linked": "ARCH_008_D1_EVALUATED_OBJECT.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish 788, 630, and 626?", "why": "They count rule records, unique alarm seconds, and grouped episodes.", "linked": "ARCH_008_OUTPUT_LEVELS.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain 13/14?", "why": "It is attack-event overlap recall, not point recall or precision.", "linked": "ARCH_008_ATTACK_EVENT_EVALUATION.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain FAR/hour?", "why": "It is normal false alarm episodes divided by normal labeled exposure hours.", "linked": "ARCH_008_NORMAL_FALSE_ALARMS.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why high Recall does not mean a superior detector?", "why": "Attack sensitivity must be considered separately from a very high normal false-alarm burden.", "linked": "ARCH_008_RULE_ONLY_UTILITY.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the D0/D1 overlap?", "why": "The frozen pilot separates both, D0-only, D1-only, and neither event categories.", "linked": "ARCH_008_D0_D1_OVERLAP.csv", "status": "OPEN"},
-    {"id": "USER-ARCH008-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain pilot complementarity versus validated complementarity?", "why": "Observed D1-only events are a signal, not independent statistical or operational validation.", "linked": "ARCH_008_COMPLEMENTARITY_BOUNDARY.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-008", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 is not Agentic Rule-only?", "why": "T2 is excluded from COMMON-42 and no direct T2 runtime result was evaluated.", "linked": "ARCH_008_PROFESSOR_RULE_ONLY_NOTE.md", "status": "OPEN"},
-    {"id": "USER-ARCH008-009", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-009.", "why": "The next audit maps D2 detector-plus-rule fusion without redesigning it.", "linked": "ARCH-009", "status": "OPEN"}
+    {"id": "USER-ARCH009-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D2 exists?", "why": "D2 tests whether relational evidence can add alarms while preserving D0.", "linked": "ARCH_009_D2_ROLE.md", "status": "OPEN"},
+    {"id": "USER-ARCH009-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain V1?", "why": "V1 requires two distinct sources at the exact same decision row.", "linked": "ARCH_009_V1_POLICY.md", "status": "OPEN"},
+    {"id": "USER-ARCH009-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain V2?", "why": "V2 retains D1 evidence through each frozen relation horizon before source counting.", "linked": "ARCH_009_V2_POLICY.md", "status": "OPEN"},
+    {"id": "USER-ARCH009-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 can hit a D0 miss but D2 still reject it?", "why": "A D1 response does not automatically satisfy a two-distinct-source temporal gate.", "linked": "ARCH_009_MISS_RECOVERY.md", "status": "OPEN"},
+    {"id": "USER-ARCH009-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why V2 is not independent validation?", "why": "V1/test1 diagnostics informed V2 and V2 reused test1.", "linked": "ARCH_009_V2_POLICY.md", "status": "OPEN"},
+    {"id": "USER-ARCH009-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the current D0, V1, and V2 comparison?", "why": "All three have 11/14 recall while both fusion policies have higher normal FAR.", "linked": "ARCH_009_POLICY_COMPARISON.csv", "status": "OPEN"},
+    {"id": "USER-ARCH009-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why current fusion does not prove Detector-plus-Rule generally useless?", "why": "Only two fixed policies on one development pilot were evaluated.", "linked": "ARCH_009_COMPLEMENTARITY_INTERPRETATION.md", "status": "OPEN"},
+    {"id": "USER-ARCH009-008", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-010.", "why": "The next audit verifies metric and episode construction without recomputation.", "linked": "ARCH-010", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain what D1 actually is.",
-    "Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.",
-    "Explain 13/14 attack-event response.",
-    "Explain Normal FAR/hour.",
-    "Explain why high Recall does not establish detector superiority.",
-    "Explain the D0/D1 event overlap.",
-    "Explain pilot versus validated complementarity.",
-    "Explain why D1 is not Agentic Rule-only.",
-    "Approve or defer starting ARCH-009."
+    "Explain why D2 exists.",
+    "Explain V1 exact-index two-source admission.",
+    "Explain V2 native-horizon active-source admission.",
+    "Explain why a D1 response can fail D2 admission.",
+    "Explain why V2 is test1-informed rather than independent validation.",
+    "Compare D0, V1, and V2 on Recall and FAR.",
+    "Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.",
+    "Approve or defer starting ARCH-010."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit",
-  "recommended_next_architecture_task": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit",
-  "last_completed_task": "ARCH-008",
-  "exact_next_task": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit",
+  "recommended_next_management_task": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit",
+  "recommended_next_architecture_task": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit",
+  "last_completed_task": "ARCH-009",
+  "exact_next_task": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

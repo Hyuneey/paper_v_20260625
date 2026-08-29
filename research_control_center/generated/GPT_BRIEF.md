@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -64,12 +64,19 @@ D0 is a 37-feature normal-only PCA-SPE reference. Train1+train2 fit custom NumPy
 calibrates a no-interpolation q=.999 threshold; test1 uses strict `score > threshold`. Prediction
 bytes were frozen before labels. The 11/14 pilot is neither SOTA nor thesis-contribution evidence.
 
+## Frozen D2 fusion boundary
+
+V1 uses exact-row two-distinct-source corroboration; V2 keeps each D1 alarm active through its
+frozen native relation horizon and applies the same source threshold. Both preserve D0 pointwise
+and durably freeze combined predictions before labels. Both returned 11/14 and recovered 0/3 D0
+misses while increasing normal FAR. V2 is test1-informed development, not independent confirmation.
+
 ## How we got here
 
 The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. Early motives remain partly `USER_CONTEXT`.
 ARGOS became partial support; deterministic verification survived the earlier Verifier framing.
-HAI P1, META/STAT/GDN, normal-only profiling and numeric authority led to COMMON-42 and the
-14-event pilot. OUTER ended in a custody blocker. History explains this lineage but cannot override current state.
+Normal-only profiling and numeric authority led to COMMON-42 and the 14-unit pilot; OUTER
+ended in a custody blocker. History cannot override current state.
 
 ## Established facts
 
@@ -83,7 +90,8 @@ physical truth, unique GDN benefit, or agentic-feedback advantage. T2 feedback a
 
 ## Frozen INNER pilot observations
 
-The INNER evaluation contains 14 operational attack events. D0 PCA-SPE responded to
+The INNER evaluation contains 14 contiguous attack-event units; statistical independence is
+not established. D0 PCA-SPE responded to
 11/14 with Normal FAR 0.4939336325682589 episodes/hour. D1 verified Rule-only responded
 to 13/14 with Normal FAR 40.50255787059723 episodes/hour. Their event overlap was both
 10, D0-only 1, D1-only 3, neither 0. D2 V1 and D2 V2 each responded to 11/14 and each
@@ -91,7 +99,7 @@ recovered 0/3 D0-missed events; their Normal FAR values were 0.7056194750975128 
 6.915070855955625 episodes/hour respectively. These are exact public frozen pilot
 observations, not new calculations.
 
-> 14 attack events are pilot evidence only. Do not describe current detection numbers as validated performance.
+> These 14 units are pilot evidence only, not validated performance.
 
 ## Unresolved scientific questions
 
@@ -108,12 +116,12 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Current experiments
 
-- **EXP-01 · 변수 관계 탐색 방법 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Discovery artifacts exist; the comparative contribution experiment has not been performed..
-- **EXP-02 · 규칙 수치 기준 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Current references support deterministic execution but do not establish optimal criteria..
-- **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`; scope: One frozen construction cohort; validity and cost observations only..
-- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`; scope: Single frozen 14-event INNER pilot..
-- **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Implementation-level automated grounding evidence only..
-- **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`; scope: No experimental outcome..
+- **EXP-01 · 변수 관계 탐색 방법 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
+- **EXP-02 · 규칙 수치 기준 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
+- **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
+- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
+- **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
+- **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`.
 
 ## Claim boundaries
 
@@ -133,7 +141,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Current risks
 
-- **HIGH / OPEN** — The INNER pilot contains only 14 independent attack events so stable performance and superiority cannot be inferred.
+- **HIGH / OPEN** — The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
 - **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
@@ -143,28 +151,26 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain what D1 actually is.
-- Distinguish 788 rule records, 630 alarm seconds, and 626 episodes.
-- Explain 13/14 attack-event response.
-- Explain Normal FAR/hour.
-- Explain why high Recall does not establish detector superiority.
-- Explain the D0/D1 event overlap.
-- Explain pilot versus validated complementarity.
-- Explain why D1 is not Agentic Rule-only.
-- Approve or defer starting ARCH-009.
+- Explain why D2 exists.
+- Explain V1 exact-index two-source admission.
+- Explain V2 native-horizon active-source admission.
+- Explain why a D1 response can fail D2 admission.
+- Explain why V2 is test1-informed rather than independent validation.
+- Compare D0, V1, and V2 on Recall and FAR.
+- Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.
+- Approve or defer starting ARCH-010.
 
 ## Source-policy boundary
 
-The read-only documentation overlay is `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @
-`ebc5a57bfdb7d8266f96f2990338effb9d0a2743`. It provides narrative context only.
-The historical checkout `task-039c-gdn` @
-`c0efdb6218385ec326be1a929371242314e63cb6` is not an authority for scientific claims.
+Documentation overlay `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @ `ebc5a57bfdb7d8266f96f2990338effb9d0a2743`
+is context only; `task-039c-gdn` @ `c0efdb6218385ec326be1a929371242314e63cb6`
+is non-authoritative.
 
 ## Exact next task
 
-Management: **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
+Management: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
 
-Following architecture review: **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
+Following architecture review: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

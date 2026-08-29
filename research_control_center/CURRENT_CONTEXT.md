@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -85,8 +85,8 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - D2 V2: 11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3.
 - T2 feedback actions: zero; the current cohort did not exercise feedback recovery.
 
-These are frozen observations from 14 independent INNER attack events. They are pilot
-evidence only and are not validated performance conclusions.
+These are frozen observations from 14 contiguous INNER attack-event units. Statistical
+independence is not established; they are pilot evidence only and are not validated performance conclusions.
 
 ## WHAT IS VALIDATED
 
@@ -111,5 +111,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-Exact next management task: **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
-Following architecture task: **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**
+Exact next management task: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
+Following architecture task: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**

@@ -1,0 +1,16 @@
+{
+  "task_id": "ARCH-009",
+  "verdict": "PASS",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base_commit": "93beeba6a58d602e2ab7b7bce16f9998f9b7d010",
+  "method": "static_source_and_frozen_public_safe_evidence_audit",
+  "event_units": {"count": 14, "contiguous": true, "statistical_independence_established": false},
+  "d0": {"detected": 11, "recall": 0.7857142857142857, "normal_false_episodes": 7, "normal_far_per_hour": 0.4939336325682589},
+  "v1": {"policy": "EXACT_INDEX_TWO_DISTINCT_SOURCE_OR_D0", "threshold": 2, "point_alarms": 879, "alarm_episodes": 49, "normal_false_episodes": 10, "detected": 11, "recall": 0.7857142857142857, "normal_far_per_hour": 0.7056194750975128, "d0_miss_recovery": "0/3"},
+  "v2": {"policy": "NATIVE_HORIZON_ACTIVE_TWO_DISTINCT_SOURCE_OR_D0", "threshold": 2, "point_alarms": 2148, "alarm_episodes": 143, "normal_false_episodes": 98, "detected": 11, "recall": 0.7857142857142857, "normal_far_per_hour": 6.915070855955625, "d0_miss_recovery": "0/3", "test1_informed": true},
+  "governance": {"raw_features_used": false, "labels_used_in_fusion": false, "d0_pointwise_preserved": true, "v1_durable_pre_label": true, "v2_durable_pre_label": true, "inherited_d1_shallow_gate": true},
+  "statistics": {"new_metrics_computed": 0, "new_tests_computed": 0, "frozen_significance_test": false},
+  "mismatches": {"total": 12, "critical": 0, "high": 8, "medium": 4, "low": 0},
+  "independent_qa": {"verdict": "PASS", "questions": 20, "passed": 20, "conflicts": 0, "corrections_resolved": 1},
+  "safety": {"scientific_executions": 0, "test1_feature_accesses": 0, "test1_label_accesses": 0, "test2_accesses": 0, "scientific_source_changes": 0, "frozen_result_changes": 0, "private_exposures": 0, "remote_egress": 0}
+}

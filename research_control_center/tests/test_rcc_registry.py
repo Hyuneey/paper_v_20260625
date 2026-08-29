@@ -45,8 +45,8 @@ class RegistryValidationTests(unittest.TestCase):
         result = validator.ValidationResult()
         validator._validate_authority(data, result)
         self.assertEqual([], result.errors)
-        self.assertEqual(9, len(data["state"]["top_user_todo"]))
-        self.assertEqual(9, len(data["state"]["user_todo_items"]))
+        self.assertEqual(8, len(data["state"]["top_user_todo"]))
+        self.assertEqual(8, len(data["state"]["user_todo_items"]))
         self.assertEqual(32, len(data["components"]))
         self.assertEqual(6, len(data["experiments"]))
         self.assertEqual(13, len(data["claims"]))
@@ -176,7 +176,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual("ARCH-009 — D2 Detector + Rule Fusion Deep Audit", data["state"]["exact_next_task"])
+        self.assertEqual("ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

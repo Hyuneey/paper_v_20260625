@@ -1,0 +1,11 @@
+claim,status,evidence,boundary
+D2 V1 was implemented and frozen,SUPPORTED_IMPLEMENTATION,"V1 source; combined artifact; integrity report","Does not imply utility"
+D2 V2 was implemented and frozen,SUPPORTED_IMPLEMENTATION,"V2 source; combined artifact; completed integrity evidence","Development policy"
+V1 recovered D0 misses,NOT_SUPPORTED_BY_CURRENT_PILOT,"0/3 frozen recovery","Do not generalize beyond pilot"
+V2 recovered D0 misses,NOT_SUPPORTED_BY_CURRENT_PILOT,"0/3 frozen recovery","Do not describe V2 as confirmation"
+V1 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT_METRICS,"same 11/14 recall; higher FAR","Descriptive test1 comparison"
+V2 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT_METRICS,"same 11/14 recall; higher FAR","Descriptive test1 comparison"
+Detector plus Rule generally has no value,UNVALIDATED_OVERGENERALIZATION,"Only V1 and V2 on one pilot were tested","Requires new frozen independent design"
+D0 and D1 contain different event responses,PILOT_SUPPORTED,"both 10; D0-only 1; D1-only 3; neither 0","No general complementarity claim"
+Current fusion converts D1 diversity into useful incremental detection,NOT_SUPPORTED_BY_CURRENT_PILOT,"V1 and V2 recovery 0/3","Operational value unvalidated"
+V2 independently confirms V1,NOT_SUPPORTED,"V2 is test1-informed and reuses test1","Validation and final-test separation required"

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ba39f00d5033f274d9807110ff7d3bc625f830ef4195bb0c9edcd320742d9932 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D0 PCA-SPE를 쉽게 이해하기
 
 ## 1. PCA는 왜 쓰는가?
@@ -40,7 +40,7 @@ Interpolation은 없고, 정확한 판정은 `score > threshold`다. 같은 값�
 |---|---|
 | Point alarm | 876개 row가 threshold를 넘음 |
 | Alarm episode | 연속 alarm point를 묶은 46개 구간 |
-| Attack-event response | 14개 독립 사건 중 11개가 alarm episode와 겹침 |
+| Attack-event response | 통계적 독립성이 미확인된 14개 연속 사건 단위 중 11개가 alarm episode와 겹침 |
 | Normal false episode | 46개 중 attack timestamp와 겹치지 않은 7개 |
 | Normal FAR/hour | 7개 normal false episode를 normal exposure hour로 나눈 `0.4939336325682589` |
 
@@ -66,4 +66,4 @@ Rule-only 기여를 설득력 있게 평가하려면 새 독립 사전등록에�
 기억할 한 문장: **D0는 normal-only로 고정된 단순 reference detector이고, 점수·point·episode·event를
 구분해야 하며, 14-event 수치는 pilot evidence다.**
 
-다음 task는 **ARCH-009 — D2 Detector + Rule Fusion Deep Audit**이다.
+다음 task는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**이다.

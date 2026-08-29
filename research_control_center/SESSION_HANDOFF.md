@@ -13,30 +13,29 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit`
+`ARCH-009 — D2 Detector + Rule Fusion Deep Audit`
 
 ## What changed
 
-- Identified the exact D1 evaluated object as COMMON-42 Verified Relational Rule-only.
-- Separated 6,031 opportunities, 788 anomalous rule records, 630 alarm seconds, 626 total episodes, and 574 normal false episodes.
-- Verified 13/14 attack-event response and the D0/D1 overlap of 10 both, 1 D0-only, 3 D1-only, and 0 neither.
-- Preserved the very high 40.50255787059723 Normal FAR/hour as a separate burden axis.
-- Classified response diversity and pilot complementarity signal as observed while general and operational complementarity remain unvalidated.
-- Preserved the in-memory prediction-before-label qualification and future durable-gate requirement.
+- Mapped V1 as exact-row two-distinct-source corroboration and V2 as native-horizon active-source corroboration.
+- Verified pointwise D0 preservation and durable combined-prediction persistence before label access for both versions.
+- Preserved frozen results: D0/V1/V2 each 11/14; V1 FAR 0.7056194750975128; V2 FAR 6.915070855955625; both recovery 0/3.
+- Explained why D1 response does not automatically satisfy D2 admission.
+- Classified V2 as test1-informed development rather than independent confirmation.
+- Corrected current-facing terminology to 14 contiguous attack-event units; statistical independence is unestablished.
 
 ## Decisions made
 
 - Scientific claims remain pinned to the checkpoint.
 - Thesis-draft content remains a narrative overlay only.
-- All detection numbers remain 14-event INNER pilot observations.
+- All detection numbers remain observations on 14 contiguous INNER attack-event units.
 - GDN contribution, agentic benefit, Rule-only operational utility, held-out
   generalization, and human explanation usefulness remain unvalidated or unsupported.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-008 added static source and frozen
-public-metadata lineage, count semantics, overlap interpretation, and claim
-boundaries only.
+No new scientific outcome was produced. ARCH-009 added static source, policy,
+freeze, frozen-result lineage, and claim-boundary documentation only.
 
 ## Open risks
 
@@ -55,15 +54,15 @@ boundaries only.
 
 ## User actions
 
-- Explain what D1 is and why it is not T2 Agentic Rule-only.
-- Distinguish 788 rule records, 630 alarm seconds, 626 total episodes, and 574 normal false episodes.
-- Explain 13/14 attack-event response and 40.50255787059723 FAR/hour.
-- Explain the D0/D1 event overlap and pilot-versus-validated complementarity boundary.
-- Explain why high Recall does not establish detector superiority.
-- Approve or defer ARCH-009.
+- Explain why D2 exists and distinguish V1 from V2.
+- Explain why D1 can hit a D0 miss while D2 rejects it.
+- Explain why V2 is not independent validation.
+- Compare D0, V1, and V2 on Recall and FAR.
+- Explain why the negative V1/V2 pilot does not prove all Detector-plus-Rule policies useless.
+- Approve or defer ARCH-010.
 
 ## Exact next task
 
-`ARCH-009 — D2 Detector + Rule Fusion Deep Audit`
+`ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit`
 
-Do not start it until the user has reviewed ARCH-008.
+Do not start it until the user has reviewed ARCH-009.

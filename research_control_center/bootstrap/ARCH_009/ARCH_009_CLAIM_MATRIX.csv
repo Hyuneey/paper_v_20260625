@@ -1,0 +1,11 @@
+claim,status
+D2 V1 implemented and frozen,SUPPORTED_IMPLEMENTATION
+D2 V2 implemented and frozen,SUPPORTED_IMPLEMENTATION
+V1 recovered D0 misses,NOT_SUPPORTED_BY_CURRENT_PILOT
+V2 recovered D0 misses,NOT_SUPPORTED_BY_CURRENT_PILOT
+V1 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT_METRICS
+V2 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT_METRICS
+Detector plus Rule generally has no value,UNVALIDATED_OVERGENERALIZATION
+D0 and D1 contain different event responses,PILOT_SUPPORTED
+Current fusion converts diversity into useful detection,NOT_SUPPORTED_BY_CURRENT_PILOT
+V2 independently confirms V1,NOT_SUPPORTED
