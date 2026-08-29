@@ -108,6 +108,21 @@ REQUIRED_RCC_FILES = (
     "dashboard/assets/rcc.css", "dashboard/assets/rcc.js",
     "scripts/build_dashboard.py", "scripts/validate_registry.py", "scripts/refresh_all.py",
     "scripts/open_dashboard.bat",
+    "bootstrap/ARCH_006/ARCH_006_REPORT.md",
+    "bootstrap/ARCH_006/ARCH_006_RUNTIME_AUDIT.md",
+    "bootstrap/ARCH_006/ARCH_006_TRACE_AUDIT.md",
+    "bootstrap/ARCH_006/ARCH_006_D1_FREEZE_AUDIT.md",
+    "bootstrap/ARCH_006/ARCH_006_EXPLANATION_AUDIT.md",
+    "bootstrap/ARCH_006/ARCH_006_R1_INPUT_BOUNDARY.md",
+    "bootstrap/ARCH_006/ARCH_006_MISMATCHES.md",
+    "bootstrap/ARCH_006/ARCH_006_QA_REPORT.md",
+    "bootstrap/ARCH_006/ARCH_006_MULTI_AGENT_REVIEW.md",
+    "bootstrap/ARCH_006/ARCH_006_EVIDENCE.json",
+    "bootstrap/ARCH_006/agents/agent_a_runtime.json",
+    "bootstrap/ARCH_006/agents/agent_b_trace.json",
+    "bootstrap/ARCH_006/agents/agent_c_prediction_freeze.json",
+    "bootstrap/ARCH_006/agents/agent_d_explanation.json",
+    "bootstrap/ARCH_006/agents/agent_e_qa.json",
 )
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
@@ -116,6 +131,7 @@ GENERATED_FILES = (
     "generated/ARCH_002_USER_SUMMARY.md", "generated/ARCH_003_USER_SUMMARY.md",
     "generated/ARCH_004_USER_SUMMARY.md",
     "generated/ARCH_005_USER_SUMMARY.md",
+    "generated/ARCH_006_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -130,6 +146,7 @@ REQUIRED_RCC_DIRS = (
     "architecture/03_relation_and_numeric", "bootstrap/ARCH_003", "bootstrap/ARCH_003/agents",
     "architecture/04_rule_construction", "bootstrap/ARCH_004", "bootstrap/ARCH_004/agents",
     "architecture/05_verifier_common42", "bootstrap/ARCH_005", "bootstrap/ARCH_005/agents",
+    "architecture/06_runtime_trace_explanation", "bootstrap/ARCH_006", "bootstrap/ARCH_006/agents",
 )
 
 
@@ -208,10 +225,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 9, "top_user_todo must contain exactly nine ARCH-005 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 9, "ARCH-005 must leave nine user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-005", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 9, "top_user_todo must contain exactly nine ARCH-006 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 9, "ARCH-006 must leave nine user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-006", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-007 — D0 PCA-SPE Detector Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -224,8 +241,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-007 — D0 PCA-SPE Detector Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-007 — D0 PCA-SPE Detector Deep Audit", "next architecture task mismatch")
     relation = state.get("relation_numeric_authority", {})
     result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
     result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
@@ -240,6 +257,14 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require("42 V4" in verifier.get("common42", ""), "ARCH-005 COMMON-42 definition mismatch")
     result.require(verifier.get("preferred_d1_term") == "COMMON-42 Verified Relational Rule-only", "ARCH-005 D1 terminology mismatch")
     result.require("committed one-attempt INNER execution grant" in verifier.get("d1_authority", ""), "ARCH-005 D1 authority summary mismatch")
+    runtime = state.get("runtime_trace_explanation", {})
+    result.require("V4 authority plane" in runtime.get("authority", ""), "ARCH-006 frozen D1 authority mismatch")
+    result.require(runtime.get("llm_calls") == 0, "ARCH-006 frozen R0/D1 must remain LLM-free")
+    result.require(runtime.get("freeze_classification") == "SAFE_BUT_WEAKER_THAN_D0_D2", "ARCH-006 freeze classification mismatch")
+    result.require(runtime.get("durable_persistence") is False, "ARCH-006 must not overstate durable pre-label persistence")
+    result.require("NON_EQUIVALENT" in runtime.get("canonical_trace_relationship", ""), "ARCH-006 trace relationship mismatch")
+    result.require(runtime.get("human_usefulness") == "UNVALIDATED", "ARCH-006 explanation usefulness boundary mismatch")
+    result.require("630 unique alarm" in runtime.get("prediction", ""), "ARCH-006 unique alarm summary mismatch")
     governance = state.get("data_governance", {})
     result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
     result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
@@ -603,7 +628,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -615,7 +640,8 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_002_USER_SUMMARY.md": ("관계 후보는 왜 세 방식으로 고르는가", "META", "STAT", "GDN", "47개"),
         "generated/ARCH_003_USER_SUMMARY.md": ("47개 후보는 어떻게 42개 실행 관계가 되는가", "train3", "Numeric authority", "causal relation"),
         "generated/ARCH_004_USER_SUMMARY.md": ("Rule은 어떻게 만들어지는가", "Evidence Pack", "39/42", "runtime authorization"),
-        "generated/ARCH_005_USER_SUMMARY.md": ("COMMON-42", "20단계", "runtime authorization", "ARCH-006"),
+        "generated/ARCH_005_USER_SUMMARY.md": ("COMMON-42", "20단계", "runtime authorization", "다음 task"),
+        "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "ARCH-007"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -839,6 +865,35 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     disposition = (verifier / "ARCH_005_HIGH_RISK_DISPOSITION.md").read_text(encoding="utf-8")
     for status in ("RESOLVED", "PARTIALLY_RESOLVED", "DEFER_TO_ARCH_006", "REQUIRES_CODE_FIX"):
         result.require(status in disposition, f"ARCH-005 carryover disposition omits {status}")
+
+    runtime = rcc_root / "architecture" / "06_runtime_trace_explanation"
+    required_runtime = {
+        "ARCH_006_REPORT.md", "ARCH_006_RUNTIME_STATE_MACHINE.md", "ARCH_006_OUTCOME_TAXONOMY.md",
+        "ARCH_006_D1_PREDICTION_SCHEMA.md", "ARCH_006_D1_FREEZE_BOUNDARY.md",
+        "ARCH_006_TRACE_SCHEMA.csv", "ARCH_006_TRACE_HASH_CHAIN.md",
+        "ARCH_006_EXPLANATION_RENDERER.md", "ARCH_006_R1_INPUT_BOUNDARY.md",
+        "ARCH_006_FUNCTION_CATALOG.csv", "ARCH_006_IO_CONTRACTS.csv",
+        "ARCH_006_RUNTIME_FLOW.mmd", "ARCH_006_CARRYOVER_DISPOSITION.md", "ARCH_006_MISMATCHES.md",
+    }
+    for name in required_runtime:
+        result.require((runtime / name).is_file(), f"ARCH-006 output missing: {name}")
+    if not runtime.is_dir() or any(not (runtime / name).is_file() for name in required_runtime):
+        return
+    with (runtime / "ARCH_006_TRACE_SCHEMA.csv").open("r", encoding="utf-8", newline="") as handle:
+        trace_rows = list(csv.DictReader(handle))
+    with (runtime / "ARCH_006_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        runtime_functions = list(csv.DictReader(handle))
+    with (runtime / "ARCH_006_IO_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        runtime_contracts = list(csv.DictReader(handle))
+    result.require(len(trace_rows) >= 14, "ARCH-006 trace schema comparison is incomplete")
+    result.require(any(row["semantic_equivalent"] == "NO" for row in trace_rows), "ARCH-006 trace comparison must preserve non-equivalence")
+    result.require(len(runtime_functions) >= 13 and all(is_safe_relative_path(row["path"]) for row in runtime_functions), "ARCH-006 function catalog is incomplete or unsafe")
+    result.require(len(runtime_contracts) >= 10, "ARCH-006 IO contracts are incomplete")
+    runtime_flow = (runtime / "ARCH_006_RUNTIME_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(runtime_flow.startswith("flowchart "), "ARCH-006 Mermaid does not declare a flowchart")
+    result.require("LABEL-BLIND RUNTIME" in runtime_flow and "LABEL ACCESS" in runtime_flow, "ARCH-006 Mermaid omits label boundary")
+    result.require("RuntimeTraceV1" in (runtime / "ARCH_006_TRACE_HASH_CHAIN.md").read_text(encoding="utf-8"), "ARCH-006 trace authority boundary is missing")
+    result.require("SAFE_BUT_WEAKER_THAN_D0_D2" in (runtime / "ARCH_006_D1_FREEZE_BOUNDARY.md").read_text(encoding="utf-8"), "ARCH-006 freeze classification is missing")
 
 
 def validate_registry(

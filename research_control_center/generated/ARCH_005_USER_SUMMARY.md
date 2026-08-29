@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Proposal부터 COMMON-42와 D1까지
 
 Proposal은 frozen relation에 묶인 construction 후보이고, canonical `DelayedResponseRuleV1`은
@@ -21,4 +21,4 @@ match였지만 runtime authority/reference identity는 별도로 rebound됐다.
 
 기억할 한 문장: **Verifier acceptance는 scientific validation도 runtime authorization도 아니다.**
 
-다음 task는 **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**이다.
+다음 task는 **ARCH-007 — D0 PCA-SPE Detector Deep Audit**이다.

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -39,6 +39,14 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 - **Leakage:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
 - **Test1:** INNER development / 14-event pilot; not final validation
 - **Test2:** One custody-level file access attempt was rejected before byte read; held-out result unavailable.
+
+## Frozen D1 runtime / trace audit
+
+- **Authority:** Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.
+- **Prediction:** 6,031 opportunity records, 788 anomalous rule records, 630 unique alarm decision seconds, and 626 downstream metric episodes.
+- **Freeze:** SAFE_BUT_WEAKER_THAN_D0_D2; durable pre-label persistence = no.
+- **Trace:** NON_EQUIVALENT; only the terminal outcome semantics partially overlap canonical RuntimeTraceV1.
+- **Explanation:** A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.
 
 ## Components
 
@@ -133,4 +141,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
+**ARCH-007 — D0 PCA-SPE Detector Deep Audit**

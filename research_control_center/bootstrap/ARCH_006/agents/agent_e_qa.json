@@ -1,0 +1,47 @@
+{
+  "agent": "E — Independent ARCH-006 Consistency Reviewer",
+  "verdict": "PASS",
+  "qa_questions_satisfactory": 18,
+  "qa_questions_total": 18,
+  "trigger_precision_correction": {
+    "required": true,
+    "applied_by_coordinator": true,
+    "confirmed": true,
+    "policy": "Same-source adjacent candidates within 10 seconds form a single-link cluster; retain the largest absolute amplitude and the earliest index on an exact tie; then apply inclusive plus/minus 2-second cross-source isolation."
+  },
+  "boundaries": {
+    "v4_runtime": "PASS",
+    "trigger_and_response": "PASS",
+    "numeric_roles": "PASS",
+    "outcome_taxonomy": "PASS",
+    "aggregation_vs_episode": "PASS",
+    "task_trace": "PASS",
+    "canonical_trace_relationship": "NON_EQUIVALENT_WITH_PARTIAL_TERMINAL_OVERLAP",
+    "prediction_before_label": "PASS_IN_MEMORY",
+    "durable_prelabel_persistence": "ABSENT_AND_EXPLICIT",
+    "determinism": "DETERMINISTIC_BY_CODE_FOR_FIXED_BYTES_AND_RUNTIME_SEMANTICS",
+    "frozen_r0_llm_calls": 0,
+    "frozen_d1_explanation_bridge": "ABSENT_AND_EXPLICIT",
+    "human_usefulness": "UNVALIDATED",
+    "causal_claims": "EXCLUDED",
+    "future_r1_boundary": "PASS"
+  },
+  "mismatches": {"total": 13, "critical": 0, "high": 4, "medium": 6, "low": 3},
+  "validation": {
+    "registry": "PASS",
+    "rcc_tests": "76/76 PASS",
+    "focused_arch006_tests": "5/5 PASS",
+    "privacy_exposures": 0
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "runtime_executions": 0,
+    "llm_calls": 0,
+    "label_accesses": 0,
+    "test2_accesses": 0,
+    "source_changes_by_qa": 0,
+    "frozen_artifact_changes_by_qa": 0
+  },
+  "required_corrections_remaining": 0,
+  "files_modified_by_qa": 0
+}

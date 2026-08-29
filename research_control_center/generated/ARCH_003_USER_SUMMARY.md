@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 47개 후보는 어떻게 42개 실행 관계가 되는가
 
 ## 한 문장 답
@@ -76,4 +76,4 @@ root-cause를 검증하지 않았다. Held-out 일반화도 아직 확인되지 
 3. value equality와 authority identity equality는 다르다.
 4. relation numeric authority와 D0 PCA-SPE threshold는 별개다.
 
-다음 task는 **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**이다.
+다음 task는 **ARCH-007 — D0 PCA-SPE Detector Deep Audit**이다.

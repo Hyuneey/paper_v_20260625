@@ -56,6 +56,9 @@ ARCHITECTURE_FILES = (
     "05_verifier_common42/ARCH_005_HASH_CHAIN.csv",
     "05_verifier_common42/ARCH_005_FUNCTION_CATALOG.csv",
     "05_verifier_common42/ARCH_005_IO_CONTRACTS.csv",
+    "06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv",
+    "06_runtime_trace_explanation/ARCH_006_FUNCTION_CATALOG.csv",
+    "06_runtime_trace_explanation/ARCH_006_IO_CONTRACTS.csv",
 )
 
 
@@ -369,6 +372,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     relation = state["relation_numeric_authority"]
     construction = state["rule_construction_authority"]
     verifier = state["verifier_common42_authority"]
+    runtime = state["runtime_trace_explanation"]
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -419,7 +423,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -505,6 +509,34 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
       <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
       <p><strong>Next deep review:</strong> {_escape(verifier['next_deep_review'])}</p>
+    </section>
+
+    <section id="runtime-trace-explanation" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">RUNTIME</p><h2>RULE RUNTIME / TRACE / EXPLANATION</h2></div>
+      <p class="architecture-flow">COMMON-42 → Rule Evaluation → Task Trace → D1 Prediction → In-memory Freeze → Label Access → Metrics</p>
+      <div class="status-snapshot">
+        <div><span>Runtime authority</span><strong>V4 TASK-SPECIFIC</strong></div>
+        <div><span>Runtime LLM</span><strong>NO — FROZEN R0/D1</strong></div>
+        <div><span>Determinism</span><strong>{_escape(runtime['determinism'])}</strong></div>
+        <div><span>Trace authority</span><strong>TASK-SPECIFIC / NON-EQUIVALENT</strong></div>
+        <div><span>Durable pre-label freeze</span><strong>NO</strong></div>
+        <div><span>Explanation human validation</span><strong>{_escape(runtime['human_usefulness'])}</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Runtime contract</h3><dl class="architecture-contract">
+        <div><dt>AUTHORITY</dt><dd>{_escape(runtime['authority'])}</dd></div>
+        <div><dt>TRIGGER</dt><dd>{_escape(runtime['trigger'])}</dd></div>
+        <div><dt>TARGET RESPONSE</dt><dd>{_escape(runtime['target_response'])}</dd></div>
+        <div><dt>TOLERANCE / PERSISTENCE</dt><dd>{_escape(runtime['tolerance'])} {_escape(runtime['persistence'])}</dd></div>
+      </dl></div><div><h3>Prediction and trace boundary</h3><dl class="architecture-contract">
+        <div><dt>D1 PREDICTION</dt><dd>{_escape(runtime['prediction'])}</dd></div>
+        <div><dt>FREEZE</dt><dd>{_escape(runtime['freeze_classification'])}; durable persistence = NO</dd></div>
+        <div><dt>LABEL ACCESS</dt><dd>{_escape(runtime['label_access'])}</dd></div>
+        <div><dt>TRACE</dt><dd>{_escape(runtime['trace_type'])}; {_escape(runtime['canonical_trace_relationship'])}</dd></div>
+        <div><dt>EXPLANATION</dt><dd>{_escape(runtime['explanation'])}</dd></div>
+      </dl></div></div>
+      <aside class="principle">{_escape(runtime['warning'])}</aside>
+      <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
+      <p><strong>Next deep review:</strong> {_escape(runtime['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -669,9 +701,6 @@ Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 Phase progression: {' → '.join(state['phase_progression'])}.
 
-Pilot-operational architecture; scientific validation, held-out generalization, and
-fresh-machine reproduction remain incomplete.
-
 ## How to read RCC status
 
 Engineering and scientific evidence are separate. Component `audited=true` means
@@ -689,28 +718,30 @@ These counts are not a single completion percentage.
 ## Data and split boundary
 
 HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
-separately calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero
-test2 bytes or labels and produced no outcome. D0/D2 freeze predictions before labels; D1 has
-a documented durable-file ordering gap. D2 V2 is test1-informed.
+calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero test2 bytes
+or labels and produced no outcome. D1 has a durable-file ordering gap. D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-META metadata priors, STAT normal lagged association, and GDN embedding-cosine edges rank
-the 144-pair universe separately. Their Top-20 views form an unscored 47-pair union. Attention
-is not ranking evidence and no post-hoc XAI is used. GDN contribution remains unvalidated.
+META, STAT, and GDN separately rank the 144-pair universe; their Top-20 views form an unscored
+47-pair union. Attention is not ranking evidence, XAI is absent, and GDN benefit is unvalidated.
 
 ## Relation and numeric-authority boundary
 
-The relation lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 confirmed.
-Confirmation cannot search or retune. E1 has 462 construction references; frozen D1 uses a
-separate 420-reference normal-only authority plus horizon. Shared values matched, but authority
-identities remain separate. Repeated normal response is not causal proof.
+The lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 confirmed. Confirmation
+cannot search or retune. Construction and runtime numeric identities remain separate. Repeated
+normal response is not causal proof.
 
 ## Rule-construction boundary
 
-E3 exposes a fixed relation, horizon, and ten normal-only value/reference bindings to a closed
-proposal schema. `accepted_proposal` grants neither canonical materialization, runtime authority,
-nor detection performance. T2 feedback actions were zero.
+E3 exposes a fixed relation, horizon, and normal-only references to a closed proposal schema.
+`accepted_proposal` grants neither runtime authority nor detection performance. T2 feedback was zero.
+
+## Frozen D1 runtime boundary
+
+Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse to 630 seconds
+and 626 metric episodes. Prediction preceded labels but was not durably persisted; its trace is
+not `RuntimeTraceV1`, and no D1 explanation was rendered.
 
 ## How we got here
 
@@ -720,7 +751,7 @@ partial methodological support, while deterministic verification survived the ea
 Verifier framing. HAI provenance and the continuous-step recovery selected P1; distinct
 META/STAT/GDN evidence, normal-only profiling, and numeric authority led to COMMON-42 and
 the frozen 14-event D0/D1/D2 INNER pilot. OUTER ended in a custody blocker, not a result.
-History explains this lineage but cannot override RCC-002 current state or `claims.csv`.
+History explains this lineage but cannot override current state.
 
 ## Established facts
 
@@ -845,6 +876,14 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 - **Leakage:** {state['data_governance']['leakage_status']}
 - **Test1:** {state['data_governance']['test1_status']}
 - **Test2:** {state['data_governance']['test2_status']}
+
+## Frozen D1 runtime / trace audit
+
+- **Authority:** {state['runtime_trace_explanation']['authority']}
+- **Prediction:** {state['runtime_trace_explanation']['prediction']}
+- **Freeze:** {state['runtime_trace_explanation']['freeze_classification']}; durable pre-label persistence = no.
+- **Trace:** {state['runtime_trace_explanation']['canonical_trace_relationship']}
+- **Explanation:** {state['runtime_trace_explanation']['explanation']}
 
 ## Components
 
@@ -1208,6 +1247,85 @@ match였지만 runtime authority/reference identity는 별도로 rebound됐다.
 """
 
 
+def render_arch006_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    runtime = state["runtime_trace_explanation"]
+    return f"""{_markdown_marker(state, digest)}
+# Rule은 실제 시계열에서 어떻게 판단하는가
+
+## 1. Rule은 언제 발동하는가?
+
+Frozen D1은 매 초 모든 Rule을 판정하는 방식이 아니다. 5개 행의 source 전·후 median이
+수치 권한의 magnitude·stability 조건과 방향을 만족하면 하나의 **opportunity**가 생긴다.
+같은 source의 10초 single-link cluster에서는 절대 step amplitude가 가장 큰 후보를 남기며,
+정확히 동률이면 가장 이른 index를 남긴다. 다른 source event와 ±2초로 겹치는 후보도 제외한다.
+
+## 2. 발동하지 않으면 정상인가, abstain인가?
+
+둘 다 아니다. source event가 없으면 opportunity 자체가 없고 terminal outcome도 없다.
+`abstain`은 이미 형성된 opportunity를 미래 window 부족 등으로 평가할 수 없을 때만 나온다.
+
+## 3. Rule이 깨졌다는 것은 무엇인가?
+
+고정 horizon 뒤 target의 3개 행 median이 정상 데이터에서 결속된 expected direction과
+noise 조건을 만족하지 못했다는 실행 계약상의 뜻이다. 물리적 원인이나 causal root cause를
+증명하는 뜻이 아니다.
+
+## 4. PASS와 FAIL은 무엇인가?
+
+- PASS shorthand는 실제 코드의 `evaluated_expected_response`이며 alarm이 아니다.
+- FAIL shorthand는 `evaluated_anomaly`이며 그 decision index에 alarm을 만든다.
+- ABSTAIN은 평가 불가능 상태이고 alarm이 아니다.
+- 권한·custody·replay 오류는 hard system error이며 abstain이 아니다.
+
+## 5. 42개 결과를 어떻게 D1 alarm으로 만드는가?
+
+어느 Rule이든 `evaluated_anomaly`이면 해당 decision second가 D1 alarm이 된다. Frozen artifact는
+6,031 opportunity record와 788 anomalous rule record를 담지만, 같은 시점 중복을 제거하면
+630 unique alarm seconds다. 이어진 seconds를 묶은 626 episodes는 metric 단계의 별도 산출물이다.
+
+## 6. Trace에는 무엇이 들어가는가?
+
+Frozen D1 trace는 opportunity, source-event hash, relation hash, terminal state, alarm,
+decision index, numeric reference IDs, computation identity를 묶은 task-specific terminal hash다.
+단계별 `RuntimeTraceV1` 객체는 저장하지 않았다.
+
+## 7. D1 prediction은 label보다 먼저 정해지는가?
+
+그렇다. 전체 label-blind prediction object를 만든 뒤 검증하고 shallow-frozen 상태로 custody를
+확인한 후에 label-test1을 연다. 그래서 현재 분류는 **{runtime['freeze_classification']}**이다.
+
+## 8. 왜 durable file freeze가 더 강한가?
+
+현재 object는 top-level frozen dataclass이지만 내부 record dict는 mutable이고, public prediction
+file은 metric 계산 뒤에 저장된다. Label 전에 bytes를 atomic하게 저장·재개방하고 label 뒤 동일
+bytes를 다시 확인하면 process boundary가 생겨 더 강한 증거가 된다. Frozen pilot은 수정하지 않는다.
+
+## 9. Runtime은 정말 LLM-free인가?
+
+Frozen fixed-rule R0/D1 runtime에서는 LLM, provider, network call이 0이다. 이 문장을 미래 R1이나
+전체 가능한 runtime 설계까지 일반화하면 안 된다.
+
+## 10. 설명은 trace를 얼마나 그대로 반영하는가?
+
+Canonical `RuntimeTraceV1`용 deterministic template renderer는 variable·lag·provenance binding을
+재검증한다. 그러나 frozen V4 D1은 `RuntimeTraceV1`을 만들지도 renderer를 호출하지도 않았으며,
+frozen D1 explanation artifact도 없다.
+
+## 11. 설명이 root cause를 말할 수 있는가?
+
+아니다. Canonical renderer는 causal/root-cause flag를 금지한다. 현재 보장 가능한 것은 canonical
+synthetic path의 구조적 binding뿐이며 사람에게 유용한지는 **UNVALIDATED**다.
+
+## 12. 현재 가장 중요한 runtime 위험은 무엇인가?
+
+V4 frozen path와 canonical Rule/Trace 설명을 혼동하는 것, label 전 durable persistence가 없는 것,
+그리고 설명 구현이 frozen D1에 실제 연결된 것처럼 표현하는 것이 가장 중요한 위험이다.
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
 def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -1296,6 +1414,15 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Withheld:** {state['rule_construction_authority']['withheld']}.
 - **Lifecycle:** {state['rule_construction_authority']['lifecycle']}.
 - **Agentic boundary:** {state['rule_construction_authority']['agentic_claim']}
+
+## FROZEN D1 RUNTIME / TRACE FOUNDATION
+
+- **Authority:** {state['runtime_trace_explanation']['authority']}
+- **Evaluation:** {state['runtime_trace_explanation']['evaluator']}
+- **Prediction:** {state['runtime_trace_explanation']['prediction']}
+- **Freeze / labels:** {state['runtime_trace_explanation']['label_access']}
+- **Trace:** {state['runtime_trace_explanation']['canonical_trace_relationship']}
+- **Explanation:** {state['runtime_trace_explanation']['explanation']}
 
 ## WHAT WAS EXECUTED
 
@@ -1778,6 +1905,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_003_USER_SUMMARY.md": render_arch003_user_summary(data, digest),
         "ARCH_004_USER_SUMMARY.md": render_arch004_user_summary(data, digest),
         "ARCH_005_USER_SUMMARY.md": render_arch005_user_summary(data, digest),
+        "ARCH_006_USER_SUMMARY.md": render_arch006_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

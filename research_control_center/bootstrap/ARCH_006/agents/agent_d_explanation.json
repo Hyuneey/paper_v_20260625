@@ -1,0 +1,28 @@
+{
+  "agent": "D — Explanation / Trace Fidelity Auditor",
+  "verdict": "PASS_WITH_GAPS",
+  "canonical_renderer": {
+    "symbol": "render_delayed_response_explanation",
+    "deterministic": true,
+    "template_based": true,
+    "llm": false,
+    "authorization_revalidated": true,
+    "trace_revalidated": true,
+    "variable_fidelity": "IMPLEMENTED_BY_CONSTRUCTION",
+    "numeric_fidelity": "PROVENANCE_AND_HASH_FIDELITY; raw numeric narration intentionally absent",
+    "causal_or_root_claims": "PROHIBITED"
+  },
+  "frozen_d1": {
+    "renderer_wired": false,
+    "explanation_artifact": false,
+    "trace_to_explanation_lineage": "ABSENT",
+    "direction_complete": false
+  },
+  "input_change_consistency": "FUTURE_EXP05_DESIGN_ONLY",
+  "human_usefulness": "UNVALIDATED",
+  "r1": {
+    "status": "CONDITIONAL_DESIGN_ONLY",
+    "forbidden": ["R0 final alarm", "final satisfied or violated outcome", "test labels", "ground truth", "final rendered outcome"]
+  },
+  "safety": {"scientific_executions": 0, "runtime_executions": 0, "llm_calls": 0, "label_accesses": 0, "test2_accesses": 0, "files_modified": 0}
+}

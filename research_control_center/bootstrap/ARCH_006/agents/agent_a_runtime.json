@@ -1,0 +1,30 @@
+{
+  "agent": "A — V4 Runtime Evaluator Auditor",
+  "verdict": "PASS_READ_ONLY_WITH_ARCHITECTURAL_QUALIFICATIONS",
+  "runtime": {
+    "entrypoint": "execute_authorized_inner_d1_v1",
+    "evaluator": "execute_real_rule_v1",
+    "portfolio": "42 CanonicalRuleDescriptorV4 records",
+    "authority": "V4 evaluator bundle plus normal-only runtime registry and committed D1 grant",
+    "profiling_runtime_relationship": "EXECUTABLE_EQUIVALENT",
+    "determinism": "DETERMINISTIC_BY_CODE_FOR_FIXED_BYTES_AND_RUNTIME_SEMANTICS",
+    "llm_calls": 0
+  },
+  "semantics": {
+    "opportunity_based": true,
+    "non_trigger_is_outcome": false,
+    "source_windows": "5 pre / 5 post median with threshold, tolerance, and 0.8 stability",
+    "target_windows": "5-row baseline and 3-row response at frozen horizon",
+    "increase": "strictly greater than target noise scale",
+    "decrease": "strictly less than negative target noise scale",
+    "target_persistence_check": false,
+    "dynamic_numeric_roles": 3,
+    "frozen_constant_roles": 7
+  },
+  "findings": [
+    {"severity": "HIGH", "finding": "Frozen D1 is a task-specific V4 bridge, not canonical RuleV1 runtime."},
+    {"severity": "MEDIUM", "finding": "Only three of ten roles are dynamically dereferenced by the per-rule evaluator."},
+    {"severity": "MEDIUM", "finding": "No separate target-persistence predicate exists."}
+  ],
+  "safety": {"scientific_executions": 0, "runtime_executions": 0, "label_accesses": 0, "test2_accesses": 0, "files_modified": 0}
+}

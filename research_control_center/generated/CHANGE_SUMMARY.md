@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -37,4 +37,4 @@ Registry version: `0.1.0`
 
 ## Next
 
-**ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
+**ARCH-007 — D0 PCA-SPE Detector Deep Audit**

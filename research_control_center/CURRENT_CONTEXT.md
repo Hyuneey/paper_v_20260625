@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -59,6 +59,15 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Lifecycle:** provider or template proposal -> strict parse -> task039e0 validity V2 -> accepted proposal or no_rule; canonical Rule v1 materialization, portfolio freeze, and runtime authority are separate later stages.
 - **Agentic boundary:** Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.
 
+## FROZEN D1 RUNTIME / TRACE FOUNDATION
+
+- **Authority:** Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.
+- **Evaluation:** Opportunity-based fixed-rule evaluation; source events are collapsed and isolated before one fixed-horizon target-response decision is emitted.
+- **Prediction:** 6,031 opportunity records, 788 anomalous rule records, 630 unique alarm decision seconds, and 626 downstream metric episodes.
+- **Freeze / labels:** The complete label-blind prediction is validated and shallow-frozen in memory before label-test1 is opened; public prediction bytes are persisted only after label metrics.
+- **Trace:** NON_EQUIVALENT; only the terminal outcome semantics partially overlap canonical RuntimeTraceV1.
+- **Explanation:** A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.
+
 ## WHAT WAS EXECUTED
 
 - All three discovery arms produced evidence-reviewed top-20 rankings.
@@ -102,5 +111,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-Exact next management task: **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
-Following architecture task: **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
+Exact next management task: **ARCH-007 — D0 PCA-SPE Detector Deep Audit**
+Following architecture task: **ARCH-007 — D0 PCA-SPE Detector Deep Audit**

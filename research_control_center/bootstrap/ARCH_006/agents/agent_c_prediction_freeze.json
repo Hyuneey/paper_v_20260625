@@ -1,0 +1,28 @@
+{
+  "agent": "C — D1 Prediction / Freeze / Label Boundary Auditor",
+  "verdict": "PASS_READ_ONLY",
+  "classification": "SAFE_BUT_WEAKER_THAN_D0_D2",
+  "prediction_type": "RULE_OPPORTUNITY_DECISION_RECORDS",
+  "aggregation": "ANY_ANOMALOUS_RECORD_AT_DECISION_SECOND; unique-index OR for metric points",
+  "episode_formation": "DOWNSTREAM_METRIC_ONLY",
+  "frozen_counts": {
+    "prediction_records": 6031,
+    "alarming_rule_records": 788,
+    "unique_alarm_decision_seconds": 630,
+    "duplicate_or_simultaneous_alarm_records": 158,
+    "maximum_simultaneous_violations": 3,
+    "alarm_episodes": 626
+  },
+  "freeze": {
+    "in_memory_before_labels": true,
+    "durable_prelabel_persistence": false,
+    "top_level_frozen_dataclass": true,
+    "nested_records_deeply_immutable": false,
+    "self_hash_and_factory_custody": true,
+    "explicit_state_machine": false,
+    "post_label_byte_recheck": false
+  },
+  "verified_leakage": false,
+  "future_governance_fix": "atomic persistence, replay, explicit frozen-state label gate, post-label byte equality",
+  "safety": {"scientific_executions": 0, "runtime_executions": 0, "label_accesses": 0, "test2_accesses": 0, "files_modified": 0}
+}

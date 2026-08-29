@@ -1,0 +1,59 @@
+{
+  "task_id": "ARCH-006",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base": "8d8c67070efa95283edd67617ba72335d7964301",
+  "audit_mode": "STATIC_READ_ONLY",
+  "runtime": {
+    "authority": "TASK_SPECIFIC_V4_D1",
+    "portfolio": "COMMON-42",
+    "descriptor_count": 42,
+    "prediction_records": 6031,
+    "rule_record_alarms": 788,
+    "unique_alarm_seconds": 630,
+    "alarm_episodes": 626,
+    "determinism": "DETERMINISTIC_BY_CODE_FOR_FIXED_BYTES_AND_RUNTIME_SEMANTICS",
+    "llm_calls": 0
+  },
+  "trace": {
+    "frozen_type": "TASK_SPECIFIC_HASHED_TERMINAL_TRACE",
+    "canonical_type": "RuntimeTraceV1",
+    "relationship": "NON_EQUIVALENT",
+    "terminal_overlap": "PARTIAL",
+    "unique_trace_hashes": 6031
+  },
+  "freeze": {
+    "classification": "SAFE_BUT_WEAKER_THAN_D0_D2",
+    "in_memory_prelabel": true,
+    "durable_prelabel": false,
+    "verified_leakage": false
+  },
+  "explanation": {
+    "canonical_renderer_implemented": true,
+    "canonical_renderer_llm_free": true,
+    "frozen_d1_wired": false,
+    "human_usefulness": "UNVALIDATED"
+  },
+  "mismatches": {"total": 13, "critical": 0, "high": 4, "medium": 6, "low": 3},
+  "qa": {
+    "verdict": "PASS",
+    "questions_satisfactory": 18,
+    "questions_total": 18,
+    "required_corrections_remaining": 0
+  },
+  "validation": {
+    "registry": "PASS",
+    "rcc_tests": "76/76 PASS",
+    "focused_arch006_tests": "5/5 PASS",
+    "privacy": "PASS"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "runtime_executions": 0,
+    "llm_calls": 0,
+    "test1_label_accesses": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "private_exposures": 0
+  }
+}

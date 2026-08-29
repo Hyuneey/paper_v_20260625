@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,20 +70,20 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **ARCH-007 — D0 PCA-SPE Detector Deep Audit** 이고, 이후 전체
+구조 검토는 **ARCH-007 — D0 PCA-SPE Detector Deep Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain proposal versus canonical Rule.
-- Explain what the verifier checks and cannot prove.
-- Explain accepted versus runtime authorized.
-- Explain COMMON-42 and its arm mapping.
-- Explain why D1 terminology matters.
-- Explain the no_rule taxonomy risk.
-- Review the unresolved canonical/task-specific bridge gap.
-- Review runtime authority separation before ARCH-006.
-- Approve or defer starting ARCH-006.
+- Explain how one frozen V4 Rule runs.
+- Explain PASS, FAIL, ABSTAIN, and hard system error.
+- Explain D1 rule records versus unique alarm seconds versus episodes.
+- Explain the task-specific trace versus canonical RuntimeTraceV1.
+- Explain prediction-before-label ordering.
+- Explain why durable pre-label persistence is stronger.
+- Use runtime LLM-free wording only for frozen R0/D1.
+- Separate structural explanation fidelity from human usefulness.
+- Approve or defer starting ARCH-007.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

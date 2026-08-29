@@ -1,0 +1,16 @@
+flowchart LR
+  subgraph B["LABEL-BLIND RUNTIME"]
+    C["COMMON-42\n42 V4 descriptors"] --> A["V4 authority +\nnumeric resolver"]
+    F["test1 feature frame"] --> S["retained / isolated\nsource-event census"]
+    A --> O["6,031 rule opportunities"]
+    S --> O
+    O --> E["execute_real_rule_v1"]
+    E --> T["task-specific\ntrace hashes"]
+    E --> P["label-blind in-memory\nD1 prediction artifact"]
+    P --> V["factory + hash\nreplay validation"]
+  end
+  V --> L["LABEL ACCESS"]
+  L --> M["deduplicated points\n→ alarm episodes → metrics"]
+  T -. "no frozen adapter" .-> X["canonical RuntimeTraceV1"]
+  X --> R["deterministic canonical\nexplanation renderer"]
+  R -. "not used in frozen D1" .-> H["EXP-05 / human review"]

@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
+    "next_deep_review": "ARCH-007 — D0 PCA-SPE Detector Deep Audit"
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -68,7 +68,28 @@
     "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
     "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
     "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
-    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
+    "next_deep_review": "ARCH-007 — D0 PCA-SPE Detector Deep Audit"
+  },
+  "runtime_trace_explanation": {
+    "authority": "Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.",
+    "evaluator": "Opportunity-based fixed-rule evaluation; source events are collapsed and isolated before one fixed-horizon target-response decision is emitted.",
+    "trigger": "Five-row pre/post source medians, authority-bound magnitude and stability checks, exact direction, 10-second same-source single-link clustering that retains the largest absolute step and the earliest index on an exact tie, and plus/minus 2-second cross-source isolation.",
+    "target_response": "Five-row target baseline versus the three-row median beginning at the descriptor-bound horizon; increase uses greater-than noise and decrease uses less-than negative noise.",
+    "tolerance": "Runtime dynamically resolves source step threshold, source stability tolerance, and target noise scale; all ten runtime numeric roles remain authority-bound.",
+    "persistence": "No independent target-persistence predicate exists; persistence-like behavior comes from source post-window stability and the three-row target response median.",
+    "determinism": "DETERMINISTIC_BY_CODE_FOR_FIXED_BYTES_AND_RUNTIME_SEMANTICS",
+    "llm_calls": 0,
+    "prediction": "6,031 opportunity records, 788 anomalous rule records, 630 unique alarm decision seconds, and 626 downstream metric episodes.",
+    "aggregation": "Any evaluated_anomaly record alarms at its decision index; unique alarm seconds are deduplicated before consecutive seconds are grouped into metric episodes.",
+    "freeze_classification": "SAFE_BUT_WEAKER_THAN_D0_D2",
+    "durable_persistence": false,
+    "label_access": "The complete label-blind prediction is validated and shallow-frozen in memory before label-test1 is opened; public prediction bytes are persisted only after label metrics.",
+    "trace_type": "task039e3_r2r_real_rule_execution_trace_v1 terminal hash preimage plus compact record",
+    "canonical_trace_relationship": "NON_EQUIVALENT; only the terminal outcome semantics partially overlap canonical RuntimeTraceV1.",
+    "explanation": "A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.",
+    "human_usefulness": "UNVALIDATED",
+    "warning": "The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.",
+    "next_deep_review": "ARCH-007 — D0 PCA-SPE Detector Deep Audit"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -106,7 +127,7 @@
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
+    "next_deep_review": "ARCH-007 — D0 PCA-SPE Detector Deep Audit"
   },
   "relation_numeric_authority": {
     "candidate_pairs": 47,
@@ -124,7 +145,7 @@
     "authority_relationship": "PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES",
     "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
     "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
-    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
+    "next_deep_review": "ARCH-007 — D0 PCA-SPE Detector Deep Audit"
   },
   "rule_construction_authority": {
     "evidence_view": "42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata",
@@ -140,7 +161,7 @@
     "no_rule_contract_gap": "The three frozen T2 no_rule cases were non-repairable validity outcomes, but the task-specific orchestrator also collapses explicit response/schema, verifier and budget failures into no_rule; generic/frozen protocol semantics require those failure classes to remain distinct.",
     "reproducibility": "T0 is deterministic from frozen input. LLM arms bind model/config, prompt, request, evidence, response and ledger hashes but use temperature 0.7 with no seed; they are traceable, not deterministic reproductions.",
     "warning": "Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.",
-    "next_deep_review": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit"
+    "next_deep_review": "ARCH-007 — D0 PCA-SPE Detector Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -254,34 +275,34 @@
     "Resolve fresh-machine reproducibility gaps before held-out evaluation."
   ],
   "user_todo_items": [
-    {"id": "USER-ARCH005-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain proposal versus canonical Rule?", "why": "They are different schemas and no lossless frozen bridge was found.", "linked": "ARCH_005_CANONICAL_RULE_SCHEMA.md", "status": "OPEN"},
-    {"id": "USER-ARCH005-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what the verifier checks?", "why": "It checks deterministic contracts and bindings, not performance.", "linked": "ARCH_005_VERIFIER_STAGES.csv", "status": "OPEN"},
-    {"id": "USER-ARCH005-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what the verifier cannot prove?", "why": "Scientific truth, causality, utility and generalization require empirical evidence.", "linked": "ARCH_005_REPORT.md", "status": "OPEN"},
-    {"id": "USER-ARCH005-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain accepted versus runtime authorized?", "why": "Execution needs separate portfolio and authority checks.", "linked": "ARCH_005_RUNTIME_AUTHORIZATION.md", "status": "OPEN"},
-    {"id": "USER-ARCH005-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain COMMON-42?", "why": "It is a V4 descriptor portfolio, not 42 canonical RuleV1 objects.", "linked": "ARCH_005_COMMON42.md", "status": "OPEN"},
-    {"id": "USER-ARCH005-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain COMMON-42's relationship to T0, T1, T1-B and T2?", "why": "T2 is excluded even though 39 projections match.", "linked": "ARCH_005_ARM_PORTFOLIO_MAPPING.csv", "status": "OPEN"},
-    {"id": "USER-ARCH005-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 terminology matters?", "why": "Agentic or LLM Rule-only would misattribute the frozen portfolio.", "linked": "ARCH_005_PROFESSOR_TERMINOLOGY.md", "status": "OPEN"},
-    {"id": "USER-ARCH005-008", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the no_rule taxonomy risk?", "why": "A generic no_rule may hide materially different construction failures.", "linked": "ARCH_005_NO_RULE_TAXONOMY.md", "status": "OPEN"},
-    {"id": "USER-ARCH005-009", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-006.", "why": "Runtime trace and explanation are the next deep authority boundary.", "linked": "ARCH-006", "status": "OPEN"}
+    {"id": "USER-ARCH006-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain how one Rule runs?", "why": "The runtime evaluates source opportunities and one fixed-horizon target response rather than every timestamp.", "linked": "ARCH_006_RUNTIME_STATE_MACHINE.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain PASS, FAIL, and ABSTAIN?", "why": "A non-trigger is not automatically PASS or ABSTAIN, and a hard authority error is neither.", "linked": "ARCH_006_OUTCOME_TAXONOMY.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain how the D1 alarm is formed?", "why": "Rule-level anomaly records, unique alarm seconds, and metric episodes are different counts.", "linked": "ARCH_006_D1_PREDICTION_SCHEMA.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain what a satisfaction trace contains?", "why": "The frozen task trace is a compact terminal hash record, not canonical RuntimeTraceV1.", "linked": "ARCH_006_TRACE_SCHEMA.csv", "status": "OPEN"},
+    {"id": "USER-ARCH006-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain prediction-before-label?", "why": "The label-blind prediction object is complete and validated before the label file is opened.", "linked": "ARCH_006_D1_FREEZE_BOUNDARY.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the durable-freeze limitation?", "why": "The D1 pilot used an in-memory shallow freeze rather than durable pre-label bytes.", "linked": "ARCH_006_D1_FREEZE_BOUNDARY.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the runtime LLM-free wording?", "why": "The claim applies to the frozen fixed-rule R0/D1 runtime, not every future runtime design.", "linked": "ARCH_006_REPORT.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-008", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain explanation fidelity versus human usefulness?", "why": "Canonical structural binding exists, but frozen D1 explanation wiring and human validation do not.", "linked": "ARCH_006_EXPLANATION_RENDERER.md", "status": "OPEN"},
+    {"id": "USER-ARCH006-009", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-007.", "why": "D0 PCA-SPE is the next separate deep detector audit.", "linked": "ARCH-007", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain proposal versus canonical Rule.",
-    "Explain what the verifier checks and cannot prove.",
-    "Explain accepted versus runtime authorized.",
-    "Explain COMMON-42 and its arm mapping.",
-    "Explain why D1 terminology matters.",
-    "Explain the no_rule taxonomy risk.",
-    "Review the unresolved canonical/task-specific bridge gap.",
-    "Review runtime authority separation before ARCH-006.",
-    "Approve or defer starting ARCH-006."
+    "Explain how one frozen V4 Rule runs.",
+    "Explain PASS, FAIL, ABSTAIN, and hard system error.",
+    "Explain D1 rule records versus unique alarm seconds versus episodes.",
+    "Explain the task-specific trace versus canonical RuntimeTraceV1.",
+    "Explain prediction-before-label ordering.",
+    "Explain why durable pre-label persistence is stronger.",
+    "Use runtime LLM-free wording only for frozen R0/D1.",
+    "Separate structural explanation fidelity from human usefulness.",
+    "Approve or defer starting ARCH-007."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit",
-  "recommended_next_architecture_task": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit",
-  "last_completed_task": "ARCH-005",
-  "exact_next_task": "ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit",
+  "recommended_next_management_task": "ARCH-007 — D0 PCA-SPE Detector Deep Audit",
+  "recommended_next_architecture_task": "ARCH-007 — D0 PCA-SPE Detector Deep Audit",
+  "last_completed_task": "ARCH-006",
+  "exact_next_task": "ARCH-007 — D0 PCA-SPE Detector Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

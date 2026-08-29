@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00">
+  <meta name="rcc-registry-digest" content="c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -75,7 +75,7 @@
       </div>
       <aside class="principle">Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.</aside>
       <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
     </section>
 
     <section id="rule-construction" class="section panel-feature">
@@ -86,7 +86,7 @@
       <aside class="principle">Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.</aside>
       <aside class="principle">Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.</aside>
       <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
-      <p><strong>Next deep review:</strong> ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
     </section>
 
     <section id="verifier-common42" class="section panel-history">
@@ -112,7 +112,35 @@
       <aside class="principle">Verifier acceptance is not scientific validation.</aside>
       <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
       <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
-      <p><strong>Next deep review:</strong> ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+    </section>
+
+    <section id="runtime-trace-explanation" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">RUNTIME</p><h2>RULE RUNTIME / TRACE / EXPLANATION</h2></div>
+      <p class="architecture-flow">COMMON-42 → Rule Evaluation → Task Trace → D1 Prediction → In-memory Freeze → Label Access → Metrics</p>
+      <div class="status-snapshot">
+        <div><span>Runtime authority</span><strong>V4 TASK-SPECIFIC</strong></div>
+        <div><span>Runtime LLM</span><strong>NO — FROZEN R0/D1</strong></div>
+        <div><span>Determinism</span><strong>DETERMINISTIC_BY_CODE_FOR_FIXED_BYTES_AND_RUNTIME_SEMANTICS</strong></div>
+        <div><span>Trace authority</span><strong>TASK-SPECIFIC / NON-EQUIVALENT</strong></div>
+        <div><span>Durable pre-label freeze</span><strong>NO</strong></div>
+        <div><span>Explanation human validation</span><strong>UNVALIDATED</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Runtime contract</h3><dl class="architecture-contract">
+        <div><dt>AUTHORITY</dt><dd>Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.</dd></div>
+        <div><dt>TRIGGER</dt><dd>Five-row pre/post source medians, authority-bound magnitude and stability checks, exact direction, 10-second same-source single-link clustering that retains the largest absolute step and the earliest index on an exact tie, and plus/minus 2-second cross-source isolation.</dd></div>
+        <div><dt>TARGET RESPONSE</dt><dd>Five-row target baseline versus the three-row median beginning at the descriptor-bound horizon; increase uses greater-than noise and decrease uses less-than negative noise.</dd></div>
+        <div><dt>TOLERANCE / PERSISTENCE</dt><dd>Runtime dynamically resolves source step threshold, source stability tolerance, and target noise scale; all ten runtime numeric roles remain authority-bound. No independent target-persistence predicate exists; persistence-like behavior comes from source post-window stability and the three-row target response median.</dd></div>
+      </dl></div><div><h3>Prediction and trace boundary</h3><dl class="architecture-contract">
+        <div><dt>D1 PREDICTION</dt><dd>6,031 opportunity records, 788 anomalous rule records, 630 unique alarm decision seconds, and 626 downstream metric episodes.</dd></div>
+        <div><dt>FREEZE</dt><dd>SAFE_BUT_WEAKER_THAN_D0_D2; durable persistence = NO</dd></div>
+        <div><dt>LABEL ACCESS</dt><dd>The complete label-blind prediction is validated and shallow-frozen in memory before label-test1 is opened; public prediction bytes are persisted only after label metrics.</dd></div>
+        <div><dt>TRACE</dt><dd>task039e3_r2r_real_rule_execution_trace_v1 terminal hash preimage plus compact record; NON_EQUIVALENT; only the terminal outcome semantics partially overlap canonical RuntimeTraceV1.</dd></div>
+        <div><dt>EXPLANATION</dt><dd>A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.</dd></div>
+      </dl></div></div>
+      <aside class="principle">The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.</aside>
+      <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
+      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -128,7 +156,7 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -144,13 +172,13 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">META</p><h3>M1/M2/M3 deterministic domain-prior ranking</h3><dl><div><dt>INPUT</dt><dd>reviewed P1 metadata and public physical graph</dd></div><div><dt>OUTPUT</dt><dd>metadata-supported pair candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">STAT</p><h3>file-local first-difference lagged Pearson stability</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2</dd></div><div><dt>OUTPUT</dt><dd>directional lagged-association candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">GDN</p><h3>next-value prediction plus embedding-cosine learned graph</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2 full 37-node context</dd></div><div><dt>OUTPUT</dt><dd>learned-graph candidate edges</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article></div>
       <aside class="principle">Candidate discovery proposes relationships. It does not establish causal or final temporal relations.</aside>
       <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain proposal versus canonical Rule.</li><li>Explain what the verifier checks and cannot prove.</li><li>Explain accepted versus runtime authorized.</li><li>Explain COMMON-42 and its arm mapping.</li><li>Explain why D1 terminology matters.</li><li>Explain the no_rule taxonomy risk.</li><li>Review the unresolved canonical/task-specific bridge gap.</li><li>Review runtime authority separation before ARCH-006.</li><li>Approve or defer starting ARCH-006.</li></ul>
+      <ul><li>Explain how one frozen V4 Rule runs.</li><li>Explain PASS, FAIL, ABSTAIN, and hard system error.</li><li>Explain D1 rule records versus unique alarm seconds versus episodes.</li><li>Explain the task-specific trace versus canonical RuntimeTraceV1.</li><li>Explain prediction-before-label ordering.</li><li>Explain why durable pre-label persistence is stronger.</li><li>Use runtime LLM-free wording only for frozen R0/D1.</li><li>Separate structural explanation fidelity from human usefulness.</li><li>Approve or defer starting ARCH-007.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -774,7 +802,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-007 — D0 PCA-SPE Detector Deep Audit</strong></div>
     </section>
   </main>
 

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Research Evolution
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -373,4 +373,4 @@ RCC-001 RCC-002 RCC-002A and RCC-003 local history
 The architecture is substantially implemented and the INNER path has frozen pilot
 observations. Scientific validation remains partial, held-out generalization remains
 unconfirmed, and fresh-machine reproduction remains incomplete. The exact next task is
-**ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**.
+**ARCH-007 — D0 PCA-SPE Detector Deep Audit**.

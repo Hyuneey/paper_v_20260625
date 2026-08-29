@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8341e4bd1fb5125db0b5ec51ac6bc9d69a9db8c6f66d80fa87f01e05fdf4b00 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -15,9 +15,6 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 **EVALUATION_SCOPE_EXPANSION** — Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.
 
 Phase progression: ARCHITECTURE_COMPLETE → EVALUATION_SCOPE_EXPANSION → HYPOTHESIS_VALIDATION.
-
-Pilot-operational architecture; scientific validation, held-out generalization, and
-fresh-machine reproduction remain incomplete.
 
 ## How to read RCC status
 
@@ -36,28 +33,30 @@ HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unsc
 ## Data and split boundary
 
 HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
-separately calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero
-test2 bytes or labels and produced no outcome. D0/D2 freeze predictions before labels; D1 has
-a documented durable-file ordering gap. D2 V2 is test1-informed.
+calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero test2 bytes
+or labels and produced no outcome. D1 has a durable-file ordering gap. D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-META metadata priors, STAT normal lagged association, and GDN embedding-cosine edges rank
-the 144-pair universe separately. Their Top-20 views form an unscored 47-pair union. Attention
-is not ranking evidence and no post-hoc XAI is used. GDN contribution remains unvalidated.
+META, STAT, and GDN separately rank the 144-pair universe; their Top-20 views form an unscored
+47-pair union. Attention is not ranking evidence, XAI is absent, and GDN benefit is unvalidated.
 
 ## Relation and numeric-authority boundary
 
-The relation lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 confirmed.
-Confirmation cannot search or retune. E1 has 462 construction references; frozen D1 uses a
-separate 420-reference normal-only authority plus horizon. Shared values matched, but authority
-identities remain separate. Repeated normal response is not causal proof.
+The lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 confirmed. Confirmation
+cannot search or retune. Construction and runtime numeric identities remain separate. Repeated
+normal response is not causal proof.
 
 ## Rule-construction boundary
 
-E3 exposes a fixed relation, horizon, and ten normal-only value/reference bindings to a closed
-proposal schema. `accepted_proposal` grants neither canonical materialization, runtime authority,
-nor detection performance. T2 feedback actions were zero.
+E3 exposes a fixed relation, horizon, and normal-only references to a closed proposal schema.
+`accepted_proposal` grants neither runtime authority nor detection performance. T2 feedback was zero.
+
+## Frozen D1 runtime boundary
+
+Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse to 630 seconds
+and 626 metric episodes. Prediction preceded labels but was not durably persisted; its trace is
+not `RuntimeTraceV1`, and no D1 explanation was rendered.
 
 ## How we got here
 
@@ -67,7 +66,7 @@ partial methodological support, while deterministic verification survived the ea
 Verifier framing. HAI provenance and the continuous-step recovery selected P1; distinct
 META/STAT/GDN evidence, normal-only profiling, and numeric authority led to COMMON-42 and
 the frozen 14-event D0/D1/D2 INNER pilot. OUTER ended in a custody blocker, not a result.
-History explains this lineage but cannot override RCC-002 current state or `claims.csv`.
+History explains this lineage but cannot override current state.
 
 ## Established facts
 
@@ -142,15 +141,15 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain proposal versus canonical Rule.
-- Explain what the verifier checks and cannot prove.
-- Explain accepted versus runtime authorized.
-- Explain COMMON-42 and its arm mapping.
-- Explain why D1 terminology matters.
-- Explain the no_rule taxonomy risk.
-- Review the unresolved canonical/task-specific bridge gap.
-- Review runtime authority separation before ARCH-006.
-- Approve or defer starting ARCH-006.
+- Explain how one frozen V4 Rule runs.
+- Explain PASS, FAIL, ABSTAIN, and hard system error.
+- Explain D1 rule records versus unique alarm seconds versus episodes.
+- Explain the task-specific trace versus canonical RuntimeTraceV1.
+- Explain prediction-before-label ordering.
+- Explain why durable pre-label persistence is stronger.
+- Use runtime LLM-free wording only for frozen R0/D1.
+- Separate structural explanation fidelity from human usefulness.
+- Approve or defer starting ARCH-007.
 
 ## Source-policy boundary
 
@@ -161,9 +160,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
+Management: **ARCH-007 — D0 PCA-SPE Detector Deep Audit**
 
-Following architecture review: **ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit**
+Following architecture review: **ARCH-007 — D0 PCA-SPE Detector Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.
