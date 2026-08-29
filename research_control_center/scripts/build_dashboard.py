@@ -71,6 +71,10 @@ ARCHITECTURE_FILES = (
     "09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv",
     "09_d2_fusion/ARCH_009_FUNCTION_CATALOG.csv",
     "09_d2_fusion/ARCH_009_IO_CONTRACTS.csv",
+    "gap_000_pre_validation/GAP_000_RAW_FINDINGS.csv",
+    "gap_000_pre_validation/GAP_000_ROOT_ISSUES.csv",
+    "gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv",
+    "gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv",
 )
 
 
@@ -389,6 +393,15 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     d1 = state["d1_evaluation"]
     d2 = state["d2_fusion"]
     metrics = state["metric_integrity"]
+    readiness = state["pre_validation_readiness"]
+    gate_markup = "".join(
+        '<article class="summary-card"><p class="eyebrow">'
+        + _escape(experiment)
+        + '</p><h3>'
+        + _escape(status)
+        + '</h3></article>'
+        for experiment, status in readiness["experiment_gates"].items()
+    )
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -438,7 +451,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
   </header>
 
   <nav class="section-nav" aria-label="Dashboard sections">
-    <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
+    <a href="#current-state">Current state</a><a href="#pre-validation-readiness">Readiness</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
     <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
@@ -459,6 +472,25 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <div class="summary-grid">{summary_markup}</div>
       <p class="summary-note">These counts are not a single completion percentage. Component Evidence-reviewed means source or evidence status was reviewed; explicit scientific result-integrity audits are shown separately. Scientific claim counts come only from <code>claims.csv</code>.</p>
       <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
+    </section>
+
+    <section id="pre-validation-readiness" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">GAP-000</p><h2>PRE-VALIDATION READINESS</h2></div>
+      <p class="architecture-flow">120 RAW FINDINGS → 19 ROOT ISSUES → DISPOSITION / PRIORITY → EXPERIMENT GATES</p>
+      <div class="status-snapshot">
+        <div><span>P0 global fixes</span><strong>{readiness['disposition_counts']['P0_FIX_BEFORE_EXPANDED_VALIDATION']}</strong></div>
+        <div><span>P1 experiment fixes</span><strong>{readiness['disposition_counts']['P1_FIX_BEFORE_SPECIFIC_EXPERIMENT']}</strong></div>
+        <div><span>Experiment requirements</span><strong>{readiness['disposition_counts']['EXPERIMENT_DESIGN_REQUIREMENT']}</strong></div>
+        <div><span>Engineering hardening</span><strong>{readiness['disposition_counts']['ENGINEERING_HARDENING']}</strong></div>
+        <div><span>Claim corrections</span><strong>{readiness['disposition_counts']['CLAIM_DOCUMENTATION_CORRECTION']}</strong></div>
+        <div><span>Limitations / future</span><strong>{readiness['disposition_counts']['ACCEPTABLE_THESIS_LIMITATION'] + readiness['disposition_counts']['FUTURE_WORK_ONLY']}</strong></div>
+      </div>
+      <div class="two-column"><div><h3>P0 implementation / contract</h3>{_bullet_list(readiness['p0_global_fixes'])}</div><div><h3>P0 experiment design</h3>{_bullet_list(readiness['p0_design_gates'])}</div></div>
+      <h3>Experiment gates</h3><div class="summary-grid">{gate_markup}</div>
+      <aside class="principle">Past pilot: {_escape(readiness['past_pilot'])}. {_escape(readiness['scientific_versioning'])}</aside>
+      <aside class="principle">This readiness view is a triage map, not a completion percentage and not authorization to run an experiment.</aside>
+      <p><a href="../architecture/gap_000_pre_validation/GAP_000_REPORT.md">Open the triage report</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv">Remediation matrix</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv">Experiment gates</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_MINIMUM_THESIS_PATH.md">Minimum thesis path</a></p>
+      <p><strong>Next:</strong> {_escape(state['exact_next_task'])} · {_escape(readiness['arch011_position'])}</p>
     </section>
 
     <section id="relation-numeric" class="section panel-history">
@@ -939,9 +971,6 @@ is non-authoritative.
 Management: **{state['recommended_next_management_task']}**
 
 Following architecture review: **{state['recommended_next_architecture_task']}**
-
-Scientific direction: preregister expanded Rule-only and detector comparison evidence,
-then separately test GDN stability and an actually activated budget-matched feedback arm.
 """
 
 
@@ -1775,6 +1804,79 @@ complementarity, held-out generalization, 통계적 우수성은 미확인이다
 """
 
 
+def render_gap000_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    readiness = state["pre_validation_readiness"]
+    return f"""{_markdown_marker(state, digest)}
+# 본격 실험 전에 무엇을 고쳐야 하는가
+
+## 지금까지 감사 결과 한 문장
+
+ARCH-000~010의 120개 mismatch는 {readiness['root_issues']}개 root issue로 줄어들며, frozen pilot을
+무효화하는 결함은 발견되지 않았지만 미래 final validation 전에 닫아야 할 authority, custody,
+evaluation-design gate가 있다.
+
+## 현재 연구를 무효로 만드는 문제가 발견됐는가
+
+아니다. 무효화된 frozen artifact는 0개다. 현재 pilot은 V4 authority, D1의 더 약한 in-memory
+pre-label gate, test1 development scope, 14 contiguous event units, held-out 부재라는 조건을 붙여
+해석할 수 있다. 새 remediation은 PILOT V1을 고치지 않고 VALIDATION V2로 version을 나눈다.
+
+## 반드시 고쳐야 하는 것
+
+1. 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
+   version과 test를 고정한다.
+2. 새 D1 evaluation은 prediction을 label 전에 atomic persist, close, reopen/replay하고 label access를
+   authorize해야 한다.
+
+## 특정 실험 전에만 고치면 되는 것
+
+- EXP-01 전: GDN Top-5 self-neighbor convention을 고치거나 명시적으로 ablation한다.
+- EXP-03 전: `no_rule`과 provider/parse/verifier/budget failure를 분리한다.
+- EXP-05 전: 실제 evaluated trace와 deterministic explanation renderer를 연결한다.
+
+## 코드 문제가 아니라 실험 설계 문제인 것
+
+- validation과 final test 역할, fusion policy selection 시점을 미리 고정한다.
+- 14개를 독립 사건이라고 가정하지 말고 event-unit 정책과 분석 방법을 사전등록한다.
+- EXP-04 final claim에는 PCA-SPE 외 stronger multivariate detector가 필요하다.
+- GDN contribution은 seed/split stability, unique confirmed yield, masking, Top-20 sensitivity로 검증한다.
+- Agentic contribution은 budget-matched 반복 실험에서 feedback이 실제 작동하고 이득을 보이는지 본다.
+
+## 그냥 limitation으로 남겨도 되는 것
+
+- train3가 normal-only relation confirmation과 D0 calibration에 함께 쓰였다는 점.
+- 현재 D1 high FAR의 일반 원인이 아직 분석되지 않았다는 점.
+- explanation의 인간 유용성이 아직 평가되지 않았다는 점.
+
+## 지금 하지 않아도 되는 것
+
+Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent runtime, production fusion,
+대규모 human study는 현재 석사 논문의 최소 경로에 필요하지 않다.
+
+## 가장 안전한 다음 진행 순서
+
+1. GAP-000을 검토한다.
+2. code remediation 전에 read-only **ARCH-011**로 OUTER/reproducibility 사실을 고정한다.
+3. final authority를 결정한다.
+4. P0 fix만 좁게 구현한다.
+5. 필요한 실험별 P1만 닫고 protocol을 결과 전에 freeze한다.
+6. development/validation 실험 뒤 fresh-machine rehearsal을 완료한다.
+7. 마지막에 새 preregistered held-out study를 한 번 실행한다.
+
+## 내가 결정해야 하는 것
+
+1. Final authority: canonical RuleV1, 공식 V4, verified bridge 중 어느 경로인가?
+2. Graph-Guided와 Agentic을 EXP-01/EXP-03가 지지할 때만 final contribution/title에 남기는 conditional
+   policy를 승인할 것인가?
+
+기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
+
+다음 task는 **{state['exact_next_task']}**이다. 이 task는 read-only이며 remediation이나 test2 access를
+자동으로 허가하지 않는다.
+"""
+
+
 def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -2360,6 +2462,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_008_USER_SUMMARY.md": render_arch008_user_summary(data, digest),
         "ARCH_009_USER_SUMMARY.md": render_arch009_user_summary(data, digest),
         "ARCH_010_USER_SUMMARY.md": render_arch010_user_summary(data, digest),
+        "GAP_000_USER_SUMMARY.md": render_gap000_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

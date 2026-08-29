@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-017 — Classify current INNER results as pilot-only
 
 ## Date
@@ -11,7 +11,7 @@
 
 ## Context
 
-The frozen comparison uses 14 independent attack events and a simple PCA-SPE baseline.
+The frozen comparison uses 14 contiguous attack-event units whose statistical independence is not established and a simple PCA-SPE baseline.
 
 ## Alternatives Considered
 
@@ -24,7 +24,7 @@ Report exact frozen observations while prohibiting broad performance generalizat
 
 ## Why
 
-Integrity-audited arithmetic does not supply sample breadth baseline strength or held-out confirmation.
+Integrity-audited arithmetic does not supply sample breadth independence baseline strength or held-out confirmation.
 
 ## Consequence
 
@@ -32,7 +32,7 @@ Current D0 D1 and D2 numbers remain useful pilot evidence and nothing stronger.
 
 ## Current Relevance
 
-Active claim and reporting boundary.
+Active claim and reporting boundary; current wording corrects the former independent-event shorthand without rewriting historical reports.
 
 ## Supersedes
 

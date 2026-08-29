@@ -1,0 +1,46 @@
+{
+  "task_id": "GAP-000",
+  "status": "TRIAGE_COMPLETE_NO_REMEDIATION",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_head_gate": "0346736f20cd99544f56685344d8119fba9e6d56",
+  "raw_findings": 120,
+  "root_issues": 19,
+  "source_severity": {
+    "critical": 0,
+    "high": 54,
+    "medium": 55,
+    "low": 11
+  },
+  "dispositions": {
+    "P0_FIX_BEFORE_EXPANDED_VALIDATION": 2,
+    "EXPERIMENT_DESIGN_REQUIREMENT": 6,
+    "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT": 3,
+    "ENGINEERING_HARDENING": 3,
+    "ACCEPTABLE_THESIS_LIMITATION": 3,
+    "CLAIM_DOCUMENTATION_CORRECTION": 1,
+    "FUTURE_WORK_ONLY": 1
+  },
+  "priorities": {
+    "P0": 4,
+    "P1": 10,
+    "P2": 3,
+    "P3": 2
+  },
+  "past_pilot": "INTERPRETABLE_WITH_QUALIFICATIONS",
+  "invalidated_artifacts": 0,
+  "arch011_position": "BEFORE_REMEDIATION_READ_ONLY",
+  "validation": {
+    "registry": "PASS",
+    "rcc_tests": "101/101 PASS",
+    "qa": "PASS",
+    "privacy": "PASS"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "llm_calls": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remediation_implementations": 0
+  }
+}

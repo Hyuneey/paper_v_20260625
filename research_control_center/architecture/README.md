@@ -223,5 +223,21 @@ deduplicated into alarm seconds. Attack units are maximal contiguous strict-labe
 runs; there are 14 units and statistical independence is not established. Result
 integrity establishes frozen identities and arithmetic, not scientific validation.
 
-Exact next task: `GAP-000 — Pre-Validation Remediation & Risk Triage`.
-Following only after GAP-000: `ARCH-011 — OUTER / Reproducibility Deep Audit`.
+## Completed pre-validation gap triage
+
+- [Korean report](gap_000_pre_validation/GAP_000_REPORT.md)
+- [Raw finding inventory](gap_000_pre_validation/GAP_000_RAW_FINDINGS.csv)
+- [Root issues](gap_000_pre_validation/GAP_000_ROOT_ISSUES.csv)
+- [Remediation matrix](gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv)
+- [Experiment gates](gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv)
+- [Minimum thesis path](gap_000_pre_validation/GAP_000_MINIMUM_THESIS_PATH.md)
+- [User decisions](gap_000_pre_validation/GAP_000_USER_DECISIONS_REQUIRED.md)
+
+GAP-000 retained all 120 ARCH mismatch findings, merged them into 19 root
+issues, and separated global fixes, experiment-specific fixes, protocol
+requirements, hardening, wording corrections, limitations, and future-only
+scope. The frozen pilot remains qualified but interpretable; remediation is for
+future versioned validation.
+
+Exact next task: `ARCH-011 — OUTER / Reproducibility Deep Audit`.
+No remediation or experiment starts automatically.

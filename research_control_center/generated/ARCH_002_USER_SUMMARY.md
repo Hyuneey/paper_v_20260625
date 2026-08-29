@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 관계 후보는 왜 세 방식으로 고르는가
 
 ## 한 문장 답
@@ -63,4 +63,4 @@ STAT-only 8, GDN-only 18, 두 arm 공통 13, 세 arm 공통 0으로 총 47이다
 47개 cohort를 normal delayed-response profiling에 넘겨 step event, response direction,
 horizon과 안정성을 별도로 확인한다. 그 전에는 최종 relation이라고 부르면 안 된다.
 
-다음 task는 **GAP-000 — Pre-Validation Remediation & Risk Triage**이다.
+다음 task는 **ARCH-011 — OUTER / Reproducibility Deep Audit**이다.

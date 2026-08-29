@@ -1,0 +1,108 @@
+{
+  "agent": "E",
+  "task_id": "GAP-000",
+  "role": "independent_qa",
+  "verdict": "PASS",
+  "authority": {
+    "rcc_branch": "rcc/research-control-center-v1",
+    "rcc_head_gate": "0346736f20cd99544f56685344d8119fba9e6d56",
+    "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "inventory": {
+    "raw_findings": 120,
+    "root_issues": 19,
+    "source_severity": {
+      "critical": 0,
+      "high": 54,
+      "medium": 55,
+      "low": 11
+    },
+    "per_arch": {
+      "ARCH-000": 15,
+      "ARCH-001": 8,
+      "ARCH-002": 7,
+      "ARCH-003": 9,
+      "ARCH-004": 10,
+      "ARCH-005": 11,
+      "ARCH-006": 13,
+      "ARCH-007": 10,
+      "ARCH-008": 13,
+      "ARCH-009": 12,
+      "ARCH-010": 12
+    },
+    "unmapped_findings": 0,
+    "multiply_mapped_findings": 0,
+    "unknown_root_references": 0,
+    "roots_without_matrix_row": 0,
+    "roots_with_invalid_or_multiple_primary_disposition": 0
+  },
+  "qa_questions": {
+    "01_every_arch_high_in_inventory": "PASS",
+    "02_every_arch_medium_in_inventory": "PASS",
+    "03_duplicates_transparently_merged": "PASS",
+    "04_every_root_traceable": "PASS",
+    "05_p0_issues_are_future_validation_blockers": "PASS",
+    "06_experiment_only_issues_not_global_p0": "PASS",
+    "07_code_fixes_separated_from_experiment_design": "PASS",
+    "08_wording_separated_from_scientific_defects": "PASS",
+    "09_limitations_not_over_engineered": "PASS",
+    "10_d1_durable_freeze_triaged": "PASS",
+    "11_rulev1_v4_authority_triaged": "PASS",
+    "12_no_rule_taxonomy_triaged": "PASS",
+    "13_gdn_self_neighbor_triaged": "PASS",
+    "14_stronger_detector_requirement_present": "PASS",
+    "15_new_independent_held_out_requirement_present": "PASS",
+    "16_fresh_machine_requirement_present": "PASS",
+    "17_human_usefulness_not_unnecessarily_required": "PASS",
+    "18_agentic_and_graph_guided_conditional": "PASS",
+    "19_old_pilot_preserved": "PASS",
+    "20_zero_scientific_computation_and_zero_fixes": "PASS"
+  },
+  "known_issue_coverage": {
+    "A_d1_durable_pre_label": "GAP-002",
+    "B_rulev1_verifierv1_v4_authority": "GAP-001",
+    "C_no_rule_taxonomy": "GAP-005",
+    "D_gdn_self_neighbor_top5": "GAP-006",
+    "E_gdn_scientific_contribution": "GAP-007",
+    "F_top20_policy_rationale": "GAP-007",
+    "G_train3_dual_use": "GAP-014",
+    "H_v2_test1_informed": "GAP-003",
+    "I_stronger_detector": "GAP-009",
+    "J_event_unit_independence": "GAP-004",
+    "K_held_out_unavailable": "GAP-003",
+    "L_fresh_machine_reproducibility": "GAP-011",
+    "M_task_trace_vs_runtime_trace": "GAP-010",
+    "N_explanation_human_usefulness": "GAP-017",
+    "O_agentic_contribution": "GAP-008",
+    "P_graph_guided_contribution": "GAP-007",
+    "Q_llm_construction_reproducibility": "GAP-008",
+    "R_metric_statistical_inference": "GAP-004"
+  },
+  "separation_checks": {
+    "code_queue_contains_only_fix_or_hardening_work": true,
+    "experiment_queue_contains_protocol_requirements": true,
+    "claim_queue_contains_wording_and_limitations": true,
+    "pilot_v1_preserved": true,
+    "validation_v2_separate": true,
+    "arch011_before_remediation_read_only": true,
+    "user_decisions_explicit": true
+  },
+  "corrections_resolved": [
+    "DEC-020 and DEC-021 now appear as OPEN decisions in the current-facing Decision Inbox.",
+    "All ten component next_deep_review fields now identify GAP-000 as complete and ARCH-011 as next."
+  ],
+  "validation": {
+    "registry_validator": "PASS",
+    "rcc_tests": "101/101 PASS",
+    "privacy": "PASS",
+    "diff_check": "PASS"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "llm_calls": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remediation_implementations": 0
+  }
+}

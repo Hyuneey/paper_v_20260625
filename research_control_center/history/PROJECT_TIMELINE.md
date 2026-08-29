@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Research Evolution
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -373,4 +373,4 @@ RCC-001 RCC-002 RCC-002A and RCC-003 local history
 The architecture is substantially implemented and the INNER path has frozen pilot
 observations. Scientific validation remains partial, held-out generalization remains
 unconfirmed, and fresh-machine reproduction remains incomplete. The exact next task is
-**GAP-000 — Pre-Validation Remediation & Risk Triage**.
+**ARCH-011 — OUTER / Reproducibility Deep Audit**.

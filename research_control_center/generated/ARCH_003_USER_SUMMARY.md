@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 47개 후보는 어떻게 42개 실행 관계가 되는가
 
 ## 한 문장 답
@@ -76,4 +76,4 @@ root-cause를 검증하지 않았다. Held-out 일반화도 아직 확인되지 
 3. value equality와 authority identity equality는 다르다.
 4. relation numeric authority와 D0 PCA-SPE threshold는 별개다.
 
-다음 task는 **GAP-000 — Pre-Validation Remediation & Risk Triage**이다.
+다음 task는 **ARCH-011 — OUTER / Reproducibility Deep Audit**이다.

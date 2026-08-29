@@ -184,6 +184,28 @@ REQUIRED_RCC_FILES = (
     "bootstrap/ARCH_010/agents/agent_c_metric_consistency.json",
     "bootstrap/ARCH_010/agents/agent_d_integrity.json",
     "bootstrap/ARCH_010/agents/agent_e_qa.json",
+    "bootstrap/GAP_000/GAP_000_REPORT.md",
+    "bootstrap/GAP_000/GAP_000_RAW_FINDINGS.csv",
+    "bootstrap/GAP_000/GAP_000_ROOT_ISSUES.csv",
+    "bootstrap/GAP_000/GAP_000_REMEDIATION_MATRIX.csv",
+    "bootstrap/GAP_000/GAP_000_EXPERIMENT_GATES.csv",
+    "bootstrap/GAP_000/GAP_000_CORE_VALIDATION_GATE.md",
+    "bootstrap/GAP_000/GAP_000_EXP01_GATE.md",
+    "bootstrap/GAP_000/GAP_000_EXP03_GATE.md",
+    "bootstrap/GAP_000/GAP_000_EXP05_GATE.md",
+    "bootstrap/GAP_000/GAP_000_CODE_FIX_QUEUE.md",
+    "bootstrap/GAP_000/GAP_000_EXPERIMENT_REQUIREMENTS.md",
+    "bootstrap/GAP_000/GAP_000_CLAIM_LIMITATIONS.md",
+    "bootstrap/GAP_000/GAP_000_MINIMUM_THESIS_PATH.md",
+    "bootstrap/GAP_000/GAP_000_USER_DECISIONS_REQUIRED.md",
+    "bootstrap/GAP_000/GAP_000_QA_REPORT.md",
+    "bootstrap/GAP_000/GAP_000_MULTI_AGENT_REVIEW.md",
+    "bootstrap/GAP_000/GAP_000_EVIDENCE.json",
+    "bootstrap/GAP_000/agents/agent_a_scientific_validity.json",
+    "bootstrap/GAP_000/agents/agent_b_code_authority.json",
+    "bootstrap/GAP_000/agents/agent_c_governance_reproducibility.json",
+    "bootstrap/GAP_000/agents/agent_d_claim_scope.json",
+    "bootstrap/GAP_000/agents/agent_e_qa.json",
 )
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
@@ -197,6 +219,7 @@ GENERATED_FILES = (
     "generated/ARCH_008_USER_SUMMARY.md",
     "generated/ARCH_009_USER_SUMMARY.md",
     "generated/ARCH_010_USER_SUMMARY.md",
+    "generated/GAP_000_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -216,6 +239,7 @@ REQUIRED_RCC_DIRS = (
     "architecture/08_d1_rule_only", "bootstrap/ARCH_008", "bootstrap/ARCH_008/agents",
     "architecture/09_d2_fusion", "bootstrap/ARCH_009", "bootstrap/ARCH_009/agents",
     "architecture/10_metrics_integrity", "bootstrap/ARCH_010", "bootstrap/ARCH_010/agents",
+    "architecture/gap_000_pre_validation", "bootstrap/GAP_000", "bootstrap/GAP_000/agents",
 )
 
 
@@ -294,10 +318,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-010 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-010 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-010", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "GAP-000 — Pre-Validation Remediation & Risk Triage", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 5, "top_user_todo must contain exactly five GAP-000 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 5, "GAP-000 must leave five user review questions")
+    result.require(state.get("last_completed_task") == "GAP-000", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -310,8 +334,24 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "GAP-000 — Pre-Validation Remediation & Risk Triage", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit", "next architecture task mismatch")
+    readiness = state.get("pre_validation_readiness", {})
+    result.require(readiness.get("status") == "TRIAGED_NOT_REMEDIATED", "GAP-000 readiness status mismatch")
+    result.require(readiness.get("raw_findings") == 120 and readiness.get("root_issues") == 19, "GAP-000 inventory counts mismatch")
+    result.require(readiness.get("source_severity") == {"critical": 0, "high": 54, "medium": 55, "low": 11}, "GAP-000 source severity mismatch")
+    result.require(readiness.get("disposition_counts") == {
+        "P0_FIX_BEFORE_EXPANDED_VALIDATION": 2,
+        "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT": 3,
+        "EXPERIMENT_DESIGN_REQUIREMENT": 6,
+        "ENGINEERING_HARDENING": 3,
+        "CLAIM_DOCUMENTATION_CORRECTION": 1,
+        "ACCEPTABLE_THESIS_LIMITATION": 3,
+        "FUTURE_WORK_ONLY": 1,
+    }, "GAP-000 disposition counts mismatch")
+    result.require(readiness.get("priority_counts") == {"P0": 4, "P1": 10, "P2": 3, "P3": 2}, "GAP-000 priority counts mismatch")
+    result.require(readiness.get("arch011_position") == "BEFORE_REMEDIATION_READ_ONLY", "ARCH-011 position mismatch")
+    result.require("INVALIDATED_ARTIFACTS=0" in readiness.get("past_pilot", ""), "GAP-000 pilot preservation mismatch")
     relation = state.get("relation_numeric_authority", {})
     result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
     result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
@@ -433,7 +473,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     for registry in ("decisions", "timeline"):
         for row in data[registry]:
-            if row["source"] in {"USER_CONTEXT", "USER_CONFIRMED_CONTEXT"}:
+            if row["source"] in {"USER_CONTEXT", "USER_CONFIRMED_CONTEXT", "GAP_000_TRIAGE"}:
                 result.require(row["source_commit"] == "NONE", f"{registry} context-only row must not claim a Git commit")
             else:
                 result.require(
@@ -550,7 +590,7 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
 def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
     history = data["history"]
     result.require(15 <= len(data["timeline"]) <= 30, "timeline must contain 15 to 30 meaningful events")
-    result.require(10 <= len(data["decisions"]) <= 20, "decision registry must contain 10 to 20 meaningful decisions")
+    result.require(10 <= len(data["decisions"]) <= 25, "decision registry must contain 10 to 25 meaningful decisions")
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
     result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")
     dashboard_ids = history.get("dashboard_event_ids", [])
@@ -598,7 +638,8 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
             result.require(row["user_approved"] == "false", f"decision {row['decision_id']} overstates user approval for unresolved user context")
     result.require(any(row["status"] == "SUPERSEDED" for row in data["decisions"]), "decision history lacks superseded decisions")
     result.require(any(row["status"] == "CONDITIONAL" for row in data["decisions"]), "decision history lacks conditional decisions")
-    result.require(all(row["status"] != "OPEN" for row in data["decisions"]), "decision registry contains an unresolved decision; use the confirmation queue for historical uncertainty")
+    open_decisions = {row["decision_id"] for row in data["decisions"] if row["status"] == "OPEN"}
+    result.require(open_decisions == {"DEC-020", "DEC-021"}, "decision registry must expose exactly the two GAP-000 research-owner decisions")
 
 
 def _git_resolves_to(repo_root: Path, revision: str, expected: str) -> bool:
@@ -733,7 +774,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "DETECTOR + RULE FUSION PILOT", "METRICS / RESULTS / INTEGRITY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "PRE-VALIDATION READINESS", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "DETECTOR + RULE FUSION PILOT", "METRICS / RESULTS / INTEGRITY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -749,8 +790,9 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "GAP-000"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "ARCH-011"),
         "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "GAP-000"),
+        "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "ARCH-011", "Graph-Guided", "Agentic"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -1139,6 +1181,65 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     result.require(metric_flow.startswith("flowchart ") and "PILOT ONLY" in metric_flow, "ARCH-010 Mermaid omits pilot boundary")
     result.require("PA-FREE" in (metric_dir / "ARCH_010_EVENT_HIT_RULE.md").read_text(encoding="utf-8"), "ARCH-010 point-adjustment boundary missing")
     result.require("Result integrity ≠ scientific validation" in (metric_dir / "ARCH_010_REPORT.md").read_text(encoding="utf-8") or "Integrity PASS" in (metric_dir / "ARCH_010_REPORT.md").read_text(encoding="utf-8"), "ARCH-010 integrity/science boundary missing")
+
+    gap_dir = rcc_root / "architecture" / "gap_000_pre_validation"
+    required_gap = {
+        "GAP_000_REPORT.md", "GAP_000_RAW_FINDINGS.csv", "GAP_000_ROOT_ISSUES.csv",
+        "GAP_000_REMEDIATION_MATRIX.csv", "GAP_000_EXPERIMENT_GATES.csv",
+        "GAP_000_CORE_VALIDATION_GATE.md", "GAP_000_EXP01_GATE.md", "GAP_000_EXP03_GATE.md",
+        "GAP_000_EXP05_GATE.md", "GAP_000_CODE_FIX_QUEUE.md", "GAP_000_EXPERIMENT_REQUIREMENTS.md",
+        "GAP_000_CLAIM_LIMITATIONS.md", "GAP_000_MINIMUM_THESIS_PATH.md",
+        "GAP_000_USER_DECISIONS_REQUIRED.md", "GAP_000_REMEDIATION_ORDER.md",
+        "GAP_000_PILOT_PRESERVATION.md",
+    }
+    for name in required_gap:
+        result.require((gap_dir / name).is_file(), f"GAP-000 output missing: {name}")
+    if not gap_dir.is_dir() or any(not (gap_dir / name).is_file() for name in required_gap):
+        return
+    with (gap_dir / "GAP_000_RAW_FINDINGS.csv").open("r", encoding="utf-8", newline="") as handle:
+        gap_raw = list(csv.DictReader(handle))
+    with (gap_dir / "GAP_000_ROOT_ISSUES.csv").open("r", encoding="utf-8", newline="") as handle:
+        gap_roots = list(csv.DictReader(handle))
+    with (gap_dir / "GAP_000_REMEDIATION_MATRIX.csv").open("r", encoding="utf-8", newline="") as handle:
+        gap_matrix = list(csv.DictReader(handle))
+    with (gap_dir / "GAP_000_EXPERIMENT_GATES.csv").open("r", encoding="utf-8", newline="") as handle:
+        gap_gates = list(csv.DictReader(handle))
+    result.require(len(gap_raw) == 120, "GAP-000 raw inventory must contain 120 findings")
+    severity = {level: sum(row["source_severity"] == level for row in gap_raw) for level in ("CRITICAL", "HIGH", "MEDIUM", "LOW")}
+    result.require(severity == {"CRITICAL": 0, "HIGH": 54, "MEDIUM": 55, "LOW": 11}, "GAP-000 raw severity census mismatch")
+    per_arch = {arch: sum(row["source_arch"] == arch for row in gap_raw) for arch in {row["source_arch"] for row in gap_raw}}
+    result.require(per_arch == {"ARCH-000":15,"ARCH-001":8,"ARCH-002":7,"ARCH-003":9,"ARCH-004":10,"ARCH-005":11,"ARCH-006":13,"ARCH-007":10,"ARCH-008":13,"ARCH-009":12,"ARCH-010":12}, "GAP-000 per-ARCH inventory mismatch")
+    root_ids = {row["gap_id"] for row in gap_roots}
+    result.require(len(gap_roots) == 19 and len(root_ids) == 19, "GAP-000 root issue count or IDs mismatch")
+    result.require(all(row["duplicate_group"] in root_ids for row in gap_raw), "GAP-000 raw finding has an unknown root group")
+    result.require(len(gap_matrix) == 19 and {row["gap_id"] for row in gap_matrix} == root_ids, "GAP-000 remediation matrix does not cover every root")
+    dispositions = {
+        "P0_FIX_BEFORE_EXPANDED_VALIDATION", "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT",
+        "EXPERIMENT_DESIGN_REQUIREMENT", "ENGINEERING_HARDENING",
+        "CLAIM_DOCUMENTATION_CORRECTION", "ACCEPTABLE_THESIS_LIMITATION", "FUTURE_WORK_ONLY",
+    }
+    result.require(all(row["disposition"] in dispositions and row["priority"] in {"P0","P1","P2","P3"} for row in gap_matrix), "GAP-000 disposition or priority enum mismatch")
+    result.require(all(row["status"] == "TRIAGED_NOT_IMPLEMENTED" for row in gap_matrix), "GAP-000 must not claim remediation implementation")
+    result.require([row["experiment_id"] for row in gap_gates] == ["EXP-01","EXP-02","EXP-03","EXP-04","EXP-05","EXP-06","NEW-HELD-OUT","FRESH-MACHINE"], "GAP-000 experiment gates are incomplete or reordered")
+    gate_status = {row["experiment_id"]: row["ready_now"] for row in gap_gates}
+    result.require(gate_status == {"EXP-01":"BLOCKED","EXP-02":"READY_WITH_CONDITIONS","EXP-03":"BLOCKED","EXP-04":"BLOCKED","EXP-05":"BLOCKED","EXP-06":"NOT_REQUIRED","NEW-HELD-OUT":"BLOCKED","FRESH-MACHINE":"CONDITIONAL"}, "GAP-000 gate statuses mismatch")
+    result.require("No audited defect proves the frozen INNER pilot invalid" in (gap_dir / "GAP_000_REPORT.md").read_text(encoding="utf-8"), "GAP-000 pilot preservation wording missing")
+    result.require("ARCH-011 read-only before remediation" in (gap_dir / "GAP_000_REMEDIATION_ORDER.md").read_text(encoding="utf-8"), "GAP-000 ARCH-011 position missing")
+    result.require("NOT NEEDED FOR THESIS" in (gap_dir / "GAP_000_MINIMUM_THESIS_PATH.md").read_text(encoding="utf-8"), "GAP-000 minimum path is incomplete")
+    result.require("Canonical RuleV1" in (gap_dir / "GAP_000_USER_DECISIONS_REQUIRED.md").read_text(encoding="utf-8"), "GAP-000 authority decision is missing")
+    bootstrap_gap = rcc_root / "bootstrap" / "GAP_000"
+    for name in (
+        "GAP_000_REPORT.md", "GAP_000_RAW_FINDINGS.csv", "GAP_000_ROOT_ISSUES.csv",
+        "GAP_000_REMEDIATION_MATRIX.csv", "GAP_000_EXPERIMENT_GATES.csv",
+        "GAP_000_CORE_VALIDATION_GATE.md", "GAP_000_EXP01_GATE.md", "GAP_000_EXP03_GATE.md",
+        "GAP_000_EXP05_GATE.md", "GAP_000_CODE_FIX_QUEUE.md", "GAP_000_EXPERIMENT_REQUIREMENTS.md",
+        "GAP_000_CLAIM_LIMITATIONS.md", "GAP_000_MINIMUM_THESIS_PATH.md", "GAP_000_USER_DECISIONS_REQUIRED.md",
+    ):
+        result.require((bootstrap_gap / name).read_bytes() == (gap_dir / name).read_bytes(), f"GAP-000 bootstrap copy differs: {name}")
+    evidence = json.loads((bootstrap_gap / "GAP_000_EVIDENCE.json").read_text(encoding="utf-8"))
+    result.require(evidence.get("raw_findings") == 120 and evidence.get("root_issues") == 19, "GAP-000 evidence counts mismatch")
+    result.require(evidence.get("past_pilot") == "INTERPRETABLE_WITH_QUALIFICATIONS" and evidence.get("invalidated_artifacts") == 0, "GAP-000 evidence invalidates pilot")
+    result.require(all(value == 0 for value in evidence.get("safety", {}).values()), "GAP-000 safety counters must remain zero")
 
 
 def validate_registry(

@@ -13,16 +13,16 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit`
+`GAP-000 — Pre-Validation Remediation & Risk Triage`
 
 ## What changed
 
-- Defined method output → alarm second → episode → attack-event unit / normal exposure → Recall/FAR.
-- Verified 14 maximal contiguous strict-label units; statistical independence is not established.
-- Verified PA-free event hits, zero-gap episode grouping, 51,019 normal seconds, and mixed-episode handling.
-- Classified D0/D1/D2 metric interfaces as semantically equivalent and fair with limitations.
-- Preserved all frozen values without recomputation and separated integrity from scientific validation.
-- Retained D1's weaker in-memory pre-label gate and V2 test1-informed status.
+- Inventoried all 120 ARCH-000 through ARCH-010 mismatches and merged them into 19 traceable root issues.
+- Classified two global implementation/contract fixes, three experiment-specific fixes, six protocol requirements, and bounded hardening/documentation/limitation work.
+- Kept final Rule/runtime authority and durable D1 pre-label persistence as expanded-validation blockers.
+- Kept GDN self-neighbor, `no_rule` taxonomy, and trace-renderer bridging scoped to EXP-01, EXP-03, and EXP-05 respectively.
+- Preserved the frozen pilot as qualified evidence; no prior artifact was rewritten or invalidated.
+- Recommended ARCH-011 as the next read-only audit before remediation implementation.
 
 ## Decisions made
 
@@ -34,16 +34,23 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-010 added static metric contracts,
-frozen-result lineage, integrity boundaries, and current-facing documentation only.
+No new scientific outcome was produced. GAP-000 added a deduplicated risk
+inventory, experiment gates, remediation queues, claim boundaries, and a minimum
+thesis path only.
 
 ## Open risks
 
 - D1 lacks a durable prediction-file-before-label gate even though its
   in-memory prediction authority is label-blind and self-hashed.
 - D2 V2 is a test1-informed development policy, not an independent confirmation.
-- Split enforcement is distributed across task-specific controllers rather
-  than one reusable runtime split authority.
+- The final scientific Rule/runtime authority remains a user decision among a
+  canonical path, a formally adopted V4 path, or a verified bridge.
+- Construction failures can collapse into `no_rule`; this must be corrected
+  before EXP-03, but it does not block unrelated detection experiments.
+- GDN self-neighbors can consume internal Top-5 capacity; EXP-01 requires a
+  corrected version or explicit ablation.
+- Frozen D1 traces are not canonical `RuntimeTraceV1`; EXP-05 needs an evaluated
+  trace-to-renderer bridge.
 - train3's relation-confirmation and D0-calibration dual use limits arm-level
   independence but is not verified leakage.
 - Fourteen contiguous units are too few for validated performance or superiority claims; independence is not established.
@@ -56,17 +63,14 @@ frozen-result lineage, integrity boundaries, and current-facing documentation on
 
 ## User actions
 
-- Distinguish point, rule record, alarm second, episode, and attack-event unit.
-- Explain 11/14 and 13/14 event-unit Recall.
-- Explain FAR episodes/hour and why it is not point FPR.
-- Explain why 14 contiguous units are not proven statistically independent.
-- Explain D0/D1/D2 metric comparability and its limitations.
-- Explain result integrity versus scientific validation.
-- Review the frozen pilot table.
-- Approve or defer GAP-000.
+- Review the 19-root-issue remediation matrix and experiment gates.
+- Choose the final scientific execution authority direction.
+- Accept the conditional title/contribution policy for Graph-Guided and Agentic claims.
+- Confirm that PILOT V1 remains immutable and future results use a versioned VALIDATION V2.
+- Approve or defer ARCH-011 as the next read-only audit before remediation.
 
 ## Exact next task
 
-`GAP-000 — Pre-Validation Remediation & Risk Triage`
+`ARCH-011 — OUTER / Reproducibility Deep Audit`
 
-Do not start it until the user has reviewed ARCH-010. ARCH-011 follows only after GAP-000.
+Do not implement remediation or start experiments before the user reviews GAP-000.

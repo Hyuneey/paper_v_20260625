@@ -48,8 +48,8 @@ class Arch005VerifierCommon42Tests(unittest.TestCase):
 
     def test_state_and_generated_summary(self):
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertIn(state["last_completed_task"], {"ARCH-005", "ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010"})
-        self.assertTrue(state["exact_next_task"].startswith(("ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000")))
+        self.assertIn(state["last_completed_task"], {"ARCH-005", "ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000"})
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011")))
         self.assertEqual("COMMON-42 Verified Relational Rule-only", state["verifier_common42_authority"]["preferred_d1_term"])
         summary = (RCC / "generated" / "ARCH_005_USER_SUMMARY.md").read_text(encoding="utf-8")
         self.assertIn("COMMON-42", summary)

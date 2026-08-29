@@ -1,0 +1,21 @@
+{
+  "agent": "C",
+  "role": "Governance and Reproducibility Reviewer",
+  "verdict": "PASS_WITH_FUTURE_GATES",
+  "governance_gates": [
+    "D1 durable pre-label bytes and explicit state gate before expanded detection.",
+    "Validation, policy-selection, and final-test roles frozen before results.",
+    "New held-out preregistration because the old OUTER path has no scientific result.",
+    "Event-unit policy and dependence interpretation frozen before expanded results.",
+    "Fresh-machine rehearsal before held-out execution, not before every preparatory task."
+  ],
+  "hardening": [
+    "Static split-entrypoint conformance.",
+    "Explicit one-second and file-local metric contracts.",
+    "Tracked cross-arm comparison aggregator."
+  ],
+  "acceptable_limitation": "train3 dual normal-only use is disclosed and is not verified leakage.",
+  "arch011_position": "BEFORE_REMEDIATION_READ_ONLY",
+  "past_pilot": "NO_VERIFIED_LEAKAGE; INTERPRETABLE_WITH_QUALIFICATIONS",
+  "safety": {"scientific_executions": 0, "test2_accesses": 0, "fixes": 0, "files_edited": 0}
+}

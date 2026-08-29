@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -148,17 +148,16 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
 - **HIGH / OPEN** — D1 builds and self-hashes a label-blind prediction object before labels but does not durably persist and reopen the public prediction file until after metrics.
+- **HIGH / OPEN** — Future validation lacks one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
+- **HIGH / OPEN** — Construction orchestration can collapse provider parse verifier and budget failures into no_rule.
 
 ## Top user TODO
 
-- Distinguish point, rule record, alarm second, episode, and attack-event unit.
-- Explain 11/14 and 13/14 event-unit Recall.
-- Explain normal FAR episodes/hour.
-- Explain why 14 contiguous units are not proven statistically independent.
-- Explain D0/D1/D2 common metric comparability and its limitations.
-- Explain result integrity versus scientific validation.
-- Explain the frozen pilot result table.
-- Approve or defer GAP-000 remediation triage.
+- Choose the final scientific Rule/verifier/runtime authority.
+- Approve the conditional Graph-Guided and Agentic title policy.
+- Explain why durable D1 persistence is prospective and does not rewrite PILOT V1.
+- Distinguish code fixes, experiment requirements, wording corrections, and limitations.
+- Approve or defer ARCH-011 as the next read-only task.
 
 ## Source-policy boundary
 
@@ -168,9 +167,6 @@ is non-authoritative.
 
 ## Exact next task
 
-Management: **GAP-000 — Pre-Validation Remediation & Risk Triage**
+Management: **ARCH-011 — OUTER / Reproducibility Deep Audit**
 
-Following architecture review: **ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)**
-
-Scientific direction: preregister expanded Rule-only and detector comparison evidence,
-then separately test GDN stability and an actually activated budget-matched feedback arm.
+Following architecture review: **ARCH-011 — OUTER / Reproducibility Deep Audit**

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Preregister expanded Rule-only and detector comparison evidence with more independent events and a stronger multivariate detector baseline.
-- Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
-- Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
+- Run ARCH-011 read-only to pin OUTER custody, environment, portability, and fresh-machine gaps before remediation.
+- Choose and version the final scientific authority, then add the durable D1 pre-label gate without rewriting PILOT V1.
+- Close only the experiment-specific gate needed for the next approved protocol; freeze all choices before results.
 
-Exact next management task: **GAP-000 — Pre-Validation Remediation & Risk Triage**
-Following architecture task: **ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)**
+Exact next management task: **ARCH-011 — OUTER / Reproducibility Deep Audit**
+Following architecture task: **ARCH-011 — OUTER / Reproducibility Deep Audit**

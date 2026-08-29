@@ -1,0 +1,23 @@
+{
+  "agent": "A",
+  "role": "Scientific Validity and Experimental Design Reviewer",
+  "verdict": "PASS_FOR_TRIAGE",
+  "inventory": {"raw_findings": 120, "critical": 0, "high": 54, "medium": 55, "low": 11},
+  "p0_findings": [
+    "Final scientific execution authority must be selected before expanded runtime-based validation.",
+    "D1 needs durable pre-label persistence before future core detection validation.",
+    "Validation/final-test roles and held-out preregistration must be frozen.",
+    "Event-unit scope and inferential interpretation must be frozen without assuming independence."
+  ],
+  "experiment_specific": {
+    "EXP-01": "GDN self-neighbor resolution plus stability, unique contribution, masking, and Top-20 sensitivity.",
+    "EXP-02": "Normal-only fixed versus relation-specific numeric comparison after authority freeze.",
+    "EXP-03": "Failure taxonomy plus repeated budget-matched stochastic construction.",
+    "EXP-04": "Authority, custody, held-out roles, event scope, metric portability, stronger detector, and frozen fusion selection.",
+    "EXP-05": "Evaluated trace to renderer bridge; human usefulness optional.",
+    "EXP-06": "Future-only and not required."
+  },
+  "past_pilot": "INTERPRETABLE_WITH_QUALIFICATIONS; no artifact proven invalid",
+  "arch011_position": "BEFORE_REMEDIATION_READ_ONLY",
+  "safety": {"scientific_executions": 0, "test2_accesses": 0, "files_edited": 0}
+}
