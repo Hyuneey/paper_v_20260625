@@ -1,0 +1,217 @@
+{
+  "artifact_type": "arch002_independent_qa_v1",
+  "task_id": "ARCH-002",
+  "agent_role": "Agent E - Independent Candidate Discovery QA",
+  "verdict": "PASS",
+  "authority": {
+    "rcc_head_at_gate": "d5d3f2ac8a619ba84282f6c0c86a739e98a21ccb",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "inspection_mode": "STATIC_SOURCE_AND_EXISTING_PUBLIC_SAFE_FROZEN_ARTIFACTS_ONLY",
+    "current_checkout_used_as_scientific_authority": false
+  },
+  "qa_questions": [
+    {
+      "id": 1,
+      "question": "Is the 12x12 candidate universe source-supported?",
+      "answer": "PASS",
+      "evidence": "CandidateUniversePolicyV1 and the frozen C0 bundle bind 12 ordered source identities, 12 ordered target identities, zero role overlap, and 144 directed pair identities."
+    },
+    {
+      "id": 2,
+      "question": "Is META methodology accurately represented?",
+      "answer": "PASS",
+      "evidence": "The official report matches M1_EXPLICIT, M2_GRAPH_ADJACENT, M3_SUBSYSTEM_SUPPORTED, and UNSUPPORTED precedence plus deterministic tier, reference-count, and identity ordering."
+    },
+    {
+      "id": 3,
+      "question": "Is STAT methodology accurately represented?",
+      "answer": "PASS",
+      "evidence": "The report correctly describes file-local first differences, frozen 1/5/10/30/60 second horizons, Pearson association, same-nonzero-sign cross-file stability, weaker absolute strength, and deterministic tie-breaking."
+    },
+    {
+      "id": 4,
+      "question": "Is STAT separated from delayed-response profiling?",
+      "answer": "PASS",
+      "evidence": "All current views call STAT directional lagged-association candidate evidence and reserve step-event, response-direction, and horizon confirmation for downstream relation profiling."
+    },
+    {
+      "id": 5,
+      "question": "Is GDN training input accurately represented?",
+      "answer": "PASS",
+      "evidence": "The audit binds normal train1/train2 only, two file-local segments, full ordered 37-node P1 context, five-step histories, one-step targets, and prohibits train3/train4/test/labels."
+    },
+    {
+      "id": 6,
+      "question": "Is learned graph construction accurately represented?",
+      "answer": "PASS",
+      "evidence": "The report identifies the embedding cosine matrix, target-row Top-5, best-state extraction, three-seed projection and aggregation, and the post-Top-5 144-pair universe projection. It also now records that the diagonal is not removed before Top-5 and that the resulting self-slot sensitivity is untested."
+    },
+    {
+      "id": 7,
+      "question": "Are node embeddings correctly described?",
+      "answer": "PASS",
+      "evidence": "They are described as trainable 64-dimensional node embeddings used to construct the cosine learned graph under the normal next-value forecasting objective."
+    },
+    {
+      "id": 8,
+      "question": "Is attention usage correctly described?",
+      "answer": "PASS",
+      "evidence": "Graph attention is correctly limited to model-internal message passing; attention coefficients are not candidate-ranking or final relationship evidence."
+    },
+    {
+      "id": 9,
+      "question": "Is post-hoc XAI usage correctly described?",
+      "answer": "PASS",
+      "evidence": "The frozen path uses no post-hoc XAI, SHAP, separate attribution model, or explanation-derived candidate ranking."
+    },
+    {
+      "id": 10,
+      "question": "Is GDN edge semantics conservative?",
+      "answer": "PASS",
+      "evidence": "The edge is consistently described as a target-indexed learned neighbor or input-dependency candidate, not a temporal cause, physical truth, root cause, or confirmed delayed response."
+    },
+    {
+      "id": 11,
+      "question": "Is top-k source-supported?",
+      "answer": "PASS",
+      "evidence": "C0 freezes arm primary Top-20 with Top-10/40 sensitivity prefixes and no reranking or padding. The separate scientific rationale for 20 is honestly marked RATIONALE_UNDOCUMENTED."
+    },
+    {
+      "id": 12,
+      "question": "Is union size source-supported?",
+      "answer": "PASS",
+      "evidence": "The frozen cohort and overlap artifacts bind 20 candidates per arm and 47 unique directed pairs. The public provenance CSV exactly matches all 47 frozen candidate identities and arm memberships."
+    },
+    {
+      "id": 13,
+      "question": "Is union ranked or unscored correctly described?",
+      "answer": "PASS",
+      "evidence": "The union is correctly described as a set union with stable encounter serialization, no cross-arm score normalization, no merged score, and no global scientific rank."
+    },
+    {
+      "id": 14,
+      "question": "Is pair provenance preserved?",
+      "answer": "PASS",
+      "evidence": "Exact directed pair identity, origin arms, arm-specific ranks and evidence bindings are preserved. Mechanical review found 47 unique rows, 20 selections per arm, 34 one-arm rows, 13 two-arm rows, and zero three-arm rows."
+    },
+    {
+      "id": 15,
+      "question": "Is GDN-Functional correctly treated as validation rather than a fourth arm?",
+      "answer": "PASS",
+      "evidence": "Official and generated reports retain exactly META, STAT, and GDN-Graph as discovery arms and classify seed/split/masking functional checks as future validation procedures."
+    },
+    {
+      "id": 16,
+      "question": "Does GDN contribution remain UNVALIDATED?",
+      "answer": "PASS",
+      "evidence": "components.csv, claims.csv, risks.csv, current_state.yaml, dashboard, GPT brief, professor answer, and user summary all preserve the UNVALIDATED contribution boundary."
+    },
+    {
+      "id": 17,
+      "question": "Did the audit avoid new scientific execution?",
+      "answer": "PASS",
+      "evidence": "Only static source, frozen public-safe artifact, registry, dashboard, and synthetic RCC validation were used. Candidate-discovery execution, GDN training, ranking recomputation, artifact regeneration, and test2 access remained zero."
+    },
+    {
+      "id": 18,
+      "question": "Are all unknowns explicitly marked?",
+      "answer": "PASS",
+      "evidence": "The audit explicitly marks the Top-20 rationale, seed and split stability, unique confirmed contribution, diagonal and pre-Top-5 masking effect, and downstream confirmation as unresolved or future validation work."
+    }
+  ],
+  "independent_cross_checks": {
+    "candidate_universe": {
+      "source_count": 12,
+      "target_count": 12,
+      "directed_pair_count": 144,
+      "source_target_overlap_count": 0,
+      "match": true
+    },
+    "frozen_arm_results": {
+      "META": {"evaluated": 144, "supported": 30, "top20": 20},
+      "STAT": {"evaluated": 144, "supported": 141, "top20": 20},
+      "GDN": {"evaluated": 144, "supported": 39, "top20": 20}
+    },
+    "union": {
+      "unique_pairs": 47,
+      "meta_only": 8,
+      "stat_only": 8,
+      "gdn_only": 18,
+      "exactly_two_arms": 13,
+      "all_three_arms": 0,
+      "global_score": false,
+      "global_scientific_rank": false,
+      "provenance_mismatches": 0
+    },
+    "gdn_boundaries": {
+      "normal_train1_train2_only": true,
+      "learned_graph_used": true,
+      "attention_used_for_candidate_ranking": false,
+      "posthoc_xai_used": false,
+      "pre_top5_candidate_mask_used": false,
+      "diagonal_removed_before_top5": false,
+      "exported_self_pairs_removed_by_disjoint_role_projection": true,
+      "self_slot_functional_effect_validated": false,
+      "causal_authority": false
+    }
+  },
+  "findings": [
+    {
+      "id": "QA-F001",
+      "severity": "NONE",
+      "status": "VERIFIED",
+      "finding": "META, STAT, GDN, and union implementation descriptions match pinned source and frozen public-safe artifacts."
+    },
+    {
+      "id": "QA-F002",
+      "severity": "NONE",
+      "status": "VERIFIED",
+      "finding": "The learned-graph, attention, and post-hoc-XAI distinctions are explicit and technically consistent across official and user-facing views."
+    },
+    {
+      "id": "QA-F003",
+      "severity": "MEDIUM",
+      "status": "OPEN_RESEARCH_LIMITATION_NOT_AUDIT_BLOCKER",
+      "finding": "The frozen full-context Top-5 is computed without diagonal removal or a pre-Top-5 candidate mask. Exported self pairs are removed by the disjoint-role projection, but the internal neighbor-budget effect remains untested and is now explicitly documented."
+    },
+    {
+      "id": "QA-F004",
+      "severity": "LOW",
+      "status": "OPEN_DOCUMENTATION_LIMITATION_NOT_AUDIT_BLOCKER",
+      "finding": "Top-20 is preregistered and correctly enforced, while its additional scientific rationale remains undocumented and is not presented as optimized."
+    },
+    {
+      "id": "QA-F005",
+      "severity": "NONE",
+      "status": "VERIFIED",
+      "finding": "The 47 candidates remain proposals for downstream profiling; no current view upgrades them to confirmed temporal or causal relations."
+    }
+  ],
+  "validation": {
+    "registry_validator": "PASS",
+    "registry_validator_message": "RCC_REGISTRY_VALIDATION_PASS scope=registry+generated private_exposures=0",
+    "rcc_tests": "PASS",
+    "rcc_tests_run": 55,
+    "rcc_tests_failed": 0,
+    "candidate_provenance_rows": 47,
+    "candidate_provenance_identity_mismatches": 0,
+    "privacy": "PASS",
+    "private_exposures": 0
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "candidate_discovery_executions": 0,
+    "gdn_training_executions": 0,
+    "rankings_recomputed": 0,
+    "candidate_artifacts_regenerated": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0,
+    "files_written": [
+      "research_control_center/bootstrap/ARCH_002/agents/agent_e_qa.json"
+    ]
+  }
+}

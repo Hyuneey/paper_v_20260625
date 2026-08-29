@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376">
+  <meta name="rcc-registry-digest" content="40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -62,13 +62,29 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-003 — Relation Profiling &amp; Numeric Authority Deep Audit</p>
+    </section>
+
+    <section id="candidate-discovery" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">DISCOVERY</p><h2>CANDIDATE DISCOVERY</h2></div>
+      <div class="status-snapshot">
+        <div><span>Universe</span><strong>12 ordered sources x 12 ordered targets = 144 directed pairs</strong></div>
+        <div><span>Union</span><strong>unscored provenance-preserving set union of 47 unique pairs</strong></div>
+        <div><span>Learned graph</span><strong>USED</strong></div>
+        <div><span>Attention as final evidence</span><strong>NO</strong></div>
+        <div><span>Post-hoc XAI</span><strong>NO</strong></div>
+        <div><span>GDN contribution</span><strong>UNVALIDATED</strong></div>
+      </div>
+      <div class="summary-grid"><article class="summary-card"><p class="eyebrow">META</p><h3>M1/M2/M3 deterministic domain-prior ranking</h3><dl><div><dt>INPUT</dt><dd>reviewed P1 metadata and public physical graph</dd></div><div><dt>OUTPUT</dt><dd>metadata-supported pair candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">STAT</p><h3>file-local first-difference lagged Pearson stability</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2</dd></div><div><dt>OUTPUT</dt><dd>directional lagged-association candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">GDN</p><h3>next-value prediction plus embedding-cosine learned graph</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2 full 37-node context</dd></div><div><dt>OUTPUT</dt><dd>learned-graph candidate edges</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article></div>
+      <aside class="principle">Candidate discovery proposes relationships. It does not establish causal or final temporal relations.</aside>
+      <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
+      <p><strong>Next deep review:</strong> ARCH-003 — Relation Profiling &amp; Numeric Authority Deep Audit</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain why train1/train2, train3, train4, test1, and test2 have different roles.</li><li>Explain when labels become visible and why D1&#x27;s durable persistence gap matters.</li><li>Explain why test1 is pilot evidence rather than final validation.</li><li>Explain why test2 has no scientific outcome.</li><li>Choose any leakage or coupling finding that needs a deeper explanation.</li><li>Approve or defer starting ARCH-002.</li></ul>
+      <ul><li>Explain META as reviewed metadata domain-prior candidate evidence.</li><li>Explain STAT as normal directional lagged-association candidate evidence.</li><li>Explain GDN&#x27;s technical learned-graph candidate contribution.</li><li>Explain why learned graph and attention are different authorities.</li><li>Explain why the 47-pair union is not a confirmed relation set.</li><li>Approve or defer starting ARCH-003.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -228,40 +244,40 @@
 </div>
 <dl><div class="card-field"><dt>Role</dt><dd>Enforces split roles and purge boundaries</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Audit future entrypoints against split manifests and add a separately authorized D1 durable prediction gate</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="variable_role_universe variable role universe freezes eligible sources targets and pair universe implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/candidate_discovery_protocol_v1.py candidateuniversepolicyv1 reviewed p1 variable metadata and candidate policy 12 source by 12 target universe with 144 possibilities art-candidate-cohort tests/test_candidate_universe.py;tests/test_task039c0_candidate_protocol.py true true false true low deep-audit role scoring and arm-specific inputs without changing the frozen universe arch-002">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="variable_role_universe variable role universe freezes eligible sources targets and pair universe implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/candidate_discovery_protocol_v1.py candidateuniversepolicyv1 reviewed p1 variable metadata and candidate policy 12 ordered source by 12 ordered target identities with 144 directed pairs art-candidate-cohort tests/test_candidate_universe.py;tests/test_task039c0_candidate_protocol.py true true false true low preserve frozen universe and review downstream profiling handoff in arch-003 arch-002">
 <div class="card-heading">
 <div><p class="eyebrow">VARIABLE_ROLE_UNIVERSE</p><h3>Variable role universe</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Freezes eligible sources targets and pair universe</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Deep-audit role scoring and arm-specific inputs without changing the frozen universe</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Freezes eligible sources targets and pair universe</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Preserve frozen universe and review downstream profiling handoff in ARCH-003</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="meta_discovery meta candidate discovery ranks candidates from metadata without feature values implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/metadata_candidate_discovery_v1.py rank_supported_metadata_records_v1 frozen pair universe and reviewed metadata audited top-20 metadata ranking without causal meaning art-candidate-cohort tests/test_task039c_meta.py true true false false medium compare unique confirmed contribution and stability arch-002">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="meta_discovery meta candidate discovery ranks candidates from metadata without feature values implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/metadata_candidate_discovery_v1.py rank_supported_metadata_records_v1 frozen universe plus reviewed metadata and directed physical graph top-20 deterministic domain-prior candidates with no feature values or causal authority art-candidate-cohort tests/test_task039c_meta.py true true false false medium compare unique confirmed contribution and top-k sensitivity arch-002">
 <div class="card-heading">
 <div><p class="eyebrow">META_DISCOVERY</p><h3>META candidate discovery</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Ranks candidates from metadata without feature values</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Compare unique confirmed contribution and stability</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Ranks candidates from metadata without feature values</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Compare unique confirmed contribution and top-k sensitivity</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="stat_discovery stat candidate discovery ranks normal-only lagged statistical associations implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/statistical_candidate_discovery_v1.py rank_pair_evidence_v1 frozen pair universe and normal train1/train2 evidence audited top-20 statistical ranking without causal meaning art-candidate-cohort tests/test_task039c_stat.py true true false false medium measure split stability and unique confirmed contribution arch-002">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="stat_discovery stat candidate discovery ranks normal-only lagged statistical associations implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/statistical_candidate_discovery_v1.py rank_pair_evidence_v1 frozen universe and normal train1/train2 file-local numeric segments top-20 directional lagged first-difference association candidates art-candidate-cohort tests/test_task039c_stat.py true true false false medium measure split stability unique confirmed contribution and top-k sensitivity arch-002">
 <div class="card-heading">
 <div><p class="eyebrow">STAT_DISCOVERY</p><h3>STAT candidate discovery</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Ranks normal-only lagged statistical associations</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Measure split stability and unique confirmed contribution</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Ranks normal-only lagged statistical associations</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Measure split stability unique confirmed contribution and top-k sensitivity</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="gdn_discovery gdn candidate discovery produces upstream-aligned graph-ranking candidate evidence implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/gdn/upstream_candidate_backend_v1.py train_upstream_aligned_seed_v1 frozen pair mask normal training segments and fidelity receipt audited three-seed top-20 graph ranking as candidate evidence art-candidate-cohort tests/test_task039c_gdn_candidates.py true true false false high validate stable unique contribution and masking behavior arch-002">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="gdn_discovery gdn candidate discovery produces upstream-aligned graph-ranking candidate evidence implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/gdn/upstream_candidate_backend_v1.py train_upstream_aligned_seed_v1 normal train1/train2 full p1 context and frozen universe projection three-seed embedding-cosine learned-graph top-20 candidates; attention is not ranking evidence art-candidate-cohort tests/test_task039c_gdn_candidates.py true true false false high validate seed and split stability unique confirmed contribution and pre-top-5 masking impact arch-002">
 <div class="card-heading">
 <div><p class="eyebrow">GDN_DISCOVERY</p><h3>GDN candidate discovery</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Produces upstream-aligned graph-ranking candidate evidence</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Validate stable unique contribution and masking behavior</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Produces upstream-aligned graph-ranking candidate evidence</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Validate seed and split stability unique confirmed contribution and pre-Top-5 masking impact</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="candidate_union candidate union integrates discovery arms without rescoring implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/candidate_integration_v1.py build_task039c_integration_v1 frozen meta stat and gdn ranked artifacts unscored provenance-preserving union of 47 unique pairs art-candidate-cohort tests/test_task039c_integration_reports.py true true false true medium review overlap semantics without treating membership as validation arch-002">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="candidate_union candidate union integrates discovery arms without rescoring implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/candidate_integration_v1.py build_task039c_integration_v1 frozen meta stat and gdn top-20 artifacts unscored provenance-preserving set union of 47 unique directed pairs art-candidate-cohort tests/test_task039c_integration_reports.py true true false true medium audit exact relation-profiling consumption in arch-003 arch-002">
 <div class="card-heading">
 <div><p class="eyebrow">CANDIDATE_UNION</p><h3>Candidate union</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Integrates discovery arms without rescoring</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Review overlap semantics without treating membership as validation</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Integrates discovery arms without rescoring</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Audit exact relation-profiling consumption in ARCH-003</dd></div></dl>
 </article>
 <article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="relation_profiling relation profiling fits direction and lag aware normal relations implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/profiling/task039d1_fit_v1.py build_fit_result_v1 47-pair cohort and authorized normal values 23 pair contexts and 42 confirmed directed relations art-train3-confirmation;art-confirmed-relations tests/test_task039d1_fit_engine.py;tests/test_task039d1_independent_replay.py true true false true medium compare criteria and stability without physical-truth claims arch-003">
 <div class="card-heading">
@@ -692,7 +708,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-003 — Relation Profiling &amp; Numeric Authority Deep Audit</strong></div>
     </section>
   </main>
 

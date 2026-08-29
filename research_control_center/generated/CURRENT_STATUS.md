@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -46,11 +46,11 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 |---|---|---|
 | DATA_PROVENANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Rehearse public-safe restoration and verify timezone semantics on a fresh machine |
 | SPLIT_GOVERNANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit future entrypoints against split manifests and add a separately authorized D1 durable prediction gate |
-| VARIABLE_ROLE_UNIVERSE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Deep-audit role scoring and arm-specific inputs without changing the frozen universe |
-| META_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare unique confirmed contribution and stability |
-| STAT_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Measure split stability and unique confirmed contribution |
-| GDN_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Validate stable unique contribution and masking behavior |
-| CANDIDATE_UNION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review overlap semantics without treating membership as validation |
+| VARIABLE_ROLE_UNIVERSE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve frozen universe and review downstream profiling handoff in ARCH-003 |
+| META_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare unique confirmed contribution and top-k sensitivity |
+| STAT_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Measure split stability unique confirmed contribution and top-k sensitivity |
+| GDN_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Validate seed and split stability unique confirmed contribution and pre-Top-5 masking impact |
+| CANDIDATE_UNION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit exact relation-profiling consumption in ARCH-003 |
 | RELATION_PROFILING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare criteria and stability without physical-truth claims |
 | NUMERIC_AUTHORITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep values private and compare criteria in a new protocol |
 | EVIDENCE_PACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review completeness and claim boundaries in ARCH work |
@@ -133,4 +133,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
+**ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**

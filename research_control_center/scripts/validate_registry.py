@@ -113,6 +113,7 @@ GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
     "generated/CHANGE_SUMMARY.md", "generated/RCC_002_USER_SUMMARY.md",
     "generated/RCC_003_HISTORY_SUMMARY.md", "generated/ARCH_001_USER_SUMMARY.md",
+    "generated/ARCH_002_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -123,6 +124,7 @@ REQUIRED_RCC_DIRS = (
     "architecture", "dashboard", "dashboard/assets", "generated", "scripts",
     "bootstrap/RCC_000", "bootstrap/RCC_003", "bootstrap/RCC_003/agents",
     "architecture/01_data_and_splits", "bootstrap/ARCH_001", "bootstrap/ARCH_001/agents",
+    "architecture/02_candidate_discovery", "bootstrap/ARCH_002", "bootstrap/ARCH_002/agents",
 )
 
 
@@ -203,8 +205,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain exactly six ARCH-001 review entries")
     result.require(len(state.get("user_todo_items", [])) == 6, "ARCH-001 must leave six user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-001", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "ARCH-002", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -217,8 +219,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit", "next architecture task mismatch")
     governance = state.get("data_governance", {})
     result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
     result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
@@ -582,7 +584,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "DATA GOVERNANCE", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -591,6 +593,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/RCC_002_USER_SUMMARY.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "하나의 연구 완료율"),
         "generated/RCC_003_HISTORY_SUMMARY.md": ("우리 연구가 어떻게 여기까지 왔나", "pilot evidence", "홀드아웃 일반화"),
         "generated/ARCH_001_USER_SUMMARY.md": ("우리가 어떤 데이터를 쓰고 있는가", "test1", "test2", "NO VERIFIED LEAKAGE FOUND"),
+        "generated/ARCH_002_USER_SUMMARY.md": ("관계 후보는 왜 세 방식으로 고르는가", "META", "STAT", "GDN", "47개"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -681,6 +684,37 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     mermaid_deep = (deep / "ARCH_001_SPLIT_FLOW.mmd").read_text(encoding="utf-8")
     result.require(mermaid_deep.startswith("flowchart "), "ARCH-001 Mermaid does not declare a flowchart")
     result.require("0 feature bytes read" in mermaid_deep, "ARCH-001 Mermaid obscures the OUTER byte-read boundary")
+
+    discovery = rcc_root / "architecture" / "02_candidate_discovery"
+    required_discovery = {
+        "ARCH_002_REPORT.md", "ARCH_002_GDN_PROFESSOR_ANSWER.md",
+        "ARCH_002_ARM_COMPARISON.csv", "ARCH_002_CANDIDATE_PROVENANCE.csv",
+        "ARCH_002_FUNCTION_CATALOG.csv", "ARCH_002_IO_CONTRACTS.csv",
+        "ARCH_002_DISCOVERY_FLOW.mmd", "ARCH_002_MISMATCHES.md",
+    }
+    for name in required_discovery:
+        result.require((discovery / name).is_file(), f"ARCH-002 output missing: {name}")
+    if not discovery.is_dir() or any(not (discovery / name).is_file() for name in required_discovery):
+        return
+    with (discovery / "ARCH_002_CANDIDATE_PROVENANCE.csv").open("r", encoding="utf-8", newline="") as handle:
+        candidates = list(csv.DictReader(handle))
+    with (discovery / "ARCH_002_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        discovery_functions = list(csv.DictReader(handle))
+    with (discovery / "ARCH_002_IO_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        discovery_contracts = list(csv.DictReader(handle))
+    result.require(len(candidates) == 47, "ARCH-002 provenance does not contain 47 candidates")
+    result.require(len({row["pair_id"] for row in candidates}) == 47, "ARCH-002 pair IDs are not unique")
+    result.require(len({(row["source"], row["target"]) for row in candidates}) == 47, "ARCH-002 pair identities are not unique")
+    result.require(sum(row["meta_selected"] == "true" for row in candidates) == 20, "ARCH-002 META provenance count mismatch")
+    result.require(sum(row["stat_selected"] == "true" for row in candidates) == 20, "ARCH-002 STAT provenance count mismatch")
+    result.require(sum(row["gdn_selected"] == "true" for row in candidates) == 20, "ARCH-002 GDN provenance count mismatch")
+    result.require(all(row["safe_artifact_reference"] == "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json" for row in candidates), "ARCH-002 provenance has an unexpected artifact reference")
+    result.require(len(discovery_functions) >= 30, "ARCH-002 function catalog is incomplete")
+    result.require(all(is_safe_relative_path(row["path"]) for row in discovery_functions), "ARCH-002 function catalog contains an unsafe source path")
+    result.require(len(discovery_contracts) >= 7, "ARCH-002 IO contract catalog is incomplete")
+    mermaid_discovery = (discovery / "ARCH_002_DISCOVERY_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(mermaid_discovery.startswith("flowchart "), "ARCH-002 Mermaid does not declare a flowchart")
+    result.require("UNSCORED SET UNION" in mermaid_discovery and "Post-hoc XAI" in mermaid_discovery, "ARCH-002 Mermaid omits required discovery boundaries")
 
 
 def validate_registry(

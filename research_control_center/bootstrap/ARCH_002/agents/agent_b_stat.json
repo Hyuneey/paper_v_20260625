@@ -1,0 +1,473 @@
+{
+  "task_id": "ARCH-002",
+  "agent_role": "STAT Discovery Auditor",
+  "component_id": "STAT_DISCOVERY",
+  "verdict": "VERIFIED_WITH_NARROW_CLAIM_BOUNDARY",
+  "authority": {
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "rcc_head_at_audit_start": "d5d3f2ac8a619ba84282f6c0c86a739e98a21ccb",
+    "frozen_implementation_commit": "629f022d35bb0db6130e7e69faaf48408b49aa9a",
+    "frozen_result_commit": "9359a8b8085b1948bde23171ec886e996fbd37b3"
+  },
+  "executive_summary": {
+    "input": "P1 normal train1 and train2 feature values for the frozen 12 source and 12 target columns only",
+    "method": "within-file Pearson correlation between source first differences at time t and target first differences at time t plus a frozen positive horizon",
+    "horizons_seconds": [1, 5, 10, 30, 60],
+    "pair_score": "the maximum across sign-stable horizons of min(abs(r_train1), abs(r_train2))",
+    "ranking": "supported sign-stable pairs first; score descending; selected horizon ascending; source then target lexicographic",
+    "top_k": "top10, top20, and top40 are prefixes of one ranking; top20 is the primary downstream view",
+    "scientific_meaning": "directional statistical candidate evidence only; not causality, rule validity, or confirmed delayed response",
+    "frozen_execution": "144 pairs evaluated; 141 sign-stable supported pairs; 3 direction-unstable audit-only pairs; complete top20 available"
+  },
+  "input_boundary": {
+    "dataset": "HAI 23.05",
+    "process": "P1 Boiler",
+    "allowed_splits": ["train1", "train2"],
+    "allowed_file_roles": ["normal_train_time_series"],
+    "normal_only": true,
+    "selected_feature_columns": 24,
+    "feature_column_composition": "12 frozen sources followed by 12 frozen targets",
+    "timestamp_values_read_in_frozen_execution": false,
+    "label_values_read": false,
+    "other_normal_splits_read": false,
+    "evaluation_splits_read": false,
+    "unrequested_columns_parsed": false,
+    "file_read_policy": "each authorized file opened once; exact bytes hashed while only selected numeric columns were parsed as NumPy float64",
+    "boundary_enforcement": [
+      "load_frozen_c0_bundle_v1 binds the universe and statistical policy hashes",
+      "load_verified_file_identities_v1 binds manifest identity, hash, size, rows, header and normal-only status",
+      "authorize_stat_value_request_v1 restricts process, files and columns",
+      "STATDataAccessLedgerV1 requires exactly the frozen 24 columns and one read per file",
+      "reject_br2_pair_supervision_v1 rejects candidate-ranking use of prior pair-level screening"
+    ]
+  },
+  "preprocessing": {
+    "dtype": "float64",
+    "operation": "first difference independently within each file",
+    "source_formula": "dx(t) = x(t) - x(t-1)",
+    "target_formula": "dy(t) = y(t) - y(t-1)",
+    "cross_file_difference": false,
+    "cross_file_lag_pair": false,
+    "normalization": "no separate z-score, scaling, smoothing, clipping, or imputation; Pearson centers finite aligned observations internally",
+    "missing_handling": "pairwise finite aligned observations only",
+    "minimum_finite_observations": 2,
+    "constant_handling": "zero variance yields unusable correlation",
+    "nonfinite_result_handling": "unusable correlation",
+    "exact_zero_handling": "not sign-stable",
+    "file_aggregation": "no pooled raw series and no cross-file Pearson; train1 and train2 correlations remain independent until the sign-stability and minimum-absolute-strength rule"
+  },
+  "statistic": {
+    "name": "lagged_change_correlation_candidate_score",
+    "per_file_formula": "corr(dx(t), dy(t+h)) within one file",
+    "correlation": "Pearson centered product-moment correlation",
+    "numerical_backend": "NumPy float64 vectorized implementation with an independent math.fsum scalar parity oracle",
+    "parity_tolerance": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "horizon_eligibility": "both train1 and train2 correlations finite, nonzero, and with the same sign",
+    "horizon_strength": "min(abs(r_train1), abs(r_train2))",
+    "selected_horizon": "strongest eligible horizon, with the shorter horizon winning an exact strength tie",
+    "no_eligible_horizon": {
+      "status": "direction_unstable",
+      "score": 0.0,
+      "candidate_budget_eligible": false
+    },
+    "arbitrary_minimum_correlation_threshold": null
+  },
+  "directionality": {
+    "classification": "DIRECTIONAL_LAGGED_ASSOCIATION",
+    "explanation": "The ordered candidate uses a frozen source role at t and a frozen target role at t+h. This temporal alignment is directional even though ordinary Pearson correlation on one fixed aligned vector pair is algebraically symmetric.",
+    "reverse_pair_semantics": "Reversing source and target would create a different lag-alignment calculation and is not inferred from the forward result. In the frozen universe, source and target role sets are disjoint, so reverse-role candidates are not automatically present.",
+    "sign_semantics": "positive or negative denotes the stable sign of lagged first-difference association across train1 and train2",
+    "not_supported": [
+      "causal direction",
+      "physical actuation proof",
+      "confirmed response horizon",
+      "rule validity"
+    ]
+  },
+  "ranking_and_budget": {
+    "evaluated_pair_count": 144,
+    "supported_stable_count": 141,
+    "direction_unstable_count": 3,
+    "ranking_order": [
+      "cross_file_sign_stable before direction_unstable",
+      "statistical candidate score descending",
+      "selected horizon ascending",
+      "source lexicographic",
+      "target lexicographic"
+    ],
+    "single_ranking": true,
+    "reranking_for_k": false,
+    "budget_views": {
+      "top10": 10,
+      "top20": 20,
+      "top40": 40
+    },
+    "primary_downstream_view": "top20",
+    "unstable_padding": false,
+    "candidate_shortfall": false,
+    "top20_configuration_source": "frozen C0 CandidateBudgetPolicyV1",
+    "top20_rationale": "RATIONALE_UNDOCUMENTED beyond the preregistered shared arm budget and sensitivity views",
+    "score_interpretation": "cross-file stability strength for candidate ranking, not a probability or comparable cross-arm score"
+  },
+  "output_contract": {
+    "artifact": "docs/task_reports/TASK-039C_STAT_RESULT.json",
+    "artifact_type": "statistical_candidate_result_v1",
+    "result_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950",
+    "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+    "data_access_audit_hash": "9588682c8c6c52afdc4dea960c1ccfbe221501a7f756ff9de2893474eb0099e4",
+    "supported_ranking_record_fields": [
+      "rank",
+      "source",
+      "target",
+      "selected_horizon_seconds",
+      "correlation_sign",
+      "r_train1",
+      "r_train2",
+      "stability_strength",
+      "method_status",
+      "method_evidence_refs"
+    ],
+    "budget_view_record_fields": ["rank", "source", "target"],
+    "downstream_consumer": "three-arm integration consumes STAT top20 as one arm-local input",
+    "cross_arm_score_used": false,
+    "public_privacy": "public artifact contains aggregate pair evidence and ranking metadata, not raw time-series samples, labels, event timestamps, or absolute local paths"
+  },
+  "separation_from_relation_profiling": {
+    "verdict": "VERIFIED",
+    "stat_stage_role": "rank all frozen source-target pairs by train1/train2 lagged first-difference association stability",
+    "stat_stage_output": "candidate pairs with an arm-local selected statistical horizon and association sign",
+    "not_stat_authority": [
+      "final delayed-response direction",
+      "response support calibration",
+      "normal relation confirmation",
+      "numeric rule authority",
+      "rule validity"
+    ],
+    "downstream_stage": "RELATION_PROFILING independently evaluates normal delayed-response support under its own protocol",
+    "important_wording": "The STAT selected horizon is a candidate-ranking feature, not the frozen rule response horizon."
+  },
+  "pseudocode": [
+    "Load and self-validate the frozen C0 universe, budget, access, and STAT policies.",
+    "Bind train1 and train2 to verified manifest identities and normal-only structural evidence.",
+    "Run the synthetic vectorized-versus-scalar numerical parity gate before real file access.",
+    "Read each authorized file once as the exact ordered 24-column float64 matrix.",
+    "For each file independently, compute first differences for the 12 sources and 12 targets.",
+    "For each horizon in 1, 5, 10, 30, 60, correlate source differences through row -h with target differences from row +h.",
+    "For each ordered source-target pair, retain horizons whose two file correlations are finite, nonzero, and same-sign.",
+    "Select the eligible horizon with maximum minimum-absolute two-file correlation; break exact ties toward shorter horizon.",
+    "Rank supported pairs deterministically, then append unstable pairs for audit only.",
+    "Derive top10, top20, and top40 as prefixes without reranking or padding.",
+    "Freeze private evidence, public access audit, and sanitized public result; integration later consumes only the top20 pair identities and arm-local evidence binding."
+  ],
+  "function_catalog": [
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "load_frozen_c0_bundle_v1",
+      "line": 312,
+      "role": "load and validate frozen universe and STAT protocol bindings",
+      "input": "repository root",
+      "output": "CandidateDiscoveryProtocolBundleV1",
+      "deterministic": true,
+      "side_effects": "public JSON reads only"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "load_verified_file_identities_v1",
+      "line": 339,
+      "role": "bind train1/train2 identities to manifest and CSV structure audit",
+      "input": "repository root",
+      "output": "two ExpectedFileIdentityV1 records",
+      "deterministic": true,
+      "side_effects": "public JSON reads only"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "authorize_stat_value_request_v1",
+      "line": 404,
+      "role": "enforce arm, process, file and column boundary",
+      "input": "bundle, process, relative file, columns",
+      "output": "authorization or fail-closed exception",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "read_authorized_stat_file_v1",
+      "line": 464,
+      "role": "single-pass exact-hash read of selected numeric columns",
+      "input": "data root, expected identity, ordered columns, bundle, ledger",
+      "output": "AuthorizedFileMatrixV1",
+      "deterministic": true,
+      "side_effects": "one authorized local file read and ledger update"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "file_local_differences_v1",
+      "line": 532,
+      "role": "compute first differences without crossing file boundaries",
+      "input": "mapping of file-local float64 matrices",
+      "output": "file-local difference matrices",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "pearson_correlation_reference_v1",
+      "line": 547,
+      "role": "independent finite-pair scalar Pearson oracle",
+      "input": "equal-length numeric sequences",
+      "output": "finite correlation or null",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "_pairwise_pearson_matrix_v1",
+      "line": 581,
+      "role": "vectorized source-target Pearson matrix with pairwise fallback",
+      "input": "aligned two-dimensional matrices",
+      "output": "float64 correlation matrix with unusable entries as NaN internally",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "vectorized_file_lagged_correlations_v1",
+      "line": 613,
+      "role": "compute all 12 by 12 lagged change-correlation matrices within one file",
+      "input": "source matrix, target matrix, exact frozen horizons",
+      "output": "horizon to correlation-matrix mapping",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "verify_vectorized_parity_v1",
+      "line": 657,
+      "role": "pre-real-read synthetic numerical parity gate",
+      "input": "none",
+      "output": "pass or fail-closed exception",
+      "deterministic": true,
+      "side_effects": "synthetic computation only"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "select_pair_horizon_v1",
+      "line": 697,
+      "role": "apply cross-file sign stability and strongest-horizon rule",
+      "input": "five train1/train2 correlation pairs",
+      "output": "horizon evidence, selection, sign",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "rank_pair_evidence_v1",
+      "line": 779,
+      "role": "delegate deterministic ranking to the frozen C0 rank contract",
+      "input": "144 PairStatisticalEvidenceV1 records",
+      "output": "ordered evidence records",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "discover_statistical_candidates_v1",
+      "line": 800,
+      "role": "evaluate and rank the complete frozen 144-pair universe",
+      "input": "frozen bundle and two authorized matrices",
+      "output": "ranked PairStatisticalEvidenceV1 tuple",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "symbol": "build_public_result_v1",
+      "line": 964,
+      "role": "derive one supported ranking, budget prefixes, bindings and sanitized result",
+      "input": "ranked pair evidence and frozen receipt identities",
+      "output": "self-hashed statistical_candidate_result_v1",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "rank_statistical_candidates_v1",
+      "line": 621,
+      "role": "canonical stable/score/horizon/identity ordering",
+      "input": "StatisticalRankInputV1 sequence",
+      "output": "sorted tuple",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "derive_candidate_budget_views_v1",
+      "line": 424,
+      "role": "take prefix views without reranking or padding",
+      "input": "one unique pair ranking",
+      "output": "top10, top20, top40 and shortfalls",
+      "deterministic": true,
+      "side_effects": "none"
+    },
+    {
+      "path": "scripts/run_task039c_stat.py",
+      "symbol": "main",
+      "line": 137,
+      "role": "single frozen orchestration from authority checks through immutable result writes",
+      "input": "repository, authorized data root, private/public output roots, frozen code commit",
+      "output": "private ledger, public access audit and public result",
+      "deterministic": "scientific ranking deterministic for fixed bytes and code; creation timestamps vary",
+      "side_effects": "authorized train1/train2 reads and new artifact writes"
+    }
+  ],
+  "tests_reviewed": {
+    "primary_path": "tests/test_task039c_stat.py",
+    "reported_targeted_test_count": 24,
+    "coverage_topics": [
+      "exact frozen universe and protocol hashes",
+      "out-of-universe rejection",
+      "train1/train2 authorization and all other split/label rejection",
+      "single-read selected-column identity enforcement",
+      "BR2 pair-supervision rejection",
+      "no cross-file difference or lag pair",
+      "known positive and negative lag correlations",
+      "cross-file sign disagreement and exact-zero instability",
+      "zero variance and nonfinite pair handling without imputation",
+      "strongest-horizon and shorter-tie selection",
+      "stable-before-unstable ranking",
+      "absence of an arbitrary correlation threshold",
+      "no unstable padding and prefix-only budget views",
+      "vectorized versus scalar parity",
+      "self-hash, schema, raw-value and path leakage guards"
+    ],
+    "integration_test_path": "tests/test_task039c_three_arm_integration.py",
+    "tests_executed_by_this_read_only_agent": 0
+  },
+  "frozen_execution_evidence": {
+    "status": "passed_task039c_statistical_candidate_discovery",
+    "implementation_commit_boundary": "implementation commit adds module, runner, schema and synthetic tests only",
+    "result_commit_boundary": "result commit adds only the public result, data-access audit and report",
+    "evaluated_pair_count": 144,
+    "supported_stable_count": 141,
+    "direction_unstable_count": 3,
+    "top20_count": 20,
+    "train1_accessed": true,
+    "train2_accessed": true,
+    "other_normal_splits_accessed": false,
+    "test_accessed": false,
+    "labels_accessed": false,
+    "raw_samples_persisted": false,
+    "downstream_binding": "TASK-039C integration receipt binds the STAT result commit and consumes its top20 view"
+  },
+  "claim_audit": {
+    "implementation_claim": {
+      "text": "STAT implements a normal-only lagged change-correlation candidate-ranking arm.",
+      "status": "SUPPORTED_IMPLEMENTATION"
+    },
+    "candidate_observation": {
+      "text": "The frozen arm produced 20 primary STAT candidates from one deterministic supported ranking.",
+      "status": "SUPPORTED_FROZEN_OBSERVATION"
+    },
+    "temporal_claim": {
+      "text": "STAT confirms delayed-response relations or their final horizons.",
+      "status": "NOT_SUPPORTED"
+    },
+    "causal_claim": {
+      "text": "STAT discovers causal process relationships.",
+      "status": "NOT_SUPPORTED"
+    },
+    "contribution_claim": {
+      "text": "STAT scientifically outperforms or adds unique useful relations beyond META/GDN.",
+      "status": "UNVALIDATED"
+    }
+  },
+  "unknowns_and_limitations": [
+    {
+      "id": "STAT-U01",
+      "item": "The scientific rationale for choosing primary top-20, beyond the frozen common arm budget, is not documented in the audited STAT implementation.",
+      "status": "RATIONALE_UNDOCUMENTED",
+      "impact": "future sensitivity or preregistration justification issue, not an implementation defect"
+    },
+    {
+      "id": "STAT-U02",
+      "item": "Two finite observations are mathematically accepted; the implementation intentionally has no support-count threshold beyond finiteness and nonzero variance.",
+      "status": "KNOWN_SCOPE_LIMITATION",
+      "impact": "the frozen full files are large, but future reuse with sparse missingness should not overstate reliability"
+    },
+    {
+      "id": "STAT-U03",
+      "item": "Seed stability is not applicable to this deterministic arm, but split stability beyond the frozen train1/train2 pairing remains a future scientific validation question.",
+      "status": "FUTURE_VALIDATION"
+    }
+  ],
+  "coordinator_notes": [
+    "Describe STAT as directional lagged association candidate evidence, never as causal or confirmed temporal evidence.",
+    "Keep the selected STAT horizon separate from downstream relation-profile horizons and numeric rule authority.",
+    "The primary top20 has frozen source support, but its scientific budget rationale should be labeled undocumented rather than inferred.",
+    "No cross-arm score comparison occurs; STAT scores retain arm-local meaning."
+  ],
+  "evidence": [
+    {
+      "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+      "lines": "1-23, 312-530, 532-858, 942-1068",
+      "supports": "authority boundaries, file reads, statistic, selection, ranking, result schema and privacy"
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "lines": "225-432, 515-637",
+      "supports": "directed universe, budget prefixes, frozen STAT formulas and tie-breaking"
+    },
+    {
+      "path": "scripts/run_task039c_stat.py",
+      "lines": "81-125, 137-206",
+      "supports": "commit gate, roots, parity-before-read, one-pass execution and artifact creation"
+    },
+    {
+      "path": "docs/v6/CANDIDATE_DISCOVERY_STATISTICAL_POLICY.md",
+      "lines": "1-25",
+      "supports": "human-readable frozen policy and narrow interpretation"
+    },
+    {
+      "path": "docs/task_reports/TASK-039C_STAT_RESULT.json",
+      "lines": "1-2402",
+      "supports": "frozen ranking counts, budget views, access flags, hashes and interpretation"
+    },
+    {
+      "path": "docs/task_reports/TASK-039C_STAT_DATA_ACCESS_AUDIT.json",
+      "lines": "1-64",
+      "supports": "two one-pass 24-column normal-file reads and zero labels/test access"
+    },
+    {
+      "path": "docs/task_reports/TASK-039C_STAT_REPORT.md",
+      "lines": "1-86",
+      "supports": "execution summary, numerical policy, verification and authority boundary"
+    },
+    {
+      "path": "docs/v6/TASK039C_THREE_ARM_INTEGRATION.md",
+      "lines": "1-25",
+      "supports": "STAT top20 downstream use in an unscored exact-pair union"
+    },
+    {
+      "path": "tests/test_task039c_stat.py",
+      "lines": "1-391",
+      "supports": "synthetic boundary, arithmetic, ranking, schema and privacy tests"
+    }
+  ],
+  "safety_counters": {
+    "scientific_executions": 0,
+    "stat_discovery_runs": 0,
+    "ranking_recomputations": 0,
+    "raw_private_data_reads": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "private_paths_exposed": 0,
+    "private_numeric_evidence_exposed": 0,
+    "remote_pushes": 0
+  }
+}

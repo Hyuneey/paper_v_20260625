@@ -1,0 +1,422 @@
+{
+  "artifact_type": "arch_002_agent_c_gdn_discovery_audit_v1",
+  "task_id": "ARCH-002",
+  "agent_role": "GDN Discovery Auditor",
+  "status": "PASS_WITH_CONSERVATIVE_INTERPRETATION_AND_DOCUMENTED_LIMITATIONS",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "inspected_source_bytes_match_authority": true,
+    "rcc_head_at_authority_gate": "d5d3f2ac8a619ba84282f6c0c86a739e98a21ccb"
+  },
+  "scope": {
+    "component": "GDN_DISCOVERY",
+    "inspection_mode": "STATIC_CODE_AND_EXISTING_PUBLIC_SAFE_FROZEN_EVIDENCE_ONLY",
+    "authoritative_gdn_entrypoint": "scripts/run_task039c_gdnp.py",
+    "authoritative_backend": "paperworks.gdn.upstream_candidate_backend_v1",
+    "authoritative_result": "docs/task_reports/TASK-039C_GDN_RESULT.json",
+    "upstream_reference_repository": "https://github.com/d-ailin/GDN",
+    "upstream_reference_commit": "9853899da860682669a134e4af315d036aab4eca",
+    "raw_data_read": false,
+    "private_payload_read": false,
+    "test2_accessed": false,
+    "gdn_executed": false
+  },
+  "critical_terminology_check": [
+    {
+      "clause": "GDN is trained on normal data",
+      "verdict": "VERIFIED",
+      "reason": "The frozen passing path authorizes exactly the P1 NORMAL_CANDIDATE_FIT train1/train2 feature view, rejects labels, attacks, train3, train4, and test inputs, and the committed execution receipt records only train1/train2 access."
+    },
+    {
+      "clause": "Node-embedding-based learned graph edges are used as candidate relationship rankings",
+      "verdict": "VERIFIED",
+      "reason": "Each trained seed recomputes cosine similarity from the best-state node embeddings, takes per-target learned-graph Top-5 neighbors, projects those edges to the frozen 144-pair source-target universe, and ranks supported pairs across three seeds by selection frequency then median embedding cosine similarity."
+    },
+    {
+      "clause": "Attention coefficients themselves are not used as final relationship evidence",
+      "verdict": "VERIFIED",
+      "reason": "GraphLayer computes attention for message passing and stores a private alpha trace, but the candidate extraction and ranking paths read embedding weights, cosine similarities, and learned-graph indices only. The result contract rejects attention_used_for_primary_ranking=true."
+    },
+    {
+      "clause": "No separate post-hoc XAI method is used",
+      "verdict": "VERIFIED",
+      "reason": "The passing result records posthoc_xai_used=false, the result contract rejects post-hoc XAI as the TASK-039C-GDN method, and no SHAP or other post-hoc attribution path is called by the frozen runner."
+    }
+  ],
+  "model": {
+    "model_class": "UpstreamAlignedGDN",
+    "definition": "nested runtime class returned by _load_runtime_types_v1",
+    "module": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+    "submodules": [
+      "GraphLayer",
+      "GNNLayer",
+      "OutLayer"
+    ],
+    "backend_classification": "upstream_aligned_validated",
+    "port_status": "passed_pyg15_to_pyg28_gdn_port_compatibility_closure",
+    "port_adapters": [
+      "explicit MessagePassing node_dim=0",
+      "sparse softmax keyword binding preserving upstream num_nodes semantics"
+    ],
+    "scientific_equations_changed_by_port": false,
+    "smoke_backend_used": false
+  },
+  "training_data_boundary": {
+    "dataset_scope": "HAI 23.05 P1",
+    "split_role": "NORMAL_CANDIDATE_FIT",
+    "splits_used": [
+      "train1",
+      "train2"
+    ],
+    "feature_count": 37,
+    "feature_order_frozen": true,
+    "normal_only_enforced": true,
+    "labels_used": false,
+    "attacks_used": false,
+    "train3_used": false,
+    "train4_used": false,
+    "test_used": false,
+    "meta_output_used": false,
+    "stat_output_used": false,
+    "br2_pair_supervision_used": false,
+    "preprocessing": "raw numeric values with no scaling; sliding windows never cross input files",
+    "segment_handling": "train1 and train2 are loaded as separate segments before window construction"
+  },
+  "prediction_objective": {
+    "history_width": 5,
+    "stride": 1,
+    "input_representation": "node-major five-step history for each of 37 P1 features",
+    "training_target": "the immediately following value for every modeled feature",
+    "model_output": "one next-value forecast per modeled feature",
+    "loss": "mean MSE over the multi-node next-value forecast",
+    "anomaly_labels_in_objective": false
+  },
+  "node_embeddings": {
+    "construction": "one trainable nn.Embedding vector per modeled feature",
+    "embedding_dimension": 64,
+    "initialization": "Kaiming uniform",
+    "optimization": "jointly optimized through next-value prediction loss",
+    "checkpoint_selection": "minimum validation loss in memory",
+    "persisted_publicly": false,
+    "interpretation": "learned model parameters supporting forecasting and graph construction; not physical or causal relation truth"
+  },
+  "learned_graph": {
+    "used": true,
+    "construction": "embedding dot-product matrix divided by outer L2 norms, followed by torch.topk on each target row",
+    "similarity": "signed cosine similarity",
+    "per_target_neighbor_k": 5,
+    "computed_during_forward": true,
+    "recomputed_after_best_state_restore_for_candidate_extraction": true,
+    "edge_tensor_semantics": "first row is source-neighbor indices; second row is repeated target indices",
+    "self_neighbor_handling": "The upstream Top-5 calculation does not explicitly remove the cosine diagonal before Top-K. Projection to the disjoint source-role by target-role universe removes self identities from exported candidates; GraphLayer separately removes and re-adds message-passing self-loops.",
+    "candidate_universe_projection": "Only learned edges that are members of the frozen 12-by-12 directed source-target universe are retained as selected candidate edges.",
+    "candidate_mask_before_learned_topk": false,
+    "interpretation": "per-target learned neighbor/input-dependency candidate edge, not a confirmed temporal or causal relation"
+  },
+  "graph_attention": {
+    "present": true,
+    "role": "model-internal weighting of messages on the embedding-derived learned graph",
+    "mechanism": "feature and embedding keys produce LeakyReLU logits, destination-group softmax coefficients, dropout, and weighted source messages",
+    "private_alpha_retained_inside_layer": true,
+    "attention_coefficients_exported_by_frozen_discovery": false,
+    "attention_coefficients_used_for_candidate_ranking": false,
+    "attention_interpretation_allowed": "model-internal message-passing weight only",
+    "attention_interpretation_prohibited": "final relationship evidence, causal importance, or confirmed temporal direction"
+  },
+  "posthoc_xai_and_masking": {
+    "posthoc_xai_used": false,
+    "shap_used": false,
+    "separate_attribution_model_used": false,
+    "generic_masked_smoke_backend_used": false,
+    "current_frozen_candidate_masking": "No pre-Top-K role mask or perturbation/masking experiment is used. The upstream full-context learned Top-5 graph is projected afterward to the frozen candidate universe.",
+    "future_edge_or_source_masking": "functional validation procedure only; not a fourth discovery arm and not performed in this audit"
+  },
+  "candidate_extraction_and_ranking": {
+    "per_seed_candidate_object": "TrainedSeedGraphV1 then GDNSeedGraphRecordV1",
+    "per_seed_selected_edge_rule": "embedding learned-graph Top-5 edge survives frozen universe projection",
+    "per_seed_similarity_coverage": "cosine similarity is retained for every one of the 144 frozen candidate pairs",
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "seed_retries": 0,
+    "successful_seed_requirement": "all three seeds must complete or the result fails closed",
+    "cross_seed_evidence": [
+      "edge_selection_frequency with denominator three",
+      "median embedding cosine similarity across all three seeds"
+    ],
+    "ranking_order": [
+      "descending edge selection frequency",
+      "descending median embedding cosine similarity",
+      "ascending source identity",
+      "ascending target identity"
+    ],
+    "final_ranking_object": "tuple of GDNCandidateEvidenceV1 stored in GDNCandidateResultV1 and serialized as the public ranking",
+    "evaluated_candidate_count": 144,
+    "supported_candidate_count": 39,
+    "arm_primary_topk": 20,
+    "arm_sensitivity_topk": [
+      10,
+      40
+    ],
+    "top40_shortfall": 1,
+    "padding_used": false,
+    "validation_loss_used_for_candidate_ranking": false
+  },
+  "topk_distinction": {
+    "learned_graph_topk": {
+      "value": 5,
+      "meaning": "per-target embedding-neighbor count inside the GDN model",
+      "provenance": "upstream-aligned frozen architecture hyperparameter"
+    },
+    "candidate_budget_topk": {
+      "value": 20,
+      "meaning": "primary arm-level slice of the deterministic 39-pair GDN ranking",
+      "provenance": "TASK-039C0 preregistered candidate budget before real arm outcomes"
+    },
+    "result_driven_tuning_found": false,
+    "substantive_primary_budget_rationale": "RATIONALE_UNDOCUMENTED beyond the frozen primary and sensitivity-budget design"
+  },
+  "directionality": {
+    "cosine_score_symmetric": true,
+    "learned_neighbor_selection_target_indexed": true,
+    "exported_pair_order": "source neighbor -> target node",
+    "reverse_pair_equivalence": false,
+    "reason": "Neighbor inclusion can be non-reciprocal under per-target Top-K, and the frozen role universe defines ordered source-target identities.",
+    "temporal_direction_confirmed_here": false,
+    "causal_direction_confirmed_here": false,
+    "downstream_confirmation": "normal delayed-response relation profiling establishes whether a candidate supports the frozen temporal relation family, horizon, and response evidence"
+  },
+  "training_and_checkpoint_policy": {
+    "batch_size": 32,
+    "epochs_maximum": 30,
+    "validation_ratio": 0.2,
+    "validation_policy": "seeded contiguous random validation block over the generated window dataset",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "early_stopping_patience": 15,
+    "dropout": 0.2,
+    "device": "CPU",
+    "deterministic_controls": "Python and Torch seeds; CUDA seeds when available; cuDNN benchmark disabled and deterministic enabled",
+    "checkpoint_policy": "best finite validation-loss state_dict retained in memory",
+    "checkpoint_persisted": false,
+    "node_embeddings_persisted": false
+  },
+  "execution_lineage": [
+    {
+      "stage": "initial GDN",
+      "status": "blocked_optional_dependency",
+      "ranking_produced": false,
+      "scientifically_current": false
+    },
+    {
+      "stage": "GDNR",
+      "status": "failed_gdn_training",
+      "ranking_produced": false,
+      "scientifically_current": false
+    },
+    {
+      "stage": "GDNC",
+      "status": "failed_gdn_final_attempt",
+      "ranking_produced": false,
+      "scientifically_current": false
+    },
+    {
+      "stage": "GDNP",
+      "status": "passed_task039c_gdn_candidate_discovery",
+      "ranking_produced": true,
+      "scientifically_current": true,
+      "execution_code_commit": "6790505e08ea06d6b3f6d34f9fd533d381696b1f",
+      "result_commit": "1204ff4e6d790c2cd0e8268f778a8f071e5eea4b"
+    }
+  ],
+  "implementation_claims": [
+    {
+      "claim": "The system implements and executed an upstream-aligned GDN learned-graph candidate source on the frozen normal P1 view.",
+      "status": "SUPPORTED_IMPLEMENTATION_AND_FROZEN_EXECUTION"
+    },
+    {
+      "claim": "GDN attention coefficients are the candidate-ranking authority.",
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "claim": "A separate post-hoc XAI or SHAP method generates GDN candidates.",
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "claim": "GDN edges are confirmed temporal or causal process relations.",
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "claim": "GDN supplies unique useful relations or improves downstream detection.",
+      "status": "UNVALIDATED"
+    }
+  ],
+  "key_functions": [
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "authorize_gdn_data_request_v1",
+      "role": "fail-closed P1 train1/train2 normal-only access gate",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "load_authorized_numeric_segments_v1",
+      "role": "load only approved ordered finite numeric columns as separate file segments",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "UpstreamGDNTrainingConfigV1",
+      "role": "freeze seeds, model, optimization, validation, preprocessing, and device settings",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "_load_runtime_types_v1.GraphLayer",
+      "role": "attention-weighted message passing on learned graph edges",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "_load_runtime_types_v1.UpstreamAlignedGDN.forward",
+      "role": "construct embedding cosine Top-5 graph and forecast the next node values",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "_segment_windows_v1",
+      "role": "create per-file five-step histories and one-step-ahead targets",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py",
+      "symbol": "train_upstream_aligned_seed_v1",
+      "role": "train one frozen seed, restore best state, and extract learned graph plus all-pair similarities",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/candidates/gdn_candidate_discovery_v1.py",
+      "symbol": "project_seed_record_to_universe_v1",
+      "role": "project full-context learned graph edges to the exact 144 directed pairs",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/candidates/gdn_candidate_discovery_v1.py",
+      "symbol": "aggregate_and_rank_gdn_candidates_v1",
+      "role": "aggregate the three seed graphs and create deterministic evidence ranking",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "rank_gdn_candidates_v1",
+      "role": "frequency, median-similarity, identity tie-breaking",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "derive_candidate_budget_views_v1",
+      "role": "slice one ranking into Top-10, Top-20, and Top-40 without padding",
+      "frozen_execution_used": true
+    },
+    {
+      "path": "scripts/run_task039c_gdnp.py",
+      "symbol": "worker",
+      "role": "one-shot frozen real execution orchestration and private/public custody",
+      "frozen_execution_used": true
+    }
+  ],
+  "test_evidence": {
+    "paths": [
+      "tests/test_task039c_gdn_candidates.py",
+      "tests/test_task039c_gdn_fidelity.py",
+      "tests/test_task039c_gdn_compatibility.py",
+      "tests/test_task039c_gdn_remediation_execution.py",
+      "tests/test_task039c_gdnp_api_audit.py",
+      "tests/test_task039c_gdnp_graph_layer_forward.py",
+      "tests/test_task039c_gdnp_graph_layer_backward.py",
+      "tests/test_task039c_gdnp_full_model.py",
+      "tests/test_task039c_gdnp_training_loop.py",
+      "tests/test_task039c_gdnp_result.py"
+    ],
+    "audit_execution": "NOT_RUN_BY_ARCH_002_AGENT_C",
+    "reason": "This agent performed a read-only audit and relied on frozen public execution/audit evidence; no GDN code was executed."
+  },
+  "frozen_evidence": [
+    "configs/v6/task039c0_candidate_discovery_protocol.json",
+    "configs/v6/task039c_gdn_backend_v1.json",
+    "docs/v6/CANDIDATE_DISCOVERY_GDN_POLICY.md",
+    "docs/task_reports/TASK-039C_GDN_FIDELITY.json",
+    "docs/task_reports/TASK-039C_GDNP_DATA_ACCESS_AUDIT.json",
+    "docs/task_reports/TASK-039C_GDNP_EXECUTION_RECEIPT.json",
+    "docs/task_reports/TASK-039C_GDN_RESULT.json",
+    "docs/task_reports/TASK-039C_GDN_FINAL_AUDIT.json",
+    "docs/task_reports/TASK-039C_GDN_FINAL_AUDIT.md"
+  ],
+  "limitations_and_future_validation": [
+    {
+      "item": "Three-seed selection frequency is present, but broader seed and split stability has not been established.",
+      "future_exp01_need": true
+    },
+    {
+      "item": "The scientific usefulness of GDN-only candidates after downstream confirmation remains unvalidated.",
+      "future_exp01_need": true
+    },
+    {
+      "item": "Edge/source masking functional impact was not measured in the frozen arm and remains a future validation procedure.",
+      "future_exp01_need": true
+    },
+    {
+      "item": "Optional attention analysis may describe model behavior but cannot retroactively become the frozen primary ranking method.",
+      "future_exp01_need": false
+    },
+    {
+      "item": "The learned-graph Top-5 includes upstream self-neighbor semantics before universe projection; sensitivity to that architecture choice was not tested here.",
+      "future_exp01_need": true
+    }
+  ],
+  "mismatch_findings": [
+    {
+      "finding": "Any current-facing description that says attention weights directly rank or explain the frozen GDN candidate relationships is contradicted by the production extraction path.",
+      "severity": "HIGH",
+      "recommended_wording": "node-embedding learned-graph candidate evidence"
+    },
+    {
+      "finding": "Any description of a GDN candidate edge as a confirmed temporal direction or causal process relation overstates the source evidence.",
+      "severity": "HIGH",
+      "recommended_wording": "target-indexed learned neighbor/input-dependency candidate"
+    },
+    {
+      "finding": "The generic project-owned masked GDN extraction module is not the frozen TASK-039C GDN production backend.",
+      "severity": "MEDIUM",
+      "recommended_wording": "the frozen arm uses upstream learned Top-5 graph extraction followed by universe projection"
+    },
+    {
+      "finding": "Historical blocked and failed GDN attempts remain in reports, but the later independently audited GDNP result is the current frozen authority.",
+      "severity": "LOW",
+      "recommended_wording": "distinguish preserved history from the passing superseding result"
+    }
+  ],
+  "professor_answer_basis": {
+    "current_method": "Normal P1 train1/train2 next-value forecasting trains per-variable embeddings; embedding cosine Top-5 learned-graph edges are projected and aggregated into candidate evidence.",
+    "attention_role": "Attention weights messages inside the GDN forecast model but is not the final candidate-ranking or explanation authority.",
+    "xai": "No separate post-hoc XAI or SHAP method is used in the frozen discovery arm.",
+    "edge_meaning": "A learned neighbor/input-dependency candidate for a target, not temporal causality.",
+    "final_temporal_relation": "Established only downstream, if at all, through normal delayed-response relation profiling and confirmation.",
+    "unvalidated_contribution": "Whether GDN adds stable, uniquely confirmed, scientifically useful relations beyond META/STAT."
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "gdn_training_runs": 0,
+    "candidate_rankings_recomputed": 0,
+    "masking_experiments": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0
+  }
+}

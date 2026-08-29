@@ -1,0 +1,14 @@
+dimension,META,STAT,GDN
+input,"reviewed public P1 metadata and physical graph","P1 normal train1/train2 source and target columns","P1 normal train1/train2 full 37-node context"
+learned_or_manual,"reviewed deterministic domain prior","computed statistical association","learned forecasting model graph"
+normal_data_required,no,yes,yes
+domain_metadata_required,yes,"only the frozen role universe",only for the frozen universe projection
+score_type,"ordered evidence tier plus official-reference count","minimum absolute same-sign Pearson correlation across two files","cross-seed edge frequency then median embedding cosine similarity"
+directionality,"ordered source-to-target pair","source change at t to target change at t+h","target-indexed selected neighbor/input dependency"
+temporal_horizon,none,"candidate-ranking horizons 1/5/10/30/60 seconds","one-step prediction after a five-step history; edge itself is not a confirmed response horizon"
+top_k,"20 primary; 10/40 sensitivity prefixes","20 primary; 10/40 sensitivity prefixes","learned graph Top-5 neighbors per target internally; 20 primary arm candidates"
+determinism,"deterministic given frozen references","deterministic float64 computation given frozen files","three frozen seeds; deterministic aggregation of recorded seed outputs"
+interpretation,"metadata-supported candidate","directional lagged-association candidate","learned-graph candidate edge"
+main_strength,"no feature-value or label dependence","simple cross-file normal-only stability evidence","learns multivariate predictive dependency candidates"
+main_limitation,"physical truth and usefulness are not established","association is not causal or downstream response confirmation","seed/split stability; diagonal/pre-Top-5 masking effect; and unique useful contribution are unvalidated"
+scientific_contribution_validated,no,no,no

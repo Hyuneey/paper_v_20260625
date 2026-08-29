@@ -13,22 +13,17 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-001 — Data, Provenance & Split Governance Deep Audit`
+`ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit`
 
 ## What changed
 
-- Traced HAI 23.05 provenance through the P1 Boiler process scope, split roles,
-  feature/label authorities, and downstream consumers.
-- Cataloged 17 input contracts and 26 relevant loader, custody, split,
-  prediction-freeze, and label-access functions.
-- Built a 21-stage leakage matrix across train1–train4, test1, and test2
-  feature/label authorities.
-- Verified normal-only construction boundaries and D0/D2 prediction-before-label
-  persistence without executing the scientific pipeline.
-- Recorded a HIGH D1 governance gap: the label-blind prediction object is
-  frozen before labels, but its public file is not durably persisted first.
-- Kept test1 classified as pilot evidence and test2 as held-out result
-  unavailable; no held-out generalization claim was added.
+- Verified the 12×12 directed candidate universe and all three frozen Top-20 arms.
+- Mapped META as reviewed metadata prior, STAT as normal lagged association, and
+  GDN as embedding-cosine learned-graph candidate evidence.
+- Separated GDN learned graph, internal graph attention, and absent post-hoc XAI.
+- Reconstructed the unscored 47-pair union and preserved public-safe arm provenance.
+- Added function/I/O catalogs, discovery flow, professor-facing answer, dashboard,
+  and user learning summary without rerunning discovery.
 
 ## Decisions made
 
@@ -40,8 +35,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-001 added static source,
-contract, custody, split, and leakage-control evidence only.
+No new scientific outcome was produced. ARCH-002 added static source,
+contract, frozen-artifact lineage, terminology, and candidate-provenance evidence only.
 
 ## Open risks
 
@@ -60,14 +55,14 @@ contract, custody, split, and leakage-control evidence only.
 
 ## User actions
 
-- Explain why each train and evaluation split has a different role.
-- Explain when labels become visible and why durable prediction persistence matters.
-- Explain why test1 remains pilot evidence and test2 has no result.
-- Identify any leakage or coupling finding that needs a deeper explanation.
-- Approve or defer ARCH-002.
+- Explain META and STAT in one sentence each.
+- Explain GDN's learned-graph technical contribution.
+- Explain learned graph versus graph attention.
+- Explain why the 47-pair union is not a final relation set.
+- Approve or defer ARCH-003.
 
 ## Exact next task
 
-`ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit`
+`ARCH-003 — Relation Profiling & Numeric Authority Deep Audit`
 
-Do not start it until the user has reviewed ARCH-001.
+Do not start it until the user has reviewed ARCH-002.

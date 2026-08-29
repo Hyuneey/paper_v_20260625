@@ -56,7 +56,45 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit"
+    "next_deep_review": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit"
+  },
+  "candidate_discovery": {
+    "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
+    "warning": "Candidate discovery proposes relationships. It does not establish causal or final temporal relations.",
+    "arms": [
+      {
+        "id": "META",
+        "input": "reviewed P1 metadata and public physical graph",
+        "method": "M1/M2/M3 deterministic domain-prior ranking",
+        "output": "metadata-supported pair candidates",
+        "top_k": "20",
+        "frozen_execution": true,
+        "scientific_validation": "UNVALIDATED"
+      },
+      {
+        "id": "STAT",
+        "input": "normal train1/train2",
+        "method": "file-local first-difference lagged Pearson stability",
+        "output": "directional lagged-association candidates",
+        "top_k": "20",
+        "frozen_execution": true,
+        "scientific_validation": "UNVALIDATED"
+      },
+      {
+        "id": "GDN",
+        "input": "normal train1/train2 full 37-node context",
+        "method": "next-value prediction plus embedding-cosine learned graph",
+        "output": "learned-graph candidate edges",
+        "top_k": "20",
+        "frozen_execution": true,
+        "scientific_validation": "UNVALIDATED"
+      }
+    ],
+    "learned_graph_used": true,
+    "attention_as_final_evidence": false,
+    "posthoc_xai_used": false,
+    "union": "unscored provenance-preserving set union of 47 unique pairs",
+    "next_deep_review": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -171,75 +209,75 @@
   ],
   "user_todo_items": [
     {
-      "id": "USER-ARCH-001",
+      "id": "USER-ARCH002-001",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain why each split exists?",
-      "why": "Fit, confirmation, calibration, sanity, pilot, and held-out roles must not be conflated.",
-      "linked": "ARCH-001 split map",
+      "task": "Can I explain META in one sentence?",
+      "why": "META is reviewed metadata domain-prior evidence, not a learned or causal relation.",
+      "linked": "ARCH-002 META audit",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH-002",
+      "id": "USER-ARCH002-002",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain when labels become visible?",
-      "why": "Prediction construction and durable prediction persistence are separate guarantees.",
-      "linked": "ARCH_001_LABEL_ACCESS_TIMELINE.md",
+      "task": "Can I explain STAT in one sentence?",
+      "why": "STAT ranks normal lagged association and is separate from response confirmation.",
+      "linked": "ARCH-002 STAT audit",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH-003",
+      "id": "USER-ARCH002-003",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Do I understand why test1 is only pilot evidence?",
-      "why": "D2 V2 was explicitly informed by prior INNER outcomes, so test1 is not independent final validation.",
-      "linked": "ARCH-001 test1 audit",
+      "task": "Can I explain what GDN contributes technically?",
+      "why": "Its output is a learned-graph candidate ranking, not a validated contribution claim.",
+      "linked": "ARCH-002 GDN audit",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH-004",
+      "id": "USER-ARCH002-004",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Do I understand why test2 has no result?",
-      "why": "The historical attempt stopped at custody before payload bytes and produced no performance outcome.",
-      "linked": "ARCH-001 OUTER custody audit",
+      "task": "Can I explain learned graph versus attention?",
+      "why": "Embedding graph selects candidate edges; attention only operates inside message passing.",
+      "linked": "ARCH_002_GDN_PROFESSOR_ANSWER.md",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH-005",
+      "id": "USER-ARCH002-005",
       "category": "REVIEW NEEDED",
       "priority": "HIGH",
-      "task": "Is there any leakage or coupling risk I want explained further?",
-      "why": "The D1 ordering gap, train3 dual use, and test1-informed V2 design have different meanings.",
-      "linked": "ARCH_001_MISMATCHES.md",
+      "task": "Can I explain why 47 candidate pairs are not final relations?",
+      "why": "Discovery proposes a cohort; delayed-response profiling performs separate confirmation.",
+      "linked": "ARCH_002_DISCOVERY_FLOW.mmd",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH-006",
+      "id": "USER-ARCH002-006",
       "category": "REVIEW NEEDED",
       "priority": "HIGH",
-      "task": "Approve or defer starting ARCH-002.",
-      "why": "Candidate discovery algorithms should be reviewed only after the data boundary is understood.",
-      "linked": "ARCH-002",
+      "task": "Approve or defer starting ARCH-003.",
+      "why": "Relation profiling and numeric authority are the next independent architecture boundary.",
+      "linked": "ARCH-003",
       "status": "OPEN"
     }
   ],
   "top_user_todo": [
-    "Explain why train1/train2, train3, train4, test1, and test2 have different roles.",
-    "Explain when labels become visible and why D1's durable persistence gap matters.",
-    "Explain why test1 is pilot evidence rather than final validation.",
-    "Explain why test2 has no scientific outcome.",
-    "Choose any leakage or coupling finding that needs a deeper explanation.",
-    "Approve or defer starting ARCH-002."
+    "Explain META as reviewed metadata domain-prior candidate evidence.",
+    "Explain STAT as normal directional lagged-association candidate evidence.",
+    "Explain GDN's technical learned-graph candidate contribution.",
+    "Explain why learned graph and attention are different authorities.",
+    "Explain why the 47-pair union is not a confirmed relation set.",
+    "Approve or defer starting ARCH-003."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit",
-  "recommended_next_architecture_task": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit",
-  "last_completed_task": "ARCH-001",
-  "exact_next_task": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit",
+  "recommended_next_management_task": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit",
+  "recommended_next_architecture_task": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit",
+  "last_completed_task": "ARCH-002",
+  "exact_next_task": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

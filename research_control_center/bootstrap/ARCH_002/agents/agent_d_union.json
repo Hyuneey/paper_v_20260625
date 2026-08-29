@@ -1,0 +1,356 @@
+{
+  "artifact_type": "arch_002_agent_d_candidate_union_audit_v1",
+  "task_id": "ARCH-002",
+  "agent_role": "Agent D - Candidate Union / Cross-Arm Auditor",
+  "status": "PASS_WITH_CONSERVATIVE_INTERPRETATION",
+  "authority": {
+    "rcc_head_at_authority_gate": "d5d3f2ac8a619ba84282f6c0c86a739e98a21ccb",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "inspection_mode": "STATIC_SOURCE_AND_EXISTING_PUBLIC_SAFE_FROZEN_ARTIFACTS_ONLY",
+    "current_checkout_used_as_scientific_authority": false
+  },
+  "candidate_universe": {
+    "process": "P1 Boiler",
+    "relation_family": "continuous_step_delayed_response_v1",
+    "source_count": 12,
+    "target_count": 12,
+    "source_target_overlap_count": 0,
+    "eligible_pair_count": 144,
+    "pair_identity": "ordered (source, target)",
+    "pair_directionality": "directional role-bound identity; source and target are not normalized or alphabetically swapped",
+    "reverse_pair_semantics": "A reverse pair would be a distinct identity only if it independently satisfied the frozen source and target role sets. In the actual frozen universe the two role sets have zero identity overlap, so target-to-source role reversal is not an eligible reciprocal candidate.",
+    "self_pair_policy": "source == target is excluded by eligible_pair_records_v1; the frozen source and target identity sets are disjoint, so no self-pair subtraction changes the observed 12 x 12 = 144 count",
+    "identity_ordering": "lexicographic_variable_name",
+    "pair_ordering": "source_then_target_lexicographic",
+    "out_of_universe_candidates_rejected": true,
+    "universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+    "evidence": [
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:225-244",
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:255-379",
+      "docs/task_reports/TASK-039C0_PROTOCOL_BUNDLE.json"
+    ]
+  },
+  "top_k_policy": {
+    "primary_k": 20,
+    "sensitivity_k": [
+      10,
+      40
+    ],
+    "primary_view": "top20",
+    "one_ranking_per_arm": true,
+    "top20_is_prefix_of_arm_ranking": true,
+    "reranking_for_k_prohibited": true,
+    "padding_prohibited": true,
+    "shorter_supported_list_allowed_with_shortfall": true,
+    "integration_accepts_at_most_20_per_arm": true,
+    "rationale": "The numeric budget is preregistered by the C0 policy. A separate scientific rationale for choosing 20 beyond that policy was not established by this union audit.",
+    "rationale_status": "RATIONALE_UNDOCUMENTED_BEYOND_PREREGISTRATION",
+    "evidence": [
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:382-433",
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:908-945",
+      "docs/task_reports/TASK-039C0_PROTOCOL_BUNDLE.json"
+    ]
+  },
+  "arm_bindings": {
+    "META": {
+      "evaluated_count": 144,
+      "supported_count": 30,
+      "top20_count": 20,
+      "top20_source": "top20_identities",
+      "top20_prefix_verified_against": "supported_ranking[0:20]",
+      "result_artifact": "docs/task_reports/TASK-039C_META_RESULT.json",
+      "result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+      "claim_boundary": "metadata candidate evidence",
+      "cross_arm_score_used": false
+    },
+    "STAT": {
+      "evaluated_count": 144,
+      "supported_count": 141,
+      "top20_count": 20,
+      "top20_source": "top20",
+      "top20_prefix_verified_against": "supported_ranking[0:20]",
+      "result_artifact": "docs/task_reports/TASK-039C_STAT_RESULT.json",
+      "result_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950",
+      "ranking_hash": "5f9b97b9a7b426f1aa2036b4f6f82423801ecb3335093e08a5a61e3bad73e1a4",
+      "claim_boundary": "lagged change-correlation candidate evidence",
+      "cross_arm_score_used": false
+    },
+    "GDN": {
+      "evaluated_count": 144,
+      "supported_count": 39,
+      "top20_count": 20,
+      "top20_source": "top20",
+      "top20_prefix_verified_against": "ranking[0:20]",
+      "result_artifact": "docs/task_reports/TASK-039C_GDN_RESULT.json",
+      "result_artifact_hash": "2c58308d0d97d93cf671907064c805dbadcb01508ed8571090a448be6c855bfc",
+      "ranking_hash": "8f549a292dec33f63ca0551fd876444ac9f4902b022c804cdeaa603d063bfab3",
+      "claim_boundary": "learned-graph candidate evidence",
+      "meta_output_used": false,
+      "stat_output_used": false
+    },
+    "cross_arm_constraints": {
+      "common_universe": true,
+      "all_top20_counts_exact": true,
+      "all_top20_pairs_unique_within_arm": true,
+      "all_top20_pairs_in_universe": true,
+      "br2_pair_supervision_used": false,
+      "cross_arm_score_used": false,
+      "public_input_allowlist_count": 6
+    }
+  },
+  "union_algorithm": {
+    "kind": "UNSCORED_SET_UNION",
+    "helper": "integrate_candidate_union_v1",
+    "arm_encounter_order": [
+      "META",
+      "STAT",
+      "GDN"
+    ],
+    "pair_key": [
+      "source",
+      "target"
+    ],
+    "deduplication": "Exact tuple-key de-duplication in an insertion-ordered dictionary",
+    "stable_serialization": "First encounter fixes cohort position: all new META pairs first in META rank order, then previously unseen STAT pairs in STAT rank order, then previously unseen GDN pairs in GDN rank order",
+    "duplicate_handling_within_arm": "Rejected",
+    "duplicate_handling_across_arms": "Collapsed to one candidate while appending arm provenance and retaining each arm-specific rank/evidence binding",
+    "score_normalization_across_arms": false,
+    "cross_arm_score_comparison": false,
+    "merged_score_created": false,
+    "global_rank_created": false,
+    "serialization_order_is_scientific_rank": false,
+    "global_rank_non_null_records": 0,
+    "global_score_non_null_records": 0,
+    "serialization_positions_exact_1_through_47": true,
+    "evidence": [
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:908-945",
+      "src/paperworks/candidates/candidate_integration_v1.py:1058-1143",
+      "src/paperworks/candidates/candidate_integration_v1.py:1146-1375",
+      "docs/task_reports/TASK-039C_INTEGRATION_RECEIPT.json",
+      "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json"
+    ]
+  },
+  "verified_primary_overlap": {
+    "derivation_mode": "Read and aggregate frozen public candidate identity and origin-arm fields; no arm ranking or discovery was recomputed",
+    "meta_count": 20,
+    "stat_count": 20,
+    "gdn_count": 20,
+    "meta_stat_intersection": 11,
+    "meta_gdn_intersection": 1,
+    "stat_gdn_intersection": 1,
+    "triple_intersection": 0,
+    "meta_only": 8,
+    "stat_only": 8,
+    "gdn_only": 18,
+    "meta_stat_only": 11,
+    "meta_gdn_only": 1,
+    "stat_gdn_only": 1,
+    "exactly_two_arms": 13,
+    "all_three_arms": 0,
+    "unique_union": 47,
+    "cohort_record_count": 47,
+    "cohort_unique_pair_count": 47,
+    "artifact_and_cohort_decomposition_match": true,
+    "scientific_interpretation": "Overlap is descriptive only. It is not evidence of correctness, quality, method superiority, relation confirmation, or a selection rule.",
+    "evidence": [
+      "docs/task_reports/TASK-039C_THREE_ARM_OVERLAP.json",
+      "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json",
+      "src/paperworks/candidates/candidate_integration_v1.py:243-409",
+      "src/paperworks/candidates/candidate_integration_v1.py:1033-1055"
+    ]
+  },
+  "provenance_retention": {
+    "complete": true,
+    "candidate_identity_fields": [
+      "source",
+      "target"
+    ],
+    "candidate_fields": [
+      "origin_arms",
+      "serialization_position",
+      "META",
+      "STAT",
+      "GDN"
+    ],
+    "method_specific_evidence_preserved": {
+      "META": "arm rank, evidence tier, official-reference count and identifiers, binding hashes, result hash",
+      "STAT": "arm rank, selected horizon, sign, file-local coefficients, stability strength, ranking hash, result hash",
+      "GDN": "arm rank, edge-selection frequency, selected-seed count, aggregate learned-graph similarity, ranking hash, result and compatibility hashes"
+    },
+    "origin_arms_order": "canonical META, STAT, GDN subset order",
+    "nested_candidate_self_hashes_present": true,
+    "candidate_identity_list_hash_present": true,
+    "cohort_artifact_hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254",
+    "overlap_artifact_hash": "70a9f3db1db86b6341b45d4496f828c99b41a270ebab89e693b4235456f295f4",
+    "integration_receipt_hash": "5d53e19542c0334381e0cba1e163f07f89d81092b30af65e706634c08eb1cdb5"
+  },
+  "downstream_handoff": {
+    "immediate_consumer": "RELATION_PROFILING protocol and fit paths",
+    "handoff_object": "CandidateProfilingCohortV1 identity list plus per-arm provenance",
+    "cohort_hash_bound_by_protocol": true,
+    "cohort_hash_bound_by_execution_receipt": true,
+    "cohort_record_count_consumed": 47,
+    "relation_status_at_union_freeze": "not_evaluated",
+    "rule_status_at_union_freeze": "not_created",
+    "serialization_order_used_as_scientific_rank": false,
+    "evidence": [
+      "configs/v6/task039d0_relation_profiling_protocol.json",
+      "docs/task_reports/TASK-039D0_PROFILING_IDENTITY_VIEW.json",
+      "docs/task_reports/TASK-039D1_AUTHORIZATION.json",
+      "docs/task_reports/TASK-039D1_EXECUTION_RECEIPT.json",
+      "src/paperworks/v6/relation_profiling_protocol_v1.py:37"
+    ]
+  },
+  "key_symbols": [
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "eligible_pair_records_v1",
+      "line": 225,
+      "role": "Create the ordered, directed source-target cross product and exclude exact self-pairs"
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "CandidateUniversePolicyV1",
+      "line": 251,
+      "role": "Validate the frozen identity lists, universe count/hash, role boundary, and ordering"
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "derive_candidate_budget_views_v1",
+      "line": 424,
+      "role": "Create top-10, top-20, and top-40 prefixes without reranking or padding"
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "integrate_candidate_union_v1",
+      "line": 908,
+      "role": "Build the stable encounter-order unscored tuple-key union and retain per-arm rank/evidence"
+    },
+    {
+      "path": "src/paperworks/candidates/candidate_integration_v1.py",
+      "symbol": "CandidateProfilingEntryV1",
+      "line": 411,
+      "role": "Enforce candidate identity, origin/evidence consistency, no global rank/score, and unconfirmed status"
+    },
+    {
+      "path": "src/paperworks/candidates/candidate_integration_v1.py",
+      "symbol": "CandidateProfilingCohortV1",
+      "line": 527,
+      "role": "Close the 47-record cohort, identity ordering/hash, provenance, and no-profiling boundary"
+    },
+    {
+      "path": "src/paperworks/candidates/candidate_integration_v1.py",
+      "symbol": "_overlap_budget",
+      "line": 1033,
+      "role": "Compute descriptive set overlaps and origin decomposition from arm identity sets"
+    },
+    {
+      "path": "src/paperworks/candidates/candidate_integration_v1.py",
+      "symbol": "reconstruct_audited_preview_v1",
+      "line": 1058,
+      "role": "Reconstruct the public audited union preview and arm-specific provenance without private ledgers"
+    },
+    {
+      "path": "src/paperworks/candidates/candidate_integration_v1.py",
+      "symbol": "build_task039c_integration_v1",
+      "line": 1146,
+      "role": "Validate six exact public inputs, enforce ranking-prefix and isolation constraints, call the frozen union helper once, and build self-hashed outputs"
+    },
+    {
+      "path": "scripts/run_task039c_integration.py",
+      "symbol": "main",
+      "role": "Public-only integration entrypoint with exact commit ancestry, clean-worktree, and no-overwrite gates"
+    }
+  ],
+  "tests": {
+    "relevant_test_files": [
+      "tests/test_task039c0_candidate_protocol.py",
+      "tests/test_task039c_three_arm_integration.py",
+      "tests/test_task039c_integration_reports.py"
+    ],
+    "relevant_test_method_count": 59,
+    "covered_boundaries": [
+      "12 x 12 frozen universe and ordering",
+      "out-of-universe and duplicate rejection",
+      "top-k prefix and no-padding policy",
+      "frozen helper invoked once",
+      "47 unique in-universe pairs",
+      "exact primary overlap and decomposition",
+      "serialization is not scientific rank",
+      "origin arms match method-specific evidence",
+      "no merged score or global rank",
+      "self-hash, schema, cross-binding, and public privacy boundaries"
+    ],
+    "tests_executed_by_this_read_only_agent": 0,
+    "note": "Existing test source and frozen reports were inspected; this agent did not run production or scientific code."
+  },
+  "findings": [
+    {
+      "id": "UNION-F001",
+      "severity": "NONE",
+      "verdict": "VERIFIED",
+      "finding": "META top-20, STAT top-20, and GDN top-20 produce an exact 47-pair unscored union with complete per-arm provenance."
+    },
+    {
+      "id": "UNION-F002",
+      "severity": "NONE",
+      "verdict": "VERIFIED",
+      "finding": "The union does not normalize or compare heterogeneous arm scores and does not create a global scientific rank."
+    },
+    {
+      "id": "UNION-F003",
+      "severity": "NONE",
+      "verdict": "VERIFIED",
+      "finding": "First arm encounter controls serialization only; downstream profiling receives all 47 identity/provenance records as unconfirmed candidates."
+    },
+    {
+      "id": "UNION-F004",
+      "severity": "LOW",
+      "verdict": "DOCUMENTATION_GAP",
+      "finding": "The top-20 budget is preregistered and enforced, but this audit did not locate a separate scientific rationale for why 20 is preferable to another primary budget."
+    },
+    {
+      "id": "UNION-F005",
+      "severity": "LOW",
+      "verdict": "IMPLEMENTATION_GENERALIZATION_NOTE",
+      "finding": "The integration builder's preliminary all-pairs set uses the raw source-target cross product, while the canonical helper uses the self-excluding universe. They are exactly equivalent for the frozen zero-overlap role sets, and the canonical helper still rejects any out-of-universe pair."
+    }
+  ],
+  "scientific_claim_boundary": {
+    "supported": [
+      "Three arm-level top-20 candidate lists were integrated.",
+      "The frozen result is an unscored tuple-identity union of 47 candidates.",
+      "Per-arm provenance and arm-specific ranks/evidence were retained.",
+      "The cohort was handed to relation profiling as candidate identities, not confirmed relations."
+    ],
+    "not_supported": [
+      "The union is a unified cross-arm ranking.",
+      "Higher serialization position is a scientific ranking.",
+      "Overlap indicates correctness or superiority.",
+      "A selected pair is a confirmed temporal or causal relation.",
+      "Any discovery arm is scientifically superior based on the union."
+    ]
+  },
+  "unknowns": [
+    {
+      "item": "Scientific rationale for selecting primary top-20 rather than another candidate budget",
+      "status": "RATIONALE_UNDOCUMENTED_BEYOND_PREREGISTRATION",
+      "impact": "Future EXP-01 sensitivity and stability work should evaluate this policy choice without changing the frozen pilot."
+    }
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "candidate_discovery_executions": 0,
+    "rankings_recomputed": 0,
+    "candidate_artifacts_regenerated": 0,
+    "private_payload_accesses": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0,
+    "files_written": [
+      "research_control_center/bootstrap/ARCH_002/agents/agent_d_union.json"
+    ]
+  }
+}

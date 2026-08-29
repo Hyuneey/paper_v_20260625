@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -43,6 +43,15 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Label ordering:** Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.
 - **Leakage finding:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
 
+## CANDIDATE DISCOVERY FOUNDATION
+
+- **Universe:** 12 ordered sources x 12 ordered targets = 144 directed pairs.
+- **META:** reviewed metadata domain-prior candidate ranking.
+- **STAT:** normal train1/train2 directional lagged-association candidate ranking.
+- **GDN:** embedding-cosine learned-graph candidate ranking; attention is internal message passing, not final evidence; post-hoc XAI is absent.
+- **Union:** unscored provenance-preserving set union of 47 unique pairs.
+- **Boundary:** Candidate discovery proposes relationships. It does not establish causal or final temporal relations.
+
 ## WHAT WAS EXECUTED
 
 - All three discovery arms produced evidence-reviewed top-20 rankings.
@@ -86,5 +95,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-Exact next management task: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
-Following architecture task: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
+Exact next management task: **ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**
+Following architecture task: **ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**

@@ -1,0 +1,463 @@
+{
+  "task_id": "ARCH-002",
+  "agent_role": "Agent A - META Discovery Auditor",
+  "status": "PASS_WITH_CONSERVATIVE_BOUNDARIES_AND_NON_BLOCKING_UNKNOWNS",
+  "authority": {
+    "rcc_head_at_authority_gate": "d5d3f2ac8a619ba84282f6c0c86a739e98a21ccb",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "relevant_source_bytes_changed_between_scientific_commit_and_rcc_head": false,
+    "inspection_method": "Static Git, source, schema, tests, and frozen public-safe artifacts only",
+    "current_checkout_used_as_scientific_authority": false
+  },
+  "component": {
+    "component_id": "META_DISCOVERY",
+    "implementation_kind": "deterministic_reviewed_metadata_domain_prior",
+    "scientific_interpretation": "metadata-derived candidate priority only",
+    "not_supported_interpretations": [
+      "causal relation",
+      "confirmed temporal relation",
+      "physical truth",
+      "anomaly-detection performance",
+      "root cause"
+    ]
+  },
+  "input": {
+    "candidate_universe": {
+      "process": "P1 Boiler",
+      "source_count": 12,
+      "target_count": 12,
+      "eligible_pair_count": 144,
+      "source_roles": {
+        "actuator_feedback": 6,
+        "actuator_state": 1,
+        "control_command": 5
+      },
+      "target_roles": {
+        "process_sensor": 12
+      },
+      "source_target_overlap_count": 0,
+      "pair_ordering": "source_then_target_lexicographic",
+      "pair_directionality": "ordered source-to-target identity",
+      "evidence": [
+        "configs/v6/task039c0_candidate_discovery_protocol.json",
+        "src/paperworks/v6/candidate_discovery_protocol_v1.py:225-244",
+        "src/paperworks/candidates/metadata_candidate_discovery_v1.py:159-220"
+      ]
+    },
+    "metadata_authorities": [
+      {
+        "authority": "pinned official HAI technical manual identity",
+        "use": "manual explicit control-chain declarations and reviewed semantic mapping references",
+        "verification": "exact approved filename, content hash, Git blob identity, and pinned official snapshot"
+      },
+      {
+        "authority": "pinned official P1 directed physical graph identity",
+        "use": "directed graph adjacency after reviewed variable-to-node binding",
+        "verification": "exact approved filename, content hash, Git blob identity, directed graph structure, and node binding"
+      },
+      {
+        "authority": "reviewed variable graph and subsystem bindings",
+        "use": "map frozen source/target identities to graph nodes and documented control subsystems",
+        "verification": "self-hashed closed-schema declaration, canonical exact 12-by-12 coverage, and approved reference identifiers"
+      }
+    ],
+    "time_series_feature_values_used": false,
+    "labels_used": false,
+    "br2_pair_supervision_used": false,
+    "statistical_or_gdn_output_used": false,
+    "llm_semantic_guessing_used": false,
+    "private_input_exposure": "The audit did not open or describe the ignored reviewed-evidence payload; only its public contract and frozen public result were inspected.",
+    "evidence": [
+      "src/paperworks/candidates/metadata_candidate_discovery_v1.py:401-569",
+      "src/paperworks/candidates/metadata_candidate_discovery_v1.py:576-653",
+      "scripts/run_task039c_meta.py:1-17,189-247",
+      "docs/task_reports/TASK-039C_META_DATA_ACCESS_AUDIT.json"
+    ]
+  },
+  "pair_classification": {
+    "precedence": [
+      {
+        "tier": "M1_EXPLICIT",
+        "condition": "the ordered source-target pair appears in the reviewed manual-explicit pair declarations",
+        "interpretation": "manual explicit control-chain candidate evidence"
+      },
+      {
+        "tier": "M2_GRAPH_ADJACENT",
+        "condition": "both variables have reviewed graph-node bindings and the mapped ordered node pair is an edge in the official directed P1 physical graph",
+        "interpretation": "directed graph-adjacent candidate evidence with reviewed semantic mapping"
+      },
+      {
+        "tier": "M3_SUBSYSTEM_SUPPORTED",
+        "condition": "no M1 or M2 evidence exists, but source and target share at least one reviewed subsystem identity",
+        "interpretation": "same-control-subsystem candidate evidence without a direct graph edge"
+      },
+      {
+        "tier": "UNSUPPORTED",
+        "condition": "none of the three approved evidence conditions holds",
+        "interpretation": "kept in the audit ledger but excluded from every ranked top-k view"
+      }
+    ],
+    "observed_frozen_counts": {
+      "M1_EXPLICIT": 12,
+      "M2_GRAPH_ADJACENT": 11,
+      "M3_SUBSYSTEM_SUPPORTED": 7,
+      "UNSUPPORTED": 114,
+      "supported_total": 30,
+      "evaluated_total": 144
+    },
+    "manual_curation_answer": "Yes, the arm is a reviewed domain-prior mechanism. It consumes curated graph-node mappings, subsystem memberships, and manual explicit pairs bound to official references. The algorithm itself is deterministic and does not learn these mappings from feature values.",
+    "physical_subsystem_encoding_answer": "Yes. Shared reviewed subsystem membership is the M3 fallback evidence tier, after explicit-pair and directed-graph evidence.",
+    "evidence": "src/paperworks/candidates/metadata_candidate_discovery_v1.py:655-807 and docs/task_reports/TASK-039C_META_RESULT.json"
+  },
+  "ranking": {
+    "numerical_score": null,
+    "score_interpretation": "There is no continuous or weighted META score.",
+    "sort_key": [
+      "evidence tier in the fixed order M1_EXPLICIT, M2_GRAPH_ADJACENT, M3_SUBSYSTEM_SUPPORTED",
+      "independent official reference count descending",
+      "source identity lexicographic",
+      "target identity lexicographic"
+    ],
+    "tie_breaking": "canonical source then target lexical order after tier and independent-reference count",
+    "deterministic": true,
+    "manually_chosen_weights": false,
+    "manually_frozen_policy": true,
+    "unsupported_padding": false,
+    "cross_arm_score_comparison": false,
+    "evidence": [
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:487-510",
+      "src/paperworks/candidates/metadata_candidate_discovery_v1.py:809-829",
+      "tests/test_task039c_meta.py:255-306"
+    ]
+  },
+  "top_k": {
+    "primary_k": 20,
+    "sensitivity_prefixes": [10, 40],
+    "single_ranking_reused": true,
+    "padding_prohibited": true,
+    "shortfall_reported": true,
+    "frozen_result": {
+      "top10_returned": 10,
+      "top20_returned": 20,
+      "top40_returned": 30,
+      "top40_shortfall": true
+    },
+    "selection": "Each view is a prefix of the one supported-pair ranking; top20 is consumed by integration.",
+    "rationale_status": "PREREGISTERED_POLICY_WITH_SCIENTIFIC_RATIONALE_UNDOCUMENTED",
+    "evidence": [
+      "configs/v6/task039c0_candidate_discovery_protocol.json",
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:424-434",
+      "src/paperworks/candidates/metadata_candidate_discovery_v1.py:909-980",
+      "docs/task_reports/TASK-039C_META_REPORT.md"
+    ]
+  },
+  "exclusions_and_fail_closed_controls": [
+    {
+      "control": "universe coverage",
+      "behavior": "requires canonical exact source/target graph and subsystem bindings and rejects manual pairs outside the frozen universe"
+    },
+    {
+      "control": "process identity",
+      "behavior": "requires P1 Boiler and exact frozen C0 identity hashes"
+    },
+    {
+      "control": "official reference identity",
+      "behavior": "accepts only the exact technical-manual or physical-graph filename and exact content/blob identity"
+    },
+    {
+      "control": "feature and label boundary",
+      "behavior": "rejects feature-value, test, label, BR2 pair-result, STAT, GDN, and CSV-like input paths"
+    },
+    {
+      "control": "supported-only ranking",
+      "behavior": "UNSUPPORTED records cannot enter ranking or pad top-k"
+    },
+    {
+      "control": "closed schemas and self-hashes",
+      "behavior": "unknown fields, changed hashes, duplicate records, inconsistent tier flags, and noncanonical order reject"
+    },
+    {
+      "control": "source-target identity",
+      "behavior": "the generic universe builder excludes source equals target; the frozen source and target sets are disjoint, so all 12-by-12 ordered pairs remain eligible"
+    }
+  ],
+  "output_contract": {
+    "artifact_type": "metadata_candidate_result_v1",
+    "status": "passed_task039c_metadata_candidate_discovery",
+    "output_schema": "schemas/v6/metadata_candidate_result_v1_schema.json",
+    "principal_fields": [
+      "frozen universe and policy hashes",
+      "evaluated, supported, unsupported, and tier counts",
+      "supported ranking with rank, evidence tier, reference count, evidence flags, references, and ordered source-target identity",
+      "top10, top20, and top40 identity prefixes",
+      "candidate-shortfall records",
+      "feature-value, BR2-supervision, cross-arm-score, and numerical-weighting boundary booleans",
+      "self hash"
+    ],
+    "frozen_result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+    "downstream_consumer": "TASK-039C three-arm integration consumes top20 identities and META rank/evidence provenance, deduplicates by ordered source-target pair, and hands the unscored cohort to relation profiling.",
+    "downstream_not_done_here": [
+      "delayed-response confirmation",
+      "temporal-horizon selection",
+      "rule construction",
+      "causal interpretation",
+      "detector evaluation"
+    ],
+    "evidence": [
+      "src/paperworks/candidates/metadata_candidate_discovery_v1.py:909-1135",
+      "src/paperworks/candidates/candidate_integration_v1.py:1060-1125",
+      "src/paperworks/v6/candidate_discovery_protocol_v1.py:892-950",
+      "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json"
+    ]
+  },
+  "verified_execution_lineage": {
+    "implementation_commit": "2b3df4443619b8d0d19434bbcd1ded3b31a1b8ea",
+    "frozen_result_commit": "b8a744c4b2cc70cd70bfc73ce45408c2ec8b5824",
+    "runner": "scripts/run_task039c_meta.py:189-247",
+    "execution_preconditions": [
+      "exact implementation HEAD",
+      "clean worktree",
+      "C0 ancestry",
+      "exact META branch divergence",
+      "ignored reviewed-evidence authority",
+      "exact official reference bytes",
+      "closed public schema and privacy checks"
+    ],
+    "frozen_public_artifacts": [
+      "docs/task_reports/TASK-039C_META_RESULT.json",
+      "docs/task_reports/TASK-039C_META_DATA_ACCESS_AUDIT.json",
+      "docs/task_reports/TASK-039C_META_REPORT.md"
+    ],
+    "feature_value_file_access_count": 0,
+    "prohibited_input_access_count": 0,
+    "real_hai_feature_values_accessed": false,
+    "frozen_execution_verified": true
+  },
+  "key_functions": [
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "eligible_pair_records_v1",
+      "lines": "225-234",
+      "role": "creates the canonical ordered directed source-target cross product while excluding identity-equal pairs",
+      "parameters": ["source_variables", "target_variables"],
+      "returns": "tuple of ordered source-target identity pairs",
+      "caller": "C0 config construction and FrozenUniverseBindingV1.pairs",
+      "callee": "none",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py",
+      "symbol": "load_frozen_c0_universe_v1",
+      "lines": "193-220",
+      "role": "replays C0 config and bundle self-hashes, META policy, P1 identity, and source/target/pair hashes",
+      "parameters": ["config_payload", "bundle_payload"],
+      "returns": "FrozenUniverseBindingV1",
+      "caller": "run_task039c_meta.run",
+      "callee": "CandidateDiscoveryProtocolBundleV1.from_dict",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py",
+      "symbol": "validate_evidence_against_universe_v1",
+      "lines": "547-569",
+      "role": "requires exact canonical binding coverage and rejects out-of-universe manual declarations",
+      "parameters": ["universe", "evidence"],
+      "returns": "none",
+      "caller": "discover_metadata_pair_records_v1",
+      "callee": "set and tuple validation",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py",
+      "symbol": "load_official_physical_graph_v1",
+      "lines": "632-653",
+      "role": "verifies exact graph identity then parses directed nodes and links with endpoint validation",
+      "parameters": ["path"],
+      "returns": "OfficialPhysicalGraphV1",
+      "caller": "run_task039c_meta.run",
+      "callee": "verify_official_reference_file_v1",
+      "deterministic": true,
+      "side_effect": "reads one authorized public reference file",
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py",
+      "symbol": "discover_metadata_pair_records_v1",
+      "lines": "720-807",
+      "role": "classifies all 144 ordered pairs under exact M1 to M2 to M3 to UNSUPPORTED precedence",
+      "parameters": ["universe", "evidence", "graph"],
+      "returns": "canonical tuple of MetadataPairEvidenceRecordV1",
+      "caller": "run_task039c_meta.run",
+      "callee": "validate_evidence_against_universe_v1 and binding maps",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "rank_metadata_candidates_v1",
+      "lines": "494-510",
+      "role": "sorts valid META records by tier, descending independent-reference count, source, and target",
+      "parameters": ["entries"],
+      "returns": "canonical ranked tuple",
+      "caller": "rank_supported_metadata_records_v1",
+      "callee": "sorted",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py",
+      "symbol": "rank_supported_metadata_records_v1",
+      "lines": "809-829",
+      "role": "excludes unsupported records, rejects duplicates, invokes protocol ranker, and restores full evidence records",
+      "parameters": ["records"],
+      "returns": "supported records in canonical rank order",
+      "caller": "build_metadata_candidate_result_v1",
+      "callee": "rank_metadata_candidates_v1",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "derive_candidate_budget_views_v1",
+      "lines": "424-434",
+      "role": "creates top10, top20, and top40 prefixes without padding and records shortfalls",
+      "parameters": ["ranking"],
+      "returns": "CandidateBudgetViewsV1",
+      "caller": "build_metadata_candidate_result_v1",
+      "callee": "duplicate validation and slicing",
+      "deterministic": true,
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py",
+      "symbol": "build_metadata_candidate_result_v1",
+      "lines": "909-1017",
+      "role": "builds tier counts, ranking, budget views, boundary fields, and immutable self-hashed public result",
+      "parameters": ["records", "code_commit", "created_at", "evidence_ledger_hash", "data_access_audit_ref"],
+      "returns": "metadata_candidate_result_v1 mapping",
+      "caller": "run_task039c_meta.run",
+      "callee": "rank_supported_metadata_records_v1, derive_candidate_budget_views_v1, stable_hash_v1, validate_metadata_candidate_result_v1",
+      "deterministic": true,
+      "side_effect": "none; pure artifact construction",
+      "frozen_execution_use": true
+    },
+    {
+      "path": "scripts/run_task039c_meta.py",
+      "symbol": "run",
+      "lines": "189-247",
+      "role": "enforces execution custody, loads exact authorities, executes the deterministic META path, validates schema/privacy, and writes frozen private/public artifacts",
+      "parameters": ["official_checkout", "evidence_input_path", "expected_code_commit", "created_at"],
+      "returns": "sanitized execution summary",
+      "caller": "main",
+      "callee": "META authority, classification, ranking, result, schema, and privacy functions",
+      "deterministic": true,
+      "side_effect": "writes authorized artifacts during the historical frozen execution",
+      "frozen_execution_use": true
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbol": "integrate_candidate_union_v1",
+      "lines": "908-950",
+      "role": "downstream consumer contract that accepts per-arm top20, validates universe membership, deduplicates pairs, and preserves ranks and evidence by arm",
+      "parameters": ["universe", "meta_top20", "stat_top20", "gdn_top20"],
+      "returns": "stable unscored tuple of IntegratedCandidateV1",
+      "caller": "TASK-039C integration implementation",
+      "callee": "assert_candidate_in_universe_v1 and hash validation",
+      "deterministic": true,
+      "frozen_execution_use": true
+    }
+  ],
+  "pseudocode": [
+    "Replay the exact frozen C0 config and protocol bundle; require P1 Boiler, 12 sources, 12 targets, 144 ordered eligible pairs, and exact identity hashes.",
+    "Verify the ignored reviewed-metadata declaration is self-hashed, uses only approved official references, and covers every frozen source and target binding exactly once.",
+    "Verify the official manual and directed P1 physical-graph bytes against their pinned identities; parse and validate the graph node and link structure.",
+    "For each canonical source-target pair: choose M1 if manually explicit; else M2 if mapped nodes have an ordered directed graph edge; else M3 if reviewed subsystem memberships overlap; else UNSUPPORTED.",
+    "Store one canonical evidence record per pair and assert exact 144-record closure.",
+    "Remove UNSUPPORTED records from ranking. Sort supported records by tier, independent reference count descending, source lexical, then target lexical.",
+    "Take top10, top20, and top40 prefixes of that single ranking without padding. Record any shortfall.",
+    "Build and validate the closed, self-hashed public result. Integration later consumes META top20 and retains META rank/evidence provenance in an unscored cross-arm union."
+  ],
+  "tests_and_static_evidence": {
+    "meta_specific_test_file": "tests/test_task039c_meta.py",
+    "meta_specific_test_methods": 24,
+    "protocol_test_file": "tests/test_task039c0_candidate_protocol.py",
+    "protocol_test_methods_total": 28,
+    "covered_behaviors": [
+      "exact 144-pair universe",
+      "out-of-universe rejection",
+      "feature-value and BR2 input rejection",
+      "M1, M2, M3, and unsupported classification",
+      "reference-count ranking and lexical tie-break",
+      "no unsupported padding",
+      "one-ranking top-k prefixes and shortfall",
+      "no numeric weighted score",
+      "non-causal graph boundary",
+      "deterministic serialization and self-hash",
+      "unknown-field and public privacy rejection",
+      "closed JSON schema"
+    ],
+    "tests_executed_by_this_agent": false,
+    "reason": "Agent assignment was read-only evidence collection; coordinator owns RCC-only validation."
+  },
+  "claim_assessment": {
+    "META_relation_candidate_meaning": "A P1 ordered source-target pair prioritized by reviewed manual, directed physical-graph, or shared-subsystem evidence under a fixed categorical policy.",
+    "META_is_domain_prior": "VERIFIED",
+    "META_is_learned_from_time_series": "CONTRADICTED",
+    "META_contains_directionality": "VERIFIED_AT_CANDIDATE_IDENTITY_LEVEL",
+    "META_establishes_temporal_horizon": "CONTRADICTED",
+    "META_establishes_causality": "NOT_SUPPORTED",
+    "META_establishes_final_relation": "NOT_SUPPORTED",
+    "META_implementation_exists_and_executed": "VERIFIED",
+    "META_scientific_contribution_validated": "UNVALIDATED"
+  },
+  "unknowns_and_limitations": [
+    {
+      "id": "META-U01",
+      "finding": "The primary top-20 budget is preregistered and source-supported, but its scientific rationale is not documented in the inspected META implementation or public result.",
+      "classification": "RATIONALE_UNDOCUMENTED",
+      "blocking": false
+    },
+    {
+      "id": "META-U02",
+      "finding": "The public contract proves reviewed mappings and exact reference binding, but it does not independently certify a named human review process or the physical correctness of the mappings.",
+      "classification": "EVIDENCE_SCOPE_LIMITATION",
+      "blocking": false
+    },
+    {
+      "id": "META-U03",
+      "finding": "The official P1 physical graph is deliberately bounded as a weak relation reference, not causal truth; its scientific validity is not established by this discovery execution.",
+      "classification": "SCIENTIFIC_VALIDATION_PENDING",
+      "blocking": false
+    },
+    {
+      "id": "META-U04",
+      "finding": "The arm's unique confirmed-relation contribution and stability across alternative metadata policies remain future EXP-01 questions.",
+      "classification": "SCIENTIFIC_CONTRIBUTION_UNVALIDATED",
+      "blocking": false
+    }
+  ],
+  "coordinator_notes": [
+    "Describe META as reviewed metadata/domain-prior candidate ranking, not as a learned or causal relation method.",
+    "The word score should be qualified: META has a categorical lexicographic ranking key, not a numerical score.",
+    "Direction here is ordered source-to-target candidate identity supported by directed graph/manual semantics; final delayed-response direction and horizon belong to downstream relation profiling.",
+    "The 30 supported-pair count explains why top40 returns only 30; no unsupported pair is added to meet a budget.",
+    "The top20 is a policy choice frozen before downstream evaluation, but the inspected evidence does not state a scientific rationale for choosing 20."
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "meta_discovery_runs": 0,
+    "candidate_regenerations": 0,
+    "test2_accesses": 0,
+    "private_payload_reads": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0,
+    "files_written": [
+      "research_control_center/bootstrap/ARCH_002/agents/agent_a_meta.json"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "arch002-evidence-v1",
+  "task_id": "ARCH-002",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "candidate_universe": {"source_count": 12, "target_count": 12, "pair_count": 144, "directed": true},
+  "arms": {
+    "META": {"top_k": 20, "evaluated": 144, "supported": 30, "interpretation": "metadata candidate evidence"},
+    "STAT": {"top_k": 20, "evaluated": 144, "supported": 141, "interpretation": "directional lagged-association candidate evidence"},
+    "GDN": {"top_k": 20, "evaluated": 144, "supported": 39, "interpretation": "learned-graph candidate evidence"}
+  },
+  "gdn_terminology": {"learned_graph_used": true, "attention_used_for_candidate_ranking": false, "posthoc_xai_used": false, "causal_authority": false},
+  "union": {"count": 47, "meta_only": 8, "stat_only": 8, "gdn_only": 18, "exactly_two": 13, "all_three": 0, "global_score": false, "global_rank": false},
+  "mismatches": {"critical": 0, "high": 0, "medium": 4, "low": 3},
+  "qa": {"verdict": "PASS", "questions_passed": 18, "questions_total": 18, "rcc_tests_passed": 55, "rcc_tests_total": 55, "corrections_applied": 1},
+  "safety": {"scientific_executions": 0, "test2_accesses": 0, "scientific_source_changes": 0, "frozen_artifact_changes": 0}
+}

@@ -1,0 +1,18 @@
+flowchart TD
+  RU["ROLE UNIVERSE<br/>12 ordered sources × 12 ordered targets<br/>144 directed pairs"]
+  META["META<br/>reviewed metadata prior<br/>Top-20"]
+  STAT["STAT<br/>train1/train2 lagged association<br/>Top-20"]
+  GDN["GDN<br/>embedding-cosine learned graph<br/>Top-20"]
+  UNION["UNSCORED SET UNION<br/>47 unique pairs<br/>arm provenance retained"]
+  PROFILE["RELATION PROFILING<br/>separate confirmation stage<br/>ARCH-003"]
+  RU --> META
+  RU --> STAT
+  RU --> GDN
+  META --> UNION
+  STAT --> UNION
+  GDN --> UNION
+  UNION --> PROFILE
+  ATTN["Graph attention<br/>internal message passing only"]
+  XAI["Post-hoc XAI / SHAP<br/>not used"]
+  ATTN -. not candidate authority .-> GDN
+  XAI -. absent .-> GDN

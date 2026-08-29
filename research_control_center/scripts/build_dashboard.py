@@ -38,6 +38,10 @@ ARCHITECTURE_FILES = (
     "01_data_and_splits/ARCH_001_LEAKAGE_MATRIX.csv",
     "01_data_and_splits/ARCH_001_INPUT_CONTRACTS.csv",
     "01_data_and_splits/ARCH_001_FUNCTION_CATALOG.csv",
+    "02_candidate_discovery/ARCH_002_ARM_COMPARISON.csv",
+    "02_candidate_discovery/ARCH_002_CANDIDATE_PROVENANCE.csv",
+    "02_candidate_discovery/ARCH_002_FUNCTION_CATALOG.csv",
+    "02_candidate_discovery/ARCH_002_IO_CONTRACTS.csv",
 )
 
 
@@ -333,6 +337,21 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         + "</p></article>"
         for item in governance["splits"]
     )
+    discovery = state["candidate_discovery"]
+    discovery_markup = "".join(
+        '<article class="summary-card"><p class="eyebrow">'
+        + _escape(arm["id"])
+        + "</p><h3>"
+        + _escape(arm["method"])
+        + "</h3><dl>"
+        + f'<div><dt>INPUT</dt><dd>{_escape(arm["input"])}</dd></div>'
+        + f'<div><dt>OUTPUT</dt><dd>{_escape(arm["output"])}</dd></div>'
+        + f'<div><dt>TOP-K</dt><dd>{_escape(arm["top_k"])}</dd></div>'
+        + f'<div><dt>FROZEN EXECUTION?</dt><dd>{_badge("AUDITED", "YES")}</dd></div>'
+        + f'<div><dt>SCIENTIFIC VALIDATION?</dt><dd>{_badge("UNVALIDATED", arm["scientific_validation"])}</dd></div>'
+        + "</dl></article>"
+        for arm in discovery["arms"]
+    )
     marker = _source_marker(state, digest)
 
     return f"""<!doctype html>
@@ -364,7 +383,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -400,6 +419,22 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">{_escape(governance['label_access'])}</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
       <p><strong>Next deep review:</strong> {_escape(governance['next_deep_review'])}</p>
+    </section>
+
+    <section id="candidate-discovery" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">DISCOVERY</p><h2>CANDIDATE DISCOVERY</h2></div>
+      <div class="status-snapshot">
+        <div><span>Universe</span><strong>{_escape(discovery['candidate_universe'])}</strong></div>
+        <div><span>Union</span><strong>{_escape(discovery['union'])}</strong></div>
+        <div><span>Learned graph</span><strong>USED</strong></div>
+        <div><span>Attention as final evidence</span><strong>NO</strong></div>
+        <div><span>Post-hoc XAI</span><strong>NO</strong></div>
+        <div><span>GDN contribution</span><strong>UNVALIDATED</strong></div>
+      </div>
+      <div class="summary-grid">{discovery_markup}</div>
+      <aside class="principle">{_escape(discovery['warning'])}</aside>
+      <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
+      <p><strong>Next deep review:</strong> {_escape(discovery['next_deep_review'])}</p>
     </section>
 
     <section id="my-tasks" class="section">
@@ -562,6 +597,14 @@ builds and validates a label-blind self-hashed object before labels, but the pub
 written after metrics; this is a governance evidence gap, not proof of label-driven decisions.
 D2 V2 was explicitly informed by prior INNER outcomes and remains pilot-development evidence.
 
+## Candidate-discovery boundary
+
+The P1 universe has 144 directed candidates. META ranks metadata priors; STAT ranks
+normal lagged association; GDN ranks embedding-cosine learned-graph candidates. Attention
+is internal message passing, not ranking evidence, and post-hoc XAI is absent. Three Top-20
+views form an unscored 47-pair union. These are proposals, not confirmed or causal relations;
+GDN contribution remains unvalidated.
+
 ## How we got here
 
 The recorded evolution is **{phase_names}**. Early timing and motives are partly
@@ -603,11 +646,6 @@ path exists, but current evidence does not support a verifier-feedback advantage
 ## Current experiments
 
 {experiments}
-
-Professor-driven priority is the scientific status of verified Rule-only behavior: it
-showed distinct pilot event responses, but its high normal false-alarm burden prevents an
-operational-utility claim. Expanded validation should preserve event-level metrics and
-include at least one stronger multivariate detector baseline under a new preregistration.
 
 ## Claim boundaries
 
@@ -822,6 +860,77 @@ enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossib
 """
 
 
+def render_arch002_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    return f"""{_markdown_marker(state, digest)}
+# 관계 후보는 왜 세 방식으로 고르는가
+
+## 한 문장 답
+
+144개 가능한 source→target 쌍을 META·STAT·GDN이 서로 다른 근거로 20개씩 제안하고,
+중복을 접은 47개만 다음 normal relation profiling이 검사한다.
+
+| 방식 | 무엇을 보는가 | 무엇을 내놓는가 | 아직 말할 수 없는 것 |
+|---|---|---|---|
+| META | reviewed metadata와 physical graph | domain-prior 후보 Top-20 | 물리적 진실·인과 |
+| STAT | normal train1/train2의 lagged 변화 상관 | association 후보 Top-20 | confirmed response·인과 |
+| GDN | 정상 multivariate next-value prediction | learned-graph 후보 Top-20 | 고유 유용성·인과·attention 설명 |
+
+## 왜 관계 후보를 먼저 줄이는가?
+
+모든 가능한 쌍을 규칙으로 만들지 않고 서로 다른 약한 근거로 profiling 대상만 제한하기
+위해서다. 이 단계는 관계를 확정하는 단계가 아니다.
+
+## 144개는 어디서 나오는가?
+
+P1의 ordered source 역할 12개와 target 역할 12개의 directed cross product다. 두 역할
+집합은 현재 freeze에서 겹치지 않으므로 12×12=144다.
+
+## META는 무엇을 보는가?
+
+실제 센서 값을 읽지 않고 reviewed official metadata와 directed physical graph를 본다.
+명시 연결, graph adjacency, subsystem support 순으로 분류하고 공식 reference 수와
+identity로 결정적으로 정렬한다. 학습 score는 없다.
+
+## STAT은 무엇을 보는가?
+
+train1과 train2 각각에서 source/target의 1초 변화량을 만들고 여러 lag에서 Pearson
+association을 계산한다. 두 파일에서 부호가 안정적인지 확인하고 약한 쪽 strength로
+정렬한다. 후속 delayed-response profiling과는 별개다.
+
+## GDN은 무엇을 학습하는가?
+
+37개 P1 node의 5초 history로 다음 1초 값을 예측한다. 학습된 node embedding의 cosine
+similarity로 target별 neighbor graph를 만들고 세 seed에서 반복 선택된 edge를 우선한다.
+현재 Top-5는 diagonal/self를 먼저 제거하지 않아 자기 node가 내부 슬롯을 차지할 수 있다.
+후속 disjoint-role projection이 exported self-pair는 제거하지만 기능적 영향은 미검증이다.
+
+## GDN attention을 쓰는 것인가?
+
+모델 내부 message passing에는 attention을 쓴다. 그러나 attention coefficient를 후보
+ranking이나 최종 관계 evidence로 쓰지 않는다. 후보 authority는 embedding-cosine
+learned graph다. 별도 XAI나 SHAP도 쓰지 않는다.
+
+## GDN edge는 어떤 의미인가?
+
+target 예측에 선택된 neighbor/input dependency **후보**다. 원인, root cause, 확정된
+시간 관계가 아니다.
+
+## 20+20+20인데 왜 47개인가?
+
+세 arm에서 겹친 pair를 exact directed identity로 한 번만 남기기 때문이다. META-only 8,
+STAT-only 8, GDN-only 18, 두 arm 공통 13, 세 arm 공통 0으로 총 47이다. Arm score는
+합치거나 비교하지 않으므로 47개 전체 순위도 없다.
+
+## 다음 단계에서 무엇을 검증하는가?
+
+47개 cohort를 normal delayed-response profiling에 넘겨 step event, response direction,
+horizon과 안정성을 별도로 확인한다. 그 전에는 최종 relation이라고 부르면 안 된다.
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
 def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -894,6 +1003,15 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
   train4 normal sanity; test1 INNER pilot; test2 held-out result unavailable.
 - **Label ordering:** {state['data_governance']['label_access']}
 - **Leakage finding:** {state['data_governance']['leakage_status']}
+
+## CANDIDATE DISCOVERY FOUNDATION
+
+- **Universe:** {state['candidate_discovery']['candidate_universe']}.
+- **META:** reviewed metadata domain-prior candidate ranking.
+- **STAT:** normal train1/train2 directional lagged-association candidate ranking.
+- **GDN:** embedding-cosine learned-graph candidate ranking; attention is internal message passing, not final evidence; post-hoc XAI is absent.
+- **Union:** {state['candidate_discovery']['union']}.
+- **Boundary:** {state['candidate_discovery']['warning']}
 
 ## WHAT WAS EXECUTED
 
@@ -1372,6 +1490,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "RCC_002_USER_SUMMARY.md": render_user_summary(data, digest),
         "RCC_003_HISTORY_SUMMARY.md": render_rcc003_history_summary(data, digest),
         "ARCH_001_USER_SUMMARY.md": render_arch001_user_summary(data, digest),
+        "ARCH_002_USER_SUMMARY.md": render_arch002_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # My Research TODO
 
 This page contains research-owner actions, not low-level development chores.
@@ -8,47 +8,47 @@ This page contains research-owner actions, not low-level development chores.
 No items.
 ## Understanding Needed
 
-- **ID:** USER-ARCH-001
+- **ID:** USER-ARCH002-001
   **Priority:** HIGH
-  **Task:** Can I explain why each split exists?
-  **Why your involvement is required:** Fit, confirmation, calibration, sanity, pilot, and held-out roles must not be conflated.
-  **Linked:** ARCH-001 split map
+  **Task:** Can I explain META in one sentence?
+  **Why your involvement is required:** META is reviewed metadata domain-prior evidence, not a learned or causal relation.
+  **Linked:** ARCH-002 META audit
   **Status:** OPEN
 
-- **ID:** USER-ARCH-002
+- **ID:** USER-ARCH002-002
   **Priority:** HIGH
-  **Task:** Can I explain when labels become visible?
-  **Why your involvement is required:** Prediction construction and durable prediction persistence are separate guarantees.
-  **Linked:** ARCH_001_LABEL_ACCESS_TIMELINE.md
+  **Task:** Can I explain STAT in one sentence?
+  **Why your involvement is required:** STAT ranks normal lagged association and is separate from response confirmation.
+  **Linked:** ARCH-002 STAT audit
   **Status:** OPEN
 
-- **ID:** USER-ARCH-003
+- **ID:** USER-ARCH002-003
   **Priority:** HIGH
-  **Task:** Do I understand why test1 is only pilot evidence?
-  **Why your involvement is required:** D2 V2 was explicitly informed by prior INNER outcomes, so test1 is not independent final validation.
-  **Linked:** ARCH-001 test1 audit
+  **Task:** Can I explain what GDN contributes technically?
+  **Why your involvement is required:** Its output is a learned-graph candidate ranking, not a validated contribution claim.
+  **Linked:** ARCH-002 GDN audit
   **Status:** OPEN
 
-- **ID:** USER-ARCH-004
+- **ID:** USER-ARCH002-004
   **Priority:** HIGH
-  **Task:** Do I understand why test2 has no result?
-  **Why your involvement is required:** The historical attempt stopped at custody before payload bytes and produced no performance outcome.
-  **Linked:** ARCH-001 OUTER custody audit
+  **Task:** Can I explain learned graph versus attention?
+  **Why your involvement is required:** Embedding graph selects candidate edges; attention only operates inside message passing.
+  **Linked:** ARCH_002_GDN_PROFESSOR_ANSWER.md
   **Status:** OPEN
 ## Review Needed
 
-- **ID:** USER-ARCH-005
+- **ID:** USER-ARCH002-005
   **Priority:** HIGH
-  **Task:** Is there any leakage or coupling risk I want explained further?
-  **Why your involvement is required:** The D1 ordering gap, train3 dual use, and test1-informed V2 design have different meanings.
-  **Linked:** ARCH_001_MISMATCHES.md
+  **Task:** Can I explain why 47 candidate pairs are not final relations?
+  **Why your involvement is required:** Discovery proposes a cohort; delayed-response profiling performs separate confirmation.
+  **Linked:** ARCH_002_DISCOVERY_FLOW.mmd
   **Status:** OPEN
 
-- **ID:** USER-ARCH-006
+- **ID:** USER-ARCH002-006
   **Priority:** HIGH
-  **Task:** Approve or defer starting ARCH-002.
-  **Why your involvement is required:** Candidate discovery algorithms should be reviewed only after the data boundary is understood.
-  **Linked:** ARCH-002
+  **Task:** Approve or defer starting ARCH-003.
+  **Why your involvement is required:** Relation profiling and numeric authority are the next independent architecture boundary.
+  **Linked:** ARCH-003
   **Status:** OPEN
 ## Waiting On Codex
 

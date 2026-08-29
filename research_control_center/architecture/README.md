@@ -75,4 +75,21 @@ Its conclusion is `NO VERIFIED LEAKAGE FOUND`, with explicit qualifications:
 D1 lacks a durable prediction-file-before-label gate, D2 V2 is test1-informed,
 split enforcement is distributed, and train3 has a documented dual role.
 
-Exact next task: `ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit`.
+## Completed candidate-discovery audit
+
+ARCH-002 verifies the three proposal arms and their 47-pair handoff:
+
+- [Korean report](02_candidate_discovery/ARCH_002_REPORT.md)
+- [Arm comparison](02_candidate_discovery/ARCH_002_ARM_COMPARISON.csv)
+- [Candidate provenance](02_candidate_discovery/ARCH_002_CANDIDATE_PROVENANCE.csv)
+- [Function catalog](02_candidate_discovery/ARCH_002_FUNCTION_CATALOG.csv)
+- [I/O contracts](02_candidate_discovery/ARCH_002_IO_CONTRACTS.csv)
+- [Discovery flow](02_candidate_discovery/ARCH_002_DISCOVERY_FLOW.mmd)
+- [Professor-facing GDN answer](02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md)
+- [Mismatch register](02_candidate_discovery/ARCH_002_MISMATCHES.md)
+
+The GDN candidate authority is the node-embedding cosine learned graph. Graph
+attention is internal message passing, not candidate-ranking evidence; post-hoc
+XAI is absent. Candidate discovery remains proposal, not confirmation or causality.
+
+Exact next task: `ARCH-003 — Relation Profiling & Numeric Authority Deep Audit`.

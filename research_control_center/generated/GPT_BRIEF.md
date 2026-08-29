@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -45,6 +45,14 @@ No verified leakage was found. D0 and D2 durably persist predictions before labe
 builds and validates a label-blind self-hashed object before labels, but the public file is
 written after metrics; this is a governance evidence gap, not proof of label-driven decisions.
 D2 V2 was explicitly informed by prior INNER outcomes and remains pilot-development evidence.
+
+## Candidate-discovery boundary
+
+The P1 universe has 144 directed candidates. META ranks metadata priors; STAT ranks
+normal lagged association; GDN ranks embedding-cosine learned-graph candidates. Attention
+is internal message passing, not ranking evidence, and post-hoc XAI is absent. Three Top-20
+views form an unscored 47-pair union. These are proposals, not confirmed or causal relations;
+GDN contribution remains unvalidated.
 
 ## How we got here
 
@@ -101,11 +109,6 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Implementation-level automated grounding evidence only..
 - **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`; scope: No experimental outcome..
 
-Professor-driven priority is the scientific status of verified Rule-only behavior: it
-showed distinct pilot event responses, but its high normal false-alarm burden prevents an
-operational-utility claim. Expanded validation should preserve event-level metrics and
-include at least one stronger multivariate detector baseline under a new preregistration.
-
 ## Claim boundaries
 
 - **CLAIM-A · SUPPORTED_IMPLEMENTATION** — The pinned HAI P1 INNER architecture and its frozen execution paths were implemented.
@@ -134,12 +137,12 @@ include at least one stronger multivariate detector baseline under a new preregi
 
 ## Top user TODO
 
-- Explain why train1/train2, train3, train4, test1, and test2 have different roles.
-- Explain when labels become visible and why D1's durable persistence gap matters.
-- Explain why test1 is pilot evidence rather than final validation.
-- Explain why test2 has no scientific outcome.
-- Choose any leakage or coupling finding that needs a deeper explanation.
-- Approve or defer starting ARCH-002.
+- Explain META as reviewed metadata domain-prior candidate evidence.
+- Explain STAT as normal directional lagged-association candidate evidence.
+- Explain GDN's technical learned-graph candidate contribution.
+- Explain why learned graph and attention are different authorities.
+- Explain why the 47-pair union is not a confirmed relation set.
+- Approve or defer starting ARCH-003.
 
 ## Source-policy boundary
 
@@ -150,9 +153,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
+Management: **ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**
 
-Following architecture review: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
+Following architecture review: **ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.
