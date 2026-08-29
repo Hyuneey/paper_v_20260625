@@ -1,0 +1,47 @@
+{
+  "task_id": "ARCH-007",
+  "verdict": "PASS",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base_commit": "4777b07b420d30f03091c676e07f8f1e119ba03a",
+  "method": "static_source_and_frozen_public_safe_evidence_audit",
+  "d0": {
+    "detector_id": "D0_PCA_SPE_V1",
+    "role": "SIMPLE_DETERMINISTIC_NORMAL_ONLY_MULTIVARIATE_REFERENCE_DETECTOR",
+    "features": 37,
+    "fit_splits": ["train1", "train2"],
+    "calibration_split": "train3",
+    "test_split": "test1",
+    "variance_target": 0.95,
+    "selected_components": 10,
+    "residual_dimensions": 27,
+    "quantile": 0.999,
+    "q_index": 125873,
+    "interpolation": false,
+    "comparator": "score > threshold",
+    "determinism": "DETERMINISTIC_WITH_ENV_ASSUMPTIONS"
+  },
+  "frozen_pilot": {
+    "rows": 54000,
+    "point_alarms": 876,
+    "alarm_episodes": 46,
+    "attack_events_detected": 11,
+    "attack_events_total": 14,
+    "attack_event_recall": 0.7857142857142857,
+    "normal_false_alarm_episodes": 7,
+    "normal_far_episodes_per_hour": 0.4939336325682589,
+    "scope": "PILOT_ONLY"
+  },
+  "prediction_freeze": "DURABLY_PERSISTED_AND_REPLAYED_BEFORE_LABEL_ACCESS",
+  "fresh_machine_reproducibility": "INCOMPLETE",
+  "mismatches": {"total": 10, "critical": 0, "high": 1, "medium": 8, "low": 1},
+  "safety": {
+    "scientific_executions": 0,
+    "test1_feature_accesses": 0,
+    "test1_label_accesses": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_result_changes": 0,
+    "private_exposures": 0
+  }
+}
+

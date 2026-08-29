@@ -1,0 +1,22 @@
+flowchart TD
+  T12["normal train1 + train2<br/>37 ordered P1 features"] --> SCALE["Population standardization<br/>mean / std ddof=0"]
+  SCALE --> PCA["NumPy PCA fit<br/>variance target 0.95"]
+  PCA --> K["Frozen model<br/>k=10; residual=27"]
+  T3["normal train3"] --> CS["SPE calibration scores"]
+  K --> CS
+  CS --> TH["q=0.999 order statistic<br/>no interpolation"]
+  TH --> AUTH["Frozen threshold<br/>score > threshold"]
+  T4["normal train4"] -. sanity only .-> SANITY["Post-freeze sanity report"]
+  K --> SANITY
+  AUTH --> SANITY
+  TESTF["test1 features"] --> SCORE["Standardize → PCA residual → SPE"]
+  K --> SCORE
+  AUTH --> ALARM["Binary point prediction"]
+  SCORE --> ALARM
+  ALARM --> FREEZE["Atomic prediction file + replay validation"]
+  FREEZE --> BLIND["LABEL-BLIND DURABLE FREEZE"]
+  BLIND --> LABEL["test1 label access"]
+  LABEL --> METRIC["Episodes / attack-event recall / FAR-hour"]
+  FREEZE --> METRIC
+  METRIC --> PILOT["Frozen 14-event INNER pilot result"]
+

@@ -59,6 +59,9 @@ ARCHITECTURE_FILES = (
     "06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv",
     "06_runtime_trace_explanation/ARCH_006_FUNCTION_CATALOG.csv",
     "06_runtime_trace_explanation/ARCH_006_IO_CONTRACTS.csv",
+    "07_d0_detector/ARCH_007_ARTIFACT_LINEAGE.csv",
+    "07_d0_detector/ARCH_007_FUNCTION_CATALOG.csv",
+    "07_d0_detector/ARCH_007_IO_CONTRACTS.csv",
 )
 
 
@@ -373,6 +376,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     construction = state["rule_construction_authority"]
     verifier = state["verifier_common42_authority"]
     runtime = state["runtime_trace_explanation"]
+    d0 = state["d0_detector"]
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -423,7 +427,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -537,6 +541,35 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">{_escape(runtime['warning'])}</aside>
       <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
       <p><strong>Next deep review:</strong> {_escape(runtime['next_deep_review'])}</p>
+    </section>
+
+    <section id="d0-detector" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">D0</p><h2>PCA-SPE REFERENCE DETECTOR</h2></div>
+      <p class="architecture-flow">normal train1+train2 → scaler/PCA → normal train3 q=.999 calibration → test1 SPE → strict point alarm → durable prediction freeze → label metrics</p>
+      <div class="status-snapshot">
+        <div><span>Role</span><strong>REFERENCE DETECTOR</strong></div>
+        <div><span>Input</span><strong>{d0['features']} ordered P1 features</strong></div>
+        <div><span>PCA</span><strong>0.95 target → k={d0['selected_components']}</strong></div>
+        <div><span>Calibration</span><strong>train3 · q=.999</strong></div>
+        <div><span>Prediction</span><strong>test1 · PILOT</strong></div>
+        <div><span>Baseline strength</span><strong>{_escape(d0['baseline_strength'])}</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Model and decision</h3><dl class="architecture-contract">
+        <div><dt>FIT</dt><dd>{_escape(d0['fit_split'])}; labels used = NO</dd></div>
+        <div><dt>STANDARDIZATION</dt><dd>{_escape(d0['standardization'])}</dd></div>
+        <div><dt>SPE</dt><dd>{_escape(d0['spe'])}</dd></div>
+        <div><dt>THRESHOLD</dt><dd>{_escape(d0['threshold'])}</dd></div>
+        <div><dt>COMPARATOR</dt><dd>{_escape(d0['comparator'])}</dd></div>
+      </dl></div><div><h3>Frozen pilot and custody</h3><dl class="architecture-contract">
+        <div><dt>LABEL ORDER</dt><dd>{_escape(d0['prediction_freeze'])}</dd></div>
+        <div><dt>DETERMINISM</dt><dd>{_escape(d0['determinism'])}</dd></div>
+        <div><dt>ATTACK EVENTS</dt><dd>{_escape(d0['attack_event_response'])}</dd></div>
+        <div><dt>NORMAL FAR</dt><dd>{d0['normal_far_episodes_per_hour']} episodes/hour</dd></div>
+        <div><dt>OUTPUT LEVELS</dt><dd>{d0['point_alarms']} point alarms; {d0['alarm_episodes']} alarm episodes; {d0['normal_false_alarm_episodes']} normal false episodes</dd></div>
+      </dl></div></div>
+      <aside class="principle">{_escape(d0['warning'])}</aside>
+      <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">Open the deep D0 audit</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE definition</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">Prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">Output levels</a></p>
+      <p><strong>Next deep review:</strong> {_escape(d0['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -718,8 +751,8 @@ These counts are not a single completion percentage.
 ## Data and split boundary
 
 HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
-calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero test2 bytes
-or labels and produced no outcome. D1 has a durable-file ordering gap. D2 V2 is test1-informed.
+calibrates D0; train4 is a guard. test1 is pilot evidence. OUTER produced no result. D1 lacks
+durable pre-label persistence; D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
@@ -743,15 +776,18 @@ Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse t
 and 626 metric episodes. Prediction preceded labels but was not durably persisted; its trace is
 not `RuntimeTraceV1`, and no D1 explanation was rendered.
 
+## Frozen D0 detector boundary
+
+D0 is a 37-feature normal-only PCA-SPE reference. Train1+train2 fit custom NumPy PCA; train3
+calibrates a no-interpolation q=.999 threshold; test1 uses strict `score > threshold`. Prediction
+bytes were frozen before labels. The 11/14 pilot is neither SOTA nor thesis-contribution evidence.
+
 ## How we got here
 
-The recorded evolution is **{phase_names}**. Early timing and motives are partly
-`USER_CONTEXT`; Git independently supports the later engineering lineage. ARGOS became
-partial methodological support, while deterministic verification survived the earlier
-Verifier framing. HAI provenance and the continuous-step recovery selected P1; distinct
-META/STAT/GDN evidence, normal-only profiling, and numeric authority led to COMMON-42 and
-the frozen 14-event D0/D1/D2 INNER pilot. OUTER ended in a custody blocker, not a result.
-History explains this lineage but cannot override current state.
+The recorded evolution is **{phase_names}**. Early motives remain partly `USER_CONTEXT`.
+ARGOS became partial support; deterministic verification survived the earlier Verifier framing.
+HAI P1, META/STAT/GDN, normal-only profiling and numeric authority led to COMMON-42 and the
+14-event pilot. OUTER ended in a custody blocker. History explains this lineage but cannot override current state.
 
 ## Established facts
 
@@ -1321,6 +1357,81 @@ synthetic path의 구조적 binding뿐이며 사람에게 유용한지는 **UNVA
 
 V4 frozen path와 canonical Rule/Trace 설명을 혼동하는 것, label 전 durable persistence가 없는 것,
 그리고 설명 구현이 frozen D1에 실제 연결된 것처럼 표현하는 것이 가장 중요한 위험이다.
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
+def render_arch007_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    d0 = state["d0_detector"]
+    return f"""{_markdown_marker(state, digest)}
+# D0 PCA-SPE를 쉽게 이해하기
+
+## 1. PCA는 왜 쓰는가?
+
+37개 P1 변수가 정상일 때 함께 움직이는 큰 패턴을 작은 수의 축으로 요약하기 위해 쓴다.
+D0는 이 정상 패턴에서 벗어난 정도를 보는 단순한 비교 기준선이다.
+
+## 2. 정상 패턴을 어떻게 학습하는가?
+
+Normal train1과 train2만 사용한다. 각 변수의 평균과 population 표준편차로 표준화하고,
+custom NumPy PCA에서 누적 설명분산 0.95 이상이 되는 최소 축 수를 고른다. Frozen fit은
+10개 축을 선택했고 27개 residual dimension을 남겼다.
+
+## 3. SPE는 무엇인가?
+
+한 시점의 37개 값을 PCA 정상 공간으로 복원한 뒤, 원래 표준화 값과 복원값 차이의 제곱을
+합한 값이다. SPE가 크다는 것은 정상 PCA 공간으로 잘 설명되지 않는다는 뜻이다. Probability나
+causal score는 아니다.
+
+## 4. Threshold는 누가 정하는가?
+
+이미 고정된 model로 normal train3의 SPE를 만들고 q=.999의 exact order statistic을 사용한다.
+Interpolation은 없고, 정확한 판정은 `score > threshold`다. 같은 값은 alarm이 아니다.
+
+## 5. Attack label을 보고 threshold를 정했는가?
+
+아니다. Fit은 train1+train2 normal, calibration은 train3 normal이고 artifact에는
+`labels_used=false`, `test_used=false`가 결속돼 있다. Test1 label은 durable prediction 파일을
+쓰고 다시 검증한 뒤에만 열린다.
+
+## 6. test1에서는 무엇을 하는가?
+
+54,000개 test1 feature row에 frozen scaler/PCA/threshold를 적용해 label-blind Boolean prediction을
+만든다. 공개 prediction은 raw score나 private threshold가 아니라 row index, alarm 여부와 hash를 담는다.
+
+## 7. 11/14와 FAR/hour는 무엇인가?
+
+| Level | Frozen pilot meaning |
+|---|---|
+| Point alarm | 876개 row가 threshold를 넘음 |
+| Alarm episode | 연속 alarm point를 묶은 46개 구간 |
+| Attack-event response | 14개 독립 사건 중 11개가 alarm episode와 겹침 |
+| Normal false episode | 46개 중 attack timestamp와 겹치지 않은 7개 |
+| Normal FAR/hour | 7개 normal false episode를 normal exposure hour로 나눈 `{d0['normal_far_episodes_per_hour']}` |
+
+FAR/hour는 point false-positive rate가 아니다. 11/14도 point recall이 아니라 attack-event recall이다.
+
+## 8. 왜 D0를 SOTA detector라고 하면 안 되는가?
+
+D0는 선형 PCA residual을 쓰는 단순하고 추적 가능한 reference detector다. 현재 비교는 강한 최신
+multivariate TSAD 전체를 대표하지 않는다. D0는 thesis contribution이 아니며 frozen 결과는 14-event
+INNER pilot일 뿐이다.
+
+## 9. D0와 Rule-only를 비교하는 목적은 무엇인가?
+
+서로 다른 원리의 reference detector와 verified relational Rule-only가 어떤 사건에 반응하고 어떤
+false-alarm trade-off를 보이는지 분리해서 관찰하는 것이다. 현재 결과로 어느 쪽의 일반적 우수성을
+결론내리면 안 된다.
+
+## 10. 앞으로 stronger detector가 왜 필요한가?
+
+Rule-only 기여를 설득력 있게 평가하려면 새 독립 사전등록에서 더 많은 사건과 적어도 하나의 더
+강한 multivariate detector baseline이 필요하다. ARCH-007은 그 detector를 선택하거나 구현하지 않았다.
+
+기억할 한 문장: **D0는 normal-only로 고정된 단순 reference detector이고, 점수·point·episode·event를
+구분해야 하며, 14-event 수치는 pilot evidence다.**
 
 다음 task는 **{state['exact_next_task']}**이다.
 """
@@ -1906,6 +2017,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_004_USER_SUMMARY.md": render_arch004_user_summary(data, digest),
         "ARCH_005_USER_SUMMARY.md": render_arch005_user_summary(data, digest),
         "ARCH_006_USER_SUMMARY.md": render_arch006_user_summary(data, digest),
+        "ARCH_007_USER_SUMMARY.md": render_arch007_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

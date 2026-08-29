@@ -1,0 +1,22 @@
+{
+  "agent": "C — Prediction / Result Lineage Auditor",
+  "verdict": "PASS",
+  "prediction": {
+    "type": "ScientificDetectorPredictionArtifactV1",
+    "rows": 54000,
+    "point_alarms": 876,
+    "freeze": "DURABLY_PERSISTED_AND_REPLAYED_BEFORE_LABEL_ACCESS",
+    "label_blind": true,
+    "byte_recheck_before_metrics": true,
+    "byte_recheck_after_results": true
+  },
+  "frozen_pilot": {
+    "alarm_episodes": 46,
+    "attack_event_response": "11/14",
+    "normal_false_alarm_episodes": 7,
+    "normal_far_episodes_per_hour": 0.4939336325682589
+  },
+  "integrity": "D0_RESULT_INTEGRITY_AUDITED",
+  "safety": {"scientific_executions": 0, "prediction_recomputations": 0, "metric_recomputations": 0, "test1_accesses": 0, "test2_accesses": 0, "edits": 0}
+}
+

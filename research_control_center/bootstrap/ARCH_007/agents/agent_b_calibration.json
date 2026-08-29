@@ -1,0 +1,20 @@
+{
+  "agent": "B — Calibration / Threshold Auditor",
+  "verdict": "PASS",
+  "findings": {
+    "split": "normal train3",
+    "rows": 126000,
+    "alpha": 0.001,
+    "quantile": 0.999,
+    "q_index": 125873,
+    "policy": "stable sort then ceil(q*n)-1",
+    "interpolation": false,
+    "comparator": "score > threshold",
+    "equality_is_alarm": false,
+    "labels_used": false,
+    "test_used": false,
+    "train3_dual_role": "ACCEPTABLE_WITH_SCOPE_LIMITATION"
+  },
+  "safety": {"scientific_executions": 0, "spe_computations": 0, "threshold_recalibrations": 0, "label_accesses": 0, "test2_accesses": 0, "edits": 0}
+}
+

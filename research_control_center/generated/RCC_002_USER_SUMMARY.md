@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ab9076a8c78900eea12110d3f3a98e5e9bfc027e86c18a09ae4f4e7c5a908366 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,20 +70,19 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-007 — D0 PCA-SPE Detector Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-007 — D0 PCA-SPE Detector Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit** 이고, 이후 전체
+구조 검토는 **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain how one frozen V4 Rule runs.
-- Explain PASS, FAIL, ABSTAIN, and hard system error.
-- Explain D1 rule records versus unique alarm seconds versus episodes.
-- Explain the task-specific trace versus canonical RuntimeTraceV1.
-- Explain prediction-before-label ordering.
-- Explain why durable pre-label persistence is stronger.
-- Use runtime LLM-free wording only for frozen R0/D1.
-- Separate structural explanation fidelity from human usefulness.
-- Approve or defer starting ARCH-007.
+- Explain why PCA is used.
+- Explain SPE.
+- Explain where the threshold comes from.
+- Explain why test1 labels do not set the threshold.
+- Distinguish point alarm, episode, and attack event.
+- Explain why D0 is only a reference baseline.
+- Explain why a stronger detector is needed later.
+- Approve or defer starting ARCH-008.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

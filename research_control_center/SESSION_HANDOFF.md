@@ -34,8 +34,9 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-005 added static source, frozen
-public-metadata lineage, lifecycle, authority and terminology evidence only.
+No new scientific outcome was produced. ARCH-007 added static source, frozen
+public-metadata lineage, D0 mathematical/threshold semantics, and prediction
+custody evidence only.
 
 ## Open risks
 
@@ -54,15 +55,15 @@ public-metadata lineage, lifecycle, authority and terminology evidence only.
 
 ## User actions
 
-- Explain proposal versus canonical Rule.
-- Explain what VerifierV1 checks and cannot prove.
-- Explain accepted versus runtime authorized.
-- Explain COMMON-42 and its T0/T1/T1-B/T2 relationship.
-- Explain why D1 terminology and no_rule taxonomy matter.
-- Approve or defer ARCH-006.
+- Explain why PCA is used and what SPE means.
+- Explain that train1+train2 fit the model and normal train3 calibrates q=.999.
+- Explain why test1 labels cannot influence the frozen threshold or point alarms.
+- Distinguish 876 point alarms, 46 alarm episodes, 7 normal false episodes, and 11/14 attack-event response.
+- Explain why D0 is a simple reference rather than a SOTA detector.
+- Approve or defer ARCH-008.
 
 ## Exact next task
 
-`ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit`
+`ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit`
 
-Do not start it until the user has reviewed ARCH-005.
+Do not start it until the user has reviewed ARCH-007.

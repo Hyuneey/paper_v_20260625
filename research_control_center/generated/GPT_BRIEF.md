@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ab9076a8c78900eea12110d3f3a98e5e9bfc027e86c18a09ae4f4e7c5a908366 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -33,8 +33,8 @@ HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unsc
 ## Data and split boundary
 
 HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
-calibrates D0; train4 is a normal guard. test1 is pilot evidence. OUTER read zero test2 bytes
-or labels and produced no outcome. D1 has a durable-file ordering gap. D2 V2 is test1-informed.
+calibrates D0; train4 is a guard. test1 is pilot evidence. OUTER produced no result. D1 lacks
+durable pre-label persistence; D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
@@ -58,15 +58,18 @@ Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse t
 and 626 metric episodes. Prediction preceded labels but was not durably persisted; its trace is
 not `RuntimeTraceV1`, and no D1 explanation was rendered.
 
+## Frozen D0 detector boundary
+
+D0 is a 37-feature normal-only PCA-SPE reference. Train1+train2 fit custom NumPy PCA; train3
+calibrates a no-interpolation q=.999 threshold; test1 uses strict `score > threshold`. Prediction
+bytes were frozen before labels. The 11/14 pilot is neither SOTA nor thesis-contribution evidence.
+
 ## How we got here
 
-The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. Early timing and motives are partly
-`USER_CONTEXT`; Git independently supports the later engineering lineage. ARGOS became
-partial methodological support, while deterministic verification survived the earlier
-Verifier framing. HAI provenance and the continuous-step recovery selected P1; distinct
-META/STAT/GDN evidence, normal-only profiling, and numeric authority led to COMMON-42 and
-the frozen 14-event D0/D1/D2 INNER pilot. OUTER ended in a custody blocker, not a result.
-History explains this lineage but cannot override current state.
+The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. Early motives remain partly `USER_CONTEXT`.
+ARGOS became partial support; deterministic verification survived the earlier Verifier framing.
+HAI P1, META/STAT/GDN, normal-only profiling and numeric authority led to COMMON-42 and the
+14-event pilot. OUTER ended in a custody blocker. History explains this lineage but cannot override current state.
 
 ## Established facts
 
@@ -141,15 +144,14 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain how one frozen V4 Rule runs.
-- Explain PASS, FAIL, ABSTAIN, and hard system error.
-- Explain D1 rule records versus unique alarm seconds versus episodes.
-- Explain the task-specific trace versus canonical RuntimeTraceV1.
-- Explain prediction-before-label ordering.
-- Explain why durable pre-label persistence is stronger.
-- Use runtime LLM-free wording only for frozen R0/D1.
-- Separate structural explanation fidelity from human usefulness.
-- Approve or defer starting ARCH-007.
+- Explain why PCA is used.
+- Explain SPE.
+- Explain where the threshold comes from.
+- Explain why test1 labels do not set the threshold.
+- Distinguish point alarm, episode, and attack event.
+- Explain why D0 is only a reference baseline.
+- Explain why a stronger detector is needed later.
+- Approve or defer starting ARCH-008.
 
 ## Source-policy boundary
 
@@ -160,9 +162,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-007 — D0 PCA-SPE Detector Deep Audit**
+Management: **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit**
 
-Following architecture review: **ARCH-007 — D0 PCA-SPE Detector Deep Audit**
+Following architecture review: **ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

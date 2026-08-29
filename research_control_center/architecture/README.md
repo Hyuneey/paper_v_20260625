@@ -144,4 +144,28 @@ projections shared by T0/T1/T1-B; T2 is excluded. Preferred D1 terminology is
 `COMMON-42 Verified Relational Rule-only`, with verified limited to contract,
 provenance, authority and integrity.
 
-Exact next task: `ARCH-006 — Rule Runtime / Satisfaction Trace / Explanation Deep Audit`.
+## Completed runtime / trace audit
+
+- [Korean report](06_runtime_trace_explanation/ARCH_006_REPORT.md)
+- [Runtime state machine](06_runtime_trace_explanation/ARCH_006_RUNTIME_STATE_MACHINE.md)
+- [D1 freeze boundary](06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md)
+- [Trace schema](06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv)
+
+## Completed D0 PCA-SPE audit
+
+- [Korean report](07_d0_detector/ARCH_007_REPORT.md)
+- [D0 role](07_d0_detector/ARCH_007_D0_ROLE.md)
+- [Feature contract](07_d0_detector/ARCH_007_FEATURE_CONTRACT.md)
+- [SPE definition](07_d0_detector/ARCH_007_SPE_DEFINITION.md)
+- [Durable prediction freeze](07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md)
+- [Output levels](07_d0_detector/ARCH_007_OUTPUT_LEVELS.md)
+- [D0 flow](07_d0_detector/ARCH_007_D0_FLOW.mmd)
+- [Mismatch register](07_d0_detector/ARCH_007_MISMATCHES.md)
+
+D0 is a 37-feature, normal-only, custom NumPy PCA-SPE reference detector. The
+0.95 explained-variance policy selected `k=10`; train3 supplies a no-interpolation
+q=.999 order statistic and alarms use strict `score > threshold`. Its frozen
+prediction was durably persisted before labels. Current results remain 14-event
+pilot evidence and do not support a SOTA or generalization claim.
+
+Exact next task: `ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit`.

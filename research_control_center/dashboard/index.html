@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a">
+  <meta name="rcc-registry-digest" content="ab9076a8c78900eea12110d3f3a98e5e9bfc027e86c18a09ae4f4e7c5a908366">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8c7f24b5c73df275f163236e9927800a85e9977c5e794f5ddbb39a40d47622a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ab9076a8c78900eea12110d3f3a98e5e9bfc027e86c18a09ae4f4e7c5a908366 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -75,7 +75,7 @@
       </div>
       <aside class="principle">Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.</aside>
       <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
     </section>
 
     <section id="rule-construction" class="section panel-feature">
@@ -86,7 +86,7 @@
       <aside class="principle">Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.</aside>
       <aside class="principle">Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.</aside>
       <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
-      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
     </section>
 
     <section id="verifier-common42" class="section panel-history">
@@ -112,7 +112,7 @@
       <aside class="principle">Verifier acceptance is not scientific validation.</aside>
       <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
       <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
-      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
     </section>
 
     <section id="runtime-trace-explanation" class="section panel-feature">
@@ -140,7 +140,36 @@
       </dl></div></div>
       <aside class="principle">The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.</aside>
       <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
-      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
+    </section>
+
+    <section id="d0-detector" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">D0</p><h2>PCA-SPE REFERENCE DETECTOR</h2></div>
+      <p class="architecture-flow">normal train1+train2 → scaler/PCA → normal train3 q=.999 calibration → test1 SPE → strict point alarm → durable prediction freeze → label metrics</p>
+      <div class="status-snapshot">
+        <div><span>Role</span><strong>REFERENCE DETECTOR</strong></div>
+        <div><span>Input</span><strong>37 ordered P1 features</strong></div>
+        <div><span>PCA</span><strong>0.95 target → k=10</strong></div>
+        <div><span>Calibration</span><strong>train3 · q=.999</strong></div>
+        <div><span>Prediction</span><strong>test1 · PILOT</strong></div>
+        <div><span>Baseline strength</span><strong>simple reference; not SOTA</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Model and decision</h3><dl class="architecture-contract">
+        <div><dt>FIT</dt><dd>normal train1 + train2; labels used = NO</dd></div>
+        <div><dt>STANDARDIZATION</dt><dd>custom NumPy population mean/std with ddof=0 and 1e-12 scale floor</dd></div>
+        <div><dt>SPE</dt><dd>rowwise sum squared standardized reconstruction residual; one nonnegative float64 score per timestamp</dd></div>
+        <div><dt>THRESHOLD</dt><dd>normal train3 empirical q=0.999 order statistic; no interpolation; zero-based q-index 125873</dd></div>
+        <div><dt>COMPARATOR</dt><dd>score &gt; threshold; equality is non-alarm</dd></div>
+      </dl></div><div><h3>Frozen pilot and custody</h3><dl class="architecture-contract">
+        <div><dt>LABEL ORDER</dt><dd>DURABLY_PERSISTED_AND_REPLAYED_BEFORE_LABEL_ACCESS</dd></div>
+        <div><dt>DETERMINISM</dt><dd>DETERMINISTIC_WITH_ENV_ASSUMPTIONS</dd></div>
+        <div><dt>ATTACK EVENTS</dt><dd>11/14</dd></div>
+        <div><dt>NORMAL FAR</dt><dd>0.4939336325682589 episodes/hour</dd></div>
+        <div><dt>OUTPUT LEVELS</dt><dd>876 point alarms; 46 alarm episodes; 7 normal false episodes</dd></div>
+      </dl></div></div>
+      <aside class="principle">D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.</aside>
+      <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">Open the deep D0 audit</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE definition</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">Prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">Output levels</a></p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -156,7 +185,7 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -172,13 +201,13 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">META</p><h3>M1/M2/M3 deterministic domain-prior ranking</h3><dl><div><dt>INPUT</dt><dd>reviewed P1 metadata and public physical graph</dd></div><div><dt>OUTPUT</dt><dd>metadata-supported pair candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">STAT</p><h3>file-local first-difference lagged Pearson stability</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2</dd></div><div><dt>OUTPUT</dt><dd>directional lagged-association candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">GDN</p><h3>next-value prediction plus embedding-cosine learned graph</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2 full 37-node context</dd></div><div><dt>OUTPUT</dt><dd>learned-graph candidate edges</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article></div>
       <aside class="principle">Candidate discovery proposes relationships. It does not establish causal or final temporal relations.</aside>
       <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-007 — D0 PCA-SPE Detector Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain how one frozen V4 Rule runs.</li><li>Explain PASS, FAIL, ABSTAIN, and hard system error.</li><li>Explain D1 rule records versus unique alarm seconds versus episodes.</li><li>Explain the task-specific trace versus canonical RuntimeTraceV1.</li><li>Explain prediction-before-label ordering.</li><li>Explain why durable pre-label persistence is stronger.</li><li>Use runtime LLM-free wording only for frozen R0/D1.</li><li>Separate structural explanation fidelity from human usefulness.</li><li>Approve or defer starting ARCH-007.</li></ul>
+      <ul><li>Explain why PCA is used.</li><li>Explain SPE.</li><li>Explain where the threshold comes from.</li><li>Explain why test1 labels do not set the threshold.</li><li>Distinguish point alarm, episode, and attack event.</li><li>Explain why D0 is only a reference baseline.</li><li>Explain why a stronger detector is needed later.</li><li>Approve or defer starting ARCH-008.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -802,7 +831,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-007 — D0 PCA-SPE Detector Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-008 — D1 Verified Relational Rule-only Evaluation Deep Audit</strong></div>
     </section>
   </main>
 

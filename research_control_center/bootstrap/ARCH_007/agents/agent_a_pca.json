@@ -1,0 +1,17 @@
+{
+  "agent": "A — PCA / SPE Mathematical and Code Auditor",
+  "verdict": "PASS",
+  "findings": {
+    "features": 37,
+    "standardization": "custom NumPy population mean/std, ddof=0, scale floor 1e-12",
+    "pca": "population covariance, np.linalg.eigh, stable descending order, sign canonicalization",
+    "component_policy": "smallest k reaching cumulative explained variance >= 0.95",
+    "frozen_k": 10,
+    "residual_dimensions": 27,
+    "spe": "rowwise sum squared standardized reconstruction residual",
+    "determinism": "DETERMINISTIC_WITH_ENV_ASSUMPTIONS"
+  },
+  "boundaries": ["SPE is not probability", "k=10 is a frozen outcome", "fresh-machine reproduction remains incomplete"],
+  "safety": {"scientific_executions": 0, "pca_fits": 0, "spe_computations": 0, "test2_accesses": 0, "edits": 0}
+}
+
