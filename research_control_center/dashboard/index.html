@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1">
+  <meta name="rcc-registry-digest" content="baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -112,7 +112,7 @@
       <aside class="principle">Verifier acceptance is not scientific validation.</aside>
       <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
       <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
-      <p><strong>Next deep review:</strong> ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 completed; GAP-000 remediation triage next</p>
     </section>
 
     <section id="runtime-trace-explanation" class="section panel-feature">
@@ -140,7 +140,7 @@
       </dl></div></div>
       <aside class="principle">The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.</aside>
       <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
-      <p><strong>Next deep review:</strong> ARCH-009 — D2 Detector + Rule Fusion Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 completed; GAP-000 remediation triage next</p>
     </section>
 
     <section id="d0-detector" class="section panel-history">
@@ -169,7 +169,7 @@
       </dl></div></div>
       <aside class="principle">D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.</aside>
       <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">Open the deep D0 audit</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE definition</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">Prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">Output levels</a></p>
-      <p><strong>Next deep review:</strong> ARCH-009 — D2 Detector + Rule Fusion Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 completed; GAP-000 remediation triage next</p>
     </section>
 
     <section id="d1-evaluation" class="section panel-feature">
@@ -196,7 +196,7 @@
       <aside class="principle">Higher pilot Recall does not establish superior operational utility.</aside>
       <aside class="principle">D1 = COMMON-42 Verified Relational Rule-only, not T2 Agentic Rule-only.</aside>
       <p><a href="../architecture/08_d1_rule_only/ARCH_008_REPORT.md">Open the deep D1 evaluation audit</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_OUTPUT_LEVELS.md">Output levels</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_COMPLEMENTARITY_BOUNDARY.md">Complementarity boundary</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv">Claim matrix</a></p>
-      <p><strong>Next deep review:</strong> ARCH-009 — D2 Detector + Rule Fusion Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 completed; GAP-000 remediation triage next</p>
     </section>
 
     <section id="d2-fusion" class="section panel-feature">
@@ -222,7 +222,31 @@
       <aside class="principle">D1 response diversity was observed, but current V1/V2 policies did not convert it into incremental attack-event recall.</aside>
       <aside class="principle">V2 is test1-informed development, not independent confirmation.</aside>
       <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">Open the deep D2 audit</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">Policy comparison</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">Miss recovery</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">Claim matrix</a></p>
-      <p><strong>Next deep review:</strong> ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 completed; GAP-000 remediation triage next</p>
+    </section>
+
+    <section id="metrics-results" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">METRICS</p><h2>METRICS / RESULTS / INTEGRITY</h2></div>
+      <p class="architecture-flow">RAW METHOD OUTPUT → ALARM SECOND → EPISODE → ATTACK-EVENT UNIT / NORMAL EXPOSURE → RECALL / FAR</p>
+      <div class="status-snapshot">
+        <div><span>Event units</span><strong>14 contiguous units</strong></div>
+        <div><span>Independence</span><strong>NOT_ESTABLISHED</strong></div>
+        <div><span>Normal exposure</span><strong>51019 seconds</strong></div>
+        <div><span>Comparability</span><strong>SEMANTICALLY_EQUIVALENT</strong></div>
+        <div><span>Fairness</span><strong>FAIR_WITH_LIMITATIONS</strong></div>
+        <div><span>Inferential tests</span><strong>NONE FROZEN</strong></div>
+      </div>
+      <div class="summary-grid">
+        <article class="summary-card"><p class="eyebrow">D0</p><h3>Reference detector</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>0.4939336325682589</dd></div><div><dt>STATUS</dt><dd>PILOT</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D1</p><h3>Verified relational rules</h3><dl><div><dt>RECALL</dt><dd>13/14</dd></div><div><dt>FAR/HOUR</dt><dd>40.50255787059723</dd></div><div><dt>STATUS</dt><dd>PILOT</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>Frozen fusion pilot</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>0.7056194750975128</dd></div><div><dt>STATUS</dt><dd>PILOT POLICY</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>Development fusion</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>6.915070855955625</dd></div><div><dt>STATUS</dt><dd>TEST1-INFORMED</dd></div><div><dt>VALIDATION</dt><dd>NO</dd></div></dl></article>
+      </div>
+      <div class="two-column"><div><h3>Metric contract</h3><dl class="architecture-contract"><div><dt>EVENT HIT</dt><dd>ANY_HALF_OPEN_ALARM_EPISODE_OVERLAP; PA-FREE; no grace, dilation, or minimum duration</dd></div><div><dt>EPISODE</dt><dd>set-deduplicate physical rows, sort, merge only exact +1 row adjacency; zero allowed gap</dd></div><div><dt>FAR</dt><dd>normal false episodes / (normal exposure seconds / 3600)</dd></div><div><dt>D1 NORMALIZATION</dt><dd>non-opportunity, non-alarm and abstain contribute no alarm timestamp at the Boolean metric interface; frozen abstain count is zero</dd></div></dl></div><div><h3>Integrity boundary</h3><dl class="architecture-contract"><div><dt>GUARANTEES</dt><dd>frozen artifact identity, label identity, ordering, arithmetic, mutation/replay and report binding</dd></div><div><dt>DOES NOT GUARANTEE</dt><dd>does not establish independence, sample sufficiency, generalization, superiority, utility, or scientific validity</dd></div><div><dt>REPORT LINEAGE</dt><dd>PARTIAL; frozen comparison artifact exists but aggregation source is not discoverable in the current scientific tree</dd></div></dl></div></div>
+      <aside class="principle">14 contiguous attack-event units; statistical independence not established.</aside>
+      <aside class="principle">Result integrity ≠ scientific validation.</aside>
+      <p><a href="../architecture/10_metrics_integrity/ARCH_010_REPORT.md">Open the deep metric audit</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv">Frozen pilot table</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md">Integrity boundary</a></p>
+      <p><strong>Next deep review:</strong> GAP-000 remediation triage; ARCH-011 only afterward</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -238,7 +262,7 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-010 completed; GAP-000 remediation triage next</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -260,7 +284,7 @@
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain why D2 exists.</li><li>Explain V1 exact-index two-source admission.</li><li>Explain V2 native-horizon active-source admission.</li><li>Explain why a D1 response can fail D2 admission.</li><li>Explain why V2 is test1-informed rather than independent validation.</li><li>Compare D0, V1, and V2 on Recall and FAR.</li><li>Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.</li><li>Approve or defer starting ARCH-010.</li></ul>
+      <ul><li>Distinguish point, rule record, alarm second, episode, and attack-event unit.</li><li>Explain 11/14 and 13/14 event-unit Recall.</li><li>Explain normal FAR episodes/hour.</li><li>Explain why 14 contiguous units are not proven statistically independent.</li><li>Explain D0/D1/D2 common metric comparability and its limitations.</li><li>Explain result integrity versus scientific validation.</li><li>Explain the frozen pilot result table.</li><li>Approve or defer GAP-000 remediation triage.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -574,33 +598,33 @@
 </div>
 <dl><div class="card-field"><dt>Role</dt><dd>Preregistered native-horizon evidence fusion</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Do not create result-driven V3 inside RCC</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="episode_construction alarm episode construction forms maximal contiguous alarm episodes implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py form_alarm_episodes_v1 ordered alarm indices from frozen prediction canonical maximal contiguous half-open episodes art-d0-metrics;art-d1-metrics tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py true true false true low preserve the frozen episode policy arch-010">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="episode_construction alarm episode construction forms maximal contiguous alarm episodes implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py form_alarm_episodes_v1 ordered alarm indices from frozen prediction canonical maximal contiguous half-open episodes art-d0-metrics;art-d1-metrics tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py true true false true low triage caller-enforced file-local and one-second assumptions in gap-000 arch-010">
 <div class="card-heading">
 <div><p class="eyebrow">EPISODE_CONSTRUCTION</p><h3>Alarm episode construction</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Forms maximal contiguous alarm episodes</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Preserve the frozen episode policy</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Forms maximal contiguous alarm episodes</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Triage caller-enforced file-local and one-second assumptions in GAP-000</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="attack_event_recall attack-event recall measures events overlapped by alarm episodes implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py attack_event_recall_v1 frozen alarm episodes and attack events bound inner pilot event-recall receipts art-d0-metrics;art-d1-metrics;art-d2v1-metrics;art-d2v2-metrics tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py true true false false high expand beyond the current 14-event pilot arch-010">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="attack_event_recall attack-event recall measures events overlapped by alarm episodes implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py attack_event_recall_v1 frozen alarm episodes and attack events bound inner pilot event-recall receipts art-d0-metrics;art-d1-metrics;art-d2v1-metrics;art-d2v2-metrics tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py true true false false high triage 14-unit independence and expanded-validation requirements in gap-000 arch-010">
 <div class="card-heading">
 <div><p class="eyebrow">ATTACK_EVENT_RECALL</p><h3>Attack-event Recall</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Measures events overlapped by alarm episodes</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Expand beyond the current 14-event pilot</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Measures events overlapped by alarm episodes</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Triage 14-unit independence and expanded-validation requirements in GAP-000</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="normal_far normal far episodes per hour measures nonattack alarm episodes per normal hour implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py normal_far_episodes_per_hour_v1 alarm episodes attack events and private exposure bound far receipts without private denominators art-d0-metrics;art-d1-metrics;art-d2v1-metrics;art-d2v2-metrics tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py true true false false high treat d1 far as a primary operational risk arch-010">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="normal_far normal far episodes per hour measures nonattack alarm episodes per normal hour implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py normal_far_episodes_per_hour_v1 alarm episodes attack events and private exposure bound far receipts without private denominators art-d0-metrics;art-d1-metrics;art-d2v1-metrics;art-d2v2-metrics tests/test_task039e3_r2r_utility_evaluator_v1_metrics.py true true false false high triage d1 far and mixed-episode reporting in gap-000 arch-010">
 <div class="card-heading">
 <div><p class="eyebrow">NORMAL_FAR</p><h3>Normal FAR episodes per hour</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Measures nonattack alarm episodes per normal hour</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Treat D1 FAR as a primary operational risk</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Measures nonattack alarm episodes per normal hour</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Triage D1 FAR and mixed-episode reporting in GAP-000</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="result_integrity result integrity audits verifies immutable predictions metrics ordering and leakage implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e scripts/audit_task039e3_r2r_d0_result_integrity_v1.py run_audit_v1 frozen public artifacts and authorized oracle inputs independent sanitized integrity reports plus arch-001 ordering qualification art-d0-integrity;art-d1-integrity;art-d2v1-integrity;art-d2v2-integrity tests/test_task039e3_r2r_d0_result_integrity_v1_independent.py;tests/test_task039e3_r2r_d2_result_integrity_v1_independent.py true true false true high keep integrity separate from validation and track the d1 durable-file ordering gap arch-010">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="result_integrity result integrity audits verifies immutable predictions metrics ordering and leakage implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e scripts/audit_task039e3_r2r_d0_result_integrity_v1.py run_audit_v1 frozen public artifacts and authorized oracle inputs independent sanitized integrity reports plus arch-001 ordering qualification art-d0-integrity;art-d1-integrity;art-d2v1-integrity;art-d2v2-integrity tests/test_task039e3_r2r_d0_result_integrity_v1_independent.py;tests/test_task039e3_r2r_d2_result_integrity_v1_independent.py true true false true high triage d1 durable gate and cross-arm reporting lineage in gap-000 arch-010">
 <div class="card-heading">
 <div><p class="eyebrow">RESULT_INTEGRITY</p><h3>Result integrity audits</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Verifies immutable predictions metrics ordering and leakage</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Keep integrity separate from validation and track the D1 durable-file ordering gap</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Verifies immutable predictions metrics ordering and leakage</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Triage D1 durable gate and cross-arm reporting lineage in GAP-000</dd></div></dl>
 </article>
 <article class="registry-card" data-status="BLOCKED" data-search="outer_evaluation held-out outer evaluation governed held-out generalization path blocked code_implemented origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py recoveryattemptboundaryv1 preregistered authority and unresolved custody prerequisites one custody file access rejected before byte read; no prediction metric or outcome art-outer-blocker tests/test_task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py false false false false critical require separate approval and preregistration before any held-out study arch-011">
 <div class="card-heading">
@@ -884,7 +908,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>GAP-000 — Pre-Validation Remediation &amp; Risk Triage</strong></div>
     </section>
   </main>
 

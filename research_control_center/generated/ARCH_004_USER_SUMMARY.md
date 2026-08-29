@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 어떻게 만들어지는가
 
 ## Evidence Pack
@@ -47,4 +47,4 @@ fail-closed outcome이며 runtime `abstain`과 다르다.
 T0는 frozen input에서 deterministic하다. LLM arms는 model/config, prompt, evidence, request,
 response와 ledger hash가 추적되지만 temperature 0.7, seed 없음이므로 bitwise deterministic하지 않다.
 
-다음 task는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**이다.
+다음 task는 **GAP-000 — Pre-Validation Remediation & Risk Triage**이다.

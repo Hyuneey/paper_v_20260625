@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -151,14 +151,14 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain why D2 exists.
-- Explain V1 exact-index two-source admission.
-- Explain V2 native-horizon active-source admission.
-- Explain why a D1 response can fail D2 admission.
-- Explain why V2 is test1-informed rather than independent validation.
-- Compare D0, V1, and V2 on Recall and FAR.
-- Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.
-- Approve or defer starting ARCH-010.
+- Distinguish point, rule record, alarm second, episode, and attack-event unit.
+- Explain 11/14 and 13/14 event-unit Recall.
+- Explain normal FAR episodes/hour.
+- Explain why 14 contiguous units are not proven statistically independent.
+- Explain D0/D1/D2 common metric comparability and its limitations.
+- Explain result integrity versus scientific validation.
+- Explain the frozen pilot result table.
+- Approve or defer GAP-000 remediation triage.
 
 ## Source-policy boundary
 
@@ -168,9 +168,9 @@ is non-authoritative.
 
 ## Exact next task
 
-Management: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
+Management: **GAP-000 — Pre-Validation Remediation & Risk Triage**
 
-Following architecture review: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
+Following architecture review: **ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

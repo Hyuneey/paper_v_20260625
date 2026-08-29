@@ -1,0 +1,17 @@
+flowchart TD
+  D0[D0 point Boolean] --> A[Common alarm-second interface]
+  D1[D1 opportunity records] --> N[anomalous decision rows + set dedup]
+  N --> A
+  D2[D2 V1/V2 combined Boolean] --> A
+  A --> E[Zero-gap maximal contiguous alarm episodes]
+  L[Strict test1 labels] --> U[14 contiguous attack-event units]
+  L --> X[51,019 normal exposure seconds]
+  E --> H[Half-open event overlap]
+  U --> H
+  H --> R[Attack-event Recall]
+  E --> F[No attack overlap = normal false episode]
+  X --> Q[FAR per hour]
+  F --> Q
+  R --> I[Result integrity and reporting]
+  Q --> I
+  I --> W[PILOT ONLY: integrity is not scientific validation]

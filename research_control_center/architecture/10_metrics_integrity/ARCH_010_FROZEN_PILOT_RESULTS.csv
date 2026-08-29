@@ -1,0 +1,5 @@
+method,evaluation_status,attack_event_units,detected_units,recall,normal_exposure_seconds,normal_false_episodes,far_per_hour,point_alarm_count,unique_alarm_seconds,total_alarm_episodes,d0_miss_recovery,prediction_freeze_type,notes
+D0,PILOT_SUPPORTED,14,11,0.7857142857142857,51019,7,0.4939336325682589,876,876,46,NOT_APPLICABLE,DURABLE_PRE_LABEL_PERSIST_REPLAY,SPE point Boolean; simple reference baseline
+D1,PILOT_SUPPORTED,14,13,0.9285714285714286,51019,574,40.50255787059723,UNKNOWN,630,626,3/3,IN_MEMORY_VALIDATED_SHALLOW_FROZEN,788 anomalous rule records; non-opportunity contributes no alarm second
+D2_V1,TEST1_PILOT_POLICY,14,11,0.7857142857142857,51019,10,0.7056194750975128,879,879,49,0/3,DURABLE_PRE_LABEL_PERSIST_REPLAY,D0-preserving exact-decision-row policy
+D2_V2,TEST1_INFORMED_DEVELOPMENT,14,11,0.7857142857142857,51019,98,6.915070855955625,2148,2148,143,0/3,DURABLE_PRE_LABEL_PERSIST_REPLAY,Not independent confirmation

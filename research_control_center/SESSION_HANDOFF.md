@@ -13,16 +13,16 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-009 — D2 Detector + Rule Fusion Deep Audit`
+`ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit`
 
 ## What changed
 
-- Mapped V1 as exact-row two-distinct-source corroboration and V2 as native-horizon active-source corroboration.
-- Verified pointwise D0 preservation and durable combined-prediction persistence before label access for both versions.
-- Preserved frozen results: D0/V1/V2 each 11/14; V1 FAR 0.7056194750975128; V2 FAR 6.915070855955625; both recovery 0/3.
-- Explained why D1 response does not automatically satisfy D2 admission.
-- Classified V2 as test1-informed development rather than independent confirmation.
-- Corrected current-facing terminology to 14 contiguous attack-event units; statistical independence is unestablished.
+- Defined method output → alarm second → episode → attack-event unit / normal exposure → Recall/FAR.
+- Verified 14 maximal contiguous strict-label units; statistical independence is not established.
+- Verified PA-free event hits, zero-gap episode grouping, 51,019 normal seconds, and mixed-episode handling.
+- Classified D0/D1/D2 metric interfaces as semantically equivalent and fair with limitations.
+- Preserved all frozen values without recomputation and separated integrity from scientific validation.
+- Retained D1's weaker in-memory pre-label gate and V2 test1-informed status.
 
 ## Decisions made
 
@@ -34,8 +34,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-009 added static source, policy,
-freeze, frozen-result lineage, and claim-boundary documentation only.
+No new scientific outcome was produced. ARCH-010 added static metric contracts,
+frozen-result lineage, integrity boundaries, and current-facing documentation only.
 
 ## Open risks
 
@@ -46,7 +46,9 @@ freeze, frozen-result lineage, and claim-boundary documentation only.
   than one reusable runtime split authority.
 - train3's relation-confirmation and D0-calibration dual use limits arm-level
   independence but is not verified leakage.
-- Fourteen events are too few for validated performance or superiority claims.
+- Fourteen contiguous units are too few for validated performance or superiority claims; independence is not established.
+- The frozen cross-arm comparison artifact's aggregation source is not discoverable in the current scientific tree.
+- Generic metric helpers rely on caller authority for file-local one-second semantics.
 - D1 normal FAR is high in the pilot.
 - GDN and agentic contribution hypotheses remain unvalidated.
 - No OUTER scientific result exists.
@@ -54,15 +56,17 @@ freeze, frozen-result lineage, and claim-boundary documentation only.
 
 ## User actions
 
-- Explain why D2 exists and distinguish V1 from V2.
-- Explain why D1 can hit a D0 miss while D2 rejects it.
-- Explain why V2 is not independent validation.
-- Compare D0, V1, and V2 on Recall and FAR.
-- Explain why the negative V1/V2 pilot does not prove all Detector-plus-Rule policies useless.
-- Approve or defer ARCH-010.
+- Distinguish point, rule record, alarm second, episode, and attack-event unit.
+- Explain 11/14 and 13/14 event-unit Recall.
+- Explain FAR episodes/hour and why it is not point FPR.
+- Explain why 14 contiguous units are not proven statistically independent.
+- Explain D0/D1/D2 metric comparability and its limitations.
+- Explain result integrity versus scientific validation.
+- Review the frozen pilot table.
+- Approve or defer GAP-000.
 
 ## Exact next task
 
-`ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit`
+`GAP-000 — Pre-Validation Remediation & Risk Triage`
 
-Do not start it until the user has reviewed ARCH-009.
+Do not start it until the user has reviewed ARCH-010. ARCH-011 follows only after GAP-000.

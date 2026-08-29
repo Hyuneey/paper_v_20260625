@@ -1,0 +1,11 @@
+claim,status
+Frozen metric arithmetic is integrity-audited,SUPPORTED
+Current 14-unit results are validated performance,NOT_SUPPORTED
+D1 has higher descriptive pilot event Recall than D0,PILOT_SUPPORTED
+D1 has much higher normal FAR than D0,PILOT_SUPPORTED
+D2 V1 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT
+D2 V2 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT
+D0/D1 response diversity exists in test1,PILOT_SUPPORTED
+General complementarity,UNVALIDATED
+Held-out generalization,UNCONFIRMED
+14 event units are statistically independent,NOT_ESTABLISHED

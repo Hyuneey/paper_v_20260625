@@ -1,0 +1,14 @@
+claim,status,allowed_wording,forbidden_wording,evidence
+Frozen metric arithmetic is integrity-audited,SUPPORTED,Frozen identities and arithmetic passed integrity audit,Performance is scientifically validated,D0/D1/D2 integrity receipts
+Current 14-unit results are validated performance,NOT_SUPPORTED,14 contiguous attack-event units form an INNER pilot,14 independent validated events,Frozen metric artifacts
+D1 has higher descriptive pilot event Recall than D0,PILOT_SUPPORTED,D1 was 13/14 and D0 was 11/14 in this pilot,D1 is superior,Frozen comparison artifact
+D1 has much higher normal FAR than D0,PILOT_SUPPORTED,D1 normal FAR/hour was 40.50255787059723 versus D0 0.4939336325682589,D1 is operationally useful,Frozen metric artifacts
+D2 V1 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT,D2 V1 matched 11/14 with higher FAR,V1 generally fails,Frozen V1 metrics
+D2 V2 improves D0,NOT_SUPPORTED_BY_CURRENT_PILOT,D2 V2 matched 11/14 with higher FAR,V2 independently confirms fusion,Frozen V2 metrics
+D0/D1 response diversity exists in test1,PILOT_SUPPORTED,The event-unit detection vectors differ in the pilot,General complementarity is proven,Frozen overlap artifact
+General complementarity,UNVALIDATED,Current pilot shows a response-diversity signal,Rules generally recover detector misses,Pilot scope only
+Held-out generalization,UNCONFIRMED,Held-out result unavailable / generalization unconfirmed,OUTER performance failed,Custody record
+14 event units are statistically independent,NOT_ESTABLISHED,14 contiguous attack-event units,14 independent attacks,No frozen independence analysis
+Metric interfaces are comparable,FAIR_WITH_LIMITATIONS,Common Recall/FAR semantics are shared after method-specific normalization,All methods have identical native outputs,Metric code and artifacts
+D1 durable pre-label persistence,NOT_SUPPORTED,Prediction was label-blind and object-frozen before labels,D1 was durably file-frozen before labels,ARCH-006/008 integrity evidence
+Inferential significance,NOT_FROZEN_OR_AUTHORITATIVE,No authoritative inferential test is frozen,McNemar significance proves a difference,Repository search and registry

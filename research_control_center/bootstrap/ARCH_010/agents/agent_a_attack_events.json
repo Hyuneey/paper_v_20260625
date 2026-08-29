@@ -1,0 +1,1 @@
+{"agent":"A","scope":"attack-event construction and recall","status":"COMPLETE","findings":{"event_units":14,"independence":"NOT_ESTABLISHED","hit_rule":"ANY_HALF_OPEN_OVERLAP","point_adjustment":false,"recall":{"D0":"11/14","D1":"13/14","D2_V1":"11/14","D2_V2":"11/14"}},"safety":{"scientific_execution":0,"private_label_reads":0,"writes":0}}

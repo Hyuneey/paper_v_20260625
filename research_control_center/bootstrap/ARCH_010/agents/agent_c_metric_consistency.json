@@ -1,0 +1,1 @@
+{"agent":"C","scope":"cross-method metric consistency","status":"COMPLETE","classification":"SEMANTICALLY_EQUIVALENT","fairness":"FAIR_WITH_LIMITATIONS","findings":{"D1_non_opportunity":"NO_ALARM_AT_BOOLEAN_INTERFACE","frozen_D1_abstain":0,"comparison_aggregator_source":"NOT_DISCOVERABLE_PARTIAL"},"safety":{"scientific_execution":0,"private_reads":0,"writes":0}}

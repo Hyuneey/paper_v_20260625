@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -85,10 +85,10 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 | D1_RULE_ONLY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand utility evaluation without changing the frozen pilot |
 | D2_V1 | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Retain as negative pilot evidence without tuning |
 | D2_V2 | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Do not create result-driven V3 inside RCC |
-| EPISODE_CONSTRUCTION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve the frozen episode policy |
-| ATTACK_EVENT_RECALL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand beyond the current 14-event pilot |
-| NORMAL_FAR | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Treat D1 FAR as a primary operational risk |
-| RESULT_INTEGRITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep integrity separate from validation and track the D1 durable-file ordering gap |
+| EPISODE_CONSTRUCTION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage caller-enforced file-local and one-second assumptions in GAP-000 |
+| ATTACK_EVENT_RECALL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage 14-unit independence and expanded-validation requirements in GAP-000 |
+| NORMAL_FAR | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage D1 FAR and mixed-episode reporting in GAP-000 |
+| RESULT_INTEGRITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage D1 durable gate and cross-arm reporting lineage in GAP-000 |
 | OUTER_EVALUATION | BLOCKED | Require separate approval and preregistration before any held-out study |
 | REPRODUCIBILITY | PARTIAL | Run a separately authorized fresh-machine rehearsal |
 | PROFESSOR_REPORTING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep wording synchronized with RCC claims |
@@ -150,4 +150,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
+**GAP-000 — Pre-Validation Remediation & Risk Triage**

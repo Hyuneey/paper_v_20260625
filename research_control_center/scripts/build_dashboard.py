@@ -388,6 +388,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     d0 = state["d0_detector"]
     d1 = state["d1_evaluation"]
     d2 = state["d2_fusion"]
+    metrics = state["metric_integrity"]
     construction_arms = (
         ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
         ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
@@ -438,7 +439,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -634,6 +635,30 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">V2 is test1-informed development, not independent confirmation.</aside>
       <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">Open the deep D2 audit</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">Policy comparison</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">Miss recovery</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">Claim matrix</a></p>
       <p><strong>Next deep review:</strong> {_escape(d2['next_deep_review'])}</p>
+    </section>
+
+    <section id="metrics-results" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">METRICS</p><h2>METRICS / RESULTS / INTEGRITY</h2></div>
+      <p class="architecture-flow">RAW METHOD OUTPUT → ALARM SECOND → EPISODE → ATTACK-EVENT UNIT / NORMAL EXPOSURE → RECALL / FAR</p>
+      <div class="status-snapshot">
+        <div><span>Event units</span><strong>{metrics['event_unit_count']} contiguous units</strong></div>
+        <div><span>Independence</span><strong>{_escape(metrics['event_independence'])}</strong></div>
+        <div><span>Normal exposure</span><strong>{metrics['normal_exposure_seconds']} seconds</strong></div>
+        <div><span>Comparability</span><strong>{_escape(metrics['comparability'])}</strong></div>
+        <div><span>Fairness</span><strong>{_escape(metrics['fairness'])}</strong></div>
+        <div><span>Inferential tests</span><strong>NONE FROZEN</strong></div>
+      </div>
+      <div class="summary-grid">
+        <article class="summary-card"><p class="eyebrow">D0</p><h3>Reference detector</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>0.4939336325682589</dd></div><div><dt>STATUS</dt><dd>PILOT</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D1</p><h3>Verified relational rules</h3><dl><div><dt>RECALL</dt><dd>13/14</dd></div><div><dt>FAR/HOUR</dt><dd>40.50255787059723</dd></div><div><dt>STATUS</dt><dd>PILOT</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>Frozen fusion pilot</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>0.7056194750975128</dd></div><div><dt>STATUS</dt><dd>PILOT POLICY</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>Development fusion</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>6.915070855955625</dd></div><div><dt>STATUS</dt><dd>TEST1-INFORMED</dd></div><div><dt>VALIDATION</dt><dd>NO</dd></div></dl></article>
+      </div>
+      <div class="two-column"><div><h3>Metric contract</h3><dl class="architecture-contract"><div><dt>EVENT HIT</dt><dd>{_escape(metrics['event_hit_rule'])}</dd></div><div><dt>EPISODE</dt><dd>{_escape(metrics['episode_policy'])}</dd></div><div><dt>FAR</dt><dd>{_escape(metrics['far_formula'])}</dd></div><div><dt>D1 NORMALIZATION</dt><dd>{_escape(metrics['d1_non_opportunity'])}</dd></div></dl></div><div><h3>Integrity boundary</h3><dl class="architecture-contract"><div><dt>GUARANTEES</dt><dd>{_escape(metrics['integrity_guarantee'])}</dd></div><div><dt>DOES NOT GUARANTEE</dt><dd>{_escape(metrics['integrity_limit'])}</dd></div><div><dt>REPORT LINEAGE</dt><dd>{_escape(metrics['cross_arm_reporting_lineage'])}</dd></div></dl></div></div>
+      <aside class="principle">14 contiguous attack-event units; statistical independence not established.</aside>
+      <aside class="principle">Result integrity ≠ scientific validation.</aside>
+      <p><a href="../architecture/10_metrics_integrity/ARCH_010_REPORT.md">Open the deep metric audit</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv">Frozen pilot table</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md">Integrity boundary</a></p>
+      <p><strong>Next deep review:</strong> {_escape(metrics['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -1679,6 +1704,77 @@ D0-miss recovery가 필요하다.
 """
 
 
+def render_arch010_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    return f"""{_markdown_marker(state, digest)}
+# 성능 숫자를 어떻게 읽어야 하는가
+
+## 1. alarm point와 episode는 무엇이 다른가?
+
+Point는 한 physical row의 alarm이다. Episode는 중복을 없앤 alarm row 가운데 정확히 1행씩
+이어지는 최대 구간이다. D0의 876 points가 46 episodes가 되는 이유다.
+
+## 2. D1 rule record와 alarm second는 무엇이 다른가?
+
+같은 second에 여러 rule이 깨질 수 있다. Frozen D1의 788 anomalous records는 row 중복을 없애면
+630 alarm seconds이고, 이를 연속 구간으로 묶으면 626 episodes다.
+
+## 3. attack-event unit은 무엇인가?
+
+Strict label `1`이 연속되는 최대 구간이다. test1에는 14 contiguous units가 있다.
+
+## 4. 왜 14개를 독립 사건이라고 하면 안 되는가?
+
+연속 label grouping은 operational unit만 만든다. unit 사이의 통계적 독립성 분석은 없었다.
+
+## 5. 11/14와 13/14는 어떻게 계산되는가?
+
+Alarm episode가 attack unit과 한 row라도 겹치면 그 unit은 detected다. D0는 11개, D1은 13개를
+detected했다. Point recall이나 precision이 아니다. Grace window나 point adjustment도 없다.
+
+## 6. FAR/hour는 무엇인가?
+
+Attack unit과 전혀 겹치지 않는 normal false episodes를 51,019 normal seconds의 시간으로 나눈
+episodes/hour다. D0 0.4939336325682589, D1 40.50255787059723, V1 0.7056194750975128,
+V2 6.915070855955625다.
+
+## 7. 왜 point FPR과 다른가?
+
+분자는 false point 수가 아니라 grouped episode 수다. 분모도 normal point 비율이 아니라 exposure hours다.
+
+## 8. D0/D1/D2를 같은 metric으로 비교할 수 있는가?
+
+같은 test1, event units, exposure, overlap, episode grouping, Recall/FAR 공식을 사용하므로 common
+interface 비교는 가능하다. 다만 D0/D2는 모든 row를 평가하고 D1은 opportunity-driven이므로
+`FAIR_WITH_LIMITATIONS`다.
+
+## 9. D1 abstain/non-opportunity는 metric에서 어떻게 처리되는가?
+
+Alarm timestamp를 만들지 않아 Boolean interface에서는 `NO_ALARM`처럼 작동한다. Runtime의
+ABSTAIN/NO_OPPORTUNITY 의미 자체가 정상 판정으로 바뀌었다는 뜻은 아니다. Frozen abstain은 0이다.
+
+## 10. result integrity audit은 무엇을 보장하는가?
+
+Prediction/label identity, ordering, row closure, arithmetic, mutation/replay, report binding을 보장한다.
+D0/D2는 durable pre-label file gate가 있고 D1은 더 약한 in-memory object gate다.
+
+## 11. 왜 integrity PASS가 성능 검증 PASS가 아닌가?
+
+Integrity는 sample size, event independence, development-set reuse, generalization, superiority, utility를
+검사하지 않는다. V2도 여전히 test1-informed development다.
+
+## 12. 현재 pilot 결과에서 무엇까지 믿어도 되는가?
+
+고정 artifact에 기록된 현재 pilot의 descriptive Recall/FAR와 D0/D1 response diversity까지다. 일반
+complementarity, held-out generalization, 통계적 우수성은 미확인이다.
+
+기억할 한 문장: **결과 무결성은 숫자가 고정 artifact와 맞는지 보장하지만, 그 숫자가 일반 성능을
+증명하는지는 보장하지 않는다.**
+
+다음 관리 task는 **{state['exact_next_task']}**이다. ARCH-011은 GAP-000 이후에만 검토한다.
+"""
+
+
 def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
@@ -2263,6 +2359,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_007_USER_SUMMARY.md": render_arch007_user_summary(data, digest),
         "ARCH_008_USER_SUMMARY.md": render_arch008_user_summary(data, digest),
         "ARCH_009_USER_SUMMARY.md": render_arch009_user_summary(data, digest),
+        "ARCH_010_USER_SUMMARY.md": render_arch010_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit"
+    "next_deep_review": "ARCH-010 completed; GAP-000 remediation triage next"
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -68,7 +68,7 @@
     "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
     "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
     "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
-    "next_deep_review": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit"
+    "next_deep_review": "ARCH-010 completed; GAP-000 remediation triage next"
   },
   "d2_fusion": {
     "role": "Deterministic detector-preserving fusion-policy pilot",
@@ -109,7 +109,29 @@
     "complementarity": "Response diversity is pilot-observed; current V1/V2 fusion utility is not supported; general and operational complementarity remain unvalidated.",
     "frozen_significance_test": false,
     "warning": "V2 is test1-informed development, not independent confirmation. Current V1/V2 results do not establish that Detector-plus-Rule is generally useless.",
-    "next_deep_review": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit"
+    "next_deep_review": "ARCH-010 completed; GAP-000 remediation triage next"
+  },
+  "metric_integrity": {
+    "object_hierarchy": "raw method output -> unique alarm second -> zero-gap maximal contiguous episode -> contiguous attack-event unit / normal exposure -> Recall and FAR/hour",
+    "event_policy": "MAXIMAL_CONTIGUOUS_STRICT_LABEL_ONE_RUNS_FILE_LOCAL; half-open intervals",
+    "event_unit_count": 14,
+    "event_independence": "NOT_ESTABLISHED",
+    "event_hit_rule": "ANY_HALF_OPEN_ALARM_EPISODE_OVERLAP; PA-FREE; no grace, dilation, or minimum duration",
+    "episode_policy": "set-deduplicate physical rows, sort, merge only exact +1 row adjacency; zero allowed gap",
+    "normal_false_episode": "complete alarm episode with no attack-unit overlap; mixed episodes are not split and are excluded from the numerator",
+    "normal_exposure_seconds": 51019,
+    "far_formula": "normal false episodes / (normal exposure seconds / 3600)",
+    "comparability": "SEMANTICALLY_EQUIVALENT",
+    "fairness": "FAIR_WITH_LIMITATIONS",
+    "d1_non_opportunity": "non-opportunity, non-alarm and abstain contribute no alarm timestamp at the Boolean metric interface; frozen abstain count is zero",
+    "overlap": {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0},
+    "recovery": {"D1": "3/3", "D2_V1": "0/3", "D2_V2": "0/3"},
+    "integrity_guarantee": "frozen artifact identity, label identity, ordering, arithmetic, mutation/replay and report binding",
+    "integrity_limit": "does not establish independence, sample sufficiency, generalization, superiority, utility, or scientific validity",
+    "freeze_boundary": {"D0": "DURABLE_PRE_LABEL", "D1": "IN_MEMORY_PRE_LABEL_WEAKER", "D2_V1": "DURABLE_PRE_LABEL", "D2_V2": "DURABLE_PRE_LABEL"},
+    "cross_arm_reporting_lineage": "PARTIAL; frozen comparison artifact exists but aggregation source is not discoverable in the current scientific tree",
+    "inferential_statistics": "NONE_FROZEN_OR_AUTHORITATIVE",
+    "next_deep_review": "GAP-000 remediation triage; ARCH-011 only afterward"
   },
   "runtime_trace_explanation": {
     "authority": "Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.",
@@ -130,7 +152,7 @@
     "explanation": "A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.",
     "human_usefulness": "UNVALIDATED",
     "warning": "The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.",
-    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
+    "next_deep_review": "ARCH-010 completed; GAP-000 remediation triage next"
   },
   "d0_detector": {
     "detector_id": "D0_PCA_SPE_V1",
@@ -162,7 +184,7 @@
     "validation": "PILOT_ONLY",
     "fresh_machine_reproducibility": "INCOMPLETE",
     "warning": "D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.",
-    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
+    "next_deep_review": "ARCH-010 completed; GAP-000 remediation triage next"
   },
   "d1_evaluation": {
     "preferred_name": "COMMON-42 Verified Relational Rule-only",
@@ -190,7 +212,7 @@
     "agentic_rule_only": "MISLEADING_NOT_APPLICABLE",
     "held_out_generalization": "UNCONFIRMED",
     "warning": "Higher pilot Recall does not establish superior operational utility. D1 is not T2 Agentic Rule-only.",
-    "next_deep_review": "ARCH-009 — D2 Detector + Rule Fusion Deep Audit"
+    "next_deep_review": "ARCH-010 completed; GAP-000 remediation triage next"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -376,32 +398,32 @@
     "Resolve fresh-machine reproducibility gaps before held-out evaluation."
   ],
   "user_todo_items": [
-    {"id": "USER-ARCH009-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D2 exists?", "why": "D2 tests whether relational evidence can add alarms while preserving D0.", "linked": "ARCH_009_D2_ROLE.md", "status": "OPEN"},
-    {"id": "USER-ARCH009-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain V1?", "why": "V1 requires two distinct sources at the exact same decision row.", "linked": "ARCH_009_V1_POLICY.md", "status": "OPEN"},
-    {"id": "USER-ARCH009-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain V2?", "why": "V2 retains D1 evidence through each frozen relation horizon before source counting.", "linked": "ARCH_009_V2_POLICY.md", "status": "OPEN"},
-    {"id": "USER-ARCH009-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 can hit a D0 miss but D2 still reject it?", "why": "A D1 response does not automatically satisfy a two-distinct-source temporal gate.", "linked": "ARCH_009_MISS_RECOVERY.md", "status": "OPEN"},
-    {"id": "USER-ARCH009-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why V2 is not independent validation?", "why": "V1/test1 diagnostics informed V2 and V2 reused test1.", "linked": "ARCH_009_V2_POLICY.md", "status": "OPEN"},
-    {"id": "USER-ARCH009-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the current D0, V1, and V2 comparison?", "why": "All three have 11/14 recall while both fusion policies have higher normal FAR.", "linked": "ARCH_009_POLICY_COMPARISON.csv", "status": "OPEN"},
-    {"id": "USER-ARCH009-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why current fusion does not prove Detector-plus-Rule generally useless?", "why": "Only two fixed policies on one development pilot were evaluated.", "linked": "ARCH_009_COMPLEMENTARITY_INTERPRETATION.md", "status": "OPEN"},
-    {"id": "USER-ARCH009-008", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer starting ARCH-010.", "why": "The next audit verifies metric and episode construction without recomputation.", "linked": "ARCH-010", "status": "OPEN"}
+    {"id": "USER-ARCH010-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish point, rule record, second, episode, and attack-event unit?", "why": "Different object levels have different counts and scientific meanings.", "linked": "ARCH_010_OBJECT_LEVELS.md", "status": "OPEN"},
+    {"id": "USER-ARCH010-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain 11/14 and 13/14?", "why": "Recall counts attack-event units with any qualifying alarm overlap.", "linked": "ARCH_010_RECALL_DEFINITION.md", "status": "OPEN"},
+    {"id": "USER-ARCH010-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain FAR/hour?", "why": "It is a normal false-episode rate rather than point FPR.", "linked": "ARCH_010_FAR_DEFINITION.md", "status": "OPEN"},
+    {"id": "USER-ARCH010-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why 14 units are not proven independent?", "why": "Contiguous label grouping does not establish statistical independence.", "linked": "ARCH_010_ATTACK_EVENT_CONSTRUCTION.md", "status": "OPEN"},
+    {"id": "USER-ARCH010-005", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain whether D0, D1, and D2 share comparable metrics?", "why": "Their native outputs differ but the common metric semantics are equivalent with limitations.", "linked": "ARCH_010_METHOD_NORMALIZATION.md", "status": "OPEN"},
+    {"id": "USER-ARCH010-006", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain result integrity versus scientific validation?", "why": "Identity and arithmetic checks do not prove performance or generalization.", "linked": "ARCH_010_RESULT_INTEGRITY.md", "status": "OPEN"},
+    {"id": "USER-ARCH010-007", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain the current frozen pilot table?", "why": "Recall and FAR must be read together under pilot-only scope.", "linked": "ARCH_010_FROZEN_PILOT_RESULTS.csv", "status": "OPEN"},
+    {"id": "USER-ARCH010-008", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve or defer GAP-000 remediation triage.", "why": "Remediation risks should be triaged before ARCH-011 or any held-out work.", "linked": "GAP-000", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain why D2 exists.",
-    "Explain V1 exact-index two-source admission.",
-    "Explain V2 native-horizon active-source admission.",
-    "Explain why a D1 response can fail D2 admission.",
-    "Explain why V2 is test1-informed rather than independent validation.",
-    "Compare D0, V1, and V2 on Recall and FAR.",
-    "Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.",
-    "Approve or defer starting ARCH-010."
+    "Distinguish point, rule record, alarm second, episode, and attack-event unit.",
+    "Explain 11/14 and 13/14 event-unit Recall.",
+    "Explain normal FAR episodes/hour.",
+    "Explain why 14 contiguous units are not proven statistically independent.",
+    "Explain D0/D1/D2 common metric comparability and its limitations.",
+    "Explain result integrity versus scientific validation.",
+    "Explain the frozen pilot result table.",
+    "Approve or defer GAP-000 remediation triage."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit",
-  "recommended_next_architecture_task": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit",
-  "last_completed_task": "ARCH-009",
-  "exact_next_task": "ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit",
+  "recommended_next_management_task": "GAP-000 — Pre-Validation Remediation & Risk Triage",
+  "recommended_next_architecture_task": "ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)",
+  "last_completed_task": "ARCH-010",
+  "exact_next_task": "GAP-000 — Pre-Validation Remediation & Risk Triage",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

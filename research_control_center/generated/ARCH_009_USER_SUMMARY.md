@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D2에서 Detector와 Rule을 어떻게 합쳤는가
 
 ## 1. 왜 D0와 D1을 합치려고 했는가?
@@ -74,4 +74,4 @@ D0-miss recovery가 필요하다.
 기억할 한 문장: **D1의 다른 response가 관찰됐지만, 현재 V1/V2 gate는 이를 recall 증가로 바꾸지
 못했고 V2는 독립 검증이 아니다.**
 
-다음 task는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**이다.
+다음 task는 **GAP-000 — Pre-Validation Remediation & Risk Triage**이다.

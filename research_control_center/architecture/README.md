@@ -206,4 +206,22 @@ threshold. Both preserve D0 pointwise and durably freeze prediction before
 labels. Both produced 11/14 and recovery 0/3; V2 is test1-informed development,
 not independent confirmation.
 
-Exact next task: `ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit`.
+## Completed metrics and result-integrity audit
+
+- [Korean report](10_metrics_integrity/ARCH_010_REPORT.md)
+- [Metric object levels](10_metrics_integrity/ARCH_010_OBJECT_LEVELS.md)
+- [Attack-event construction](10_metrics_integrity/ARCH_010_ATTACK_EVENT_CONSTRUCTION.md)
+- [Episode and FAR definitions](10_metrics_integrity/ARCH_010_EPISODE_CONSTRUCTION.md)
+- [Cross-method normalization](10_metrics_integrity/ARCH_010_METHOD_NORMALIZATION.md)
+- [Frozen pilot table](10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv)
+- [Result integrity boundary](10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md)
+- [Mismatch register](10_metrics_integrity/ARCH_010_MISMATCHES.md)
+
+The common metric interface is semantically equivalent with limitations: D0/D2
+provide per-row Boolean predictions, while D1 anomaly decision rows are
+deduplicated into alarm seconds. Attack units are maximal contiguous strict-label
+runs; there are 14 units and statistical independence is not established. Result
+integrity establishes frozen identities and arithmetic, not scientific validation.
+
+Exact next task: `GAP-000 — Pre-Validation Remediation & Risk Triage`.
+Following only after GAP-000: `ARCH-011 — OUTER / Reproducibility Deep Audit`.

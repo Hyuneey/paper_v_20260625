@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -71,19 +71,19 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **GAP-000 — Pre-Validation Remediation & Risk Triage** 이고, 이후 전체
+구조 검토는 **ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain why D2 exists.
-- Explain V1 exact-index two-source admission.
-- Explain V2 native-horizon active-source admission.
-- Explain why a D1 response can fail D2 admission.
-- Explain why V2 is test1-informed rather than independent validation.
-- Compare D0, V1, and V2 on Recall and FAR.
-- Explain why current negative fusion results do not generalize to all Detector-plus-Rule policies.
-- Approve or defer starting ARCH-010.
+- Distinguish point, rule record, alarm second, episode, and attack-event unit.
+- Explain 11/14 and 13/14 event-unit Recall.
+- Explain normal FAR episodes/hour.
+- Explain why 14 contiguous units are not proven statistically independent.
+- Explain D0/D1/D2 common metric comparability and its limitations.
+- Explain result integrity versus scientific validation.
+- Explain the frozen pilot result table.
+- Approve or defer GAP-000 remediation triage.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

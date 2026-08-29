@@ -1,0 +1,21 @@
+{
+  "schema_version": "arch-010-evidence-v1",
+  "task_id": "ARCH-010",
+  "authority": {"rcc_parent": "976abff98087f96d57fbdb8d1ca4c098324a923a", "scientific": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"},
+  "event_policy": {"type": "MAXIMAL_CONTIGUOUS_STRICT_LABEL_ONE_RUNS_FILE_LOCAL", "interval": "HALF_OPEN", "count": 14, "independence": "NOT_ESTABLISHED", "hit_rule": "ANY_HALF_OPEN_OVERLAP", "point_adjustment": false},
+  "episode_policy": {"deduplication": "SET_PHYSICAL_ROW", "gap_rows": 0, "normal_false_episode": "NO_ATTACK_UNIT_OVERLAP", "mixed_episode_split": false},
+  "normal_exposure_seconds": 51019,
+  "comparability": "SEMANTICALLY_EQUIVALENT",
+  "fairness": "FAIR_WITH_LIMITATIONS",
+  "results": {
+    "D0": {"detected": 11, "total": 14, "normal_false_episodes": 7, "far_per_hour": 0.4939336325682589},
+    "D1": {"detected": 13, "total": 14, "normal_false_episodes": 574, "far_per_hour": 40.50255787059723},
+    "D2_V1": {"detected": 11, "total": 14, "normal_false_episodes": 10, "far_per_hour": 0.7056194750975128},
+    "D2_V2": {"detected": 11, "total": 14, "normal_false_episodes": 98, "far_per_hour": 6.915070855955625, "status": "TEST1_INFORMED_DEVELOPMENT"}
+  },
+  "overlap": {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0},
+  "integrity_boundary": {"D0": "DURABLE_PRE_LABEL", "D1": "IN_MEMORY_PRE_LABEL", "D2_V1": "DURABLE_PRE_LABEL", "D2_V2": "DURABLE_PRE_LABEL"},
+  "inferential_statistics": "NONE_FROZEN_OR_AUTHORITATIVE",
+  "safety": {"scientific_executions": 0, "test2_accesses": 0, "scientific_source_changes": 0, "frozen_result_changes": 0},
+  "qa": "PASS_20_OF_20"
+}

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D1 검증된 관계 규칙 단독 평가를 쉽게 이해하기
 
 ## 1. D1은 정확히 무엇인가?
@@ -72,4 +72,4 @@ durable gate가 필요하다.
 기억할 한 문장: **D1은 D0와 다른 pilot event response를 보였지만 normal false-alarm 부담이 매우 높아,
 Rule-only utility와 complementarity는 아직 검증되지 않았다.**
 
-다음 task는 **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**이다.
+다음 task는 **GAP-000 — Pre-Validation Remediation & Risk Triage**이다.

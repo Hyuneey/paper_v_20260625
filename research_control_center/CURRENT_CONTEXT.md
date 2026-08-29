@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e18dcc333c9374f6afd37d3c7c1b5bcce27b7a516e16befbd28c6894526100c1 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=baf1d1e9eb043235885ee297d42289288af343a0791b844b5d62f84c3520dc64 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -111,5 +111,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-Exact next management task: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
-Following architecture task: **ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit**
+Exact next management task: **GAP-000 — Pre-Validation Remediation & Risk Triage**
+Following architecture task: **ARCH-011 — OUTER / Reproducibility Deep Audit (only after GAP-000)**

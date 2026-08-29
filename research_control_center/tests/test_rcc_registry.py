@@ -176,7 +176,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual("ARCH-010 — Metrics / Episode Construction / Result Integrity Deep Audit", data["state"]["exact_next_task"])
+        self.assertEqual("GAP-000 — Pre-Validation Remediation & Risk Triage", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

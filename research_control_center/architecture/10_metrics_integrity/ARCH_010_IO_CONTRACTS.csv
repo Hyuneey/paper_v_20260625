@@ -1,0 +1,14 @@
+producer,output,schema,consumer,required_fields,frozen?,validated?,provenance,notes
+D0 execution,D0 prediction,ordered Boolean row records,common metric adapter,row index and alarm,true,true,D0 authority and prediction hash,durable pre-label
+D1 execution,D1 prediction,opportunity terminal records,D1 metric adapter,outcome and decision_physical_row_index,true,true,COMMON-42 and V4 authority,in-memory pre-label freeze
+D2 V1 fusion,D2 V1 prediction,ordered Boolean row records,common metric adapter,row index and final alarm,true,true,D0 D1 and policy hashes,durable pre-label
+D2 V2 fusion,D2 V2 prediction,ordered Boolean row records,common metric adapter,row index and final alarm,true,true,D0 D1 horizon map and policy hashes,test1-informed; durable pre-label
+Label authority,strict labels,ordered timestamp label rows,event constructor,timestamp and exact 0/1,true,true,HAI 23.05 test1 label authority,private payload not opened by ARCH-010
+Alarm adapter,unique alarm rows,sorted integer index set,episode constructor,physical row index,true,true,prediction identity,D1 deduplicates rule records here
+Episode constructor,alarm episodes,half-open IntervalV1 tuple,event overlap and FAR,start and end,true,true,metric policy hash,zero-gap maximal runs
+Event constructor,attack-event units,half-open IntervalV1 tuple,Recall and false-episode classifier,start and end,true,true,label and event-policy identities,14 contiguous units
+Recall evaluator,event result,detected count total recall,result artifact,attack intervals and alarm intervals,true,true,prediction label and metric authority,PA-free any overlap
+FAR evaluator,normal result,false episodes exposure seconds FAR/hour,result artifact,alarm intervals attack intervals labels,true,true,prediction label and metric authority,episode rate not point FPR
+Result artifact,metric summary,method-specific frozen JSON,integrity audit,identities counts values hashes,true,true,source commit and config,arithmetic and custody not scientific validity
+Integrity audit,integrity receipt,self-hashed audit record,reporting layer,artifact IDs and checks,true,true,upstream result and report hashes,D1 cannot gain durable pre-label gate downstream
+Reporting layer,current-facing numbers,sanitized report RCC thesis views,user and professor,method status scope and exact metrics,true,partial,result and integrity artifacts,cross-arm aggregation source edge partial

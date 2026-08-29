@@ -1,0 +1,1 @@
+{"agent":"B","scope":"episode construction and FAR","status":"COMPLETE","findings":{"dedup":"set physical rows","gap_rows":0,"interval":"half-open","normal_exposure_seconds":51019,"mixed_episode_split":false,"normal_false_episodes":{"D0":7,"D1":574,"D2_V1":10,"D2_V2":98}},"safety":{"scientific_execution":0,"private_reads":0,"writes":0}}

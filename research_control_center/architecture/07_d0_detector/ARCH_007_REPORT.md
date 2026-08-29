@@ -63,7 +63,7 @@ Label loader는 state가 `PREDICTION_FROZEN`이 아니면 즉시 거절한다. �
 
 ## 11. 11/14는 무엇을 뜻하는가
 
-14개의 independent attack event 가운데 D0 alarm episode와 한 번 이상 겹친 사건이 11개였다는 **attack-event recall**이다. Point recall이 아니다. 이 결과는 현재 INNER pilot 관찰이고 final validation이 아니다.
+14개의 contiguous attack-event unit 가운데 D0 alarm episode와 한 번 이상 겹친 unit이 11개였다는 **attack-event recall**이다. 통계적 독립성은 확립되지 않았고 point recall도 아니다. 이 결과는 현재 INNER pilot 관찰이며 final validation이 아니다.
 
 ## 12. FAR/hour는 무엇을 뜻하는가
 
@@ -78,4 +78,3 @@ Label loader는 state가 `PREDICTION_FROZEN`이 아니면 즉시 거절한다. �
 D0는 Rule-only가 전통적 deterministic multivariate reference와 어떻게 다른 반응을 보이는지 확인하는 기준선이다. 현재 비교만으로 contemporary multivariate TSAD 대비 성능을 말할 수 없다. 새 독립 사전등록에서는 적어도 하나의 더 강한 다변량 detector를 추가해야 한다. ARCH-007은 후보를 선택하거나 구현하지 않았다.
 
 결론: D0 구현·권한·예측 순서·frozen result lineage는 추적 가능하고 result integrity가 감사됐다. 성능 수치는 14-event pilot이며 우수성·일반화·SOTA 주장은 허용되지 않는다.
-

@@ -50,13 +50,13 @@ class Arch009D2FusionTests(unittest.TestCase):
         self.assertIn("SINGLE_SOURCE_ONLY", miss)
         self.assertIn("D1 response does not imply D2 policy admission", miss)
         summary = (RCC / "generated" / "ARCH_009_USER_SUMMARY.md").read_text(encoding="utf-8")
-        for marker in ("same-second", "native horizon", "0/3", "ARCH-010"):
+        for marker in ("same-second", "native horizon", "0/3", "GAP-000"):
             self.assertIn(marker, summary)
 
     def test_progression(self):
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertEqual("ARCH-009", state["last_completed_task"])
-        self.assertTrue(state["exact_next_task"].startswith("ARCH-010"))
+        self.assertEqual("ARCH-010", state["last_completed_task"])
+        self.assertTrue(state["exact_next_task"].startswith("GAP-000"))
 
 
 if __name__ == "__main__":

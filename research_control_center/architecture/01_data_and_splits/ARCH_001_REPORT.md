@@ -35,7 +35,7 @@ train3의 relation confirmation과 D0 calibration은 서로 다른 code path와 
 
 ## 4. test1의 역할
 
-`hai-test1.csv`는 54,000초의 **INNER development / pilot evaluation** feature authority다. label은 별도 `label-test1.csv`이고 timestamp로 정렬한다. 공개 frozen evidence는 14개 independent attack event를 기록하지만, 이것은 final validation 표본이 아니다.
+`hai-test1.csv`는 54,000초의 **INNER development / pilot evaluation** feature authority다. label은 별도 `label-test1.csv`이고 timestamp로 정렬한다. 공개 frozen evidence는 14개 contiguous attack-event units를 기록한다. 통계적 독립성은 확립되지 않았고 final validation 표본도 아니다.
 
 D0와 D1의 fit, COMMON-42 construction, normal numeric authority에는 test1 label 또는 result가 입력되지 않았다. individual rule을 test1 성능으로 삭제하거나 COMMON-42를 다시 고른 backward path도 찾지 못했다.
 
