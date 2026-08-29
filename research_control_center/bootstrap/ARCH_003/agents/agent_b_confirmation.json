@@ -1,0 +1,334 @@
+{
+  "task_id": "ARCH-003",
+  "agent_role": "confirmation_and_relation_selection_read_only_auditor",
+  "audit_scope": [
+    "train1_train2_direction_and_horizon_selection",
+    "fit_support_consistency_effect_gates",
+    "train3_one_way_confirmation",
+    "47_to_25_to_45_to_23_to_42_frozen_lineage"
+  ],
+  "verdict": "PASS_WITH_CONSERVATIVE_RELATION_TERMINOLOGY_AND_DOCUMENTED_PUBLIC_PRIVATE_BOUNDARY",
+  "authority": {
+    "rcc_head": "a54f2a1eede326359bc7823e80aa4111dc4ce636",
+    "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "source_bytes_match_scientific_authority": true,
+    "architecture_authorities": [
+      "ARCH-000",
+      "ARCH-001",
+      "ARCH-002"
+    ]
+  },
+  "selection_model": {
+    "candidate_pair_count": 47,
+    "source_step_directions_per_pair": 2,
+    "directional_opportunity_count": 94,
+    "source_step_directions": [
+      "step_up",
+      "step_down"
+    ],
+    "target_response_directions": [
+      "increase",
+      "decrease"
+    ],
+    "horizons_seconds": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "candidate_records_per_source_direction": 10,
+    "candidate_record_explanation": "For each fixed source-target pair and source step direction, the profiler evaluates both target response signs at all five frozen horizons.",
+    "direction_eligibility": {
+      "rule": "selected_direction_consistency_strictly_greater_than_opposite_direction_consistency_in_both_train1_and_train2",
+      "equality_passes": false,
+      "file_identity_preserved": true
+    },
+    "selection_order": [
+      "pooled_directional_consistency_desc",
+      "pooled_robust_effect_ratio_desc",
+      "horizon_seconds_asc",
+      "target_direction_lexical"
+    ],
+    "selection_occurs_before_fit_gate": true,
+    "lower_ranked_fallback_after_gate_failure": false,
+    "multiple_horizons_survive_per_source_direction": false,
+    "source_directions_evaluated_independently": true,
+    "pair_can_yield_zero_one_or_two_fit_supported_directions": true
+  },
+  "fit_gate": {
+    "splits": [
+      "hai-train1.csv",
+      "hai-train2.csv"
+    ],
+    "all_conditions_required": true,
+    "conditions": {
+      "total_usable_responses_minimum": 20,
+      "train1_usable_responses_minimum": 5,
+      "train2_usable_responses_minimum": 5,
+      "pooled_directional_consistency_minimum": 0.7,
+      "train1_directional_consistency_minimum": 0.6,
+      "train2_directional_consistency_minimum": 0.6,
+      "pooled_robust_effect_ratio_minimum": 2.0,
+      "strict_direction_agreement_across_files": true
+    },
+    "support_definition": "One usable response is one isolated source event of the fixed source direction with a complete target response window at the evaluated horizon. Right-censored events are excluded rather than imputed.",
+    "consistency_definition": "Directional matches divided by usable responses; a match is a target response greater than the fixed target noise scale for increase or less than negative target noise scale for decrease.",
+    "effect_definition": "Absolute pooled median target response divided by the fixed target noise scale.",
+    "failure_outcomes": [
+      "direction_unstable",
+      "fit_unsupported"
+    ],
+    "new_pair_or_relation_created_after_failure": false
+  },
+  "train3_confirmation": {
+    "split": "hai-train3.csv",
+    "input_scope": "exactly_the_45_D1_fit_supported_directional_relations",
+    "input_pair_context_count": 25,
+    "candidate_arm_provenance_visible_during_confirmation": false,
+    "frozen_before_train3": [
+      "source",
+      "target",
+      "source_step_direction",
+      "target_response_direction",
+      "selected_horizon_seconds",
+      "source_noise_scale_reference",
+      "source_step_threshold_reference",
+      "source_stability_tolerance_reference",
+      "target_noise_scale_reference",
+      "source_and_target_parameter_record_hashes",
+      "D1_directional_record_hash",
+      "pre_and_post_windows",
+      "response_window",
+      "refractory_period",
+      "cross_source_isolation_radius"
+    ],
+    "train3_actions": [
+      "reextract_all_12_source_event_streams_with_frozen_D1_parameters",
+      "reapply_all_source_isolation",
+      "filter_events_to_each_fixed_source_step_direction",
+      "evaluate_only_the_fixed_selected_horizon",
+      "classify_target_response_with_the_frozen_target_noise_scale",
+      "calculate_train3_support_consistency_and_effect",
+      "apply_the_single_frozen_confirmation_gate"
+    ],
+    "all_conditions_required": true,
+    "pass_conditions": {
+      "usable_responses_minimum": 5,
+      "source_direction_unchanged": true,
+      "selected_consistency_strictly_greater_than_opposite_consistency": true,
+      "selected_directional_consistency_minimum": 0.6,
+      "robust_effect_ratio_minimum": 1.0,
+      "fit_parameters_reused_without_retuning": true
+    },
+    "source_direction_unchanged_implementation": "The source direction is an immutable D1 relation attribute. Train3 events are filtered to that direction and the gate receives true; the implementation does not conduct an alternative source-direction search.",
+    "alternative_horizon_search": false,
+    "opposite_target_direction_search": false,
+    "lower_ranked_fallback": false,
+    "parameter_retuning": false,
+    "new_relation_addition": false,
+    "possible_statuses": [
+      "calibration_confirmed",
+      "calibration_conflict"
+    ],
+    "failed_relation_treatment": "A failed input direction remains a frozen calibration_conflict record and is excluded from the final confirmed relation set; it does not trigger search or replacement."
+  },
+  "frozen_lineage": {
+    "stages": [
+      {
+        "stage": "candidate_union",
+        "pair_count": 47,
+        "directional_count": null,
+        "meaning": "Arm-provenance candidate pairs; not yet profiled or confirmed."
+      },
+      {
+        "stage": "train1_train2_directional_opportunities",
+        "pair_count": 47,
+        "directional_count": 94,
+        "meaning": "Two independent source step directions per candidate pair."
+      },
+      {
+        "stage": "train1_train2_fit_supported",
+        "pair_count": 25,
+        "directional_count": 45,
+        "meaning": "Fit-supported normal delayed-response relation candidates; not construction or runtime authority."
+      },
+      {
+        "stage": "train3_calibration_confirmed",
+        "pair_count": 23,
+        "directional_count": 42,
+        "meaning": "Calibration-confirmed normal delayed-response directional relation candidates."
+      }
+    ],
+    "train1_train2_partition": {
+      "pair_fit_supported": 25,
+      "pair_fit_unsupported": 22,
+      "direction_fit_supported": 45,
+      "direction_unstable": 17,
+      "direction_fit_unsupported": 32,
+      "partition_total": 94
+    },
+    "train3_partition": {
+      "input_directions": 45,
+      "calibration_confirmed_directions": 42,
+      "calibration_conflict_directions": 3,
+      "pairs_with_at_least_one_confirmed_direction": 23,
+      "D1_supported_pairs_without_any_confirmed_direction": 2
+    },
+    "terminology_correction": "The frozen D1 fit stage has 25 supported pair contexts and 45 supported directions. The commonly cited 23 pair contexts and 42 directions are the post-train3 confirmed set, not the train1/train2 fit output.",
+    "causal_claim_supported": false,
+    "optimal_horizon_claim_supported": false
+  },
+  "frozen_artifact_evidence": [
+    {
+      "path": "docs/task_reports/TASK-039D1_FIT_RESULT.json",
+      "artifact_hash": "a2767945ef3cec5fa80c3e131b98fdc8a1eeecaa69a97461988d8da90a4e06d3",
+      "evidence": "47 candidates; 94 opportunities; 25 supported pairs; 45 supported, 17 unstable, and 32 unsupported directional records."
+    },
+    {
+      "path": "docs/task_reports/TASK-039D1_PAIR_FIT_SUMMARY.json",
+      "artifact_hash": "a466057faa20eacd0692b6a9c19fbbb5b8968135ba4c018310a076aa0393d4f2",
+      "evidence": "Pair partition and explicit no-lower-ranked-fallback record."
+    },
+    {
+      "path": "docs/task_reports/TASK-039D2_RESULT.json",
+      "artifact_hash": "3b5bdce629b6ed2bcf26751fae4e870cb63cac1e9fd3e5d3022085615c3ad09d",
+      "evidence": "45 fixed inputs; 42 confirmed and 3 conflict directions; 23 confirmed pair contexts; no retuning or search."
+    },
+    {
+      "path": "docs/task_reports/TASK-039D2_DIRECTIONAL_CONFIRMATION_SUMMARY.json",
+      "artifact_hash": "4f5057380c4b1b995bd0d5a714d307df556ce05094223fa909b6e2ed7dfec666",
+      "evidence": "Exact public-safe directional partition and private-ledger hash binding."
+    },
+    {
+      "path": "docs/task_reports/TASK-039D2_PAIR_CONFIRMATION_SUMMARY.json",
+      "artifact_hash": "3929e84c680422a75069d59e1bef756f054a476ecc95f3e4e9573c7dfe368ad5",
+      "evidence": "47-pair reconstruction; 25 D1-supported, 23 with confirmation, 2 without confirmation."
+    },
+    {
+      "path": "docs/task_reports/TASK-039D2_EXECUTION_RECEIPT.json",
+      "artifact_hash": "c2f6214106e9e2cd5e09ec81ef2659c404d1dd3df3c0f9db26d7f4b9086a78e5",
+      "evidence": "One-way execution order, outcomes frozen before provenance join, and zero retuning/search/fallback."
+    },
+    {
+      "path": "docs/task_reports/TASK-039D2_FINAL_AUDIT.json",
+      "artifact_hash": "7010a457d4b7f0e05e0415b5e3bf8b0ee972ddc5782d6ff16cbbd17c66bc93eb",
+      "evidence": "Independent 45-record train3 replay reproduced 42 confirmed and 3 conflicts; result-contract recovery used the already frozen private ledger without train3 reread."
+    }
+  ],
+  "source_symbols": [
+    {
+      "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+      "symbol": "rank_direction_horizon_v1",
+      "lines": "539-574",
+      "role": "Strict per-file direction eligibility and deterministic direction/horizon ranking."
+    },
+    {
+      "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+      "symbol": "selected_fit_gate_v1",
+      "lines": "577-592",
+      "role": "Applies the fit gate only to the already selected record."
+    },
+    {
+      "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+      "symbol": "train3_confirmation_gate_v1",
+      "lines": "595-607",
+      "role": "Maps frozen train3 statistics into the confirmation gate."
+    },
+    {
+      "path": "src/paperworks/v6/continuous_step_protocol_v1.py",
+      "symbol": "fit_support_gate_v1",
+      "lines": "873-893",
+      "role": "Exact train1/train2 support, consistency, effect, and cross-file agreement conjunction."
+    },
+    {
+      "path": "src/paperworks/v6/continuous_step_protocol_v1.py",
+      "symbol": "calibration_confirmation_gate_v1",
+      "lines": "896-912",
+      "role": "Exact one-way train3 conjunction."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d1_fit_v1.py",
+      "symbol": "_direction_statistics",
+      "lines": "630-686",
+      "role": "Computes file-local and pooled support, directional consistency, median response, and robust effect."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d1_fit_v1.py",
+      "symbol": "evaluate_arm_blind_fit_v1",
+      "lines": "731-998",
+      "role": "Profiles all 47 pairs arm-blind, selects one target direction/horizon for each source direction, and freezes 94 outcomes."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d2_confirmation_v1.py",
+      "symbol": "FrozenConfirmationControlsV1",
+      "lines": "118-156",
+      "role": "Fail-closed constants prohibit alternate search, fallback, and retuning."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d2_confirmation_v1.py",
+      "symbol": "ConfirmableDirectionalRelationV1",
+      "lines": "283-338",
+      "role": "Immutable D1 relation identity, selected horizon, and parameter hash references."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d2_real_execution_v1.py",
+      "symbol": "load_d1_private_inputs_v1",
+      "lines": "205-299",
+      "role": "Validates exact private D1 ledgers and constructs exactly 45 unique fixed confirmation inputs."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d2_real_execution_v1.py",
+      "symbol": "confirm_relations_one_way_v1",
+      "lines": "402-491",
+      "role": "Evaluates only the frozen source direction, target direction, horizon, and parameter bindings on train3."
+    },
+    {
+      "path": "src/paperworks/profiling/task039d2_real_execution_v1.py",
+      "symbol": "build_pair_summary_v1",
+      "lines": "584-616",
+      "role": "Reconstructs the exact 47-pair view and counts pairs with at least one confirmed direction."
+    }
+  ],
+  "test_evidence": [
+    {
+      "path": "tests/test_task039d1_fit_engine.py",
+      "coverage": "94-record closure, gate boundaries, and no lower-ranked fallback"
+    },
+    {
+      "path": "tests/test_task039d2_no_retuning.py",
+      "coverage": "Rejects alternate-horizon, opposite-direction, fallback, and retuning controls or arguments"
+    },
+    {
+      "path": "tests/test_task039d2_real_engine.py",
+      "coverage": "Exact 45 arm-blind input relations and two-status output closure"
+    },
+    {
+      "path": "tests/test_task039d2_final_audit_results.py",
+      "coverage": "Frozen 42/3 directional partition and 23-pair reconstruction"
+    },
+    {
+      "path": "tests/test_task039d2_final_audit_contracts.py",
+      "coverage": "Independent 45-record confirmation replay without production confirmation orchestration"
+    }
+  ],
+  "unknowns_and_boundaries": [
+    "The per-record fit and confirmation numeric values remain private/outside Git; this audit relies on public-safe self-hashed bindings, summaries, source, and the prior independent final audit rather than exposing or recomputing those values.",
+    "The selected horizon is the deterministic winner under the frozen five-horizon ranking. The evidence does not establish physical truth, global optimality, or generalization.",
+    "The term directed relation includes a fixed source step direction and expected target response direction. It does not imply causality.",
+    "Train3 confirmation is one-way transfer evidence. It cannot add a pair, add a direction, change a horizon, or change a fitted parameter.",
+    "The original real train3 execution encountered a non-scientific result-contract schema defect after the private 45-record ledger froze. The public result was recovered from that frozen ledger without rereading train3; the final audit independently verified all 45 records."
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "relation_recomputations": 0,
+    "horizon_recomputations": 0,
+    "threshold_recomputations": 0,
+    "private_artifact_reads": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0,
+    "private_values_exposed": 0
+  }
+}

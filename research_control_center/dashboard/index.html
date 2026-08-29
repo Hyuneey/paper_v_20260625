@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c">
+  <meta name="rcc-registry-digest" content="2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -49,6 +49,35 @@
       <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
     </section>
 
+    <section id="relation-numeric" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">RELATION</p><h2>RELATION &amp; NUMERIC AUTHORITY</h2></div>
+      <div class="status-snapshot">
+        <div><span>Candidates</span><strong>47</strong></div>
+        <div><span>Profiled opportunities</span><strong>94</strong></div>
+        <div><span>Fit-supported</span><strong>25 contexts / 45 directions</strong></div>
+        <div><span>Confirmed</span><strong>23 contexts / 42 relations</strong></div>
+        <div><span>Construction-bound</span><strong>462 references</strong></div>
+        <div><span>Runtime-bound</span><strong>420 references + descriptor horizon</strong></div>
+      </div>
+      <div class="two-column">
+        <div><h3>Profiling and confirmation</h3><dl class="architecture-contract">
+          <div><dt>SOURCE SPLIT</dt><dd>normal train1/train2</dd></div>
+          <div><dt>SOURCE EVENT</dt><dd>five-row pre/post source medians; normal-derived threshold and stability; same-source single-link refractory; all-source isolation</dd></div>
+          <div><dt>TARGET RESPONSE</dt><dd>five-row baseline and three-row response median at one of five frozen row horizons</dd></div>
+          <div><dt>CONFIRMATION</dt><dd>normal train3; fixed identity and parameters; no search or retuning</dd></div>
+        </dl></div>
+        <div><h3>Numeric custody</h3><dl class="architecture-contract">
+          <div><dt>CONSTRUCTION</dt><dd>42 relations x 11 construction-only references = 462 bindings</dd></div>
+          <div><dt>RUNTIME</dt><dd>separately versioned normal-only MAIN registry: 42 relations x 10 roles = 420 records; selected horizon remains in canonical descriptor</dd></div>
+          <div><dt>RELATIONSHIP</dt><dd>PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES</dd></div>
+          <div><dt>TRACEABILITY</dt><dd>FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY</dd></div>
+        </dl></div>
+      </div>
+      <aside class="principle">Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.</aside>
+      <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
+      <p><strong>Next deep review:</strong> ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</p>
+    </section>
+
     <section id="data-governance" class="section panel-history">
       <div class="section-heading"><p class="eyebrow">DATA</p><h2>DATA GOVERNANCE</h2></div>
       <div class="status-snapshot">
@@ -62,7 +91,7 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-003 — Relation Profiling &amp; Numeric Authority Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -78,13 +107,13 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">META</p><h3>M1/M2/M3 deterministic domain-prior ranking</h3><dl><div><dt>INPUT</dt><dd>reviewed P1 metadata and public physical graph</dd></div><div><dt>OUTPUT</dt><dd>metadata-supported pair candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">STAT</p><h3>file-local first-difference lagged Pearson stability</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2</dd></div><div><dt>OUTPUT</dt><dd>directional lagged-association candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">GDN</p><h3>next-value prediction plus embedding-cosine learned graph</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2 full 37-node context</dd></div><div><dt>OUTPUT</dt><dd>learned-graph candidate edges</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article></div>
       <aside class="principle">Candidate discovery proposes relationships. It does not establish causal or final temporal relations.</aside>
       <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
-      <p><strong>Next deep review:</strong> ARCH-003 — Relation Profiling &amp; Numeric Authority Deep Audit</p>
+      <p><strong>Next deep review:</strong> ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Explain META as reviewed metadata domain-prior candidate evidence.</li><li>Explain STAT as normal directional lagged-association candidate evidence.</li><li>Explain GDN&#x27;s technical learned-graph candidate contribution.</li><li>Explain why learned graph and attention are different authorities.</li><li>Explain why the 47-pair union is not a confirmed relation set.</li><li>Approve or defer starting ARCH-003.</li></ul>
+      <ul><li>Explain candidate versus confirmed relation.</li><li>Explain source event and target response.</li><li>Explain the selected horizon boundary.</li><li>Explain support, consistency, and effect.</li><li>Explain why train3 is one-way confirmation.</li><li>Explain numeric authority.</li><li>Explain construction versus runtime numeric authority.</li><li>Approve or defer starting ARCH-004.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -708,7 +737,7 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-003 — Relation Profiling &amp; Numeric Authority Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit</strong></div>
     </section>
   </main>
 

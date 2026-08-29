@@ -13,17 +13,16 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit`
+`ARCH-003 — Relation Profiling & Numeric Authority Deep Audit`
 
 ## What changed
 
-- Verified the 12×12 directed candidate universe and all three frozen Top-20 arms.
-- Mapped META as reviewed metadata prior, STAT as normal lagged association, and
-  GDN as embedding-cosine learned-graph candidate evidence.
-- Separated GDN learned graph, internal graph attention, and absent post-hoc XAI.
-- Reconstructed the unscored 47-pair union and preserved public-safe arm provenance.
-- Added function/I/O catalogs, discovery flow, professor-facing answer, dashboard,
-  and user learning summary without rerunning discovery.
+- Mapped source-event extraction, target response, five-horizon selection, and all gates.
+- Reconstructed 47 pairs → 94 source directions → 25/45 fit-supported → 23/42 confirmed.
+- Verified train3 as fixed one-way confirmation with no search, fallback, or retuning.
+- Separated 462 construction references from the 420-reference runtime authority.
+- Verified 420 exact shared-value matches while preserving separate authority identities.
+- Added relation/numeric catalogs, flow, dashboard, and user learning summary without execution.
 
 ## Decisions made
 
@@ -35,8 +34,8 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## New evidence
 
-No new scientific outcome was produced. ARCH-002 added static source,
-contract, frozen-artifact lineage, terminology, and candidate-provenance evidence only.
+No new scientific outcome was produced. ARCH-003 added static source,
+contract, frozen-artifact lineage, numeric-custody, and authority-binding evidence only.
 
 ## Open risks
 
@@ -55,14 +54,14 @@ contract, frozen-artifact lineage, terminology, and candidate-provenance evidenc
 
 ## User actions
 
-- Explain META and STAT in one sentence each.
-- Explain GDN's learned-graph technical contribution.
-- Explain learned graph versus graph attention.
-- Explain why the 47-pair union is not a final relation set.
-- Approve or defer ARCH-003.
+- Explain candidate versus confirmed relation.
+- Explain source event, target response, and horizon.
+- Explain support, consistency, effect, and train3 confirmation.
+- Explain numeric authority and construction versus runtime identity.
+- Approve or defer ARCH-004.
 
 ## Exact next task
 
-`ARCH-003 — Relation Profiling & Numeric Authority Deep Audit`
+`ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit`
 
-Do not start it until the user has reviewed ARCH-002.
+Do not start it until the user has reviewed ARCH-003.

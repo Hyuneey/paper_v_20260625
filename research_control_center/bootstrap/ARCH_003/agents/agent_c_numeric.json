@@ -1,0 +1,579 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-003",
+  "agent_role": "Numeric Authority Auditor",
+  "audit_mode": "READ_ONLY_PUBLIC_SAFE_SOURCE_AND_FROZEN_METADATA",
+  "status": "PASS_WITH_SEPARATE_AUTHORITY_BOUNDARY",
+  "authority_gate": {
+    "rcc_head": "a54f2a1eede326359bc7823e80aa4111dc4ce636",
+    "expected_rcc_head_match": true,
+    "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "audited_scientific_files_differ_from_scientific_authority": 0,
+    "private_numeric_payload_opened": false,
+    "test2_accessed": false
+  },
+  "verdict": {
+    "summary": "The project has four distinct numeric layers: profiling-selection evidence, train3 confirmation evidence, historical construction evidence, and a separately versioned current utility-runtime authority. The current runtime authority is normal-only and fully identity-bound, but it is not the historical E1 authority and its numeric values are not proven byte-identical to historical E1 values.",
+    "runtime_relevant_values_traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
+    "construction_runtime_relationship": "SEPARATE_BY_DESIGN_METHOD_CONTINUOUS_NEW_AUTHORITY",
+    "historical_e1_identity_restored": false,
+    "historical_numeric_registry_identity_restored": false,
+    "historical_and_current_values_proven_identical": false,
+    "causal_or_optimality_claim_supported": false
+  },
+  "numeric_layer_model": [
+    {
+      "layer": "PROFILING_SELECTION_METRICS",
+      "purpose": "Select one target direction and horizon per source-step direction and apply the frozen train1/train2 fit gate.",
+      "authority": "selection evidence only",
+      "runtime_authority": false,
+      "main_artifacts": [
+        "TASK-039D1_SOURCE_PARAMETER_LEDGER.json (private, hash-bound)",
+        "TASK-039D1_TARGET_PARAMETER_LEDGER.json (private, hash-bound)",
+        "TASK-039D1_DIRECTIONAL_FIT_LEDGER.json (private, hash-bound)",
+        "docs/task_reports/TASK-039D1_FIT_RESULT.json"
+      ]
+    },
+    {
+      "layer": "TRAIN3_CONFIRMATION_METRICS",
+      "purpose": "Confirm the already selected direction and horizon without retuning or alternate search.",
+      "authority": "confirmation evidence only",
+      "runtime_authority": false,
+      "main_artifacts": [
+        "TASK039D2_DIRECTIONAL_CONFIRMATION_LEDGER.json (private, hash-bound)",
+        "docs/task_reports/TASK-039D2_RESULT.json",
+        "docs/task_reports/TASK-039D2_DIRECTIONAL_CONFIRMATION_SUMMARY.json"
+      ]
+    },
+    {
+      "layer": "HISTORICAL_E1_CONSTRUCTION_AUTHORITY",
+      "purpose": "Expose reference-bound numeric construction evidence to T0/T1/T1-B/T2 while keeping values private.",
+      "authority": "approved construction evidence",
+      "runtime_authority": false,
+      "roles_per_relation": 11,
+      "relation_count": 42,
+      "binding_count": 462,
+      "main_artifacts": [
+        "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_MANIFEST.json",
+        "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_COHORT.json",
+        "TASK039E1_PRIVATE_CONSTRUCTION_EVIDENCE_LEDGER.json (private, outside Git)"
+      ]
+    },
+    {
+      "layer": "CURRENT_UTILITY_RUNTIME_AUTHORITY",
+      "purpose": "Govern frozen COMMON-42 utility execution under a new normal-only numeric identity.",
+      "authority": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+      "runtime_authority": true,
+      "roles_per_relation": 10,
+      "relation_count": 42,
+      "record_count": 420,
+      "selected_horizon_location": "COMMON relation/rule descriptor, outside the 10-role private numeric registry",
+      "main_artifacts": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZATION_PUBLIC_RECEIPT.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZED_RECEIPT.json",
+        "private normal-only registry (outside Git, hash-bound)"
+      ]
+    },
+    {
+      "layer": "SOURCE_CENSUS_SUPPLEMENT",
+      "purpose": "Provide source-event census calibration only for three sources outside the nine-source COMMON relation footprint.",
+      "authority": "TASK039E3_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1",
+      "runtime_authority": "cross-source isolation event census only",
+      "source_count": 3,
+      "roles_per_source": 2,
+      "record_count": 6,
+      "main_artifact": "docs/task_reports/TASK-039E3_R2R_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1_MATERIALIZATION_PUBLIC_RECEIPT.json"
+    }
+  ],
+  "profiling_field_catalog": [
+    {
+      "field_name": "source_noise_scale",
+      "meaning": "Robust scale of file-local one-step source differences pooled across train1 and train2.",
+      "unit": "native source feature unit",
+      "source_split": "normal train1+train2",
+      "derivation_symbol": "multi_file_robust_scale_v1",
+      "formula": "max(1.4826 * MAD(file-local dx pooled across files), 1e-12)",
+      "use": "intermediate calibration scale; not a construction or current runtime role",
+      "missing_invalid_handling": "nonfinite input fails; no cross-file difference is formed"
+    },
+    {
+      "field_name": "nontrivial_amplitude_count",
+      "meaning": "Number of five-second pre/post median step amplitudes with amplitude strictly greater than source_noise_scale.",
+      "unit": "count",
+      "source_split": "normal train1+train2",
+      "derivation_symbol": "derive_multi_file_source_parameters_v1",
+      "use": "source calibration support gate",
+      "missing_invalid_handling": "fewer than 20 produces unsupported source parameters and null threshold/tolerance"
+    },
+    {
+      "field_name": "source_step_threshold",
+      "meaning": "Minimum absolute source pre/post median step amplitude accepted as an event.",
+      "unit": "native source feature unit",
+      "source_split": "normal train1+train2",
+      "derivation_symbol": "derive_multi_file_source_parameters_v1",
+      "formula": "max(5 * source_noise_scale, Q75_linear(retained nontrivial amplitudes))",
+      "use": "profiling event extraction; historical construction binding; current runtime event qualification",
+      "missing_invalid_handling": "requires at least 20 retained amplitudes; current runtime requires finite positive float"
+    },
+    {
+      "field_name": "source_stability_tolerance",
+      "meaning": "Allowed deviation from the pre/post source median when testing sustained stability.",
+      "unit": "native source feature unit",
+      "source_split": "normal train1+train2",
+      "derivation_symbol": "derive_multi_file_source_parameters_v1",
+      "formula": "max(3 * source_noise_scale, 0.10 * source_step_threshold)",
+      "use": "profiling event extraction; historical construction binding; current runtime event qualification",
+      "missing_invalid_handling": "current runtime requires finite nonnegative float"
+    },
+    {
+      "field_name": "target_noise_scale",
+      "meaning": "Robust scale of file-local one-step target differences, reused for all relations sharing that target.",
+      "unit": "native target feature unit",
+      "source_split": "normal train1+train2",
+      "derivation_symbol": "derive_multi_file_target_scale_v1",
+      "formula": "max(1.4826 * MAD(file-local dy pooled across files), 1e-12)",
+      "use": "response direction classification; effect normalization; historical construction binding; current runtime response test",
+      "missing_invalid_handling": "nonfinite input fails; current runtime requires finite positive float"
+    },
+    {
+      "field_name": "usable_response_count",
+      "meaning": "Count of isolated source events whose target baseline and selected-horizon response windows are complete.",
+      "unit": "count",
+      "source_split": "train1/train2 separately and pooled; train3 separately during confirmation",
+      "derivation_symbol": "_direction_statistics / confirm_synthetic_relations_v1 and real counterpart",
+      "use": "fit and confirmation support gates",
+      "missing_invalid_handling": "right-censored windows are counted separately and never imputed"
+    },
+    {
+      "field_name": "directional_consistency",
+      "meaning": "Fraction of usable responses exceeding the target-noise threshold in the selected target direction.",
+      "unit": "unitless fraction",
+      "source_split": "train1, train2, pooled train1+train2, and train3 confirmation",
+      "derivation_symbol": "_direction_statistics / TASK039D2ConfirmationResultV1",
+      "formula": "selected directional matches / usable responses, else 0 when usable is 0",
+      "use": "direction/horizon ranking and fit/confirmation gates",
+      "missing_invalid_handling": "validated in [0,1]"
+    },
+    {
+      "field_name": "opposite_directional_consistency",
+      "meaning": "Fraction of usable responses exceeding the target-noise threshold in the direction opposite the selected direction.",
+      "unit": "unitless fraction",
+      "source_split": "train1, train2, and train3 confirmation",
+      "derivation_symbol": "_direction_statistics / TASK039D2ConfirmationResultV1",
+      "use": "strict selected-direction-greater-than-opposite check",
+      "missing_invalid_handling": "equality does not pass"
+    },
+    {
+      "field_name": "median_target_response",
+      "meaning": "Median of target response deltas for usable events.",
+      "unit": "native target feature unit",
+      "source_split": "pooled normal train1+train2 or train3 confirmation",
+      "derivation_symbol": "_direction_statistics / TASK039D2ConfirmationResultV1",
+      "use": "intermediate robust effect calculation and retained evidence",
+      "missing_invalid_handling": "null when no usable responses"
+    },
+    {
+      "field_name": "robust_effect_ratio",
+      "meaning": "Absolute median target response divided by target_noise_scale.",
+      "unit": "unitless ratio",
+      "source_split": "pooled normal train1+train2 or train3 confirmation",
+      "derivation_symbol": "_direction_statistics / TASK039D2ConfirmationResultV1",
+      "formula": "abs(median_target_response) / target_noise_scale, else 0",
+      "use": "direction/horizon rank tie-break and fit/confirmation gates",
+      "missing_invalid_handling": "must be finite and nonnegative"
+    },
+    {
+      "field_name": "selected_horizon_seconds",
+      "meaning": "One preregistered delay horizon selected during train1/train2 profiling for a directional relation.",
+      "unit": "seconds",
+      "source_split": "normal train1+train2",
+      "derivation_symbol": "rank_direction_horizon_v1",
+      "allowed_values": [1, 5, 10, 30, 60],
+      "use": "relation semantic identity/descriptor and target response scheduling",
+      "missing_invalid_handling": "no eligible record gives direction_unstable; train3 cannot change the selected horizon"
+    }
+  ],
+  "selection_and_confirmation_gates": {
+    "train12_fit": {
+      "total_usable_minimum": 20,
+      "train1_usable_minimum": 5,
+      "train2_usable_minimum": 5,
+      "pooled_consistency_minimum": 0.7,
+      "train1_consistency_minimum": 0.6,
+      "train2_consistency_minimum": 0.6,
+      "robust_effect_ratio_minimum": 2.0,
+      "all_conditions_required": true,
+      "selected_before_gate": true,
+      "lower_ranked_fallback": false
+    },
+    "train3_confirmation": {
+      "usable_response_minimum": 5,
+      "directional_consistency_minimum": 0.6,
+      "robust_effect_ratio_minimum": 1.0,
+      "selected_consistency_strictly_greater_than_opposite": true,
+      "fit_parameters_reused_without_retuning": true,
+      "alternative_horizon_search": false,
+      "opposite_direction_search": false
+    }
+  },
+  "construction_numeric_role_catalog": [
+    {
+      "role": "source_step_threshold",
+      "unit": "native source feature unit",
+      "origin": "d1_fit_derived_source_parameter",
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "source_stability_tolerance",
+      "unit": "native source feature unit",
+      "origin": "d1_fit_derived_source_parameter",
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "target_noise_scale",
+      "unit": "native target feature unit",
+      "origin": "d1_fit_derived_target_parameter",
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "selected_delay_horizon_seconds",
+      "unit": "seconds",
+      "origin": "d1_fit_selected_horizon",
+      "construction_included": true,
+      "current_runtime_registry_included": false,
+      "current_runtime_location": "COMMON relation/rule descriptor"
+    },
+    {
+      "role": "source_pre_window_seconds",
+      "unit": "seconds",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 5,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "source_post_window_seconds",
+      "unit": "seconds",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 5,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "minimum_source_stability_fraction",
+      "unit": "unitless fraction",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 0.8,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "source_refractory_seconds",
+      "unit": "seconds",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 10,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "cross_source_isolation_radius_seconds",
+      "unit": "seconds",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 2,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "target_baseline_window_seconds",
+      "unit": "seconds",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 5,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    },
+    {
+      "role": "target_response_window_seconds",
+      "unit": "seconds",
+      "origin": "d0_preregistered_window_constant",
+      "frozen_value": 3,
+      "construction_included": true,
+      "current_runtime_registry_included": true
+    }
+  ],
+  "evidence_volumes": {
+    "historical_e1": {
+      "relations": 42,
+      "roles_per_relation": 11,
+      "bindings": 462,
+      "manifest_entries": 42,
+      "private_values_public": false,
+      "runtime_authority": false,
+      "verified_from": "docs/task_reports/TASK-039E1_MATERIALIZATION_RESULT.json and TASK-039E1_CONSTRUCTION_EVIDENCE_MANIFEST.json"
+    },
+    "current_main_runtime": {
+      "relations": 42,
+      "roles_per_relation": 10,
+      "records": 420,
+      "unique_logical_keys": 420,
+      "data_derived_records": 126,
+      "frozen_constant_records": 294,
+      "common_sources": 9,
+      "common_targets": 10,
+      "feature_union": 19,
+      "private_values_public": false,
+      "verified_from": "normal-only materialization and independent-audit reports"
+    },
+    "source_census_supplement": {
+      "sources_outside_common_footprint": 3,
+      "roles_per_source": 2,
+      "records": 6,
+      "references": 6,
+      "purpose": "cross-source isolation event census only",
+      "private_values_public": false
+    }
+  },
+  "serialization_and_integrity": {
+    "historical_e1_reference": "PrivateNumericBindingV1.numeric_reference hashes relation identity, role, numeric value, value origin, source/target parameter record hashes, D1 fit evidence hash, D2 confirmation evidence hash, and window constant bundle hash.",
+    "historical_e1_public_projection": "Public manifest exposes role/reference identities and upstream hashes but excludes numeric values.",
+    "current_runtime_reference": "new_reference_identity_v1 is value-independent and binds authority version, COMMON authority, relation binding, semantic execution hash, role, calibration policy, and normal-input identity set.",
+    "current_runtime_record_hash": "Each private registry record additionally binds the exact numeric value and provenance identity; the registry is self-hashed and closed to exactly 420 logical keys.",
+    "serialization": "Canonical JSON hashing is used with nonfinite values rejected; no explicit numeric rounding is applied before private record serialization.",
+    "custody": "Private registries and locators remain outside Git; public receipts expose hashes, counts, and validation outcomes only.",
+    "stale_or_mismatched_load_prevention": [
+      "exact authority-definition and calibration-policy hashes",
+      "exact train1/train2 identities",
+      "exact COMMON-42 relation binding and semantic-execution hashes",
+      "exact 420-key role/reference closure",
+      "record-level and registry-level self-hashes",
+      "runtime resolver checks exact expected main and supplement registry hashes",
+      "runtime resolver checks every rule reference against each private record reference",
+      "selected horizon checked in the canonical rule descriptor"
+    ]
+  },
+  "construction_runtime_comparison": {
+    "classification": "SEPARATE_BY_DESIGN",
+    "historical_construction": "Eleven value-bound references per relation were materialized from frozen D1/D2 ledgers and preregistered constants. They authorized construction evidence only and explicitly denied runtime authority.",
+    "current_runtime": "Ten newly identified relation-bound references per relation were recalibrated from exact normal train1/train2 using the frozen method; the horizon remains in the frozen COMMON relation descriptor.",
+    "identity_relationship": "No historical E1 or historical registry identity was restored or reused.",
+    "numeric_equality_relationship": "The new values were not proven identical to historical E1; documentation explicitly forbids that claim.",
+    "method_relationship": "Method-continuous: the same frozen source/target calibration functions and exact normal split identities are used under a new authority version.",
+    "frozen_d1_execution_authority": "Frozen D1 used the audited new normal-only MAIN registry for COMMON-42 plus the six-record supplement only for full source-event census, with selected horizons from canonical rule descriptors.",
+    "risk_level": "MEDIUM_SEMANTIC_INTERPRETATION_RISK",
+    "risk_explanation": "Execution is authority-bound, but describing it as byte-identical historical construction authority would be false. The scientific result is for COMMON-42 structure under the new calibration authority."
+  },
+  "traceability": [
+    {
+      "scope": "source_step_threshold and source_stability_tolerance",
+      "classification": "FULLY_TRACEABLE",
+      "chain": "normal train1/train2 identities -> derive_multi_file_source_parameters_v1 -> source identity -> relation binding -> private record/reference hash -> canonical rule reference -> runtime resolver"
+    },
+    {
+      "scope": "target_noise_scale",
+      "classification": "FULLY_TRACEABLE",
+      "chain": "normal train1/train2 identities -> derive_multi_file_target_scale_v1 -> target identity -> relation binding -> private record/reference hash -> canonical rule reference -> runtime resolver"
+    },
+    {
+      "scope": "seven window/event constants",
+      "classification": "FULLY_TRACEABLE",
+      "chain": "frozen protocol bundle -> PreregisteredWindowConstantBundleV1 -> calibration policy hash -> relation-bound private record/reference -> runtime authority"
+    },
+    {
+      "scope": "selected horizon",
+      "classification": "FULLY_TRACEABLE_WITH_SEPARATE_DESCRIPTOR",
+      "chain": "train1/train2 directional fit record -> train3 confirmation without search -> confirmed relation -> COMMON semantic descriptor -> runtime opportunity/rule"
+    },
+    {
+      "scope": "source census supplement",
+      "classification": "FULLY_TRACEABLE_PURPOSE_LIMITED",
+      "chain": "exact normal train1/train2 -> same source calibration function -> three-source/two-role private supplement -> combined source-census contract -> event census only"
+    }
+  ],
+  "d0_threshold_separation": {
+    "relation_numeric_authority": "source event amplitude/stability, target response scale, selected delay horizon, and event/window constants",
+    "d0_numeric_authority": "PCA-SPE detector calibration threshold",
+    "shared_authority": false,
+    "shared_tuning": false,
+    "audit_statement": "Relation numeric authority must not be described as D0 threshold optimization."
+  },
+  "discrepancies_and_risks": [
+    {
+      "id": "NUM-001",
+      "severity": "HIGH_IF_MISSTATED",
+      "finding": "Current utility runtime authority is a new normal-only authority, not recovered historical E1.",
+      "evidence": "NORMAL_ONLY_AUTHORITY protocol and materialization reports explicitly prohibit historical-restoration and value-identity claims.",
+      "current_code_status": "CONTROLLED",
+      "recommended_documentation": "State that frozen D1 evaluates COMMON-42 executable structure under a newly versioned calibration authority."
+    },
+    {
+      "id": "NUM-002",
+      "severity": "MEDIUM",
+      "finding": "Construction has 11 bindings per relation while runtime registry has 10; selected horizon moved to the canonical relation descriptor rather than disappearing.",
+      "evidence": "NUMERIC_ROLE_ORDER versus UTILITY_NUMERIC_ROLES and protocol-v4 rule descriptors.",
+      "current_code_status": "SEPARATE_BY_DESIGN",
+      "recommended_documentation": "Show the horizon branch explicitly in numeric lineage diagrams."
+    },
+    {
+      "id": "NUM-003",
+      "severity": "MEDIUM",
+      "finding": "Runtime private records do not carry a first-class unit field; units are encoded by closed role names, formulas, and exact-type checks.",
+      "evidence": "private registry record schema and CalibrationRoleSpecV1",
+      "current_code_status": "TRACEABLE_BUT_SCHEMA_IMPLICIT",
+      "recommended_documentation": "Document native-feature-unit versus seconds versus unitless roles; do not change frozen authority in this audit."
+    },
+    {
+      "id": "NUM-004",
+      "severity": "LOW",
+      "finding": "The generic CalibrationParameterV1 contract and its lag/tolerance/persistence vocabulary are not the concrete frozen D1 utility registry schema.",
+      "evidence": "current D1 resolver consumes the dedicated 10-role normal-only registry and canonical descriptors.",
+      "current_code_status": "PARALLEL_CONTRACT_VOCABULARY",
+      "recommended_documentation": "Avoid implying the generic parameter registry is the frozen D1 numeric authority."
+    },
+    {
+      "id": "NUM-005",
+      "severity": "LOW",
+      "finding": "The six-record supplement is source-census-only and must not be counted as relation-rule numeric authority.",
+      "evidence": "source-census supplement purpose and final report",
+      "current_code_status": "PURPOSE_GUARDED",
+      "recommended_documentation": "Report 420 MAIN relation references and six supplementary census references separately."
+    }
+  ],
+  "public_artifact_evidence": [
+    {
+      "path": "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_MANIFEST.json",
+      "artifact_hash": "ee8c5b7e9895f5f6afdd1be2563244e3b82dca9c3eadca502dd522940931e3ae",
+      "evidence": "42 manifest entries and 462 construction numeric bindings; runtime_authority false"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E1_CONSTRUCTION_EVIDENCE_COHORT.json",
+      "artifact_hash": "4eb4da843a61a9c72aba59edcdf90e49766fc571af7eade14d500b3d04d363d4",
+      "evidence": "42 approved construction evidence records and private-value exclusion"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json",
+      "artifact_hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff",
+      "evidence": "42 COMMON relations, 420 utility roles, and need for separately frozen numeric authority"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZATION_PUBLIC_RECEIPT.json",
+      "artifact_hash": "3054bf3eaf50bdc4297652a475b3b465e59b449810493ac775fed0bcf7567ced",
+      "evidence": "new authority lineage, 42 relations, 420 records, historical identities not restored"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_MATERIALIZED_RECEIPT.json",
+      "artifact_hash": "1f319fd7283040a4e866df3ac7d679e896142162084209bf00962947256c2bf1",
+      "evidence": "independent materialized-authority audit PASS"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_SOURCE_CENSUS_SUPPLEMENT_V1_MATERIALIZATION_PUBLIC_RECEIPT.json",
+      "artifact_hash": "56e455d69823e87b7fa217c6ee7d8d86f5d08b7fc5aaf9865ff1241c6798d16e",
+      "evidence": "three sources x two source-calibration roles = six purpose-limited records"
+    }
+  ],
+  "source_symbols": [
+    {
+      "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+      "symbols": [
+        "multi_file_robust_scale_v1",
+        "derive_multi_file_source_parameters_v1",
+        "derive_multi_file_target_scale_v1",
+        "rank_direction_horizon_v1",
+        "selected_fit_gate_v1",
+        "train3_confirmation_gate_v1"
+      ]
+    },
+    {
+      "path": "src/paperworks/profiling/task039d1_fit_v1.py",
+      "symbols": [
+        "optimized_target_response_v1",
+        "_direction_statistics",
+        "evaluate_arm_blind_fit_v1"
+      ]
+    },
+    {
+      "path": "src/paperworks/profiling/task039d2_confirmation_v1.py",
+      "symbols": [
+        "D1SourceParameterRecordV1",
+        "D1TargetParameterRecordV1",
+        "ConfirmableDirectionalRelationV1",
+        "TASK039D2ConfirmationResultV1",
+        "apply_exact_confirmation_gate_v1"
+      ]
+    },
+    {
+      "path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+      "symbols": [
+        "PreregisteredWindowConstantBundleV1",
+        "PrivateNumericBindingV1",
+        "PrivateConstructionEvidenceV1",
+        "_derive_numeric_bindings",
+        "materialize_from_ledgers_v1"
+      ]
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py",
+      "symbols": [
+        "CalibrationRoleSpecV1",
+        "build_common42_authority_v1",
+        "derive_source_parameters_normal_only_v1",
+        "derive_target_scale_normal_only_v1",
+        "new_reference_identity_v1",
+        "calibrate_all_role_values_v1",
+        "build_private_registry_document_v1",
+        "validate_private_registry_document_v1"
+      ]
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py",
+      "symbols": [
+        "build_real_private_numeric_resolver_v1",
+        "validate_real_private_numeric_resolver_v1",
+        "enumerate_real_full_census_v1",
+        "execute_real_rule_v1"
+      ]
+    }
+  ],
+  "test_evidence": [
+    "tests/test_task039d0_relation_profiling_protocol.py",
+    "tests/test_task039d1_fit_engine.py",
+    "tests/test_task039d1_fit_contracts.py",
+    "tests/test_task039d1_independent_replay.py",
+    "tests/test_task039d2_no_retuning.py",
+    "tests/test_task039d2_real_engine.py",
+    "tests/test_task039d2_real_contracts.py",
+    "tests/test_task039e3_r2r_utility_normal_only_authority_v1.py",
+    "tests/test_task039e3_r2r_utility_normal_only_authority_v1_independent_science_audit.py",
+    "tests/test_task039e3_r2r_utility_normal_only_authority_v1_materialized_public_audit.py",
+    "tests/test_task039e3_r2r_utility_source_census_supplement_v1_independent.py",
+    "tests/test_task039e3_r2r_utility_numeric_registry_builder_v2.py"
+  ],
+  "claim_boundaries": {
+    "supported": [
+      "The profiling parameters and current runtime parameters derive from exact normal train1/train2 under frozen deterministic formulas.",
+      "Train3 confirmation reuses fit parameters and does not retune them.",
+      "Every current runtime role/reference has relation, method, input-identity, artifact, and hash provenance.",
+      "The frozen D1 utility runtime used the new normal-only authority rather than caller literals or LLM-proposed values."
+    ],
+    "not_supported": [
+      "The current runtime registry is the historical E1 registry.",
+      "Current runtime values were proven identical to historical construction values.",
+      "The selected horizon or numeric criteria are scientifically optimal.",
+      "Relation numeric authority is the PCA-SPE detector threshold.",
+      "A normal delayed-response relation is causal or physically proven.",
+      "The current calibration generalizes to held-out data."
+    ]
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "profiling_recomputations": 0,
+    "numeric_recalibrations": 0,
+    "private_registry_reads": 0,
+    "private_numeric_values_exposed": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0
+  }
+}

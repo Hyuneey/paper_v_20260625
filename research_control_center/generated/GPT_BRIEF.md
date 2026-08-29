@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=40f24ed4a853ec4f3a256894cbdda822c71b00c19e67ca8d0959897852e6584c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f09c6670fd3d16b398f4d2cfedbc16f48458d9a365b3d0b2611082eb8a8254e authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
@@ -35,24 +35,26 @@ HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unsc
 
 ## Data and split boundary
 
-The authority is HAI 23.05 with P1 Boiler as the selected process. train1/train2
-provide normal fit evidence; train3 is shared by one-way relation confirmation and D0
-threshold calibration; train4 is a normal guard / D0 sanity split. test1 is INNER
-development/pilot evidence, not final validation. The attempted OUTER path read zero test2
-feature bytes and no labels and produced no prediction, metric, or scientific outcome.
-
-No verified leakage was found. D0 and D2 durably persist predictions before labels. D1
-builds and validates a label-blind self-hashed object before labels, but the public file is
-written after metrics; this is a governance evidence gap, not proof of label-driven decisions.
-D2 V2 was explicitly informed by prior INNER outcomes and remains pilot-development evidence.
+HAI 23.05 P1 is the selected scope. train1/train2 provide normal fit evidence; train3
+performs one-way relation confirmation and separate D0 calibration; train4 is a normal guard.
+test1 is pilot evidence. OUTER read zero test2 bytes or labels and produced no outcome.
+No verified leakage was found. D0/D2 durably freeze predictions before labels; D1 has a
+label-blind object but a documented durable-file ordering gap. D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-The P1 universe has 144 directed candidates. META ranks metadata priors; STAT ranks
-normal lagged association; GDN ranks embedding-cosine learned-graph candidates. Attention
-is internal message passing, not ranking evidence, and post-hoc XAI is absent. Three Top-20
-views form an unscored 47-pair union. These are proposals, not confirmed or causal relations;
-GDN contribution remains unvalidated.
+The 144-pair P1 universe is ranked separately by META metadata priors, STAT normal lagged
+association, and GDN embedding-cosine graph edges. Three Top-20 views form an unscored
+47-pair union. Attention is not ranking evidence; no post-hoc XAI is used. These are proposals,
+not causal relations, and GDN contribution remains unvalidated.
+
+## Relation and numeric-authority boundary
+
+The relation lineage is 47 pairs → 94 source directions → 25/45 fit-supported → 23/42
+train3-confirmed. Confirmation cannot search or retune. E1 has 462 construction-only
+references; frozen D1 uses a separate 420-reference normal-only authority plus descriptor
+horizon. All 420 shared values matched E1, but authority identities remain separate. Repeated
+normal response is not causal proof or numeric optimality.
 
 ## How we got here
 
@@ -137,12 +139,14 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain META as reviewed metadata domain-prior candidate evidence.
-- Explain STAT as normal directional lagged-association candidate evidence.
-- Explain GDN's technical learned-graph candidate contribution.
-- Explain why learned graph and attention are different authorities.
-- Explain why the 47-pair union is not a confirmed relation set.
-- Approve or defer starting ARCH-003.
+- Explain candidate versus confirmed relation.
+- Explain source event and target response.
+- Explain the selected horizon boundary.
+- Explain support, consistency, and effect.
+- Explain why train3 is one-way confirmation.
+- Explain numeric authority.
+- Explain construction versus runtime numeric authority.
+- Approve or defer starting ARCH-004.
 
 ## Source-policy boundary
 
@@ -153,9 +157,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**
+Management: **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
 
-Following architecture review: **ARCH-003 — Relation Profiling & Numeric Authority Deep Audit**
+Following architecture review: **ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

@@ -1,0 +1,324 @@
+{
+  "task_id": "ARCH-003",
+  "agent_role": "Event Detection & Relation Profiling Auditor",
+  "status": "PASS_WITH_CONSERVATIVE_BOUNDARIES_AND_ONE_TIMESTAMP_CONTRACT_NOTE",
+  "source_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "inspection_mode": "read_only_git_object_and_public_safe_frozen_artifact_inspection"
+  },
+  "scope": {
+    "included": [
+      "source parameter derivation",
+      "source-event extraction",
+      "same-source refractory clustering",
+      "cross-source event isolation",
+      "target-response measurement",
+      "train1/train2 per-file and pooled profiling statistics",
+      "direction and horizon preselection",
+      "fit-gate semantics",
+      "STAT-discovery implementation separation"
+    ],
+    "excluded": [
+      "private numeric values",
+      "train3 confirmation arithmetic beyond the frozen interface",
+      "construction/runtime numeric binding",
+      "new profiling execution",
+      "test2",
+      "scientific interpretation beyond the frozen claim boundary"
+    ]
+  },
+  "verdicts": {
+    "source_event_extraction_mapped": "VERIFIED",
+    "target_response_measurement_mapped": "VERIFIED",
+    "file_local_processing": "VERIFIED",
+    "normal_train1_train2_only": "VERIFIED",
+    "refractory_and_isolation_semantics": "VERIFIED",
+    "per_file_and_pooled_evidence": "VERIFIED",
+    "stat_discovery_separated": "VERIFIED",
+    "causal_interpretation": "NOT_SUPPORTED"
+  },
+  "source_parameter_derivation": {
+    "input": "each frozen source column from normal hai-train1.csv and hai-train2.csv",
+    "finite_input_contract": "the authorized loader parses only the frozen 24 P1 source/target columns and rejects malformed, nonnumeric, or nonfinite cells; no imputation occurs",
+    "file_boundary": "first differences and five-sample windows are computed within each file only; no cross-file difference or window exists",
+    "noise_scale": "max(1.4826 * MAD(all within-file one-step differences pooled after file-local differencing), 1e-12)",
+    "candidate_amplitude": "abs(median(x[t:t+5]) - median(x[t-5:t]))",
+    "nontrivial_amplitude_rule": "candidate_amplitude > source_noise_scale",
+    "minimum_nontrivial_amplitudes": 20,
+    "q75": "linear interpolation at position 0.75 * (n - 1)",
+    "source_step_threshold": "max(5 * source_noise_scale, Q75_linear(nontrivial_amplitudes))",
+    "source_stability_tolerance": "max(3 * source_noise_scale, 0.10 * source_step_threshold)",
+    "split_influence": "train1/train2 only; train3 does not influence these parameters",
+    "symbols": [
+      "paperworks.v6.relation_profiling_protocol_v1.multi_file_robust_scale_v1",
+      "paperworks.v6.relation_profiling_protocol_v1.q75_linear_v1",
+      "paperworks.v6.relation_profiling_protocol_v1.derive_multi_file_source_parameters_v1"
+    ]
+  },
+  "source_event_extraction": {
+    "signal_handling": "all 12 frozen sources are treated as finite numeric continuous-step signals under one common detector; there is no separate discrete-source branch",
+    "event_index_semantics": "t is the boundary between the five preceding samples x[t-5:t] and the five following samples x[t:t+5]",
+    "pre_level": "median(x[t-5:t])",
+    "post_level": "median(x[t:t+5])",
+    "signed_amplitude": "post_level - pre_level",
+    "threshold_rule": "abs(signed_amplitude) >= source_step_threshold; equality passes",
+    "direction_rule": "step_up when signed_amplitude > 0, otherwise step_down after zero and below-threshold amplitudes have already been rejected",
+    "stability_rule": "at least 4 of 5 samples in each pre and post window must be within source_stability_tolerance of its median; equality to tolerance passes",
+    "candidate_index_range": "t from 5 through len(sequence)-5 inclusive",
+    "missing_nonfinite_handling": "the loader and sequence normalization fail closed; no missing-value imputation, clipping, or event repair",
+    "boundary_handling": "events without complete five-sample pre and post source windows are not candidates",
+    "file_boundary_handling": "train1 and train2 are scanned independently",
+    "continuous_discrete_handling": "one sustained-continuous-step implementation is used for control_command, actuator_feedback, and actuator_state roles; no role-specific event formula is present",
+    "optimized_frozen_path": "paperworks.profiling.task039d1_execution_optimization_v1.extract_sustained_step_events_linear_v1",
+    "semantic_reference_path": "paperworks.v6.continuous_step_protocol_v1.extract_sustained_step_events_v1",
+    "semantic_parity": "passed in the frozen complexity-recovery receipt and independently reproduced in the D1 final audit"
+  },
+  "refractory_clustering": {
+    "seconds": 10,
+    "scope": "same source and file local, across both step directions before later direction filtering",
+    "linkage": "single-link: the next event joins the current cluster when its index is at most 10 samples after the immediately preceding event in that cluster",
+    "retention": "one event per cluster: largest absolute step amplitude, with earliest event index as the exact tie-break",
+    "duplicate_prevention": "overlapping/nearby detections collapse to one retained event; single-link chains can span more than 10 seconds end-to-end",
+    "symbol": "paperworks.v6.continuous_step_protocol_v1.cluster_step_events_v1"
+  },
+  "cross_source_isolation": {
+    "radius_seconds": 2,
+    "boundary": "inclusive",
+    "source_context": "all 12 frozen source streams in the same file",
+    "rule": "a retained event is isolated only when no retained event from any other source has an index within [t-2, t+2]",
+    "same_source_events": "do not disqualify isolation; same-source proximity was already handled by refractory clustering",
+    "frozen_execution_symbol": "paperworks.profiling.task039d1_execution_optimization_v1.classify_all_source_isolation_indexed_v1",
+    "semantic_reference_symbol": "paperworks.v6.continuous_step_protocol_v1.classify_event_isolation_v1",
+    "semantic_parity": "passed; inclusive boundaries at -2 and +2 were explicitly covered by synthetic parity fixtures"
+  },
+  "event_pipeline_pseudocode": [
+    "validate every source value as finite",
+    "derive one normal-only source noise scale, step threshold, and stability tolerance from train1/train2",
+    "for each fit file independently and each complete five-before/five-after index t",
+    "  compute pre and post medians and signed amplitude",
+    "  retain only threshold-passing candidates with at least 0.80 stable fractions on both sides",
+    "  label retained candidate step_up or step_down from amplitude sign",
+    "single-link cluster each source/file event stream with successive gaps <= 10",
+    "retain largest absolute amplitude per cluster, earliest t on an exact tie",
+    "classify each retained event against all other frozen sources using inclusive +/-2 isolation",
+    "later, for each source direction, use only retained isolated events with that direction"
+  ],
+  "target_parameter_derivation": {
+    "input": "each frozen target column from normal train1 and train2",
+    "noise_scale": "max(1.4826 * MAD(all within-file one-step target differences pooled after file-local differencing), 1e-12)",
+    "scope": "computed once per target and reused across every candidate pair and arm involving that target",
+    "not_pair_specific": true,
+    "not_arm_specific": true,
+    "train3_influences_scale": false,
+    "symbol": "paperworks.v6.relation_profiling_protocol_v1.derive_multi_file_target_scale_v1"
+  },
+  "target_response_measurement": {
+    "source_event_filter": "retained isolated event whose source direction equals the directional opportunity under evaluation",
+    "horizons_seconds": [1, 5, 10, 30, 60],
+    "baseline": "median(target[t-5:t])",
+    "response_level": "median(target[t+h:t+h+3])",
+    "response": "response_level - baseline",
+    "unit": "same physical unit as the target signal",
+    "normalization": "no response normalization; target_noise_scale is used only for direction classification and the robust-effect ratio",
+    "increase_match": "response > target_noise_scale",
+    "decrease_match": "response < -target_noise_scale",
+    "neutral": "response in the closed interval [-target_noise_scale, +target_noise_scale] matches neither direction",
+    "right_censor_rule": "when t < 5 or t+h+3 exceeds the file length, mark right-censored and do not impute or include that response",
+    "file_boundary": "target windows never cross train files",
+    "frozen_execution_symbol": "paperworks.profiling.task039d1_fit_v1.optimized_target_response_v1",
+    "semantic_reference_symbol": "paperworks.v6.continuous_step_protocol_v1.evaluate_target_response_v1"
+  },
+  "per_file_and_pooled_statistics": {
+    "evaluated_grid_per_source_direction": "2 target-response directions x 5 frozen horizons = 10 records",
+    "per_file": {
+      "usable_response_count": "number of non-right-censored responses from retained isolated source events of the chosen source direction",
+      "right_censored_count": "chosen-direction isolated source events lacking a complete target response window",
+      "directional_match_count": "usable responses strictly beyond target_noise_scale in the evaluated target direction",
+      "opposite_direction_match_count": "usable responses strictly beyond target_noise_scale in the opposite direction",
+      "selected_directional_consistency": "directional_match_count / usable_response_count, or 0 when no usable response",
+      "opposite_directional_consistency": "opposite_direction_match_count / usable_response_count, or 0 when no usable response"
+    },
+    "pooled": {
+      "pooling": "concatenate usable train1 and train2 responses after computing file-local windows",
+      "total_usable_responses": "sum of train1 and train2 usable responses",
+      "pooled_directional_consistency": "sum of selected-direction match counts / total usable responses, or 0 when empty",
+      "pooled_median_response": "median of all usable train1/train2 responses",
+      "pooled_robust_effect_ratio": "abs(pooled_median_response) / target_noise_scale, or 0 when no usable response"
+    },
+    "important_non_equivalence": "file identities are preserved for support and direction-consistency gates; pooled evidence does not replace the per-file requirements",
+    "symbol": "paperworks.profiling.task039d1_fit_v1._direction_statistics"
+  },
+  "direction_horizon_selection_and_fit_gate": {
+    "eligibility_before_ranking": "the selected target direction must have strictly greater consistency than its opposite direction in both train1 and train2; equality fails",
+    "ranking": [
+      "highest pooled directional consistency",
+      "highest pooled robust effect ratio",
+      "shortest horizon",
+      "target direction lexical exact tie-break"
+    ],
+    "selection_order": "choose one target-direction/horizon record first for each source direction, then apply the fit gate only to that record",
+    "fit_gate": {
+      "total_usable_responses_minimum": 20,
+      "train1_usable_responses_minimum": 5,
+      "train2_usable_responses_minimum": 5,
+      "pooled_directional_consistency_minimum": 0.70,
+      "train1_directional_consistency_minimum": 0.60,
+      "train2_directional_consistency_minimum": 0.60,
+      "pooled_robust_effect_ratio_minimum": 2.0,
+      "strict_direction_agreement_required": true,
+      "all_conditions_required": true
+    },
+    "lower_ranked_fallback": false,
+    "pair_semantics": "step_up and step_down are evaluated independently, so a source-target candidate pair can yield zero, one, or two fit-supported directional opportunities",
+    "symbols": [
+      "paperworks.v6.relation_profiling_protocol_v1.rank_direction_horizon_v1",
+      "paperworks.v6.relation_profiling_protocol_v1.selected_fit_gate_v1",
+      "paperworks.v6.continuous_step_protocol_v1.fit_support_gate_v1"
+    ]
+  },
+  "frozen_execution_evidence": {
+    "execution_code_commit": "edf2727d33d30f615aa2be48756fc209afdcd95c",
+    "fit_result_hash": "a2767945ef3cec5fa80c3e131b98fdc8a1eeecaa69a97461988d8da90a4e06d3",
+    "execution_receipt_hash": "51d6dacf27f4b6779c88074f4978e8578fc4541d71b4e8077a78e591d2ff24a2",
+    "final_audit_hash": "7004ad2bacd738098bf241638a51abb1cbaae4412b3a9edee78d81bd1a29212d",
+    "candidate_pairs_evaluated": 47,
+    "directional_opportunities": 94,
+    "fit_supported_pairs": 25,
+    "fit_supported_directions": 45,
+    "direction_unstable_directions": 17,
+    "fit_unsupported_directions": 32,
+    "source_parameter_records": 12,
+    "supported_source_parameter_records": 12,
+    "target_parameter_records": 12,
+    "lower_ranked_fallback_used": false,
+    "train1_accessed": true,
+    "train2_accessed": true,
+    "train3_accessed_during_fit": false,
+    "train4_test_labels_attacks_accessed": false,
+    "raw_values_windows_or_event_timestamps_publicly_persisted": false,
+    "independent_replay": "passed with event clustering, all-source isolation, support, step directions, source/target parameters, and normalized directional records reproduced"
+  },
+  "stat_discovery_separation": {
+    "shared_inputs": "both stages use normal train1/train2 and the same five horizon labels",
+    "shared_candidate_identity": "relation profiling consumes the frozen candidate union identities, which may include STAT provenance only after outcomes freeze",
+    "shared_scientific_implementation": false,
+    "stat_method": "first-difference lagged Pearson association used to rank candidate pairs",
+    "profiling_method": "event-anchored median-step and delayed-target-response statistics used to select direction/horizon and gate relation support",
+    "import_boundary": "task039d1_fit_v1 and relation_profiling_protocol_v1 do not import statistical_candidate_discovery_v1 or reuse its correlations",
+    "arm_blindness": "candidate-arm evidence is hidden during the common 47-pair profiling execution and joined only after outcomes freeze"
+  },
+  "important_semantic_boundaries": [
+    "A candidate pair is not a profiled or confirmed relation.",
+    "Fit-supported output is a normal delayed-response relation candidate, not causal or physical truth.",
+    "The selected horizon is the highest-ranked member of a preregistered finite grid under this metric, not a demonstrated optimal physical lag.",
+    "Response direction is thresholded relative to a normal target noise scale; neutral responses match neither direction.",
+    "Refractory clustering is applied before source-direction filtering, so nearby step_up and step_down detections can compete within one same-source cluster."
+  ],
+  "unknowns_and_audit_notes": [
+    {
+      "id": "A-PROFILE-001",
+      "finding": "The D1 loader requires a timestamp column but does not parse or independently verify timestamp continuity; horizon and refractory values named in seconds are implemented as row-index offsets.",
+      "classification": "DOCUMENTED_SAMPLING_CONTRACT_DEPENDENCY",
+      "impact": "The one-second interpretation depends on the frozen HAI manifest/sampling authority rather than a timestamp-continuity check inside the profiler.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "A-PROFILE-002",
+      "finding": "The same event formula is applied to every approved source role, including actuator_state; there is no role-specific discrete-state detector.",
+      "classification": "IMPLEMENTATION_FACT_NOT_AUTOMATIC_DEFECT",
+      "impact": "Descriptions should call this the frozen continuous-step protocol and should not imply separate discrete handling.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "A-PROFILE-003",
+      "finding": "Single-link refractory clustering can join a chain whose first and last candidate detections are more than 10 seconds apart.",
+      "classification": "POLICY_SEMANTIC_NOTE",
+      "impact": "Documentation should say single-link clustering, not a fixed non-overlapping 10-second suppression window.",
+      "confidence": "HIGH"
+    }
+  ],
+  "source_catalog": [
+    {
+      "path": "src/paperworks/v6/relation_profiling_protocol_v1.py",
+      "symbols": [
+        "multi_file_robust_scale_v1",
+        "q75_linear_v1",
+        "derive_multi_file_source_parameters_v1",
+        "derive_multi_file_target_scale_v1",
+        "extract_file_local_events_v1",
+        "classify_all_source_isolation_v1",
+        "rank_direction_horizon_v1",
+        "selected_fit_gate_v1"
+      ],
+      "role": "frozen profiling contracts, formulas, and reference helpers"
+    },
+    {
+      "path": "src/paperworks/v6/continuous_step_protocol_v1.py",
+      "symbols": [
+        "evaluate_step_candidate_v1",
+        "cluster_step_events_v1",
+        "extract_sustained_step_events_v1",
+        "classify_event_isolation_v1",
+        "evaluate_target_response_v1",
+        "fit_support_gate_v1"
+      ],
+      "role": "semantic reference implementation"
+    },
+    {
+      "path": "src/paperworks/profiling/task039d1_execution_optimization_v1.py",
+      "symbols": [
+        "extract_sustained_step_events_linear_v1",
+        "extract_file_local_events_linear_v1",
+        "classify_all_source_isolation_indexed_v1",
+        "audit_event_semantic_parity_v1",
+        "audit_isolation_semantic_parity_v1"
+      ],
+      "role": "semantics-preserving frozen execution optimization"
+    },
+    {
+      "path": "src/paperworks/profiling/task039d1_fit_v1.py",
+      "symbols": [
+        "_read_selected_columns",
+        "load_authorized_fit_values_v1",
+        "optimized_target_response_v1",
+        "_direction_statistics",
+        "evaluate_arm_blind_fit_v1"
+      ],
+      "role": "real train1/train2 profiling orchestration and private-ledger production"
+    }
+  ],
+  "test_catalog": [
+    "tests/test_task039d0_relation_profiling_protocol.py",
+    "tests/test_task039d1_fit_engine.py",
+    "tests/test_task039d1_independent_replay.py",
+    "tests/test_task039d1r_event_optimization.py",
+    "tests/test_task039d1r_isolation_optimization.py",
+    "tests/test_task039d1r_hot_path.py"
+  ],
+  "public_evidence_catalog": [
+    "docs/task_reports/TASK-039D1_FIT_RESULT.json",
+    "docs/task_reports/TASK-039D1_EXECUTION_RECEIPT.json",
+    "docs/task_reports/TASK-039D1_FINAL_AUDIT.json",
+    "docs/task_reports/TASK-039D1_REPORT.md",
+    "docs/task_reports/TASK-039D2_RESULT.json",
+    "docs/task_reports/TASK-039D2_FINAL_AUDIT.json"
+  ],
+  "confidence": {
+    "overall": "HIGH",
+    "reason": "Exact pinned source symbols, frozen execution receipts, public-safe result counts, semantic parity tests, and independent D1 audit agree. No private numeric value was needed."
+  },
+  "safety_counters": {
+    "scientific_executions": 0,
+    "profiling_reruns": 0,
+    "relation_regenerations": 0,
+    "horizon_recomputations": 0,
+    "threshold_recomputations": 0,
+    "private_data_reads": 0,
+    "test2_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_file_changes": 0,
+    "staging_evidence_files_written": 1
+  }
+}

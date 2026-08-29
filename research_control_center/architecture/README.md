@@ -92,4 +92,17 @@ The GDN candidate authority is the node-embedding cosine learned graph. Graph
 attention is internal message passing, not candidate-ranking evidence; post-hoc
 XAI is absent. Candidate discovery remains proposal, not confirmation or causality.
 
-Exact next task: `ARCH-003 — Relation Profiling & Numeric Authority Deep Audit`.
+## Completed relation and numeric-authority audit
+
+- [Korean report](03_relation_and_numeric/ARCH_003_REPORT.md)
+- [Relation schema](03_relation_and_numeric/ARCH_003_RELATION_SCHEMA.md)
+- [Metric definitions](03_relation_and_numeric/ARCH_003_METRIC_DEFINITIONS.md)
+- [Sanitized relation lineage](03_relation_and_numeric/ARCH_003_RELATION_LINEAGE.csv)
+- [Numeric authority catalog](03_relation_and_numeric/ARCH_003_NUMERIC_AUTHORITY.csv)
+- [Construction/runtime authority](03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md)
+- [Function catalog](03_relation_and_numeric/ARCH_003_FUNCTION_CATALOG.csv)
+- [I/O contracts](03_relation_and_numeric/ARCH_003_IO_CONTRACTS.csv)
+- [Relation flow](03_relation_and_numeric/ARCH_003_RELATION_FLOW.mmd)
+- [Mismatch register](03_relation_and_numeric/ARCH_003_MISMATCHES.md)
+
+Exact next task: `ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit`.

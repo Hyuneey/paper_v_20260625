@@ -42,6 +42,10 @@ ARCHITECTURE_FILES = (
     "02_candidate_discovery/ARCH_002_CANDIDATE_PROVENANCE.csv",
     "02_candidate_discovery/ARCH_002_FUNCTION_CATALOG.csv",
     "02_candidate_discovery/ARCH_002_IO_CONTRACTS.csv",
+    "03_relation_and_numeric/ARCH_003_RELATION_LINEAGE.csv",
+    "03_relation_and_numeric/ARCH_003_NUMERIC_AUTHORITY.csv",
+    "03_relation_and_numeric/ARCH_003_FUNCTION_CATALOG.csv",
+    "03_relation_and_numeric/ARCH_003_IO_CONTRACTS.csv",
 )
 
 
@@ -352,6 +356,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         + "</dl></article>"
         for arm in discovery["arms"]
     )
+    relation = state["relation_numeric_authority"]
     marker = _source_marker(state, digest)
 
     return f"""<!doctype html>
@@ -383,7 +388,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -403,6 +408,35 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <div class="summary-grid">{summary_markup}</div>
       <p class="summary-note">These counts are not a single completion percentage. Component Evidence-reviewed means source or evidence status was reviewed; explicit scientific result-integrity audits are shown separately. Scientific claim counts come only from <code>claims.csv</code>.</p>
       <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
+    </section>
+
+    <section id="relation-numeric" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">RELATION</p><h2>RELATION &amp; NUMERIC AUTHORITY</h2></div>
+      <div class="status-snapshot">
+        <div><span>Candidates</span><strong>{relation['candidate_pairs']}</strong></div>
+        <div><span>Profiled opportunities</span><strong>{relation['directional_opportunities']}</strong></div>
+        <div><span>Fit-supported</span><strong>{relation['fit_supported_pair_contexts']} contexts / {relation['fit_supported_directions']} directions</strong></div>
+        <div><span>Confirmed</span><strong>{relation['confirmed_pair_contexts']} contexts / {relation['confirmed_directions']} relations</strong></div>
+        <div><span>Construction-bound</span><strong>462 references</strong></div>
+        <div><span>Runtime-bound</span><strong>420 references + descriptor horizon</strong></div>
+      </div>
+      <div class="two-column">
+        <div><h3>Profiling and confirmation</h3><dl class="architecture-contract">
+          <div><dt>SOURCE SPLIT</dt><dd>{_escape(relation['profiling_splits'])}</dd></div>
+          <div><dt>SOURCE EVENT</dt><dd>{_escape(relation['source_event'])}</dd></div>
+          <div><dt>TARGET RESPONSE</dt><dd>{_escape(relation['target_response'])}</dd></div>
+          <div><dt>CONFIRMATION</dt><dd>{_escape(relation['confirmation_split'])}</dd></div>
+        </dl></div>
+        <div><h3>Numeric custody</h3><dl class="architecture-contract">
+          <div><dt>CONSTRUCTION</dt><dd>{_escape(relation['construction_authority'])}</dd></div>
+          <div><dt>RUNTIME</dt><dd>{_escape(relation['runtime_authority'])}</dd></div>
+          <div><dt>RELATIONSHIP</dt><dd>{_escape(relation['authority_relationship'])}</dd></div>
+          <div><dt>TRACEABILITY</dt><dd>{_escape(relation['traceability'])}</dd></div>
+        </dl></div>
+      </div>
+      <aside class="principle">{_escape(relation['warning'])}</aside>
+      <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
+      <p><strong>Next deep review:</strong> {_escape(relation['next_deep_review'])}</p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -586,24 +620,26 @@ These counts are not a single completion percentage.
 
 ## Data and split boundary
 
-The authority is HAI 23.05 with P1 Boiler as the selected process. train1/train2
-provide normal fit evidence; train3 is shared by one-way relation confirmation and D0
-threshold calibration; train4 is a normal guard / D0 sanity split. test1 is INNER
-development/pilot evidence, not final validation. The attempted OUTER path read zero test2
-feature bytes and no labels and produced no prediction, metric, or scientific outcome.
-
-No verified leakage was found. D0 and D2 durably persist predictions before labels. D1
-builds and validates a label-blind self-hashed object before labels, but the public file is
-written after metrics; this is a governance evidence gap, not proof of label-driven decisions.
-D2 V2 was explicitly informed by prior INNER outcomes and remains pilot-development evidence.
+HAI 23.05 P1 is the selected scope. train1/train2 provide normal fit evidence; train3
+performs one-way relation confirmation and separate D0 calibration; train4 is a normal guard.
+test1 is pilot evidence. OUTER read zero test2 bytes or labels and produced no outcome.
+No verified leakage was found. D0/D2 durably freeze predictions before labels; D1 has a
+label-blind object but a documented durable-file ordering gap. D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-The P1 universe has 144 directed candidates. META ranks metadata priors; STAT ranks
-normal lagged association; GDN ranks embedding-cosine learned-graph candidates. Attention
-is internal message passing, not ranking evidence, and post-hoc XAI is absent. Three Top-20
-views form an unscored 47-pair union. These are proposals, not confirmed or causal relations;
-GDN contribution remains unvalidated.
+The 144-pair P1 universe is ranked separately by META metadata priors, STAT normal lagged
+association, and GDN embedding-cosine graph edges. Three Top-20 views form an unscored
+47-pair union. Attention is not ranking evidence; no post-hoc XAI is used. These are proposals,
+not causal relations, and GDN contribution remains unvalidated.
+
+## Relation and numeric-authority boundary
+
+The relation lineage is 47 pairs → 94 source directions → 25/45 fit-supported → 23/42
+train3-confirmed. Confirmation cannot search or retune. E1 has 462 construction-only
+references; frozen D1 uses a separate 420-reference normal-only authority plus descriptor
+horizon. All 420 shared values matched E1, but authority identities remain separate. Repeated
+normal response is not causal proof or numeric optimality.
 
 ## How we got here
 
@@ -926,6 +962,90 @@ STAT-only 8, GDN-only 18, 두 arm 공통 13, 세 arm 공통 0으로 총 47이다
 
 47개 cohort를 normal delayed-response profiling에 넘겨 step event, response direction,
 horizon과 안정성을 별도로 확인한다. 그 전에는 최종 relation이라고 부르면 안 된다.
+
+다음 task는 **{state['exact_next_task']}**이다.
+"""
+
+
+def render_arch003_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    return f"""{_markdown_marker(state, digest)}
+# 47개 후보는 어떻게 42개 실행 관계가 되는가
+
+## 한 문장 답
+
+47개 pair를 정상 train1·train2의 반복 source step과 delayed target response로 검사하고,
+선택된 relation만 train3에서 검색·재조정 없이 확인한 뒤, 별도 numeric authority를 붙여
+실행 가능하게 만든다.
+
+## 단계별 숫자
+
+| 단계 | 수 | 의미 |
+|---|---:|---|
+| Candidate pairs | 47 | discovery가 제안한 source-target 조합 |
+| Source-direction opportunities | 94 | pair마다 step_up·step_down을 별도로 검사 |
+| Fit-supported | 25 contexts / 45 directions | train1·train2 gate 통과 |
+| Confirmed | 23 contexts / 42 relations | 고정 identity가 train3 gate 통과 |
+
+## 1. 47개 후보 중 무엇을 검사하는가?
+
+source가 정상 구간에서 충분히 크고 지속적인 step을 만들었을 때 target이 일정 시간 뒤
+같은 방향으로 반복 반응하는지 검사한다. 후보는 아직 관계가 아니고, source sign,
+target sign, horizon이 정해져야 relation이 된다.
+
+## 2. Source event와 target response
+
+Source event는 직전 5행과 이후 5행 median 차이가 normal-derived threshold 이상이고 양쪽이
+안정적일 때 생긴다. 같은 source의 가까운 event는 single-link 10행 cluster로 묶고, 다른
+source event가 ±2행 안에 있으면 isolation에서 제외한다.
+
+Target response는 event 전 5행 median을 baseline으로 하고, horizon 뒤 3행 median에서
+baseline을 뺀 값이다. 파일 끝의 불완전 window는 버리며 보간하지 않는다.
+
+## 3. Lag/horizon은 무엇이며 왜 여러 개를 보는가?
+
+반응이 즉시 오지 않을 수 있어 1, 5, 10, 30, 60행 지연을 미리 고정해 비교한다. 각
+source direction에서 consistency, effect, 짧은 horizon 순으로 하나만 고른다. 선택된
+horizon은 이 유한 grid의 규칙상 winner이지 물리적 최적값이 아니다.
+
+## 4. Consistency와 effect
+
+Consistency는 usable event 중 target response가 선택 방향의 normal noise scale을 넘은
+비율이다. Effect는 target response median의 절댓값을 target noise scale로 나눈 비율이다.
+Support, consistency, effect, 두 fit file의 방향 우세를 모두 통과해야 한다.
+
+## 5. 왜 train3에서 다시 확인하는가?
+
+train1·train2에서 골랐던 relation이 다른 normal file에서도 유지되는지 보기 위해서다.
+train3는 source/target/sign/horizon/parameter를 바꾸지 않고 같은 항목만 검사한다. 실패하면
+conflict로 남고 다른 horizon이나 방향을 찾지 않는다.
+
+## 6. 23 pair contexts와 42 relations의 차이
+
+한 source-target pair에서 `step_up`과 `step_down`이 각각 별도 relation이 될 수 있다.
+그래서 23개의 pair context 안에 42개의 directional relation이 존재한다.
+
+## 7. Numeric authority는 무엇인가?
+
+실행 숫자가 어느 normal split, relation, 계산 함수, artifact, hash에서 왔는지를 함께
+고정한 권한이다. LLM은 authoritative number를 정하지 않는다.
+
+Construction 시점에는 relation마다 11개 reference, 총 462개가 있었다. Frozen D1 runtime은
+새 version의 normal-only authority에서 relation마다 10개 private role, 총 420개를 사용하고,
+horizon은 canonical descriptor에서 사용한다. Focused audit는 공유 420개 value가 E1과 정확히
+일치함을 확인했지만, 두 authority identity 자체가 같다는 뜻은 아니다.
+
+## 8. 왜 causal relation이라고 부르면 안 되는가?
+
+정상 데이터에서 반복되는 순서와 방향을 operationalize했을 뿐, intervention이나 물리 법칙,
+root-cause를 검증하지 않았다. Held-out 일반화도 아직 확인되지 않았다.
+
+## 다음 파트 전에 이해할 것
+
+1. candidate, fit-supported, confirmed, runtime-bound는 서로 다른 단계다.
+2. train3는 재탐색이 아니라 고정 relation의 확인이다.
+3. value equality와 authority identity equality는 다르다.
+4. relation numeric authority와 D0 PCA-SPE threshold는 별개다.
 
 다음 task는 **{state['exact_next_task']}**이다.
 """
@@ -1491,6 +1611,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "RCC_003_HISTORY_SUMMARY.md": render_rcc003_history_summary(data, digest),
         "ARCH_001_USER_SUMMARY.md": render_arch001_user_summary(data, digest),
         "ARCH_002_USER_SUMMARY.md": render_arch002_user_summary(data, digest),
+        "ARCH_003_USER_SUMMARY.md": render_arch003_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

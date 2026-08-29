@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-003",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base": "a54f2a1eede326359bc7823e80aa4111dc4ce636",
+  "status": "PASS",
+  "relation_lineage": {
+    "candidate_pairs": 47,
+    "directional_opportunities": 94,
+    "fit_supported_pair_contexts": 25,
+    "fit_supported_directions": 45,
+    "confirmed_pair_contexts": 23,
+    "confirmed_directions": 42,
+    "confirmation_conflicts": 3,
+    "alternate_horizon_search": false,
+    "retuning": false
+  },
+  "numeric_authority": {
+    "construction_bindings": 462,
+    "runtime_main_references": 420,
+    "shared_value_matches": 420,
+    "shared_value_mismatches": 0,
+    "authority_identities_equal": false,
+    "source_census_supplement_references": 6,
+    "runtime_traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY"
+  },
+  "mismatches": {"total": 9, "critical": 0, "high": 2, "medium": 6, "low": 1},
+  "qa": {"verdict": "PASS", "questions_satisfactory": 18, "questions_total": 18, "required_corrections": 0, "rcc_tests_passed": 61},
+  "agent_evidence": [
+    "agents/agent_a_profiling.json",
+    "agents/agent_b_confirmation.json",
+    "agents/agent_c_numeric.json",
+    "agents/agent_d_authority_binding.json",
+    "agents/agent_e_qa.json"
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_numeric_reads": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0,
+    "private_exposures": 0
+  }
+}

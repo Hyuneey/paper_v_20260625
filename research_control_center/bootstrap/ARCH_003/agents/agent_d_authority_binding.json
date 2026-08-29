@@ -1,0 +1,232 @@
+{
+  "task_id": "ARCH-003",
+  "agent_role": "Agent D - Construction / Runtime Authority Binding Auditor",
+  "status": "PASS_READ_ONLY_AUDIT",
+  "scope": "normal evidence to confirmed relation to E1 construction numeric authority to closed structured rule and verifier projection to COMMON-42 to Utility V4 runtime authority to frozen D1",
+  "authority_relationship": {
+    "classification": "PARTIALLY_SHARED_AND_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY",
+    "construction_role_count_per_relation": 11,
+    "construction_total_bindings": 462,
+    "runtime_role_count_per_relation": 10,
+    "runtime_total_references": 420,
+    "shared_roles": [
+      "source_step_threshold",
+      "source_stability_tolerance",
+      "target_noise_scale",
+      "source_pre_window_seconds",
+      "source_post_window_seconds",
+      "minimum_source_stability_fraction",
+      "source_refractory_seconds",
+      "cross_source_isolation_radius_seconds",
+      "target_baseline_window_seconds",
+      "target_response_window_seconds"
+    ],
+    "construction_only_numeric_role": "selected_delay_horizon_seconds",
+    "runtime_horizon_representation": "Exact relation semantic field in CanonicalRuleDescriptorV4 and each canonical opportunity, not a record in the 420-entry runtime numeric registry.",
+    "numeric_value_relationship": "The Route-C authority was independently reconstituted from the frozen normal train1/train2 method and inputs. A later private re-audit recorded 420 exact E1 value matches and zero value mismatches for the shared roles.",
+    "identity_relationship": "The runtime authority deliberately uses new value-independent reference identities. Historical E1 and historical numeric-registry identities were not restored or reused.",
+    "verdict": "Do not call the two authorities identical. The precise statement is: exact shared-role value equivalence and COMMON relation-semantic continuity, with separate authority/version/reference identities and a different treatment of selected horizon."
+  },
+  "authority_chain": [
+    {
+      "stage": "normal relation evidence",
+      "authority": "D1 fit ledgers plus D2 train3 confirmation ledger",
+      "binding": "Each E1 relation primitive binds source, source direction, target, target response direction, selected horizon, source parameter record, target parameter record, fit evidence, and confirmation evidence."
+    },
+    {
+      "stage": "E1 construction evidence",
+      "authority": "ConfirmedRelationPrimitiveV1 plus ApprovedNumericEvidenceBundleV1",
+      "binding": "assert_matches requires the exact relation binding hash and exact source-threshold, source-stability, target-scale, fit-evidence, and confirmation-evidence references. E1 materializes 11 unique role references per relation and 462 bindings total."
+    },
+    {
+      "stage": "construction input and structured rule proposal",
+      "authority": "Reference-bound construction view",
+      "binding": "T0/T1/T1-B/T2 main proposals must copy exact relation identity, direction, horizon, evidence references, numeric references, window references, and deterministic_calibrated_evidence origin. Free-form runtime code and arbitrary numeric literals are rejected."
+    },
+    {
+      "stage": "verifier and COMMON-42",
+      "authority": "Closed verifier projection and executable-signature audit",
+      "binding": "COMMON-42 retains only execution-relevant fields. T0, T1, and T1-B are equivalent for all 42 relations. Provider response, call, prompt, arm, and provenance-envelope fields are explicitly non-executing."
+    },
+    {
+      "stage": "new normal-only runtime authority",
+      "authority": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+      "binding": "COMMON executable signatures are joined to the E1 public manifest by relation_binding_hash; all ten runtime reference roles are replayed; new identities bind authority version, relation binding, semantic execution hash, role, calibration policy, exact normal input identity set, and COMMON-42 authority."
+    },
+    {
+      "stage": "Utility Protocol V4",
+      "authority": "CanonicalRuleDescriptorV4",
+      "binding": "Every descriptor binds relation identity, relation binding hash, semantic execution hash, source/target directions, selected horizon, exactly ten new numeric reference identities, and the numeric-authority descriptor hash. Descriptor validation reconstructs the entire canonical tuple."
+    },
+    {
+      "stage": "frozen D1 execution",
+      "authority": "V4 canonical authority plus exact private main and source-census supplement registries",
+      "binding": "The bridge replays V4, validates both private registry content hashes, requires exact relation-role-reference closure, constructs a non-serializable resolver, and evaluates the canonical descriptor selected by relation_binding_hash."
+    }
+  ],
+  "construction_authority": {
+    "numeric_origin": "deterministic_calibrated_evidence",
+    "relation_count": 42,
+    "roles_per_relation": 11,
+    "binding_count": 462,
+    "raw_numeric_values_public": false,
+    "runtime_authority_granted_by_e1": false,
+    "llm_direct_numbers_authoritative": false,
+    "selected_horizon_source": "D1 fit-selected horizon bound to the confirmed relation",
+    "provenance": "Three relation/data-derived roles bind D1 source/target ledgers; selected horizon binds D1 fit evidence; seven window roles bind the preregistered protocol-constant bundle."
+  },
+  "runtime_authority": {
+    "authority_version": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1",
+    "relation_count": 42,
+    "roles_per_relation": 10,
+    "reference_count": 420,
+    "new_reference_system": true,
+    "historical_identity_restored": false,
+    "recalibrated_during_d1_execution": false,
+    "materialization_method": "Three data-derived roles were deterministically recalibrated from exact normal train1/train2; seven protocol constants were copied from the frozen constant bundle. The authority was frozen and independently audited before D1.",
+    "d1_execution_behavior": "D1 reads and validates the frozen registry once, then resolves values by exact (relation_binding_hash, numeric_role, reference_identity). It does not recalculate thresholds during test1 execution.",
+    "source_census_supplement": "A separate three-source supplement exists only to close the 12-source event-census scope. It does not change the 42 COMMON relation descriptors or their 420 main runtime values."
+  },
+  "binding_and_mismatch_controls": {
+    "relation_semantics": "relation_binding_hash plus semantic_execution_hash",
+    "numeric_lookup_key": [
+      "relation_binding_hash",
+      "numeric_role",
+      "reference_identity"
+    ],
+    "public_authority_replay": "V4 and evaluator bundle hashes must match exact expected identities before private resolution.",
+    "private_registry_replay": "Self-hash, authority header, record hashes, exact 420 logical keys, unique references, and provenance identities are validated.",
+    "stale_authority_behavior": "A registry with the wrong content hash, relation-role set, or new reference identity is rejected before rule execution. Partial lookup is unavailable.",
+    "unit_and_time_semantics": "Seconds are explicit in horizon/window/refractory/isolation role names; horizon is restricted to the frozen set; exact scalar types and frozen constant equality are enforced.",
+    "runtime_recalculation": "No runtime threshold or scale recalibration occurs. Runtime computes only event/window observations and resolves frozen numeric authority.",
+    "rule_text_divergence": "The authoritative runtime does not execute narrative rule text. The closed proposal rejects free-text runtime code and numeric literals, and COMMON-42/V4 execute only the canonical descriptor and reference identities.",
+    "observed_divergence": false,
+    "residual_design_note": "Seven window values are represented both as bound registry roles and as frozen protocol constants used directly by the execution implementation. Exact-value validators and canonical authority replay align them in the frozen implementation, but this duplicate representation is a maintainability concern rather than an observed scientific mismatch.",
+    "residual_risk_level": "LOW"
+  },
+  "frozen_d1": {
+    "execution_mode": "REAL_INNER_D1_RULE_ONLY",
+    "portfolio": "COMMON-42",
+    "runtime_rule_authority": "Utility Protocol V4 canonical rule descriptors",
+    "main_numeric_authority": "TASK039E3_UTILITY_NORMAL_ONLY_AUTHORITY_V1 frozen private registry",
+    "supplement_authority": "source-census-only supplement for non-COMMON census sources",
+    "main_registry_read_count": 1,
+    "runtime_recalibrations": 0,
+    "result_integrity_audited": true,
+    "conclusion": "The frozen D1 result was governed by the intended V4/new normal-only authority, not by caller numbers, natural-language rule text, the historical E1 private-registry identity, Direct-number, D0 threshold authority, or test labels."
+  },
+  "questions": {
+    "construction_and_runtime_numeric_values_identical": "YES_FOR_ALL_420_SHARED_ROLE_VALUES_AS_AUDITED; NOT_AN_IDENTICAL_AUTHORITY_OBJECT_OR_REFERENCE_IDENTITY",
+    "why_separate": "The historical numeric execution authority was not restored; Route C created a new, explicit normal-only runtime authority with new references while preserving the frozen method, inputs, COMMON relations, and exact shared values.",
+    "one_derived_from_other": "Runtime values are independently rederived from the same frozen normal-only calibration method and inputs, then privately cross-checked against E1. They are not copied under the historical E1 authority identity.",
+    "linked_by_ids_hashes": true,
+    "stale_or_mismatched_authority_loadable": false,
+    "time_semantics_preserved": true,
+    "runtime_thresholds_recalculated": false,
+    "rule_text_and_runtime_authority_can_diverge_in_frozen_path": false,
+    "frozen_d1_used_intended_authority": true
+  },
+  "findings": [
+    {
+      "finding_id": "ARCH003-D-001",
+      "severity": "INFORMATIONAL",
+      "finding": "Construction and runtime authority identities are intentionally separate even though all 420 shared numeric values match exactly.",
+      "impact": "Documentation must avoid saying E1 is itself the frozen D1 runtime authority."
+    },
+    {
+      "finding_id": "ARCH003-D-002",
+      "severity": "INFORMATIONAL",
+      "finding": "Selected horizon is the eleventh construction numeric role but is a descriptor semantic at runtime, explaining 462 versus 420 without a missing runtime criterion.",
+      "impact": "Counts are consistent when the semantic representation is stated explicitly."
+    },
+    {
+      "finding_id": "ARCH003-D-003",
+      "severity": "LOW",
+      "finding": "Frozen window constants are reference-bound in the registry and also consumed as protocol code constants.",
+      "impact": "Current exact validators and frozen execution show no mismatch; future changes should preserve a single checked binding to avoid drift."
+    },
+    {
+      "finding_id": "ARCH003-D-004",
+      "severity": "INFORMATIONAL",
+      "finding": "Runtime execution uses structured canonical descriptors, not free-form text or arbitrary numeric literals.",
+      "impact": "A textual rendering cannot silently change the executed threshold or response logic in the audited path."
+    }
+  ],
+  "citations": [
+    {
+      "path": "src/paperworks/v6/task039e0_rule_construction_prep_v1.py",
+      "lines": "77-176,180-273",
+      "supports": "Confirmed-relation identity, reference-only construction authority, exact relation-to-numeric assertion, and no runtime authority."
+    },
+    {
+      "path": "src/paperworks/v6/task039e1_evidence_materialization_prep_v1.py",
+      "lines": "99-117",
+      "supports": "Exact eleven construction numeric roles."
+    },
+    {
+      "path": "src/paperworks/v6/task039e1_evidence_materialization_v1.py",
+      "lines": "41-72,248-289,362-453,521-615",
+      "supports": "42 relations, 462 bindings, role derivation, normal-evidence provenance, window constants, and E1 reference materialization."
+    },
+    {
+      "path": "src/paperworks/v6/task039e2_execution_freeze_prep_v1.py",
+      "lines": "1213-1319",
+      "supports": "Closed structured proposal, exact reference equality, deterministic numeric origin, no free-text runtime code, and no arbitrary main-arm numeric literals."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_EXECUTABLE_EQUIVALENCE.json",
+      "lines": "1-50",
+      "supports": "Execution-signature fields, non-executing field exclusions, no utility-time reselection, and COMMON executable equivalence."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py",
+      "lines": "104-131,234-289,729-843,885-994,1115-1154,1226-1300",
+      "supports": "Ten runtime roles, new reference preimages, COMMON/E1 join, independent calibration, exact registry closure, and historical identity separation."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_REAUDIT_NUMERIC_AUTHORITY.json",
+      "lines": "1-33",
+      "supports": "420 exact E1 numeric matches and zero value, relation, role, or provenance mismatches."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py",
+      "lines": "951-1065",
+      "supports": "Canonical runtime descriptor, ten new references, numeric-authority descriptor binding, and exact descriptor replay."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_PROTOCOL_V4_REPORT.md",
+      "lines": "1-31",
+      "supports": "V4 canonical rebinding, 42-by-10 closure, COMMON-only scope, and new authority as runtime authority."
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py",
+      "lines": "43-135,553-627,869-900,947-1055,1509-1705,2523-2558",
+      "supports": "Frozen D1 authority identities, exact registry resolver, reference-bound lookups, deterministic rule execution, no test-time recalibration, and one-shot execution order."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_ACCOUNTING.json",
+      "lines": "1-27",
+      "supports": "One main registry read, one scientific attempt, zero retry, zero result-driven changes, and zero test2/private exposure."
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RESULT_INTEGRITY_V1_REPORT.md",
+      "lines": "1-20",
+      "supports": "Frozen D1 prediction/result integrity audit pass and zero test2/private exposure."
+    }
+  ],
+  "safety_counters": {
+    "scientific_executions": 0,
+    "profiling_reruns": 0,
+    "numeric_recomputations": 0,
+    "runtime_executions": 0,
+    "private_registry_reads": 0,
+    "private_numeric_values_read": 0,
+    "test2_accesses": 0,
+    "label_accesses": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remote_pushes": 0,
+    "private_paths_exposed": 0,
+    "private_values_exposed": 0
+  }
+}

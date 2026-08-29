@@ -1,0 +1,12 @@
+producer,output,schema,consumer,required_fields,frozen,validated,provenance,notes
+CANDIDATE_UNION,47 candidate identities,profiling identity view,RELATION_PROFILING,"source,target,pair identity",true,true,C0/arm result hashes,Arm provenance hidden during profiling
+RELATION_PROFILING,source parameter ledger,task039d1 source parameter records,RELATION_PROFILING,"source,noise scale,step threshold,stability tolerance,fit bindings",true,true,train1/train2 file hashes,Private numeric values
+RELATION_PROFILING,target parameter ledger,task039d1 target parameter records,RELATION_PROFILING,"target,target noise scale,fit bindings",true,true,train1/train2 file hashes,Private numeric values
+RELATION_PROFILING,94 directional fit records,task039d1 directional fit ledger,TRAIN3_CONFIRMATION,"source,target,source sign,target sign,horizon,parameter refs,fit result",true,true,D0 protocol + candidate cohort + parameter record hashes,45 fit-supported records advance
+TRAIN3_CONFIRMATION,45 confirmation records,task039d2 directional confirmation ledger,E1_MATERIALIZATION,"frozen relation identity,fit refs,confirmation status",true,true,train3 binding + D1 record hashes,42 confirmed records advance
+E0_COHORT,42 confirmed relation identities,confirmed relation cohort,E1_MATERIALIZATION,"source,source sign,target,target sign,horizon,D1/D2 hashes",true,true,D2 result + identity list hashes,No numeric values
+E1_MATERIALIZATION,42 approved construction bundles,approved numeric evidence bundle,RULE_CONSTRUCTION,"relation binding,11 role references,fit and confirmation refs",true,true,E0 cohort + private D1/D2 ledgers,462 private reference bindings; no HAI reread
+COMMON42_EQUIVALENCE,42 public runtime descriptors,normal-only authority definition,V4_RUNTIME_AUTHORITY,"relation binding,signs,horizon,10 runtime roles",true,true,COMMON-42 executable equivalence + E1 public manifest,Historical numeric identity intentionally not restored
+V4_RUNTIME_AUTHORITY,420 private numeric records,normal-only V1 private registry,D1_EXECUTION,"relation binding,numeric role,value provenance,record hash",true,true,train1/train2 raw authority + canonical binding set,Private and outside Git
+D1_EXECUTION,frozen D1 prediction and metrics,utility V4 artifacts,RESULT_INTEGRITY,"V4 authority,bundle,prediction-before-label lineage",true,true,authorization + prediction/result hashes,No rule-construction or LLM call at runtime
+

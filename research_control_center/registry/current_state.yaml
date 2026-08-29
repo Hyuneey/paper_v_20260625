@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
     "test1_status": "INNER development / 14-event pilot; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit"
+    "next_deep_review": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -94,7 +94,25 @@
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit"
+    "next_deep_review": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit"
+  },
+  "relation_numeric_authority": {
+    "candidate_pairs": 47,
+    "directional_opportunities": 94,
+    "fit_supported_pair_contexts": 25,
+    "fit_supported_directions": 45,
+    "confirmed_pair_contexts": 23,
+    "confirmed_directions": 42,
+    "profiling_splits": "normal train1/train2",
+    "confirmation_split": "normal train3; fixed identity and parameters; no search or retuning",
+    "source_event": "five-row pre/post source medians; normal-derived threshold and stability; same-source single-link refractory; all-source isolation",
+    "target_response": "five-row baseline and three-row response median at one of five frozen row horizons",
+    "construction_authority": "42 relations x 11 construction-only references = 462 bindings",
+    "runtime_authority": "separately versioned normal-only MAIN registry: 42 relations x 10 roles = 420 records; selected horizon remains in canonical descriptor",
+    "authority_relationship": "PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES",
+    "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
+    "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
+    "next_deep_review": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -209,75 +227,95 @@
   ],
   "user_todo_items": [
     {
-      "id": "USER-ARCH002-001",
+      "id": "USER-ARCH003-001",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain META in one sentence?",
-      "why": "META is reviewed metadata domain-prior evidence, not a learned or causal relation.",
-      "linked": "ARCH-002 META audit",
+      "task": "Can I explain candidate versus confirmed relation?",
+      "why": "A proposed pair, fit-supported direction, and train3-confirmed relation have different evidence states.",
+      "linked": "ARCH_003_RELATION_SCHEMA.md",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH002-002",
+      "id": "USER-ARCH003-002",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain STAT in one sentence?",
-      "why": "STAT ranks normal lagged association and is separate from response confirmation.",
-      "linked": "ARCH-002 STAT audit",
+      "task": "Can I explain source event and target response?",
+      "why": "The relation evidence is event-anchored and uses distinct source and target windows.",
+      "linked": "ARCH_003_REPORT.md",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH002-003",
+      "id": "USER-ARCH003-003",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain what GDN contributes technically?",
-      "why": "Its output is a learned-graph candidate ranking, not a validated contribution claim.",
-      "linked": "ARCH-002 GDN audit",
+      "task": "Can I explain horizon?",
+      "why": "The selected row delay is a deterministic winner from a frozen grid, not proven physical optimality.",
+      "linked": "ARCH_003_METRIC_DEFINITIONS.md",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH002-004",
+      "id": "USER-ARCH003-004",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain learned graph versus attention?",
-      "why": "Embedding graph selects candidate edges; attention only operates inside message passing.",
-      "linked": "ARCH_002_GDN_PROFESSOR_ANSWER.md",
+      "task": "Can I explain support, consistency, and effect?",
+      "why": "These three conjunctive gates define fit and confirmation evidence.",
+      "linked": "ARCH_003_METRIC_DEFINITIONS.md",
       "status": "OPEN"
     },
     {
-      "id": "USER-ARCH002-005",
+      "id": "USER-ARCH003-005",
+      "category": "UNDERSTANDING NEEDED",
+      "priority": "HIGH",
+      "task": "Can I explain why train3 exists?",
+      "why": "It confirms a frozen relation one way and cannot search, retune, or add relations.",
+      "linked": "ARCH_003_RELATION_FLOW.mmd",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-ARCH003-006",
+      "category": "UNDERSTANDING NEEDED",
+      "priority": "HIGH",
+      "task": "Can I explain numeric authority?",
+      "why": "An authoritative number includes its relation, split, derivation, artifact, and hash provenance.",
+      "linked": "ARCH_003_NUMERIC_AUTHORITY.csv",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-ARCH003-007",
+      "category": "UNDERSTANDING NEEDED",
+      "priority": "HIGH",
+      "task": "Can I explain construction versus runtime numeric authority?",
+      "why": "The 420 shared values match exactly, but the two authority versions and reference identities are not identical.",
+      "linked": "ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-ARCH003-008",
       "category": "REVIEW NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain why 47 candidate pairs are not final relations?",
-      "why": "Discovery proposes a cohort; delayed-response profiling performs separate confirmation.",
-      "linked": "ARCH_002_DISCOVERY_FLOW.mmd",
-      "status": "OPEN"
-    },
-    {
-      "id": "USER-ARCH002-006",
-      "category": "REVIEW NEEDED",
-      "priority": "HIGH",
-      "task": "Approve or defer starting ARCH-003.",
-      "why": "Relation profiling and numeric authority are the next independent architecture boundary.",
-      "linked": "ARCH-003",
+      "task": "Approve or defer starting ARCH-004.",
+      "why": "Evidence pack, Rule DSL, and T0/T1/T1-B/T2 are the next independent architecture boundary.",
+      "linked": "ARCH-004",
       "status": "OPEN"
     }
   ],
   "top_user_todo": [
-    "Explain META as reviewed metadata domain-prior candidate evidence.",
-    "Explain STAT as normal directional lagged-association candidate evidence.",
-    "Explain GDN's technical learned-graph candidate contribution.",
-    "Explain why learned graph and attention are different authorities.",
-    "Explain why the 47-pair union is not a confirmed relation set.",
-    "Approve or defer starting ARCH-003."
+    "Explain candidate versus confirmed relation.",
+    "Explain source event and target response.",
+    "Explain the selected horizon boundary.",
+    "Explain support, consistency, and effect.",
+    "Explain why train3 is one-way confirmation.",
+    "Explain numeric authority.",
+    "Explain construction versus runtime numeric authority.",
+    "Approve or defer starting ARCH-004."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit",
-  "recommended_next_architecture_task": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit",
-  "last_completed_task": "ARCH-002",
-  "exact_next_task": "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit",
+  "recommended_next_management_task": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit",
+  "recommended_next_architecture_task": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit",
+  "last_completed_task": "ARCH-003",
+  "exact_next_task": "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

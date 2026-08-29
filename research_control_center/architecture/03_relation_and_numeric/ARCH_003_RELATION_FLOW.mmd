@@ -1,0 +1,20 @@
+flowchart TD
+    C["47 candidate pairs\nnot relations"] --> O["94 source-direction opportunities"]
+    O --> E["train1/train2\nsource events + target responses"]
+    E --> H["2 response signs x 5 horizons"]
+    H --> S["one direction/horizon selected\nper source direction"]
+    S --> G["support + consistency + effect gate"]
+    G --> F["25 fit-supported contexts\n45 directions"]
+    F --> T["train3 one-way confirmation\nno search or retuning"]
+    T --> R["23 confirmed contexts\n42 directional relations"]
+    R --> E1["E1 construction evidence\n11 roles x 42 = 462 refs"]
+    E1 --> RULE["T0 / T1 / T1-B / T2\nreference-bound construction"]
+    RULE --> COMMON["COMMON-42\npublic executable equivalence"]
+    R --> V4["New normal-only runtime authority\n10 roles x 42 = 420 refs"]
+    COMMON --> V4
+    V4 --> D1["Frozen D1 runtime"]
+    NOTE["Normal repeated response\nis not causal proof"] -.-> R
+    style C fill:#dbeafe,stroke:#2563eb
+    style R fill:#fef3c7,stroke:#d97706
+    style V4 fill:#dcfce7,stroke:#16a34a
+    style NOTE fill:#f3f4f6,stroke:#6b7280

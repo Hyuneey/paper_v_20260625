@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-003",
+  "agent_role": "Agent E - Independent Historical and Source Consistency QA",
+  "status": "PASS",
+  "verdict": "All 18 required QA questions are satisfactory. The official synthesis is source-supported, preserves scientific boundaries, and records the construction/runtime authority distinction precisely.",
+  "authority": {
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "rcc_base": "a54f2a1eede326359bc7823e80aa4111dc4ce636",
+    "inspection_mode": "read_only_source_artifact_and_rcc_static_audit"
+  },
+  "qa_questions": [
+    {
+      "id": 1,
+      "question": "Are candidate and confirmed relation distinguished?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The relation schema and report distinguish candidate pair, fit-supported relation candidate, calibration-confirmed relation, and executable numeric authority; the full 47/94 to 25/45 to 23/42 lineage is shown."
+    },
+    {
+      "id": 2,
+      "question": "Is source-event extraction accurately documented?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The report matches the five-row pre/post medians, threshold equality behavior, 4-of-5 stability gate, source-step sign, same-source single-link clustering, and all-source inclusive isolation implemented by the frozen profiling symbols."
+    },
+    {
+      "id": 3,
+      "question": "Is target-response calculation accurate?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The documented response is the three-row median at t plus the selected horizon minus the five-row pre-event target median, with incomplete windows right-censored and no imputation."
+    },
+    {
+      "id": 4,
+      "question": "Are horizon values source-supported?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The exact frozen grid is 1, 5, 10, 30, and 60 row-seconds under the one-second sampling contract. The timestamp-continuity dependency is disclosed rather than hidden."
+    },
+    {
+      "id": 5,
+      "question": "Are support criteria source-supported?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "Fit support is at least 20 usable responses pooled and at least 5 in each fit file; confirmation requires at least 5 usable train3 responses."
+    },
+    {
+      "id": 6,
+      "question": "Are consistency criteria source-supported?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "Fit requires pooled consistency at least 0.70, per-file consistency at least 0.60, and selected direction strictly greater than opposite in each file; confirmation requires at least 0.60 and strict selected-over-opposite agreement."
+    },
+    {
+      "id": 7,
+      "question": "Is effect definition source-supported?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The robust effect ratio is the absolute pooled median target response divided by the fixed target noise scale, with fit threshold 2.0 and train3 confirmation threshold 1.0."
+    },
+    {
+      "id": 8,
+      "question": "Are train1 and train2 roles correct?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "They are normal-only fit files used file-locally for event and response windows, source and target calibration, direction/horizon selection, and fit gates; per-file requirements are preserved before pooled statistics."
+    },
+    {
+      "id": 9,
+      "question": "Is train3 confirmation constrained rather than a new search?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "Train3 receives exactly the 45 frozen fit-supported identities and reuses source direction, target direction, horizon, source parameters, target scale, and window policy without retuning or new relation addition."
+    },
+    {
+      "id": 10,
+      "question": "Is alternate-horizon search absent after confirmation failure?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The source implementation, frozen result, and confirmation controls all record false for alternate-horizon search, opposite-direction search, lower-ranked fallback, and parameter retuning."
+    },
+    {
+      "id": 11,
+      "question": "Are final relation counts source-supported?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "Frozen public results support 47 candidate pairs, 94 source-direction opportunities, 25 fit-supported pair contexts, 45 fit-supported directions, 23 confirmed pair contexts, 42 confirmed directions, and 3 confirmation conflicts."
+    },
+    {
+      "id": 12,
+      "question": "Is every runtime-relevant numeric value traceable?",
+      "answer": "YES_WITH_PRIVATE_VALUE_CUSTODY",
+      "satisfactory": true,
+      "evidence": "The 420 main runtime records close the exact relation-role-reference key set and bind normal input identities, calibration policy, relation and semantic hashes, record hashes, and registry hash. Horizon is separately bound in the canonical descriptor."
+    },
+    {
+      "id": 13,
+      "question": "Are construction and runtime authority distinguished?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The synthesis separates E1 construction-only 42 by 11 bindings from the new runtime 42 by 10 registry plus descriptor horizon and does not call the authority objects identical."
+    },
+    {
+      "id": 14,
+      "question": "Is their binding accurately represented?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The focused public audit independently records 420 exact E1 numeric matches and zero mismatches, while runtime source explicitly prohibits restoring historical E1 and numeric-reference identities. The official wording correctly states exact shared-value equivalence with separate authority identities."
+    },
+    {
+      "id": 15,
+      "question": "Is D0 threshold clearly separate?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "Reports, catalogs, dashboard, and experiment boundary separate relation event/response numeric authority from the PCA-SPE detector calibration threshold."
+    },
+    {
+      "id": 16,
+      "question": "Is STAT discovery clearly separate from profiling?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "STAT is described as first-difference lagged Pearson candidate ranking, whereas profiling is event-anchored median-step delayed-response evidence; no shared scientific implementation is claimed."
+    },
+    {
+      "id": 17,
+      "question": "Are causal and optimality claims avoided?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "The official surfaces consistently state that repeated normal response is not causal proof and that selected horizons and numeric criteria are not proven scientifically optimal or held-out generalizable."
+    },
+    {
+      "id": 18,
+      "question": "Did the audit avoid scientific execution?",
+      "answer": "YES",
+      "satisfactory": true,
+      "evidence": "Only static source, frozen public-safe artifact, registry, generated-output, unit-test, and privacy checks were used. No profiler, confirmation, calibration, runtime, metric, label, or test2 path was executed."
+    }
+  ],
+  "coordinator_resolution_review": {
+    "specialist_conflict_found": true,
+    "conflict": "Agent C did not locate proof of historical/current numeric equality, while Agent D located the focused frozen public audit.",
+    "resolution_verified": true,
+    "direct_evidence": "The focused audit records records_checked=420, exact_e1_numeric_matches=420, value_mismatches=0, relation_mismatches=0, and role_mismatches=0.",
+    "required_wording": "Exact equivalence of all 420 shared values does not make the historical construction authority and the new runtime authority or their reference identities identical.",
+    "official_synthesis_uses_required_wording": true
+  },
+  "findings": [
+    {
+      "finding_id": "ARCH003-QA-001",
+      "severity": "MEDIUM",
+      "status": "DISCLOSED_AND_CURRENT_SAFE",
+      "finding": "Time quantities are row offsets interpreted as seconds through the frozen one-second sampling contract; the profiler does not independently revalidate timestamp continuity.",
+      "required_action": "Retain the disclosed sampling-contract dependency for the later reproducibility audit."
+    },
+    {
+      "finding_id": "ARCH003-QA-002",
+      "severity": "LOW",
+      "status": "CONTROLLED_IN_FROZEN_PATH",
+      "finding": "Seven runtime window constants are both reference-bound registry roles and frozen protocol constants used by execution code.",
+      "required_action": "Keep exact-value validators and revisit single-source representation only in a future authorized version."
+    },
+    {
+      "finding_id": "ARCH003-QA-003",
+      "severity": "INFORMATIONAL",
+      "status": "RESOLVED",
+      "finding": "The 462-versus-420 count difference is explained by selected horizon being an E1 construction role but a canonical descriptor semantic at runtime.",
+      "required_action": "Preserve this distinction in future documentation."
+    }
+  ],
+  "required_corrections": [],
+  "validation": {
+    "registry_validator": "PASS",
+    "registry_validator_private_exposures": 0,
+    "rcc_unit_tests": "PASS",
+    "rcc_test_count": 61,
+    "architecture_reference_checks": "PASS",
+    "privacy_static_scan": "PASS",
+    "scientific_source_and_frozen_report_diff_from_rcc_base": "NONE"
+  },
+  "safety_counters": {
+    "scientific_executions": 0,
+    "profiling_reruns": 0,
+    "relation_regenerations": 0,
+    "horizon_recomputations": 0,
+    "numeric_recomputations": 0,
+    "runtime_executions": 0,
+    "label_accesses": 0,
+    "test2_accesses": 0,
+    "private_data_reads": 0,
+    "private_numeric_reads": 0,
+    "private_paths_exposed": 0,
+    "private_values_exposed": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "official_rcc_file_changes_by_qa": 0,
+    "remote_pushes": 0
+  }
+}

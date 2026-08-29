@@ -113,7 +113,7 @@ GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
     "generated/CHANGE_SUMMARY.md", "generated/RCC_002_USER_SUMMARY.md",
     "generated/RCC_003_HISTORY_SUMMARY.md", "generated/ARCH_001_USER_SUMMARY.md",
-    "generated/ARCH_002_USER_SUMMARY.md",
+    "generated/ARCH_002_USER_SUMMARY.md", "generated/ARCH_003_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -125,6 +125,7 @@ REQUIRED_RCC_DIRS = (
     "bootstrap/RCC_000", "bootstrap/RCC_003", "bootstrap/RCC_003/agents",
     "architecture/01_data_and_splits", "bootstrap/ARCH_001", "bootstrap/ARCH_001/agents",
     "architecture/02_candidate_discovery", "bootstrap/ARCH_002", "bootstrap/ARCH_002/agents",
+    "architecture/03_relation_and_numeric", "bootstrap/ARCH_003", "bootstrap/ARCH_003/agents",
 )
 
 
@@ -203,10 +204,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain exactly six ARCH-001 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 6, "ARCH-001 must leave six user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-002", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-003 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-003 must leave eight user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-003", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -219,8 +220,12 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-003 — Relation Profiling & Numeric Authority Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-004 — Evidence Pack / Rule DSL / T0-T1-T1B-T2 Deep Audit", "next architecture task mismatch")
+    relation = state.get("relation_numeric_authority", {})
+    result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
+    result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
+    result.require("EXACT_VALUE_EQUIVALENT" in relation.get("authority_relationship", ""), "ARCH-003 shared-value equivalence is missing")
     governance = state.get("data_governance", {})
     result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
     result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
@@ -584,7 +589,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -594,6 +599,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/RCC_003_HISTORY_SUMMARY.md": ("우리 연구가 어떻게 여기까지 왔나", "pilot evidence", "홀드아웃 일반화"),
         "generated/ARCH_001_USER_SUMMARY.md": ("우리가 어떤 데이터를 쓰고 있는가", "test1", "test2", "NO VERIFIED LEAKAGE FOUND"),
         "generated/ARCH_002_USER_SUMMARY.md": ("관계 후보는 왜 세 방식으로 고르는가", "META", "STAT", "GDN", "47개"),
+        "generated/ARCH_003_USER_SUMMARY.md": ("47개 후보는 어떻게 42개 실행 관계가 되는가", "train3", "Numeric authority", "causal relation"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -715,6 +721,37 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     mermaid_discovery = (discovery / "ARCH_002_DISCOVERY_FLOW.mmd").read_text(encoding="utf-8")
     result.require(mermaid_discovery.startswith("flowchart "), "ARCH-002 Mermaid does not declare a flowchart")
     result.require("UNSCORED SET UNION" in mermaid_discovery and "Post-hoc XAI" in mermaid_discovery, "ARCH-002 Mermaid omits required discovery boundaries")
+
+    relation = rcc_root / "architecture" / "03_relation_and_numeric"
+    required_relation = {
+        "ARCH_003_REPORT.md", "ARCH_003_RELATION_SCHEMA.md", "ARCH_003_METRIC_DEFINITIONS.md",
+        "ARCH_003_RELATION_LINEAGE.csv", "ARCH_003_NUMERIC_AUTHORITY.csv",
+        "ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md", "ARCH_003_FUNCTION_CATALOG.csv",
+        "ARCH_003_IO_CONTRACTS.csv", "ARCH_003_RELATION_FLOW.mmd", "ARCH_003_MISMATCHES.md",
+    }
+    for name in required_relation:
+        result.require((relation / name).is_file(), f"ARCH-003 output missing: {name}")
+    if not relation.is_dir() or any(not (relation / name).is_file() for name in required_relation):
+        return
+    with (relation / "ARCH_003_RELATION_LINEAGE.csv").open("r", encoding="utf-8", newline="") as handle:
+        relation_rows = list(csv.DictReader(handle))
+    with (relation / "ARCH_003_NUMERIC_AUTHORITY.csv").open("r", encoding="utf-8", newline="") as handle:
+        numeric_rows = list(csv.DictReader(handle))
+    with (relation / "ARCH_003_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        relation_functions = list(csv.DictReader(handle))
+    with (relation / "ARCH_003_IO_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        relation_contracts = list(csv.DictReader(handle))
+    result.require(len(relation_rows) == 4, "ARCH-003 sanitized relation lineage is incomplete")
+    result.require(sum(int(row["final_relation_count"]) for row in relation_rows) == 42, "ARCH-003 final relation count mismatch")
+    result.require(len(numeric_rows) == 21, "ARCH-003 numeric role catalog must contain 11 construction and 10 runtime rows")
+    result.require(sum(row["construction_or_runtime"] == "construction" for row in numeric_rows) == 11, "ARCH-003 construction role count mismatch")
+    result.require(sum(row["construction_or_runtime"] == "runtime" for row in numeric_rows) == 10, "ARCH-003 runtime role count mismatch")
+    result.require(len(relation_functions) >= 20, "ARCH-003 function catalog is incomplete")
+    result.require(all(is_safe_relative_path(row["path"]) for row in relation_functions), "ARCH-003 function catalog contains an unsafe source path")
+    result.require(len(relation_contracts) >= 9, "ARCH-003 IO contract catalog is incomplete")
+    mermaid_relation = (relation / "ARCH_003_RELATION_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(mermaid_relation.startswith("flowchart "), "ARCH-003 Mermaid does not declare a flowchart")
+    result.require("45 directions" in mermaid_relation and "42 directional relations" in mermaid_relation, "ARCH-003 Mermaid omits the fit/confirmation boundary")
 
 
 def validate_registry(
