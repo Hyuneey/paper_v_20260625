@@ -1,0 +1,516 @@
+{
+  "task_id": "ARCH-011",
+  "agent": "C",
+  "role": "Artifact and Data Portability Auditor",
+  "verdict": "PASS_WITH_PORTABILITY_GAPS",
+  "authority": {
+    "rcc_branch": "rcc/research-control-center-v1",
+    "rcc_head": "63bfd013bfc1c897d69144129cf7192d36075587",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "scope": {
+    "performed": [
+      "Static inspection of tracked source, configurations, public-safe artifact registries, preservation manifests, reproducibility reports, and prior ARCH/GAP audit products.",
+      "Classification of data and artifacts for code reproduction, synthetic smoke, PILOT V1 replay, VALIDATION V2, and public thesis release.",
+      "Sanitized review of machine, path, external-environment, and restoration assumptions."
+    ],
+    "not_performed": [
+      "No scientific pipeline or metric execution.",
+      "No raw or private scientific payload was opened.",
+      "No test2 content, hash, schema, feature bytes, or labels were accessed.",
+      "No environment installation, artifact restoration, model replay, or fresh-machine rehearsal.",
+      "No scientific source, frozen artifact, or remediation implementation was changed."
+    ]
+  },
+  "evidence_basis": [
+    {
+      "path": "research_control_center/registry/artifacts.csv",
+      "finding": "Twenty-four public-safe artifact records and two symbolic private-custody classes are registered; private locators are intentionally absent."
+    },
+    {
+      "path": "research_control_center/bootstrap/RCC_000/RCC_000_PRESERVATION_AUDIT.md",
+      "finding": "The remote scientific checkpoint is current authority; the local all-refs bundle and source archive are valid historical backups but stale for later checkpoint, thesis, and RCC refs."
+    },
+    {
+      "path": "research_control_center/bootstrap/RCC_002/RCC_002_ARTIFACT_RISK_AUDIT.md",
+      "finding": "Public artifacts resolve at the pinned source while raw data and private scientific custody remain symbolic-only in the RCC."
+    },
+    {
+      "path": "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md",
+      "finding": "Traceability is strong, same-machine reproduction is conditional, and fresh-machine portability is weak because private assets and environment reconstruction are not self-contained."
+    },
+    {
+      "path": "docs/professor_first_results_v1/ENVIRONMENT_MANIFEST.md",
+      "finding": "The public environment record identifies the platform, Python floor, core dependency, and optional GDN versions but is not a complete lock or portable environment capsule."
+    },
+    {
+      "path": "docs/project_state/LOCAL_PRIVATE_BINDING_GUIDE.md",
+      "finding": "Scientific custody is restored through an ignored local binding layer and hidden path entry; public project state records configured state, not private locator values."
+    },
+    {
+      "path": "configs/data/hai_2305_official_provenance.json",
+      "finding": "HAI 23.05 source, pinned upstream commit, ten file identities, sizes, dataset directory, exclusions, and public/private output rules are frozen."
+    },
+    {
+      "path": "configs/data/hai_2305_official_distribution_remediation.json",
+      "finding": "An official metadata-first, selective-file acquisition route is documented without authorizing dataset redistribution."
+    },
+    {
+      "path": "docs/task_reports/TASK-039C_GDN_FINAL_AUDIT.md",
+      "finding": "The public GDN result and ranking are frozen; no GDN checkpoint, raw window, node embedding, or private ledger content was committed, and the three seed ledgers remain private."
+    },
+    {
+      "path": "research_control_center/architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md",
+      "finding": "Construction and runtime numeric values were audited as exact-equivalent for shared roles but remain separate private authority identities."
+    },
+    {
+      "path": "research_control_center/architecture/05_verifier_common42/ARCH_005_COMMON42.md",
+      "finding": "COMMON-42 is a public, hash-bound V4 portfolio authority over separately held private runtime numeric custody, not a self-contained public executable payload."
+    },
+    {
+      "path": "research_control_center/architecture/07_d0_detector/ARCH_007_ARTIFACT_LINEAGE.csv",
+      "finding": "D0 feature and prediction identities are public, while preprocessing, PCA, threshold, scores, and metric evidence include private payload custody."
+    },
+    {
+      "path": "research_control_center/architecture/gap_000_pre_validation/GAP_000_PILOT_PRESERVATION.md",
+      "finding": "PILOT V1 must remain immutable and VALIDATION V2 must use new method, authority, configuration, prediction, and experiment identities."
+    },
+    {
+      "path": "docs/reproducibility/LEGACY_PUBLIC_HOST_PATH_DISPOSITION_V1.md",
+      "finding": "Historical tracked host-path strings are already-public frozen metadata; exact blobs remain preserved while prospective generators are expected to redact host paths."
+    }
+  ],
+  "repository_portability": {
+    "git_tracked_source": {
+      "classification": "PUBLIC_FROZEN",
+      "status": "AVAILABLE_FROM_PINNED_GIT_COMMIT",
+      "supports": [
+        "source inspection",
+        "contract and schema inspection",
+        "RCC validation",
+        "synthetic tests that require only declared dependencies"
+      ],
+      "limitations": [
+        "The RCC branch is local-only at audit time and is not part of the pinned scientific checkpoint.",
+        "The source tree alone does not contain the private scientific authority plane or raw HAI payloads."
+      ]
+    },
+    "package_install": {
+      "classification": "PUBLIC_INSTALLABLE_CORE_WITH_INCOMPLETE_SCIENTIFIC_LOCK",
+      "evidence": "pyproject.toml declares Python >=3.11, one pinned core dependency, and pinned optional GDN top-level packages.",
+      "limitations": [
+        "No complete lock file or general scientific wheel manifest is tracked.",
+        "The exact successful GDN environment used an external Windows-specific wheelhouse and a larger transitive freeze recorded only by public hashes/metadata.",
+        "A fresh clone can install the core package without private data, but exact scientific environment restoration is not demonstrated."
+      ]
+    },
+    "synthetic_smoke": {
+      "classification": "PUBLIC_REGENERABLE_WITH_DEPENDENCY_CONDITIONS",
+      "status": "DESIGN_AND_TEST_ASSETS_TRACKED_NOT_FRESH_MACHINE_REHEARSED",
+      "private_assets_required": false,
+      "qualification": "Core synthetic contracts and many fixtures are tracked; optional Torch/PyG and historical environment-specific suites require their declared compatible environments."
+    }
+  },
+  "data_portability": {
+    "hai_2305": {
+      "classification": "PRIVATE_REGENERABLE",
+      "git_tracked": false,
+      "external_acquisition_required": true,
+      "source_identity": "Pinned official Git snapshot and exact Git-LFS object identities; an official selective Kaggle payload route is separately frozen.",
+      "expected_layout": "A local data root containing the frozen hai-23.05 directory and approved files.",
+      "validation": "Expected file names, byte sizes, SHA-256 identities, structural schema, and custody hashes are documented and checked by project-owned code.",
+      "release_boundary": "Do not redistribute raw rows, labels, attack details, absolute locators, or local custody files.",
+      "portability_risk": "MEDIUM",
+      "notes": [
+        "The source and acquisition identities are strong, but authorized access, license/terms compliance, network availability, and local custody bootstrap remain external prerequisites.",
+        "The public repository does not contain a complete scientific dataset capsule."
+      ]
+    },
+    "local_binding": {
+      "classification": "LOCAL_ONLY",
+      "mechanism": "Ignored local custody file plus environment-based or hidden-prompt binding.",
+      "portable": "RECONSTRUCTABLE_BUT_NOT_TRANSFERABLE_AS_PUBLIC_ARTIFACT",
+      "risk": "A clone has no scientific data authority until the local binding is rebuilt and validated."
+    },
+    "other_restricted_datasets": {
+      "classification": "NOT_REQUIRED_FOR_HAI_PILOT_V1_RELEASE",
+      "status": "Local-only or future external-validation assets; redistribution excluded."
+    }
+  },
+  "artifact_portability": [
+    {
+      "artifact": "GDN learned model checkpoint",
+      "classification": "LOCAL_ONLY_NOT_PRESERVED",
+      "public_identity": "No checkpoint payload or checkpoint artifact was committed.",
+      "private_dependency": "Private seed ledgers exist for ranking reconstruction; the trained in-memory minimum-validation state was not persisted as a portable checkpoint.",
+      "code_reproduction": "NOT_REQUIRED",
+      "synthetic_smoke": "NOT_REQUIRED",
+      "pilot_v1_replay": "PUBLIC_RANKING_REPLAYABLE; MODEL_REPLAY_NOT_AVAILABLE",
+      "validation_v2": "MUST_CREATE_NEW_VERSIONED_CHECKPOINT_OR_EXPLICITLY_FREEZE_NONPERSISTENCE_POLICY",
+      "public_release": "Publish source, config, fidelity receipts, result/ranking, and sanitized ledger hashes; exclude private ledgers and model state."
+    },
+    {
+      "artifact": "Candidate discovery artifacts",
+      "classification": "PUBLIC_FROZEN_WITH_PRIVATE_SUPPORTING_LEDGERS",
+      "public_identity": "META, STAT, GDN results, overlap, integration receipt, and 47-pair cohort are tracked and hash-bound.",
+      "private_dependency": "Detailed STAT ledger and three GDN seed ledgers are local/private.",
+      "code_reproduction": "SUPPORTED",
+      "synthetic_smoke": "SUPPORTED",
+      "pilot_v1_replay": "PUBLIC_UNION_AND_RANKING_INTEGRITY_REPLAY_SUPPORTED; SCIENTIFIC_RECOMPUTATION_CONDITIONAL",
+      "validation_v2": "Regenerate under a new experiment identity from authorized normal data and versioned environment.",
+      "public_release": "Include public results, ranks, provenance, configs, and schemas; exclude raw values and private ledger contents."
+    },
+    {
+      "artifact": "Relation profiling and confirmation artifacts",
+      "classification": "PUBLIC_FROZEN_WITH_PRIVATE_NUMERIC_EVIDENCE",
+      "public_identity": "Fit, confirmation, 23-context and 42-relation aggregate authorities are tracked.",
+      "private_dependency": "Event-level evidence and relation numeric payloads remain private.",
+      "code_reproduction": "SUPPORTED",
+      "synthetic_smoke": "SUPPORTED",
+      "pilot_v1_replay": "PUBLIC_LINEAGE_REPLAY_SUPPORTED; SCIENTIFIC_RECOMPUTATION_REQUIRES_NORMAL_DATA_AND_PRIVATE_CUSTODY",
+      "validation_v2": "Regenerate as a new relation cohort and authority version.",
+      "public_release": "Include aggregate relation identities, contracts, public summaries, and hashes only."
+    },
+    {
+      "artifact": "Construction numeric authority",
+      "classification": "PRIVATE_FROZEN",
+      "public_identity": "Public evidence manifests and hash-only materialization receipts are tracked.",
+      "private_dependency": "Eleven relation roles per construction relation remain private payloads.",
+      "code_reproduction": "SUPPORTED_FOR_CONTRACTS",
+      "synthetic_smoke": "SUPPORTED_WITH_SYNTHETIC_NUMBERS",
+      "pilot_v1_replay": "REQUIRES_PRIVATE_AUTHORITY_CUSTODY",
+      "validation_v2": "Must be regenerated or restored under a new bound authority identity.",
+      "public_release": "Publish schemas, role semantics, provenance, and receipts; exclude private values."
+    },
+    {
+      "artifact": "Runtime numeric authority",
+      "classification": "PRIVATE_FROZEN",
+      "public_identity": "The normal-only authority receipt and exact 420-role identity/hash metadata are tracked.",
+      "private_dependency": "The 420 numeric values and supplemental census records are private.",
+      "code_reproduction": "SUPPORTED_FOR_RESOLVER_CONTRACTS",
+      "synthetic_smoke": "SUPPORTED_WITH_SYNTHETIC_REGISTRY",
+      "pilot_v1_replay": "REQUIRES_EXACT_PRIVATE_REGISTRY_OR_AUTHORIZED_RECONSTRUCTION",
+      "validation_v2": "Must bind to the chosen final authority and new V2 registry identity.",
+      "public_release": "Hash-only receipt and schema are public; private registry content remains excluded."
+    },
+    {
+      "artifact": "COMMON-42",
+      "classification": "PUBLIC_FROZEN_AUTHORITY_WITH_PRIVATE_EXECUTION_BINDING",
+      "public_identity": "Forty-two ordered V4 descriptor identities, semantic hashes, T2 exclusion, and authority checks are tracked.",
+      "private_dependency": "Execution requires the separately held private runtime numeric resolver and authorized data windows.",
+      "code_reproduction": "SUPPORTED",
+      "synthetic_smoke": "SUPPORTED_BY_CONTRACT_ADAPTERS",
+      "pilot_v1_replay": "IDENTITY_AND_EXECUTABLE_EQUIVALENCE_REPLAY_SUPPORTED; REAL_EXECUTION_REQUIRES_PRIVATE_BINDINGS",
+      "validation_v2": "Preserve V1 immutably; create new bridge/authority/portfolio IDs if the canonical-to-V4 bridge changes.",
+      "public_release": "Include public descriptor metadata, mappings, contracts, and hashes; exclude numeric payloads."
+    },
+    {
+      "artifact": "D0 scaler, PCA, and threshold authority",
+      "classification": "PRIVATE_FROZEN",
+      "public_identity": "Feature order, model/threshold identities, policies, and receipts are tracked.",
+      "private_dependency": "Preprocessing floats, loadings/eigen authority, threshold, score vector, and metric evidence are private.",
+      "code_reproduction": "SUPPORTED_FOR_IMPLEMENTATION",
+      "synthetic_smoke": "SUPPORTED",
+      "pilot_v1_replay": "PUBLIC_PREDICTION_INTEGRITY_REPLAY_SUPPORTED; MODEL_REPLAY_REQUIRES_PRIVATE_AUTHORITY",
+      "validation_v2": "Train and freeze a new detector authority under a fully versioned environment.",
+      "public_release": "Publish contracts, configuration, feature identity, Boolean prediction, result, and integrity receipt; exclude private model values and scores."
+    },
+    {
+      "artifact": "D0 prediction",
+      "classification": "PUBLIC_FROZEN",
+      "public_identity": "Tracked durable label-blind Boolean prediction with source/model/threshold/feature identities and self-hash.",
+      "private_dependency": "Raw SPE values are not public.",
+      "code_reproduction": "NOT_REQUIRED_FOR_SOURCE_BUILD",
+      "synthetic_smoke": "NOT_REQUIRED",
+      "pilot_v1_replay": "DURABLE_INTEGRITY_REPLAY_SUPPORTED",
+      "validation_v2": "Generate a separately named durable prediction before labels.",
+      "public_release": "Safe to include the sanitized frozen prediction and integrity receipt if the release policy retains pilot results."
+    },
+    {
+      "artifact": "D1 prediction",
+      "classification": "PUBLIC_FROZEN_WITH_UPSTREAM_CUSTODY_QUALIFICATION",
+      "public_identity": "Tracked rule-prediction artifact, metric binding, and integrity receipt.",
+      "private_dependency": "Exact V4 runtime reconstruction needs private numeric authority and HAI features; no standalone public trace payload exists.",
+      "code_reproduction": "NOT_REQUIRED_FOR_SOURCE_BUILD",
+      "synthetic_smoke": "NOT_REQUIRED",
+      "pilot_v1_replay": "DOWNSTREAM_INTEGRITY_REPLAY_SUPPORTED; PRE_LABEL_DURABLE_REPLAY_NOT_PROVEN",
+      "validation_v2": "Must use durable prediction-before-label persistence and a versioned final authority bridge.",
+      "public_release": "Include sanitized prediction, metrics, and the explicit in-memory-freeze qualification; exclude private windows and trace payloads."
+    },
+    {
+      "artifact": "D2 V1 and V2 predictions",
+      "classification": "PUBLIC_FROZEN",
+      "public_identity": "Tracked durable combined predictions, policy/config identities, metrics, and integrity receipts.",
+      "private_dependency": "Scientific regeneration depends on frozen upstream D0/D1 evidence and private source mappings/custody where applicable.",
+      "code_reproduction": "NOT_REQUIRED_FOR_SOURCE_BUILD",
+      "synthetic_smoke": "SUPPORTED_BY_SYNTHETIC_POLICY_TESTS",
+      "pilot_v1_replay": "DURABLE_INTEGRITY_REPLAY_SUPPORTED",
+      "validation_v2": "Any new fusion policy requires a new preregistered version and pre-label durable outputs.",
+      "public_release": "Include sanitized predictions, policy configs, metrics, and integrity receipts; keep V2 labelled test1-informed development."
+    },
+    {
+      "artifact": "Metric results and overlap reports",
+      "classification": "PUBLIC_FROZEN",
+      "public_identity": "D0, D1, D2, overlap, FAR, event-recall, and integrity summaries are tracked and hash-bound.",
+      "private_dependency": "Label payloads and some underlying metric evidence remain private.",
+      "code_reproduction": "SUPPORTED_FOR_METRIC_IMPLEMENTATION",
+      "synthetic_smoke": "SUPPORTED",
+      "pilot_v1_replay": "PUBLIC_ARITHMETIC_AND_REPORT_BINDING_REPLAY_SUPPORTED_WITH_PRIOR_QUALIFICATIONS",
+      "validation_v2": "Use new prediction/label/result identities and frozen metric adapters.",
+      "public_release": "Include sanitized results, definitions, claim matrices, and integrity limitations."
+    },
+    {
+      "artifact": "RCC, professor, and thesis-facing reports",
+      "classification": "PUBLIC_FROZEN_OR_VERSIONED_DOCUMENTATION",
+      "public_identity": "Scientific reports and current RCC mappings are tracked, with the thesis draft on an approved overlay rather than scientific authority.",
+      "private_dependency": "None for reading; claims remain bounded by underlying private scientific custody.",
+      "code_reproduction": "SUPPORTED",
+      "synthetic_smoke": "NOT_APPLICABLE",
+      "pilot_v1_replay": "TRACEABILITY_SUPPORTED",
+      "validation_v2": "Add new reports without rewriting V1 evidence.",
+      "public_release": "Include current reviewed reports; distinguish scientific authority, RCC synthesis, and provisional thesis narrative."
+    }
+  ],
+  "use_case_readiness": [
+    {
+      "use_case": "CODE_REPRODUCTION",
+      "classification": "SUPPORTED",
+      "basis": "Pinned tracked source, tests, schemas, configs, and public reports are available.",
+      "does_not_mean": "Scientific data or private authority is restored."
+    },
+    {
+      "use_case": "FRESH_MACHINE_SYNTHETIC_SMOKE",
+      "classification": "DESIGNED_NOT_REHEARSED",
+      "basis": "Synthetic fixtures and public contracts are tracked, and core installation requires no private data.",
+      "blockers": [
+        "No complete lock/capsule and no independently executed fresh-machine receipt.",
+        "Optional suites require compatible environments and some historical tests assume specific availability/absence of optional dependencies."
+      ]
+    },
+    {
+      "use_case": "PILOT_V1_PUBLIC_INTEGRITY_REPLAY",
+      "classification": "STRONG_WITH_D1_QUALIFICATION",
+      "basis": "Public frozen artifacts, hashes, metrics, and integrity receipts are present.",
+      "qualification": "D1 downstream identity is auditable, but its original pre-label boundary was an in-memory object rather than an atomic durable file gate."
+    },
+    {
+      "use_case": "PILOT_V1_SAME_MACHINE_SCIENTIFIC_REPLAY",
+      "classification": "CONDITIONAL",
+      "basis": "Possible only if authorized local HAI, private numeric/model/ledger authorities, compatible environments, and exact custody bindings remain available.",
+      "not_established": "A complete replay receipt was not produced by this audit."
+    },
+    {
+      "use_case": "PILOT_V1_FRESH_MACHINE_SCIENTIFIC_REPRODUCTION",
+      "classification": "NOT_READY",
+      "blockers": [
+        "Private scientific authority restoration is not self-contained.",
+        "The exact scientific dependency environment is not fully locked as a portable installation.",
+        "No end-to-end fresh-machine scientific rehearsal exists.",
+        "The GDN checkpoint was not preserved and private seed ledgers are not public.",
+        "No one-command authority and artifact restoration path is frozen."
+      ]
+    },
+    {
+      "use_case": "VALIDATION_V2",
+      "classification": "BLOCKED_PENDING_REMEDIATION_AND_PROTOCOL_FREEZE",
+      "requirements": [
+        "New scientific version and experiment IDs.",
+        "Verified final execution authority, preferably a tested canonical-to-V4 bridge if approved.",
+        "Durable prediction-before-label gates.",
+        "Versioned dependency/environment receipt and private-asset manifest.",
+        "Fresh-machine synthetic rehearsal before held-out access.",
+        "New held-out preregistration and immutable metric/data contracts."
+      ]
+    },
+    {
+      "use_case": "PUBLIC_THESIS_RELEASE",
+      "classification": "PUBLIC_CODE_AND_SANITIZED_EVIDENCE_RELEASE_FEASIBLE",
+      "basis": "Source, schemas, tests, configs, public predictions/results, and claim-bounded reports are trackable without publishing private payloads.",
+      "qualification": "It must be described as a traceable code/evidence release, not a self-contained independent scientific reproduction capsule."
+    }
+  ],
+  "machine_and_path_assumptions": {
+    "active_absolute_path_assessment": "NO_ACTIVE_LITERAL_HOST_ROOT_FOUND_IN_CURRENT_SCIENTIFIC_SOURCE_FROM_SANITIZED_STATIC_SCAN",
+    "legacy_path_metadata": {
+      "status": "PRESERVED_ALREADY_PUBLIC_HISTORY",
+      "risk": "LOW_FOR_EXECUTION_MEDIUM_FOR_PRIVACY_HYGIENE",
+      "note": "Historical reports contain host-path metadata by prior publication; they are frozen and should not be reused as current locators."
+    },
+    "current_indirect_machine_dependencies": [
+      {
+        "assumption": "Ignored local custody file and environment variables",
+        "impact": "Scientific data and authority cannot be restored from Git alone.",
+        "severity": "HIGH_FOR_FRESH_MACHINE_SCIENCE"
+      },
+      {
+        "assumption": "Windows/PowerShell operational history",
+        "impact": "Many runbooks and the exact GDN environment were evidenced on Windows; cross-platform behavior is not independently rehearsed.",
+        "severity": "MEDIUM"
+      },
+      {
+        "assumption": "External exact GDN wheelhouse and upstream checkout",
+        "impact": "The wheelhouse and checkout are outside Git; public hashes prove identity but do not restore bytes.",
+        "severity": "HIGH_FOR_GDN_REPLAY"
+      },
+      {
+        "assumption": "Line-ending normalization",
+        "impact": "Historical diagnostics observed Windows CRLF versus LF-normalized fixture identities; explicit normalization prevented a scientific mismatch but fresh-machine tests must preserve this rule.",
+        "severity": "LOW"
+      },
+      {
+        "assumption": "Working-directory and local-runtime conventions",
+        "impact": "Historical commands use repository-relative scripts and locally supplied interpreter environments; a canonical invocation contract is not frozen.",
+        "severity": "MEDIUM"
+      },
+      {
+        "assumption": "Locale, timezone, filesystem ordering, and floating-library identity",
+        "impact": "Timestamp formats and deterministic sorting are mostly explicit, but a cross-machine receipt proving these assumptions is absent.",
+        "severity": "MEDIUM_AS_UNVERIFIED_ENVIRONMENT_BOUNDARY"
+      }
+    ]
+  },
+  "preservation_and_restoration": {
+    "remote_scientific_checkpoint": "CURRENT_AND_AUTHORITATIVE",
+    "local_all_refs_bundle": "VALID_HISTORICAL_BACKUP_BUT_STALE",
+    "source_only_archive": "VALID_HISTORICAL_SOURCE_SNAPSHOT_BUT_PRE_CHECKPOINT_AND_EXCLUDES_TASK_RESULTS",
+    "private_asset_backup": "NOT_PUBLICLY_AUDITABLE; SYMBOLIC_CUSTODY_ONLY",
+    "restoration_status": "SOURCE_HISTORY_RESTORABLE_FROM_CURRENT_GIT_AUTHORITY; COMPLETE_SCIENTIFIC_STATE_NOT_RESTORABLE_FROM_PUBLIC_ASSETS_ALONE",
+    "release_recommendation": "After ARCH-011 and the authority decision, create a new versioned preservation set rather than overwriting historical bundles; separately document private restoration prerequisites without publishing locators or values."
+  },
+  "authority_bridge_portability": {
+    "preferred_target_under_review": "VERIFIED_CANONICAL_RULEV1_VERIFIERV1_TO_V4_RUNTIME_BRIDGE",
+    "portability_benefits": [
+      "Preserves the frozen V4 evaluator semantics and PILOT V1 history.",
+      "Creates one explicit transformation boundary between public canonical rules and the runtime descriptor plane.",
+      "Allows synthetic bridge conformance tests without private HAI data."
+    ],
+    "portability_costs": [
+      "Requires a versioned bridge schema, losslessness/equivalence tests, authority/hash rebinding rules, and failure taxonomy.",
+      "Still does not eliminate private V4 numeric authority and HAI custody restoration.",
+      "Adds one artifact and dependency edge that must be included in fresh-machine and release manifests."
+    ],
+    "minimum_release_binding": [
+      "Canonical RuleV1 schema and verifier contract",
+      "Bridge implementation and public configuration",
+      "Synthetic equivalence and mismatch tests",
+      "V4 descriptor/runtime schema",
+      "Public numeric-authority receipt and private-restoration contract",
+      "Versioned bridge and portfolio hashes"
+    ],
+    "recommendation": "PORTABILITY_SUPPORTS_OPTION_C_IF_THE_BRIDGE_IS_MINIMAL_VERSIONED_AND_SYNTHETICALLY_REHEARSABLE; this is not a permanent authority decision and does not authorize implementation."
+  },
+  "release_boundary": {
+    "include": [
+      "Pinned source and test code",
+      "Schemas and public contracts",
+      "Public scientific and synthetic configurations",
+      "Synthetic fixtures and smoke-test instructions",
+      "Official data provenance and acquisition metadata without payload redistribution",
+      "Sanitized candidate, relation, COMMON-42, prediction, metric, integrity, and claim-boundary artifacts",
+      "RCC architecture and reproducibility documentation",
+      "A versioned environment manifest and future lock/capsule receipt",
+      "A private-asset manifest containing only symbolic IDs, hashes, roles, and restoration requirements"
+    ],
+    "exclude": [
+      "Raw HAI or other restricted datasets",
+      "Test2 or sealed held-out content",
+      "Local custody files and absolute paths",
+      "Private candidate/relation ledgers",
+      "Private numeric authority values",
+      "Private D0 preprocessing, PCA, threshold, scores, and metric evidence",
+      "Credentials, provider secrets, private raw responses, or private reasoning traces",
+      "Unreviewed local worktrees, caches, wheelhouses, checkpoints, and preservation packages"
+    ],
+    "release_claim": "TRACEABLE_CODE_AND_SANITIZED_EVIDENCE_RELEASE",
+    "prohibited_release_claim": "SELF_CONTAINED_INDEPENDENT_SCIENTIFIC_REPRODUCTION_CAPSULE"
+  },
+  "findings": [
+    {
+      "finding_id": "A011-C01",
+      "severity": "HIGH",
+      "title": "Public artifacts do not restore the private scientific authority plane",
+      "impact": "A fresh clone can inspect and test code but cannot exactly execute PILOT V1 or VALIDATION V2 without authorized HAI and private ledger, numeric, model, and custody assets.",
+      "disposition": "FRESH_MACHINE_AND_VALIDATION_V2_GATE"
+    },
+    {
+      "finding_id": "A011-C02",
+      "severity": "HIGH",
+      "title": "GDN scientific state is not checkpoint-portable",
+      "impact": "The public GDN ranking is auditable, but no learned checkpoint was persisted and the supporting seed ledgers remain private; exact model replay is unavailable from the public repository.",
+      "disposition": "EXP01_AND_VALIDATION_V2_VERSIONING_REQUIREMENT"
+    },
+    {
+      "finding_id": "A011-C03",
+      "severity": "HIGH",
+      "title": "Exact scientific dependency restoration is not locked",
+      "impact": "The project has top-level pins and an exact historical GDN receipt, but no single complete public lock/capsule covers all scientific paths and platforms.",
+      "disposition": "REPRODUCIBILITY_FIX_BEFORE_HELDOUT"
+    },
+    {
+      "finding_id": "A011-C04",
+      "severity": "MEDIUM",
+      "title": "Local preservation packages are stale",
+      "impact": "The historical bundle and source archive cannot serve as the current RCC/thesis restoration authority without a new versioned preservation set.",
+      "disposition": "ENGINEERING_HARDENING_AFTER_ARCH011"
+    },
+    {
+      "finding_id": "A011-C05",
+      "severity": "MEDIUM",
+      "title": "Private locator reconstruction is documented but not one-command portable",
+      "impact": "The ignored binding file is privacy-safe, but scientific restoration still depends on local interactive or separately authorized materialization steps.",
+      "disposition": "FRESH_MACHINE_PROTOCOL_REQUIREMENT"
+    },
+    {
+      "finding_id": "A011-C06",
+      "severity": "MEDIUM",
+      "title": "Current scientific history is Windows-centered",
+      "impact": "Windows/Powershell, line-ending, exact wheel, and local interpreter assumptions are documented but not cross-platform rehearsed.",
+      "disposition": "PORTABILITY_LIMITATION_AND_REHEARSAL_CHECK"
+    },
+    {
+      "finding_id": "A011-C07",
+      "severity": "MEDIUM",
+      "title": "COMMON-42 is not a self-contained public executable portfolio",
+      "impact": "Its public metadata is reproducible, while real execution still requires private numeric resolver custody; release wording must keep this boundary explicit.",
+      "disposition": "CLAIM_AND_RELEASE_BOUNDARY"
+    },
+    {
+      "finding_id": "A011-C08",
+      "severity": "LOW",
+      "title": "Legacy host paths remain in immutable history",
+      "impact": "They are already-public metadata rather than active runtime authorities, but future generators and release scans must continue redaction.",
+      "disposition": "PRESERVE_HISTORY_AND_SCAN_PROSPECTIVELY"
+    }
+  ],
+  "uncertainties": [
+    "The continued availability and completeness of every local private numeric, model, seed-ledger, score, and metric-evidence payload was not verified because private locators and payloads were outside scope.",
+    "Same-machine scientific replay is conditional rather than proven; no replay was executed.",
+    "Cross-platform installation and deterministic numerical equivalence are unverified.",
+    "The legal redistribution status of raw HAI bytes was not independently re-adjudicated; the repository policy correctly excludes redistribution.",
+    "Whether the future held-out study may reuse any physical data asset is outside this artifact-portability audit and requires custody/protocol evidence from the OUTER specialist.",
+    "The preferred canonical-to-V4 bridge remains a user-approved target under review, not a locked final authority."
+  ],
+  "coordinator_recommendations": [
+    "Preserve all PILOT V1 public and private identities without rewriting artifacts.",
+    "Treat public replay, same-machine scientific replay, and fresh-machine scientific reproduction as different states in every report and dashboard.",
+    "Before held-out access, produce a fresh-machine synthetic receipt, a complete versioned dependency/environment manifest, and a private-asset restoration manifest that contains no locators or values.",
+    "Version the canonical-to-V4 bridge, numeric authority, portfolio, predictions, and reports together for VALIDATION V2 if Option C is approved.",
+    "Create a new preservation set only after ARCH-011 and authority decisions; keep the historical bundle and archive immutable.",
+    "Release source, tests, synthetic fixtures, public configs, sanitized artifacts, and reproduction instructions, while excluding raw/private payloads and describing the release as traceable rather than self-contained scientific reproduction."
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "test2_content_accesses": 0,
+    "test2_hash_reads": 0,
+    "private_payload_opens": 0,
+    "raw_data_reads": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remediation_implementations": 0,
+    "remote_pushes": 0,
+    "files_written": [
+      "research_control_center/bootstrap/ARCH_011/agents/agent_c_portability.json"
+    ]
+  }
+}

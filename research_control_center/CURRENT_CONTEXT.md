@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Run ARCH-011 read-only to pin OUTER custody, environment, portability, and fresh-machine gaps before remediation.
-- Choose and version the final scientific authority, then add the durable D1 pre-label gate without rewriting PILOT V1.
-- Close only the experiment-specific gate needed for the next approved protocol; freeze all choices before results.
+- Approve and version the final scientific authority; the audited preferred target is a verified canonical-to-V4 bridge with formal V4 fallback.
+- Implement the durable D1 pre-label gate prospectively in VALIDATION V2 without rewriting PILOT V1.
+- Close dependency/schema/entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
 
-Exact next management task: **ARCH-011 — OUTER / Reproducibility Deep Audit**
-Following architecture task: **ARCH-011 — OUTER / Reproducibility Deep Audit**
+Exact next management task: **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**
+Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

@@ -45,8 +45,8 @@ class Arch008D1RuleOnlyTests(unittest.TestCase):
 
     def test_progression_and_generated_summary(self):
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertIn(state["last_completed_task"], {"ARCH-008", "ARCH-009", "ARCH-010", "GAP-000"})
-        self.assertTrue(state["exact_next_task"].startswith(("ARCH-009", "ARCH-010", "GAP-000", "ARCH-011")))
+        self.assertIn(state["last_completed_task"], {"ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011"})
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001")))
         summary = (RCC / "generated" / "ARCH_008_USER_SUMMARY.md").read_text(encoding="utf-8")
         self.assertIn("13/14", summary)
         self.assertIn("Agentic Rule-only", summary)

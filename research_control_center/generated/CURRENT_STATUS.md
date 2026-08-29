@@ -1,9 +1,9 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
-Registry snapshot: `2026-08-29T06:24:06Z`
+Registry snapshot: `2026-08-29T14:36:04Z`
 
 ## Current phase
 
@@ -37,7 +37,7 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 - **Dataset / process:** HAI 23.05 / P1 Boiler
 - **Label access:** Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.
 - **Leakage:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
-- **Test1:** INNER development / 14-event pilot; not final validation
+- **Test1:** INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation
 - **Test2:** One custody-level file access attempt was rejected before byte read; held-out result unavailable.
 
 ## Frozen D1 runtime / trace audit
@@ -150,4 +150,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-011 — OUTER / Reproducibility Deep Audit**
+**GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**

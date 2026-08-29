@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
-Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
+Generated from RCC registry version `0.1.0` at `2026-08-29T14:36:04Z`.
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -153,20 +153,17 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Choose the final scientific Rule/verifier/runtime authority.
-- Approve the conditional Graph-Guided and Agentic title policy.
-- Explain why durable D1 persistence is prospective and does not rewrite PILOT V1.
-- Distinguish code fixes, experiment requirements, wording corrections, and limitations.
-- Approve or defer ARCH-011 as the next read-only task.
-
-## Source-policy boundary
-
-Documentation overlay `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @ `ebc5a57bfdb7d8266f96f2990338effb9d0a2743`
-is context only; `task-039c-gdn` @ `c0efdb6218385ec326be1a929371242314e63cb6`
-is non-authoritative.
+- Explain why old OUTER has no result and cannot simply retry.
+- Decide same-physical-test2 eligibility only within a new preregistered study.
+- Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
+- Review and approve the canonical-to-V4 bridge target or fallback.
+- Confirm PILOT V1 preservation and VALIDATION V2 separation.
+- Approve the remediation order.
+- Approve GAP-FIX-001.
+- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
 
 ## Exact next task
 
-Management: **ARCH-011 — OUTER / Reproducibility Deep Audit**
+Management: **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**
 
-Following architecture review: **ARCH-011 — OUTER / Reproducibility Deep Audit**
+Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

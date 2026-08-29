@@ -51,14 +51,14 @@ class Gap000PreValidationTests(unittest.TestCase):
 
     def test_registry_dashboard_and_user_summary(self) -> None:
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertEqual("GAP-000", state["last_completed_task"])
-        self.assertTrue(state["exact_next_task"].startswith("ARCH-011"))
+        self.assertEqual("ARCH-011", state["last_completed_task"])
+        self.assertTrue(state["exact_next_task"].startswith("GAP-FIX-001"))
         self.assertEqual("BEFORE_REMEDIATION_READ_ONLY", state["pre_validation_readiness"]["arch011_position"])
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
-        for marker in ("PRE-VALIDATION READINESS", "P0 global fixes", "READY_WITH_CONDITIONS", "PILOT V1"):
+        for marker in ("PRE-VALIDATION READINESS", "Primary disposition", "Urgency priority", "READY_WITH_CONDITIONS", "PILOT V1"):
             self.assertIn(marker, dashboard)
         summary = (RCC / "generated" / "GAP_000_USER_SUMMARY.md").read_text(encoding="utf-8")
-        for marker in ("본격 실험 전에", "PILOT V1", "VALIDATION V2", "ARCH-011"):
+        for marker in ("본격 실험 전에", "PILOT V1", "VALIDATION V2", "Primary disposition", "Urgency priority"):
             self.assertIn(marker, summary)
 
     def test_bootstrap_evidence_and_agent_reviews(self) -> None:

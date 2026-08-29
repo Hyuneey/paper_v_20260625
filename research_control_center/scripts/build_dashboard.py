@@ -75,6 +75,10 @@ ARCHITECTURE_FILES = (
     "gap_000_pre_validation/GAP_000_ROOT_ISSUES.csv",
     "gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv",
     "gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv",
+    "11_outer_reproducibility/ARCH_011_ENVIRONMENT_MATRIX.csv",
+    "11_outer_reproducibility/ARCH_011_PATH_MACHINE_ASSUMPTIONS.csv",
+    "11_outer_reproducibility/ARCH_011_ARTIFACT_PORTABILITY.csv",
+    "11_outer_reproducibility/ARCH_011_AUTHORITY_OPTIONS.csv",
 )
 
 
@@ -394,6 +398,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     d2 = state["d2_fusion"]
     metrics = state["metric_integrity"]
     readiness = state["pre_validation_readiness"]
+    outer = state["outer_reproducibility"]
     gate_markup = "".join(
         '<article class="summary-card"><p class="eyebrow">'
         + _escape(experiment)
@@ -452,7 +457,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#pre-validation-readiness">Readiness</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#outer-reproducibility">OUTER / Repro</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -478,14 +483,14 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <div class="section-heading"><p class="eyebrow">GAP-000</p><h2>PRE-VALIDATION READINESS</h2></div>
       <p class="architecture-flow">120 RAW FINDINGS → 19 ROOT ISSUES → DISPOSITION / PRIORITY → EXPERIMENT GATES</p>
       <div class="status-snapshot">
-        <div><span>P0 global fixes</span><strong>{readiness['disposition_counts']['P0_FIX_BEFORE_EXPANDED_VALIDATION']}</strong></div>
-        <div><span>P1 experiment fixes</span><strong>{readiness['disposition_counts']['P1_FIX_BEFORE_SPECIFIC_EXPERIMENT']}</strong></div>
+        <div><span>Primary disposition: global pre-validation fixes</span><strong>{readiness['disposition_counts']['P0_FIX_BEFORE_EXPANDED_VALIDATION']}</strong></div>
+        <div><span>Primary disposition: experiment-specific fixes</span><strong>{readiness['disposition_counts']['P1_FIX_BEFORE_SPECIFIC_EXPERIMENT']}</strong></div>
         <div><span>Experiment requirements</span><strong>{readiness['disposition_counts']['EXPERIMENT_DESIGN_REQUIREMENT']}</strong></div>
         <div><span>Engineering hardening</span><strong>{readiness['disposition_counts']['ENGINEERING_HARDENING']}</strong></div>
-        <div><span>Claim corrections</span><strong>{readiness['disposition_counts']['CLAIM_DOCUMENTATION_CORRECTION']}</strong></div>
-        <div><span>Limitations / future</span><strong>{readiness['disposition_counts']['ACCEPTABLE_THESIS_LIMITATION'] + readiness['disposition_counts']['FUTURE_WORK_ONLY']}</strong></div>
+        <div><span>Urgency priority P0 / P1</span><strong>{readiness['priority_counts']['P0']} / {readiness['priority_counts']['P1']}</strong></div>
+        <div><span>Urgency priority P2 / P3</span><strong>{readiness['priority_counts']['P2']} / {readiness['priority_counts']['P3']}</strong></div>
       </div>
-      <div class="two-column"><div><h3>P0 implementation / contract</h3>{_bullet_list(readiness['p0_global_fixes'])}</div><div><h3>P0 experiment design</h3>{_bullet_list(readiness['p0_design_gates'])}</div></div>
+      <div class="two-column"><div><h3>Urgency P0 — implementation / contract</h3>{_bullet_list(readiness['p0_global_fixes'])}</div><div><h3>Urgency P0 — experiment design</h3>{_bullet_list(readiness['p0_design_gates'])}</div></div>
       <h3>Experiment gates</h3><div class="summary-grid">{gate_markup}</div>
       <aside class="principle">Past pilot: {_escape(readiness['past_pilot'])}. {_escape(readiness['scientific_versioning'])}</aside>
       <aside class="principle">This readiness view is a triage map, not a completion percentage and not authorization to run an experiment.</aside>
@@ -691,6 +696,34 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <aside class="principle">Result integrity ≠ scientific validation.</aside>
       <p><a href="../architecture/10_metrics_integrity/ARCH_010_REPORT.md">Open the deep metric audit</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv">Frozen pilot table</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md">Integrity boundary</a></p>
       <p><strong>Next deep review:</strong> {_escape(metrics['next_deep_review'])}</p>
+    </section>
+
+    <section id="outer-reproducibility" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">ARCH-011</p><h2>OUTER / REPRODUCIBILITY / PORTABILITY</h2></div>
+      <p class="architecture-flow">TRACEABILITY → SAME-MACHINE REPLAY → FRESH-MACHINE SYNTHETIC → FRESH-MACHINE SCIENTIFIC → EXTERNAL REPRODUCTION</p>
+      <div class="status-snapshot">
+        <div><span>Traceability</span><strong>{_escape(outer['reproduction_levels']['traceability'])}</strong></div>
+        <div><span>Same-machine replay</span><strong>{_escape(outer['reproduction_levels']['same_machine_replay'])}</strong></div>
+        <div><span>Fresh-machine synthetic</span><strong>{_escape(outer['reproduction_levels']['fresh_machine_synthetic'])}</strong></div>
+        <div><span>Fresh-machine scientific</span><strong>{_escape(outer['reproduction_levels']['fresh_machine_scientific'])}</strong></div>
+        <div><span>External reproduction</span><strong>{_escape(outer['reproduction_levels']['independent_external'])}</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Old OUTER</h3><dl class="architecture-contract">
+        <div><dt>RESULT</dt><dd>{_escape(outer['old_outer']['result'])}</dd></div>
+        <div><dt>STOP</dt><dd>{_escape(outer['old_outer']['blocker'])}</dd></div>
+        <div><dt>CONTENT</dt><dd>bytes {outer['old_outer']['feature_byte_reads']}; semantic parses {outer['old_outer']['semantic_parses']}; labels {outer['old_outer']['label_accesses']}</dd></div>
+        <div><dt>RETRY</dt><dd>{_escape(outer['old_outer']['retryability'])}</dd></div>
+        <div><dt>SAME TEST2</dt><dd>{_escape(outer['old_outer']['same_physical_test2_reuse'])}</dd></div>
+      </dl></div><div><h3>Prospective V2</h3><dl class="architecture-contract">
+        <div><dt>PILOT V1</dt><dd>{_escape(outer['pilot_v1'])}</dd></div>
+        <div><dt>VALIDATION V2</dt><dd>{_escape(outer['validation_v2'])}</dd></div>
+        <div><dt>AUTHORITY</dt><dd>{_escape(outer['authority_preference'])}</dd></div>
+        <div><dt>ENVIRONMENT</dt><dd>{_escape(outer['environment'])}</dd></div>
+        <div><dt>REHEARSAL</dt><dd>{_escape(outer['fresh_machine_timing'])}</dd></div>
+      </dl></div></div>
+      <aside class="principle">OLD STUDY: RESULT UNAVAILABLE. NEW HELD-OUT: REQUIRES NEW PREREGISTRATION.</aside>
+      <aside class="principle">Traceability is not fresh-machine reproducibility. OUTER result unavailable is not negative performance.</aside>
+      <p><a href="../architecture/11_outer_reproducibility/ARCH_011_REPORT.md">Open the deep OUTER/reproducibility audit</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_REPRODUCTION_LEVELS.md">Reproduction levels</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_AUTHORITY_OPTIONS.csv">Authority options</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_FRESH_MACHINE_PROTOCOL.md">Fresh-machine protocol</a></p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -959,12 +992,6 @@ path exists, but current evidence does not support a verifier-feedback advantage
 ## Top user TODO
 
 {_md_bullets(state['top_user_todo'])}
-
-## Source-policy boundary
-
-Documentation overlay `{state['documentation_overlay']['ref']}` @ `{state['documentation_overlay']['commit']}`
-is context only; `{state['non_authoritative_checkout']['ref']}` @ `{state['non_authoritative_checkout']['commit']}`
-is non-authoritative.
 
 ## Exact next task
 
@@ -1800,7 +1827,7 @@ complementarity, held-out generalization, 통계적 우수성은 미확인이다
 기억할 한 문장: **결과 무결성은 숫자가 고정 artifact와 맞는지 보장하지만, 그 숫자가 일반 성능을
 증명하는지는 보장하지 않는다.**
 
-다음 관리 task는 **{state['exact_next_task']}**이다. ARCH-011은 GAP-000 이후에만 검토한다.
+ARCH-011은 완료되었다. 다음 관리 task는 **{state['exact_next_task']}**이다.
 """
 
 
@@ -1824,12 +1851,14 @@ pre-label gate, test1 development scope, 14 contiguous event units, held-out 부
 
 ## 반드시 고쳐야 하는 것
 
-1. 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
+1. Primary disposition `P0_FIX_BEFORE_EXPANDED_VALIDATION`인 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
    version과 test를 고정한다.
 2. 새 D1 evaluation은 prediction을 label 전에 atomic persist, close, reopen/replay하고 label access를
    authorize해야 한다.
 
 ## 특정 실험 전에만 고치면 되는 것
+
+아래는 primary disposition `P1_FIX_BEFORE_SPECIFIC_EXPERIMENT`이다. Urgency priority P1과 같은 축이 아니다.
 
 - EXP-01 전: GDN Top-5 self-neighbor convention을 고치거나 명시적으로 ablation한다.
 - EXP-03 전: `no_rule`과 provider/parse/verifier/budget failure를 분리한다.
@@ -1856,24 +1885,83 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 ## 가장 안전한 다음 진행 순서
 
-1. GAP-000을 검토한다.
-2. code remediation 전에 read-only **ARCH-011**로 OUTER/reproducibility 사실을 고정한다.
-3. final authority를 결정한다.
-4. P0 fix만 좁게 구현한다.
-5. 필요한 실험별 P1만 닫고 protocol을 결과 전에 freeze한다.
-6. development/validation 실험 뒤 fresh-machine rehearsal을 완료한다.
-7. 마지막에 새 preregistered held-out study를 한 번 실행한다.
+1. 완료된 GAP-000과 read-only ARCH-011의 사실을 검토한다.
+2. final authority를 결정한다.
+3. 승인된 authority remediation만 좁게 구현한다.
+4. 필요한 실험별 P1만 닫고 protocol을 결과 전에 freeze한다.
+5. development/validation 실험 뒤 fresh-machine rehearsal을 완료한다.
+6. 마지막에 새 preregistered held-out study를 한 번 실행한다.
 
 ## 내가 결정해야 하는 것
 
 1. Final authority: canonical RuleV1, 공식 V4, verified bridge 중 어느 경로인가?
-2. Graph-Guided와 Agentic을 EXP-01/EXP-03가 지지할 때만 final contribution/title에 남기는 conditional
-   policy를 승인할 것인가?
+2. Graph-Guided와 Agentic의 conditional 유지 정책은 이미 승인되었다. 최종 포함 여부는 EXP-01/EXP-03
+   결과가 결정한다.
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **{state['exact_next_task']}**이다. 이 task는 read-only이며 remediation이나 test2 access를
+다음 task는 **{state['exact_next_task']}**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.
+"""
+
+
+def render_arch011_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    outer = state["outer_reproducibility"]
+    return f"""{_markdown_marker(state, digest)}
+# OUTER와 재현성을 쉽게 이해하기
+
+## 1. OUTER가 정확히 무엇인가?
+
+개발에 쓰지 않은 held-out test2에서 frozen D0/D1/D2 V1을 한 번 확인하려던 confirmatory study다.
+
+## 2. 왜 결과가 없는가?
+
+유일한 시도가 시작된 뒤 첫 feature custody 검사에서 파일을 열기 전에 중단되었다. Prediction과 metric이 없으므로 성능 결과도 없다.
+
+## 3. test2 내용은 본 적이 있는가?
+
+Custody check는 1회였지만 feature bytes/hash/parse와 labels는 모두 0이다. 즉 과학 내용은 보지 않았다.
+
+## 4. 그냥 다시 실행하면 왜 안 되는가?
+
+One-shot attempt가 소비되었고 retry 권한이 0이기 때문이다. 구 protocol은 `NOT_RETRYABLE_BY_PROTOCOL`이며 새 study와 preregistration이 필요하다.
+
+## 5. 새 held-out은 어떻게 해야 하는가?
+
+Data, method, authority, event unit, metrics, fusion policy, environment, prediction-before-label 순서를 결과 전에 고정해야 한다. 같은 test2 reuse 여부도 새 연구가 명시적으로 결정해야 한다.
+
+## 6. traceability와 reproducibility는 뭐가 다른가?
+
+Traceability는 source/artifact lineage를 찾는 능력이다. Reproducibility는 다른 환경에서 같은 절차와 출력을 다시 만드는 능력이다.
+
+## 7. same-machine과 fresh-machine은 뭐가 다른가?
+
+같은 PC에는 local asset과 environment가 남아 있다. Fresh machine은 dependency, schema, Git authority, private restoration을 처음부터 재구성해야 한다.
+
+## 8. 현재 프로젝트는 어디까지 재현 가능한가?
+
+Traceability는 `{outer['reproduction_levels']['traceability']}`이고 same-machine은 `{outer['reproduction_levels']['same_machine_replay']}`다. Fresh-machine synthetic/scientific reproduction은 아직 입증되지 않았다.
+
+## 9. PILOT V1과 VALIDATION V2를 왜 나누는가?
+
+과거 결과를 새 code와 protocol로 소급 변경하지 않기 위해서다. V1은 그대로 보존하고 remediation 결과는 V2로만 평가한다.
+
+## 10. 어떤 authority option이 가장 현실적인가?
+
+Verified canonical RuleV1/VerifierV1-to-V4 bridge가 가장 균형적이다. 단 lossless equivalence가 증명되어야 하고 DEC-020 승인이 남았다. 실패하면 formal V4가 좁은 fallback이다.
+
+## 11. fresh-machine rehearsal은 언제 해야 하는가?
+
+Authority/dependency/entrypoint remediation 뒤, held-out 접근 전이다. 첫 rehearsal은 synthetic/public 단계에서 멈춘다.
+
+## 12. 논문 공개본에는 무엇을 포함해야 하는가?
+
+Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 guide를 포함한다. Raw/private data, test2, credentials, private numeric/model payload는 제외한다.
+
+기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
+
+다음 task는 **{state['exact_next_task']}**이다. ARCH-011은 이 remediation을 실행하지 않았다.
 """
 
 
@@ -2463,6 +2551,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "ARCH_009_USER_SUMMARY.md": render_arch009_user_summary(data, digest),
         "ARCH_010_USER_SUMMARY.md": render_arch010_user_summary(data, digest),
         "GAP_000_USER_SUMMARY.md": render_gap000_user_summary(data, digest),
+        "ARCH_011_USER_SUMMARY.md": render_arch011_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

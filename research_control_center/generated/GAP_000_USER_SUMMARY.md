@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -15,12 +15,14 @@ pre-label gate, test1 development scope, 14 contiguous event units, held-out 부
 
 ## 반드시 고쳐야 하는 것
 
-1. 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
+1. Primary disposition `P0_FIX_BEFORE_EXPANDED_VALIDATION`인 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
    version과 test를 고정한다.
 2. 새 D1 evaluation은 prediction을 label 전에 atomic persist, close, reopen/replay하고 label access를
    authorize해야 한다.
 
 ## 특정 실험 전에만 고치면 되는 것
+
+아래는 primary disposition `P1_FIX_BEFORE_SPECIFIC_EXPERIMENT`이다. Urgency priority P1과 같은 축이 아니다.
 
 - EXP-01 전: GDN Top-5 self-neighbor convention을 고치거나 명시적으로 ablation한다.
 - EXP-03 전: `no_rule`과 provider/parse/verifier/budget failure를 분리한다.
@@ -47,21 +49,20 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 ## 가장 안전한 다음 진행 순서
 
-1. GAP-000을 검토한다.
-2. code remediation 전에 read-only **ARCH-011**로 OUTER/reproducibility 사실을 고정한다.
-3. final authority를 결정한다.
-4. P0 fix만 좁게 구현한다.
-5. 필요한 실험별 P1만 닫고 protocol을 결과 전에 freeze한다.
-6. development/validation 실험 뒤 fresh-machine rehearsal을 완료한다.
-7. 마지막에 새 preregistered held-out study를 한 번 실행한다.
+1. 완료된 GAP-000과 read-only ARCH-011의 사실을 검토한다.
+2. final authority를 결정한다.
+3. 승인된 authority remediation만 좁게 구현한다.
+4. 필요한 실험별 P1만 닫고 protocol을 결과 전에 freeze한다.
+5. development/validation 실험 뒤 fresh-machine rehearsal을 완료한다.
+6. 마지막에 새 preregistered held-out study를 한 번 실행한다.
 
 ## 내가 결정해야 하는 것
 
 1. Final authority: canonical RuleV1, 공식 V4, verified bridge 중 어느 경로인가?
-2. Graph-Guided와 Agentic을 EXP-01/EXP-03가 지지할 때만 final contribution/title에 남기는 conditional
-   policy를 승인할 것인가?
+2. Graph-Guided와 Agentic의 conditional 유지 정책은 이미 승인되었다. 최종 포함 여부는 EXP-01/EXP-03
+   결과가 결정한다.
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **ARCH-011 — OUTER / Reproducibility Deep Audit**이다. 이 task는 read-only이며 remediation이나 test2 access를
+다음 task는 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.

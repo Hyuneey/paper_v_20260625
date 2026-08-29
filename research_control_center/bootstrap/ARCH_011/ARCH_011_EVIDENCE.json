@@ -1,0 +1,49 @@
+{
+  "task_id": "ARCH-011",
+  "status": "READ_ONLY_AUDIT_COMPLETE",
+  "verdict": "PASS_WITH_PROSPECTIVE_PORTABILITY_GATES",
+  "rcc_head": "63bfd013bfc1c897d69144129cf7192d36075587",
+  "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "old_outer": {
+    "result": "UNAVAILABLE",
+    "retryability": "NOT_RETRYABLE_BY_PROTOCOL",
+    "feature_custody_checks": 1,
+    "feature_byte_reads": 0,
+    "semantic_parses": 0,
+    "label_accesses": 0,
+    "predictions": 0,
+    "metrics": 0,
+    "outcomes": 0,
+    "same_test2_reuse": "STUDY_DESIGN_REQUIRED"
+  },
+  "reproduction_levels": {
+    "traceability": "STRONG",
+    "same_machine": "PARTIAL_MODERATE",
+    "fresh_machine_synthetic": "NOT_DEMONSTRATED",
+    "fresh_machine_scientific": "NOT_DEMONSTRATED_BLOCKED",
+    "external": "PARTIAL_CODE_ONLY"
+  },
+  "authority_recommendation": "C_VERIFIED_CANONICAL_TO_V4_BRIDGE_PENDING_USER_APPROVAL; FALLBACK_B_IF_LOSSLESS_EQUIVALENCE_CANNOT_BE_PROVEN",
+  "gap_update": {
+    "changed_priorities": 0,
+    "new_root_blockers": 0,
+    "removed_blockers": 0,
+    "pilot_invalidated_artifacts": 0
+  },
+  "mismatches": {
+    "total": 14,
+    "critical": 0,
+    "high": 5,
+    "medium": 7,
+    "low": 2
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test2_content_accesses": 0,
+    "scientific_source_changes": 0,
+    "remediation_implementations": 0,
+    "fresh_machine_runs": 0,
+    "dependency_installs": 0,
+    "remote_pushes": 0
+  }
+}

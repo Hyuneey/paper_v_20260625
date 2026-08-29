@@ -525,14 +525,16 @@ The 120 raw findings are not 120 separate projects. They reduce to {len(ROOTS)} 
 |---|---:|
 """ + "\n".join(f"| {key} | {value} |" for key, value in sorted(dispositions.items())) + """
 
-## P0 global validation blockers
+## Primary disposition: global pre-validation fixes
 
 1. `GAP-001`: choose and version the final scientific rule/verifier/runtime authority.
 2. `GAP-002`: add a durable D1 prediction-before-label byte/state gate.
 
-These are code/contract gates. `GAP-003` and `GAP-004` are equally urgent P0 experimental-design gates: freeze validation/final-test roles and freeze the event-unit/evaluation policy. They must not be disguised as code cleanup.
+These two rows have primary disposition `P0_FIX_BEFORE_EXPANDED_VALIDATION`. Separately, their urgency priority is `P0`. `GAP-003` and `GAP-004` have a different primary disposition (`EXPERIMENT_DESIGN_REQUIREMENT`) but the same urgency priority `P0`: freeze validation/final-test roles and freeze the event-unit/evaluation policy. They must not be disguised as code cleanup.
 
-## Experiment-specific fixes
+## Primary disposition: experiment-specific fixes
+
+These rows have primary disposition `P1_FIX_BEFORE_SPECIFIC_EXPERIMENT`; this does not mean that “P1” is the same field as urgency priority.
 
 - EXP-01: correct or explicitly ablate the GDN self-neighbor Top-5 convention.
 - EXP-03: separate `no_rule` from provider, parse, verifier, retrieval and budget failures.

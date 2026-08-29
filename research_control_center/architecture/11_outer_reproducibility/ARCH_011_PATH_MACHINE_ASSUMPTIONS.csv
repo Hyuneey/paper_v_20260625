@@ -1,0 +1,7 @@
+issue_id,surface,assumption,classification,severity,sanitized_action
+PATH-01,schema resources,repository-root schemas via module parents,SOURCE_TREE_DEPENDENCY,HIGH,package resources or explicitly test repository-checkout release mode
+PATH-02,scientific custody,external environment bindings,EXPECTED_PRIVATE_BOUNDARY,MEDIUM,path-silent restoration manifest
+PATH-03,GDN,windows-amd64 and external roots,FROZEN_PLATFORM_CONTRACT,MEDIUM,restore exact environment or version new validated one
+PATH-04,Git governance,checkout ancestry and source closure,GIT_RUNTIME_DEPENDENCY,MEDIUM,choose Git checkout or signed release-manifest run mode
+PATH-05,historical reports,legacy host paths/commands,FROZEN_PROVENANCE_NOT_CURRENT_RECIPE,MEDIUM,do not copy locators into release guide
+PATH-06,RCC launcher,Windows batch convenience,CONVENIENCE_ONLY,LOW,document portable Python command

@@ -1,0 +1,13 @@
+dependency,version_pin,required_for,declared_where,installable_from_public_source,private,platform_sensitive,determinism_sensitive,missing,risk
+Python core,>=3.11,package/RCC,pyproject.toml,YES,false,LOW,YES,project-wide exact interpreter lock,MEDIUM
+CPython,3.12.13 frozen D0/GDN,exact PILOT replay,scientific contracts/receipts,YES_IN_PRINCIPLE,false,YES,YES,not project-wide lock,HIGH
+jsonschema[format-nongpl],4.26.0,schema validation,pyproject.toml,YES,false,LOW,YES,transitive lock,MEDIUM
+NumPy,2.3.5 frozen D0,STAT/D0,source and receipts only,YES,false,YES,YES,pyproject declaration; wheel/BLAS/thread lock,HIGH
+torch,2.12.1 optional,GDN,pyproject optional gdn,YES_IN_PRINCIPLE,false,YES,YES,exact wheelhouse equivalence,MEDIUM
+torch-geometric,2.8.0 optional,GDN,pyproject optional gdn,YES_IN_PRINCIPLE,false,YES,YES,exact validated environment,MEDIUM
+pytest,UNKNOWN,repository tests,test imports only,YES,false,LOW,NO,dev/test dependency group,MEDIUM
+Git CLI,UNKNOWN current contract,authority/ancestry gates,governance subprocess calls,YES,false,MEDIUM,YES,portable minimum/manifest mode,MEDIUM
+Exact GDN wheelhouse/roots,hash-bound windows-amd64,exact GDN scientific environment,gdn remediation environment,PARTIAL,true,HIGH,YES,portable restoration capsule,HIGH
+HAI/private authorities,logical IDs/hashes,scientific replay,custody manifests,NO_FROM_CLONE,true,PATH,YES,payload intentionally excluded,EXPECTED
+Provider SDK,NOT_APPLICABLE,historical/future construction only,stdlib urllib transport,STDLIB,false,NETWORK,YES,external model service,EXP03_ONLY
+RCC dashboard,stdlib,RCC views/tests,RCC scripts,YES,false,LOW; .bat convenience only,NO,portable launcher docs,LOW

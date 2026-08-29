@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Proposal부터 COMMON-42와 D1까지
 
 Proposal은 frozen relation에 묶인 construction 후보이고, canonical `DelayedResponseRuleV1`은
@@ -21,4 +21,4 @@ match였지만 runtime authority/reference identity는 별도로 rebound됐다.
 
 기억할 한 문장: **Verifier acceptance는 scientific validation도 runtime authorization도 아니다.**
 
-다음 task는 **ARCH-011 — OUTER / Reproducibility Deep Audit**이다.
+다음 task는 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**이다.

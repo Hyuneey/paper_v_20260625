@@ -1,0 +1,14 @@
+artifact,classification,needed_for_code,needed_for_synthetic,needed_for_pilot_replay,needed_for_validation_v2,release,notes
+source/contracts/tests,PUBLIC_REGENERABLE,YES,YES,YES,YES,INCLUDE,exact reviewed commit
+HAI provenance/manifests,PUBLIC_FROZEN,NO,NO,YES,YES,INCLUDE_METADATA_ONLY,payload external/restricted
+raw HAI/test labels/test2,LOCAL_ONLY,NO,NO,YES,YES,EXCLUDE,authorized custody only
+GDN ranking/environment evidence,PUBLIC_RANKING_PLUS_PRIVATE_SEED_LEDGERS,NO,NO,CONDITIONAL,EXP01,SANITIZED_RECEIPTS_ONLY,no persisted GDN model checkpoint; exact external roots/wheels required
+candidate artifacts,PUBLIC_FROZEN,NO,NO,YES,VERSION_NEW,SANITIZED_INCLUDE,aggregate/provenance safe
+relation artifacts,PUBLIC_FROZEN_WITH_PRIVATE_EVIDENCE,NO,NO,YES,VERSION_NEW,SANITIZED_INCLUDE,no raw values
+numeric authority,PRIVATE_FROZEN,NO,SYNTHETIC_ONLY,YES,YES,SCHEMA_HASH_ONLY,private payload excluded
+COMMON-42,PUBLIC_FROZEN,NO,NO,YES,BRIDGE_OR_NEW_VERSION,SANITIZED_INCLUDE,V4 pilot authority
+D0 preprocessing/model/threshold,PRIVATE_FROZEN,NO,NO,YES,YES,HASH_RECEIPT_ONLY,numeric payload private
+D0/D1/D2 public-safe prediction artifacts,PUBLIC_FROZEN,NO,NO,INTEGRITY_ONLY,NEW_OUTPUT,INCLUDE_PUBLIC_SAFE,tracked sanitized frozen artifacts; not raw private inputs
+private prediction restoration inputs,LOCAL_ONLY,NO,NO,CONDITIONAL,AUTHORIZED_ONLY,EXCLUDE,private inputs and custody material are not redistributed
+metric/result reports,PUBLIC_FROZEN,NO,NO,YES,NEW_OUTPUT,INCLUDE_SANITIZED,integrity is not validation
+old preservation bundle,LOCAL_ONLY_STALE,NO,NO,PARTIAL,NO,NOT_CURRENT_CAPSULE,historical checkpoint only

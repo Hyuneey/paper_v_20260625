@@ -13,5 +13,7 @@
 - **GAP-000** — Pre-Validation Remediation / Risk Triage
 - **ARCH-011** — OUTER / Reproducibility
 
-ARCH-001 through ARCH-010 and GAP-000 are completed. ARCH-011 remains the next
-read-only audit; remediation and experiments are not authorized by this index.
+ARCH-001 through ARCH-011 and GAP-000 are completed. The architecture audit
+series is closed. Remediation and experiments are not authorized by this index.
+
+Exact prospective next task: `GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze`.

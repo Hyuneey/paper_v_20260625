@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -67,20 +67,23 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- Run ARCH-011 read-only to pin OUTER custody, environment, portability, and fresh-machine gaps before remediation.
-- Choose and version the final scientific authority, then add the durable D1 pre-label gate without rewriting PILOT V1.
-- Close only the experiment-specific gate needed for the next approved protocol; freeze all choices before results.
+- Approve and version the final scientific authority; the audited preferred target is a verified canonical-to-V4 bridge with formal V4 fallback.
+- Implement the durable D1 pre-label gate prospectively in VALIDATION V2 without rewriting PILOT V1.
+- Close dependency/schema/entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
 
-관리 작업의 다음 단계는 **ARCH-011 — OUTER / Reproducibility Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-011 — OUTER / Reproducibility Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze** 이고, 이후 전체
+구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Choose the final scientific Rule/verifier/runtime authority.
-- Approve the conditional Graph-Guided and Agentic title policy.
-- Explain why durable D1 persistence is prospective and does not rewrite PILOT V1.
-- Distinguish code fixes, experiment requirements, wording corrections, and limitations.
-- Approve or defer ARCH-011 as the next read-only task.
+- Explain why old OUTER has no result and cannot simply retry.
+- Decide same-physical-test2 eligibility only within a new preregistered study.
+- Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
+- Review and approve the canonical-to-V4 bridge target or fallback.
+- Confirm PILOT V1 preservation and VALIDATION V2 separation.
+- Approve the remediation order.
+- Approve GAP-FIX-001.
+- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

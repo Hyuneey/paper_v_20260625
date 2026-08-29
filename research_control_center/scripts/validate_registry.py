@@ -206,6 +206,24 @@ REQUIRED_RCC_FILES = (
     "bootstrap/GAP_000/agents/agent_c_governance_reproducibility.json",
     "bootstrap/GAP_000/agents/agent_d_claim_scope.json",
     "bootstrap/GAP_000/agents/agent_e_qa.json",
+    "bootstrap/ARCH_011/ARCH_011_REPORT.md",
+    "bootstrap/ARCH_011/ARCH_011_OUTER_CUSTODY_AUDIT.md",
+    "bootstrap/ARCH_011/ARCH_011_ENVIRONMENT_AUDIT.md",
+    "bootstrap/ARCH_011/ARCH_011_PORTABILITY_AUDIT.md",
+    "bootstrap/ARCH_011/ARCH_011_REPRODUCTION_LEVELS.md",
+    "bootstrap/ARCH_011/ARCH_011_AUTHORITY_OPTIONS.csv",
+    "bootstrap/ARCH_011/ARCH_011_FRESH_MACHINE_PROTOCOL.md",
+    "bootstrap/ARCH_011/ARCH_011_VALIDATION_V2_VERSIONING.md",
+    "bootstrap/ARCH_011/ARCH_011_RELEASE_SCOPE.md",
+    "bootstrap/ARCH_011/ARCH_011_MISMATCHES.md",
+    "bootstrap/ARCH_011/ARCH_011_QA_REPORT.md",
+    "bootstrap/ARCH_011/ARCH_011_MULTI_AGENT_REVIEW.md",
+    "bootstrap/ARCH_011/ARCH_011_EVIDENCE.json",
+    "bootstrap/ARCH_011/agents/agent_a_environment.json",
+    "bootstrap/ARCH_011/agents/agent_b_outer.json",
+    "bootstrap/ARCH_011/agents/agent_c_portability.json",
+    "bootstrap/ARCH_011/agents/agent_d_reproduction.json",
+    "bootstrap/ARCH_011/agents/agent_e_qa.json",
 )
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
@@ -220,6 +238,7 @@ GENERATED_FILES = (
     "generated/ARCH_009_USER_SUMMARY.md",
     "generated/ARCH_010_USER_SUMMARY.md",
     "generated/GAP_000_USER_SUMMARY.md",
+    "generated/ARCH_011_USER_SUMMARY.md",
     "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
@@ -240,6 +259,7 @@ REQUIRED_RCC_DIRS = (
     "architecture/09_d2_fusion", "bootstrap/ARCH_009", "bootstrap/ARCH_009/agents",
     "architecture/10_metrics_integrity", "bootstrap/ARCH_010", "bootstrap/ARCH_010/agents",
     "architecture/gap_000_pre_validation", "bootstrap/GAP_000", "bootstrap/GAP_000/agents",
+    "architecture/11_outer_reproducibility", "bootstrap/ARCH_011", "bootstrap/ARCH_011/agents",
 )
 
 
@@ -318,10 +338,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 5, "top_user_todo must contain exactly five GAP-000 review entries")
-    result.require(len(state.get("user_todo_items", [])) == 5, "GAP-000 must leave five user review questions")
-    result.require(state.get("last_completed_task") == "GAP-000", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-011 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-011", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -334,8 +354,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-011 — OUTER / Reproducibility Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
     result.require(readiness.get("status") == "TRIAGED_NOT_REMEDIATED", "GAP-000 readiness status mismatch")
     result.require(readiness.get("raw_findings") == 120 and readiness.get("root_issues") == 19, "GAP-000 inventory counts mismatch")
@@ -352,6 +372,12 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(readiness.get("priority_counts") == {"P0": 4, "P1": 10, "P2": 3, "P3": 2}, "GAP-000 priority counts mismatch")
     result.require(readiness.get("arch011_position") == "BEFORE_REMEDIATION_READ_ONLY", "ARCH-011 position mismatch")
     result.require("INVALIDATED_ARTIFACTS=0" in readiness.get("past_pilot", ""), "GAP-000 pilot preservation mismatch")
+    outer = state.get("outer_reproducibility", {})
+    result.require(outer.get("audit_status") == "ARCH_011_PASS_READ_ONLY", "ARCH-011 audit status mismatch")
+    result.require(outer.get("old_outer", {}).get("retryability") == "NOT_RETRYABLE_BY_PROTOCOL", "ARCH-011 retryability mismatch")
+    result.require(outer.get("old_outer", {}).get("feature_byte_reads") == 0 and outer.get("old_outer", {}).get("label_accesses") == 0, "ARCH-011 content-access boundary mismatch")
+    result.require(outer.get("reproduction_levels", {}).get("traceability") == "STRONG_SUPPORTED", "ARCH-011 traceability mismatch")
+    result.require(outer.get("reproduction_levels", {}).get("fresh_machine_scientific") == "NOT_DEMONSTRATED_BLOCKED", "ARCH-011 fresh-machine status mismatch")
     relation = state.get("relation_numeric_authority", {})
     result.require(relation.get("candidate_pairs") == 47 and relation.get("confirmed_directions") == 42, "ARCH-003 relation lineage summary mismatch")
     result.require(relation.get("fit_supported_pair_contexts") == 25 and relation.get("fit_supported_directions") == 45, "ARCH-003 fit-stage summary mismatch")
@@ -639,7 +665,9 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(any(row["status"] == "SUPERSEDED" for row in data["decisions"]), "decision history lacks superseded decisions")
     result.require(any(row["status"] == "CONDITIONAL" for row in data["decisions"]), "decision history lacks conditional decisions")
     open_decisions = {row["decision_id"] for row in data["decisions"] if row["status"] == "OPEN"}
-    result.require(open_decisions == {"DEC-020", "DEC-021"}, "decision registry must expose exactly the two GAP-000 research-owner decisions")
+    result.require(open_decisions == {"DEC-020"}, "decision registry must expose only the unresolved final-authority decision")
+    decision_021 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-021"), None)
+    result.require(decision_021 is not None and decision_021["status"] == "ACTIVE" and decision_021["user_approved"] == "true", "ARCH-011 user-approved conditional contribution policy is not recorded")
 
 
 def _git_resolves_to(repo_root: Path, revision: str, expected: str) -> bool:
@@ -774,7 +802,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "PRE-VALIDATION READINESS", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "DETECTOR + RULE FUSION PILOT", "METRICS / RESULTS / INTEGRITY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "PRE-VALIDATION READINESS", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "DETECTOR + RULE FUSION PILOT", "METRICS / RESULTS / INTEGRITY", "OUTER / REPRODUCIBILITY / PORTABILITY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -790,9 +818,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "ARCH-011"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "GAP-000"),
-        "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "ARCH-011", "Graph-Guided", "Agentic"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "GAP-FIX-001"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "GAP-FIX-001"),
+        "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "Primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "GAP-FIX-001"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -1240,6 +1269,40 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     result.require(evidence.get("raw_findings") == 120 and evidence.get("root_issues") == 19, "GAP-000 evidence counts mismatch")
     result.require(evidence.get("past_pilot") == "INTERPRETABLE_WITH_QUALIFICATIONS" and evidence.get("invalidated_artifacts") == 0, "GAP-000 evidence invalidates pilot")
     result.require(all(value == 0 for value in evidence.get("safety", {}).values()), "GAP-000 safety counters must remain zero")
+
+    arch011 = rcc_root / "architecture" / "11_outer_reproducibility"
+    required_arch011 = {
+        "ARCH_011_REPORT.md", "ARCH_011_OLD_OUTER_TIMELINE.md", "ARCH_011_NEW_HELDOUT_REQUIREMENTS.md",
+        "ARCH_011_REPRODUCTION_LEVELS.md", "ARCH_011_ENVIRONMENT_MATRIX.csv",
+        "ARCH_011_PATH_MACHINE_ASSUMPTIONS.csv", "ARCH_011_ARTIFACT_PORTABILITY.csv",
+        "ARCH_011_PILOT_V1_REPRODUCTION.md", "ARCH_011_VALIDATION_V2_VERSIONING.md",
+        "ARCH_011_AUTHORITY_OPTIONS.csv", "ARCH_011_FRESH_MACHINE_PROTOCOL.md",
+        "ARCH_011_RELEASE_SCOPE.md", "ARCH_011_MISMATCHES.md", "ARCH_011_GAP_UPDATE.md",
+    }
+    for name in required_arch011:
+        result.require((arch011 / name).is_file(), f"ARCH-011 output missing: {name}")
+    if not arch011.is_dir() or any(not (arch011 / name).is_file() for name in required_arch011):
+        return
+    report011 = (arch011 / "ARCH_011_REPORT.md").read_text(encoding="utf-8")
+    result.require("NOT_RETRYABLE_BY_PROTOCOL" in report011 and "STUDY_DESIGN_REQUIRED" in report011, "ARCH-011 OUTER boundary missing")
+    result.require("PILOT V1" in report011 and "VALIDATION V2" in report011, "ARCH-011 version separation missing")
+    with (arch011 / "ARCH_011_ENVIRONMENT_MATRIX.csv").open("r", encoding="utf-8", newline="") as handle:
+        env_rows = list(csv.DictReader(handle))
+    with (arch011 / "ARCH_011_ARTIFACT_PORTABILITY.csv").open("r", encoding="utf-8", newline="") as handle:
+        portability_rows = list(csv.DictReader(handle))
+    with (arch011 / "ARCH_011_AUTHORITY_OPTIONS.csv").open("r", encoding="utf-8", newline="") as handle:
+        authority_rows = list(csv.DictReader(handle))
+    result.require(len(env_rows) >= 10 and any(row["dependency"] == "NumPy" and row["risk"] == "HIGH" for row in env_rows), "ARCH-011 environment matrix incomplete")
+    result.require(len(portability_rows) >= 10 and any("no persisted GDN model checkpoint" in row["notes"] for row in portability_rows), "ARCH-011 artifact portability is incomplete")
+    result.require([row["option"] for row in authority_rows] == ["A_RULEV1_END_TO_END", "B_FORMAL_V4", "C_VERIFIED_CANONICAL_TO_V4_BRIDGE"], "ARCH-011 authority option ordering mismatch")
+    result.require(authority_rows[2]["assessment"] == "RECOMMENDED_PROSPECTIVE_TARGET_PENDING_DEC020", "ARCH-011 bridge recommendation mismatch")
+    protocol011 = (arch011 / "ARCH_011_FRESH_MACHINE_PROTOCOL.md").read_text(encoding="utf-8")
+    result.require("The first rehearsal stops after Stage 7" in protocol011 and "Optional science" in protocol011, "ARCH-011 fresh-machine stop boundary missing")
+    bootstrap011 = rcc_root / "bootstrap" / "ARCH_011"
+    evidence011 = json.loads((bootstrap011 / "ARCH_011_EVIDENCE.json").read_text(encoding="utf-8"))
+    result.require(evidence011.get("old_outer", {}).get("feature_byte_reads") == 0 and evidence011.get("old_outer", {}).get("metrics") == 0, "ARCH-011 evidence overstates OUTER access/result")
+    result.require(evidence011.get("gap_update", {}) == {"changed_priorities": 0, "new_root_blockers": 0, "removed_blockers": 0, "pilot_invalidated_artifacts": 0}, "ARCH-011 GAP update mismatch")
+    result.require(all(value == 0 for value in evidence011.get("safety", {}).values()), "ARCH-011 safety counters must remain zero")
 
 
 def validate_registry(

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 실제 시계열에서 어떻게 판단하는가
 
 ## 1. Rule은 언제 발동하는가?
@@ -70,4 +70,4 @@ synthetic path의 구조적 binding뿐이며 사람에게 유용한지는 **UNVA
 V4 frozen path와 canonical Rule/Trace 설명을 혼동하는 것, label 전 durable persistence가 없는 것,
 그리고 설명 구현이 frozen D1에 실제 연결된 것처럼 표현하는 것이 가장 중요한 위험이다.
 
-다음 task는 **ARCH-011 — OUTER / Reproducibility Deep Audit**이다.
+다음 task는 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**이다.

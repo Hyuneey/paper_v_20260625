@@ -13,30 +13,31 @@ the thesis overlay cannot override the scientific authority or RCC registry.
 
 ## Last completed task
 
-`GAP-000 — Pre-Validation Remediation & Risk Triage`
+`ARCH-011 — OUTER / Reproducibility / Portability Deep Audit`
 
 ## What changed
 
-- Inventoried all 120 ARCH-000 through ARCH-010 mismatches and merged them into 19 traceable root issues.
-- Classified two global implementation/contract fixes, three experiment-specific fixes, six protocol requirements, and bounded hardening/documentation/limitation work.
-- Kept final Rule/runtime authority and durable D1 pre-label persistence as expanded-validation blockers.
-- Kept GDN self-neighbor, `no_rule` taxonomy, and trace-renderer bridging scoped to EXP-01, EXP-03, and EXP-05 respectively.
-- Preserved the frozen pilot as qualified evidence; no prior artifact was rewritten or invalidated.
-- Recommended ARCH-011 as the next read-only audit before remediation implementation.
+- Proved the old one-shot OUTER stopped at feature custody before byte read; predictions, metrics, and outcomes remained zero.
+- Classified the old protocol as `NOT_RETRYABLE_BY_PROTOCOL` and same-physical-test2 reuse as `STUDY_DESIGN_REQUIRED`.
+- Separated five reproduction levels: traceability is strong, same-machine replay partial, and fresh-machine scientific reproduction unproven.
+- Mapped missing dependency lock, source-tree schema, Git, platform, and private-asset restoration assumptions.
+- Preserved PILOT V1 and recorded all prospective remediation under separate VALIDATION V2 identities.
+- Recommended a verified canonical-to-V4 bridge pending DEC-020, with formal V4 as fallback if lossless equivalence cannot be proven.
 
 ## Decisions made
 
 - Scientific claims remain pinned to the checkpoint.
 - Thesis-draft content remains a narrative overlay only.
 - All detection numbers remain observations on 14 contiguous INNER attack-event units.
+- Graph-Guided and Agentic retention is user-approved conditionally on EXP-01 and EXP-03.
+- PILOT V1 preservation and VALIDATION V2 separation are current policy.
 - GDN contribution, agentic benefit, Rule-only operational utility, held-out
   generalization, and human explanation usefulness remain unvalidated or unsupported.
 
 ## New evidence
 
-No new scientific outcome was produced. GAP-000 added a deduplicated risk
-inventory, experiment gates, remediation queues, claim boundaries, and a minimum
-thesis path only.
+No new scientific outcome was produced. ARCH-011 added only read-only custody,
+environment, portability, reproduction-level, authority-option, and release evidence.
 
 ## Open risks
 
@@ -63,14 +64,14 @@ thesis path only.
 
 ## User actions
 
-- Review the 19-root-issue remediation matrix and experiment gates.
-- Choose the final scientific execution authority direction.
-- Accept the conditional title/contribution policy for Graph-Guided and Agentic claims.
-- Confirm that PILOT V1 remains immutable and future results use a versioned VALIDATION V2.
-- Approve or defer ARCH-011 as the next read-only audit before remediation.
+- Review why old OUTER has no result and why the old protocol cannot retry.
+- Decide same-physical-test2 eligibility only under a new preregistered study.
+- Approve or revise the canonical-to-V4 bridge recommendation.
+- Confirm PILOT V1 preservation and separate VALIDATION V2 versioning.
+- Approve the remediation sequence and first remediation task.
 
 ## Exact next task
 
-`ARCH-011 — OUTER / Reproducibility Deep Audit`
+`GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze`
 
-Do not implement remediation or start experiments before the user reviews GAP-000.
+Do not implement remediation or start experiments before the user reviews ARCH-011.

@@ -239,5 +239,21 @@ requirements, hardening, wording corrections, limitations, and future-only
 scope. The frozen pilot remains qualified but interpretable; remediation is for
 future versioned validation.
 
-Exact next task: `ARCH-011 — OUTER / Reproducibility Deep Audit`.
-No remediation or experiment starts automatically.
+## Completed OUTER / reproducibility audit
+
+- [Korean report](11_outer_reproducibility/ARCH_011_REPORT.md)
+- [Old OUTER timeline](11_outer_reproducibility/ARCH_011_OLD_OUTER_TIMELINE.md)
+- [Reproduction levels](11_outer_reproducibility/ARCH_011_REPRODUCTION_LEVELS.md)
+- [Environment matrix](11_outer_reproducibility/ARCH_011_ENVIRONMENT_MATRIX.csv)
+- [Artifact portability](11_outer_reproducibility/ARCH_011_ARTIFACT_PORTABILITY.csv)
+- [Authority options](11_outer_reproducibility/ARCH_011_AUTHORITY_OPTIONS.csv)
+- [Fresh-machine protocol](11_outer_reproducibility/ARCH_011_FRESH_MACHINE_PROTOCOL.md)
+
+The old OUTER produced no scientific result: one custody check occurred, but
+feature bytes, labels, predictions, metrics, and outcomes remained zero. Its
+one-shot protocol cannot be retried. Traceability is strong, same-machine
+replay is partial, and fresh-machine scientific reproduction is not yet
+demonstrated.
+
+Exact next task: `GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze`.
+It requires user approval and does not authorize test2 or scientific execution.

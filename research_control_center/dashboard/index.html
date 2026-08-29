@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc">
+  <meta name="rcc-registry-digest" content="c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=28a6f875197881cd18fffd4bc6c9a201f30de130b669400acfb2498e567b3dfc authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -27,7 +27,7 @@
 
   <nav class="section-nav" aria-label="Dashboard sections">
     <a href="#current-state">Current state</a><a href="#pre-validation-readiness">Readiness</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#outer-reproducibility">OUTER / Repro</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
   </nav>
@@ -53,19 +53,19 @@
       <div class="section-heading"><p class="eyebrow">GAP-000</p><h2>PRE-VALIDATION READINESS</h2></div>
       <p class="architecture-flow">120 RAW FINDINGS → 19 ROOT ISSUES → DISPOSITION / PRIORITY → EXPERIMENT GATES</p>
       <div class="status-snapshot">
-        <div><span>P0 global fixes</span><strong>2</strong></div>
-        <div><span>P1 experiment fixes</span><strong>3</strong></div>
+        <div><span>Primary disposition: global pre-validation fixes</span><strong>2</strong></div>
+        <div><span>Primary disposition: experiment-specific fixes</span><strong>3</strong></div>
         <div><span>Experiment requirements</span><strong>6</strong></div>
         <div><span>Engineering hardening</span><strong>3</strong></div>
-        <div><span>Claim corrections</span><strong>1</strong></div>
-        <div><span>Limitations / future</span><strong>4</strong></div>
+        <div><span>Urgency priority P0 / P1</span><strong>4 / 10</strong></div>
+        <div><span>Urgency priority P2 / P3</span><strong>3 / 2</strong></div>
       </div>
-      <div class="two-column"><div><h3>P0 implementation / contract</h3><ul><li>GAP-001 — choose and version the final Rule/verifier/runtime authority</li><li>GAP-002 — add a durable D1 prediction-before-label byte/state gate</li></ul></div><div><h3>P0 experiment design</h3><ul><li>GAP-003 — freeze validation, policy-selection, and final held-out roles</li><li>GAP-004 — freeze event-unit scope, dependence interpretation, and analysis policy</li></ul></div></div>
+      <div class="two-column"><div><h3>Urgency P0 — implementation / contract</h3><ul><li>GAP-001 — choose and version the final Rule/verifier/runtime authority</li><li>GAP-002 — add a durable D1 prediction-before-label byte/state gate</li></ul></div><div><h3>Urgency P0 — experiment design</h3><ul><li>GAP-003 — freeze validation, policy-selection, and final held-out roles</li><li>GAP-004 — freeze event-unit scope, dependence interpretation, and analysis policy</li></ul></div></div>
       <h3>Experiment gates</h3><div class="summary-grid"><article class="summary-card"><p class="eyebrow">EXP-01</p><h3>BLOCKED</h3></article><article class="summary-card"><p class="eyebrow">EXP-02</p><h3>READY_WITH_CONDITIONS</h3></article><article class="summary-card"><p class="eyebrow">EXP-03</p><h3>BLOCKED</h3></article><article class="summary-card"><p class="eyebrow">EXP-04</p><h3>BLOCKED</h3></article><article class="summary-card"><p class="eyebrow">EXP-05</p><h3>BLOCKED</h3></article><article class="summary-card"><p class="eyebrow">EXP-06</p><h3>NOT_REQUIRED</h3></article><article class="summary-card"><p class="eyebrow">NEW_HELD_OUT</p><h3>BLOCKED</h3></article><article class="summary-card"><p class="eyebrow">FRESH_MACHINE</p><h3>CONDITIONAL</h3></article></div>
       <aside class="principle">Past pilot: INTERPRETABLE_WITH_QUALIFICATIONS; INVALIDATED_ARTIFACTS=0. Preserve PILOT V1; all remediated future work is VALIDATION V2.</aside>
       <aside class="principle">This readiness view is a triage map, not a completion percentage and not authorization to run an experiment.</aside>
       <p><a href="../architecture/gap_000_pre_validation/GAP_000_REPORT.md">Open the triage report</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv">Remediation matrix</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv">Experiment gates</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_MINIMUM_THESIS_PATH.md">Minimum thesis path</a></p>
-      <p><strong>Next:</strong> ARCH-011 — OUTER / Reproducibility Deep Audit · BEFORE_REMEDIATION_READ_ONLY</p>
+      <p><strong>Next:</strong> GAP-FIX-001 — Final Scientific Authority Bridge Contract &amp; Conformance Freeze · BEFORE_REMEDIATION_READ_ONLY</p>
     </section>
 
     <section id="relation-numeric" class="section panel-history">
@@ -94,7 +94,7 @@
       </div>
       <aside class="principle">Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.</aside>
       <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="rule-construction" class="section panel-feature">
@@ -105,7 +105,7 @@
       <aside class="principle">Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.</aside>
       <aside class="principle">Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.</aside>
       <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="verifier-common42" class="section panel-history">
@@ -131,7 +131,7 @@
       <aside class="principle">Verifier acceptance is not scientific validation.</aside>
       <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
       <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="runtime-trace-explanation" class="section panel-feature">
@@ -159,7 +159,7 @@
       </dl></div></div>
       <aside class="principle">The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.</aside>
       <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="d0-detector" class="section panel-history">
@@ -188,7 +188,7 @@
       </dl></div></div>
       <aside class="principle">D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.</aside>
       <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">Open the deep D0 audit</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE definition</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">Prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">Output levels</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="d1-evaluation" class="section panel-feature">
@@ -215,7 +215,7 @@
       <aside class="principle">Higher pilot Recall does not establish superior operational utility.</aside>
       <aside class="principle">D1 = COMMON-42 Verified Relational Rule-only, not T2 Agentic Rule-only.</aside>
       <p><a href="../architecture/08_d1_rule_only/ARCH_008_REPORT.md">Open the deep D1 evaluation audit</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_OUTPUT_LEVELS.md">Output levels</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_COMPLEMENTARITY_BOUNDARY.md">Complementarity boundary</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv">Claim matrix</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="d2-fusion" class="section panel-feature">
@@ -241,7 +241,7 @@
       <aside class="principle">D1 response diversity was observed, but current V1/V2 policies did not convert it into incremental attack-event recall.</aside>
       <aside class="principle">V2 is test1-informed development, not independent confirmation.</aside>
       <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">Open the deep D2 audit</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">Policy comparison</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">Miss recovery</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">Claim matrix</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="metrics-results" class="section panel-history">
@@ -265,7 +265,35 @@
       <aside class="principle">14 contiguous attack-event units; statistical independence not established.</aside>
       <aside class="principle">Result integrity ≠ scientific validation.</aside>
       <p><a href="../architecture/10_metrics_integrity/ARCH_010_REPORT.md">Open the deep metric audit</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv">Frozen pilot table</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md">Integrity boundary</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
+    </section>
+
+    <section id="outer-reproducibility" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">ARCH-011</p><h2>OUTER / REPRODUCIBILITY / PORTABILITY</h2></div>
+      <p class="architecture-flow">TRACEABILITY → SAME-MACHINE REPLAY → FRESH-MACHINE SYNTHETIC → FRESH-MACHINE SCIENTIFIC → EXTERNAL REPRODUCTION</p>
+      <div class="status-snapshot">
+        <div><span>Traceability</span><strong>STRONG_SUPPORTED</strong></div>
+        <div><span>Same-machine replay</span><strong>PARTIAL_MODERATE</strong></div>
+        <div><span>Fresh-machine synthetic</span><strong>NOT_DEMONSTRATED_PARTIALLY_PREPARED</strong></div>
+        <div><span>Fresh-machine scientific</span><strong>NOT_DEMONSTRATED_BLOCKED</strong></div>
+        <div><span>External reproduction</span><strong>PARTIAL_CODE_ONLY_FULL_SCIENCE_UNAVAILABLE</strong></div>
+      </div>
+      <div class="two-column"><div><h3>Old OUTER</h3><dl class="architecture-contract">
+        <div><dt>RESULT</dt><dd>UNAVAILABLE</dd></div>
+        <div><dt>STOP</dt><dd>OUTER_TEST2_FEATURE_CUSTODY_REJECTED before file open/read</dd></div>
+        <div><dt>CONTENT</dt><dd>bytes 0; semantic parses 0; labels 0</dd></div>
+        <div><dt>RETRY</dt><dd>NOT_RETRYABLE_BY_PROTOCOL</dd></div>
+        <div><dt>SAME TEST2</dt><dd>STUDY_DESIGN_REQUIRED</dd></div>
+      </dl></div><div><h3>Prospective V2</h3><dl class="architecture-contract">
+        <div><dt>PILOT V1</dt><dd>PRESERVED_IMMUTABLE_WITH_EXISTING_QUALIFICATIONS</dd></div>
+        <div><dt>VALIDATION V2</dt><dd>SEPARATE_PROSPECTIVE_METHOD_CONFIG_AUTHORITY_ENVIRONMENT_AND_EXPERIMENT_IDENTITIES</dd></div>
+        <div><dt>AUTHORITY</dt><dd>VERIFIED_CANONICAL_RULEV1_VERIFIERV1_TO_V4_BRIDGE_PENDING_DEC020; FALLBACK_FORMAL_V4_IF_LOSSLESS_EQUIVALENCE_CANNOT_BE_PROVEN</dd></div>
+        <div><dt>ENVIRONMENT</dt><dd>No complete project-wide lock; NumPy/test tooling and schema package closure are incomplete; exact GDN is Windows/wheel/root bound; scientific replay requires private custody assets.</dd></div>
+        <div><dt>REHEARSAL</dt><dd>after authority/dependency/schema/entrypoint remediation and before held-out access</dd></div>
+      </dl></div></div>
+      <aside class="principle">OLD STUDY: RESULT UNAVAILABLE. NEW HELD-OUT: REQUIRES NEW PREREGISTRATION.</aside>
+      <aside class="principle">Traceability is not fresh-machine reproducibility. OUTER result unavailable is not negative performance.</aside>
+      <p><a href="../architecture/11_outer_reproducibility/ARCH_011_REPORT.md">Open the deep OUTER/reproducibility audit</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_REPRODUCTION_LEVELS.md">Reproduction levels</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_AUTHORITY_OPTIONS.csv">Authority options</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_FRESH_MACHINE_PROTOCOL.md">Fresh-machine protocol</a></p>
     </section>
 
     <section id="data-governance" class="section panel-history">
@@ -275,13 +303,13 @@
         <div><span>Process</span><strong>P1 Boiler</strong></div>
         <div><span>Feature / role scope</span><strong>86 dataset points; 37-feature P1 frame; purpose-specific role and runtime subsets</strong></div>
         <div><span>Leakage status</span><strong>NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.</strong></div>
-        <div><span>Test1</span><strong>INNER development / 14-event pilot; not final validation</strong></div>
+        <div><span>Test1</span><strong>INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation</strong></div>
         <div><span>Test2</span><strong>One custody-level file access attempt was rejected before byte read; held-out result unavailable.</strong></div>
       </div>
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
       <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
       <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
@@ -297,13 +325,13 @@
       <div class="summary-grid"><article class="summary-card"><p class="eyebrow">META</p><h3>M1/M2/M3 deterministic domain-prior ranking</h3><dl><div><dt>INPUT</dt><dd>reviewed P1 metadata and public physical graph</dd></div><div><dt>OUTPUT</dt><dd>metadata-supported pair candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">STAT</p><h3>file-local first-difference lagged Pearson stability</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2</dd></div><div><dt>OUTPUT</dt><dd>directional lagged-association candidates</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article><article class="summary-card"><p class="eyebrow">GDN</p><h3>next-value prediction plus embedding-cosine learned graph</h3><dl><div><dt>INPUT</dt><dd>normal train1/train2 full 37-node context</dd></div><div><dt>OUTPUT</dt><dd>learned-graph candidate edges</dd></div><div><dt>TOP-K</dt><dd>20</dd></div><div><dt>FROZEN EXECUTION?</dt><dd><span class="badge badge-green">YES</span></dd></div><div><dt>SCIENTIFIC VALIDATION?</dt><dd><span class="badge badge-gray">UNVALIDATED</span></dd></div></dl></article></div>
       <aside class="principle">Candidate discovery proposes relationships. It does not establish causal or final temporal relations.</aside>
       <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
-      <p><strong>Next deep review:</strong> GAP-000 completed; ARCH-011 read-only audit next</p>
+      <p><strong>Next deep review:</strong> ARCH-011 completed; prospective remediation decision next</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Choose the final scientific Rule/verifier/runtime authority.</li><li>Approve the conditional Graph-Guided and Agentic title policy.</li><li>Explain why durable D1 persistence is prospective and does not rewrite PILOT V1.</li><li>Distinguish code fixes, experiment requirements, wording corrections, and limitations.</li><li>Approve or defer ARCH-011 as the next read-only task.</li></ul>
+      <ul><li>Explain why old OUTER has no result and cannot simply retry.</li><li>Decide same-physical-test2 eligibility only within a new preregistered study.</li><li>Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.</li><li>Review and approve the canonical-to-V4 bridge target or fallback.</li><li>Confirm PILOT V1 preservation and VALIDATION V2 separation.</li><li>Approve the remediation order.</li><li>Approve GAP-FIX-001.</li><li>Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -314,13 +342,6 @@
 <span class="badge badge-gray">OPEN</span>
 </div>
 <dl><div class="card-field"><dt>Decision</dt><dd>Research owner must choose the final validation authority after reviewing GAP-000 and ARCH-011 evidence.</dd></div><div class="card-field"><dt>Reason</dt><dd>The choice changes future contract scope and methodology wording and cannot be made for architectural elegance alone.</dd></div></dl>
-</article>
-<article class="registry-card" data-status="OPEN" data-search="dec-021 2026-08-29 day approve conditional graph-guided and agentic contribution policy open current evidence implements both capabilities but does not validate stable gdn contribution or verifier-feedback benefit. retain both labels unconditionally;remove both immediately;make retention conditional on exp-01 and exp-03 evidence research owner should approve conditional retention before contribution experiments are interpreted. this avoids post-hoc title expansion while preserving a feasible minimum thesis if either contribution is unsupported. does not block read-only arch-011 and leaves the verified relational rule-construction core intact. open research-owner claim-scope decision before contribution interpretation. gap_000_triage research_control_center/architecture/gap_000_pre_validation/gap_000_user_decisions_required.md none gdn_discovery;t2_agentic_feedback none none false high">
-<div class="card-heading">
-<div><p class="eyebrow">DEC-021</p><h3>Approve conditional Graph-Guided and Agentic contribution policy</h3></div>
-<span class="badge badge-gray">OPEN</span>
-</div>
-<dl><div class="card-field"><dt>Decision</dt><dd>Research owner should approve conditional retention before contribution experiments are interpreted.</dd></div><div class="card-field"><dt>Reason</dt><dd>This avoids post-hoc title expansion while preserving a feasible minimum thesis if either contribution is unsupported.</dd></div></dl>
 </article>
     </section>
 
@@ -951,7 +972,7 @@
       <p class="section-intro">A curated history of pivots and decisions, not an exhaustive commit log. USER_CONTEXT entries preserve uncertainty and never override current <code>claims.csv</code>.</p>
       <div class="timeline history-timeline"><article class="timeline-item"><time>2025-10 ~ 2026-02</time><div><strong>DHAG extension and proof-of-concept period</strong><p>The research owner confirms that PoC-reported structural limitations superseded DHAG as the main thesis direction; the detailed limitation list remains user context.</p><small>USER_CONFIRMED_CONTEXT · MEDIUM confidence for the broad decision; detailed limitations remain unverified</small></div><span class="badge badge-gray">SUPERSEDED</span></article><article class="timeline-item"><time>2026-03 ~ 2026-04</time><div><strong>ARGOS and LLMAD exploration</strong><p>User context records a related-work exploration that reconsidered differentiation; the formal repository ARGOS audit began later in July.</p><small>USER_CONTEXT · LOW confidence for timing; do not conflate with the July implementation track</small></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-04 ~ 2026-05</time><div><strong>Faithfulness Verifier-centered framing</strong><p>The research owner confirms that Faithfulness Verifier was superseded as headline framing rather than erased; deterministic verification evidence binding and trace-consistency evaluation ideas survived.</p><small>USER_CONFIRMED_CONTEXT · MEDIUM confidence; the named historical framing remains absent from Git</small></div><span class="badge badge-gray">SUPERSEDED</span></article><article class="timeline-item"><time>2026-06-25</time><div><strong>Graph-guided verified-rule prototype formalized</strong><p>Git records the first project-owned graph candidate, typed rule, deterministic verifier, runtime, and bounded construction foundation.</p><small>GIT_AND_SOURCE · HIGH confidence; engineering foundation rather than validated science</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-07-24</time><div><strong>ARGOS reference track frozen</strong><p>The methodological synthesis classified ARGOS as partial support and froze it as a historical reference rather than an exact reproduction or proposed-method validation.</p><small>GIT_AND_FROZEN_REPORT · HIGH confidence</small></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-07-31</time><div><strong>V6 authority layers separated</strong><p>The canonical V6 architecture separated normal evidence, bounded construction, deterministic validity, governance, LLM-free runtime, detector correction, and trace-grounded explanation.</p><small>GIT_AND_ARCHITECTURE · HIGH confidence</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-04</time><div><strong>Pairwise and Rule-only clarification feedback</strong><p>The research owner confirms pairwise-first scope, Rule-only visibility, Detector or Detector+Rule or Rule-only comparison, deterministic-verifier and validation clarification, runtime-LLM openness, GDN extraction clarification, and narrow agent terminology.</p><small>USER_CONFIRMED_CONTEXT_WITH_RETROSPECTIVE_SUPPORT · HIGH confidence in the user-confirmed feedback summary; the August 3 protocol shows reinforcement rather than origin</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-04</time><div><strong>P1 Boiler selected</strong><p>The frozen normal-only feasibility protocol selected P1 because it alone passed; P3 remained infeasible.</p><small>GIT_AND_FROZEN_REPORT · HIGH confidence; independent of the professor-feedback attribution</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-19</time><div><strong>COMMON-42 and normal-only authority closed</strong><p>The canonical 42-rule portfolio and separate normal-only numeric authority were materialized and audited under staged authority, reopening the previously stopped utility path.</p><small>GIT_AND_FROZEN_REPORT · HIGH confidence</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-20</time><div><strong>First D1 Rule-only INNER result executed and audited</strong><p>One authorized D1 execution produced frozen prediction and pilot metrics followed by an integrity audit; this did not establish operational usefulness.</p><small>GIT_AND_FROZEN_REPORT · HIGH confidence; pilot-only</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-21</time><div><strong>First D0 PCA-SPE INNER result executed and audited</strong><p>One authorized D0 execution produced frozen prediction and pilot metrics followed by an independent score alarm ordering and arithmetic integrity audit.</p><small>GIT_AND_FROZEN_REPORT · HIGH confidence; pilot-only</small></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-23</time><div><strong>OUTER attempt produced no scientific result</strong><p>A preregistered one-shot OUTER path stopped at feature custody before feature-byte reading inference label access or metrics; the consumed attempt is a blocker record rather than negative performance.</p><small>GIT_AND_FROZEN_BLOCKER · HIGH confidence; held-out generalization remains unavailable</small></div><span class="badge badge-yellow">CONDITIONAL</span></article></div>
       <h3>Key active or conditional decisions</h3>
-      <ul class="decision-list"><li><strong>DEC-011 · Use normal-only profiling and separate numeric authority</strong><span>Active and central to current scientific governance.</span></li><li><strong>DEC-012 · Make deterministic code the final verifier authority</strong><span>Active and must remain distinct from scientific validation.</span></li><li><strong>DEC-013 · Use an LLM-free fixed-rule runtime baseline</strong><span>Active current runtime authority.</span></li><li><strong>DEC-014 · Compare Detector Rule-only and combined arms</strong><span>Active comparison architecture; stronger future validation must be newly preregistered.</span></li><li><strong>DEC-015 · Keep runtime LLM as a conditional future comparison</strong><span>Conditional future option; not authorized or part of the present core.</span></li><li><strong>DEC-016 · Keep Graph-Guided and Agentic labels provisional</strong><span>Active claim boundary.</span></li><li><strong>DEC-017 · Classify current INNER results as pilot-only</strong><span>Active claim and reporting boundary; current wording corrects the former independent-event shorthand without rewriting historical reports.</span></li><li><strong>DEC-018 · Treat old OUTER as unavailable and require new preregistration</strong><span>Active future-evaluation boundary.</span></li></ul>
+      <ul class="decision-list"><li><strong>DEC-012 · Make deterministic code the final verifier authority</strong><span>Active and must remain distinct from scientific validation.</span></li><li><strong>DEC-013 · Use an LLM-free fixed-rule runtime baseline</strong><span>Active current runtime authority.</span></li><li><strong>DEC-014 · Compare Detector Rule-only and combined arms</strong><span>Active comparison architecture; stronger future validation must be newly preregistered.</span></li><li><strong>DEC-015 · Keep runtime LLM as a conditional future comparison</strong><span>Conditional future option; not authorized or part of the present core.</span></li><li><strong>DEC-016 · Keep Graph-Guided and Agentic labels provisional</strong><span>Active claim boundary.</span></li><li><strong>DEC-017 · Classify current INNER results as pilot-only</strong><span>Active claim and reporting boundary; current wording corrects the former independent-event shorthand without rewriting historical reports.</span></li><li><strong>DEC-018 · Treat old OUTER as unavailable and require new preregistration</strong><span>Active future-evaluation boundary.</span></li><li><strong>DEC-021 · Approve conditional Graph-Guided and Agentic contribution policy</strong><span>User-approved policy recorded by ARCH-011; contribution status remains conditional on future evidence.</span></li></ul>
       <p><a href="../history/PROJECT_TIMELINE.md">Open the full research evolution</a> · <a href="../history/PROFESSOR_FEEDBACK_LINEAGE.md">Professor-feedback lineage</a> · <a href="../history/SUPERSEDED_DIRECTIONS.md">Superseded directions</a></p>
     </section>
 
@@ -968,11 +989,11 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-011 — OUTER / Reproducibility Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>GAP-FIX-001 — Final Scientific Authority Bridge Contract &amp; Conformance Freeze</strong></div>
     </section>
   </main>
 
-  <footer>Generated from RCC registry snapshot 2026-08-29T06:24:06Z · Authority <code>2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e</code></footer>
+  <footer>Generated from RCC registry snapshot 2026-08-29T14:36:04Z · Authority <code>2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e</code></footer>
   <script src="assets/rcc.js"></script>
 </body>
 </html>

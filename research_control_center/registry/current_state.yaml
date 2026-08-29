@@ -2,7 +2,7 @@
   "schema_version": "rcc-current-state-v1",
   "rcc_version": "0.1.0",
   "registry_version": "0.1.0",
-  "generated_at": "2026-08-29T06:24:06Z",
+  "generated_at": "2026-08-29T14:36:04Z",
   "last_updated": "2026-08-29",
   "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
   "scientific_authority": {
@@ -54,9 +54,9 @@
     ],
     "label_access": "Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.",
     "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
-    "test1_status": "INNER development / 14-event pilot; not final validation",
+    "test1_status": "INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -68,7 +68,7 @@
     "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
     "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
     "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "d2_fusion": {
     "role": "Deterministic detector-preserving fusion-policy pilot",
@@ -109,7 +109,7 @@
     "complementarity": "Response diversity is pilot-observed; current V1/V2 fusion utility is not supported; general and operational complementarity remain unvalidated.",
     "frozen_significance_test": false,
     "warning": "V2 is test1-informed development, not independent confirmation. Current V1/V2 results do not establish that Detector-plus-Rule is generally useless.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "metric_integrity": {
     "object_hierarchy": "raw method output -> unique alarm second -> zero-gap maximal contiguous episode -> contiguous attack-event unit / normal exposure -> Recall and FAR/hour",
@@ -131,7 +131,7 @@
     "freeze_boundary": {"D0": "DURABLE_PRE_LABEL", "D1": "IN_MEMORY_PRE_LABEL_WEAKER", "D2_V1": "DURABLE_PRE_LABEL", "D2_V2": "DURABLE_PRE_LABEL"},
     "cross_arm_reporting_lineage": "PARTIAL; frozen comparison artifact exists but aggregation source is not discoverable in the current scientific tree",
     "inferential_statistics": "NONE_FROZEN_OR_AUTHORITATIVE",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "runtime_trace_explanation": {
     "authority": "Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.",
@@ -152,7 +152,7 @@
     "explanation": "A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.",
     "human_usefulness": "UNVALIDATED",
     "warning": "The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "d0_detector": {
     "detector_id": "D0_PCA_SPE_V1",
@@ -184,7 +184,7 @@
     "validation": "PILOT_ONLY",
     "fresh_machine_reproducibility": "INCOMPLETE",
     "warning": "D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "d1_evaluation": {
     "preferred_name": "COMMON-42 Verified Relational Rule-only",
@@ -212,7 +212,7 @@
     "agentic_rule_only": "MISLEADING_NOT_APPLICABLE",
     "held_out_generalization": "UNCONFIRMED",
     "warning": "Higher pilot Recall does not establish superior operational utility. D1 is not T2 Agentic Rule-only.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
@@ -250,7 +250,7 @@
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "relation_numeric_authority": {
     "candidate_pairs": 47,
@@ -268,7 +268,7 @@
     "authority_relationship": "PARTIALLY_SHARED_EXACT_VALUE_EQUIVALENT_SEPARATE_AUTHORITY_IDENTITIES",
     "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
     "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "rule_construction_authority": {
     "evidence_view": "42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata",
@@ -284,7 +284,7 @@
     "no_rule_contract_gap": "The three frozen T2 no_rule cases were non-repairable validity outcomes, but the task-specific orchestrator also collapses explicit response/schema, verifier and budget failures into no_rule; generic/frozen protocol semantics require those failure classes to remain distinct.",
     "reproducibility": "T0 is deterministic from frozen input. LLM arms bind model/config, prompt, request, evidence, response and ledger hashes but use temperature 0.7 with no seed; they are traceable, not deterministic reproductions.",
     "warning": "Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.",
-    "next_deep_review": "GAP-000 completed; ARCH-011 read-only audit next"
+    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -387,6 +387,41 @@
     "d2_v2": "11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3",
     "scope_warning": "All detection numbers are frozen observations on 14 contiguous attack-event units; statistical independence is not established and these are not validated performance conclusions."
   },
+  "outer_reproducibility": {
+    "audit_status": "ARCH_011_PASS_READ_ONLY",
+    "old_outer": {
+      "intended_role": "one-shot confirmatory HAI 23.05 P1 test2 D0/D1/D2 V1 evaluation",
+      "result": "UNAVAILABLE",
+      "generalization": "UNCONFIRMED",
+      "last_state": "OUTER_SCIENTIFIC_ATTEMPT_STARTED",
+      "blocker": "OUTER_TEST2_FEATURE_CUSTODY_REJECTED before file open/read",
+      "feature_custody_checks": 1,
+      "feature_byte_reads": 0,
+      "semantic_parses": 0,
+      "label_accesses": 0,
+      "predictions": 0,
+      "metrics": 0,
+      "outcomes": 0,
+      "retryability": "NOT_RETRYABLE_BY_PROTOCOL",
+      "same_physical_test2_reuse": "STUDY_DESIGN_REQUIRED"
+    },
+    "reproduction_levels": {
+      "traceability": "STRONG_SUPPORTED",
+      "same_machine_replay": "PARTIAL_MODERATE",
+      "fresh_machine_synthetic": "NOT_DEMONSTRATED_PARTIALLY_PREPARED",
+      "fresh_machine_scientific": "NOT_DEMONSTRATED_BLOCKED",
+      "independent_external": "PARTIAL_CODE_ONLY_FULL_SCIENCE_UNAVAILABLE"
+    },
+    "environment": "No complete project-wide lock; NumPy/test tooling and schema package closure are incomplete; exact GDN is Windows/wheel/root bound; scientific replay requires private custody assets.",
+    "pilot_v1": "PRESERVED_IMMUTABLE_WITH_EXISTING_QUALIFICATIONS",
+    "validation_v2": "SEPARATE_PROSPECTIVE_METHOD_CONFIG_AUTHORITY_ENVIRONMENT_AND_EXPERIMENT_IDENTITIES",
+    "authority_preference": "VERIFIED_CANONICAL_RULEV1_VERIFIERV1_TO_V4_BRIDGE_PENDING_DEC020; FALLBACK_FORMAL_V4_IF_LOSSLESS_EQUIVALENCE_CANNOT_BE_PROVEN",
+    "fresh_machine_timing": "after authority/dependency/schema/entrypoint remediation and before held-out access",
+    "gap_priority_changes": 0,
+    "new_root_blockers": 0,
+    "removed_blockers": 0,
+    "warning": "Traceability is not fresh-machine reproducibility; OUTER result unavailable is not negative performance."
+  },
   "pre_validation_readiness": {
     "status": "TRIAGED_NOT_REMEDIATED",
     "raw_findings": 120,
@@ -424,42 +459,52 @@
     "scientific_versioning": "Preserve PILOT V1; all remediated future work is VALIDATION V2.",
     "arch011_position": "BEFORE_REMEDIATION_READ_ONLY",
     "immediate_user_decisions": [
-      "Choose the official final scientific execution authority: canonical RuleV1, formal V4, or a verified bridge.",
-      "Approve the conditional title policy: retain Graph-Guided and Agentic as contributions only if EXP-01 and EXP-03 support them."
+      "Approve verified canonical RuleV1/VerifierV1 to V4 bridge as the final target, with formal V4 fallback if lossless equivalence cannot be proven."
+    ],
+    "approved_policies": [
+      "Preserve PILOT V1 exactly and version all remediation as VALIDATION V2.",
+      "Retain Graph-Guided only if EXP-01 supports contribution.",
+      "Retain Agentic only if EXP-03 supports contribution."
     ],
     "warning": "Pre-validation triage is not remediation and does not authorize scientific execution, test2 access, or held-out evaluation."
   },
   "top_priorities": [
-    "Run ARCH-011 read-only to pin OUTER custody, environment, portability, and fresh-machine gaps before remediation.",
-    "Choose and version the final scientific authority, then add the durable D1 pre-label gate without rewriting PILOT V1.",
-    "Close only the experiment-specific gate needed for the next approved protocol; freeze all choices before results."
+    "Approve and version the final scientific authority; the audited preferred target is a verified canonical-to-V4 bridge with formal V4 fallback.",
+    "Implement the durable D1 pre-label gate prospectively in VALIDATION V2 without rewriting PILOT V1.",
+    "Close dependency/schema/entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access."
   ],
   "highest_priority_work": [
-    "Complete ARCH-011 as a read-only authority and reproducibility audit.",
-    "Resolve the final RuleV1 versus V4 authority decision and implement only the resulting P0 contract work.",
-    "Prepare VALIDATION V2 protocols while preserving every PILOT V1 artifact."
+    "Approve DEC-020 and freeze the final authority/bridge contract.",
+    "Implement only the resulting P0 authority and durable D1 custody work as VALIDATION V2.",
+    "Rehearse the public synthetic release on a fresh machine before any new held-out study."
   ],
   "user_todo_items": [
-    {"id": "USER-GAP000-001", "category": "DECISION NEEDED", "priority": "HIGH", "task": "Choose canonical RuleV1, formal V4, or a verified bridge as the final scientific execution authority.", "why": "Future results need one explicit method identity; the frozen pilot used V4.", "linked": "GAP_000_USER_DECISIONS_REQUIRED.md", "status": "OPEN"},
-    {"id": "USER-GAP000-002", "category": "DECISION NEEDED", "priority": "HIGH", "task": "Approve the conditional Graph-Guided and Agentic title policy.", "why": "These labels should remain contributions only if EXP-01 and EXP-03 support them.", "linked": "GAP_000_USER_DECISIONS_REQUIRED.md", "status": "OPEN"},
-    {"id": "USER-GAP000-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I explain why D1 durable persistence is a future gate but does not invalidate PILOT V1?", "why": "No leakage was found, but future final evidence needs stronger custody.", "linked": "GAP_000_CORE_VALIDATION_GATE.md", "status": "OPEN"},
-    {"id": "USER-GAP000-004", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Can I distinguish code fixes, experiment requirements, wording corrections, and acceptable limitations?", "why": "Avoiding over-engineering depends on preserving these classes.", "linked": "GAP_000_REMEDIATION_MATRIX.csv", "status": "OPEN"},
-    {"id": "USER-GAP000-005", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve ARCH-011 as the next read-only task before remediation.", "why": "OUTER and reproducibility facts should be pinned before code work.", "linked": "GAP_000_REMEDIATION_ORDER.md", "status": "OPEN"}
+    {"id": "USER-ARCH011-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Understand why old OUTER has no scientific result.", "why": "A custody blocker is not negative test2 performance.", "linked": "ARCH_011_OUTER_CUSTODY_AUDIT.md", "status": "OPEN"},
+    {"id": "USER-ARCH011-002", "category": "DECISION NEEDED", "priority": "HIGH", "task": "Decide whether the same physical test2 may be considered in a genuinely new preregistered study.", "why": "Content remained sealed, but reuse is not automatically authorized.", "linked": "ARCH_011_NEW_HELDOUT_REQUIREMENTS.md", "status": "OPEN"},
+    {"id": "USER-ARCH011-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Understand the five reproduction levels and the current partial status.", "why": "Traceability must not be mistaken for fresh-machine reproduction.", "linked": "ARCH_011_REPRODUCTION_LEVELS.md", "status": "OPEN"},
+    {"id": "USER-ARCH011-004", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Review the canonical-to-V4 bridge recommendation.", "why": "It best balances canonical validity and frozen V4 runtime preservation if lossless mapping is proven.", "linked": "ARCH_011_AUTHORITY_OPTIONS.csv", "status": "OPEN"},
+    {"id": "USER-ARCH011-005", "category": "DECISION NEEDED", "priority": "HIGH", "task": "Approve the final scientific authority target.", "why": "DEC-020 blocks expanded D1/D2 and held-out validation.", "linked": "DEC-020", "status": "OPEN"},
+    {"id": "USER-ARCH011-006", "category": "APPROVED POLICY", "priority": "HIGH", "task": "Confirm PILOT V1 preservation and VALIDATION V2 separation in the remediation record.", "why": "The user-approved policy applies all changes prospectively.", "linked": "ARCH_011_VALIDATION_V2_VERSIONING.md", "status": "OPEN"},
+    {"id": "USER-ARCH011-007", "category": "REVIEW NEEDED", "priority": "HIGH", "task": "Approve the remediation sequence.", "why": "Authority and custody precede portability rehearsal and held-out study.", "linked": "ARCH_011_FRESH_MACHINE_PROTOCOL.md", "status": "OPEN"},
+    {"id": "USER-ARCH011-008", "category": "DECISION NEEDED", "priority": "HIGH", "task": "Approve the first remediation task.", "why": "ARCH-011 performed no remediation.", "linked": "GAP-FIX-001", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Choose the final scientific Rule/verifier/runtime authority.",
-    "Approve the conditional Graph-Guided and Agentic title policy.",
-    "Explain why durable D1 persistence is prospective and does not rewrite PILOT V1.",
-    "Distinguish code fixes, experiment requirements, wording corrections, and limitations.",
-    "Approve or defer ARCH-011 as the next read-only task."
+    "Explain why old OUTER has no result and cannot simply retry.",
+    "Decide same-physical-test2 eligibility only within a new preregistered study.",
+    "Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.",
+    "Review and approve the canonical-to-V4 bridge target or fallback.",
+    "Confirm PILOT V1 preservation and VALIDATION V2 separation.",
+    "Approve the remediation order.",
+    "Approve GAP-FIX-001.",
+    "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-011 — OUTER / Reproducibility Deep Audit",
-  "recommended_next_architecture_task": "ARCH-011 — OUTER / Reproducibility Deep Audit",
-  "last_completed_task": "GAP-000",
-  "exact_next_task": "ARCH-011 — OUTER / Reproducibility Deep Audit",
+  "recommended_next_management_task": "GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze",
+  "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
+  "last_completed_task": "ARCH-011",
+  "exact_next_task": "GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

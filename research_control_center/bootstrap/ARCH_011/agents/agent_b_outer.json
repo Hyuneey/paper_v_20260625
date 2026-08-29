@@ -1,0 +1,335 @@
+{
+  "artifact_type": "ARCH011AgentBOuterCustodyAuditV1",
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-011",
+  "agent_id": "agent_b_outer",
+  "agent_role": "OUTER_CUSTODY_AUDITOR",
+  "audit_mode": "READ_ONLY_STATIC_AND_SANITIZED_EVIDENCE_ONLY",
+  "verdict": "PASS_READ_ONLY_OUTER_CUSTODY_AUDIT",
+  "authority": {
+    "rcc_branch": "rcc/research-control-center-v1",
+    "rcc_head": "63bfd013bfc1c897d69144129cf7192d36075587",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_sha": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "old_outer_role": {
+    "classification": "ONE_SHOT_CONFIRMATORY_GENERALIZATION_EVALUATION",
+    "dataset_role": "sealed HAI 23.05 test2 held-out evaluation",
+    "arms": [
+      "OUTER_D0_DETECTOR_ONLY",
+      "OUTER_D1_RULE_ONLY",
+      "OUTER_D2_V1_COMBINED"
+    ],
+    "scientific_question": "Whether the frozen D0, COMMON-42 D1, and D2 V1 authorities generalized to sealed test2 without OUTER-driven fitting, recalibration, selection, fusion change, or redesign.",
+    "not_authorized": [
+      "D0 fitting or recalibration",
+      "D1 rule generation, recalibration, or selection",
+      "D2 policy change or D2 V2 execution",
+      "parameter search",
+      "post-OUTER redesign",
+      "retry or second candidate"
+    ]
+  },
+  "authorization_and_one_shot_contract": {
+    "authorization_scope": "HAI_23_05_P1_TEST2_D0_D1_D2V1_CONFIRMATORY_OUTER_V1",
+    "coordinated_scientific_attempts_authorized": 1,
+    "scientific_retries_authorized": 0,
+    "outer_retry_authorized": false,
+    "second_outer_candidate_authorized": false,
+    "prediction_before_label_required": true,
+    "shared_feature_snapshot_required": true,
+    "label_access_condition": "Only after all D0, D1, and D2 V1 predictions are durably frozen, reopened, and validated.",
+    "no_post_result_adaptation": true
+  },
+  "intended_state_machine": [
+    "NOT_STARTED",
+    "AUTHORITY_REPLAYED",
+    "PRIVATE_CUSTODY_READY",
+    "OUTER_SCIENTIFIC_ATTEMPT_STARTED",
+    "TEST2_FEATURE_HASH_VALIDATED",
+    "TEST2_FEATURE_SNAPSHOT_FROZEN",
+    "D0_PREDICTION_FROZEN",
+    "D1_PREDICTION_FROZEN",
+    "D2_PREDICTION_FROZEN",
+    "ALL_THREE_OUTER_PREDICTIONS_FROZEN",
+    "TEST2_LABEL_HASH_VALIDATED",
+    "TEST2_LABEL_SNAPSHOT_FROZEN",
+    "ATTACK_EVENTS_DERIVED",
+    "EPISODES_DERIVED",
+    "METRICS_COMPUTED",
+    "PRIVATE_METRIC_EVIDENCE_FROZEN",
+    "OUTER_RESULT_FROZEN"
+  ],
+  "historical_timeline": [
+    {
+      "order": 1,
+      "stage": "PREREGISTRATION_AND_AUTHORIZATION",
+      "status": "PASS",
+      "attempts_consumed": 0,
+      "attempts_remaining": 1,
+      "test2_content_access": 0,
+      "finding": "The three-arm method, metrics, custody ordering, one-shot budget, and zero-retry rule were frozen without reading test2."
+    },
+    {
+      "order": 2,
+      "stage": "INITIAL_PRE_REAL_EXECUTION_PREFLIGHT",
+      "status": "BLOCKED_BEFORE_SCIENTIFIC_ATTEMPT",
+      "attempts_consumed": 0,
+      "attempts_remaining": 1,
+      "test2_content_access": 0,
+      "finding": "Incomplete private D0 bindings and a path-redaction defect stopped the initial execution before test2 access; the one-shot authorization was not consumed."
+    },
+    {
+      "order": 3,
+      "stage": "CUSTODY_REMEDIATION_V1",
+      "status": "BLOCKED_BEFORE_PRIVATE_LOCATOR_RESOLUTION",
+      "attempts_consumed": 0,
+      "attempts_remaining": 1,
+      "test2_content_access": 0,
+      "finding": "A legacy binding-key schema rejected the current canonical local authority-key schema. This was a pre-scientific infrastructure failure."
+    },
+    {
+      "order": 4,
+      "stage": "CUSTODY_REMEDIATION_R2_READINESS",
+      "status": "PASS",
+      "attempts_consumed": 0,
+      "attempts_remaining": 1,
+      "test2_content_access": 0,
+      "finding": "The eight-field local binding, private authority identities, path-redaction controls, and shared-root sentinel were accepted without test2 access."
+    },
+    {
+      "order": 5,
+      "stage": "RECOVERY_SCIENTIFIC_ATTEMPT",
+      "status": "BLOCKED_AFTER_ATTEMPT_START_BEFORE_FEATURE_BYTE_READ",
+      "attempts_consumed": 1,
+      "attempts_remaining": 0,
+      "test2_content_access": 0,
+      "finding": "After authority replay, private-custody validation, and the one-attempt marker, the first test2 feature custody predicate rejected the path before open/read."
+    }
+  ],
+  "actual_stop_point": {
+    "last_reached_state": "OUTER_SCIENTIFIC_ATTEMPT_STARTED",
+    "blocker_class": "SEALED_TEST2_FEATURE_CUSTODY_REJECTED_BEFORE_BYTE_READ",
+    "blocker_code": "OUTER_TEST2_FEATURE_CUSTODY_REJECTED",
+    "blocker_stage": "FIRST_TEST2_FEATURE_CUSTODY_ACCESS_AFTER_SCIENTIFIC_ATTEMPT_START",
+    "source_predicate": "feature path is a symlink OR is not a regular file",
+    "predicate_branch_disambiguated_by_public_evidence": false,
+    "interpretation": "The sanitized blocker proves a custody rejection before file open/read but does not reveal whether the rejected condition was symlink status, absence, or another non-regular-file condition.",
+    "state_not_reached": "TEST2_FEATURE_HASH_VALIDATED"
+  },
+  "historical_access_and_execution_accounting": {
+    "scientific_outer_attempt_started": true,
+    "scientific_outer_attempts": 1,
+    "scientific_outer_retries": 0,
+    "scientific_outer_attempts_remaining": 0,
+    "historical_pre_scientific_outer_aborts": 2,
+    "test2_feature_file_custody_accesses": 1,
+    "test2_feature_byte_reads": 0,
+    "test2_feature_hash_computations": 0,
+    "test2_feature_semantic_parses": 0,
+    "test2_label_file_accesses": 0,
+    "test2_label_hash_computations": 0,
+    "test2_label_semantic_parses": 0,
+    "d0_training_executions": 0,
+    "d0_recalibrations": 0,
+    "d0_inference_executions": 0,
+    "d1_rule_generation_executions": 0,
+    "d1_recalibrations": 0,
+    "d1_rule_evaluation_executions": 0,
+    "d2_v1_fusion_executions": 0,
+    "d2_v2_executions": 0,
+    "prediction_artifacts_frozen": 0,
+    "metric_computations": 0,
+    "scientific_outcomes_exposed": 0,
+    "result_driven_changes": false,
+    "post_outer_redesigns": 0,
+    "scientific_private_value_leak_count": 0,
+    "new_private_path_exposures": 0
+  },
+  "result_interpretation": {
+    "scientific_result_status": "UNAVAILABLE",
+    "generalization_status": "UNCONFIRMED",
+    "negative_performance_result": false,
+    "model_failure_on_test2": false,
+    "allowed_wording": [
+      "held-out scientific result unavailable",
+      "generalization unconfirmed",
+      "one custody-level feature-file check occurred, but no test2 content bytes or outcomes were exposed"
+    ],
+    "wording_to_avoid": [
+      "OUTER performance failed",
+      "negative held-out result",
+      "the model failed on test2",
+      "test2 was untouched",
+      "test2 was scientifically read"
+    ]
+  },
+  "retryability": {
+    "old_outer_protocol": "NOT_RETRYABLE_BY_PROTOCOL",
+    "reason": "The sole authorized scientific attempt was consumed and the frozen policy authorizes zero retries and no second candidate.",
+    "simple_retry_authorized": false,
+    "old_protocol_attempts_remaining": 0,
+    "new_study_required": true,
+    "new_study_requirements_from_existing_evidence": [
+      "new study identity",
+      "new explicit preregistration and authorization",
+      "fresh one-shot custody accounting",
+      "frozen authorities and metrics",
+      "durable predictions before labels",
+      "no post-test tuning"
+    ]
+  },
+  "same_physical_test2_reuse": {
+    "classification": "STUDY_DESIGN_REQUIRED",
+    "content_seal_status": "PRESERVED_AT_CONTENT_LEVEL",
+    "evidence": "Zero feature bytes, hashes, parses, labels, predictions, metrics, and outcomes were exposed.",
+    "not_authorized_by_current_protocol": true,
+    "conservative_conclusion": "The evidence does not force a new physical file, but it also does not authorize reuse. Reuse of the same physical test2 could only be considered under a genuinely new preregistered study after an explicit decision that custody-only contact preserves the intended held-out status. Otherwise a new data identity or split is required.",
+    "user_or_study_decision_required": true
+  },
+  "code_contract_findings": [
+    {
+      "symbol": "OuterExecutionStateMachineV1.advance",
+      "finding": "Enforces strict adjacent state transitions and fails closed on skipped/reordered states."
+    },
+    {
+      "symbol": "OuterExecutionStateMachineV1.require_label_access",
+      "finding": "Rejects label access unless all three predictions have reached the frozen state."
+    },
+    {
+      "symbol": "execute_authorized_outer_v1",
+      "finding": "Accepts no scientific parameters, replays fixed authorities, writes the attempt marker before the feature gate, and sets the attempt-start state before the rejected custody predicate."
+    },
+    {
+      "symbol": "RecoveryAttemptBoundaryV1",
+      "finding": "Models one remaining attempt, consumes it immediately before feature access, and rejects retries or second attempts."
+    },
+    {
+      "symbol": "execute_authorized_outer_recovery_v1",
+      "finding": "Delegates the scientific controller after validating R2 infrastructure; it does not alter D0, D1, D2 V1, ordering, event, episode, or metric semantics."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json",
+      "authority": "scientific checkpoint",
+      "supports": "blocker code/stage, attempt consumption, exact zero content/execution/result counters"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_PREREGISTRATION.json",
+      "authority": "scientific checkpoint",
+      "supports": "OUTER role, three arms, fixed authorities, ordering, prediction-before-label requirement, metrics, no-post-result development"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_AUTHORIZATION.json",
+      "authority": "scientific checkpoint",
+      "supports": "one-way permissions, zero retry, prohibited refit/recalibration/selection/redesign"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_ONE_SHOT_POLICY.json",
+      "authority": "scientific checkpoint",
+      "supports": "one coordinated attempt, zero retries, no second candidate"
+    },
+    {
+      "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_R2_READINESS.json",
+      "authority": "scientific checkpoint",
+      "supports": "R2 readiness passed with one attempt remaining and zero test2 accesses before the recovery attempt"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_v1.py",
+      "symbols": [
+        "OuterExecutionState",
+        "OuterExecutionStateMachineV1",
+        "execute_authorized_outer_v1"
+      ],
+      "authority": "scientific checkpoint",
+      "supports": "actual state machine, attempt-marker placement, feature custody predicate, label-after-predictions gate"
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py",
+      "symbols": [
+        "RecoveryAttemptBoundaryV1",
+        "execute_authorized_outer_recovery_v1"
+      ],
+      "authority": "scientific checkpoint",
+      "supports": "attempt accounting, no retry, R2 adapter, delegation to unchanged scientific controller"
+    },
+    {
+      "path": "tests/test_task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py",
+      "authority": "scientific checkpoint",
+      "supports": "static/synthetic tests for attempt consumption, retry rejection, and early label rejection"
+    },
+    {
+      "path": "tests/test_task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1_independent.py",
+      "authority": "scientific checkpoint",
+      "supports": "independent negative checks for retry, second attempt, label-aware fusion, and result-driven change"
+    },
+    {
+      "path": "research_control_center/history/decisions/DEC-018-treat-old-outer-as-unavailable-and-require-new-preregistration.md",
+      "authority": "RCC current decision",
+      "supports": "no-result interpretation, old protocol non-retryability, requirement for a new preregistered held-out study"
+    },
+    {
+      "path": "research_control_center/architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md",
+      "authority": "ARCH-001",
+      "supports": "custody-contact versus content-access terminology and zero scientific-content boundary"
+    }
+  ],
+  "mismatches_and_risks": [
+    {
+      "severity": "HIGH",
+      "title": "Old protocol retry could be mistaken for a permitted recovery",
+      "finding": "The one-shot attempt is consumed and zero retries are authorized; a simple retry would violate the frozen study contract.",
+      "required_treatment": "Require a new study identity and preregistration."
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Generic test2 access wording collapses custody contact and content access",
+      "finding": "There was one custody-level feature-file check but zero byte reads, hashes, semantic parses, labels, predictions, metrics, or outcomes.",
+      "required_treatment": "Report counters by access layer."
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Same-file reuse is not resolved by the old blocker",
+      "finding": "Content remained sealed, but the consumed authorization neither permits reuse nor establishes that the same physical file satisfies a new independent-study design.",
+      "required_treatment": "Make reuse an explicit new-study design decision; do not infer it from custody preservation alone."
+    },
+    {
+      "severity": "LOW",
+      "title": "Public blocker does not disambiguate the rejected filesystem predicate",
+      "finding": "The source rejects symlink or non-regular-file conditions through one common code, while the public record intentionally remains path-free.",
+      "required_treatment": "Preserve the class-level explanation and do not invent a more specific local cause."
+    }
+  ],
+  "qa_answers": {
+    "old_outer_role_correct": "YES",
+    "exact_stop_point_evidenced": "YES",
+    "feature_byte_access_correctly_represented": "YES_ZERO",
+    "label_access_correctly_represented": "YES_ZERO",
+    "result_unavailable_wording_correct": "YES",
+    "retryability_correctly_classified": "YES_NOT_RETRYABLE_BY_PROTOCOL",
+    "same_file_reuse_resolved": "NO_STUDY_DESIGN_REQUIRED",
+    "negative_performance_claim_supported": "NO",
+    "test2_scientific_content_exposed": "NO",
+    "scientific_execution_performed_by_this_audit": "NO"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test2_feature_file_custody_checks": 0,
+    "test2_feature_byte_reads": 0,
+    "test2_feature_hash_computations": 0,
+    "test2_feature_semantic_parses": 0,
+    "test2_label_file_accesses": 0,
+    "test2_label_byte_reads": 0,
+    "test2_label_hash_computations": 0,
+    "test2_label_semantic_parses": 0,
+    "private_payload_reads": 0,
+    "predictions_generated": 0,
+    "metrics_computed": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "remediation_implementations": 0,
+    "llm_calls": 0,
+    "remote_pushes": 0
+  }
+}

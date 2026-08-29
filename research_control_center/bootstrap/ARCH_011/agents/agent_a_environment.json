@@ -1,0 +1,478 @@
+{
+  "task_id": "ARCH-011",
+  "agent": "Agent A — Environment / Dependency Auditor",
+  "scope": "Read-only static audit of public environment, dependency, package, path, platform, and determinism surfaces.",
+  "verdict": "PASS_WITH_PORTABILITY_BLOCKERS",
+  "authority_gate": {
+    "rcc_branch": "rcc/research-control-center-v1",
+    "rcc_head": "63bfd013bfc1c897d69144129cf7192d36075587",
+    "scientific_authority": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "worktree_at_gate": "CLEAN",
+    "inspection_mode": "STATIC_PUBLIC_ONLY"
+  },
+  "executive_assessment": {
+    "fresh_clone_core_installability": "PARTIAL_NOT_REHEARSED",
+    "fresh_clone_without_private_scientific_data": "The public package and RCC can be inspected from a fresh clone, and an editable core install is plausibly supported by pyproject.toml. No complete, tested install recipe or lock proves this on a clean host.",
+    "fresh_machine_synthetic_status": "NOT_EXECUTED_AND_NOT_PROVEN",
+    "fresh_machine_scientific_status": "BLOCKED_BY_PRIVATE_ASSETS_AND_INCOMPLETE_ENVIRONMENT_CAPSULE",
+    "standalone_wheel_status": "NOT_PROVEN; repository-root schema files are not declared as package data and default schema lookup assumes a source-tree layout.",
+    "same_machine_implication": "Existing exact-version receipts and local custody can support narrowly authorized replay, but the current checkout alone is not a self-contained replay environment.",
+    "public_release_implication": "A source-and-synthetic release is feasible after dependency and entrypoint documentation; exact scientific replay requires separately authorized data and private authorities that must remain outside Git."
+  },
+  "environment_matrix": [
+    {
+      "dependency": "Python core",
+      "version_pin": ">=3.11",
+      "required_for": "paperworks package and RCC scripts",
+      "declared_where": "pyproject.toml:[project].requires-python",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "LOW for core; scientific task modules impose narrower identities",
+      "determinism_sensitive": true,
+      "missing": "No .python-version, environment lock, or tested interpreter matrix",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "CPython 3.12.13",
+      "version_pin": "exact in frozen D0 and GDN execution contracts",
+      "required_for": "PILOT V1 D0 numerical replay and exact GDN environment",
+      "declared_where": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:PYTHON_VERSION; src/paperworks/gdn/gdn_remediation_environment_v1.py:REQUIRED_PYTHON_VERSION; public execution receipts",
+      "installable_from_public_source": "YES in principle, not scripted here",
+      "private": false,
+      "platform_sensitive": "YES",
+      "determinism_sensitive": true,
+      "missing": "Not expressed as the project-wide interpreter lock",
+      "risk": "HIGH for exact scientific replay; LOW for static inspection"
+    },
+    {
+      "dependency": "setuptools",
+      "version_pin": ">=68",
+      "required_for": "package build",
+      "declared_where": "pyproject.toml:[build-system]",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "LOW",
+      "determinism_sensitive": true,
+      "missing": "Upper bound and resolved build-backend lock",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "jsonschema[format-nongpl]",
+      "version_pin": "4.26.0",
+      "required_for": "canonical Draft 2020-12 structural validation and format checks",
+      "declared_where": "pyproject.toml:[project].dependencies; src/paperworks/contracts/schema_registry.py",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "LOW",
+      "determinism_sensitive": true,
+      "missing": "Transitive extra dependencies are not captured in a repository lock",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "NumPy",
+      "version_pin": "2.3.5 in frozen D0 contracts and receipts",
+      "required_for": "STAT numerical path and frozen D0 training/scoring",
+      "declared_where": "src/paperworks/candidates/statistical_candidate_discovery_v1.py; src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py; src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py; D0 public receipts",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "Numerical backend and wheel build sensitive",
+      "determinism_sensitive": true,
+      "missing": "Absent from pyproject.toml and no general scientific dependency lock; BLAS/LAPACK build identity is not frozen in the inspected public receipt",
+      "risk": "HIGH"
+    },
+    {
+      "dependency": "torch",
+      "version_pin": "2.12.1 optional",
+      "required_for": "GDN optional backend; not required for lightweight package imports",
+      "declared_where": "pyproject.toml:[project.optional-dependencies].gdn; src/paperworks/gdn/dependencies.py",
+      "installable_from_public_source": "YES in principle",
+      "private": false,
+      "platform_sensitive": "YES",
+      "determinism_sensitive": true,
+      "missing": "General optional install does not itself recreate the exact approved wheelhouse/environment receipt",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "torch-geometric",
+      "version_pin": "2.8.0 optional",
+      "required_for": "GDN GraphLayer/message passing",
+      "declared_where": "pyproject.toml:[project.optional-dependencies].gdn; src/paperworks/gdn/dependencies.py",
+      "installable_from_public_source": "YES in principle",
+      "private": false,
+      "platform_sensitive": "YES",
+      "determinism_sensitive": true,
+      "missing": "Exact scientific environment is Windows-amd64 and wheel-receipt bound; general public install is not equivalent",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "Exact GDN wheelhouse and external roots",
+      "version_pin": "wheel file names and SHA-256 identities frozen",
+      "required_for": "exact upstream-aligned GDN execution environment",
+      "declared_where": "src/paperworks/gdn/gdn_remediation_environment_v1.py:REQUIRED_TOP_LEVEL_WHEELS, ROOT_ENVIRONMENT_VARIABLES",
+      "installable_from_public_source": "PARTIAL; package versions public, exact custody roots not bundled",
+      "private": true,
+      "platform_sensitive": "windows-amd64 only in frozen contract",
+      "determinism_sensitive": true,
+      "missing": "Portable public restoration capsule and rehearsed clean-host bootstrap",
+      "risk": "HIGH for EXP-01 scientific reproduction"
+    },
+    {
+      "dependency": "pytest",
+      "version_pin": "NONE",
+      "required_for": "a material subset of repository tests",
+      "declared_where": "test imports only",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "LOW",
+      "determinism_sensitive": false,
+      "missing": "No dev/test optional dependency group or lock",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "Git CLI",
+      "version_pin": "Historical environment manifest records one version; no project requirement range",
+      "required_for": "authority, ancestry, source-closure, and several execution authorization checks",
+      "declared_where": "multiple subprocess-based governance modules and RCC validator",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "Command and safe-directory behavior sensitive",
+      "determinism_sensitive": true,
+      "missing": "Portable minimum version/behavior contract",
+      "risk": "MEDIUM"
+    },
+    {
+      "dependency": "Provider SDK",
+      "version_pin": "NOT_APPLICABLE",
+      "required_for": "Historical construction transport only",
+      "declared_where": "src/paperworks/v6/task039e2_execution_configuration_v1.py records provider_sdk_dependency=false; transport uses Python urllib",
+      "installable_from_public_source": "stdlib",
+      "private": false,
+      "platform_sensitive": "Network/TLS environment sensitive",
+      "determinism_sensitive": true,
+      "missing": "Provider availability and model behavior cannot be reconstructed from package dependencies alone",
+      "risk": "P1 for EXP-03 protocol, not a fixed-rule runtime dependency"
+    },
+    {
+      "dependency": "OpenAI credential and network",
+      "version_pin": "environment-variable interface and endpoint are frozen in historical construction contracts",
+      "required_for": "future authorized T1/T1-B/T2 construction only",
+      "declared_where": "src/paperworks/v6/task039e2_execution_configuration_v1.py:CREDENTIAL_ENVIRONMENT_VARIABLE; stdlib transport modules",
+      "installable_from_public_source": "NO; external service",
+      "private": true,
+      "platform_sensitive": "Network/TLS sensitive",
+      "determinism_sensitive": true,
+      "missing": "Credential intentionally absent; model service is external",
+      "risk": "DOES_NOT_BLOCK core, RCC, synthetic smoke, or frozen LLM-free runtime"
+    },
+    {
+      "dependency": "HAI 23.05 data and local custody authorities",
+      "version_pin": "dataset/file hashes and logical identities exist; payload excluded",
+      "required_for": "scientific recomputation and validation",
+      "declared_where": "public provenance/task receipts; sanitized dataset-root and task-specific private locator interfaces",
+      "installable_from_public_source": "Data acquisition is external and policy-controlled",
+      "private": true,
+      "platform_sensitive": "Path binding sensitive",
+      "determinism_sensitive": true,
+      "missing": "Raw data and private numeric/model/evidence payload are intentionally not in Git",
+      "risk": "EXPECTED BLOCKER for public scientific replay"
+    },
+    {
+      "dependency": "RCC dashboard",
+      "version_pin": "stdlib-only Python scripts",
+      "required_for": "RCC validation and generated dashboard",
+      "declared_where": "research_control_center/scripts/*.py",
+      "installable_from_public_source": "YES",
+      "private": false,
+      "platform_sensitive": "Core scripts low; open_dashboard.bat Windows-only",
+      "determinism_sensitive": false,
+      "missing": "Cross-platform convenience launcher and one documented interpreter-selection command",
+      "risk": "LOW"
+    },
+    {
+      "dependency": "ARGOS container stacks",
+      "version_pin": "separate historical requirements.lock files and Python 3.10 slim image",
+      "required_for": "frozen ARGOS reference track only",
+      "declared_where": "containers/argos_*/requirements.lock; experiments/argos_reproduction/container/Dockerfile",
+      "installable_from_public_source": "YES in principle",
+      "private": false,
+      "platform_sensitive": "Docker/Podman and Linux-container sensitive",
+      "determinism_sensitive": true,
+      "missing": "Not unified with current v6 package environment by design",
+      "risk": "NOT_REQUIRED_FOR_CURRENT_THESIS_RUNTIME; keep isolated"
+    }
+  ],
+  "path_and_machine_assumptions": [
+    {
+      "id": "PATH-01",
+      "severity": "HIGH",
+      "finding": "Canonical and v6 schema registries default to Path(__file__).resolve().parents[3] and read repository-root schemas. pyproject.toml does not declare those schemas as package data.",
+      "implication": "Editable/source-tree execution is supported by design evidence, but a standalone wheel or relocated package-data layout is not proven.",
+      "evidence": [
+        "src/paperworks/contracts/schema_registry.py:_repository_root, load_schema_registry",
+        "src/paperworks/v6/schema_registry_v1.py:load_v6_schema_registry_v1",
+        "pyproject.toml:[tool.setuptools.packages.find]"
+      ]
+    },
+    {
+      "id": "PATH-02",
+      "severity": "MEDIUM",
+      "finding": "Scientific custody uses explicit environment variables for data, model, threshold, registry, and locator roots; these values must remain outside Git.",
+      "implication": "This is a security boundary, not a defect, but fresh-machine scientific replay needs a documented path-silent binding procedure and separately supplied assets.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d0_execution_authorization_v1.py:sanitized dataset, preprocessing, model, and threshold environment interfaces",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_execution_authorization_v1.py:MAIN_LOCATOR_ENV, SUPPLEMENT_LOCATOR_ENV",
+        "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py:PRIVATE_LOCATOR_ENV"
+      ]
+    },
+    {
+      "id": "PATH-03",
+      "severity": "MEDIUM",
+      "finding": "The exact GDN remediation environment requires absolute, distinct external roots outside the repository and is frozen to windows-amd64.",
+      "implication": "The old exact GDN run is not a platform-neutral recipe; VALIDATION V2 needs either the same exact environment capsule or a newly versioned and validated environment contract.",
+      "evidence": [
+        "src/paperworks/gdn/gdn_remediation_environment_v1.py:ExternalRemediationRootsV1.from_environment",
+        "src/paperworks/gdn/gdn_remediation_environment_v1.py:REQUIRED_PLATFORM_ID"
+      ]
+    },
+    {
+      "id": "PATH-04",
+      "severity": "LOW",
+      "finding": "The RCC convenience launcher is a Windows batch file and includes a host-cache interpreter fallback.",
+      "implication": "RCC Python scripts remain path-relative and portable; only the convenience launch path is Windows-specific.",
+      "evidence": [
+        "research_control_center/scripts/open_dashboard.bat",
+        "research_control_center/scripts/refresh_all.py"
+      ]
+    },
+    {
+      "id": "PATH-05",
+      "severity": "MEDIUM",
+      "finding": "Historical task reports and setup documents contain host-specific launcher examples and environment-era instructions.",
+      "implication": "They are provenance, not a current fresh-machine recipe; release instructions must avoid copying those locators and must provide sanitized commands.",
+      "evidence": [
+        "docs/DATA_CONTRACTS.md",
+        "docs/task_reports/*",
+        "research_control_center/bootstrap/RCC_000/RCC_000_PRIVACY_AUDIT.md"
+      ]
+    },
+    {
+      "id": "PATH-06",
+      "severity": "LOW",
+      "finding": "CSV/JSON paths generally use explicit UTF-8 or UTF-8-SIG encodings, LF writing, stable sorting, and UTC timestamps.",
+      "implication": "Encoding, line-ending, ordering, and timezone drift are substantially mitigated in audited current code.",
+      "evidence": [
+        "src/paperworks/data/files.py:inspect_csv_metadata",
+        "src/paperworks/candidates/statistical_candidate_discovery_v1.py",
+        "src/paperworks/profiling/task039d1_fit_v1.py",
+        "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "ENV-001",
+      "severity": "HIGH",
+      "title": "Scientific dependencies are not represented by one complete lock",
+      "finding": "pyproject.toml pins jsonschema and optional Torch/PyG but omits the frozen D0/STAT NumPy dependency and all test tooling; no root requirements lock, uv/Poetry/Pipenv lock, Conda environment, .python-version, tox, or CI workflow is tracked.",
+      "effect": "A fresh clone cannot reconstruct or verify the full scientific/test environment from package metadata alone.",
+      "recommended_future_action": "Create a versioned VALIDATION V2 environment manifest and resolved lock(s), separating core, test, numerical, GDN, and optional provider surfaces; do not alter PILOT V1 receipts.",
+      "evidence": [
+        "pyproject.toml",
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:NUMPY_VERSION",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_TRAINING_V1_MODEL_RECEIPT.json",
+        "tests/* pytest and numpy imports"
+      ]
+    },
+    {
+      "finding_id": "ENV-002",
+      "severity": "HIGH",
+      "title": "Repository-layout dependency prevents claiming standalone package portability",
+      "finding": "Schema discovery derives the repository root from module location and reads schemas outside the Python package, while package metadata does not install schema resources.",
+      "effect": "Source/editable execution may work, but a normal wheel install is not evidenced as functional for canonical contracts.",
+      "recommended_future_action": "Before release, package schemas/resources or require and test an explicit repository-root contract. Verify both editable and intended release installation modes on a clean host.",
+      "evidence": [
+        "src/paperworks/contracts/schema_registry.py:_repository_root",
+        "src/paperworks/v6/schema_registry_v1.py:load_v6_schema_registry_v1",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "finding_id": "ENV-003",
+      "severity": "HIGH",
+      "title": "Scientific replay depends on intentionally external private assets",
+      "finding": "HAI payloads, D0 preprocessing/model/threshold authorities, rule numeric authorities, and task-specific custody registries are environment-bound and excluded from Git.",
+      "effect": "Public code reproduction and synthetic smoke can be separated from scientific replay, but PILOT V1 or VALIDATION V2 scientific recomputation cannot start from a clone alone.",
+      "recommended_future_action": "Define a path-silent restoration manifest and authorization procedure with logical IDs/hashes, without redistributing restricted payloads.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d0_execution_authorization_v1.py",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_execution_authorization_v1.py",
+        "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md"
+      ]
+    },
+    {
+      "finding_id": "ENV-004",
+      "severity": "HIGH",
+      "title": "Exact GDN environment is reproducible only under a narrow frozen platform contract",
+      "finding": "The audited GDN environment is CPython 3.12.13, windows-amd64, exact wheel identities, CPU-only, and four external roots with fixed thread/hash variables.",
+      "effect": "This is stronger than an unpinned install but not cross-platform portability. A generic .[gdn] install is not equivalent to the frozen scientific environment.",
+      "recommended_future_action": "For EXP-01, either restore the exact environment from verified wheel receipts or version and validate a new environment before results; never silently substitute a generic backend.",
+      "evidence": [
+        "src/paperworks/gdn/gdn_remediation_environment_v1.py:REQUIRED_PYTHON_VERSION, REQUIRED_PLATFORM_ID, REQUIRED_TOP_LEVEL_WHEELS, DETERMINISTIC_ENVIRONMENT",
+        "docs/v6/V6_GDN_OPTIONAL_DEPENDENCY_BOUNDARY.md"
+      ]
+    },
+    {
+      "finding_id": "ENV-005",
+      "severity": "MEDIUM",
+      "title": "D0 pins Python and NumPy but not the full numerical implementation identity",
+      "finding": "D0 fails closed on CPython 3.12.13 and NumPy 2.3.5 and uses float64 eigendecomposition, but inspected public receipts do not freeze NumPy wheel hash, BLAS/LAPACK vendor, CPU instruction behavior, or thread variables.",
+      "effect": "Prediction artifacts are integrity-traceable, but exact fresh-machine recomputation is not guaranteed solely by version strings.",
+      "recommended_future_action": "Freeze wheel hashes and numeric backend/thread metadata for VALIDATION V2, then use tolerance/exactness policies appropriate to artifact identity.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:eigendecomposition_v1",
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:validate_numeric_backend_v1",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_TRAINING_V1_MODEL_RECEIPT.json"
+      ]
+    },
+    {
+      "finding_id": "ENV-006",
+      "severity": "MEDIUM",
+      "title": "Fresh-clone instructions and test environment are incomplete",
+      "finding": "The root README documents only the optional GDN editable install; it does not provide a current core/dev install, full test command, supported platform matrix, asset restoration flow, or synthetic end-to-end smoke. Test imports include undeclared pytest and NumPy.",
+      "effect": "A new machine operator must infer setup from historical reports and local conventions.",
+      "recommended_future_action": "Publish one sanitized, staged reproduction guide and machine-readable dependency groups before fresh-machine rehearsal.",
+      "evidence": [
+        "README.md",
+        "research_control_center/START_HERE.md",
+        "tests/*",
+        "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md"
+      ]
+    },
+    {
+      "finding_id": "ENV-007",
+      "severity": "MEDIUM",
+      "title": "Git and source-tree state are runtime governance dependencies",
+      "finding": "Multiple scientific authorization modules invoke Git and verify ancestry/source closure from a repository checkout rather than from an installed package artifact.",
+      "effect": "A source archive or wheel without .git cannot satisfy all historical execution gates; the intended VALIDATION V2 release/run mode must be explicit.",
+      "recommended_future_action": "Choose whether validation executes from an exact Git checkout or from a signed release manifest, and test that chosen mode.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_preregistration_authorization_v1.py",
+        "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py",
+        "research_control_center/scripts/validate_registry.py"
+      ]
+    },
+    {
+      "finding_id": "ENV-008",
+      "severity": "LOW",
+      "title": "Windows-specific RCC launcher is convenience debt, not a scientific blocker",
+      "finding": "open_dashboard.bat searches Windows launchers and a per-user bundled interpreter fallback, while the underlying RCC Python scripts resolve paths relative to themselves and use stdlib only.",
+      "effect": "Dashboard convenience is Windows-biased, but RCC generation can be documented cross-platform without changing scientific code.",
+      "recommended_future_action": "Add a portable command to release documentation; a cross-platform wrapper is optional.",
+      "evidence": [
+        "research_control_center/scripts/open_dashboard.bat",
+        "research_control_center/scripts/refresh_all.py"
+      ]
+    },
+    {
+      "finding_id": "ENV-009",
+      "severity": "LOW",
+      "title": "Provider SDK is not an installation blocker",
+      "finding": "Historical construction transport uses Python stdlib urllib and explicitly records no provider SDK dependency. Credential/network/model availability remains an EXP-03 operational dependency only.",
+      "effect": "Core contracts, fixed-rule runtime, RCC, and synthetic smoke need no provider SDK, credential, or network.",
+      "recommended_future_action": "Keep provider transport in an explicit optional EXP-03 profile and never include credentials in the release.",
+      "evidence": [
+        "src/paperworks/v6/task039e2_execution_configuration_v1.py:_provider_model_freeze",
+        "src/paperworks/v6/task039e3_live_transport_v1.py",
+        "src/paperworks/v6/task039e3_r2r_live_transport_v1.py"
+      ]
+    },
+    {
+      "finding_id": "ENV-010",
+      "severity": "LOW",
+      "title": "Core serialization is mostly explicit and stable",
+      "finding": "Audited current modules generally specify UTF-8/UTF-8-SIG, LF output, stable ordering, canonical JSON hashing, UTC timestamps, and CPU execution where scientific backends require it.",
+      "effect": "Locale, timezone, line-ending, and unordered-container risks are reduced, though fresh-machine rehearsal remains required.",
+      "recommended_future_action": "Preserve these contracts and add targeted cross-platform synthetic checks rather than broad refactoring.",
+      "evidence": [
+        "src/paperworks/data/files.py",
+        "src/paperworks/v6/common.py",
+        "src/paperworks/gdn/gdn_remediation_environment_v1.py",
+        "src/paperworks/profiling/task039d1_fit_v1.py"
+      ]
+    }
+  ],
+  "dependency_boundary_conclusions": {
+    "core_import": "jsonschema is the only declared runtime dependency; Torch/PyG are intentionally lazy and optional.",
+    "scientific_numeric": "NumPy 2.3.5 is authoritative for the frozen D0 path but missing from project dependency metadata.",
+    "gdn": "Exact scientific GDN restoration is an environment-receipt problem, not merely pip install -e .[gdn].",
+    "provider": "No SDK dependency; network and credential are future authorized construction dependencies, never fixed-rule runtime dependencies.",
+    "tests": "RCC tests are stdlib-oriented, but the whole repository test population has undeclared pytest/NumPy/optional-backend requirements.",
+    "containers": "ARGOS container locks are isolated historical-reference environments and should not be merged into the v6 release environment."
+  },
+  "determinism_assumptions": {
+    "gdn": {
+      "controls": [
+        "frozen seeds 11, 23, 37",
+        "CPU device",
+        "Python/random/Torch seeds",
+        "single-thread MKL/OMP/OpenBLAS environment in exact remediation contract",
+        "exact Python/platform/top-level wheel identities"
+      ],
+      "remaining_risk": "A generic optional dependency install bypasses the exact environment identity; use only a versioned validated backend for EXP-01."
+    },
+    "d0": {
+      "controls": [
+        "CPython 3.12.13",
+        "NumPy 2.3.5",
+        "float64 numeric contract",
+        "stable eigenvalue sorting",
+        "frozen model and prediction hashes"
+      ],
+      "remaining_risk": "Numerical wheel/BLAS/thread identity is incomplete for fresh recomputation."
+    },
+    "rule_runtime_and_rcc": {
+      "controls": [
+        "deterministic stdlib logic",
+        "canonical JSON hashing",
+        "explicit ordering",
+        "no runtime LLM/provider dependency"
+      ],
+      "remaining_risk": "Repository/Git and private-authority restoration mode must be frozen for VALIDATION V2."
+    }
+  },
+  "fresh_machine_rehearsal_implications": [
+    "Stage 1 should use an exact Git commit and record Python, OS, architecture, Git, installer, and resolved package identities.",
+    "Stage 2 should install only a public core/test profile and verify imports without private data, credentials, Torch, or network.",
+    "Stage 3 should explicitly test schema loading in the intended release mode; editable install success must not stand in for wheel success.",
+    "Stage 4 should run RCC and synthetic contract tests; the full historical suite requires separately declared pytest/NumPy/optional profiles.",
+    "Stage 5 should run a synthetic candidate-to-metric smoke with no scientific assets.",
+    "Stage 6 should verify that private environment variables are absent and fail closed before any authorized restoration.",
+    "Only a later separately authorized stage may restore HAI/private authorities by logical identity and hashes.",
+    "Scientific execution must use a new VALIDATION V2 environment identity; PILOT V1 artifacts remain immutable."
+  ],
+  "gap000_implications": {
+    "GAP-011_fresh_machine": "Retain as ENGINEERING_HARDENING with urgency P1 before held-out execution; it need not block read-only design work or public synthetic preparation.",
+    "GAP-012_metric_portability": "Retain; environment and packaging gaps confirm that shared metric replay needs an explicit dependency/entrypoint capsule.",
+    "GAP-013_split_conformance": "No environment evidence changes its disposition.",
+    "GAP-001_authority": "The bridge option adds a dual-schema/resource packaging and test burden but best preserves V4 runtime reuse if the bridge is explicitly versioned and verified. Environment evidence does not permanently decide the option.",
+    "new_root_blocker": "No new global scientific blocker beyond the existing fresh-machine/environment hardening root; ENV-001 and ENV-002 should be tracked as sub-findings of GAP-011/GAP-012."
+  },
+  "uncertainties": [
+    "No clean-host install was executed, so installability classifications are static assessments, not reproduction results.",
+    "No wheel was built or inspected; standalone-wheel failure is a source-supported risk, not an observed execution failure.",
+    "The availability of exact external GDN wheels and private restoration assets was not probed.",
+    "The current host's installed package inventory was not used as authority.",
+    "BLAS/LAPACK implementation identity for the frozen D0 NumPy wheel was not found in the inspected public receipts.",
+    "Historical environment-specific documents are extensive; this audit distinguishes active source contracts from provenance without treating every legacy command as current authority."
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "test2_content_accesses": 0,
+    "private_asset_reads": 0,
+    "dependency_installs": 0,
+    "fresh_environments_created": 0,
+    "provider_calls": 0,
+    "scientific_source_changes": 0,
+    "remediation_implementations": 0
+  }
+}
