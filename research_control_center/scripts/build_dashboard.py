@@ -1,0 +1,511 @@
+#!/usr/bin/env python3
+"""Build deterministic, public-safe RCC views from the frozen registries.
+
+This module uses only the Python standard library.  It reads public RCC
+metadata; it never imports or invokes scientific project code.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import html
+import json
+from pathlib import Path
+from typing import Any, Iterable, Mapping, Sequence
+
+
+AUTHORITY_COMMIT = "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+REGISTRY_FILES = (
+    "current_state.yaml",
+    "components.csv",
+    "experiments.csv",
+    "claims.csv",
+    "risks.csv",
+    "artifacts.csv",
+    "decisions.csv",
+    "timeline.csv",
+)
+
+
+def default_rcc_root() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def _read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def load_registry(rcc_root: Path) -> dict[str, Any]:
+    """Load the JSON-compatible YAML state and every CSV registry."""
+
+    registry_dir = rcc_root / "registry"
+    state = json.loads((registry_dir / "current_state.yaml").read_text(encoding="utf-8"))
+    return {
+        "state": state,
+        "components": _read_csv(registry_dir / "components.csv"),
+        "experiments": _read_csv(registry_dir / "experiments.csv"),
+        "claims": _read_csv(registry_dir / "claims.csv"),
+        "risks": _read_csv(registry_dir / "risks.csv"),
+        "artifacts": _read_csv(registry_dir / "artifacts.csv"),
+        "decisions": _read_csv(registry_dir / "decisions.csv"),
+        "timeline": _read_csv(registry_dir / "timeline.csv"),
+    }
+
+
+def registry_digest(rcc_root: Path) -> str:
+    """Hash names and bytes of every file that can affect generated views."""
+
+    digest = hashlib.sha256()
+    registry_dir = rcc_root / "registry"
+    for name in REGISTRY_FILES:
+        payload = (registry_dir / name).read_bytes()
+        digest.update(name.encode("utf-8"))
+        digest.update(b"\x00")
+        digest.update(len(payload).to_bytes(8, "big"))
+        digest.update(payload)
+    return digest.hexdigest()
+
+
+def _escape(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+
+def _short_commit(commit: str) -> str:
+    return commit[:12] + "\u2026"
+
+
+def _badge_class(status: str) -> str:
+    if status in {"IMPLEMENTED_EXECUTED_AUDITED", "AUDITED", "REPRODUCED", "CLAIM_READY", "COMPLETED"}:
+        return "badge-green"
+    if status in {"IMPLEMENTED_EXECUTED", "IMPLEMENTED_NOT_EXECUTED", "CODE_IMPLEMENTED", "INTEGRATED", "SUPPORTED_IMPLEMENTATION"}:
+        return "badge-blue"
+    if status in {"PARTIAL", "EXECUTED_AUDITED_PILOT", "PILOT_ONLY", "CONDITIONAL", "MITIGATING", "CURRENT"}:
+        return "badge-yellow"
+    if status in {"BLOCKED", "HIGH"}:
+        return "badge-orange"
+    if status in {"NOT_SUPPORTED", "CRITICAL"}:
+        return "badge-red"
+    return "badge-gray"
+
+
+def _badge(status: str) -> str:
+    return f'<span class="badge {_badge_class(status)}">{_escape(status.replace("_", " "))}</span>'
+
+
+def _cards(
+    rows: Sequence[Mapping[str, str]],
+    *,
+    title_key: str,
+    id_key: str,
+    status_key: str,
+    body_keys: Sequence[tuple[str, str]],
+) -> str:
+    rendered: list[str] = []
+    for row in rows:
+        status = row[status_key]
+        searchable = " ".join(str(value) for value in row.values()).lower()
+        details = "".join(
+            f'<div class="card-field"><dt>{_escape(label)}</dt><dd>{_escape(row[key])}</dd></div>'
+            for label, key in body_keys
+        )
+        rendered.append(
+            "\n".join(
+                (
+                    f'<article class="registry-card" data-status="{_escape(status)}" data-search="{_escape(searchable)}">',
+                    '<div class="card-heading">',
+                    f'<div><p class="eyebrow">{_escape(row[id_key])}</p><h3>{_escape(row[title_key])}</h3></div>',
+                    _badge(status),
+                    "</div>",
+                    f"<dl>{details}</dl>",
+                    "</article>",
+                )
+            )
+        )
+    return "\n".join(rendered)
+
+
+def _bullet_list(items: Iterable[object], *, empty: str = "No items recorded.") -> str:
+    values = list(items)
+    if not values:
+        return f'<p class="empty-state">{_escape(empty)}</p>'
+    return "<ul>" + "".join(f"<li>{_escape(item)}</li>" for item in values) + "</ul>"
+
+
+def _source_marker(state: Mapping[str, Any], digest: str) -> str:
+    return (
+        f'RCC_GENERATED registry_version={state["registry_version"]} '
+        f'registry_digest={digest} authority={state["scientific_authority"]["commit"]}'
+    )
+
+
+def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    authority = state["scientific_authority"]
+    checkout = state["non_authoritative_checkout"]
+    unresolved = [row for row in data["decisions"] if row["status"] != "APPROVED"]
+    current_events = sorted(data["timeline"], key=lambda row: (row["date"], row["event_id"]), reverse=True)
+    all_statuses = sorted(
+        {row["status"] for group in (data["components"], data["experiments"], data["claims"]) for row in group}
+        | {row["severity"] for row in data["risks"]}
+    )
+    status_options = "".join(
+        f'<option value="{_escape(status)}">{_escape(status.replace("_", " "))}</option>'
+        for status in all_statuses
+    )
+
+    component_cards = _cards(
+        data["components"],
+        title_key="name",
+        id_key="component_id",
+        status_key="status",
+        body_keys=(("Role", "research_role"), ("Lifecycle", "lifecycle_stage"), ("Next", "next_action")),
+    )
+    experiment_cards = _cards(
+        data["experiments"],
+        title_key="name",
+        id_key="experiment_id",
+        status_key="status",
+        body_keys=(("Question", "research_question"), ("Evidence", "current_evidence"), ("Limit", "limitations"), ("Next", "next_action")),
+    )
+    claim_cards = _cards(
+        data["claims"],
+        title_key="claim_text",
+        id_key="claim_id",
+        status_key="status",
+        body_keys=(("Allowed wording", "allowed_wording"), ("Forbidden wording", "forbidden_wording"), ("Validation needed", "validation_needed")),
+    )
+    risk_cards = _cards(
+        data["risks"],
+        title_key="description",
+        id_key="risk_id",
+        status_key="severity",
+        body_keys=(("Status", "status"), ("Likelihood", "likelihood"), ("Evidence", "evidence"), ("Mitigation", "mitigation"), ("Owner", "owner")),
+    )
+    decision_content = _cards(
+        unresolved,
+        title_key="title",
+        id_key="decision_id",
+        status_key="status",
+        body_keys=(("Decision", "decision"), ("Reason", "reason")),
+    ) if unresolved else '<p class="empty-state">No unresolved user decisions.</p>'
+    recent = current_events[:3]
+    recent_markup = "".join(
+        f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(row["title"])}</strong><p>{_escape(row["summary"])}</p></div>{_badge(row["status"])}</article>'
+        for row in recent
+    )
+    phases = "".join(
+        f'<li class="phase-step {"phase-current" if phase == state["current_phase"] else ""}">{_escape(phase.replace("_", " "))}</li>'
+        for phase in state["phase_progression"]
+    )
+    marker = _source_marker(state, digest)
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="rcc-registry-version" content="{_escape(state['registry_version'])}">
+  <meta name="rcc-registry-digest" content="{digest}">
+  <meta name="rcc-scientific-authority" content="{_escape(authority['commit'])}">
+  <!-- {marker} -->
+  <title>Research Control Center</title>
+  <link rel="stylesheet" href="assets/rcc.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">RESEARCH CONTROL CENTER · RCC {_escape(state['rcc_version'])}</p>
+      <h1>Thesis research, with evidence boundaries visible.</h1>
+      <p class="hero-summary">{_escape(state['current_phase_statement'])}</p>
+      <div class="authority-strip">
+        <div><span>Scientific authority</span><strong title="{_escape(authority['commit'])}">{_escape(authority['ref'])} @ {_short_commit(authority['commit'])}</strong></div>
+        <div class="authority-warning"><span>Current historical checkout</span><strong title="{_escape(checkout['commit'])}">{_escape(checkout['ref'])} @ {_short_commit(checkout['commit'])} · NOT AUTHORITATIVE</strong></div>
+      </div>
+      <ol class="phase-track" aria-label="Research phase">{phases}</ol>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Dashboard sections">
+    <a href="#current-state">Current state</a><a href="#my-tasks">My tasks</a>
+    <a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
+    <a href="#components">Components</a><a href="#experiments">Experiments</a>
+    <a href="#claims">Claims</a><a href="#risks">Risks</a>
+  </nav>
+
+  <main id="main">
+    <section id="current-state" class="section panel-feature">
+      <div class="section-heading"><p class="eyebrow">01</p><h2>CURRENT STATE</h2></div>
+      <div class="two-column"><div><h3>Established</h3>{_bullet_list(state['established_facts'])}</div><div><h3>Not established</h3>{_bullet_list(state['not_established'])}</div></div>
+      <aside class="principle">CODE EXISTS ≠ EXECUTED · EXECUTED ≠ VALIDATED · VALIDATED ≠ GENERALIZED · GENERALIZED ≠ CLAIM READY</aside>
+    </section>
+
+    <section id="my-tasks" class="section">
+      <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
+      <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
+      {_bullet_list(state['top_user_todo'])}
+    </section>
+
+    <section id="decisions" class="section">
+      <div class="section-heading"><p class="eyebrow">03</p><h2>DECISION INBOX</h2></div>
+      {decision_content}
+    </section>
+
+    <section id="architecture" class="section panel-dark">
+      <div class="section-heading"><p class="eyebrow">04</p><h2>ARCHITECTURE OVERVIEW</h2></div>
+      <p class="architecture-flow">{_escape(state['architecture_flow'])}</p>
+      <p>Open <code>../architecture/</code> for progressively populated architecture documentation. RCC-001 records only the minimum navigation layer.</p>
+    </section>
+
+    <section class="section explorer" aria-label="Registry explorer">
+      <div><label for="registry-search">Search registry</label><input id="registry-search" type="search" placeholder="Search names, evidence, risks, next actions…"></div>
+      <div><label for="status-filter">Filter status</label><select id="status-filter"><option value="">All statuses</option>{status_options}</select></div>
+      <p id="filter-count" aria-live="polite"></p>
+    </section>
+
+    <section id="components" class="section">
+      <div class="section-heading"><p class="eyebrow">05</p><h2>COMPONENT STATUS</h2></div><div class="card-grid">{component_cards}</div>
+    </section>
+
+    <section id="experiments" class="section">
+      <div class="section-heading"><p class="eyebrow">06</p><h2>EXPERIMENT STATUS</h2></div><div class="card-grid">{experiment_cards}</div>
+    </section>
+
+    <section id="claims" class="section">
+      <div class="section-heading"><p class="eyebrow">07</p><h2>CLAIM &amp; EVIDENCE</h2></div><div class="card-grid">{claim_cards}</div>
+    </section>
+
+    <section id="risks" class="section">
+      <div class="section-heading"><p class="eyebrow">08</p><h2>RISKS</h2></div><div class="card-grid">{risk_cards}</div>
+    </section>
+
+    <section id="source-authority" class="section authority-detail">
+      <div class="section-heading"><p class="eyebrow">09</p><h2>SOURCE AUTHORITY</h2></div>
+      <dl>
+        <div><dt>Scientific source</dt><dd>{_escape(authority['ref'])}<br><code>{_escape(authority['commit'])}</code></dd></div>
+        <div><dt>Immutable pin</dt><dd>{_escape(state['immutable_scientific_pin']['tag'])}<br><code>{_escape(state['immutable_scientific_pin']['commit'])}</code></dd></div>
+        <div><dt>Documentation overlay</dt><dd>{_escape(state['documentation_overlay']['ref'])}<br><code>{_escape(state['documentation_overlay']['commit'])}</code><br>{_escape(state['documentation_overlay']['role'])}</dd></div>
+      </dl>
+      <p>Scientific code and result claims derive from the scientific authority. Narrative context from the overlay cannot override it.</p>
+    </section>
+
+    <section id="recent-change" class="section">
+      <div class="section-heading"><p class="eyebrow">10</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
+      <div class="timeline">{recent_markup}</div>
+      <div class="next-task"><span>Exact next task</span><strong>{_escape(state['exact_next_task'])}</strong></div>
+    </section>
+  </main>
+
+  <footer>Generated from RCC registry snapshot {_escape(state['generated_at'])} · Authority <code>{_escape(authority['commit'])}</code></footer>
+  <script src="assets/rcc.js"></script>
+</body>
+</html>
+"""
+
+
+def _markdown_marker(state: Mapping[str, Any], digest: str) -> str:
+    return f"<!-- {_source_marker(state, digest)} -->"
+
+
+def _md_bullets(values: Iterable[object]) -> str:
+    items = list(values)
+    return "\n".join(f"- {item}" for item in items) if items else "- None recorded."
+
+
+def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    authority = state["scientific_authority"]
+    experiments = "\n".join(
+        f"- **{row['name']}** — {row['status']}: {row['current_evidence']} Limitation: {row['limitations']}"
+        for row in data["experiments"]
+    )
+    claims = "\n".join(
+        f"- **{row['status']}** — {row['allowed_wording']} Do not claim: {row['forbidden_wording']}"
+        for row in data["claims"]
+    )
+    risks = "\n".join(
+        f"- **{row['severity']} / {row['status']}** — {row['description']} Mitigation: {row['mitigation']}"
+        for row in data["risks"]
+    )
+    return f"""{_markdown_marker(state, digest)}
+# GPT Brief — Research Control Center
+
+Generated from RCC registry version `{state['registry_version']}` at `{state['generated_at']}`.
+Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
+
+> Chat memory must not override the scientific authority or RCC registry.
+
+## Research objective
+
+{state['research_objective']}
+
+## Current phase
+
+**{state['current_phase']}** — {state['current_phase_statement']}
+
+Phase progression: {' → '.join(state['phase_progression'])}.
+
+## Architecture in one line
+
+{state['architecture_flow']}
+
+## Established facts
+
+{_md_bullets(state['established_facts'])}
+
+## Unresolved scientific questions
+
+{_md_bullets(state['not_established'])}
+
+## Current experiments
+
+{experiments}
+
+## Claim boundaries
+
+{claims}
+
+## Current risks
+
+{risks}
+
+## Top user TODO
+
+{_md_bullets(state['top_user_todo'])}
+
+## Source-policy boundary
+
+The read-only documentation overlay is `{state['documentation_overlay']['ref']}` @
+`{state['documentation_overlay']['commit']}`. It provides narrative context only.
+The historical checkout `{state['non_authoritative_checkout']['ref']}` @
+`{state['non_authoritative_checkout']['commit']}` is not an authority for scientific claims.
+
+## Exact next task
+
+**{state['exact_next_task']}**
+"""
+
+
+def render_current_status(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    authority = state["scientific_authority"]
+    component_rows = "\n".join(
+        f"| {row['component_id']} | {row['status']} | {row['lifecycle_stage']} | {row['next_action']} |"
+        for row in data["components"]
+    )
+    experiment_rows = "\n".join(
+        f"| {row['experiment_id']} | {row['status']} | {row['result_scope']} |"
+        for row in data["experiments"]
+    )
+    return f"""{_markdown_marker(state, digest)}
+# RCC Current Status
+
+Scientific authority: `{authority['ref']}` @ `{authority['commit']}`
+Registry version: `{state['registry_version']}`
+Registry snapshot: `{state['generated_at']}`
+
+## Current phase
+
+**{state['current_phase']}**
+
+{state['current_phase_statement']}
+
+## Components
+
+| Component | Status | Lifecycle | Next action |
+|---|---|---|---|
+{component_rows}
+
+## Experiments
+
+| Experiment | Status | Result scope |
+|---|---|---|
+{experiment_rows}
+
+## Boundaries
+
+Not established:
+
+{_md_bullets(state['not_established'])}
+
+## Exact next task
+
+**{state['exact_next_task']}**
+"""
+
+
+def render_change_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    authority = state["scientific_authority"]
+    events = sorted(data["timeline"], key=lambda row: (row["date"], row["event_id"]), reverse=True)
+    rows = "\n".join(
+        f"- **{row['date']} — {row['title']}** (`{row['status']}`): {row['summary']}"
+        for row in events
+    )
+    return f"""{_markdown_marker(state, digest)}
+# RCC Change Summary
+
+Scientific authority: `{authority['ref']}` @ `{authority['commit']}`
+Registry version: `{state['registry_version']}`
+
+## Recorded timeline
+
+{rows}
+
+## Next
+
+**{state['exact_next_task']}**
+"""
+
+
+def build_dashboard(rcc_root: Path) -> Path:
+    data = load_registry(rcc_root)
+    digest = registry_digest(rcc_root)
+    output = rcc_root / "dashboard" / "index.html"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(render_dashboard(data, digest), encoding="utf-8", newline="\n")
+    return output
+
+
+def generate_summaries(rcc_root: Path) -> list[Path]:
+    data = load_registry(rcc_root)
+    digest = registry_digest(rcc_root)
+    generated = rcc_root / "generated"
+    generated.mkdir(parents=True, exist_ok=True)
+    outputs = {
+        "GPT_BRIEF.md": render_gpt_brief(data, digest),
+        "CURRENT_STATUS.md": render_current_status(data, digest),
+        "CHANGE_SUMMARY.md": render_change_summary(data, digest),
+    }
+    paths: list[Path] = []
+    for name, payload in outputs.items():
+        path = generated / name
+        path.write_text(payload, encoding="utf-8", newline="\n")
+        paths.append(path)
+    return paths
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--rcc-root", type=Path, default=default_rcc_root())
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--dashboard-only", action="store_true")
+    mode.add_argument("--summaries-only", action="store_true")
+    args = parser.parse_args(argv)
+    root = args.rcc_root.resolve()
+
+    written: list[Path] = []
+    if not args.summaries_only:
+        written.append(build_dashboard(root))
+    if not args.dashboard_only:
+        written.extend(generate_summaries(root))
+    for path in written:
+        print(path.relative_to(root).as_posix())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

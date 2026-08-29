@@ -1,0 +1,4 @@
+event_id,date,event_type,title,summary,source,source_commit,status
+EVENT-CANONICAL-CHECKPOINT,2026-08-24,CHECKPOINT,Canonical checkpoint audited,The scientific checkpoint was frozen and audited as the RCC source authority,origin/research-v6-thesis-checkpoint,2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e,COMPLETED
+EVENT-RCC000,2026-08-29,AUDIT,RCC-000 bootstrap review completed,The bootstrap established source-policy and privacy conditions without scientific execution,RCC-000,2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e,COMPLETED
+EVENT-RCC001,2026-08-29,DOCUMENTATION,RCC minimum skeleton created,Registries navigation validators and a local dashboard were established for user review,RCC-001,2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e,COMPLETED

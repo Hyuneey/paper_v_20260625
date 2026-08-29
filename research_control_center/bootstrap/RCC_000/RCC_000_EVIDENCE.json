@@ -1,0 +1,216 @@
+{
+  "task_id": "RCC-000",
+  "evidence_version": "1.0.0",
+  "audit_mode": "READ_ONLY_GIT_SOURCE_ARTIFACT_PRIVACY_PRESERVATION",
+  "scientific_execution_count": 0,
+  "test2_feature_access_count": 0,
+  "test2_label_access_count": 0,
+  "private_payload_open_count": 0,
+  "private_exposures": 0,
+  "legacy_allowlisted_locator_occurrences": 155,
+  "legacy_allowlisted_exact_blobs": 29,
+  "current_head": "c0efdb6218385ec326be1a929371242314e63cb6",
+  "current_branch": "task-039c-gdn",
+  "current_tracked_worktree_clean": true,
+  "current_index_clean": true,
+  "current_checkout_is_current_scientific_authority": false,
+  "live_remote_verification": {
+    "performed": true,
+    "canonical_branch_match": true,
+    "thesis_branch_match": true,
+    "tag_object_matches": true
+  },
+  "continuity_validation": {
+    "checkpoint_current_state_self_hash_match": true,
+    "checkpoint_current_state_self_hash": "6f512cb88e85fe605bcf070766b51c1c834aead991f1d89776aa77ddefe644ee",
+    "semantic_currency": "STALE_RELATIVE_TO_POST_PUSH_CHECKPOINT",
+    "authority_precedence_applied": "EXACT_REFS_AND_FROZEN_RECEIPTS_OVER_STALE_SUMMARIES"
+  },
+  "important_refs": [
+    {
+      "ref": "task-039c-gdn",
+      "commit": "c0efdb6218385ec326be1a929371242314e63cb6",
+      "role": "CURRENT_STALE_BLOCKED_GDN_CHECKOUT"
+    },
+    {
+      "ref": "origin/main",
+      "commit": "11a5f04a0422049a099020f06c59ec23bc72d130",
+      "role": "STALE_MAIN_THROUGH_TASK_039E2"
+    },
+    {
+      "ref": "origin/research-v6-thesis-checkpoint",
+      "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "role": "AUDITED_CANONICAL_SCIENTIFIC_REPORT_CHECKPOINT"
+    },
+    {
+      "ref": "thesis-v1-post-push-audit",
+      "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "role": "IMMUTABLE_CHECKPOINT_PIN"
+    },
+    {
+      "ref": "thesis-v1-first-results",
+      "commit": "5aa7c61ee37fb232c9b487e448ddbd30e3628872",
+      "role": "PROFESSOR_READY_PRE_AUDIT_CHECKPOINT"
+    },
+    {
+      "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+      "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+      "role": "DOCUMENTATION_ONLY_THESIS_OVERLAY"
+    }
+  ],
+  "canonical_candidates": [
+    {
+      "rank": 1,
+      "ref": "origin/research-v6-thesis-checkpoint",
+      "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "role": "SCIENTIFIC_SOURCE",
+      "recommendation": "PREFERRED_WITH_EXACT_SHA_AND_TAG_PIN",
+      "user_approval_required": true
+    },
+    {
+      "rank": 2,
+      "ref": "thesis-v1-post-push-audit",
+      "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+      "role": "IMMUTABLE_SCIENTIFIC_PIN",
+      "recommendation": "PAIR_WITH_CANDIDATE_1",
+      "user_approval_required": true
+    },
+    {
+      "rank": 3,
+      "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+      "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+      "role": "READ_ONLY_DOCUMENTATION_OVERLAY",
+      "recommendation": "DO_NOT_USE_AS_SCIENTIFIC_AUTHORITY",
+      "user_approval_required": true
+    }
+  ],
+  "component_authorities": [
+    {"component_id": "DATA_PROVENANCE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/data/hai_provenance_v1.py"},
+    {"component_id": "SPLIT_GOVERNANCE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/data/splits_v2.py"},
+    {"component_id": "VARIABLE_ROLE_UNIVERSE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/candidates/universe.py"},
+    {"component_id": "META_DISCOVERY", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/candidates/metadata_candidate_discovery_v1.py"},
+    {"component_id": "STAT_DISCOVERY", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/candidates/statistical_candidate_discovery_v1.py"},
+    {"component_id": "GDN_DISCOVERY", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/gdn/upstream_candidate_backend_v1.py"},
+    {"component_id": "CANDIDATE_UNION", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/candidates/candidate_integration_v1.py"},
+    {"component_id": "RELATION_PROFILING", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/profiling/task039d1_fit_v1.py"},
+    {"component_id": "NUMERIC_AUTHORITY", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py"},
+    {"component_id": "EVIDENCE_PACK", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/normal_evidence_v1.py"},
+    {"component_id": "RULE_DSL", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/contracts/rule_v1.py"},
+    {"component_id": "T0_TEMPLATE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_orchestration_v1.py"},
+    {"component_id": "T1_ONE_SHOT", "status": "RESEARCH_ONLY", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_orchestration_v1.py"},
+    {"component_id": "T1B_REPEAT", "status": "RESEARCH_ONLY", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_orchestration_v1.py"},
+    {"component_id": "T2_AGENTIC_FEEDBACK", "status": "RESEARCH_ONLY", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_orchestration_v1.py"},
+    {"component_id": "DETERMINISTIC_VERIFIER", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/contracts/verifier_v1.py"},
+    {"component_id": "COMMON42_FREEZE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_protocol_v4.py"},
+    {"component_id": "RULE_RUNTIME", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_rule_engine_v1.py"},
+    {"component_id": "SATISFACTION_TRACE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/contracts/runtime_v1.py"},
+    {"component_id": "EXPLANATION_RENDERER", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/contracts/explanation_v1.py"},
+    {"component_id": "D0_PCA_SPE", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py"},
+    {"component_id": "D1_RULE_ONLY", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py"},
+    {"component_id": "D2_V1", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py"},
+    {"component_id": "D2_V2", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py"},
+    {"component_id": "EPISODE_CONSTRUCTION", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py"},
+    {"component_id": "ATTACK_EVENT_RECALL", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py"},
+    {"component_id": "NORMAL_FAR", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_utility_evaluator_metrics_v1.py"},
+    {"component_id": "RESULT_INTEGRITY", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "scripts/remediate_task039e3_r2r_d2_v2_r5_report_render_r1.py"},
+    {"component_id": "OUTER_EVALUATION", "status": "BLOCKED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py"},
+    {"component_id": "REPRODUCIBILITY", "status": "PARTIAL", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "docs/post_push_checkpoint_v1/07_REPRODUCIBILITY_ASSESSMENT.md"},
+    {"component_id": "PROFESSOR_REPORTING", "status": "IMPLEMENTED_EXECUTED_AUDITED", "source_ref": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e", "path": "docs/professor_submission_v1/03_FIRST_RESULTS_REPORT.md"},
+    {"component_id": "THESIS_DRAFT", "status": "IMPLEMENTED_NOT_EXECUTED", "source_ref": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743", "path": "docs/thesis_draft_v1/15_FULL_THESIS_WORKING_DRAFT.md"}
+  ],
+  "artifact_authorities": [
+    {"name": "candidate_profiling_cohort", "path": "docs/task_reports/TASK-039C_CANDIDATE_PROFILING_COHORT.json", "hash": "6d488da608c2804e8cf3a183c4904403eb9904ad858c85beb34b48cb8bd79254", "classification": "PUBLIC_AGGREGATE", "count": 47},
+    {"name": "confirmed_relation_cohort", "path": "docs/task_reports/TASK-039E0_CONFIRMED_RELATION_COHORT.json", "hash": "e71fa69999dbc18310ebb1730fd1d0ea36403763e891b99841ab8cef7ec18732", "classification": "PUBLIC_AGGREGATE", "count": 42},
+    {"name": "common42_authority", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json", "hash": "3bd07e1c2baf375bde86a2310b529dda40962e027edbd77485f431dc244730ff", "classification": "PUBLIC_AUTHORITY_METADATA", "count": 42},
+    {"name": "d0_prediction", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_DETECTOR_PREDICTION_ARTIFACT_V1.json", "hash": "a4b58f1c78b9bb53125da1a009f3fd05b02e1c83a789772a341a7679fddca0f6", "classification": "PUBLIC_FROZEN_SCIENTIFIC_ARTIFACT"},
+    {"name": "d0_metrics", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_METRICS_V1.json", "hash": "bec8629e2dbdc178d750e795ada7b74aaf0f1475c32c5881c13a2e65c0a92cbf", "classification": "PUBLIC_FROZEN_METRIC_SUMMARY"},
+    {"name": "d1_prediction", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RULE_PREDICTION_ARTIFACT_V1.json", "hash": "58c3c49f9657f68d35c830b12eeb493ce4bbf7669c90f04813fb80246c3c2682", "classification": "PUBLIC_FROZEN_SCIENTIFIC_ARTIFACT"},
+    {"name": "d1_metrics", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_METRICS_V1.json", "hash": "b11a785dd243f30cac8820c49b978e194d993282c728537137b6a803b16d70d1", "classification": "PUBLIC_FROZEN_METRIC_SUMMARY"},
+    {"name": "d2_v1_prediction", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_COMBINED_PREDICTION_ARTIFACT_V1.json", "hash": "cf1005a03d98481b57c3ce2ad74db3e2e5d2dc3a1983d60e0aedb4f46c83b3f5", "classification": "PUBLIC_FROZEN_SCIENTIFIC_ARTIFACT"},
+    {"name": "d2_v1_metrics", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_METRICS_V1.json", "hash": "dacf0c8c7e43b3f48bbbd635ad5c824a338ecf4e52476402ec244eef4012c84d", "classification": "PUBLIC_FROZEN_METRIC_SUMMARY"},
+    {"name": "d2_v2_prediction", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_COMBINED_PREDICTION_ARTIFACT_V1.json", "hash": "31035da56e140141917437df5b3473b803153621c7e1022830cccde52f61c0b3", "classification": "PUBLIC_FROZEN_SCIENTIFIC_ARTIFACT"},
+    {"name": "d2_v2_metrics", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_METRICS_V1.json", "hash": "8fabdccc0c9a9b502497aa58163131647303d5e27acefb995a06ca9d43850ba7", "classification": "PUBLIC_FROZEN_METRIC_SUMMARY"},
+    {"name": "d2_v2_integrity_completion", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_RESULT_INTEGRITY_COMPLETION_V1.json", "hash": "b7034829527d7469459298735d253693b41f20bde6f0ab867bac71e804fa7d06", "classification": "PUBLIC_INTEGRITY_AUTHORITY"},
+    {"name": "outer_recovery_blocker", "path": "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json", "hash": "5949aa9aa16df04143bed4bd58a4061306f5e1ed392fc45b39b6cb23c3951d8e", "classification": "PUBLIC_CUSTODY_ACCOUNTING_METADATA_NO_RESULT"},
+    {"name": "professor_submission", "path": "docs/professor_submission_v1/03_FIRST_RESULTS_REPORT.md", "hash": "8627ae77fd3ea31366c4070596fd0488342d3c62", "classification": "PUBLIC_SYNTHESIS"},
+    {"name": "implementation_completeness", "path": "docs/post_push_checkpoint_v1/08_IMPLEMENTATION_COMPLETENESS.md", "hash": "29e571213a54a12e48b01ad7a6d5000cb6259740", "classification": "PUBLIC_REPOSITORY_AUDIT"},
+    {"name": "thesis_working_draft", "path": "docs/thesis_draft_v1/15_FULL_THESIS_WORKING_DRAFT.md", "hash": "5c9d4d0612d26695a2eb160704fdf68abaff6f4d", "classification": "PUBLIC_PROVISIONAL_SYNTHESIS_OVERLAY"}
+  ],
+  "legacy_tracks": [
+    {"name": "ARGOS", "classification": "HISTORICAL_REFERENCE", "path": "experiments/argos_reproduction/", "current_hai_authority": false},
+    {"name": "LEGACY_DSL_VERIFICATION_RUNTIME_E2E", "classification": "LEGACY_COMPATIBILITY", "path": "src/paperworks/", "current_hai_authority": false},
+    {"name": "CURRENT_CHECKOUT_BLOCKED_GDN", "classification": "LEGACY_OR_SUPERSEDED", "ref": "task-039c-gdn", "current_hai_authority": false}
+  ],
+  "privacy_audit": {
+    "new_unpublished_absolute_path_occurrences": 0,
+    "secret_or_credential_occurrences": 0,
+    "tracked_private_binary_candidates": 0,
+    "tracked_raw_hai_test_file_candidates": 0,
+    "legacy_exact_blob_policy_pass": true,
+    "private_boundary_intact": true
+  },
+  "preservation_audit": {
+    "canonical_remote_branch_present": true,
+    "checkpoint_tags_present": true,
+    "thesis_remote_branch_present": true,
+    "local_bundle_valid": true,
+    "local_bundle_current_to_checkpoint": false,
+    "source_archive_hash_valid": true,
+    "source_archive_current_to_checkpoint": false,
+    "result_traceability": "STRONG",
+    "same_machine_reproducibility": "MODERATE",
+    "fresh_machine_portability": "WEAK"
+  },
+  "missing_evidence": [
+    "PRIVATE_PAYLOAD_PRESENCE_AND_HEALTH_NOT_INSPECTED_BY_DESIGN",
+    "LATEST_CHECKPOINT_AND_THESIS_NOT_IN_EXISTING_LOCAL_BUNDLE",
+    "CURRENT_PROJECT_STATE_AND_HANDOFF_SEMANTICALLY_STALE_RELATIVE_TO_CHECKPOINT",
+    "SUBMODULE_HELPER_UNAVAILABLE_BUT_NO_GITMODULES_PRESENT"
+  ],
+  "user_decisions_required": [
+    {
+      "decision_id": "DECISION-001",
+      "question": "Approve checkpoint branch plus exact SHA and tag as the RCC scientific source policy?",
+      "recommendation": "YES_ORIGIN_RESEARCH_V6_THESIS_CHECKPOINT_AT_2DC7E6C_PLUS_POST_PUSH_TAG"
+    },
+    {
+      "decision_id": "DECISION-002",
+      "question": "Index the thesis branch as a separate read-only documentation overlay?",
+      "recommendation": "YES_WITHOUT_SCIENTIFIC_AUTHORITY"
+    }
+  ],
+  "multi_agent_review": {
+    "available": true,
+    "used": true,
+    "agents": [
+      "Agent A - Git and Source Lineage Auditor",
+      "Agent B - Artifact Privacy and Preservation Auditor",
+      "Coordinator - Final Integrator"
+    ],
+    "parallelizable_work": [
+      "git_ref_and_source_lineage_audit",
+      "artifact_privacy_and_preservation_audit"
+    ],
+    "non_parallelizable_work": [
+      "live_remote_verification",
+      "conflict_resolution",
+      "canonical_candidate_recommendation",
+      "final_output_consistency_validation"
+    ],
+    "merge_conflicts": 0,
+    "coordinator_verdict": "PASS_WITH_CONDITIONS"
+  },
+  "validation": {
+    "production_scientific_source_diff_count": 0,
+    "frozen_result_diff_count": 0,
+    "raw_or_private_file_addition_count": 0,
+    "generated_files_outside_rcc_000_count": 0,
+    "remote_push_count": 0,
+    "merge_count": 0,
+    "tag_mutation_count": 0,
+    "local_commit_created": false,
+    "local_commit_omission_reason": "CURRENT_CHECKOUT_STALE_AND_CANONICAL_USER_DECISION_PENDING"
+  },
+  "verdict": "PASS_WITH_CONDITIONS",
+  "safe_next_task_after_user_approval": "RCC-001 — Research Control Center Minimum Skeleton"
+}

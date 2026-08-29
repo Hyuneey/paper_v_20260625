@@ -1,0 +1,65 @@
+{
+  "schema_version": "rcc-current-state-v1",
+  "rcc_version": "0.1.0",
+  "registry_version": "0.1.0",
+  "generated_at": "2026-08-29T02:29:54Z",
+  "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "immutable_scientific_pin": {
+    "tag": "thesis-v1-post-push-audit",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "documentation_overlay": {
+    "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+    "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+    "role": "READ_ONLY_DOCUMENTATION_OVERLAY"
+  },
+  "non_authoritative_checkout": {
+    "ref": "task-039c-gdn",
+    "commit": "c0efdb6218385ec326be1a929371242314e63cb6",
+    "authoritative": false
+  },
+  "current_phase": "EVALUATION_SCOPE_EXPANSION",
+  "phase_progression": [
+    "ARCHITECTURE_COMPLETE",
+    "EVALUATION_SCOPE_EXPANSION",
+    "HYPOTHESIS_VALIDATION"
+  ],
+  "current_phase_statement": "Architecture implementation and pilot feasibility are complete. Expanded evaluation and hypothesis validation remain incomplete.",
+  "architecture_flow": "HAI provenance and P1 scope -> META, STAT, and GDN candidate discovery -> normal relation evidence -> bounded rule construction -> deterministic verification and governance -> COMMON-42 -> LLM-free D1 runtime -> D0 and preregistered D2 pilot evaluation",
+  "established_facts": [
+    "The pinned HAI P1 scientific architecture is implemented.",
+    "The GDN discovery, D0 detector, and D1 rule-only components have executed and audited pilot evidence.",
+    "The current detector-plus-rule pilot does not support an improvement claim.",
+    "The held-out OUTER path has a blocker record, not a scientific result."
+  ],
+  "not_established": [
+    "GDN unique scientific contribution",
+    "Agentic feedback advantage",
+    "Practical Rule-only utility",
+    "Detector-plus-Rule improvement",
+    "Held-out generalization",
+    "Human explanation usefulness"
+  ],
+  "highest_priority_work": [
+    "Populate the complete current-state registry in RCC-002.",
+    "Preregister expanded comparisons for GDN and agentic contribution hypotheses.",
+    "Review fresh-machine reproducibility gaps before any new held-out study."
+  ],
+  "top_user_todo": [
+    "Review the RCC-001 navigation, phase statement, and source-authority display.",
+    "Review the conservative claim wording and lifecycle distinctions.",
+    "Approve or reject moving to RCC-002 after reviewing this skeleton."
+  ],
+  "last_completed_task": "RCC-001",
+  "exact_next_task": "RCC-002 — Current-State Registry Population",
+  "safety_counters": {
+    "scientific_executions": 0,
+    "test2_feature_accesses": 0,
+    "test2_label_accesses": 0,
+    "new_private_exposures": 0
+  }
+}

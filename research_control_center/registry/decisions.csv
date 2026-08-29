@@ -1,0 +1,3 @@
+decision_id,date,title,decision,reason,status,source,source_commit,affected_components,supersedes,user_approved
+DECISION-001,2026-08-29,RCC scientific authority,Use origin/research-v6-thesis-checkpoint at the immutable pinned commit as RCC scientific authority,The audited checkpoint contains the canonical scientific implementation and results,APPROVED,USER_APPROVED_RCC_001_POLICY,2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e,PROJECT_WIDE,NONE,true
+DECISION-002,2026-08-29,Thesis documentation overlay,Index the thesis draft branch only as a read-only documentation overlay,The overlay adds narrative material but must not redefine scientific evidence,APPROVED,USER_APPROVED_RCC_001_POLICY,2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e,PROJECT_WIDE,NONE,true
