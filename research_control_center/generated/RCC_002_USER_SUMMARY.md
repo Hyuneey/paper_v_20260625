@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,16 +70,17 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-관리 작업의 다음 단계는 **ARCH-001 — Data / Provenance / Split Governance Deep Audit** 이고, 이후 전체
-구조 검토는 **ARCH-001 — Data / Provenance / Split Governance Deep Audit** 이다. 둘 다 사용자 승인 전에
+관리 작업의 다음 단계는 **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit** 이고, 이후 전체
+구조 검토는 **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Confirm that you can explain the full architecture flow.
-- Confirm that you understand each major input and output.
-- Identify the component that is hardest to understand.
-- Choose which architecture mismatch deserves priority.
-- Approve or defer starting ARCH-001.
+- Explain why train1/train2, train3, train4, test1, and test2 have different roles.
+- Explain when labels become visible and why D1's durable persistence gap matters.
+- Explain why test1 is pilot evidence rather than final validation.
+- Explain why test2 has no scientific outcome.
+- Choose any leakage or coupling finding that needs a deeper explanation.
+- Approve or defer starting ARCH-002.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

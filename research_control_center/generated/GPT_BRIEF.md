@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
-Generated from RCC registry version `0.1.0` at `2026-08-29T09:00:00Z`.
+Generated from RCC registry version `0.1.0` at `2026-08-29T06:24:06Z`.
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -21,14 +21,11 @@ held-out generalization is unconfirmed, and fresh-machine reproduction is incomp
 
 ## How to read RCC status
 
-Implementation and engineering state is separate from scientific evidence state.
-`audited=true` on a component is displayed as **Evidence-reviewed**: source or evidence
-status was reviewed against the pinned authority. It is not a performance-validation flag.
-An explicit **Result-integrity audit** checks custody, immutability, ordering, and arithmetic
-for a named frozen result; it still does not establish scientific performance. Independent
-reproduction is a separate state and remains absent at component level. Scientific claim
-status comes only from `claims.csv`. The compatibility `claim_ready` field supports narrow
-implementation or contract wording only and is not a scientific-validation state.
+Engineering and scientific evidence are separate. Component `audited=true` means
+**Evidence-reviewed**, not performance validated. A named **Result-integrity audit** checks
+custody and arithmetic, not generalization. Reproduction remains separate and absent at
+component level. Scientific claim status comes only from `claims.csv`; `claim_ready` supports
+only narrow implementation or contract wording.
 
 These counts are not a single completion percentage.
 
@@ -36,18 +33,27 @@ These counts are not a single completion percentage.
 
 HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unscored candidate union -> normal relation profiling -> construction evidence -> T0 / T1 / T1-B / T2 -> task deterministic verifier; T0 / T1 / T1-B equivalence -> COMMON-42 metadata plus private runtime numeric authority -> real D1; HAI plus frozen detector authority -> D0; frozen D0 + D1 -> D2 policies -> event / episode metrics -> result-integrity governance
 
+## Data and split boundary
+
+The authority is HAI 23.05 with P1 Boiler as the selected process. train1/train2
+provide normal fit evidence; train3 is shared by one-way relation confirmation and D0
+threshold calibration; train4 is a normal guard / D0 sanity split. test1 is INNER
+development/pilot evidence, not final validation. The attempted OUTER path read zero test2
+feature bytes and no labels and produced no prediction, metric, or scientific outcome.
+
+No verified leakage was found. D0 and D2 durably persist predictions before labels. D1
+builds and validates a label-blind self-hashed object before labels, but the public file is
+written after metrics; this is a governance evidence gap, not proof of label-driven decisions.
+D2 V2 was explicitly informed by prior INNER outcomes and remains pilot-development evidence.
+
 ## How we got here
 
-The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. The first four stages are partly or wholly
-`USER_CONTEXT`: Git does not independently prove their exact dates or motivations. The
-repository-supported lineage begins on 2026-06-25 with graph-constrained candidates,
-typed rules, a deterministic verifier, and an LLM-free runtime foundation. The July ARGOS
-track was frozen as partial methodological support rather than copied wholesale. Its useful
-ideas survived inside a project-owned CPS contract. HAI provenance and the failed discrete-
-source gate then led to a separately preregistered continuous-step family and P1 selection.
-META, STAT, and GDN remained distinct candidate-evidence arms; normal-only profiling and
-numeric authority produced COMMON-42. D1, D0, and D2 were finally executed as a frozen
-14-event INNER pilot. The OUTER attempt produced a custody blocker, not a scientific result.
+The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. Early timing and motives are partly
+`USER_CONTEXT`; Git independently supports the later engineering lineage. ARGOS became
+partial methodological support, while deterministic verification survived the earlier
+Verifier framing. HAI provenance and the continuous-step recovery selected P1; distinct
+META/STAT/GDN evidence, normal-only profiling, and numeric authority led to COMMON-42 and
+the frozen 14-event D0/D1/D2 INNER pilot. OUTER ended in a custody blocker, not a result.
 History explains this lineage but cannot override RCC-002 current state or `claims.csv`.
 
 ## Established facts
@@ -88,12 +94,12 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Current experiments
 
-- **EXP-01 · 변수 관계 탐색 방법 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`. All three arms executed and were audited; each produced a top-20 and their unscored union contains 47 pairs. This establishes diversity rather than unique useful contribution.
-- **EXP-02 · 규칙 수치 기준 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`. Normal-only numeric authority and frozen references are implemented and audited. Formal comparative validation is incomplete.
-- **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`. T0 T1 and T1-B accepted 42 of 42; T2 accepted 39 of 42. T2 performed zero feedback actions so feedback was not empirically exercised.
-- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`. Integrity-audited INNER results exist. D1 responded to 13 of 14 with high FAR; D2 V1 and V2 responded to 11 of 14 and recovered none of three D0 misses.
-- **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`. A deterministic renderer and trace bindings are implemented and audited. A comprehensive explanation-consistency experiment has not run.
-- **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`. The deployed fixed-rule runtime is LLM-free. No scientific authority establishes a real-time LLM detection comparison.
+- **EXP-01 · 변수 관계 탐색 방법 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Discovery artifacts exist; the comparative contribution experiment has not been performed..
+- **EXP-02 · 규칙 수치 기준 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Current references support deterministic execution but do not establish optimal criteria..
+- **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`; scope: One frozen construction cohort; validity and cost observations only..
+- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`; scope: Single frozen 14-event INNER pilot..
+- **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`; scope: Implementation-level automated grounding evidence only..
+- **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`; scope: No experimental outcome..
 
 Professor-driven priority is the scientific status of verified Rule-only behavior: it
 showed distinct pilot event responses, but its high normal false-alarm burden prevents an
@@ -124,14 +130,16 @@ include at least one stronger multivariate detector baseline under a new preregi
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
 - **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
+- **HIGH / OPEN** — D1 builds and self-hashes a label-blind prediction object before labels but does not durably persist and reopen the public prediction file until after metrics.
 
 ## Top user TODO
 
-- Confirm that you can explain the full architecture flow.
-- Confirm that you understand each major input and output.
-- Identify the component that is hardest to understand.
-- Choose which architecture mismatch deserves priority.
-- Approve or defer starting ARCH-001.
+- Explain why train1/train2, train3, train4, test1, and test2 have different roles.
+- Explain when labels become visible and why D1's durable persistence gap matters.
+- Explain why test1 is pilot evidence rather than final validation.
+- Explain why test2 has no scientific outcome.
+- Choose any leakage or coupling finding that needs a deeper explanation.
+- Approve or defer starting ARCH-002.
 
 ## Source-policy boundary
 
@@ -142,9 +150,9 @@ The historical checkout `task-039c-gdn` @
 
 ## Exact next task
 
-Management: **ARCH-001 — Data / Provenance / Split Governance Deep Audit**
+Management: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
 
-Following architecture review: **ARCH-001 — Data / Provenance / Split Governance Deep Audit**
+Following architecture review: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
 
 Scientific direction: preregister expanded Rule-only and detector comparison evidence,
 then separately test GDN stability and an actually activated budget-matched feedback arm.

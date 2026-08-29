@@ -2,7 +2,7 @@
   "schema_version": "rcc-current-state-v1",
   "rcc_version": "0.1.0",
   "registry_version": "0.1.0",
-  "generated_at": "2026-08-29T09:00:00Z",
+  "generated_at": "2026-08-29T06:24:06Z",
   "last_updated": "2026-08-29",
   "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
   "scientific_authority": {
@@ -39,6 +39,24 @@
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
     "evaluation_stage": "Frozen INNER pilot; OUTER scientific result unavailable"
+  },
+  "data_governance": {
+    "dataset": "HAI 23.05",
+    "process": "P1 Boiler",
+    "source_scope": "86 dataset points; 37-feature P1 frame; purpose-specific role and runtime subsets",
+    "splits": [
+      {"id": "train1", "badge": "NORMAL FIT", "role": "candidate discovery, relation fit, normal numeric authority, D0 fit"},
+      {"id": "train2", "badge": "NORMAL FIT", "role": "independent file-local fit evidence paired with train1"},
+      {"id": "train3", "badge": "CONFIRMATION / CALIBRATION", "role": "one-way relation confirmation and D0 threshold calibration"},
+      {"id": "train4", "badge": "SANITY", "role": "normal guard and D0 sanity evaluation"},
+      {"id": "test1", "badge": "PILOT EVALUATION", "role": "INNER development predictions and post-freeze label metrics"},
+      {"id": "test2", "badge": "HELD-OUT / UNAVAILABLE", "role": "custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome"}
+    ],
+    "label_access": "Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.",
+    "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
+    "test1_status": "INNER development / 14-event pilot; not final validation",
+    "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
+    "next_deep_review": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit"
   },
   "status_semantics": {
     "implementation_engineering_state": "DESIGNED, CODE_PRESENT, INTEGRATED, and EXECUTED describe engineering state only.",
@@ -154,64 +172,74 @@
   "user_todo_items": [
     {
       "id": "USER-ARCH-001",
-      "category": "REVIEW NEEDED",
+      "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Can I explain the full architecture flow?",
-      "why": "The owner should understand the source-to-result path before deep review.",
-      "linked": "ARCH-000",
+      "task": "Can I explain why each split exists?",
+      "why": "Fit, confirmation, calibration, sanity, pilot, and held-out roles must not be conflated.",
+      "linked": "ARCH-001 split map",
       "status": "OPEN"
     },
     {
       "id": "USER-ARCH-002",
       "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Do I understand each major Input and Output?",
-      "why": "Architecture review depends on clear contract boundaries.",
-      "linked": "ARCH-000 dataflow",
+      "task": "Can I explain when labels become visible?",
+      "why": "Prediction construction and durable prediction persistence are separate guarantees.",
+      "linked": "ARCH_001_LABEL_ACCESS_TIMELINE.md",
       "status": "OPEN"
     },
     {
       "id": "USER-ARCH-003",
       "category": "UNDERSTANDING NEEDED",
-      "priority": "MEDIUM",
-      "task": "Which component is hardest to understand?",
-      "why": "This should influence deep-review emphasis.",
-      "linked": "ARCH-001 through ARCH-011",
+      "priority": "HIGH",
+      "task": "Do I understand why test1 is only pilot evidence?",
+      "why": "D2 V2 was explicitly informed by prior INNER outcomes, so test1 is not independent final validation.",
+      "linked": "ARCH-001 test1 audit",
       "status": "OPEN"
     },
     {
       "id": "USER-ARCH-004",
-      "category": "DECISION NEEDED",
+      "category": "UNDERSTANDING NEEDED",
       "priority": "HIGH",
-      "task": "Which architecture mismatch needs priority?",
-      "why": "Priority is a research-management judgment.",
-      "linked": "ARCH_000_MISMATCHES.md",
+      "task": "Do I understand why test2 has no result?",
+      "why": "The historical attempt stopped at custody before payload bytes and produced no performance outcome.",
+      "linked": "ARCH-001 OUTER custody audit",
       "status": "OPEN"
     },
     {
       "id": "USER-ARCH-005",
       "category": "REVIEW NEEDED",
       "priority": "HIGH",
-      "task": "Approve or defer starting ARCH-001.",
-      "why": "Deep review must not begin automatically.",
-      "linked": "ARCH-001",
+      "task": "Is there any leakage or coupling risk I want explained further?",
+      "why": "The D1 ordering gap, train3 dual use, and test1-informed V2 design have different meanings.",
+      "linked": "ARCH_001_MISMATCHES.md",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-ARCH-006",
+      "category": "REVIEW NEEDED",
+      "priority": "HIGH",
+      "task": "Approve or defer starting ARCH-002.",
+      "why": "Candidate discovery algorithms should be reviewed only after the data boundary is understood.",
+      "linked": "ARCH-002",
       "status": "OPEN"
     }
   ],
   "top_user_todo": [
-    "Confirm that you can explain the full architecture flow.",
-    "Confirm that you understand each major input and output.",
-    "Identify the component that is hardest to understand.",
-    "Choose which architecture mismatch deserves priority.",
-    "Approve or defer starting ARCH-001."
+    "Explain why train1/train2, train3, train4, test1, and test2 have different roles.",
+    "Explain when labels become visible and why D1's durable persistence gap matters.",
+    "Explain why test1 is pilot evidence rather than final validation.",
+    "Explain why test2 has no scientific outcome.",
+    "Choose any leakage or coupling finding that needs a deeper explanation.",
+    "Approve or defer starting ARCH-002."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "ARCH-001 — Data / Provenance / Split Governance Deep Audit",
-  "recommended_next_architecture_task": "ARCH-001 — Data / Provenance / Split Governance Deep Audit",
-  "last_completed_task": "ARCH-000",
-  "exact_next_task": "ARCH-001 — Data / Provenance / Split Governance Deep Audit",
+  "recommended_next_management_task": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit",
+  "recommended_next_architecture_task": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit",
+  "last_completed_task": "ARCH-001",
+  "exact_next_task": "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

@@ -1,0 +1,63 @@
+{
+  "task_id": "ARCH-001",
+  "status": "PASS_WITH_DOCUMENTED_GOVERNANCE_FINDINGS",
+  "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base_commit": "20188fbf49332e30f39f27f2f2848db0b2ce5a83",
+  "scope": ["DATA_PROVENANCE", "SPLIT_GOVERNANCE", "VARIABLE_ROLE_UNIVERSE"],
+  "verified": {
+    "dataset": "HAI 23.05",
+    "process": "P1 Boiler",
+    "dataset_point_count": 86,
+    "p1_feature_count": 37,
+    "source_role_count": 12,
+    "target_role_count": 12,
+    "candidate_pair_count": 144,
+    "normal_only_construction": true,
+    "test1_role": "INNER_DEVELOPMENT_PILOT",
+    "test2_outcome": "UNAVAILABLE",
+    "verified_leakage_count": 0
+  },
+  "split_roles": {
+    "train1": "NORMAL_FIT",
+    "train2": "NORMAL_FIT",
+    "train3": "RELATION_CONFIRMATION_AND_D0_CALIBRATION",
+    "train4": "NORMAL_GUARD_AND_D0_SANITY",
+    "test1": "INNER_PILOT",
+    "test2": "HELD_OUT_UNAVAILABLE"
+  },
+  "ordering": {
+    "d0_durable_prediction_before_label": true,
+    "d1_label_blind_object_before_label": true,
+    "d1_durable_file_before_label": false,
+    "d2_v1_durable_prediction_before_label": true,
+    "d2_v2_durable_prediction_before_label": true
+  },
+  "outer_historical_counters": {
+    "feature_custody_file_access_attempts": 1,
+    "feature_byte_reads": 0,
+    "feature_hashes": 0,
+    "feature_semantic_parses": 0,
+    "label_accesses": 0,
+    "predictions": 0,
+    "metrics": 0
+  },
+  "official_outputs": {
+    "leakage_matrix_stages": 21,
+    "input_contracts": 17,
+    "functions_cataloged": 26,
+    "mismatches": 8,
+    "critical": 0,
+    "high": 2,
+    "medium": 4,
+    "low": 2
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "raw_hai_payload_reads": 0,
+    "test2_payload_accesses": 0,
+    "scientific_code_changes": 0,
+    "frozen_result_changes": 0,
+    "private_exposures": 0,
+    "remote_pushes": 0
+  }
+}

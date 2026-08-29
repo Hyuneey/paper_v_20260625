@@ -57,4 +57,22 @@ dashboard preserve these distinctions component by component.
 
 ARCH-000 maps all 32 components at overview level. Function-level dependencies,
 ownership, and semantic-equivalence questions remain deferred to ARCH-001 through
-ARCH-011. Exact next task: `ARCH-001 — Data / Provenance / Split Governance Deep Audit`.
+ARCH-011.
+
+## Completed deep audit
+
+ARCH-001 verifies the data foundation without reading scientific payloads:
+
+- [Korean data and split report](01_data_and_splits/ARCH_001_REPORT.md)
+- [Leakage matrix](01_data_and_splits/ARCH_001_LEAKAGE_MATRIX.csv)
+- [Label-access timeline](01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md)
+- [Input contracts](01_data_and_splits/ARCH_001_INPUT_CONTRACTS.csv)
+- [Function catalog](01_data_and_splits/ARCH_001_FUNCTION_CATALOG.csv)
+- [Split flow](01_data_and_splits/ARCH_001_SPLIT_FLOW.mmd)
+- [Mismatch register](01_data_and_splits/ARCH_001_MISMATCHES.md)
+
+Its conclusion is `NO VERIFIED LEAKAGE FOUND`, with explicit qualifications:
+D1 lacks a durable prediction-file-before-label gate, D2 V2 is test1-informed,
+split enforcement is distributed, and train3 has a documented dual role.
+
+Exact next task: `ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit`.

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-29
@@ -34,6 +34,14 @@ split governance, a 144-pair role universe, META/STAT/GDN candidate discovery, a
 union, normal temporal profiling, normal-only numeric authority, typed evidence, bounded
 T0/T1/T1-B/T2 construction, deterministic verification, COMMON-42, LLM-free fixed-rule
 runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
+
+## DATA / SPLIT FOUNDATION
+
+- **Dataset / process:** HAI 23.05 / P1 Boiler.
+- **Roles:** train1/train2 normal fit; train3 relation confirmation plus D0 calibration;
+  train4 normal sanity; test1 INNER pilot; test2 held-out result unavailable.
+- **Label ordering:** Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.
+- **Leakage finding:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
 
 ## WHAT WAS EXECUTED
 
@@ -78,5 +86,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Design isolated stability and contribution tests for GDN and an actually exercised budget-matched feedback comparison for T2.
 - Complete fresh-machine reproducibility and authority rehearsal before any newly authorized held-out study.
 
-Exact next management task: **ARCH-001 — Data / Provenance / Split Governance Deep Audit**
-Following architecture task: **ARCH-001 — Data / Provenance / Split Governance Deep Audit**
+Exact next management task: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**
+Following architecture task: **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**

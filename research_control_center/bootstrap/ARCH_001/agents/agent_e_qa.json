@@ -1,0 +1,166 @@
+{
+  "task_id": "ARCH-001",
+  "agent_role": "independent_read_only_qa",
+  "status": "PASS_WITH_DOCUMENTED_GOVERNANCE_FINDINGS",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "rcc_base_commit": "20188fbf49332e30f39f27f2f2848db0b2ce5a83",
+    "scientific_source_changes_from_authority_to_rcc_base": 0
+  },
+  "scope_reviewed": [
+    "official ARCH-001 architecture report and mismatch report",
+    "leakage matrix",
+    "label-access timeline",
+    "input-contract catalog",
+    "function catalog",
+    "RCC registry updates",
+    "dashboard and generated summaries",
+    "staged specialist evidence",
+    "pinned source code and frozen public-safe custody reports"
+  ],
+  "qa_questions": [
+    {
+      "id": 1,
+      "question": "Is dataset identity supported?",
+      "answer": "YES",
+      "finding": "HAI 23.05 is bound to the pinned official Git/LFS provenance and public manifest path; the audit does not substitute the documentation overlay or current checkout for scientific authority."
+    },
+    {
+      "id": 2,
+      "question": "Is P1 scope supported?",
+      "answer": "YES",
+      "finding": "Frozen feasibility and candidate-protocol code identify P1 Boiler as selected and P3 as not selected. The 37-feature P1 frame and the 12-source by 12-target role universe are kept as distinct contracts."
+    },
+    {
+      "id": 3,
+      "question": "Are all split roles evidence-based?",
+      "answer": "YES_WITH_SCOPE_QUALIFICATION",
+      "finding": "train1/train2 normal fit, train3 relation confirmation plus D0 calibration, train4 normal guard plus D0 sanity, test1 INNER pilot, and test2 held-out unavailable are all supported. Enforcement is distributed across generic contracts and task-specific grants rather than one universal adapter."
+    },
+    {
+      "id": 4,
+      "question": "Are train1/train2 relation-fit roles verified?",
+      "answer": "YES",
+      "finding": "Candidate value arms, relation fitting, normal numeric authority, and D0 fitting are restricted to normal train1/train2 data under their respective frozen authorities."
+    },
+    {
+      "id": 5,
+      "question": "Is train3 dual use accurately represented?",
+      "answer": "YES",
+      "finding": "The reports show separate normal-only paths for one-way relation confirmation and D0 threshold calibration and classify their shared normal period as ACCEPTABLE_WITH_SCOPE_LIMITATION rather than automatically calling it leakage."
+    },
+    {
+      "id": 6,
+      "question": "Is train4 role verified or honestly marked uncertain?",
+      "answer": "YES",
+      "finding": "train4 is represented as NORMAL_GUARD in the split contract and as the frozen D0 normal-sanity input; it is not presented as a fitting or final-evaluation split."
+    },
+    {
+      "id": 7,
+      "question": "Is test1 correctly described as pilot evaluation?",
+      "answer": "YES",
+      "finding": "All current-facing outputs call test1 INNER development or pilot evidence and explicitly reject final-validation or generalization wording."
+    },
+    {
+      "id": 8,
+      "question": "Is test1 tuning or backward influence ruled out by evidence?",
+      "answer": "YES_FOR_FROZEN_UPSTREAM_METHODS_WITH_D2_V2_QUALIFICATION",
+      "finding": "No test1 label or result path was found back into D0 fitting or calibration, D1 relation or rule construction, numeric authority, verifier acceptance, or COMMON-42. D2 V2 was explicitly designed after prior INNER diagnostics and is therefore correctly marked label-informed pilot development rather than independent confirmation."
+    },
+    {
+      "id": 9,
+      "question": "Are attack labels excluded from rule construction?",
+      "answer": "YES",
+      "finding": "META, STAT, GDN, relation fit and confirmation, numeric authority, evidence materialization, construction arms, deterministic verification, and COMMON-42 consume normal-only or already frozen label-blind evidence."
+    },
+    {
+      "id": 10,
+      "question": "Is D0 calibration independent from test1 labels?",
+      "answer": "YES",
+      "finding": "D0 fitting uses train1/train2 and threshold calibration uses normal train3. Test1 labels are unavailable until after a durable test1 prediction artifact is written and replayed."
+    },
+    {
+      "id": 11,
+      "question": "Does D2 consume predictions rather than evaluation labels?",
+      "answer": "YES",
+      "finding": "D2 V1 and V2 fusion consume frozen D0 and D1 prediction authorities and source or horizon metadata. Labels enter only after the combined prediction is durably persisted. The V2 design-history qualification remains visible."
+    },
+    {
+      "id": 12,
+      "question": "Is prediction-before-label ordering evidenced?",
+      "answer": "PARTIAL_BY_ARM",
+      "finding": "D0 and both D2 paths have explicit state gates plus atomic write and reopen before label access. D1 builds and self-hashes a label-blind prediction object before labels, but the public RulePrediction file is written after metrics. The HIGH durable-ordering gap is fully disclosed and is not misreported as verified leakage."
+    },
+    {
+      "id": 13,
+      "question": "Is test2 still untouched?",
+      "answer": "YES_FOR_CONTENT_NOT_FOR_FILESYSTEM_CONTACT",
+      "finding": "The recovery record shows one feature-file custody access rejected before byte reading, with zero feature bytes, hashes, semantic parses, labels, predictions, and metrics. Current outputs preserve this exact boundary."
+    },
+    {
+      "id": 14,
+      "question": "Is old OUTER correctly described as result unavailable?",
+      "answer": "YES",
+      "finding": "The dashboard, reports, current state, and user summary say held-out result unavailable and generalization unconfirmed, never OUTER performance failure."
+    },
+    {
+      "id": 15,
+      "question": "Are any leakage findings hidden?",
+      "answer": "NO",
+      "finding": "The D1 durable-file gap and test1-informed D2 V2 design are HIGH; distributed split enforcement, train3 coupling, custody wording, and manifest-to-task-reader mapping are visible. The conclusion is NO VERIFIED LEAKAGE FOUND, not leakage impossible."
+    },
+    {
+      "id": 16,
+      "question": "Are unknowns marked instead of guessed?",
+      "answer": "YES",
+      "finding": "Timezone semantics, universal split-adapter conformance, and any held-out scientific outcome remain unresolved or unavailable; the audit did not access private payloads to fill those gaps."
+    }
+  ],
+  "material_findings": {
+    "verified_leakage": 0,
+    "critical": 0,
+    "high": 2,
+    "medium": 4,
+    "low": 2,
+    "high_findings": [
+      "D1 lacks a durable public prediction-file freeze and reopen before label access even though its label-blind prediction object is constructed and self-hashed first.",
+      "D2 V2 is an explicitly prior-INNER-informed development policy and cannot be treated as independent test1 confirmation."
+    ],
+    "independence_qualification": "train3 dual use is normal-only and isolated by code path but shares one calibration period across arms; ACCEPTABLE_WITH_SCOPE_LIMITATION is appropriate.",
+    "outer_boundary": "one custody file access attempt; zero content bytes, hashes, semantic parses, labels, predictions, metrics, and scientific outcome"
+  },
+  "consistency_review": {
+    "dataset_and_process_consistent": true,
+    "split_roles_consistent": true,
+    "normal_only_contract_consistent": true,
+    "catalog_cross_references_consistent": true,
+    "dashboard_consistent": true,
+    "generated_summary_consistent": true,
+    "source_authority_consistent": true,
+    "privacy_consistent": true,
+    "scientific_claims_upgraded": false
+  },
+  "qa_feedback_resolved": [
+    "Updated RCC dashboard tests for the new ARCH-001 generated output count.",
+    "Made the dashboard derivation test compare rendered HTML text safely.",
+    "Reduced GPT_BRIEF to the required maximum word budget.",
+    "Corrected the architecture report mismatch count from seven to eight."
+  ],
+  "validation": {
+    "rcc_unittest_cases": 47,
+    "rcc_unittest_failures": 0,
+    "registry_validator": "PASS",
+    "generated_outputs_current": true,
+    "private_exposures": 0
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "raw_hai_payload_reads": 0,
+    "test2_payload_reads": 0,
+    "scientific_code_changes": 0,
+    "frozen_result_changes": 0,
+    "remote_pushes": 0
+  },
+  "final_verdict": "PASS: ARCH-001 accurately maps data, split, label, and custody boundaries, preserves material governance gaps, and does not overclaim leakage absence or scientific validation."
+}

@@ -1,45 +1,54 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # My Research TODO
 
 This page contains research-owner actions, not low-level development chores.
 
 ## Decision Needed
 
-- **ID:** USER-ARCH-004
-  **Priority:** HIGH
-  **Task:** Which architecture mismatch needs priority?
-  **Why your involvement is required:** Priority is a research-management judgment.
-  **Linked:** ARCH_000_MISMATCHES.md
-  **Status:** OPEN
+No items.
 ## Understanding Needed
-
-- **ID:** USER-ARCH-002
-  **Priority:** HIGH
-  **Task:** Do I understand each major Input and Output?
-  **Why your involvement is required:** Architecture review depends on clear contract boundaries.
-  **Linked:** ARCH-000 dataflow
-  **Status:** OPEN
-
-- **ID:** USER-ARCH-003
-  **Priority:** MEDIUM
-  **Task:** Which component is hardest to understand?
-  **Why your involvement is required:** This should influence deep-review emphasis.
-  **Linked:** ARCH-001 through ARCH-011
-  **Status:** OPEN
-## Review Needed
 
 - **ID:** USER-ARCH-001
   **Priority:** HIGH
-  **Task:** Can I explain the full architecture flow?
-  **Why your involvement is required:** The owner should understand the source-to-result path before deep review.
-  **Linked:** ARCH-000
+  **Task:** Can I explain why each split exists?
+  **Why your involvement is required:** Fit, confirmation, calibration, sanity, pilot, and held-out roles must not be conflated.
+  **Linked:** ARCH-001 split map
   **Status:** OPEN
+
+- **ID:** USER-ARCH-002
+  **Priority:** HIGH
+  **Task:** Can I explain when labels become visible?
+  **Why your involvement is required:** Prediction construction and durable prediction persistence are separate guarantees.
+  **Linked:** ARCH_001_LABEL_ACCESS_TIMELINE.md
+  **Status:** OPEN
+
+- **ID:** USER-ARCH-003
+  **Priority:** HIGH
+  **Task:** Do I understand why test1 is only pilot evidence?
+  **Why your involvement is required:** D2 V2 was explicitly informed by prior INNER outcomes, so test1 is not independent final validation.
+  **Linked:** ARCH-001 test1 audit
+  **Status:** OPEN
+
+- **ID:** USER-ARCH-004
+  **Priority:** HIGH
+  **Task:** Do I understand why test2 has no result?
+  **Why your involvement is required:** The historical attempt stopped at custody before payload bytes and produced no performance outcome.
+  **Linked:** ARCH-001 OUTER custody audit
+  **Status:** OPEN
+## Review Needed
 
 - **ID:** USER-ARCH-005
   **Priority:** HIGH
-  **Task:** Approve or defer starting ARCH-001.
-  **Why your involvement is required:** Deep review must not begin automatically.
-  **Linked:** ARCH-001
+  **Task:** Is there any leakage or coupling risk I want explained further?
+  **Why your involvement is required:** The D1 ordering gap, train3 dual use, and test1-informed V2 design have different meanings.
+  **Linked:** ARCH_001_MISMATCHES.md
+  **Status:** OPEN
+
+- **ID:** USER-ARCH-006
+  **Priority:** HIGH
+  **Task:** Approve or defer starting ARCH-002.
+  **Why your involvement is required:** Candidate discovery algorithms should be reviewed only after the data boundary is understood.
+  **Linked:** ARCH-002
   **Status:** OPEN
 ## Waiting On Codex
 

@@ -1,9 +1,9 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Current Status
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
-Registry snapshot: `2026-08-29T09:00:00Z`
+Registry snapshot: `2026-08-29T06:24:06Z`
 
 ## Current phase
 
@@ -32,13 +32,21 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 - **Evidence-reviewed:** 30
 - **Independently reproduced:** 0
 
+## Data / split audit
+
+- **Dataset / process:** HAI 23.05 / P1 Boiler
+- **Label access:** Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.
+- **Leakage:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
+- **Test1:** INNER development / 14-event pilot; not final validation
+- **Test2:** One custody-level file access attempt was rejected before byte read; held-out result unavailable.
+
 ## Components
 
 | Component | Engineering / evidence display | Next action |
 |---|---|---|
-| DATA_PROVENANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Rehearse public-safe restoration on a fresh machine |
-| SPLIT_GOVERNANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review later experiment entry points against the split contract |
-| VARIABLE_ROLE_UNIVERSE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Review role semantics in ARCH-000 without changing the universe |
+| DATA_PROVENANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Rehearse public-safe restoration and verify timezone semantics on a fresh machine |
+| SPLIT_GOVERNANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit future entrypoints against split manifests and add a separately authorized D1 durable prediction gate |
+| VARIABLE_ROLE_UNIVERSE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Deep-audit role scoring and arm-specific inputs without changing the frozen universe |
 | META_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare unique confirmed contribution and stability |
 | STAT_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Measure split stability and unique confirmed contribution |
 | GDN_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Validate stable unique contribution and masking behavior |
@@ -63,7 +71,7 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 | EPISODE_CONSTRUCTION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve the frozen episode policy |
 | ATTACK_EVENT_RECALL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand beyond the current 14-event pilot |
 | NORMAL_FAR | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Treat D1 FAR as a primary operational risk |
-| RESULT_INTEGRITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep integrity separate from external reproduction |
+| RESULT_INTEGRITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep integrity separate from validation and track the D1 durable-file ordering gap |
 | OUTER_EVALUATION | BLOCKED | Require separate approval and preregistration before any held-out study |
 | REPRODUCIBILITY | PARTIAL | Run a separately authorized fresh-machine rehearsal |
 | PROFESSOR_REPORTING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep wording synchronized with RCC claims |
@@ -125,4 +133,4 @@ Not established:
 
 ## Exact next task
 
-**ARCH-001 — Data / Provenance / Split Governance Deep Audit**
+**ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**

@@ -1,0 +1,205 @@
+{
+  "artifact_type": "ARCH001AgentDLabelCustodyEvidenceV1",
+  "schema_version": "1.0.0",
+  "task_id": "ARCH-001",
+  "agent_role": "LABEL_ACCESS_CUSTODY_ORDERING_AUDITOR",
+  "created_at_utc": "2026-08-29T06:24:22Z",
+  "authority": {
+    "rcc_head": "20188fbf49332e30f39f27f2f2848db0b2ce5a83",
+    "scientific_source_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_source_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "immutable_pin": "thesis-v1-post-push-audit",
+    "immutable_pin_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "audit_boundary": {
+    "method": "STATIC_SOURCE_AND_PUBLIC_SAFE_FROZEN_REPORT_INSPECTION_ONLY",
+    "raw_hai_payload_read": false,
+    "private_payload_read": false,
+    "test2_payload_read": false,
+    "scientific_execution": false,
+    "metric_recomputation": false,
+    "production_change": false
+  },
+  "ordering_assessments": [
+    {
+      "path_id": "D0_INNER",
+      "verdict": "DURABLE_PREDICTION_BEFORE_LABEL_VERIFIED",
+      "sequence": [
+        "test1 features parsed",
+        "label-blind prediction built",
+        "prediction written atomically and fsynced",
+        "prediction bytes reopened and self-hash validated",
+        "state advanced to PREDICTION_FROZEN",
+        "test1 label hash and parse allowed",
+        "frozen prediction bytes reloaded for metrics",
+        "prediction bytes rechecked unchanged after metrics"
+      ],
+      "guard": "D0ExecutionStateMachineV1.require_label_access accepts only PREDICTION_FROZEN",
+      "label_influence_boundary": "Labels are unavailable to preprocessing, PCA model, threshold, score, and alarm construction; labels enter only attack-event and metric derivation.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:601-626",
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:1766-1807",
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:1851-1929",
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:2459-2589",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_EXECUTION_V1_ACCOUNTING.json"
+      ]
+    },
+    {
+      "path_id": "D1_INNER",
+      "verdict": "IN_MEMORY_PREDICTION_BEFORE_LABEL_VERIFIED_DURABLE_PRELABEL_FREEZE_NOT_IMPLEMENTED",
+      "sequence": [
+        "test1 features parsed",
+        "full rule census executed",
+        "complete label-blind ScientificRulePredictionArtifactV1 built and self-hash validated",
+        "test1 label hash and parse performed using the issued prediction object",
+        "metrics and private metric evidence produced",
+        "public RulePrediction file written with the other public result reports"
+      ],
+      "guard": "_load_real_label_custody_v1 requires a factory-issued, self-hash-valid ScientificRulePredictionArtifactV1, but there is no explicit execution-state machine or durable prediction-file gate.",
+      "durable_persistence_gap": true,
+      "label_influence_boundary": "The frozen controller order and label-blind schema show no label-to-rule or label-to-alarm backward path. However, there are no pre-label prediction file bytes to reopen or compare because the public prediction is persisted after metric computation.",
+      "integrity_report_interpretation": "The existing phrase prediction_frozen_before_label_access is supportable only if frozen means the in-memory immutable/self-hashed prediction object. It is not evidence of a durably persisted pre-label RulePrediction file.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:1765-1807",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:1828-1948",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:1965-2018",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:2281-2297",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:2490-2499",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:2523-2594",
+        "tests/test_task039e3_r2r_utility_inner_d1_result_integrity_v1.py:139-143",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_RESULT_INTEGRITY_V1_LABEL_INDEPENDENCE_AUDIT.json"
+      ]
+    },
+    {
+      "path_id": "D2_V1_INNER",
+      "verdict": "DURABLE_COMBINED_PREDICTION_BEFORE_LABEL_VERIFIED",
+      "sequence": [
+        "frozen D0 and D1 predictions parsed",
+        "fusion computed without label or test1 feature access",
+        "combined prediction written atomically and fsynced",
+        "combined prediction bytes reopened and validated",
+        "state advanced to COMBINED_PREDICTION_FROZEN",
+        "test1 label hash and parse allowed",
+        "combined prediction bytes reloaded for metrics",
+        "combined prediction bytes rechecked unchanged after metrics"
+      ],
+      "guard": "D2ExecutionStateMachineV1.require_label_access accepts only COMBINED_PREDICTION_FROZEN",
+      "label_influence_boundary": "Labels enter only after fusion output persistence and do not participate in D0, D1, source-map, or fusion computation.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:515-536",
+        "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:1075-1115",
+        "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:1230-1283",
+        "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:1826-1920",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_EXECUTION_RECOVERY_V1_ACCOUNTING.json"
+      ]
+    },
+    {
+      "path_id": "D2_V2_INNER",
+      "verdict": "DURABLE_COMBINED_PREDICTION_BEFORE_LABEL_VERIFIED",
+      "sequence": [
+        "frozen D0 and D1 predictions plus source and horizon maps parsed",
+        "V2 fusion evidence frozen privately",
+        "combined V2 prediction written atomically and fsynced",
+        "combined prediction bytes reopened and validated",
+        "state advanced to COMBINED_PREDICTION_V2_FROZEN",
+        "test1 label hash and parse allowed",
+        "combined prediction bytes rechecked before and after metrics"
+      ],
+      "guard": "D2V2ExecutionStateMachineV1.require_label_access accepts only COMBINED_PREDICTION_V2_FROZEN",
+      "label_influence_boundary": "Labels enter only after the V2 combined prediction is persistently frozen; D2 V2 records zero test1-feature access and consumes frozen prediction/evidence authorities.",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py:438-464",
+        "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py:938-962",
+        "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py:1021-1056",
+        "src/paperworks/v6/task039e3_r2r_d2_v2_inner_execution_v1.py:1338-1408",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_EXECUTION_V1_ACCOUNTING.json"
+      ]
+    }
+  ],
+  "outer_test2_assessment": {
+    "intended_role": "ONE_WAY_HELD_OUT_D0_D1_D2_V1_EVALUATION",
+    "preregistered_ordering": "Persist and reopen D0, D1, and D2 V1 predictions from one frozen test2 feature snapshot before any test2 label access.",
+    "implementation_ordering_control": "OuterExecutionStateMachineV1 permits label access only after ALL_THREE_OUTER_PREDICTIONS_FROZEN.",
+    "actual_outcome": "HELD_OUT_RESULT_UNAVAILABLE_GENERALIZATION_UNCONFIRMED",
+    "actual_stop_point": "First test2 feature custody check after the one scientific attempt started, before opening or reading feature bytes.",
+    "historical_counters": {
+      "scientific_outer_attempts": 1,
+      "scientific_outer_retries": 0,
+      "test2_feature_file_custody_accesses": 1,
+      "test2_feature_byte_reads": 0,
+      "test2_feature_hash_computations": 0,
+      "test2_feature_semantic_parses": 0,
+      "test2_label_file_accesses": 0,
+      "test2_label_hash_computations": 0,
+      "test2_label_semantic_parses": 0,
+      "predictions_frozen": 0,
+      "metric_computations": 0,
+      "scientific_outcomes": 0
+    },
+    "terminology_note": "The shorthand test2 accesses equals zero is ambiguous. The exact verified statement is one failed custody-level feature-file check and zero test2 feature bytes, hashes, semantic parses, label accesses, predictions, metrics, or scientific outcome.",
+    "evidence": [
+      "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_v1.py:224-254",
+      "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_v1.py:811-968",
+      "src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py:330-338",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_PREDICTION_ORDERING.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_V1_ONE_SHOT_POLICY.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json",
+      "docs/project_state/CURRENT_STATE.md"
+    ]
+  },
+  "findings": [
+    {
+      "finding_id": "ARCH001-LABEL-001",
+      "severity": "HIGH",
+      "type": "LABEL_ACCESS_ORDERING_EVIDENCE_GAP",
+      "component": "D1_RULE_ONLY",
+      "finding": "D1 builds and validates its complete label-blind prediction object before reading labels, but does not durably persist that object before label access; its public RulePrediction file is written after metrics.",
+      "scientific_impact": "No verified backward tuning or label influence was found in the frozen controller, but the execution lacks the stronger byte-level pre-label immutability proof present in D0 and D2.",
+      "recommended_future_action": "In ARCH-008, distinguish in-memory object freeze from durable prediction freeze and decide whether future independent evaluation requires a state-gated atomic pre-label persistence step. Do not modify the frozen INNER result here."
+    },
+    {
+      "finding_id": "ARCH001-LABEL-002",
+      "severity": "MEDIUM",
+      "type": "DOCUMENTATION_SEMANTIC_AMBIGUITY",
+      "component": "RESULT_INTEGRITY",
+      "finding": "The frozen D1 label-independence report says prediction_frozen_before_label_access without qualifying that the freeze was in memory rather than a persisted file.",
+      "scientific_impact": "A reader could incorrectly infer D0-equivalent durable ordering evidence.",
+      "recommended_future_action": "Preserve the historical artifact but qualify its meaning in current RCC documentation."
+    },
+    {
+      "finding_id": "ARCH001-LABEL-003",
+      "severity": "LOW",
+      "type": "CUSTODY_COUNTER_TERMINOLOGY",
+      "component": "OUTER_EVALUATION",
+      "finding": "Generic test2 access counts obscure the difference between a custody-level path/file check and content-byte access.",
+      "scientific_impact": "No test2 content or outcome was revealed, but imprecise wording can create audit confusion.",
+      "recommended_future_action": "Report file custody checks, byte reads, hashes, semantic parses, labels, predictions, and metrics as separate counters."
+    }
+  ],
+  "overall_verdict": {
+    "verified_leakage_found": false,
+    "prediction_before_label": {
+      "D0": "DURABLE_VERIFIED",
+      "D1": "IN_MEMORY_VERIFIED_DURABLE_GAP",
+      "D2_V1": "DURABLE_VERIFIED",
+      "D2_V2": "DURABLE_VERIFIED",
+      "OUTER": "STRUCTURALLY_PREREGISTERED_NOT_REACHED"
+    },
+    "test2_scientific_content_accessed": false,
+    "outer_scientific_result_available": false,
+    "claim_boundary": "NO_VERIFIED_LEAKAGE_FOUND; do not claim leakage impossible. D1 durable pre-label persistence remains an evidence gap."
+  },
+  "counts": {
+    "scientific_paths_traced": 5,
+    "inner_paths_with_durable_prelabel_prediction_persistence": 3,
+    "inner_paths_with_in_memory_only_prelabel_prediction_freeze": 1,
+    "findings": 3,
+    "high_findings": 1,
+    "medium_findings": 1,
+    "low_findings": 1,
+    "test2_feature_file_accesses_by_this_audit": 0,
+    "test2_feature_byte_reads_by_this_audit": 0,
+    "test2_label_accesses_by_this_audit": 0,
+    "scientific_executions_by_this_audit": 0
+  }
+}

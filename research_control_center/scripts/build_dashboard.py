@@ -35,6 +35,9 @@ ARCHITECTURE_FILES = (
     "00_overview/ARCH_000_DATAFLOW.csv",
     "00_overview/ARCH_000_ARTIFACT_LINEAGE.csv",
     "00_overview/ARCH_000_COMPONENT_DETAIL.csv",
+    "01_data_and_splits/ARCH_001_LEAKAGE_MATRIX.csv",
+    "01_data_and_splits/ARCH_001_INPUT_CONTRACTS.csv",
+    "01_data_and_splits/ARCH_001_FUNCTION_CATALOG.csv",
 )
 
 
@@ -319,6 +322,17 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         ))
         for row in data["architecture_details"]
     )
+    governance = state["data_governance"]
+    split_markup = "".join(
+        '<article class="summary-card"><p class="eyebrow">'
+        + _escape(item["badge"])
+        + "</p><h3>"
+        + _escape(item["id"])
+        + "</h3><p>"
+        + _escape(item["role"])
+        + "</p></article>"
+        for item in governance["splits"]
+    )
     marker = _source_marker(state, digest)
 
     return f"""<!doctype html>
@@ -349,7 +363,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
   </header>
 
   <nav class="section-nav" aria-label="Dashboard sections">
-    <a href="#current-state">Current state</a><a href="#my-tasks">My tasks</a>
+    <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
     <a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
@@ -370,6 +384,22 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
       <div class="summary-grid">{summary_markup}</div>
       <p class="summary-note">These counts are not a single completion percentage. Component Evidence-reviewed means source or evidence status was reviewed; explicit scientific result-integrity audits are shown separately. Scientific claim counts come only from <code>claims.csv</code>.</p>
       <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
+    </section>
+
+    <section id="data-governance" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">DATA</p><h2>DATA GOVERNANCE</h2></div>
+      <div class="status-snapshot">
+        <div><span>Dataset</span><strong>{_escape(governance['dataset'])}</strong></div>
+        <div><span>Process</span><strong>{_escape(governance['process'])}</strong></div>
+        <div><span>Feature / role scope</span><strong>{_escape(governance['source_scope'])}</strong></div>
+        <div><span>Leakage status</span><strong>{_escape(governance['leakage_status'])}</strong></div>
+        <div><span>Test1</span><strong>{_escape(governance['test1_status'])}</strong></div>
+        <div><span>Test2</span><strong>{_escape(governance['test2_status'])}</strong></div>
+      </div>
+      <div class="summary-grid">{split_markup}</div>
+      <aside class="principle">{_escape(governance['label_access'])}</aside>
+      <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
+      <p><strong>Next deep review:</strong> {_escape(governance['next_deep_review'])}</p>
     </section>
 
     <section id="my-tasks" class="section">
@@ -469,7 +499,9 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
     experiments = "\n".join(
-        f"- **{row['experiment_id']} · {row['name']}** — `{EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`. {row['current_evidence']}"
+        f"- **{row['experiment_id']} · {row['name']}** — "
+        f"`{EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`; "
+        f"scope: {row['result_scope']}."
         for row in data["experiments"]
     )
     claims = "\n".join(
@@ -505,14 +537,11 @@ held-out generalization is unconfirmed, and fresh-machine reproduction is incomp
 
 ## How to read RCC status
 
-Implementation and engineering state is separate from scientific evidence state.
-`audited=true` on a component is displayed as **Evidence-reviewed**: source or evidence
-status was reviewed against the pinned authority. It is not a performance-validation flag.
-An explicit **Result-integrity audit** checks custody, immutability, ordering, and arithmetic
-for a named frozen result; it still does not establish scientific performance. Independent
-reproduction is a separate state and remains absent at component level. Scientific claim
-status comes only from `claims.csv`. The compatibility `claim_ready` field supports narrow
-implementation or contract wording only and is not a scientific-validation state.
+Engineering and scientific evidence are separate. Component `audited=true` means
+**Evidence-reviewed**, not performance validated. A named **Result-integrity audit** checks
+custody and arithmetic, not generalization. Reproduction remains separate and absent at
+component level. Scientific claim status comes only from `claims.csv`; `claim_ready` supports
+only narrow implementation or contract wording.
 
 These counts are not a single completion percentage.
 
@@ -520,18 +549,27 @@ These counts are not a single completion percentage.
 
 {state['architecture_flow']}
 
+## Data and split boundary
+
+The authority is HAI 23.05 with P1 Boiler as the selected process. train1/train2
+provide normal fit evidence; train3 is shared by one-way relation confirmation and D0
+threshold calibration; train4 is a normal guard / D0 sanity split. test1 is INNER
+development/pilot evidence, not final validation. The attempted OUTER path read zero test2
+feature bytes and no labels and produced no prediction, metric, or scientific outcome.
+
+No verified leakage was found. D0 and D2 durably persist predictions before labels. D1
+builds and validates a label-blind self-hashed object before labels, but the public file is
+written after metrics; this is a governance evidence gap, not proof of label-driven decisions.
+D2 V2 was explicitly informed by prior INNER outcomes and remains pilot-development evidence.
+
 ## How we got here
 
-The recorded evolution is **{phase_names}**. The first four stages are partly or wholly
-`USER_CONTEXT`: Git does not independently prove their exact dates or motivations. The
-repository-supported lineage begins on 2026-06-25 with graph-constrained candidates,
-typed rules, a deterministic verifier, and an LLM-free runtime foundation. The July ARGOS
-track was frozen as partial methodological support rather than copied wholesale. Its useful
-ideas survived inside a project-owned CPS contract. HAI provenance and the failed discrete-
-source gate then led to a separately preregistered continuous-step family and P1 selection.
-META, STAT, and GDN remained distinct candidate-evidence arms; normal-only profiling and
-numeric authority produced COMMON-42. D1, D0, and D2 were finally executed as a frozen
-14-event INNER pilot. The OUTER attempt produced a custody blocker, not a scientific result.
+The recorded evolution is **{phase_names}**. Early timing and motives are partly
+`USER_CONTEXT`; Git independently supports the later engineering lineage. ARGOS became
+partial methodological support, while deterministic verification survived the earlier
+Verifier framing. HAI provenance and the continuous-step recovery selected P1; distinct
+META/STAT/GDN evidence, normal-only profiling, and numeric authority led to COMMON-42 and
+the frozen 14-event D0/D1/D2 INNER pilot. OUTER ended in a custody blocker, not a result.
 History explains this lineage but cannot override RCC-002 current state or `claims.csv`.
 
 ## Established facts
@@ -655,6 +693,14 @@ documentation component need not be a scientific executable, so Evidence-reviewe
 
 {component_summary_rows}
 
+## Data / split audit
+
+- **Dataset / process:** {state['data_governance']['dataset']} / {state['data_governance']['process']}
+- **Label access:** {state['data_governance']['label_access']}
+- **Leakage:** {state['data_governance']['leakage_status']}
+- **Test1:** {state['data_governance']['test1_status']}
+- **Test2:** {state['data_governance']['test2_status']}
+
 ## Components
 
 | Component | Engineering / evidence display | Next action |
@@ -696,6 +742,83 @@ Not established:
 ## Exact next task
 
 **{state['exact_next_task']}**
+"""
+
+
+def render_arch001_user_summary(data: Mapping[str, Any], digest: str) -> str:
+    state = data["state"]
+    return f"""{_markdown_marker(state, digest)}
+# 우리가 어떤 데이터를 쓰고 있는가
+
+## 한 문장 답
+
+우리는 공식 provenance가 고정된 HAI 23.05의 P1 Boiler 범위를 사용하며, 정상 학습
+split과 INNER pilot, 아직 결과가 없는 held-out test2를 서로 다른 권한으로 다룬다.
+
+## Split 한눈에 보기
+
+| Split | 역할 | 무엇을 정하는 데 사용? | Label 사용? | 최종평가? |
+|---|---|---|---|---|
+| train1 | NORMAL FIT | 후보·관계·수치 authority·D0 fit | 아니오 | 아니오 |
+| train2 | NORMAL FIT | train1과 독립적인 file-local fit 근거 | 아니오 | 아니오 |
+| train3 | CONFIRMATION / CALIBRATION | 관계 확인과 D0 threshold 보정 | 아니오 | 아니오 |
+| train4 | SANITY | normal guard와 D0 정상 sanity | 아니오 | 아니오 |
+| test1 | PILOT EVALUATION | frozen 방법의 INNER 개발·예비 비교 | prediction 뒤에만 | 아니오 |
+| test2 | HELD-OUT / UNAVAILABLE | 의도상 one-way 일반화 평가 | 실행되지 않음 | 결과 없음 |
+
+## 왜 여러 train split이 있는가?
+
+같은 normal data를 한 단계에서 만들고 같은 단계에서 확인하는 것을 피하려고 역할을
+나눈다. train1/train2는 fit, train3는 독립 확인과 D0 threshold calibration, train4는
+normal sanity에 사용된다. train3를 두 arm이 함께 쓰는 것은 확인된 leakage가 아니지만,
+비교 독립성의 범위를 제한하므로 `ACCEPTABLE_WITH_SCOPE_LIMITATION`으로 기록했다.
+
+## Rule을 만들 때 공격 답을 본 적이 있는가?
+
+찾아본 현재 frozen 경로에서는 아니다. 후보 탐색, 관계 profiling, normal numeric
+authority, evidence pack, T0/T1/T1-B/T2, verifier, COMMON-42는 normal-only evidence를
+사용한다. test1 결과로 individual rule을 뒤에서 삭제하거나 COMMON-42를 다시 고른
+경로도 확인되지 않았다.
+
+## D0 threshold는 어디서 결정되는가?
+
+D0는 train1과 train2로 표준화와 PCA를 fit하고, train3의 normal SPE 분포로 threshold를
+calibrate한다. test1 label이나 test1 outcome은 model fit과 threshold 결정에 들어가지 않는다.
+
+## Label은 언제 보이는가?
+
+D0와 D2는 prediction file을 atomic하게 기록하고 다시 읽은 뒤 label을 연다. D1도
+label-blind prediction object를 먼저 만들고 self-hash를 검증하지만, public prediction
+file은 metric 뒤에 기록된다. 그래서 D1은 decision-before-label은 확인됐지만 durable
+file-before-label 보장은 부족하다. 이것은 HIGH governance gap이며 leakage가 확인됐다는
+뜻은 아니다.
+
+## test1은 왜 final test가 아닌가?
+
+현재 14개 사건은 작은 INNER pilot이다. 특히 D2 V2 policy는 앞선 INNER 결과를 알고
+설계되었다고 명시되어 있다. 따라서 test1 수치는 개발·예비 관찰이며 독립 성능 검증이나
+일반화 증거가 아니다.
+
+## test2는 왜 결과가 없는가?
+
+OUTER recovery는 test2 feature custody 확인에서 멈췄다. 파일 접근 시도는 한 번 있었지만
+feature byte, hash, semantic parse는 0이고 label·prediction·metric도 0이다. 따라서
+성능이 실패한 것이 아니라 **held-out result unavailable**이다.
+
+## 현재 leakage 우려는 무엇인가?
+
+**NO VERIFIED LEAKAGE FOUND.** 다만 D1 durable persistence gap, task별로 분산된 split
+enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossible”이라고는
+말할 수 없다.
+
+## 다음 파트 전에 이해할 것
+
+1. feature 파일과 label 파일은 별도 authority다.
+2. 86 dataset points, 37 P1 features, 12×12 role universe는 같은 숫자가 아니다.
+3. label-blind object와 durable prediction file은 서로 다른 보장이다.
+4. test1은 pilot이고 test2는 결과가 없다.
+
+다음 task는 **{state['exact_next_task']}**이다.
 """
 
 
@@ -763,6 +886,14 @@ split governance, a 144-pair role universe, META/STAT/GDN candidate discovery, a
 union, normal temporal profiling, normal-only numeric authority, typed evidence, bounded
 T0/T1/T1-B/T2 construction, deterministic verification, COMMON-42, LLM-free fixed-rule
 runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
+
+## DATA / SPLIT FOUNDATION
+
+- **Dataset / process:** {state['data_governance']['dataset']} / {state['data_governance']['process']}.
+- **Roles:** train1/train2 normal fit; train3 relation confirmation plus D0 calibration;
+  train4 normal sanity; test1 INNER pilot; test2 held-out result unavailable.
+- **Label ordering:** {state['data_governance']['label_access']}
+- **Leakage finding:** {state['data_governance']['leakage_status']}
 
 ## WHAT WAS EXECUTED
 
@@ -1079,7 +1210,7 @@ def render_history_confirmation(data: Mapping[str, Any], digest: str) -> str:
 Only high-value uncertainties are listed. Until confirmed, the conservative interpretation
 in each item remains the RCC history boundary.
 
-{chr(10).join(questions)}
+{chr(10).join(questions).rstrip()}
 """
 
 
@@ -1240,6 +1371,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "CHANGE_SUMMARY.md": render_change_summary(data, digest),
         "RCC_002_USER_SUMMARY.md": render_user_summary(data, digest),
         "RCC_003_HISTORY_SUMMARY.md": render_rcc003_history_summary(data, digest),
+        "ARCH_001_USER_SUMMARY.md": render_arch001_user_summary(data, digest),
     }
     paths: list[Path] = []
     for name, payload in outputs.items():

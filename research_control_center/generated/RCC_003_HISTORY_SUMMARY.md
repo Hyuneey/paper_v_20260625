@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리 연구가 어떻게 여기까지 왔나
 
 ## 처음 무엇을 하려 했는가
@@ -50,4 +50,4 @@ pilot evidence일 뿐이다. Rule-only 실용성, D2 개선, GDN 고유 기여, 
 
 새 독립 사전등록 아래 더 많은 사건과 더 강한 다변량 탐지기 기준선으로 Rule-only와
 detector 비교를 확장해야 한다. GDN 안정성과 고유 기여, 실제 피드백이 발생하는 T2 비교,
-fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **ARCH-001 — Data / Provenance / Split Governance Deep Audit**이다.
+fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit**이다.

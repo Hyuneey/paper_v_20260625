@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rcc-registry-version" content="0.1.0">
-  <meta name="rcc-registry-digest" content="d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11">
+  <meta name="rcc-registry-digest" content="46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376">
   <meta name="rcc-scientific-authority" content="2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
-  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d1532ca0e2444f428d9f4cde46b1d9d1fa46fa9194fa90d059364caefa87ef11 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+  <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=46e9b7f51d4a3db4a5b850c8082b2d922d5590bf543f24d56cc84e1439ed9376 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
   <title>Research Control Center</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
@@ -26,7 +26,7 @@
   </header>
 
   <nav class="section-nav" aria-label="Dashboard sections">
-    <a href="#current-state">Current state</a><a href="#my-tasks">My tasks</a>
+    <a href="#current-state">Current state</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
     <a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
     <a href="#components">Components</a><a href="#experiments">Experiments</a>
     <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
@@ -44,15 +44,31 @@
         <div><span>Generalization</span><strong>Held-out generalization remains unconfirmed because no OUTER scientific result exists.</strong></div>
         <div><span>Claims</span><strong>Only narrow implementation or contract claims are supported; claims.csv is the authoritative claim view.</strong></div>
       </div>
-      <div class="summary-grid"><article class="summary-card"><h3>Components</h3><dl><div><dt>Total</dt><dd>32</dd></div><div><dt>Implemented</dt><dd>30</dd></div><div><dt>Executed</dt><dd>29</dd></div><div><dt>Evidence-reviewed</dt><dd>30</dd></div><div><dt>Independently reproduced</dt><dd>0</dd></div></dl></article><article class="summary-card"><h3>Experiments</h3><dl><div><dt>Total</dt><dd>6</dd></div><div><dt>Pilot</dt><dd>2</dd></div><div><dt>Unvalidated</dt><dd>3</dd></div><div><dt>Conditional</dt><dd>1</dd></div></dl></article><article class="summary-card"><h3>Claims</h3><dl><div><dt>Supported implementation</dt><dd>4</dd></div><div><dt>Pilot only</dt><dd>1</dd></div><div><dt>Unvalidated</dt><dd>3</dd></div><div><dt>Not supported</dt><dd>4</dd></div><div><dt>Conditional</dt><dd>1</dd></div></dl></article><article class="summary-card"><h3>Risks</h3><dl><div><dt>Critical / high</dt><dd>6</dd></div><div><dt>Medium</dt><dd>4</dd></div><div><dt>Low</dt><dd>0</dd></div></dl></article></div>
+      <div class="summary-grid"><article class="summary-card"><h3>Components</h3><dl><div><dt>Total</dt><dd>32</dd></div><div><dt>Implemented</dt><dd>30</dd></div><div><dt>Executed</dt><dd>29</dd></div><div><dt>Evidence-reviewed</dt><dd>30</dd></div><div><dt>Independently reproduced</dt><dd>0</dd></div></dl></article><article class="summary-card"><h3>Experiments</h3><dl><div><dt>Total</dt><dd>6</dd></div><div><dt>Pilot</dt><dd>2</dd></div><div><dt>Unvalidated</dt><dd>3</dd></div><div><dt>Conditional</dt><dd>1</dd></div></dl></article><article class="summary-card"><h3>Claims</h3><dl><div><dt>Supported implementation</dt><dd>4</dd></div><div><dt>Pilot only</dt><dd>1</dd></div><div><dt>Unvalidated</dt><dd>3</dd></div><div><dt>Not supported</dt><dd>4</dd></div><div><dt>Conditional</dt><dd>1</dd></div></dl></article><article class="summary-card"><h3>Risks</h3><dl><div><dt>Critical / high</dt><dd>7</dd></div><div><dt>Medium</dt><dd>5</dd></div><div><dt>Low</dt><dd>0</dd></div></dl></article></div>
       <p class="summary-note">These counts are not a single completion percentage. Component Evidence-reviewed means source or evidence status was reviewed; explicit scientific result-integrity audits are shown separately. Scientific claim counts come only from <code>claims.csv</code>.</p>
       <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
+    </section>
+
+    <section id="data-governance" class="section panel-history">
+      <div class="section-heading"><p class="eyebrow">DATA</p><h2>DATA GOVERNANCE</h2></div>
+      <div class="status-snapshot">
+        <div><span>Dataset</span><strong>HAI 23.05</strong></div>
+        <div><span>Process</span><strong>P1 Boiler</strong></div>
+        <div><span>Feature / role scope</span><strong>86 dataset points; 37-feature P1 frame; purpose-specific role and runtime subsets</strong></div>
+        <div><span>Leakage status</span><strong>NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.</strong></div>
+        <div><span>Test1</span><strong>INNER development / 14-event pilot; not final validation</strong></div>
+        <div><span>Test2</span><strong>One custody-level file access attempt was rejected before byte read; held-out result unavailable.</strong></div>
+      </div>
+      <div class="summary-grid"><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train1</h3><p>candidate discovery, relation fit, normal numeric authority, D0 fit</p></article><article class="summary-card"><p class="eyebrow">NORMAL FIT</p><h3>train2</h3><p>independent file-local fit evidence paired with train1</p></article><article class="summary-card"><p class="eyebrow">CONFIRMATION / CALIBRATION</p><h3>train3</h3><p>one-way relation confirmation and D0 threshold calibration</p></article><article class="summary-card"><p class="eyebrow">SANITY</p><h3>train4</h3><p>normal guard and D0 sanity evaluation</p></article><article class="summary-card"><p class="eyebrow">PILOT EVALUATION</p><h3>test1</h3><p>INNER development predictions and post-freeze label metrics</p></article><article class="summary-card"><p class="eyebrow">HELD-OUT / UNAVAILABLE</p><h3>test2</h3><p>custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome</p></article></div>
+      <aside class="principle">Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.</aside>
+      <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
+      <p><strong>Next deep review:</strong> ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit</p>
     </section>
 
     <section id="my-tasks" class="section">
       <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
       <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      <ul><li>Confirm that you can explain the full architecture flow.</li><li>Confirm that you understand each major input and output.</li><li>Identify the component that is hardest to understand.</li><li>Choose which architecture mismatch deserves priority.</li><li>Approve or defer starting ARCH-001.</li></ul>
+      <ul><li>Explain why train1/train2, train3, train4, test1, and test2 have different roles.</li><li>Explain when labels become visible and why D1&#x27;s durable persistence gap matters.</li><li>Explain why test1 is pilot evidence rather than final validation.</li><li>Explain why test2 has no scientific outcome.</li><li>Choose any leakage or coupling finding that needs a deeper explanation.</li><li>Approve or defer starting ARCH-002.</li></ul>
     </section>
 
     <section id="decisions" class="section">
@@ -198,26 +214,26 @@
     <section id="components" class="section">
       <div class="section-heading"><p class="eyebrow">05</p><h2>COMPONENT STATUS</h2></div>
       <p class="section-intro">Legacy component tokens are translated for display. Evidence-reviewed is source/evidence review, not performance validation. A result-integrity audit requires an explicit result-specific artifact.</p>
-      <div class="card-grid"><article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="data_provenance hai data provenance pins source edition and public-safe data identities implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/data/hai_provenance_v1.py build_hai_dataset_manifest_v2 approved hai repository metadata and authorized file identities frozen provenance and manifest records art-raw-data-custody tests/test_task039a_manifest_schemas.py;tests/test_task039a_reports.py true true false true medium rehearse public-safe restoration on a fresh machine arch-001">
+      <div class="card-grid"><article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="data_provenance hai data provenance pins source edition and public-safe data identities implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/data/hai_provenance_v1.py build_hai_dataset_manifest_v2 approved hai repository metadata and authorized file identities frozen hai 23.05 provenance and manifest records art-raw-data-custody tests/test_task039a_manifest_schemas.py;tests/test_task039a_reports.py true true false true medium rehearse public-safe restoration and verify timezone semantics on a fresh machine arch-001">
 <div class="card-heading">
 <div><p class="eyebrow">DATA_PROVENANCE</p><h3>HAI data provenance</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Pins source edition and public-safe data identities</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Rehearse public-safe restoration on a fresh machine</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Pins source edition and public-safe data identities</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Rehearse public-safe restoration and verify timezone semantics on a fresh machine</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="split_governance split governance enforces split roles and purge boundaries implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/data/splits_v2.py assert_operation_permitted_v2 frozen split roles and raw timeline ranges validated split collection and permitted windows art-raw-data-custody tests/test_task039p1a_splits_v2.py;tests/test_task039br2_contracts_and_boundaries.py true true false true medium review later experiment entry points against the split contract arch-001">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="split_governance split governance enforces split roles and purge boundaries implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/data/splits_v2.py assert_operation_permitted_v2 frozen split roles raw ranges and task-specific grants validated split collection plus documented d1 durable-ordering gap art-raw-data-custody tests/test_task039p1a_splits_v2.py;tests/test_task039br2_contracts_and_boundaries.py true true false true high audit future entrypoints against split manifests and add a separately authorized d1 durable prediction gate arch-001">
 <div class="card-heading">
 <div><p class="eyebrow">SPLIT_GOVERNANCE</p><h3>Split governance</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Enforces split roles and purge boundaries</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Review later experiment entry points against the split contract</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Enforces split roles and purge boundaries</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Audit future entrypoints against split manifests and add a separately authorized D1 durable prediction gate</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="variable_role_universe variable role universe freezes eligible sources targets and pair universe implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/candidate_discovery_protocol_v1.py candidateuniversepolicyv1 reviewed p1 variable metadata and candidate policy 12 source by 12 target universe with 144 possibilities art-candidate-cohort tests/test_candidate_universe.py;tests/test_task039c0_candidate_protocol.py true true false true low review role semantics in arch-000 without changing the universe arch-002">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="variable_role_universe variable role universe freezes eligible sources targets and pair universe implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/candidate_discovery_protocol_v1.py candidateuniversepolicyv1 reviewed p1 variable metadata and candidate policy 12 source by 12 target universe with 144 possibilities art-candidate-cohort tests/test_candidate_universe.py;tests/test_task039c0_candidate_protocol.py true true false true low deep-audit role scoring and arm-specific inputs without changing the frozen universe arch-002">
 <div class="card-heading">
 <div><p class="eyebrow">VARIABLE_ROLE_UNIVERSE</p><h3>Variable role universe</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Freezes eligible sources targets and pair universe</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Review role semantics in ARCH-000 without changing the universe</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Freezes eligible sources targets and pair universe</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Deep-audit role scoring and arm-specific inputs without changing the frozen universe</dd></div></dl>
 </article>
 <article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="meta_discovery meta candidate discovery ranks candidates from metadata without feature values implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/candidates/metadata_candidate_discovery_v1.py rank_supported_metadata_records_v1 frozen pair universe and reviewed metadata audited top-20 metadata ranking without causal meaning art-candidate-cohort tests/test_task039c_meta.py true true false false medium compare unique confirmed contribution and stability arch-002">
 <div class="card-heading">
@@ -387,14 +403,14 @@
 </div>
 <dl><div class="card-field"><dt>Role</dt><dd>Measures nonattack alarm episodes per normal hour</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Treat D1 FAR as a primary operational risk</dd></div></dl>
 </article>
-<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="result_integrity result integrity audits verifies immutable predictions metrics ordering and leakage implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e scripts/audit_task039e3_r2r_d0_result_integrity_v1.py run_audit_v1 frozen public artifacts and authorized oracle inputs independent sanitized integrity reports for d0 d1 and d2 art-d0-integrity;art-d1-integrity;art-d2v1-integrity;art-d2v2-integrity tests/test_task039e3_r2r_d0_result_integrity_v1_independent.py;tests/test_task039e3_r2r_d2_result_integrity_v1_independent.py true true false true medium keep integrity separate from external reproduction arch-010">
+<article class="registry-card" data-status="IMPLEMENTED_EXECUTED_AUDITED" data-search="result_integrity result integrity audits verifies immutable predictions metrics ordering and leakage implemented_executed_audited audited origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e scripts/audit_task039e3_r2r_d0_result_integrity_v1.py run_audit_v1 frozen public artifacts and authorized oracle inputs independent sanitized integrity reports plus arch-001 ordering qualification art-d0-integrity;art-d1-integrity;art-d2v1-integrity;art-d2v2-integrity tests/test_task039e3_r2r_d0_result_integrity_v1_independent.py;tests/test_task039e3_r2r_d2_result_integrity_v1_independent.py true true false true high keep integrity separate from validation and track the d1 durable-file ordering gap arch-010">
 <div class="card-heading">
 <div><p class="eyebrow">RESULT_INTEGRITY</p><h3>Result integrity audits</h3></div>
 <span class="badge badge-green">CODE PRESENT · EXECUTED · EVIDENCE REVIEWED</span>
 </div>
-<dl><div class="card-field"><dt>Role</dt><dd>Verifies immutable predictions metrics ordering and leakage</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Keep integrity separate from external reproduction</dd></div></dl>
+<dl><div class="card-field"><dt>Role</dt><dd>Verifies immutable predictions metrics ordering and leakage</dd></div><div class="card-field"><dt>Recorded lifecycle token</dt><dd>AUDITED</dd></div><div class="card-field"><dt>Next</dt><dd>Keep integrity separate from validation and track the D1 durable-file ordering gap</dd></div></dl>
 </article>
-<article class="registry-card" data-status="BLOCKED" data-search="outer_evaluation held-out outer evaluation governed held-out generalization path blocked code_implemented origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py recoveryattemptboundaryv1 preregistered authority and unresolved custody prerequisites blocker record only; no outer prediction or metric art-outer-blocker tests/test_task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py false false false false critical require separate approval and preregistration before any held-out study arch-011">
+<article class="registry-card" data-status="BLOCKED" data-search="outer_evaluation held-out outer evaluation governed held-out generalization path blocked code_implemented origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e src/paperworks/v6/task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py recoveryattemptboundaryv1 preregistered authority and unresolved custody prerequisites one custody file access rejected before byte read; no prediction metric or outcome art-outer-blocker tests/test_task039e3_r2r_outer_d0_d1_d2v1_execution_recovery_v1.py false false false false critical require separate approval and preregistration before any held-out study arch-011">
 <div class="card-heading">
 <div><p class="eyebrow">OUTER_EVALUATION</p><h3>Held-out OUTER evaluation</h3></div>
 <span class="badge badge-orange">BLOCKED</span>
@@ -637,6 +653,20 @@
 <span class="badge badge-gray">MEDIUM</span>
 </div>
 <dl><div class="card-field"><dt>Status</dt><dd>MITIGATING</dd></div><div class="card-field"><dt>Likelihood</dt><dd>HIGH</dd></div><div class="card-field"><dt>Evidence</dt><dd>artifact:ART-IMPLEMENTATION-AUDIT</dd></div><div class="card-field"><dt>Mitigation</dt><dd>Keep RCC views pinned and defer broad history reconciliation to RCC-003.</dd></div><div class="card-field"><dt>Owner</dt><dd>CODEX</dd></div></dl>
+</article>
+<article class="registry-card" data-status="HIGH" data-search="risk-11 label_ordering d1 builds and self-hashes a label-blind prediction object before labels but does not durably persist and reopen the public prediction file until after metrics. high high result_integrity component:d1_rule_only preserve the frozen result and add an atomic prediction-before-label state gate only in a separately authorized future task. codex open origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
+<div class="card-heading">
+<div><p class="eyebrow">RISK-11</p><h3>D1 builds and self-hashes a label-blind prediction object before labels but does not durably persist and reopen the public prediction file until after metrics.</h3></div>
+<span class="badge badge-orange">HIGH</span>
+</div>
+<dl><div class="card-field"><dt>Status</dt><dd>OPEN</dd></div><div class="card-field"><dt>Likelihood</dt><dd>HIGH</dd></div><div class="card-field"><dt>Evidence</dt><dd>component:D1_RULE_ONLY</dd></div><div class="card-field"><dt>Mitigation</dt><dd>Preserve the frozen result and add an atomic prediction-before-label state gate only in a separately authorized future task.</dd></div><div class="card-field"><dt>Owner</dt><dd>CODEX</dd></div></dl>
+</article>
+<article class="registry-card" data-status="MEDIUM" data-search="risk-12 split_governance generic split-role contracts and frozen task-specific readers enforce compatible boundaries through distributed code rather than one proven universal adapter. medium medium split_governance component:split_governance add a static entrypoint-to-split conformance audit before future scientific expansion. codex open origin/research-v6-thesis-checkpoint 2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e">
+<div class="card-heading">
+<div><p class="eyebrow">RISK-12</p><h3>Generic split-role contracts and frozen task-specific readers enforce compatible boundaries through distributed code rather than one proven universal adapter.</h3></div>
+<span class="badge badge-gray">MEDIUM</span>
+</div>
+<dl><div class="card-field"><dt>Status</dt><dd>OPEN</dd></div><div class="card-field"><dt>Likelihood</dt><dd>MEDIUM</dd></div><div class="card-field"><dt>Evidence</dt><dd>component:SPLIT_GOVERNANCE</dd></div><div class="card-field"><dt>Mitigation</dt><dd>Add a static entrypoint-to-split conformance audit before future scientific expansion.</dd></div><div class="card-field"><dt>Owner</dt><dd>CODEX</dd></div></dl>
 </article></div>
     </section>
 
@@ -662,11 +692,11 @@
     <section id="recent-change" class="section">
       <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
       <div class="timeline"><article class="timeline-item"><time>2026-08-29</time><div><strong>Research Control Center established and normalized</strong><p>RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article><article class="timeline-item"><time>2026-08-26</time><div><strong>Integrated report preparation update</strong><p>The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.</p></div><span class="badge badge-yellow">HISTORICAL</span></article><article class="timeline-item"><time>2026-08-24</time><div><strong>Professor first-results package and scientific checkpoint frozen</strong><p>The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.</p></div><span class="badge badge-green">ACTIVE CONTEXT</span></article></div>
-      <div class="next-task"><span>Exact next task</span><strong>ARCH-001 — Data / Provenance / Split Governance Deep Audit</strong></div>
+      <div class="next-task"><span>Exact next task</span><strong>ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit</strong></div>
     </section>
   </main>
 
-  <footer>Generated from RCC registry snapshot 2026-08-29T09:00:00Z · Authority <code>2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e</code></footer>
+  <footer>Generated from RCC registry snapshot 2026-08-29T06:24:06Z · Authority <code>2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e</code></footer>
   <script src="assets/rcc.js"></script>
 </body>
 </html>

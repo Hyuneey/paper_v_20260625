@@ -1,0 +1,437 @@
+{
+  "artifact_type": "arch001_agent_b_split_leakage_evidence_v1",
+  "task_id": "ARCH-001",
+  "agent_role": "Split & Leakage Governance Auditor",
+  "audit_mode": "READ_ONLY_STATIC_AND_PUBLIC_SAFE_EVIDENCE",
+  "scientific_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "rcc_base_commit": "20188fbf49332e30f39f27f2f2848db0b2ce5a83",
+  "status": "PASS_WITH_NONBLOCKING_GOVERNANCE_QUALIFICATIONS",
+  "overall_verdict": "NO_VERIFIED_LEAKAGE_FOUND",
+  "verdict_boundary": "The frozen execution lineage and task-specific guards show no verified label-to-fit, test1-result-to-rule, or test2-byte-to-science path. This is not a proof that leakage is impossible in every future or manually altered workflow.",
+  "split_roles": [
+    {
+      "documentation_name": "train1",
+      "actual_file_identity": "hai-23.05/hai-train1.csv",
+      "normal_status": "VERIFIED_NORMAL_INPUT",
+      "roles": [
+        "NORMAL_CANDIDATE_FIT",
+        "RELATION_FIT_PROFILING",
+        "UTILITY_NORMAL_ONLY_NUMERIC_CALIBRATION",
+        "D0_MODEL_AND_PREPROCESSING_FIT"
+      ],
+      "label_policy": "No scientific label input is consumed; feature loaders select bounded feature columns and access audits record labels_accessed=false.",
+      "test_or_evaluation_role": false,
+      "evidence": [
+        "src/paperworks/v6/candidate_discovery_protocol_v1.py:35-50",
+        "src/paperworks/profiling/task039d1_fit_v1.py:465-617",
+        "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py:1835-1852",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:903-939",
+        "docs/task_reports/TASK-039C_STAT_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039C_GDNP_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039D1_DATA_ACCESS_AUDIT.json"
+      ]
+    },
+    {
+      "documentation_name": "train2",
+      "actual_file_identity": "hai-23.05/hai-train2.csv",
+      "normal_status": "VERIFIED_NORMAL_INPUT",
+      "roles": [
+        "NORMAL_CANDIDATE_FIT",
+        "RELATION_FIT_PROFILING",
+        "UTILITY_NORMAL_ONLY_NUMERIC_CALIBRATION",
+        "D0_MODEL_AND_PREPROCESSING_FIT"
+      ],
+      "label_policy": "No scientific label input is consumed; feature loaders select bounded feature columns and access audits record labels_accessed=false.",
+      "test_or_evaluation_role": false,
+      "evidence": [
+        "src/paperworks/v6/candidate_discovery_protocol_v1.py:35-50",
+        "src/paperworks/profiling/task039d1_fit_v1.py:465-617",
+        "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py:1835-1852",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:903-939",
+        "docs/task_reports/TASK-039C_STAT_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039C_GDNP_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039D1_DATA_ACCESS_AUDIT.json"
+      ]
+    },
+    {
+      "documentation_name": "train3",
+      "actual_file_identity": "hai-23.05/hai-train3.csv",
+      "normal_status": "VERIFIED_NORMAL_INPUT",
+      "roles": [
+        "ONE_WAY_RELATION_CONFIRMATION",
+        "D0_THRESHOLD_CALIBRATION"
+      ],
+      "label_policy": "No label or attack input is consumed in either path.",
+      "test_or_evaluation_role": false,
+      "dual_role_classification": "ACCEPTABLE_WITH_SCOPE_LIMITATION",
+      "dual_role_rationale": "The relation-confirmation and D0-threshold paths are separate modules, consume only the normal feature file, reuse no attack/test outcomes, and freeze different artifacts. Reusing one normal split nevertheless couples two method-development decisions and should be disclosed when interpreting the 14-event INNER comparison.",
+      "evidence": [
+        "src/paperworks/profiling/task039d2_real_execution_v1.py:342-473",
+        "src/paperworks/profiling/task039d2_real_execution_v1.py:706-780",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py:312-369",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:947-954",
+        "docs/task_reports/TASK-039D2_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_TRAINING_V1_ACCOUNTING.json"
+      ]
+    },
+    {
+      "documentation_name": "train4",
+      "actual_file_identity": "hai-23.05/hai-train4.csv",
+      "normal_status": "VERIFIED_NORMAL_INPUT",
+      "roles": [
+        "D0_NORMAL_SANITY_EVALUATION_ONLY"
+      ],
+      "label_policy": "No label input; the frozen D0 design prohibits train4 tuning.",
+      "test_or_evaluation_role": false,
+      "qualification": "Older relation-profiling documentation says train4 was reserved and prohibited during those tasks. The later D0 detector design explicitly authorizes it for sanity-only evaluation after model and threshold freeze; this is temporal scope evolution, not contradictory execution.",
+      "evidence": [
+        "docs/v6/HAI_CONTINUOUS_NORMAL_SPLITS.md",
+        "docs/v6/RELATION_PROFILING_FIT_CONFIRMATION_SPLIT.md",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py:312-369",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:953-1000",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_TRAINING_V1_ACCOUNTING.json"
+      ]
+    },
+    {
+      "documentation_name": "test1",
+      "actual_file_identity": "hai-23.05/hai-test1.csv plus separately bound label-test1.csv",
+      "normal_status": "MIXED_INNER_PILOT_EVALUATION",
+      "roles": [
+        "D0_LABEL_BLIND_PREDICTION",
+        "D1_LABEL_BLIND_RUNTIME_PREDICTION",
+        "D2_FUSION_FROM_FROZEN_PREDICTIONS",
+        "D2_V2_LABEL_INFORMED_INNER_POLICY_DEVELOPMENT",
+        "LABEL_AWARE_METRICS_AFTER_PREDICTION"
+      ],
+      "label_policy": "Feature and label custody are separate. D0 and D2 persist and validate their prediction artifacts before label access. D1 builds and validates its complete in-memory prediction before label access but writes its public prediction file during later result reporting.",
+      "test_or_evaluation_role": true,
+      "scientific_interpretation": "DEVELOPMENT_PILOT_EVALUATION_NOT_FINAL_VALIDATION",
+      "evidence": [
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:607-626",
+        "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:1796-1928",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:1920-2020",
+        "src/paperworks/v6/task039e3_r2r_utility_inner_d1_execution_v1.py:2500-2570",
+        "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:519-536",
+        "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:1100-1281",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_EXECUTION_V1_ACCOUNTING.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_ACCOUNTING.json"
+      ]
+    },
+    {
+      "documentation_name": "test2",
+      "actual_file_identity": "sealed OUTER feature and label authorities",
+      "normal_status": "HELD_OUT_UNAVAILABLE_RESULT",
+      "roles": [
+        "INTENDED_ONE_SHOT_OUTER_EVALUATION"
+      ],
+      "label_policy": "No test2 label file access, hash computation, or semantic parse occurred in the frozen OUTER attempt.",
+      "test_or_evaluation_role": true,
+      "historical_custody_detail": {
+        "feature_file_access_attempts": 1,
+        "feature_byte_reads": 0,
+        "feature_hash_computations": 0,
+        "feature_semantic_parses": 0,
+        "label_file_accesses": 0,
+        "label_hash_computations": 0,
+        "label_semantic_parses": 0,
+        "predictions_frozen": 0,
+        "metric_computations": 0,
+        "scientific_outcome": "UNAVAILABLE"
+      },
+      "qualification": "Generic wording such as 'test2 accesses = 0' is ambiguous. The authoritative recovery blocker records one custody-level feature file access attempt rejected before any byte read. The defensible claim is zero test2 feature bytes, hashes, semantic parses, labels, predictions, and metrics.",
+      "evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_V1_BLOCKER.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_D0_D1_D2V1_EXECUTION_RECOVERY_V1_BLOCKER.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_OUTER_PRE_EXECUTION_CUSTODY_R2_READINESS.json"
+      ]
+    }
+  ],
+  "normal_only_contract": {
+    "candidate_discovery": {
+      "status": "VERIFIED",
+      "detail": "META is feature-value-free; STAT and the successful upstream-aligned GDN arm are restricted to exact train1/train2 P1 feature identities. Train3, train4, test, labels, attacks, BR2 pair supervision, and cross-arm outputs are excluded by policy and recorded access audits.",
+      "evidence": [
+        "src/paperworks/v6/candidate_discovery_protocol_v1.py:430-478",
+        "src/paperworks/v6/candidate_discovery_protocol_v1.py:500-700",
+        "docs/task_reports/TASK-039C_STAT_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039C_GDNP_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039C_GDN_FINAL_AUDIT.json"
+      ]
+    },
+    "gdn_training": {
+      "status": "VERIFIED",
+      "detail": "The final passed GDN lineage used only P1 train1/train2 normal features; labels, tests, other processes, candidate-arm outputs, and BR2 supervision were not used.",
+      "evidence": [
+        "docs/task_reports/TASK-039C_GDNP_DATA_ACCESS_AUDIT.json",
+        "docs/task_reports/TASK-039C_GDN_FINAL_AUDIT.json"
+      ]
+    },
+    "relation_profiling": {
+      "status": "VERIFIED",
+      "detail": "Exact train1/train2 identities are verified before selected P1 columns are read; test, labels, train3, and train4 are excluded from fit profiling.",
+      "evidence": [
+        "src/paperworks/profiling/task039d1_fit_v1.py:465-617",
+        "docs/task_reports/TASK-039D1_DATA_ACCESS_AUDIT.json"
+      ]
+    },
+    "relation_confirmation": {
+      "status": "VERIFIED",
+      "detail": "One-way train3 confirmation reuses the frozen fit parameters without retuning or alternative-horizon search, hides candidate provenance until outcomes freeze, and excludes test, labels, attacks, train4, and other-process values.",
+      "evidence": [
+        "src/paperworks/profiling/task039d2_real_execution_v1.py:131-150",
+        "src/paperworks/profiling/task039d2_real_execution_v1.py:405-473",
+        "src/paperworks/profiling/task039d2_real_execution_v1.py:765-780",
+        "docs/task_reports/TASK-039D2_DATA_ACCESS_AUDIT.json"
+      ]
+    },
+    "numeric_authority": {
+      "status": "VERIFIED_WITH_LINEAGE_QUALIFICATION",
+      "detail": "Historical construction evidence binds normal train1/train2 fit evidence and normal train3 confirmation evidence. The later utility runtime numeric authority is a separately versioned normal-only recalibration from train1/train2 and explicitly does not restore historical E1 numeric identity. Both are label-free, but they must not be represented as one artifact or one calibration event.",
+      "evidence": [
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:136-152",
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:446-475",
+        "src/paperworks/v6/task039e3_r2r_utility_normal_only_authority_v1.py:678-724",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_INDEPENDENT_SCIENCE_AUDIT.json"
+      ]
+    },
+    "rule_construction": {
+      "status": "VERIFIED",
+      "detail": "T0/T1/T1-B/T2 consume the frozen E1 construction evidence projection; E1 itself rereads no HAI and records test_labels_attacks_accessed=false. Test1 labels cannot enter the construction input contract.",
+      "evidence": [
+        "src/paperworks/v6/task039e1_evidence_materialization_v1.py:690-729",
+        "src/paperworks/v6/task039e3_scientific_execution_v1.py:232-335",
+        "src/paperworks/v6/task039e3_scientific_execution_v1.py:649-701",
+        "docs/task_reports/TASK-039E1_DATA_ACCESS_AUDIT.json"
+      ]
+    },
+    "deterministic_verifier": {
+      "status": "VERIFIED",
+      "detail": "The verifier receives bounded proposal/evidence/authority objects, not attack labels or test outcomes. Validity and utility remain separate lanes.",
+      "evidence": [
+        "src/paperworks/v6/task039e0_validity_v2.py",
+        "src/paperworks/v6/task039e3_scientific_execution_v1.py:649-701"
+      ]
+    },
+    "common42_freeze": {
+      "status": "VERIFIED",
+      "detail": "COMMON-42 is bound to the E1 cohort and executable-equivalence evidence. No test1 metric or label input appears in its authority reconstruction. Utility later binds a new normal-only numeric authority without changing the historical construction-validity claim.",
+      "evidence": [
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_COMMON42_AUTHORITY_CHECK.json",
+        "docs/task_reports/TASK-039E3_R2R_UTILITY_NORMAL_ONLY_AUTHORITY_V1_INDEPENDENT_SCIENCE_AUDIT.json"
+      ]
+    }
+  },
+  "test1_backward_influence": {
+    "overall_status": "NO_BACKWARD_INFLUENCE_TO_D0_D1_COMMON42; D2_V2_EXPLICITLY_TEST1_INFORMED",
+    "d0": {
+      "status": "VERIFIED",
+      "reason": "Preprocessing/model/threshold are frozen from normal files before test1 execution; the real execution accepts no scientific knobs, accesses labels only after persisted prediction freeze, and records result_driven_changes=false."
+    },
+    "d1": {
+      "status": "VERIFIED_WITH_PERSISTENCE_QUALIFICATION",
+      "reason": "The bridge loads frozen COMMON-42/private numeric authorities, constructs and validates all prediction records before label parsing, has no rule-registry write or tuning path, and records result_driven_changes=false. The public prediction file is emitted after metrics, so do not describe D1 as having the same persistent pre-label freeze as D0/D2."
+    },
+    "d2_v1": {
+      "status": "VERIFIED",
+      "reason": "Consumes frozen D0/D1 prediction artifacts, performs no D0/D1 execution or test1 feature access, persists combined prediction before labels, and records result_driven_changes=false."
+    },
+    "d2_v2": {
+      "status": "VERIFIED_EXECUTION_ORDER_BUT_EXPLICIT_INNER_DEVELOPMENT",
+      "reason": "The frozen D2 V2 execution consumes frozen D0/D1 predictions plus frozen source/horizon metadata, performs no rule reevaluation or test1 feature access, persists combined prediction before labels, and records result_driven_changes=false. However, the V2 design report explicitly states that D2 V1 INNER outcomes and failure diagnostics informed V2 problem formulation. V2 is therefore a label-informed INNER development policy and its test1 metric is not independent confirmation."
+    },
+    "rule_deletion_or_reselection_after_test1": "NOT_PRESENT_IN_FROZEN_EXECUTION_PATH",
+    "numeric_retuning_after_test1": "NOT_PRESENT_IN_FROZEN_EXECUTION_PATH",
+    "attack_interval_redefinition_for_selection": "NOT_PRESENT; LABEL-DERIVED EVENTS ARE METRIC-ONLY AFTER PREDICTION",
+    "evidence": [
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D0_EXECUTION_V1_ACCOUNTING.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D1_EXECUTION_V1_ACCOUNTING.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_EXECUTION_RECOVERY_V1_ACCOUNTING.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_EXECUTION_V1_ACCOUNTING.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_DESIGN_V1_REPORT.md",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V1_V2_DISPOSITION_V1_REPORT.md"
+    ]
+  },
+  "d0_data_governance": {
+    "fit": "train1 + train2 only; concatenated without shuffle; labels/test excluded",
+    "calibration": "train3 only; strict frozen quantile policy; labels/test excluded",
+    "sanity": "train4 only after model and threshold freeze; tuning prohibited",
+    "inner": "test1 features produce prediction; separate test1 labels enter metrics after prediction gate",
+    "threshold_independent_of_test1_outcome": true,
+    "evidence": [
+      "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py:128-151",
+      "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py:312-369",
+      "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:903-1000",
+      "src/paperworks/v6/task039e3_r2r_d0_inner_execution_v1.py:2467-2590"
+    ]
+  },
+  "d2_data_governance": {
+    "input_authority": "Frozen D0 and D1 prediction artifacts; D2 V2 also consumes frozen source/horizon metadata.",
+    "test1_feature_access": false,
+    "label_used_for_fusion": false,
+    "combined_prediction_persisted_before_label": true,
+    "label_used_for_metrics_only": true,
+    "evidence": [
+      "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:920-1115",
+      "src/paperworks/v6/task039e3_r2r_d2_inner_execution_v1.py:1231-1281",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_EXECUTION_RECOVERY_V1_ACCOUNTING.json",
+      "docs/task_reports/TASK-039E3_R2R_UTILITY_INNER_D2_V2_EXECUTION_V1_ACCOUNTING.json"
+    ]
+  },
+  "leakage_matrix": {
+    "cell_enum": [
+      "READ_ALLOWED",
+      "READ_NOT_USED",
+      "FORBIDDEN",
+      "UNKNOWN",
+      "NOT_APPLICABLE"
+    ],
+    "cell_semantics": {
+      "READ_ALLOWED": "The frozen task contract permits and the execution evidence records this direct split/field read.",
+      "READ_NOT_USED": "The stage does not directly read this split/field; it may consume an upstream frozen artifact derived from it.",
+      "FORBIDDEN": "The stage contract rejects or does not authorize this split/field.",
+      "UNKNOWN": "Available public/static evidence cannot establish either direct use or prohibition.",
+      "NOT_APPLICABLE": "The field is not a scientific input concept for this stage; used especially for metadata-only operations."
+    },
+    "train_label_note": "The normal train files are governed as normal-only inputs. Scientific stage loaders do not consume an attack-label input. Matrix train-label cells therefore use READ_NOT_USED or FORBIDDEN rather than inventing a separate attack-label dataset.",
+    "columns": [
+      "train1_features",
+      "train1_labels",
+      "train2_features",
+      "train2_labels",
+      "train3_features",
+      "train3_labels",
+      "train4_features",
+      "train4_labels",
+      "test1_features",
+      "test1_labels",
+      "test2_features",
+      "test2_labels"
+    ],
+    "rows": [
+      {"stage":"META discovery","cells":["NOT_APPLICABLE","NOT_APPLICABLE","NOT_APPLICABLE","NOT_APPLICABLE","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Metadata/reference evidence only; HAI feature values prohibited."},
+      {"stage":"STAT discovery","cells":["READ_ALLOWED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Exact train1/train2 P1 values only; file-local operations."},
+      {"stage":"GDN training","cells":["READ_ALLOWED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Final passed arm is train1/train2 normal-only."},
+      {"stage":"candidate union","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes arm artifacts only; no raw value read."},
+      {"stage":"relation fit profiling","cells":["READ_ALLOWED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Exact train1/train2 fit values."},
+      {"stage":"relation confirmation","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"One-way train3 confirmation; fixed fit parameters."},
+      {"stage":"E1 evidence materialization","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Reads frozen private ledgers derived from train1/train2/train3, not HAI rows."},
+      {"stage":"utility runtime numeric authority","cells":["READ_ALLOWED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Separately versioned recalibration from exact train1/train2."},
+      {"stage":"T0 construction","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes E1 evidence, not raw splits."},
+      {"stage":"T1 construction","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes E1 evidence, not raw splits."},
+      {"stage":"T1-B construction","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes E1 evidence, not raw splits."},
+      {"stage":"T2 construction","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes E1 evidence plus verifier feedback, not evaluation labels."},
+      {"stage":"deterministic verifier","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Validity inputs are proposal/evidence/authority objects."},
+      {"stage":"COMMON-42 freeze","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes construction/equivalence artifacts; no utility outcomes."},
+      {"stage":"D0 fitting","cells":["READ_ALLOWED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Preprocessing and PCA fit only."},
+      {"stage":"D0 threshold calibration","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Normal train3 score quantile only."},
+      {"stage":"D0 normal sanity","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_ALLOWED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Evaluation-only after model and threshold freeze; no tuning."},
+      {"stage":"D0 test prediction","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_ALLOWED","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Label-blind test1 feature parse."},
+      {"stage":"D1 runtime","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_ALLOWED","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Frozen rule/numeric authorities; label follows complete prediction validation."},
+      {"stage":"D2 V1/V2 fusion","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN","FORBIDDEN"],"note":"Consumes frozen prediction artifacts, not test1 features or labels."},
+      {"stage":"D2 V2 policy design","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN","FORBIDDEN"],"note":"No raw test1 feature or label file was opened in the design task, but frozen D2 V1 INNER outcomes and failure diagnostics explicitly informed V2 problem formulation. This is indirect label-informed pilot development."},
+      {"stage":"INNER metric calculation","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_ALLOWED","FORBIDDEN","FORBIDDEN"],"note":"Label-aware evaluation only after relevant prediction gate."},
+      {"stage":"historical OUTER recovery attempt","cells":["READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","READ_NOT_USED","FORBIDDEN"],"note":"One test2 feature custody access attempt was rejected before byte read; no scientific data read or result. Label remained unopened."}
+    ]
+  },
+  "test_reachability": {
+    "candidate_and_relation_paths": "Exact allowed relative filenames, hashes, sizes, headers, process IDs, and selected-column identities are checked. Test paths are not accepted by those loaders.",
+    "d0_training_path": "The no-knob execution materializes exact normal payload roles; grant flags deny test1/test2 and labels.",
+    "inner_execution_paths": "D0 and D1 are fixed test1-only entrypoints; D2 consumes frozen predictions and denies test1-feature/test2 access.",
+    "outer_path": "Separate one-shot authorization existed. The recovery attempt reached the first feature-custody access and failed closed before reading bytes.",
+    "centralization_qualification": "Enforcement is task-specific rather than routed through one universal split dispatcher. Exact identity checks and access receipts provide strong frozen-run evidence, but the distributed governance surface is a maintainability and future-enforcement risk."
+  },
+  "findings": [
+    {
+      "finding_id": "ARCH001-B-001",
+      "severity": "HIGH",
+      "type": "LABEL_ACCESS_ORDER",
+      "finding": "D1 validates a complete label-blind in-memory prediction before label parsing, but its public prediction file is written later with the metric reports rather than persistently frozen before label access.",
+      "scientific_impact": "No backward tuning is evidenced in the frozen run, but D1 does not provide the same durable pre-label byte-freeze guarantee as D0/D2. Claims should preserve this distinction until ARCH-008 examines it deeply.",
+      "recommended_action": "Document the weaker D1 persistence guarantee; do not retrofit or rerun in ARCH-001."
+    },
+    {
+      "finding_id": "ARCH001-B-002",
+      "severity": "MEDIUM",
+      "type": "CALIBRATION_COUPLING",
+      "finding": "train3 has two independent normal-only roles: relation confirmation and D0 threshold calibration.",
+      "scientific_impact": "No verified leakage, but the current INNER methods share one normal calibration context; method comparisons are pilot evidence, not independent generalization.",
+      "recommended_action": "Report as ACCEPTABLE_WITH_SCOPE_LIMITATION and preregister independent held-out evaluation."
+    },
+    {
+      "finding_id": "ARCH001-B-003",
+      "severity": "MEDIUM",
+      "type": "CUSTODY_TERMINOLOGY",
+      "finding": "The OUTER recovery blocker records one test2 feature file custody-access attempt but zero feature byte reads, hashes, or parses.",
+      "scientific_impact": "A generic statement 'test2 accesses = 0' can be misleading even though no scientific test2 content was exposed.",
+      "recommended_action": "Use separate file-access-attempt and byte/semantic-access counters."
+    },
+    {
+      "finding_id": "ARCH001-B-004",
+      "severity": "MEDIUM",
+      "type": "AUTHORITY_LINEAGE",
+      "finding": "Historical construction numeric evidence and the later utility runtime normal-only numeric authority are separate authorities with different lineage.",
+      "scientific_impact": "Collapsing them can obscure which normal split determined construction acceptance versus runtime thresholds.",
+      "recommended_action": "Keep two lanes in the official split/dataflow map."
+    },
+    {
+      "finding_id": "ARCH001-B-005",
+      "severity": "MEDIUM",
+      "type": "GOVERNANCE_DISTRIBUTION",
+      "finding": "Split enforcement is distributed among task-specific loaders, grants, constants, hashes, and accounting artifacts rather than one universal active split guard.",
+      "scientific_impact": "Frozen executions are strongly bound, but future entrypoints could drift unless they replay the same exact authorities.",
+      "recommended_action": "Deep reviews should verify each executable entrypoint independently; do not infer global enforcement from a generic split contract."
+    },
+    {
+      "finding_id": "ARCH001-B-006",
+      "severity": "LOW",
+      "type": "DOCUMENTATION",
+      "finding": "The historical relation-profiling document uses D1/D2 names for fit and confirmation and says train4 is reserved, while current architecture uses D1/D2 for rule-only/fusion and later D0 explicitly uses train4 for sanity.",
+      "scientific_impact": "Terminology can confuse chronology but does not change the frozen data path.",
+      "recommended_action": "Add current-vs-historical terminology notes; do not rewrite the frozen document."
+    },
+    {
+      "finding_id": "ARCH001-B-007",
+      "severity": "HIGH",
+      "type": "SPLIT_ROLE",
+      "finding": "D2 V2 was preregistered after D2 V1 INNER outcomes and failure diagnostics informed its problem formulation; its own design report calls it an explicitly label-informed INNER-development policy.",
+      "scientific_impact": "D2 V2 execution ordering remains label-blind until prediction freeze, but its test1 result cannot be treated as independent validation or clean confirmation because the policy was designed from information derived on the same INNER split.",
+      "recommended_action": "Keep D2 V2 as pilot/development evidence only. Do not tune further on test1; use a separately preregistered held-out evaluation for confirmation."
+    }
+  ],
+  "finding_counts": {
+    "critical": 0,
+    "high": 2,
+    "medium": 4,
+    "low": 1,
+    "verified_leakage": 0
+  },
+  "unknowns": [
+    {
+      "unknown_id": "ARCH001-B-U001",
+      "question": "Can the D1 public prediction artifact's post-metric write be proven byte-equivalent to a pre-label serialization candidate from existing evidence?",
+      "reason": "The implementation validates the in-memory prediction before label access but does not persist those bytes at that point.",
+      "routing": "ARCH-008"
+    },
+    {
+      "unknown_id": "ARCH001-B-U002",
+      "question": "Will a future held-out protocol isolate detector calibration and relation confirmation across independent normal contexts?",
+      "reason": "Current train3 dual use is acceptable for the pilot but does not establish independent generalization.",
+      "routing": "ARCH-011_OR_FUTURE_PREREGISTRATION"
+    }
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "raw_hai_reads": 0,
+    "test2_feature_file_accesses_by_this_audit": 0,
+    "test2_feature_byte_reads_by_this_audit": 0,
+    "test2_label_accesses_by_this_audit": 0,
+    "metric_recomputations": 0,
+    "model_fits": 0,
+    "threshold_calibrations": 0,
+    "scientific_code_changes": 0,
+    "frozen_artifact_changes": 0,
+    "private_paths_exposed": 0,
+    "private_values_exposed": 0,
+    "remote_pushes": 0
+  }
+}

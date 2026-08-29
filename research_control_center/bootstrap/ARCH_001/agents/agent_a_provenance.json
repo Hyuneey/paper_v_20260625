@@ -1,0 +1,378 @@
+{
+  "task_id": "ARCH-001",
+  "agent_role": "Agent A - Data Provenance Auditor",
+  "status": "PASS_WITH_NON_BLOCKING_GAPS_RECORDED",
+  "authority": {
+    "rcc_head": "20188fbf49332e30f39f27f2f2848db0b2ce5a83",
+    "scientific_ref": "origin/research-v6-thesis-checkpoint",
+    "scientific_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "immutable_pin": "thesis-v1-post-push-audit",
+    "immutable_pin_peeled_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "source_diff_from_scientific_commit_to_rcc_head": 0,
+    "inspection_method": "Static source, Git metadata, frozen public-safe configuration, and sanitized reports only",
+    "current_checkout_used_as_scientific_authority": false
+  },
+  "dataset_identity": {
+    "dataset_name": "HAI",
+    "dataset_version_or_edition": "23.05",
+    "official_repository": "https://github.com/icsdataset/hai",
+    "official_snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "source_kind": "official_github_git_lfs",
+    "dataset_manifest_id": "5b0c395169fea468f7afd52aceafc4e6dadf062a1bc557c5bbe5dd6b8a761aa2",
+    "provenance_status": "VERIFIED",
+    "official_distribution_route": "The official Kaggle icsdataset/hai-security-dataset route was used only for selective payload transport; the pinned Git snapshot and Git-LFS OIDs remained identity authority.",
+    "distribution_equivalence": {
+      "approved_file_count": 10,
+      "selectively_downloaded_file_count": 10,
+      "all_files_byte_equivalent": true,
+      "complete_dataset_download_used": false,
+      "haiend_or_earlier_payload_downloaded": false,
+      "public_evidence": "docs/task_reports/TASK-039AR_BYTE_EQUIVALENCE_REPORT.json"
+    },
+    "public_manifest_summary": {
+      "primary_point_count": 86,
+      "available_process_ids": ["P1", "P2", "P3", "P4"],
+      "nominal_sampling_interval_seconds": 1.0,
+      "timestamp_field": "timestamp",
+      "timestamp_format": "ISO-8601-compatible source timestamp",
+      "timestamp_timezone": "source_unspecified",
+      "label_field": "label",
+      "label_encoding": {"normal": 0, "attack": 1},
+      "local_only_storage": true,
+      "public_evidence": "docs/task_reports/TASK-039A_DATASET_MANIFEST_V2.json"
+    }
+  },
+  "file_identity_policy": {
+    "approved_relative_root": "hai-23.05/",
+    "approved_files": [
+      {"identity": "hai-train1.csv", "role": "normal_train_time_series", "row_count": 280800},
+      {"identity": "hai-train2.csv", "role": "normal_train_time_series", "row_count": 291600},
+      {"identity": "hai-train3.csv", "role": "normal_train_time_series", "row_count": 126000},
+      {"identity": "hai-train4.csv", "role": "normal_train_time_series", "row_count": 198000},
+      {"identity": "hai-test1.csv", "role": "test_time_series", "row_count": 54000},
+      {"identity": "TEST2_FEATURE_AUTHORITY", "role": "test_time_series", "row_count": 230400},
+      {"identity": "label-test1.csv", "role": "external_test_label", "row_count": 54000},
+      {"identity": "TEST2_LABEL_AUTHORITY", "role": "external_test_label", "row_count": 230400},
+      {"identity": "summary_label1.txt", "role": "private_attack_summary_reference", "row_count": null},
+      {"identity": "summary_label2.txt", "role": "private_attack_summary_reference", "row_count": null}
+    ],
+    "validation_dimensions": [
+      "Pinned relative identity",
+      "Git-LFS SHA-256 OID",
+      "Materialized SHA-256",
+      "Byte size",
+      "Row count where applicable",
+      "Canonical aligned header",
+      "UTF-8 and delimiter structure",
+      "Strictly increasing one-second timestamps",
+      "Zero duplicate timestamps",
+      "Normal-only status for train files"
+    ],
+    "excluded_source_scope": ["haiend-23.05", "earlier HAI editions", "whole-dataset fallback", "mirror/archive fallback"],
+    "evidence": [
+      "configs/data/hai_2305_official_provenance.json",
+      "docs/task_reports/TASK-039A_SOURCE_RECEIPT.json",
+      "docs/task_reports/TASK-039A_CSV_STRUCTURE_REPORT.json",
+      "docs/task_reports/TASK-039AR_BYTE_EQUIVALENCE_REPORT.json"
+    ]
+  },
+  "process_scope": {
+    "selected_process_id": "P1",
+    "selected_process_name": "Boiler",
+    "selection_status": "selected",
+    "selection_reason": "only_P1_feasible",
+    "excluded_comparison_process": "P3",
+    "selection_input_scope": "Verified normal train1, train2, and train3, limited to frozen P1/P3 source and target columns",
+    "train4_value_use_during_process_selection": false,
+    "test_feature_use_during_process_selection": false,
+    "label_use_during_process_selection": false,
+    "public_selection_artifact": "docs/task_reports/TASK-039BR2_PROCESS_SELECTION.json",
+    "public_freeze_artifact": "docs/task_reports/TASK-039BR2_PROCESS_FREEZE.json",
+    "data_access_artifact": "docs/task_reports/TASK-039BR2_DATA_ACCESS_AUDIT.json"
+  },
+  "feature_and_role_authorities": {
+    "dataset_feature_scope": {
+      "count": 86,
+      "authority": "TASK-039A DatasetManifestV2",
+      "ordering": "Canonical raw header order verified across six time-series files"
+    },
+    "p1_process_feature_scope": {
+      "count": 37,
+      "definition": "All canonical header variables with the P1_ prefix",
+      "ordering": "Canonical source column order",
+      "timestamp_included_as_feature": false,
+      "label_included_as_feature": false,
+      "authority": "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py:55-101,291-310"
+    },
+    "candidate_role_scope": {
+      "source_count": 12,
+      "target_count": 12,
+      "eligible_directed_pair_count": 144,
+      "source_roles": ["control_command", "actuator_feedback", "actuator_state"],
+      "target_roles": ["process_sensor"],
+      "source_target_overlap_count": 0,
+      "identity_ordering": "lexicographic_variable_name",
+      "pair_ordering": "source_then_target_lexicographic",
+      "self_pairs_excluded": true,
+      "out_of_universe_candidates_rejected": true,
+      "authority": "src/paperworks/v6/candidate_discovery_protocol_v1.py:225-366",
+      "public_artifact": "docs/task_reports/TASK-039C0_PROTOCOL_BUNDLE.json"
+    },
+    "important_distinction": "The 37-column P1 process/model feature order and the lexicographically ordered 12-by-12 candidate-role universe are separate authorities with different scientific purposes."
+  },
+  "timestamp_and_label_separation": {
+    "timestamp": {
+      "observed_contract": "Exactly one discoverable timestamp field; source timestamps are structurally audited as strictly increasing at a nominal one-second interval with no duplicates.",
+      "model_feature": false,
+      "timezone_status": "source_unspecified",
+      "evidence": "src/paperworks/data/hai_provenance_v1.py:866-934 and docs/task_reports/TASK-039A_CSV_STRUCTURE_REPORT.json"
+    },
+    "labels": {
+      "physical_separation": "Test labels are represented by separate test1 and test2 label identities; train files are recorded as normal-only with label availability unavailable.",
+      "provenance_access_boundary": "Label content was permitted for provenance custody only and not for scientific selection; attack details were excluded from public artifacts.",
+      "p1_feature_exclusion": "The D0 P1 feature authority explicitly excludes timestamp, labels, attack metadata, and non-P1 variables.",
+      "evidence": [
+        "src/paperworks/data/hai_provenance_v1.py:671-721",
+        "src/paperworks/data/hai_provenance_v1.py:1342-1443",
+        "docs/task_reports/TASK-039A_LABEL_CUSTODY_PUBLIC_REPORT.json",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py:122-151,291-328"
+      ]
+    }
+  },
+  "verified_provenance_chain": [
+    {
+      "order": 1,
+      "from": "Official HAI repository",
+      "to": "Pinned HAI 23.05 Git snapshot and ten Git-LFS identities",
+      "mechanism": "Repository/tree/blob/LFS custody verification",
+      "evidence": "src/paperworks/data/hai_provenance_v1.py:130-282 and docs/task_reports/TASK-039A_SOURCE_RECEIPT.json",
+      "verified": true
+    },
+    {
+      "order": 2,
+      "from": "Pinned Git-LFS identities",
+      "to": "Selectively transported local payload bytes",
+      "mechanism": "Per-file hash and size equality across Git-LFS, frozen TASK-039A expectation, and extracted payload",
+      "evidence": "src/paperworks/data/hai_distribution_v1.py:287-401 and docs/task_reports/TASK-039AR_BYTE_EQUIVALENCE_REPORT.json",
+      "verified": true
+    },
+    {
+      "order": 3,
+      "from": "Verified local-only payload",
+      "to": "Public DatasetManifestV2 and structural records",
+      "mechanism": "Streaming file hash, schema/timestamp/header audit, and self-hashed manifest generation",
+      "evidence": "src/paperworks/data/hai_provenance_v1.py:114-126,283-443,912-1034,1342-1443",
+      "verified": true
+    },
+    {
+      "order": 4,
+      "from": "DatasetManifestV2 plus BR0/BR1 authorities",
+      "to": "Verified normal-file records and bounded P1/P3 in-memory columns",
+      "mechanism": "Hash/size/row/sampling/normal-status replay followed by a fail-closed path-and-column ledger",
+      "evidence": "src/paperworks/feasibility/hai_continuous_step_v1.py:1240-1294,1323-1513",
+      "verified": true
+    },
+    {
+      "order": 5,
+      "from": "Normal-only P1/P3 feasibility evidence",
+      "to": "Frozen P1 Boiler selection, canonical P1 view, and three normal split manifests",
+      "mechanism": "Frozen selection policy and split-before-windowing construction with a 120-sample purge",
+      "evidence": "src/paperworks/feasibility/hai_continuous_step_v1.py:1535-1638,2117-2162",
+      "verified": true
+    },
+    {
+      "order": 6,
+      "from": "Frozen P1 process and split identities",
+      "to": "P1 candidate-role universe",
+      "mechanism": "Twelve reviewed sources crossed with twelve reviewed process-sensor targets under exact ordering and identity hashes",
+      "evidence": "src/paperworks/v6/candidate_discovery_protocol_v1.py:225-366",
+      "verified": true
+    },
+    {
+      "order": 7,
+      "from": "Frozen P1 process feature authority",
+      "to": "Downstream task-specific scientific consumers",
+      "mechanism": "Consumers bind dataset/process/split/feature hashes and use their own strict parsers; examples include candidate arms and D0 normal training",
+      "evidence": "src/paperworks/v6/candidate_discovery_protocol_v1.py:952-1026 and src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:727-778,902-980",
+      "verified": true
+    }
+  ],
+  "source_catalog": [
+    {
+      "path": "src/paperworks/data/hai_provenance_v1.py",
+      "symbols": [
+        {"symbol": "streaming_sha256", "lines": "114-126", "role": "Streaming file identity"},
+        {"symbol": "HAICsvStructureAuditV1", "lines": "283-443", "role": "Sanitized structural CSV contract"},
+        {"symbol": "audit_csv_structure", "lines": "912-1034", "role": "Streams structural metadata without test feature statistics"},
+        {"symbol": "build_hai_dataset_manifest_v2", "lines": "1342-1443", "role": "Builds exact ten-file DatasetManifestV2"},
+        {"symbol": "assert_public_artifact_has_no_sensitive_content", "lines": "1446-1478", "role": "Fail-closed public privacy guard"}
+      ]
+    },
+    {
+      "path": "src/paperworks/data/hai_distribution_v1.py",
+      "symbols": [
+        {"symbol": "HAIDistributionFileEquivalenceV1", "lines": "287-355", "role": "Per-file identity equality"},
+        {"symbol": "HAIDistributionByteEquivalenceResultV1", "lines": "359-462", "role": "Ten-file selective-route boundary"},
+        {"symbol": "build_official_distribution_metadata", "lines": "465-545", "role": "Sanitizes official distribution metadata"}
+      ]
+    },
+    {
+      "path": "src/paperworks/feasibility/hai_continuous_step_v1.py",
+      "symbols": [
+        {"symbol": "TASK039BR2DataAccessLedger", "lines": "1240-1294", "role": "Fail-closed normal-file/process-column access ledger"},
+        {"symbol": "verify_normal_file_records_v1", "lines": "1416-1469", "role": "Replays normal file identity; train4 stays public-record-only at BR2"},
+        {"symbol": "read_authorized_columns_v1", "lines": "1472-1513", "role": "Reads only approved numeric columns"},
+        {"symbol": "create_selected_views_v1", "lines": "1535-1586", "role": "Freezes P1 canonical and candidate-learning views"},
+        {"symbol": "create_selected_splits_v1", "lines": "1589-1638", "role": "Freezes train1/2 fit, train3 calibration, train4 guard roles"},
+        {"symbol": "execute_process_v1", "lines": "1709-2115", "role": "Executes normal-only process feasibility for P1/P3"},
+        {"symbol": "build_process_selection_v1", "lines": "2117-2162", "role": "Applies frozen process selection policy"}
+      ]
+    },
+    {
+      "path": "src/paperworks/v6/candidate_discovery_protocol_v1.py",
+      "symbols": [
+        {"symbol": "eligible_pair_records_v1", "lines": "225-235", "role": "Ordered directional cross product with self-pair exclusion"},
+        {"symbol": "CandidateUniversePolicyV1", "lines": "255-374", "role": "Frozen P1 role and 144-pair identity authority"},
+        {"symbol": "TASK039C0DataAccessPolicyV1", "lines": "952-1008", "role": "Candidate-arm file/process boundary"},
+        {"symbol": "authorize_candidate_arm_value_access_v1", "lines": "1011-1026", "role": "Rejects unauthorized arm/process/file access"}
+      ]
+    },
+    {
+      "path": "src/paperworks/data/splits_v2.py",
+      "symbols": [
+        {"symbol": "assert_operation_permitted_v2", "lines": "85-112", "role": "Dataset-neutral split-role permission contract"},
+        {"symbol": "validate_split_collection_v2", "lines": "151-181", "role": "Split identity, ordering, overlap, and purge validation"}
+      ]
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_d0_detector_design_v1.py",
+      "symbols": [
+        {"symbol": "P1_FEATURE_ORDER", "lines": "55-101", "role": "Exact 37-feature P1 authority"},
+        {"symbol": "_build_expected_d0_detector_design_v1", "lines": "291-370", "role": "Binds P1 feature and split authorities and excludes labels"}
+      ]
+    },
+    {
+      "path": "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py",
+      "symbols": [
+        {"symbol": "_parse_normal_frame", "lines": "750-778", "role": "Strict hash-bound 37-column float64 parser"},
+        {"symbol": "execute_d0_normal_training_and_calibration_v1", "lines": "902-980", "role": "Task-specific normal fit/calibration/sanity consumer"}
+      ]
+    },
+    {
+      "path": "scripts/audit_hai_2305.py",
+      "symbols": [
+        {"symbol": "run_audit", "lines": "253-617", "role": "TASK-039A provenance audit driver"}
+      ]
+    },
+    {
+      "path": "scripts/run_hai_continuous_step_feasibility.py",
+      "symbols": [
+        {"symbol": "main", "lines": "88-286", "role": "TASK-039BR2 execution driver and selected-view/split producer"}
+      ]
+    }
+  ],
+  "public_private_boundary": {
+    "tracked_raw_payload_count": 0,
+    "tracked_test_label_payload_count": 0,
+    "tracked_summary_label_payload_count": 0,
+    "git_ignore_guards": ["*.csv", "dataset/", "data/raw/", "artifacts/", "results/", "checkpoints/", ".env*"],
+    "public_allowed": ["Aggregate structural metadata", "Relative safe identities", "Hashes and sizes", "Row counts", "Schema and process IDs", "Sanitized execution/access counters"],
+    "private_required": ["Raw HAI rows", "Label vectors", "Attack interval details", "Private ledgers", "Absolute local custody paths", "Private model/numeric payloads"],
+    "materialization_boundary": "Selective materializers require an outside-repository non-symlink cache and emit zero private paths; this audit did not invoke them.",
+    "evidence": [
+      ".gitignore:1-20",
+      "src/paperworks/data/hai_provenance_v1.py:1446-1478",
+      "scripts/local/materialize_hai_inner_payload_v1.py:255-331",
+      "docs/task_reports/TASK-039A_REPORT.md",
+      "docs/task_reports/TASK-039BR2_REPORT.md"
+    ]
+  },
+  "findings": [
+    {
+      "finding_id": "PROV-001",
+      "severity": "MEDIUM",
+      "category": "LOADER_AUTHORITY",
+      "finding": "There is no single canonical processed HAI loader used by every frozen path. BR2 and D0 use separate task-specific readers, each with its own strict hash/schema/access guards.",
+      "scientific_impact": "No verified identity or leakage failure was found, but future maintenance could allow reader assumptions to drift unless their equivalence is reviewed and documented.",
+      "evidence": [
+        "src/paperworks/feasibility/hai_continuous_step_v1.py:1416-1513",
+        "src/paperworks/v6/task039e3_r2r_d0_detector_training_v1.py:727-778"
+      ],
+      "recommended_future_action": "In a later architecture task, compare all task-specific HAI readers against one explicit input-contract matrix; do not refactor frozen implementations in this audit."
+    },
+    {
+      "finding_id": "PROV-002",
+      "severity": "MEDIUM",
+      "category": "SPLIT_ENFORCEMENT_LAYER",
+      "finding": "The generic assert_operation_permitted_v2 contract exists, but frozen task paths primarily enforce split/file roles through task-specific hash constants and access ledgers rather than one shared runtime permission call.",
+      "scientific_impact": "The audited paths are fail-closed, but policy consistency is distributed and must be checked path by path.",
+      "evidence": [
+        "src/paperworks/data/splits_v2.py:85-112",
+        "src/paperworks/feasibility/hai_continuous_step_v1.py:1240-1294",
+        "src/paperworks/v6/candidate_discovery_protocol_v1.py:952-1026"
+      ],
+      "recommended_future_action": "Keep the split-governance audit explicit about generic contracts versus task-specific enforcement."
+    },
+    {
+      "finding_id": "PROV-003",
+      "severity": "LOW",
+      "category": "SCHEMA_WORDING",
+      "finding": "DatasetManifestV2 marks test time-series records as label_availability=available while labels are physically represented by separate external label files.",
+      "scientific_impact": "This is potentially confusing metadata wording, not evidence that labels are embedded in the feature CSV or used during fitting.",
+      "evidence": "src/paperworks/data/hai_provenance_v1.py:1382-1414 and docs/task_reports/TASK-039A_DATASET_MANIFEST_V2.json",
+      "recommended_future_action": "Document label availability as corresponding external-label availability in RCC user-facing material."
+    },
+    {
+      "finding_id": "PROV-004",
+      "severity": "LOW",
+      "category": "TIMESTAMP_METADATA",
+      "finding": "Sampling and ordering are verified, but the source timezone remains explicitly unspecified.",
+      "scientific_impact": "File-local one-second temporal operations remain supported; cross-system wall-clock interpretation should not be claimed without additional authority.",
+      "evidence": "docs/task_reports/TASK-039A_DATASET_MANIFEST_V2.json",
+      "recommended_future_action": "Preserve source_unspecified rather than inventing a timezone."
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown_id": "PROV-U001",
+      "topic": "Cross-reader equivalence",
+      "statement": "Static review confirms fail-closed contracts but does not independently prove byte-for-byte equivalence among every later task-specific parser.",
+      "scope_owner": "ARCH-001 coordinator and later component-specific deep audits"
+    },
+    {
+      "unknown_id": "PROV-U002",
+      "topic": "Wall-clock timezone",
+      "statement": "HAI source timezone is not established by the frozen manifest.",
+      "scope_owner": "Future provenance clarification only if wall-clock interpretation becomes necessary"
+    }
+  ],
+  "verdicts": {
+    "dataset_identity_supported": true,
+    "dataset_version_supported": true,
+    "official_file_identity_supported": true,
+    "p1_process_scope_supported": true,
+    "p1_feature_scope_supported": true,
+    "candidate_role_universe_supported": true,
+    "timestamp_contract_supported": true,
+    "label_physical_separation_supported": true,
+    "public_private_boundary_supported": true,
+    "single_canonical_processed_loader": false,
+    "verified_provenance_break_found": false,
+    "verified_data_leakage_found": false
+  },
+  "safety_counters": {
+    "scientific_executions": 0,
+    "raw_hai_payload_reads": 0,
+    "test1_feature_payload_reads": 0,
+    "test1_label_payload_reads": 0,
+    "test2_feature_bytes_read": 0,
+    "test2_label_bytes_read": 0,
+    "private_payload_reads": 0,
+    "network_calls": 0,
+    "scientific_source_changes": 0,
+    "frozen_artifact_changes": 0,
+    "private_paths_exposed": 0,
+    "sensitive_values_exposed": 0,
+    "remote_pushes": 0
+  }
+}

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html
 import sys
 import tempfile
 import unittest
@@ -31,7 +32,7 @@ class DashboardGenerationTests(unittest.TestCase):
             self.assertIn(component["name"], rendered)
             self.assertIn(component["status"], rendered)
         for user_task in data["state"]["top_user_todo"]:
-            self.assertIn(user_task, rendered)
+            self.assertIn(html.escape(user_task), rendered)
 
     def test_required_sections_and_authority_warning_render(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
@@ -82,7 +83,7 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(32, len(summaries))
+            self.assertEqual(33, len(summaries))
             self.assertTrue(all(path.is_file() for path in summaries))
             self.assertTrue((root / "history" / "PROJECT_TIMELINE.md").is_file())
             self.assertTrue((root / "generated" / "RCC_003_HISTORY_SUMMARY.md").is_file())
@@ -137,7 +138,7 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
-        self.assertEqual(32, len(generated))
+        self.assertEqual(33, len(generated))
         user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
         context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
         self.assertIn("14", user_summary)

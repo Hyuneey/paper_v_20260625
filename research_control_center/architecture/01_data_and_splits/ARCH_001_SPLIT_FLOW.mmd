@@ -1,0 +1,60 @@
+flowchart TD
+  HAI["HAI 23.05\nverified Git/LFS provenance\n86 source points + timestamp"]
+  P1["P1 Boiler scope\n37 process features\n12 source roles × 12 target roles"]
+  HAI --> P1
+
+  subgraph NORMAL["NORMAL-ONLY DATA"]
+    T12["train1 + train2\nNORMAL FIT"]
+    T3["train3\nCONFIRMATION + D0 CALIBRATION"]
+    T4["train4\nNORMAL GUARD / D0 SANITY"]
+    REL["candidate discovery\nrelation fit\nnumeric authority"]
+    CONF["one-way relation confirmation"]
+    D0FIT["D0 preprocessing + PCA fit"]
+    D0CAL["D0 SPE threshold calibration"]
+    SANITY["D0 normal sanity check"]
+    T12 --> REL
+    T12 --> D0FIT
+    T3 --> CONF
+    T3 --> D0CAL
+    T4 --> SANITY
+  end
+
+  subgraph INNER["INNER DEVELOPMENT / PILOT"]
+    TEST1["hai-test1.csv\nPILOT FEATURES"]
+    D0P["D0 label-blind prediction\ndurably frozen"]
+    D1P["D1 label-blind prediction\nobject frozen; file persisted later"]
+    D2P["D2 V1/V2 label-blind predictions\ndurably frozen"]
+    LAB1["label-test1.csv\nLABEL ACCESSIBLE only downstream"]
+    METRIC1["event / episode metrics"]
+    TEST1 --> D0P
+    TEST1 --> D1P
+    D0P --> D2P
+    D1P --> D2P
+    D0P --> LAB1
+    D1P -. "durable-file gap" .-> LAB1
+    D2P --> LAB1
+    LAB1 --> METRIC1
+  end
+
+  subgraph OUTER["HELD-OUT / UNAVAILABLE"]
+    TEST2["test2 feature authority\nsealed"]
+    BLOCK["custody rejection\n0 feature bytes read\n0 semantic parses"]
+    LAB2["test2 label authority\n0 opens / 0 reads"]
+    NONE["0 predictions\n0 metrics\nresult unavailable"]
+    TEST2 --> BLOCK
+    BLOCK --> NONE
+    LAB2 -. "never reached" .-> NONE
+  end
+
+  P1 --> T12
+  P1 --> T3
+  P1 --> T4
+  P1 --> TEST1
+  P1 -. "one-shot custody boundary" .-> TEST2
+
+  classDef normal fill:#dff5e3,stroke:#258245,color:#173d23;
+  classDef pilot fill:#fff3c4,stroke:#9b7300,color:#4f3a00;
+  classDef blocked fill:#ffe3cf,stroke:#bd5b16,color:#592703;
+  class T12,T3,T4,REL,CONF,D0FIT,D0CAL,SANITY normal;
+  class TEST1,D0P,D1P,D2P,LAB1,METRIC1 pilot;
+  class TEST2,BLOCK,LAB2,NONE blocked;

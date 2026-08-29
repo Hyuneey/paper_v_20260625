@@ -112,7 +112,8 @@ REQUIRED_RCC_FILES = (
 GENERATED_FILES = (
     "dashboard/index.html", "generated/GPT_BRIEF.md", "generated/CURRENT_STATUS.md",
     "generated/CHANGE_SUMMARY.md", "generated/RCC_002_USER_SUMMARY.md",
-    "generated/RCC_003_HISTORY_SUMMARY.md", "history/PROJECT_TIMELINE.md",
+    "generated/RCC_003_HISTORY_SUMMARY.md", "generated/ARCH_001_USER_SUMMARY.md",
+    "history/PROJECT_TIMELINE.md",
     "history/PROFESSOR_FEEDBACK_LINEAGE.md", "history/SUPERSEDED_DIRECTIONS.md",
     "history/TERMINOLOGY_GUIDE.md", "history/HISTORY_CONFIRMATION_NEEDED.md",
     "CURRENT_CONTEXT.md", "MY_TODO.md", "DECISION_INBOX.md",
@@ -121,6 +122,7 @@ REQUIRED_RCC_DIRS = (
     "registry", "wiki", "history", "history/decisions", "history/checkpoints",
     "architecture", "dashboard", "dashboard/assets", "generated", "scripts",
     "bootstrap/RCC_000", "bootstrap/RCC_003", "bootstrap/RCC_003/agents",
+    "architecture/01_data_and_splits", "bootstrap/ARCH_001", "bootstrap/ARCH_001/agents",
 )
 
 
@@ -199,9 +201,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 5, "top_user_todo must contain exactly five ARCH-000 review entries")
-    result.require(state.get("last_completed_task") == "ARCH-000", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "ARCH-001 — Data / Provenance / Split Governance Deep Audit", "exact next task mismatch")
+    result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain exactly six ARCH-001 review entries")
+    result.require(len(state.get("user_todo_items", [])) == 6, "ARCH-001 must leave six user review questions")
+    result.require(state.get("last_completed_task") == "ARCH-001", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -214,8 +217,15 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "ARCH-001 — Data / Provenance / Split Governance Deep Audit", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "ARCH-001 — Data / Provenance / Split Governance Deep Audit", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit", "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "ARCH-002 — META / STAT / GDN Candidate Discovery Deep Audit", "next architecture task mismatch")
+    governance = state.get("data_governance", {})
+    result.require(governance.get("dataset") == "HAI 23.05", "ARCH-001 dataset summary mismatch")
+    result.require(governance.get("process") == "P1 Boiler", "ARCH-001 process summary mismatch")
+    result.require(len(governance.get("splits", [])) == 6, "ARCH-001 split summary must cover train1-train4 and test1-test2")
+    result.require("NO VERIFIED LEAKAGE FOUND" in governance.get("leakage_status", ""), "ARCH-001 leakage status is not conservative")
+    result.require("pilot" in governance.get("test1_status", "").lower(), "test1 must remain pilot evidence")
+    result.require("unavailable" in governance.get("test2_status", "").lower(), "test2 outcome must remain unavailable")
     semantics = state.get("status_semantics", {})
     result.require(
         set(semantics) == {
@@ -572,7 +582,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         for heading in (
             "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
             "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "RESEARCH HISTORY", "DATA GOVERNANCE", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
@@ -580,6 +590,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/GPT_BRIEF.md": ("Evidence-reviewed", "Result-integrity audit", "claims.csv", "not a single completion percentage"),
         "generated/RCC_002_USER_SUMMARY.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "하나의 연구 완료율"),
         "generated/RCC_003_HISTORY_SUMMARY.md": ("우리 연구가 어떻게 여기까지 왔나", "pilot evidence", "홀드아웃 일반화"),
+        "generated/ARCH_001_USER_SUMMARY.md": ("우리가 어떤 데이터를 쓰고 있는가", "test1", "test2", "NO VERIFIED LEAKAGE FOUND"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
@@ -640,6 +651,36 @@ def _validate_architecture(rcc_root: Path, data: Mapping[str, Any], result: Vali
     result.require(mermaid.startswith("flowchart "), "ARCH-000 Mermaid does not declare a flowchart")
     result.require("-." in mermaid, "ARCH-000 Mermaid omits dotted unverified/documented-only edges")
     result.require((rcc_root / "generated" / "ARCH_000_USER_SUMMARY.md").is_file(), "ARCH-000 user summary is missing")
+
+    deep = rcc_root / "architecture" / "01_data_and_splits"
+    required_deep = {
+        "ARCH_001_REPORT.md", "ARCH_001_LABEL_ACCESS_TIMELINE.md",
+        "ARCH_001_LEAKAGE_MATRIX.csv", "ARCH_001_INPUT_CONTRACTS.csv",
+        "ARCH_001_FUNCTION_CATALOG.csv", "ARCH_001_SPLIT_FLOW.mmd",
+        "ARCH_001_MISMATCHES.md",
+    }
+    for name in required_deep:
+        result.require((deep / name).is_file(), f"ARCH-001 output missing: {name}")
+    if not deep.is_dir() or any(not (deep / name).is_file() for name in required_deep):
+        return
+    with (deep / "ARCH_001_LEAKAGE_MATRIX.csv").open("r", encoding="utf-8", newline="") as handle:
+        matrix = list(csv.DictReader(handle))
+    allowed_cells = {"READ_ALLOWED", "READ_NOT_USED", "FORBIDDEN", "UNKNOWN", "NOT_APPLICABLE"}
+    result.require(len(matrix) >= 20, "ARCH-001 leakage matrix is incomplete")
+    result.require(len({row["stage"] for row in matrix}) == len(matrix), "ARCH-001 leakage stages are not unique")
+    for row in matrix:
+        result.require(all(value in allowed_cells for key, value in row.items() if key != "stage"), f"ARCH-001 leakage matrix has invalid enum at {row['stage']}")
+    with (deep / "ARCH_001_INPUT_CONTRACTS.csv").open("r", encoding="utf-8", newline="") as handle:
+        contracts = list(csv.DictReader(handle))
+    with (deep / "ARCH_001_FUNCTION_CATALOG.csv").open("r", encoding="utf-8", newline="") as handle:
+        functions = list(csv.DictReader(handle))
+    result.require(len(contracts) >= 15, "ARCH-001 input contract catalog is incomplete")
+    result.require(len({row["contract_id"] for row in contracts}) == len(contracts), "ARCH-001 contract IDs are not unique")
+    result.require(len(functions) >= 20, "ARCH-001 function catalog is incomplete")
+    result.require(all(is_safe_relative_path(row["path"]) for row in functions), "ARCH-001 function catalog contains an unsafe source path")
+    mermaid_deep = (deep / "ARCH_001_SPLIT_FLOW.mmd").read_text(encoding="utf-8")
+    result.require(mermaid_deep.startswith("flowchart "), "ARCH-001 Mermaid does not declare a flowchart")
+    result.require("0 feature bytes read" in mermaid_deep, "ARCH-001 Mermaid obscures the OUTER byte-read boundary")
 
 
 def validate_registry(
