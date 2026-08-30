@@ -1,0 +1,118 @@
+{
+  "lanes": [
+    {
+      "lane_id": "LANE_DATA_DISCOVERY",
+      "label_ko": "데이터·후보 탐색",
+      "node_ids": [
+        "NODE_HAI_P1",
+        "NODE_SPLIT_ROLES",
+        "NODE_CANDIDATE_DISCOVERY",
+        "NODE_CANDIDATE_UNION"
+      ]
+    },
+    {
+      "lane_id": "LANE_RELATION_RULE",
+      "label_ko": "관계·규칙 구성",
+      "node_ids": [
+        "NODE_RELATION_PROFILING",
+        "NODE_NUMERIC_AUTHORITY",
+        "NODE_RULE_CONSTRUCTION",
+        "NODE_VERIFIER",
+        "NODE_COMMON42"
+      ]
+    },
+    {
+      "lane_id": "LANE_RUNTIME_DETECTION",
+      "label_ko": "실행·탐지",
+      "node_ids": [
+        "NODE_D0",
+        "NODE_D1",
+        "NODE_D2"
+      ]
+    },
+    {
+      "lane_id": "LANE_EVALUATION_VALIDATION",
+      "label_ko": "평가·검증",
+      "node_ids": [
+        "NODE_METRICS_INTEGRITY",
+        "NODE_OUTER_REPRO"
+      ]
+    }
+  ],
+  "expandable_groups": [
+    {
+      "group_id": "GROUP_CANDIDATE_ARMS",
+      "parent_node_id": "NODE_CANDIDATE_DISCOVERY",
+      "detail_nodes": [
+        {
+          "detail_node_id": "DETAIL_META",
+          "component_ids": [
+            "META_DISCOVERY"
+          ],
+          "label": "META"
+        },
+        {
+          "detail_node_id": "DETAIL_STAT",
+          "component_ids": [
+            "STAT_DISCOVERY"
+          ],
+          "label": "STAT"
+        },
+        {
+          "detail_node_id": "DETAIL_GDN",
+          "component_ids": [
+            "GDN_DISCOVERY"
+          ],
+          "label": "GDN"
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_RULE_ARMS",
+      "parent_node_id": "NODE_RULE_CONSTRUCTION",
+      "detail_nodes": [
+        {
+          "detail_node_id": "DETAIL_EVIDENCE_PACK",
+          "component_ids": [
+            "EVIDENCE_PACK"
+          ],
+          "label": "Evidence Pack"
+        },
+        {
+          "detail_node_id": "DETAIL_T0",
+          "component_ids": [
+            "T0_TEMPLATE"
+          ],
+          "label": "T0"
+        },
+        {
+          "detail_node_id": "DETAIL_T1",
+          "component_ids": [
+            "T1_ONE_SHOT"
+          ],
+          "label": "T1"
+        },
+        {
+          "detail_node_id": "DETAIL_T1B",
+          "component_ids": [
+            "T1B_REPEAT"
+          ],
+          "label": "T1-B"
+        },
+        {
+          "detail_node_id": "DETAIL_T2",
+          "component_ids": [
+            "T2_AGENTIC_FEEDBACK"
+          ],
+          "label": "T2"
+        }
+      ]
+    }
+  ],
+  "catalog_only_component_ids": [
+    "EXPLANATION_RENDERER",
+    "PROFESSOR_REPORTING",
+    "THESIS_DRAFT"
+  ],
+  "catalog_rule": "All 32 registry component IDs appear either in a top-level/detail node or catalog_only_component_ids."
+}

@@ -1,0 +1,44 @@
+{
+  "CODE_IMPLEMENTED": "구현 완료",
+  "EXECUTED": "실제 실행 완료",
+  "EVIDENCE_REVIEWED": "근거 점검 완료",
+  "RESULT_INTEGRITY": "결과 무결성 확인",
+  "REPRODUCED": "독립 재현 완료",
+  "SCIENTIFIC_VALIDATION": "과학적 검증",
+  "UNVALIDATED": "미검증",
+  "PILOT_ONLY": "예비 실험 수준",
+  "UNCONFIRMED": "미확인",
+  "BLOCKED": "진행 전 해결 필요",
+  "CONDITIONAL": "조건부",
+  "READY_WITH_CONDITIONS": "조건부 진행 가능",
+  "NOT_REQUIRED": "현재 필요하지 않음",
+  "P0_FIX_BEFORE_EXPANDED_VALIDATION": "확대 검증 전 수정",
+  "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT": "특정 실험 전 수정",
+  "EXPERIMENT_DESIGN_REQUIREMENT": "실험 설계 요구",
+  "ENGINEERING_HARDENING": "엔지니어링 강화",
+  "CLAIM_DOCUMENTATION_CORRECTION": "표현·문서 수정",
+  "ACCEPTABLE_THESIS_LIMITATION": "수용 가능한 한계",
+  "FUTURE_WORK_ONLY": "미래 과제",
+  "provenance_first_use": "근거 출처 추적 (Provenance)",
+  "runtime_authorization_first_use": "실행 권한 (Runtime Authorization)",
+  "fresh_machine_first_use": "새 환경 독립 재현 (Fresh-machine Reproduction)",
+  "verified_rule_only_first_use": "검증된 관계 규칙 단독 방식 (Verified Relational Rule-only)",
+  "gap_labels_ko": {
+    "GAP-001": {
+      "title": "최종 과학 규칙 권한이 하나로 확정되지 않음",
+      "description": "동결된 규칙 구성과 D1은 task validity 및 V4 권한 체계를 사용하지만, canonical RuleV1·VerifierV1과의 종단 간 동등성을 입증하는 추적 가능한 bridge가 없습니다."
+    },
+    "GAP-002": {
+      "title": "D1에 label 접근 전 영구 prediction gate가 없음",
+      "description": "label을 보지 않고 만든 prediction은 메모리에서 검증·동결되지만, 공개 가능한 bytes는 label 기반 metric 계산 뒤에야 저장됩니다."
+    },
+    "GAP-003": {
+      "title": "Validation·정책 선택·최종 held-out 역할이 동결되지 않음",
+      "description": "test1은 개발용 Pilot이고 D2 V2는 test1 결과를 참고했으며, 기존 OUTER 경로에서는 과학 결과가 생성되지 않았습니다."
+    },
+    "GAP-004": {
+      "title": "Attack-event 범위와 추론 단위가 확정되지 않음",
+      "description": "14개 unit은 label=1의 최대 연속 구간입니다. 이 unit들의 통계적 독립성과 더 넓은 사건 대표성은 확인되지 않았습니다."
+    }
+  }
+}

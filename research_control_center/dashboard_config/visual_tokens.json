@@ -1,0 +1,18 @@
+{
+  "semantic_state_keys": [
+    "implemented",
+    "verified",
+    "warning",
+    "blocked",
+    "unvalidated"
+  ],
+  "edge_style_mapping": {
+    "FROZEN_EXECUTION": "thick_solid",
+    "CODE_TEST_VERIFIED": "thin_solid",
+    "DESIGN_CONDITIONAL": "dashed",
+    "AUTHORITY_GAP": "red_dashed",
+    "LEGACY_REFERENCE": "gray_solid",
+    "UNKNOWN": "gray_dashed"
+  },
+  "guardrail": "Tokens control presentation only and cannot imply scientific status."
+}

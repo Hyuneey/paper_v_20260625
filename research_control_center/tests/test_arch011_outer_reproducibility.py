@@ -52,7 +52,7 @@ class Arch011OuterReproducibilityTests(unittest.TestCase):
         self.assertTrue(state["exact_next_task"].startswith("GAP-FIX-001"))
         self.assertEqual(8, len(state["user_todo_items"]))
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
-        for marker in ("OUTER·재현성·이식성", "새 연구 설계 필요", "주 조치 분류", "긴급도"):
+        for marker in ("OUTER·재현성", "new preregistered validation required", "Primary disposition", "Urgency"):
             self.assertIn(marker, dashboard)
         evidence = json.loads((BOOT / "ARCH_011_EVIDENCE.json").read_text(encoding="utf-8"))
         self.assertTrue(all(value == 0 for value in evidence["safety"].values()))

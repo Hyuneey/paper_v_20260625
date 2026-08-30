@@ -1,0 +1,682 @@
+{
+  "task_id": "RCC-UI-002",
+  "agent": "Agent C — Registry View Model",
+  "status": "PROPOSED_PRESENTATION_LAYER_READ_ONLY",
+  "generated_from_head": "4496761307fa8ecb6212017889020977bdc94ab4",
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "scope": {
+    "registry_mutations": 0,
+    "scientific_content_mutations": 0,
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_exposures": 0,
+    "note": "This file proposes presentation mappings only. Registry and frozen ARCH/GAP evidence remain authoritative."
+  },
+  "source_precedence": [
+    {
+      "rank": 1,
+      "source": "research_control_center/registry/current_state.yaml",
+      "authority": "current aggregate state and exact frozen display metrics"
+    },
+    {
+      "rank": 2,
+      "source": "research_control_center/registry/components.csv",
+      "authority": "component IDs, paths, symbols, component lifecycle and source/evidence-reviewed flags"
+    },
+    {
+      "rank": 3,
+      "source": "research_control_center/registry/experiments.csv",
+      "authority": "experiment questions, frozen observations and experiment status"
+    },
+    {
+      "rank": 4,
+      "source": "research_control_center/registry/claims.csv",
+      "authority": "sole authoritative scientific claim status"
+    },
+    {
+      "rank": 5,
+      "source": "research_control_center/registry/risks.csv",
+      "authority": "principal risk severity, likelihood and status"
+    },
+    {
+      "rank": 6,
+      "source": "research_control_center/registry/artifacts.csv",
+      "authority": "artifact identity, producer/consumer and public/private classification"
+    },
+    {
+      "rank": 7,
+      "source": "research_control_center/bootstrap/GAP_000/GAP_000_REMEDIATION_MATRIX.csv",
+      "authority": "two-axis remediation disposition and urgency"
+    },
+    {
+      "rank": 8,
+      "source": "research_control_center/bootstrap/GAP_000/GAP_000_EXPERIMENT_GATES.csv",
+      "authority": "readiness gates distinct from experiment lifecycle status"
+    },
+    {
+      "rank": 9,
+      "source": "research_control_center/architecture/00_overview/ARCH_000_COMPONENT_DETAIL.csv",
+      "authority": "expanded component detail only; may not override registry status"
+    },
+    {
+      "rank": 10,
+      "source": "research_control_center/architecture/01_data_and_splits through research_control_center/architecture/11_outer_reproducibility",
+      "authority": "edge and contract evidence; UNKNOWN if no audited edge is found"
+    }
+  ],
+  "view_model_schema": {
+    "version": "rcc-dashboard-view-model-v2",
+    "top_level": [
+      "meta",
+      "navigation",
+      "overview",
+      "architecture",
+      "catalog",
+      "pilot_results",
+      "experiments",
+      "readiness",
+      "history_evidence",
+      "labels",
+      "safety"
+    ],
+    "meta": {
+      "required": [
+        "generated_at",
+        "source_digest",
+        "scientific_authority_ref",
+        "scientific_authority_commit",
+        "registry_schema_version",
+        "view_model_schema_version"
+      ]
+    },
+    "node": {
+      "required": [
+        "node_id",
+        "label_ko",
+        "lane_id",
+        "component_ids",
+        "input_ko",
+        "process_ko",
+        "output_ko",
+        "easy_detail",
+        "technical_sources",
+        "status_rail",
+        "audit_reports"
+      ],
+      "component_rule": "component_ids must be non-empty and every value must resolve in registry/components.csv",
+      "status_rule": "status_rail is derived, never authored as a scientific override"
+    },
+    "edge": {
+      "required": [
+        "edge_id",
+        "source_node_id",
+        "target_node_id",
+        "edge_class",
+        "evidence_status",
+        "artifact_ids",
+        "audit_reports",
+        "label_ko"
+      ],
+      "allowed_edge_class": [
+        "FROZEN_EXECUTION",
+        "CODE_TEST_VERIFIED",
+        "DESIGN_CONDITIONAL",
+        "AUTHORITY_GAP",
+        "LEGACY_REFERENCE",
+        "UNKNOWN"
+      ],
+      "unknown_rule": "No conceptual relation may be upgraded beyond UNKNOWN without a registry artifact or ARCH contract citation."
+    },
+    "status_rail": {
+      "fields": [
+        "code",
+        "execution",
+        "evidence_reviewed",
+        "result_integrity",
+        "independent_reproduction",
+        "scientific_validation"
+      ],
+      "values": [
+        "YES",
+        "NO",
+        "PARTIAL",
+        "NOT_APPLICABLE",
+        "UNKNOWN"
+      ],
+      "derivation": {
+        "code": "components.status; DESIGN_ONLY/BLOCKED/PARTIAL remain distinct rather than coerced to implemented",
+        "execution": "components.executed only",
+        "evidence_reviewed": "components.audited only; display as 근거 점검 완료, never 과학적 검증",
+        "result_integrity": "only explicit ART-D0-INTEGRITY, ART-D1-INTEGRITY, ART-D2V1-INTEGRITY, ART-D2V2-INTEGRITY or current_state.metric_integrity declarations",
+        "independent_reproduction": "components.reproduced only",
+        "scientific_validation": "claims.csv only; no component currently receives SCIENTIFICALLY_VALIDATED by inference"
+      },
+      "group_aggregation": "For multi-component nodes use ALL/ANY counts and expose mixed state; never paint the entire node complete from one member."
+    }
+  },
+  "proposed_config_files": {
+    "architecture_nodes.csv": {
+      "columns": [
+        "node_id",
+        "label_ko",
+        "subtitle_ko",
+        "lane_id",
+        "display_order",
+        "component_ids",
+        "expand_group_id",
+        "input_ko",
+        "process_ko",
+        "output_ko",
+        "easy_why_ko",
+        "next_work_source",
+        "audit_reports"
+      ],
+      "rows": [
+        {
+          "node_id": "NODE_HAI_P1",
+          "label_ko": "HAI P1 데이터",
+          "subtitle_ko": "출처와 데이터 신원",
+          "lane_id": "LANE_DATA_DISCOVERY",
+          "display_order": 1,
+          "component_ids": ["DATA_PROVENANCE"],
+          "expand_group_id": "NONE",
+          "input_ko": "승인된 HAI 23.05 source metadata와 파일 identity",
+          "process_ko": "공개 가능한 provenance와 manifest를 고정",
+          "output_ko": "P1 데이터 계약과 local-only custody 경계",
+          "easy_why_ko": "모든 후속 결과가 어느 데이터 판본에서 나왔는지 추적하기 위해 필요하다.",
+          "next_work_source": "components.csv:DATA_PROVENANCE.next_action",
+          "audit_reports": ["architecture/01_data_and_splits/ARCH_001_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_SPLIT_ROLES",
+          "label_ko": "Split·변수 역할",
+          "subtitle_ko": "데이터 사용 권한과 144-pair 범위",
+          "lane_id": "LANE_DATA_DISCOVERY",
+          "display_order": 2,
+          "component_ids": ["SPLIT_GOVERNANCE", "VARIABLE_ROLE_UNIVERSE"],
+          "expand_group_id": "NONE",
+          "input_ko": "P1 feature metadata와 split manifest",
+          "process_ko": "train1~train4/test1/test2 역할과 source/target universe를 검증",
+          "output_ko": "12 source × 12 target = 144 directed pairs와 split별 허용 작업",
+          "easy_why_ko": "정상 근거 구성과 label-aware 평가가 섞이지 않게 사용 범위를 제한한다.",
+          "next_work_source": "components.csv:SPLIT_GOVERNANCE.next_action",
+          "audit_reports": ["architecture/01_data_and_splits/ARCH_001_REPORT.md", "architecture/02_candidate_discovery/ARCH_002_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_CANDIDATE_DISCOVERY",
+          "label_ko": "관계 후보 탐색",
+          "subtitle_ko": "META / STAT / GDN",
+          "lane_id": "LANE_DATA_DISCOVERY",
+          "display_order": 3,
+          "component_ids": ["META_DISCOVERY", "STAT_DISCOVERY", "GDN_DISCOVERY"],
+          "expand_group_id": "GROUP_CANDIDATE_ARMS",
+          "input_ko": "공통 144-pair universe와 arm별 허용 normal evidence",
+          "process_ko": "서로 분리된 META, STAT, GDN ranking",
+          "output_ko": "각 arm Top-20 후보",
+          "easy_why_ko": "서로 다른 후보 근거를 비교하되 원인·확정 관계로 과장하지 않기 위해 필요하다.",
+          "next_work_source": "components.csv:GDN_DISCOVERY.next_action",
+          "audit_reports": ["architecture/02_candidate_discovery/ARCH_002_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_CANDIDATE_UNION",
+          "label_ko": "Candidate Union",
+          "subtitle_ko": "47개 후보 pair",
+          "lane_id": "LANE_DATA_DISCOVERY",
+          "display_order": 4,
+          "component_ids": ["CANDIDATE_UNION"],
+          "expand_group_id": "NONE",
+          "input_ko": "META 20, STAT 20, GDN 20",
+          "process_ko": "점수 재정렬 없이 provenance를 보존한 set union",
+          "output_ko": "47 unique candidate pairs",
+          "easy_why_ko": "후보 선정 근거를 잃지 않고 profiling 대상으로 전달한다.",
+          "next_work_source": "components.csv:CANDIDATE_UNION.next_action",
+          "audit_reports": ["architecture/02_candidate_discovery/ARCH_002_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_RELATION_PROFILING",
+          "label_ko": "Relation Profiling",
+          "subtitle_ko": "정상 지연 반응 확인",
+          "lane_id": "LANE_RELATION_RULE",
+          "display_order": 5,
+          "component_ids": ["RELATION_PROFILING"],
+          "expand_group_id": "NONE",
+          "input_ko": "47 candidate pairs와 normal train1/train2",
+          "process_ko": "source event, fixed horizons, support·consistency·effect profiling 후 train3 one-way confirmation",
+          "output_ko": "23 pair contexts, 42 confirmed directions",
+          "easy_why_ko": "후보를 정상 데이터에서 반복 관찰된 실행 가능 관계로 좁힌다.",
+          "next_work_source": "components.csv:RELATION_PROFILING.next_action",
+          "audit_reports": ["architecture/03_relation_and_numeric/ARCH_003_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_NUMERIC_AUTHORITY",
+          "label_ko": "Numeric Authority",
+          "subtitle_ko": "정상 전용 수치 권한",
+          "lane_id": "LANE_RELATION_RULE",
+          "display_order": 6,
+          "component_ids": ["NUMERIC_AUTHORITY"],
+          "expand_group_id": "NONE",
+          "input_ko": "confirmed relation과 허용된 normal-only statistics",
+          "process_ko": "construction/runtime reference를 별도 authority identity로 결속",
+          "output_ko": "42×11 construction bindings와 42×10 runtime records",
+          "easy_why_ko": "LLM이 임의의 수치를 만들지 못하게 실행 숫자의 출처를 고정한다.",
+          "next_work_source": "components.csv:NUMERIC_AUTHORITY.next_action",
+          "audit_reports": ["architecture/03_relation_and_numeric/ARCH_003_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_RULE_CONSTRUCTION",
+          "label_ko": "Rule Construction",
+          "subtitle_ko": "Evidence Pack·T0·T1·T1-B·T2",
+          "lane_id": "LANE_RELATION_RULE",
+          "display_order": 7,
+          "component_ids": ["EVIDENCE_PACK", "RULE_DSL", "T0_TEMPLATE", "T1_ONE_SHOT", "T1B_REPEAT", "T2_AGENTIC_FEEDBACK"],
+          "expand_group_id": "GROUP_RULE_ARMS",
+          "input_ko": "42 confirmed relation views와 승인된 numeric references",
+          "process_ko": "closed proposal DSL로 template 또는 bounded LLM proposal을 생성",
+          "output_ko": "T0 42/42, T1 42/42, T1-B 42/42, T2 39/42 proposals",
+          "easy_why_ko": "관계 근거를 제한된 구조의 Rule 후보로 표현한다.",
+          "next_work_source": "components.csv:T2_AGENTIC_FEEDBACK.next_action",
+          "audit_reports": ["architecture/04_rule_construction/ARCH_004_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_VERIFIER",
+          "label_ko": "Deterministic Verifier",
+          "subtitle_ko": "결정론적 계약 점검",
+          "lane_id": "LANE_RELATION_RULE",
+          "display_order": 8,
+          "component_ids": ["DETERMINISTIC_VERIFIER", "RULE_DSL"],
+          "expand_group_id": "NONE",
+          "input_ko": "parsed rule proposal와 evidence/reference bindings",
+          "process_ko": "구조·변수·방향·horizon·reference·split·실행 계약을 결정론적으로 확인",
+          "output_ko": "accepted / needs_repair / rejected",
+          "easy_why_ko": "LLM 제안이 스스로 최종 권한이 되지 못하게 한다.",
+          "next_work_source": "components.csv:DETERMINISTIC_VERIFIER.next_action",
+          "audit_reports": ["architecture/05_verifier_common42/ARCH_005_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_COMMON42",
+          "label_ko": "COMMON-42",
+          "subtitle_ko": "V4 실행 descriptor portfolio",
+          "lane_id": "LANE_RELATION_RULE",
+          "display_order": 9,
+          "component_ids": ["COMMON42_FREEZE"],
+          "expand_group_id": "NONE",
+          "input_ko": "42 confirmed relations와 executable-equivalent T0/T1/T1-B projection",
+          "process_ko": "V4 descriptor와 normal runtime authority를 freeze",
+          "output_ko": "42 CanonicalRuleDescriptorV4 objects",
+          "easy_why_ko": "D1에서 실제 실행한 공통 고정 Rule portfolio를 보존한다.",
+          "next_work_source": "components.csv:COMMON42_FREEZE.next_action",
+          "audit_reports": ["architecture/05_verifier_common42/ARCH_005_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_D0",
+          "label_ko": "D0 PCA-SPE",
+          "subtitle_ko": "단순 기준 detector",
+          "lane_id": "LANE_RUNTIME_DETECTION",
+          "display_order": 10,
+          "component_ids": ["D0_PCA_SPE"],
+          "expand_group_id": "NONE",
+          "input_ko": "37 P1 features; normal train1/train2 fit, train3 calibration, test1 prediction",
+          "process_ko": "표준화·PCA residual·SPE·q=.999 threshold",
+          "output_ko": "timestamp별 Boolean D0 alarm",
+          "easy_why_ko": "Rule 방법과 비교할 단순하고 결정론적인 정상 전용 reference detector다.",
+          "next_work_source": "components.csv:D0_PCA_SPE.next_action",
+          "audit_reports": ["architecture/07_d0_detector/ARCH_007_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_D1",
+          "label_ko": "D1 관계 규칙",
+          "subtitle_ko": "검증된 관계 규칙 단독 방식",
+          "lane_id": "LANE_RUNTIME_DETECTION",
+          "display_order": 11,
+          "component_ids": ["RULE_RUNTIME", "SATISFACTION_TRACE", "D1_RULE_ONLY"],
+          "expand_group_id": "NONE",
+          "input_ko": "COMMON-42, Utility V4 numeric authority, test1 features",
+          "process_ko": "LLM-free fixed-rule trigger/response evaluation과 unique alarm-second aggregation",
+          "output_ko": "6,031 opportunities, 788 anomalous records, 630 unique alarm seconds",
+          "easy_why_ko": "관계 Rule 자체가 공격 구간에 반응하는지 분리해서 본다.",
+          "next_work_source": "components.csv:D1_RULE_ONLY.next_action",
+          "audit_reports": ["architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md", "architecture/08_d1_rule_only/ARCH_008_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_D2",
+          "label_ko": "D2 결합",
+          "subtitle_ko": "D0 보존형 V1·V2 정책",
+          "lane_id": "LANE_RUNTIME_DETECTION",
+          "display_order": 12,
+          "component_ids": ["D2_V1", "D2_V2"],
+          "expand_group_id": "NONE",
+          "input_ko": "frozen D0 Boolean prediction과 frozen D1 alarm evidence",
+          "process_ko": "D0 alarm을 보존하고 multi-source D1 조건을 만족한 timestamp만 추가",
+          "output_ko": "D2 V1/V2 combined per-second predictions",
+          "easy_why_ko": "D1의 다른 반응이 D0의 miss를 안전하게 보완하는지 시험한다.",
+          "next_work_source": "components.csv:D2_V2.next_action",
+          "audit_reports": ["architecture/09_d2_fusion/ARCH_009_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_METRICS_INTEGRITY",
+          "label_ko": "Metrics·Result Integrity",
+          "subtitle_ko": "공통 Recall/FAR와 결과 무결성",
+          "lane_id": "LANE_EVALUATION_VALIDATION",
+          "display_order": 13,
+          "component_ids": ["EPISODE_CONSTRUCTION", "ATTACK_EVENT_RECALL", "NORMAL_FAR", "RESULT_INTEGRITY"],
+          "expand_group_id": "NONE",
+          "input_ko": "D0/D1/D2 alarm seconds와 test1 label authority",
+          "process_ko": "episode grouping, 14 contiguous attack-event-unit hit, normal FAR/hour, artifact integrity checks",
+          "output_ko": "frozen pilot result table와 identity/arithmetic audit",
+          "easy_why_ko": "구조가 다른 방법을 공통 지표로 비교하고 숫자의 custody와 산술을 확인한다.",
+          "next_work_source": "components.csv:RESULT_INTEGRITY.next_action",
+          "audit_reports": ["architecture/10_metrics_integrity/ARCH_010_REPORT.md"]
+        },
+        {
+          "node_id": "NODE_OUTER_REPRO",
+          "label_ko": "OUTER·재현성",
+          "subtitle_ko": "held-out과 새 환경 독립 재현",
+          "lane_id": "LANE_EVALUATION_VALIDATION",
+          "display_order": 14,
+          "component_ids": ["OUTER_EVALUATION", "REPRODUCIBILITY"],
+          "expand_group_id": "NONE",
+          "input_ko": "PILOT V1 artifacts, environment contracts, future preregistered study identity",
+          "process_ko": "traceability·same-machine·fresh-machine·held-out governance를 분리 평가",
+          "output_ko": "old OUTER result unavailable; new held-out preregistration required",
+          "easy_why_ko": "현재 pilot이 다른 환경과 새로운 데이터에서도 성립하는지 별도로 검증해야 한다.",
+          "next_work_source": "components.csv:OUTER_EVALUATION.next_action",
+          "audit_reports": ["architecture/11_outer_reproducibility/ARCH_011_REPORT.md"]
+        }
+      ]
+    },
+    "architecture_edges.csv": {
+      "columns": [
+        "edge_id",
+        "source_node_id",
+        "target_node_id",
+        "edge_class",
+        "artifact_ids",
+        "audit_reports",
+        "label_ko",
+        "notes_ko"
+      ],
+      "rows": [
+        {"edge_id": "EDGE-001", "source_node_id": "NODE_HAI_P1", "target_node_id": "NODE_SPLIT_ROLES", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-RAW-DATA-CUSTODY"], "audit_reports": ["architecture/01_data_and_splits/ARCH_001_REPORT.md"], "label_ko": "고정 데이터 신원", "notes_ko": "실제 frozen INNER 경로"},
+        {"edge_id": "EDGE-002", "source_node_id": "NODE_SPLIT_ROLES", "target_node_id": "NODE_CANDIDATE_DISCOVERY", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CANDIDATE-COHORT"], "audit_reports": ["architecture/02_candidate_discovery/ARCH_002_REPORT.md"], "label_ko": "공통 144-pair universe", "notes_ko": "arm별 허용 evidence는 다름"},
+        {"edge_id": "EDGE-003", "source_node_id": "NODE_CANDIDATE_DISCOVERY", "target_node_id": "NODE_CANDIDATE_UNION", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CANDIDATE-COHORT"], "audit_reports": ["architecture/02_candidate_discovery/ARCH_002_REPORT.md"], "label_ko": "META/STAT/GDN Top-20", "notes_ko": "unscored provenance-preserving union"},
+        {"edge_id": "EDGE-004", "source_node_id": "NODE_CANDIDATE_UNION", "target_node_id": "NODE_RELATION_PROFILING", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CANDIDATE-COHORT", "ART-TRAIN3-CONFIRMATION"], "audit_reports": ["architecture/03_relation_and_numeric/ARCH_003_REPORT.md"], "label_ko": "47 candidate pairs", "notes_ko": "candidate는 confirmed relation이 아님"},
+        {"edge_id": "EDGE-005", "source_node_id": "NODE_RELATION_PROFILING", "target_node_id": "NODE_NUMERIC_AUTHORITY", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CONFIRMED-RELATIONS", "ART-NUMERIC-AUTHORITY-RECEIPT"], "audit_reports": ["architecture/03_relation_and_numeric/ARCH_003_REPORT.md"], "label_ko": "42 confirmed directions", "notes_ko": "normal-only evidence"},
+        {"edge_id": "EDGE-006", "source_node_id": "NODE_NUMERIC_AUTHORITY", "target_node_id": "NODE_RULE_CONSTRUCTION", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-NUMERIC-AUTHORITY-RECEIPT", "ART-CONSTRUCTION-ANALYSIS"], "audit_reports": ["architecture/04_rule_construction/ARCH_004_REPORT.md"], "label_ko": "reference-bound numbers", "notes_ko": "LLM은 numeric authority가 아님"},
+        {"edge_id": "EDGE-007", "source_node_id": "NODE_RELATION_PROFILING", "target_node_id": "NODE_RULE_CONSTRUCTION", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CONFIRMED-RELATIONS", "ART-CONSTRUCTION-ANALYSIS"], "audit_reports": ["architecture/04_rule_construction/ARCH_004_REPORT.md"], "label_ko": "Evidence Pack relation facts", "notes_ko": "labels와 utility outcomes는 withheld"},
+        {"edge_id": "EDGE-008", "source_node_id": "NODE_RULE_CONSTRUCTION", "target_node_id": "NODE_VERIFIER", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CONSTRUCTION-ANALYSIS"], "audit_reports": ["architecture/04_rule_construction/ARCH_004_REPORT.md", "architecture/05_verifier_common42/ARCH_005_REPORT.md"], "label_ko": "task-specific proposal validity", "notes_ko": "canonical VerifierV1과 동등하다고 표시하면 안 됨"},
+        {"edge_id": "EDGE-009", "source_node_id": "NODE_RULE_CONSTRUCTION", "target_node_id": "NODE_COMMON42", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-CONSTRUCTION-ANALYSIS", "ART-COMMON42"], "audit_reports": ["architecture/05_verifier_common42/ARCH_005_REPORT.md"], "label_ko": "T0/T1/T1-B executable-equivalent projection", "notes_ko": "T2는 COMMON-42 utility authority에서 제외"},
+        {"edge_id": "EDGE-010", "source_node_id": "NODE_VERIFIER", "target_node_id": "NODE_COMMON42", "edge_class": "AUTHORITY_GAP", "artifact_ids": ["ART-COMMON42"], "audit_reports": ["architecture/05_verifier_common42/ARCH_005_REPORT.md", "architecture/11_outer_reproducibility/ARCH_011_REPORT.md"], "label_ko": "canonical→V4 bridge 미확정", "notes_ko": "GAP-001; final authority decision required"},
+        {"edge_id": "EDGE-011", "source_node_id": "NODE_COMMON42", "target_node_id": "NODE_D1", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-COMMON42", "ART-D1-PREDICTION"], "audit_reports": ["architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md"], "label_ko": "V4 fixed-rule runtime", "notes_ko": "LLM calls 0"},
+        {"edge_id": "EDGE-012", "source_node_id": "NODE_HAI_P1", "target_node_id": "NODE_D0", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-RAW-DATA-CUSTODY", "ART-D0-PREDICTION"], "audit_reports": ["architecture/07_d0_detector/ARCH_007_REPORT.md"], "label_ko": "37 P1 features", "notes_ko": "normal-only fit/calibration 후 test1 prediction"},
+        {"edge_id": "EDGE-013", "source_node_id": "NODE_D0", "target_node_id": "NODE_D2", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-D0-PREDICTION", "ART-D2V1-PREDICTION", "ART-D2V2-PREDICTION"], "audit_reports": ["architecture/09_d2_fusion/ARCH_009_REPORT.md"], "label_ko": "D0 pointwise preserved", "notes_ko": "D2(t)=D0(t) OR policy_admits_D1(t)"},
+        {"edge_id": "EDGE-014", "source_node_id": "NODE_D1", "target_node_id": "NODE_D2", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-D1-PREDICTION", "ART-D2V1-PREDICTION", "ART-D2V2-PREDICTION"], "audit_reports": ["architecture/09_d2_fusion/ARCH_009_REPORT.md"], "label_ko": "multi-source rule evidence", "notes_ko": "D1 response가 자동 D2 admission을 뜻하지 않음"},
+        {"edge_id": "EDGE-015", "source_node_id": "NODE_D0", "target_node_id": "NODE_METRICS_INTEGRITY", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-D0-PREDICTION", "ART-D0-METRICS", "ART-D0-INTEGRITY"], "audit_reports": ["architecture/10_metrics_integrity/ARCH_010_REPORT.md"], "label_ko": "Boolean alarm timeline", "notes_ko": "durable pre-label prediction"},
+        {"edge_id": "EDGE-016", "source_node_id": "NODE_D1", "target_node_id": "NODE_METRICS_INTEGRITY", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-D1-PREDICTION", "ART-D1-METRICS", "ART-D1-INTEGRITY"], "audit_reports": ["architecture/10_metrics_integrity/ARCH_010_REPORT.md"], "label_ko": "unique alarm seconds", "notes_ko": "in-memory pre-label boundary is weaker"},
+        {"edge_id": "EDGE-017", "source_node_id": "NODE_D2", "target_node_id": "NODE_METRICS_INTEGRITY", "edge_class": "FROZEN_EXECUTION", "artifact_ids": ["ART-D2V1-PREDICTION", "ART-D2V1-METRICS", "ART-D2V1-INTEGRITY", "ART-D2V2-PREDICTION", "ART-D2V2-METRICS", "ART-D2V2-INTEGRITY"], "audit_reports": ["architecture/10_metrics_integrity/ARCH_010_REPORT.md"], "label_ko": "combined Boolean predictions", "notes_ko": "V2 is test1-informed development"},
+        {"edge_id": "EDGE-018", "source_node_id": "NODE_METRICS_INTEGRITY", "target_node_id": "NODE_OUTER_REPRO", "edge_class": "DESIGN_CONDITIONAL", "artifact_ids": ["ART-OUTER-BLOCKER", "ART-REPRO-ASSESSMENT"], "audit_reports": ["architecture/11_outer_reproducibility/ARCH_011_REPORT.md"], "label_ko": "new preregistered validation required", "notes_ko": "old OUTER result unavailable; not negative performance"}
+      ]
+    },
+    "architecture_groups.json": {
+      "lanes": [
+        {"lane_id": "LANE_DATA_DISCOVERY", "label_ko": "데이터·후보 탐색", "node_ids": ["NODE_HAI_P1", "NODE_SPLIT_ROLES", "NODE_CANDIDATE_DISCOVERY", "NODE_CANDIDATE_UNION"]},
+        {"lane_id": "LANE_RELATION_RULE", "label_ko": "관계·규칙 구성", "node_ids": ["NODE_RELATION_PROFILING", "NODE_NUMERIC_AUTHORITY", "NODE_RULE_CONSTRUCTION", "NODE_VERIFIER", "NODE_COMMON42"]},
+        {"lane_id": "LANE_RUNTIME_DETECTION", "label_ko": "실행·탐지", "node_ids": ["NODE_D0", "NODE_D1", "NODE_D2"]},
+        {"lane_id": "LANE_EVALUATION_VALIDATION", "label_ko": "평가·검증", "node_ids": ["NODE_METRICS_INTEGRITY", "NODE_OUTER_REPRO"]}
+      ],
+      "expandable_groups": [
+        {
+          "group_id": "GROUP_CANDIDATE_ARMS",
+          "parent_node_id": "NODE_CANDIDATE_DISCOVERY",
+          "detail_nodes": [
+            {"detail_node_id": "DETAIL_META", "component_ids": ["META_DISCOVERY"], "label": "META"},
+            {"detail_node_id": "DETAIL_STAT", "component_ids": ["STAT_DISCOVERY"], "label": "STAT"},
+            {"detail_node_id": "DETAIL_GDN", "component_ids": ["GDN_DISCOVERY"], "label": "GDN"}
+          ]
+        },
+        {
+          "group_id": "GROUP_RULE_ARMS",
+          "parent_node_id": "NODE_RULE_CONSTRUCTION",
+          "detail_nodes": [
+            {"detail_node_id": "DETAIL_EVIDENCE_PACK", "component_ids": ["EVIDENCE_PACK"], "label": "Evidence Pack"},
+            {"detail_node_id": "DETAIL_T0", "component_ids": ["T0_TEMPLATE"], "label": "T0"},
+            {"detail_node_id": "DETAIL_T1", "component_ids": ["T1_ONE_SHOT"], "label": "T1"},
+            {"detail_node_id": "DETAIL_T1B", "component_ids": ["T1B_REPEAT"], "label": "T1-B"},
+            {"detail_node_id": "DETAIL_T2", "component_ids": ["T2_AGENTIC_FEEDBACK"], "label": "T2"}
+          ]
+        }
+      ],
+      "catalog_only_component_ids": ["EXPLANATION_RENDERER", "PROFESSOR_REPORTING", "THESIS_DRAFT"],
+      "catalog_rule": "All 32 registry component IDs appear either in a top-level/detail node or catalog_only_component_ids."
+    },
+    "dashboard_layout.json": {
+      "primary_navigation": [
+        {"view_id": "overview", "label_ko": "개요"},
+        {"view_id": "architecture", "label_ko": "아키텍처"},
+        {"view_id": "experiments", "label_ko": "실험·결과"},
+        {"view_id": "readiness", "label_ko": "준비도·위험"},
+        {"view_id": "history", "label_ko": "이력·근거"}
+      ],
+      "overview_sources": {
+        "current_phase": "current_state.current_phase",
+        "pilot_v1": "current_state.outer_reproducibility.pilot_v1",
+        "validation_v2": "current_state.outer_reproducibility.validation_v2",
+        "next_task": "current_state.exact_next_task",
+        "p0_count": "current_state.pre_validation_readiness.priority_counts.P0",
+        "decision_count": "count(decisions.csv where status=OPEN)",
+        "last_updated": "current_state.last_updated",
+        "scientific_authority": "current_state.scientific_authority"
+      },
+      "overview_blocks": [
+        "CURRENT_STAGE_HEADER",
+        "STAGE_RAIL",
+        "COMPACT_ARCHITECTURE",
+        "TOP_THREE_ACTIONS",
+        "PILOT_RESULTS",
+        "EXP01_TO_EXP05_GATES",
+        "TOP_FIVE_RISKS",
+        "LATEST_THREE_MILESTONES"
+      ],
+      "detail_drawer": {
+        "default_mode": "EASY",
+        "modes": ["EASY", "TECHNICAL"],
+        "easy_fields": ["why", "input", "process", "output", "implementation_state", "current_result", "unvalidated", "next_work"],
+        "technical_fields": ["component_ids", "source_paths", "symbols", "schemas", "artifact_ids", "producers", "consumers", "tests", "source_ref", "audit_reports", "authority_hashes"],
+        "unknown_policy": "Display 미확인 (UNKNOWN), never omit or infer."
+      },
+      "catalog": {
+        "row_source": "registry/components.csv",
+        "row_count": 32,
+        "filters": ["text", "status", "lane", "experiment", "risk", "core_governance_legacy"],
+        "scientific_validation_source": "registry/claims.csv only"
+      }
+    },
+    "display_labels_ko.json": {
+      "CODE_IMPLEMENTED": "구현 완료",
+      "EXECUTED": "실제 실행 완료",
+      "EVIDENCE_REVIEWED": "근거 점검 완료",
+      "RESULT_INTEGRITY": "결과 무결성 확인",
+      "REPRODUCED": "독립 재현 완료",
+      "SCIENTIFIC_VALIDATION": "과학적 검증",
+      "UNVALIDATED": "미검증",
+      "PILOT_ONLY": "예비 실험 수준",
+      "UNCONFIRMED": "미확인",
+      "BLOCKED": "진행 전 해결 필요",
+      "CONDITIONAL": "조건부",
+      "READY_WITH_CONDITIONS": "조건부 진행 가능",
+      "NOT_REQUIRED": "현재 필요하지 않음",
+      "P0_FIX_BEFORE_EXPANDED_VALIDATION": "확대 검증 전 수정",
+      "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT": "특정 실험 전 수정",
+      "EXPERIMENT_DESIGN_REQUIREMENT": "실험 설계 요구",
+      "ENGINEERING_HARDENING": "엔지니어링 강화",
+      "CLAIM_DOCUMENTATION_CORRECTION": "표현·문서 수정",
+      "ACCEPTABLE_THESIS_LIMITATION": "수용 가능한 한계",
+      "FUTURE_WORK_ONLY": "미래 과제",
+      "provenance_first_use": "근거 출처 추적 (Provenance)",
+      "runtime_authorization_first_use": "실행 권한 (Runtime Authorization)",
+      "fresh_machine_first_use": "새 환경 독립 재현 (Fresh-machine Reproduction)",
+      "verified_rule_only_first_use": "검증된 관계 규칙 단독 방식 (Verified Relational Rule-only)"
+    },
+    "visual_tokens.json": {
+      "semantic_state_keys": ["implemented", "verified", "warning", "blocked", "unvalidated"],
+      "edge_style_mapping": {
+        "FROZEN_EXECUTION": "thick_solid",
+        "CODE_TEST_VERIFIED": "thin_solid",
+        "DESIGN_CONDITIONAL": "dashed",
+        "AUTHORITY_GAP": "red_dashed",
+        "LEGACY_REFERENCE": "gray_solid",
+        "UNKNOWN": "gray_dashed"
+      },
+      "guardrail": "Tokens control presentation only and cannot imply scientific status."
+    }
+  },
+  "pilot_results": {
+    "single_source": "research_control_center/registry/current_state.yaml",
+    "event_unit_count_pointer": "metric_integrity.event_unit_count",
+    "normal_exposure_pointer": "metric_integrity.normal_exposure_seconds",
+    "methods": [
+      {"method_id": "D0", "recall_numerator": 11, "recall_denominator": 14, "recall_source": "d0_detector.attack_event_response", "far_per_hour": 0.4939336325682589, "far_source": "d0_detector.normal_far_episodes_per_hour"},
+      {"method_id": "D1", "recall_numerator": 13, "recall_denominator": 14, "recall_source": "d1_evaluation.attack_events_detected + d1_evaluation.pilot_events", "far_per_hour": 40.50255787059723, "far_source": "d1_evaluation.normal_far_episodes_per_hour"},
+      {"method_id": "D2_V1", "recall_numerator": 11, "recall_denominator": 14, "recall_source": "d2_fusion.v1.attack_event_response", "far_per_hour": 0.7056194750975128, "far_source": "d2_fusion.v1.normal_far_episodes_per_hour"},
+      {"method_id": "D2_V2", "recall_numerator": 11, "recall_denominator": 14, "recall_source": "d2_fusion.v2.attack_event_response", "far_per_hour": 6.915070855955625, "far_source": "d2_fusion.v2.normal_far_episodes_per_hour"}
+    ],
+    "overlap": {
+      "source": "metric_integrity.overlap",
+      "both": 10,
+      "d0_only": 1,
+      "d1_only": 3,
+      "neither": 0
+    },
+    "chart_policy": {
+      "recall": "common 0-to-14 numerator bar with exact n/14 labels",
+      "far": "two aligned panels: D0/D2 V1/D2 V2 in lower-range panel and D1 in separate high-range panel; show exact values and explicitly state scales differ",
+      "overlap": "2x2 matrix, not Venn",
+      "accessible_table_required": true
+    },
+    "warnings": [
+      "현재 결과는 test1의 14개 연속 공격 구간 단위를 이용한 예비 결과입니다.",
+      "통계적 독립성과 held-out 일반화는 확인되지 않았습니다.",
+      "결과 무결성 확인은 과학적 검증이 아닙니다.",
+      "D1은 T2 Agentic Rule-only가 아닙니다."
+    ]
+  },
+  "candidate_and_construction_assertions": {
+    "source": "research_control_center/registry/current_state.yaml",
+    "candidate_path": {
+      "universe": 144,
+      "META": 20,
+      "STAT": 20,
+      "GDN": 20,
+      "union": 47,
+      "confirmed_relations": 42,
+      "pointers": [
+        "candidate_discovery.candidate_universe",
+        "candidate_discovery.arms[*].top_k",
+        "candidate_discovery.union",
+        "relation_numeric_authority.confirmed_directions"
+      ]
+    },
+    "construction": {
+      "T0": "42/42",
+      "T1": "42/42",
+      "T1-B": "42/42",
+      "T2": "39/42",
+      "feedback_actions": 0,
+      "pointers": [
+        "rule_construction_authority.t0",
+        "rule_construction_authority.t1",
+        "rule_construction_authority.t1b",
+        "rule_construction_authority.t2",
+        "rule_construction_authority.observed_feedback_actions"
+      ]
+    },
+    "warning": "These are execution/custody counts, not causality, detection utility, GDN advantage, or Agentic benefit."
+  },
+  "experiment_gate_mapping": {
+    "experiment_status_source": "registry/experiments.csv",
+    "readiness_source": "bootstrap/GAP_000/GAP_000_EXPERIMENT_GATES.csv",
+    "rows": [
+      {"experiment_id": "EXP-01", "hypothesis_ko": "GDN 고유 기여", "experiment_status": "IMPLEMENTED_NOT_EXECUTED", "gate_status": "BLOCKED", "blocking_gap_ids": ["GAP-006"], "design_gap_ids": ["GAP-007"]},
+      {"experiment_id": "EXP-02", "hypothesis_ko": "Numeric criteria", "experiment_status": "IMPLEMENTED_NOT_EXECUTED", "gate_status": "READY_WITH_CONDITIONS", "blocking_gap_ids": [], "design_gap_ids": ["GAP-001", "GAP-018"]},
+      {"experiment_id": "EXP-03", "hypothesis_ko": "Agentic feedback", "experiment_status": "EXECUTED_AUDITED_PILOT", "gate_status": "BLOCKED", "blocking_gap_ids": ["GAP-005"], "design_gap_ids": ["GAP-008"]},
+      {"experiment_id": "EXP-04", "hypothesis_ko": "Rule / Detector / Fusion", "experiment_status": "EXECUTED_AUDITED_PILOT", "gate_status": "BLOCKED", "blocking_gap_ids": ["GAP-001", "GAP-002"], "design_gap_ids": ["GAP-003", "GAP-004", "GAP-009"]},
+      {"experiment_id": "EXP-05", "hypothesis_ko": "Explanation fidelity", "experiment_status": "IMPLEMENTED_NOT_EXECUTED", "gate_status": "BLOCKED", "blocking_gap_ids": ["GAP-010"], "design_gap_ids": []},
+      {"experiment_id": "EXP-06", "hypothesis_ko": "Runtime LLM", "experiment_status": "DESIGN_ONLY", "gate_status": "NOT_REQUIRED", "blocking_gap_ids": [], "design_gap_ids": ["GAP-019"]}
+    ],
+    "guardrail": "Experiment lifecycle status and readiness gate are separate columns and must never be collapsed."
+  },
+  "readiness_mapping": {
+    "source": "bootstrap/GAP_000/GAP_000_REMEDIATION_MATRIX.csv",
+    "required_p0_rows": [
+      {"gap_id": "GAP-001", "disposition": "P0_FIX_BEFORE_EXPANDED_VALIDATION", "priority": "P0", "label_ko": "Final authority"},
+      {"gap_id": "GAP-002", "disposition": "P0_FIX_BEFORE_EXPANDED_VALIDATION", "priority": "P0", "label_ko": "Durable D1 custody"},
+      {"gap_id": "GAP-003", "disposition": "EXPERIMENT_DESIGN_REQUIREMENT", "priority": "P0", "label_ko": "Validation/final role freeze"},
+      {"gap_id": "GAP-004", "disposition": "EXPERIMENT_DESIGN_REQUIREMENT", "priority": "P0", "label_ko": "Event/metric interpretation freeze"}
+    ],
+    "primary_disposition_order": [
+      "P0_FIX_BEFORE_EXPANDED_VALIDATION",
+      "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT",
+      "EXPERIMENT_DESIGN_REQUIREMENT",
+      "ENGINEERING_HARDENING",
+      "CLAIM_DOCUMENTATION_CORRECTION",
+      "ACCEPTABLE_THESIS_LIMITATION",
+      "FUTURE_WORK_ONLY"
+    ],
+    "urgency_order": ["P0", "P1", "P2", "P3"],
+    "guardrail": "Primary disposition and urgency are independent axes; both are always shown."
+  },
+  "claim_risk_grouping": {
+    "claims": {
+      "source": "registry/claims.csv",
+      "groups": [
+        {"group_id": "IMPLEMENTATION_SUPPORTED", "statuses": ["SUPPORTED_IMPLEMENTATION"], "claim_ids": ["CLAIM-A", "CLAIM-B", "CLAIM-C", "CLAIM-D"]},
+        {"group_id": "PILOT_OBSERVATIONS", "statuses": ["PILOT_ONLY"], "claim_ids": ["CLAIM-G"]},
+        {"group_id": "UNVALIDATED_OR_CONDITIONAL", "statuses": ["UNVALIDATED", "CONDITIONAL"], "claim_ids": ["CLAIM-E", "CLAIM-H", "CLAIM-K", "CLAIM-L"]},
+        {"group_id": "NOT_SUPPORTED", "statuses": ["NOT_SUPPORTED"], "claim_ids": ["CLAIM-F", "CLAIM-I", "CLAIM-J", "CLAIM-M"]}
+      ],
+      "guardrail": "No component status or claim_ready value may promote a claim."
+    },
+    "risks": {
+      "source": "registry/risks.csv",
+      "top_five_policy": "severity CRITICAL/HIGH first, preserve registry order, take first five; show full 16-row filterable table in readiness view",
+      "groups": [
+        {"group_id": "SCIENTIFIC_VALIDITY", "categories": ["VALIDITY", "GENERALIZATION", "BASELINE", "UTILITY"]},
+        {"group_id": "AUTHORITY_GOVERNANCE", "categories": ["AUTHORITY", "LABEL_ORDERING", "SPLIT_GOVERNANCE", "OUTCOME_TAXONOMY"]},
+        {"group_id": "CONTRIBUTION", "categories": ["CONTRIBUTION", "GDN_RANKING", "EXPLANATION"]},
+        {"group_id": "REPRODUCIBILITY_PORTABILITY", "categories": ["REPRODUCIBILITY", "METRIC_PORTABILITY"]}
+      ]
+    }
+  },
+  "validation_rules": [
+    {"id": "VM-001", "assertion": "Exactly five primary navigation items with IDs overview, architecture, experiments, readiness, history."},
+    {"id": "VM-002", "assertion": "Exactly 14 top-level architecture node IDs and all are unique."},
+    {"id": "VM-003", "assertion": "Every node component_ids value resolves against all 32 unique registry/components.csv component IDs."},
+    {"id": "VM-004", "assertion": "Every architecture edge endpoint resolves to a valid node; every artifact ID resolves in registry/artifacts.csv."},
+    {"id": "VM-005", "assertion": "No edge defaults to solid: only explicit FROZEN_EXECUTION or CODE_TEST_VERIFIED citations receive solid styling."},
+    {"id": "VM-006", "assertion": "Every top-level node provides input, process, output, easy details, technical sources and at least one ARCH audit report."},
+    {"id": "VM-007", "assertion": "Catalog presents exactly the 32 registry components; node grouping does not change component cardinality."},
+    {"id": "VM-008", "assertion": "Pilot values equal current_state exact values: D0 11/14 and 0.4939336325682589; D1 13/14 and 40.50255787059723; D2 V1 11/14 and 0.7056194750975128; D2 V2 11/14 and 6.915070855955625."},
+    {"id": "VM-009", "assertion": "Overlap matrix equals both=10, d0_only=1, d1_only=3, neither=0 from metric_integrity.overlap."},
+    {"id": "VM-010", "assertion": "Candidate/construction assertions resolve from a single generated current_state view, not repeated authored constants in HTML."},
+    {"id": "VM-011", "assertion": "EXP-01..EXP-06 IDs resolve; lifecycle status comes from experiments.csv and gate status from GAP_000_EXPERIMENT_GATES.csv."},
+    {"id": "VM-012", "assertion": "GAP-001..GAP-019 resolve; disposition and urgency remain separate fields."},
+    {"id": "VM-013", "assertion": "Scientific validation rail and claim panels use claims.csv only."},
+    {"id": "VM-014", "assertion": "Result-integrity state is absent unless an explicit result-integrity artifact or current_state declaration exists."},
+    {"id": "VM-015", "assertion": "UNKNOWN remains visible and cannot be promoted by display config."},
+    {"id": "VM-016", "assertion": "No display config contains a private path, credential, raw row, private numeric payload, attack interval or test2 content."},
+    {"id": "VM-017", "assertion": "All source paths are repository-relative; all generated HTML registry text is escaped."},
+    {"id": "VM-018", "assertion": "View-model digest includes every registry/config/report input and changes when any input bytes change."},
+    {"id": "VM-019", "assertion": "Raw registry schemas and bytes are unchanged by the dashboard build."},
+    {"id": "VM-020", "assertion": "Safety counters remain scientific_executions=0, test2_feature_accesses=0, test2_label_accesses=0, new_private_exposures=0 for RCC-UI-002."}
+  ],
+  "implementation_notes": [
+    "Use architecture_nodes.csv only for labels, ordering, grouping and explanatory copy. Re-read component state/path/symbol/artifact/test values from registries at every build.",
+    "Generate one JSON view-model payload inside index.html (or a local view-model JSON file) and render charts, drawers and catalog from it; do not duplicate current scientific values in HTML, JavaScript and config.",
+    "Keep full registry English descriptions and full hashes in the technical drawer only. Korean summaries are presentation text and must link back to the raw authority fields.",
+    "The red verifier-to-COMMON-42 edge is a known authority gap while the direct construction-to-COMMON-42 V4 projection is the frozen path. Showing only one of these edges would misstate the audited architecture.",
+    "Do not label D1 as Agentic Rule-only or direct LLM Rule-only. Use 검증된 관계 규칙 단독 방식 (Verified Relational Rule-only).",
+    "No chart should combine Recall and FAR on one numeric axis. D1 FAR must remain visually obvious and exact values must be printed."
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "task_id": "RCC-UI-002",
+  "agent_role": "Agent E - Final Independent Read-Only QA",
+  "status": "PASS",
+  "workspace": "<RCC_WORKTREE>",
+  "timestamp_local": "2026-08-31",
+  "scope": {
+    "read_only_review": true,
+    "shared_implementation_files_modified": false,
+    "registry_modified": false,
+    "scientific_source_modified": false,
+    "artifact_written": "research_control_center/ui_redesign/staging/agent_e_final_qa.json"
+  },
+  "overall_assessment": {
+    "result": "PASS",
+    "summary": "Dashboard V2 satisfies the requested final QA gates for generated HTML/assets config presence, Korean-first information architecture, exact five primary menu items, fourteen unique top-level architecture nodes, easy/technical drawer modes, frozen scientific pilot values, local-only assets, reduced-motion contract, screenshot coverage, private exposure 0, and no observed registry/scientific file modifications."
+  },
+  "evidence": {
+    "manual_screenshots_reviewed": [
+      "research_control_center/ui_redesign/screenshots/01_overview_1440x900.png",
+      "research_control_center/ui_redesign/screenshots/02_architecture_1440x900.png",
+      "research_control_center/ui_redesign/screenshots/03_architecture_node_selected_1440x900.png",
+      "research_control_center/ui_redesign/screenshots/04_experiments_1440x900.png",
+      "research_control_center/ui_redesign/screenshots/05_readiness_risk_1440x900.png",
+      "research_control_center/ui_redesign/screenshots/06_overview_1366x768.png",
+      "research_control_center/ui_redesign/screenshots/07_overview_1920x1080.png",
+      "research_control_center/ui_redesign/screenshots/08_mobile_390x844.png"
+    ],
+    "read_only_tests": [
+      {
+        "command": "bundled-python -B -m unittest research_control_center.tests.test_rcc_ui002_dashboard_v2",
+        "result": "PASS",
+        "details": "Ran 15 tests in 0.038s; OK."
+      }
+    ],
+    "static_checks": [
+      {
+        "check": "No external CDN/runtime dependency",
+        "result": "PASS",
+        "details": "HTML/CSS/JS grep found no http(s) script/link/src references and no CDN markers."
+      },
+      {
+        "check": "Local assets referenced",
+        "result": "PASS",
+        "details": "index.html references local assets/rcc.css and assets/rcc.js only."
+      },
+      {
+        "check": "Registry and scientific paths unchanged",
+        "result": "PASS",
+        "details": "git diff --name-only returned no paths under research_control_center/registry, research_control_center/history, research_control_center/bootstrap, research_control_center/architecture, src/paperworks/contracts, src/paperworks/data, src/paperworks/metadata, src/paperworks/candidates, or src/paperworks/gdn."
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "CHK-01",
+      "requirement": "Generated dashboard/index.html exists",
+      "result": "PASS",
+      "evidence": "research_control_center/dashboard/index.html present and renderable."
+    },
+    {
+      "id": "CHK-02",
+      "requirement": "Generated assets/config exist",
+      "result": "PASS",
+      "evidence": "dashboard/assets/rcc.css, dashboard/assets/rcc.js, dashboard_config/architecture_nodes.csv, architecture_edges.csv, architecture_groups.json, dashboard_layout.json, display_labels_ko.json, visual_tokens.json present."
+    },
+    {
+      "id": "CHK-03",
+      "requirement": "Exactly 8 required screenshots exist",
+      "result": "PASS",
+      "evidence": "01_overview_1440x900 through 08_mobile_390x844 all present."
+    },
+    {
+      "id": "CHK-04",
+      "requirement": "Exactly 5 primary menu items",
+      "result": "PASS",
+      "evidence": "dashboard_layout.json primary_navigation contains overview, architecture, experiments, readiness, history; unittest test_exactly_five_primary_navigation_items passed."
+    },
+    {
+      "id": "CHK-05",
+      "requirement": "Exactly 14 top-level architecture nodes",
+      "result": "PASS",
+      "evidence": "dashboard view model unittest asserts 14 unique node_ids; dashboard_layout.json and load_dashboard_config agree. Raw HTML contains 28 data-node-id matches because the same 14 nodes appear once in overview mini-map and once in architecture view."
+    },
+    {
+      "id": "CHK-06",
+      "requirement": "Drawer supports easy and technical modes",
+      "result": "PASS",
+      "evidence": "index.html includes data-drawer-mode=\"easy\" and data-drawer-mode=\"technical\" tabs; screenshot 03 shows drawer open."
+    },
+    {
+      "id": "CHK-07",
+      "requirement": "Charts preserve frozen scientific values",
+      "result": "PASS",
+      "evidence": "unittest asserts D0 11/14 FAR 0.4939336325682589, D1 13/14 FAR 40.50255787059723, D2 V1 11/14 FAR 0.7056194750975128, D2 V2 11/14 FAR 6.915070855955625, overlap {10,1,3,0}; screenshot 04 visibly matches."
+    },
+    {
+      "id": "CHK-08",
+      "requirement": "No external CDN",
+      "result": "PASS",
+      "evidence": "No external script/link/src references found; JS contains no fetch or XMLHttpRequest."
+    },
+    {
+      "id": "CHK-09",
+      "requirement": "Local links resolve",
+      "result": "PASS",
+      "evidence": "unittest test_local_links_resolve passed for href/src references."
+    },
+    {
+      "id": "CHK-10",
+      "requirement": "Reduced motion contract present",
+      "result": "PASS",
+      "evidence": "rcc.css includes @media (prefers-reduced-motion:reduce) removing transitions and animations."
+    },
+    {
+      "id": "CHK-11",
+      "requirement": "Korean-first UI",
+      "result": "PASS",
+      "evidence": "html lang=\"ko\"; primary labels are Korean-first; screenshots 01, 04, 05, 08 show Korean headings and labels dominating user-facing content while D0/D1/D2/META/STAT/GDN identifiers remain intact."
+    },
+    {
+      "id": "CHK-12",
+      "requirement": "Private exposure remains 0",
+      "result": "PASS",
+      "evidence": "Embedded view model safety block reports private_exposures=0, scientific_executions=0, test2_accesses=0; no private paths or raw restricted values observed in screenshots or HTML."
+    },
+    {
+      "id": "CHK-13",
+      "requirement": "Registry/scientific files unchanged",
+      "result": "PASS",
+      "evidence": "No diffs detected in designated registry/scientific paths."
+    },
+    {
+      "id": "CHK-14",
+      "requirement": "Visual desktop acceptance",
+      "result": "PASS",
+      "evidence": "1440x900 and 1920x1080 screenshots show stable layout, readable hierarchy, no visible overlap, no clipped key panels, and compact architecture map plus action/risk panels above the fold."
+    },
+    {
+      "id": "CHK-15",
+      "requirement": "Visual mobile acceptance",
+      "result": "PASS",
+      "evidence": "390x844 screenshot shows mobile header, menu toggle, single-column stacking, readable cards, and architecture map within scrollable frame without text clipping."
+    },
+    {
+      "id": "CHK-16",
+      "requirement": "Accessibility contract present",
+      "result": "PASS",
+      "evidence": "Skip link, visible focus styling, semantic header/nav/main/section, keyboard-focusable SVG nodes, aria labels, aria-expanded, aria-hidden, drawer tabs, and accessible data table are present; related unittest passed."
+    }
+  ],
+  "visual_qa_questions": [
+    {
+      "id": "VQ-01",
+      "question": "1440x900 overview first screen에서 현재 연구 단계와 정확한 다음 작업이 즉시 보이는가?",
+      "result": "PASS",
+      "evidence": "01_overview_1440x900.png"
+    },
+    {
+      "id": "VQ-02",
+      "question": "좌측 주 메뉴가 정확히 5개만 보이는가?",
+      "result": "PASS",
+      "evidence": "01_overview_1440x900.png shows 01 개요, 02 아키텍처, 03 실험·결과, 04 준비도·위험, 05 이력·근거."
+    },
+    {
+      "id": "VQ-03",
+      "question": "상단 상태 문구와 좌측 과학 기준 블록이 서로 겹치지 않는가?",
+      "result": "PASS",
+      "evidence": "01_overview_1440x900.png and 07_overview_1920x1080.png"
+    },
+    {
+      "id": "VQ-04",
+      "question": "개요 화면의 compact architecture map이 카드 내부에 안정적으로 배치되는가?",
+      "result": "PASS",
+      "evidence": "01_overview_1440x900.png, 06_overview_1366x768.png, 07_overview_1920x1080.png"
+    },
+    {
+      "id": "VQ-05",
+      "question": "Pilot 결과 막대와 FAR 요약 수치가 시각적으로 분리되어 오해를 줄이는가?",
+      "result": "PASS",
+      "evidence": "01_overview_1440x900.png and 04_experiments_1440x900.png"
+    },
+    {
+      "id": "VQ-06",
+      "question": "Architecture 화면에서 14개 top-level node가 기본 맞춤 상태로 인지 가능한가?",
+      "result": "PASS",
+      "evidence": "02_architecture_1440x900.png"
+    },
+    {
+      "id": "VQ-07",
+      "question": "Architecture toolbar의 검색, lane, 위험, frozen 경로 필터, 줌, 초기화가 한 줄에서 과도하게 충돌하지 않는가?",
+      "result": "PASS",
+      "evidence": "02_architecture_1440x900.png"
+    },
+    {
+      "id": "VQ-08",
+      "question": "Node 선택 시 선택 node 강조와 관계 흐름 dimming이 시각적으로 구분되는가?",
+      "result": "PASS",
+      "evidence": "03_architecture_node_selected_1440x900.png"
+    },
+    {
+      "id": "VQ-09",
+      "question": "Drawer가 열려도 닫기 제어와 내용 읽기가 가능한가?",
+      "result": "PASS",
+      "evidence": "03_architecture_node_selected_1440x900.png"
+    },
+    {
+      "id": "VQ-10",
+      "question": "Drawer easy mode가 한국어 설명 중심으로 점진적 공개를 제공하는가?",
+      "result": "PASS",
+      "evidence": "03_architecture_node_selected_1440x900.png shows 쉽게 보기 tab active with why/input/output/current result sections."
+    },
+    {
+      "id": "VQ-11",
+      "question": "실험·결과 화면에서 Recall과 FAR가 다른 축이라는 경고가 명확한가?",
+      "result": "PASS",
+      "evidence": "04_experiments_1440x900.png"
+    },
+    {
+      "id": "VQ-12",
+      "question": "실험·결과 화면의 exact-value table이 차트 해석 보조 역할을 하는가?",
+      "result": "PASS",
+      "evidence": "04_experiments_1440x900.png"
+    },
+    {
+      "id": "VQ-13",
+      "question": "준비도·위험 화면의 P0 카드 4개가 우선순위와 위험 축을 혼동 없이 보여주는가?",
+      "result": "PASS",
+      "evidence": "05_readiness_risk_1440x900.png"
+    },
+    {
+      "id": "VQ-14",
+      "question": "1366x768 overview에서 핵심 카드가 접힘 없이 보이며 긴 가로 스크롤이 없는가?",
+      "result": "PASS",
+      "evidence": "06_overview_1366x768.png"
+    },
+    {
+      "id": "VQ-15",
+      "question": "1920x1080 overview에서 본문 폭이 과도하게 늘어나지 않고 읽기 폭이 유지되는가?",
+      "result": "PASS",
+      "evidence": "07_overview_1920x1080.png"
+    },
+    {
+      "id": "VQ-16",
+      "question": "390x844 모바일에서 헤더와 햄버거 메뉴 토글이 명확한가?",
+      "result": "PASS",
+      "evidence": "08_mobile_390x844.png"
+    },
+    {
+      "id": "VQ-17",
+      "question": "390x844 모바일에서 현재 단계, 다음 작업, 요약 수치 카드가 세로 흐름으로 안정적으로 쌓이는가?",
+      "result": "PASS",
+      "evidence": "08_mobile_390x844.png"
+    },
+    {
+      "id": "VQ-18",
+      "question": "390x844 모바일에서 한글 줄바꿈이 비정상적으로 깨지지 않는가?",
+      "result": "PASS",
+      "evidence": "08_mobile_390x844.png"
+    },
+    {
+      "id": "VQ-19",
+      "question": "스크린샷 전반에서 외부 브랜드, CDN 로더, 개발자 디버그 잔재가 노출되지 않는가?",
+      "result": "PASS",
+      "evidence": "Screenshots 01-08 and index.html inspection."
+    },
+    {
+      "id": "VQ-20",
+      "question": "스크린샷 전반에서 private path, raw restricted data, secret, local machine identifier가 노출되지 않는가?",
+      "result": "PASS",
+      "evidence": "Screenshots 01-08 and embedded safety block inspection; private exposure remained 0."
+    }
+  ],
+  "limitations": [
+    "This QA was read-only and did not modify shared implementation, registry, or scientific files.",
+    "Accessibility verification was contract-driven plus screenshot/manual review; no live screen-reader session was executed in this pass.",
+    "The dedicated unittest covered structure, values, local links, accessibility hooks, and no-external-runtime constraints, but it does not prove real browser assistive-technology behavior by itself.",
+    "The provided mobile screenshot confirms responsive stacking at 390x844, but no separate screenshot was supplied for mobile drawer-open technical mode; code and desktop screenshot indicate the feature exists."
+  ]
+}

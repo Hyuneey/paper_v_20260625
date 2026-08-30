@@ -1,3 +1,5 @@
 * text eol=lf
 bootstrap/RCC_000/** -text
 scripts/open_dashboard.bat text eol=crlf
+ui_redesign/screenshots/*.png -text
+deliverables/*.zip -text

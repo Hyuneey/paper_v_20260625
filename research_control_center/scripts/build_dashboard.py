@@ -519,7 +519,7 @@ def _source_marker(state: Mapping[str, Any], digest: str) -> str:
     )
 
 
-def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
+def _render_dashboard_v1(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     authority = state["scientific_authority"]
     checkout = state["non_authoritative_checkout"]
@@ -1131,6 +1131,16 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
 </body>
 </html>
 """
+
+
+def render_dashboard(
+    data: Mapping[str, Any], digest: str, rcc_root: Path | None = None
+) -> str:
+    """Render the application-style Dashboard V2 from registry state."""
+
+    from dashboard_v2 import render_dashboard_v2
+
+    return render_dashboard_v2(data, digest, rcc_root or default_rcc_root())
 
 
 def _markdown_marker(state: Mapping[str, Any], digest: str) -> str:
@@ -2826,7 +2836,7 @@ def build_dashboard(rcc_root: Path) -> Path:
     digest = registry_digest(rcc_root)
     output = rcc_root / "dashboard" / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(render_dashboard(data, digest), encoding="utf-8", newline="\n")
+    output.write_text(render_dashboard(data, digest, rcc_root), encoding="utf-8", newline="\n")
     return output
 
 

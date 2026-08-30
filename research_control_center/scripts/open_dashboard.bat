@@ -19,17 +19,19 @@ if not defined RCC_PYTHON (
   )
 )
 if not defined RCC_PYTHON (
-  echo Python 3 was not found. The dashboard was not opened.
+  echo [RCC] Python 3를 찾지 못했습니다. Dashboard를 열지 않습니다.
   popd
   exit /b 1
 )
 
 "%RCC_PYTHON%" %RCC_PYTHON_ARGS% research_control_center\scripts\refresh_all.py
 if errorlevel 1 (
-  echo RCC dashboard refresh failed. The dashboard was not opened.
+  echo [RCC] Registry 검증 또는 Dashboard 빌드가 실패했습니다. Dashboard를 열지 않습니다.
   popd
   exit /b 1
 )
+echo [RCC] Registry 검증과 Dashboard V2 빌드가 완료되었습니다.
+echo [RCC] Pilot V1 화면을 엽니다. 과학 실행은 수행하지 않았습니다.
 start "" "research_control_center\dashboard\index.html"
 popd
 endlocal

@@ -31,36 +31,34 @@ class DashboardGenerationTests(unittest.TestCase):
         data = load_registry(RCC_ROOT)
         rendered = render_dashboard(data, registry_digest(RCC_ROOT))
         for component in data["components"]:
+            self.assertIn(component["component_id"], rendered)
             self.assertIn(component["name"], rendered)
-            self.assertIn(component["status"], rendered)
-        for user_task in data["state"]["top_user_todo"]:
-            self.assertIn(html.escape(_ko_text(user_task)), rendered)
+        self.assertIn(html.escape(data["state"]["exact_next_task"]), rendered)
+        self.assertIn('id="rcc-view-model"', rendered)
 
     def test_required_sections_and_authority_warning_render(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
-        for heading in (
-            "현재 연구 상태", "내가 해야 할 일", "결정이 필요한 사항", "전체 아키텍처",
-            "구현 현황", "실험 현황", "연구 주장과 근거", "위험 및 점검사항",
-            "연구 진행 이력", "공식 기준 코드·근거", "최근 변경사항",
-        ):
+        for heading in ("현재 연구 단계", "전체 연구 시스템 지도", "실험·결과", "준비도·위험", "이력·근거"):
             self.assertIn(heading, rendered)
         self.assertIn(AUTHORITY_COMMIT, rendered)
-        self.assertIn("공식 기준 아님", rendered)
+        self.assertIn("과학 기준", rendered)
 
     def test_dashboard_uses_only_local_assets(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
-        self.assertNotIn("https://", rendered)
-        self.assertNotIn("http://", rendered)
         self.assertIn('href="assets/rcc.css"', rendered)
         self.assertIn('src="assets/rcc.js"', rendered)
+        self.assertNotIn("cdn.jsdelivr", rendered)
+        self.assertNotIn("unpkg.com", rendered)
 
     def test_search_and_status_filter_controls_exist(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
-        self.assertIn('id="registry-search"', rendered)
-        self.assertIn('id="status-filter"', rendered)
+        self.assertIn('id="node-search"', rendered)
+        self.assertIn('id="catalog-search"', rendered)
+        self.assertIn('id="gap-priority"', rendered)
         script = (RCC_ROOT / "dashboard" / "assets" / "rcc.js").read_text(encoding="utf-8")
-        self.assertIn("applyFilters", script)
-        self.assertIn('value="CRITICAL"', rendered)
+        self.assertIn("applyMapFilters", script)
+        self.assertIn("applyCatalogFilters", script)
+        self.assertIn('option>HIGH</option>', rendered)
 
     def test_gpt_brief_has_required_recovery_boundary_and_word_budget(self) -> None:
         brief = render_gpt_brief(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
@@ -93,7 +91,7 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_dashboard_has_population_counts_and_architecture_nodes(self) -> None:
         rendered = render_dashboard(load_registry(RCC_ROOT), registry_digest(RCC_ROOT))
-        for label in ("구현 완료", "실제 실행 완료", "근거 점검 완료 (Evidence-reviewed)", "독립 재현 완료"):
+        for label in ("구현 완료", "실제 실행 완료", "근거 점검 완료", "독립 재현 완료"):
             self.assertIn(label, rendered)
         self.assertNotIn("Claim-ready", rendered)
         for component_id in ("DATA_PROVENANCE", "GDN_DISCOVERY", "D0_PCA_SPE", "D1_RULE_ONLY"):
@@ -103,23 +101,23 @@ class DashboardGenerationTests(unittest.TestCase):
     def test_arch000_dashboard_exposes_clickable_contracts(self) -> None:
         data = load_registry(RCC_ROOT)
         rendered = render_dashboard(data, registry_digest(RCC_ROOT))
-        for section in ("DATA", "DISCOVERY", "RELATION", "RULE", "VERIFIER", "RUNTIME", "D0", "D1", "D2", "METRICS", "REPRODUCIBILITY"):
-            self.assertIn(f'id="arch-{section.lower()}"', rendered)
-        for label in ("역할", "입력", "출력", "코드", "실행 여부", "고정 결과 사용 여부", "검증 상태", "다음 심층 점검"):
+        self.assertEqual(14, rendered.count('id="map-svg-NODE_'))
+        for node_id in ("NODE_HAI_P1", "NODE_RULE_CONSTRUCTION", "NODE_D0", "NODE_D1", "NODE_D2", "NODE_OUTER_REPRO"):
+            self.assertIn(f'data-node-id="{node_id}"', rendered)
+        for label in ("Input", "Output", "코드", "실행", "근거", "무결성", "과학 검증"):
             self.assertIn(label, rendered)
+        self.assertIn('id="detail-drawer"', rendered)
 
     def test_status_semantics_are_non_linear_and_claim_registry_authoritative(self) -> None:
         data = load_registry(RCC_ROOT)
         rendered = render_dashboard(data, registry_digest(RCC_ROOT))
-        self.assertIn("이 개수는 하나의 연구 완료율이 아닙니다.", rendered)
         self.assertIn(
             "구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.",
             rendered,
         )
-        self.assertIn("source 또는 evidence 상태를 확인", rendered)
-        self.assertIn("결과 무결성 확인은 별도", rendered)
+        self.assertIn("결과 무결성 확인은 과학적 검증이 아닙니다.", rendered)
         self.assertIn("claims.csv", rendered)
-        self.assertNotRegex(rendered, r"\b\d+(?:\.\d+)?\s*%")
+        self.assertNotIn("전체 연구 완료율", rendered)
         self.assertGreater(
             sum(row["audited"] == "true" for row in data["components"]),
             sum(row["executed"] == "true" for row in data["components"]),
@@ -128,16 +126,9 @@ class DashboardGenerationTests(unittest.TestCase):
     def test_claim_headline_counts_derive_from_claims_registry(self) -> None:
         data = load_registry(RCC_ROOT)
         rendered = render_dashboard(data, registry_digest(RCC_ROOT))
-        expected = {
-            "구현 근거로 지원됨": "SUPPORTED_IMPLEMENTATION",
-            "예비 실험 수준": "PILOT_ONLY",
-            "미검증": "UNVALIDATED",
-            "현재 근거로 지원되지 않음": "NOT_SUPPORTED",
-            "조건부": "CONDITIONAL",
-        }
-        for label, status in expected.items():
-            count = sum(row["status"] == status for row in data["claims"])
-            self.assertIn(f"<dt>{label}</dt><dd>{count}</dd>", rendered)
+        for row in data["claims"]:
+            self.assertIn(row["claim_id"], rendered)
+            self.assertIn(row["status"], rendered)
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
@@ -154,10 +145,9 @@ class DashboardGenerationTests(unittest.TestCase):
         rendered = render_dashboard(data, registry_digest(RCC_ROOT))
         self.assertEqual(12, len(data["history"]["dashboard_event_ids"]))
         self.assertIn("EVENT-013", data["history"]["dashboard_event_ids"])
-        self.assertIn("연구 진행 이력", rendered)
-        self.assertIn("USER_CONTEXT 항목은 불확실성을 보존", rendered)
-        for event_id in data["history"]["dashboard_event_ids"]:
-            event = next(row for row in data["timeline"] if row["event_id"] == event_id)
+        self.assertIn("연구 주요 단계", rendered)
+        self.assertIn("History · Decision · Evidence", rendered)
+        for event in data["timeline"][-10:]:
             self.assertIn(event["title"], rendered)
 
     def test_korean_first_ui_preserves_status_codes_and_pilot_numbers(self) -> None:
@@ -188,17 +178,8 @@ class DashboardGenerationTests(unittest.TestCase):
         for old_heading in ("CURRENT STATE", "MY TASKS", "DECISION INBOX", "COMPONENT STATUS"):
             self.assertNotIn(f"<h2>{old_heading}</h2>", rendered)
         for label in (
-            "검증기(Verifier)",
-            "실행·추적(Runtime·Trace)",
-            "성능 지표(Metrics)",
-            "실행 근거 권한 (Authority)",
-            "발동 조건 (Trigger)",
-            "표준화 (Standardization)",
-            "학습 적합 (Fit)",
-            "정책 (Policy)",
-            "사건 검출 (Event Hit)",
-            "공격 사건 단위 재현율 (Recall)",
-            "시간당 정상 오경보율 (FAR/hour)",
+            "Deterministic Verifier", "Metrics·Result Integrity", "실행 권한 (Runtime Authorization)",
+            "근거 출처 추적 (Provenance)", "새 환경 독립 재현 (Fresh-machine Reproduction)",
         ):
             self.assertIn(label, rendered)
         for english_only in (

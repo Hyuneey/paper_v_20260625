@@ -1,0 +1,88 @@
+{
+  "primary_navigation": [
+    {
+      "view_id": "overview",
+      "label_ko": "개요"
+    },
+    {
+      "view_id": "architecture",
+      "label_ko": "아키텍처"
+    },
+    {
+      "view_id": "experiments",
+      "label_ko": "실험·결과"
+    },
+    {
+      "view_id": "readiness",
+      "label_ko": "준비도·위험"
+    },
+    {
+      "view_id": "history",
+      "label_ko": "이력·근거"
+    }
+  ],
+  "overview_sources": {
+    "current_phase": "current_state.current_phase",
+    "pilot_v1": "current_state.outer_reproducibility.pilot_v1",
+    "validation_v2": "current_state.outer_reproducibility.validation_v2",
+    "next_task": "current_state.exact_next_task",
+    "p0_count": "current_state.pre_validation_readiness.priority_counts.P0",
+    "decision_count": "count(decisions.csv where status=OPEN)",
+    "last_updated": "current_state.last_updated",
+    "scientific_authority": "current_state.scientific_authority"
+  },
+  "overview_blocks": [
+    "CURRENT_STAGE_HEADER",
+    "STAGE_RAIL",
+    "COMPACT_ARCHITECTURE",
+    "TOP_THREE_ACTIONS",
+    "PILOT_RESULTS",
+    "EXP01_TO_EXP05_GATES",
+    "TOP_FIVE_RISKS",
+    "LATEST_THREE_MILESTONES"
+  ],
+  "detail_drawer": {
+    "default_mode": "EASY",
+    "modes": [
+      "EASY",
+      "TECHNICAL"
+    ],
+    "easy_fields": [
+      "why",
+      "input",
+      "process",
+      "output",
+      "implementation_state",
+      "current_result",
+      "unvalidated",
+      "next_work"
+    ],
+    "technical_fields": [
+      "component_ids",
+      "source_paths",
+      "symbols",
+      "schemas",
+      "artifact_ids",
+      "producers",
+      "consumers",
+      "tests",
+      "source_ref",
+      "audit_reports",
+      "authority_hashes"
+    ],
+    "unknown_policy": "Display 미확인 (UNKNOWN), never omit or infer."
+  },
+  "catalog": {
+    "row_source": "registry/components.csv",
+    "row_count": 32,
+    "filters": [
+      "text",
+      "status",
+      "lane",
+      "experiment",
+      "risk",
+      "core_governance_legacy"
+    ],
+    "scientific_validation_source": "registry/claims.csv only"
+  }
+}

@@ -1,0 +1,449 @@
+{
+  "task_id": "RCC-UI-002",
+  "agent_role": "Agent D - 접근성·가독성·시각 디자인",
+  "status": "DESIGN_COMPLETE_READ_ONLY",
+  "scope": {
+    "objective": "한글 우선 Research Control Center V2를 고밀도이되 읽기 쉽고, 키보드·스크린리더·모바일·인쇄에서 사용할 수 있는 정적 애플리케이션으로 설계한다.",
+    "implementation_files_modified": false,
+    "registry_modified": false,
+    "scientific_content_modified": false,
+    "shared_file_ownership": "Coordinator/Integrator only"
+  },
+  "observed_v1_issues": [
+    "23개 anchor가 한 번에 노출되어 현재 위치와 우선순위를 찾기 어렵다.",
+    "큰 hero와 연속 section/card 구조가 1440x900 첫 화면의 작업 정보를 밀어낸다.",
+    "구성요소·claim·risk가 같은 카드 문법으로 반복되어 정보 위계가 약하다.",
+    "상태가 badge 색과 긴 설명에 분산되어 구현·실행·근거 점검·무결성·재현·과학 검증을 빠르게 비교하기 어렵다.",
+    "기술 근거와 쉬운 설명이 동시에 노출되어 한글 본문 밀도가 높고 세부 정보의 점진적 공개가 부족하다.",
+    "모바일 규칙은 단순 1열 변환에 머물러 fixed navigation, SVG canvas, drawer, chart의 구체 동작이 없다."
+  ],
+  "design_principles": [
+    "현재 단계, 다음 작업, P0 위험을 첫 화면의 최상위 시각 위계에 둔다.",
+    "상태를 하나의 완료 색으로 합치지 않고 코드·실행·근거 점검·결과 무결성·독립 재현·과학 검증의 6축으로 표시한다.",
+    "색상은 의미를 보조하며 모든 상태는 텍스트, 모양 또는 아이콘과 함께 제공한다.",
+    "쉬운 설명을 기본값으로 하고 경로·symbol·schema·hash는 기술 상세에서 점진적으로 공개한다.",
+    "장식보다 비교, 추적, 선택, 근거 접근을 우선한다.",
+    "한글 본문은 16px 이상, line-height 1.6을 기본으로 하며 긴 문단 대신 2~3줄 요약과 구조화된 목록을 사용한다.",
+    "애니메이션 없이도 현재 view, 선택 node, drawer 상태를 이해할 수 있어야 한다."
+  ],
+  "visual_tokens": {
+    "color": {
+      "--bg-page": "#F4F6F8",
+      "--bg-panel": "#FFFFFF",
+      "--bg-subtle": "#F8FAFC",
+      "--text-primary": "#172033",
+      "--text-secondary": "#526079",
+      "--text-inverse": "#FFFFFF",
+      "--border-subtle": "#D8DEE8",
+      "--border-strong": "#AEB8C7",
+      "--nav-primary": "#0E2A47",
+      "--nav-active": "#143D66",
+      "--accent-primary": "#1769AA",
+      "--accent-soft": "#E8F2FA",
+      "--state-implemented": "#2B6A4B",
+      "--state-verified": "#16613D",
+      "--state-warning": "#9A6700",
+      "--state-warning-bg": "#FFF3C4",
+      "--state-blocked": "#B42318",
+      "--state-blocked-bg": "#FEECEB",
+      "--state-unvalidated": "#667085",
+      "--state-unvalidated-bg": "#F2F4F7",
+      "--focus-ring": "#005FCC",
+      "--edge-frozen": "#173B63",
+      "--edge-code": "#55708C",
+      "--edge-conditional": "#8A6A19",
+      "--edge-gap": "#B42318",
+      "--edge-legacy": "#98A2B3"
+    },
+    "contrast_checks": [
+      {"foreground": "#172033", "background": "#FFFFFF", "ratio": "16.27:1", "result": "AAA normal text"},
+      {"foreground": "#526079", "background": "#FFFFFF", "ratio": "6.35:1", "result": "AA normal text"},
+      {"foreground": "#FFFFFF", "background": "#0E2A47", "ratio": "14.57:1", "result": "AAA normal text"},
+      {"foreground": "#FFFFFF", "background": "#1769AA", "ratio": "5.77:1", "result": "AA normal text"},
+      {"foreground": "#FFFFFF", "background": "#2B6A4B", "ratio": "6.43:1", "result": "AA normal text"},
+      {"foreground": "#FFFFFF", "background": "#B42318", "ratio": "6.57:1", "result": "AA normal text"},
+      {"foreground": "#664400", "background": "#FFF3C4", "ratio": "7.89:1", "result": "AAA normal text"},
+      {"foreground": "#475467", "background": "#F2F4F7", "ratio": "6.98:1", "result": "AA normal text"}
+    ],
+    "typography": {
+      "--font-ui": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif",
+      "--font-code": "ui-monospace, SFMono-Regular, Consolas, monospace",
+      "--font-size-body": "1rem",
+      "--font-size-small": "0.875rem",
+      "--font-size-caption": "0.8125rem",
+      "--font-size-h1": "clamp(1.75rem, 2.4vw, 2.5rem)",
+      "--font-size-h2": "clamp(1.375rem, 1.8vw, 1.75rem)",
+      "--font-size-h3": "1.125rem",
+      "--line-height-body": "1.6",
+      "--line-height-heading": "1.3",
+      "--measure-readable": "68ch",
+      "font_weight_body": 400,
+      "font_weight_emphasis": 650,
+      "font_weight_heading": 700
+    },
+    "spacing": {
+      "--space-1": "0.25rem",
+      "--space-2": "0.5rem",
+      "--space-3": "0.75rem",
+      "--space-4": "1rem",
+      "--space-5": "1.5rem",
+      "--space-6": "2rem",
+      "--space-7": "3rem",
+      "--space-8": "4rem"
+    },
+    "shape_and_depth": {
+      "--radius-small": "0.375rem",
+      "--radius-medium": "0.75rem",
+      "--shadow-small": "0 1px 3px rgba(23, 32, 51, 0.10), 0 1px 2px rgba(23, 32, 51, 0.06)",
+      "--shadow-drawer": "-8px 0 28px rgba(23, 32, 51, 0.18)",
+      "--focus-outline": "3px solid #005FCC",
+      "--focus-offset": "3px"
+    },
+    "motion": {
+      "--duration-fast": "120ms",
+      "--duration-standard": "180ms",
+      "--easing-standard": "cubic-bezier(0.2, 0, 0, 1)"
+    }
+  },
+  "semantic_color_limits": {
+    "maximum_primary_semantic_families": 6,
+    "families": ["navy/navigation", "blue/selection", "green/implemented-or-integrity", "amber/conditional", "red/blocked", "gray/unvalidated"],
+    "rules": [
+      "green does not mean scientific validation unless the adjacent text says 과학적 검증 완료.",
+      "blocked and critical use red with an icon and text label, never red alone.",
+      "conditional and warning use amber with a label; do not use amber for completed states.",
+      "unknown, not-run, unvalidated, and unconfirmed remain distinct tokens in text even when sharing gray styling.",
+      "charts use patterns, direct labels, and tables in addition to color."
+    ]
+  },
+  "status_visual_language": {
+    "dimensions": [
+      {"key": "code", "label": "코드", "complete_label": "구현 완료", "incomplete_label": "미구현 또는 미확인"},
+      {"key": "execution", "label": "실행", "complete_label": "실제 실행 완료", "incomplete_label": "미실행 또는 미확인"},
+      {"key": "evidence", "label": "근거 점검", "complete_label": "근거 점검 완료", "incomplete_label": "점검 전 또는 미확인"},
+      {"key": "integrity", "label": "결과 무결성", "complete_label": "결과 무결성 확인", "incomplete_label": "확인 전 또는 해당 없음"},
+      {"key": "reproduction", "label": "독립 재현", "complete_label": "독립 재현 완료", "incomplete_label": "미재현"},
+      {"key": "scientific_validation", "label": "과학 검증", "complete_label": "과학적 검증 완료", "incomplete_label": "미검증"}
+    ],
+    "marker_contract": {
+      "complete": "solid circle plus visible label and aria-label",
+      "partial_or_conditional": "half-filled or diamond marker plus visible label and aria-label",
+      "not_complete": "hollow circle plus visible label and aria-label",
+      "blocked": "octagon or exclamation marker plus visible label and aria-label",
+      "unknown": "question mark marker plus visible label and aria-label"
+    },
+    "prohibited": [
+      "single green card that implies all six dimensions are complete",
+      "audited translated as 검증 완료 without evidence or scientific qualifier",
+      "icon-only or color-only status",
+      "PASS badge used as a proxy for scientific validation"
+    ]
+  },
+  "korean_typography": {
+    "body_minimum": "16px",
+    "body_line_height_minimum": 1.6,
+    "compact_table_minimum": "14px only for secondary metadata; primary values remain 16px",
+    "paragraph_max_width": "68ch",
+    "paragraph_target_lines": "2-4 lines in overview; longer text moves to drawer",
+    "technical_identifier_behavior": "monospace, overflow-wrap:anywhere, word-break:break-word only inside identifiers",
+    "korean_word_break": "word-break:keep-all; overflow-wrap:break-word",
+    "number_behavior": "font-variant-numeric: tabular-nums",
+    "english_term_rule": "first user-facing occurrence uses 한글 설명 (English term); code identifiers and enum tokens remain verbatim"
+  },
+  "layout_breakpoints": {
+    "wide_1920": {
+      "query": "min-width: 1680px",
+      "shell": "260px navigation + minmax(0,1fr) workspace + 420px optional drawer",
+      "workspace_max": "1560px",
+      "overview_columns": 12,
+      "architecture": "entire SVG visible without horizontal scrolling at default fit"
+    },
+    "desktop_1440": {
+      "query": "1200px to 1679px",
+      "shell": "232px navigation + minmax(0,1fr) workspace; 400px overlay drawer",
+      "workspace_target": "1440x900 primary acceptance viewport",
+      "overview_rule": "current stage, phase rail, compact architecture, top actions, pilot chart, gates, risks, and last changes must be discoverable without reading a long report",
+      "architecture": "14 top-level nodes fit at default zoom; controls remain sticky"
+    },
+    "compact_desktop_1366": {
+      "query": "900px to 1199px",
+      "shell": "76px icon-plus-short-label navigation or collapsible 220px navigation + workspace; drawer overlay max-width 390px",
+      "overview": "secondary panels collapse to two-column or disclosure regions; core stage and next task stay above fold",
+      "architecture": "fit-to-width with minimum node font 14px; optional horizontal pan by keyboard and scroll"
+    },
+    "mobile_390": {
+      "query": "max-width: 899px",
+      "shell": "56px header + single-column workspace; navigation opens modal sheet",
+      "drawer": "full-screen fixed sheet with title, close button, easy/technical tabs, and internal scroll",
+      "charts": "stack vertically; labels outside bars; tables remain horizontally scrollable only when unavoidable",
+      "architecture": "viewport-width frame with horizontal overflow and explicit 확대/축소/맞춤 controls; nodes retain 44px hit targets",
+      "tables": "catalog and roadmap expose a card-like row summary with a details action; no clipped columns",
+      "minimum_side_padding": "16px"
+    }
+  },
+  "application_shell": {
+    "header_height": "56px desktop and mobile",
+    "navigation": "five primary items only; current item uses aria-current=page and a non-color marker",
+    "workspace": "only one primary view is perceivable at a time; hidden views use hidden attribute and are absent from tab order",
+    "drawer": "desktop overlay does not shift architecture; mobile full-screen sheet; focus moves to heading on open and returns to opener on close",
+    "skip_link": "first focusable element jumps to #main-content",
+    "hash_navigation": "view hash changes preserve browser back/forward; missing hash falls back to overview without error"
+  },
+  "focus_and_keyboard": {
+    "global_focus": "outline: var(--focus-outline); outline-offset: var(--focus-offset); never remove outline without equivalent",
+    "minimum_target": "44x44 CSS px for navigation, controls, drawer close, tabs, and architecture node selection",
+    "primary_navigation": [
+      "Tab visits five menu items in visual order.",
+      "Enter or Space activates a view.",
+      "aria-current=page marks the active view.",
+      "mobile menu button exposes aria-expanded and aria-controls."
+    ],
+    "architecture_nodes": [
+      "Each top-level node is a native button or focusable SVG group with role=button, tabindex=0, accessible name, and described-by status summary.",
+      "Enter or Space selects a node and opens the drawer.",
+      "Arrow keys move to the nearest node in the stated direction; Tab may still traverse nodes in documented flow order.",
+      "Escape closes the drawer or clears architecture selection.",
+      "Selected node exposes aria-pressed=true or aria-selected=true; upstream/downstream highlight is also announced in an aria-live polite region.",
+      "Zoom buttons, reset, fit, search, stage filter, risk filter, frozen-only, and unknown-edge toggle are keyboard operable."
+    ],
+    "drawer": [
+      "role=dialog and aria-modal=true only when it behaves as an overlay modal; otherwise use complementary with an accessible heading.",
+      "Focus is trapped only for modal/mobile mode.",
+      "Easy/technical controls use a proper tablist/tab/tabpanel pattern or two explicit buttons with aria-pressed.",
+      "Close button is first or immediately after heading; Escape closes; focus returns to triggering node or table row."
+    ],
+    "tables": [
+      "Rows are not click-only. Each row contains a named 상세 보기 button.",
+      "Column headers use scope=col; sortable headers, if added, expose aria-sort.",
+      "Filter result count is announced with aria-live=polite without moving focus."
+    ]
+  },
+  "architecture_svg_accessibility": {
+    "semantic_structure": [
+      "SVG has role=img and aria-labelledby pointing to a Korean title and description.",
+      "A visible HTML heading precedes the map; a hidden textual flow list mirrors node/edge order for non-visual users.",
+      "Lane groups include accessible lane names: 데이터·후보 탐색, 관계·규칙 구성, 실행·탐지, 평가·검증.",
+      "Node accessible name combines user-facing name, lane, and concise six-axis status summary.",
+      "Edge title names source, destination, evidence class, and verified/conditional state."
+    ],
+    "edge_styles": {
+      "frozen_scientific_execution": "3px solid #173B63 with arrowhead and text legend 실제 frozen 경로",
+      "code_or_test_verified": "1.5px solid #55708C with arrowhead and text legend 코드·테스트 확인",
+      "design_or_conditional": "2px dashed #8A6A19 with text legend 설계·조건부",
+      "authority_or_binding_gap": "2px dashed #B42318 with gap marker and text legend 권한·결속 gap",
+      "legacy_or_reference": "1.5px solid #98A2B3 with reduced contrast and text legend legacy/reference"
+    },
+    "highlight_behavior": [
+      "Selected node receives a 3px blue stroke and a text badge 선택됨.",
+      "Upstream nodes receive a blue-gray outline; downstream nodes receive a green outline; unrelated nodes reduce opacity no lower than 0.35.",
+      "Do not rely on glow or animation to indicate selection.",
+      "When frozen-only filter hides nodes or edges, the visible node/edge count is announced."
+    ],
+    "fallback": "A synchronized HTML list or compact table exposes every top-level node and every edge, including evidence state, when SVG is unavailable or for printing."
+  },
+  "chart_accessibility": {
+    "general": [
+      "Each chart has a visible Korean title, one-sentence interpretation boundary, exact values, and an adjacent data table.",
+      "SVG charts use role=img plus title/desc; decorative gridlines and shapes are aria-hidden.",
+      "Data series are direct-labeled. Legends never depend on color swatches alone.",
+      "Axis scale and transformations are named in visible text and SVG description.",
+      "Tables remain visible in print and may be visually collapsed on screen only with an accessible disclosure."
+    ],
+    "recall_chart": {
+      "recommended": "four horizontal bars on a common 0-14 unit scale",
+      "labels": "D0 11/14, D1 13/14, D2 V1 11/14, D2 V2 11/14",
+      "warning": "14개 연속 공격 구간 단위; 통계적 독립성 미확인",
+      "prohibited": "percent-only bars that hide the 14-unit denominator"
+    },
+    "far_chart": {
+      "recommended": "two aligned panels: low-range panel for D0, D2 V1, D2 V2 and full-range panel including D1, with identical unit labels and exact values",
+      "alternative": "log scale only when clearly labeled 로그 눈금 and zero handling is explicit",
+      "preferred_reason": "aligned panels make the D1 magnitude obvious without compressing the three lower values or implying linear equivalence across a broken axis",
+      "exact_values_required": true,
+      "warning": "FAR/hour는 point-level FPR이 아니라 정상 false episode / normal exposure hour"
+    },
+    "overlap_matrix": {
+      "recommended": "native 2x2 HTML table as the primary visualization with cell counts 10, 1, 3, 0",
+      "row_headers": ["D0 탐지", "D0 미탐"],
+      "column_headers": ["D1 탐지", "D1 미탐"],
+      "accessible_summary": "D0와 D1 모두 탐지 10, D0만 탐지 1, D1만 탐지 3, 둘 다 미탐 0",
+      "prohibited": "Venn diagram without exact cell counts"
+    }
+  },
+  "component_patterns": {
+    "overview": {
+      "density": "12-column grid on desktop; current stage and next task occupy the strongest positions; no large decorative hero",
+      "above_fold_priority": ["current stage", "exact next task", "P0 count and top P0", "phase rail", "compact architecture map"],
+      "summary_limit": "top 3 actions, top 5 risks, last 3 milestones, EXP-01 through EXP-05 compact gates",
+      "prose_limit": "approximately 1000-1200 visible words maximum, preferably below 800 at load"
+    },
+    "cards": {
+      "use": "only for distinct summary units such as current phase, one action, one risk, or one metric",
+      "avoid": "32-component card wall, all claims as cards, all risks as cards",
+      "description_limit": "2-3 lines; overflow content moves to drawer"
+    },
+    "tables": {
+      "header": "sticky within long catalog; Korean display labels while registry schema tokens remain in technical details",
+      "zebra": "subtle alternate #F8FAFC only; selected row adds a blue left border and text label",
+      "overflow": "desktop horizontal overflow only as last resort; mobile prioritizes summary columns and details button"
+    },
+    "warnings": {
+      "pilot": "blue-gray information callout with 정보 icon and concise Korean wording",
+      "conditional": "amber callout with 조건부 label",
+      "blocked": "red-bordered callout with 진행 전 해결 필요 label",
+      "frequency": "place contextually once per relevant screen; do not repeat the full caveat in every panel"
+    }
+  },
+  "responsive_acceptance": {
+    "1440x900": [
+      "Exactly five primary navigation items are visible.",
+      "Current stage, exact next task, P0 count, phase rail, and compact architecture map are discoverable without scanning a long page.",
+      "Architecture view shows 14 top-level nodes at default fit and the map dominates the workspace.",
+      "Drawer can open without hiding its close control or primary map controls."
+    ],
+    "1366x768": [
+      "No horizontal page scroll; architecture canvas may have a labeled internal scroll region.",
+      "Header, navigation, architecture controls, and key status remain usable at 200% browser zoom where practicable.",
+      "Important actions are not pushed below decorative content."
+    ],
+    "1920x1080": [
+      "Content does not stretch beyond readable measures; tables and architecture use the extra width, prose does not.",
+      "Drawer and architecture can be visible side-by-side without excessive empty space."
+    ],
+    "390x844": [
+      "No clipped Korean text or inaccessible off-screen controls.",
+      "Mobile menu is operable by keyboard and touch and closes with Escape or explicit close.",
+      "Drawer becomes full-screen, preserves focus, and exposes both easy and technical modes.",
+      "Charts stack and every exact value remains visible.",
+      "All touch targets are at least 44x44 CSS px."
+    ]
+  },
+  "reduced_motion": {
+    "css_contract": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }",
+    "behavior": [
+      "Drawer opens without slide animation.",
+      "Node highlight changes immediately.",
+      "Zoom and fit do not animate.",
+      "No auto-scrolling, pulsing, parallax, or looping chart animation is permitted."
+    ]
+  },
+  "print_behavior": {
+    "purpose": "produce a legible evidence handout, not an interactive screenshot",
+    "rules": [
+      "Hide navigation controls, search controls, zoom buttons, mobile menu, drawer close, and purely interactive hints.",
+      "Show page title, scientific authority short ref, generated timestamp, pilot warnings, architecture fallback list, chart data tables, and selected technical evidence links as text.",
+      "Force white background, black or dark text, 1px neutral borders, and remove shadows.",
+      "Use landscape orientation for architecture/catalog pages when supported.",
+      "Avoid breaking status rails, chart plus table, experiment rows, and callouts across pages.",
+      "Expand only the currently selected drawer detail; do not print all 32 technical records unless Catalog view is explicitly printed.",
+      "Expose link targets after external or file links only when useful; do not print full SHA strings on overview."
+    ]
+  },
+  "visual_qa_protocol": {
+    "required_viewports": ["1440x900", "1366x768", "1920x1080", "390x844"],
+    "first_pass_checks": [
+      "전체 연구 흐름과 현재 단계가 10초 안에 발견된다.",
+      "정확한 다음 작업과 상위 P0가 10초 안에 발견된다.",
+      "Architecture map이 시각 위계의 중심이며 카드 벽처럼 보이지 않는다.",
+      "D1 FAR가 다른 방법보다 매우 높다는 사실이 왜곡 없이 즉시 보인다.",
+      "구현 상태와 과학 검증 상태가 분리되어 보인다.",
+      "전체 hash와 raw registry 설명이 기본 화면을 지배하지 않는다.",
+      "영문은 기술 식별자와 최초 병기된 용어 중심이며 사용자 설명은 한글 우선이다."
+    ],
+    "interaction_checks": [
+      "five-view hash navigation works with browser back/forward",
+      "every top-level node opens a drawer by mouse, Enter, and Space",
+      "selection, upstream, downstream, and unrelated states are visually and textually distinct",
+      "Escape closes drawer and focus returns to opener",
+      "easy/technical mode switch updates aria state and does not lose focus",
+      "filters announce result count",
+      "mobile navigation and full-screen drawer do not trap users"
+    ],
+    "accessibility_checks": [
+      "semantic landmarks and one h1 per view shell",
+      "skip link visible on focus",
+      "logical heading hierarchy",
+      "visible 3px focus ring",
+      "no color-only status or edge meaning",
+      "all SVGs have title/desc and HTML fallback",
+      "all charts have exact-value tables",
+      "reduced-motion behavior verified",
+      "zoom to 200% does not hide required controls",
+      "Korean text uses keep-all wrapping and does not clip"
+    ],
+    "refinement_requirement": "After the first screenshots, rank the three largest visual/usability failures, revise shared implementation once, rebuild all target views, and rerun the full checklist."
+  },
+  "automatable_checks": [
+    "exactly five primary nav items",
+    "skip link targets an existing main landmark",
+    "all architecture nodes have tabindex and accessible name",
+    "all drawer openers reference an existing drawer",
+    "all charts have title, desc, and adjacent table",
+    "all status markers include visible label or aria-label",
+    "CSS contains prefers-reduced-motion and print media queries",
+    "no external CDN or remote font",
+    "no duplicate IDs",
+    "mobile menu button includes aria-expanded and aria-controls",
+    "all top-level node hit areas meet 44px minimum in computed CSS",
+    "technical path/hash containers use monospace and wrap",
+    "registry enum token remains visible in technical detail when translated display text is used"
+  ],
+  "non_automatable_checks": [
+    "Current stage, next task, and P0 are discoverable within 10 seconds.",
+    "D1 FAR visualization is prominent but not sensationalized.",
+    "Architecture map is understandable without reading every edge.",
+    "Korean wording wraps naturally at all required viewports.",
+    "The page reads as an analytical operations dashboard rather than a long report.",
+    "Easy mode is understandable without technical identifiers; technical mode retains authoritative identifiers."
+  ],
+  "implementation_handoff": {
+    "priority_order": [
+      "application shell and five-view navigation",
+      "six-axis status rail and warnings",
+      "architecture SVG semantics and keyboard selection",
+      "drawer focus management and easy/technical modes",
+      "accessible pilot charts and overlap table",
+      "component/experiment/risk tables",
+      "responsive/mobile behavior",
+      "print and reduced-motion",
+      "visual screenshot refinement"
+    ],
+    "recommended_css_architecture": [
+      "tokens",
+      "base/typography",
+      "application shell",
+      "navigation",
+      "overview grid",
+      "architecture SVG",
+      "drawer",
+      "charts",
+      "tables/filters",
+      "responsive breakpoints",
+      "reduced motion",
+      "print"
+    ],
+    "recommended_js_contract": [
+      "view routing",
+      "mobile navigation state",
+      "architecture selection and graph highlighting",
+      "zoom/fit/reset",
+      "filters/search",
+      "drawer open/close/focus return",
+      "easy/technical mode",
+      "aria-live announcements"
+    ]
+  },
+  "safety_counters": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "llm_provider_calls": 0,
+    "registry_scientific_changes": 0,
+    "scientific_source_changes": 0,
+    "scientific_result_changes": 0,
+    "frozen_artifact_changes": 0,
+    "shared_dashboard_implementation_changes": 0,
+    "files_created": [
+      "research_control_center/ui_redesign/staging/agent_d_visual_accessibility.json"
+    ]
+  }
+}

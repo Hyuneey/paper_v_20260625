@@ -1,0 +1,806 @@
+{
+  "task_id": "RCC-UI-002",
+  "agent_role": "Agent A — 정보구조·UX 설계",
+  "schema_version": "rcc_ui_002_information_architecture_v1",
+  "audit_mode": "READ_ONLY_ANALYSIS_WITH_SINGLE_STAGING_OUTPUT",
+  "generated_for_head": "4496761307fa8ecb6212017889020977bdc94ab4",
+  "scope": {
+    "in_scope": [
+      "Dashboard V1 정보 밀도 분석",
+      "정확히 5개인 primary view 정보구조",
+      "Overview hierarchy와 1440x900 정보 예산",
+      "사용자 질문 기반 routing",
+      "반복 콘텐츠 축소 규칙",
+      "component catalog와 detail drawer 조직",
+      "mobile 정보구조"
+    ],
+    "out_of_scope": [
+      "Registry scientific state 변경",
+      "architecture edge의 과학적 확정",
+      "builder, HTML, CSS, JavaScript, test 수정",
+      "시각 스타일 최종 확정",
+      "scientific computation 또는 결과 재계산"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "research_control_center/dashboard/index.html",
+      "finding": "V1 generated HTML은 1209 lines, 157616 characters이며 24 sections, 23 h2, 118 h3, 68 registry cards, 32 summary cards, 94 details를 한 문서에 연속 배치한다. section navigation 안에는 23개 anchor가 있다."
+    },
+    {
+      "path": "research_control_center/scripts/build_dashboard.py",
+      "finding": "V1 builder는 current state, readiness, 관계, 구성, verifier, runtime, D0/D1/D2, metrics, OUTER, data, discovery를 각각 독립 section으로 렌더링한 뒤 32개 component, 6개 experiment, 13개 claim, 16개 risk card와 history/evidence를 다시 렌더링한다. 동일 과학 사실이 개요와 심층 section, card에 반복된다."
+    },
+    {
+      "path": "research_control_center/dashboard/assets/rcc.js",
+      "finding": "현재 interaction은 Registry card query/status filtering만 제공한다. view switching, node selection, upstream/downstream focus, drawer 또는 mobile navigation은 없다."
+    },
+    {
+      "path": "research_control_center/dashboard/assets/rcc.css",
+      "finding": "현재 layout은 1180px 단일 문서 폭, flex-wrapped sticky anchor nav, 2-column card grid에 최적화되어 있으며 application shell 또는 detail drawer 구조가 없다."
+    },
+    {
+      "path": "research_control_center/registry/current_state.yaml",
+      "finding": "현재 phase, exact_next_task, pre-validation root issues, experiment gates, Pilot V1 결과, top priorities, user todo, scientific authority와 safety counters가 Overview view model의 authoritative source로 존재한다."
+    },
+    {
+      "path": "research_control_center/registry/components.csv",
+      "finding": "32개 component의 역할, Input, Output, path, symbol, execution/audit/reproduction state, risk, next action을 component catalog와 technical detail에 공급할 수 있다."
+    },
+    {
+      "path": "research_control_center/architecture/00_overview/ARCH_000_COMPONENT_DETAIL.csv",
+      "finding": "상위 architecture section의 role, Input, Output, code, execution/frozen-result state를 제공하지만 RCC-UI-002의 14-node layout과 동일한 granularity는 아니므로 display-only node mapping이 필요하다."
+    },
+    {
+      "path": "research_control_center/registry/experiments.csv",
+      "finding": "EXP-01~EXP-06의 research question, comparison, status, evidence, limitations, next action과 claim impact를 experiment roadmap과 drawer에 공급할 수 있다."
+    },
+    {
+      "path": "research_control_center/registry/risks.csv",
+      "finding": "전체 risk는 filterable table의 source로 유지하되 Overview는 urgency와 scientific impact를 기준으로 상위 5개만 보여야 한다."
+    },
+    {
+      "path": "research_control_center/registry/claims.csv",
+      "finding": "claim status는 과학적 주장 범위의 단일 authority이며 component lifecycle state와 분리해 이력·근거 화면에 배치해야 한다."
+    }
+  ],
+  "v1_density_audit": {
+    "observed_counts": {
+      "primary_nav_items": 23,
+      "sections": 24,
+      "h2": 23,
+      "h3": 118,
+      "registry_cards": 68,
+      "summary_cards": 32,
+      "details_elements": 94,
+      "component_cards": 32,
+      "experiment_cards": 6,
+      "claim_cards": 13,
+      "risk_cards": 16
+    },
+    "primary_problems": [
+      {
+        "id": "IA-V1-01",
+        "problem": "정보 우선순위와 문서 순서가 동일하다.",
+        "effect": "현재 단계와 정확한 다음 작업을 찾기 전에 긴 과학 설명을 지나야 한다."
+      },
+      {
+        "id": "IA-V1-02",
+        "problem": "아키텍처 개념, component inventory, 실험, claim, risk가 모두 같은 card grammar를 쓴다.",
+        "effect": "구현 상태, 과학적 검증 상태와 근거 종류의 차이가 시각적으로 약해진다."
+      },
+      {
+        "id": "IA-V1-03",
+        "problem": "D0/D1/D2와 Pilot 경고가 여러 section에서 반복된다.",
+        "effect": "핵심 수치의 비교보다 문장 반복이 더 많은 공간을 차지한다."
+      },
+      {
+        "id": "IA-V1-04",
+        "problem": "32개 component가 expanded card wall로 노출된다.",
+        "effect": "전체 연구 흐름을 한눈에 보는 대신 개별 Registry row 탐색이 메인 사용 경험이 된다."
+      },
+      {
+        "id": "IA-V1-05",
+        "problem": "top navigation이 23개 목적지를 동등하게 제시한다.",
+        "effect": "사용자는 페이지의 정보 모델을 이해한 뒤에야 올바른 section을 선택할 수 있다."
+      },
+      {
+        "id": "IA-V1-06",
+        "problem": "technical evidence가 기본 화면에서 너무 일찍 노출된다.",
+        "effect": "full SHA, path, Registry raw description이 네 가지 핵심 사용자 질문보다 높은 주의를 요구한다."
+      }
+    ],
+    "retain": [
+      "Registry-driven generation",
+      "Korean-first display labels",
+      "scientific warning distinctions",
+      "search/filter affordance",
+      "existing audit/report links",
+      "semantic status text rather than color-only meaning"
+    ],
+    "replace": [
+      "single long document navigation",
+      "all-expanded component/claim/risk card walls",
+      "repeated method-result prose",
+      "raw authority tokens on default view",
+      "all sections sharing one card grammar"
+    ]
+  },
+  "information_architecture_principles": [
+    {
+      "id": "IA-P01",
+      "principle": "판단 먼저, 근거는 요청 시",
+      "implementation_rule": "Overview에는 현재 상태, 다음 행동, Pilot 요약, gate와 top risks만 두고 full evidence는 drawer와 이력·근거로 이동한다."
+    },
+    {
+      "id": "IA-P02",
+      "principle": "한 과학 사실은 한 개의 canonical presentation block에서만 상세히 설명",
+      "implementation_rule": "다른 view에서는 exact value와 짧은 link만 재사용하며 긴 caveat를 복제하지 않는다."
+    },
+    {
+      "id": "IA-P03",
+      "principle": "구현과 과학적 검증을 독립 상태로 표시",
+      "implementation_rule": "component 또는 node 전체에 단일 완료색을 쓰지 않고 code, execution, evidence review, integrity, reproduction, scientific validation을 별도 rail로 표시한다."
+    },
+    {
+      "id": "IA-P04",
+      "principle": "progressive disclosure",
+      "implementation_rule": "14개 top-level node를 먼저 보이고 META/STAT/GDN, Evidence Pack/T0/T1/T1-B/T2는 선택한 parent 안에서만 펼친다."
+    },
+    {
+      "id": "IA-P05",
+      "principle": "raw Registry는 authority이지 기본 copy가 아님",
+      "implementation_rule": "raw description, enum, full SHA는 technical detail에서 보존하고 기본 화면에는 검증된 Korean display copy를 쓴다."
+    },
+    {
+      "id": "IA-P06",
+      "principle": "unknown remains unknown",
+      "implementation_rule": "근거가 없는 edge, state, artifact binding은 UNKNOWN과 점선으로 표시하며 UI가 값을 추론하지 않는다."
+    }
+  ],
+  "primary_navigation": {
+    "count": 5,
+    "items": [
+      {
+        "id": "overview",
+        "label_ko": "개요",
+        "route": "#overview",
+        "purpose": "현재 단계, 다음 행동, 전체 흐름, Pilot 수치와 핵심 gate를 한 화면에서 판단",
+        "default": true
+      },
+      {
+        "id": "architecture",
+        "label_ko": "아키텍처",
+        "route": "#architecture",
+        "purpose": "전체 시스템 연결, node 상태, Input→Process→Output과 component catalog 탐색",
+        "default": false
+      },
+      {
+        "id": "experiments",
+        "label_ko": "실험·결과",
+        "route": "#experiments",
+        "purpose": "Pilot result chart, overlap matrix와 EXP-01~EXP-06 roadmap 확인",
+        "default": false
+      },
+      {
+        "id": "readiness",
+        "label_ko": "준비도·위험",
+        "route": "#readiness",
+        "purpose": "GAP-000 root issues, disposition와 urgency를 분리해 remediation gate 확인",
+        "default": false
+      },
+      {
+        "id": "evidence",
+        "label_ko": "이력·근거",
+        "route": "#evidence",
+        "purpose": "주요 milestone, decision, professor lineage, claim, artifact와 authority를 추적",
+        "default": false
+      }
+    ],
+    "not_primary_navigation": [
+      "데이터",
+      "후보 탐색",
+      "관계",
+      "규칙",
+      "Verifier",
+      "Runtime",
+      "D0",
+      "D1",
+      "D2",
+      "Metrics",
+      "내가 해야 할 일",
+      "결정이 필요한 사항",
+      "구현 현황",
+      "연구 주장과 근거",
+      "최근 변경사항"
+    ],
+    "routing_rule": "다섯 view는 URL hash로 직접 접근 가능해야 하고, view 안의 tab/filter/drawer는 여섯 번째 primary menu가 되어서는 안 된다."
+  },
+  "core_user_question_routing": [
+    {
+      "question": "지금 연구는 어느 단계인가?",
+      "primary_destination": "개요 > 현재 단계 Header + 연구 진행 단계 Rail",
+      "secondary_destination": "준비도·위험 > Core Validation Gate",
+      "target_time_to_answer_seconds": 10
+    },
+    {
+      "question": "전체 연구 시스템은 어떻게 연결되어 있는가?",
+      "primary_destination": "개요 > 전체 아키텍처 축약 맵",
+      "secondary_destination": "아키텍처 > Interactive SVG Explorer",
+      "target_time_to_answer_seconds": 10
+    },
+    {
+      "question": "각 주요 구조는 실제로 어디까지 구현·실행·검증됐는가?",
+      "primary_destination": "아키텍처 > node status rail",
+      "secondary_destination": "아키텍처 > detail drawer 기술 상세 + component catalog",
+      "target_time_to_answer_seconds": 10
+    },
+    {
+      "question": "지금 가장 먼저 결정하거나 수정해야 하는 것은 무엇인가?",
+      "primary_destination": "개요 > 지금 할 일",
+      "secondary_destination": "준비도·위험 > P0 callout",
+      "target_time_to_answer_seconds": 10
+    }
+  ],
+  "view_definitions": {
+    "overview": {
+      "name_ko": "개요",
+      "primary_job": "현재 연구 상태와 다음 행동을 결정",
+      "content_order": [
+        "현재 단계 Header",
+        "연구 진행 단계 Rail",
+        "전체 아키텍처 축약 맵",
+        "지금 할 일 상위 3개",
+        "Pilot 결과 요약 chart",
+        "EXP-01~EXP-05 gate",
+        "주요 위험 상위 5개",
+        "최근 milestone 3개"
+      ],
+      "default_visibility": {
+        "visible": [
+          "current phase",
+          "PILOT V1 preservation",
+          "VALIDATION V2 state",
+          "exact next task",
+          "P0 count",
+          "open decision count",
+          "last updated",
+          "scientific authority short ref",
+          "8-stage research rail",
+          "10-14 node compact architecture",
+          "top 3 action items",
+          "four-method Recall and FAR overview",
+          "EXP-01~EXP-05 compact gates",
+          "top 5 risks",
+          "latest 3 milestones"
+        ],
+        "hidden_until_requested": [
+          "full SHA",
+          "raw Registry descriptions",
+          "all component rows",
+          "all claims",
+          "all risks",
+          "all history events",
+          "full methodology prose",
+          "artifact payload details"
+        ]
+      },
+      "warning_placement": [
+        "Pilot 결과 chart 바로 위 또는 아래에 test1 14 contiguous attack-event units와 generalization warning 1회",
+        "node rail legend 옆에 result integrity와 scientific validation 분리 warning 1회"
+      ]
+    },
+    "architecture": {
+      "name_ko": "아키텍처",
+      "primary_job": "연구 시스템의 연결과 각 구조의 실제 상태를 조사",
+      "subviews": [
+        {
+          "id": "architecture-map",
+          "label_ko": "전체 지도",
+          "default": true,
+          "contents": "four-lane SVG, top-level nodes, progressive child nodes, edge legend, search/filter/fit/reset controls"
+        },
+        {
+          "id": "component-catalog",
+          "label_ko": "구성요소 카탈로그",
+          "default": false,
+          "contents": "32-row searchable/filterable table; row selection opens same detail drawer"
+        }
+      ],
+      "top_level_node_count": 14,
+      "top_level_nodes": [
+        "HAI P1 데이터",
+        "Split·변수 역할",
+        "관계 후보 탐색",
+        "Candidate Union",
+        "Relation Profiling",
+        "Numeric Authority",
+        "Rule Construction",
+        "Deterministic Verifier",
+        "COMMON-42",
+        "D0 PCA-SPE",
+        "D1 관계 규칙",
+        "D2 결합",
+        "Metrics·Result Integrity",
+        "OUTER·재현성"
+      ],
+      "progressive_children": {
+        "관계 후보 탐색": ["META", "STAT", "GDN"],
+        "Rule Construction": ["Evidence Pack", "T0", "T1", "T1-B", "T2"]
+      },
+      "interaction_priority": [
+        "node select",
+        "upstream/downstream highlight",
+        "unrelated dim",
+        "detail drawer",
+        "node search",
+        "stage/risk/frozen-path filters",
+        "fit/reset/zoom"
+      ],
+      "component_catalog_columns": [
+        "구성요소",
+        "역할",
+        "Input",
+        "Output",
+        "코드",
+        "실행",
+        "근거 점검",
+        "무결성",
+        "재현",
+        "과학 검증",
+        "주요 위험"
+      ],
+      "catalog_filters": [
+        "검색",
+        "상태",
+        "architecture lane",
+        "실험",
+        "risk",
+        "core/governance/legacy"
+      ]
+    },
+    "experiments": {
+      "name_ko": "실험·결과",
+      "primary_job": "현재 Pilot 결과와 향후 실험 gate를 같은 화면에서 비교하되 서로 다른 증거 수준을 유지",
+      "content_order": [
+        "Pilot V1 scope warning",
+        "Attack-event Recall chart",
+        "Normal FAR/hour chart",
+        "D0/D1 overlap matrix",
+        "accessible exact-value tables",
+        "EXP-01~EXP-06 roadmap table"
+      ],
+      "experiment_table_columns": [
+        "실험",
+        "확인할 가설",
+        "현재 상태",
+        "현재 근거",
+        "먼저 해결할 것",
+        "결과에 따른 결정"
+      ],
+      "drawer_sections": [
+        "연구질문",
+        "실험설계",
+        "현재 결과",
+        "한계",
+        "Gate",
+        "Claim impact"
+      ],
+      "data_reuse_rule": "Pilot exact values는 단일 view-model results object에서 chart, matrix, table이 함께 참조하고 HTML 여러 위치에 재기입하지 않는다."
+    },
+    "readiness": {
+      "name_ko": "준비도·위험",
+      "primary_job": "과학 확대 검증 전에 무엇이 막고 있으며 어떤 종류의 조치인지 구분",
+      "content_order": [
+        "P0 핵심 callout 4개",
+        "Primary disposition summary",
+        "Urgency summary",
+        "core validation gate",
+        "experiment gate matrix",
+        "filterable full risk/root-issue table"
+      ],
+      "mandatory_callouts": [
+        "GAP-001 Final authority",
+        "GAP-002 Durable D1 custody",
+        "GAP-003 Validation/final role freeze",
+        "GAP-004 Event/metric interpretation freeze"
+      ],
+      "axis_separation": {
+        "primary_disposition": [
+          "확대 검증 전 수정",
+          "특정 실험 전 수정",
+          "실험 설계 요구",
+          "엔지니어링 강화",
+          "표현·문서 수정",
+          "수용 가능한 한계",
+          "미래 과제"
+        ],
+        "urgency": ["P0", "P1", "P2", "P3"]
+      },
+      "anti_pattern": "P0_FIX_BEFORE_EXPANDED_VALIDATION disposition과 P0 urgency를 하나의 P0 badge로 합치지 않는다."
+    },
+    "evidence": {
+      "name_ko": "이력·근거",
+      "primary_job": "현재 방법과 수치가 어떤 결정, source, artifact, report에 근거하는지 추적",
+      "content_order": [
+        "10-12 milestone timeline",
+        "주요 decision",
+        "Professor feedback lineage",
+        "Superseded directions",
+        "Claim & Evidence table",
+        "Artifact / Source Authority catalog"
+      ],
+      "default_visibility": {
+        "visible": [
+          "milestone title/date/status",
+          "decision summary",
+          "claim status and allowed wording",
+          "source/artifact display name"
+        ],
+        "hidden_until_requested": [
+          "full commit/ref",
+          "full hash",
+          "path",
+          "schema field",
+          "raw registry row",
+          "long audit qualification"
+        ]
+      },
+      "report_reachability": "각 상세 row 또는 drawer에서 관련 ARCH/RCC/GAP report로 이동하며 Overview에 report link 목록을 만들지 않는다."
+    }
+  },
+  "overview_1440x900_information_budget": {
+    "viewport": {
+      "width_px": 1440,
+      "height_px": 900,
+      "header_height_px": 64,
+      "left_navigation_width_px": 216,
+      "workspace_horizontal_padding_px": 24,
+      "usable_workspace_width_px_approx": 1176,
+      "usable_height_below_header_px": 836
+    },
+    "layout": {
+      "grid": "12-column workspace grid",
+      "rows": [
+        {
+          "row": 1,
+          "height_px_target": 112,
+          "left_span": 8,
+          "left_content": "current stage, PILOT V1/VALIDATION V2, exact next task",
+          "right_span": 4,
+          "right_content": "P0 count, decision count, last updated, short authority ref"
+        },
+        {
+          "row": 2,
+          "height_px_target": 74,
+          "span": 12,
+          "content": "8-stage progress rail"
+        },
+        {
+          "row": 3,
+          "height_px_target": 276,
+          "left_span": 8,
+          "left_content": "10-14 node compact architecture map",
+          "right_span": 4,
+          "right_content": "top 3 actions and decisions"
+        },
+        {
+          "row": 4,
+          "height_px_target": 260,
+          "left_span": 7,
+          "left_content": "compact Pilot Recall/FAR visualization and warning",
+          "right_span": 5,
+          "right_content": "EXP-01~EXP-05 gates, top 5 risks and latest 3 milestones via compact tabs/list"
+        }
+      ],
+      "total_content_height_px_target": 758,
+      "overflow_policy": "Primary facts fit within viewport; lower compact panels may have internal scrolling only when content exceeds fixed budget. The entire V1 long report must not reappear below the fold."
+    },
+    "content_caps": {
+      "visible_word_target_ko": "650-900 words",
+      "hard_upper_bound_visible_words": 1200,
+      "top_actions": 3,
+      "top_risks": 5,
+      "recent_milestones": 3,
+      "experiment_gates": 5,
+      "architecture_top_nodes": "10-14",
+      "full_sha_visible": 0,
+      "raw_registry_descriptions_visible": 0,
+      "long_caveat_paragraphs": 0,
+      "pilot_warning_instances": 1
+    },
+    "scanning_hierarchy": [
+      "current stage",
+      "exact next task",
+      "progress rail",
+      "architecture map",
+      "top actions",
+      "Pilot comparison",
+      "gates/risks/history"
+    ],
+    "validation_note": "이 예산은 정보구조 목표다. 최종 font rendering과 Korean wrapping은 1440x900 screenshot에서 검증해야 한다."
+  },
+  "detail_drawer_organization": {
+    "global_behavior": {
+      "desktop": "right drawer 420-480px; workspace context remains visible",
+      "mobile": "full-screen sheet",
+      "entry_points": [
+        "architecture node",
+        "component catalog row",
+        "experiment row",
+        "risk/root issue row",
+        "history/claim/evidence row"
+      ],
+      "close_methods": ["close button", "Escape", "back navigation where hash state is used"],
+      "default_mode": "easy"
+    },
+    "easy_mode": {
+      "label_ko": "쉽게 보기",
+      "sections": [
+        "왜 필요한가",
+        "Input",
+        "처리",
+        "Output",
+        "실제 구현 상태",
+        "현재 결과",
+        "아직 검증되지 않은 것",
+        "다음 작업"
+      ],
+      "copy_limits": {
+        "summary_sentences": 2,
+        "section_sentences": "1-3",
+        "technical_token_default_visibility": "only essential identifiers"
+      }
+    },
+    "technical_mode": {
+      "label_ko": "기술 상세",
+      "sections": [
+        "component ID",
+        "source path",
+        "function/class symbol",
+        "schema",
+        "artifact ID",
+        "producer/consumer",
+        "tests",
+        "source ref",
+        "audit report",
+        "full authority/hash"
+      ],
+      "rendering_rule": "paths, symbols, schema fields, artifact IDs, enums, refs and hashes remain untranslated and use monospace."
+    },
+    "input_process_output_contract": {
+      "required_for": "every top-level architecture node and mapped component",
+      "missing_value": "UNKNOWN",
+      "derivation_rule": "Input/Output comes from Registry component fields or audited architecture map; Process comes from research role/representative symbol. UI must not synthesize scientific behavior."
+    }
+  },
+  "content_reduction_and_relocation": [
+    {
+      "v1_content": "23-item anchor navigation",
+      "v2_destination": "5 primary views; technical stages become architecture nodes or drawer sections",
+      "overview_presence": "none beyond 5 views"
+    },
+    {
+      "v1_content": "32 expanded component cards",
+      "v2_destination": "Architecture > 구성요소 카탈로그",
+      "overview_presence": "compact status count only"
+    },
+    {
+      "v1_content": "13 claim cards",
+      "v2_destination": "이력·근거 > Claim & Evidence table",
+      "overview_presence": "no claim list"
+    },
+    {
+      "v1_content": "16 risk cards",
+      "v2_destination": "준비도·위험 > filterable table",
+      "overview_presence": "top 5 only"
+    },
+    {
+      "v1_content": "separate D0, D1, D2, metrics long sections",
+      "v2_destination": "실험·결과 charts and per-method drawer; runtime semantics remain architecture detail",
+      "overview_presence": "one compact four-method comparison"
+    },
+    {
+      "v1_content": "current-state/readiness/tasks/decisions repeated across sections",
+      "v2_destination": "개요 current stage and action panel; full root issues in readiness",
+      "overview_presence": "authoritative top slice"
+    },
+    {
+      "v1_content": "full architecture prose and 10 expanded architecture details",
+      "v2_destination": "Architecture SVG and selected drawer",
+      "overview_presence": "compact map only"
+    },
+    {
+      "v1_content": "full SHA and authority token blocks",
+      "v2_destination": "technical drawer and 이력·근거 authority catalog",
+      "overview_presence": "short ref only"
+    },
+    {
+      "v1_content": "repeated next_deep_review completed text",
+      "v2_destination": "omit when completed; use exact_next_task once",
+      "overview_presence": "exact next task only"
+    },
+    {
+      "v1_content": "raw Registry description in every card",
+      "v2_destination": "technical drawer optional raw evidence",
+      "overview_presence": "none"
+    }
+  ],
+  "mobile_information_architecture": {
+    "target_viewport": "390x844",
+    "navigation": {
+      "desktop_side_nav": "collapsed into top app bar menu",
+      "primary_items": 5,
+      "must_not_be_hover_only": true,
+      "active_view_visible": true
+    },
+    "overview_order": [
+      "current stage and exact next task",
+      "P0/open-decision counters",
+      "horizontal-scroll progress rail",
+      "fit-to-width or horizontal-scroll compact architecture",
+      "top 3 actions",
+      "Pilot result charts stacked",
+      "experiment gates",
+      "top risks",
+      "recent milestones"
+    ],
+    "architecture": {
+      "canvas": "fit-to-width at overview; horizontal-scroll fixed layout in Explorer with explicit zoom controls",
+      "node_min_touch_target_px": 44,
+      "detail_drawer": "full-screen sheet",
+      "catalog": "columns collapse into selectable row cards or a horizontally scrollable table with sticky first column; preserve search/filter before data"
+    },
+    "experiments": {
+      "charts": "stack vertically",
+      "tables": "responsive row summaries; exact accessible table remains reachable",
+      "matrix": "2x2 matrix retains labels without abbreviation ambiguity"
+    },
+    "content_caps": {
+      "current_stage_summary_lines": 4,
+      "action_items_initial": 3,
+      "risk_items_initial": 3,
+      "history_items_initial": 3,
+      "full_hashes_visible": 0
+    },
+    "interaction": [
+      "all node selection available by tap and keyboard",
+      "drawer close button remains visible",
+      "filters use labeled native controls",
+      "no clipped Korean text",
+      "no hover-only evidence"
+    ]
+  },
+  "cross_view_content_ownership": [
+    {
+      "content": "current phase and next task",
+      "canonical_view": "개요",
+      "other_view_behavior": "link back; do not repeat full statement"
+    },
+    {
+      "content": "architecture connections and component status",
+      "canonical_view": "아키텍처",
+      "other_view_behavior": "Overview compact map only"
+    },
+    {
+      "content": "Pilot results and experiment roadmap",
+      "canonical_view": "실험·결과",
+      "other_view_behavior": "Overview compact exact values only"
+    },
+    {
+      "content": "root issues, disposition, urgency and risk",
+      "canonical_view": "준비도·위험",
+      "other_view_behavior": "Overview top 5/P0 count only"
+    },
+    {
+      "content": "claims, decisions, milestones, authority and audit reports",
+      "canonical_view": "이력·근거",
+      "other_view_behavior": "contextual links in drawers only"
+    }
+  ],
+  "implementation_recommendations": [
+    {
+      "priority": 1,
+      "recommendation": "Builder가 Registry를 먼저 normalized dashboard view model로 변환한 뒤 5개 view를 렌더링하게 한다. raw Registry row를 HTML section마다 직접 조합하지 않는다."
+    },
+    {
+      "priority": 2,
+      "recommendation": "5개 primary view container는 DOM에 존재하되 active view만 표시하고 URL hash, focus management, aria-current를 함께 갱신한다."
+    },
+    {
+      "priority": 3,
+      "recommendation": "node/component/experiment/risk/evidence가 같은 drawer interaction contract를 공유하도록 detail payload schema를 통합한다."
+    },
+    {
+      "priority": 4,
+      "recommendation": "Overview는 full collection을 직접 받지 않고 top_actions[3], top_risks[5], recent_milestones[3], experiment_gates[5]의 bounded slice만 받는다."
+    },
+    {
+      "priority": 5,
+      "recommendation": "component scientific validation은 component status에서 추론하지 말고 linked claim/experiment state를 별도 표시한다. evidence가 없으면 UNKNOWN을 사용한다."
+    },
+    {
+      "priority": 6,
+      "recommendation": "full evidence URL은 drawer에서 제공하고 report catalog에서 broken-local-link validation을 수행한다."
+    },
+    {
+      "priority": 7,
+      "recommendation": "Overview의 P0 count와 open decision count는 Registry의 disposition/priority 및 decision source를 명시적으로 선택해 산출하고 label에 counting basis를 tooltip로 설명한다."
+    },
+    {
+      "priority": 8,
+      "recommendation": "print stylesheet는 active view만이 아니라 사용자가 선택한 view와 accessible data table을 포함하도록 하되 drawer overlay는 정상 문서 흐름으로 변환한다."
+    }
+  ],
+  "unresolved_or_unknown": [
+    {
+      "id": "IA-U01",
+      "item": "14-node architecture edge의 frozen/code/conditional/gap classification",
+      "status": "DEFER_TO_AGENT_B_AND_COORDINATOR",
+      "handling": "Agent A 설계에서는 edge를 실선으로 확정하지 않는다."
+    },
+    {
+      "id": "IA-U02",
+      "item": "component별 scientific validation 상태를 32행에 직접 매핑하는 규칙",
+      "status": "UNKNOWN_UNTIL_VIEW_MODEL_MAPPING",
+      "handling": "claims.csv/experiments.csv 연결이 명시되지 않으면 UNKNOWN을 표시한다."
+    },
+    {
+      "id": "IA-U03",
+      "item": "open decision count의 authoritative counting source",
+      "status": "NEEDS_COORDINATOR_DEFINITION",
+      "handling": "current_state user_todo의 DECISION NEEDED와 formal decision registry를 혼합하지 말고 한 source와 filter를 동결한다."
+    },
+    {
+      "id": "IA-U04",
+      "item": "top 5 risk ordering",
+      "status": "NEEDS_VIEW_MODEL_RULE",
+      "handling": "severity만으로 동률을 임의 정렬하지 말고 urgency/root-gap/linkage가 존재하면 명시적인 deterministic order를 사용한다."
+    },
+    {
+      "id": "IA-U05",
+      "item": "1440x900 한 화면 적합성과 Korean wrapping",
+      "status": "NOT_VISUALLY_VERIFIED_BY_AGENT_A",
+      "handling": "final screenshot과 independent QA에서 검증하고 최소 한 차례 refinement한다."
+    },
+    {
+      "id": "IA-U06",
+      "item": "32-component catalog의 core/governance/legacy 분류",
+      "status": "UNKNOWN_UNTIL_DISPLAY_CONFIG",
+      "handling": "Registry content를 수정하지 않고 display-only classification을 만들며 근거가 없으면 UNKNOWN으로 둔다."
+    },
+    {
+      "id": "IA-U07",
+      "item": "최종 current stage rail에서 'Remediation 현재'의 source token",
+      "status": "DISPLAY_INFERENCE_REQUIRES_EXPLICIT_MAPPING",
+      "handling": "current_phase와 exact_next_task를 근거로 presentation mapping을 만들되 scientific Registry state를 덮어쓰지 않는다."
+    }
+  ],
+  "acceptance_checks_for_integrator": [
+    "primary navigation item count equals 5",
+    "Overview bounded collections use 3 actions, 5 risks, 3 milestones and EXP-01~EXP-05 only",
+    "component catalog retains all 32 components without expanded card wall",
+    "every top-level node exposes Input, Process, Output and status rail",
+    "technical detail contains original identifiers and audit links",
+    "Overview contains no full SHA and no raw Registry descriptions",
+    "Pilot exact values appear from one view-model object",
+    "Primary disposition and urgency are not conflated",
+    "mobile view exposes all five destinations and full-screen drawer",
+    "UNKNOWN values remain visible rather than inferred",
+    "all existing reports remain reachable through drawer/evidence catalog",
+    "Korean-first labels dominate while code identifiers remain untranslated"
+  ],
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "registry_scientific_changes": 0,
+    "scientific_source_changes": 0,
+    "scientific_result_changes": 0,
+    "frozen_artifact_changes": 0,
+    "private_exposures": 0,
+    "shared_implementation_files_modified": 0,
+    "files_created": [
+      "research_control_center/ui_redesign/staging/agent_a_information_architecture.json"
+    ]
+  }
+}

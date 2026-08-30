@@ -1,0 +1,1297 @@
+{
+  "schema_version": "rcc_ui_002_architecture_visualization_recommendation_v1",
+  "task_id": "RCC-UI-002",
+  "agent_role": "Agent B - Architecture Visualization design",
+  "scope": "Read-only design recommendation for the four-lane inline SVG architecture explorer",
+  "design_principles": [
+    "The default map contains exactly 14 top-level nodes and fits inside one stable viewBox.",
+    "Scientific execution, code-confirmed connection, conditional design, authority gap, and legacy/reference paths remain visually distinct.",
+    "The frozen V4 execution path is never relabeled as the canonical RuleV1 runtime path.",
+    "Candidate evidence, confirmed normal delayed-response relation, verifier acceptance, result integrity, and scientific validation remain separate concepts.",
+    "All values and statuses must be resolved from Registry or audited view-model data at build time; this recommendation supplies layout only.",
+    "Expanded child nodes are hidden by default and do not move top-level nodes."
+  ],
+  "evidence_basis": [
+    "research_control_center/registry/components.csv",
+    "research_control_center/registry/artifacts.csv",
+    "research_control_center/architecture/01_data_and_splits/ARCH_001_SPLIT_FLOW.mmd",
+    "research_control_center/architecture/02_candidate_discovery/ARCH_002_DISCOVERY_FLOW.mmd",
+    "research_control_center/architecture/03_relation_and_numeric/ARCH_003_RELATION_FLOW.mmd",
+    "research_control_center/architecture/04_rule_construction/ARCH_004_RULE_CONSTRUCTION_FLOW.mmd",
+    "research_control_center/architecture/05_verifier_common42/ARCH_005_VERIFIER_PORTFOLIO_FLOW.mmd",
+    "research_control_center/architecture/06_runtime_trace_explanation/ARCH_006_RUNTIME_FLOW.mmd",
+    "research_control_center/architecture/07_d0_detector/ARCH_007_D0_FLOW.mmd",
+    "research_control_center/architecture/08_d1_rule_only/ARCH_008_D1_EVALUATION_FLOW.mmd",
+    "research_control_center/architecture/09_d2_fusion/ARCH_009_FUSION_FLOW.mmd",
+    "research_control_center/architecture/10_metrics_integrity/ARCH_010_METRIC_FLOW.mmd",
+    "research_control_center/architecture/11_outer_reproducibility/ARCH_011_REPORT.md",
+    "research_control_center/bootstrap/GAP_000/GAP_000_ROOT_ISSUES.csv"
+  ],
+  "canvas": {
+    "svg_view_box": "0 0 1600 980",
+    "desktop_min_render_width": 1120,
+    "desktop_primary_viewport": "1440x900",
+    "mobile_strategy": "Render the same SVG at a 1120px minimum intrinsic width inside a labelled horizontal scroll region; offer fit-to-width as a user control.",
+    "top_level_node_size": {
+      "width": 230,
+      "height": 112
+    },
+    "detail_node_size": {
+      "width": 108,
+      "height": 42
+    },
+    "stable_layout": true,
+    "drag_layout": false,
+    "default_transform": {
+      "scale": 1.0,
+      "translate_x": 0,
+      "translate_y": 0
+    },
+    "zoom_limits": {
+      "min": 0.7,
+      "max": 1.6,
+      "step": 0.1
+    }
+  },
+  "edge_semantics": {
+    "frozen_scientific": {
+      "stroke": "var(--state-verified)",
+      "stroke_width": 4,
+      "dash_array": null,
+      "marker": "arrow-frozen",
+      "label_ko": "Pilot V1 실제 frozen 경로",
+      "meaning": "The connection was used by the frozen scientific execution."
+    },
+    "verified_code": {
+      "stroke": "var(--accent-primary)",
+      "stroke_width": 2,
+      "dash_array": null,
+      "marker": "arrow-verified",
+      "label_ko": "코드·테스트로 확인된 연결",
+      "meaning": "The connection is implemented or contract-tested but is not asserted as the frozen scientific execution path."
+    },
+    "conditional": {
+      "stroke": "var(--state-warning)",
+      "stroke_width": 2,
+      "dash_array": "8 6",
+      "marker": "arrow-conditional",
+      "label_ko": "설계·조건부 연결",
+      "meaning": "The connection is planned, conditional, or requires a future protocol."
+    },
+    "authority_gap": {
+      "stroke": "var(--state-blocked)",
+      "stroke_width": 2.5,
+      "dash_array": "4 5",
+      "marker": "arrow-gap",
+      "label_ko": "권한·결속 gap",
+      "meaning": "An authority, identity, custody, or binding gap is explicitly audited."
+    },
+    "legacy_reference": {
+      "stroke": "var(--text-secondary)",
+      "stroke_width": 1.5,
+      "dash_array": null,
+      "marker": "arrow-reference",
+      "label_ko": "legacy/reference 경로",
+      "meaning": "Historical, synthetic, or reference-only connection; it is not current scientific authority."
+    },
+    "unknown": {
+      "stroke": "var(--state-unvalidated)",
+      "stroke_width": 1.75,
+      "dash_array": "2 6",
+      "marker": "arrow-unknown",
+      "label_ko": "미확인 연결",
+      "meaning": "Evidence is insufficient. UNKNOWN must remain visible as UNKNOWN when the user enables unconfirmed connections."
+    }
+  },
+  "status_rail_contract": {
+    "order": [
+      "code",
+      "execution",
+      "evidence_review",
+      "result_integrity",
+      "independent_reproduction",
+      "scientific_validation"
+    ],
+    "labels_ko": {
+      "code": "코드",
+      "execution": "실행",
+      "evidence_review": "근거 점검",
+      "result_integrity": "결과 무결성",
+      "independent_reproduction": "독립 재현",
+      "scientific_validation": "과학적 검증"
+    },
+    "allowed_values": [
+      "complete",
+      "partial",
+      "pilot_only",
+      "unvalidated",
+      "unconfirmed",
+      "blocked",
+      "not_applicable",
+      "unknown"
+    ],
+    "rendering_rule": "Every dot includes visible short text and an aria-label such as 'D1 관계 규칙, 독립 재현: 미확인'. Never infer scientific_validation from audited, claim_ready, or result-integrity status."
+  },
+  "lanes": [
+    {
+      "id": "lane_data_candidate",
+      "order": 1,
+      "label_ko": "데이터·후보 탐색",
+      "x": 24,
+      "y": 24,
+      "width": 1552,
+      "height": 214,
+      "node_ids": [
+        "data_hai_p1",
+        "split_roles",
+        "candidate_discovery",
+        "candidate_union"
+      ]
+    },
+    {
+      "id": "lane_relation_rule",
+      "order": 2,
+      "label_ko": "관계·규칙 구성",
+      "x": 24,
+      "y": 252,
+      "width": 1552,
+      "height": 230,
+      "node_ids": [
+        "relation_profiling",
+        "numeric_authority",
+        "rule_construction",
+        "deterministic_verifier",
+        "common42"
+      ]
+    },
+    {
+      "id": "lane_execution_detection",
+      "order": 3,
+      "label_ko": "실행·탐지",
+      "x": 24,
+      "y": 496,
+      "width": 1552,
+      "height": 208,
+      "node_ids": [
+        "d0_pca_spe",
+        "d1_relational_rules",
+        "d2_fusion"
+      ]
+    },
+    {
+      "id": "lane_evaluation_validation",
+      "order": 4,
+      "label_ko": "평가·검증",
+      "x": 24,
+      "y": 718,
+      "width": 1552,
+      "height": 226,
+      "node_ids": [
+        "metrics_integrity",
+        "outer_reproducibility"
+      ]
+    }
+  ],
+  "top_level_nodes": [
+    {
+      "id": "data_hai_p1",
+      "order": 1,
+      "lane": "lane_data_candidate",
+      "label_ko": "HAI P1 데이터",
+      "subtitle_ko": "검증된 HAI 23.05 출처·P1 범위",
+      "x": 64,
+      "y": 76,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["DATA_PROVENANCE"],
+      "artifact_refs": ["ART-RAW-DATA-CUSTODY"],
+      "audit_refs": ["ARCH-001"],
+      "risk_level": "MEDIUM",
+      "gap_refs": ["GAP-011"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "not_applicable",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "not_applicable"
+      },
+      "easy_view": {
+        "why": "분석 대상 데이터의 출처와 허용 범위를 먼저 고정합니다.",
+        "input": "승인된 HAI 23.05 source identity와 local custody metadata",
+        "process": "출처·파일 identity를 검토하고 P1 Boiler 범위를 연결",
+        "output": "P1 분석에 사용할 public-safe provenance와 private custody 경계",
+        "current_result": "HAI 23.05 provenance와 P1 범위는 frozen Pilot V1 근거로 사용됨",
+        "not_validated": "새 환경에서의 scientific reproduction은 완료되지 않음",
+        "next": "GAP-011 fresh-machine rehearsal 전 환경·asset 계약 고정"
+      }
+    },
+    {
+      "id": "split_roles",
+      "order": 2,
+      "lane": "lane_data_candidate",
+      "label_ko": "Split·변수 역할",
+      "subtitle_ko": "normal 역할·37개 P1 feature·144 pair universe",
+      "x": 425,
+      "y": 76,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["SPLIT_GOVERNANCE", "VARIABLE_ROLE_UNIVERSE"],
+      "artifact_refs": ["ART-RAW-DATA-CUSTODY", "ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-001", "ARCH-002"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-002", "GAP-003", "GAP-013", "GAP-014"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "partial",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "학습·확인·평가 데이터의 역할과 source/target 가능 범위를 분리합니다.",
+        "input": "P1 feature metadata와 split manifest",
+        "process": "train1/train2 fit, train3 확인·보정, train4 sanity, test1 pilot 역할을 강제",
+        "output": "37개 ordered P1 feature, 12 source × 12 target의 144개 directed pair universe",
+        "current_result": "관찰된 Pilot V1 reader는 split 역할과 정합",
+        "not_validated": "VALIDATION V2의 validation/final 역할은 아직 frozen 아님",
+        "next": "GAP-003 split-role 및 one-way final protocol 고정"
+      }
+    },
+    {
+      "id": "candidate_discovery",
+      "order": 3,
+      "lane": "lane_data_candidate",
+      "label_ko": "관계 후보 탐색",
+      "subtitle_ko": "META / STAT / GDN",
+      "x": 786,
+      "y": 76,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["META_DISCOVERY", "STAT_DISCOVERY", "GDN_DISCOVERY"],
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-006", "GAP-007"],
+      "expand_group": "candidate_arms",
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "not_applicable",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "144개 가능 pair에서 normal-only profiling 대상으로 검토할 후보를 좁힙니다.",
+        "input": "144 directed pairs, metadata, train1/train2 normal values",
+        "process": "META·STAT·GDN이 서로 다른 근거로 각각 Top-20을 제안",
+        "output": "arm별 후보와 provenance; 아직 confirmed relation이 아님",
+        "current_result": "세 arm은 각각 20개 후보를 생성",
+        "not_validated": "GDN의 고유 기여·안정성과 Top-5 self-neighbor 영향은 미검증",
+        "next": "EXP-01 전 GAP-006 수정/ablation 및 GAP-007 protocol"
+      }
+    },
+    {
+      "id": "candidate_union",
+      "order": 4,
+      "lane": "lane_data_candidate",
+      "label_ko": "Candidate Union",
+      "subtitle_ko": "재점수화 없는 47개 후보 합집합",
+      "x": 1147,
+      "y": 76,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["CANDIDATE_UNION"],
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"],
+      "risk_level": "MEDIUM",
+      "gap_refs": ["GAP-007", "GAP-015"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "not_applicable",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "서로 다른 discovery arm의 후보를 점수 혼합 없이 하나의 cohort로 묶습니다.",
+        "input": "META 20, STAT 20, GDN 20",
+        "process": "provenance를 유지한 unscored set union",
+        "output": "47 unique directed candidate pairs",
+        "current_result": "47개 후보가 downstream profiling에 실제 사용됨",
+        "not_validated": "후보는 relation 또는 causal link가 아님",
+        "next": "EXP-01에서 arm별 고유 confirmed contribution 검토"
+      }
+    },
+    {
+      "id": "relation_profiling",
+      "order": 5,
+      "lane": "lane_relation_rule",
+      "label_ko": "Relation Profiling",
+      "subtitle_ko": "normal delayed-response relation 확인",
+      "x": 36,
+      "y": 298,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["RELATION_PROFILING"],
+      "artifact_refs": ["ART-TRAIN3-CONFIRMATION", "ART-CONFIRMED-RELATIONS"],
+      "audit_refs": ["ARCH-003"],
+      "risk_level": "MEDIUM",
+      "gap_refs": ["GAP-007", "GAP-014", "GAP-015"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "partial",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "후보 pair가 normal data에서 반복되는 지연 반응 근거를 갖는지 확인합니다.",
+        "input": "47 candidate pairs와 train1/train2 normal observations",
+        "process": "source event·target response·horizon을 profile하고 train3에서 one-way confirm",
+        "output": "23 pair contexts, 42 directional relations",
+        "current_result": "42개 normal delayed-response relations가 frozen됨",
+        "not_validated": "물리적 진실·causality·최적 horizon·generalization은 증명하지 않음",
+        "next": "EXP-02/VALIDATION V2에서 기준·안정성 비교"
+      }
+    },
+    {
+      "id": "numeric_authority",
+      "order": 6,
+      "lane": "lane_relation_rule",
+      "label_ko": "Numeric Authority",
+      "subtitle_ko": "normal-only 수치 근거·runtime rebinding",
+      "x": 340,
+      "y": 298,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["NUMERIC_AUTHORITY"],
+      "artifact_refs": ["ART-NUMERIC-AUTHORITY-RECEIPT", "ART-PRIVATE-SCIENTIFIC-CUSTODY"],
+      "audit_refs": ["ARCH-003", "ARCH-005"],
+      "risk_level": "MEDIUM",
+      "gap_refs": ["GAP-001", "GAP-018"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "partial",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "LLM이 수치를 발명하지 못하도록 normal data에서 얻은 수치 권한을 별도로 관리합니다.",
+        "input": "confirmed relation identity와 normal calibration inputs",
+        "process": "construction/reference 역할과 V4 runtime 역할을 별도 authority identity로 bind",
+        "output": "public hash receipt와 private numeric authority",
+        "current_result": "construction/runtime shared values 420개는 exact match지만 identity는 분리됨",
+        "not_validated": "relation-specific criteria의 과학적 우월성·최적성은 미검증",
+        "next": "GAP-001 final authority 결정과 EXP-02 비교"
+      }
+    },
+    {
+      "id": "rule_construction",
+      "order": 7,
+      "lane": "lane_relation_rule",
+      "label_ko": "Rule Construction",
+      "subtitle_ko": "Evidence Pack·T0 / T1 / T1-B / T2",
+      "x": 644,
+      "y": 298,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["EVIDENCE_PACK", "RULE_DSL", "T0_TEMPLATE", "T1_ONE_SHOT", "T1B_REPEAT", "T2_AGENTIC_FEEDBACK"],
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS", "ART-CONFIRMED-RELATIONS", "ART-NUMERIC-AUTHORITY-RECEIPT"],
+      "audit_refs": ["ARCH-004"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-005", "GAP-008", "GAP-015"],
+      "expand_group": "construction_arms",
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "partial",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "confirmed relation과 numeric authority를 bounded Rule proposal로 표현합니다.",
+        "input": "42개의 normal-only Evidence Pack views",
+        "process": "T0 template, T1 one-shot, T1-B repeat, T2 verifier-feedback construction",
+        "output": "closed proposal core와 task-specific validity outcome",
+        "current_result": "T0 42/42, T1 42/42, T1-B 42/42, T2 39/42; feedback action 0",
+        "not_validated": "T2 feedback benefit과 construction-arm superiority는 입증되지 않음",
+        "next": "EXP-03 전 no_rule taxonomy와 repeated budget-matched protocol 고정"
+      }
+    },
+    {
+      "id": "deterministic_verifier",
+      "order": 8,
+      "lane": "lane_relation_rule",
+      "label_ko": "Deterministic Verifier",
+      "subtitle_ko": "task validity V2와 canonical VerifierV1 분리",
+      "x": 948,
+      "y": 298,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["DETERMINISTIC_VERIFIER", "RULE_DSL"],
+      "artifact_refs": ["ART-COMMON42", "ART-NUMERIC-AUTHORITY-RECEIPT"],
+      "audit_refs": ["ARCH-004", "ARCH-005"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-001", "GAP-005", "GAP-015"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "not_applicable",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "not_applicable"
+      },
+      "easy_view": {
+        "why": "Rule proposal이 bounded evidence·schema·execution contract에 맞는지 결정론적으로 검사합니다.",
+        "input": "parsed proposal, evidence references, numeric references, role/split policies",
+        "process": "task validity V2 또는 별도 canonical VerifierV1 contract checks",
+        "output": "accepted proposal / explicit issue outcome; 과학적 진실 판정은 아님",
+        "current_result": "frozen construction은 task-specific validity를 사용; canonical VerifierV1 direct governance는 입증되지 않음",
+        "not_validated": "verifier acceptance는 scientific validation 또는 runtime authorization과 동일하지 않음",
+        "next": "GAP-001에서 final authority/bridge version 고정"
+      }
+    },
+    {
+      "id": "common42",
+      "order": 9,
+      "lane": "lane_relation_rule",
+      "label_ko": "COMMON-42",
+      "subtitle_ko": "42개 V4 verified relational descriptors",
+      "x": 1252,
+      "y": 298,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["COMMON42_FREEZE"],
+      "artifact_refs": ["ART-COMMON42"],
+      "audit_refs": ["ARCH-005", "ARCH-006"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-001", "GAP-015"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "partial",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "unvalidated"
+      },
+      "easy_view": {
+        "why": "Pilot V1 D1 runtime이 사용할 relation descriptors를 frozen portfolio로 고정합니다.",
+        "input": "42 confirmed relations와 T0/T1/T1-B executable-equivalence authority",
+        "process": "V4 descriptor·numeric/runtime authority binding과 exact portfolio freeze",
+        "output": "42 CanonicalRuleDescriptorV4 objects",
+        "current_result": "frozen D1이 실제 사용한 portfolio",
+        "not_validated": "T2 output이 아니며 LLM/Agentic Rule-only portfolio로 부르면 부정확",
+        "next": "GAP-001 canonical RuleV1→V4 bridge 또는 final V4 authority 결정"
+      }
+    },
+    {
+      "id": "d0_pca_spe",
+      "order": 10,
+      "lane": "lane_execution_detection",
+      "label_ko": "D0 PCA-SPE",
+      "subtitle_ko": "normal-only 단순 reference detector",
+      "x": 280,
+      "y": 546,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["D0_PCA_SPE"],
+      "artifact_refs": ["ART-D0-PREDICTION", "ART-D0-METRICS", "ART-D0-INTEGRITY"],
+      "audit_refs": ["ARCH-007", "ARCH-010"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-009", "GAP-014"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "complete",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "pilot_only"
+      },
+      "easy_view": {
+        "why": "verified relational rules와 비교할 단순하고 결정론적인 normal-only detector 기준을 제공합니다.",
+        "input": "37 ordered P1 features; train1/train2 fit, train3 calibration, test1 features",
+        "process": "population standardization → NumPy PCA → SPE → frozen threshold 비교",
+        "output": "durably frozen per-second D0 point prediction",
+        "current_result": "Pilot V1: attack-event Recall 11/14, Normal FAR/hour 0.4939336325682589",
+        "not_validated": "SOTA detector 또는 held-out generalization 근거가 아님",
+        "next": "EXP-04/final study 전에 stronger multivariate baseline preregistration"
+      }
+    },
+    {
+      "id": "d1_relational_rules",
+      "order": 11,
+      "lane": "lane_execution_detection",
+      "label_ko": "D1 관계 규칙",
+      "subtitle_ko": "검증된 관계 규칙 단독 방식",
+      "x": 685,
+      "y": 546,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["RULE_RUNTIME", "SATISFACTION_TRACE", "D1_RULE_ONLY"],
+      "artifact_refs": ["ART-COMMON42", "ART-D1-PREDICTION", "ART-D1-METRICS", "ART-D1-INTEGRITY"],
+      "audit_refs": ["ARCH-006", "ARCH-008", "ARCH-010"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-001", "GAP-002", "GAP-010", "GAP-016"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "complete",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "pilot_only"
+      },
+      "easy_view": {
+        "why": "COMMON-42 rule violations만으로 anomaly signal을 만들 수 있는지 관찰합니다.",
+        "input": "COMMON-42, V4 numeric authority, test1 feature frame",
+        "process": "LLM-free source trigger·horizon response evaluation과 rule-level trace 생성",
+        "output": "6031 opportunities, 788 anomalous rule records, 630 unique alarm seconds",
+        "current_result": "Pilot V1: Recall 13/14, Normal FAR/hour 40.50255787059723",
+        "not_validated": "높은 pilot Recall은 높은 FAR 때문에 operational utility나 Agentic benefit을 증명하지 않음",
+        "next": "GAP-002 durable pre-label gate와 GAP-001 authority resolution"
+      }
+    },
+    {
+      "id": "d2_fusion",
+      "order": 12,
+      "lane": "lane_execution_detection",
+      "label_ko": "D2 결합",
+      "subtitle_ko": "D0 보존 + D1 evidence admission",
+      "x": 1090,
+      "y": 546,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["D2_V1", "D2_V2"],
+      "artifact_refs": ["ART-D2V1-PREDICTION", "ART-D2V1-METRICS", "ART-D2V1-INTEGRITY", "ART-D2V2-PREDICTION", "ART-D2V2-METRICS", "ART-D2V2-INTEGRITY"],
+      "audit_refs": ["ARCH-009", "ARCH-010"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-003", "GAP-009", "GAP-016"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "complete",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "pilot_only"
+      },
+      "easy_view": {
+        "why": "D0 alarm을 보존하면서 D1의 다른 event response를 안전하게 추가할 수 있는지 시험합니다.",
+        "input": "frozen D0 prediction과 frozen D1 evidence",
+        "process": "V1 exact-index multi-source 또는 V2 native-horizon active multi-source policy",
+        "output": "durably frozen D2 V1/V2 combined predictions",
+        "current_result": "V1·V2 모두 Recall 11/14와 D0-miss recovery 0/3; FAR은 D0보다 증가",
+        "not_validated": "V2는 test1-informed development이며 current fusion은 general Detector+Rule 가치를 판정하지 않음",
+        "next": "GAP-003 validation/final policy-selection roles preregistration"
+      }
+    },
+    {
+      "id": "metrics_integrity",
+      "order": 13,
+      "lane": "lane_evaluation_validation",
+      "label_ko": "Metrics·Result Integrity",
+      "subtitle_ko": "공통 alarm-second interface와 Pilot 결과 무결성",
+      "x": 420,
+      "y": 772,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["EPISODE_CONSTRUCTION", "ATTACK_EVENT_RECALL", "NORMAL_FAR", "RESULT_INTEGRITY"],
+      "artifact_refs": ["ART-D0-METRICS", "ART-D1-METRICS", "ART-D2V1-METRICS", "ART-D2V2-METRICS", "ART-D0-INTEGRITY", "ART-D1-INTEGRITY", "ART-D2V1-INTEGRITY", "ART-D2V2-INTEGRITY"],
+      "audit_refs": ["ARCH-008", "ARCH-009", "ARCH-010"],
+      "risk_level": "HIGH",
+      "gap_refs": ["GAP-004", "GAP-012", "GAP-015"],
+      "status_rail_recommendation": {
+        "code": "complete",
+        "execution": "complete",
+        "evidence_review": "complete",
+        "result_integrity": "complete",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "pilot_only"
+      },
+      "easy_view": {
+        "why": "서로 다른 method outputs를 동일한 Recall/FAR 인터페이스로 비교하고 frozen result identity를 확인합니다.",
+        "input": "D0 Boolean points, D1 opportunity records, D2 Boolean points, strict test1 labels",
+        "process": "unique alarm second → contiguous episode → event overlap / normal FAR → integrity audit",
+        "output": "14 contiguous attack-event units 기반 Pilot V1 metric receipts",
+        "current_result": "D0 11/14, D1 13/14, D2 V1 11/14, D2 V2 11/14; exact FAR receipts bound",
+        "not_validated": "Result integrity는 scientific validation, independence, generalization을 보장하지 않음",
+        "next": "GAP-004 event/inference contract와 GAP-012 common adapter version freeze"
+      }
+    },
+    {
+      "id": "outer_reproducibility",
+      "order": 14,
+      "lane": "lane_evaluation_validation",
+      "label_ko": "OUTER·재현성",
+      "subtitle_ko": "새 held-out·새 환경 독립 재현",
+      "x": 950,
+      "y": 772,
+      "width": 230,
+      "height": 112,
+      "component_ids": ["OUTER_EVALUATION", "REPRODUCIBILITY"],
+      "artifact_refs": ["ART-OUTER-BLOCKER", "ART-REPRO-ASSESSMENT"],
+      "audit_refs": ["ARCH-011"],
+      "risk_level": "CRITICAL",
+      "gap_refs": ["GAP-001", "GAP-002", "GAP-003", "GAP-004", "GAP-011", "GAP-012", "GAP-013"],
+      "status_rail_recommendation": {
+        "code": "partial",
+        "execution": "blocked",
+        "evidence_review": "complete",
+        "result_integrity": "not_applicable",
+        "independent_reproduction": "unconfirmed",
+        "scientific_validation": "blocked"
+      },
+      "easy_view": {
+        "why": "Pilot V1을 넘어 새 환경과 one-way held-out study에서 재현·일반화를 확인합니다.",
+        "input": "새 preregistration, frozen VALIDATION V2 method, authorized data custody",
+        "process": "fresh-machine rehearsal 후 durable one-shot prediction-before-label protocol",
+        "output": "현재는 result unavailable; future held-out scientific result가 목표",
+        "current_result": "old OUTER custody attempt는 feature bytes 0, semantic parses 0, labels 0, predictions 0, metrics 0에서 중단",
+        "not_validated": "held-out generalization과 fresh-machine scientific reproduction은 미확인",
+        "next": "final authority·custody·event/metric roles 고정 후 새 study identity preregistration"
+      }
+    }
+  ],
+  "expandable_groups": [
+    {
+      "id": "candidate_arms",
+      "parent_node": "candidate_discovery",
+      "toggle_label_ko": "META / STAT / GDN 펼치기",
+      "default_expanded": false,
+      "aria_live_announcement_ko": "관계 후보 탐색 세부 node 3개가 표시되었습니다.",
+      "child_nodes": [
+        {
+          "id": "candidate_meta",
+          "label": "META",
+          "x": 724,
+          "y": 188,
+          "width": 96,
+          "height": 38,
+          "component_ids": ["META_DISCOVERY"],
+          "result_label": "Top-20",
+          "evidence_status": "frozen_scientific"
+        },
+        {
+          "id": "candidate_stat",
+          "label": "STAT",
+          "x": 840,
+          "y": 188,
+          "width": 96,
+          "height": 38,
+          "component_ids": ["STAT_DISCOVERY"],
+          "result_label": "Top-20",
+          "evidence_status": "frozen_scientific"
+        },
+        {
+          "id": "candidate_gdn",
+          "label": "GDN",
+          "x": 956,
+          "y": 188,
+          "width": 96,
+          "height": 38,
+          "component_ids": ["GDN_DISCOVERY"],
+          "result_label": "Top-20 · 기여 미검증",
+          "evidence_status": "frozen_scientific",
+          "gap_refs": ["GAP-006", "GAP-007"]
+        }
+      ]
+    },
+    {
+      "id": "construction_arms",
+      "parent_node": "rule_construction",
+      "toggle_label_ko": "Evidence Pack과 construction arms 펼치기",
+      "default_expanded": false,
+      "aria_live_announcement_ko": "Rule Construction 세부 node 5개가 표시되었습니다.",
+      "child_nodes": [
+        {
+          "id": "construction_evidence_pack",
+          "label": "Evidence Pack",
+          "x": 432,
+          "y": 424,
+          "width": 126,
+          "height": 42,
+          "component_ids": ["EVIDENCE_PACK"],
+          "result_label": "42 normal-only views",
+          "evidence_status": "frozen_scientific"
+        },
+        {
+          "id": "construction_t0",
+          "label": "T0",
+          "x": 582,
+          "y": 424,
+          "width": 96,
+          "height": 42,
+          "component_ids": ["T0_TEMPLATE"],
+          "result_label": "42/42",
+          "evidence_status": "frozen_scientific"
+        },
+        {
+          "id": "construction_t1",
+          "label": "T1",
+          "x": 698,
+          "y": 424,
+          "width": 96,
+          "height": 42,
+          "component_ids": ["T1_ONE_SHOT"],
+          "result_label": "42/42",
+          "evidence_status": "frozen_scientific"
+        },
+        {
+          "id": "construction_t1b",
+          "label": "T1-B",
+          "x": 814,
+          "y": 424,
+          "width": 96,
+          "height": 42,
+          "component_ids": ["T1B_REPEAT"],
+          "result_label": "42/42",
+          "evidence_status": "frozen_scientific"
+        },
+        {
+          "id": "construction_t2",
+          "label": "T2",
+          "x": 930,
+          "y": 424,
+          "width": 112,
+          "height": 42,
+          "component_ids": ["T2_AGENTIC_FEEDBACK"],
+          "result_label": "39/42 · feedback 0",
+          "evidence_status": "frozen_scientific",
+          "gap_refs": ["GAP-005", "GAP-008"]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_data_split",
+      "source": "data_hai_p1",
+      "target": "split_roles",
+      "type": "frozen_scientific",
+      "label_ko": "P1 feature·split contract",
+      "artifact_refs": ["ART-RAW-DATA-CUSTODY"],
+      "audit_refs": ["ARCH-001"],
+      "verified": true
+    },
+    {
+      "id": "edge_split_candidate",
+      "source": "split_roles",
+      "target": "candidate_discovery",
+      "type": "frozen_scientific",
+      "label_ko": "144-pair universe·normal train1/train2",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"],
+      "verified": true
+    },
+    {
+      "id": "edge_candidate_union",
+      "source": "candidate_discovery",
+      "target": "candidate_union",
+      "type": "frozen_scientific",
+      "label_ko": "META/STAT/GDN Top-20 unscored union",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"],
+      "verified": true
+    },
+    {
+      "id": "edge_union_relation",
+      "source": "candidate_union",
+      "target": "relation_profiling",
+      "type": "frozen_scientific",
+      "label_ko": "47 candidates → profiling",
+      "artifact_refs": ["ART-CANDIDATE-COHORT", "ART-TRAIN3-CONFIRMATION"],
+      "audit_refs": ["ARCH-002", "ARCH-003"],
+      "verified": true,
+      "route_hint": [[1377, 132], [1518, 132], [1518, 268], [151, 268], [151, 298]]
+    },
+    {
+      "id": "edge_relation_numeric",
+      "source": "relation_profiling",
+      "target": "numeric_authority",
+      "type": "frozen_scientific",
+      "label_ko": "42 relation identities·normal calibration",
+      "artifact_refs": ["ART-CONFIRMED-RELATIONS", "ART-NUMERIC-AUTHORITY-RECEIPT"],
+      "audit_refs": ["ARCH-003"],
+      "verified": true
+    },
+    {
+      "id": "edge_numeric_rule",
+      "source": "numeric_authority",
+      "target": "rule_construction",
+      "type": "frozen_scientific",
+      "label_ko": "reference-bound numeric inputs",
+      "artifact_refs": ["ART-NUMERIC-AUTHORITY-RECEIPT", "ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-003", "ARCH-004"],
+      "verified": true
+    },
+    {
+      "id": "edge_relation_rule",
+      "source": "relation_profiling",
+      "target": "rule_construction",
+      "type": "frozen_scientific",
+      "label_ko": "confirmed relation facts → Evidence Pack",
+      "artifact_refs": ["ART-CONFIRMED-RELATIONS", "ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-003", "ARCH-004"],
+      "verified": true,
+      "route_hint": [[151, 410], [151, 450], [759, 450], [759, 410]]
+    },
+    {
+      "id": "edge_rule_task_verifier",
+      "source": "rule_construction",
+      "target": "deterministic_verifier",
+      "type": "frozen_scientific",
+      "label_ko": "task039e0 validity V2",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004", "ARCH-005"],
+      "verified": true,
+      "technical_note": "This solid edge means task-specific validity governed the frozen construction outcomes; it must not be described as canonical VerifierV1 equivalence."
+    },
+    {
+      "id": "edge_task_verifier_common42",
+      "source": "deterministic_verifier",
+      "target": "common42",
+      "type": "frozen_scientific",
+      "label_ko": "accepted proposal·executable equivalence → V4 portfolio",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS", "ART-COMMON42"],
+      "audit_refs": ["ARCH-005"],
+      "verified": true,
+      "parallel_offset": -7
+    },
+    {
+      "id": "edge_canonical_verifier_common42_gap",
+      "source": "deterministic_verifier",
+      "target": "common42",
+      "type": "authority_gap",
+      "label_ko": "canonical RuleV1 → V4 bridge 미구현",
+      "artifact_refs": ["ART-COMMON42"],
+      "audit_refs": ["ARCH-005", "ARCH-006", "GAP-001"],
+      "verified": false,
+      "parallel_offset": 9,
+      "gap_id": "GAP-001"
+    },
+    {
+      "id": "edge_split_d0",
+      "source": "split_roles",
+      "target": "d0_pca_spe",
+      "type": "frozen_scientific",
+      "label_ko": "normal fit/calibration + test1 features",
+      "artifact_refs": ["ART-D0-PREDICTION"],
+      "audit_refs": ["ARCH-001", "ARCH-007"],
+      "verified": true,
+      "route_hint": [[540, 188], [540, 520], [395, 520], [395, 546]]
+    },
+    {
+      "id": "edge_common42_d1",
+      "source": "common42",
+      "target": "d1_relational_rules",
+      "type": "frozen_scientific",
+      "label_ko": "V4 authority + numeric resolver",
+      "artifact_refs": ["ART-COMMON42", "ART-D1-PREDICTION"],
+      "audit_refs": ["ARCH-005", "ARCH-006", "ARCH-008"],
+      "verified": true,
+      "route_hint": [[1367, 410], [1367, 516], [800, 516], [800, 546]]
+    },
+    {
+      "id": "edge_d0_d2",
+      "source": "d0_pca_spe",
+      "target": "d2_fusion",
+      "type": "frozen_scientific",
+      "label_ko": "frozen D0 base prediction",
+      "artifact_refs": ["ART-D0-PREDICTION", "ART-D2V1-PREDICTION", "ART-D2V2-PREDICTION"],
+      "audit_refs": ["ARCH-009"],
+      "verified": true,
+      "route_hint": [[395, 658], [395, 686], [1205, 686], [1205, 658]]
+    },
+    {
+      "id": "edge_d1_d2",
+      "source": "d1_relational_rules",
+      "target": "d2_fusion",
+      "type": "frozen_scientific",
+      "label_ko": "frozen D1 evidence",
+      "artifact_refs": ["ART-D1-PREDICTION", "ART-D2V1-PREDICTION", "ART-D2V2-PREDICTION"],
+      "audit_refs": ["ARCH-009"],
+      "verified": true
+    },
+    {
+      "id": "edge_d0_metrics",
+      "source": "d0_pca_spe",
+      "target": "metrics_integrity",
+      "type": "frozen_scientific",
+      "label_ko": "Boolean alarm seconds",
+      "artifact_refs": ["ART-D0-METRICS", "ART-D0-INTEGRITY"],
+      "audit_refs": ["ARCH-007", "ARCH-010"],
+      "verified": true
+    },
+    {
+      "id": "edge_d1_metrics",
+      "source": "d1_relational_rules",
+      "target": "metrics_integrity",
+      "type": "frozen_scientific",
+      "label_ko": "anomalous records → unique alarm seconds",
+      "artifact_refs": ["ART-D1-METRICS", "ART-D1-INTEGRITY"],
+      "audit_refs": ["ARCH-008", "ARCH-010"],
+      "verified": true
+    },
+    {
+      "id": "edge_d2_metrics",
+      "source": "d2_fusion",
+      "target": "metrics_integrity",
+      "type": "frozen_scientific",
+      "label_ko": "combined Boolean alarms",
+      "artifact_refs": ["ART-D2V1-METRICS", "ART-D2V2-METRICS", "ART-D2V1-INTEGRITY", "ART-D2V2-INTEGRITY"],
+      "audit_refs": ["ARCH-009", "ARCH-010"],
+      "verified": true,
+      "route_hint": [[1205, 658], [1205, 736], [535, 736], [535, 772]]
+    },
+    {
+      "id": "edge_metrics_repro_traceability",
+      "source": "metrics_integrity",
+      "target": "outer_reproducibility",
+      "type": "verified_code",
+      "label_ko": "frozen result lineage·same-authority traceability",
+      "artifact_refs": ["ART-REPRO-ASSESSMENT"],
+      "audit_refs": ["ARCH-010", "ARCH-011"],
+      "verified": true
+    },
+    {
+      "id": "edge_split_new_heldout",
+      "source": "split_roles",
+      "target": "outer_reproducibility",
+      "type": "conditional",
+      "label_ko": "새 study identity·one-way held-out protocol 필요",
+      "artifact_refs": ["ART-OUTER-BLOCKER"],
+      "audit_refs": ["ARCH-011", "GAP-003", "GAP-004"],
+      "verified": false,
+      "route_hint": [[540, 188], [540, 708], [1065, 708], [1065, 772]]
+    }
+  ],
+  "expanded_edges": [
+    {
+      "id": "edge_split_meta",
+      "source": "split_roles",
+      "target": "candidate_meta",
+      "type": "frozen_scientific",
+      "visible_when": "candidate_arms",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"]
+    },
+    {
+      "id": "edge_split_stat",
+      "source": "split_roles",
+      "target": "candidate_stat",
+      "type": "frozen_scientific",
+      "visible_when": "candidate_arms",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"]
+    },
+    {
+      "id": "edge_split_gdn",
+      "source": "split_roles",
+      "target": "candidate_gdn",
+      "type": "frozen_scientific",
+      "visible_when": "candidate_arms",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"]
+    },
+    {
+      "id": "edge_meta_union",
+      "source": "candidate_meta",
+      "target": "candidate_union",
+      "type": "frozen_scientific",
+      "visible_when": "candidate_arms",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"]
+    },
+    {
+      "id": "edge_stat_union",
+      "source": "candidate_stat",
+      "target": "candidate_union",
+      "type": "frozen_scientific",
+      "visible_when": "candidate_arms",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"]
+    },
+    {
+      "id": "edge_gdn_union",
+      "source": "candidate_gdn",
+      "target": "candidate_union",
+      "type": "frozen_scientific",
+      "visible_when": "candidate_arms",
+      "artifact_refs": ["ART-CANDIDATE-COHORT"],
+      "audit_refs": ["ARCH-002"]
+    },
+    {
+      "id": "edge_relation_evidence_pack",
+      "source": "relation_profiling",
+      "target": "construction_evidence_pack",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONFIRMED-RELATIONS"],
+      "audit_refs": ["ARCH-003", "ARCH-004"]
+    },
+    {
+      "id": "edge_numeric_evidence_pack",
+      "source": "numeric_authority",
+      "target": "construction_evidence_pack",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-NUMERIC-AUTHORITY-RECEIPT"],
+      "audit_refs": ["ARCH-003", "ARCH-004"]
+    },
+    {
+      "id": "edge_evidence_t0",
+      "source": "construction_evidence_pack",
+      "target": "construction_t0",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_evidence_t1",
+      "source": "construction_evidence_pack",
+      "target": "construction_t1",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_evidence_t1b",
+      "source": "construction_evidence_pack",
+      "target": "construction_t1b",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_evidence_t2",
+      "source": "construction_evidence_pack",
+      "target": "construction_t2",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_t0_task_verifier",
+      "source": "construction_t0",
+      "target": "deterministic_verifier",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_t1_task_verifier",
+      "source": "construction_t1",
+      "target": "deterministic_verifier",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_t1b_task_verifier",
+      "source": "construction_t1b",
+      "target": "deterministic_verifier",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"]
+    },
+    {
+      "id": "edge_t2_task_verifier",
+      "source": "construction_t2",
+      "target": "deterministic_verifier",
+      "type": "frozen_scientific",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS"],
+      "audit_refs": ["ARCH-004"],
+      "label_ko": "39 accepted / 3 no_rule"
+    },
+    {
+      "id": "edge_t2_common_not_used",
+      "source": "construction_t2",
+      "target": "common42",
+      "type": "conditional",
+      "visible_when": "construction_arms",
+      "artifact_refs": ["ART-CONSTRUCTION-ANALYSIS", "ART-COMMON42"],
+      "audit_refs": ["ARCH-005"],
+      "label_ko": "COMMON-42 source 아님 · utility unauthorized",
+      "verified": false,
+      "semantic_state": "NOT_USED_IN_FROZEN_PORTFOLIO"
+    }
+  ],
+  "interaction_contract": {
+    "selection": {
+      "pointer": "Clicking a node selects it and opens the drawer.",
+      "keyboard": "Every node is rendered as an SVG <g role='button' tabindex='0'> or an SVG <a>; Enter and Space select it.",
+      "escape": "Escape closes the drawer and returns focus to the selected node.",
+      "single_selection": true,
+      "url_state": "Write selected node to #architecture?node=<id>; tolerate invalid IDs by returning to the map without guessing."
+    },
+    "highlighting": {
+      "selected_class": "is-selected",
+      "upstream_class": "is-upstream",
+      "downstream_class": "is-downstream",
+      "unrelated_class": "is-dimmed",
+      "algorithm": "Build directed adjacency from currently visible edges. On selection, run reverse BFS for upstream and forward BFS for downstream. Do not traverse hidden conditional or unknown edges unless their filter is enabled.",
+      "dim_opacity": 0.18,
+      "related_opacity": 1.0,
+      "edge_rule": "Highlight only edges on a reachable path; parallel actual and gap edges keep distinct styles."
+    },
+    "controls": [
+      {
+        "id": "architecture_search",
+        "label_ko": "node 검색",
+        "behavior": "Case-insensitive search across Korean labels, technical labels, component IDs, paths, symbols, artifact IDs, and gap IDs; results are keyboard selectable."
+      },
+      {
+        "id": "zoom_in",
+        "label_ko": "확대",
+        "behavior": "Increase scale by 0.1 around the SVG center."
+      },
+      {
+        "id": "zoom_out",
+        "label_ko": "축소",
+        "behavior": "Decrease scale by 0.1 around the SVG center."
+      },
+      {
+        "id": "fit_view",
+        "label_ko": "화면에 맞추기",
+        "behavior": "Restore a transform that fits the full 1600x980 viewBox in the current canvas."
+      },
+      {
+        "id": "reset_view",
+        "label_ko": "선택·필터 초기화",
+        "behavior": "Clear selection, collapse child groups, reset transform and filters."
+      },
+      {
+        "id": "stage_filter",
+        "label_ko": "연구 단계 필터",
+        "options": ["전체", "데이터·후보 탐색", "관계·규칙 구성", "실행·탐지", "평가·검증"],
+        "behavior": "Keep matching lanes fully opaque and dim other lanes; never remove context nodes required to understand selected connections."
+      },
+      {
+        "id": "risk_filter",
+        "label_ko": "위험 수준 필터",
+        "options": ["전체", "CRITICAL", "HIGH", "MEDIUM", "LOW"],
+        "behavior": "Match the highest Registry risk among bound components; display linked GAP IDs in the drawer."
+      },
+      {
+        "id": "frozen_only",
+        "label_ko": "실제 frozen 경로만 보기",
+        "behavior": "Show frozen_scientific edges and their incident nodes; preserve the red GAP-001 parallel edge as a compact warning badge on Verifier/COMMON-42."
+      },
+      {
+        "id": "show_unconfirmed",
+        "label_ko": "미확인 연결 보기",
+        "behavior": "Reveal conditional, authority_gap, and unknown edges. Default is authority gaps visible, conditional/unknown hidden."
+      }
+    ],
+    "expand_behavior": {
+      "candidate_discovery": "Toggle candidate_arms without moving any top-level node; temporarily hide the parent-to-union summary edge while detailed arm-to-union edges are visible.",
+      "rule_construction": "Toggle construction_arms without moving any top-level node; detailed arms remain inside lane 2 and preserve the T2-to-COMMON-42 NOT_USED distinction.",
+      "focus_management": "After expansion, move focus only when the user explicitly activates the expand control; focus the first child and announce child count."
+    },
+    "pan_zoom": {
+      "mouse_wheel": "No implicit wheel zoom; preserve normal page scrolling.",
+      "buttons_required": true,
+      "touch": "Allow horizontal canvas scrolling; optional pinch zoom only if it does not block browser zoom.",
+      "reduced_motion": "When prefers-reduced-motion is set, transforms and drawer motion are immediate."
+    }
+  },
+  "detail_drawer_contract": {
+    "desktop": "Right-side non-modal drawer, width min(440px, 38vw), sticky below the application header.",
+    "mobile": "Full-screen sheet with its own heading, close button, scroll container, and focus return.",
+    "default_mode": "easy",
+    "modes": [
+      {
+        "id": "easy",
+        "label_ko": "쉽게 보기",
+        "fields": ["why", "input", "process", "output", "implementation_status", "current_result", "not_validated", "next"]
+      },
+      {
+        "id": "technical",
+        "label_ko": "기술 상세",
+        "fields": ["component_id", "source_path", "symbol", "schema", "artifact_id", "producer", "consumer", "test", "source_ref", "audit_report", "full_authority_hash"]
+      }
+    ],
+    "binding_rules": {
+      "easy_source": "Use top_level_nodes.easy_view plus Korean display labels; current result values come from the generated single view model, not this design file.",
+      "technical_source": "Join node.component_ids to registry/components.csv and node.artifact_refs to registry/artifacts.csv; join gap_refs to GAP_000_ROOT_ISSUES.csv.",
+      "full_hash_visibility": "Collapsed by default under '전체 authority 보기'; never show full SHA in the architecture canvas.",
+      "private_values": "Do not render private numeric authority values or private local paths. Render public receipt ID and privacy classification only.",
+      "missing_value": "Render 미확인 (UNKNOWN); do not fill from a nearby component.",
+      "reports": "Audit report references are clickable local links after link validation."
+    },
+    "aria": {
+      "drawer": "aria-labelledby points to the selected node title",
+      "tabs": "Use role=tablist, role=tab, role=tabpanel with arrow-key movement",
+      "expanded": "Node expand controls maintain aria-expanded",
+      "live_region": "Announce selection, expansion, filter-result counts, and invalid deep links without repeating the full drawer."
+    }
+  },
+  "technical_bindings": {
+    "component_join_key": "component_id",
+    "artifact_join_key": "artifact_id",
+    "gap_join_key": "gap_id",
+    "node_join_rule": "Every top-level and child node must resolve at least one valid component_id except conceptual layout-only helpers, which are prohibited in this default map.",
+    "edge_validation_rule": "Every edge source and target must resolve to a top-level node or a child node in an expandable group; every artifact reference must resolve unless explicitly marked UNKNOWN.",
+    "status_rule": "Registry remains the state source. status_rail_recommendation is a semantic presentation recommendation and must not overwrite Registry values.",
+    "evidence_rule": "A thick edge requires both an audited flow reference and an artifact or frozen component transition. Missing evidence downgrades it to unknown, never upgrades it."
+  },
+  "accessibility_and_visual_notes": {
+    "svg_title_ko": "Research Control Center 연구 아키텍처 지도",
+    "svg_description_ko": "HAI P1 데이터에서 후보 탐색, 관계·규칙 구성, D0·D1·D2 실행, metrics와 held-out 준비까지 이어지는 네 개 lane의 지도입니다.",
+    "dom_order": "Lane order and node order follow the visual reading order. Edges are aria-hidden; an adjacent accessible edge list carries textual source-to-target semantics.",
+    "focus_style": "Use a 3px high-contrast outline plus a non-color selection halo.",
+    "edge_legend": "Render all five requested edge classes plus UNKNOWN with line samples and text; legend is keyboard reachable.",
+    "status_legend": "Explain code, execution, evidence review, result integrity, independent reproduction, and scientific validation as distinct states.",
+    "color_rule": "No meaning is encoded by color alone; every edge style has dash/width and text, every status dot has text and aria-label.",
+    "chart_separation": "Pilot result charts stay outside the SVG explorer. Node drawers may link to them but must not duplicate all numeric charts.",
+    "print": "Print all top-level nodes and the edge legend, suppress controls, expand the technical evidence list only as a separate appendix."
+  },
+  "implementation_recommendations": [
+    "Generate SVG groups and paths at build time from dashboard_config/architecture_nodes.csv and architecture_edges.csv; serialize node/edge metadata once into a JSON script element for vanilla JavaScript.",
+    "Use SVG <path> elements with marker-end definitions; do not draw edges as ASCII arrows or DOM borders.",
+    "Keep hit targets at least 44 CSS pixels; place a transparent focusable rect over small child nodes.",
+    "Use route_hint only for cross-lane paths; ordinary same-lane edges should be generated from source/target ports.",
+    "Render parallel task-validity and canonical-gap edges with offsets so the actual frozen path and GAP-001 remain simultaneously visible.",
+    "The map should not claim that VerifierV1 governed frozen D1, that COMMON-42 equals T2, or that result integrity equals scientific validation.",
+    "When 'frozen only' is active, keep a compact authority-gap badge on Deterministic Verifier and COMMON-42 so filtering cannot erase the most important unresolved risk.",
+    "Search, filters, zoom, and drawer state should be view-only and must never mutate the generated view-model or Registry."
+  ],
+  "qa_assertions": [
+    "Exactly 14 top-level node IDs are unique.",
+    "There are four lanes and every top-level node belongs to exactly one lane.",
+    "candidate_discovery expands exactly META, STAT, and GDN child nodes.",
+    "rule_construction expands exactly Evidence Pack, T0, T1, T1-B, and T2 child nodes.",
+    "Every edge source and target resolves to a known top-level or child node.",
+    "At least one frozen_scientific, verified_code, conditional, and authority_gap edge is rendered; legacy_reference and unknown remain available when data supplies them.",
+    "The canonical VerifierV1-to-COMMON-42 bridge is authority_gap, while the task-validity-to-V4 path remains frozen_scientific.",
+    "T2-to-COMMON-42 is labelled NOT_USED_IN_FROZEN_PORTFOLIO.",
+    "Selecting each top-level node exposes Input, Process, Output, current result, unvalidated boundary, and next action.",
+    "Keyboard Enter and Space select nodes; Escape returns focus from the drawer.",
+    "No full SHA, private path, or private numeric authority value appears on the default canvas.",
+    "The SVG is readable at 1440x900 and horizontally scrollable with a textual alternative at 390x844."
+  ],
+  "safety_counters": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "registry_scientific_changes": 0,
+    "scientific_source_changes": 0,
+    "scientific_result_changes": 0,
+    "frozen_artifact_changes": 0,
+    "private_values_exposed": 0,
+    "common_implementation_files_modified": 0
+  }
+}

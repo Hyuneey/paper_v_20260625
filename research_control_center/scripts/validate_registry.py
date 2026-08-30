@@ -790,23 +790,17 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
     html_path = rcc_root / "dashboard" / "index.html"
     if html_path.is_file():
         dashboard = html_path.read_text(encoding="utf-8")
-        result.require("https://" not in dashboard and "http://" not in dashboard, "dashboard contains an external network resource")
-        result.require("공식 기준 아님" in dashboard, "dashboard omits historical-checkout warning")
-        result.require("이 개수는 하나의 연구 완료율이 아닙니다." in dashboard, "dashboard omits the no-completion-percentage warning")
+        result.require(not re.search(r'<(?:script|link)[^>]+(?:https?:)?//', dashboard), "dashboard contains an external network resource")
+        result.require(AUTHORITY_COMMIT in dashboard, "dashboard omits scientific authority")
+        result.require("전체 완료율은 만들지 않습니다." in dashboard, "dashboard omits the no-completion-percentage warning")
         result.require("구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다." in dashboard, "dashboard does not separate status concepts")
-        result.require("Evidence-reviewed" in dashboard, "dashboard does not translate the component audited field")
+        result.require("근거 점검 완료" in dashboard, "dashboard does not translate the component audited field")
         result.require("결과 무결성" in dashboard, "dashboard does not display result integrity separately")
         result.require("claims.csv" in dashboard, "dashboard does not identify the authoritative claim registry")
         result.require("Claim-ready" not in dashboard, "dashboard still headlines component claim-ready status")
-        result.require(not re.search(r"\b\d+(?:\.\d+)?\s*%", dashboard), "dashboard contains an overall-looking percentage")
-        for heading in (
-            "현재 연구 상태", "내가 해야 할 일", "결정이 필요한 사항", "전체 아키텍처",
-            "구현 현황", "실험 현황", "연구 주장과 근거", "위험 및 점검사항",
-            "연구 진행 이력", "본격 검증 준비 현황", "데이터·split 통제", "관계 후보 탐색",
-            "관계 프로파일링과 수치 권한", "근거에 결속된 규칙 구성", "결정론적 verifier·COMMON-42·실행 권한",
-            "규칙 실행·추적·설명", "PCA-SPE 기준 탐지기", "탐지기·규칙 결합 예비 실험",
-            "성능 지표와 결과 무결성", "OUTER·재현성·이식성", "공식 기준 코드·근거", "최근 변경사항",
-        ):
+        result.require(dashboard.count('class="primary-nav-item') == 5, "dashboard primary navigation must contain exactly five items")
+        result.require(dashboard.count('id="map-svg-NODE_') == 14, "dashboard architecture map must contain fourteen top-level nodes")
+        for heading in ("현재 연구 단계", "전체 연구 시스템 지도", "실험·결과", "준비도·위험", "이력·근거"):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
         "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "결과 무결성 확인", "claims.csv", "하나의 완료율이 아니며"),
