@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
-Generated from RCC registry version `0.1.0` at `2026-08-29T14:36:04Z`.
+Generated from RCC registry version `0.1.0` at `2026-08-30T22:42:05Z`.
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -148,7 +148,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
 - **HIGH / OPEN** — D1 builds and self-hashes a label-blind prediction object before labels but does not durably persist and reopen the public prediction file until after metrics.
-- **HIGH / OPEN** — Future validation lacks one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
+- **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
 - **HIGH / OPEN** — Construction orchestration can collapse provider parse verifier and budget failures into no_rule.
 
 ## Top user TODO
@@ -156,14 +156,12 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - Explain why old OUTER has no result and cannot simply retry.
 - Decide same-physical-test2 eligibility only within a new preregistered study.
 - Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
-- Review and approve the canonical-to-V4 bridge target or fallback.
-- Confirm PILOT V1 preservation and VALIDATION V2 separation.
-- Approve the remediation order.
-- Approve GAP-FIX-001.
+- Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.
+- Track GAP-FIX-002 durable D1 custody as the next implementation gate.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
 
 ## Exact next task
 
-Management: **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**
+Management: **GAP-FIX-002 — Durable D1 Prediction-before-label Gate**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

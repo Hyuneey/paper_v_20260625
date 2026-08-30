@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paperworks://validation-v2/formal-v4-runtime-authorization-v1",
+  "title": "VALIDATION V2 Formal V4 Runtime Authorization V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifact_type", "authority_family", "authority_hash", "authorization_hash", "authorization_id", "descriptor_set_hash", "evaluator_contract_hash", "execution_context_hash", "feature_contract_hash", "file_contract_hash", "heldout_authorized", "label_access_before_prediction_freeze", "numeric_authority_hash", "portfolio_id", "runtime_config_hash", "sampling_contract_hash", "schema_version", "split_role"],
+  "properties": {
+    "artifact_type": {"const": "validation_v2_formal_v4_runtime_authorization_v1"},
+    "authority_family": {"const": "FORMAL_V4"},
+    "authority_hash": {"$ref": "#/$defs/sha256"},
+    "authorization_hash": {"$ref": "#/$defs/sha256"},
+    "authorization_id": {"type": "string", "pattern": "^V2-AUTH-[0-9a-f]{16}$"},
+    "descriptor_set_hash": {"$ref": "#/$defs/sha256"},
+    "evaluator_contract_hash": {"$ref": "#/$defs/sha256"},
+    "execution_context_hash": {"$ref": "#/$defs/sha256"},
+    "feature_contract_hash": {"$ref": "#/$defs/sha256"},
+    "file_contract_hash": {"$ref": "#/$defs/sha256"},
+    "heldout_authorized": {"const": false},
+    "label_access_before_prediction_freeze": {"const": false},
+    "numeric_authority_hash": {"$ref": "#/$defs/sha256"},
+    "portfolio_id": {"$ref": "#/$defs/text"},
+    "runtime_config_hash": {"$ref": "#/$defs/sha256"},
+    "sampling_contract_hash": {"$ref": "#/$defs/sha256"},
+    "schema_version": {"const": "1.0.0"},
+    "split_role": {"const": "DEVELOPMENT_TEST1"}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "text": {"type": "string", "minLength": 1}}
+}

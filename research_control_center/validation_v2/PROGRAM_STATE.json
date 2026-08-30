@@ -11,6 +11,12 @@
   "held_out_authorized": false,
   "current_stage": "STAGE_1_FOUNDATION",
   "program_status": "IN_PROGRESS",
+  "foundation_status": {
+    "GAP-FIX-001": "PASS_FORMAL_V4",
+    "GAP-FIX-002": "PENDING",
+    "V2-PROTOCOL-001": "PENDING",
+    "GAP-FIX-METRIC-001": "PENDING"
+  },
   "remote_status": "INITIAL_PUSH_BLOCKED_BY_EXECUTION_ENVIRONMENT_REVIEW",
   "decision_gates": {
     "DG-01": "RESOLVED_FORMAL_V4",

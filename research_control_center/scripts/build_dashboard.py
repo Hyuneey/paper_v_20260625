@@ -321,7 +321,7 @@ RISK_CARD_COPY = {
     "RISK-10": ("과거 checkout과 authority 혼동", "RCC 화면은 고정 scientific authority를 계속 명시해야 한다."),
     "RISK-11": ("D1 durable pre-label gate 부재", "label 전 object는 완성됐지만 durable file gate가 없다."),
     "RISK-12": ("분산된 split enforcement", "여러 task reader의 계약이 하나의 universal adapter로 증명되지 않았다."),
-    "RISK-13": ("최종 Rule/runtime authority 미결정", "RuleV1과 V4 사이 최종 과학 권한을 선택해야 한다."),
+    "RISK-13": ("VALIDATION V2 Rule/runtime authority 결정 완료", "DEC-020과 GAP-FIX-001이 Formal V4를 선택·고정했으며 canonical RuleV1·VerifierV1 authority를 주장하지 않는다."),
     "RISK-14": ("no_rule failure taxonomy 혼합", "provider·parse·verifier·budget failure가 no_rule로 합쳐질 수 있다."),
     "RISK-15": ("GDN self-neighbor Top-5 영향", "self가 내부 neighbor slot을 소비할 수 있다."),
     "RISK-16": ("metric portability 계약 부족", "1초·file-local 가정과 cross-arm aggregator 추적성이 불완전하다."),
@@ -349,8 +349,8 @@ TODO_CARD_COPY = {
     "USER-ARCH011-001": ("기존 OUTER에 과학 결과가 없는 이유 이해", "custody blocker는 test2 성능 실패가 아니다."),
     "USER-ARCH011-002": ("같은 물리 test2의 새 연구 사용 여부 결정", "내용은 봉인됐지만 재사용 권한이 자동으로 생기지는 않는다."),
     "USER-ARCH011-003": ("5단계 재현성 수준 이해", "근거 추적(traceability)과 새 환경 재현을 구분해야 한다."),
-    "USER-ARCH011-004": ("canonical-to-V4 bridge 권고 검토", "lossless mapping이 증명될 때 canonical validity와 V4 runtime 보존의 균형안이다."),
-    "USER-ARCH011-005": ("최종 scientific authority 승인", "DEC-020은 확장 D1/D2와 held-out validation의 선행 결정이다."),
+    "USER-ARCH011-004": ("authority 선택지 검토 완료", "lossless bridge를 강제하지 않고 Formal V4를 별도 V2 권한으로 선택했다."),
+    "USER-ARCH011-005": ("최종 scientific authority 결정 완료", "DEC-020은 Formal V4를 VALIDATION V2 authority로 고정한다."),
     "USER-ARCH011-006": ("PILOT V1 보존·VALIDATION V2 분리 확인", "승인된 정책은 모든 변경을 미래 V2에만 적용한다."),
     "USER-ARCH011-007": ("remediation 순서 승인", "authority와 custody를 portability rehearsal과 held-out보다 먼저 닫는다."),
     "USER-ARCH011-008": ("첫 remediation task 승인", "ARCH-011은 어떤 remediation도 실행하지 않았다."),
@@ -365,8 +365,8 @@ DECISION_CARD_COPY = {
     "DEC-017": ("현재 INNER 결과를 예비 실험으로 분류", "현재 보고 경계이며 과거 기록을 고치지 않고 independent-event 표현만 교정한다."),
     "DEC-018": ("기존 OUTER는 결과 없음으로 두고 새 preregistration 요구", "향후 평가 경계로 유효하다."),
     "DEC-020": (
-        "최종 scientific Rule/runtime authority 선택",
-        "GAP-000과 ARCH-011 근거를 검토해 final validation authority를 선택해야 한다. 이 결정은 future contract 범위와 방법론 문구를 바꾸므로 구조적 선호만으로 정할 수 없다.",
+        "VALIDATION V2 Formal V4 authority 채택",
+        "lossless canonical bridge를 주장하지 않고 relation·numeric value·evaluator·config·data contract·horizon을 재검증하는 별도 Formal V4 권한을 사용한다.",
     ),
     "DEC-021": ("Graph-Guided·Agentic 기여를 조건부로 유지", "ARCH-011에서 승인된 정책이며 향후 근거에 따라 기여 여부를 결정한다."),
 }
@@ -1012,7 +1012,7 @@ def _render_dashboard_v1(data: Mapping[str, Any], digest: str) -> str:
       </dl></div><div><h3>향후 VALIDATION V2</h3><dl class="architecture-contract">
         <div><dt>PILOT V1</dt><dd>{_escape(_ko_text(outer['pilot_v1']))}</dd></div>
         <div><dt>VALIDATION V2</dt><dd>{_escape(_ko_text(outer['validation_v2']))}</dd></div>
-        <div><dt>최종 authority</dt><dd>검증된 canonical RuleV1/VerifierV1→V4 bridge를 DEC-020 승인 전 목표로 두며, lossless equivalence를 증명하지 못하면 formal V4를 fallback으로 검토</dd></div>
+        <div><dt>VALIDATION V2 authority</dt><dd>DEC-020과 GAP-FIX-001에 따라 별도 Formal V4를 채택했다. canonical RuleV1·VerifierV1 authority를 상속하지 않으며 실제 scientific frame materialization과 custody는 후속 gate다.</dd></div>
         <div><dt>환경</dt><dd>project 전체 lock이 없고 NumPy·test tooling·schema package closure가 불완전하다. exact GDN은 Windows·wheel·root에 결속되고 scientific replay에는 private custody asset이 필요하다.</dd></div>
         <div><dt>재현 rehearsal</dt><dd>{_escape(_ko_text(outer['fresh_machine_timing']))}</dd></div>
       </dl></div></div>
@@ -2156,7 +2156,7 @@ pre-label gate, test1 development scope, 14 contiguous event units, held-out 부
 
 ## 반드시 고쳐야 하는 것
 
-1. Primary disposition `P0_FIX_BEFORE_EXPANDED_VALIDATION`인 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
+1. `P0_FIX_BEFORE_EXPANDED_VALIDATION`이었던 최종 scientific execution authority는 Formal V4로 결정·version 고정됐고,
    version과 test를 고정한다.
 2. 새 D1 evaluation은 prediction을 label 전에 atomic persist, close, reopen/replay하고 label access를
    authorize해야 한다.
@@ -2199,7 +2199,7 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 ## 내가 결정해야 하는 것
 
-1. Final authority: canonical RuleV1, 공식 V4, verified bridge 중 어느 경로인가?
+1. Final authority는 Formal V4로 결정됐다. 다음 결정 전 작업은 durable custody와 protocol freeze다.
 2. Graph-Guided와 Agentic의 conditional 유지 정책은 이미 승인되었다. 최종 포함 여부는 EXP-01/EXP-03
    결과가 결정한다.
 
@@ -2254,7 +2254,7 @@ Traceability는 `{outer['reproduction_levels']['traceability']}`이고 same-mach
 
 ## 10. 어떤 authority option이 가장 현실적인가?
 
-Verified canonical RuleV1/VerifierV1-to-V4 bridge가 가장 균형적이다. 단 lossless equivalence가 증명되어야 하고 DEC-020 승인이 남았다. 실패하면 formal V4가 좁은 fallback이다.
+DEC-020은 lossless equivalence를 강제하지 않고 Formal V4를 별도 VALIDATION V2 authority로 선택했다. canonical RuleV1·VerifierV1 authority는 주장하지 않는다.
 
 ## 11. fresh-machine rehearsal은 언제 해야 하는가?
 

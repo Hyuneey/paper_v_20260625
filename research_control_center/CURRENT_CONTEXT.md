@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
-Last updated: 2026-08-29
+Last updated: 2026-08-31
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Documentation overlay: `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @ `ebc5a57bfdb7d8266f96f2990338effb9d0a2743`
 RCC version: `0.1.0`
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Approve and version the final scientific authority; the audited preferred target is a verified canonical-to-V4 bridge with formal V4 fallback.
 - Implement the durable D1 pre-label gate prospectively in VALIDATION V2 without rewriting PILOT V1.
+- Freeze development, validation, and final-test roles plus event/metric interpretation before scientific execution.
 - Close dependency/schema/entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
 
-Exact next management task: **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**
+Exact next management task: **GAP-FIX-002 — Durable D1 Prediction-before-label Gate**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

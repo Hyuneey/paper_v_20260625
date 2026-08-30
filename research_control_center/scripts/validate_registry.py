@@ -338,10 +338,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 8, "top_user_todo must contain exactly eight ARCH-011 review entries")
+    result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain the six current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "ARCH-011", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "GAP-FIX-001 — Formal V4 Authority Contract & Conformance Freeze", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "GAP-FIX-002 — Durable D1 Prediction-before-label Gate", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -354,10 +354,11 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "GAP-FIX-002 — Durable D1 Prediction-before-label Gate", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
-    result.require(readiness.get("status") == "TRIAGED_NOT_REMEDIATED", "GAP-000 readiness status mismatch")
+    result.require(readiness.get("status") == "REMEDIATION_IN_PROGRESS", "VALIDATION V2 remediation status mismatch")
+    result.require(readiness.get("p0_global_fixes") == ["GAP-002 — add a durable D1 prediction-before-label byte/state gate"], "remaining global P0 fix mismatch")
     result.require(readiness.get("raw_findings") == 120 and readiness.get("root_issues") == 19, "GAP-000 inventory counts mismatch")
     result.require(readiness.get("source_severity") == {"critical": 0, "high": 54, "medium": 55, "low": 11}, "GAP-000 source severity mismatch")
     result.require(readiness.get("disposition_counts") == {
@@ -499,7 +500,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     for registry in ("decisions", "timeline"):
         for row in data[registry]:
-            if row["source"] in {"USER_CONTEXT", "USER_CONFIRMED_CONTEXT", "GAP_000_TRIAGE"}:
+            if row["source"] in {"USER_CONTEXT", "USER_CONFIRMED_CONTEXT", "GAP_000_TRIAGE", "USER_APPROVED_VALIDATION_V2_POLICY"}:
                 result.require(row["source_commit"] == "NONE", f"{registry} context-only row must not claim a Git commit")
             else:
                 result.require(
@@ -665,7 +666,9 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(any(row["status"] == "SUPERSEDED" for row in data["decisions"]), "decision history lacks superseded decisions")
     result.require(any(row["status"] == "CONDITIONAL" for row in data["decisions"]), "decision history lacks conditional decisions")
     open_decisions = {row["decision_id"] for row in data["decisions"] if row["status"] == "OPEN"}
-    result.require(open_decisions == {"DEC-020"}, "decision registry must expose only the unresolved final-authority decision")
+    result.require(open_decisions == set(), "decision registry contains an unexpected unresolved decision")
+    decision_020 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-020"), None)
+    result.require(decision_020 is not None and decision_020["status"] == "ACTIVE" and decision_020["user_approved"] == "true", "Formal V4 decision is not recorded as active and user-approved")
     decision_021 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-021"), None)
     result.require(decision_021 is not None and decision_021["status"] == "ACTIVE" and decision_021["user_approved"] == "true", "ARCH-011 user-approved conditional contribution policy is not recorded")
 
@@ -815,10 +818,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "GAP-FIX-001"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "GAP-FIX-001"),
-        "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "Primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "GAP-FIX-001"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "GAP-FIX-002"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "GAP-FIX-002"),
+        "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "GAP-FIX-002"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),

@@ -478,12 +478,12 @@ def _render_results_table(vm: Mapping[str, Any]) -> str:
 
 
 def _render_overview(vm: Mapping[str, Any]) -> str:
-    p0_count = vm["readiness"]["priority_counts"]["P0"]
+    p0_count = len(vm["readiness"]["p0_global_fixes"]) + len(vm["readiness"]["p0_design_gates"])
     open_count = len(vm["unresolved_decisions"])
     actions = [
-        ("GAP-001", "Final authority 결정", "Canonical RuleV1/VerifierV1→V4 bridge 또는 formal V4를 확정"),
         ("GAP-002", "D1 durable pre-label gate", "VALIDATION V2에서 persist→close→reopen→label gate 구현"),
         ("GAP-003/004", "Validation/final protocol freeze", "event unit·metric·policy selection 역할을 결과 전에 고정"),
+        ("GAP-012", "공통 metric portability", "file-local 1초 계약과 cross-arm 결과 lineage를 version으로 고정"),
     ]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
@@ -494,7 +494,7 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
         f'<em class="gate gate-{_esc(exp["gate"]["ready_now"].lower())}">{_esc(vm["labels"].get(exp["gate"]["ready_now"], exp["gate"]["ready_now"]))}</em></li>'
         for exp in vm["experiments"][:5]
     )
-    top_risks = [risk for risk in vm["risks"] if risk["severity"] in {"CRITICAL", "HIGH"}][:5]
+    top_risks = [risk for risk in vm["risks"] if risk["severity"] in {"CRITICAL", "HIGH"} and risk["status"] in {"OPEN", "MITIGATING"}][:5]
     risk_markup = "".join(
         f'<li><span class="risk-level">{_esc(risk["severity"])}</span><strong>{_esc(risk["risk_id"])}</strong><small>{_esc(risk["description"])}</small></li>'
         for risk in top_risks
@@ -507,8 +507,8 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     <section class="view-panel is-active" id="view-overview" data-view-panel="overview" aria-labelledby="nav-overview">
       <p class="status-separation">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</p>
       <div class="overview-header panel">
-        <div><p class="kicker">현재 연구 단계</p><h2>감사 완료 · Remediation 준비</h2><p>아키텍처 구현과 Pilot V1 실행은 완료되었습니다. 과학적 검증은 일부만 이루어졌으며, 확대 평가와 가설 검증은 아직 남아 있습니다.</p>
-        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 준비 전</span></div></div>
+        <div><p class="kicker">현재 연구 단계</p><h2>Remediation 진행 · Formal V4 고정</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority는 고정됐고, durable custody와 protocol freeze가 다음 gate입니다.</p>
+        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 기반 구현 중</span></div></div>
         <div class="next-task-callout"><span>정확한 다음 작업</span><strong>{_esc(vm["exact_next_task"])}</strong></div>
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
       </div>

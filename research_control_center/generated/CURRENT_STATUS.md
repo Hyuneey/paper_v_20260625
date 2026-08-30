@@ -1,9 +1,9 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
-Registry snapshot: `2026-08-29T14:36:04Z`
+Registry snapshot: `2026-08-30T22:42:05Z`
 
 ## 현재 단계
 
@@ -150,4 +150,4 @@ Registry snapshot: `2026-08-29T14:36:04Z`
 
 ## 정확한 다음 작업
 
-**GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**
+**GAP-FIX-002 — Durable D1 Prediction-before-label Gate**

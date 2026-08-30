@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -15,7 +15,7 @@ pre-label gate, test1 development scope, 14 contiguous event units, held-out 부
 
 ## 반드시 고쳐야 하는 것
 
-1. Primary disposition `P0_FIX_BEFORE_EXPANDED_VALIDATION`인 최종 scientific execution authority를 canonical RuleV1, 공식 V4, verified bridge 중 하나로 정하고
+1. `P0_FIX_BEFORE_EXPANDED_VALIDATION`이었던 최종 scientific execution authority는 Formal V4로 결정·version 고정됐고,
    version과 test를 고정한다.
 2. 새 D1 evaluation은 prediction을 label 전에 atomic persist, close, reopen/replay하고 label access를
    authorize해야 한다.
@@ -58,11 +58,11 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 ## 내가 결정해야 하는 것
 
-1. Final authority: canonical RuleV1, 공식 V4, verified bridge 중 어느 경로인가?
+1. Final authority는 Formal V4로 결정됐다. 다음 결정 전 작업은 durable custody와 protocol freeze다.
 2. Graph-Guided와 Agentic의 conditional 유지 정책은 이미 승인되었다. 최종 포함 여부는 EXP-01/EXP-03
    결과가 결정한다.
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**이다. ARCH-011은 이 remediation이나 test2 access를
+다음 task는 **GAP-FIX-002 — Durable D1 Prediction-before-label Gate**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.

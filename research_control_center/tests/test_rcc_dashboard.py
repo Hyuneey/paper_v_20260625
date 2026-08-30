@@ -203,7 +203,7 @@ class DashboardGenerationTests(unittest.TestCase):
         self.assertIn("| 구성요소 |", current_status)
         self.assertIn("| 실험 |", current_status)
         self.assertIn("**우선순위:** 높음 (HIGH)", my_todo)
-        self.assertIn("**registry 원문 이유:**", decision_inbox)
+        self.assertIn("현재 미결정 사용자 항목은 없다", decision_inbox)
         self.assertNotIn("**필요한 이유:** The choice", decision_inbox)
 
     def test_generated_history_preserves_temporal_corrections(self) -> None:
