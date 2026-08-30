@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-30T22:42:05Z`.
@@ -147,7 +147,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
 - **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
-- **HIGH / OPEN** — D1 builds and self-hashes a label-blind prediction object before labels but does not durably persist and reopen the public prediction file until after metrics.
+- **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
 - **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
 - **HIGH / OPEN** — Construction orchestration can collapse provider parse verifier and budget failures into no_rule.
 
@@ -157,11 +157,11 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - Decide same-physical-test2 eligibility only within a new preregistered study.
 - Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
 - Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.
-- Track GAP-FIX-002 durable D1 custody as the next implementation gate.
+- Track V2-PROTOCOL-001 as the next implementation gate after durable custody PASS.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
 
 ## Exact next task
 
-Management: **GAP-FIX-002 — Durable D1 Prediction-before-label Gate**
+Management: **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

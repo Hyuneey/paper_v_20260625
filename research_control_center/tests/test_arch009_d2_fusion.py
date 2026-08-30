@@ -52,12 +52,12 @@ class Arch009D2FusionTests(unittest.TestCase):
         summary = (RCC / "generated" / "ARCH_009_USER_SUMMARY.md").read_text(encoding="utf-8")
         for marker in ("same-second", "native horizon", "0/3"):
             self.assertIn(marker, summary)
-        self.assertTrue("GAP-FIX-001" in summary or "GAP-FIX-002" in summary)
+        self.assertTrue("GAP-FIX-001" in summary or "GAP-FIX-002" in summary or "V2-PROTOCOL-001" in summary)
 
     def test_progression(self):
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertTrue(state["last_completed_task"] == "ARCH-011" or state["last_completed_task"].startswith("GAP-FIX-001"))
-        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-001", "GAP-FIX-002")))
+        self.assertTrue(state["last_completed_task"] == "ARCH-011" or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002")))
+        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001")))
 
 
 if __name__ == "__main__":

@@ -13,7 +13,7 @@
   "program_status": "IN_PROGRESS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
-    "GAP-FIX-002": "PENDING",
+    "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
     "V2-PROTOCOL-001": "PENDING",
     "GAP-FIX-METRIC-001": "PENDING"
   },
@@ -32,6 +32,7 @@
     "held_out_accesses": 0,
     "provider_calls": 0,
     "private_exposures": 0,
+    "gap_fix_002_focused_tests_passed": 33,
     "pilot_v1_modifications": 0,
     "stage0_rcc_tests_passed": 122,
     "stage0_registry_validation": "PASS",

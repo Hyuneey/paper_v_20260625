@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -35,8 +35,8 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 ## 데이터·split 점검
 
 - **데이터셋 / 공정:** HAI 23.05 / P1 Boiler
-- **Label 접근:** 정상 근거 구성은 label-blind다. D0와 D2는 label 접근 전에 prediction을 durable하게 저장하지만, D1은 label-blind hash object를 먼저 만들고도 file 기반 durable gate는 없다.
-- **정보 누출:** 확인된 정보 누출은 없다. 다만 D1 durable ordering gap과 test1-informed D2 V2 설계라는 두 가지 중요한 조건이 남아 있다.
+- **Label 접근:** 정상 근거 구성은 label-blind다. PILOT V1 D1의 약한 in-memory 경계는 역사적 조건으로 유지하고, VALIDATION V2는 no-overwrite prediction freeze·replay·one-shot label lease·label 이후 byte 확인을 요구한다.
+- **정보 누출:** 확인된 정보 누출은 없다. PILOT V1의 D1 custody 조건은 유지되며 GAP-FIX-002가 향후 VALIDATION V2 custody gap을 닫았다. D2 V2는 여전히 test1-informed development다.
 - **Test1:** INNER 개발용 14개 연속 attack-event unit 예비 실험이다. 통계적 독립성은 확립되지 않았고 최종 검증이 아니다.
 - **Test2:** custody 단계의 file 접근 시도 1회가 byte read 전에 거부됐으며 held-out 결과는 없다.
 
@@ -150,4 +150,4 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 
 ## 정확한 다음 작업
 
-**GAP-FIX-002 — Durable D1 Prediction-before-label Gate**
+**V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**
