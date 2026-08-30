@@ -58,8 +58,8 @@ class Arch003RelationNumericTests(unittest.TestCase):
     def test_generated_views_show_relation_numeric_boundary(self) -> None:
         dashboard = (RCC_ROOT / "dashboard" / "index.html").read_text(encoding="utf-8")
         summary = (RCC_ROOT / "generated" / "ARCH_003_USER_SUMMARY.md").read_text(encoding="utf-8")
-        self.assertIn("RELATION &amp; NUMERIC AUTHORITY", dashboard)
-        self.assertIn("Runtime-bound", dashboard)
+        self.assertIn("관계 프로파일링과 수치 권한", dashboard)
+        self.assertIn("runtime 결속", dashboard)
         self.assertIn("value equality", summary)
         self.assertIn("causal relation", summary)
 

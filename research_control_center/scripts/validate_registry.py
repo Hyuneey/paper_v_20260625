@@ -791,22 +791,25 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
     if html_path.is_file():
         dashboard = html_path.read_text(encoding="utf-8")
         result.require("https://" not in dashboard and "http://" not in dashboard, "dashboard contains an external network resource")
-        result.require("NOT AUTHORITATIVE" in dashboard, "dashboard omits historical-checkout warning")
-        result.require("These counts are not a single completion percentage." in dashboard, "dashboard omits the no-completion-percentage warning")
-        result.require("Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states." in dashboard, "dashboard does not separate status concepts")
+        result.require("공식 기준 아님" in dashboard, "dashboard omits historical-checkout warning")
+        result.require("이 개수는 하나의 연구 완료율이 아닙니다." in dashboard, "dashboard omits the no-completion-percentage warning")
+        result.require("구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다." in dashboard, "dashboard does not separate status concepts")
         result.require("Evidence-reviewed" in dashboard, "dashboard does not translate the component audited field")
-        result.require("Result integrity" in dashboard, "dashboard does not display result integrity separately")
+        result.require("결과 무결성" in dashboard, "dashboard does not display result integrity separately")
         result.require("claims.csv" in dashboard, "dashboard does not identify the authoritative claim registry")
         result.require("Claim-ready" not in dashboard, "dashboard still headlines component claim-ready status")
         result.require(not re.search(r"\b\d+(?:\.\d+)?\s*%", dashboard), "dashboard contains an overall-looking percentage")
         for heading in (
-            "CURRENT STATE", "MY TASKS", "DECISION INBOX", "ARCHITECTURE OVERVIEW",
-            "COMPONENT STATUS", "EXPERIMENT STATUS", "CLAIM &amp; EVIDENCE", "RISKS",
-            "RESEARCH HISTORY", "PRE-VALIDATION READINESS", "DATA GOVERNANCE", "CANDIDATE DISCOVERY", "RELATION &amp; NUMERIC AUTHORITY", "EVIDENCE-BOUND RULE CONSTRUCTION", "VERIFIER / COMMON-42 / AUTHORIZATION", "RULE RUNTIME / TRACE / EXPLANATION", "PCA-SPE REFERENCE DETECTOR", "DETECTOR + RULE FUSION PILOT", "METRICS / RESULTS / INTEGRITY", "OUTER / REPRODUCIBILITY / PORTABILITY", "SOURCE AUTHORITY", "RECENT CHANGE / NEXT TASK",
+            "현재 연구 상태", "내가 해야 할 일", "결정이 필요한 사항", "전체 아키텍처",
+            "구현 현황", "실험 현황", "연구 주장과 근거", "위험 및 점검사항",
+            "연구 진행 이력", "본격 검증 준비 현황", "데이터·split 통제", "관계 후보 탐색",
+            "관계 프로파일링과 수치 권한", "근거에 결속된 규칙 구성", "결정론적 verifier·COMMON-42·실행 권한",
+            "규칙 실행·추적·설명", "PCA-SPE 기준 탐지기", "탐지기·규칙 결합 예비 실험",
+            "성능 지표와 결과 무결성", "OUTER·재현성·이식성", "공식 기준 코드·근거", "최근 변경사항",
         ):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
     required_semantic_outputs = {
-        "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "not a single completion percentage"),
+        "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "결과 무결성 확인", "claims.csv", "하나의 완료율이 아니며"),
         "generated/GPT_BRIEF.md": ("Evidence-reviewed", "Result-integrity audit", "claims.csv", "not a single completion percentage"),
         "generated/RCC_002_USER_SUMMARY.md": ("Evidence-reviewed", "Result-integrity audited", "claims.csv", "하나의 연구 완료율"),
         "generated/RCC_003_HISTORY_SUMMARY.md": ("우리 연구가 어떻게 여기까지 왔나", "pilot evidence", "홀드아웃 일반화"),

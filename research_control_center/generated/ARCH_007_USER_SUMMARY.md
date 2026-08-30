@@ -42,7 +42,7 @@ Interpolation은 없고, 정확한 판정은 `score > threshold`다. 같은 값�
 | Alarm episode | 연속 alarm point를 묶은 46개 구간 |
 | Attack-event response | 통계적 독립성이 미확인된 14개 연속 사건 단위 중 11개가 alarm episode와 겹침 |
 | Normal false episode | 46개 중 attack timestamp와 겹치지 않은 7개 |
-| Normal FAR/hour | 7개 normal false episode를 normal exposure hour로 나눈 `0.4939336325682589` |
+| 시간당 정상 오경보율 (Normal FAR/hour) | 7개 normal false episode를 normal exposure hour로 나눈 `0.4939336325682589` |
 
 FAR/hour는 point false-positive rate가 아니다. 11/14도 point recall이 아니라 attack-event recall이다.
 

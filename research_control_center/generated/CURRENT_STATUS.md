@@ -1,153 +1,153 @@
 <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
-# RCC Current Status
+# RCC 현재 연구 상태
 
-Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
+과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
 Registry snapshot: `2026-08-29T14:36:04Z`
 
-## Current phase
+## 현재 단계
 
-**EVALUATION_SCOPE_EXPANSION**
+**평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.
+아키텍처 구현과 예비 운영은 완료됐다. 과학적 검증은 일부에 그치며 확대 평가와 가설 검증은 아직 완료되지 않았다.
 
-## How to read status
+## 상태를 읽는 방법
 
-- **Implemented / executed:** engineering state only.
-- **Evidence-reviewed:** the backward-compatible component `audited` field; source or
-  evidence status was reviewed against the pinned authority. This is not performance validation.
-- **Result-integrity audited:** only explicit result-specific integrity artifacts; custody,
-  immutability, ordering, and arithmetic checks. This is not scientific validation.
-- **Independently reproduced:** an independent reproduction under required environment and custody.
-- **Scientifically validated:** adequate independent evidence for a stated hypothesis; never
-  inferred from component status and governed by `claims.csv`.
+- **구현 완료 / 실제 실행 완료:** 엔지니어링 상태일 뿐이다.
+- **근거 점검 완료 (Evidence-reviewed):** 호환용 component field `audited`가 pinned authority와
+  source 또는 evidence 상태를 대조했다는 뜻이다. 성능 검증이 아니다.
+- **결과 무결성 확인 (Result Integrity):** 명시된 결과 artifact의 custody·불변성·순서·산술을
+  확인한 상태다. 과학적 검증이 아니다.
+- **독립 재현 완료 (Reproduced):** 필요한 환경과 custody 아래에서 별도로 재현한 상태다.
+- **과학적 검증:** 가설에 대한 충분한 독립 근거가 있는 상태이며 component 상태에서 추론하지
+  않고 `claims.csv`가 관리한다.
 
-These counts are not a single completion percentage. An evidence-reviewed governance or
-documentation component need not be a scientific executable, so Evidence-reviewed may exceed Executed.
+구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태다.
+따라서 아래 개수는 하나의 완료율이 아니며, 근거 점검 완료 수가 실제 실행 완료 수보다 많을 수 있다.
 
-## Component summary
+## 구성요소 요약
 
-- **Implemented:** 30
-- **Executed:** 29
-- **Evidence-reviewed:** 30
-- **Independently reproduced:** 0
+- **구현 완료:** 30
+- **실제 실행 완료:** 29
+- **근거 점검 완료 (Evidence-reviewed):** 30
+- **독립 재현 완료:** 0
 
-## Data / split audit
+## 데이터·split 점검
 
-- **Dataset / process:** HAI 23.05 / P1 Boiler
-- **Label access:** Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.
-- **Leakage:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
-- **Test1:** INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation
-- **Test2:** One custody-level file access attempt was rejected before byte read; held-out result unavailable.
+- **데이터셋 / 공정:** HAI 23.05 / P1 Boiler
+- **Label 접근:** 정상 근거 구성은 label-blind다. D0와 D2는 label 접근 전에 prediction을 durable하게 저장하지만, D1은 label-blind hash object를 먼저 만들고도 file 기반 durable gate는 없다.
+- **정보 누출:** 확인된 정보 누출은 없다. 다만 D1 durable ordering gap과 test1-informed D2 V2 설계라는 두 가지 중요한 조건이 남아 있다.
+- **Test1:** INNER 개발용 14개 연속 attack-event unit 예비 실험이다. 통계적 독립성은 확립되지 않았고 최종 검증이 아니다.
+- **Test2:** custody 단계의 file 접근 시도 1회가 byte read 전에 거부됐으며 held-out 결과는 없다.
 
-## Frozen D1 runtime / trace audit
+## 고정 D1 runtime·trace 점검
 
-- **Authority:** Frozen D1 uses the task-specific V4 authority plane: 42 CanonicalRuleDescriptorV4 descriptors, the frozen V4 evaluator bundle, the normal-only Utility V4 numeric resolver, and the committed one-attempt INNER grant.
-- **Prediction:** 6,031 opportunity records, 788 anomalous rule records, 630 unique alarm decision seconds, and 626 downstream metric episodes.
-- **Freeze:** SAFE_BUT_WEAKER_THAN_D0_D2; durable pre-label persistence = no.
-- **Trace:** NON_EQUIVALENT; only the terminal outcome semantics partially overlap canonical RuntimeTraceV1.
-- **Explanation:** A deterministic canonical RuntimeTraceV1 renderer exists, but frozen V4 D1 neither creates RuntimeTraceV1 nor calls that renderer; no frozen D1 explanation artifact exists.
+- **실행 authority:** task-specific V4 authority plane — CanonicalRuleDescriptorV4 42개, 고정 V4 evaluator bundle, normal-only Utility V4 numeric resolver, committed one-attempt INNER grant.
+- **Prediction:** opportunity record 6,031개, anomalous rule record 788개, 고유 alarm decision second 630개, downstream metric episode 626개.
+- **고정 경계:** D0/D2보다 약한 in-memory pre-label freeze; label 전 durable persistence = 아니오.
+- **Trace:** canonical RuntimeTraceV1과 동등하지 않으며 terminal outcome semantics만 부분적으로 겹친다.
+- **설명:** canonical RuntimeTraceV1 renderer는 있지만 고정 V4 D1이 호출하지 않았고 고정 D1 explanation artifact도 없다.
 
-## Frozen D2 fusion audit
+## 고정 D2 fusion 점검
 
-- **Role:** Deterministic detector-preserving fusion-policy pilot
+- **역할:** D0 alarm을 보존하는 결정론적 fusion-policy 예비 실험
 - **V1:** 11/14; Normal FAR 0.7056194750975128 episodes/hour; D0-miss recovery 0/3.
 - **V2:** 11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3.
-- **D0 preservation:** VERIFIED_POINTWISE; D2(t)=D0(t) OR policy_admits_D1(t)
-- **Freeze / labels:** V1 and V2 both use durable prediction-file-before-label gates.
-- **Boundary:** V2 is test1-informed development, not independent confirmation. Current V1/V2 results do not establish that Detector-plus-Rule is generally useless.
+- **D0 보존:** pointwise 보존 — `D2(t)=D0(t) OR policy_admits_D1(t)`
+- **고정 / label:** V1과 V2 모두 label 접근 전 durable prediction file gate를 사용한다.
+- **경계:** V2는 test1-informed development이며 독립 확인이 아니다. 현재 V1/V2 결과로 Detector+Rule이 일반적으로 쓸모없다고 결론 내릴 수 없다.
 
-## Components
+## 구현 구성요소
 
-| Component | Engineering / evidence display | Next action |
+| 구성요소 | 엔지니어링·근거 표시 | 다음 조치 |
 |---|---|---|
-| DATA_PROVENANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Rehearse public-safe restoration and verify timezone semantics on a fresh machine |
-| SPLIT_GOVERNANCE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit future entrypoints against split manifests and add a separately authorized D1 durable prediction gate |
-| VARIABLE_ROLE_UNIVERSE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve frozen universe and review downstream profiling handoff in ARCH-003 |
-| META_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare unique confirmed contribution and top-k sensitivity |
-| STAT_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Measure split stability unique confirmed contribution and top-k sensitivity |
-| GDN_DISCOVERY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Validate seed and split stability unique confirmed contribution and pre-Top-5 masking impact |
-| CANDIDATE_UNION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit exact relation-profiling consumption in ARCH-003 |
-| RELATION_PROFILING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Compare criteria and stability without physical-truth claims |
-| NUMERIC_AUTHORITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep values private and compare criteria in a new protocol |
-| EVIDENCE_PACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve the rendered-view boundary and inspect canonical handoff |
-| RULE_DSL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit canonical materialization and COMMON-42 authority bridge |
-| T0_TEMPLATE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Retain as preregistered comparator |
-| T1_ONE_SHOT | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Reproduce under frozen provider policy before comparison claims |
-| T1B_REPEAT | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve budget equivalence in expanded comparison |
-| T2_AGENTIC_FEEDBACK | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Design a comparable cohort that actually exercises feedback |
-| DETERMINISTIC_VERIFIER | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep scientific and causal claims outside verifier authority |
-| COMMON42_FREEZE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Preserve exact authority bytes |
-| RULE_RUNTIME | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Do not generalize fixed-runtime properties to future modes |
-| SATISFACTION_TRACE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Audit canonical-to-real trace representation in ARCH-006 and ARCH-008 |
-| EXPLANATION_RENDERER | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Evaluate faithfulness separately from human usefulness |
-| D0_PCA_SPE | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Add a stronger baseline only in a new preregistered study |
-| D1_RULE_ONLY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Expand utility evaluation without changing the frozen pilot |
-| D2_V1 | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Retain as negative pilot evidence without tuning |
-| D2_V2 | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Do not create result-driven V3 inside RCC |
-| EPISODE_CONSTRUCTION | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage caller-enforced file-local and one-second assumptions in GAP-000 |
-| ATTACK_EVENT_RECALL | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage 14-unit independence and expanded-validation requirements in GAP-000 |
-| NORMAL_FAR | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage D1 FAR and mixed-episode reporting in GAP-000 |
-| RESULT_INTEGRITY | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Triage D1 durable gate and cross-arm reporting lineage in GAP-000 |
-| OUTER_EVALUATION | BLOCKED | Require separate approval and preregistration before any held-out study |
-| REPRODUCIBILITY | PARTIAL | Run a separately authorized fresh-machine rehearsal |
-| PROFESSOR_REPORTING | CODE PRESENT · EXECUTED · EVIDENCE REVIEWED | Keep wording synchronized with RCC claims |
-| THESIS_DRAFT | CODE PRESENT · NOT EXECUTED | Review all result wording against the checkpoint |
+| DATA_PROVENANCE | 구현·실행·근거 점검 완료 | 데이터 판본과 공개 가능한 식별 정보를 고정한다. |
+| SPLIT_GOVERNANCE | 구현·실행·근거 점검 완료 | 각 split의 허용 역할과 경계 제거 규칙을 강제한다. |
+| VARIABLE_ROLE_UNIVERSE | 구현·실행·근거 점검 완료 | source·target 역할과 가능한 pair universe를 고정한다. |
+| META_DISCOVERY | 구현·실행·근거 점검 완료 | 실제 값 없이 metadata만으로 후보를 순위화한다. |
+| STAT_DISCOVERY | 구현·실행·근거 점검 완료 | 정상 데이터의 시간 지연 통계 연관성으로 후보를 순위화한다. |
+| GDN_DISCOVERY | 구현·실행·근거 점검 완료 | 학습 그래프의 후보 순위 근거를 만들며 인과관계로 해석하지 않는다. |
+| CANDIDATE_UNION | 구현·실행·근거 점검 완료 | META·STAT·GDN 후보를 재점수화 없이 합친다. |
+| RELATION_PROFILING | 구현·실행·근거 점검 완료 | 정상 반복 반응에서 방향과 시간 지연을 확인한다. |
+| NUMERIC_AUTHORITY | 구현·실행·근거 점검 완료 | 시간·허용오차·지속성·크기 참조를 정상 근거에 결속한다. |
+| EVIDENCE_PACK | 구현·실행·근거 점검 완료 | 고정 관계와 수치 참조, 근거 출처 추적(Provenance)을 구성 단계에 전달한다. |
+| RULE_DSL | 구현·실행·근거 점검 완료 | 제안 가능한 필드를 닫힌 구조로 제한하고 canonical Rule과 분리한다. |
+| T0_TEMPLATE | 구현·실행·근거 점검 완료 | LLM 없이 만드는 규칙 구성 비교 기준이다. |
+| T1_ONE_SHOT | 구현·실행·근거 점검 완료 | 제한된 LLM 1회 제안 비교군이다. |
+| T1B_REPEAT | 구현·실행·근거 점검 완료 | T2와 같은 호출 예산으로 독립 생성을 반복한다. |
+| T2_AGENTIC_FEEDBACK | 구현·실행·근거 점검 완료 | revise·retrieve·no_rule을 허용하는 제한된 제어 경로다. |
+| DETERMINISTIC_VERIFIER | 구현·실행·근거 점검 완료 | label 없이 구조·근거·수치·실행 계약을 검사한다. |
+| COMMON42_FREEZE | 구현·실행·근거 점검 완료 | 검증된 42개 관계 규칙 portfolio를 불변 상태로 고정한다. |
+| RULE_RUNTIME | 구현·실행·근거 점검 완료 | 고정 규칙과 승인된 수치 참조를 결정론적으로 실행한다. |
+| SATISFACTION_TRACE | 구현·실행·근거 점검 완료 | 관찰된 평가 단계와 권한 결속을 기록한다. |
+| EXPLANATION_RENDERER | 구현·실행·근거 점검 완료 | 규칙과 trace에 있는 사실만 제한적으로 설명한다. |
+| D0_PCA_SPE | 구현·실행·근거 점검 완료 | 단순하고 결정론적인 정상 전용 다변량 기준선이다. |
+| D1_RULE_ONLY | 구현·실행·근거 점검 완료 | COMMON-42만으로 만드는 독립 이상 신호다. |
+| D2_V1 | 구현·실행·근거 점검 완료 | 같은 초의 D0·D1 근거를 결합하는 고정 정책이다. |
+| D2_V2 | 구현·실행·근거 점검 완료 | native horizon 근거를 이용하는 test1-informed 개발 정책이다. |
+| EPISODE_CONSTRUCTION | 구현·실행·근거 점검 완료 | 연속 alarm second를 최대 연속 구간으로 묶는다. |
+| ATTACK_EVENT_RECALL | 구현·실행·근거 점검 완료 | alarm episode가 겹친 attack-event unit 비율을 측정한다. |
+| NORMAL_FAR | 구현·실행·근거 점검 완료 | 정상 노출 시간당 비공격 alarm episode 수를 측정한다. |
+| RESULT_INTEGRITY | 구현·실행·근거 점검 완료 | prediction·metric·순서·누출 경계를 확인하며 성능 타당성을 대신하지 않는다. |
+| OUTER_EVALUATION | 진행 전 해결 필요 (BLOCKED) | 일반화 검증 경로지만 현재 과학 결과는 없다. |
+| REPRODUCIBILITY | 부분 완료 | source pin·artifact 보존·복원 준비 수준을 구분한다. |
+| PROFESSOR_REPORTING | 구현·실행·근거 점검 완료 | 고정 관찰과 주장 한계를 함께 전달한다. |
+| THESIS_DRAFT | 구현 완료·미실행 | 잠정 서술 맥락이며 scientific authority를 대체하지 않는다. |
 
-The compatibility field `claim_ready` is intentionally omitted from this headline. It means
-only that a component supports at least one narrow implementation or contract claim.
+호환용 field `claim_ready`는 이 요약에서 제외했다. 이는 component가 좁은 구현 또는 계약
+주장을 하나 이상 지원한다는 뜻일 뿐이다.
 
-## Experiments
+## 실험
 
-| Experiment | Status | Result scope |
+| 실험 | 상태 | 결과 범위 |
 |---|---|---|
-| EXP-01 | CODE PRESENT · COMPARISON NOT EXECUTED | Discovery artifacts exist; the comparative contribution experiment has not been performed. |
-| EXP-02 | CODE PRESENT · COMPARISON NOT EXECUTED | Current references support deterministic execution but do not establish optimal criteria. |
-| EXP-03 | EXECUTED · EVIDENCE-REVIEWED PILOT | One frozen construction cohort; validity and cost observations only. |
-| EXP-04 | EXECUTED · EVIDENCE-REVIEWED PILOT | Single frozen 14-unit INNER pilot. |
-| EXP-05 | CODE PRESENT · COMPARISON NOT EXECUTED | Implementation-level automated grounding evidence only. |
-| EXP-06 | DESIGNED ONLY | No experimental outcome. |
+| EXP-01 | 구현 완료·미실행 | META·STAT·GDN의 고유하고 유용한 후보 기여가 있는지 비교한다. |
+| EXP-02 | 구현 완료·미실행 | 응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다. |
+| EXP-03 | 실행·근거 점검 완료·예비 실험 | T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다. |
+| EXP-04 | 실행·근거 점검 완료·예비 실험 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
+| EXP-05 | 구현 완료·미실행 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
+| EXP-06 | 설계만 완료 | 고정 규칙 결과나 정답을 받지 않는 별도 runtime LLM 비교 가능성을 검토한다. |
 
-## Authoritative claim view
+## 공식 연구 주장
 
-Claim status comes only from `registry/claims.csv`.
+주장 상태는 `registry/claims.csv`에서만 가져온다.
 
-| Claim | Status | Allowed wording |
+| 주장 | 상태 | 허용되는 설명 |
 |---|---|---|
-| CLAIM-A | SUPPORTED_IMPLEMENTATION | The pinned HAI P1 INNER architecture and its frozen execution paths were implemented. |
-| CLAIM-B | SUPPORTED_IMPLEMENTATION | The implemented pipeline transformed confirmed normal-data relation evidence into frozen executable rules under deterministic authority controls. |
-| CLAIM-C | SUPPORTED_IMPLEMENTATION | The verifier deterministically checks the frozen structural evidence parameter split and operational contract. |
-| CLAIM-D | SUPPORTED_IMPLEMENTATION | Given frozen rule numeric-reference authorization and input artifacts the current rule runtime evaluates without an LLM and produces deterministic traces. |
-| CLAIM-E | UNVALIDATED | The frozen GDN arm contributed set-unique candidates; their unique scientific usefulness remains unvalidated. |
-| CLAIM-F | NOT_SUPPORTED | The current pilot did not establish a feedback advantage and the feedback mechanism was not empirically exercised. |
-| CLAIM-G | PILOT_ONLY | In the current 14-event INNER pilot D1 responded to three D0-missed events and D0 responded to one D1-missed event. |
-| CLAIM-H | UNVALIDATED | Rule-only showed high event response and high normal false-alarm burden in the INNER pilot; practical utility remains unvalidated. |
-| CLAIM-I | NOT_SUPPORTED | The two frozen D2 policies did not improve D0 attack-event recall in the current INNER pilot. |
-| CLAIM-J | NOT_SUPPORTED | Held-out generalization remains unconfirmed because no OUTER scientific result is available. |
-| CLAIM-K | CONDITIONAL | The implemented renderer is deterministically bound to frozen rule and trace information; comprehensive faithfulness remains to be evaluated. |
-| CLAIM-L | UNVALIDATED | A trace-grounded explanation interface is implemented; human usefulness has not been evaluated. |
-| CLAIM-M | NOT_SUPPORTED | The system records bounded temporal relation evidence and trace-grounded violations without causal attribution. |
+| CLAIM-A | 구현 근거로 지원됨 | 구현은 확인됐지만 전체 방법의 일반화나 최종 검증을 뜻하지 않는다. |
+| CLAIM-B | 구현 근거로 지원됨 | 정상 관계 근거를 권한 통제 아래 실행 가능한 규칙으로 변환했다. |
+| CLAIM-C | 구현 근거로 지원됨 | 구조·근거·수치·split·실행 계약을 검사하지만 과학적 진실을 증명하지 않는다. |
+| CLAIM-D | 구현 근거로 지원됨 | 고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다. |
+| CLAIM-E | 미검증 (UNVALIDATED) | set-unique 후보는 있으나 안정적이고 유용한 고유 기여는 미검증이다. |
+| CLAIM-F | 현재 근거로 지원되지 않음 | 현재 feedback action이 0이므로 이점은 지원되지 않는다. |
+| CLAIM-G | 예비 실험 수준 (PILOT_ONLY) | 현재 14-unit pilot에서 서로 다른 event response가 관찰됐다. |
+| CLAIM-H | 미검증 (UNVALIDATED) | 높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다. |
+| CLAIM-I | 현재 근거로 지원되지 않음 | 현재 D2 V1/V2는 D0 Recall을 개선하지 못했다. |
+| CLAIM-J | 현재 근거로 지원되지 않음 | OUTER 과학 결과가 없어 일반화는 확인되지 않았다. |
+| CLAIM-K | 조건부 (CONDITIONAL) | renderer 결속은 구현됐지만 전체 corpus의 fidelity는 조건부다. |
+| CLAIM-L | 미검증 (UNVALIDATED) | trace 기반 interface는 있으나 사람에게 유용한지는 평가하지 않았다. |
+| CLAIM-M | 현재 근거로 지원되지 않음 | 현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다. |
 
-## Research dimensions
+## 연구 상태의 서로 다른 차원
 
-- **Engineering:** Architecture substantially implemented; most frozen INNER paths executed.
-- **Result integrity:** Explicit integrity audits exist for frozen D0, D1, D2 V1, and D2 V2 INNER results; this checks result custody and arithmetic, not performance validity.
-- **Scientific validation:** Partial and incomplete; major performance and contribution hypotheses remain unvalidated or unsupported.
-- **Reproducibility:** Fresh-machine independent reproduction remains pending.
-- **Generalization:** Held-out generalization remains unconfirmed because no OUTER scientific result exists.
-- **Claims:** Only narrow implementation or contract claims are supported; claims.csv is the authoritative claim view.
+- **엔지니어링:** 아키텍처는 대부분 구현됐고 주요 frozen INNER 경로가 실행됐다.
+- **결과 무결성:** D0·D1·D2 V1·D2 V2 INNER 결과의 명시적 무결성 점검이 있으며, 이는 custody와 산술을 확인할 뿐 성능 타당성을 뜻하지 않는다.
+- **과학적 검증:** 부분적이고 미완료다. 주요 성능·기여 가설은 미검증이거나 현재 근거로 지원되지 않는다.
+- **재현성:** 새 환경 독립 재현(Fresh-machine Reproduction)은 아직이다.
+- **일반화:** OUTER 과학 결과가 없어 held-out 일반화는 미확인이다.
+- **연구 주장:** 좁은 구현·계약 주장만 지원되며 `claims.csv`가 공식 주장 기준이다.
 
-## Boundaries
+## 현재 보장되지 않는 것
 
-Not established:
+아직 확립되지 않음:
 
-- GDN unique and stable scientific contribution beyond META and STAT
-- Agentic verifier-feedback advantage
-- Practical Rule-only operational utility
-- Detector-plus-Rule improvement
-- Held-out generalization
-- Human explanation usefulness
+- META·STAT 너머의 GDN 고유·안정적 과학 기여
+- Agentic verifier-feedback 이점
+- Rule-only의 실제 운영 유용성
+- Detector+Rule 성능 향상
+- Held-out 일반화
+- 설명의 인간 유용성
 
-## Exact next task
+## 정확한 다음 작업
 
 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**

@@ -75,9 +75,9 @@ class Arch002CandidateDiscoveryTests(unittest.TestCase):
         dashboard = (RCC_ROOT / "dashboard" / "index.html").read_text(encoding="utf-8")
         self.assertIn("learned graph", summary)
         self.assertIn("20+20+20인데 왜 47개인가", summary)
-        self.assertIn("CANDIDATE DISCOVERY", dashboard)
-        self.assertIn("Attention as final evidence", dashboard)
-        self.assertIn("Candidate discovery proposes relationships", dashboard)
+        self.assertIn("관계 후보 탐색", dashboard)
+        self.assertIn("Attention을 최종 근거로 사용", dashboard)
+        self.assertIn("후보 탐색은 관계 후보를 제안", dashboard)
 
 
 if __name__ == "__main__":

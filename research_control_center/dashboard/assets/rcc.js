@@ -16,7 +16,7 @@
       card.hidden = !(matchesQuery && matchesStatus);
       if (!card.hidden) visible += 1;
     });
-    count.textContent = `${visible} of ${cards.length} records`;
+    count.textContent = `총 ${cards.length}개 중 ${visible}개 표시`;
   }
 
   search.addEventListener("input", applyFilters);

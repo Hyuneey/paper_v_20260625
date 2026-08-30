@@ -55,7 +55,7 @@ class Gap000PreValidationTests(unittest.TestCase):
         self.assertTrue(state["exact_next_task"].startswith("GAP-FIX-001"))
         self.assertEqual("BEFORE_REMEDIATION_READ_ONLY", state["pre_validation_readiness"]["arch011_position"])
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
-        for marker in ("PRE-VALIDATION READINESS", "Primary disposition", "Urgency priority", "READY_WITH_CONDITIONS", "PILOT V1"):
+        for marker in ("본격 검증 준비 현황", "주 조치 분류", "긴급도", "조건부 진행 가능", "PILOT V1"):
             self.assertIn(marker, dashboard)
         summary = (RCC / "generated" / "GAP_000_USER_SUMMARY.md").read_text(encoding="utf-8")
         for marker in ("본격 실험 전에", "PILOT V1", "VALIDATION V2", "Primary disposition", "Urgency priority"):

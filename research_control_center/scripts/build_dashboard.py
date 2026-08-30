@@ -159,19 +159,65 @@ def _badge_class(status: str) -> str:
     return "badge-gray"
 
 
+STATUS_DISPLAY_LABELS = {
+    "CODE_IMPLEMENTED": "구현 완료 (CODE_IMPLEMENTED)",
+    "EXECUTED": "실제 실행 완료 (EXECUTED)",
+    "EVIDENCE_REVIEWED": "근거 점검 완료 (EVIDENCE_REVIEWED)",
+    "RESULT_INTEGRITY": "결과 무결성 확인 (RESULT_INTEGRITY)",
+    "REPRODUCED": "독립 재현 완료 (REPRODUCED)",
+    "UNVALIDATED": "미검증 (UNVALIDATED)",
+    "PILOT_ONLY": "예비 실험 수준 (PILOT_ONLY)",
+    "UNCONFIRMED": "미확인 (UNCONFIRMED)",
+    "BLOCKED": "진행 전 해결 필요 (BLOCKED)",
+    "CONDITIONAL": "조건부 (CONDITIONAL)",
+    "READY_WITH_CONDITIONS": "조건부 진행 가능 (READY_WITH_CONDITIONS)",
+    "NOT_REQUIRED": "현재 필요하지 않음 (NOT_REQUIRED)",
+    "IMPLEMENTED_EXECUTED_AUDITED": "구현·실행·근거 점검 완료",
+    "IMPLEMENTED_EXECUTED": "구현·실행 완료",
+    "IMPLEMENTED_NOT_EXECUTED": "구현 완료·미실행",
+    "EXECUTED_NOT_AUDITED": "실행 완료·근거 점검 대기",
+    "EXECUTED_AUDITED_PILOT": "실행·근거 점검 완료·예비 실험",
+    "SUPPORTED_IMPLEMENTATION": "구현 근거로 지원됨",
+    "NOT_SUPPORTED": "현재 근거로 지원되지 않음",
+    "RESEARCH_ONLY": "연구 범위만 정의됨",
+    "DESIGN_ONLY": "설계만 완료",
+    "PARTIAL": "부분 완료",
+    "NOT_STARTED": "미시작",
+    "SUPERSEDED": "대체됨",
+    "LEGACY_OR_SUPERSEDED": "과거 호환 또는 대체됨",
+    "ACTIVE": "유효",
+    "ACTIVE_CONTEXT": "현재 맥락",
+    "CURRENT": "현재",
+    "HISTORICAL": "과거 기록",
+    "MITIGATING": "완화 중",
+    "OPEN": "미결정",
+    "COMPLETED": "완료",
+    "HIGH": "높음 (HIGH)",
+    "MEDIUM": "중간 (MEDIUM)",
+    "LOW": "낮음 (LOW)",
+    "CRITICAL": "치명적 (CRITICAL)",
+    "UNKNOWN": "미확인 (UNKNOWN)",
+}
+
 COMPONENT_STATUS_LABELS = {
-    "IMPLEMENTED_EXECUTED_AUDITED": "CODE PRESENT · EXECUTED · EVIDENCE REVIEWED",
-    "IMPLEMENTED_EXECUTED": "CODE PRESENT · EXECUTED",
-    "IMPLEMENTED_NOT_EXECUTED": "CODE PRESENT · NOT EXECUTED",
-    "RESEARCH_ONLY": "RESEARCH SCOPE ONLY",
-    "DESIGN_ONLY": "DESIGNED ONLY",
-    "PARTIAL": "PARTIAL",
-    "BLOCKED": "BLOCKED",
-    "LEGACY_OR_SUPERSEDED": "LEGACY OR SUPERSEDED",
-    "UNKNOWN": "UNKNOWN",
+    key: STATUS_DISPLAY_LABELS[key]
+    for key in (
+        "IMPLEMENTED_EXECUTED_AUDITED", "IMPLEMENTED_EXECUTED",
+        "IMPLEMENTED_NOT_EXECUTED", "RESEARCH_ONLY", "DESIGN_ONLY",
+        "PARTIAL", "BLOCKED", "LEGACY_OR_SUPERSEDED", "UNKNOWN",
+    )
 }
 
 EXPERIMENT_STATUS_LABELS = {
+    key: STATUS_DISPLAY_LABELS[key]
+    for key in (
+        "NOT_STARTED", "DESIGN_ONLY", "IMPLEMENTED_NOT_EXECUTED",
+        "EXECUTED_NOT_AUDITED", "EXECUTED_AUDITED_PILOT", "BLOCKED",
+        "SUPERSEDED", "UNKNOWN",
+    )
+}
+
+GPT_EXPERIMENT_STATUS_LABELS = {
     "NOT_STARTED": "NOT STARTED",
     "DESIGN_ONLY": "DESIGNED ONLY",
     "IMPLEMENTED_NOT_EXECUTED": "CODE PRESENT · COMPARISON NOT EXECUTED",
@@ -182,9 +228,240 @@ EXPERIMENT_STATUS_LABELS = {
     "UNKNOWN": "UNKNOWN",
 }
 
+PHASE_DISPLAY_LABELS = {
+    "ARCHITECTURE_COMPLETE": "아키텍처 감사 완료",
+    "EVALUATION_SCOPE_EXPANSION": "평가 범위 확장",
+    "HYPOTHESIS_VALIDATION": "가설 검증",
+}
+
+ARCHITECTURE_DISPLAY_LABELS = {
+    "DATA": "데이터와 분할",
+    "DISCOVERY": "후보 관계 탐색",
+    "RELATION": "관계 프로파일링",
+    "RULE": "규칙 구성",
+    "VERIFIER": "결정론적 검증",
+    "RUNTIME": "규칙 실행과 추적",
+    "D0": "D0 기준 탐지기",
+    "D1": "D1 관계 규칙 단독 방식",
+    "D2": "D2 탐지기·규칙 결합",
+    "METRICS": "지표와 결과 무결성",
+    "REPRODUCIBILITY": "재현성과 OUTER",
+}
+
+COMPONENT_CARD_COPY = {
+    "DATA_PROVENANCE": ("HAI 데이터 출처 고정", "데이터 판본과 공개 가능한 식별 정보를 고정한다."),
+    "SPLIT_GOVERNANCE": ("데이터 분할 통제", "각 split의 허용 역할과 경계 제거 규칙을 강제한다."),
+    "VARIABLE_ROLE_UNIVERSE": ("변수 역할과 후보 범위", "source·target 역할과 가능한 pair universe를 고정한다."),
+    "META_DISCOVERY": ("META 후보 탐색", "실제 값 없이 metadata만으로 후보를 순위화한다."),
+    "STAT_DISCOVERY": ("STAT 후보 탐색", "정상 데이터의 시간 지연 통계 연관성으로 후보를 순위화한다."),
+    "GDN_DISCOVERY": ("GDN 후보 탐색", "학습 그래프의 후보 순위 근거를 만들며 인과관계로 해석하지 않는다."),
+    "CANDIDATE_UNION": ("후보 합집합", "META·STAT·GDN 후보를 재점수화 없이 합친다."),
+    "RELATION_PROFILING": ("정상 관계 프로파일링", "정상 반복 반응에서 방향과 시간 지연을 확인한다."),
+    "NUMERIC_AUTHORITY": ("정상 전용 수치 권한", "시간·허용오차·지속성·크기 참조를 정상 근거에 결속한다."),
+    "EVIDENCE_PACK": ("관계 근거 묶음 (Evidence Pack)", "고정 관계와 수치 참조, 근거 출처 추적(Provenance)을 구성 단계에 전달한다."),
+    "RULE_DSL": ("규칙 제안 언어 (Rule DSL)", "제안 가능한 필드를 닫힌 구조로 제한하고 canonical Rule과 분리한다."),
+    "T0_TEMPLATE": ("T0 결정론적 template", "LLM 없이 만드는 규칙 구성 비교 기준이다."),
+    "T1_ONE_SHOT": ("T1 one-shot 구성", "제한된 LLM 1회 제안 비교군이다."),
+    "T1B_REPEAT": ("T1-B 반복 예산 대조군", "T2와 같은 호출 예산으로 독립 생성을 반복한다."),
+    "T2_AGENTIC_FEEDBACK": ("T2 검증 피드백 구성", "revise·retrieve·no_rule을 허용하는 제한된 제어 경로다."),
+    "DETERMINISTIC_VERIFIER": ("결정론적 검증기", "label 없이 구조·근거·수치·실행 계약을 검사한다."),
+    "COMMON42_FREEZE": ("COMMON-42 고정", "검증된 42개 관계 규칙 portfolio를 불변 상태로 고정한다."),
+    "RULE_RUNTIME": ("LLM 없는 규칙 실행", "고정 규칙과 승인된 수치 참조를 결정론적으로 실행한다."),
+    "SATISFACTION_TRACE": ("규칙 충족 추적 (Satisfaction Trace)", "관찰된 평가 단계와 권한 결속을 기록한다."),
+    "EXPLANATION_RENDERER": ("추적 기반 설명 생성", "규칙과 trace에 있는 사실만 제한적으로 설명한다."),
+    "D0_PCA_SPE": ("D0 PCA-SPE 기준 탐지기", "단순하고 결정론적인 정상 전용 다변량 기준선이다."),
+    "D1_RULE_ONLY": ("D1 검증된 관계 규칙 단독 방식", "COMMON-42만으로 만드는 독립 이상 신호다."),
+    "D2_V1": ("D2 V1 결합", "같은 초의 D0·D1 근거를 결합하는 고정 정책이다."),
+    "D2_V2": ("D2 V2 결합", "native horizon 근거를 이용하는 test1-informed 개발 정책이다."),
+    "EPISODE_CONSTRUCTION": ("알람 episode 구성", "연속 alarm second를 최대 연속 구간으로 묶는다."),
+    "ATTACK_EVENT_RECALL": ("공격 사건 단위 재현율 (Attack-event Recall)", "alarm episode가 겹친 attack-event unit 비율을 측정한다."),
+    "NORMAL_FAR": ("정상 FAR/hour", "정상 노출 시간당 비공격 alarm episode 수를 측정한다."),
+    "RESULT_INTEGRITY": ("결과 무결성 점검", "prediction·metric·순서·누출 경계를 확인하며 성능 타당성을 대신하지 않는다."),
+    "OUTER_EVALUATION": ("Held-out OUTER 평가", "일반화 검증 경로지만 현재 과학 결과는 없다."),
+    "REPRODUCIBILITY": ("재현성 평가", "source pin·artifact 보존·복원 준비 수준을 구분한다."),
+    "PROFESSOR_REPORTING": ("교수 보고", "고정 관찰과 주장 한계를 함께 전달한다."),
+    "THESIS_DRAFT": ("논문 작업 초안", "잠정 서술 맥락이며 scientific authority를 대체하지 않는다."),
+}
+
+EXPERIMENT_CARD_COPY = {
+    "EXP-01": ("변수 관계 탐색 방법 비교", "META·STAT·GDN의 고유하고 유용한 후보 기여가 있는지 비교한다."),
+    "EXP-02": ("규칙 수치 기준 비교", "응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다."),
+    "EXP-03": ("검증 피드백 기반 규칙 생성 비교", "T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다."),
+    "EXP-04": ("검증된 관계 규칙의 이상탐지 성능 비교", "D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다."),
+    "EXP-05": ("규칙 설명의 일치성 검증", "설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다."),
+    "EXP-06": ("실시간 LLM 활용 비교", "고정 규칙 결과나 정답을 받지 않는 별도 runtime LLM 비교 가능성을 검토한다."),
+}
+
+CLAIM_CARD_COPY = {
+    "CLAIM-A": ("HAI P1 INNER 아키텍처 구현", "구현은 확인됐지만 전체 방법의 일반화나 최종 검증을 뜻하지 않는다."),
+    "CLAIM-B": ("정상 근거에서 실행 규칙으로 변환", "정상 관계 근거를 권한 통제 아래 실행 가능한 규칙으로 변환했다."),
+    "CLAIM-C": ("결정론적 verifier의 계약 검사", "구조·근거·수치·split·실행 계약을 검사하지만 과학적 진실을 증명하지 않는다."),
+    "CLAIM-D": ("고정 규칙 runtime의 LLM-free 실행", "고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다."),
+    "CLAIM-E": ("GDN의 고유한 유용성", "set-unique 후보는 있으나 안정적이고 유용한 고유 기여는 미검증이다."),
+    "CLAIM-F": ("Agentic feedback의 품질 향상", "현재 feedback action이 0이므로 이점은 지원되지 않는다."),
+    "CLAIM-G": ("D1과 D0의 다른 pilot 반응", "현재 14-unit pilot에서 서로 다른 event response가 관찰됐다."),
+    "CLAIM-H": ("Rule-only의 운영 유용성", "높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다."),
+    "CLAIM-I": ("Detector+Rule 성능 향상", "현재 D2 V1/V2는 D0 Recall을 개선하지 못했다."),
+    "CLAIM-J": ("Held-out 일반화", "OUTER 과학 결과가 없어 일반화는 확인되지 않았다."),
+    "CLAIM-K": ("설명의 trace 충실도", "renderer 결속은 구현됐지만 전체 corpus의 fidelity는 조건부다."),
+    "CLAIM-L": ("설명의 인간 유용성", "trace 기반 interface는 있으나 사람에게 유용한지는 평가하지 않았다."),
+    "CLAIM-M": ("인과·root-cause 관계", "현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다."),
+}
+
+RISK_CARD_COPY = {
+    "RISK-01": ("14개 event unit의 작은 평가 범위", "통계적 독립성과 안정적 우수성을 추론할 수 없다."),
+    "RISK-02": ("D1의 높은 정상 FAR", "Rule-only 운영 유용성이 아직 확립되지 않았다."),
+    "RISK-03": ("GDN 고유 기여 미검증", "META·STAT 너머의 안정적 기여를 별도 검증해야 한다."),
+    "RISK-04": ("T2 feedback 이점 미검증", "현재 feedback repair action은 0이었다."),
+    "RISK-05": ("D2의 D0 miss 회복 실패", "V1/V2 모두 세 D0 miss를 회복하지 못했다."),
+    "RISK-06": ("Held-out 일반화 결과 부재", "새 승인과 preregistration 전에는 OUTER 주장을 할 수 없다."),
+    "RISK-07": ("Fresh-machine 재현 미완료", "추적성은 강하지만 새 환경 재현 rehearsal은 아직이다."),
+    "RISK-08": ("강한 다변량 baseline 부재", "현재 D0는 단순 PCA-SPE 기준선이다."),
+    "RISK-09": ("설명의 인간 유용성 미검증", "자동 trace grounding은 사람의 이해 향상을 증명하지 않는다."),
+    "RISK-10": ("과거 checkout과 authority 혼동", "RCC 화면은 고정 scientific authority를 계속 명시해야 한다."),
+    "RISK-11": ("D1 durable pre-label gate 부재", "label 전 object는 완성됐지만 durable file gate가 없다."),
+    "RISK-12": ("분산된 split enforcement", "여러 task reader의 계약이 하나의 universal adapter로 증명되지 않았다."),
+    "RISK-13": ("최종 Rule/runtime authority 미결정", "RuleV1과 V4 사이 최종 과학 권한을 선택해야 한다."),
+    "RISK-14": ("no_rule failure taxonomy 혼합", "provider·parse·verifier·budget failure가 no_rule로 합쳐질 수 있다."),
+    "RISK-15": ("GDN self-neighbor Top-5 영향", "self가 내부 neighbor slot을 소비할 수 있다."),
+    "RISK-16": ("metric portability 계약 부족", "1초·file-local 가정과 cross-arm aggregator 추적성이 불완전하다."),
+}
+
+HISTORY_CARD_COPY = {
+    "EVENT-001": ("DHAG 확장·개념 증명 시기", "PoC에서 확인된 구조 한계로 DHAG가 논문의 주 방향에서 제외됐다."),
+    "EVENT-002": ("ARGOS·LLMAD 탐색", "관련 연구와 차별화 방향을 다시 검토한 과거 탐색 단계다."),
+    "EVENT-003": ("Faithfulness Verifier 중심 framing", "headline 방향은 대체됐지만 결정론적 검증과 trace 일치성 아이디어는 남았다."),
+    "EVENT-005": ("Graph-guided verified-rule prototype 정립", "graph 후보·typed rule·결정론적 verifier·runtime의 초기 기반이 저장소에 형성됐다."),
+    "EVENT-008": ("ARGOS reference track 고정", "ARGOS는 exact reproduction이 아니라 부분 방법론 참고로 고정됐다."),
+    "EVENT-009": ("V6 authority layer 분리", "정상 근거·구성·validity·governance·runtime·설명의 권한을 분리했다."),
+    "EVENT-013": ("Pairwise·Rule-only 범위 명확화", "pairwise-first와 D0/D1/D2 비교, 좁은 agent 용어를 연구 범위로 명확히 했다."),
+    "EVENT-014": ("P1 Boiler 선택", "정상 전용 feasibility gate를 통과한 P1만 대상으로 고정했다."),
+    "EVENT-020": ("COMMON-42와 정상 전용 authority 확정", "42-rule portfolio와 별도 numeric authority를 고정하고 점검했다."),
+    "EVENT-021": ("첫 D1 Rule-only INNER 결과", "승인된 D1 실행과 결과 무결성 점검이 완료됐지만 운영 유용성은 미검증이다."),
+    "EVENT-022": ("첫 D0 PCA-SPE INNER 결과", "승인된 D0 실행과 독립 결과 무결성 점검이 완료됐다."),
+    "EVENT-025": ("OUTER 과학 결과 없음", "feature custody 단계에서 멈춰 byte·label·prediction·metric 결과가 생성되지 않았다."),
+    "EVENT-026": ("교수용 첫 결과 package와 scientific checkpoint 고정", "교수용 종합 보고와 canonical scientific checkpoint 점검을 완료했으며, 이 package 자체는 새로운 교수 피드백이나 승인이 아니다."),
+    "EVENT-027": ("통합 보고 준비 업데이트", "연구 책임자가 통합 보고 준비·업데이트였음을 확인했으며 자동으로 새 교수 피드백이 되지 않는다."),
+    "EVENT-028": ("Research Control Center 구축·정규화", "RCC-001이 운영 뼈대를 만들고 RCC-002·002A가 현재 상태와 상태 의미를 분리해 채웠다."),
+}
+
+TODO_CARD_COPY = {
+    "USER-ARCH011-001": ("기존 OUTER에 과학 결과가 없는 이유 이해", "custody blocker는 test2 성능 실패가 아니다."),
+    "USER-ARCH011-002": ("같은 물리 test2의 새 연구 사용 여부 결정", "내용은 봉인됐지만 재사용 권한이 자동으로 생기지는 않는다."),
+    "USER-ARCH011-003": ("5단계 재현성 수준 이해", "근거 추적(traceability)과 새 환경 재현을 구분해야 한다."),
+    "USER-ARCH011-004": ("canonical-to-V4 bridge 권고 검토", "lossless mapping이 증명될 때 canonical validity와 V4 runtime 보존의 균형안이다."),
+    "USER-ARCH011-005": ("최종 scientific authority 승인", "DEC-020은 확장 D1/D2와 held-out validation의 선행 결정이다."),
+    "USER-ARCH011-006": ("PILOT V1 보존·VALIDATION V2 분리 확인", "승인된 정책은 모든 변경을 미래 V2에만 적용한다."),
+    "USER-ARCH011-007": ("remediation 순서 승인", "authority와 custody를 portability rehearsal과 held-out보다 먼저 닫는다."),
+    "USER-ARCH011-008": ("첫 remediation task 승인", "ARCH-011은 어떤 remediation도 실행하지 않았다."),
+}
+
+DECISION_CARD_COPY = {
+    "DEC-012": ("결정론적 코드를 최종 verifier authority로 사용", "현재 유효하며 과학적 검증과 계속 구분해야 한다."),
+    "DEC-013": ("LLM-free 고정 규칙 runtime baseline 사용", "현재 runtime authority로 유효하다."),
+    "DEC-014": ("Detector·Rule-only·결합 arm 비교", "비교 아키텍처는 유효하지만 더 강한 검증은 새 preregistration이 필요하다."),
+    "DEC-015": ("runtime LLM은 조건부 향후 비교로 유지", "현재 core에 포함되거나 실행 승인된 경로가 아니다."),
+    "DEC-016": ("Graph-Guided·Agentic label을 잠정 유지", "현재 주장 경계로 유효하다."),
+    "DEC-017": ("현재 INNER 결과를 예비 실험으로 분류", "현재 보고 경계이며 과거 기록을 고치지 않고 independent-event 표현만 교정한다."),
+    "DEC-018": ("기존 OUTER는 결과 없음으로 두고 새 preregistration 요구", "향후 평가 경계로 유효하다."),
+    "DEC-020": (
+        "최종 scientific Rule/runtime authority 선택",
+        "GAP-000과 ARCH-011 근거를 검토해 final validation authority를 선택해야 한다. 이 결정은 future contract 범위와 방법론 문구를 바꾸므로 구조적 선호만으로 정할 수 없다.",
+    ),
+    "DEC-021": ("Graph-Guided·Agentic 기여를 조건부로 유지", "ARCH-011에서 승인된 정책이며 향후 근거에 따라 기여 여부를 결정한다."),
+}
+
+KOREAN_TEXT = {
+    "Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.": "아키텍처 구현과 예비 운영은 완료됐다. 과학적 검증은 일부에 그치며 확대 평가와 가설 검증은 아직 완료되지 않았다.",
+    "The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.": "고정된 HAI 23.05 P1 INNER 아키텍처가 구현됐고 source evidence가 점검됐으며, 등록된 frozen pilot 결과에는 명시적인 결과 무결성 점검이 있다.",
+    "Normal-only evidence was transformed into a 42-descriptor COMMON-42 V4 executable relation portfolio under task-specific authority controls.": "정상 전용 근거가 task-specific authority 아래 42-descriptor COMMON-42 V4 실행 관계 portfolio로 변환됐다.",
+    "D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.": "D0·D1·D2 V1·D2 V2에는 고정되고 결과 무결성이 확인된 INNER pilot 결과가 있다.",
+    "The OUTER path has a blocker record and no scientific result.": "OUTER 경로에는 blocker record만 있고 과학 결과는 없다.",
+    "GDN unique and stable scientific contribution beyond META and STAT": "META·STAT 너머의 GDN 고유·안정적 과학 기여",
+    "Agentic verifier-feedback advantage": "Agentic verifier-feedback 이점",
+    "Practical Rule-only operational utility": "Rule-only의 실제 운영 유용성",
+    "Detector-plus-Rule improvement": "Detector+Rule 성능 향상",
+    "Detector-plus-Rule improvement beyond the tested negative pilot policies": "현재 negative pilot policy를 넘어선 Detector+Rule 향상",
+    "Held-out generalization": "Held-out 일반화",
+    "Human explanation usefulness": "설명의 인간 유용성",
+    "Explain why old OUTER has no result and cannot simply retry.": "기존 OUTER에 결과가 없고 단순 재시도할 수 없는 이유를 설명한다.",
+    "Decide same-physical-test2 eligibility only within a new preregistered study.": "같은 물리 test2의 사용 가능 여부는 새 preregistered study 안에서만 결정한다.",
+    "Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.": "근거 추적, 같은 환경 replay, 새 환경 synthetic/scientific 재현, 외부 재현을 구분해 설명한다.",
+    "Review and approve the canonical-to-V4 bridge target or fallback.": "canonical-to-V4 bridge 목표 또는 fallback을 검토·승인한다.",
+    "Confirm PILOT V1 preservation and VALIDATION V2 separation.": "PILOT V1 보존과 VALIDATION V2 분리를 확인한다.",
+    "Approve the remediation order.": "remediation 순서를 승인한다.",
+    "Approve GAP-FIX-001.": "GAP-FIX-001을 승인한다.",
+    "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.": "Graph-Guided와 Agentic은 EXP-01·EXP-03 결과에 따라 조건부로 유지한다.",
+    "Architecture substantially implemented; most frozen INNER paths executed.": "아키텍처는 대부분 구현됐고 주요 frozen INNER 경로가 실행됐다.",
+    "Explicit integrity audits exist for frozen D0, D1, D2 V1, and D2 V2 INNER results; this checks result custody and arithmetic, not performance validity.": "D0·D1·D2 V1·D2 V2 INNER 결과의 명시적 무결성 점검이 있으며, 이는 custody와 산술을 확인할 뿐 성능 타당성을 뜻하지 않는다.",
+    "Partial and incomplete; major performance and contribution hypotheses remain unvalidated or unsupported.": "부분적이고 미완료다. 주요 성능·기여 가설은 미검증이거나 현재 근거로 지원되지 않는다.",
+    "Fresh-machine independent reproduction remains pending.": "새 환경 독립 재현(Fresh-machine Reproduction)은 아직이다.",
+    "Held-out generalization remains unconfirmed because no OUTER scientific result exists.": "OUTER 과학 결과가 없어 held-out 일반화는 미확인이다.",
+    "Only narrow implementation or contract claims are supported; claims.csv is the authoritative claim view.": "좁은 구현·계약 주장만 지원되며 `claims.csv`가 공식 주장 기준이다.",
+    "ARCH-011 completed; prospective remediation decision next": "ARCH-011 완료; 다음은 향후 remediation 결정",
+    "GAP-001 — choose and version the final Rule/verifier/runtime authority": "GAP-001 — 최종 Rule/verifier/runtime authority를 선택하고 version을 고정한다.",
+    "GAP-002 — add a durable D1 prediction-before-label byte/state gate": "GAP-002 — label 접근 전 durable D1 prediction byte/state gate를 추가한다.",
+    "GAP-003 — freeze validation, policy-selection, and final held-out roles": "GAP-003 — validation·policy 선택·최종 held-out 역할을 사전에 고정한다.",
+    "GAP-004 — freeze event-unit scope, dependence interpretation, and analysis policy": "GAP-004 — event-unit 범위·의존성 해석·분석 policy를 사전에 고정한다.",
+    "INTERPRETABLE_WITH_QUALIFICATIONS; INVALIDATED_ARTIFACTS=0": "조건을 명시하면 해석 가능; 무효화된 artifact 0개",
+    "Preserve PILOT V1; all remediated future work is VALIDATION V2.": "PILOT V1은 그대로 보존하고, remediation을 적용한 향후 작업은 모두 VALIDATION V2로 분리한다.",
+    "BEFORE_REMEDIATION_READ_ONLY": "remediation 전 읽기 전용 점검",
+    "READY_WITH_CONDITIONS": "조건부 진행 가능 (READY_WITH_CONDITIONS)",
+    "NOT_REQUIRED": "현재 필요하지 않음 (NOT_REQUIRED)",
+    "Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.": "정상 근거 구성은 label-blind다. D0와 D2는 label 접근 전에 prediction을 durable하게 저장하지만, D1은 label-blind hash object를 먼저 만들고도 file 기반 durable gate는 없다.",
+    "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.": "확인된 정보 누출은 없다. 다만 D1 durable ordering gap과 test1-informed D2 V2 설계라는 두 가지 중요한 조건이 남아 있다.",
+    "INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation": "INNER 개발용 14개 연속 attack-event unit 예비 실험이다. 통계적 독립성은 확립되지 않았고 최종 검증이 아니다.",
+    "One custody-level file access attempt was rejected before byte read; held-out result unavailable.": "custody 단계의 file 접근 시도 1회가 byte read 전에 거부됐으며 held-out 결과는 없다.",
+    "86 dataset points; 37-feature P1 frame; purpose-specific role and runtime subsets": "전체 86개 dataset point 중 37-feature P1 frame을 사용하며, 목적별 role·runtime subset을 둔다.",
+    "candidate discovery, relation fit, normal numeric authority, D0 fit": "후보 탐색·관계 fit·정상 numeric authority·D0 fit",
+    "independent file-local fit evidence paired with train1": "train1과 짝을 이루는 독립 file-local fit 근거",
+    "one-way relation confirmation and D0 threshold calibration": "단방향 관계 확인과 D0 threshold calibration",
+    "normal guard and D0 sanity evaluation": "정상 guard와 D0 sanity 평가",
+    "INNER development predictions and post-freeze label metrics": "INNER 개발 prediction과 freeze 이후 label metric",
+    "custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome": "custody에서 차단된 OUTER이며 feature byte·label·prediction·metric·outcome이 없다.",
+    "12 ordered sources x 12 ordered targets = 144 directed pairs": "순서가 있는 source 12개 × target 12개 = 방향성 pair 144개",
+    "unscored provenance-preserving set union of 47 unique pairs": "재점수화 없이 근거 출처 추적(Provenance)을 보존한 고유 pair 47개의 합집합",
+    "reviewed P1 metadata and public physical graph": "점검된 P1 metadata와 공개 physical graph",
+    "M1/M2/M3 deterministic domain-prior ranking": "M1/M2/M3 결정론적 domain-prior 순위화",
+    "metadata-supported pair candidates": "metadata 근거가 있는 pair 후보",
+    "file-local first-difference lagged Pearson stability": "file-local 1차 차분 지연 Pearson 안정성",
+    "directional lagged-association candidates": "방향성 지연 연관 후보",
+    "next-value prediction plus embedding-cosine learned graph": "다음 값 예측과 embedding-cosine 학습 graph",
+    "normal train1/train2 full 37-node context": "normal train1/train2의 전체 37-node context",
+    "learned-graph candidate edges": "학습 graph 후보 edge",
+    "Candidate discovery proposes relationships. It does not establish causal or final temporal relations.": "후보 탐색은 관계 후보를 제안할 뿐 인과관계나 최종 시간 관계를 확립하지 않는다.",
+    "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.": "정상 구간의 반복 반응은 인과 증명이 아니다. 집중 점검에서 공유 numeric value 420개가 모두 E1과 일치했지만, historical authority와 runtime authority/reference identity는 별개다.",
+    "Rule-construction acceptance is not detection performance, canonical portfolio membership, or runtime authorization.": "Rule 구성 단계의 acceptance는 탐지 성능·canonical portfolio 포함·실행 권한(Runtime Authorization)을 뜻하지 않는다.",
+    "Bounded verifier-feedback capability is implemented. The frozen cohort exercised no revise or retrieve action, so no feedback improvement was demonstrated.": "제한된 verifier-feedback 기능은 구현됐다. 고정 cohort에서 revise·retrieve action이 0회였으므로 feedback 개선 효과는 입증되지 않았다.",
+    "The frozen D1 runtime is label-blind, fixed-rule, and LLM-free; this does not make its trace canonical, its prediction durably pre-label persisted, or its explanation human-validated.": "고정 D1 runtime은 label-blind·fixed-rule·LLM-free다. 그렇다고 trace가 canonical이거나 prediction이 label 전에 durable하게 저장됐거나 설명이 사람 대상 검증을 마쳤다는 뜻은 아니다.",
+    "D0 is a simple reference detector. SPE is not probability; FAR/hour is not point FPR; the 14-event result is pilot evidence only.": "D0는 단순 기준 detector다. SPE는 확률이 아니고 FAR/hour는 point FPR이 아니며 14-unit 결과는 예비 근거일 뿐이다.",
+    "V2 is test1-informed development, not independent confirmation. Current V1/V2 results do not establish that Detector-plus-Rule is generally useless.": "V2는 test1-informed development이며 독립 확인이 아니다. 현재 V1/V2 결과로 Detector+Rule이 일반적으로 쓸모없다고 결론 내릴 수 없다.",
+    "NOT_ESTABLISHED": "확립되지 않음 (NOT_ESTABLISHED)",
+    "SEMANTICALLY_EQUIVALENT": "의미상 동등 (SEMANTICALLY_EQUIVALENT)",
+    "FAIR_WITH_LIMITATIONS": "한계를 전제로 비교 가능 (FAIR_WITH_LIMITATIONS)",
+    "STRONG_SUPPORTED": "강한 근거로 지원됨 (STRONG_SUPPORTED)",
+    "PARTIAL_MODERATE": "부분적으로 가능 (PARTIAL_MODERATE)",
+    "NOT_DEMONSTRATED_PARTIALLY_PREPARED": "아직 시연되지 않았고 일부 준비됨",
+    "NOT_DEMONSTRATED_BLOCKED": "아직 시연되지 않았고 현재 차단됨",
+    "PARTIAL_CODE_ONLY_FULL_SCIENCE_UNAVAILABLE": "코드 범위에서만 부분 가능하며 전체 과학 재현은 불가",
+    "UNAVAILABLE": "결과 없음 (UNAVAILABLE)",
+    "NOT_RETRYABLE_BY_PROTOCOL": "기존 protocol에서 재시도 불가",
+    "STUDY_DESIGN_REQUIRED": "새 연구 설계 필요",
+    "PRESERVED_IMMUTABLE_WITH_EXISTING_QUALIFICATIONS": "기존 조건을 유지한 채 불변 보존",
+    "SEPARATE_PROSPECTIVE_METHOD_CONFIG_AUTHORITY_ENVIRONMENT_AND_EXPERIMENT_IDENTITIES": "향후 method·config·authority·environment·experiment identity를 별도 version으로 분리",
+    "after authority/dependency/schema/entrypoint remediation and before held-out access": "authority·dependency·schema·entrypoint remediation 후, held-out 접근 전에 수행",
+}
+
+
+def _ko_text(value: object) -> str:
+    """Translate only reviewed display copy while preserving unknown registry tokens verbatim."""
+
+    text = str(value)
+    return KOREAN_TEXT.get(text, text)
+
 
 def _badge(status: str, label: str | None = None) -> str:
-    displayed = label or status.replace("_", " ")
+    displayed = label or STATUS_DISPLAY_LABELS.get(status, status)
     return f'<span class="badge {_badge_class(status)}">{_escape(displayed)}</span>'
 
 
@@ -196,10 +473,14 @@ def _cards(
     status_key: str,
     body_keys: Sequence[tuple[str, str]],
     status_labels: Mapping[str, str] | None = None,
+    localized_copy: Mapping[str, tuple[str, str]] | None = None,
 ) -> str:
     rendered: list[str] = []
     for row in rows:
         status = row[status_key]
+        localized = (localized_copy or {}).get(row[id_key])
+        displayed_title = localized[0] if localized else row[title_key]
+        displayed_summary = localized[1] if localized else ""
         searchable = " ".join(str(value) for value in row.values()).lower()
         details = "".join(
             f'<div class="card-field"><dt>{_escape(label)}</dt><dd>{_escape(row[key])}</dd></div>'
@@ -210,10 +491,13 @@ def _cards(
                 (
                     f'<article class="registry-card" data-status="{_escape(status)}" data-search="{_escape(searchable)}">',
                     '<div class="card-heading">',
-                    f'<div><p class="eyebrow">{_escape(row[id_key])}</p><h3>{_escape(row[title_key])}</h3></div>',
+                    f'<div><p class="eyebrow">{_escape(row[id_key])}</p><h3>{_escape(displayed_title)}</h3></div>',
                     _badge(status, (status_labels or {}).get(status)),
                     "</div>",
-                    f"<dl>{details}</dl>",
+                    f'<p class="card-summary">{_escape(displayed_summary)}</p>' if displayed_summary else "",
+                    '<details class="registry-source"><summary>registry 원문 보기</summary>',
+                    f'<p><strong>원문 제목:</strong> {_escape(row[title_key])}</p><dl>{details}</dl>',
+                    "</details>",
                     "</article>",
                 )
             )
@@ -251,7 +535,7 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         | {"CRITICAL"}
     )
     status_options = "".join(
-        f'<option value="{_escape(status)}">{_escape(status.replace("_", " "))}</option>'
+        f'<option value="{_escape(status)}">{_escape(STATUS_DISPLAY_LABELS.get(status, status))}</option>'
         for status in all_statuses
     )
 
@@ -260,85 +544,90 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         title_key="name",
         id_key="component_id",
         status_key="status",
-        body_keys=(("Role", "research_role"), ("Recorded lifecycle token", "lifecycle_stage"), ("Next", "next_action")),
+        body_keys=(("연구 역할", "research_role"), ("기록된 lifecycle token", "lifecycle_stage"), ("다음 조치", "next_action")),
         status_labels=COMPONENT_STATUS_LABELS,
+        localized_copy=COMPONENT_CARD_COPY,
     )
     experiment_cards = _cards(
         data["experiments"],
         title_key="name",
         id_key="experiment_id",
         status_key="status",
-        body_keys=(("Question", "research_question"), ("Evidence", "current_evidence"), ("Limit", "limitations"), ("Next", "next_action")),
+        body_keys=(("연구 질문", "research_question"), ("현재 근거", "current_evidence"), ("한계", "limitations"), ("다음 조치", "next_action")),
         status_labels=EXPERIMENT_STATUS_LABELS,
+        localized_copy=EXPERIMENT_CARD_COPY,
     )
     claim_cards = _cards(
         data["claims"],
         title_key="claim_text",
         id_key="claim_id",
         status_key="status",
-        body_keys=(("Allowed wording", "allowed_wording"), ("Forbidden wording", "forbidden_wording"), ("Validation needed", "validation_needed")),
+        body_keys=(("사용 가능한 문구", "allowed_wording"), ("피해야 할 문구", "forbidden_wording"), ("추가 검증", "validation_needed")),
+        localized_copy=CLAIM_CARD_COPY,
     )
     risk_cards = _cards(
         data["risks"],
         title_key="description",
         id_key="risk_id",
         status_key="severity",
-        body_keys=(("Status", "status"), ("Likelihood", "likelihood"), ("Evidence", "evidence"), ("Mitigation", "mitigation"), ("Owner", "owner")),
+        body_keys=(("상태", "status"), ("발생 가능성", "likelihood"), ("근거", "evidence"), ("완화 조치", "mitigation"), ("담당", "owner")),
+        localized_copy=RISK_CARD_COPY,
     )
     decision_content = _cards(
         unresolved,
         title_key="title",
         id_key="decision_id",
         status_key="status",
-        body_keys=(("Decision", "decision"), ("Reason", "reason")),
-    ) if unresolved else '<p class="empty-state">No unresolved user decisions.</p>'
+        body_keys=(("결정 내용", "decision"), ("필요한 이유", "reason")),
+        localized_copy=DECISION_CARD_COPY,
+    ) if unresolved else '<p class="empty-state">현재 미결정 사용자 항목이 없습니다.</p>'
     event_by_id = {row["event_id"]: row for row in data["timeline"]}
     history_events = [event_by_id[event_id] for event_id in data["history"]["dashboard_event_ids"]]
     history_markup = "".join(
-        f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(row["title"])}</strong><p>{_escape(row["summary"])}</p><small>{_escape(row["source"])} · {_escape(row["notes"])}</small></div>{_badge(row["status"])}</article>'
+        f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(HISTORY_CARD_COPY.get(row["event_id"], (row["title"], row["summary"]))[0])}</strong><p>{_escape(HISTORY_CARD_COPY.get(row["event_id"], (row["title"], row["summary"]))[1])}</p><details class="registry-source"><summary>registry 원문 보기</summary><small>{_escape(row["title"])} · {_escape(row["source"])} · {_escape(row["notes"])}</small></details></div>{_badge(row["status"])}</article>'
         for row in history_events
     )
     active_decisions = [row for row in data["decisions"] if row["status"] in {"ACTIVE", "CONDITIONAL"}]
     key_decisions_markup = "".join(
-        f'<li><strong>{_escape(row["decision_id"])} · {_escape(row["title"])}</strong><span>{_escape(row["current_relevance"])}</span></li>'
+        f'<li><strong>{_escape(row["decision_id"])} · {_escape(DECISION_CARD_COPY.get(row["decision_id"], (row["title"], row["current_relevance"]))[0])}</strong><span>{_escape(DECISION_CARD_COPY.get(row["decision_id"], (row["title"], row["current_relevance"]))[1])}</span></li>'
         for row in active_decisions[-8:]
     )
     recent = current_events[:3]
     recent_markup = "".join(
-        f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(row["title"])}</strong><p>{_escape(row["summary"])}</p></div>{_badge(row["status"])}</article>'
+        f'<article class="timeline-item"><time>{_escape(row["date"])}</time><div><strong>{_escape(HISTORY_CARD_COPY.get(row["event_id"], (row["title"], row["summary"]))[0])}</strong><p>{_escape(HISTORY_CARD_COPY.get(row["event_id"], (row["title"], row["summary"]))[1])}</p><details class="registry-source"><summary>registry 원문 보기</summary><small>{_escape(row["title"])} · {_escape(row["summary"])}</small></details></div>{_badge(row["status"])}</article>'
         for row in recent
     )
     phases = "".join(
-        f'<li class="phase-step {"phase-current" if phase == state["current_phase"] else ""}">{_escape(phase.replace("_", " "))}</li>'
+        f'<li class="phase-step {"phase-current" if phase == state["current_phase"] else ""}">{_escape(PHASE_DISPLAY_LABELS.get(phase, phase))}</li>'
         for phase in state["phase_progression"]
     )
     components = data["components"]
     component_counts = {
-        "Total": len(components),
-        "Implemented": sum(row["status"].startswith("IMPLEMENTED") for row in components),
-        "Executed": sum(row["executed"] == "true" for row in components),
-        "Evidence-reviewed": sum(row["audited"] == "true" for row in components),
-        "Independently reproduced": sum(row["reproduced"] == "true" for row in components),
+        "전체": len(components),
+        "구현 완료": sum(row["status"].startswith("IMPLEMENTED") for row in components),
+        "실제 실행 완료": sum(row["executed"] == "true" for row in components),
+        "근거 점검 완료 (Evidence-reviewed)": sum(row["audited"] == "true" for row in components),
+        "독립 재현 완료": sum(row["reproduced"] == "true" for row in components),
     }
     experiment_counts = {
-        "Total": len(data["experiments"]),
-        "Pilot": sum(row["status"] == "EXECUTED_AUDITED_PILOT" for row in data["experiments"]),
-        "Unvalidated": sum(row["status"] == "IMPLEMENTED_NOT_EXECUTED" for row in data["experiments"]),
-        "Conditional": sum(row["status"] == "DESIGN_ONLY" for row in data["experiments"]),
+        "전체": len(data["experiments"]),
+        "예비 실험": sum(row["status"] == "EXECUTED_AUDITED_PILOT" for row in data["experiments"]),
+        "미검증": sum(row["status"] == "IMPLEMENTED_NOT_EXECUTED" for row in data["experiments"]),
+        "조건부": sum(row["status"] == "DESIGN_ONLY" for row in data["experiments"]),
     }
     claim_counts = {
-        "Supported implementation": sum(row["status"] == "SUPPORTED_IMPLEMENTATION" for row in data["claims"]),
-        "Pilot only": sum(row["status"] == "PILOT_ONLY" for row in data["claims"]),
-        "Unvalidated": sum(row["status"] == "UNVALIDATED" for row in data["claims"]),
-        "Not supported": sum(row["status"] == "NOT_SUPPORTED" for row in data["claims"]),
-        "Conditional": sum(row["status"] == "CONDITIONAL" for row in data["claims"]),
+        "구현 근거로 지원됨": sum(row["status"] == "SUPPORTED_IMPLEMENTATION" for row in data["claims"]),
+        "예비 실험 수준": sum(row["status"] == "PILOT_ONLY" for row in data["claims"]),
+        "미검증": sum(row["status"] == "UNVALIDATED" for row in data["claims"]),
+        "현재 근거로 지원되지 않음": sum(row["status"] == "NOT_SUPPORTED" for row in data["claims"]),
+        "조건부": sum(row["status"] == "CONDITIONAL" for row in data["claims"]),
     }
     risk_counts = {
-        "Critical / high": sum(row["severity"] in {"CRITICAL", "HIGH"} for row in data["risks"]),
-        "Medium": sum(row["severity"] == "MEDIUM" for row in data["risks"]),
-        "Low": sum(row["severity"] == "LOW" for row in data["risks"]),
+        "치명적·높음": sum(row["severity"] in {"CRITICAL", "HIGH"} for row in data["risks"]),
+        "중간": sum(row["severity"] == "MEDIUM" for row in data["risks"]),
+        "낮음": sum(row["severity"] == "LOW" for row in data["risks"]),
     }
-    summaries = (("Components", component_counts), ("Experiments", experiment_counts), ("Claims", claim_counts), ("Risks", risk_counts))
+    summaries = (("구현 구성요소", component_counts), ("실험", experiment_counts), ("연구 주장", claim_counts), ("위험", risk_counts))
     summary_markup = "".join(
         '<article class="summary-card"><h3>' + _escape(title) + "</h3><dl>" + "".join(
             f'<div><dt>{_escape(label)}</dt><dd>{count}</dd></div>' for label, count in counts.items()
@@ -349,16 +638,16 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     architecture_markup = "".join(
         "\n".join((
             f'<details class="architecture-detail" id="arch-{_slug(row["section_id"])}">',
-            f'<summary><span>{_escape(row["section_id"])}</span><strong>{_escape(row["name"])}</strong></summary>',
+            f'<summary><span>{_escape(row["section_id"])}</span><strong>{_escape(ARCHITECTURE_DISPLAY_LABELS.get(row["section_id"], row["name"]))}</strong></summary>',
             '<dl class="architecture-contract">',
-            f'<div><dt>ROLE</dt><dd>{_escape(row["role"])}</dd></div>',
-            f'<div><dt>INPUT</dt><dd>{_escape(row["input"])}</dd></div>',
-            f'<div><dt>OUTPUT</dt><dd>{_escape(row["output"])}</dd></div>',
-            f'<div><dt>CODE</dt><dd><code>{_escape(row["code"])}</code></dd></div>',
-            f'<div><dt>EXECUTED?</dt><dd>{_badge("IMPLEMENTED_EXECUTED" if row["executed"] == "true" else "UNKNOWN", row["executed"].upper())}</dd></div>',
-            f'<div><dt>FROZEN RESULT USED?</dt><dd>{_badge("AUDITED" if row["frozen_result_used"] == "true" else "DESIGN_ONLY", row["frozen_result_used"].upper())}</dd></div>',
-            f'<div><dt>VALIDATION STATE</dt><dd>{_escape(row["validation_state"])}</dd></div>',
-            f'<div><dt>NEXT DEEP REVIEW</dt><dd>{_escape(row["next_deep_review"])}</dd></div>',
+            f'<div><dt>역할</dt><dd>{_escape(row["role"])}</dd></div>',
+            f'<div><dt>입력</dt><dd>{_escape(row["input"])}</dd></div>',
+            f'<div><dt>출력</dt><dd>{_escape(row["output"])}</dd></div>',
+            f'<div><dt>코드</dt><dd><code>{_escape(row["code"])}</code></dd></div>',
+            f'<div><dt>실행 여부</dt><dd>{_badge("IMPLEMENTED_EXECUTED" if row["executed"] == "true" else "UNKNOWN", "예" if row["executed"] == "true" else "아니오")}</dd></div>',
+            f'<div><dt>고정 결과 사용 여부</dt><dd>{_badge("AUDITED" if row["frozen_result_used"] == "true" else "DESIGN_ONLY", "예" if row["frozen_result_used"] == "true" else "아니오")}</dd></div>',
+            f'<div><dt>검증 상태</dt><dd>{_escape(row["validation_state"])}</dd></div>',
+            f'<div><dt>다음 심층 점검</dt><dd>{_escape(row["next_deep_review"])}</dd></div>',
             '</dl></details>',
         ))
         for row in data["architecture_details"]
@@ -366,11 +655,11 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
     governance = state["data_governance"]
     split_markup = "".join(
         '<article class="summary-card"><p class="eyebrow">'
-        + _escape(item["badge"])
+        + _escape({"NORMAL FIT": "정상 fit", "CONFIRMATION / CALIBRATION": "확인·보정", "SANITY": "정상 sanity", "PILOT EVALUATION": "예비 평가", "HELD-OUT / UNAVAILABLE": "held-out·결과 없음"}.get(item["badge"], item["badge"]))
         + "</p><h3>"
         + _escape(item["id"])
         + "</h3><p>"
-        + _escape(item["role"])
+        + _escape(_ko_text(item["role"]))
         + "</p></article>"
         for item in governance["splits"]
     )
@@ -379,13 +668,13 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         '<article class="summary-card"><p class="eyebrow">'
         + _escape(arm["id"])
         + "</p><h3>"
-        + _escape(arm["method"])
+        + _escape(_ko_text(arm["method"]))
         + "</h3><dl>"
-        + f'<div><dt>INPUT</dt><dd>{_escape(arm["input"])}</dd></div>'
-        + f'<div><dt>OUTPUT</dt><dd>{_escape(arm["output"])}</dd></div>'
+        + f'<div><dt>입력</dt><dd>{_escape(_ko_text(arm["input"]))}</dd></div>'
+        + f'<div><dt>출력</dt><dd>{_escape(_ko_text(arm["output"]))}</dd></div>'
         + f'<div><dt>TOP-K</dt><dd>{_escape(arm["top_k"])}</dd></div>'
-        + f'<div><dt>FROZEN EXECUTION?</dt><dd>{_badge("AUDITED", "YES")}</dd></div>'
-        + f'<div><dt>SCIENTIFIC VALIDATION?</dt><dd>{_badge("UNVALIDATED", arm["scientific_validation"])}</dd></div>'
+        + f'<div><dt>고정 실행 여부</dt><dd>{_badge("AUDITED", "예")}</dd></div>'
+        + f'<div><dt>과학적 검증 여부</dt><dd>{_badge("UNVALIDATED")}</dd></div>'
         + "</dl></article>"
         for arm in discovery["arms"]
     )
@@ -403,33 +692,33 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
         '<article class="summary-card"><p class="eyebrow">'
         + _escape(experiment)
         + '</p><h3>'
-        + _escape(status)
+        + _escape(STATUS_DISPLAY_LABELS.get(status, status))
         + '</h3></article>'
         for experiment, status in readiness["experiment_gates"].items()
     )
     construction_arms = (
-        ("T0", "NO", "0", "NONE", "0", "42/42 accepted proposals"),
-        ("T1", "YES", "1", "NONE", "0", "42/42 accepted proposals"),
-        ("T1-B", "YES", "3 fixed", "NO FEEDBACK", "0", "42/42 selected proposals"),
-        ("T2", "YES", "3 max", "REVISE / RETRIEVE", "0", "39/42 accepted; 3 no_rule"),
+        ("T0", "아니오", "0", "없음", "0", "42/42 proposal 승인"),
+        ("T1", "예", "1", "없음", "0", "42/42 proposal 승인"),
+        ("T1-B", "예", "3회 고정", "feedback 없음", "0", "42/42 proposal 선택"),
+        ("T2", "예", "최대 3회", "REVISE / RETRIEVE", "0", "39/42 승인; 3 no_rule"),
     )
     construction_markup = "".join(
         '<article class="summary-card"><p class="eyebrow">'
         + _escape(arm)
         + "</p><dl>"
-        + f'<div><dt>LLM?</dt><dd>{_escape(llm)}</dd></div>'
-        + f'<div><dt>CALL BUDGET</dt><dd>{_escape(budget)}</dd></div>'
-        + f'<div><dt>FEEDBACK CAPABILITY</dt><dd>{_escape(feedback)}</dd></div>'
-        + f'<div><dt>OBSERVED FEEDBACK</dt><dd>{_escape(observed)}</dd></div>'
-        + f'<div><dt>FROZEN OUTCOME</dt><dd>{_escape(outcome)}</dd></div>'
-        + '<div><dt>SCIENTIFIC CLAIM</dt><dd>IMPLEMENTATION / PILOT ONLY</dd></div>'
+        + f'<div><dt>LLM 사용</dt><dd>{_escape(llm)}</dd></div>'
+        + f'<div><dt>호출 예산</dt><dd>{_escape(budget)}</dd></div>'
+        + f'<div><dt>피드백 기능</dt><dd>{_escape(feedback)}</dd></div>'
+        + f'<div><dt>실제 피드백</dt><dd>{_escape(observed)}</dd></div>'
+        + f'<div><dt>고정 결과</dt><dd>{_escape(outcome)}</dd></div>'
+        + '<div><dt>과학적 주장 범위</dt><dd>구현 / 예비 실험 수준</dd></div>'
         + "</dl></article>"
         for arm, llm, budget, feedback, observed, outcome in construction_arms
     )
     marker = _source_marker(state, digest)
 
     return f"""<!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -437,401 +726,407 @@ def render_dashboard(data: Mapping[str, Any], digest: str) -> str:
   <meta name="rcc-registry-digest" content="{digest}">
   <meta name="rcc-scientific-authority" content="{_escape(authority['commit'])}">
   <!-- {marker} -->
-  <title>Research Control Center</title>
+  <title>연구 통제 센터 (Research Control Center)</title>
   <link rel="stylesheet" href="assets/rcc.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   <header class="hero">
     <div class="hero-inner">
       <p class="eyebrow">RESEARCH CONTROL CENTER · RCC {_escape(state['rcc_version'])}</p>
-      <h1>Thesis research, with evidence boundaries visible.</h1>
-      <p class="hero-summary">{_escape(state['current_phase_statement'])}</p>
+      <h1>근거와 한계를 함께 보는 논문 연구 현황</h1>
+      <p class="hero-summary">아키텍처와 예비 실행은 완료됐지만, 확대 평가·독립 재현·held-out 일반화는 아직 완료되지 않았습니다.</p>
+      <aside class="principle">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</aside>
+      <aside class="principle">현재 성능 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 실험 결과이며, 최종 성능 검증 결과가 아닙니다.</aside>
       <div class="authority-strip">
-        <div><span>Scientific authority</span><strong title="{_escape(authority['commit'])}">{_escape(authority['ref'])} @ {_short_commit(authority['commit'])}</strong></div>
-        <div class="authority-warning"><span>Current historical checkout</span><strong title="{_escape(checkout['commit'])}">{_escape(checkout['ref'])} @ {_short_commit(checkout['commit'])} · NOT AUTHORITATIVE</strong></div>
+        <div><span>공식 과학 기준 (Scientific authority)</span><strong title="{_escape(authority['commit'])}">{_escape(authority['ref'])} @ {_short_commit(authority['commit'])}</strong></div>
+        <div class="authority-warning"><span>현재 과거 checkout</span><strong title="{_escape(checkout['commit'])}">{_escape(checkout['ref'])} @ {_short_commit(checkout['commit'])} · 공식 기준 아님</strong></div>
       </div>
-      <ol class="phase-track" aria-label="Research phase">{phases}</ol>
+      <ol class="phase-track" aria-label="연구 단계">{phases}</ol>
     </div>
   </header>
 
-  <nav class="section-nav" aria-label="Dashboard sections">
-    <a href="#current-state">Current state</a><a href="#pre-validation-readiness">Readiness</a><a href="#data-governance">Data</a><a href="#my-tasks">My tasks</a>
-    <a href="#candidate-discovery">Discovery</a><a href="#relation-numeric">Relation / Numeric</a><a href="#rule-construction">Rule construction</a><a href="#verifier-common42">Verifier</a><a href="#runtime-trace-explanation">Runtime / Trace</a><a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">Metrics</a><a href="#outer-reproducibility">OUTER / Repro</a><a href="#decisions">Decisions</a><a href="#architecture">Architecture</a>
-    <a href="#components">Components</a><a href="#experiments">Experiments</a>
-    <a href="#claims">Claims</a><a href="#risks">Risks</a><a href="#history">History</a>
+  <nav class="section-nav" aria-label="대시보드 메뉴">
+    <a href="#current-state">현재 연구 상태</a><a href="#my-tasks">내가 해야 할 일</a><a href="#decisions">결정이 필요한 사항</a>
+    <a href="#history">연구 진행 이력</a><a href="#architecture">전체 아키텍처</a><a href="#components">구현 현황</a>
+    <a href="#experiments">실험 현황</a><a href="#claims">연구 주장과 근거</a><a href="#risks">위험 및 점검사항</a>
+    <a href="#source-authority">공식 기준 코드·근거</a><a href="#outer-reproducibility">재현성</a>
+    <a href="#pre-validation-readiness">본격 검증 준비 현황</a><a href="#recent-change">최근 변경사항</a>
+    <a href="#data-governance">데이터</a><a href="#candidate-discovery">후보 탐색</a><a href="#relation-numeric">관계·수치 권한</a>
+    <a href="#rule-construction">규칙 구성</a><a href="#verifier-common42">검증기(Verifier)</a><a href="#runtime-trace-explanation">실행·추적(Runtime·Trace)</a>
+    <a href="#d0-detector">D0</a><a href="#d1-evaluation">D1</a><a href="#d2-fusion">D2</a><a href="#metrics-results">성능 지표(Metrics)</a>
   </nav>
 
   <main id="main">
     <section id="current-state" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">01</p><h2>CURRENT STATE</h2></div>
-      <div class="two-column"><div><h3>Established</h3>{_bullet_list(state['established_facts'])}</div><div><h3>Not established</h3>{_bullet_list(state['not_established'])}</div></div>
+      <div class="section-heading"><p class="eyebrow">01</p><h2>현재 연구 상태</h2></div>
+      <div class="two-column"><div><h3>현재 근거로 확인된 것</h3>{_bullet_list(_ko_text(item) for item in state['established_facts'])}</div><div><h3>아직 확인되지 않은 것</h3>{_bullet_list(_ko_text(item) for item in state['not_established'])}</div></div>
       <div class="status-snapshot">
-        <div><span>Engineering</span><strong>{_escape(state['research_status_summary']['engineering'])}</strong></div>
-        <div><span>Result integrity</span><strong>{_escape(state['research_status_summary']['result_integrity'])}</strong></div>
-        <div><span>Scientific validation</span><strong>{_escape(state['research_status_summary']['scientific_validation'])}</strong></div>
-        <div><span>Reproducibility</span><strong>{_escape(state['research_status_summary']['reproducibility'])}</strong></div>
-        <div><span>Generalization</span><strong>{_escape(state['research_status_summary']['generalization'])}</strong></div>
-        <div><span>Claims</span><strong>{_escape(state['research_status_summary']['claims'])}</strong></div>
+        <div><span>구현 상태</span><strong>{_escape(_ko_text(state['research_status_summary']['engineering']))}</strong></div>
+        <div><span>결과 무결성</span><strong>{_escape(_ko_text(state['research_status_summary']['result_integrity']))}</strong></div>
+        <div><span>과학적 검증</span><strong>{_escape(_ko_text(state['research_status_summary']['scientific_validation']))}</strong></div>
+        <div><span>재현성</span><strong>{_escape(_ko_text(state['research_status_summary']['reproducibility']))}</strong></div>
+        <div><span>일반화</span><strong>{_escape(_ko_text(state['research_status_summary']['generalization']))}</strong></div>
+        <div><span>연구 주장</span><strong>{_escape(_ko_text(state['research_status_summary']['claims']))}</strong></div>
       </div>
       <div class="summary-grid">{summary_markup}</div>
-      <p class="summary-note">These counts are not a single completion percentage. Component Evidence-reviewed means source or evidence status was reviewed; explicit scientific result-integrity audits are shown separately. Scientific claim counts come only from <code>claims.csv</code>.</p>
-      <aside class="principle">Code existence, execution, evidence review, independent reproduction, and scientific validation are separate states.</aside>
+      <p class="summary-note">이 개수는 하나의 연구 완료율이 아닙니다. 근거 점검 완료(Evidence-reviewed)는 source 또는 evidence 상태를 확인했다는 뜻이며, 과학적 성능 검증과 결과 무결성 확인은 별도입니다. 연구 주장 개수는 <code>claims.csv</code>에서만 가져옵니다.</p>
+      <aside class="principle">구현, 실행, 근거 점검, 결과 무결성, 독립 재현, 과학적 검증은 서로 다른 상태입니다.</aside>
     </section>
 
     <section id="pre-validation-readiness" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">GAP-000</p><h2>PRE-VALIDATION READINESS</h2></div>
-      <p class="architecture-flow">120 RAW FINDINGS → 19 ROOT ISSUES → DISPOSITION / PRIORITY → EXPERIMENT GATES</p>
+      <div class="section-heading"><p class="eyebrow">GAP-000</p><h2>본격 검증 준비 현황</h2></div>
+      <p class="architecture-flow">120개 원시 finding → 19개 root issue → 조치 분류·우선순위 → 실험 gate</p>
       <div class="status-snapshot">
-        <div><span>Primary disposition: global pre-validation fixes</span><strong>{readiness['disposition_counts']['P0_FIX_BEFORE_EXPANDED_VALIDATION']}</strong></div>
-        <div><span>Primary disposition: experiment-specific fixes</span><strong>{readiness['disposition_counts']['P1_FIX_BEFORE_SPECIFIC_EXPERIMENT']}</strong></div>
-        <div><span>Experiment requirements</span><strong>{readiness['disposition_counts']['EXPERIMENT_DESIGN_REQUIREMENT']}</strong></div>
-        <div><span>Engineering hardening</span><strong>{readiness['disposition_counts']['ENGINEERING_HARDENING']}</strong></div>
-        <div><span>Urgency priority P0 / P1</span><strong>{readiness['priority_counts']['P0']} / {readiness['priority_counts']['P1']}</strong></div>
-        <div><span>Urgency priority P2 / P3</span><strong>{readiness['priority_counts']['P2']} / {readiness['priority_counts']['P3']}</strong></div>
+        <div><span>주 조치 분류: 확대 검증 전 수정</span><strong>{readiness['disposition_counts']['P0_FIX_BEFORE_EXPANDED_VALIDATION']}</strong></div>
+        <div><span>주 조치 분류: 특정 실험 전 수정</span><strong>{readiness['disposition_counts']['P1_FIX_BEFORE_SPECIFIC_EXPERIMENT']}</strong></div>
+        <div><span>실험 설계 요구사항</span><strong>{readiness['disposition_counts']['EXPERIMENT_DESIGN_REQUIREMENT']}</strong></div>
+        <div><span>엔지니어링 강화</span><strong>{readiness['disposition_counts']['ENGINEERING_HARDENING']}</strong></div>
+        <div><span>긴급도 P0 / P1</span><strong>{readiness['priority_counts']['P0']} / {readiness['priority_counts']['P1']}</strong></div>
+        <div><span>긴급도 P2 / P3</span><strong>{readiness['priority_counts']['P2']} / {readiness['priority_counts']['P3']}</strong></div>
       </div>
-      <div class="two-column"><div><h3>Urgency P0 — implementation / contract</h3>{_bullet_list(readiness['p0_global_fixes'])}</div><div><h3>Urgency P0 — experiment design</h3>{_bullet_list(readiness['p0_design_gates'])}</div></div>
-      <h3>Experiment gates</h3><div class="summary-grid">{gate_markup}</div>
-      <aside class="principle">Past pilot: {_escape(readiness['past_pilot'])}. {_escape(readiness['scientific_versioning'])}</aside>
-      <aside class="principle">This readiness view is a triage map, not a completion percentage and not authorization to run an experiment.</aside>
-      <p><a href="../architecture/gap_000_pre_validation/GAP_000_REPORT.md">Open the triage report</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv">Remediation matrix</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv">Experiment gates</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_MINIMUM_THESIS_PATH.md">Minimum thesis path</a></p>
-      <p><strong>Next:</strong> {_escape(state['exact_next_task'])} · {_escape(readiness['arch011_position'])}</p>
+      <div class="two-column"><div><h3>긴급도 P0 — 구현·계약</h3>{_bullet_list(_ko_text(item) for item in readiness['p0_global_fixes'])}</div><div><h3>긴급도 P0 — 실험 설계</h3>{_bullet_list(_ko_text(item) for item in readiness['p0_design_gates'])}</div></div>
+      <h3>실험 gate</h3><div class="summary-grid">{gate_markup}</div>
+      <aside class="principle">기존 예비 실험: {_escape(_ko_text(readiness['past_pilot']))}. {_escape(_ko_text(readiness['scientific_versioning']))}</aside>
+      <aside class="principle">이 화면은 triage 지도이며 완료율이 아니고, 실험 실행 권한도 아닙니다.</aside>
+      <p><a href="../architecture/gap_000_pre_validation/GAP_000_REPORT.md">triage 보고서 열기</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_REMEDIATION_MATRIX.csv">remediation matrix</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_EXPERIMENT_GATES.csv">실험 gate</a> · <a href="../architecture/gap_000_pre_validation/GAP_000_MINIMUM_THESIS_PATH.md">최소 논문 경로</a></p>
+      <p><strong>다음:</strong> {_escape(state['exact_next_task'])} · {_escape(_ko_text(readiness['arch011_position']))}</p>
     </section>
 
     <section id="relation-numeric" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">RELATION</p><h2>RELATION &amp; NUMERIC AUTHORITY</h2></div>
+      <div class="section-heading"><p class="eyebrow">RELATION</p><h2>관계 프로파일링과 수치 권한 (Numeric Authority)</h2></div>
       <div class="status-snapshot">
-        <div><span>Candidates</span><strong>{relation['candidate_pairs']}</strong></div>
-        <div><span>Profiled opportunities</span><strong>{relation['directional_opportunities']}</strong></div>
-        <div><span>Fit-supported</span><strong>{relation['fit_supported_pair_contexts']} contexts / {relation['fit_supported_directions']} directions</strong></div>
-        <div><span>Confirmed</span><strong>{relation['confirmed_pair_contexts']} contexts / {relation['confirmed_directions']} relations</strong></div>
-        <div><span>Construction-bound</span><strong>462 references</strong></div>
-        <div><span>Runtime-bound</span><strong>420 references + descriptor horizon</strong></div>
+        <div><span>후보 pair</span><strong>{relation['candidate_pairs']}</strong></div>
+        <div><span>프로파일링 기회</span><strong>{relation['directional_opportunities']}</strong></div>
+        <div><span>fit 근거 통과</span><strong>{relation['fit_supported_pair_contexts']} contexts / {relation['fit_supported_directions']} directions</strong></div>
+        <div><span>최종 확인</span><strong>{relation['confirmed_pair_contexts']} contexts / {relation['confirmed_directions']} relations</strong></div>
+        <div><span>구성 단계 결속</span><strong>462 references</strong></div>
+        <div><span>runtime 결속</span><strong>420 references + descriptor horizon</strong></div>
       </div>
       <div class="two-column">
-        <div><h3>Profiling and confirmation</h3><dl class="architecture-contract">
-          <div><dt>SOURCE SPLIT</dt><dd>{_escape(relation['profiling_splits'])}</dd></div>
-          <div><dt>SOURCE EVENT</dt><dd>{_escape(relation['source_event'])}</dd></div>
-          <div><dt>TARGET RESPONSE</dt><dd>{_escape(relation['target_response'])}</dd></div>
-          <div><dt>CONFIRMATION</dt><dd>{_escape(relation['confirmation_split'])}</dd></div>
+        <div><h3>프로파일링과 확인</h3><dl class="architecture-contract">
+          <div><dt>source split</dt><dd>{_escape(relation['profiling_splits'])}</dd></div>
+          <div><dt>source event</dt><dd>source의 앞·뒤 5-row median, 정상 근거 threshold·stability, 동일 source refractory, 전체 source isolation</dd></div>
+          <div><dt>target response</dt><dd>고정된 5개 row horizon 중 하나에서 5-row baseline과 3-row response median을 비교</dd></div>
+          <div><dt>확인 단계</dt><dd>normal train3에서 identity와 parameter를 고정한 채 확인하며 재탐색·재조정하지 않음</dd></div>
         </dl></div>
-        <div><h3>Numeric custody</h3><dl class="architecture-contract">
-          <div><dt>CONSTRUCTION</dt><dd>{_escape(relation['construction_authority'])}</dd></div>
-          <div><dt>RUNTIME</dt><dd>{_escape(relation['runtime_authority'])}</dd></div>
-          <div><dt>RELATIONSHIP</dt><dd>{_escape(relation['authority_relationship'])}</dd></div>
-          <div><dt>TRACEABILITY</dt><dd>{_escape(relation['traceability'])}</dd></div>
+        <div><h3>수치 보관·결속</h3><dl class="architecture-contract">
+          <div><dt>구성 단계</dt><dd>42 relations × 구성 전용 reference 11개 = 462 bindings</dd></div>
+          <div><dt>runtime</dt><dd>별도 version의 normal-only MAIN registry: 42 relations × 10 roles = 420 records; 선택 horizon은 canonical descriptor에 유지</dd></div>
+          <div><dt>두 권한의 관계</dt><dd>{_escape(relation['authority_relationship'])}</dd></div>
+          <div><dt>근거 추적 (Traceability)</dt><dd>{_escape(relation['traceability'])}</dd></div>
         </dl></div>
       </div>
-      <aside class="principle">{_escape(relation['warning'])}</aside>
-      <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">Open the deep relation/numeric audit</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">Construction/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">Relation/numeric mismatches</a></p>
-      <p><strong>Next deep review:</strong> {_escape(relation['next_deep_review'])}</p>
+      <aside class="principle">{_escape(_ko_text(relation['warning']))}</aside>
+      <p><a href="../architecture/03_relation_and_numeric/ARCH_003_REPORT.md">관계·수치 심층 점검 열기</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_CONSTRUCTION_RUNTIME_AUTHORITY.md">구성/runtime authority</a> · <a href="../architecture/03_relation_and_numeric/ARCH_003_MISMATCHES.md">관계·수치 불일치</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(relation['next_deep_review']))}</p>
     </section>
 
     <section id="rule-construction" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">RULE</p><h2>EVIDENCE-BOUND RULE CONSTRUCTION</h2></div>
-      <p class="architecture-flow">Evidence Pack → closed Rule DSL → T0 / T1 / T1-B / T2 → deterministic validity handoff</p>
-      <div class="two-column"><div><h3>What enters</h3><p>{_escape(construction['evidence_view'])}</p></div><div><h3>What stays out</h3><p>{_escape(construction['withheld'])}</p></div></div>
+      <div class="section-heading"><p class="eyebrow">RULE</p><h2>근거에 결속된 규칙 구성</h2></div>
+      <p class="architecture-flow">근거 묶음(Evidence Pack) → 닫힌 Rule DSL → T0 / T1 / T1-B / T2 → 결정론적 validity handoff</p>
+      <div class="two-column"><div><h3>입력되는 근거</h3><p>normal-only confirmed relation 42개, 고정 horizon, 승인된 numeric value/reference 10개, provenance identity, 제한된 process metadata</p></div><div><h3>의도적으로 제외되는 정보</h3><p>raw HAI row·label·attack·test/utility outcome·후보 arm 성능·D0/D1 결과·runtime authority</p></div></div>
       <div class="summary-grid">{construction_markup}</div>
-      <aside class="principle">{_escape(construction['warning'])}</aside>
-      <aside class="principle">{_escape(construction['agentic_claim'])}</aside>
-      <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">Open the deep construction audit</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL boundary</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic claim boundary</a></p>
-      <p><strong>Next deep review:</strong> {_escape(construction['next_deep_review'])}</p>
+      <aside class="principle">{_escape(_ko_text(construction['warning']))}</aside>
+      <aside class="principle">{_escape(_ko_text(construction['agentic_claim']))}</aside>
+      <p><a href="../architecture/04_rule_construction/ARCH_004_REPORT.md">규칙 구성 심층 점검 열기</a> · <a href="../architecture/04_rule_construction/ARCH_004_RULE_DSL.md">Rule DSL 경계</a> · <a href="../architecture/04_rule_construction/ARCH_004_AGENTIC_CLAIM_BOUNDARY.md">Agentic 주장 경계</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(construction['next_deep_review']))}</p>
     </section>
 
     <section id="verifier-common42" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">VERIFIER</p><h2>VERIFIER / COMMON-42 / AUTHORIZATION</h2></div>
+      <div class="section-heading"><p class="eyebrow">VERIFIER</p><h2>결정론적 verifier·COMMON-42·실행 권한</h2></div>
       <p class="architecture-flow">Proposal → Task Validity → Executable Equivalence → COMMON-42 V4 Portfolio → Evaluator Authority → Committed D1 Grant</p>
       <div class="status-snapshot">
-        <div><span>Canonical Verifier</span><strong>20 deterministic stages</strong></div>
-        <div><span>Task ↔ Canonical</span><strong>PARTIALLY OVERLAPPING</strong></div>
+        <div><span>Canonical Verifier</span><strong>결정론적 20단계</strong></div>
+        <div><span>task와 canonical 관계</span><strong>부분적으로 겹치지만 동등하지 않음</strong></div>
         <div><span>COMMON-42</span><strong>42 V4 descriptors</strong></div>
-        <div><span>T2 utility</span><strong>NOT AUTHORIZED</strong></div>
-        <div><span>Frozen D1 authority</span><strong>V4 + evaluator + committed grant</strong></div>
-        <div><span>Preferred D1 term</span><strong>{_escape(verifier['preferred_d1_term'])}</strong></div>
+        <div><span>T2 utility</span><strong>권한 없음 (NOT AUTHORIZED)</strong></div>
+        <div><span>고정 D1 authority</span><strong>V4 + evaluator + committed grant</strong></div>
+        <div><span>D1 권장 명칭</span><strong>검증된 관계 규칙 단독 방식 (Verified Relational Rule-only)</strong></div>
       </div>
-      <div class="two-column"><div><h3>What is bound</h3><dl class="architecture-contract">
-        <div><dt>COMMON-42</dt><dd>{_escape(verifier['common42'])}</dd></div>
-        <div><dt>D1 AUTHORITY</dt><dd>{_escape(verifier['d1_authority'])}</dd></div>
-        <div><dt>NUMERIC REBINDING</dt><dd>{_escape(verifier['numeric_rebinding'])}</dd></div>
-      </dl></div><div><h3>What remains separate</h3><dl class="architecture-contract">
-        <div><dt>TASK VS CANONICAL</dt><dd>{_escape(verifier['task_canonical_relationship'])}</dd></div>
-        <div><dt>T2</dt><dd>{_escape(verifier['t2_boundary'])}</dd></div>
-        <div><dt>NO_RULE</dt><dd>{_escape(verifier['no_rule'])}</dd></div>
+      <div class="two-column"><div><h3>결속되는 항목</h3><dl class="architecture-contract">
+        <div><dt>COMMON-42</dt><dd>T0·T1·T1-B가 공유하는 실행 projection을 나타내며 normal-only runtime numeric authority에 다시 결속된 V4 CanonicalRuleDescriptorV4 42개</dd></div>
+        <div><dt>D1 AUTHORITY</dt><dd>고정 D1은 V4 authority·evaluator bundle·private numeric resolver custody·committed one-attempt INNER grant를 사용했고 canonical RuntimeAuthorizationBundleV1은 사용하지 않음</dd></div>
+        <div><dt>NUMERIC REBINDING</dt><dd>집중 점검에서 construction/runtime 공유 value 420개가 정확히 일치했으며 runtime reference·authority identity는 별도로 다시 결속되고 horizon은 descriptor에 유지됨</dd></div>
+      </dl></div><div><h3>계속 분리되는 항목</h3><dl class="architecture-contract">
+        <div><dt>TASK VS CANONICAL</dt><dd>부분적으로 겹치지만 설계상 동등하지 않으며, 고정 construction/D1 경로에는 proposal→DelayedResponseRuleV1 lossless bridge가 추적되지 않음</dd></div>
+        <div><dt>T2</dt><dd>T2는 utility authority에서 제외됨. accepted projection 39개는 COMMON counterpart와 맞고 3개는 no_rule이며 COMMON-42 수는 바뀌지 않음</dd></div>
+        <div><dt>NO_RULE</dt><dd>고정 T2 세 건은 non-repairable unsupported-variable validity outcome이지만 일반 orchestration은 response·parse·verifier·budget failure를 no_rule로 합칠 수 있음</dd></div>
       </dl></div></div>
-      <aside class="principle">Verifier acceptance is not scientific validation.</aside>
-      <aside class="principle">Verifier acceptance is not runtime authorization.</aside>
-      <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">Open the deep verifier/COMMON-42 audit</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 definition</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">Runtime authorization</a></p>
-      <p><strong>Next deep review:</strong> {_escape(verifier['next_deep_review'])}</p>
+      <aside class="principle">Verifier acceptance는 과학적 검증이 아닙니다.</aside>
+      <aside class="principle">Verifier acceptance는 실행 권한(Runtime Authorization)과도 다릅니다.</aside>
+      <p><a href="../architecture/05_verifier_common42/ARCH_005_REPORT.md">verifier·COMMON-42 심층 점검 열기</a> · <a href="../architecture/05_verifier_common42/ARCH_005_COMMON42.md">COMMON-42 정의</a> · <a href="../architecture/05_verifier_common42/ARCH_005_RUNTIME_AUTHORIZATION.md">실행 권한</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(verifier['next_deep_review']))}</p>
     </section>
 
     <section id="runtime-trace-explanation" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">RUNTIME</p><h2>RULE RUNTIME / TRACE / EXPLANATION</h2></div>
+      <div class="section-heading"><p class="eyebrow">RUNTIME</p><h2>규칙 실행·추적·설명</h2></div>
       <p class="architecture-flow">COMMON-42 → Rule Evaluation → Task Trace → D1 Prediction → In-memory Freeze → Label Access → Metrics</p>
       <div class="status-snapshot">
-        <div><span>Runtime authority</span><strong>V4 TASK-SPECIFIC</strong></div>
-        <div><span>Runtime LLM</span><strong>NO — FROZEN R0/D1</strong></div>
-        <div><span>Determinism</span><strong>{_escape(runtime['determinism'])}</strong></div>
-        <div><span>Trace authority</span><strong>TASK-SPECIFIC / NON-EQUIVALENT</strong></div>
-        <div><span>Durable pre-label freeze</span><strong>NO</strong></div>
-        <div><span>Explanation human validation</span><strong>{_escape(runtime['human_usefulness'])}</strong></div>
+        <div><span>runtime authority</span><strong>V4 TASK-SPECIFIC</strong></div>
+        <div><span>runtime LLM</span><strong>없음 — FROZEN R0/D1</strong></div>
+        <div><span>결정론성</span><strong>{_escape(runtime['determinism'])}</strong></div>
+        <div><span>trace authority</span><strong>TASK-SPECIFIC / NON-EQUIVALENT</strong></div>
+        <div><span>label 전 durable freeze</span><strong>없음</strong></div>
+        <div><span>설명의 인간 대상 검증</span><strong>{_badge("UNVALIDATED")}</strong></div>
       </div>
-      <div class="two-column"><div><h3>Runtime contract</h3><dl class="architecture-contract">
-        <div><dt>AUTHORITY</dt><dd>{_escape(runtime['authority'])}</dd></div>
-        <div><dt>TRIGGER</dt><dd>{_escape(runtime['trigger'])}</dd></div>
-        <div><dt>TARGET RESPONSE</dt><dd>{_escape(runtime['target_response'])}</dd></div>
-        <div><dt>TOLERANCE / PERSISTENCE</dt><dd>{_escape(runtime['tolerance'])} {_escape(runtime['persistence'])}</dd></div>
-      </dl></div><div><h3>Prediction and trace boundary</h3><dl class="architecture-contract">
-        <div><dt>D1 PREDICTION</dt><dd>{_escape(runtime['prediction'])}</dd></div>
-        <div><dt>FREEZE</dt><dd>{_escape(runtime['freeze_classification'])}; durable persistence = NO</dd></div>
-        <div><dt>LABEL ACCESS</dt><dd>{_escape(runtime['label_access'])}</dd></div>
-        <div><dt>TRACE</dt><dd>{_escape(runtime['trace_type'])}; {_escape(runtime['canonical_trace_relationship'])}</dd></div>
-        <div><dt>EXPLANATION</dt><dd>{_escape(runtime['explanation'])}</dd></div>
+      <div class="two-column"><div><h3>runtime 계약</h3><dl class="architecture-contract">
+        <div><dt>실행 근거 권한 (Authority)</dt><dd>고정 D1은 CanonicalRuleDescriptorV4 42개·고정 V4 evaluator bundle·normal-only Utility V4 numeric resolver·committed one-attempt INNER grant로 이루어진 task-specific V4 authority plane을 사용</dd></div>
+        <div><dt>발동 조건 (Trigger)</dt><dd>source 앞·뒤 5-row median, authority-bound magnitude·stability, 방향 일치, 10초 동일-source clustering, ±2초 cross-source isolation</dd></div>
+        <div><dt>대상 반응 (Target Response)</dt><dd>5-row target baseline과 descriptor-bound horizon에서 시작하는 3-row median을 비교하며 increase/decrease의 noise 방향을 구분</dd></div>
+        <div><dt>허용오차·지속성 (Tolerance / Persistence)</dt><dd>source step threshold·stability tolerance·target noise scale은 runtime authority에서 해석한다. 독립 target-persistence predicate는 없고 source post-window 안정성과 3-row target median이 persistence 유사 역할을 한다.</dd></div>
+      </dl></div><div><h3>prediction과 trace 경계</h3><dl class="architecture-contract">
+        <div><dt>D1 PREDICTION</dt><dd>opportunity record 6,031개, anomalous rule record 788개, 고유 alarm decision second 630개, downstream metric episode 626개</dd></div>
+        <div><dt>예측 고정 (Freeze)</dt><dd>D0/D2보다 약한 in-memory pre-label freeze; durable persistence = 없음</dd></div>
+        <div><dt>정답 label 접근 (Label Access)</dt><dd>완성된 label-blind prediction을 검증하고 memory에서 shallow-freeze한 뒤 label-test1을 열며, public prediction byte는 label metric 이후에 저장됨</dd></div>
+        <div><dt>실행 추적 (Trace)</dt><dd><code>task039e3_r2r_real_rule_execution_trace_v1</code> terminal hash preimage와 compact record; canonical RuntimeTraceV1과 동등하지 않음</dd></div>
+        <div><dt>설명 (Explanation)</dt><dd>결정론적 canonical RuntimeTraceV1 renderer는 있지만 고정 V4 D1은 RuntimeTraceV1을 만들거나 renderer를 호출하지 않았고 고정 D1 explanation artifact도 없음</dd></div>
       </dl></div></div>
-      <aside class="principle">{_escape(runtime['warning'])}</aside>
-      <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">Open the deep runtime audit</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze boundary</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">Trace comparison</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">Explanation boundary</a></p>
-      <p><strong>Next deep review:</strong> {_escape(runtime['next_deep_review'])}</p>
+      <aside class="principle">{_escape(_ko_text(runtime['warning']))}</aside>
+      <p><a href="../architecture/06_runtime_trace_explanation/ARCH_006_REPORT.md">runtime 심층 점검 열기</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_D1_FREEZE_BOUNDARY.md">D1 freeze 경계</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_TRACE_SCHEMA.csv">trace 비교</a> · <a href="../architecture/06_runtime_trace_explanation/ARCH_006_EXPLANATION_RENDERER.md">설명 경계</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(runtime['next_deep_review']))}</p>
     </section>
 
     <section id="d0-detector" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">D0</p><h2>PCA-SPE REFERENCE DETECTOR</h2></div>
-      <p class="architecture-flow">normal train1+train2 → scaler/PCA → normal train3 q=.999 calibration → test1 SPE → strict point alarm → durable prediction freeze → label metrics</p>
+      <div class="section-heading"><p class="eyebrow">D0</p><h2>PCA-SPE 기준 탐지기</h2></div>
+      <p class="architecture-flow">normal train1+train2 → scaler/PCA fit → normal train3 q=.999 보정 → test1 SPE → strict point alarm → durable prediction 고정 → label metric</p>
       <div class="status-snapshot">
-        <div><span>Role</span><strong>REFERENCE DETECTOR</strong></div>
-        <div><span>Input</span><strong>{d0['features']} ordered P1 features</strong></div>
-        <div><span>PCA</span><strong>0.95 target → k={d0['selected_components']}</strong></div>
-        <div><span>Calibration</span><strong>train3 · q=.999</strong></div>
-        <div><span>Prediction</span><strong>test1 · PILOT</strong></div>
-        <div><span>Baseline strength</span><strong>{_escape(d0['baseline_strength'])}</strong></div>
+        <div><span>연구 역할</span><strong>기준 탐지기 (Reference Detector)</strong></div>
+        <div><span>입력</span><strong>순서가 고정된 P1 feature {d0['features']}개</strong></div>
+        <div><span>PCA</span><strong>설명 분산 목표 0.95 → k={d0['selected_components']}</strong></div>
+        <div><span>보정 (Calibration)</span><strong>train3 · q=.999</strong></div>
+        <div><span>prediction</span><strong>test1 · 예비 실험</strong></div>
+        <div><span>baseline 수준</span><strong>단순 기준선이며 SOTA가 아님</strong></div>
       </div>
-      <div class="two-column"><div><h3>Model and decision</h3><dl class="architecture-contract">
-        <div><dt>FIT</dt><dd>{_escape(d0['fit_split'])}; labels used = NO</dd></div>
-        <div><dt>STANDARDIZATION</dt><dd>{_escape(d0['standardization'])}</dd></div>
-        <div><dt>SPE</dt><dd>{_escape(d0['spe'])}</dd></div>
-        <div><dt>THRESHOLD</dt><dd>{_escape(d0['threshold'])}</dd></div>
-        <div><dt>COMPARATOR</dt><dd>{_escape(d0['comparator'])}</dd></div>
-      </dl></div><div><h3>Frozen pilot and custody</h3><dl class="architecture-contract">
-        <div><dt>LABEL ORDER</dt><dd>{_escape(d0['prediction_freeze'])}</dd></div>
-        <div><dt>DETERMINISM</dt><dd>{_escape(d0['determinism'])}</dd></div>
-        <div><dt>ATTACK EVENTS</dt><dd>{_escape(d0['attack_event_response'])}</dd></div>
-        <div><dt>NORMAL FAR</dt><dd>{d0['normal_far_episodes_per_hour']} episodes/hour</dd></div>
-        <div><dt>OUTPUT LEVELS</dt><dd>{d0['point_alarms']} point alarms; {d0['alarm_episodes']} alarm episodes; {d0['normal_false_alarm_episodes']} normal false episodes</dd></div>
+      <div class="two-column"><div><h3>model과 판정</h3><dl class="architecture-contract">
+        <div><dt>학습 적합 (Fit)</dt><dd>normal train1 + train2; label 사용 없음</dd></div>
+        <div><dt>표준화 (Standardization)</dt><dd>custom NumPy population mean/std, ddof=0, 1e-12 scale floor</dd></div>
+        <div><dt>SPE</dt><dd>timestamp별 standardized reconstruction residual 제곱합인 nonnegative float64 score</dd></div>
+        <div><dt>임계값 (Threshold)</dt><dd>normal train3 empirical q=0.999 order statistic; interpolation 없음; zero-based q-index 125873</dd></div>
+        <div><dt>비교 연산 (Comparator)</dt><dd><code>score &gt; threshold</code>; equality는 non-alarm</dd></div>
+      </dl></div><div><h3>고정 pilot과 custody</h3><dl class="architecture-contract">
+        <div><dt>label 접근 순서 (Label Order)</dt><dd>{_escape(d0['prediction_freeze'])}</dd></div>
+        <div><dt>결정성 (Determinism)</dt><dd>{_escape(d0['determinism'])}</dd></div>
+        <div><dt>공격 사건 단위 반응 (Attack Events)</dt><dd>{_escape(d0['attack_event_response'])}</dd></div>
+        <div><dt>정상 오경보율 (Normal FAR)</dt><dd>{d0['normal_far_episodes_per_hour']} episodes/hour</dd></div>
+        <div><dt>출력 단위 (Output Levels)</dt><dd>point alarm {d0['point_alarms']}개; alarm episode {d0['alarm_episodes']}개; normal false episode {d0['normal_false_alarm_episodes']}개</dd></div>
       </dl></div></div>
-      <aside class="principle">{_escape(d0['warning'])}</aside>
-      <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">Open the deep D0 audit</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE definition</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">Prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">Output levels</a></p>
-      <p><strong>Next deep review:</strong> {_escape(d0['next_deep_review'])}</p>
+      <aside class="principle">{_escape(_ko_text(d0['warning']))}</aside>
+      <p><a href="../architecture/07_d0_detector/ARCH_007_REPORT.md">D0 심층 점검 열기</a> · <a href="../architecture/07_d0_detector/ARCH_007_SPE_DEFINITION.md">SPE 정의</a> · <a href="../architecture/07_d0_detector/ARCH_007_FREEZE_BOUNDARY.md">prediction freeze</a> · <a href="../architecture/07_d0_detector/ARCH_007_OUTPUT_LEVELS.md">출력 단위</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(d0['next_deep_review']))}</p>
     </section>
 
     <section id="d1-evaluation" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">D1</p><h2>VERIFIED RELATIONAL RULE-ONLY PILOT</h2></div>
-      <p class="architecture-flow">COMMON-42 → label-blind prediction (6,031 opportunities / 788 anomalous records) → label access → 626 episodes → metrics; static prediction audit: 630 unique alarm seconds</p>
+      <div class="section-heading"><p class="eyebrow">D1</p><h2>검증된 관계 규칙 단독 방식 예비 실험</h2></div>
+      <p class="architecture-flow">COMMON-42 → label-blind prediction (opportunity 6,031 / anomalous record 788) → label 접근 → episode 626 → metric; static prediction 점검: 고유 alarm second 630</p>
       <div class="status-snapshot">
-        <div><span>Preferred name</span><strong>{_escape(d1['preferred_name'])}</strong></div>
-        <div><span>Pilot events</span><strong>{d1['pilot_events']}</strong></div>
-        <div><span>Attack-event Recall</span><strong>{d1['attack_events_detected']}/{d1['pilot_events']}</strong></div>
-        <div><span>Normal FAR/hour</span><strong>{d1['normal_far_episodes_per_hour']}</strong></div>
-        <div><span>Held-out</span><strong>{_escape(d1['held_out_generalization'])}</strong></div>
-        <div><span>Direct T2 Agentic result</span><strong>NO</strong></div>
+        <div><span>권장 명칭</span><strong>검증된 관계 규칙 단독 방식 (Verified Relational Rule-only)</strong></div>
+        <div><span>예비 event unit</span><strong>{d1['pilot_events']}</strong></div>
+        <div><span>공격 사건 단위 재현율 (Attack-event Recall)</span><strong>{d1['attack_events_detected']}/{d1['pilot_events']}</strong></div>
+        <div><span>시간당 정상 오경보율 (Normal FAR/hour)</span><strong>{d1['normal_far_episodes_per_hour']}</strong></div>
+        <div><span>held-out</span><strong>{_badge("UNCONFIRMED")}</strong></div>
+        <div><span>직접 T2 Agentic 결과</span><strong>아님</strong></div>
       </div>
-      <div class="two-column"><div><h3>Attack sensitivity</h3><dl class="architecture-contract">
-        <div><dt>ATTACK EVENTS</dt><dd>{d1['attack_events_detected']} of {d1['pilot_events']} overlapped by at least one D1 alarm episode</dd></div>
-        <div><dt>D0 / D1 OVERLAP</dt><dd>both {d1['overlap']['both']}; D0-only {d1['overlap']['d0_only']}; D1-only {d1['overlap']['d1_only']}; neither {d1['overlap']['neither']}</dd></div>
-        <div><dt>D0 MISSES</dt><dd>{_escape(d1['d1_response_to_d0_misses'])}</dd></div>
-      </dl></div><div><h3>Normal false-alarm burden</h3><dl class="architecture-contract">
-        <div><dt>RULE RECORDS</dt><dd>{d1['anomalous_rule_records']}</dd></div>
-        <div><dt>ALARM SECONDS</dt><dd>{d1['unique_alarm_seconds']}</dd></div>
-        <div><dt>TOTAL EPISODES</dt><dd>{d1['total_alarm_episodes']}</dd></div>
-        <div><dt>NORMAL FALSE EPISODES</dt><dd>{d1['normal_false_episodes']} over {d1['normal_exposure_seconds']} normal seconds</dd></div>
+      <div class="two-column"><div><h3>공격 반응 민감도</h3><dl class="architecture-contract">
+        <div><dt>attack event</dt><dd>{d1['pilot_events']}개 중 {d1['attack_events_detected']}개가 하나 이상의 D1 alarm episode와 겹침</dd></div>
+        <div><dt>D0 / D1 겹침</dt><dd>둘 다 {d1['overlap']['both']}; D0만 {d1['overlap']['d0_only']}; D1만 {d1['overlap']['d1_only']}; 둘 다 아님 {d1['overlap']['neither']}</dd></div>
+        <div><dt>D0 miss</dt><dd>현재 예비 실험에서 D0가 놓친 3개 event 모두에 D1 response가 있었음</dd></div>
+      </dl></div><div><h3>정상 false-alarm 부담</h3><dl class="architecture-contract">
+        <div><dt>rule record</dt><dd>{d1['anomalous_rule_records']}</dd></div>
+        <div><dt>alarm second</dt><dd>{d1['unique_alarm_seconds']}</dd></div>
+        <div><dt>전체 episode</dt><dd>{d1['total_alarm_episodes']}</dd></div>
+        <div><dt>정상 false episode</dt><dd>{d1['normal_exposure_seconds']} normal seconds에서 {d1['normal_false_episodes']}개</dd></div>
       </dl></div></div>
-      <aside class="principle">Higher pilot Recall does not establish superior operational utility.</aside>
-      <aside class="principle">D1 = COMMON-42 Verified Relational Rule-only, not T2 Agentic Rule-only.</aside>
-      <p><a href="../architecture/08_d1_rule_only/ARCH_008_REPORT.md">Open the deep D1 evaluation audit</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_OUTPUT_LEVELS.md">Output levels</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_COMPLEMENTARITY_BOUNDARY.md">Complementarity boundary</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv">Claim matrix</a></p>
-      <p><strong>Next deep review:</strong> {_escape(d1['next_deep_review'])}</p>
+      <aside class="principle">예비 Recall이 높다고 운영 유용성이 우수하다고 결론 내릴 수 없습니다.</aside>
+      <aside class="principle">D1은 COMMON-42 검증된 관계 규칙 단독 방식이며, T2 Agentic Rule-only가 아닙니다.</aside>
+      <p><a href="../architecture/08_d1_rule_only/ARCH_008_REPORT.md">D1 평가 심층 점검 열기</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_OUTPUT_LEVELS.md">출력 단위</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_COMPLEMENTARITY_BOUNDARY.md">상보성 경계</a> · <a href="../architecture/08_d1_rule_only/ARCH_008_CLAIM_MATRIX.csv">주장 matrix</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(d1['next_deep_review']))}</p>
     </section>
 
     <section id="d2-fusion" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">D2</p><h2>DETECTOR + RULE FUSION PILOT</h2></div>
-      <p class="architecture-flow">Frozen D0 + frozen D1 evidence → deterministic V1 / V2 → durable combined prediction → label access → pilot metrics</p>
+      <div class="section-heading"><p class="eyebrow">D2</p><h2>탐지기·규칙 결합 예비 실험</h2></div>
+      <p class="architecture-flow">고정 D0 + 고정 D1 evidence → 결정론적 V1 / V2 → durable combined prediction → label 접근 → 예비 metric</p>
       <div class="summary-grid">
-        <article class="summary-card"><p class="eyebrow">D0</p><h3>Reference detector</h3><dl>
-          <div><dt>POLICY</dt><dd>Frozen PCA-SPE</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>11/14</dd></div>
-          <div><dt>NORMAL FAR/HOUR</dt><dd>{d0['normal_far_episodes_per_hour']}</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>N/A</dd></div>
-          <div><dt>STATUS</dt><dd>PILOT BASELINE</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        <article class="summary-card"><p class="eyebrow">D0</p><h3>기준 탐지기</h3><dl>
+          <div><dt>정책 (Policy)</dt><dd>Frozen PCA-SPE</dd></div><div><dt>공격 사건 단위 재현율 (Attack-event Recall)</dt><dd>11/14</dd></div>
+          <div><dt>시간당 정상 오경보율 (Normal FAR/hour)</dt><dd>{d0['normal_far_episodes_per_hour']}</dd></div><div><dt>D0 누락 회복 (D0-miss Recovery)</dt><dd>해당 없음 (N/A)</dd></div>
+          <div><dt>상태</dt><dd>예비 기준선</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div>
         </dl></article>
-        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>Exact-index corroboration</h3><dl>
-          <div><dt>POLICY</dt><dd>{_escape(d2['v1']['policy'])}</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>{_escape(d2['v1']['attack_event_response'])}</dd></div>
-          <div><dt>NORMAL FAR/HOUR</dt><dd>{d2['v1']['normal_far_episodes_per_hour']}</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>{_escape(d2['v1']['d0_miss_recovery'])}</dd></div>
-          <div><dt>STATUS</dt><dd>{_escape(d2['v1']['development_status'])}</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>동일 index 근거 결합</h3><dl>
+          <div><dt>정책 (Policy)</dt><dd>같은 <code>decision_physical_row_index</code>에서 canonical D1 source가 2개 이상일 때 추가 alarm</dd></div><div><dt>공격 사건 단위 재현율 (Attack-event Recall)</dt><dd>{_escape(d2['v1']['attack_event_response'])}</dd></div>
+          <div><dt>시간당 정상 오경보율 (Normal FAR/hour)</dt><dd>{d2['v1']['normal_far_episodes_per_hour']}</dd></div><div><dt>D0 누락 회복 (D0-miss Recovery)</dt><dd>{_escape(d2['v1']['d0_miss_recovery'])}</dd></div>
+          <div><dt>상태</dt><dd>{_escape(d2['v1']['development_status'])}</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div>
         </dl></article>
-        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>Native-horizon corroboration</h3><dl>
-          <div><dt>POLICY</dt><dd>{_escape(d2['v2']['policy'])}</dd></div><div><dt>ATTACK-EVENT RECALL</dt><dd>{_escape(d2['v2']['attack_event_response'])}</dd></div>
-          <div><dt>NORMAL FAR/HOUR</dt><dd>{d2['v2']['normal_far_episodes_per_hour']}</dd></div><div><dt>D0-MISS RECOVERY</dt><dd>{_escape(d2['v2']['d0_miss_recovery'])}</dd></div>
-          <div><dt>STATUS</dt><dd>{_escape(d2['v2']['development_status'])}</dd></div><div><dt>INDEPENDENT VALIDATION?</dt><dd>NO</dd></div>
+        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>native horizon 근거 결합</h3><dl>
+          <div><dt>정책 (Policy)</dt><dd>각 relation의 native-horizon token 안에서 active D1 source가 2개 이상일 때 추가 alarm</dd></div><div><dt>공격 사건 단위 재현율 (Attack-event Recall)</dt><dd>{_escape(d2['v2']['attack_event_response'])}</dd></div>
+          <div><dt>시간당 정상 오경보율 (Normal FAR/hour)</dt><dd>{d2['v2']['normal_far_episodes_per_hour']}</dd></div><div><dt>D0 누락 회복 (D0-miss Recovery)</dt><dd>{_escape(d2['v2']['d0_miss_recovery'])}</dd></div>
+          <div><dt>상태</dt><dd>{_escape(d2['v2']['development_status'])}</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div>
         </dl></article>
       </div>
-      <aside class="principle">D1 response diversity was observed, but current V1/V2 policies did not convert it into incremental attack-event recall.</aside>
-      <aside class="principle">V2 is test1-informed development, not independent confirmation.</aside>
-      <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">Open the deep D2 audit</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">Policy comparison</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">Miss recovery</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">Claim matrix</a></p>
-      <p><strong>Next deep review:</strong> {_escape(d2['next_deep_review'])}</p>
+      <aside class="principle">D1의 다른 event response는 관찰됐지만, 현재 V1/V2 policy는 이를 attack-event Recall 증가로 바꾸지 못했습니다.</aside>
+      <aside class="principle">V2는 test1-informed development이며 독립 확인이 아닙니다.</aside>
+      <p><a href="../architecture/09_d2_fusion/ARCH_009_REPORT.md">D2 심층 점검 열기</a> · <a href="../architecture/09_d2_fusion/ARCH_009_POLICY_COMPARISON.csv">policy 비교</a> · <a href="../architecture/09_d2_fusion/ARCH_009_MISS_RECOVERY.md">miss 회복</a> · <a href="../architecture/09_d2_fusion/ARCH_009_CLAIM_MATRIX.csv">주장 matrix</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(d2['next_deep_review']))}</p>
     </section>
 
     <section id="metrics-results" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">METRICS</p><h2>METRICS / RESULTS / INTEGRITY</h2></div>
-      <p class="architecture-flow">RAW METHOD OUTPUT → ALARM SECOND → EPISODE → ATTACK-EVENT UNIT / NORMAL EXPOSURE → RECALL / FAR</p>
+      <div class="section-heading"><p class="eyebrow">METRICS</p><h2>성능 지표와 결과 무결성</h2></div>
+      <p class="architecture-flow">방법별 원시 출력 → alarm second → episode → attack-event unit / 정상 노출 시간 → Recall / FAR</p>
       <div class="status-snapshot">
-        <div><span>Event units</span><strong>{metrics['event_unit_count']} contiguous units</strong></div>
-        <div><span>Independence</span><strong>{_escape(metrics['event_independence'])}</strong></div>
-        <div><span>Normal exposure</span><strong>{metrics['normal_exposure_seconds']} seconds</strong></div>
-        <div><span>Comparability</span><strong>{_escape(metrics['comparability'])}</strong></div>
-        <div><span>Fairness</span><strong>{_escape(metrics['fairness'])}</strong></div>
-        <div><span>Inferential tests</span><strong>NONE FROZEN</strong></div>
+        <div><span>연속 공격 구간 단위</span><strong>{metrics['event_unit_count']}개 contiguous units</strong></div>
+        <div><span>통계적 독립성</span><strong>{_escape(_ko_text(metrics['event_independence']))}</strong></div>
+        <div><span>정상 노출 시간</span><strong>{metrics['normal_exposure_seconds']}초</strong></div>
+        <div><span>방법 간 비교 가능성</span><strong>{_escape(_ko_text(metrics['comparability']))}</strong></div>
+        <div><span>비교 공정성</span><strong>{_escape(_ko_text(metrics['fairness']))}</strong></div>
+        <div><span>추론 통계</span><strong>고정된 검정 없음</strong></div>
       </div>
       <div class="summary-grid">
-        <article class="summary-card"><p class="eyebrow">D0</p><h3>Reference detector</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>0.4939336325682589</dd></div><div><dt>STATUS</dt><dd>PILOT</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
-        <article class="summary-card"><p class="eyebrow">D1</p><h3>Verified relational rules</h3><dl><div><dt>RECALL</dt><dd>13/14</dd></div><div><dt>FAR/HOUR</dt><dd>40.50255787059723</dd></div><div><dt>STATUS</dt><dd>PILOT</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
-        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>Frozen fusion pilot</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>0.7056194750975128</dd></div><div><dt>STATUS</dt><dd>PILOT POLICY</dd></div><div><dt>VALIDATION</dt><dd>NOT INDEPENDENT</dd></div></dl></article>
-        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>Development fusion</h3><dl><div><dt>RECALL</dt><dd>11/14</dd></div><div><dt>FAR/HOUR</dt><dd>6.915070855955625</dd></div><div><dt>STATUS</dt><dd>TEST1-INFORMED</dd></div><div><dt>VALIDATION</dt><dd>NO</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D0</p><h3>기준 detector</h3><dl><div><dt>공격 사건 단위 재현율 (Recall)</dt><dd>11/14</dd></div><div><dt>시간당 정상 오경보율 (FAR/hour)</dt><dd>0.4939336325682589</dd></div><div><dt>상태</dt><dd>예비 실험 수준</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D1</p><h3>검증된 관계 규칙</h3><dl><div><dt>공격 사건 단위 재현율 (Recall)</dt><dd>13/14</dd></div><div><dt>시간당 정상 오경보율 (FAR/hour)</dt><dd>40.50255787059723</dd></div><div><dt>상태</dt><dd>예비 실험 수준</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V1</p><h3>고정 fusion 예비 실험</h3><dl><div><dt>공격 사건 단위 재현율 (Recall)</dt><dd>11/14</dd></div><div><dt>시간당 정상 오경보율 (FAR/hour)</dt><dd>0.7056194750975128</dd></div><div><dt>상태</dt><dd>예비 policy</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div></dl></article>
+        <article class="summary-card"><p class="eyebrow">D2 V2</p><h3>개발용 fusion</h3><dl><div><dt>공격 사건 단위 재현율 (Recall)</dt><dd>11/14</dd></div><div><dt>시간당 정상 오경보율 (FAR/hour)</dt><dd>6.915070855955625</dd></div><div><dt>상태</dt><dd>test1-informed</dd></div><div><dt>독립 검증</dt><dd>아니오</dd></div></dl></article>
       </div>
-      <div class="two-column"><div><h3>Metric contract</h3><dl class="architecture-contract"><div><dt>EVENT HIT</dt><dd>{_escape(metrics['event_hit_rule'])}</dd></div><div><dt>EPISODE</dt><dd>{_escape(metrics['episode_policy'])}</dd></div><div><dt>FAR</dt><dd>{_escape(metrics['far_formula'])}</dd></div><div><dt>D1 NORMALIZATION</dt><dd>{_escape(metrics['d1_non_opportunity'])}</dd></div></dl></div><div><h3>Integrity boundary</h3><dl class="architecture-contract"><div><dt>GUARANTEES</dt><dd>{_escape(metrics['integrity_guarantee'])}</dd></div><div><dt>DOES NOT GUARANTEE</dt><dd>{_escape(metrics['integrity_limit'])}</dd></div><div><dt>REPORT LINEAGE</dt><dd>{_escape(metrics['cross_arm_reporting_lineage'])}</dd></div></dl></div></div>
-      <aside class="principle">14 contiguous attack-event units; statistical independence not established.</aside>
-      <aside class="principle">Result integrity ≠ scientific validation.</aside>
-      <p><a href="../architecture/10_metrics_integrity/ARCH_010_REPORT.md">Open the deep metric audit</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv">Frozen pilot table</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md">Integrity boundary</a></p>
-      <p><strong>Next deep review:</strong> {_escape(metrics['next_deep_review'])}</p>
+      <div class="two-column"><div><h3>지표 계약</h3><dl class="architecture-contract"><div><dt>사건 검출 (Event Hit)</dt><dd>half-open alarm episode가 attack unit과 하나라도 겹치면 hit; PA·grace·dilation·최소 지속시간 없음</dd></div><div><dt>알람 구간 (Episode)</dt><dd>physical row를 set으로 중복 제거하고 정렬한 뒤 정확히 +1 row로 이어지는 경우만 합침; 허용 gap 0</dd></div><div><dt>시간당 오경보율 (FAR)</dt><dd>정상 false episode 수 / (정상 노출 초 / 3600)</dd></div><div><dt>D1 정규화</dt><dd>non-opportunity·non-alarm·abstain은 Boolean metric interface에 alarm timestamp를 추가하지 않음; 고정 abstain 수는 0</dd></div></dl></div><div><h3>결과 무결성 경계</h3><dl class="architecture-contract"><div><dt>보장하는 것</dt><dd>고정 artifact identity·label identity·ordering·arithmetic·mutation/replay·report binding</dd></div><div><dt>보장하지 않는 것</dt><dd>독립성·표본 충분성·일반화·우수성·유용성·과학적 타당성을 확립하지 않음</dd></div><div><dt>보고서 계보</dt><dd>부분적: 고정 comparison artifact는 있지만 aggregation source는 현재 scientific tree에서 찾을 수 없음</dd></div></dl></div></div>
+      <aside class="principle">14개의 연속 공격 구간 단위(contiguous attack-event units)이며, 통계적 독립성은 확립되지 않았습니다.</aside>
+      <aside class="principle">결과 무결성 확인은 과학적 검증과 다릅니다.</aside>
+      <p><a href="../architecture/10_metrics_integrity/ARCH_010_REPORT.md">지표 심층 점검 열기</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_FROZEN_PILOT_RESULTS.csv">고정 예비 결과 표</a> · <a href="../architecture/10_metrics_integrity/ARCH_010_RESULT_INTEGRITY.md">무결성 경계</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(metrics['next_deep_review']))}</p>
     </section>
 
     <section id="outer-reproducibility" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">ARCH-011</p><h2>OUTER / REPRODUCIBILITY / PORTABILITY</h2></div>
-      <p class="architecture-flow">TRACEABILITY → SAME-MACHINE REPLAY → FRESH-MACHINE SYNTHETIC → FRESH-MACHINE SCIENTIFIC → EXTERNAL REPRODUCTION</p>
+      <div class="section-heading"><p class="eyebrow">ARCH-011</p><h2>OUTER·재현성·이식성</h2></div>
+      <p class="architecture-flow">근거 추적 → 같은 환경 replay → 새 환경 synthetic 재현 → 새 환경 scientific 재현 → 외부 독립 재현</p>
       <div class="status-snapshot">
-        <div><span>Traceability</span><strong>{_escape(outer['reproduction_levels']['traceability'])}</strong></div>
-        <div><span>Same-machine replay</span><strong>{_escape(outer['reproduction_levels']['same_machine_replay'])}</strong></div>
-        <div><span>Fresh-machine synthetic</span><strong>{_escape(outer['reproduction_levels']['fresh_machine_synthetic'])}</strong></div>
-        <div><span>Fresh-machine scientific</span><strong>{_escape(outer['reproduction_levels']['fresh_machine_scientific'])}</strong></div>
-        <div><span>External reproduction</span><strong>{_escape(outer['reproduction_levels']['independent_external'])}</strong></div>
+        <div><span>근거 추적 (Traceability)</span><strong>{_escape(_ko_text(outer['reproduction_levels']['traceability']))}</strong></div>
+        <div><span>같은 환경 replay</span><strong>{_escape(_ko_text(outer['reproduction_levels']['same_machine_replay']))}</strong></div>
+        <div><span>새 환경 synthetic 재현</span><strong>{_escape(_ko_text(outer['reproduction_levels']['fresh_machine_synthetic']))}</strong></div>
+        <div><span>새 환경 scientific 재현</span><strong>{_escape(_ko_text(outer['reproduction_levels']['fresh_machine_scientific']))}</strong></div>
+        <div><span>외부 독립 재현</span><strong>{_escape(_ko_text(outer['reproduction_levels']['independent_external']))}</strong></div>
       </div>
-      <div class="two-column"><div><h3>Old OUTER</h3><dl class="architecture-contract">
-        <div><dt>RESULT</dt><dd>{_escape(outer['old_outer']['result'])}</dd></div>
-        <div><dt>STOP</dt><dd>{_escape(outer['old_outer']['blocker'])}</dd></div>
-        <div><dt>CONTENT</dt><dd>bytes {outer['old_outer']['feature_byte_reads']}; semantic parses {outer['old_outer']['semantic_parses']}; labels {outer['old_outer']['label_accesses']}</dd></div>
-        <div><dt>RETRY</dt><dd>{_escape(outer['old_outer']['retryability'])}</dd></div>
-        <div><dt>SAME TEST2</dt><dd>{_escape(outer['old_outer']['same_physical_test2_reuse'])}</dd></div>
-      </dl></div><div><h3>Prospective V2</h3><dl class="architecture-contract">
-        <div><dt>PILOT V1</dt><dd>{_escape(outer['pilot_v1'])}</dd></div>
-        <div><dt>VALIDATION V2</dt><dd>{_escape(outer['validation_v2'])}</dd></div>
-        <div><dt>AUTHORITY</dt><dd>{_escape(outer['authority_preference'])}</dd></div>
-        <div><dt>ENVIRONMENT</dt><dd>{_escape(outer['environment'])}</dd></div>
-        <div><dt>REHEARSAL</dt><dd>{_escape(outer['fresh_machine_timing'])}</dd></div>
+      <div class="two-column"><div><h3>기존 OUTER</h3><dl class="architecture-contract">
+        <div><dt>결과</dt><dd>{_escape(_ko_text(outer['old_outer']['result']))}</dd></div>
+        <div><dt>중단 지점</dt><dd><code>OUTER_TEST2_FEATURE_CUSTODY_REJECTED</code> — file open/read 전</dd></div>
+        <div><dt>과학 내용 접근</dt><dd>byte {outer['old_outer']['feature_byte_reads']}; semantic parse {outer['old_outer']['semantic_parses']}; label {outer['old_outer']['label_accesses']}</dd></div>
+        <div><dt>재시도 가능성</dt><dd>{_escape(_ko_text(outer['old_outer']['retryability']))}</dd></div>
+        <div><dt>같은 test2 재사용</dt><dd>{_escape(_ko_text(outer['old_outer']['same_physical_test2_reuse']))}</dd></div>
+      </dl></div><div><h3>향후 VALIDATION V2</h3><dl class="architecture-contract">
+        <div><dt>PILOT V1</dt><dd>{_escape(_ko_text(outer['pilot_v1']))}</dd></div>
+        <div><dt>VALIDATION V2</dt><dd>{_escape(_ko_text(outer['validation_v2']))}</dd></div>
+        <div><dt>최종 authority</dt><dd>검증된 canonical RuleV1/VerifierV1→V4 bridge를 DEC-020 승인 전 목표로 두며, lossless equivalence를 증명하지 못하면 formal V4를 fallback으로 검토</dd></div>
+        <div><dt>환경</dt><dd>project 전체 lock이 없고 NumPy·test tooling·schema package closure가 불완전하다. exact GDN은 Windows·wheel·root에 결속되고 scientific replay에는 private custody asset이 필요하다.</dd></div>
+        <div><dt>재현 rehearsal</dt><dd>{_escape(_ko_text(outer['fresh_machine_timing']))}</dd></div>
       </dl></div></div>
-      <aside class="principle">OLD STUDY: RESULT UNAVAILABLE. NEW HELD-OUT: REQUIRES NEW PREREGISTRATION.</aside>
-      <aside class="principle">Traceability is not fresh-machine reproducibility. OUTER result unavailable is not negative performance.</aside>
-      <p><a href="../architecture/11_outer_reproducibility/ARCH_011_REPORT.md">Open the deep OUTER/reproducibility audit</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_REPRODUCTION_LEVELS.md">Reproduction levels</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_AUTHORITY_OPTIONS.csv">Authority options</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_FRESH_MACHINE_PROTOCOL.md">Fresh-machine protocol</a></p>
+      <aside class="principle">기존 연구: 결과 없음. 새 held-out: 새로운 사전 등록(preregistration)이 필요합니다.</aside>
+      <aside class="principle">근거 추적은 새 환경 독립 재현(Fresh-machine Reproduction)이 아닙니다. OUTER 결과 없음은 성능 실패를 뜻하지 않습니다.</aside>
+      <p><a href="../architecture/11_outer_reproducibility/ARCH_011_REPORT.md">OUTER·재현성 심층 점검 열기</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_REPRODUCTION_LEVELS.md">재현 수준</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_AUTHORITY_OPTIONS.csv">authority 선택지</a> · <a href="../architecture/11_outer_reproducibility/ARCH_011_FRESH_MACHINE_PROTOCOL.md">새 환경 재현 protocol</a></p>
     </section>
 
     <section id="data-governance" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">DATA</p><h2>DATA GOVERNANCE</h2></div>
+      <div class="section-heading"><p class="eyebrow">DATA</p><h2>데이터·split 통제</h2></div>
       <div class="status-snapshot">
-        <div><span>Dataset</span><strong>{_escape(governance['dataset'])}</strong></div>
-        <div><span>Process</span><strong>{_escape(governance['process'])}</strong></div>
-        <div><span>Feature / role scope</span><strong>{_escape(governance['source_scope'])}</strong></div>
-        <div><span>Leakage status</span><strong>{_escape(governance['leakage_status'])}</strong></div>
-        <div><span>Test1</span><strong>{_escape(governance['test1_status'])}</strong></div>
-        <div><span>Test2</span><strong>{_escape(governance['test2_status'])}</strong></div>
+        <div><span>데이터셋</span><strong>{_escape(governance['dataset'])}</strong></div>
+        <div><span>공정 범위</span><strong>{_escape(governance['process'])}</strong></div>
+        <div><span>feature·역할 범위</span><strong>{_escape(_ko_text(governance['source_scope']))}</strong></div>
+        <div><span>정보 누출 상태</span><strong>{_escape(_ko_text(governance['leakage_status']))}</strong></div>
+        <div><span>Test1</span><strong>{_escape(_ko_text(governance['test1_status']))}</strong></div>
+        <div><span>Test2</span><strong>{_escape(_ko_text(governance['test2_status']))}</strong></div>
       </div>
       <div class="summary-grid">{split_markup}</div>
-      <aside class="principle">{_escape(governance['label_access'])}</aside>
-      <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">Open the deep data/split audit</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">Label-access timeline</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">Data/split mismatches</a></p>
-      <p><strong>Next deep review:</strong> {_escape(governance['next_deep_review'])}</p>
+      <aside class="principle">{_escape(_ko_text(governance['label_access']))}</aside>
+      <p><a href="../architecture/01_data_and_splits/ARCH_001_REPORT.md">데이터·split 심층 점검 열기</a> · <a href="../architecture/01_data_and_splits/ARCH_001_LABEL_ACCESS_TIMELINE.md">label 접근 순서</a> · <a href="../architecture/01_data_and_splits/ARCH_001_MISMATCHES.md">불일치 기록</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(governance['next_deep_review']))}</p>
     </section>
 
     <section id="candidate-discovery" class="section panel-feature">
-      <div class="section-heading"><p class="eyebrow">DISCOVERY</p><h2>CANDIDATE DISCOVERY</h2></div>
+      <div class="section-heading"><p class="eyebrow">DISCOVERY</p><h2>관계 후보 탐색</h2></div>
       <div class="status-snapshot">
-        <div><span>Universe</span><strong>{_escape(discovery['candidate_universe'])}</strong></div>
-        <div><span>Union</span><strong>{_escape(discovery['union'])}</strong></div>
-        <div><span>Learned graph</span><strong>USED</strong></div>
-        <div><span>Attention as final evidence</span><strong>NO</strong></div>
-        <div><span>Post-hoc XAI</span><strong>NO</strong></div>
-        <div><span>GDN contribution</span><strong>UNVALIDATED</strong></div>
+        <div><span>후보 전체 범위</span><strong>{_escape(_ko_text(discovery['candidate_universe']))}</strong></div>
+        <div><span>후보 합집합</span><strong>{_escape(_ko_text(discovery['union']))}</strong></div>
+        <div><span>학습 graph 사용</span><strong>예</strong></div>
+        <div><span>Attention을 최종 근거로 사용</span><strong>아니오</strong></div>
+        <div><span>사후 설명(XAI)</span><strong>아니오</strong></div>
+        <div><span>GDN 고유 기여</span><strong>미검증</strong></div>
       </div>
       <div class="summary-grid">{discovery_markup}</div>
-      <aside class="principle">{_escape(discovery['warning'])}</aside>
-      <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">Open the deep candidate-discovery audit</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN professor answer</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">Discovery mismatches</a></p>
-      <p><strong>Next deep review:</strong> {_escape(discovery['next_deep_review'])}</p>
+      <aside class="principle">{_escape(_ko_text(discovery['warning']))}</aside>
+      <p><a href="../architecture/02_candidate_discovery/ARCH_002_REPORT.md">후보 탐색 심층 점검 열기</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_GDN_PROFESSOR_ANSWER.md">GDN 교수 설명</a> · <a href="../architecture/02_candidate_discovery/ARCH_002_MISMATCHES.md">탐색 불일치 기록</a></p>
+      <p><strong>다음 심층 점검:</strong> {_escape(_ko_text(discovery['next_deep_review']))}</p>
     </section>
 
     <section id="my-tasks" class="section">
-      <div class="section-heading"><p class="eyebrow">02</p><h2>MY TASKS</h2></div>
-      <p class="section-intro">Highest-priority research work recorded in the current-state registry.</p>
-      {_bullet_list(state['top_user_todo'])}
+      <div class="section-heading"><p class="eyebrow">02</p><h2>내가 해야 할 일</h2></div>
+      <p class="section-intro">current-state registry에 기록된 연구 책임자의 우선 검토 항목입니다.</p>
+      {_bullet_list((_ko_text(item) for item in state['top_user_todo']), empty="현재 사용자 할 일이 없습니다.")}
     </section>
 
     <section id="decisions" class="section">
-      <div class="section-heading"><p class="eyebrow">03</p><h2>DECISION INBOX</h2></div>
+      <div class="section-heading"><p class="eyebrow">03</p><h2>결정이 필요한 사항</h2></div>
       {decision_content}
     </section>
 
     <section id="architecture" class="section panel-dark">
-      <div class="section-heading"><p class="eyebrow">04</p><h2>ARCHITECTURE OVERVIEW</h2></div>
-      <p class="architecture-flow">{_escape(state['architecture_flow'])}</p>
-      <p class="section-intro">ARCH-000 verified real source, execution, and artifact lineage. Open a domain to see its high-level contract; unverified links remain visible in the detailed maps.</p>
+      <div class="section-heading"><p class="eyebrow">04</p><h2>전체 아키텍처</h2></div>
+      <p class="architecture-flow">HAI provenance·P1 범위 → 고정 role universe → META / STAT / GDN → 재점수화 없는 후보 합집합 → 정상 관계 profiling → 구성 evidence → T0 / T1 / T1-B / T2 → task deterministic verifier → COMMON-42·private runtime numeric authority → D1; detector authority → D0; D0 + D1 → D2 policy → event / episode metric → 결과 무결성 governance</p>
+      <p class="section-intro">ARCH-000은 실제 source·실행·artifact 계보를 점검했습니다. 각 영역을 열면 상위 계약을 볼 수 있으며, 미확인 연결은 상세 map에 그대로 남깁니다.</p>
       <div class="architecture-detail-grid">{architecture_markup}</div>
-      <p><a href="../architecture/00_overview/ARCH_000_REPORT.md">Open the full architecture audit</a> · <a href="../architecture/00_overview/ARCH_000_MISMATCHES.md">Review documented mismatches</a> · <a href="../architecture/00_overview/DEEP_REVIEW_INDEX.md">Deep-review index</a></p>
+      <p><a href="../architecture/00_overview/ARCH_000_REPORT.md">전체 아키텍처 점검 열기</a> · <a href="../architecture/00_overview/ARCH_000_MISMATCHES.md">불일치 기록 검토</a> · <a href="../architecture/00_overview/DEEP_REVIEW_INDEX.md">심층 점검 색인</a></p>
     </section>
 
-    <section class="section explorer" aria-label="Registry explorer">
-      <div><label for="registry-search">Search registry</label><input id="registry-search" type="search" placeholder="Search names, evidence, risks, next actions…"></div>
-      <div><label for="status-filter">Filter status</label><select id="status-filter"><option value="">All statuses</option>{status_options}</select></div>
+    <section class="section explorer" aria-label="Registry 검색">
+      <div><label for="registry-search">Registry 검색</label><input id="registry-search" type="search" placeholder="이름·근거·위험·다음 조치 검색…"></div>
+      <div><label for="status-filter">상태 필터</label><select id="status-filter"><option value="">전체 상태</option>{status_options}</select></div>
       <p id="filter-count" aria-live="polite"></p>
     </section>
 
     <section id="components" class="section">
-      <div class="section-heading"><p class="eyebrow">05</p><h2>COMPONENT STATUS</h2></div>
-      <p class="section-intro">Legacy component tokens are translated for display. Evidence-reviewed is source/evidence review, not performance validation. A result-integrity audit requires an explicit result-specific artifact.</p>
+      <div class="section-heading"><p class="eyebrow">05</p><h2>구현 현황</h2></div>
+      <p class="section-intro">기존 component token은 화면에서만 한글로 표시합니다. 근거 점검 완료(Evidence-reviewed)는 source·evidence 검토이며 성능 검증이 아닙니다. 결과 무결성 확인에는 결과별 명시적 artifact가 필요합니다.</p>
       <div class="card-grid">{component_cards}</div>
     </section>
 
     <section id="experiments" class="section">
-      <div class="section-heading"><p class="eyebrow">06</p><h2>EXPERIMENT STATUS</h2></div>
-      <p class="section-intro">An evidence-reviewed pilot has checked evidence and artifacts within its recorded scope; it is not automatically a scientifically validated finding.</p>
+      <div class="section-heading"><p class="eyebrow">06</p><h2>실험 현황</h2></div>
+      <p class="section-intro">근거 점검을 마친 예비 실험은 기록된 범위의 evidence와 artifact를 확인했다는 뜻이며, 자동으로 과학적 검증 결과가 되지 않습니다.</p>
       <div class="card-grid">{experiment_cards}</div>
     </section>
 
     <section id="claims" class="section">
-      <div class="section-heading"><p class="eyebrow">07</p><h2>CLAIM &amp; EVIDENCE</h2></div>
-      <p class="section-intro"><code>claims.csv</code> is the authoritative scientific claim view. Component compatibility fields do not determine scientific claim status.</p>
+      <div class="section-heading"><p class="eyebrow">07</p><h2>연구 주장과 근거</h2></div>
+      <p class="section-intro"><code>claims.csv</code>가 과학적 주장 상태의 공식 기준입니다. component 호환 field는 과학적 주장 상태를 결정하지 않습니다.</p>
       <div class="card-grid">{claim_cards}</div>
     </section>
 
     <section id="risks" class="section">
-      <div class="section-heading"><p class="eyebrow">08</p><h2>RISKS</h2></div><div class="card-grid">{risk_cards}</div>
+      <div class="section-heading"><p class="eyebrow">08</p><h2>위험 및 점검사항</h2></div><div class="card-grid">{risk_cards}</div>
     </section>
 
     <section id="history" class="section panel-history">
-      <div class="section-heading"><p class="eyebrow">09</p><h2>RESEARCH HISTORY</h2></div>
-      <p class="section-intro">A curated history of pivots and decisions, not an exhaustive commit log. USER_CONTEXT entries preserve uncertainty and never override current <code>claims.csv</code>.</p>
+      <div class="section-heading"><p class="eyebrow">09</p><h2>연구 진행 이력</h2></div>
+      <p class="section-intro">방향 전환과 결정의 핵심 이력이며 전체 commit log는 아닙니다. USER_CONTEXT 항목은 불확실성을 보존하고 현재 <code>claims.csv</code>를 덮어쓰지 않습니다.</p>
       <div class="timeline history-timeline">{history_markup}</div>
-      <h3>Key active or conditional decisions</h3>
+      <h3>현재 유효하거나 조건부인 핵심 결정</h3>
       <ul class="decision-list">{key_decisions_markup}</ul>
-      <p><a href="../history/PROJECT_TIMELINE.md">Open the full research evolution</a> · <a href="../history/PROFESSOR_FEEDBACK_LINEAGE.md">Professor-feedback lineage</a> · <a href="../history/SUPERSEDED_DIRECTIONS.md">Superseded directions</a></p>
+      <p><a href="../history/PROJECT_TIMELINE.md">전체 연구 진행 이력 열기</a> · <a href="../history/PROFESSOR_FEEDBACK_LINEAGE.md">교수 피드백 계보</a> · <a href="../history/SUPERSEDED_DIRECTIONS.md">중단·대체된 방향</a></p>
     </section>
 
     <section id="source-authority" class="section authority-detail">
-      <div class="section-heading"><p class="eyebrow">10</p><h2>SOURCE AUTHORITY</h2></div>
+      <div class="section-heading"><p class="eyebrow">10</p><h2>공식 기준 코드·근거</h2></div>
       <dl>
-        <div><dt>Scientific source</dt><dd>{_escape(authority['ref'])}<br><code>{_escape(authority['commit'])}</code></dd></div>
-        <div><dt>Immutable pin</dt><dd>{_escape(state['immutable_scientific_pin']['tag'])}<br><code>{_escape(state['immutable_scientific_pin']['commit'])}</code></dd></div>
-        <div><dt>Documentation overlay</dt><dd>{_escape(state['documentation_overlay']['ref'])}<br><code>{_escape(state['documentation_overlay']['commit'])}</code><br>{_escape(state['documentation_overlay']['role'])}</dd></div>
+        <div><dt>과학 source</dt><dd>{_escape(authority['ref'])}<br><code>{_escape(authority['commit'])}</code></dd></div>
+        <div><dt>변경 불가 pin</dt><dd>{_escape(state['immutable_scientific_pin']['tag'])}<br><code>{_escape(state['immutable_scientific_pin']['commit'])}</code></dd></div>
+        <div><dt>문서 overlay</dt><dd>{_escape(state['documentation_overlay']['ref'])}<br><code>{_escape(state['documentation_overlay']['commit'])}</code><br>{_escape(state['documentation_overlay']['role'])}</dd></div>
       </dl>
-      <p>Scientific code and result claims derive from the scientific authority. Narrative context from the overlay cannot override it.</p>
+      <p>과학 코드와 결과 주장은 scientific authority에서만 파생됩니다. overlay의 설명 문맥은 이를 덮어쓸 수 없습니다.</p>
     </section>
 
     <section id="recent-change" class="section">
-      <div class="section-heading"><p class="eyebrow">11</p><h2>RECENT CHANGE / NEXT TASK</h2></div>
+      <div class="section-heading"><p class="eyebrow">11</p><h2>최근 변경사항</h2></div>
       <div class="timeline">{recent_markup}</div>
-      <div class="next-task"><span>Exact next task</span><strong>{_escape(state['exact_next_task'])}</strong></div>
+      <div class="next-task"><span>정확한 다음 작업</span><strong>{_escape(state['exact_next_task'])}</strong></div>
     </section>
   </main>
 
-  <footer>Generated from RCC registry snapshot {_escape(state['generated_at'])} · Authority <code>{_escape(authority['commit'])}</code></footer>
+  <footer>RCC registry snapshot {_escape(state['generated_at'])}에서 자동 생성 · Authority <code>{_escape(authority['commit'])}</code></footer>
   <script src="assets/rcc.js"></script>
 </body>
 </html>
@@ -856,7 +1151,7 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     authority = state["scientific_authority"]
     experiments = "\n".join(
         f"- **{row['experiment_id']} · {row['name']}** — "
-        f"`{EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`."
+        f"`{GPT_EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])}`."
         for row in data["experiments"]
     )
     claims = "\n".join(
@@ -1006,119 +1301,119 @@ def render_current_status(data: Mapping[str, Any], digest: str) -> str:
     authority = state["scientific_authority"]
     components = data["components"]
     component_summary = {
-        "Implemented": sum(row["status"].startswith("IMPLEMENTED") for row in components),
-        "Executed": sum(row["executed"] == "true" for row in components),
-        "Evidence-reviewed": sum(row["audited"] == "true" for row in components),
-        "Independently reproduced": sum(row["reproduced"] == "true" for row in components),
+        "구현 완료": sum(row["status"].startswith("IMPLEMENTED") for row in components),
+        "실제 실행 완료": sum(row["executed"] == "true" for row in components),
+        "근거 점검 완료 (Evidence-reviewed)": sum(row["audited"] == "true" for row in components),
+        "독립 재현 완료": sum(row["reproduced"] == "true" for row in components),
     }
     component_summary_rows = "\n".join(f"- **{label}:** {value}" for label, value in component_summary.items())
     component_rows = "\n".join(
-        f"| {row['component_id']} | {COMPONENT_STATUS_LABELS.get(row['status'], row['status'])} | {row['next_action']} |"
+        f"| {row['component_id']} | {COMPONENT_STATUS_LABELS.get(row['status'], row['status'])} | {COMPONENT_CARD_COPY.get(row['component_id'], (row['name'], row['next_action']))[1]} |"
         for row in components
     )
     experiment_rows = "\n".join(
-        f"| {row['experiment_id']} | {EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])} | {row['result_scope']} |"
+        f"| {row['experiment_id']} | {EXPERIMENT_STATUS_LABELS.get(row['status'], row['status'])} | {EXPERIMENT_CARD_COPY.get(row['experiment_id'], (row['name'], row['result_scope']))[1]} |"
         for row in data["experiments"]
     )
     claim_rows = "\n".join(
-        f"| {row['claim_id']} | {row['status']} | {row['allowed_wording']} |"
+        f"| {row['claim_id']} | {STATUS_DISPLAY_LABELS.get(row['status'], row['status'])} | {CLAIM_CARD_COPY.get(row['claim_id'], (row['claim_text'], row['allowed_wording']))[1]} |"
         for row in data["claims"]
     )
     return f"""{_markdown_marker(state, digest)}
-# RCC Current Status
+# RCC 현재 연구 상태
 
-Scientific authority: `{authority['ref']}` @ `{authority['commit']}`
+과학 source authority: `{authority['ref']}` @ `{authority['commit']}`
 Registry version: `{state['registry_version']}`
 Registry snapshot: `{state['generated_at']}`
 
-## Current phase
+## 현재 단계
 
-**{state['current_phase']}**
+**{PHASE_DISPLAY_LABELS.get(state['current_phase'], state['current_phase'])}** (`{state['current_phase']}`)
 
-{state['current_phase_statement']}
+{_ko_text(state['current_phase_statement'])}
 
-## How to read status
+## 상태를 읽는 방법
 
-- **Implemented / executed:** engineering state only.
-- **Evidence-reviewed:** the backward-compatible component `audited` field; source or
-  evidence status was reviewed against the pinned authority. This is not performance validation.
-- **Result-integrity audited:** only explicit result-specific integrity artifacts; custody,
-  immutability, ordering, and arithmetic checks. This is not scientific validation.
-- **Independently reproduced:** an independent reproduction under required environment and custody.
-- **Scientifically validated:** adequate independent evidence for a stated hypothesis; never
-  inferred from component status and governed by `claims.csv`.
+- **구현 완료 / 실제 실행 완료:** 엔지니어링 상태일 뿐이다.
+- **근거 점검 완료 (Evidence-reviewed):** 호환용 component field `audited`가 pinned authority와
+  source 또는 evidence 상태를 대조했다는 뜻이다. 성능 검증이 아니다.
+- **결과 무결성 확인 (Result Integrity):** 명시된 결과 artifact의 custody·불변성·순서·산술을
+  확인한 상태다. 과학적 검증이 아니다.
+- **독립 재현 완료 (Reproduced):** 필요한 환경과 custody 아래에서 별도로 재현한 상태다.
+- **과학적 검증:** 가설에 대한 충분한 독립 근거가 있는 상태이며 component 상태에서 추론하지
+  않고 `claims.csv`가 관리한다.
 
-These counts are not a single completion percentage. An evidence-reviewed governance or
-documentation component need not be a scientific executable, so Evidence-reviewed may exceed Executed.
+구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태다.
+따라서 아래 개수는 하나의 완료율이 아니며, 근거 점검 완료 수가 실제 실행 완료 수보다 많을 수 있다.
 
-## Component summary
+## 구성요소 요약
 
 {component_summary_rows}
 
-## Data / split audit
+## 데이터·split 점검
 
-- **Dataset / process:** {state['data_governance']['dataset']} / {state['data_governance']['process']}
-- **Label access:** {state['data_governance']['label_access']}
-- **Leakage:** {state['data_governance']['leakage_status']}
-- **Test1:** {state['data_governance']['test1_status']}
-- **Test2:** {state['data_governance']['test2_status']}
+- **데이터셋 / 공정:** {state['data_governance']['dataset']} / {state['data_governance']['process']}
+- **Label 접근:** {_ko_text(state['data_governance']['label_access'])}
+- **정보 누출:** {_ko_text(state['data_governance']['leakage_status'])}
+- **Test1:** {_ko_text(state['data_governance']['test1_status'])}
+- **Test2:** {_ko_text(state['data_governance']['test2_status'])}
 
-## Frozen D1 runtime / trace audit
+## 고정 D1 runtime·trace 점검
 
-- **Authority:** {state['runtime_trace_explanation']['authority']}
-- **Prediction:** {state['runtime_trace_explanation']['prediction']}
-- **Freeze:** {state['runtime_trace_explanation']['freeze_classification']}; durable pre-label persistence = no.
-- **Trace:** {state['runtime_trace_explanation']['canonical_trace_relationship']}
-- **Explanation:** {state['runtime_trace_explanation']['explanation']}
+- **실행 authority:** task-specific V4 authority plane — CanonicalRuleDescriptorV4 42개, 고정 V4 evaluator bundle, normal-only Utility V4 numeric resolver, committed one-attempt INNER grant.
+- **Prediction:** opportunity record 6,031개, anomalous rule record 788개, 고유 alarm decision second 630개, downstream metric episode 626개.
+- **고정 경계:** D0/D2보다 약한 in-memory pre-label freeze; label 전 durable persistence = 아니오.
+- **Trace:** canonical RuntimeTraceV1과 동등하지 않으며 terminal outcome semantics만 부분적으로 겹친다.
+- **설명:** canonical RuntimeTraceV1 renderer는 있지만 고정 V4 D1이 호출하지 않았고 고정 D1 explanation artifact도 없다.
 
-## Frozen D2 fusion audit
+## 고정 D2 fusion 점검
 
-- **Role:** {state['d2_fusion']['role']}
+- **역할:** D0 alarm을 보존하는 결정론적 fusion-policy 예비 실험
 - **V1:** {state['pilot_observations']['d2_v1']}.
 - **V2:** {state['pilot_observations']['d2_v2']}.
-- **D0 preservation:** {state['d2_fusion']['d0_preservation']}
-- **Freeze / labels:** V1 and V2 both use durable prediction-file-before-label gates.
-- **Boundary:** {state['d2_fusion']['warning']}
+- **D0 보존:** pointwise 보존 — `D2(t)=D0(t) OR policy_admits_D1(t)`
+- **고정 / label:** V1과 V2 모두 label 접근 전 durable prediction file gate를 사용한다.
+- **경계:** {_ko_text(state['d2_fusion']['warning'])}
 
-## Components
+## 구현 구성요소
 
-| Component | Engineering / evidence display | Next action |
+| 구성요소 | 엔지니어링·근거 표시 | 다음 조치 |
 |---|---|---|
 {component_rows}
 
-The compatibility field `claim_ready` is intentionally omitted from this headline. It means
-only that a component supports at least one narrow implementation or contract claim.
+호환용 field `claim_ready`는 이 요약에서 제외했다. 이는 component가 좁은 구현 또는 계약
+주장을 하나 이상 지원한다는 뜻일 뿐이다.
 
-## Experiments
+## 실험
 
-| Experiment | Status | Result scope |
+| 실험 | 상태 | 결과 범위 |
 |---|---|---|
 {experiment_rows}
 
-## Authoritative claim view
+## 공식 연구 주장
 
-Claim status comes only from `registry/claims.csv`.
+주장 상태는 `registry/claims.csv`에서만 가져온다.
 
-| Claim | Status | Allowed wording |
+| 주장 | 상태 | 허용되는 설명 |
 |---|---|---|
 {claim_rows}
 
-## Research dimensions
+## 연구 상태의 서로 다른 차원
 
-- **Engineering:** {state['research_status_summary']['engineering']}
-- **Result integrity:** {state['research_status_summary']['result_integrity']}
-- **Scientific validation:** {state['research_status_summary']['scientific_validation']}
-- **Reproducibility:** {state['research_status_summary']['reproducibility']}
-- **Generalization:** {state['research_status_summary']['generalization']}
-- **Claims:** {state['research_status_summary']['claims']}
+- **엔지니어링:** {_ko_text(state['research_status_summary']['engineering'])}
+- **결과 무결성:** {_ko_text(state['research_status_summary']['result_integrity'])}
+- **과학적 검증:** {_ko_text(state['research_status_summary']['scientific_validation'])}
+- **재현성:** {_ko_text(state['research_status_summary']['reproducibility'])}
+- **일반화:** {_ko_text(state['research_status_summary']['generalization'])}
+- **연구 주장:** {_ko_text(state['research_status_summary']['claims'])}
 
-## Boundaries
+## 현재 보장되지 않는 것
 
-Not established:
+아직 확립되지 않음:
 
-{_md_bullets(state['not_established'])}
+{_md_bullets(_ko_text(item) for item in state['not_established'])}
 
-## Exact next task
+## 정확한 다음 작업
 
 **{state['exact_next_task']}**
 """
@@ -1568,7 +1863,7 @@ Interpolation은 없고, 정확한 판정은 `score > threshold`다. 같은 값�
 | Alarm episode | 연속 alarm point를 묶은 46개 구간 |
 | Attack-event response | 통계적 독립성이 미확인된 14개 연속 사건 단위 중 11개가 alarm episode와 겹침 |
 | Normal false episode | 46개 중 attack timestamp와 겹치지 않은 7개 |
-| Normal FAR/hour | 7개 normal false episode를 normal exposure hour로 나눈 `{d0['normal_far_episodes_per_hour']}` |
+| 시간당 정상 오경보율 (Normal FAR/hour) | 7개 normal false episode를 normal exposure hour로 나눈 `{d0['normal_far_episodes_per_hour']}` |
 
 FAR/hour는 point false-positive rate가 아니다. 11/14도 point recall이 아니라 attack-event recall이다.
 
@@ -2109,23 +2404,29 @@ def render_my_todo(data: Mapping[str, Any], digest: str) -> str:
     grouped: dict[str, list[Mapping[str, str]]] = {}
     for item in state["user_todo_items"]:
         grouped.setdefault(item["category"], []).append(item)
-    headings = ("DECISION NEEDED", "UNDERSTANDING NEEDED", "REVIEW NEEDED", "WAITING ON CODEX")
+    heading_labels = {
+        "DECISION NEEDED": "결정 필요",
+        "UNDERSTANDING NEEDED": "이해 필요",
+        "REVIEW NEEDED": "검토 필요",
+        "WAITING ON CODEX": "Codex 작업 대기",
+        "APPROVED POLICY": "승인된 정책",
+    }
     sections: list[str] = []
-    for heading in headings:
+    for heading, display_heading in heading_labels.items():
         items = grouped.get(heading, [])
         body = "\n\n".join(
-            f"- **ID:** {item['id']}\n  **Priority:** {item['priority']}\n  **Task:** {item['task']}\n  **Why your involvement is required:** {item['why']}\n  **Linked:** {item['linked']}\n  **Status:** {item['status']}"
+            f"- **ID:** {item['id']}\n  **우선순위:** {({'HIGH': '높음 (HIGH)', 'MEDIUM': '중간 (MEDIUM)', 'LOW': '낮음 (LOW)'}).get(item['priority'], item['priority'])}\n  **할 일:** {TODO_CARD_COPY.get(item['id'], (item['task'], item['why']))[0]}\n  **사용자 확인이 필요한 이유:** {TODO_CARD_COPY.get(item['id'], (item['task'], item['why']))[1]}\n  **연결 문서:** {item['linked']}\n  **상태:** {STATUS_DISPLAY_LABELS.get(item['status'], item['status'])}"
             for item in items
-        ) or "No items."
-        sections.append(f"## {heading.title()}\n\n{body}")
+        ) or "현재 항목이 없습니다."
+        sections.append(f"## {display_heading}\n\n{body}")
     return f"""{_markdown_marker(state, digest)}
-# My Research TODO
+# 내가 해야 할 연구 검토
 
-This page contains research-owner actions, not low-level development chores.
+이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.
 
 {chr(10).join(sections)}
 
-Scientific authority: `{state['scientific_authority']['commit']}`
+과학 source authority: `{state['scientific_authority']['commit']}`
 """
 
 
@@ -2133,15 +2434,15 @@ def render_decision_inbox(data: Mapping[str, Any], digest: str) -> str:
     state = data["state"]
     unresolved = [row for row in data["decisions"] if row["status"] == "OPEN"]
     body = "\n\n".join(
-        f"## {row['decision_id']} — {row['title']}\n\n{row['decision']}\n\nReason: {row['reason']}"
+        f"## {row['decision_id']} — {DECISION_CARD_COPY.get(row['decision_id'], (row['title'], row['reason']))[0]}\n\n**필요한 이유:** {DECISION_CARD_COPY.get(row['decision_id'], (row['decision'], row['reason']))[1]}\n\n**registry 원문 결정:** {row['decision']}\n\n**registry 원문 이유:** {row['reason']}"
         for row in unresolved
-    ) or "There are no unresolved user decisions. RCC-000 decisions 001 and 002 remain approved in `registry/decisions.csv`."
+    ) or "현재 미결정 사용자 항목은 없다. RCC-000의 결정 001·002는 `registry/decisions.csv`에서 승인 상태를 유지한다."
     return f"""{_markdown_marker(state, digest)}
-# Decision Inbox
+# 결정이 필요한 사항
 
 {body}
 
-Scientific authority: `{state['scientific_authority']['commit']}`
+과학 source authority: `{state['scientific_authority']['commit']}`
 """
 
 
