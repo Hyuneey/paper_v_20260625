@@ -1,0 +1,34 @@
+{
+  "schema_version": "validation_v2_program_state_v1",
+  "program_id": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
+  "integration_branch": "validation-v2",
+  "base_commit": "4fcc4ec501711a3f3a3335183ecd5f80fc4b39bd",
+  "pilot_v1_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "pilot_v1_status": "IMMUTABLE",
+  "validation_v2_authority_policy": "FORMAL_V4",
+  "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
+  "test1_role": "DEVELOPMENT_ONLY",
+  "held_out_authorized": false,
+  "current_stage": "STAGE_1_FOUNDATION",
+  "program_status": "IN_PROGRESS",
+  "remote_status": "INITIAL_PUSH_BLOCKED_BY_EXECUTION_ENVIRONMENT_REVIEW",
+  "decision_gates": {
+    "DG-01": "RESOLVED_FORMAL_V4",
+    "DG-02": "RESOLVED_ISOLATION_FOREST",
+    "DG-03": "PENDING",
+    "DG-04": "PENDING",
+    "DG-05": "PENDING_MANDATORY",
+    "DG-06": "PENDING"
+  },
+  "safety_counters": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "held_out_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0,
+    "pilot_v1_modifications": 0,
+    "stage0_rcc_tests_passed": 122,
+    "stage0_registry_validation": "PASS",
+    "stage0_dashboard_build": "PASS"
+  }
+}

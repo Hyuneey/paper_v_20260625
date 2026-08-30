@@ -1,0 +1,13 @@
+{
+  "schema_version": "pilot_v1_preservation_manifest_v1",
+  "authority_ref": "origin/research-v6-thesis-checkpoint",
+  "authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "authority_tree": "b28acb585ad8d12c958faf75ca76747f5a0f6f73",
+  "immutable_tag": "thesis-v1-post-push-audit",
+  "immutable_tag_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+  "tracked_blob_count": 3021,
+  "policy": "Every path present in the authority tree must retain the same Git object identity. New VALIDATION V2 paths are allowed; modification or deletion of an authority path is forbidden.",
+  "private_payloads_opened_to_build_manifest": 0,
+  "test2_accesses_to_build_manifest": 0
+}
+
