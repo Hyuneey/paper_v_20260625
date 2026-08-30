@@ -73,7 +73,7 @@ class Arch001DataAndSplitTests(unittest.TestCase):
         self.assertIn("NO VERIFIED LEAKAGE FOUND", governance["leakage_status"])
         self.assertEqual("pilot_only", state["scientific_result_status"])
         self.assertEqual("unconfirmed", state["held_out_generalization"])
-        self.assertTrue(state["exact_next_task"].startswith(("ARCH-005", "ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001")))
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-005", "ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001")))
 
 
 if __name__ == "__main__":

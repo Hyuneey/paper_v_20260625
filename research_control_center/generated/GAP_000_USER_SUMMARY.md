@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -64,5 +64,5 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**이다. ARCH-011은 이 remediation이나 test2 access를
+다음 task는 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.

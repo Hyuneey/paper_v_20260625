@@ -243,6 +243,7 @@ class _CapabilityState:
     receipt_bytes_sha256: str
     label_lease_bytes_sha256: str
     authority_hash: str
+    source_commit: str
     state: PredictionFreezeStateV1
 
 
@@ -530,7 +531,8 @@ def authorize_label_access_v1(
             capability=capability, prediction_path=prediction_path, receipt_path=receipt_path, label_lease_path=label_lease_path,
             prediction_bytes_sha256=sha256(prediction_bytes).hexdigest(), receipt_bytes_sha256=sha256(receipt_bytes).hexdigest(),
             label_lease_bytes_sha256=sha256(lease_replay).hexdigest(),
-            authority_hash=expected_authority_hash, state=PredictionFreezeStateV1.LABEL_ACCESS_AUTHORIZED,
+            authority_hash=expected_authority_hash, source_commit=expected_source_commit,
+            state=PredictionFreezeStateV1.LABEL_ACCESS_AUTHORIZED,
         )
     return capability
 
@@ -554,6 +556,30 @@ def _verify_bound_bytes(state: _CapabilityState) -> None:
     _assert_regular_file(state.label_lease_path)
     if sha256(state.label_lease_path.read_bytes()).hexdigest() != state.label_lease_bytes_sha256:
         _fail("LABEL_LEASE_MUTATED_AFTER_AUTHORIZATION")
+
+
+def validate_label_access_capability_v1(
+    capability: LabelAccessCapabilityV1,
+    *,
+    expected_authority_hash: str,
+    expected_source_commit: str,
+) -> str:
+    """Verify a live durable authorization without consuming label access."""
+
+    if not _is_hex64(expected_authority_hash):
+        _fail("INVALID_EXPECTED_AUTHORITY_HASH")
+    if type(expected_source_commit) is not str or len(expected_source_commit) != 40 or set(expected_source_commit) - HEX64:
+        _fail("INVALID_EXPECTED_SOURCE_COMMIT")
+    with _CAPABILITY_LOCK:
+        state = _capability_state(capability)
+        if state.state is not PredictionFreezeStateV1.LABEL_ACCESS_AUTHORIZED:
+            _fail("LABEL_CAPABILITY_NOT_AUTHORIZED")
+        if state.authority_hash != expected_authority_hash:
+            _fail("LABEL_CAPABILITY_AUTHORITY_MISMATCH")
+        if state.source_commit != expected_source_commit:
+            _fail("LABEL_CAPABILITY_SOURCE_COMMIT_MISMATCH")
+        _verify_bound_bytes(state)
+        return state.prediction_bytes_sha256
 
 
 def consume_label_access_capability_v1(capability: LabelAccessCapabilityV1, label_reader: Callable[[], _T]) -> _T:
@@ -586,4 +612,5 @@ __all__ = [
     "LabelAccessCapabilityV1", "PredictionFreezeStateV1", "PredictionCustodyError",
     "persist_prediction_before_label_v1", "validate_prediction_document_v1",
     "authorize_label_access_v1", "consume_label_access_capability_v1", "verify_prediction_unchanged_v1",
+    "validate_label_access_capability_v1",
 ]

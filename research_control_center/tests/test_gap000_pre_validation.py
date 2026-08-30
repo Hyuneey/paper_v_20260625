@@ -51,8 +51,8 @@ class Gap000PreValidationTests(unittest.TestCase):
 
     def test_registry_dashboard_and_user_summary(self) -> None:
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertTrue(state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002")))
-        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-002", "V2-PROTOCOL-001")))
+        self.assertTrue(state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001")))
+        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001")))
         self.assertEqual("BEFORE_REMEDIATION_READ_ONLY", state["pre_validation_readiness"]["arch011_position"])
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
         for marker in ("준비도·위험", "Primary disposition", "Urgency", "조건부 진행 가능", "PILOT V1"):

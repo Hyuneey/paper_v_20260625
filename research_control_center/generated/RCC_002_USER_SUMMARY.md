@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -67,11 +67,11 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- Freeze development validation and final-test roles plus event and metric interpretation before scientific execution.
 - Version the common per-second alarm event episode Recall FAR overlap and incremental metric contracts.
+- Freeze experiment-specific preregistrations and normal-only selection receipts before any development execution.
 - Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
 
-관리 작업의 다음 단계는 **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze** 이고, 이후 전체
+관리 작업의 다음 단계는 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract** 이고, 이후 전체
 구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
@@ -81,7 +81,7 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Decide same-physical-test2 eligibility only within a new preregistered study.
 - Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
 - Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.
-- Track V2-PROTOCOL-001 as the next implementation gate after durable custody PASS.
+- Track GAP-FIX-METRIC-001 as the next implementation gate after protocol freeze PASS.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

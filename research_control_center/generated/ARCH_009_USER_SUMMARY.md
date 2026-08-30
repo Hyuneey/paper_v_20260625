@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D2에서 Detector와 Rule을 어떻게 합쳤는가
 
 ## 1. 왜 D0와 D1을 합치려고 했는가?
@@ -74,4 +74,4 @@ D0-miss recovery가 필요하다.
 기억할 한 문장: **D1의 다른 response가 관찰됐지만, 현재 V1/V2 gate는 이를 recall 증가로 바꾸지
 못했고 V2는 독립 검증이 아니다.**
 
-다음 task는 **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**이다.
+다음 task는 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**이다.
