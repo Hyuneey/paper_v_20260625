@@ -48,8 +48,8 @@ class Arch011OuterReproducibilityTests(unittest.TestCase):
 
     def test_registry_dashboard_safety_and_next_task(self) -> None:
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertTrue(state["last_completed_task"].startswith("GAP-FIX-001"))
-        self.assertTrue(state["exact_next_task"].startswith("GAP-FIX-002"))
+        self.assertTrue(state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002")))
+        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-002", "V2-PROTOCOL-001")))
         self.assertEqual(8, len(state["user_todo_items"]))
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
         for marker in ("OUTER·재현성", "new preregistered validation required", "Primary disposition", "Urgency"):

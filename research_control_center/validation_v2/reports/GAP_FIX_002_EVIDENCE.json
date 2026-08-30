@@ -1,0 +1,43 @@
+{
+  "schema_version": "gap_fix_002_evidence_v1",
+  "task_id": "GAP-FIX-002",
+  "verdict": "PASS",
+  "implementation": {
+    "module": "src/paperworks/validation_v2/prediction_custody_v1.py",
+    "prediction_schema": "paperworks.validation_v2.d1_prediction_artifact_v2",
+    "freeze_receipt_schema": "paperworks.validation_v2.durable_prediction_freeze_receipt_v1",
+    "label_lease_schema": "paperworks.validation_v2.label_access_authorization_lease_v1",
+    "publication": "HARD_LINK_NO_OVERWRITE",
+    "directory_fsync_windows": "UNSUPPORTED_WINDOWS_FAIL_HONESTLY",
+    "split_role": "DEVELOPMENT_TEST1"
+  },
+  "tests": {
+    "focused_total": 33,
+    "focused_passed": 33,
+    "platform_skipped": 1,
+    "platform_skip_reason": "Windows symlink creation privilege unavailable; implementation remains fail-closed",
+    "scientific_execution": false
+  },
+  "negative_contracts": [
+    "label-before-freeze", "stale destination", "partial temporary", "wrong authority",
+    "wrong runtime authorization", "wrong execution context", "wrong source commit",
+    "wrong portfolio", "wrong file contract", "prediction mutation", "receipt mutation",
+    "lease mutation", "path escape", "Git-internal custody", "path-shaped file identity",
+    "forged capability", "duplicate authorization", "concurrent authorization",
+    "concurrent capability consumption", "unsupported hard-link", "empty alarm provenance",
+    "inconsistent per-file content hash"
+  ],
+  "pilot_v1": {
+    "modified": false,
+    "interpretation_changed": false,
+    "prospective_only": true
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "held_out_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0
+  }
+}

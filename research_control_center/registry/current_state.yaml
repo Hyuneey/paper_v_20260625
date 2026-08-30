@@ -52,8 +52,8 @@
       {"id": "test1", "badge": "PILOT EVALUATION", "role": "INNER development predictions and post-freeze label metrics"},
       {"id": "test2", "badge": "HELD-OUT / UNAVAILABLE", "role": "custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome"}
     ],
-    "label_access": "Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.",
-    "leakage_status": "NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.",
+    "label_access": "Normal construction is label-blind. PILOT V1 D1 retains its weaker in-memory boundary; VALIDATION V2 now requires durable no-overwrite prediction freeze replay one-shot label lease and post-label byte verification.",
+    "leakage_status": "NO VERIFIED LEAKAGE FOUND. PILOT V1 retains its documented D1 custody qualification; GAP-FIX-002 closes the prospective VALIDATION V2 custody gap. D2 V2 remains test1-informed development.",
     "test1_status": "INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
     "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
@@ -437,9 +437,7 @@
       "FUTURE_WORK_ONLY": 1
     },
     "priority_counts": {"P0": 4, "P1": 10, "P2": 3, "P3": 2},
-    "p0_global_fixes": [
-      "GAP-002 — add a durable D1 prediction-before-label byte/state gate"
-    ],
+    "p0_global_fixes": [],
     "p0_design_gates": [
       "GAP-003 — freeze validation, policy-selection, and final held-out roles",
       "GAP-004 — freeze event-unit scope, dependence interpretation, and analysis policy"
@@ -463,7 +461,7 @@
       "Retain Graph-Guided only if EXP-01 supports contribution.",
       "Retain Agentic only if EXP-03 supports contribution."
     ],
-    "warning": "GAP-FIX-001 is remediated for VALIDATION V2 authority identity. Scientific frame materialization, durable prediction custody, test2 access, and held-out evaluation remain unauthorized."
+    "warning": "GAP-FIX-001 authority and GAP-FIX-002 durable custody are remediated prospectively. Scientific frame materialization protocol and metric freeze test2 access and held-out evaluation remain unauthorized."
   },
   "validation_v2_authority": {
     "decision": "FORMAL_V4",
@@ -473,17 +471,29 @@
     "verifier_v1_authoritative": false,
     "runtime_entrypoint": "paperworks.validation_v2.runtime_v1.execute_formal_v4_rule_v1",
     "replayed_bindings": ["source commit", "runtime config", "evaluator implementation", "relation authority", "numeric value authority", "feature contract", "file contract", "sampling contract", "selected horizon"],
-    "scope_limit": "An already materialized V2 observation window can be authority-checked and evaluated. Scientific frame-to-window materialization and durable prediction custody remain separately gated.",
+    "scope_limit": "An already materialized V2 observation window can be authority-checked and evaluated and its resulting prediction can use the GAP-FIX-002 custody gate. Scientific frame-to-window materialization and protocol/metric freeze remain separately gated.",
     "pilot_v1_impact": "NONE; PILOT V1 remains immutable and retains its historical V4 COMMON-42 authority."
   },
+  "validation_v2_custody": {
+    "gap_fix_002": "PASS",
+    "module": "paperworks.validation_v2.prediction_custody_v1",
+    "publication": "FSYNCED_SAME_DIRECTORY_TEMP_TO_HARD_LINK_NO_OVERWRITE",
+    "freeze": "PREDICTION_AND_RECEIPT_REOPENED_SCHEMA_HASH_RECORD_REPLAYED",
+    "label_authorization": "DURABLE_NO_OVERWRITE_LEASE_PLUS_FACTORY_ONE_SHOT_CAPABILITY",
+    "post_label": "PREDICTION_RECEIPT_AND_LEASE_BYTE_IDENTITY_REVERIFIED",
+    "bindings": ["Formal V4 authority", "runtime authorization", "execution context", "source commit", "portfolio", "file contract", "DEVELOPMENT_TEST1 split role"],
+    "windows_directory_fsync": "UNSUPPORTED_WINDOWS_RECORDED_NOT_OVERSTATED",
+    "pilot_v1_impact": "NONE; PILOT V1 keeps the historical in-memory-only qualification.",
+    "scope_limit": "Synthetic custody contract only; no D1 scientific prediction label metric test1 test2 or held-out execution occurred."
+  },
   "top_priorities": [
-    "Implement the durable D1 pre-label gate prospectively in VALIDATION V2 without rewriting PILOT V1.",
-    "Freeze development, validation, and final-test roles plus event/metric interpretation before scientific execution.",
-    "Close dependency/schema/entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access."
+    "Freeze development validation and final-test roles plus event and metric interpretation before scientific execution.",
+    "Version the common per-second alarm event episode Recall FAR overlap and incremental metric contracts.",
+    "Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access."
   ],
   "highest_priority_work": [
-    "Implement GAP-FIX-002 durable D1 custody for VALIDATION V2.",
-    "Freeze the V2 split-role and common metric contracts.",
+    "Freeze V2-PROTOCOL-001 split roles event units no-tuning and reporting boundaries.",
+    "Implement GAP-FIX-METRIC-001 common portable metric contracts with synthetic tests.",
     "Rehearse the public synthetic release on a fresh machine before any new held-out study."
   ],
   "user_todo_items": [
@@ -501,16 +511,16 @@
     "Decide same-physical-test2 eligibility only within a new preregistered study.",
     "Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.",
     "Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.",
-    "Track GAP-FIX-002 durable D1 custody as the next implementation gate.",
+    "Track V2-PROTOCOL-001 as the next implementation gate after durable custody PASS.",
     "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "GAP-FIX-002 — Durable D1 Prediction-before-label Gate",
+  "recommended_next_management_task": "V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "GAP-FIX-001 — Formal V4 Authority Contract & Conformance Freeze",
-  "exact_next_task": "GAP-FIX-002 — Durable D1 Prediction-before-label Gate",
+  "last_completed_task": "GAP-FIX-002 — Durable D1 Prediction-before-label Gate",
+  "exact_next_task": "V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

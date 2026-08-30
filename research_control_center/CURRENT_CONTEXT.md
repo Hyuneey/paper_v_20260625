@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-31
@@ -40,8 +40,8 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Dataset / process:** HAI 23.05 / P1 Boiler.
 - **Roles:** train1/train2 normal fit; train3 relation confirmation plus D0 calibration;
   train4 normal sanity; test1 INNER pilot; test2 held-out result unavailable.
-- **Label ordering:** Normal construction is label-blind. D0 and D2 persist predictions before labels; D1 constructs a label-blind hashed object first but lacks a durable file-before-label gate.
-- **Leakage finding:** NO VERIFIED LEAKAGE FOUND; two high qualifications are the D1 durable-ordering gap and test1-informed D2 V2 design.
+- **Label ordering:** Normal construction is label-blind. PILOT V1 D1 retains its weaker in-memory boundary; VALIDATION V2 now requires durable no-overwrite prediction freeze replay one-shot label lease and post-label byte verification.
+- **Leakage finding:** NO VERIFIED LEAKAGE FOUND. PILOT V1 retains its documented D1 custody qualification; GAP-FIX-002 closes the prospective VALIDATION V2 custody gap. D2 V2 remains test1-informed development.
 
 ## CANDIDATE DISCOVERY FOUNDATION
 
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Implement the durable D1 pre-label gate prospectively in VALIDATION V2 without rewriting PILOT V1.
-- Freeze development, validation, and final-test roles plus event/metric interpretation before scientific execution.
-- Close dependency/schema/entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
+- Freeze development validation and final-test roles plus event and metric interpretation before scientific execution.
+- Version the common per-second alarm event episode Recall FAR overlap and incremental metric contracts.
+- Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
 
-Exact next management task: **GAP-FIX-002 — Durable D1 Prediction-before-label Gate**
+Exact next management task: **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

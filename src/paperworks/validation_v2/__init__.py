@@ -28,6 +28,19 @@ from paperworks.validation_v2.runtime_v1 import (
     FormalV4RuntimeTraceV1,
     execute_formal_v4_rule_v1,
 )
+from paperworks.validation_v2.prediction_custody_v1 import (
+    D1PredictionArtifactV2,
+    D1PredictionRecordV2,
+    DurablePredictionFreezeReceiptV1,
+    LabelAccessCapabilityV1,
+    PredictionCustodyError,
+    PredictionFreezeStateV1,
+    authorize_label_access_v1,
+    consume_label_access_capability_v1,
+    persist_prediction_before_label_v1,
+    validate_prediction_document_v1,
+    verify_prediction_unchanged_v1,
+)
 
 __all__ = [
     "FormalV4ArtifactBindingV1",
@@ -48,4 +61,15 @@ __all__ = [
     "FormalV4ObservationWindowV1",
     "FormalV4RuntimeTraceV1",
     "execute_formal_v4_rule_v1",
+    "D1PredictionArtifactV2",
+    "D1PredictionRecordV2",
+    "DurablePredictionFreezeReceiptV1",
+    "LabelAccessCapabilityV1",
+    "PredictionCustodyError",
+    "PredictionFreezeStateV1",
+    "authorize_label_access_v1",
+    "consume_label_access_capability_v1",
+    "persist_prediction_before_label_v1",
+    "validate_prediction_document_v1",
+    "verify_prediction_unchanged_v1",
 ]

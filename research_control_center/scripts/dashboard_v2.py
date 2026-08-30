@@ -481,9 +481,9 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     p0_count = len(vm["readiness"]["p0_global_fixes"]) + len(vm["readiness"]["p0_design_gates"])
     open_count = len(vm["unresolved_decisions"])
     actions = [
-        ("GAP-002", "D1 durable pre-label gate", "VALIDATION V2에서 persist→close→reopen→label gate 구현"),
-        ("GAP-003/004", "Validation/final protocol freeze", "event unit·metric·policy selection 역할을 결과 전에 고정"),
-        ("GAP-012", "공통 metric portability", "file-local 1초 계약과 cross-arm 결과 lineage를 version으로 고정"),
+        ("V2-PROTOCOL-001", "Validation/final protocol freeze", "event unit·split·policy selection 역할을 결과 전에 고정"),
+        ("GAP-FIX-METRIC-001", "공통 metric portability", "file-local 1초 계약과 cross-arm 결과 lineage를 version으로 고정"),
+        ("EXP 준비", "실험별 preregistration", "공유 contract PASS 뒤 EXP-01·02·03·05 준비를 분리"),
     ]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
@@ -507,7 +507,7 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     <section class="view-panel is-active" id="view-overview" data-view-panel="overview" aria-labelledby="nav-overview">
       <p class="status-separation">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</p>
       <div class="overview-header panel">
-        <div><p class="kicker">현재 연구 단계</p><h2>Remediation 진행 · Formal V4 고정</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority는 고정됐고, durable custody와 protocol freeze가 다음 gate입니다.</p>
+        <div><p class="kicker">현재 연구 단계</p><h2>Remediation 진행 · authority와 custody 고정</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority와 durable prediction custody가 PASS했고, protocol freeze가 다음 gate입니다.</p>
         <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 기반 구현 중</span></div></div>
         <div class="next-task-callout"><span>정확한 다음 작업</span><strong>{_esc(vm["exact_next_task"])}</strong></div>
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
@@ -574,7 +574,7 @@ def _render_readiness_view(vm: Mapping[str, Any]) -> str:
     <section class="view-panel" id="view-readiness" data-view-panel="readiness" aria-labelledby="nav-readiness" hidden>
       <header class="view-heading"><div><p class="kicker">GAP-000 · triage only</p><h2>준비도·위험</h2><p>주요 처분 (Primary disposition)과 긴급도 (Urgency)는 서로 다른 축입니다. 전체 완료율은 만들지 않습니다.</p></div></header>
       <div class="p0-grid">{callouts}</div>
-      <div class="readiness-summary"><article class="panel"><h3>주요 처분</h3><ul>{disposition_items}</ul></article><article class="panel"><h3>긴급도</h3><ul>{priority_items}</ul></article><article class="panel core-gate"><h3>핵심 검증 Gate</h3><ol><li>Final scientific authority 고정</li><li>D1 durable pre-label custody</li><li>Validation/final 역할 고정</li><li>event/metric contract 고정</li><li>stronger detector와 fusion selection protocol</li></ol></article></div>
+      <div class="readiness-summary"><article class="panel"><h3>주요 처분</h3><ul>{disposition_items}</ul></article><article class="panel"><h3>긴급도</h3><ul>{priority_items}</ul></article><article class="panel core-gate"><h3>핵심 검증 Gate</h3><ol><li>완료: Final scientific authority</li><li>완료: D1 durable pre-label custody</li><li>현재: Validation/final 역할 고정</li><li>예정: event/metric contract 고정</li><li>예정: stronger detector와 fusion selection protocol</li></ol></article></div>
       <section class="panel readiness-table"><div class="panel-heading"><div><p class="kicker">19 root issues</p><h3>전체 remediation inventory</h3></div><div class="inline-filters"><label>Disposition<select id="gap-disposition"><option value="">전체</option>{''.join(f'<option value="{_esc(key)}">{_esc(vm["labels"].get(key,key))}</option>' for key in vm["readiness"]["disposition_counts"])}</select></label><label>Urgency<select id="gap-priority"><option value="">전체</option><option>P0</option><option>P1</option><option>P2</option><option>P3</option></select></label></div></div><div class="table-wrap"><table><thead><tr><th>Gap</th><th>Primary disposition</th><th>Urgency</th><th>과학 영향</th><th>권고 조치</th><th>상태</th></tr></thead><tbody id="gap-table-body">{root_rows}</tbody></table></div></section>
     </section>'''
 
