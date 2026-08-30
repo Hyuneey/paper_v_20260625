@@ -8,6 +8,7 @@ import unittest
 from paperworks.validation_v2.prediction_custody_v1 import (
     D1PredictionArtifactV2,
     D1PredictionRecordV2,
+    PredictionCustodyError,
     authorize_label_access_v1,
     persist_prediction_before_label_v1,
 )
@@ -236,7 +237,7 @@ class ValidationProtocolTests(unittest.TestCase):
             )
 
         wrong_capability, _ = self.label_capability(authority_hash="e" * 64)
-        with self.assertRaisesRegex(Exception, "LABEL_CAPABILITY_AUTHORITY_MISMATCH"):
+        with self.assertRaisesRegex(PredictionCustodyError, "LABEL_CAPABILITY_AUTHORITY_MISMATCH"):
             guard.authorize(
                 split_id="test1", operation=ProtocolOperationV1.DEVELOPMENT_LABEL_METRICS,
                 label_access_capability=wrong_capability,
@@ -249,7 +250,7 @@ class ValidationProtocolTests(unittest.TestCase):
         guard.record_development_prediction_frozen()
         capability, receipt_path = self.label_capability()
         receipt_path.write_bytes(receipt_path.read_bytes() + b" ")
-        with self.assertRaisesRegex(Exception, "RECEIPT_MUTATED_AFTER_FREEZE"):
+        with self.assertRaisesRegex(PredictionCustodyError, "RECEIPT_MUTATED_AFTER_FREEZE"):
             guard.authorize(
                 split_id="test1", operation=ProtocolOperationV1.DEVELOPMENT_LABEL_METRICS,
                 label_access_capability=capability,

@@ -340,8 +340,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain the six current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "GAP-FIX-002 — Durable D1 Prediction-before-label Gate", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -354,7 +354,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "incomplete", "fresh-machine reproducibility must remain incomplete")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
     result.require(readiness.get("status") == "REMEDIATION_IN_PROGRESS", "VALIDATION V2 remediation status mismatch")
@@ -676,6 +676,13 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     custody = data["state"].get("validation_v2_custody", {})
     result.require(custody.get("gap_fix_002") == "PASS", "GAP-FIX-002 custody status is not PASS")
     result.require(custody.get("pilot_v1_impact", "").startswith("NONE"), "GAP-FIX-002 must not rewrite PILOT V1")
+    protocol = data["state"].get("validation_v2_protocol", {})
+    result.require(protocol.get("v2_protocol_001") == "PASS", "V2-PROTOCOL-001 status is not PASS")
+    result.require(protocol.get("protocol_source_commit") == "e014382feeea0ebb69280f11c099645b1ed192b6", "V2 protocol source commit mismatch")
+    result.require(protocol.get("protocol_hash") == "2c3000a912caf2167bfe49929c55229e5159d52cc9ad09b7e48d79d9aecc562f", "V2 protocol hash mismatch")
+    result.require("DEVELOPMENT_ONLY" in protocol.get("development_role", ""), "test1 is not frozen as development-only")
+    result.require("no authorized operation" in protocol.get("heldout_role", ""), "held-out operation boundary is not fail-closed")
+    result.require(protocol.get("pilot_v1_impact", "").startswith("NONE"), "V2-PROTOCOL-001 must not rewrite PILOT V1")
 
 
 def _git_resolves_to(repo_root: Path, revision: str, expected: str) -> bool:
@@ -823,10 +830,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "V2-PROTOCOL-001"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "V2-PROTOCOL-001"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "GAP-FIX-METRIC-001"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "GAP-FIX-METRIC-001"),
         "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "V2-PROTOCOL-001"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "GAP-FIX-METRIC-001"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),

@@ -1,0 +1,58 @@
+{
+  "schema_version": "v2_protocol_001_evidence_v1",
+  "task_id": "V2-PROTOCOL-001",
+  "verdict": "PASS",
+  "implementation": {
+    "module": "src/paperworks/validation_v2/protocol_v1.py",
+    "protocol_schema": "paperworks.validation_v2.protocol_v1",
+    "policy_freeze_receipt_schema": "paperworks.validation_v2.policy_freeze_receipt_v1",
+    "protocol_source_commit": "e014382feeea0ebb69280f11c099645b1ed192b6",
+    "protocol_hash": "2c3000a912caf2167bfe49929c55229e5159d52cc9ad09b7e48d79d9aecc562f",
+    "evaluation_scope": "TEST1_DEVELOPMENT_ONLY",
+    "heldout_authorized": false,
+    "next_implementation": "GAP-FIX-METRIC-001"
+  },
+  "split_roles": {
+    "train1": "NORMAL_FIT_PRIMARY",
+    "train2": "NORMAL_FIT_SECONDARY",
+    "train3": "NORMAL_CONFIRMATION_CALIBRATION",
+    "train4": "NORMAL_POLICY_SELECTION_SANITY",
+    "test1": "DEVELOPMENT_ONLY",
+    "future_heldout": "FUTURE_FINAL_HELDOUT_NO_OPERATIONS"
+  },
+  "metric_policy": {
+    "sampling_seconds": 1,
+    "coordinate_scope": "FILE_LOCAL_ROW_INDEX",
+    "point_adjustment": "PROHIBITED",
+    "episode_gap_seconds": 0,
+    "event_independence": "NOT_ESTABLISHED",
+    "zero_denominator": "UNDEFINED",
+    "system_failure_to_no_alarm": false
+  },
+  "tests": {
+    "focused_total": 20,
+    "focused_passed": 20,
+    "scientific_execution": false
+  },
+  "independent_qa": {
+    "verdict": "PASS",
+    "initial_blockers_found": 2,
+    "initial_blockers_remediated": 2,
+    "rcc_tests_passed": 126,
+    "pilot_v1_blobs_verified": 3021,
+    "private_exposures": 0
+  },
+  "pilot_v1": {
+    "modified": false,
+    "interpretation_changed": false,
+    "prospective_only": true
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "held_out_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0
+  }
+}

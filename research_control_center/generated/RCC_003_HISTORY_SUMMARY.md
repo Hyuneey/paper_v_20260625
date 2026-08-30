@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리 연구가 어떻게 여기까지 왔나
 
 ## 처음 무엇을 하려 했는가
@@ -50,4 +50,4 @@ pilot evidence일 뿐이다. Rule-only 실용성, D2 개선, GDN 고유 기여, 
 
 새 독립 사전등록 아래 더 많은 사건과 더 강한 다변량 탐지기 기준선으로 Rule-only와
 detector 비교를 확장해야 한다. GDN 안정성과 고유 기여, 실제 피드백이 발생하는 T2 비교,
-fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**이다.
+fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**이다.

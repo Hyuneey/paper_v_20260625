@@ -14,7 +14,7 @@
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
-    "V2-PROTOCOL-001": "PENDING",
+    "V2-PROTOCOL-001": "PASS_PROTOCOL_FROZEN",
     "GAP-FIX-METRIC-001": "PENDING"
   },
   "remote_status": "INITIAL_PUSH_BLOCKED_BY_EXECUTION_ENVIRONMENT_REVIEW",
@@ -33,6 +33,7 @@
     "provider_calls": 0,
     "private_exposures": 0,
     "gap_fix_002_focused_tests_passed": 33,
+    "v2_protocol_001_focused_tests_passed": 20,
     "pilot_v1_modifications": 0,
     "stage0_rcc_tests_passed": 122,
     "stage0_registry_validation": "PASS",

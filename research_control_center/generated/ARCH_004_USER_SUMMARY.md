@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=d8621bd8db303ebab5ecb0cc0b0e105690c09387cfa737ccb9ecd6b7cd60fa79 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 어떻게 만들어지는가
 
 ## Evidence Pack
@@ -47,4 +47,4 @@ fail-closed outcome이며 runtime `abstain`과 다르다.
 T0는 frozen input에서 deterministic하다. LLM arms는 model/config, prompt, evidence, request,
 response와 ledger hash가 추적되지만 temperature 0.7, seed 없음이므로 bitwise deterministic하지 않다.
 
-다음 task는 **V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze**이다.
+다음 task는 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**이다.
