@@ -25,8 +25,8 @@
   "verified_rule_only_first_use": "검증된 관계 규칙 단독 방식 (Verified Relational Rule-only)",
   "gap_labels_ko": {
     "GAP-001": {
-      "title": "최종 과학 규칙 권한이 하나로 확정되지 않음",
-      "description": "동결된 규칙 구성과 D1은 task validity 및 V4 권한 체계를 사용하지만, canonical RuleV1·VerifierV1과의 종단 간 동등성을 입증하는 추적 가능한 bridge가 없습니다."
+      "title": "VALIDATION V2 Formal V4 권한 고정 완료",
+      "description": "DEC-020과 GAP-FIX-001이 별도 Formal V4 authority를 고정했습니다. canonical RuleV1·VerifierV1 authority는 상속하거나 주장하지 않습니다."
     },
     "GAP-002": {
       "title": "D1에 label 접근 전 영구 prediction gate가 없음",

@@ -1,6 +1,6 @@
 task_id,branch,stage,dependency,status,scientific_execution,decision_gate
 V2-STAGE-000,validation-v2,0,NONE,COMPLETED_PASS,false,NONE
-GAP-FIX-001,validation-v2-gap-fix-001,1,V2-STAGE-000,PENDING,false,DG-01_RESOLVED
+GAP-FIX-001,validation-v2-gap-fix-001,1,V2-STAGE-000,COMPLETED_PASS,false,DG-01_RESOLVED
 GAP-FIX-002,validation-v2-gap-fix-002,1,GAP-FIX-001,PENDING,false,NONE
 V2-PROTOCOL-001,validation-v2-protocol-freeze,1,GAP-FIX-002,PENDING,false,NONE
 GAP-FIX-METRIC-001,validation-v2-metric-portability,1,V2-PROTOCOL-001,PENDING,false,NONE

@@ -1,0 +1,48 @@
+{
+  "schema_version": "validation_v2_gap_fix_evidence_v1",
+  "task_id": "GAP-FIX-001",
+  "verdict": "PASS_FORMAL_V4",
+  "authority_family": "FORMAL_V4",
+  "canonical_rule_v1_authoritative": false,
+  "verifier_v1_authoritative": false,
+  "canonical_to_v4_bridge_used": false,
+  "direct_runtime_entrypoint": "paperworks.validation_v2.runtime_v1.execute_formal_v4_rule_v1",
+  "bound_inputs": [
+    "source_commit",
+    "runtime_config_bytes",
+    "evaluator_implementation_bytes",
+    "relation_authority_bytes",
+    "numeric_value_authority_bytes",
+    "feature_contract_bytes",
+    "file_contract_bytes",
+    "sampling_contract_bytes",
+    "selected_horizon_coordinate"
+  ],
+  "negative_boundaries": [
+    "HELD_OUT_SPLIT",
+    "STALE_SOURCE_COMMIT",
+    "MUTATED_IMPLEMENTATION",
+    "MUTATED_NUMERIC_VALUE",
+    "WRONG_ARTIFACT_AUTHORITY",
+    "FORGED_RUNTIME_CAPABILITY",
+    "HORIZON_SUBSTITUTION",
+    "WINDOWS_PATH_TRAVERSAL"
+  ],
+  "validation": {
+    "independent_qa": "PASS_13_OF_13",
+    "coordinator_focused_tests": "PASS_9_OF_9",
+    "rcc_ui_regression": "PASS_126_OF_126",
+    "compile": "PASS",
+    "wheel_schema_portability": "PASS",
+    "pilot_v1_preservation": "PASS_3021_OF_3021"
+  },
+  "scope_limit": "Scientific frame-to-window materialization and durable prediction custody remain separately gated.",
+  "safety": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "held_out_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0,
+    "pilot_v1_modifications": 0
+  }
+}

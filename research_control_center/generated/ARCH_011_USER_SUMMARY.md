@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c0e0ce97206de8f04c9cd4ccd865cb3ea586816aea0bf8e6736264658eef9b89 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b29add1b534024f6df6238e4aa2a7e24092970e16456d4d3f5aa0c2113f09294 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # OUTER와 재현성을 쉽게 이해하기
 
 ## 1. OUTER가 정확히 무엇인가?
@@ -39,7 +39,7 @@ Traceability는 `STRONG_SUPPORTED`이고 same-machine은 `PARTIAL_MODERATE`다. 
 
 ## 10. 어떤 authority option이 가장 현실적인가?
 
-Verified canonical RuleV1/VerifierV1-to-V4 bridge가 가장 균형적이다. 단 lossless equivalence가 증명되어야 하고 DEC-020 승인이 남았다. 실패하면 formal V4가 좁은 fallback이다.
+DEC-020은 lossless equivalence를 강제하지 않고 Formal V4를 별도 VALIDATION V2 authority로 선택했다. canonical RuleV1·VerifierV1 authority는 주장하지 않는다.
 
 ## 11. fresh-machine rehearsal은 언제 해야 하는가?
 
@@ -51,4 +51,4 @@ Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 gui
 
 기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
 
-다음 task는 **GAP-FIX-001 — Final Scientific Authority Bridge Contract & Conformance Freeze**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+다음 task는 **GAP-FIX-002 — Durable D1 Prediction-before-label Gate**이다. ARCH-011은 이 remediation을 실행하지 않았다.

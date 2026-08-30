@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paperworks://validation-v2/formal-v4-portfolio-authority-v1",
+  "title": "VALIDATION V2 Formal V4 Portfolio Authority V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["allowed_split_roles", "artifact_type", "authority_family", "authority_hash", "canonical_rule_v1_authoritative", "canonical_to_v4_bridge_used", "config_id", "descriptor_set_hash", "descriptors", "evaluator_contract_hash", "experiment_id", "feature_contract_binding", "file_contract_binding", "heldout_authorized", "method_id", "numeric_authority_binding", "portfolio_id", "relation_authority_binding", "sampling_contract_binding", "schema_version", "source_commit", "verifier_v1_authoritative"],
+  "properties": {
+    "allowed_split_roles": {"const": ["DEVELOPMENT_TEST1"]},
+    "artifact_type": {"const": "validation_v2_formal_v4_portfolio_authority_v1"},
+    "authority_family": {"const": "FORMAL_V4"},
+    "authority_hash": {"$ref": "#/$defs/sha256"},
+    "canonical_rule_v1_authoritative": {"const": false},
+    "canonical_to_v4_bridge_used": {"const": false},
+    "config_id": {"$ref": "#/$defs/text"},
+    "descriptor_set_hash": {"$ref": "#/$defs/sha256"},
+    "descriptors": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/descriptor"}},
+    "evaluator_contract_hash": {"$ref": "#/$defs/sha256"},
+    "experiment_id": {"$ref": "#/$defs/text"},
+    "feature_contract_binding": {"$ref": "#/$defs/artifact_binding"},
+    "file_contract_binding": {"$ref": "#/$defs/artifact_binding"},
+    "heldout_authorized": {"const": false},
+    "method_id": {"$ref": "#/$defs/text"},
+    "numeric_authority_binding": {"$ref": "#/$defs/artifact_binding"},
+    "portfolio_id": {"$ref": "#/$defs/text"},
+    "relation_authority_binding": {"$ref": "#/$defs/artifact_binding"},
+    "sampling_contract_binding": {"$ref": "#/$defs/artifact_binding"},
+    "schema_version": {"const": "1.0.0"},
+    "source_commit": {"$ref": "#/$defs/git_commit"},
+    "verifier_v1_authoritative": {"const": false}
+  },
+  "$defs": {
+    "artifact_binding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact_id", "content_sha256", "relative_path"],
+      "properties": {"artifact_id": {"$ref": "#/$defs/text"}, "content_sha256": {"$ref": "#/$defs/sha256"}, "relative_path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*:).+$"}}
+    },
+    "descriptor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact_type", "descriptor_hash", "numeric_authority_hash", "numeric_reference_bindings", "relation_binding_hash", "relation_id", "schema_version", "selected_horizon_seconds", "semantic_execution_hash", "source", "source_direction", "target", "target_direction"],
+      "properties": {
+        "artifact_type": {"const": "validation_v2_formal_v4_rule_descriptor_v1"}, "descriptor_hash": {"$ref": "#/$defs/sha256"}, "numeric_authority_hash": {"$ref": "#/$defs/sha256"},
+        "numeric_reference_bindings": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/numeric_binding"}},
+        "relation_binding_hash": {"$ref": "#/$defs/sha256"}, "relation_id": {"$ref": "#/$defs/text"}, "schema_version": {"const": "1.0.0"},
+        "selected_horizon_seconds": {"enum": [1, 5, 10, 30, 60]}, "semantic_execution_hash": {"$ref": "#/$defs/sha256"}, "source": {"$ref": "#/$defs/text"},
+        "source_direction": {"enum": ["step_up", "step_down"]}, "target": {"$ref": "#/$defs/text"}, "target_direction": {"enum": ["increase", "decrease"]}
+      }
+    },
+    "numeric_binding": {"type": "object", "additionalProperties": false, "required": ["numeric_role", "reference_hash", "reference_id"], "properties": {"numeric_role": {"type": "string"}, "reference_hash": {"$ref": "#/$defs/sha256"}, "reference_id": {"$ref": "#/$defs/text"}}},
+    "git_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "text": {"type": "string", "minLength": 1}
+  }
+}
