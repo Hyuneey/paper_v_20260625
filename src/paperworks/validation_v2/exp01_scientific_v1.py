@@ -1205,18 +1205,44 @@ def build_inclusion_evidence_handoff_v1(
     interventions: tuple[MaskInterventionReceiptV1, ...],
     inclusion_evidence_hash: str,
 ) -> InclusionEvidenceHandoffV1:
-    if final_state.stage != Stage.MASK_INTERVENTION_COMPLETED.value or not final_state.state_hash:
-        raise Exp01ScientificContractError("inclusion handoff requires complete typed stages")
-    expected_stage_hashes = (
-        authority.authority_hash,
-        stable_hash_v1({"view_receipt_hashes": list(checkpoint_set.view_receipt_hashes)}),
-        checkpoint_set.receipt_hash,
-        _typed_stage_evidence_hash(Stage.CANDIDATES_AGGREGATED, candidate_aggregates),
-        _typed_stage_evidence_hash(Stage.PROFILING_CONFIRMED, confirmation),
-        _typed_stage_evidence_hash(Stage.MASK_INTERVENTION_COMPLETED, interventions),
+    _require_self_hash(
+        final_state, expected_type=StageStateV1,
+        hash_field="state_hash", name="mask-complete stage state",
     )
-    if final_state.completed_receipt_hashes != expected_stage_hashes:
-        raise Exp01ScientificContractError("final state does not bind the supplied typed lineage")
+    _require_self_hash(
+        authority, expected_type=PublicDataAuthorityV1,
+        hash_field="authority_hash", name="handoff public authority",
+    )
+    _require_self_hash(
+        checkpoint_set, expected_type=CheckpointSetReceiptV1,
+        hash_field="receipt_hash", name="handoff checkpoint set",
+    )
+    _require_self_hash(
+        confirmation, expected_type=ConfirmationReceiptV1,
+        hash_field="receipt_hash", name="handoff confirmation",
+    )
+    if final_state.stage != Stage.MASK_INTERVENTION_COMPLETED.value:
+        raise Exp01ScientificContractError("inclusion handoff requires complete typed stages")
+    if type(candidate_aggregates) is not tuple or len(candidate_aggregates) != 4:
+        raise Exp01ScientificContractError("handoff requires exact candidate aggregates")
+    if type(interventions) is not tuple or len(interventions) != 3:
+        raise Exp01ScientificContractError("handoff requires exact mask interventions")
+    expected_candidate_hashes = tuple(item.receipt_hash for item in candidate_aggregates)
+    if confirmation.candidate_union.candidate_aggregate_hashes != expected_candidate_hashes:
+        raise Exp01ScientificContractError("confirmation union does not bind the supplied candidate aggregates")
+
+    replayed = initial_stage_state_v1()
+    for stage, evidence in (
+        (Stage.AUTHORITY_BOUND, authority),
+        (Stage.VIEWS_MATERIALIZED, checkpoint_set.view_receipts),
+        (Stage.SEEDS_COMPLETED, checkpoint_set),
+        (Stage.CANDIDATES_AGGREGATED, candidate_aggregates),
+        (Stage.PROFILING_CONFIRMED, confirmation),
+        (Stage.MASK_INTERVENTION_COMPLETED, interventions),
+    ):
+        replayed = advance_stage_v1(replayed, next_stage=stage, evidence=evidence)
+    if final_state != replayed or final_state.state_hash != replayed.state_hash:
+        raise Exp01ScientificContractError("final state does not replay the supplied typed lineage")
     return _with_hash(InclusionEvidenceHandoffV1, {
         "stage_state_hash": final_state.state_hash,
         "authority_hash": authority.authority_hash,

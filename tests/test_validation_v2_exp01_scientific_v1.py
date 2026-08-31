@@ -8,7 +8,7 @@ from paperworks.validation_v2.exp01_scientific_v1 import (
     ArmId, BACKEND_CLASSIFICATION, BackendExecutionReceiptV1, CORRECTED_NEIGHBOR_POLICY_HASH,
     EXPECTED_AGGREGATES, EXPECTED_SCHEDULE, EXP01_SCIENTIFIC_CONTRACT_HASH,
     Exp01ScientificContractError, FROZEN_NEIGHBOR_POLICY_HASH, PAIR_UNIVERSE,
-    PREREGISTRATION_HASH, PUBLIC_DATA_AUTHORITY_HASH, SEEDS, Stage,
+    PREREGISTRATION_HASH, PUBLIC_DATA_AUTHORITY_HASH, SEEDS, Stage, StageStateV1,
     TRAINING_CONFIG_HASH, UPSTREAM_GDN_COMMIT, ViewId, advance_stage_v1,
     build_backend_execution_receipt_v1, build_candidate_aggregate_receipt_v1,
     build_candidate_union_authority_v1, build_checkpoint_set_receipt_v1,
@@ -163,7 +163,7 @@ class ValidationV2Exp01ScientificV2Tests(unittest.TestCase):
         )
         with self.assertRaises(Exp01ScientificContractError):
             dataclasses.replace(aggregate, top10=aggregate.top10[:-1], receipt_hash="")
-        with self.assertRaisesRegex(Exp01ScientificContractError, "does not replay"):
+        with self.assertRaisesRegex(Exp01ScientificContractError, "staged checkpoint|does not replay"):
             build_candidate_aggregate_receipt_v1(
                 arm_id=ArmId.CORRECTED_SELF_EXCLUDED, view_id=ViewId.COMBINED,
                 checkpoint_set=self.checkpoints, ranked_pairs=tuple(reversed(aggregate.ranked_pairs)),
@@ -346,6 +346,52 @@ class ValidationV2Exp01ScientificV2Tests(unittest.TestCase):
                 ),
                 candidate_aggregate_hashes=(*tuple(item.receipt_hash for item in self.aggregates), "e" * 64),
                 handoff_hash="",
+            )
+
+    def test_handoff_replays_chain_and_rejects_coordinated_forged_state(self) -> None:
+        alternate_backends = tuple(
+            build_backend_execution_receipt_v1(
+                arm_id=arm, seed=seed,
+                view_receipt=next(item for item in self.views if item.view_id == view),
+                checkpoint_hash=stable_hash_v1({"forged_checkpoint": [arm, view, seed]}),
+                graph_edges=self.edges,
+            ) for arm, view, seed in EXPECTED_SCHEDULE
+        )
+        alternate_checkpoints = build_checkpoint_set_receipt_v1(
+            authority_hash=self.authority.authority_hash, view_receipts=self.views,
+            seed_receipts=tuple(build_seed_projection_v1(backend_receipt=item) for item in alternate_backends),
+        )
+        alternate_aggregates = tuple(
+            build_candidate_aggregate_receipt_v1(
+                arm_id=ArmId(arm), view_id=ViewId(view), checkpoint_set=alternate_checkpoints,
+            ) for arm, view in EXPECTED_AGGREGATES
+        )
+        alternate_union = build_candidate_union_authority_v1(candidate_aggregates=alternate_aggregates)
+        alternate_submission = build_profiling_submission_v1(candidate_union=alternate_union)
+        alternate_confirmation = build_confirmation_receipt_v1(
+            candidate_union=alternate_union, submission=alternate_submission,
+            decision_ledger_hash="b" * 64,
+            confirmed_pairs=alternate_submission.candidate_pairs, rejected_pairs=(),
+        )
+        mixed_hashes = (
+            self.authority.authority_hash,
+            stable_hash_v1({"view_receipt_hashes": list(self.checkpoints.view_receipt_hashes)}),
+            self.checkpoints.receipt_hash,
+            stable_hash_v1({"candidate_aggregate_hashes": [item.receipt_hash for item in alternate_aggregates]}),
+            alternate_confirmation.receipt_hash,
+            stable_hash_v1({"intervention_receipt_hashes": [item.receipt_hash for item in self.interventions]}),
+        )
+        forged = StageStateV1(
+            stage=Stage.MASK_INTERVENTION_COMPLETED.value,
+            completed_receipt_hashes=mixed_hashes, previous_state_hash="f" * 64,
+        )
+        forged = dataclasses.replace(forged, state_hash=stable_hash_v1(forged.to_dict(include_hash=False)))
+        with self.assertRaisesRegex(Exp01ScientificContractError, "staged checkpoint|does not replay"):
+            build_inclusion_evidence_handoff_v1(
+                final_state=forged, authority=self.authority,
+                checkpoint_set=self.checkpoints, candidate_aggregates=alternate_aggregates,
+                confirmation=alternate_confirmation, interventions=self.interventions,
+                inclusion_evidence_hash="d" * 64,
             )
 
     def test_no_prohibited_access_is_authorized(self) -> None:
