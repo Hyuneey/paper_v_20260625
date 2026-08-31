@@ -169,7 +169,16 @@ class FormalV4AuthorityTests(unittest.TestCase):
         self.fx.close()
 
     def test_schema_registry_validates_produced_documents(self) -> None:
-        self.assertEqual(len(load_validation_v2_schema_registry_v1()), 19)
+        records = load_validation_v2_schema_registry_v1()
+        self.assertEqual(len(records), 28)
+        self.assertTrue({
+            "formal_v4_materialized_trace_v1.schema.json",
+            "formal_v4_explanation_record_v1.schema.json",
+            "formal_v4_explanation_fidelity_result_v1.schema.json",
+            "exp05_run_authorization_v1.schema.json",
+            "exp05_evaluated_unit_v1.schema.json",
+            "exp05_evaluated_cohort_bundle_v1.schema.json",
+        }.issubset({item.filename for item in records}))
         validate_validation_v2_document_v1("formal_v4_portfolio_authority_v1.schema.json", self.fx.authority.to_dict())
         validate_validation_v2_document_v1("formal_v4_runtime_authorization_v1.schema.json", self.fx.bundle.receipt.to_dict())
 

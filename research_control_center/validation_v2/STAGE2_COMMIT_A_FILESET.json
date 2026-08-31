@@ -1,0 +1,117 @@
+{
+  "schema": "paperworks.validation_v2.stage2_commit_a_fileset_v1",
+  "schema_version": "1.0.0",
+  "source_base_commit": "4fcc4ec501711a3f3a3335183ecd5f80fc4b39bd",
+  "groups": [
+    {
+      "role": "FREEZE_GOVERNANCE",
+      "experiment_ids": ["D0-V2", "EXP-01", "EXP-02", "EXP-03", "EXP-04", "EXP-05", "STRONGER-DETECTOR"],
+      "paths": [
+        "research_control_center/scripts/freeze_validation_v2_stage2.py",
+        "research_control_center/validation_v2/PILOT_V1_PRESERVATION_MANIFEST.json",
+        "research_control_center/validation_v2/STAGE2_COMMIT_A_FILESET.json",
+        "research_control_center/validation_v2/requirements-detector.lock.txt",
+        "research_control_center/validation_v2/reports/V2_DETECTOR_ENVIRONMENT_MANIFEST.json",
+        "research_control_center/validation_v2/reports/GAP_FIX_METRIC_001_EVIDENCE.json",
+        "research_control_center/validation_v2/reports/V2_PROTOCOL_001_EVIDENCE.json"
+      ]
+    },
+    {
+      "role": "PREREGISTRATION",
+      "experiment_ids": ["D0-V2", "EXP-01", "EXP-02", "EXP-03", "EXP-04", "EXP-05", "STRONGER-DETECTOR"],
+      "paths": [
+        "research_control_center/validation_v2/preregistration/D0_PCA_SPE_PREREGISTRATION_V2.json",
+        "research_control_center/validation_v2/preregistration/EXP01_PREREGISTRATION_V2.json",
+        "research_control_center/validation_v2/preregistration/EXP02_PREREGISTRATION_V2.json",
+        "research_control_center/validation_v2/preregistration/EXP03_PREREGISTRATION_V2.json",
+        "research_control_center/validation_v2/preregistration/EXP04_PREREGISTRATION_V2.json",
+        "research_control_center/validation_v2/preregistration/EXP05_PREREGISTRATION_V2.json",
+        "research_control_center/validation_v2/preregistration/STRONGER_DETECTOR_PREREGISTRATION_V2.json"
+      ]
+    },
+    {
+      "role": "DESIGN_AUTHORITY",
+      "experiment_ids": ["EXP-01", "EXP-02", "EXP-03", "EXP-05", "STRONGER-DETECTOR"],
+      "paths": [
+        "research_control_center/validation_v2/staging/EXP01_PREREGISTRATION_DRAFT.json",
+        "research_control_center/validation_v2/staging/EXP02_PREREGISTRATION_DRAFT.json",
+        "research_control_center/validation_v2/staging/EXP03_PREREGISTRATION_DRAFT.json",
+        "research_control_center/validation_v2/staging/EXP05_PREREGISTRATION_DRAFT.json",
+        "research_control_center/validation_v2/staging/STRONGER_DETECTOR_FEASIBILITY.md",
+        "research_control_center/validation_v2/staging/STRONGER_DETECTOR_PREREGISTRATION_DRAFT.json"
+      ]
+    },
+    {
+      "role": "SOURCE",
+      "experiment_ids": ["D0-V2", "EXP-01", "EXP-02", "EXP-03", "EXP-04", "EXP-05", "STRONGER-DETECTOR"],
+      "paths": [
+        "src/paperworks/validation_v2/evaluation_custody_v1.py",
+        "src/paperworks/validation_v2/exp01_gdn_v1.py",
+        "src/paperworks/validation_v2/exp01_runner_v1.py",
+        "src/paperworks/validation_v2/exp01_scientific_v1.py",
+        "src/paperworks/validation_v2/exp02_scientific_v1.py",
+        "src/paperworks/validation_v2/exp03_construction_v1.py",
+        "src/paperworks/validation_v2/exp04_protocol_v1.py",
+        "src/paperworks/validation_v2/exp05_custody_v1.py",
+        "src/paperworks/validation_v2/exp05_runner_v1.py",
+        "src/paperworks/validation_v2/explanation_fidelity_v1.py",
+        "src/paperworks/validation_v2/formal_v4_authority_v1.py",
+        "src/paperworks/validation_v2/hai_feature_adapter_v1.py",
+        "src/paperworks/validation_v2/isolation_forest_v1.py",
+        "src/paperworks/validation_v2/metric_contract_v1.py",
+        "src/paperworks/validation_v2/numeric_policy_v1.py",
+        "src/paperworks/validation_v2/pca_spe_v2.py",
+        "src/paperworks/validation_v2/prediction_custody_v1.py",
+        "src/paperworks/validation_v2/protocol_v1.py",
+        "src/paperworks/validation_v2/runtime_policy_v1.py",
+        "src/paperworks/validation_v2/runtime_v1.py",
+        "src/paperworks/validation_v2/schema_registry_v1.py",
+        "src/paperworks/validation_v2/stage2_freeze_v1.py"
+      ]
+    },
+    {
+      "role": "SCHEMA",
+      "experiment_ids": ["EXP-04", "EXP-05"],
+      "paths": [
+        "src/paperworks/validation_v2/schemas/common_evaluation_bundle_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/common_metric_contract_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/exp05_evaluated_cohort_bundle_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/exp05_evaluated_unit_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/exp05_full_evaluated_unit_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/exp05_full_unit_freeze_receipt_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/exp05_materialization_receipt_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/exp05_run_authorization_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/formal_v4_explanation_fidelity_result_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/formal_v4_explanation_record_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/formal_v4_materialized_trace_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/formal_v4_portfolio_authority_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/formal_v4_runtime_authorization_v1.schema.json",
+        "src/paperworks/validation_v2/schemas/schema_documents_v1.py"
+      ]
+    },
+    {
+      "role": "SYNTHETIC_TEST",
+      "experiment_ids": ["D0-V2", "EXP-01", "EXP-02", "EXP-03", "EXP-04", "EXP-05", "STRONGER-DETECTOR"],
+      "paths": [
+        "tests/test_validation_v2_evaluation_custody_v1.py",
+        "tests/test_validation_v2_exp01_gdn_v1.py",
+        "tests/test_validation_v2_exp01_scientific_v1.py",
+        "tests/test_validation_v2_exp02_scientific_v1.py",
+        "tests/test_validation_v2_exp03_construction_v1.py",
+        "tests/test_validation_v2_exp04_protocol_v1.py",
+        "tests/test_validation_v2_exp05_custody_v1.py",
+        "tests/test_validation_v2_exp05_runner_v1.py",
+        "tests/test_validation_v2_explanation_fidelity_v1.py",
+        "tests/test_validation_v2_formal_v4_authority_v1.py",
+        "tests/test_validation_v2_hai_feature_adapter_v1.py",
+        "tests/test_validation_v2_isolation_forest_v1.py",
+        "tests/test_validation_v2_metric_contract_v1.py",
+        "tests/test_validation_v2_numeric_policy_v1.py",
+        "tests/test_validation_v2_pca_spe_v2.py",
+        "tests/test_validation_v2_prediction_custody_v1.py",
+        "tests/test_validation_v2_protocol_v1.py",
+        "tests/test_validation_v2_stage2_freeze_v1.py"
+      ]
+    }
+  ]
+}

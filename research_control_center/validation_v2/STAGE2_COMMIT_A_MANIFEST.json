@@ -1,0 +1,1305 @@
+{
+  "authority_contract_sha256": "4714580722b57c74024cbfe4f5e03e944e0cf1c809ce0864b3064314be041d33",
+  "authority_mode": "FORMAL_V4_SCIENTIFIC_AUTHORITY_WITH_NARROWED_CANONICAL_CLAIMS",
+  "expected_test1_feature_authority_status": "NOT_BOUND_NO_TEST1_ACCESS_AUTHORITY",
+  "experiments": [
+    {
+      "execution_gate": "BLOCKED_UNTIL_COMMIT_A_RECEIPT_AND_DATA_AUTHORITY",
+      "experiment_id": "D0-V2",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/D0-V2",
+      "preregistration_hash": "9e52cf7755c6fc4fff5388839cf2d0e14577e6237ed78bffb029be8d29f1474b",
+      "test1_authorized": false,
+      "test2_authorized": false
+    },
+    {
+      "execution_gate": "BLOCKED_UNTIL_COMMIT_A_RECEIPT_AND_DATA_AUTHORITY",
+      "experiment_id": "EXP-01",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/EXP-01",
+      "preregistration_hash": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc",
+      "test1_authorized": false,
+      "test2_authorized": false
+    },
+    {
+      "execution_gate": "BLOCKED_UNTIL_COMMIT_A_RECEIPT_AND_DATA_AUTHORITY",
+      "experiment_id": "EXP-02",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/EXP-02",
+      "preregistration_hash": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721",
+      "test1_authorized": false,
+      "test2_authorized": false
+    },
+    {
+      "execution_gate": "BLOCKED_DG03",
+      "experiment_id": "EXP-03",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/EXP-03",
+      "preregistration_hash": "ec14bd1581e1c08eb3813b65461c333c464046d9635dfb24885bc9c9f72eda7d",
+      "test1_authorized": false,
+      "test2_authorized": false
+    },
+    {
+      "execution_gate": "BLOCKED_UNTIL_COMMIT_A_RECEIPT_AND_DATA_AUTHORITY",
+      "experiment_id": "EXP-04",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/EXP-04",
+      "preregistration_hash": "920e5fdc40915c76ce9b9bd4b6a62e52a38664a504eb7234fbb574af77398dfb",
+      "test1_authorized": false,
+      "test2_authorized": false
+    },
+    {
+      "execution_gate": "BLOCKED_UNTIL_COMMIT_A_RECEIPT_AND_DATA_AUTHORITY",
+      "experiment_id": "EXP-05",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/EXP-05",
+      "preregistration_hash": "24a54b51732f5ab66c198119ec98e29623ca3d70824382517ae8cafc424c033d",
+      "test1_authorized": false,
+      "test2_authorized": false
+    },
+    {
+      "execution_gate": "BLOCKED_UNTIL_COMMIT_A_RECEIPT_AND_DATA_AUTHORITY",
+      "experiment_id": "STRONGER-DETECTOR",
+      "heldout_authorized": false,
+      "labels_authorized": false,
+      "output_namespace": "VALIDATION_V2/STRONGER-DETECTOR",
+      "preregistration_hash": "b5c1db05262dd94908108bc570ae01a305df47ce1ebccd0116d6e92b1631bacc",
+      "test1_authorized": false,
+      "test2_authorized": false
+    }
+  ],
+  "external_provider_calls_authorized": false,
+  "file_manifest_hash": "c4128d53b1205fb3d8de59bb4cf88ca6dbfdcd110a4952e79bba436fd6bd29cb",
+  "heldout_access_authorized": false,
+  "manifest_hash": "cda8553e7b204d8a4d54dc347a065ff639f1ca968915a3d89f6afa0f245ebf7c",
+  "manifest_version": "VALIDATION_V2_STAGE2_COMMIT_A_V1",
+  "metric_contract_hash": "aec2dd11b8178071eb91160f1dff45f9cd0cc1be6c314aa3641ed0698df3dde4",
+  "normal_input_authority_status": "NOT_BOUND_NO_DATA_ACCESS_AUTHORITY",
+  "phase": "PRE_SCIENCE_COMMIT_A",
+  "pilot_v1_preservation_manifest_sha256": "0d8493e1c4a643667fdfb325f22db5d503504bef32096d4349d982b96a9aebce",
+  "post_result_change_allowed": false,
+  "preregistration_hashes": [
+    {
+      "experiment_id": "D0-V2",
+      "preregistration_hash": "9e52cf7755c6fc4fff5388839cf2d0e14577e6237ed78bffb029be8d29f1474b"
+    },
+    {
+      "experiment_id": "EXP-01",
+      "preregistration_hash": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc"
+    },
+    {
+      "experiment_id": "EXP-02",
+      "preregistration_hash": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721"
+    },
+    {
+      "experiment_id": "EXP-03",
+      "preregistration_hash": "ec14bd1581e1c08eb3813b65461c333c464046d9635dfb24885bc9c9f72eda7d"
+    },
+    {
+      "experiment_id": "EXP-04",
+      "preregistration_hash": "920e5fdc40915c76ce9b9bd4b6a62e52a38664a504eb7234fbb574af77398dfb"
+    },
+    {
+      "experiment_id": "EXP-05",
+      "preregistration_hash": "24a54b51732f5ab66c198119ec98e29623ca3d70824382517ae8cafc424c033d"
+    },
+    {
+      "experiment_id": "STRONGER-DETECTOR",
+      "preregistration_hash": "b5c1db05262dd94908108bc570ae01a305df47ce1ebccd0116d6e92b1631bacc"
+    }
+  ],
+  "program_id": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
+  "schema_registry_hash": "f85fcbe6602864a5b1da6fbe09dce21d16ecd8eeafce7f9caf0da8f33860c236",
+  "scientific_execution_authorized": false,
+  "source_base_commit": "4fcc4ec501711a3f3a3335183ecd5f80fc4b39bd",
+  "study_id": "VALIDATION_V2_DEVELOPMENT_V1",
+  "test1_feature_access_authorized": false,
+  "test1_label_access_authorized": false,
+  "test2_access_authorized": false,
+  "tracked_file_count": 74,
+  "tracked_files": [
+    {
+      "byte_count": 2297,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "2247645f313d30c58867806dfefffb1445cae84f",
+      "git_mode": "100644",
+      "path": "research_control_center/scripts/freeze_validation_v2_stage2.py",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "d9d5ce0badc3826e0e54dcc664d09578c23ff1cd5545f8875f85f2de2d82ce17"
+    },
+    {
+      "byte_count": 684,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "05bdec5ccf14c1ceb302bf53b0b3b8dcf76589cd",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/PILOT_V1_PRESERVATION_MANIFEST.json",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "0d8493e1c4a643667fdfb325f22db5d503504bef32096d4349d982b96a9aebce"
+    },
+    {
+      "byte_count": 6613,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "6a666d067b7e974bd71cd48c214bbc42ce6ab5a0",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/STAGE2_COMMIT_A_FILESET.json",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "d6ebf1b1abc0f0f7df1be7f4fa0bf666fbd20f89592897bef818b81a86cca7f6"
+    },
+    {
+      "byte_count": 762,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "21dd9c3212d5713067f85cd2d6f0a1d3cf318feb",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/D0_PCA_SPE_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "a8af022047c353808520193765aa7aa5ae57084dd315e58c5984c88ea52548e9"
+    },
+    {
+      "byte_count": 1013,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "77731244a707e281a44b43bc968ebc71dba2fc3d",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/EXP01_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "0606574ccee7b2ab4c3995b56fcf908e55c2f6ba1f7bba41015a4ca10296fbf6"
+    },
+    {
+      "byte_count": 960,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "0ffb830c43b2e8dc75f2b292da1b77cbb044cf85",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/EXP02_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "474117251b4afb20392c5163e3ece7f9f10970fed8cfb8bb9a5ec67cd045f5ff"
+    },
+    {
+      "byte_count": 940,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "cc16d66c2f384a68382605c60f370fca2dfe7930",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/EXP03_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "f1f11b3cbbd3753914fc048b7285d6f244bcb0d4701306bcbfe452ca0df52900"
+    },
+    {
+      "byte_count": 899,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "30316c7b40ee150eac7fef3d36b989c83df0af32",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/EXP04_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "e0698ea55eca66e9af00a34fd3e97257a7d23a6d5080c2ec3f6d9966862061f3"
+    },
+    {
+      "byte_count": 1231,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "bc897df7ca34577f515f9b09410cff5341a4986e",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/EXP05_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "5a538106275e11d4c617b4d1574757f58f88cbc5c9ea581e86a70f6f540c0141"
+    },
+    {
+      "byte_count": 929,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "a0268498881f2e2c72f6c2deeb76f2622b7ad014",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/preregistration/STRONGER_DETECTOR_PREREGISTRATION_V2.json",
+      "role": "PREREGISTRATION",
+      "sha256": "a86f7e5436d373130e948105e34ecf718f782a8cbd551e4fc9c5ca55f13fb6f1"
+    },
+    {
+      "byte_count": 1897,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "0ac02791cece5ba21b4fad2a1afeb35222135447",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/reports/GAP_FIX_METRIC_001_EVIDENCE.json",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "44c06941cea17d762c739f07158d6df2edad353f4c035d61d2d1cdb0831bc529"
+    },
+    {
+      "byte_count": 2478,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "278c8b94142e33a326bf70d0e4d46d1729f32c46",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/reports/V2_DETECTOR_ENVIRONMENT_MANIFEST.json",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "90199c6944453c49a5e2ac6e612a07ed468f95dc215461afd76c492d5413a458"
+    },
+    {
+      "byte_count": 1827,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "553450e5886d2a575024f5f1d57ae7dce9edd686",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/reports/V2_PROTOCOL_001_EVIDENCE.json",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "c3f348b0f9c7aa3a1db76a374155279745b30f6eb45a2af0879eb4a715b9a4a6"
+    },
+    {
+      "byte_count": 220,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "031b7547440dd9aa6b33501cff09047d14519504",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/requirements-detector.lock.txt",
+      "role": "FREEZE_GOVERNANCE",
+      "sha256": "03322c7801af5d53455a8957f3ffa3059f02ae3fa949baed51307a279e170b82"
+    },
+    {
+      "byte_count": 9093,
+      "experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "76304fedcc5e37d47724d468d4bef400eeaba4e3",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/staging/EXP01_PREREGISTRATION_DRAFT.json",
+      "role": "DESIGN_AUTHORITY",
+      "sha256": "2691312884ffc1a1e62edd55c8087f5e24dd4b1cd9df8d5b5cadca509011abd4"
+    },
+    {
+      "byte_count": 10999,
+      "experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "06582396d1617bc54153425d9f93291574565034",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/staging/EXP02_PREREGISTRATION_DRAFT.json",
+      "role": "DESIGN_AUTHORITY",
+      "sha256": "a43a327b3995e7088e8d4cf09442e094ca15213d36510fc5b68bd4ac8be7878b"
+    },
+    {
+      "byte_count": 12298,
+      "experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "ce3ac3ac6cfe0632c44e3f0c27d539815e336a5f",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/staging/EXP03_PREREGISTRATION_DRAFT.json",
+      "role": "DESIGN_AUTHORITY",
+      "sha256": "fbfe6c442b74bd57dfc06c77c09160b095029dcca39694c623af451104aeb33c"
+    },
+    {
+      "byte_count": 10916,
+      "experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "920c24c5bf65699cde0808d2057a9726507dd6d4",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/staging/EXP05_PREREGISTRATION_DRAFT.json",
+      "role": "DESIGN_AUTHORITY",
+      "sha256": "96918c1b018717fcaed08f386ba5d2502d1d5913bf79a36701f3118df547ede1"
+    },
+    {
+      "byte_count": 12764,
+      "experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "75c570c3700cb06bfe1ad8746582ac812c983cfe",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/staging/STRONGER_DETECTOR_FEASIBILITY.md",
+      "role": "DESIGN_AUTHORITY",
+      "sha256": "42e35fe60894ac9f983b90d4c47307ce00d6f55d80bd0646bb0d4e323ba4b294"
+    },
+    {
+      "byte_count": 8469,
+      "experiment_ids": [
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "b50d2e613f77cc2b3f692b6e370dd2040d6053be",
+      "git_mode": "100644",
+      "path": "research_control_center/validation_v2/staging/STRONGER_DETECTOR_PREREGISTRATION_DRAFT.json",
+      "role": "DESIGN_AUTHORITY",
+      "sha256": "1a801f702975086fad022202bae0cff6e88df75be26086b6523710b72371d19c"
+    },
+    {
+      "byte_count": 44702,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "93e7f10dec194a05466af4230a79042f1cb9fd77",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/evaluation_custody_v1.py",
+      "role": "SOURCE",
+      "sha256": "16da5db80f3a2c43bb8dc1ac8c35621169d949583b0dbb50e36267a5ef49b6a2"
+    },
+    {
+      "byte_count": 26250,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "3e365a2877179094c5b483f727316a6c5c357f70",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp01_gdn_v1.py",
+      "role": "SOURCE",
+      "sha256": "08c1d4b976a5d88e1d9a36de2e4c9b76483a32ef61ce1aff0dadc3c2be966f14"
+    },
+    {
+      "byte_count": 6971,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "5892030ca97990abf9a2277d2162820383bca136",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp01_runner_v1.py",
+      "role": "SOURCE",
+      "sha256": "7ad5b2c9450acd034ff599968562f49263efa2c3b1985c5ef994040c40683f22"
+    },
+    {
+      "byte_count": 65577,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "3e1a23dedee2e002cf2670c11083c63a663003d8",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp01_scientific_v1.py",
+      "role": "SOURCE",
+      "sha256": "88c69ec9a53a2c7f30da8b57fae65f9be2f223abdc2e3fc54ae06017bc0a20f5"
+    },
+    {
+      "byte_count": 41174,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "3dadcc082df9720c5853ebdf1994c9d56959a18b",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp02_scientific_v1.py",
+      "role": "SOURCE",
+      "sha256": "869e33b6533d876d3efb50d0176605de3c2cf035f95b5c70cae2b2358cdcc396"
+    },
+    {
+      "byte_count": 83572,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "5dcfb3ddc7ccdce5cc1df5c94ee9910d4683c68d",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp03_construction_v1.py",
+      "role": "SOURCE",
+      "sha256": "cdb8c15094234e00f464e06f6655b1783c5f7a0362e622d00205de472aba0ea2"
+    },
+    {
+      "byte_count": 26699,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "e3e950873406a15f9898e3e1fd68a508a71c54d5",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp04_protocol_v1.py",
+      "role": "SOURCE",
+      "sha256": "b19363924de5d185c4bd704c99d8926555ff6c447145aad48f6be30efd717260"
+    },
+    {
+      "byte_count": 31725,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "92c90a8fb9a5e8cda34b995836b9d3fc2eedf12f",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp05_custody_v1.py",
+      "role": "SOURCE",
+      "sha256": "37588d0af5b3fe90e9e54d3a38283904689f355b879e8ed017dee73fde494b7a"
+    },
+    {
+      "byte_count": 21364,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "66a2fd6980bdbb368593f977c31df841e9fd35c1",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/exp05_runner_v1.py",
+      "role": "SOURCE",
+      "sha256": "184205fa9cad0aa286e2a6f28ea7525adcf0e67dd0c71f28e06fa52a023ffa08"
+    },
+    {
+      "byte_count": 37254,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "a6f1223e4227a6dac9f8113907f56ff0fd6899c9",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/explanation_fidelity_v1.py",
+      "role": "SOURCE",
+      "sha256": "bf6d2cfbdfd09bf869ee3e103455a8737f33db47266cec52626ee652f1a4a5ca"
+    },
+    {
+      "byte_count": 43037,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "f5b4b6a95e6e2a93dd5ed1de1a4ac183f8bc956e",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/formal_v4_authority_v1.py",
+      "role": "SOURCE",
+      "sha256": "4714580722b57c74024cbfe4f5e03e944e0cf1c809ce0864b3064314be041d33"
+    },
+    {
+      "byte_count": 19174,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "28d170cdfa0de23337e27421f89a01196aabb251",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/hai_feature_adapter_v1.py",
+      "role": "SOURCE",
+      "sha256": "b784297bbd4130e49742d6a6bf3397ff55e23d55f68a27a617190674b26dbd42"
+    },
+    {
+      "byte_count": 23432,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "57959ccf0ba3674fc457e0ac40e0ff7acb045d59",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/isolation_forest_v1.py",
+      "role": "SOURCE",
+      "sha256": "53710e7a4dcc7c3c56bf17eb697824a68f91064a5c4a75332b4eb1fd112ffce6"
+    },
+    {
+      "byte_count": 50154,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "58d6b0a8f991fdc565cb8df041cfb77c520020db",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/metric_contract_v1.py",
+      "role": "SOURCE",
+      "sha256": "8d55e339dcad1aacc1a05d166674cb4b0ea9e06fd9830082e5811b4554faaa3a"
+    },
+    {
+      "byte_count": 48495,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "6af6447e86746838ea2ea8e79824dee2098195af",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/numeric_policy_v1.py",
+      "role": "SOURCE",
+      "sha256": "3279fe002af0fcff78fd19f3904d1828d25eb7463f66bfde511ba28e5580fac8"
+    },
+    {
+      "byte_count": 14838,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "88a0c40455882c9c89e30e4327b0974980639c49",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/pca_spe_v2.py",
+      "role": "SOURCE",
+      "sha256": "ee4b803ea6b66c12e3bec19e344c1df688fdfafc113ccf7e0a23c808de1d71a8"
+    },
+    {
+      "byte_count": 30126,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "320b3f4ef8887bdfdcb94069968b12eb2caa8c23",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/prediction_custody_v1.py",
+      "role": "SOURCE",
+      "sha256": "b225ba4d5dd795e5ad1bdd6bc54e5387e890e3313f82c24794924e2d789d0bdb"
+    },
+    {
+      "byte_count": 20928,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "b7183e9b6f975ad41e6e93913f764176d06245a2",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/protocol_v1.py",
+      "role": "SOURCE",
+      "sha256": "27af3dea6370ba7f4e1530c9392c02d367e4c8d0028c4efb057dbca1cfef03eb"
+    },
+    {
+      "byte_count": 1526,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "1a4936282b7ccd1169ac7c02fadea489c363d74b",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/runtime_policy_v1.py",
+      "role": "SOURCE",
+      "sha256": "bcbb2593c34679ed8ad272b45ac5763db1b3d68fa9bb5ec2fd6630eaf2fb9e4b"
+    },
+    {
+      "byte_count": 11559,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "5eb25d22273d9608e027f39a126e27d697088d5b",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/runtime_v1.py",
+      "role": "SOURCE",
+      "sha256": "58ff5ffb8c7a677901b1cefaf330ec53d336a00e68044ad989fd8b80c51ebf72"
+    },
+    {
+      "byte_count": 6608,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "716f70cc1705983983db4da855b774a39999e29d",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schema_registry_v1.py",
+      "role": "SOURCE",
+      "sha256": "8a889391fa075c8a00a962edcfab59865956951c92e0d0e686161e0af30de9e2"
+    },
+    {
+      "byte_count": 1098,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "420f498c550b0871a96b196d13849b9592c6f7b1",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/common_evaluation_bundle_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "25dea6a890001dfee2177544c61e5b527daa20871d4fe09cc83dc6d823149e3b"
+    },
+    {
+      "byte_count": 1725,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "d4cb6635d792c336a16bc48f41c16ab2297e9dd6",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/common_metric_contract_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "a26fb00c2ab69e7278fb84a14d61165ae7417daf8af4ab997a3ab5879622820c"
+    },
+    {
+      "byte_count": 4297,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "4fe41b8fa77b679ad7157a2f76678a3afdaf6489",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/exp05_evaluated_cohort_bundle_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "61bb66211515e83805c9630cc2ba33c9ee6e1a79ca521e3b87df16ff206f8e92"
+    },
+    {
+      "byte_count": 1799,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "fc7dbf61843d133f832bd91f006a71bd7f9bc4c3",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/exp05_evaluated_unit_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "23fa768cc9f502ff81d00f6221ab1a3248f13d13c8dbe60b323d3ca037bfb67f"
+    },
+    {
+      "byte_count": 19738,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "7fd97f9987d8481f65164ccb4252dacf942a61a2",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/exp05_full_evaluated_unit_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "36a5afa09e2da1988499270519c03c623d58f1664ef2d458fc73a5c3eba4f89b"
+    },
+    {
+      "byte_count": 2133,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "61ad4dec5f23c23c893ed8949c49fd7518eaecae",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/exp05_full_unit_freeze_receipt_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "b82afad011a5721c1daceda25f32cb3b09ec26d858d05fb17a6229f312026083"
+    },
+    {
+      "byte_count": 4976,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "b3a7f9a9ddda4258feff4f7caf8ab186d7f51920",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/exp05_materialization_receipt_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "f700771eee7cbe2046c3d5b7ba99fc2147a2d3ac03ac7798fa1603bee016190d"
+    },
+    {
+      "byte_count": 3921,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "219ab4d4a8a288edeae7e5b2096dde83d9f05cc9",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/exp05_run_authorization_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "9cacf4827cb024abc99fad304447aff9fc16b6e4e145416c683c2cefe0591050"
+    },
+    {
+      "byte_count": 2295,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "5e579c02972292e5c662ea0c2a5e7e10901ae229",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/formal_v4_explanation_fidelity_result_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "83caecdf6d66691827a0cbeb23e52dfd7feea5285012d6c56363ab0016633745"
+    },
+    {
+      "byte_count": 3485,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "47f56132c34268e7e233ed41c6332723e3d7cd53",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/formal_v4_explanation_record_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "c5e99d629bdff8cb02b361068fa9a5db8e250395af0b0b2fd87ff8f4a7dce90b"
+    },
+    {
+      "byte_count": 5081,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "6c8bf367933b38d06391629c22af19d33a8de03b",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/formal_v4_materialized_trace_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "d0f71234b4a8e2fe6c836b60fe815c704004fd4fe8b04e8f5c7e0840c1ecebd6"
+    },
+    {
+      "byte_count": 4072,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "eb1a9a1436b0bd542706973f28cf51de50d18bb6",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/formal_v4_portfolio_authority_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "fcd6a8259fea6a8d768ae090166ba0774d18742619f8232a15deddde2beb6ce4"
+    },
+    {
+      "byte_count": 1830,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "4c0d3682186e91d885aedde1ef2548a8ab2afb72",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/formal_v4_runtime_authorization_v1.schema.json",
+      "role": "SCHEMA",
+      "sha256": "26bbd5764e28651f8cdd1b6400062ed8f0c63144fe201ef6afa45c8cc3c6b684"
+    },
+    {
+      "byte_count": 52439,
+      "experiment_ids": [
+        "EXP-04",
+        "EXP-05"
+      ],
+      "git_blob_oid": "570521e3d3aaf9ebd4a7243ee5dc47047ca49d3d",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/schemas/schema_documents_v1.py",
+      "role": "SCHEMA",
+      "sha256": "a2a005eed05ee6ff9d750185865fc0a89b5839f44e267153667a99d88cc9164c"
+    },
+    {
+      "byte_count": 14302,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "3915b2cfa28c0a137705d306830600bd0afdbfb3",
+      "git_mode": "100644",
+      "path": "src/paperworks/validation_v2/stage2_freeze_v1.py",
+      "role": "SOURCE",
+      "sha256": "871b0c428abc93546b692b5629e9a394f62e145a18f208c6f39b915939a64a82"
+    },
+    {
+      "byte_count": 17176,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "f82d4cfc1c5e9f11a275638f90a626ede5779727",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_evaluation_custody_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "01f7908e492774b400cd1c4d23d0f34a849f7a7f834e2428c322cd3eaa835bf2"
+    },
+    {
+      "byte_count": 23110,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "64a6ef9cb657614bf463b752cbf7b639f07282c9",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp01_gdn_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "db4e6f8e3e2b45a6697572906c3f5a14cf60a2903fa46b64cc3a2680ee23f065"
+    },
+    {
+      "byte_count": 23207,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "0e4443e170ba3f542b2024463732925b880262cd",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp01_scientific_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "ef3fae62feb1a2a651fd134a712c63f4a578691f07fa79c3984f100e9f350603"
+    },
+    {
+      "byte_count": 25897,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "1da9fc454e91010c94379d6262fcc3b977d28d08",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp02_scientific_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "0822a1f7a5fc4527f9d87cac7194c6715c180c8f90cfab49e709629e5c1b7c74"
+    },
+    {
+      "byte_count": 42072,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "2e0688799e800337278208e967182ebbd84c9ef9",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp03_construction_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "d9ae2f2fc32b1eeca458d86674b16d07a589a19cb92cfb3bfc793fd5ccb1cc38"
+    },
+    {
+      "byte_count": 10477,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "b64e04f943c37bdb6ab4bd8ebf85edb4b9445cba",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp04_protocol_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "7d428625335f9115495e6c4a829f9b3b5b530d6d81d1f6fbbbb16019da36d207"
+    },
+    {
+      "byte_count": 16229,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "d864c553bbf30820481cee38fdc06fba4d2d2134",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp05_custody_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "69ae199acab35db2e1e90751c96312bb3ba92689bb444209bc86b296bede7d8a"
+    },
+    {
+      "byte_count": 11669,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "3aad8ad3af83954ecce7ed37b45583ecec7e0ba7",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_exp05_runner_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "65caeb3e29fff9d0e9c55665e08ed15d289efb5180e4c2dfb988fd5b59bd8258"
+    },
+    {
+      "byte_count": 23269,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "6630bd374e7f77c8dcbd718939c9623918f21d4a",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_explanation_fidelity_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "db80ac8c75603dbd2da1190750d143e87165656151bdc827f602aaf645a264e4"
+    },
+    {
+      "byte_count": 15192,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "c7e636c7a1232be214c2377c96d60b5c6416d060",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_formal_v4_authority_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "9ee9812a93f017f791341952d7bde02bf921cfbe2010858dcceb3666192f7139"
+    },
+    {
+      "byte_count": 6828,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "5fccf328eb898337fd52b8f9e01ad0ce5648183d",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_hai_feature_adapter_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "066be4fe153723b846b49b4dd991b949074459d76593e7dd08768260785d804c"
+    },
+    {
+      "byte_count": 14217,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "d111338b56ff721fe8e34b6e41a43c3cfad932ff",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_isolation_forest_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "0a89162babfb7c1bdc8b4000f9acd201274b44e7d27217bc17e62e5c44c8e984"
+    },
+    {
+      "byte_count": 32327,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "af53ec90c05e43f3a7c5c96db1583899e3d1e658",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_metric_contract_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "db2f32581a0894cf80f3f64ac43ac06c577759c28df20efb39f427c7d43a5058"
+    },
+    {
+      "byte_count": 20181,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "eae9a0cc082c5439cc80698e7876e2cc41c2d49a",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_numeric_policy_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "68bc66fbd6befbdc51e43448d26ce66539dd9ca919e4669479664ebea5e280e2"
+    },
+    {
+      "byte_count": 8631,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "d4070a9fa6b2c06f379be60cc5fa043fca8972af",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_pca_spe_v2.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "6bdc754c6b91da2518f5f6fff3adbf409657dfec5db7f418185e917c192ba58f"
+    },
+    {
+      "byte_count": 14943,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "8fa09a7484de7e202e477f7f0c7bdef5536bea1d",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_prediction_custody_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "6e7727581bf12790d824be705ba6fe81cc3ab4a9cb5fe6796e5f03fe290d59ba"
+    },
+    {
+      "byte_count": 15071,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "3224570e9a6e4220f0cd91efdb81bfaff3568235",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_protocol_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "af7cdcd4a432e25a64c0f833fb3add3e9fdfc104318f66a2ee786add24455b48"
+    },
+    {
+      "byte_count": 6765,
+      "experiment_ids": [
+        "D0-V2",
+        "EXP-01",
+        "EXP-02",
+        "EXP-03",
+        "EXP-04",
+        "EXP-05",
+        "STRONGER-DETECTOR"
+      ],
+      "git_blob_oid": "8f497100f8c57db015c9725b629eea1eaf15db01",
+      "git_mode": "100644",
+      "path": "tests/test_validation_v2_stage2_freeze_v1.py",
+      "role": "SYNTHETIC_TEST",
+      "sha256": "d3a3ea383bafa4513caa02d153033f2633ab18be7dca418c9930c0f1faaa61b4"
+    }
+  ],
+  "validation_protocol_hash": "2c3000a912caf2167bfe49929c55229e5159d52cc9ad09b7e48d79d9aecc562f"
+}

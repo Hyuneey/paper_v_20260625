@@ -1,0 +1,16 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-01",
+  "status": "FROZEN_BEFORE_NORMAL_DATA_ACCESS",
+  "design_document": "research_control_center/validation_v2/staging/EXP01_PREREGISTRATION_DRAFT.json",
+  "design_document_sha256": "2691312884ffc1a1e62edd55c8087f5e24dd4b1cd9df8d5b5cadca509011abd4",
+  "scientific_contract_hash": "8d02671ac87db776ee4c244bf7fe11d3348a2a0d76d35d568dd7e521e2b3200f",
+  "embedded_preregistration_hash": "6cfcfc6b830e7e8efe887a57eb6d37c68b40547783c03cbd97cf33587302bd6b",
+  "input_roles": ["train1", "train2", "train3", "train4"],
+  "prohibited_inputs": ["test1", "labels", "test2", "heldout"],
+  "decision_rule": "GDN_RETAINED_ONLY_IF_STABLE_UNIQUE_CONFIRMED_AND_FUNCTIONALLY_USED",
+  "claim_boundary": "NORMAL_DATA_CANDIDATE_GUIDANCE_NOT_CAUSALITY_OR_DETECTION_PERFORMANCE",
+  "post_result_change_allowed": false,
+  "preregistration_hash": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc"
+}

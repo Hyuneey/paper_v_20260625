@@ -3,7 +3,7 @@
   "schema_version": "1.0.0-draft",
   "experiment_id": "EXP-05",
   "title": "Automated Formal V4 trace-to-explanation structural fidelity",
-  "status": "PREPARATION_CONTRACT_IMPLEMENTED_NOT_FROZEN_NOT_EXECUTED",
+  "status": "IMPLEMENTED_PENDING_COMMIT_A_FREEZE_NOT_EXECUTED",
   "authority_plane": {
     "family": "FORMAL_V4",
     "canonical_rule_v1_authoritative": false,
@@ -24,22 +24,25 @@
     "test2_access": 0
   },
   "blocking_implementation_gate": {
-    "status": "PARTIAL_ONE_PATH_RUNTIME_CONNECTION_REQUIRED_BEFORE_EXECUTION",
+    "status": "PASS_ONE_PATH_RUNTIME_SCHEMA_AND_DURABLE_CUSTODY_IMPLEMENTED",
     "completed": [
       "Versioned MaterializedFormalV4TraceV1 preparation contract implemented.",
       "Exact observation-window hash, descriptor, portfolio, authorization, execution context, ordered numeric references, and outcome are represented in a public-safe self-hashed artifact.",
       "Formal V4-specific deterministic exact-template renderer implemented.",
       "Independent 11-check field, text, provenance, and hash replay fidelity validator implemented.",
-      "Fourteen synthetic mutation and conformance tests pass without runtime or scientific execution."
+      "One-path authorized runtime execution and materialization are implemented.",
+      "Versioned schemas cover trace, explanation, fidelity, run authorization, unit, and cohort documents.",
+      "Full trace, explanation, fidelity, authorization, and receipt units are durably persisted and replayed before cohort freeze.",
+      "Hash-only cohort custody requires the exact persisted full-unit receipt census.",
+      "Synthetic mutation, scope-substitution, orphan, overwrite, partial-write, and conformance tests pass without scientific execution."
     ],
     "requirements": [
-      "Connect materialization to the same authorized runtime call that emits the evaluated FormalV4RuntimeTraceV1; detached preparation materialization is not scientific evidence.",
-      "Replay repository-bound portfolio, descriptor, authorization, execution-context, and observation authority inside that one-path runner.",
-      "Add versioned JSON schemas and registry entries for materialized trace, explanation, and fidelity result.",
-      "Add durable trace/explanation custody plus duplicate, orphan, and order checks for the evaluated cohort.",
-      "Freeze schemas, renderer contract, implementation commit, tests, and artifact namespace before the evaluated cohort is processed."
+      "Freeze schemas, renderer contract, implementation commit, tests, and artifact namespace in Commit A before evaluated scientific runtime.",
+      "Require the normal-selection Commit B receipt and explicit DEVELOPMENT_TEST1 feature authorization for scientific scope.",
+      "Persist every evaluated full unit before freezing the exact cohort bundle."
     ],
-    "scientific_runner_authorized": false
+    "scientific_runner_implemented": true,
+    "scientific_execution_authorized": false
   },
   "evaluated_population": {
     "population": "all materialized traces emitted by the fixed VALIDATION V2 Formal V4 development runtime",
@@ -294,12 +297,13 @@
   "preparation_implementation": {
     "module": "src/paperworks/validation_v2/explanation_fidelity_v1.py",
     "tests": "tests/test_validation_v2_explanation_fidelity_v1.py",
-    "focused_tests_passed": 14,
+    "focused_tests_passed": 36,
     "focused_tests_failed": 0,
     "independent_qa_status": "PASS",
-    "scientific_runner_authorized": false,
+    "scientific_runner_implemented": true,
+    "scientific_execution_authorized": false,
     "canonical_runtime_trace_v1_equivalence_claimed": false,
     "human_usefulness_evaluated": false,
-    "exact_remaining_blocker": "A shared-runtime-owner one-path execute-and-materialize entrypoint with repository-bound replay and durable evaluated-cohort custody is not yet implemented or authorized."
+    "exact_remaining_blocker": "Commit A plus normal-selection Commit B and explicit DEVELOPMENT_TEST1 feature authorization are required before scientific execution."
   }
 }

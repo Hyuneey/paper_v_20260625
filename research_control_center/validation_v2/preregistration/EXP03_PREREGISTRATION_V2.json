@@ -1,0 +1,17 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-03",
+  "status": "FROZEN_PROVIDER_GATED_DG03",
+  "design_document": "research_control_center/validation_v2/staging/EXP03_PREREGISTRATION_DRAFT.json",
+  "design_document_sha256": "fbfe6c442b74bd57dfc06c77c09160b095029dcca39694c623af451104aeb33c",
+  "arms": ["T0", "T1", "T1-B", "T2"],
+  "stochastic_repeats": 3,
+  "t1b_draws": 3,
+  "t2_maximum_calls": 3,
+  "natural_and_stress_cohorts_pooled": false,
+  "terminal_taxonomy": ["INTENTIONAL_NO_RULE", "UNSUPPORTED_EVIDENCE", "PROVIDER_ERROR", "EMPTY_RESPONSE", "PARSE_FAILURE", "VERIFIER_REJECTION", "BUDGET_EXHAUSTION", "RETRIEVAL_FAILURE", "SYSTEM_ERROR"],
+  "provider_authorized": false,
+  "claim_boundary": "FEEDBACK_BENEFIT_NOT_DEMONSTRATED_IF_NO_NATURAL_FEEDBACK_ACTION",
+  "preregistration_hash": "ec14bd1581e1c08eb3813b65461c333c464046d9635dfb24885bc9c9f72eda7d"
+}

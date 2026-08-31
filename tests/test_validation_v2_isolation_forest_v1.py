@@ -22,7 +22,7 @@ SOURCE = "a" * 40
 FEATURES = tuple(P1_FEATURE_ORDER)
 FILES = {
     "NORMAL_FIT_PRIMARY": ("hai-train1.csv", "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a"),
-    "NORMAL_FIT_SECONDARY": ("hai-train2.csv", "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56"),
+            "NORMAL_FIT_SECONDARY": ("hai-train2.csv", "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56"),
     "NORMAL_CONFIRMATION_CALIBRATION": ("hai-train3.csv", "bfcec2dc05adea103e7491546b0e28268faaa26d3cc717d10f4595c94b81e85d"),
 }
 

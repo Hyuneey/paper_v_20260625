@@ -455,6 +455,59 @@ def persist_prediction_before_label_v1(
     return parsed_receipt
 
 
+def replay_prediction_before_label_v1(
+    *, artifact_root: Path, prediction_relative_path: str, receipt_relative_path: str,
+    expected_receipt: DurablePredictionFreezeReceiptV1,
+    expected_authority_hash: str, expected_runtime_authorization_hash: str,
+    expected_execution_context_hash: str, expected_source_commit: str,
+    expected_portfolio_hash: str, expected_file_contract_hash: str,
+) -> D1PredictionArtifactV2:
+    """Replay the durable D1 prediction without opening labels or issuing a lease."""
+
+    validate_durable_prediction_freeze_receipt_v1(expected_receipt)
+    root = _validated_root(artifact_root)
+    prediction_path = _resolve_relative(root, prediction_relative_path)
+    receipt_path = _resolve_relative(root, receipt_relative_path)
+    _assert_regular_file(prediction_path)
+    _assert_regular_file(receipt_path)
+    prediction_bytes = prediction_path.read_bytes()
+    receipt_bytes = receipt_path.read_bytes()
+    try:
+        artifact = validate_prediction_document_v1(
+            json.loads(prediction_bytes.decode("utf-8")),
+            expected_authority_hash=expected_authority_hash,
+        )
+        receipt = _validate_receipt_document(json.loads(receipt_bytes.decode("utf-8")))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        _fail("CUSTODY_DOCUMENT_PARSE_FAILURE")
+    if receipt != expected_receipt or receipt.prediction_relative_path != prediction_relative_path:
+        _fail("STALE_OR_WRONG_FREEZE_RECEIPT")
+    if receipt.state is not PredictionFreezeStateV1.REOPENED_AND_REPLAYED:
+        _fail("PREDICTION_NOT_FROZEN")
+    if receipt.prediction_bytes_sha256 != sha256(prediction_bytes).hexdigest():
+        _fail("PREDICTION_BYTES_HASH_MISMATCH")
+    if receipt.prediction_self_hash != artifact.to_document()["self_hash"]:
+        _fail("PREDICTION_SELF_HASH_BINDING_MISMATCH")
+    expected = (
+        expected_authority_hash, expected_runtime_authorization_hash,
+        expected_execution_context_hash, expected_source_commit,
+        expected_portfolio_hash, expected_file_contract_hash,
+    )
+    observed_artifact = (
+        artifact.authority_hash, artifact.runtime_authorization_hash,
+        artifact.execution_context_hash, artifact.source_commit,
+        artifact.portfolio_hash, artifact.file_contract_hash,
+    )
+    observed_receipt = (
+        receipt.authority_hash, receipt.runtime_authorization_hash,
+        receipt.execution_context_hash, receipt.source_commit,
+        receipt.portfolio_hash, receipt.file_contract_hash,
+    )
+    if observed_artifact != expected or observed_receipt != expected or receipt.record_count != len(artifact.records):
+        _fail("RECEIPT_AUTHORITY_OR_COUNT_MISMATCH")
+    return artifact
+
+
 def authorize_label_access_v1(
     *, artifact_root: Path, prediction_relative_path: str,
     receipt_relative_path: str, expected_authority_hash: str,
@@ -623,7 +676,8 @@ def verify_prediction_unchanged_v1(capability: LabelAccessCapabilityV1) -> str:
 __all__ = [
     "D1PredictionRecordV2", "D1PredictionArtifactV2", "DurablePredictionFreezeReceiptV1",
     "LabelAccessCapabilityV1", "PredictionFreezeStateV1", "PredictionCustodyError",
-    "persist_prediction_before_label_v1", "validate_prediction_document_v1",
+    "persist_prediction_before_label_v1", "replay_prediction_before_label_v1",
+    "validate_prediction_document_v1",
     "authorize_label_access_v1", "consume_label_access_capability_v1", "verify_prediction_unchanged_v1",
     "validate_label_access_capability_v1",
 ]

@@ -1,0 +1,17 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "D0-V2",
+  "status": "FROZEN_BEFORE_NORMAL_DATA_ACCESS",
+  "method_id": "V2_D0_PCA_SPE_NORMAL_ONLY_V1",
+  "config_hash": "6e953ba3872fe7b5ad70600e90ef4ae7e7deb5dd99204f4f665a916fdc9d5180",
+  "fit_roles": ["NORMAL_FIT_PRIMARY", "NORMAL_FIT_SECONDARY"],
+  "calibration_role": "NORMAL_CONFIRMATION_CALIBRATION",
+  "explained_variance_target": "0.95",
+  "threshold_quantile": "0.999_NEAREST_RANK_NO_INTERPOLATION",
+  "comparator": "score > threshold",
+  "labels_used": false,
+  "test2_authorized": false,
+  "pilot_v1_artifacts_reused_or_modified": false,
+  "preregistration_hash": "9e52cf7755c6fc4fff5388839cf2d0e14577e6237ed78bffb029be8d29f1474b"
+}

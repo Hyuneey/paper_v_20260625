@@ -1,0 +1,183 @@
+{
+  "$defs": {
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "numeric_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "numeric_role": {
+          "type": "string"
+        },
+        "reference_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reference_id": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "numeric_role",
+        "reference_hash",
+        "reference_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "paperworks://validation-v2/exp05-evaluated-cohort-bundle-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bundle_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "cohort_id": {
+      "$ref": "#/$defs/text"
+    },
+    "custody_version": {
+      "const": "VALIDATION_V2_EXP05_COHORT_CUSTODY_V1"
+    },
+    "d1_native_outcome_binding_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "evaluated_units": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "explanation_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "fidelity_result_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "full_unit_artifact_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "full_unit_freeze_receipt_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "materialization_receipt_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "materialized_trace_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "opportunity_id": {
+            "$ref": "#/$defs/text"
+          },
+          "outcome": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "ABSTAIN"
+            ]
+          },
+          "reason": {
+            "$ref": "#/$defs/text"
+          },
+          "relation_id": {
+            "$ref": "#/$defs/text"
+          },
+          "runtime_trace_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "unit_hash": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "required": [
+          "explanation_hash",
+          "fidelity_result_hash",
+          "full_unit_artifact_sha256",
+          "full_unit_freeze_receipt_hash",
+          "materialization_receipt_hash",
+          "materialized_trace_hash",
+          "opportunity_id",
+          "outcome",
+          "reason",
+          "relation_id",
+          "runtime_trace_hash",
+          "unit_hash"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "labels_accessed": {
+      "const": false
+    },
+    "llm_calls": {
+      "const": 0
+    },
+    "opportunity_count": {
+      "type": "integer"
+    },
+    "opportunity_manifest_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "outcome_reason_strata": {
+      "additionalProperties": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^(PASS|FAIL|ABSTAIN):.+$",
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "preregistration_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "provider_calls": {
+      "const": 0
+    },
+    "raw_numeric_values_embedded": {
+      "const": false
+    },
+    "raw_observations_embedded": {
+      "const": false
+    },
+    "schema": {
+      "const": "paperworks.validation_v2.exp05_evaluated_cohort_bundle_v1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "test2_accessed": {
+      "const": false
+    }
+  },
+  "required": [
+    "bundle_hash",
+    "cohort_id",
+    "custody_version",
+    "d1_native_outcome_binding_hash",
+    "evaluated_units",
+    "labels_accessed",
+    "llm_calls",
+    "opportunity_count",
+    "opportunity_manifest_hash",
+    "outcome_reason_strata",
+    "preregistration_hash",
+    "provider_calls",
+    "raw_numeric_values_embedded",
+    "raw_observations_embedded",
+    "schema",
+    "schema_version",
+    "test2_accessed"
+  ],
+  "title": "VALIDATION V2 EXP-05 Evaluated Cohort Bundle V1",
+  "type": "object"
+}

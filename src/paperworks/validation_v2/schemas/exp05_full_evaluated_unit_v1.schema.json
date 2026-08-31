@@ -1,0 +1,768 @@
+{
+  "$defs": {
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "numeric_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "numeric_role": {
+          "type": "string"
+        },
+        "reference_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reference_id": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "numeric_role",
+        "reference_hash",
+        "reference_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "paperworks://validation-v2/exp05-full-evaluated-unit-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "explanation": {
+      "additionalProperties": false,
+      "properties": {
+        "alarm_emitted": {
+          "type": "boolean"
+        },
+        "artifact_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "artifact_type": {
+          "const": "validation_v2_formal_v4_explanation_record_v1"
+        },
+        "authorization_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "causal_claim_made": {
+          "type": "boolean"
+        },
+        "descriptor_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "execution_context_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "explanation_id": {
+          "$ref": "#/$defs/text"
+        },
+        "final_outcome": {
+          "$ref": "#/$defs/text"
+        },
+        "human_usefulness_evaluated": {
+          "type": "boolean"
+        },
+        "materialized_trace_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "natural_language_text": {
+          "$ref": "#/$defs/text"
+        },
+        "numeric_authority_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "ordered_numeric_reference_bindings": {
+          "items": {
+            "$ref": "#/$defs/numeric_binding"
+          },
+          "maxItems": 10,
+          "minItems": 10,
+          "type": "array"
+        },
+        "portfolio_authority_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "portfolio_id": {
+          "$ref": "#/$defs/text"
+        },
+        "reason": {
+          "$ref": "#/$defs/text"
+        },
+        "renderer_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "renderer_version": {
+          "$ref": "#/$defs/text"
+        },
+        "root_cause_claim_made": {
+          "type": "boolean"
+        },
+        "runtime_trace_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "selected_horizon_seconds": {
+          "type": "integer"
+        },
+        "source": {
+          "$ref": "#/$defs/text"
+        },
+        "source_direction": {
+          "$ref": "#/$defs/text"
+        },
+        "target": {
+          "$ref": "#/$defs/text"
+        },
+        "target_direction": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "alarm_emitted",
+        "artifact_hash",
+        "artifact_type",
+        "authorization_hash",
+        "causal_claim_made",
+        "descriptor_hash",
+        "execution_context_hash",
+        "explanation_id",
+        "final_outcome",
+        "human_usefulness_evaluated",
+        "materialized_trace_hash",
+        "natural_language_text",
+        "numeric_authority_hash",
+        "ordered_numeric_reference_bindings",
+        "portfolio_authority_hash",
+        "portfolio_id",
+        "reason",
+        "renderer_contract_hash",
+        "renderer_version",
+        "root_cause_claim_made",
+        "runtime_trace_hash",
+        "schema_version",
+        "selected_horizon_seconds",
+        "source",
+        "source_direction",
+        "target",
+        "target_direction"
+      ],
+      "type": "object"
+    },
+    "fidelity_result": {
+      "additionalProperties": false,
+      "properties": {
+        "all_checks_passed": {
+          "type": "boolean"
+        },
+        "artifact_type": {
+          "const": "validation_v2_formal_v4_explanation_fidelity_result_v1"
+        },
+        "checks": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "check_id": {
+                "$ref": "#/$defs/text"
+              },
+              "expected_hash": {
+                "$ref": "#/$defs/sha256"
+              },
+              "observed_hash": {
+                "$ref": "#/$defs/sha256"
+              },
+              "passed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "check_id",
+              "expected_hash",
+              "observed_hash",
+              "passed"
+            ],
+            "type": "object"
+          },
+          "maxItems": 11,
+          "minItems": 11,
+          "type": "array"
+        },
+        "explanation_artifact_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "materialized_trace_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "result_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "validator_version": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "all_checks_passed",
+        "artifact_type",
+        "checks",
+        "explanation_artifact_hash",
+        "materialized_trace_hash",
+        "result_hash",
+        "schema_version",
+        "validator_version"
+      ],
+      "type": "object"
+    },
+    "materialization_receipt": {
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "execution_scope": {
+              "const": "SYNTHETIC_CONFORMANCE"
+            },
+            "normal_selection_commit_b_receipt_hash": {
+              "const": null
+            },
+            "stage2_commit_a_receipt_hash": {
+              "const": null
+            },
+            "test1_features_authorized": {
+              "const": false
+            }
+          },
+          "required": [
+            "execution_scope",
+            "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash",
+            "test1_features_authorized"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "execution_scope": {
+              "const": "SCIENTIFIC_V2"
+            },
+            "normal_selection_commit_b_receipt_hash": {
+              "$ref": "#/$defs/sha256"
+            },
+            "stage2_commit_a_receipt_hash": {
+              "$ref": "#/$defs/sha256"
+            },
+            "test1_features_authorized": {
+              "const": true
+            }
+          },
+          "required": [
+            "execution_scope",
+            "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash",
+            "test1_features_authorized"
+          ],
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "authorization_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "descriptor_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "descriptor_set_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "execution_context_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "execution_scope": {
+          "enum": [
+            "SYNTHETIC_CONFORMANCE",
+            "SCIENTIFIC_V2"
+          ]
+        },
+        "exp05_run_authorization_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "heldout_accessed": {
+          "const": false
+        },
+        "labels_accessed": {
+          "const": false
+        },
+        "llm_calls": {
+          "const": 0
+        },
+        "materialized_trace_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "normal_selection_commit_b_receipt_hash": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "const": null
+            }
+          ]
+        },
+        "observation_window_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "portfolio_authority_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "preregistration_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "provider_calls": {
+          "const": 0
+        },
+        "receipt_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "renderer_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runner_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runtime_trace_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runtime_version": {
+          "$ref": "#/$defs/text"
+        },
+        "same_call_path": {
+          "const": true
+        },
+        "schema": {
+          "const": "paperworks.validation_v2.formal_v4_runtime_materialization_receipt_v1"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "source_commit": {
+          "$ref": "#/$defs/git_commit"
+        },
+        "stage2_commit_a_receipt_hash": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "const": null
+            }
+          ]
+        },
+        "test1_features_authorized": {
+          "type": "boolean"
+        },
+        "trace_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "validator_version": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "authorization_hash",
+        "descriptor_hash",
+        "descriptor_set_hash",
+        "execution_context_hash",
+        "execution_scope",
+        "exp05_run_authorization_hash",
+        "heldout_accessed",
+        "labels_accessed",
+        "llm_calls",
+        "materialized_trace_hash",
+        "normal_selection_commit_b_receipt_hash",
+        "observation_window_hash",
+        "portfolio_authority_hash",
+        "preregistration_hash",
+        "provider_calls",
+        "receipt_hash",
+        "renderer_contract_hash",
+        "runner_contract_hash",
+        "runtime_trace_hash",
+        "runtime_version",
+        "same_call_path",
+        "schema",
+        "schema_version",
+        "source_commit",
+        "stage2_commit_a_receipt_hash",
+        "test1_features_authorized",
+        "trace_contract_hash",
+        "validator_version"
+      ],
+      "type": "object"
+    },
+    "materialized_trace": {
+      "additionalProperties": false,
+      "properties": {
+        "alarm_emitted": {
+          "type": "boolean"
+        },
+        "artifact_type": {
+          "const": "validation_v2_materialized_formal_v4_trace_v1"
+        },
+        "authorization_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "authorization_id": {
+          "$ref": "#/$defs/text"
+        },
+        "causal_claim_allowed": {
+          "type": "boolean"
+        },
+        "config_id": {
+          "$ref": "#/$defs/text"
+        },
+        "descriptor_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "descriptor_set_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "evaluator_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "event_index": {
+          "type": "integer"
+        },
+        "execution_context_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "experiment_id": {
+          "$ref": "#/$defs/text"
+        },
+        "feature_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "file_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "final_outcome": {
+          "$ref": "#/$defs/text"
+        },
+        "labels_accessed": {
+          "type": "boolean"
+        },
+        "materialized_trace_version": {
+          "$ref": "#/$defs/text"
+        },
+        "method_id": {
+          "$ref": "#/$defs/text"
+        },
+        "numeric_authority_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "observation_window_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "opportunity_id": {
+          "$ref": "#/$defs/text"
+        },
+        "ordered_numeric_reference_bindings": {
+          "items": {
+            "$ref": "#/$defs/numeric_binding"
+          },
+          "maxItems": 10,
+          "minItems": 10,
+          "type": "array"
+        },
+        "portfolio_authority_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "portfolio_id": {
+          "$ref": "#/$defs/text"
+        },
+        "raw_numeric_values_embedded": {
+          "type": "boolean"
+        },
+        "raw_observations_embedded": {
+          "type": "boolean"
+        },
+        "reason": {
+          "$ref": "#/$defs/text"
+        },
+        "relation_binding_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "relation_id": {
+          "$ref": "#/$defs/text"
+        },
+        "runtime_trace_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runtime_version": {
+          "$ref": "#/$defs/text"
+        },
+        "sampling_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "scientific_runner_authorized": {
+          "type": "boolean"
+        },
+        "selected_horizon_seconds": {
+          "type": "integer"
+        },
+        "self_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "semantic_execution_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source": {
+          "$ref": "#/$defs/text"
+        },
+        "source_commit": {
+          "$ref": "#/$defs/git_commit"
+        },
+        "source_direction": {
+          "$ref": "#/$defs/text"
+        },
+        "target": {
+          "$ref": "#/$defs/text"
+        },
+        "target_direction": {
+          "$ref": "#/$defs/text"
+        },
+        "target_response_start_index": {
+          "type": "integer"
+        },
+        "trace_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "trace_id": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "alarm_emitted",
+        "artifact_type",
+        "authorization_hash",
+        "authorization_id",
+        "causal_claim_allowed",
+        "config_id",
+        "descriptor_hash",
+        "descriptor_set_hash",
+        "evaluator_contract_hash",
+        "event_index",
+        "execution_context_hash",
+        "experiment_id",
+        "feature_contract_hash",
+        "file_contract_hash",
+        "final_outcome",
+        "labels_accessed",
+        "materialized_trace_version",
+        "method_id",
+        "numeric_authority_hash",
+        "observation_window_hash",
+        "opportunity_id",
+        "ordered_numeric_reference_bindings",
+        "portfolio_authority_hash",
+        "portfolio_id",
+        "raw_numeric_values_embedded",
+        "raw_observations_embedded",
+        "reason",
+        "relation_binding_hash",
+        "relation_id",
+        "runtime_trace_hash",
+        "runtime_version",
+        "sampling_contract_hash",
+        "schema_version",
+        "scientific_runner_authorized",
+        "selected_horizon_seconds",
+        "semantic_execution_hash",
+        "self_hash",
+        "source",
+        "source_commit",
+        "source_direction",
+        "target",
+        "target_direction",
+        "target_response_start_index",
+        "trace_contract_hash",
+        "trace_id"
+      ],
+      "type": "object"
+    },
+    "run_authorization": {
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "execution_scope": {
+              "const": "SYNTHETIC_CONFORMANCE"
+            },
+            "normal_selection_commit_b_receipt_hash": {
+              "const": null
+            },
+            "stage2_commit_a_receipt_hash": {
+              "const": null
+            },
+            "test1_features_authorized": {
+              "const": false
+            }
+          },
+          "required": [
+            "execution_scope",
+            "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash",
+            "test1_features_authorized"
+          ],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "execution_scope": {
+              "const": "SCIENTIFIC_V2"
+            },
+            "normal_selection_commit_b_receipt_hash": {
+              "$ref": "#/$defs/sha256"
+            },
+            "stage2_commit_a_receipt_hash": {
+              "$ref": "#/$defs/sha256"
+            },
+            "test1_features_authorized": {
+              "const": true
+            }
+          },
+          "required": [
+            "execution_scope",
+            "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash",
+            "test1_features_authorized"
+          ],
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "authorization_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "execution_context_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "execution_scope": {
+          "enum": [
+            "SYNTHETIC_CONFORMANCE",
+            "SCIENTIFIC_V2"
+          ]
+        },
+        "heldout_authorized": {
+          "const": false
+        },
+        "labels_authorized": {
+          "const": false
+        },
+        "normal_selection_commit_b_receipt_hash": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "const": null
+            }
+          ]
+        },
+        "portfolio_authority_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "preregistration_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "provider_calls_authorized": {
+          "const": false
+        },
+        "runner_contract_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runtime_authorization_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schema": {
+          "const": "paperworks.validation_v2.exp05_run_authorization_v1"
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "source_commit": {
+          "$ref": "#/$defs/git_commit"
+        },
+        "stage2_commit_a_receipt_hash": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "const": null
+            }
+          ]
+        },
+        "test1_features_authorized": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "authorization_hash",
+        "execution_context_hash",
+        "execution_scope",
+        "heldout_authorized",
+        "labels_authorized",
+        "normal_selection_commit_b_receipt_hash",
+        "portfolio_authority_hash",
+        "preregistration_hash",
+        "provider_calls_authorized",
+        "runner_contract_hash",
+        "runtime_authorization_hash",
+        "schema",
+        "schema_version",
+        "source_commit",
+        "stage2_commit_a_receipt_hash",
+        "test1_features_authorized"
+      ],
+      "type": "object"
+    },
+    "runtime_trace_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema": {
+      "const": "paperworks.validation_v2.exp05_full_evaluated_unit_v1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "unit_hash": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "required": [
+    "explanation",
+    "fidelity_result",
+    "materialization_receipt",
+    "materialized_trace",
+    "run_authorization",
+    "runtime_trace_hash",
+    "schema",
+    "schema_version",
+    "unit_hash"
+  ],
+  "title": "VALIDATION V2 EXP-05 Full Evaluated Unit V1",
+  "type": "object"
+}

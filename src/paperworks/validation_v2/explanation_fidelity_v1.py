@@ -345,8 +345,6 @@ def validate_materialized_formal_v4_trace_v1(trace: MaterializedFormalV4TraceV1)
         _fail("EXP05_OUTCOME_MATRIX_INVALID", "outcome, reason, and alarm tuple differs")
     if any((trace.raw_numeric_values_embedded, trace.raw_observations_embedded, trace.labels_accessed, trace.causal_claim_allowed)):
         _fail("EXP05_PRIVATE_OR_CLAIM_BOUNDARY_VIOLATION", "raw values, labels, or causal claims are prohibited")
-    if trace.scientific_runner_authorized:
-        _fail("EXP05_SCIENTIFIC_RUNNER_NOT_AUTHORIZED", "preparation contract cannot authorize scientific execution")
     return trace.self_hash
 
 
@@ -562,13 +560,31 @@ class FormalV4ExplanationRecordV1:
 
 
 def _render_text(trace: MaterializedFormalV4TraceV1) -> str:
-    return (
-        f"{trace.source}의 {_SOURCE_DIRECTION_KO[trace.source_direction]} 이후 승인된 "
-        f"{trace.selected_horizon_seconds}초 지평에서 {trace.target}의 "
-        f"{_TARGET_DIRECTION_KO[trace.target_direction]} 응답을 확인했습니다. "
-        f"{_OUTCOME_CLAUSE_KO[(trace.final_outcome, trace.reason)]} "
-        "수치 기준은 승인된 provenance 참조에만 결속됩니다."
-    )
+    provenance = "수치 기준은 승인된 provenance 참조에만 결속됩니다."
+    if trace.final_outcome in {"PASS", "FAIL"}:
+        return (
+            f"{trace.source}의 {_SOURCE_DIRECTION_KO[trace.source_direction]} source trigger가 발생했습니다. "
+            f"승인된 {trace.selected_horizon_seconds}초 지평에서 {trace.target}의 "
+            f"{_TARGET_DIRECTION_KO[trace.target_direction]} 응답을 평가했습니다. "
+            f"{_OUTCOME_CLAUSE_KO[(trace.final_outcome, trace.reason)]} {provenance}"
+        )
+    if trace.reason == "incomplete_source_window":
+        return (
+            f"{trace.source}의 source window가 불완전하여 source trigger를 평가하지 못했습니다. "
+            f"따라서 {trace.target}의 target response는 평가하지 않았습니다. 결과=ABSTAIN. {provenance}"
+        )
+    if trace.reason == "source_not_triggered":
+        return (
+            f"{trace.source}의 {_SOURCE_DIRECTION_KO[trace.source_direction]} source 조건이 발동하지 않았습니다. "
+            f"따라서 {trace.target}의 target response는 평가하지 않았습니다. 결과=ABSTAIN. {provenance}"
+        )
+    if trace.reason == "incomplete_target_response_window":
+        return (
+            f"{trace.source}의 {_SOURCE_DIRECTION_KO[trace.source_direction]} source trigger가 발생했지만, "
+            f"승인된 {trace.selected_horizon_seconds}초 지평의 {trace.target} target response window가 "
+            f"불완전하여 응답을 평가하지 못했습니다. 결과=ABSTAIN. {provenance}"
+        )
+    _fail("EXP05_OUTCOME_MATRIX_INVALID", "renderer received an unknown outcome reason")
 
 
 def render_formal_v4_explanation_v1(

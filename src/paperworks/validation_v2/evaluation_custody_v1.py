@@ -637,6 +637,28 @@ def _replay_prediction_reference(
     return prediction_path, receipt_path, receipt
 
 
+def replay_dense_prediction_before_label_v1(
+    *, artifact_root: Path, reference: PredictionFreezeReferenceV1,
+    expected_policy_hash: str, expected_metric_contract_hash: str,
+    expected_source_commit: str,
+) -> DenseBooleanPredictionArtifactV1:
+    """Replay one durable dense prediction without authorizing label access."""
+
+    root = _validated_root(artifact_root)
+    prediction_path, _, _ = _replay_prediction_reference(
+        root, reference, expected_policy_hash=expected_policy_hash,
+        expected_metric_contract_hash=expected_metric_contract_hash,
+        expected_source_commit=expected_source_commit,
+    )
+    try:
+        document = json.loads(prediction_path.read_bytes().decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        _fail("PREDICTION_REFERENCE_NOT_CANONICAL_JSON")
+    return validate_dense_prediction_document_v1(
+        document, expected_method_id=reference.method_id,
+    )
+
+
 def _validate_exact_method_set(exact_method_ids: tuple[str, ...]) -> tuple[str, ...]:
     if type(exact_method_ids) is not tuple or not exact_method_ids:
         _fail("EXACT_METHOD_SET_MUST_BE_NONEMPTY_TUPLE")
@@ -972,6 +994,7 @@ __all__ = [
     "HashOnlyEvaluationBundleFreezeReceiptV1", "EvaluationLabelAccessCapabilityV1",
     "EvaluationCustodyStateV1", "EvaluationCustodyError",
     "persist_dense_prediction_before_label_v1", "validate_dense_prediction_document_v1",
+    "replay_dense_prediction_before_label_v1",
     "freeze_multi_method_evaluation_bundle_v1", "authorize_evaluation_label_access_v1",
     "consume_evaluation_label_access_v1", "verify_evaluation_inputs_unchanged_v1",
 ]

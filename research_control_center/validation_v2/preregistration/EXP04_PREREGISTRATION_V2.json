@@ -1,0 +1,15 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-04",
+  "status": "FROZEN_BEFORE_TEST1_FEATURE_ACCESS",
+  "methods": ["V2_D0_PCA_SPE_NORMAL_ONLY_V1", "V2_D2_IF_RULE_CONFIRM2_SAME_SECOND_V1", "V2_D2_PCA_RULE_CONFIRM2_SAME_SECOND_V1", "V2_ISOLATION_FOREST_FIXED_NORMAL_ONLY_V1", "V2_VERIFIED_RELATIONAL_RULE_ONLY_V1"],
+  "fusion_policy_id": "BASE_OR_D1_FAIL_AT_SAME_FILE_ROW_WITH_AT_LEAST_2_DISTINCT_SOURCES_V1",
+  "fusion_policy_hash": "587868f42fbdaedbd802541763e0390c09d2f04e4ba5944c45ad7e6e6593cbcc",
+  "primary_metrics": ["ATTACK_EVENT_RECALL", "NORMAL_FALSE_EPISODES_PER_HOUR"],
+  "point_adjustment": "NONE_PA_FREE",
+  "test1_role": "DEVELOPMENT_ONLY",
+  "post_result_policy_change_allowed": false,
+  "test2_authorized": false,
+  "preregistration_hash": "920e5fdc40915c76ce9b9bd4b6a62e52a38664a504eb7234fbb574af77398dfb"
+}

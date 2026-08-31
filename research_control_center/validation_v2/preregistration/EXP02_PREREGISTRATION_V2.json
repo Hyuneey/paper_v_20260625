@@ -1,0 +1,17 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-02",
+  "status": "FROZEN_BEFORE_NORMAL_DATA_ACCESS",
+  "design_document": "research_control_center/validation_v2/staging/EXP02_PREREGISTRATION_DRAFT.json",
+  "design_document_sha256": "a43a327b3995e7088e8d4cf09442e094ca15213d36510fc5b68bd4ac8be7878b",
+  "selection_inputs": ["train1", "train2", "train4"],
+  "confirmation_input": "train3_existing_frozen_relation_confirmation_only",
+  "test1_role": "DEVELOPMENT_OBSERVATION_AFTER_NORMAL_POLICY_FREEZE",
+  "policy_families": ["COMMON_FIXED_NORMALIZED_V1", "RELATION_SPECIFIC_NORMAL_ONLY_V1"],
+  "selection_rule": "ZERO_COVERAGE_LOSS_THEN_MINIMIZE_NORMAL_FALSE_ALARMS_ABSTAIN_VARIABILITY",
+  "labels_used_for_selection": false,
+  "post_test_retuning_allowed": false,
+  "test2_authorized": false,
+  "preregistration_hash": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721"
+}

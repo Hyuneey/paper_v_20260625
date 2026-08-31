@@ -285,6 +285,10 @@ class ExplanationFidelityTests(unittest.TestCase):
                 result = validate_formal_v4_explanation_fidelity_v1(trace, explanation)
                 self.assertTrue(result.all_checks_passed)
                 self.assertEqual(tuple(item.check_id for item in result.checks), EXP05_FIDELITY_CHECK_IDS)
+                if outcome == "ABSTAIN":
+                    self.assertNotIn("응답을 확인했습니다", explanation.natural_language_text)
+                if reason in {"incomplete_source_window", "source_not_triggered"}:
+                    self.assertIn("target response는 평가하지 않았습니다", explanation.natural_language_text)
 
     def test_renderer_is_byte_deterministic_and_llm_free(self) -> None:
         trace = self.fx.materialized()

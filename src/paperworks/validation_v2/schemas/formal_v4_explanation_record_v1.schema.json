@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "numeric_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "numeric_role": {
+          "type": "string"
+        },
+        "reference_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reference_id": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "numeric_role",
+        "reference_hash",
+        "reference_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "paperworks://validation-v2/formal-v4-explanation-record-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alarm_emitted": {
+      "type": "boolean"
+    },
+    "artifact_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifact_type": {
+      "const": "validation_v2_formal_v4_explanation_record_v1"
+    },
+    "authorization_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "causal_claim_made": {
+      "type": "boolean"
+    },
+    "descriptor_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "execution_context_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "explanation_id": {
+      "$ref": "#/$defs/text"
+    },
+    "final_outcome": {
+      "$ref": "#/$defs/text"
+    },
+    "human_usefulness_evaluated": {
+      "type": "boolean"
+    },
+    "materialized_trace_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "natural_language_text": {
+      "$ref": "#/$defs/text"
+    },
+    "numeric_authority_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "ordered_numeric_reference_bindings": {
+      "items": {
+        "$ref": "#/$defs/numeric_binding"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array"
+    },
+    "portfolio_authority_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "portfolio_id": {
+      "$ref": "#/$defs/text"
+    },
+    "reason": {
+      "$ref": "#/$defs/text"
+    },
+    "renderer_contract_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "renderer_version": {
+      "$ref": "#/$defs/text"
+    },
+    "root_cause_claim_made": {
+      "type": "boolean"
+    },
+    "runtime_trace_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "selected_horizon_seconds": {
+      "type": "integer"
+    },
+    "source": {
+      "$ref": "#/$defs/text"
+    },
+    "source_direction": {
+      "$ref": "#/$defs/text"
+    },
+    "target": {
+      "$ref": "#/$defs/text"
+    },
+    "target_direction": {
+      "$ref": "#/$defs/text"
+    }
+  },
+  "required": [
+    "alarm_emitted",
+    "artifact_hash",
+    "artifact_type",
+    "authorization_hash",
+    "causal_claim_made",
+    "descriptor_hash",
+    "execution_context_hash",
+    "explanation_id",
+    "final_outcome",
+    "human_usefulness_evaluated",
+    "materialized_trace_hash",
+    "natural_language_text",
+    "numeric_authority_hash",
+    "ordered_numeric_reference_bindings",
+    "portfolio_authority_hash",
+    "portfolio_id",
+    "reason",
+    "renderer_contract_hash",
+    "renderer_version",
+    "root_cause_claim_made",
+    "runtime_trace_hash",
+    "schema_version",
+    "selected_horizon_seconds",
+    "source",
+    "source_direction",
+    "target",
+    "target_direction"
+  ],
+  "title": "VALIDATION V2 Formal V4 Explanation Record V1",
+  "type": "object"
+}

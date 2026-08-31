@@ -1,0 +1,30 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-05",
+  "status": "FROZEN_BEFORE_EVALUATED_RUNTIME_COHORT",
+  "design_document": "research_control_center/validation_v2/staging/EXP05_PREREGISTRATION_DRAFT.json",
+  "design_document_sha256": "96918c1b018717fcaed08f386ba5d2502d1d5913bf79a36701f3118df547ede1",
+  "runner_contract_hash": "34019a927858d7a74f56b8d7f9a7443d1b7b5c54ba20d900f5f54a606ddeb4e1",
+  "renderer_contract_hash": "9855183369c61400769de9ed5a0d7b32b865e2244601f07dac2970f2f0fa137f",
+  "population": "ALL_EMITTED_V2_FORMAL_V4_RUNTIME_TRACES_EXACTLY_ONCE",
+  "fidelity_checks": [
+    "SOURCE_MATCH",
+    "TARGET_MATCH",
+    "SOURCE_DIRECTION_MATCH",
+    "TARGET_DIRECTION_MATCH",
+    "HORIZON_MATCH",
+    "NUMERIC_PROVENANCE_MATCH",
+    "OUTCOME_MATCH",
+    "NO_NEW_VARIABLE",
+    "NO_NEW_NUMBER",
+    "NO_CAUSAL_CLAIM",
+    "DETERMINISTIC_REPLAY"
+  ],
+  "acceptance_rule": "100_PERCENT_STRUCTURAL_FIDELITY_ZERO_ORPHANS_ZERO_DUPLICATES",
+  "human_usefulness_evaluated": false,
+  "labels_required": false,
+  "llm_calls": 0,
+  "test2_authorized": false,
+  "preregistration_hash": "24a54b51732f5ab66c198119ec98e29623ca3d70824382517ae8cafc424c033d"
+}

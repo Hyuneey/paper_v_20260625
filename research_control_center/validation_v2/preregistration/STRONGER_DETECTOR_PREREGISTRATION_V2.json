@@ -1,0 +1,18 @@
+{
+  "schema": "paperworks.validation_v2.stage2_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "STRONGER-DETECTOR",
+  "status": "FROZEN_BEFORE_NORMAL_DATA_ACCESS",
+  "design_document": "research_control_center/validation_v2/staging/STRONGER_DETECTOR_PREREGISTRATION_DRAFT.json",
+  "design_document_sha256": "1a801f702975086fad022202bae0cff6e88df75be26086b6523710b72371d19c",
+  "method_id": "V2_ISOLATION_FOREST_FIXED_NORMAL_ONLY_V1",
+  "config_hash": "ad497f6e816544439e301ba5b4f093a22f1a8837854def6c15d1cf4ab8cef59b",
+  "fit_roles": ["NORMAL_FIT_PRIMARY", "NORMAL_FIT_SECONDARY"],
+  "calibration_role": "NORMAL_CONFIRMATION_CALIBRATION",
+  "threshold_quantile": "0.999_NEAREST_RANK_NO_INTERPOLATION",
+  "comparator": "score > threshold",
+  "random_state": 0,
+  "labels_used": false,
+  "test2_authorized": false,
+  "preregistration_hash": "b5c1db05262dd94908108bc570ae01a305df47ce1ebccd0116d6e92b1631bacc"
+}

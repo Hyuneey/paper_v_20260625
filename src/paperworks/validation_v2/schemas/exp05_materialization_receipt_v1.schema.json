@@ -1,0 +1,222 @@
+{
+  "$defs": {
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "numeric_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "numeric_role": {
+          "type": "string"
+        },
+        "reference_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reference_id": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "numeric_role",
+        "reference_hash",
+        "reference_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "paperworks://validation-v2/exp05-materialization-receipt-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "execution_scope": {
+          "const": "SYNTHETIC_CONFORMANCE"
+        },
+        "normal_selection_commit_b_receipt_hash": {
+          "const": null
+        },
+        "stage2_commit_a_receipt_hash": {
+          "const": null
+        },
+        "test1_features_authorized": {
+          "const": false
+        }
+      },
+      "required": [
+        "execution_scope",
+        "normal_selection_commit_b_receipt_hash",
+        "stage2_commit_a_receipt_hash",
+        "test1_features_authorized"
+      ],
+      "type": "object"
+    },
+    {
+      "properties": {
+        "execution_scope": {
+          "const": "SCIENTIFIC_V2"
+        },
+        "normal_selection_commit_b_receipt_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "stage2_commit_a_receipt_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "test1_features_authorized": {
+          "const": true
+        }
+      },
+      "required": [
+        "execution_scope",
+        "normal_selection_commit_b_receipt_hash",
+        "stage2_commit_a_receipt_hash",
+        "test1_features_authorized"
+      ],
+      "type": "object"
+    }
+  ],
+  "properties": {
+    "authorization_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "descriptor_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "descriptor_set_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "execution_context_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "execution_scope": {
+      "enum": [
+        "SYNTHETIC_CONFORMANCE",
+        "SCIENTIFIC_V2"
+      ]
+    },
+    "exp05_run_authorization_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "heldout_accessed": {
+      "const": false
+    },
+    "labels_accessed": {
+      "const": false
+    },
+    "llm_calls": {
+      "const": 0
+    },
+    "materialized_trace_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "normal_selection_commit_b_receipt_hash": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "const": null
+        }
+      ]
+    },
+    "observation_window_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "portfolio_authority_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "preregistration_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "provider_calls": {
+      "const": 0
+    },
+    "receipt_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "renderer_contract_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "runner_contract_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "runtime_trace_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "runtime_version": {
+      "$ref": "#/$defs/text"
+    },
+    "same_call_path": {
+      "const": true
+    },
+    "schema": {
+      "const": "paperworks.validation_v2.formal_v4_runtime_materialization_receipt_v1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "source_commit": {
+      "$ref": "#/$defs/git_commit"
+    },
+    "stage2_commit_a_receipt_hash": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "const": null
+        }
+      ]
+    },
+    "test1_features_authorized": {
+      "type": "boolean"
+    },
+    "trace_contract_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "validator_version": {
+      "$ref": "#/$defs/text"
+    }
+  },
+  "required": [
+    "authorization_hash",
+    "descriptor_hash",
+    "descriptor_set_hash",
+    "execution_context_hash",
+    "execution_scope",
+    "exp05_run_authorization_hash",
+    "heldout_accessed",
+    "labels_accessed",
+    "llm_calls",
+    "materialized_trace_hash",
+    "normal_selection_commit_b_receipt_hash",
+    "observation_window_hash",
+    "portfolio_authority_hash",
+    "preregistration_hash",
+    "provider_calls",
+    "receipt_hash",
+    "renderer_contract_hash",
+    "runner_contract_hash",
+    "runtime_trace_hash",
+    "runtime_version",
+    "same_call_path",
+    "schema",
+    "schema_version",
+    "source_commit",
+    "stage2_commit_a_receipt_hash",
+    "test1_features_authorized",
+    "trace_contract_hash",
+    "validator_version"
+  ],
+  "title": "VALIDATION V2 EXP-05 Materialization Receipt V1",
+  "type": "object"
+}

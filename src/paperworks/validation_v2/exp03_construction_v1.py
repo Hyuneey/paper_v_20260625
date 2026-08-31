@@ -512,6 +512,7 @@ class ProviderCallReceiptV1:
     call_index: int
     request_hash: str
     response_hash: str | None
+    parsed_proposal_hash: str | None
     completion_class: str
     attempt_receipts: tuple[ProviderAttemptReceiptV1, ...]
     provider_id: str
@@ -541,6 +542,7 @@ def build_provider_call_receipt_v1(
     authorization: ProviderExecutionAuthorizationV1,
     attempts: Sequence[ProviderAttemptReceiptV1],
     completion_class: str,
+    parsed_proposal_hash: str | None = None,
 ) -> ProviderCallReceiptV1:
     _validate_authorization(authorization)
     rows = tuple(attempts)
@@ -570,6 +572,10 @@ def build_provider_call_receipt_v1(
         if last.result_class == "SUCCESS":
             _fail("EXP03_CALL_COMPLETION_MISMATCH", "provider error cannot end in success")
         response_hash = None
+    if parsed_proposal_hash is not None:
+        _hash(parsed_proposal_hash, "parsed_proposal_hash")
+        if completion_class != "NONEMPTY_RESPONSE":
+            _fail("EXP03_PARSED_PROPOSAL_WITHOUT_RESPONSE", "parsed proposal requires a non-empty response")
     input_tokens = sum(row.input_tokens for row in rows)
     output_tokens = sum(row.output_tokens for row in rows)
     latency_ms = sum(row.latency_ms for row in rows)
@@ -584,6 +590,7 @@ def build_provider_call_receipt_v1(
         call_index=last.call_index,
         request_hash=last.request_hash,
         response_hash=response_hash,
+        parsed_proposal_hash=parsed_proposal_hash,
         completion_class=completion_class,
         attempt_receipts=rows,
         provider_id=authorization.provider_id,
@@ -612,6 +619,7 @@ def verify_provider_call_receipt_v1(
         authorization=authorization,
         attempts=receipt.attempt_receipts,
         completion_class=receipt.completion_class,
+        parsed_proposal_hash=receipt.parsed_proposal_hash,
     )
     if rebuilt != receipt:
         _fail("EXP03_CALL_REPLAY_MISMATCH", "call receipt is stale or incomplete")
@@ -640,6 +648,162 @@ def validate_provider_call_budget_v1(
     return len(rows)
 
 
+NO_RULE_VALIDATOR_ID = "EXP03_DETERMINISTIC_SEMANTIC_NO_RULE_VALIDATOR_V1"
+INTENTIONAL_NO_RULE_REASON_CODES = (
+    "AMBIGUOUS_EXECUTABLE_SEMANTICS",
+    "INSUFFICIENT_RELATION_SUPPORT",
+    "NO_SAFE_RULE_WITHIN_EVIDENCE",
+)
+NO_RULE_VALIDATOR_HASH = _expected_hash({
+    "validator_id": NO_RULE_VALIDATOR_ID,
+    "eligible_outcomes": sorted(SEMANTIC_NO_RULE_OUTCOMES),
+    "unsupported_evidence_rule": "AT_LEAST_ONE_REQUIRED_CONSTRUCTION_INPUT_EXPLICITLY_UNSUPPORTED",
+    "intentional_no_rule_rule": "ALL_REQUIRED_INPUTS_SUPPORTED_AND_STRUCTURED_MODEL_NO_RULE_REASON_VALID",
+    "reason_codes": ["VARIABLE_UNSUPPORTED", "EVIDENCE_INCOMPLETE", "NUMERIC_AUTHORITY_INCOMPLETE"],
+    "intentional_reason_codes": list(INTENTIONAL_NO_RULE_REASON_CODES),
+})
+
+
+@dataclass(frozen=True)
+class NoRuleEligibilityProjectionV1:
+    relation_id: str
+    evidence_projection_hash: str
+    variable_supported: bool
+    evidence_complete: bool
+    numeric_authority_complete: bool
+    self_hash: str = ""
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "schema": "paperworks.validation_v2.exp03_no_rule_eligibility_projection_v1",
+            "schema_version": EXP03_VERSION,
+            **self.__dict__,
+        }
+
+
+def build_no_rule_eligibility_projection_v1(
+    *, relation_id: str, evidence_projection_hash: str,
+    variable_supported: bool, evidence_complete: bool, numeric_authority_complete: bool,
+) -> NoRuleEligibilityProjectionV1:
+    _identifier(relation_id, "relation_id")
+    _hash(evidence_projection_hash, "evidence_projection_hash")
+    for name, value in (
+        ("variable_supported", variable_supported),
+        ("evidence_complete", evidence_complete),
+        ("numeric_authority_complete", numeric_authority_complete),
+    ):
+        _strict_bool(value, name)
+    provisional = NoRuleEligibilityProjectionV1(
+        relation_id=relation_id,
+        evidence_projection_hash=evidence_projection_hash,
+        variable_supported=variable_supported,
+        evidence_complete=evidence_complete,
+        numeric_authority_complete=numeric_authority_complete,
+    )
+    return replace(provisional, self_hash=_expected_hash(provisional.to_dict()))
+
+
+@dataclass(frozen=True)
+class SemanticNoRuleValidationReceiptV1:
+    relation_id: str
+    evidence_projection_hash: str
+    terminal_outcome: str
+    eligibility_projection: NoRuleEligibilityProjectionV1
+    eligibility_projection_hash: str
+    reason_codes: tuple[str, ...]
+    structured_response_hash: str | None
+    structured_reason_code: str | None
+    semantic_no_rule_confirmed: bool
+    validator_id: str = NO_RULE_VALIDATOR_ID
+    validator_hash: str = NO_RULE_VALIDATOR_HASH
+    self_hash: str = ""
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "schema": "paperworks.validation_v2.exp03_semantic_no_rule_validation_v1",
+            "schema_version": EXP03_VERSION,
+            **{
+                **self.__dict__,
+                "eligibility_projection": self.eligibility_projection.to_dict(),
+                "reason_codes": list(self.reason_codes),
+            },
+        }
+
+
+def validate_semantic_no_rule_v1(
+    *, projection: NoRuleEligibilityProjectionV1, outcome: ConstructionOutcomeV1,
+    structured_response_hash: str | None = None,
+    structured_reason_code: str | None = None,
+) -> SemanticNoRuleValidationReceiptV1:
+    if type(projection) is not NoRuleEligibilityProjectionV1:
+        _fail("EXP03_NO_RULE_PROJECTION_TYPE_INVALID", "typed no-rule eligibility projection required")
+    if projection.self_hash != _expected_hash(projection.to_dict()):
+        _fail("EXP03_NO_RULE_PROJECTION_REPLAY_MISMATCH", "no-rule eligibility projection mutated")
+    if type(outcome) is not ConstructionOutcomeV1 or outcome.value not in SEMANTIC_NO_RULE_OUTCOMES:
+        _fail("EXP03_NO_RULE_OUTCOME_INVALID", "validator only handles semantic no-rule outcomes")
+    unsupported_reasons = tuple(
+        name for name, supported in (
+            ("VARIABLE_UNSUPPORTED", projection.variable_supported),
+            ("EVIDENCE_INCOMPLETE", projection.evidence_complete),
+            ("NUMERIC_AUTHORITY_INCOMPLETE", projection.numeric_authority_complete),
+        ) if not supported
+    )
+    if outcome is ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE:
+        if not unsupported_reasons:
+            _fail("EXP03_UNSUPPORTED_EVIDENCE_NOT_SUPPORTED", "preconstruction rejection needs an unsupported input")
+        if structured_response_hash is not None or structured_reason_code is not None:
+            _fail("EXP03_UNSUPPORTED_EVIDENCE_RESPONSE_FORBIDDEN", "preconstruction rejection occurs before a model response")
+        reasons = unsupported_reasons
+    else:
+        if unsupported_reasons:
+            _fail("EXP03_INTENTIONAL_NO_RULE_INPUT_INVALID", "intentional no-rule requires a supported complete input")
+        _hash(structured_response_hash, "structured_response_hash")
+        if structured_reason_code not in INTENTIONAL_NO_RULE_REASON_CODES:
+            _fail("EXP03_INTENTIONAL_NO_RULE_REASON_INVALID", "structured no-rule reason is outside the closed vocabulary")
+        reasons = (structured_reason_code,)
+    provisional = SemanticNoRuleValidationReceiptV1(
+        relation_id=projection.relation_id,
+        evidence_projection_hash=projection.evidence_projection_hash,
+        terminal_outcome=outcome.value,
+        eligibility_projection=projection,
+        eligibility_projection_hash=projection.self_hash,
+        reason_codes=reasons,
+        structured_response_hash=structured_response_hash,
+        structured_reason_code=structured_reason_code,
+        semantic_no_rule_confirmed=True,
+    )
+    return replace(provisional, self_hash=_expected_hash(provisional.to_dict()))
+
+
+def verify_semantic_no_rule_validation_v1(receipt: SemanticNoRuleValidationReceiptV1) -> str:
+    if type(receipt) is not SemanticNoRuleValidationReceiptV1:
+        _fail("EXP03_NO_RULE_RECEIPT_TYPE_INVALID", "typed semantic no-rule receipt required")
+    if receipt.self_hash != _expected_hash(receipt.to_dict()):
+        _fail("EXP03_NO_RULE_RECEIPT_REPLAY_MISMATCH", "semantic no-rule receipt mutated")
+    if (
+        receipt.validator_id != NO_RULE_VALIDATOR_ID
+        or receipt.validator_hash != NO_RULE_VALIDATOR_HASH
+        or receipt.terminal_outcome not in SEMANTIC_NO_RULE_OUTCOMES
+        or type(receipt.eligibility_projection) is not NoRuleEligibilityProjectionV1
+        or receipt.eligibility_projection.self_hash != receipt.eligibility_projection_hash
+        or receipt.semantic_no_rule_confirmed is not True
+    ):
+        _fail("EXP03_NO_RULE_RECEIPT_INVALID", "semantic no-rule validation is incomplete or foreign")
+    try:
+        outcome = ConstructionOutcomeV1(receipt.terminal_outcome)
+    except ValueError:
+        _fail("EXP03_NO_RULE_RECEIPT_INVALID", "unknown semantic no-rule outcome")
+    replayed = validate_semantic_no_rule_v1(
+        projection=receipt.eligibility_projection,
+        outcome=outcome,
+        structured_response_hash=receipt.structured_response_hash,
+        structured_reason_code=receipt.structured_reason_code,
+    )
+    if replayed != receipt:
+        _fail("EXP03_NO_RULE_RECEIPT_REPLAY_MISMATCH", "semantic no-rule receipt does not replay its projection")
+    return receipt.self_hash
+
+
 @dataclass(frozen=True)
 class ConstructionTerminalRecordV1:
     namespace: str
@@ -655,10 +819,12 @@ class ConstructionTerminalRecordV1:
     template_hash: str
     proposal_hash: str | None
     verifier_result_hash: str | None
+    executable_projection_hash: str | None
     call_receipts: tuple[ProviderCallReceiptV1, ...]
     t1b_selection_receipt: T1BSelectionReceiptV1 | None
     controller_actions: tuple[str, ...]
     semantic_no_rule_confirmed: bool | None
+    semantic_no_rule_validation_receipt: SemanticNoRuleValidationReceiptV1 | None
     self_hash: str = ""
 
     @property
@@ -681,6 +847,10 @@ class ConstructionTerminalRecordV1:
                     if self.t1b_selection_receipt is not None else None
                 ),
                 "controller_actions": list(self.controller_actions),
+                "semantic_no_rule_validation_receipt": (
+                    self.semantic_no_rule_validation_receipt.to_dict()
+                    if self.semantic_no_rule_validation_receipt is not None else None
+                ),
             },
         }
 
@@ -691,19 +861,26 @@ def _validate_terminal_fields(
     reason_code: str,
     proposal_hash: str | None,
     verifier_result_hash: str | None,
+    executable_projection_hash: str | None,
     semantic_no_rule_confirmed: bool | None,
+    require_executable_projection: bool = True,
 ) -> None:
     if type(outcome) is not ConstructionOutcomeV1:
         _fail("EXP03_OUTCOME_INVALID", "outcome must use the closed EXP-03 enum")
     if outcome is ConstructionOutcomeV1.ACCEPTED_PROPOSAL:
-        if reason_code != "VERIFIER_ACCEPTED" or proposal_hash is None or verifier_result_hash is None:
-            _fail("EXP03_ACCEPTED_BINDING_INCOMPLETE", "accepted outcomes require proposal and verifier bindings")
+        if (
+            reason_code != "VERIFIER_ACCEPTED"
+            or proposal_hash is None
+            or verifier_result_hash is None
+            or (require_executable_projection and executable_projection_hash is None)
+        ):
+            _fail("EXP03_ACCEPTED_BINDING_INCOMPLETE", "accepted outcomes require proposal, verifier, and executable projection bindings")
         if semantic_no_rule_confirmed is not None:
             _fail("EXP03_NO_RULE_FLAG_INVALID", "accepted outcomes cannot carry no-rule validation")
     elif outcome is ConstructionOutcomeV1.ALL_DRAWS_FAILED:
         if reason_code != TERMINAL_REASON_CODES[outcome.value]:
             _fail("EXP03_REASON_CLASS_MISMATCH", "T1-B all-failed summary reason changed")
-        if proposal_hash is not None or verifier_result_hash is not None:
+        if proposal_hash is not None or verifier_result_hash is not None or executable_projection_hash is not None:
             _fail("EXP03_T1B_SUMMARY_BINDING_INVALID", "all-failed summary cannot bind a selected proposal")
         if semantic_no_rule_confirmed is not None:
             _fail("EXP03_FAILURE_TO_NO_RULE_FORBIDDEN", "all-failed summary is not semantic no-rule")
@@ -717,10 +894,14 @@ def _validate_terminal_fields(
             _strict_bool(semantic_no_rule_confirmed, "semantic_no_rule_confirmed")
         elif semantic_no_rule_confirmed is not None:
             _fail("EXP03_FAILURE_TO_NO_RULE_FORBIDDEN", "operational failures cannot carry semantic no-rule state")
+    if outcome is not ConstructionOutcomeV1.ACCEPTED_PROPOSAL and executable_projection_hash is not None:
+        _fail("EXP03_EXECUTABLE_PROJECTION_FORBIDDEN", "only accepted outcomes can bind an executable projection")
     if proposal_hash is not None:
         _hash(proposal_hash, "proposal_hash")
     if verifier_result_hash is not None:
         _hash(verifier_result_hash, "verifier_result_hash")
+    if executable_projection_hash is not None:
+        _hash(executable_projection_hash, "executable_projection_hash")
 
 
 def build_terminal_record_v1(
@@ -737,10 +918,12 @@ def build_terminal_record_v1(
     template_hash: str,
     proposal_hash: str | None = None,
     verifier_result_hash: str | None = None,
+    executable_projection_hash: str | None = None,
     call_receipts: Sequence[ProviderCallReceiptV1] = (),
     t1b_selection_receipt: T1BSelectionReceiptV1 | None = None,
     controller_actions: Sequence[str] = (),
     semantic_no_rule_confirmed: bool | None = None,
+    semantic_no_rule_validation_receipt: SemanticNoRuleValidationReceiptV1 | None = None,
 ) -> ConstructionTerminalRecordV1:
     _identifier(relation_id, "relation_id")
     if type(arm) is not ConstructionArmV1:
@@ -760,11 +943,28 @@ def build_terminal_record_v1(
         reason_code=reason_code,
         proposal_hash=proposal_hash,
         verifier_result_hash=verifier_result_hash,
+        executable_projection_hash=executable_projection_hash,
         semantic_no_rule_confirmed=semantic_no_rule_confirmed,
     )
+    if outcome.value in SEMANTIC_NO_RULE_OUTCOMES:
+        if semantic_no_rule_validation_receipt is None:
+            _fail("EXP03_NO_RULE_VALIDATION_REQUIRED", "semantic no-rule requires deterministic validation receipt")
+        verify_semantic_no_rule_validation_v1(semantic_no_rule_validation_receipt)
+        if (
+            semantic_no_rule_validation_receipt.relation_id != relation_id
+            or semantic_no_rule_validation_receipt.evidence_projection_hash != evidence_projection_hash
+            or semantic_no_rule_validation_receipt.terminal_outcome != outcome.value
+            or semantic_no_rule_confirmed is not semantic_no_rule_validation_receipt.semantic_no_rule_confirmed
+        ):
+            _fail("EXP03_NO_RULE_VALIDATION_BINDING_MISMATCH", "semantic no-rule receipt is foreign")
+    elif semantic_no_rule_validation_receipt is not None:
+        _fail("EXP03_NO_RULE_VALIDATION_FORBIDDEN", "operational or accepted outcomes cannot carry no-rule receipt")
     calls = tuple(call_receipts)
     expected_calls = {ConstructionArmV1.T0: 0, ConstructionArmV1.T1: 1, ConstructionArmV1.T1_B: 3}
-    if arm in expected_calls and len(calls) != expected_calls[arm]:
+    preconstruction_unsupported = outcome is ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE
+    if preconstruction_unsupported and calls:
+        _fail("EXP03_UNSUPPORTED_EVIDENCE_CALL_FORBIDDEN", "preconstruction evidence rejection must use zero provider calls")
+    if arm in expected_calls and not preconstruction_unsupported and len(calls) != expected_calls[arm]:
         _fail("EXP03_ARM_CALL_COUNT_INVALID", "T0=0, T1=1, and T1-B=3 are exact")
     if arm is ConstructionArmV1.T2:
         if len(calls) > 3:
@@ -803,7 +1003,19 @@ def build_terminal_record_v1(
             ConstructionOutcomeV1.BUDGET_EXHAUSTION,
         } and completion != "NONEMPTY_RESPONSE":
             _fail("EXP03_OUTCOME_CALL_MISMATCH", "outcome requires a non-empty final provider response")
-    if arm is ConstructionArmV1.T1_B:
+        if (
+            outcome is ConstructionOutcomeV1.INTENTIONAL_NO_RULE
+            and semantic_no_rule_validation_receipt is not None
+            and semantic_no_rule_validation_receipt.structured_response_hash != calls[-1].response_hash
+        ):
+            _fail("EXP03_INTENTIONAL_NO_RULE_RESPONSE_MISMATCH", "semantic no-rule must bind the final provider response")
+        if (
+            arm is not ConstructionArmV1.T1_B
+            and outcome in {ConstructionOutcomeV1.ACCEPTED_PROPOSAL, ConstructionOutcomeV1.VERIFIER_REJECTION}
+            and calls[-1].parsed_proposal_hash != proposal_hash
+        ):
+            _fail("EXP03_PROPOSAL_RESPONSE_BINDING_MISMATCH", "accepted or verifier-rejected proposal must equal the final parsed provider output")
+    if arm is ConstructionArmV1.T1_B and not preconstruction_unsupported:
         if t1b_selection_receipt is None or authorization is None:
             _fail("EXP03_T1B_SELECTION_REQUIRED", "T1-B terminal requires its verified selection receipt")
         verify_t1b_selection_v1(t1b_selection_receipt, authorization)
@@ -866,10 +1078,12 @@ def build_terminal_record_v1(
         template_hash=template_hash,
         proposal_hash=proposal_hash,
         verifier_result_hash=verifier_result_hash,
+        executable_projection_hash=executable_projection_hash,
         call_receipts=calls,
         t1b_selection_receipt=t1b_selection_receipt,
         controller_actions=actions,
         semantic_no_rule_confirmed=semantic_no_rule_confirmed,
+        semantic_no_rule_validation_receipt=semantic_no_rule_validation_receipt,
     )
     return replace(provisional, self_hash=_expected_hash(provisional.to_dict()))
 
@@ -902,10 +1116,12 @@ def verify_terminal_record_v1(
         template_hash=record.template_hash,
         proposal_hash=record.proposal_hash,
         verifier_result_hash=record.verifier_result_hash,
+        executable_projection_hash=record.executable_projection_hash,
         call_receipts=record.call_receipts,
         t1b_selection_receipt=record.t1b_selection_receipt,
         controller_actions=record.controller_actions,
         semantic_no_rule_confirmed=record.semantic_no_rule_confirmed,
+        semantic_no_rule_validation_receipt=record.semantic_no_rule_validation_receipt,
     )
     if rebuilt != record:
         _fail("EXP03_TERMINAL_REPLAY_MISMATCH", "terminal record is stale or incomplete")
@@ -920,13 +1136,21 @@ class T1BDrawOutcomeV1:
     proposal_hash: str | None
     verifier_result_hash: str | None
     call_receipt: ProviderCallReceiptV1
+    semantic_no_rule_validation_receipt: SemanticNoRuleValidationReceiptV1 | None
     self_hash: str = ""
 
     def to_dict(self) -> dict[str, object]:
         return {
             "schema": "paperworks.validation_v2.exp03_t1b_draw_v1",
             "schema_version": EXP03_VERSION,
-            **{**self.__dict__, "call_receipt": self.call_receipt.to_dict()},
+            **{
+                **self.__dict__,
+                "call_receipt": self.call_receipt.to_dict(),
+                "semantic_no_rule_validation_receipt": (
+                    self.semantic_no_rule_validation_receipt.to_dict()
+                    if self.semantic_no_rule_validation_receipt is not None else None
+                ),
+            },
         }
 
 
@@ -939,6 +1163,7 @@ def build_t1b_draw_v1(
     reason_code: str,
     proposal_hash: str | None = None,
     verifier_result_hash: str | None = None,
+    semantic_no_rule_validation_receipt: SemanticNoRuleValidationReceiptV1 | None = None,
 ) -> T1BDrawOutcomeV1:
     if draw_index not in T1B_DRAWS or call_receipt.call_index != draw_index:
         _fail("EXP03_T1B_DRAW_INDEX_INVALID", "T1-B draw and call indices must be 1, 2, 3")
@@ -952,8 +1177,28 @@ def build_t1b_draw_v1(
         reason_code=reason_code,
         proposal_hash=proposal_hash,
         verifier_result_hash=verifier_result_hash,
-        semantic_no_rule_confirmed=False if outcome.value in SEMANTIC_NO_RULE_OUTCOMES else None,
+        executable_projection_hash=None,
+        semantic_no_rule_confirmed=True if outcome.value in SEMANTIC_NO_RULE_OUTCOMES else None,
+        require_executable_projection=False,
     )
+    if outcome is ConstructionOutcomeV1.INTENTIONAL_NO_RULE:
+        if semantic_no_rule_validation_receipt is None:
+            _fail("EXP03_T1B_NO_RULE_VALIDATION_REQUIRED", "intentional no-rule draw requires semantic validation")
+        verify_semantic_no_rule_validation_v1(semantic_no_rule_validation_receipt)
+        if (
+            semantic_no_rule_validation_receipt.relation_id != call_receipt.relation_id
+            or semantic_no_rule_validation_receipt.evidence_projection_hash != call_receipt.evidence_projection_hash
+            or semantic_no_rule_validation_receipt.terminal_outcome != outcome.value
+            or semantic_no_rule_validation_receipt.structured_response_hash != call_receipt.response_hash
+        ):
+            _fail("EXP03_T1B_NO_RULE_VALIDATION_MISMATCH", "intentional no-rule draw is not bound to its provider response")
+    elif semantic_no_rule_validation_receipt is not None:
+        _fail("EXP03_T1B_NO_RULE_VALIDATION_FORBIDDEN", "non-semantic draw cannot carry no-rule validation")
+    if (
+        outcome in {ConstructionOutcomeV1.ACCEPTED_PROPOSAL, ConstructionOutcomeV1.VERIFIER_REJECTION}
+        and call_receipt.parsed_proposal_hash != proposal_hash
+    ):
+        _fail("EXP03_T1B_PROPOSAL_RESPONSE_BINDING_MISMATCH", "draw proposal must equal its parsed provider output")
     provisional = T1BDrawOutcomeV1(
         draw_index=draw_index,
         outcome=outcome.value,
@@ -961,6 +1206,7 @@ def build_t1b_draw_v1(
         proposal_hash=proposal_hash,
         verifier_result_hash=verifier_result_hash,
         call_receipt=call_receipt,
+        semantic_no_rule_validation_receipt=semantic_no_rule_validation_receipt,
     )
     expected_completion = {
         ConstructionOutcomeV1.PROVIDER_ERROR: "PROVIDER_ERROR",
@@ -993,6 +1239,7 @@ def verify_t1b_draw_v1(
         reason_code=receipt.reason_code,
         proposal_hash=receipt.proposal_hash,
         verifier_result_hash=receipt.verifier_result_hash,
+        semantic_no_rule_validation_receipt=receipt.semantic_no_rule_validation_receipt,
     )
     if rebuilt != receipt:
         _fail("EXP03_T1B_DRAW_REPLAY_MISMATCH", "T1-B draw is stale or incomplete")
@@ -1172,43 +1419,254 @@ class NaturalMetricsV1:
     scheduled_records: int
     accepted_records: int
     terminal_counts: tuple[tuple[str, int], ...]
+    t1b_draw_terminal_counts: tuple[tuple[str, int], ...]
     semantic_no_rule_denominator: int
     semantic_no_rule_confirmed: int
     semantic_no_rule_appropriateness: float | str
+    first_call_acceptance_denominator: int
+    first_call_accepted: int
+    eventual_accepted: int
+    executable_projection_count: int
+    feedback_activation_denominator: int
+    feedback_activated: int
+    feedback_repair_denominator: int
+    feedback_repair_success: int
+    repeat_stability_denominator: int
+    repeat_stable_terminal_groups: int
+    repeat_stable_acceptance_groups: int
+    repeat_stable_executable_projection_groups: int
+    pairwise_accepted_relation_jaccard_mean: float | str
+    provider_call_count: int
+    transport_attempt_count: int
+    input_tokens: int
+    output_tokens: int
+    total_tokens: int
+    latency_total_ms: float
+    latency_unit: str
+    custody_abort_denominator_policy: str
+    complete_schedule_hash: str | None
+    headline_eligible: bool
     self_hash: str = ""
 
     def to_dict(self) -> dict[str, object]:
         return {
             "schema": "paperworks.validation_v2.exp03_natural_metrics_v1",
             "schema_version": EXP03_VERSION,
-            **{**self.__dict__, "terminal_counts": [list(item) for item in self.terminal_counts]},
+            **{
+                **self.__dict__,
+                "terminal_counts": [list(item) for item in self.terminal_counts],
+                "t1b_draw_terminal_counts": [list(item) for item in self.t1b_draw_terminal_counts],
+            },
         }
 
 
 def aggregate_natural_metrics_v1(
     records: Sequence[ConstructionTerminalRecordV1],
     authorization: ProviderExecutionAuthorizationV1 | None,
+    *,
+    schedule: NaturalScheduleReceiptV1 | None = None,
 ) -> NaturalMetricsV1:
     rows = tuple(records)
     if not rows:
         _fail("EXP03_NATURAL_METRICS_EMPTY", "natural metrics require terminal records")
     for row in rows:
         verify_terminal_record_v1(row, authorization)
+    if schedule is not None:
+        validate_complete_natural_schedule_v1(schedule, rows, authorization)
     counted_outcomes = (*TERMINAL_CLASSES, ConstructionOutcomeV1.ALL_DRAWS_FAILED.value)
     counts = tuple((name, sum(row.outcome == name for row in rows)) for name in counted_outcomes)
+    t1b_draws = tuple(
+        draw
+        for row in rows
+        if row.t1b_selection_receipt is not None
+        for draw in row.t1b_selection_receipt.draw_outcomes
+    )
+    draw_counts = tuple((name, sum(draw.outcome == name for draw in t1b_draws)) for name in TERMINAL_CLASSES)
     semantic = tuple(row for row in rows if row.outcome in SEMANTIC_NO_RULE_OUTCOMES)
-    confirmed = sum(row.semantic_no_rule_confirmed is True for row in semantic)
-    score: float | str = "NOT_OBSERVED" if not semantic else confirmed / len(semantic)
+    semantic_draws = tuple(draw for draw in t1b_draws if draw.outcome in SEMANTIC_NO_RULE_OUTCOMES)
+    confirmed = (
+        sum(row.semantic_no_rule_confirmed is True for row in semantic)
+        + sum(draw.semantic_no_rule_validation_receipt is not None for draw in semantic_draws)
+    )
+    semantic_denominator = len(semantic) + len(semantic_draws)
+    score: float | str = "NOT_OBSERVED" if not semantic_denominator else confirmed / semantic_denominator
+    stochastic = tuple(row for row in rows if row.arm != ConstructionArmV1.T0.value)
+
+    def first_call_accepted(row: ConstructionTerminalRecordV1) -> bool:
+        if row.outcome != ConstructionOutcomeV1.ACCEPTED_PROPOSAL.value:
+            return False
+        if row.arm == ConstructionArmV1.T0.value:
+            return True
+        if row.arm == ConstructionArmV1.T1_B.value:
+            return row.t1b_selection_receipt is not None and row.t1b_selection_receipt.selected_draw_index == 1
+        return row.generation_calls == 1
+
+    t2 = tuple(row for row in rows if row.arm == ConstructionArmV1.T2.value)
+    feedback = tuple(row for row in t2 if row.controller_actions)
+    repeat_groups: dict[tuple[str, str], list[ConstructionTerminalRecordV1]] = {}
+    for row in stochastic:
+        repeat_groups.setdefault((row.relation_id, row.arm), []).append(row)
+    complete_groups = tuple(
+        group for group in repeat_groups.values()
+        if tuple(sorted(item.repeat_index for item in group)) == STOCHASTIC_REPEATS
+    )
+    calls = tuple(call for row in rows for call in row.call_receipts)
+    repeat_pairs: list[float] = []
+    for arm in (ConstructionArmV1.T1.value, ConstructionArmV1.T1_B.value, ConstructionArmV1.T2.value):
+        accepted_by_repeat = {
+            repeat: {
+                row.relation_id for row in stochastic
+                if row.arm == arm and row.repeat_index == repeat
+                and row.outcome == ConstructionOutcomeV1.ACCEPTED_PROPOSAL.value
+            }
+            for repeat in STOCHASTIC_REPEATS
+        }
+        for left, right in ((1, 2), (1, 3), (2, 3)):
+            union = accepted_by_repeat[left] | accepted_by_repeat[right]
+            repeat_pairs.append(1.0 if not union else len(accepted_by_repeat[left] & accepted_by_repeat[right]) / len(union))
     provisional = NaturalMetricsV1(
         namespace=NATURAL_NAMESPACE,
         scheduled_records=len(rows),
         accepted_records=sum(row.outcome == "ACCEPTED_PROPOSAL" for row in rows),
         terminal_counts=counts,
-        semantic_no_rule_denominator=len(semantic),
+        t1b_draw_terminal_counts=draw_counts,
+        semantic_no_rule_denominator=semantic_denominator,
         semantic_no_rule_confirmed=confirmed,
         semantic_no_rule_appropriateness=score,
+        first_call_acceptance_denominator=len(rows),
+        first_call_accepted=sum(first_call_accepted(row) for row in rows),
+        eventual_accepted=sum(row.outcome == ConstructionOutcomeV1.ACCEPTED_PROPOSAL.value for row in rows),
+        executable_projection_count=sum(
+            row.outcome == ConstructionOutcomeV1.ACCEPTED_PROPOSAL.value
+            and row.executable_projection_hash is not None
+            for row in rows
+        ),
+        feedback_activation_denominator=len(t2),
+        feedback_activated=len(feedback),
+        feedback_repair_denominator=len(feedback),
+        feedback_repair_success=sum(row.outcome == ConstructionOutcomeV1.ACCEPTED_PROPOSAL.value for row in feedback),
+        repeat_stability_denominator=len(complete_groups),
+        repeat_stable_terminal_groups=sum(len({item.outcome for item in group}) == 1 for group in complete_groups),
+        repeat_stable_acceptance_groups=sum(
+            len({item.outcome == ConstructionOutcomeV1.ACCEPTED_PROPOSAL.value for item in group}) == 1
+            for group in complete_groups
+        ),
+        repeat_stable_executable_projection_groups=sum(
+            len({item.executable_projection_hash for item in group}) == 1
+            for group in complete_groups
+        ),
+        pairwise_accepted_relation_jaccard_mean=(
+            "NOT_OBSERVED" if schedule is None else round(sum(repeat_pairs) / len(repeat_pairs), 12)
+        ),
+        provider_call_count=len(calls),
+        transport_attempt_count=sum(len(call.attempt_receipts) for call in calls),
+        input_tokens=sum(call.input_tokens for call in calls),
+        output_tokens=sum(call.output_tokens for call in calls),
+        total_tokens=sum(call.input_tokens + call.output_tokens for call in calls),
+        latency_total_ms=round(sum(call.latency_ms for call in calls), 9),
+        latency_unit="MILLISECONDS_PROVIDER_RECEIPT_SUM",
+        custody_abort_denominator_policy="COMPLETE_SCHEDULE_ONLY_ABORTED_RUN_HAS_NO_HEADLINE_METRICS",
+        complete_schedule_hash=schedule.self_hash if schedule is not None else None,
+        headline_eligible=schedule is not None,
     )
     return replace(provisional, self_hash=_expected_hash(provisional.to_dict()))
+
+
+@dataclass(frozen=True)
+class StressClassifierInputV1:
+    fixture_id: str
+    variable_supported: bool
+    evidence_complete: bool
+    numeric_authority_complete: bool
+    custody_valid: bool
+    transport_state: str
+    response_state: str
+    strict_parse_valid: bool
+    structured_no_rule: bool
+    verifier_state: str
+    calls_used: int
+    call_budget: int
+    retrieval_state: str
+    synthetic_input_hash: str
+    self_hash: str = ""
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "schema": "paperworks.validation_v2.exp03_stress_classifier_input_v1",
+            "schema_version": EXP03_VERSION,
+            **self.__dict__,
+        }
+
+
+def build_stress_classifier_input_v1(
+    *, fixture_id: str, variable_supported: bool = True, evidence_complete: bool = True,
+    numeric_authority_complete: bool = True, custody_valid: bool = True,
+    transport_state: str = "SUCCESS", response_state: str = "NONEMPTY",
+    strict_parse_valid: bool = True, structured_no_rule: bool = False,
+    verifier_state: str = "ACCEPTED", calls_used: int = 1, call_budget: int = 3,
+    retrieval_state: str = "NOT_USED",
+) -> StressClassifierInputV1:
+    _identifier(fixture_id, "fixture_id")
+    for name, value in (
+        ("variable_supported", variable_supported), ("evidence_complete", evidence_complete),
+        ("numeric_authority_complete", numeric_authority_complete), ("custody_valid", custody_valid),
+        ("strict_parse_valid", strict_parse_valid), ("structured_no_rule", structured_no_rule),
+    ):
+        _strict_bool(value, name)
+    if transport_state not in {"SUCCESS", "TERMINAL_ERROR"}:
+        _fail("EXP03_STRESS_TRANSPORT_STATE_INVALID", "stress transport state is closed")
+    if response_state not in {"NONE", "EMPTY", "NONEMPTY"}:
+        _fail("EXP03_STRESS_RESPONSE_STATE_INVALID", "stress response state is closed")
+    if verifier_state not in {"NOT_RUN", "ACCEPTED", "REJECTED_REPAIRABLE", "REJECTED_FINAL"}:
+        _fail("EXP03_STRESS_VERIFIER_STATE_INVALID", "stress verifier state is closed")
+    if retrieval_state not in {"NOT_USED", "SUCCESS", "IDENTITY_FAILURE"}:
+        _fail("EXP03_STRESS_RETRIEVAL_STATE_INVALID", "stress retrieval state is closed")
+    if type(calls_used) is not int or type(call_budget) is not int or calls_used < 0 or call_budget <= 0 or calls_used > call_budget:
+        _fail("EXP03_STRESS_CALL_STATE_INVALID", "stress call use must remain within the positive budget")
+    payload = {
+        "call_budget": call_budget, "calls_used": calls_used, "custody_valid": custody_valid,
+        "evidence_complete": evidence_complete, "numeric_authority_complete": numeric_authority_complete,
+        "response_state": response_state, "retrieval_state": retrieval_state,
+        "strict_parse_valid": strict_parse_valid, "structured_no_rule": structured_no_rule,
+        "transport_state": transport_state, "variable_supported": variable_supported,
+        "verifier_state": verifier_state,
+    }
+    provisional = StressClassifierInputV1(
+        fixture_id=fixture_id,
+        variable_supported=variable_supported, evidence_complete=evidence_complete,
+        numeric_authority_complete=numeric_authority_complete, custody_valid=custody_valid,
+        transport_state=transport_state, response_state=response_state,
+        strict_parse_valid=strict_parse_valid, structured_no_rule=structured_no_rule,
+        verifier_state=verifier_state, calls_used=calls_used, call_budget=call_budget,
+        retrieval_state=retrieval_state, synthetic_input_hash=_expected_hash(payload),
+    )
+    return replace(provisional, self_hash=_expected_hash(provisional.to_dict()))
+
+
+def classify_stress_terminal_v1(value: StressClassifierInputV1) -> ConstructionTerminalClassV1:
+    if type(value) is not StressClassifierInputV1 or value.self_hash != _expected_hash(value.to_dict()):
+        _fail("EXP03_STRESS_CLASSIFIER_INPUT_REPLAY_MISMATCH", "stress classifier input is foreign or mutated")
+    if not value.custody_valid:
+        return ConstructionTerminalClassV1.SYSTEM_ERROR
+    if not (value.variable_supported and value.evidence_complete and value.numeric_authority_complete):
+        return ConstructionTerminalClassV1.UNSUPPORTED_EVIDENCE
+    if value.transport_state == "TERMINAL_ERROR":
+        return ConstructionTerminalClassV1.PROVIDER_ERROR
+    if value.response_state in {"NONE", "EMPTY"}:
+        return ConstructionTerminalClassV1.EMPTY_RESPONSE
+    if not value.strict_parse_valid:
+        return ConstructionTerminalClassV1.PARSE_FAILURE
+    if value.structured_no_rule:
+        return ConstructionTerminalClassV1.INTENTIONAL_NO_RULE
+    if value.retrieval_state == "IDENTITY_FAILURE":
+        return ConstructionTerminalClassV1.RETRIEVAL_FAILURE
+    if value.verifier_state == "REJECTED_REPAIRABLE" and value.calls_used == value.call_budget:
+        return ConstructionTerminalClassV1.BUDGET_EXHAUSTION
+    if value.verifier_state in {"REJECTED_REPAIRABLE", "REJECTED_FINAL"}:
+        return ConstructionTerminalClassV1.VERIFIER_REJECTION
+    if value.verifier_state == "ACCEPTED":
+        _fail("EXP03_STRESS_NONFAILURE_INPUT", "stress fixtures must exercise a terminal failure or semantic no-rule path")
+    return ConstructionTerminalClassV1.SYSTEM_ERROR
 
 
 @dataclass(frozen=True)
@@ -1221,25 +1679,28 @@ class StressFixtureReceiptV1:
     provider_calls: int
     controller_actions: tuple[str, ...]
     synthetic_input_hash: str
+    classifier_input: StressClassifierInputV1
     self_hash: str = ""
 
     def to_dict(self) -> dict[str, object]:
         return {
             "schema": "paperworks.validation_v2.exp03_stress_fixture_v1",
             "schema_version": EXP03_VERSION,
-            **self.__dict__,
+            **{**self.__dict__, "classifier_input": self.classifier_input.to_dict()},
         }
 
 
 def build_stress_fixture_receipt_v1(
     *, fixture_id: str, expected_terminal: ConstructionTerminalClassV1,
-    observed_terminal: ConstructionTerminalClassV1, synthetic_input_hash: str,
+    classifier_input: StressClassifierInputV1,
     controller_actions: Sequence[str] = (),
 ) -> StressFixtureReceiptV1:
     _identifier(fixture_id, "fixture_id")
-    if type(expected_terminal) is not ConstructionTerminalClassV1 or type(observed_terminal) is not ConstructionTerminalClassV1:
-        _fail("EXP03_STRESS_TERMINAL_INVALID", "stress terminals must use the exact nine-class enum")
-    _hash(synthetic_input_hash, "synthetic_input_hash")
+    if type(expected_terminal) is not ConstructionTerminalClassV1:
+        _fail("EXP03_STRESS_TERMINAL_INVALID", "expected stress terminal must use the exact nine-class enum")
+    observed_terminal = classify_stress_terminal_v1(classifier_input)
+    if classifier_input.fixture_id != fixture_id:
+        _fail("EXP03_STRESS_CLASSIFIER_FIXTURE_MISMATCH", "stress classifier input belongs to another fixture")
     actions = tuple(controller_actions)
     if any(item not in {"revise", "retrieve"} for item in actions):
         _fail("EXP03_CONTROLLER_ACTION_INVALID", "stress routes are limited to revise and retrieve")
@@ -1255,7 +1716,8 @@ def build_stress_fixture_receipt_v1(
         observed_terminal=observed_terminal.value,
         provider_calls=0,
         controller_actions=actions,
-        synthetic_input_hash=synthetic_input_hash,
+        synthetic_input_hash=classifier_input.synthetic_input_hash,
+        classifier_input=classifier_input,
     )
     return replace(provisional, self_hash=_expected_hash(provisional.to_dict()))
 
@@ -1306,8 +1768,7 @@ def aggregate_stress_metrics_v1(fixtures: Sequence[StressFixtureReceiptV1]) -> S
         rebuilt = build_stress_fixture_receipt_v1(
             fixture_id=row.fixture_id,
             expected_terminal=expected_terminal,
-            observed_terminal=observed_terminal,
-            synthetic_input_hash=row.synthetic_input_hash,
+            classifier_input=row.classifier_input,
             controller_actions=row.controller_actions,
         )
         if rebuilt != row:
@@ -1342,17 +1803,21 @@ __all__ = [
     "CohortKindV1", "ConstructionArmV1", "ConstructionOutcomeV1",
     "ConstructionTerminalClassV1", "ConstructionTerminalRecordV1",
     "Exp03ContractError", "NaturalMetricsV1", "NaturalScheduleReceiptV1",
+    "NoRuleEligibilityProjectionV1", "SemanticNoRuleValidationReceiptV1",
     "ProviderAttemptReceiptV1", "ProviderCallReceiptV1",
     "ProviderExecutionAuthorizationV1", "ProviderInputProjectionV1",
-    "StressFixtureReceiptV1", "StressMetricsV1",
+    "StressClassifierInputV1", "StressFixtureReceiptV1", "StressMetricsV1",
     "T1BDrawOutcomeV1", "T1BSelectionReceiptV1", "TERMINAL_CLASSES",
     "aggregate_natural_metrics_v1", "aggregate_stress_metrics_v1",
-    "build_natural_schedule_v1", "build_provider_attempt_receipt_v1",
+    "build_natural_schedule_v1", "build_no_rule_eligibility_projection_v1",
+    "build_provider_attempt_receipt_v1",
     "build_provider_call_receipt_v1", "build_provider_execution_authorization_v1",
     "build_provider_input_projection_v1",
-    "build_stress_fixture_receipt_v1", "build_t1b_draw_v1", "build_terminal_record_v1",
+    "build_stress_classifier_input_v1", "build_stress_fixture_receipt_v1",
+    "build_t1b_draw_v1", "build_terminal_record_v1", "classify_stress_terminal_v1",
     "execute_provider_transport_v1", "provider_call_maximum_v1",
     "select_t1b_lowest_admissible_v1", "validate_complete_natural_schedule_v1",
-    "validate_provider_call_budget_v1", "verify_provider_attempt_receipt_v1",
+    "validate_provider_call_budget_v1", "validate_semantic_no_rule_v1",
+    "verify_provider_attempt_receipt_v1", "verify_semantic_no_rule_validation_v1",
     "verify_provider_call_receipt_v1", "verify_t1b_draw_v1", "verify_t1b_selection_v1", "verify_terminal_record_v1",
 ]

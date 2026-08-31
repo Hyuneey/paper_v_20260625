@@ -27,8 +27,8 @@ public report로 고정했다.
 
 ## 로컬 근거
 
-- `pyproject.toml`은 base import와 분리된 `validation-v2-detector` optional group에
-  exact public dependency closure를 선언한다.
+- `research_control_center/validation_v2/requirements-detector.lock.txt`가
+  PILOT V1의 기존 `pyproject.toml`을 바꾸지 않고 exact public dependency closure를 선언한다.
 - base bundled interpreter에는 `sklearn`이 없고 lightweight import는 유지된다.
   별도의 `.venv/validation-v2`에는 Python 3.12.13, NumPy 2.5.2,
   scikit-learn 1.9.0, SciPy 1.18.1, joblib 1.5.3, threadpoolctl 3.6.0,

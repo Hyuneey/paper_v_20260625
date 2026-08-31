@@ -13,7 +13,7 @@ from .schemas.schema_documents_v1 import EMBEDDED_VALIDATION_V2_SCHEMAS, META
 
 
 VALIDATION_V2_META_SCHEMA = META
-VALIDATION_V2_SCHEMA_REGISTRY_VERSION = "1.5.0"
+VALIDATION_V2_SCHEMA_REGISTRY_VERSION = "1.7.0"
 
 
 class ValidationV2SchemaRegistryError(ValueError):
@@ -72,6 +72,16 @@ def _validate_node(value: Any, schema: Mapping[str, Any], root: Mapping[str, Any
     if "$ref" in schema:
         _validate_node(value, _resolve_ref(root, schema["$ref"]), root, location)
         return
+    if "oneOf" in schema:
+        matches = 0
+        for alternative in schema["oneOf"]:
+            try:
+                _validate_node(value, alternative, root, location)
+            except ValidationV2SchemaRegistryError:
+                continue
+            matches += 1
+        if matches != 1:
+            raise ValidationV2SchemaRegistryError(f"{location} oneOf match count differs: {matches}")
     if "const" in schema:
         expected = schema["const"]
         if type(value) is not type(expected) or value != expected:
@@ -105,6 +115,11 @@ def _validate_node(value: Any, schema: Mapping[str, Any], root: Mapping[str, Any
         missing = required - set(value)
         if missing:
             raise ValidationV2SchemaRegistryError(f"{location} missing fields: {sorted(missing)}")
+        if len(value) < schema.get("minProperties", 0):
+            raise ValidationV2SchemaRegistryError(f"{location} has too few properties")
+        if "propertyNames" in schema:
+            for key in value:
+                _validate_node(key, schema["propertyNames"], root, f"{location} property name")
         properties = schema.get("properties", {})
         if schema.get("additionalProperties") is False:
             extra = set(value) - set(properties)
@@ -113,6 +128,10 @@ def _validate_node(value: Any, schema: Mapping[str, Any], root: Mapping[str, Any
         for key, item in value.items():
             if key in properties:
                 _validate_node(item, properties[key], root, f"{location}.{key}")
+            elif type(schema.get("additionalProperties")) is dict:
+                _validate_node(item, schema["additionalProperties"], root, f"{location}.{key}")
+    if expected_type == "integer" and "minimum" in schema and value < schema["minimum"]:
+        raise ValidationV2SchemaRegistryError(f"{location} is below minimum")
 
 
 def validate_validation_v2_document_v1(filename: str, document: Mapping[str, Any]) -> str:

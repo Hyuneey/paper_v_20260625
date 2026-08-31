@@ -636,6 +636,314 @@ EXP01_CONTRIBUTION_EVIDENCE_SCHEMA = _exp01_closed_schema(
     },
 )
 
+
+def _closed_schema(
+    *, schema_id: str, title: str, required: tuple[str, ...], properties: Mapping[str, Any],
+) -> Mapping[str, Any]:
+    return {
+        "$schema": META, "$id": schema_id, "title": title, "type": "object",
+        "additionalProperties": False, "required": list(required),
+        "properties": dict(properties), "$defs": {"sha256": SHA, "text": TEXT,
+            "git_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+            "numeric_binding": NUMERIC_BINDING},
+    }
+
+
+_MATERIALIZED_TRACE_REQUIRED = (
+    "alarm_emitted", "artifact_type", "authorization_hash", "authorization_id",
+    "causal_claim_allowed", "config_id", "descriptor_hash", "descriptor_set_hash",
+    "evaluator_contract_hash", "event_index", "execution_context_hash", "experiment_id",
+    "feature_contract_hash", "file_contract_hash", "final_outcome", "labels_accessed",
+    "materialized_trace_version", "method_id", "numeric_authority_hash",
+    "observation_window_hash", "opportunity_id", "ordered_numeric_reference_bindings",
+    "portfolio_authority_hash", "portfolio_id", "raw_numeric_values_embedded",
+    "raw_observations_embedded", "reason", "relation_binding_hash", "relation_id",
+    "runtime_trace_hash", "runtime_version", "sampling_contract_hash", "schema_version",
+    "scientific_runner_authorized", "selected_horizon_seconds", "semantic_execution_hash",
+    "self_hash", "source", "source_commit", "source_direction", "target",
+    "target_direction", "target_response_start_index", "trace_contract_hash", "trace_id",
+)
+_TRACE_HASH_FIELDS = {
+    name for name in _MATERIALIZED_TRACE_REQUIRED
+    if name.endswith("_hash") or name == "self_hash"
+}
+_TRACE_BOOL_FIELDS = {
+    "alarm_emitted", "causal_claim_allowed", "labels_accessed", "raw_numeric_values_embedded",
+    "raw_observations_embedded", "scientific_runner_authorized",
+}
+_TRACE_INT_FIELDS = {"event_index", "selected_horizon_seconds", "target_response_start_index"}
+FORMAL_V4_MATERIALIZED_TRACE_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/formal-v4-materialized-trace-v1",
+    title="VALIDATION V2 Formal V4 Materialized Trace V1",
+    required=_MATERIALIZED_TRACE_REQUIRED,
+    properties={
+        name: (
+            {"$ref": "#/$defs/sha256"} if name in _TRACE_HASH_FIELDS
+            else {"type": "boolean"} if name in _TRACE_BOOL_FIELDS
+            else {"type": "integer"} if name in _TRACE_INT_FIELDS
+            else {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/numeric_binding"}}
+            if name == "ordered_numeric_reference_bindings"
+            else {"$ref": "#/$defs/git_commit"} if name == "source_commit"
+            else {"const": "validation_v2_materialized_formal_v4_trace_v1"} if name == "artifact_type"
+            else {"const": "1.0.0"} if name == "schema_version"
+            else {"$ref": "#/$defs/text"}
+        ) for name in _MATERIALIZED_TRACE_REQUIRED
+    },
+)
+
+_EXPLANATION_REQUIRED = (
+    "alarm_emitted", "artifact_hash", "artifact_type", "authorization_hash",
+    "causal_claim_made", "descriptor_hash", "execution_context_hash", "explanation_id",
+    "final_outcome", "human_usefulness_evaluated", "materialized_trace_hash",
+    "natural_language_text", "numeric_authority_hash", "ordered_numeric_reference_bindings",
+    "portfolio_authority_hash", "portfolio_id", "reason", "renderer_contract_hash",
+    "renderer_version", "root_cause_claim_made", "runtime_trace_hash", "schema_version",
+    "selected_horizon_seconds", "source", "source_direction", "target", "target_direction",
+)
+FORMAL_V4_EXPLANATION_RECORD_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/formal-v4-explanation-record-v1",
+    title="VALIDATION V2 Formal V4 Explanation Record V1",
+    required=_EXPLANATION_REQUIRED,
+    properties={
+        name: (
+            {"$ref": "#/$defs/sha256"} if name.endswith("_hash")
+            else {"type": "boolean"} if name in {"alarm_emitted", "causal_claim_made", "human_usefulness_evaluated", "root_cause_claim_made"}
+            else {"type": "integer"} if name == "selected_horizon_seconds"
+            else {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/numeric_binding"}}
+            if name == "ordered_numeric_reference_bindings"
+            else {"const": "validation_v2_formal_v4_explanation_record_v1"} if name == "artifact_type"
+            else {"const": "1.0.0"} if name == "schema_version"
+            else {"$ref": "#/$defs/text"}
+        ) for name in _EXPLANATION_REQUIRED
+    },
+)
+
+FORMAL_V4_EXPLANATION_FIDELITY_RESULT_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/formal-v4-explanation-fidelity-result-v1",
+    title="VALIDATION V2 Formal V4 Explanation Fidelity Result V1",
+    required=("all_checks_passed", "artifact_type", "checks", "explanation_artifact_hash", "materialized_trace_hash", "result_hash", "schema_version", "validator_version"),
+    properties={
+        "all_checks_passed": {"type": "boolean"},
+        "artifact_type": {"const": "validation_v2_formal_v4_explanation_fidelity_result_v1"},
+        "checks": {"type": "array", "minItems": 11, "maxItems": 11, "items": {
+            "type": "object", "additionalProperties": False,
+            "required": ["check_id", "expected_hash", "observed_hash", "passed"],
+            "properties": {"check_id": {"$ref": "#/$defs/text"}, "expected_hash": {"$ref": "#/$defs/sha256"}, "observed_hash": {"$ref": "#/$defs/sha256"}, "passed": {"type": "boolean"}},
+        }},
+        "explanation_artifact_hash": {"$ref": "#/$defs/sha256"},
+        "materialized_trace_hash": {"$ref": "#/$defs/sha256"},
+        "result_hash": {"$ref": "#/$defs/sha256"}, "schema_version": {"const": "1.0.0"},
+        "validator_version": {"$ref": "#/$defs/text"},
+    },
+)
+
+EXP05_RUN_AUTHORIZATION_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-run-authorization-v1",
+    title="VALIDATION V2 EXP-05 Run Authorization V1",
+    required=("authorization_hash", "execution_context_hash", "execution_scope", "heldout_authorized", "labels_authorized", "normal_selection_commit_b_receipt_hash", "portfolio_authority_hash", "preregistration_hash", "provider_calls_authorized", "runner_contract_hash", "runtime_authorization_hash", "schema", "schema_version", "source_commit", "stage2_commit_a_receipt_hash", "test1_features_authorized"),
+    properties={
+        "authorization_hash": {"$ref": "#/$defs/sha256"}, "execution_context_hash": {"$ref": "#/$defs/sha256"},
+        "execution_scope": {"enum": ["SYNTHETIC_CONFORMANCE", "SCIENTIFIC_V2"]},
+        "heldout_authorized": {"const": False}, "labels_authorized": {"const": False},
+        "normal_selection_commit_b_receipt_hash": {
+            "oneOf": [{"$ref": "#/$defs/sha256"}, {"const": None}],
+        }, "portfolio_authority_hash": {"$ref": "#/$defs/sha256"},
+        "preregistration_hash": {"$ref": "#/$defs/sha256"}, "provider_calls_authorized": {"const": False},
+        "runner_contract_hash": {"$ref": "#/$defs/sha256"}, "runtime_authorization_hash": {"$ref": "#/$defs/sha256"},
+        "schema": {"const": "paperworks.validation_v2.exp05_run_authorization_v1"}, "schema_version": {"const": "1.0.0"},
+        "source_commit": {"$ref": "#/$defs/git_commit"}, "stage2_commit_a_receipt_hash": {
+            "oneOf": [{"$ref": "#/$defs/sha256"}, {"const": None}],
+        },
+        "test1_features_authorized": {"type": "boolean"},
+    },
+)
+EXP05_RUN_AUTHORIZATION_SCHEMA["oneOf"] = [
+    {
+        "type": "object",
+        "required": [
+            "execution_scope", "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash", "test1_features_authorized",
+        ],
+        "properties": {
+            "execution_scope": {"const": "SYNTHETIC_CONFORMANCE"},
+            "normal_selection_commit_b_receipt_hash": {"const": None},
+            "stage2_commit_a_receipt_hash": {"const": None},
+            "test1_features_authorized": {"const": False},
+        },
+    },
+    {
+        "type": "object",
+        "required": [
+            "execution_scope", "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash", "test1_features_authorized",
+        ],
+        "properties": {
+            "execution_scope": {"const": "SCIENTIFIC_V2"},
+            "normal_selection_commit_b_receipt_hash": {"$ref": "#/$defs/sha256"},
+            "stage2_commit_a_receipt_hash": {"$ref": "#/$defs/sha256"},
+            "test1_features_authorized": {"const": True},
+        },
+    },
+]
+
+EXP05_EVALUATED_UNIT_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-evaluated-unit-v1",
+    title="VALIDATION V2 EXP-05 Evaluated Unit V1",
+    required=("explanation_hash", "fidelity_result_hash", "materialization_receipt_hash", "materialized_trace_hash", "run_authorization_hash", "runtime_trace_hash", "schema", "schema_version", "unit_hash"),
+    properties={
+        **{name: {"$ref": "#/$defs/sha256"} for name in ("explanation_hash", "fidelity_result_hash", "materialization_receipt_hash", "materialized_trace_hash", "run_authorization_hash", "runtime_trace_hash", "unit_hash")},
+        "schema": {"const": "paperworks.validation_v2.exp05_evaluated_unit_v1"}, "schema_version": {"const": "1.0.0"},
+    },
+)
+
+EXP05_MATERIALIZATION_RECEIPT_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-materialization-receipt-v1",
+    title="VALIDATION V2 EXP-05 Materialization Receipt V1",
+    required=(
+        "authorization_hash", "descriptor_hash", "descriptor_set_hash", "execution_context_hash",
+        "execution_scope", "exp05_run_authorization_hash", "heldout_accessed", "labels_accessed",
+        "llm_calls", "materialized_trace_hash", "normal_selection_commit_b_receipt_hash",
+        "observation_window_hash", "portfolio_authority_hash", "preregistration_hash", "provider_calls",
+        "receipt_hash", "renderer_contract_hash", "runner_contract_hash", "runtime_trace_hash",
+        "runtime_version", "same_call_path", "schema", "schema_version", "source_commit",
+        "stage2_commit_a_receipt_hash", "test1_features_authorized", "trace_contract_hash",
+        "validator_version",
+    ),
+    properties={
+        **{name: {"$ref": "#/$defs/sha256"} for name in (
+            "authorization_hash", "descriptor_hash", "descriptor_set_hash", "execution_context_hash",
+            "exp05_run_authorization_hash", "materialized_trace_hash", "observation_window_hash",
+            "portfolio_authority_hash", "preregistration_hash", "receipt_hash", "renderer_contract_hash",
+            "runner_contract_hash", "runtime_trace_hash", "trace_contract_hash",
+        )},
+        "execution_scope": {"enum": ["SYNTHETIC_CONFORMANCE", "SCIENTIFIC_V2"]},
+        "heldout_accessed": {"const": False}, "labels_accessed": {"const": False},
+        "llm_calls": {"const": 0}, "normal_selection_commit_b_receipt_hash": {
+            "oneOf": [{"$ref": "#/$defs/sha256"}, {"const": None}],
+        },
+        "provider_calls": {"const": 0}, "runtime_version": {"$ref": "#/$defs/text"},
+        "same_call_path": {"const": True},
+        "schema": {"const": "paperworks.validation_v2.formal_v4_runtime_materialization_receipt_v1"},
+        "schema_version": {"const": "1.0.0"}, "source_commit": {"$ref": "#/$defs/git_commit"},
+        "stage2_commit_a_receipt_hash": {
+            "oneOf": [{"$ref": "#/$defs/sha256"}, {"const": None}],
+        }, "test1_features_authorized": {"type": "boolean"},
+        "validator_version": {"$ref": "#/$defs/text"},
+    },
+)
+EXP05_MATERIALIZATION_RECEIPT_SCHEMA["oneOf"] = [
+    {
+        "type": "object",
+        "required": [
+            "execution_scope", "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash", "test1_features_authorized",
+        ],
+        "properties": {
+            "execution_scope": {"const": "SYNTHETIC_CONFORMANCE"},
+            "normal_selection_commit_b_receipt_hash": {"const": None},
+            "stage2_commit_a_receipt_hash": {"const": None},
+            "test1_features_authorized": {"const": False},
+        },
+    },
+    {
+        "type": "object",
+        "required": [
+            "execution_scope", "normal_selection_commit_b_receipt_hash",
+            "stage2_commit_a_receipt_hash", "test1_features_authorized",
+        ],
+        "properties": {
+            "execution_scope": {"const": "SCIENTIFIC_V2"},
+            "normal_selection_commit_b_receipt_hash": {"$ref": "#/$defs/sha256"},
+            "stage2_commit_a_receipt_hash": {"$ref": "#/$defs/sha256"},
+            "test1_features_authorized": {"const": True},
+        },
+    },
+]
+
+
+def _embedded_object_schema(schema: Mapping[str, Any]) -> dict[str, Any]:
+    """Embed one closed schema without introducing forbidden external refs."""
+
+    return {
+        key: value
+        for key, value in schema.items()
+        if key not in ("$schema", "$id", "$defs", "title")
+    }
+
+EXP05_FULL_EVALUATED_UNIT_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-full-evaluated-unit-v1",
+    title="VALIDATION V2 EXP-05 Full Evaluated Unit V1",
+    required=("explanation", "fidelity_result", "materialization_receipt", "materialized_trace", "run_authorization", "runtime_trace_hash", "schema", "schema_version", "unit_hash"),
+    properties={
+        "explanation": _embedded_object_schema(FORMAL_V4_EXPLANATION_RECORD_SCHEMA),
+        "fidelity_result": _embedded_object_schema(FORMAL_V4_EXPLANATION_FIDELITY_RESULT_SCHEMA),
+        "materialization_receipt": _embedded_object_schema(EXP05_MATERIALIZATION_RECEIPT_SCHEMA),
+        "materialized_trace": _embedded_object_schema(FORMAL_V4_MATERIALIZED_TRACE_SCHEMA),
+        "run_authorization": _embedded_object_schema(EXP05_RUN_AUTHORIZATION_SCHEMA),
+        "runtime_trace_hash": {"$ref": "#/$defs/sha256"},
+        "schema": {"const": "paperworks.validation_v2.exp05_full_evaluated_unit_v1"},
+        "schema_version": {"const": "1.0.0"}, "unit_hash": {"$ref": "#/$defs/sha256"},
+    },
+)
+
+EXP05_FULL_UNIT_FREEZE_RECEIPT_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-full-unit-freeze-receipt-v1",
+    title="VALIDATION V2 EXP-05 Full Unit Freeze Receipt V1",
+    required=("artifact_file_sha256", "byte_count", "directory_fsync", "file_fsync", "opportunity_id", "publication_method", "receipt_hash", "relation_id", "reopened_bytes_match", "schema", "schema_version", "state", "unit_hash"),
+    properties={
+        "artifact_file_sha256": {"$ref": "#/$defs/sha256"}, "byte_count": {"type": "integer", "minimum": 1},
+        "directory_fsync": {"enum": ["PERFORMED", "UNSUPPORTED_WINDOWS"]}, "file_fsync": {"const": True},
+        "opportunity_id": {"$ref": "#/$defs/text"}, "publication_method": {"const": "NO_OVERWRITE_LINK_PUBLISH"},
+        "receipt_hash": {"$ref": "#/$defs/sha256"}, "relation_id": {"$ref": "#/$defs/text"},
+        "reopened_bytes_match": {"const": True},
+        "schema": {"const": "paperworks.validation_v2.exp05_full_unit_freeze_receipt_v1"},
+        "schema_version": {"const": "1.0.0"}, "state": {"const": "FULL_UNIT_FROZEN_REOPENED_REPLAYED"},
+        "unit_hash": {"$ref": "#/$defs/sha256"},
+    },
+)
+
+EXP05_EVALUATED_COHORT_BUNDLE_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-evaluated-cohort-bundle-v1",
+    title="VALIDATION V2 EXP-05 Evaluated Cohort Bundle V1",
+    required=("bundle_hash", "cohort_id", "custody_version", "d1_native_outcome_binding_hash", "evaluated_units", "labels_accessed", "llm_calls", "opportunity_count", "opportunity_manifest_hash", "outcome_reason_strata", "preregistration_hash", "provider_calls", "raw_numeric_values_embedded", "raw_observations_embedded", "schema", "schema_version", "test2_accessed"),
+    properties={
+        "bundle_hash": {"$ref": "#/$defs/sha256"}, "cohort_id": {"$ref": "#/$defs/text"},
+        "custody_version": {"const": "VALIDATION_V2_EXP05_COHORT_CUSTODY_V1"},
+        "d1_native_outcome_binding_hash": {"$ref": "#/$defs/sha256"},
+        "evaluated_units": {"type": "array", "minItems": 1, "items": {
+            "type": "object", "additionalProperties": False,
+            "required": [
+                "explanation_hash", "fidelity_result_hash", "full_unit_artifact_sha256",
+                "full_unit_freeze_receipt_hash", "materialization_receipt_hash",
+                "materialized_trace_hash", "opportunity_id", "outcome", "reason",
+                "relation_id", "runtime_trace_hash", "unit_hash",
+            ],
+            "properties": {
+                **{name: {"$ref": "#/$defs/sha256"} for name in (
+                    "explanation_hash", "fidelity_result_hash", "full_unit_artifact_sha256",
+                    "full_unit_freeze_receipt_hash", "materialization_receipt_hash",
+                    "materialized_trace_hash", "runtime_trace_hash", "unit_hash",
+                )},
+                "opportunity_id": {"$ref": "#/$defs/text"},
+                "outcome": {"enum": ["PASS", "FAIL", "ABSTAIN"]},
+                "reason": {"$ref": "#/$defs/text"},
+                "relation_id": {"$ref": "#/$defs/text"},
+            },
+        }},
+        "labels_accessed": {"const": False}, "llm_calls": {"const": 0},
+        "opportunity_count": {"type": "integer"}, "opportunity_manifest_hash": {"$ref": "#/$defs/sha256"},
+        "outcome_reason_strata": {
+            "type": "object", "minProperties": 1,
+            "propertyNames": {"type": "string", "pattern": "^(PASS|FAIL|ABSTAIN):.+$"},
+            "additionalProperties": {"type": "integer", "minimum": 1},
+        }, "preregistration_hash": {"$ref": "#/$defs/sha256"},
+        "provider_calls": {"const": 0}, "raw_numeric_values_embedded": {"const": False},
+        "raw_observations_embedded": {"const": False},
+        "schema": {"const": "paperworks.validation_v2.exp05_evaluated_cohort_bundle_v1"},
+        "schema_version": {"const": "1.0.0"}, "test2_accessed": {"const": False},
+    },
+)
+
 EMBEDDED_VALIDATION_V2_SCHEMAS: Mapping[str, Mapping[str, Any]] = {
     "common_alarm_timeline_v1.schema.json": COMMON_ALARM_TIMELINE_SCHEMA,
     "common_comparison_result_v1.schema.json": COMMON_COMPARISON_RESULT_SCHEMA,
@@ -656,4 +964,13 @@ EMBEDDED_VALIDATION_V2_SCHEMAS: Mapping[str, Mapping[str, Any]] = {
     "exp01_seed_bundle_receipt_v1.schema.json": EXP01_SEED_BUNDLE_SCHEMA,
     "exp01_analysis_receipt_v1.schema.json": EXP01_ANALYSIS_RECEIPT_SCHEMA,
     "exp01_contribution_evidence_v1.schema.json": EXP01_CONTRIBUTION_EVIDENCE_SCHEMA,
+    "exp05_evaluated_cohort_bundle_v1.schema.json": EXP05_EVALUATED_COHORT_BUNDLE_SCHEMA,
+    "exp05_evaluated_unit_v1.schema.json": EXP05_EVALUATED_UNIT_SCHEMA,
+    "exp05_full_evaluated_unit_v1.schema.json": EXP05_FULL_EVALUATED_UNIT_SCHEMA,
+    "exp05_full_unit_freeze_receipt_v1.schema.json": EXP05_FULL_UNIT_FREEZE_RECEIPT_SCHEMA,
+    "exp05_materialization_receipt_v1.schema.json": EXP05_MATERIALIZATION_RECEIPT_SCHEMA,
+    "exp05_run_authorization_v1.schema.json": EXP05_RUN_AUTHORIZATION_SCHEMA,
+    "formal_v4_explanation_fidelity_result_v1.schema.json": FORMAL_V4_EXPLANATION_FIDELITY_RESULT_SCHEMA,
+    "formal_v4_explanation_record_v1.schema.json": FORMAL_V4_EXPLANATION_RECORD_SCHEMA,
+    "formal_v4_materialized_trace_v1.schema.json": FORMAL_V4_MATERIALIZED_TRACE_SCHEMA,
 }

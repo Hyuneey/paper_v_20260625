@@ -15,10 +15,12 @@ from paperworks.validation_v2.exp03_construction_v1 import (
     aggregate_natural_metrics_v1,
     aggregate_stress_metrics_v1,
     build_natural_schedule_v1,
+    build_no_rule_eligibility_projection_v1,
     build_provider_attempt_receipt_v1,
     build_provider_call_receipt_v1,
     build_provider_execution_authorization_v1,
     build_provider_input_projection_v1,
+    build_stress_classifier_input_v1,
     build_stress_fixture_receipt_v1,
     build_t1b_draw_v1,
     build_terminal_record_v1,
@@ -26,8 +28,10 @@ from paperworks.validation_v2.exp03_construction_v1 import (
     provider_call_maximum_v1,
     select_t1b_lowest_admissible_v1,
     validate_complete_natural_schedule_v1,
+    validate_semantic_no_rule_v1,
     validate_provider_call_budget_v1,
     verify_provider_call_receipt_v1,
+    verify_semantic_no_rule_validation_v1,
     verify_t1b_selection_v1,
     verify_terminal_record_v1,
     _expected_hash,
@@ -36,6 +40,19 @@ from paperworks.validation_v2.exp03_construction_v1 import (
 
 def h(label: str) -> str:
     return sha256(label.encode("utf-8")).hexdigest()
+
+
+STRESS_INPUTS = {
+    ConstructionTerminalClassV1.INTENTIONAL_NO_RULE: {"structured_no_rule": True},
+    ConstructionTerminalClassV1.UNSUPPORTED_EVIDENCE: {"variable_supported": False, "calls_used": 0},
+    ConstructionTerminalClassV1.PROVIDER_ERROR: {"transport_state": "TERMINAL_ERROR"},
+    ConstructionTerminalClassV1.EMPTY_RESPONSE: {"response_state": "EMPTY"},
+    ConstructionTerminalClassV1.PARSE_FAILURE: {"strict_parse_valid": False},
+    ConstructionTerminalClassV1.VERIFIER_REJECTION: {"verifier_state": "REJECTED_FINAL"},
+    ConstructionTerminalClassV1.BUDGET_EXHAUSTION: {"verifier_state": "REJECTED_REPAIRABLE", "calls_used": 3},
+    ConstructionTerminalClassV1.RETRIEVAL_FAILURE: {"retrieval_state": "IDENTITY_FAILURE"},
+    ConstructionTerminalClassV1.SYSTEM_ERROR: {"custody_valid": False, "calls_used": 0},
+}
 
 
 class Exp03ConstructionV1Tests(unittest.TestCase):
@@ -85,6 +102,14 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
             authorization=self.auth,
             attempts=(attempt,),
             completion_class=completion,
+            parsed_proposal_hash=(
+                (
+                    h(f"proposal-draw-{repeat}-{index}")
+                    if arm is ConstructionArmV1.T1_B and index != 1
+                    else h(f"proposal-{relation}-{arm.value}-{repeat}")
+                )
+                if completion == "NONEMPTY_RESPONSE" else None
+            ),
         )
 
     def _terminal(
@@ -118,6 +143,7 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
             ConstructionOutcomeV1.VERIFIER_REJECTION,
         } else None
         verifier = h(f"verifier-{relation}-{arm.value}-{repeat}") if proposal else None
+        executable = h(f"executable-{relation}-{arm.value}-{repeat}") if outcome is ConstructionOutcomeV1.ACCEPTED_PROPOSAL else None
         if outcome.value in {"INTENTIONAL_NO_RULE", "UNSUPPORTED_EVIDENCE"} and semantic is None:
             semantic = True
         if arm is ConstructionArmV1.T1_B and selection is None and len(calls) == 3:
@@ -142,6 +168,22 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
                 selected = selection.draw_outcomes[selection.selected_draw_index - 1]
                 proposal = selected.proposal_hash
                 verifier = selected.verifier_result_hash
+        semantic_receipt = None
+        if outcome.value in {"INTENTIONAL_NO_RULE", "UNSUPPORTED_EVIDENCE"}:
+            intentional = outcome is ConstructionOutcomeV1.INTENTIONAL_NO_RULE
+            projection = build_no_rule_eligibility_projection_v1(
+                relation_id=relation,
+                evidence_projection_hash=h("evidence"),
+                variable_supported=intentional,
+                evidence_complete=True,
+                numeric_authority_complete=True,
+            )
+            semantic_receipt = validate_semantic_no_rule_v1(
+                projection=projection,
+                outcome=outcome,
+                structured_response_hash=(calls[-1].response_hash if intentional and calls else None),
+                structured_reason_code="NO_SAFE_RULE_WITHIN_EVIDENCE" if intentional else None,
+            )
         return build_terminal_record_v1(
             authorization=self.auth if calls else None,
             relation_id=relation,
@@ -155,10 +197,12 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
             template_hash=h("template"),
             proposal_hash=proposal,
             verifier_result_hash=verifier,
+            executable_projection_hash=executable,
             call_receipts=calls,
             t1b_selection_receipt=selection,
             controller_actions=actions,
             semantic_no_rule_confirmed=semantic,
+            semantic_no_rule_validation_receipt=semantic_receipt,
         )
 
     def test_exact_nine_terminal_taxonomy_and_no_generic_no_rule(self) -> None:
@@ -300,6 +344,114 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
             ConstructionArmV1.T0, 0, ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE, calls=()
         )
         self.assertEqual(unsupported.reason_code, "PRECONSTRUCTION_EVIDENCE_INELIGIBLE")
+        for arm, repeat in ((ConstructionArmV1.T1, 1), (ConstructionArmV1.T1_B, 1), (ConstructionArmV1.T2, 1)):
+            with self.subTest(arm=arm.value):
+                record = self._terminal(
+                    arm, repeat, ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE, calls=(),
+                )
+                self.assertEqual(record.generation_calls, 0)
+
+    def test_provider_response_cannot_authorize_two_different_proposals(self) -> None:
+        call = self._call(ConstructionArmV1.T1, 1, 1)
+        self.assertEqual(
+            self._terminal(ConstructionArmV1.T1, 1, calls=(call,)).proposal_hash,
+            call.parsed_proposal_hash,
+        )
+        with self.assertRaisesRegex(Exp03ContractError, "EXP03_PROPOSAL_RESPONSE_BINDING_MISMATCH"):
+            build_terminal_record_v1(
+                authorization=self.auth, relation_id="relation-1", arm=ConstructionArmV1.T1,
+                repeat_index=1, outcome=ConstructionOutcomeV1.ACCEPTED_PROPOSAL,
+                reason_code="VERIFIER_ACCEPTED", config_hash=h("config"),
+                evidence_projection_hash=h("evidence"), model_policy_hash=h("model-policy"),
+                template_hash=h("template"), proposal_hash=h("different-proposal"),
+                verifier_result_hash=h("verifier"), executable_projection_hash=h("executable"),
+                call_receipts=(call,),
+            )
+
+    def test_intentional_no_rule_is_post_response_and_distinct_from_unsupported(self) -> None:
+        call = self._call(ConstructionArmV1.T1, 1, 1)
+        intentional = self._terminal(
+            ConstructionArmV1.T1, 1, ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+            calls=(call,),
+        )
+        receipt = intentional.semantic_no_rule_validation_receipt
+        self.assertIsNotNone(receipt)
+        assert receipt is not None
+        self.assertEqual(receipt.reason_codes, ("NO_SAFE_RULE_WITHIN_EVIDENCE",))
+        self.assertIsNotNone(receipt.structured_response_hash)
+        metrics = aggregate_natural_metrics_v1((intentional,), self.auth)
+        self.assertEqual(metrics.provider_call_count, 1)
+        self.assertEqual(metrics.transport_attempt_count, 1)
+        with self.assertRaisesRegex(Exp03ContractError, "EXP03_INTENTIONAL_NO_RULE_INPUT_INVALID"):
+            validate_semantic_no_rule_v1(
+                projection=build_no_rule_eligibility_projection_v1(
+                    relation_id="relation-1", evidence_projection_hash=h("evidence"),
+                    variable_supported=False, evidence_complete=True,
+                    numeric_authority_complete=True,
+                ),
+                outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+                structured_response_hash=h("response"),
+                structured_reason_code="NO_SAFE_RULE_WITHIN_EVIDENCE",
+            )
+
+    def test_intentional_no_rule_must_bind_final_call_response(self) -> None:
+        call = self._call(ConstructionArmV1.T1, 1, 1)
+        projection = build_no_rule_eligibility_projection_v1(
+            relation_id="relation-1", evidence_projection_hash=h("evidence"),
+            variable_supported=True, evidence_complete=True, numeric_authority_complete=True,
+        )
+        foreign = validate_semantic_no_rule_v1(
+            projection=projection, outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+            structured_response_hash=h("foreign-response"),
+            structured_reason_code="NO_SAFE_RULE_WITHIN_EVIDENCE",
+        )
+        with self.assertRaisesRegex(Exp03ContractError, "EXP03_INTENTIONAL_NO_RULE_RESPONSE_MISMATCH"):
+            build_terminal_record_v1(
+                authorization=self.auth, relation_id="relation-1", arm=ConstructionArmV1.T1,
+                repeat_index=1, outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+                reason_code="MODEL_INTENTIONAL_NO_RULE", config_hash=h("config"),
+                evidence_projection_hash=h("evidence"), model_policy_hash=h("model-policy"),
+                template_hash=h("template"), call_receipts=(call,),
+                semantic_no_rule_confirmed=True,
+                semantic_no_rule_validation_receipt=foreign,
+            )
+
+    def test_t1b_intentional_no_rule_draw_requires_response_bound_validation(self) -> None:
+        call = self._call(ConstructionArmV1.T1_B, 1, 1)
+        projection = build_no_rule_eligibility_projection_v1(
+            relation_id="relation-1", evidence_projection_hash=h("evidence"),
+            variable_supported=True, evidence_complete=True, numeric_authority_complete=True,
+        )
+        receipt = validate_semantic_no_rule_v1(
+            projection=projection, outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+            structured_response_hash=call.response_hash,
+            structured_reason_code="NO_SAFE_RULE_WITHIN_EVIDENCE",
+        )
+        with self.assertRaisesRegex(Exp03ContractError, "EXP03_T1B_NO_RULE_VALIDATION_REQUIRED"):
+            build_t1b_draw_v1(
+                authorization=self.auth, draw_index=1, call_receipt=call,
+                outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+                reason_code="MODEL_INTENTIONAL_NO_RULE",
+            )
+        draw = build_t1b_draw_v1(
+            authorization=self.auth, draw_index=1, call_receipt=call,
+            outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+            reason_code="MODEL_INTENTIONAL_NO_RULE",
+            semantic_no_rule_validation_receipt=receipt,
+        )
+        self.assertEqual(draw.semantic_no_rule_validation_receipt, receipt)
+
+    def test_rehashed_no_rule_receipt_cannot_forge_projection_binding(self) -> None:
+        record = self._terminal(
+            ConstructionArmV1.T0, 0, ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE,
+        )
+        receipt = record.semantic_no_rule_validation_receipt
+        self.assertIsNotNone(receipt)
+        assert receipt is not None
+        forged = replace(receipt, eligibility_projection_hash=h("foreign"), self_hash="")
+        forged = replace(forged, self_hash=_expected_hash(forged.to_dict()))
+        with self.assertRaisesRegex(Exp03ContractError, "EXP03_NO_RULE_RECEIPT_INVALID"):
+            verify_semantic_no_rule_validation_v1(forged)
 
     def test_budget_exhaustion_requires_three_t2_calls_in_example(self) -> None:
         calls = tuple(self._call(ConstructionArmV1.T2, 1, index) for index in (1, 2, 3))
@@ -321,12 +473,12 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
             build_t1b_draw_v1(
                 authorization=self.auth, draw_index=2, call_receipt=calls[1],
                 outcome=ConstructionOutcomeV1.ACCEPTED_PROPOSAL,
-                reason_code="VERIFIER_ACCEPTED", proposal_hash=h("p2"), verifier_result_hash=h("v2"),
+                reason_code="VERIFIER_ACCEPTED", proposal_hash=calls[1].parsed_proposal_hash, verifier_result_hash=h("v2"),
             ),
             build_t1b_draw_v1(
                 authorization=self.auth, draw_index=3, call_receipt=calls[2],
                 outcome=ConstructionOutcomeV1.ACCEPTED_PROPOSAL,
-                reason_code="VERIFIER_ACCEPTED", proposal_hash=h("p3"), verifier_result_hash=h("v3"),
+                reason_code="VERIFIER_ACCEPTED", proposal_hash=calls[2].parsed_proposal_hash, verifier_result_hash=h("v3"),
             ),
         )
         selection = select_t1b_lowest_admissible_v1(draws, self.auth)
@@ -359,6 +511,7 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
                 template_hash=h("template"),
                 proposal_hash=h("wrong-proposal"),
                 verifier_result_hash=draws[1].verifier_result_hash,
+                executable_projection_hash=h("executable-wrong"),
                 call_receipts=calls,
                 t1b_selection_receipt=selection,
             )
@@ -392,6 +545,35 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
             selection=selection,
         )
         self.assertEqual(terminal.outcome, "ALL_DRAWS_FAILED")
+
+    def test_t1b_draw_level_semantic_no_rule_enters_metrics(self) -> None:
+        calls = tuple(self._call(ConstructionArmV1.T1_B, 3, index) for index in (1, 2, 3))
+        projection = build_no_rule_eligibility_projection_v1(
+            relation_id="relation-1", evidence_projection_hash=h("evidence"),
+            variable_supported=True, evidence_complete=True, numeric_authority_complete=True,
+        )
+        draws = tuple(
+            build_t1b_draw_v1(
+                authorization=self.auth, draw_index=index, call_receipt=call,
+                outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+                reason_code="MODEL_INTENTIONAL_NO_RULE",
+                semantic_no_rule_validation_receipt=validate_semantic_no_rule_v1(
+                    projection=projection, outcome=ConstructionOutcomeV1.INTENTIONAL_NO_RULE,
+                    structured_response_hash=call.response_hash,
+                    structured_reason_code="NO_SAFE_RULE_WITHIN_EVIDENCE",
+                ),
+            )
+            for index, call in enumerate(calls, 1)
+        )
+        selection = select_t1b_lowest_admissible_v1(draws, self.auth)
+        terminal = self._terminal(
+            ConstructionArmV1.T1_B, 3, ConstructionOutcomeV1.ALL_DRAWS_FAILED,
+            calls=calls, selection=selection,
+        )
+        metrics = aggregate_natural_metrics_v1((terminal,), self.auth)
+        self.assertEqual(metrics.semantic_no_rule_denominator, 3)
+        self.assertEqual(metrics.semantic_no_rule_confirmed, 3)
+        self.assertEqual(metrics.semantic_no_rule_appropriateness, 1.0)
 
     def test_complete_schedule_has_t0_once_and_stochastic_arms_three_times(self) -> None:
         schedule = build_natural_schedule_v1(
@@ -448,18 +630,37 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
     def test_natural_metrics_keep_zero_denominator_as_not_observed(self) -> None:
         accepted = self._terminal(ConstructionArmV1.T0, 0)
         metrics = aggregate_natural_metrics_v1((accepted,), None)
+        self.assertEqual(metrics.first_call_acceptance_denominator, 1)
+        self.assertEqual(metrics.first_call_accepted, 1)
+        self.assertEqual(metrics.eventual_accepted, 1)
+        self.assertEqual(metrics.executable_projection_count, 1)
+        self.assertEqual(metrics.transport_attempt_count, 0)
         self.assertEqual(metrics.semantic_no_rule_appropriateness, "NOT_OBSERVED")
         semantic = self._terminal(
             ConstructionArmV1.T0, 0, ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE, semantic=True
         )
         metrics = aggregate_natural_metrics_v1((semantic,), None)
         self.assertEqual(metrics.semantic_no_rule_appropriateness, 1.0)
+        self.assertFalse(metrics.headline_eligible)
+
+    def test_semantic_no_rule_requires_deterministic_validator_receipt(self) -> None:
+        with self.assertRaisesRegex(Exp03ContractError, "EXP03_NO_RULE_VALIDATION_REQUIRED"):
+            build_terminal_record_v1(
+                authorization=None, relation_id="relation-1", arm=ConstructionArmV1.T0,
+                repeat_index=0, outcome=ConstructionOutcomeV1.UNSUPPORTED_EVIDENCE,
+                reason_code="PRECONSTRUCTION_EVIDENCE_INELIGIBLE",
+                config_hash=h("config"), evidence_projection_hash=h("evidence"),
+                model_policy_hash=h("model-policy"), template_hash=h("template"),
+                semantic_no_rule_confirmed=True,
+            )
 
     def test_stress_cohort_covers_nine_classes_with_zero_provider_calls(self) -> None:
         fixtures = tuple(
             build_stress_fixture_receipt_v1(
                 fixture_id=f"fixture-{index}", expected_terminal=terminal,
-                observed_terminal=terminal, synthetic_input_hash=h(f"fixture-{index}"),
+                classifier_input=build_stress_classifier_input_v1(
+                    fixture_id=f"fixture-{index}", **STRESS_INPUTS[terminal],
+                ),
                 controller_actions=(
                     ("revise",) if terminal is ConstructionTerminalClassV1.BUDGET_EXHAUSTION
                     else ("retrieve",) if terminal is ConstructionTerminalClassV1.RETRIEVAL_FAILURE
@@ -480,15 +681,18 @@ class Exp03ConstructionV1Tests(unittest.TestCase):
     def test_stress_incomplete_duplicate_mutation_and_mixing_fail_closed(self) -> None:
         one = build_stress_fixture_receipt_v1(
             fixture_id="fixture", expected_terminal=ConstructionTerminalClassV1.SYSTEM_ERROR,
-            observed_terminal=ConstructionTerminalClassV1.SYSTEM_ERROR,
-            synthetic_input_hash=h("fixture"),
+            classifier_input=build_stress_classifier_input_v1(
+                fixture_id="fixture", **STRESS_INPUTS[ConstructionTerminalClassV1.SYSTEM_ERROR],
+            ),
         )
         with self.assertRaisesRegex(Exp03ContractError, "EXP03_STRESS_COVERAGE_INCOMPLETE"):
             aggregate_stress_metrics_v1((one,))
         all_rows = tuple(
             build_stress_fixture_receipt_v1(
                 fixture_id=f"f-{index}", expected_terminal=terminal,
-                observed_terminal=terminal, synthetic_input_hash=h(f"f-{index}"),
+                classifier_input=build_stress_classifier_input_v1(
+                    fixture_id=f"f-{index}", **STRESS_INPUTS[terminal],
+                ),
                 controller_actions=(
                     ("revise",) if terminal is ConstructionTerminalClassV1.BUDGET_EXHAUSTION
                     else ("retrieve",) if terminal is ConstructionTerminalClassV1.RETRIEVAL_FAILURE
