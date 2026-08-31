@@ -1,0 +1,242 @@
+{
+  "schema_version": "validation_v2_stronger_detector_preregistration_draft_v1",
+  "document_status": "IMPLEMENTED_SYNTHETIC_QA_PASS_NOT_AUTHORIZED_FOR_SCIENTIFIC_EXECUTION",
+  "program_id": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
+  "decision_gate": {
+    "gate_id": "DG-02",
+    "verdict": "REMAIN_RESOLVED_ISOLATION_FOREST",
+    "candidate_ambiguity": false,
+    "implementation_ready": true,
+    "blocking_prerequisite": "FRESH_MACHINE_WHEEL_MANIFEST_AND_SCIENTIFIC_INPUT_AUTHORITY_FREEZE"
+  },
+  "detector": {
+    "proposed_detector_id": "V2_ISOLATION_FOREST_FIXED_NORMAL_ONLY_V1",
+    "family": "ISOLATION_FOREST",
+    "role": "ADDITIONAL_NONLINEAR_MULTIVARIATE_NORMAL_ONLY_BASELINE",
+    "temporal_model": false,
+    "sota_claim_allowed": false,
+    "superiority_claim_allowed_before_results": false,
+    "primary_thesis_contribution": false
+  },
+  "scientific_boundary": {
+    "pilot_v1_immutable": true,
+    "test1_role": "DEVELOPMENT_ONLY",
+    "heldout_authorized": false,
+    "test2_authorized": false,
+    "labels_allowed_for_fit": false,
+    "labels_allowed_for_calibration": false,
+    "post_test_tuning_allowed": false,
+    "result_driven_fusion_redesign_allowed": false
+  },
+  "input_contract": {
+    "dataset_scope": "HAI_23_05_P1",
+    "feature_contract": "VALIDATION_V2_ORDERED_P1_37_NUMERIC_FEATURE_AUTHORITY",
+    "feature_count": 37,
+    "timestamp_excluded": true,
+    "labels_excluded": true,
+    "attack_metadata_excluded": true,
+    "non_p1_features_excluded": true,
+    "nonfinite_values": "REJECT",
+    "dtype": "FLOAT64",
+    "row_order": "PRESERVE_FILE_LOCAL_ORDER",
+    "model_fit_matrix": "STABLE_TRAIN1_ROWS_THEN_TRAIN2_ROWS_CONCATENATION",
+    "model_fit_boundary_receipt_required": true,
+    "model_fit_receipt_fields": [
+      "ordered file IDs",
+      "file content hashes",
+      "per-file row counts",
+      "per-file matrix hashes",
+      "combined fit-matrix hash"
+    ],
+    "cross_file_score_or_metric_merge": "PROHIBITED"
+  },
+  "split_contract": {
+    "model_fit": [
+      "train1:NORMAL_FIT_PRIMARY",
+      "train2:NORMAL_FIT_SECONDARY"
+    ],
+    "threshold_calibration": "train3:NORMAL_CONFIRMATION_CALIBRATION",
+    "normal_sanity_only": "train4:NORMAL_POLICY_SELECTION_SANITY",
+    "development_prediction_after_freeze": "test1:DEVELOPMENT_ONLY",
+    "future_final": "future_heldout:FUTURE_FINAL_HELDOUT_NOT_AUTHORIZED"
+  },
+  "preprocessing": {
+    "mode": "RAW_ORDERED_NUMERIC_FEATURES",
+    "fit_scaler": false,
+    "reason": "IsolationForest does not require a scale-selection subexperiment; this keeps the added authority surface minimal.",
+    "feature_order_validation_required": true,
+    "finite_validation_required": true
+  },
+  "fixed_estimator_config": {
+    "implementation": "sklearn.ensemble.IsolationForest",
+    "n_estimators": 256,
+    "max_samples": 256,
+    "minimum_fit_rows": 256,
+    "fit_rows_below_minimum": "FAIL_CLOSED",
+    "effective_max_samples_must_equal": 256,
+    "contamination": "auto",
+    "max_features": 1.0,
+    "bootstrap": false,
+    "n_jobs": 1,
+    "random_state": 0,
+    "verbose": 0,
+    "warm_start": false,
+    "hyperparameter_selection_from_test1": false
+  },
+  "score_contract": {
+    "expression": "-estimator.score_samples(X)",
+    "direction": "LARGER_IS_MORE_ANOMALOUS",
+    "score_per": "FILE_LOCAL_ONE_SECOND_ROW",
+    "smoothing": false,
+    "point_adjustment": false,
+    "temporal_dilation": false
+  },
+  "threshold_contract": {
+    "source": "NORMAL_ONLY_TRAIN3_SCORE_DISTRIBUTION",
+    "quantile": "0.999",
+    "order_statistic": "NEAREST_RANK",
+    "comparator": "score > threshold",
+    "equality_is_alarm": false,
+    "test_label_influence": false,
+    "train4_retuning": false
+  },
+  "dependency_gate": {
+    "current_local_status": "ISOLATED_V2_ENVIRONMENT_EXACT_RECORD_CLOSED",
+    "current_declared_scikit_learn": true,
+    "current_bundled_sklearn_importable": false,
+    "current_isolated_v2_sklearn_importable": true,
+    "required_top_level": [
+      "CPython",
+      "NumPy",
+      "scikit-learn"
+    ],
+    "required_resolved_transitive": [
+      "SciPy",
+      "joblib",
+      "threadpoolctl"
+    ],
+    "exact_versions_required": true,
+    "exact_environment": {
+      "python": "3.12.13",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.0",
+      "joblib": "1.5.3",
+      "threadpoolctl": "3.6.0",
+      "narwhals": "2.25.0"
+    },
+    "installed_record_hashes_bound": true,
+    "pip_check": "PASS",
+    "fresh_machine_wheel_hash_manifest": "research_control_center/validation_v2/reports/V2_DETECTOR_ENVIRONMENT_MANIFEST.json",
+    "wheel_hashes_required": true,
+    "fresh_machine_synthetic_import_required": true,
+    "performance_result_may_choose_dependency_version": false,
+    "fail_closed_if_unavailable": true
+  },
+  "artifact_contract": {
+    "new_v2_ids_required": true,
+    "required_bindings": [
+      "source_commit",
+      "protocol_hash",
+      "feature_authority_hash",
+      "split_identity_hashes",
+      "environment_receipt_hash",
+      "config_hash",
+      "model_bytes_hash",
+      "threshold_authority_hash",
+      "metric_contract_hash"
+    ],
+    "serialized_model": "PRIVATE_LOCAL_HASH_BOUND",
+    "untrusted_model_load": "PROHIBITED",
+    "public_model_payload": false,
+    "public_score_payload": false,
+    "public_sanitized_hashes_and_counts": true
+  },
+  "prediction_custody": {
+    "sequence": [
+      "FEATURE_ONLY_PREDICTION",
+      "ATOMIC_WRITE",
+      "FSYNC",
+      "CLOSE",
+      "REOPEN_AND_REPLAY",
+      "EXPLICIT_FROZEN_STATE",
+      "LABEL_ACCESS_AUTHORIZATION",
+      "METRIC_EVALUATION",
+      "POST_METRIC_BYTE_IDENTITY_CHECK"
+    ],
+    "label_before_freeze": "REJECT",
+    "partial_write": "REJECT",
+    "wrong_authority": "REJECT",
+    "stale_model_or_config": "REJECT"
+  },
+  "metric_contract": {
+    "adapter": "VALIDATION_V2_COMMON_FILE_LOCAL_ONE_SECOND_ALARM_ADAPTER",
+    "primary": [
+      "ATTACK_EVENT_RECALL",
+      "NORMAL_FAR_EPISODES_PER_HOUR"
+    ],
+    "secondary": [
+      "OVERLAP",
+      "D0_MISS_RECOVERY",
+      "INCREMENTAL_RECALL",
+      "INCREMENTAL_FAR"
+    ],
+    "event_independence": "NOT_ESTABLISHED",
+    "heldout_generalization": "UNCONFIRMED"
+  },
+  "exp04_integration": {
+    "independent_arms": [
+      "D0_PCA_SPE",
+      "V2_ISOLATION_FOREST_FIXED_NORMAL_ONLY_V1",
+      "V2_VERIFIED_RELATIONAL_RULE_ONLY"
+    ],
+    "fusion_policy_must_precede_test1_label_metrics": true,
+    "fusion_redesign_after_development_result": false,
+    "negative_result_freeze_required": true,
+    "same_file_universe_required": true,
+    "same_event_and_episode_contract_required": true,
+    "same_normal_exposure_required": true
+  },
+  "required_tests": [
+    "EXACT_DEPENDENCY_RECEIPT_REPLAY_AND_WRONG_VERSION_REJECTION",
+    "OPTIONAL_IMPORT_BOUNDARY_AND_PROJECT_OWNED_MISSING_DEPENDENCY_ERROR",
+    "FEATURE_ORDER_COUNT_HASH_SPLIT_FILE_AND_FINITE_BOUNDARY",
+    "LABEL_TEST1_TEST2_HELDOUT_REJECTION_FROM_FIT_AND_CALIBRATION",
+    "CONFIG_TYPE_RANGE_AND_UNKNOWN_PARAMETER_REJECTION",
+    "TWO_RUN_SYNTHETIC_MODEL_CONTENT_HASH_SCORE_PREDICTION_EQUIVALENCE",
+    "NEGATED_SCORE_SAMPLES_DIRECTION",
+    "TRAIN3_NEAREST_RANK_Q999_AND_STRICT_GREATER_COMPARATOR",
+    "SERIALIZE_CLOSE_REOPEN_SCORE_REPLAY_AND_CORRUPTION_REJECTION",
+    "ATOMIC_PREDICTION_MUTATION_PARTIAL_STALE_AND_WRONG_AUTHORITY_REJECTION",
+    "COMMON_FILE_UNIVERSE_ORDERING_AND_DEDUPLICATION",
+    "SYNTHETIC_EVENT_EPISODE_RECALL_FAR_OVERLAP_INTEGRATION",
+    "NO_NETWORK_PROVIDER_LLM_CLOCK_CWD_OR_PRIVATE_PATH_DEPENDENCY",
+    "PILOT_V1_PRESERVATION_MANIFEST"
+  ],
+  "reopen_dg02_only_if": [
+    "NO_COMPATIBLE_EXACT_PUBLIC_SKLEARN_STACK_CAN_BE_LOCKED",
+    "SYNTHETIC_DETERMINISTIC_REPLAY_FAILS_AFTER_BOUNDED_REMEDIATION",
+    "IMPLEMENTATION_REQUIRES_MATERIAL_SCOPE_EXPANSION_OR_PRIVATE_DEPENDENCY"
+  ],
+  "safety_counters": {
+    "scientific_executions": 0,
+    "scientific_detector_fit_executions": 0,
+    "scientific_detector_prediction_executions": 0,
+    "synthetic_tests_passed": 15,
+    "metric_executions": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "label_accesses": 0,
+    "dependency_installs": 1,
+    "provider_calls": 0,
+    "pilot_v1_modifications": 0
+  },
+  "independent_qa": {
+    "status": "PASS_IMPLEMENTATION_PREPARATION",
+    "focused_synthetic_tests": 15,
+    "scientific_runner_expected_authority_source_required": true,
+    "fresh_machine_rehearsal_pending": true,
+    "scientific_execution_authorized": false
+  }
+}

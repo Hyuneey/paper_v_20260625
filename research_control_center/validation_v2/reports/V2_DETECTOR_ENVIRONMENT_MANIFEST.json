@@ -1,0 +1,61 @@
+{
+  "schema_version": "validation_v2_detector_environment_manifest_v1",
+  "status": "PASS_EXACT_PUBLIC_DEPENDENCY_CLOSURE",
+  "platform": "windows_amd64_cp312",
+  "python": "3.12.13",
+  "source": "public_python_package_index",
+  "pip_check": "PASS",
+  "scientific_execution": false,
+  "private_data_access": false,
+  "packages": [
+    {
+      "package": "joblib",
+      "version": "1.5.3",
+      "wheel": "joblib-1.5.3-py3-none-any.whl",
+      "wheel_bytes": 309071,
+      "wheel_sha256": "5fc3c5039fc5ca8c0276333a188bbd59d6b7ab37fe6632daa76bc7f9ec18e713",
+      "installed_record_sha256": "815a2f3b0ee265a98da65431de24b51c149ccff67e68cef587956fac51314004"
+    },
+    {
+      "package": "narwhals",
+      "version": "2.25.0",
+      "wheel": "narwhals-2.25.0-py3-none-any.whl",
+      "wheel_bytes": 467373,
+      "wheel_sha256": "1f0f403e8c7e4463cde9bfe78b12fdd809e3ae3dda6d9b2f802934fb9c7a6a8f",
+      "installed_record_sha256": "60f0145f52d032bb91bc1703030c7b5bfe4d986f8a98bcd4f4a352d091233045"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "wheel": "numpy-2.5.2-cp312-cp312-win_amd64.whl",
+      "wheel_bytes": 12464674,
+      "wheel_sha256": "28ac63476ec7651484215ee7fa15a1f78b57c14621f01e392afe17b9a1390ce4",
+      "installed_record_sha256": "1f14251e9bb0d5a485ee8e478d29d985f95fb029b209e7860518b84007fc5b6b"
+    },
+    {
+      "package": "scikit-learn",
+      "version": "1.9.0",
+      "wheel": "scikit_learn-1.9.0-cp312-cp312-win_amd64.whl",
+      "wheel_bytes": 8211173,
+      "wheel_sha256": "4306775fad04cc4b472a1b15af1ae9cede1540fbfcc17fbce3767cd8dc7ae283",
+      "installed_record_sha256": "d310b37f978622f1788a28f9e0badfb5cf5a95712b05a92a8c69366ba2808f7a"
+    },
+    {
+      "package": "scipy",
+      "version": "1.18.1",
+      "wheel": "scipy-1.18.1-cp312-cp312-win_amd64.whl",
+      "wheel_bytes": 36658278,
+      "wheel_sha256": "5e4d44984abc0020154ea81b247adeddcc3ac5527b975ff798bd1ba0adc513c2",
+      "installed_record_sha256": "81c8365ace1c77966cab8d57bbb07015e35e60506a362c4cbb3e5307fcbea7d1"
+    },
+    {
+      "package": "threadpoolctl",
+      "version": "3.6.0",
+      "wheel": "threadpoolctl-3.6.0-py3-none-any.whl",
+      "wheel_bytes": 18638,
+      "wheel_sha256": "43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb",
+      "installed_record_sha256": "ff8e876dc324cf340bc7f6cbc35e2c146594732e571da2469b015747744cd5a0"
+    }
+  ],
+  "self_hash": "6700b80ae2dfc0c582f495fc39847003d82ffc6ab25f27ef1cc383d4a9cd0129"
+}
