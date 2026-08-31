@@ -2,7 +2,7 @@
 
 ## Verdict
 
-`NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
+`NORMAL_ONLY_CUSTODY_READY`
 
 The historical `BLOCKED_NORMAL_DATA_NOT_FOUND` record remains valid as an
 execution observation. Its corrected root cause is
@@ -18,14 +18,15 @@ failure by the research owner to provide data.
 - user local path required: false by default
 - next action: `CODE_BASED_MATERIALIZATION`
 
-The only allowed safe layout is an explicitly bound external root containing:
+The approved code materializer created an ignored private binding for an
+external cache containing exactly:
 
 - `HAI_TRAIN1` → `hai-23.05/hai-train1.csv`
 - `HAI_TRAIN2` → `hai-23.05/hai-train2.csv`
 - `HAI_TRAIN3` → `hai-23.05/hai-train3.csv`
 - `HAI_TRAIN4` → `hai-23.05/hai-train4.csv`
 
-No path was inferred, guessed, or printed.
+No user path was requested, inferred, guessed, or printed.
 
 ## Provenance readiness
 
@@ -40,16 +41,19 @@ sealed, and label inputs remain forbidden.
 
 ## Result
 
-- custody binding issued: no
-- private manifest created: no
-- public-safe blocker receipt: `receipts/HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json`
+- custody binding issued: yes, for exactly `HAI_TRAIN1` through `HAI_TRAIN4`
+- private manifest created: yes, outside Git
+- byte equivalence: `PASS_ALL_FOUR`
+- schema identity: `PASS_ALL_FOUR`
+- public materialization receipt: `receipts/HAI_NORMAL_ONLY_MATERIALIZATION_RECEIPT_V2.json`
+- public custody binding: `receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json`
+- test1/test2/label/held-out access: 0
 - EXP-01 execution: not started
 - EXP-02 execution: not started
 - PILOT V1 impact: none
 
-## Resume condition
+## Resume authorization
 
-Run `CODE_BASED_MATERIALIZATION` with
-`scripts/materialize_hai_2305_normal_v2.py`. Issue custody only after all four
-normal files pass exact byte and schema equivalence. Do not change the frozen
-EXP-01 or EXP-02 preregistrations.
+The resume condition has been met. EXP-01 and EXP-02 may now use only the
+operations permitted by the public custody binding and their unchanged frozen
+preregistrations. test1, test2, labels, and held-out inputs remain forbidden.

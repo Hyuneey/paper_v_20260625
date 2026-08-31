@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-31
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Materialize the four authorized normal-only HAI files through DATA-POLICY-001 without searching local drives or opening test1/test2.
-- Execute EXP-01 and EXP-02 from the frozen preregistrations before any test1 development observation.
+- Execute EXP-01 and EXP-02 from the frozen preregistrations using the four-file normal-only custody binding.
+- Freeze the V2 candidate and numeric policies before any test1 development observation.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-Exact next management task: **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**
+Exact next management task: **EXP-01 — frozen normal-only GDN contribution execution**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

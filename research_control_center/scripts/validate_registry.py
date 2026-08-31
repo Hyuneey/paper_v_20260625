@@ -340,8 +340,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain the six current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "VALIDATION-V2-RESUME-001 — Formal V4 user ratification and fail-closed normal custody locator audit", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "V2-HAI-NORMAL-MATERIALIZATION-001 — official normal-only materialization and custody", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "EXP-01 — frozen normal-only GDN contribution execution", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -354,7 +354,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "EXP-01 — frozen normal-only GDN contribution execution", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
     result.require(readiness.get("status") == "FORMAL_V4_RATIFIED_NORMAL_MATERIALIZATION_PENDING", "VALIDATION V2 remediation status mismatch")
@@ -699,15 +699,16 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(authority.get("bridge_minimum_thesis_path") == "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH", "minimum thesis path incorrectly requires the bridge")
     result.require(authority.get("canonical_rule_v1_authoritative") is False and authority.get("verifier_v1_authoritative") is False, "canonical RuleV1/VerifierV1 authority is overstated")
     program = data["state"].get("validation_v2_program", {})
-    result.require(program.get("status") == "NORMAL_ONLY_CODE_MATERIALIZATION_PENDING", "V2 normal-data code materialization state is not explicit")
-    result.require(program.get("scientific_input_authority") == "DATA-POLICY-001_CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION_PENDING", "V2 materialization authority is not explicit")
+    result.require(program.get("status") == "NORMAL_ONLY_CUSTODY_READY", "V2 normal-only custody is not ready")
+    result.require(program.get("scientific_input_authority") == "DATA-POLICY-001_NORMAL_ONLY_CUSTODY_READY", "V2 materialization authority is not explicit")
     result.require(program.get("dataset_acquisition_policy") == "DATA-POLICY-001", "HAI acquisition policy is not bound")
     result.require(program.get("acquisition_mode") == "CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION", "HAI acquisition mode is not code-based")
     result.require(program.get("user_local_path_required") is False, "HAI recovery incorrectly requires a user path")
-    result.require(program.get("recovery_action") == "CODE_BASED_MATERIALIZATION", "HAI recovery action is not code materialization")
+    result.require(program.get("recovery_action") == "CODE_BASED_MATERIALIZATION_COMPLETED", "HAI recovery action is not complete")
     result.require(program.get("historical_blocker") == "BLOCKED_NORMAL_DATA_NOT_FOUND", "historical blocker was not preserved")
     result.require(program.get("historical_blocker_disposition") == "HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC", "historical blocker root cause is incorrect")
-    result.require(program.get("missing_symbolic_splits") == ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"], "V2 missing symbolic normal splits are incorrect")
+    result.require(program.get("bound_symbolic_splits") == ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"], "V2 bound symbolic normal splits are incorrect")
+    result.require(program.get("missing_symbolic_splits") == [], "V2 normal custody still reports missing splits")
     result.require(program.get("fresh_machine_synthetic") == "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC", "fresh-machine synthetic PASS is not recorded")
     result.require(program.get("scientific_executions") == 0, "V2 program overstates scientific execution")
     result.require(program.get("test2_accesses") == 0 and program.get("heldout_accesses") == 0, "V2 program violates held-out safety counters")
@@ -736,7 +737,11 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
             continue
         text_value = path.read_text(encoding="utf-8")
         result.require("HAI_NORMAL_ROOT" not in text_value, f"current recovery output requests a user path: {path.name}")
-        result.require("CODE_BASED_MATERIALIZATION" in text_value or "코드 기반 materialization" in text_value, f"current recovery output omits code materialization: {path.name}")
+    recovery_report = current_files[3]
+    if recovery_report.is_file():
+        recovery_text = recovery_report.read_text(encoding="utf-8")
+        result.require("CODE_BASED_MATERIALIZATION" in recovery_text, "custody recovery report omits the code materialization workflow")
+        result.require("NORMAL_ONLY_CUSTODY_READY" in recovery_text, "custody recovery report omits the ready state")
     risk_016 = next((row for row in data["risks"] if row["risk_id"] == "RISK-16"), None)
     result.require(risk_016 is not None and risk_016["status"] == "CLOSED", "metric portability risk is not prospectively closed")
 
@@ -886,10 +891,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "V2-HAI"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "V2-HAI"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "EXP-01"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "EXP-01"),
         "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "V2-HAI"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "EXP-01"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),

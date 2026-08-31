@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 47개 후보는 어떻게 42개 실행 관계가 되는가
 
 ## 한 문장 답
@@ -76,4 +76,4 @@ root-cause를 검증하지 않았다. Held-out 일반화도 아직 확인되지 
 3. value equality와 authority identity equality는 다르다.
 4. relation numeric authority와 D0 PCA-SPE threshold는 별개다.
 
-다음 task는 **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**이다.
+다음 task는 **EXP-01 — frozen normal-only GDN contribution execution**이다.

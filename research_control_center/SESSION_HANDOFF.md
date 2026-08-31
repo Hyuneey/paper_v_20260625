@@ -40,7 +40,7 @@ prove scientific utility, causal or physical truth, or generalization.
 
 ## Current recovery stage
 
-`NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
+`NORMAL_ONLY_CUSTODY_READY`
 
 Historical state `BLOCKED_NORMAL_DATA_NOT_FOUND` is preserved, but its recovery
 interpretation was incomplete. The corrected root cause is:
@@ -51,21 +51,26 @@ interpretation was incomplete. The corrected root cause is:
 official distribution workflow before any user-path request. No host-wide
 search or manual upload is part of the normal recovery path.
 
-Missing symbolic bindings:
+Issued symbolic bindings:
 
 - `HAI_TRAIN1` → `hai-23.05/hai-train1.csv`
 - `HAI_TRAIN2` → `hai-23.05/hai-train2.csv`
 - `HAI_TRAIN3` → `hai-23.05/hai-train3.csv`
 - `HAI_TRAIN4` → `hai-23.05/hai-train4.csv`
 
-Public receipt:
-`research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json`
+Public receipts:
+
+- `research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_MATERIALIZATION_RECEIPT_V2.json`
+- `research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json`
+
+All four files passed exact Git/LFS byte equivalence and schema/P1 contract
+checks. test1, test2, labels, and held-out access counters remain zero.
 
 ## Program state
 
-- EXP-01: prepared, not executed
-- EXP-02: prepared, not executed
-- EXP-03: prepared; normal cohort absent and DG-03 remains pending
+- EXP-01: authorized for frozen normal-only execution
+- EXP-02: authorized for frozen normal-only selection
+- EXP-03: prepared; DG-03 remains pending before provider calls
 - stronger detector: Isolation Forest selected and prepared, not executed
 - EXP-04: blocked by upstream normal-only selections and V2 portfolio
 - EXP-05: blocked because no materialized V2 runtime traces exist
@@ -74,14 +79,13 @@ Public receipt:
 
 ## Exact next task
 
-`V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4`
+`EXP-01 — frozen normal-only GDN contribution execution`
 
-The single materialization runner may acquire only train1 through train4 from
-`icsdataset/hai-security-dataset`. Git/LFS at the pinned official snapshot
-remains the identity authority. After exact identity, schema, P1 order,
-sampling, row closure, hash, and no-mutation checks pass, issue custody and
-resume the unchanged EXP-01 and EXP-02 preregistrations. Never download or open
-test1/test2 in this recovery stage.
+The single materialization runner completed acquisition of only train1 through
+train4 from `icsdataset/hai-security-dataset`. Git/LFS at the pinned official
+snapshot remains the identity authority. Resume the unchanged EXP-01 and
+EXP-02 preregistrations; never download or open test1/test2 during normal-only
+selection.
 
 ## Future decision gates
 

@@ -1,0 +1,58 @@
+{
+  "allowed_operation_matrix": {
+    "HAI_TRAIN1": [
+      "CANDIDATE_LEARNING",
+      "GDN_NORMAL_TRAINING",
+      "RELATION_FIT",
+      "NUMERIC_FIT",
+      "DETECTOR_FIT"
+    ],
+    "HAI_TRAIN2": [
+      "CANDIDATE_LEARNING",
+      "GDN_NORMAL_TRAINING",
+      "RELATION_FIT",
+      "NUMERIC_FIT",
+      "DETECTOR_FIT",
+      "FILE_LOCAL_STABILITY"
+    ],
+    "HAI_TRAIN3": [
+      "RELATION_CONFIRMATION",
+      "THRESHOLD_CALIBRATION"
+    ],
+    "HAI_TRAIN4": [
+      "NORMAL_POLICY_SELECTION",
+      "NORMAL_SANITY",
+      "FALSE_FIRING_ASSESSMENT"
+    ]
+  },
+  "artifact_type": "HAI_NORMAL_ONLY_CUSTODY_BINDING_V2",
+  "binding_issued": true,
+  "bound_split_ids": [
+    "HAI_TRAIN1",
+    "HAI_TRAIN2",
+    "HAI_TRAIN3",
+    "HAI_TRAIN4"
+  ],
+  "created_at_utc": "2026-08-31T06:10:13Z",
+  "execution_commit": "af57e5e0e4cf4858a4918d3144eee96ca9db8598",
+  "forbidden_split_classes": [
+    "test1",
+    "test2",
+    "held_out",
+    "labels",
+    "HAIEnd",
+    "older_editions"
+  ],
+  "held_out_accesses": 0,
+  "label_accesses": 0,
+  "materialization_receipt_hash": "b9b7ec090916495ff6ba3706636293f9f2b4c0787f7a53b4408bee66b48530c4",
+  "policy_id": "DATA-POLICY-001",
+  "private_binding_location": "LOCAL_IGNORED_CUSTODY_FILE_REDACTED",
+  "private_exposures": 0,
+  "schema_version": "hai_normal_only_custody_binding_v2",
+  "self_hash": "05a95d576fefaae8894b6ec9ed9796a9ba0cf5eea02e9dc4781985e462b4f58d",
+  "status": "NORMAL_ONLY_CUSTODY_READY",
+  "study_identity": "VALIDATION_V2",
+  "test1_accesses": 0,
+  "test2_accesses": 0
+}

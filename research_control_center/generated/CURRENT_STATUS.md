@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -150,4 +150,4 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 
 ## 정확한 다음 작업
 
-**V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**
+**EXP-01 — frozen normal-only GDN contribution execution**

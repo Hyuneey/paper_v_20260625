@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # OUTER와 재현성을 쉽게 이해하기
 
 ## 1. OUTER가 정확히 무엇인가?
@@ -51,4 +51,4 @@ Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 gui
 
 기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
 
-다음 task는 **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+다음 task는 **EXP-01 — frozen normal-only GDN contribution execution**이다. ARCH-011은 이 remediation을 실행하지 않았다.

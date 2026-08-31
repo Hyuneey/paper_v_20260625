@@ -20,7 +20,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "NORMAL_ONLY_CODE_MATERIALIZATION_PENDING")
+        self.assertEqual(state["program_status"], "NORMAL_ONLY_CUSTODY_READY")
         self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
         self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
         self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")
@@ -29,7 +29,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
             "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
         )
         self.assertEqual(state["dataset_acquisition_policy"]["policy_id"], "DATA-POLICY-001")
-        self.assertEqual(state["dataset_acquisition_policy"]["next_action"], "CODE_BASED_MATERIALIZATION")
+        self.assertEqual(state["dataset_acquisition_policy"]["next_action"], "NORMAL_ONLY_EXPERIMENT_EXECUTION")
         self.assertFalse(state["dataset_acquisition_policy"]["user_local_path_required"])
         self.assertEqual(state["historical_execution_blocker"]["code"], "BLOCKED_NORMAL_DATA_NOT_FOUND")
         self.assertEqual(
@@ -141,6 +141,28 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(policy["missing_data_next_action"], "CODE_BASED_MATERIALIZATION")
         self.assertEqual(policy["authorized_scope"], ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"])
 
+    def test_normal_only_materialization_and_custody_receipts_are_self_hashed(self) -> None:
+        for name in (
+            "HAI_NORMAL_ONLY_MATERIALIZATION_RECEIPT_V2.json",
+            "HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json",
+        ):
+            receipt = json.loads((V2 / "receipts" / name).read_text(encoding="utf-8"))
+            expected = receipt.pop("self_hash")
+            actual = hashlib.sha256(
+                json.dumps(receipt, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+            ).hexdigest()
+            self.assertEqual(expected, actual)
+            if name.endswith("MATERIALIZATION_RECEIPT_V2.json"):
+                self.assertEqual(receipt["access_counters"]["private_exposures"], 0)
+            else:
+                self.assertEqual(receipt["private_exposures"], 0)
+        binding = json.loads((V2 / "receipts" / "HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json").read_text(encoding="utf-8"))
+        self.assertEqual(binding["status"], "NORMAL_ONLY_CUSTODY_READY")
+        self.assertEqual(binding["bound_split_ids"], ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"])
+        self.assertEqual(binding["test1_accesses"], 0)
+        self.assertEqual(binding["test2_accesses"], 0)
+        self.assertEqual(binding["label_accesses"], 0)
+
     def test_current_recovery_outputs_do_not_request_manual_hai_path(self) -> None:
         current = (
             ROOT / "research_control_center" / "MY_TODO.md",
@@ -152,7 +174,9 @@ class ValidationV2ProgramTests(unittest.TestCase):
         for path in current:
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("HAI_NORMAL_ROOT", text, path.name)
-            self.assertTrue("CODE_BASED_MATERIALIZATION" in text or "코드 기반 materialization" in text, path.name)
+        recovery = (V2 / "reports" / "V2_NORMAL_CUSTODY_RECOVERY_REPORT.md").read_text(encoding="utf-8")
+        self.assertIn("CODE_BASED_MATERIALIZATION", recovery)
+        self.assertIn("NORMAL_ONLY_CUSTODY_READY", recovery)
 
     def test_frozen_preregistrations_remain_unchanged(self) -> None:
         expected = {

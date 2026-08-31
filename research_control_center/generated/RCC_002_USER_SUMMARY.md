@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -67,19 +67,19 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- Materialize the four authorized normal-only HAI files through DATA-POLICY-001 without searching local drives or opening test1/test2.
-- Execute EXP-01 and EXP-02 from the frozen preregistrations before any test1 development observation.
+- Execute EXP-01 and EXP-02 from the frozen preregistrations using the four-file normal-only custody binding.
+- Freeze the V2 candidate and numeric policies before any test1 development observation.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-관리 작업의 다음 단계는 **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4** 이고, 이후 전체
+관리 작업의 다음 단계는 **EXP-01 — frozen normal-only GDN contribution execution** 이고, 이후 전체
 구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DATA-POLICY-001의 승인된 코드 경로로 normal-only HAI custody를 복구한다.
-- 사용자 경로를 요청하거나 test1/test2를 여는 우회는 금지한다.
-- Resume with EXP-01 and EXP-02 from their frozen preregistrations.
+- 발급된 normal-only HAI custody로 EXP-01과 EXP-02를 동결된 preregistration 그대로 실행한다.
+- test1/test2를 열거나 normal-only binding을 확대하는 우회는 금지한다.
+- Freeze V2 candidate and numeric policies before any test1 development observation.
 - Review DG-03 only after the natural cohort and exact provider budget are frozen.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
 - Review the professor readiness package before submission; no email has been sent.

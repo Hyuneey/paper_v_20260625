@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_3_NORMAL_ONLY_CODE_MATERIALIZATION",
-  "program_status": "NORMAL_ONLY_CODE_MATERIALIZATION_PENDING",
+  "current_stage": "STAGE_3_NORMAL_ONLY_EXPERIMENT_EXECUTION",
+  "program_status": "NORMAL_ONLY_CUSTODY_READY",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -30,10 +30,10 @@
     "DG-06": "PENDING"
   },
   "experiment_status": {
-    "EXP-01": "PREPARED_BLOCKED_NO_AUTHORIZED_NORMAL_DATA_BINDING",
-    "EXP-02": "PREPARED_BLOCKED_NO_AUTHORIZED_NORMAL_DATA_BINDING",
-    "EXP-03": "PREPARED_PROVIDER_GATED_AND_BLOCKED_NO_AUTHORIZED_NORMAL_DATA_BINDING",
-    "STRONGER-DETECTOR": "PREPARED_BLOCKED_NO_AUTHORIZED_NORMAL_DATA_BINDING",
+    "EXP-01": "READY_AUTHORIZED_NORMAL_ONLY",
+    "EXP-02": "READY_AUTHORIZED_NORMAL_ONLY",
+    "EXP-03": "PREPARED_PROVIDER_GATED",
+    "STRONGER-DETECTOR": "READY_AUTHORIZED_NORMAL_ONLY",
     "EXP-04": "BLOCKED_UPSTREAM_NORMAL_ONLY_SELECTIONS_NOT_EXECUTED",
     "EXP-05": "BLOCKED_NO_MATERIALIZED_V2_RUNTIME_TRACES",
     "EXP-06": "NOT_REQUIRED"
@@ -46,7 +46,23 @@
     "identity_authority": "PINNED_OFFICIAL_GIT_SNAPSHOT_AND_GIT_LFS_OBJECTS",
     "user_local_path_required": false,
     "recovery_policy": "REACQUIRE_BY_APPROVED_CODE_BEFORE_REQUESTING_USER_PATH",
-    "next_action": "CODE_BASED_MATERIALIZATION"
+    "materialization_history": "CODE_BASED_MATERIALIZATION_COMPLETED",
+    "next_action": "NORMAL_ONLY_EXPERIMENT_EXECUTION"
+  },
+  "normal_only_custody": {
+    "status": "NORMAL_ONLY_CUSTODY_READY",
+    "materialization_contract": "NORMAL_ONLY_SELECTIVE_MATERIALIZATION_V2",
+    "materialization_receipt": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_MATERIALIZATION_RECEIPT_V2.json",
+    "materialization_receipt_hash": "b9b7ec090916495ff6ba3706636293f9f2b4c0787f7a53b4408bee66b48530c4",
+    "custody_binding": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json",
+    "custody_binding_hash": "05a95d576fefaae8894b6ec9ed9796a9ba0cf5eea02e9dc4781985e462b4f58d",
+    "bound_split_ids": ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"],
+    "byte_equivalence": "PASS_ALL_FOUR",
+    "schema_identity": "PASS_ALL_FOUR",
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "label_accesses": 0,
+    "private_exposures": 0
   },
   "historical_execution_blocker": {
     "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
@@ -104,10 +120,10 @@
   },
   "safety_counters": {
     "scientific_executions": 0,
-    "train1_payload_accesses": 0,
-    "train2_payload_accesses": 0,
-    "train3_payload_accesses": 0,
-    "train4_payload_accesses": 0,
+    "train1_payload_accesses": 1,
+    "train2_payload_accesses": 1,
+    "train3_payload_accesses": 1,
+    "train4_payload_accesses": 1,
     "test1_accesses": 0,
     "test2_accesses": 0,
     "held_out_accesses": 0,
