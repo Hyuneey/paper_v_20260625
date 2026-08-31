@@ -1,0 +1,317 @@
+{
+  "artifact_type": "validation_v2_exp03_preregistration_draft",
+  "schema_version": "1.0.0-draft",
+  "experiment_id": "EXP-03",
+  "title": "Bounded verifier-feedback construction comparison",
+  "status": "PREPARATION_READY_PROVIDER_GATED",
+  "scientific_execution_authorized": false,
+  "provider_contact_authorized": false,
+  "decision_gate": "DG-03",
+  "claim_question": "Does bounded verifier feedback improve construction outcomes over deterministic, one-shot, and budget-matched controls on a frozen normal-evidence cohort?",
+  "claim_boundary": {
+    "can_test": [
+      "construction acceptance and explicit terminal outcomes",
+      "natural feedback activation and conditional repair success",
+      "repeat stability of stochastic construction arms",
+      "call, token, and latency cost"
+    ],
+    "cannot_test": [
+      "rule detection utility",
+      "held-out generalization",
+      "human usefulness",
+      "causality",
+      "Agentic benefit from synthetic fault injection"
+    ],
+    "zero_feedback_conclusion": "Bounded feedback capability is implemented, but feedback benefit is not demonstrated."
+  },
+  "cohorts": {
+    "natural": {
+      "namespace": "VALIDATION_V2_EXP03_NATURAL",
+      "cohort_identity": "FREEZE_AFTER_VALIDATION_V2_RELATION_AND_EVIDENCE_BUILD",
+      "selection": "all eligible relations in the frozen V2 construction cohort; no outcome-driven subset",
+      "inputs": "normal-only frozen relation evidence and numeric references",
+      "fault_injection": false,
+      "scientific_headline_eligible": true,
+      "labels_or_detector_results_used": false
+    },
+    "fault_injection_stress": {
+      "namespace": "VALIDATION_V2_EXP03_SYNTHETIC_STRESS",
+      "cohort_identity": "PUBLIC_SYNTHETIC_TERMINAL_TAXONOMY_FIXTURES_V1",
+      "selection": "precommitted coverage fixtures for terminal and controller paths",
+      "fault_injection": true,
+      "provider_calls": 0,
+      "scientific_headline_eligible": false,
+      "purpose": "contract, taxonomy, controller, and custody verification only",
+      "must_never_be_pooled_with_natural": true
+    }
+  },
+  "terminal_contract": {
+    "success_state": "ACCEPTED_PROPOSAL",
+    "failure_or_absence_states": [
+      "INTENTIONAL_NO_RULE",
+      "UNSUPPORTED_EVIDENCE",
+      "PROVIDER_ERROR",
+      "EMPTY_RESPONSE",
+      "PARSE_FAILURE",
+      "VERIFIER_REJECTION",
+      "BUDGET_EXHAUSTION",
+      "RETRIEVAL_FAILURE",
+      "SYSTEM_ERROR"
+    ],
+    "exactly_one_terminal_per_relation_arm_repeat": true,
+    "semantic_no_rule_states": [
+      "INTENTIONAL_NO_RULE",
+      "UNSUPPORTED_EVIDENCE"
+    ],
+    "never_no_rule_states": [
+      "PROVIDER_ERROR",
+      "EMPTY_RESPONSE",
+      "PARSE_FAILURE",
+      "VERIFIER_REJECTION",
+      "BUDGET_EXHAUSTION",
+      "RETRIEVAL_FAILURE",
+      "SYSTEM_ERROR"
+    ],
+    "mapping_invariants": [
+      "unsupported variable in a parsed proposal maps to VERIFIER_REJECTION, not UNSUPPORTED_EVIDENCE",
+      "UNSUPPORTED_EVIDENCE is a deterministic pre-construction evidence eligibility outcome",
+      "provider refusal maps to PROVIDER_ERROR",
+      "successful transport with absent or incomplete structured payload maps to EMPTY_RESPONSE",
+      "non-empty invalid JSON or strict-schema failure maps to PARSE_FAILURE",
+      "repairable verifier outcomes at the fixed budget limit map to BUDGET_EXHAUSTION",
+      "retrieval identity or integrity failure maps to RETRIEVAL_FAILURE",
+      "custody, persistence, invariant, or unexpected local failure maps to SYSTEM_ERROR"
+    ],
+    "pilot_v1_rewritten": false
+  },
+  "arms": {
+    "T0": {
+      "construction": "deterministic template",
+      "generation_calls_per_relation": 0,
+      "feedback": false,
+      "repeat_policy": "one deterministic run plus synthetic self-consistency tests"
+    },
+    "T1": {
+      "construction": "one-shot constrained provider proposal",
+      "generation_calls_per_relation": 1,
+      "feedback": false,
+      "early_stop": true
+    },
+    "T1-B": {
+      "construction": "three independent initial proposals under the T2-matched maximum budget",
+      "generation_calls_per_relation": 3,
+      "feedback": false,
+      "early_stop": false,
+      "selection": "lowest admissible call index after all three calls",
+      "preserve_draw_level_terminals": true
+    },
+    "T2": {
+      "construction": "bounded verifier-feedback controller",
+      "generation_calls_per_relation_maximum": 3,
+      "feedback_actions": [
+        "revise",
+        "retrieve"
+      ],
+      "retrieval_scope": "targeted re-presentation of evidence already in the initial corpus",
+      "new_evidence_allowed": false,
+      "fourth_call_allowed": false
+    }
+  },
+  "fairness": {
+    "same_frozen_relation_cohort": true,
+    "same_evidence_projection": true,
+    "same_numeric_reference_strategy": true,
+    "same_provider_and_model_for_llm_arms": true,
+    "same_initial_prompt_and_schema_for_t1_t1b_t2_call1": true,
+    "t1b_and_t2_maximum_calls_equal": 3,
+    "actual_calls_reported_separately_from_maximum": true,
+    "other_arm_results_visible_to_model": false,
+    "provider_managed_conversation_state": false,
+    "previous_response_id_used": false,
+    "generation_retry_outside_controller": false,
+    "transport_retry_counted_separately": true
+  },
+  "sampling": {
+    "temperature": 0.7,
+    "seed": null,
+    "seed_determinism_claimed": false,
+    "stochastic_full_cohort_repeats": 3,
+    "request_state": "stateless",
+    "model_snapshot": "FREEZE_AT_DG03",
+    "provider": "FREEZE_AT_DG03",
+    "prompt_schema_sampling_hashes_constant_across_repeats": true
+  },
+  "provider_budget": {
+    "natural_relation_count_symbol": "N",
+    "repeat_count": 3,
+    "maximum_calls_formula": "R*N*(1+3+3)=21N",
+    "example_only_if_N_equals_42": 882,
+    "stress_provider_calls": 0,
+    "capability_probe": "requires DG-03 authorization before contact",
+    "maximum_input_tokens_per_call": "FREEZE_AT_DG03",
+    "maximum_output_tokens_per_call": "FREEZE_AT_DG03",
+    "maximum_total_tokens": "FREEZE_AT_DG03_FROM_TOKENIZER_AND_21N",
+    "maximum_cost": "FREEZE_AT_DG03",
+    "receipt_first_one_call_enforcement": true,
+    "scientific_concurrency": 1
+  },
+  "privacy": {
+    "allowed_model_visible": [
+      "relation identity",
+      "source and target identities",
+      "source and target directions",
+      "selected horizon",
+      "approved numeric references",
+      "bounded aggregate normal-only evidence"
+    ],
+    "prohibited_model_visible": [
+      "raw time-series rows",
+      "labels or attack intervals",
+      "detector predictions or utility results",
+      "test1, test2, or held-out content",
+      "local or private paths",
+      "credentials",
+      "other arm outcomes",
+      "private numeric payload"
+    ],
+    "credential_source": "approved environment or secret store at transport layer only",
+    "credential_in_prompt_or_artifact": false,
+    "public_outputs": "sanitized counts, hashes, statuses, and aggregate metrics only"
+  },
+  "primary_metrics": [
+    {
+      "metric": "first_call_verifier_acceptance_rate",
+      "denominator": "all scheduled relation-arm-repeat records without run-level custody abort"
+    },
+    {
+      "metric": "eventual_verifier_acceptance_rate",
+      "denominator": "all scheduled relation-arm-repeat records"
+    },
+    {
+      "metric": "accepted_executable_projection_rate",
+      "denominator": "all scheduled relation-arm-repeat records"
+    },
+    {
+      "metric": "terminal_class_distribution",
+      "denominator": "all scheduled relation-arm-repeat records"
+    },
+    {
+      "metric": "t2_feedback_activation_rate",
+      "denominator": "all T2 natural records"
+    },
+    {
+      "metric": "t2_repair_success_rate",
+      "numerator": "T2 records accepted after revise or retrieve",
+      "denominator": "T2 records with at least one revise or retrieve action",
+      "zero_denominator": "NOT_OBSERVED"
+    },
+    {
+      "metric": "semantic_no_rule_appropriateness",
+      "numerator": "semantic no-rule records confirmed by the deterministic evidence/no-rule validator",
+      "denominator": "INTENTIONAL_NO_RULE plus UNSUPPORTED_EVIDENCE records",
+      "zero_denominator": "NOT_OBSERVED"
+    },
+    {
+      "metric": "resource_cost",
+      "fields": [
+        "actual generation calls",
+        "transport attempts",
+        "input tokens",
+        "output tokens",
+        "latency"
+      ]
+    }
+  ],
+  "repeat_stability_metrics": [
+    "relation-level accepted/not-accepted agreement",
+    "terminal-class agreement",
+    "pairwise Jaccard of accepted relation identities",
+    "executable projection equivalence rate",
+    "dispersion of first-call and eventual acceptance",
+    "dispersion of feedback activation and repair success",
+    "dispersion of calls, tokens, and latency"
+  ],
+  "stress_metrics": {
+    "headline_eligible": false,
+    "metrics": [
+      "nine-class fixture coverage",
+      "terminal classifier exact-match",
+      "no_rule conflation count",
+      "revise and retrieve route coverage",
+      "unknown-class and mutation rejection",
+      "fourth-call rejection"
+    ],
+    "required_no_rule_conflation_count": 0,
+    "result_label": "SYNTHETIC_STRESS_ONLY"
+  },
+  "artifact_contract": {
+    "identities": [
+      "method version",
+      "config hash",
+      "cohort and evidence hashes",
+      "arm and repeat",
+      "relation identity",
+      "draw and call index",
+      "provider request and response hashes",
+      "proposal and verifier result hashes",
+      "controller action history",
+      "terminal class and reason codes",
+      "calls, tokens, and latency",
+      "self hash"
+    ],
+    "complete_schedule_required": true,
+    "duplicate_key_rejected": true,
+    "natural_stress_pooling_rejected": true,
+    "pilot_v1_namespace_immutable": true
+  },
+  "implementation_plan": [
+    "add the closed V2 terminal enum and relation-arm-repeat terminal artifact",
+    "build lossless adapters from parser, provider ledger, verifier, controller, retrieval, and system receipts",
+    "preserve all T1-B draw-level outcomes before deterministic selection",
+    "materialize retrieval and system failures without converting them to no_rule",
+    "freeze natural and synthetic-stress schedules in separate namespaces",
+    "add complete-schedule, privacy, self-hash, mutation, and terminal-class negative tests",
+    "freeze provider-visible projection, exact model, maximum call and token budgets before DG-03",
+    "obtain independent QA PASS before any provider contact"
+  ],
+  "required_test_cases": [
+    "one positive and multiple mismatch tests for every terminal class",
+    "provider refusal, empty response, and parse failure remain distinct",
+    "unsupported proposal variable is VERIFIER_REJECTION",
+    "pre-construction insufficient evidence is UNSUPPORTED_EVIDENCE",
+    "repairable verifier outcomes at call three are BUDGET_EXHAUSTION",
+    "wrong or repeated retrieval is RETRIEVAL_FAILURE",
+    "call four is rejected",
+    "T1-B always uses three calls and retains draw causes",
+    "T1-B and T2 maximum generation budget is equal",
+    "no raw labels, rows, test data, local paths, credentials, or other arm results enter provider view",
+    "network and credential access remain zero while DG-03 is pending",
+    "natural and stress artifacts cannot be combined",
+    "zero-denominator metrics use NOT_OBSERVED",
+    "partial, stale, wrong-authority, and rehashed mutations fail closed"
+  ],
+  "decision_gate_requirements": [
+    "provider and exact model",
+    "frozen natural cohort size N",
+    "maximum calls by arm and in total",
+    "maximum estimated input, output, and total tokens",
+    "maximum estimated monetary cost",
+    "private-data exposure assessment",
+    "expected private and public artifacts"
+  ],
+  "safety_counters": {
+    "provider_calls": 0,
+    "llm_calls": 0,
+    "scientific_executions": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "private_evidence_accesses": 0,
+    "pilot_v1_modifications": 0
+  },
+  "independent_qa": {
+    "status": "PASS_PREPARATION_DRAFT",
+    "provider_custody_log_verified": false,
+    "provider_execution_authorized": false
+  }
+}
