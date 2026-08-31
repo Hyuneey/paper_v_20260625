@@ -96,3 +96,11 @@ work.
 - DG-04: after EXP-01 and EXP-03 evidence for contribution naming
 - DG-05: mandatory before any test2 or held-out access
 - DG-06: before professor submission or publication
+
+## Git remote status
+
+`LOCAL_ONLY_REMOTE_EGRESS_UNAVAILABLE`
+
+The verified task branch remains local because the execution environment
+rejected export of internal RCC/custody documentation to the unverified remote.
+No workaround or repeated push was attempted.
