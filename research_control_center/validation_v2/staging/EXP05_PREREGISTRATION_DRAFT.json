@@ -1,0 +1,305 @@
+{
+  "artifact_type": "validation_v2_exp05_preregistration_draft",
+  "schema_version": "1.0.0-draft",
+  "experiment_id": "EXP-05",
+  "title": "Automated Formal V4 trace-to-explanation structural fidelity",
+  "status": "PREPARATION_CONTRACT_IMPLEMENTED_NOT_FROZEN_NOT_EXECUTED",
+  "authority_plane": {
+    "family": "FORMAL_V4",
+    "canonical_rule_v1_authoritative": false,
+    "verifier_v1_authoritative": false,
+    "canonical_runtime_trace_v1_claimed": false,
+    "pilot_v1_modified": false
+  },
+  "research_question": "Does the deterministic VALIDATION V2 explanation record reproduce the exact evaluated Formal V4 trace grounding without adding a variable, number, outcome, or causal claim?",
+  "scope": {
+    "structural_fidelity": true,
+    "human_usefulness": false,
+    "causal_interpretation": false,
+    "detector_or_fusion_explanation": false,
+    "labels_required": false,
+    "llm_calls": 0,
+    "provider_calls": 0,
+    "heldout_access": 0,
+    "test2_access": 0
+  },
+  "blocking_implementation_gate": {
+    "status": "PARTIAL_ONE_PATH_RUNTIME_CONNECTION_REQUIRED_BEFORE_EXECUTION",
+    "completed": [
+      "Versioned MaterializedFormalV4TraceV1 preparation contract implemented.",
+      "Exact observation-window hash, descriptor, portfolio, authorization, execution context, ordered numeric references, and outcome are represented in a public-safe self-hashed artifact.",
+      "Formal V4-specific deterministic exact-template renderer implemented.",
+      "Independent 11-check field, text, provenance, and hash replay fidelity validator implemented.",
+      "Fourteen synthetic mutation and conformance tests pass without runtime or scientific execution."
+    ],
+    "requirements": [
+      "Connect materialization to the same authorized runtime call that emits the evaluated FormalV4RuntimeTraceV1; detached preparation materialization is not scientific evidence.",
+      "Replay repository-bound portfolio, descriptor, authorization, execution-context, and observation authority inside that one-path runner.",
+      "Add versioned JSON schemas and registry entries for materialized trace, explanation, and fidelity result.",
+      "Add durable trace/explanation custody plus duplicate, orphan, and order checks for the evaluated cohort.",
+      "Freeze schemas, renderer contract, implementation commit, tests, and artifact namespace before the evaluated cohort is processed."
+    ],
+    "scientific_runner_authorized": false
+  },
+  "evaluated_population": {
+    "population": "all materialized traces emitted by the fixed VALIDATION V2 Formal V4 development runtime",
+    "unit": "one materialized runtime trace and its one deterministic explanation",
+    "split_role": "DEVELOPMENT_TEST1",
+    "outcome_strata": [
+      "PASS",
+      "FAIL",
+      "ABSTAIN:incomplete_source_window",
+      "ABSTAIN:source_not_triggered",
+      "ABSTAIN:incomplete_target_response_window"
+    ],
+    "zero_observation_policy": "Report NOT_OBSERVED_IN_EVALUATED_COHORT; do not inject synthetic cases into the scientific cohort.",
+    "synthetic_stress_cohort_separate": true
+  },
+  "materialized_trace_contract": {
+    "identity_fields": [
+      "schema_version",
+      "trace_id",
+      "self_hash",
+      "runtime_version",
+      "runtime_trace_hash",
+      "trace_contract_hash",
+      "method_id",
+      "config_id",
+      "experiment_id",
+      "portfolio_id",
+      "portfolio_authority_hash",
+      "descriptor_set_hash",
+      "authorization_id",
+      "authorization_hash",
+      "execution_context_hash",
+      "evaluator_contract_hash",
+      "source_commit"
+    ],
+    "relation_fields": [
+      "opportunity_id",
+      "relation_id",
+      "descriptor_hash",
+      "relation_binding_hash",
+      "semantic_execution_hash",
+      "source",
+      "target",
+      "source_direction",
+      "target_direction",
+      "selected_horizon_seconds"
+    ],
+    "numeric_fields": [
+      "numeric_authority_hash",
+      "ordered_numeric_reference_bindings"
+    ],
+    "observation_fields": [
+      "observation_window_hash",
+      "feature_contract_hash",
+      "file_contract_hash",
+      "sampling_contract_hash",
+      "event_index",
+      "target_response_start_index"
+    ],
+    "outcome_fields": [
+      "final_outcome",
+      "reason",
+      "alarm_emitted"
+    ],
+    "numeric_reference_count": 10,
+    "raw_numeric_values_embedded": false,
+    "raw_observations_embedded": false,
+    "labels_accessed": false,
+    "causal_claim_allowed": false
+  },
+  "allowed_outcome_reason_matrix": [
+    {
+      "outcome": "PASS",
+      "reason": "expected_response_observed",
+      "alarm_emitted": false
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "expected_response_not_observed",
+      "alarm_emitted": true
+    },
+    {
+      "outcome": "ABSTAIN",
+      "reason": "incomplete_source_window",
+      "alarm_emitted": false
+    },
+    {
+      "outcome": "ABSTAIN",
+      "reason": "source_not_triggered",
+      "alarm_emitted": false
+    },
+    {
+      "outcome": "ABSTAIN",
+      "reason": "incomplete_target_response_window",
+      "alarm_emitted": false
+    }
+  ],
+  "renderer_contract": {
+    "type": "DETERMINISTIC_EXACT_TEMPLATE",
+    "runtime_llm": false,
+    "caller_authored_text": false,
+    "current_time_used": false,
+    "randomness_used": false,
+    "network_used": false,
+    "allowed_interpolations": [
+      "source",
+      "target",
+      "source_direction",
+      "target_direction",
+      "selected_horizon_seconds",
+      "final_outcome",
+      "reason"
+    ],
+    "allowed_natural_language_numbers": [
+      "selected_horizon_seconds"
+    ],
+    "numeric_reference_rendering": "References and hashes remain structured; raw values are not rendered.",
+    "created_at_in_content_hash": false,
+    "human_usefulness_evaluated": false
+  },
+  "fidelity_checks": [
+    {
+      "check_id": "SOURCE_MATCH",
+      "expected": "exact trace source"
+    },
+    {
+      "check_id": "TARGET_MATCH",
+      "expected": "exact trace target"
+    },
+    {
+      "check_id": "SOURCE_DIRECTION_MATCH",
+      "expected": "exact step_up or step_down"
+    },
+    {
+      "check_id": "TARGET_DIRECTION_MATCH",
+      "expected": "exact increase or decrease"
+    },
+    {
+      "check_id": "HORIZON_MATCH",
+      "expected": "exact authorized horizon and seconds unit"
+    },
+    {
+      "check_id": "NUMERIC_PROVENANCE_MATCH",
+      "expected": "exact numeric authority hash and ordered ten role-reference-hash bindings"
+    },
+    {
+      "check_id": "OUTCOME_MATCH",
+      "expected": "exact outcome, reason, and alarm tuple"
+    },
+    {
+      "check_id": "NO_NEW_VARIABLE",
+      "expected": "exact renderer replay and variable set limited to source and target"
+    },
+    {
+      "check_id": "NO_NEW_NUMBER",
+      "expected": "text numeric token multiset equals the authorized horizon token only"
+    },
+    {
+      "check_id": "NO_CAUSAL_CLAIM",
+      "expected": "exact template replay and causal/root-cause flags false"
+    },
+    {
+      "check_id": "DETERMINISTIC_REPLAY",
+      "expected": "two independent render, serialization, and hash runs are byte-identical"
+    }
+  ],
+  "primary_metrics": [
+    {
+      "metric_id": "TRACE_MATERIALIZATION_COVERAGE",
+      "numerator": "valid materialized traces",
+      "denominator": "emitted Formal V4 runtime traces"
+    },
+    {
+      "metric_id": "EXPLANATION_STRUCTURAL_FIDELITY",
+      "numerator": "explanations passing all fidelity checks",
+      "denominator": "valid materialized traces"
+    },
+    {
+      "metric_id": "PER_CHECK_PASS_COUNT",
+      "unit": "trace-explanation pairs"
+    },
+    {
+      "metric_id": "DETERMINISTIC_REPLAY_MISMATCHES",
+      "unit": "pairs"
+    },
+    {
+      "metric_id": "OUTCOME_REASON_STRATUM_COVERAGE",
+      "unit": "traces"
+    }
+  ],
+  "acceptance_rule": {
+    "trace_materialization_coverage": "100%",
+    "explanation_structural_fidelity": "100%",
+    "per_check_failures": 0,
+    "deterministic_replay_mismatches": 0,
+    "unknown_or_system_errors_rendered": 0,
+    "orphan_traces": 0,
+    "orphan_explanations": 0,
+    "failure_status": "FAIL_STRUCTURAL_FIDELITY",
+    "unobserved_stratum_status": "NOT_OBSERVED_IN_EVALUATED_COHORT"
+  },
+  "required_negative_tests": [
+    "trace, window, descriptor, authorization, and execution-context hash mutation",
+    "wrong or stale portfolio and numeric authority",
+    "source, target, direction, and horizon substitution",
+    "numeric reference omission, duplication, reorder, and wrong hash",
+    "event-to-response horizon mismatch",
+    "invalid outcome-reason-alarm tuple",
+    "new variable injection",
+    "new number injection",
+    "causal and root-cause text injection",
+    "caller-authored text and unknown renderer version",
+    "label, detector, and fusion field injection",
+    "duplicate or orphan trace and explanation",
+    "current-time, random, network, provider, or LLM dependency",
+    "PILOT V1 and canonical renderer preservation regression"
+  ],
+  "artifact_plan": [
+    "EXP05_PREREGISTRATION_FROZEN.json",
+    "FORMAL_V4_MATERIALIZED_TRACE_SCHEMA.json",
+    "FORMAL_V4_EXPLANATION_SCHEMA.json",
+    "FORMAL_V4_EXPLANATION_RENDERER_CONTRACT.json",
+    "EXP05_TRACE_BUNDLE.json",
+    "EXP05_EXPLANATION_BUNDLE.json",
+    "EXP05_FIDELITY_RESULT.json",
+    "EXP05_RESULT_INTEGRITY.json",
+    "EXP05_REPORT.md"
+  ],
+  "claim_boundary": {
+    "allowed": "The deterministic VALIDATION V2 explanation artifacts structurally reproduced the evaluated Formal V4 trace grounding for the observed cohort and introduced no variable, number, outcome, or causal claim outside the frozen renderer contract.",
+    "not_supported": [
+      "Human or expert usefulness",
+      "Comprehensibility",
+      "Causal or root-cause identification",
+      "Attack-label identification",
+      "Detector or fusion explanation",
+      "Operational utility",
+      "Held-out generalization"
+    ]
+  },
+  "execution_counters": {
+    "scientific_execution": 0,
+    "test1_access": 0,
+    "test2_access": 0,
+    "heldout_access": 0,
+    "label_access": 0,
+    "runtime_execution": 0,
+    "provider_calls": 0,
+    "llm_calls": 0,
+    "pilot_v1_modifications": 0
+  },
+  "preparation_implementation": {
+    "module": "src/paperworks/validation_v2/explanation_fidelity_v1.py",
+    "tests": "tests/test_validation_v2_explanation_fidelity_v1.py",
+    "focused_tests_passed": 14,
+    "focused_tests_failed": 0,
+    "independent_qa_status": "PASS",
+    "scientific_runner_authorized": false,
+    "canonical_runtime_trace_v1_equivalence_claimed": false,
+    "human_usefulness_evaluated": false,
+    "exact_remaining_blocker": "A shared-runtime-owner one-path execute-and-materialize entrypoint with repository-bound replay and durable evaluated-cohort custody is not yet implemented or authorized."
+  }
+}
