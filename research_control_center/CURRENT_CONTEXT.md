@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bf68cf8b8ce1d26ec969e6833b53a2f85f5edaab0fa10a53a00b165f37d069ec authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-31
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Version the common per-second alarm event episode Recall FAR overlap and incremental metric contracts.
-- Freeze experiment-specific preregistrations and normal-only selection receipts before any development execution.
+- Freeze EXP-01 GDN contribution preregistration and corrected self-excluded candidate contract before normal-only execution.
+- Freeze EXP-02 numeric-policy and stronger-detector preregistrations before any development execution.
 - Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
 
-Exact next management task: **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**
+Exact next management task: **EXP-01-PREP — GDN Contribution Preregistration & Harness**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

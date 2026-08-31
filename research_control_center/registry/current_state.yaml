@@ -496,16 +496,28 @@
     "d1_metric_adapter_boundary": "FAIL alarms; PASS ABSTAIN and NO_OPPORTUNITY do not alarm; system error never coerces to no alarm",
     "policy_freeze": "candidate set objective split tie-break selected config authority method policies metric contract and source commit self-hashed before test1",
     "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only.",
-    "scope_limit": "No metric implementation or scientific execution occurred; GAP-FIX-METRIC-001 is next."
+    "scope_limit": "The protocol is implemented prospectively; metric portability is separately frozen and scientific evaluation remains unauthorized."
+  },
+  "validation_v2_metric_contract": {
+    "gap_fix_metric_001": "PASS_SYNTHETIC_PORTABLE_CONTRACT",
+    "module": "paperworks.validation_v2.metric_contract_v1",
+    "protocol_hash": "2c3000a912caf2167bfe49929c55229e5159d52cc9ad09b7e48d79d9aecc562f",
+    "metric_contract_hash": "aec2dd11b8178071eb91160f1dff45f9cd0cc1be6c314aa3641ed0698df3dde4",
+    "coordinate_contract": "file-local strict one-second full coverage authority",
+    "method_adapters": "D0/D2 dense Boolean; D1 durable Formal V4 FAIL-only with explicit PASS ABSTAIN NO_OPPORTUNITY",
+    "metric_contract": "PA-free half-open attack units; zero-gap episodes; strict-zero normal exposure; exact Recall FAR overlap recovery incremental metrics",
+    "scientific_eligible": false,
+    "stage3_requirement": "Bind full Formal V4 descriptor/numeric timing authority, one-shot label capability, and post-metric prediction byte verification.",
+    "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only."
   },
   "top_priorities": [
-    "Version the common per-second alarm event episode Recall FAR overlap and incremental metric contracts.",
-    "Freeze experiment-specific preregistrations and normal-only selection receipts before any development execution.",
+    "Freeze EXP-01 GDN contribution preregistration and corrected self-excluded candidate contract before normal-only execution.",
+    "Freeze EXP-02 numeric-policy and stronger-detector preregistrations before any development execution.",
     "Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access."
   ],
   "highest_priority_work": [
-    "Implement GAP-FIX-METRIC-001 common portable metric contracts with synthetic tests.",
-    "Prepare EXP-01 EXP-02 EXP-03 stronger-detector and EXP-05 gates after the shared metric contract passes.",
+    "Prepare EXP-01 EXP-02 EXP-03 stronger-detector and EXP-05 gates against the frozen shared contracts.",
+    "Execute only preregistered normal-only experiment stages before any test1 development observation.",
     "Rehearse the public synthetic release on a fresh machine before any new held-out study."
   ],
   "user_todo_items": [
@@ -523,16 +535,16 @@
     "Decide same-physical-test2 eligibility only within a new preregistered study.",
     "Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.",
     "Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.",
-    "Track GAP-FIX-METRIC-001 as the next implementation gate after protocol freeze PASS.",
+    "Track EXP-01 preparation as the first experiment-specific gate after all shared foundation contracts PASS.",
     "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract",
+  "recommended_next_management_task": "EXP-01-PREP — GDN Contribution Preregistration & Harness",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "V2-PROTOCOL-001 — Validation / Development / Final-Test Contract Freeze",
-  "exact_next_task": "GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract",
+  "last_completed_task": "GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract",
+  "exact_next_task": "EXP-01-PREP — GDN Contribution Preregistration & Harness",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

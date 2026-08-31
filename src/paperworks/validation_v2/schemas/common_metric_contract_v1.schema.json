@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paperworks://validation-v2/common-metric-contract-v1",
+  "title": "VALIDATION V2 Common Metric Contract V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "schema_version", "protocol_hash", "sampling_seconds",
+    "coordinate_scope", "timestamp_validation", "event_construction",
+    "event_hit_rule", "point_adjustment", "episode_construction",
+    "episode_allowed_gap_seconds", "mixed_episode_policy", "normal_exposure",
+    "far_formula", "zero_attack_events", "zero_normal_exposure",
+    "d1_system_error_policy", "contract_hash"
+  ],
+  "properties": {
+    "schema": {"const": "paperworks.validation_v2.common_metric_contract_v1"},
+    "schema_version": {"const": "1.0.0"},
+    "protocol_hash": {"$ref": "#/$defs/sha256"},
+    "sampling_seconds": {"const": 1},
+    "coordinate_scope": {"$ref": "#/$defs/text"},
+    "timestamp_validation": {"$ref": "#/$defs/text"},
+    "event_construction": {"$ref": "#/$defs/text"},
+    "event_hit_rule": {"$ref": "#/$defs/text"},
+    "point_adjustment": {"$ref": "#/$defs/text"},
+    "episode_construction": {"$ref": "#/$defs/text"},
+    "episode_allowed_gap_seconds": {"const": 0},
+    "mixed_episode_policy": {"$ref": "#/$defs/text"},
+    "normal_exposure": {"$ref": "#/$defs/text"},
+    "far_formula": {"$ref": "#/$defs/text"},
+    "zero_attack_events": {"$ref": "#/$defs/text"},
+    "zero_normal_exposure": {"$ref": "#/$defs/text"},
+    "d1_system_error_policy": {"$ref": "#/$defs/text"},
+    "contract_hash": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "text": {"type": "string", "minLength": 1}
+  }
+}

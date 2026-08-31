@@ -169,7 +169,7 @@ class FormalV4AuthorityTests(unittest.TestCase):
         self.fx.close()
 
     def test_schema_registry_validates_produced_documents(self) -> None:
-        self.assertEqual(len(load_validation_v2_schema_registry_v1()), 5)
+        self.assertEqual(len(load_validation_v2_schema_registry_v1()), 12)
         validate_validation_v2_document_v1("formal_v4_portfolio_authority_v1.schema.json", self.fx.authority.to_dict())
         validate_validation_v2_document_v1("formal_v4_runtime_authorization_v1.schema.json", self.fx.bundle.receipt.to_dict())
 

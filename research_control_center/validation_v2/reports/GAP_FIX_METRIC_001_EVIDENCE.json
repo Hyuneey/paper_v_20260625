@@ -1,0 +1,55 @@
+{
+  "schema_version": "gap_fix_metric_001_evidence_v1",
+  "task_id": "GAP-FIX-METRIC-001",
+  "verdict": "PASS_SYNTHETIC_PORTABLE_CONTRACT",
+  "implementation": {
+    "module": "src/paperworks/validation_v2/metric_contract_v1.py",
+    "implementation_commit": "c9e2da71e197e24df499101f99c2f6ffa38e1576",
+    "protocol_hash": "2c3000a912caf2167bfe49929c55229e5159d52cc9ad09b7e48d79d9aecc562f",
+    "metric_contract_hash": "aec2dd11b8178071eb91160f1dff45f9cd0cc1be6c314aa3641ed0698df3dde4",
+    "schema_registry_entries": 12,
+    "execution_scope": "SYNTHETIC_CONTRACT_ONLY",
+    "scientific_eligible": false
+  },
+  "semantics": {
+    "coordinate": "FILE_LOCAL_STRICT_ONE_SECOND_FULL_COVERAGE",
+    "event": "MAXIMAL_CONTIGUOUS_POSITIVE_HALF_OPEN_PA_FREE",
+    "episode": "MAXIMAL_CONTIGUOUS_UNIQUE_ALARM_SECONDS_ZERO_GAP",
+    "mixed_episode": "EXCLUDE_WHOLE_FROM_NORMAL_FP",
+    "normal_exposure": "STRICT_LABEL_ZERO_SECONDS",
+    "d1_alarm": "FORMAL_V4_FAIL_ONLY",
+    "undefined": "EXPLICIT_NOT_NUMERIC_ZERO"
+  },
+  "tests": {
+    "focused_metric_total": 24,
+    "focused_metric_passed": 24,
+    "v2_passed": 76,
+    "v2_skipped_windows_symlink_privilege": 1,
+    "rcc_passed": 126,
+    "compileall": "PASS",
+    "diff_check": "PASS"
+  },
+  "independent_qa": {
+    "verdict": "PASS",
+    "scope": "STAGE_1_PURE_SYNTHETIC_PRIMITIVES",
+    "scientific_wrapper_required": true
+  },
+  "future_scientific_wrapper_requirements": [
+    "bind full Formal V4 descriptor and numeric timing authority",
+    "consume a live one-shot label access capability",
+    "verify prediction bytes again after metric computation"
+  ],
+  "pilot_v1": {
+    "modified": false,
+    "prospective_only": true,
+    "verified_blobs": 3021
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "held_out_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0
+  }
+}

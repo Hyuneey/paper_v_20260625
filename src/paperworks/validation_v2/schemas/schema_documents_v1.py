@@ -266,10 +266,192 @@ LABEL_ACCESS_LEASE_SCHEMA: Mapping[str, Any] = {
     "$defs": {"sha256": SHA},
 }
 
+COMMON_METRIC_CONTRACT_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/common-metric-contract-v1",
+    "title": "VALIDATION V2 Common Metric Contract V1",
+    "type": "object",
+    "additionalProperties": False,
+    "required": [
+        "schema", "schema_version", "protocol_hash", "sampling_seconds",
+        "coordinate_scope", "timestamp_validation", "event_construction",
+        "event_hit_rule", "point_adjustment", "episode_construction",
+        "episode_allowed_gap_seconds", "mixed_episode_policy", "normal_exposure",
+        "far_formula", "zero_attack_events", "zero_normal_exposure",
+        "d1_system_error_policy", "contract_hash",
+    ],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.common_metric_contract_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "protocol_hash": {"$ref": "#/$defs/sha256"},
+        "sampling_seconds": {"const": 1},
+        "coordinate_scope": {"$ref": "#/$defs/text"},
+        "timestamp_validation": {"$ref": "#/$defs/text"},
+        "event_construction": {"$ref": "#/$defs/text"},
+        "event_hit_rule": {"$ref": "#/$defs/text"},
+        "point_adjustment": {"$ref": "#/$defs/text"},
+        "episode_construction": {"$ref": "#/$defs/text"},
+        "episode_allowed_gap_seconds": {"const": 0},
+        "mixed_episode_policy": {"$ref": "#/$defs/text"},
+        "normal_exposure": {"$ref": "#/$defs/text"},
+        "far_formula": {"$ref": "#/$defs/text"},
+        "zero_attack_events": {"$ref": "#/$defs/text"},
+        "zero_normal_exposure": {"$ref": "#/$defs/text"},
+        "d1_system_error_policy": {"$ref": "#/$defs/text"},
+        "contract_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA, "text": TEXT},
+}
+
+COMMON_EVALUATION_BUNDLE_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/common-evaluation-bundle-v1",
+    "title": "VALIDATION V2 Synthetic Common Evaluation Bundle V1",
+    "type": "object",
+    "additionalProperties": False,
+    "required": [
+        "schema", "schema_version", "execution_scope", "scientific_eligible",
+        "protocol_hash", "metric_contract_hash", "result_hashes",
+        "comparison_hashes", "self_hash",
+    ],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.common_evaluation_bundle_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "execution_scope": {"const": "SYNTHETIC_CONTRACT_ONLY"},
+        "scientific_eligible": {"const": False},
+        "protocol_hash": {"$ref": "#/$defs/sha256"},
+        "metric_contract_hash": {"$ref": "#/$defs/sha256"},
+        "result_hashes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sha256"}},
+        "comparison_hashes": {"type": "array", "items": {"$ref": "#/$defs/sha256"}},
+        "self_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA},
+}
+
+FILE_SECOND_SERIES_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/file-second-series-authority-v1",
+    "title": "VALIDATION V2 File Second Series Authority V1",
+    "type": "object", "additionalProperties": False,
+    "required": ["schema", "schema_version", "dataset_id", "sampling_contract_hash", "coordinates", "file_rows", "self_hash"],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.file_second_series_authority_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "dataset_id": {"$ref": "#/$defs/text"},
+        "sampling_contract_hash": {"$ref": "#/$defs/sha256"},
+        "coordinates": {"type": "array", "minItems": 1, "items": {}},
+        "file_rows": {"type": "array", "minItems": 1, "items": {}},
+        "self_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA, "text": TEXT},
+}
+
+COMMON_ALARM_TIMELINE_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/common-alarm-timeline-v1",
+    "title": "VALIDATION V2 Common Alarm Timeline V1",
+    "type": "object", "additionalProperties": False,
+    "required": [
+        "schema", "schema_version", "method_id", "config_id", "source_prediction_sha256",
+        "prediction_freeze_receipt_sha256", "adapter_id", "native_evidence_sha256",
+        "file_series_hash", "protocol_hash", "metric_contract_hash", "points",
+        "native_state_counts", "self_hash",
+    ],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.common_alarm_timeline_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "method_id": {"$ref": "#/$defs/text"}, "config_id": {"$ref": "#/$defs/text"},
+        "source_prediction_sha256": {"$ref": "#/$defs/sha256"},
+        "prediction_freeze_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "adapter_id": {"$ref": "#/$defs/text"}, "native_evidence_sha256": {"$ref": "#/$defs/sha256"},
+        "file_series_hash": {"$ref": "#/$defs/sha256"}, "protocol_hash": {"$ref": "#/$defs/sha256"},
+        "metric_contract_hash": {"$ref": "#/$defs/sha256"},
+        "points": {"type": "array", "minItems": 1, "items": {}},
+        "native_state_counts": {"type": "array", "items": {}},
+        "self_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA, "text": TEXT},
+}
+
+LABEL_TIMELINE_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/label-timeline-v1",
+    "title": "VALIDATION V2 Label Timeline V1",
+    "type": "object", "additionalProperties": False,
+    "required": ["schema", "schema_version", "dataset_id", "label_authority_sha256", "file_series_hash", "points", "self_hash"],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.label_timeline_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "dataset_id": {"$ref": "#/$defs/text"}, "label_authority_sha256": {"$ref": "#/$defs/sha256"},
+        "file_series_hash": {"$ref": "#/$defs/sha256"},
+        "points": {"type": "array", "minItems": 1, "items": {}},
+        "self_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA, "text": TEXT},
+}
+
+COMMON_EVALUATION_RESULT_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/common-evaluation-result-v1",
+    "title": "VALIDATION V2 Common Evaluation Result V1",
+    "type": "object", "additionalProperties": False,
+    "required": [
+        "schema", "schema_version", "method_id", "config_id", "protocol_hash", "metric_contract_hash",
+        "prediction_timeline_hash", "label_timeline_hash", "attack_events", "attack_detection",
+        "alarm_seconds", "alarm_episodes", "normal_false_episodes", "normal_exposure_seconds",
+        "recall", "far_per_hour", "native_state_counts", "self_hash",
+    ],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.common_evaluation_result_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "method_id": {"$ref": "#/$defs/text"}, "config_id": {"$ref": "#/$defs/text"},
+        "protocol_hash": {"$ref": "#/$defs/sha256"}, "metric_contract_hash": {"$ref": "#/$defs/sha256"},
+        "prediction_timeline_hash": {"$ref": "#/$defs/sha256"}, "label_timeline_hash": {"$ref": "#/$defs/sha256"},
+        "attack_events": {"type": "array", "items": {}}, "attack_detection": {"type": "array", "items": {}},
+        "alarm_seconds": {"type": "integer"}, "alarm_episodes": {"type": "array", "items": {}},
+        "normal_false_episodes": {"type": "integer"}, "normal_exposure_seconds": {"type": "integer"},
+        "recall": {}, "far_per_hour": {}, "native_state_counts": {"type": "array", "items": {}},
+        "self_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA, "text": TEXT},
+}
+
+COMMON_COMPARISON_RESULT_SCHEMA: Mapping[str, Any] = {
+    "$schema": META,
+    "$id": "paperworks://validation-v2/common-comparison-result-v1",
+    "title": "VALIDATION V2 Common Comparison and Incremental Metric Result V1",
+    "type": "object", "additionalProperties": False,
+    "required": [
+        "schema", "schema_version", "baseline_method_id", "candidate_method_id", "baseline_result_hash",
+        "candidate_result_hash", "both", "baseline_only", "candidate_only", "neither",
+        "incremental_detected_units", "incremental_false_episodes", "baseline_miss_recovery",
+        "incremental_recall", "incremental_far_per_hour", "self_hash",
+    ],
+    "properties": {
+        "schema": {"const": "paperworks.validation_v2.common_comparison_result_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "baseline_method_id": {"$ref": "#/$defs/text"}, "candidate_method_id": {"$ref": "#/$defs/text"},
+        "baseline_result_hash": {"$ref": "#/$defs/sha256"}, "candidate_result_hash": {"$ref": "#/$defs/sha256"},
+        "both": {"type": "integer"}, "baseline_only": {"type": "integer"},
+        "candidate_only": {"type": "integer"}, "neither": {"type": "integer"},
+        "incremental_detected_units": {"type": "integer"}, "incremental_false_episodes": {"type": "integer"},
+        "baseline_miss_recovery": {}, "incremental_recall": {}, "incremental_far_per_hour": {},
+        "self_hash": {"$ref": "#/$defs/sha256"},
+    },
+    "$defs": {"sha256": SHA, "text": TEXT},
+}
+
 EMBEDDED_VALIDATION_V2_SCHEMAS: Mapping[str, Mapping[str, Any]] = {
+    "common_alarm_timeline_v1.schema.json": COMMON_ALARM_TIMELINE_SCHEMA,
+    "common_comparison_result_v1.schema.json": COMMON_COMPARISON_RESULT_SCHEMA,
+    "common_evaluation_bundle_v1.schema.json": COMMON_EVALUATION_BUNDLE_SCHEMA,
+    "common_evaluation_result_v1.schema.json": COMMON_EVALUATION_RESULT_SCHEMA,
+    "common_metric_contract_v1.schema.json": COMMON_METRIC_CONTRACT_SCHEMA,
     "d1_prediction_artifact_v2.schema.json": D1_PREDICTION_SCHEMA,
     "durable_prediction_freeze_receipt_v1.schema.json": FREEZE_RECEIPT_SCHEMA,
     "label_access_authorization_lease_v1.schema.json": LABEL_ACCESS_LEASE_SCHEMA,
     "formal_v4_portfolio_authority_v1.schema.json": PORTFOLIO_SCHEMA,
     "formal_v4_runtime_authorization_v1.schema.json": RUNTIME_SCHEMA,
+    "file_second_series_authority_v1.schema.json": FILE_SECOND_SERIES_SCHEMA,
+    "label_timeline_v1.schema.json": LABEL_TIMELINE_SCHEMA,
 }

@@ -481,9 +481,9 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     p0_count = len(vm["readiness"]["p0_global_fixes"]) + len(vm["readiness"]["p0_design_gates"])
     open_count = len(vm["unresolved_decisions"])
     actions = [
-        ("V2-PROTOCOL-001", "Validation/final protocol freeze", "event unit·split·policy selection 역할을 결과 전에 고정"),
-        ("GAP-FIX-METRIC-001", "공통 metric portability", "file-local 1초 계약과 cross-arm 결과 lineage를 version으로 고정"),
-        ("EXP 준비", "실험별 preregistration", "공유 contract PASS 뒤 EXP-01·02·03·05 준비를 분리"),
+        ("EXP-01-PREP", "GDN 기여 사전등록", "self-excluded Top-5와 seed·split·Top-K 분석을 결과 전에 고정"),
+        ("EXP-02-PREP", "numeric policy 사전등록", "normal-only 선택 기준과 test1 이전 freeze 경계를 고정"),
+        ("DETECTOR-PREP", "stronger detector 계약", "고정된 normal-only multivariate baseline 구현 범위를 고정"),
     ]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
@@ -507,12 +507,12 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     <section class="view-panel is-active" id="view-overview" data-view-panel="overview" aria-labelledby="nav-overview">
       <p class="status-separation">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</p>
       <div class="overview-header panel">
-        <div><p class="kicker">현재 연구 단계</p><h2>Remediation 진행 · protocol까지 고정</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority, durable prediction custody와 development/final protocol이 PASS했고, 공통 metric portability가 다음 gate입니다.</p>
-        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 기반 구현 중</span></div></div>
+        <div><p class="kicker">현재 연구 단계</p><h2>공유 기반 PASS · 실험별 준비 시작</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority, durable prediction custody, development/final protocol과 portable metric contract가 PASS했으며 실험별 사전등록을 준비합니다.</p>
+        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 실험 준비</span></div></div>
         <div class="next-task-callout"><span>정확한 다음 작업</span><strong>{_esc(vm["exact_next_task"])}</strong></div>
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
       </div>
-      <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="current">Remediation</li><li>Validation V2</li><li>Fresh-machine</li><li>Held-out</li></ol>
+      <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="done">공유 기반</li><li class="current">Validation V2 준비</li><li>Fresh-machine</li><li>Held-out</li></ol>
       <div class="overview-grid">
         <article class="panel overview-map"><div class="panel-heading"><div><p class="kicker">전체 지도</p><h3>근거에서 평가까지</h3></div><button class="text-button" data-go-view="architecture">크게 보기</button></div>{_render_architecture_svg(vm, compact=True)}</article>
         <aside class="panel action-panel"><div class="panel-heading"><div><p class="kicker">지금 할 일</p><h3>확대 검증 전 우선순위</h3></div></div><ol>{action_markup}</ol></aside>

@@ -397,6 +397,19 @@ def _validate_receipt_document(document: Mapping[str, Any]) -> DurablePrediction
     )
 
 
+def validate_durable_prediction_freeze_receipt_v1(
+    receipt: DurablePredictionFreezeReceiptV1,
+) -> str:
+    """Replay a materialized durable receipt without reading its custody path."""
+
+    if type(receipt) is not DurablePredictionFreezeReceiptV1:
+        _fail("WRONG_FREEZE_RECEIPT_TYPE")
+    replay = _validate_receipt_document(receipt.to_document())
+    if replay != receipt:
+        _fail("FREEZE_RECEIPT_REPLAY_MISMATCH")
+    return receipt.self_hash
+
+
 def persist_prediction_before_label_v1(
     artifact: D1PredictionArtifactV2, *, artifact_root: Path,
     prediction_relative_path: str, receipt_relative_path: str,
