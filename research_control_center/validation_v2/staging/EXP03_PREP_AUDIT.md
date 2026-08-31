@@ -279,6 +279,9 @@ EXP-03 provider execution은 다음이 모두 PASS일 때만 DG-03 brief로 이�
 
 현재 상태는 **implementation plan complete, provider execution not authorized**이다.
 
+구현 후 독립 적대적 QA는 focused test `23/23`, 추가 probe `21/21`을 통과했다.
+이 PASS는 terminal·schedule·receipt 계약에 한정되며 provider 실행 승인이 아니다.
+
 독립 read-only QA는 아홉 terminal class, natural/stress 분리, `21N`
 budget 산술(`N=42`이면 최대 882회), T1-B exact-three와 T2 maximum-three
 구분, DG-03 선행 차단, 보수적 claim boundary를 확인하여 준비 초안에

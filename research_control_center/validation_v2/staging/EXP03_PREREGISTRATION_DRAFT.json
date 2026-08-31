@@ -310,7 +310,10 @@
     "pilot_v1_modifications": 0
   },
   "independent_qa": {
-    "status": "PASS_PREPARATION_DRAFT",
+    "status": "PASS_IMPLEMENTED_SYNTHETIC_PROVIDER_GATED",
+    "focused_tests_passed": 23,
+    "adversarial_probes_passed": 21,
+    "accepted_invalid_probes": 0,
     "provider_custody_log_verified": false,
     "provider_execution_authorized": false
   }
