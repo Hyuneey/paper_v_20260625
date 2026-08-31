@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_3_NORMAL_DATA_LOCATOR_BLOCKED",
-  "program_status": "BLOCKED_NORMAL_DATA_NOT_FOUND",
+  "current_stage": "STAGE_3_NORMAL_ONLY_CODE_MATERIALIZATION",
+  "program_status": "NORMAL_ONLY_CODE_MATERIALIZATION_PENDING",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -38,8 +38,20 @@
     "EXP-05": "BLOCKED_NO_MATERIALIZED_V2_RUNTIME_TRACES",
     "EXP-06": "NOT_REQUIRED"
   },
-  "execution_blocker": {
+  "dataset_acquisition_policy": {
+    "policy_id": "DATA-POLICY-001",
+    "policy_path": "research_control_center/validation_v2/policies/DATA_POLICY_001.json",
+    "acquisition_mode": "CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION",
+    "official_distribution": "icsdataset/hai-security-dataset",
+    "identity_authority": "PINNED_OFFICIAL_GIT_SNAPSHOT_AND_GIT_LFS_OBJECTS",
+    "user_local_path_required": false,
+    "recovery_policy": "REACQUIRE_BY_APPROVED_CODE_BEFORE_REQUESTING_USER_PATH",
+    "next_action": "CODE_BASED_MATERIALIZATION"
+  },
+  "historical_execution_blocker": {
     "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
+    "disposition": "HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC",
+    "user_failure": false,
     "scope": "Stage 3 scientific execution only",
     "evidence": {
       "authorized_data_root_environment_binding_present": false,
@@ -55,7 +67,7 @@
       "HAI_TRAIN4"
     ],
     "expected_safe_relative_layout": {
-      "HAI_NORMAL_ROOT": "<explicit authorized external root>",
+      "PRIVATE_CODE_MATERIALIZATION_ROOT": "<deterministic external cache selected by approved code>",
       "HAI_TRAIN1": "hai-23.05/hai-train1.csv",
       "HAI_TRAIN2": "hai-23.05/hai-train2.csv",
       "HAI_TRAIN3": "hai-23.05/hai-train3.csv",
@@ -67,7 +79,7 @@
       "opening test1 or test2 outside an authorized custody contract",
       "reusing PILOT V1 private artifacts as VALIDATION V2 inputs"
     ],
-    "required_recovery": "Configure an explicit authorized HAI_NORMAL_ROOT or ignored local custody binding to the parent of hai-23.05; rerun the single custody issuer; then start EXP-01 and EXP-02 from their unchanged frozen preregistrations.",
+    "required_recovery": "Execute the approved normal-only code materializer, issue custody after exact byte/schema verification, then start EXP-01 and EXP-02 from unchanged preregistrations.",
     "pilot_v1_impact": "NONE"
   },
   "fresh_machine_synthetic": {

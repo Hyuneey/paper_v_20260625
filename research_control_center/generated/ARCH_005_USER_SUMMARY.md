@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Proposal부터 COMMON-42와 D1까지
 
 Proposal은 frozen relation에 묶인 construction 후보이고, canonical `DelayedResponseRuleV1`은
@@ -21,4 +21,4 @@ match였지만 runtime authority/reference identity는 별도로 rebound됐다.
 
 기억할 한 문장: **Verifier acceptance는 scientific validation도 runtime authorization도 아니다.**
 
-다음 task는 **CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer**이다.
+다음 task는 **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**이다.

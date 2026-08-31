@@ -1,0 +1,33 @@
+{
+  "schema_version": "rcc_dataset_acquisition_policy_v1",
+  "policy_id": "DATA-POLICY-001",
+  "dataset": "HAI 23.05",
+  "acquisition_mode": "CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION",
+  "official_distribution": "icsdataset/hai-security-dataset",
+  "primary_distribution_contract": "src/paperworks/data/hai_distribution_v1.py",
+  "primary_materialization_workflow": "scripts/materialize_hai_2305_normal_v2.py",
+  "historical_full_distribution_workflow": "scripts/remediate_hai_2305_distribution.py",
+  "provenance_authority": "src/paperworks/data/hai_provenance_v1.py",
+  "identity_authority": "PINNED_OFFICIAL_GIT_SNAPSHOT_AND_GIT_LFS_OBJECTS",
+  "user_local_path_required": false,
+  "user_local_path_policy": "false_by_default",
+  "recovery_policy": "REACQUIRE_BY_APPROVED_CODE_BEFORE_REQUESTING_USER_PATH",
+  "authorized_scope": [
+    "HAI_TRAIN1",
+    "HAI_TRAIN2",
+    "HAI_TRAIN3",
+    "HAI_TRAIN4"
+  ],
+  "forbidden_scope": [
+    "test1",
+    "test2",
+    "held_out",
+    "attack_labels",
+    "HAIEnd",
+    "older_editions"
+  ],
+  "historical_task039ar_behavior": "UNCHANGED_TEN_FILE_CONTRACT",
+  "missing_data_next_action": "CODE_BASED_MATERIALIZATION",
+  "manual_path_request_before_code_attempt": "PROHIBITED",
+  "status": "ACTIVE"
+}

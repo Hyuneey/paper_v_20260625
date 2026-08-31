@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -142,7 +142,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
-- **HIGH / OPEN** — Fresh-machine synthetic passed; scientific reproduction remains blocked because no approved normal-only HAI locator is configured.
+- **HIGH / MITIGATING** — Fresh-machine synthetic passed; scientific reproduction remains blocked until DATA-POLICY-001 materializes and binds the four authorized normal HAI splits.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
 - **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
 - **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
@@ -150,8 +150,8 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Restore the authorized normal-only HAI custody binding for VALIDATION V2.
-- Do not search local drives or open test1/test2 as a workaround.
+- DATA-POLICY-001의 승인된 코드 경로로 normal-only HAI custody를 복구한다.
+- 사용자 경로를 요청하거나 test1/test2를 여는 우회는 금지한다.
 - Resume with EXP-01 and EXP-02 from their frozen preregistrations.
 - Review DG-03 only after the natural cohort and exact provider budget are frozen.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
@@ -159,6 +159,6 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Exact next task
 
-Management: **CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer**
+Management: **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

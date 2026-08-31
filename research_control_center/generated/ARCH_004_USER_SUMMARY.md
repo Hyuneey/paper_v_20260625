@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=5346d667107de191b6acec481450f36906193d1f4dfa3e8831e02653607ac0bf authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 어떻게 만들어지는가
 
 ## Evidence Pack
@@ -47,4 +47,4 @@ fail-closed outcome이며 runtime `abstain`과 다르다.
 T0는 frozen input에서 deterministic하다. LLM arms는 model/config, prompt, evidence, request,
 response와 ledger hash가 추적되지만 temperature 0.7, seed 없음이므로 bitwise deterministic하지 않다.
 
-다음 task는 **CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer**이다.
+다음 task는 **V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4**이다.

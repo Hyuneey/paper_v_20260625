@@ -20,7 +20,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "BLOCKED_NORMAL_DATA_NOT_FOUND")
+        self.assertEqual(state["program_status"], "NORMAL_ONLY_CODE_MATERIALIZATION_PENDING")
         self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
         self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
         self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")
@@ -28,8 +28,13 @@ class ValidationV2ProgramTests(unittest.TestCase):
             state["fresh_machine_synthetic"]["status"],
             "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
         )
-        self.assertFalse(
-            state["execution_blocker"]["evidence"]["authorized_data_root_environment_binding_present"]
+        self.assertEqual(state["dataset_acquisition_policy"]["policy_id"], "DATA-POLICY-001")
+        self.assertEqual(state["dataset_acquisition_policy"]["next_action"], "CODE_BASED_MATERIALIZATION")
+        self.assertFalse(state["dataset_acquisition_policy"]["user_local_path_required"])
+        self.assertEqual(state["historical_execution_blocker"]["code"], "BLOCKED_NORMAL_DATA_NOT_FOUND")
+        self.assertEqual(
+            state["historical_execution_blocker"]["disposition"],
+            "HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC",
         )
 
     def test_task_branches_do_not_conflict_with_integration_ref(self) -> None:
@@ -126,6 +131,28 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertFalse(receipt["locator"]["approved_locator_configured"])
         for value in receipt["access_accounting"].values():
             self.assertEqual(value, 0)
+
+    def test_data_policy_uses_code_materialization_before_user_path(self) -> None:
+        policy = json.loads((V2 / "policies" / "DATA_POLICY_001.json").read_text(encoding="utf-8"))
+        self.assertEqual(policy["acquisition_mode"], "CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION")
+        self.assertEqual(policy["official_distribution"], "icsdataset/hai-security-dataset")
+        self.assertEqual(policy["identity_authority"], "PINNED_OFFICIAL_GIT_SNAPSHOT_AND_GIT_LFS_OBJECTS")
+        self.assertFalse(policy["user_local_path_required"])
+        self.assertEqual(policy["missing_data_next_action"], "CODE_BASED_MATERIALIZATION")
+        self.assertEqual(policy["authorized_scope"], ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"])
+
+    def test_current_recovery_outputs_do_not_request_manual_hai_path(self) -> None:
+        current = (
+            ROOT / "research_control_center" / "MY_TODO.md",
+            ROOT / "research_control_center" / "generated" / "GPT_BRIEF.md",
+            V2 / "PROGRAM_STATE.json",
+            V2 / "reports" / "V2_NORMAL_CUSTODY_RECOVERY_REPORT.md",
+            ROOT / "research_control_center" / "SESSION_HANDOFF.md",
+        )
+        for path in current:
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("HAI_NORMAL_ROOT", text, path.name)
+            self.assertTrue("CODE_BASED_MATERIALIZATION" in text or "코드 기반 materialization" in text, path.name)
 
     def test_frozen_preregistrations_remain_unchanged(self) -> None:
         expected = {

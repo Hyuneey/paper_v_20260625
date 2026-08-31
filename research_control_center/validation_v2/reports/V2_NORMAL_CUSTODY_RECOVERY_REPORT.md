@@ -2,18 +2,21 @@
 
 ## Verdict
 
-`BLOCKED_NORMAL_DATA_NOT_FOUND`
+`NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
 
-This means no approved locator is configured. It does not establish that the
-files are absent somewhere on the host.
+The historical `BLOCKED_NORMAL_DATA_NOT_FOUND` record remains valid as an
+execution observation. Its corrected root cause is
+`HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`, not a
+failure by the research owner to provide data.
 
-## Locator audit
+## Permanent recovery policy
 
-- approved environment binding `HAI_NORMAL_ROOT`: absent
-- active worktree ignored local custody binding: absent
-- primary repository ignored local custody binding: absent
-- host-wide search: not performed
-- scientific candidate stat/open/hash/parse: 0
+- policy: `DATA-POLICY-001`
+- acquisition mode: `CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION`
+- official payload route: `icsdataset/hai-security-dataset`
+- identity authority: pinned official Git snapshot and Git-LFS objects
+- user local path required: false by default
+- next action: `CODE_BASED_MATERIALIZATION`
 
 The only allowed safe layout is an explicitly bound external root containing:
 
@@ -28,8 +31,8 @@ No path was inferred, guessed, or printed.
 
 Public authorities provide exact HAI 23.05 split identities, byte sizes, row
 counts, the 87-field raw-header identity, ordered 37-feature P1 contract, and
-file-local strict one-second sampling contract. The single custody issuer may
-use these controls only after an approved explicit locator exists.
+file-local strict one-second sampling contract. The single runner must reuse
+the existing official distribution, byte-equivalence, and provenance controls.
 
 The recovery stage must apply the exact allowlist `{train1, train2, train3,
 train4}` before any candidate stat or open. `test1`, `test2`, held-out, outer,
@@ -46,6 +49,7 @@ sealed, and label inputs remain forbidden.
 
 ## Resume condition
 
-Configure an explicit authorized `HAI_NORMAL_ROOT` or ignored local binding to
-the parent of `hai-23.05/`. Then rerun the single custody issuer. Do not change
-the frozen EXP-01 or EXP-02 preregistrations.
+Run `CODE_BASED_MATERIALIZATION` with
+`scripts/materialize_hai_2305_normal_v2.py`. Issue custody only after all four
+normal files pass exact byte and schema equivalence. Do not change the frozen
+EXP-01 or EXP-02 preregistrations.

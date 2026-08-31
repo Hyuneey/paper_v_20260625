@@ -33,7 +33,7 @@ class Arch010MetricsIntegrityTests(unittest.TestCase):
         self.assertEqual("NOT_ESTABLISHED", metrics["event_independence"])
         self.assertEqual(51019, metrics["normal_exposure_seconds"])
         self.assertTrue(state["last_completed_task"] == "ARCH-011" or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC", "VALIDATION-V2-RESUME-001")))
-        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE")))
+        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE", "V2-HAI")))
 
     def test_generated_summary_is_plain_and_complete(self) -> None:
         summary = (RCC / "generated" / "ARCH_010_USER_SUMMARY.md").read_text(encoding="utf-8")

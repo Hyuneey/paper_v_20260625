@@ -38,18 +38,18 @@ prove scientific utility, causal or physical truth, or generalization.
 - prior independent program QA: PASS
 - PILOT V1 preservation: 3,021/3,021 blobs PASS
 
-## Current blocker
+## Current recovery stage
 
-`BLOCKED_NORMAL_DATA_NOT_FOUND`
+`NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
 
-No approved locator is configured:
+Historical state `BLOCKED_NORMAL_DATA_NOT_FOUND` is preserved, but its recovery
+interpretation was incomplete. The corrected root cause is:
 
-- process `HAI_NORMAL_ROOT` binding: absent
-- active worktree ignored local custody binding: absent
-- primary repository ignored local custody binding: absent
+`HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`
 
-This does not prove the files are absent on the host. No host-wide search was
-performed. No candidate file was statted, opened, hashed, or parsed.
+`DATA-POLICY-001` requires `CODE_BASED_MATERIALIZATION` through the approved
+official distribution workflow before any user-path request. No host-wide
+search or manual upload is part of the normal recovery path.
 
 Missing symbolic bindings:
 
@@ -74,13 +74,14 @@ Public receipt:
 
 ## Exact next task
 
-`CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer`
+`V2-HAI-NORMAL-MATERIALIZATION-001 — CODE_BASED_MATERIALIZATION for train1~4`
 
-The binding must identify an authorized external root whose child is exactly
-`hai-23.05/`. After the single issuer passes identity, schema, P1 order,
-sampling, row closure, hash, and no-mutation checks, resume the unchanged frozen
-EXP-01 and EXP-02 preregistrations. Never search the host or open test1/test2 to
-recover the binding.
+The single materialization runner may acquire only train1 through train4 from
+`icsdataset/hai-security-dataset`. Git/LFS at the pinned official snapshot
+remains the identity authority. After exact identity, schema, P1 order,
+sampling, row closure, hash, and no-mutation checks pass, issue custody and
+resume the unchanged EXP-01 and EXP-02 preregistrations. Never download or open
+test1/test2 in this recovery stage.
 
 ## Future decision gates
 

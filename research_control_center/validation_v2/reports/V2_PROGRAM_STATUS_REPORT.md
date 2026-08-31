@@ -2,19 +2,17 @@
 
 ## Verdict
 
-`BLOCKED_NORMAL_DATA_NOT_FOUND`
+`NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
 
 All currently possible non-scientific work is complete: the shared V2
 foundation, experiment-preparation contracts, portable public audit inputs,
 clean-checkout fresh-environment synthetic rehearsal, RCC synchronization, and
 the professor readiness package.
 
-Stage 3 scientific execution is fail-closed. The current environment provides
-neither the authorized `HAI_NORMAL_ROOT` binding nor an ignored local custody
-binding. No host-wide search, candidate file stat/open/hash/parse, test1/test2
-access, or PILOT V1 private-artifact reuse was attempted. This means no approved
-locator is configured; it is not evidence that the files are absent somewhere
-on the host.
+Stage 3 scientific execution remains fail-closed until `DATA-POLICY-001`
+materializes and binds exactly train1 through train4. The prior
+`BLOCKED_NORMAL_DATA_NOT_FOUND` state is preserved, with root cause corrected
+to `HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`.
 
 ## Formal V4 authority ratification
 
@@ -35,18 +33,17 @@ usefulness.
 
 ## Normal-only custody recovery
 
-The locator and provenance audits identified the safe symbolic layout and
-exact public identities for `HAI_TRAIN1` through `HAI_TRAIN4`, but no approved
-root was configured. Therefore the single custody issuer opened no candidate
-and issued no binding or private manifest. The public-safe blocker receipt is
-`receipts/HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json`.
+The approved recovery action is `CODE_BASED_MATERIALIZATION` through the
+official `icsdataset/hai-security-dataset` payload route. Git/LFS at the pinned
+official snapshot remains the identity authority. The historical public-safe
+blocker receipt remains unchanged.
 
 ## Experiment disposition
 
 | Track | Status | Exact blocker |
 |---|---|---|
-| EXP-01 | PREPARED | approved normal-only HAI locator absent; preregistration unchanged |
-| EXP-02 | PREPARED | approved normal-only HAI locator absent; preregistration unchanged |
+| EXP-01 | PREPARED | code materialization and custody pending; preregistration unchanged |
+| EXP-02 | PREPARED | code materialization and custody pending; preregistration unchanged |
 | EXP-03 | PREPARED | normal cohort absent; DG-03 remains pending before provider calls |
 | Stronger detector | PREPARED | authorized normal-only HAI custody binding absent |
 | EXP-04 | BLOCKED UPSTREAM | normal-only selections and V2 portfolio do not exist |
@@ -86,8 +83,6 @@ performance validation.
 
 ## Resume condition
 
-Restore or issue the explicit authorized normal-only HAI custody binding for
-VALIDATION V2 by configuring an approved `HAI_NORMAL_ROOT` or ignored local
-binding to the parent of `hai-23.05/`. Rerun the single custody issuer, then
-resume the already frozen EXP-01 and EXP-02 preregistrations. Do not rebuild
-their protocols after observing outcomes.
+Execute `scripts/materialize_hai_2305_normal_v2.py`, issue custody after exact
+byte/schema verification, then resume the already frozen EXP-01 and EXP-02
+preregistrations. Do not rebuild their protocols after observing outcomes.

@@ -20,10 +20,10 @@ No test2 or other held-out access is authorized by this program.
   contracts are frozen and synthetic-tested.
 - The clean-checkout fresh-machine synthetic rehearsal passed without
   scientific data.
-- Stage 3 scientific execution is fail-closed because the authorized
-  normal-only HAI custody binding is not present in this environment.
-- Do not search for restricted data or reuse PILOT V1 private inputs. Restore
-  an explicit VALIDATION V2 custody binding before executing EXP-01 or EXP-02.
+- Stage 3 scientific execution is fail-closed while the four normal HAI files
+  are materialized and bound under `DATA-POLICY-001`.
+- Missing HAI 23.05 data must trigger `CODE_BASED_MATERIALIZATION` through the
+  approved official distribution workflow before any user-path request.
 - EXP-03 remains additionally gated by DG-03 immediately before any provider
   contact.
 
@@ -33,12 +33,12 @@ No test2 or other held-out access is authorized by this program.
 - `DG-01 = RESOLVED_BY_USER`
 - Canonical-to-V4 bridge: `NOT_SELECTED`
 - Minimum thesis path bridge requirement: `NOT_REQUIRED`
-- Normal custody recovery: `BLOCKED_NORMAL_DATA_NOT_FOUND`
-- Approved locator configured: `false`
+- Historical blocker: `BLOCKED_NORMAL_DATA_NOT_FOUND`
+- Corrected root cause: `HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`
+- Current recovery: `NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
 - Scientific payload opens, hashes, parses, and label accesses in the recovery
   stage: `0`
 
-The blocker means no approved locator was configured. It does not claim that
-the files are absent somewhere on the host. Configure an explicit authorized
-`HAI_NORMAL_ROOT` or ignored local custody binding to the parent of
-`hai-23.05/`; never perform a host-wide search.
+The approved recovery path is `scripts/materialize_hai_2305_normal_v2.py`,
+which may acquire only train1 through train4. Never perform a host-wide search,
+manual upload, or test1/test2 acquisition as a substitute.

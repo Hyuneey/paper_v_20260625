@@ -48,7 +48,7 @@ class Arch007D0DetectorTests(unittest.TestCase):
     def test_generated_view_and_progression(self):
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
         self.assertTrue(state["last_completed_task"] in {"ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011"} or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC", "VALIDATION-V2-RESUME-001")))
-        self.assertTrue(state["exact_next_task"].startswith(("ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE")))
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE", "V2-HAI")))
         summary = (RCC / "generated" / "ARCH_007_USER_SUMMARY.md").read_text(encoding="utf-8")
         self.assertIn("D0 PCA-SPE", summary)
         self.assertIn("stronger detector", summary)
