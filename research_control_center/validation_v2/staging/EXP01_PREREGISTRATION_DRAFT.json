@@ -1,0 +1,264 @@
+{
+  "schema_version": "draft-1",
+  "artifact_type": "validation_v2_exp01_preregistration_draft",
+  "task_id": "VALIDATION-V2-EXP-01",
+  "status": "IMPLEMENTED_QA_PASS_NOT_FROZEN_NOT_EXECUTED",
+  "title": "GDN normal-data candidate contribution and self-neighbor ablation",
+  "research_question": "Does the corrected self-excluded upstream-aligned GDN add stable, uniquely confirmed, functionally used normal-data candidate information beyond META and STAT?",
+  "claim_boundary": {
+    "allowed": [
+      "learned-graph candidate evidence",
+      "normal-data seed stability",
+      "normal-data split stability",
+      "arm-blind confirmed-relation yield",
+      "bounded normal-sanity functional dependence"
+    ],
+    "prohibited": [
+      "causality",
+      "root cause",
+      "physical truth",
+      "attention as final evidence",
+      "anomaly detection performance",
+      "held-out generalization",
+      "GDN superiority"
+    ]
+  },
+  "pilot_v1_policy": {
+    "immutable": true,
+    "behaviorally_modified": false,
+    "role": "frozen reference only",
+    "artifacts_overwritten": false
+  },
+  "required_authorities": {
+    "validation_protocol": "VALIDATION-V2-PROTOCOL-001",
+    "upstream_repository": "https://github.com/d-ailin/GDN",
+    "upstream_commit": "9853899da860682669a134e4af315d036aab4eca",
+    "backend_classification": "upstream_aligned_validated",
+    "candidate_universe": "exact 144 directed P1 source-target pairs",
+    "feature_context": "full ordered P1 context",
+    "dependency_policy": "exact approved port, re-verified before execution",
+    "preregistration_hash_required": true,
+    "code_and_config_freeze_before_execution": true
+  },
+  "data_policy": {
+    "candidate_fit": [
+      "train1",
+      "train2"
+    ],
+    "relation_confirmation": [
+      "train3"
+    ],
+    "normal_sanity": [
+      "train4"
+    ],
+    "development_test1_access": false,
+    "attack_label_access": false,
+    "test2_access": false,
+    "heldout_access": false,
+    "windows_cross_files": false,
+    "private_values_in_public_artifacts": false
+  },
+  "arms": [
+    {
+      "arm_id": "META_REFERENCE",
+      "role": "non-learned candidate comparator",
+      "primary_for_v2": true
+    },
+    {
+      "arm_id": "STAT_REFERENCE",
+      "role": "normal association candidate comparator",
+      "primary_for_v2": true
+    },
+    {
+      "arm_id": "GDN_FROZEN_SELF_ELIGIBLE",
+      "role": "exact frozen-behavior ablation",
+      "primary_for_v2": false
+    },
+    {
+      "arm_id": "GDN_CORRECTED_SELF_EXCLUDED",
+      "role": "candidate primary arm subject to inclusion rule",
+      "primary_for_v2": "CONDITIONAL"
+    }
+  ],
+  "gdn_constants": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "internal_neighbor_k": 5,
+    "candidate_primary_k": 20,
+    "candidate_sensitivity_k": [
+      10,
+      40
+    ],
+    "no_candidate_padding": true,
+    "same_architecture_and_hyperparameters_across_arms": true,
+    "only_permitted_ablation_difference": "self eligible versus diagonal masked before every learned-graph Top-5"
+  },
+  "corrected_neighbor_contract": {
+    "similarity": "signed embedding cosine",
+    "diagonal_value_before_topk": "-infinity",
+    "topk_order": "largest remaining similarity",
+    "self_neighbor_count_required": 0,
+    "distinct_neighbor_count_required_when_node_count_gt_5": 5,
+    "forward_and_extraction_graph_must_match": true,
+    "candidate_universe_projection_occurs_after_internal_graph": true,
+    "broader_role_mask_added": false
+  },
+  "required_runs": {
+    "primary_combined_view": {
+      "files": [
+        "train1",
+        "train2"
+      ],
+      "arms": [
+        "GDN_FROZEN_SELF_ELIGIBLE",
+        "GDN_CORRECTED_SELF_EXCLUDED"
+      ],
+      "seeds": [
+        11,
+        23,
+        37
+      ]
+    },
+    "split_sensitivity": [
+      {
+        "view": "train1-only",
+        "arm": "GDN_CORRECTED_SELF_EXCLUDED",
+        "seeds": [
+          11,
+          23,
+          37
+        ]
+      },
+      {
+        "view": "train2-only",
+        "arm": "GDN_CORRECTED_SELF_EXCLUDED",
+        "seeds": [
+          11,
+          23,
+          37
+        ]
+      }
+    ],
+    "failure_policy": "any required seed failure fails the affected arm closed; no denominator reduction"
+  },
+  "metrics": {
+    "self_neighbor_mechanics": [
+      "self slot count per seed and arm",
+      "frozen versus corrected Top-K intersection",
+      "frozen versus corrected Top-K Jaccard",
+      "added and removed corrected candidate identities"
+    ],
+    "seed_stability": {
+      "views": [
+        "pairwise Top-K intersection",
+        "pairwise Top-K Jaccard",
+        "selection frequency distribution"
+      ],
+      "stable_pair_predicate": "selected by at least 2 of 3 seeds"
+    },
+    "split_stability": {
+      "views": [
+        "train1-only versus train2-only Top-K intersection",
+        "train1-only versus train2-only Top-K Jaccard"
+      ],
+      "stable_at_20_predicate": "present in both split-specific aggregate Top-20 sets"
+    },
+    "unique_provenance": {
+      "predicate_at_k": "corrected GDN Top-K and absent from META Top-K and STAT Top-K",
+      "interpretation": "set provenance, not utility"
+    },
+    "confirmed_relation_yield": {
+      "primary_formula": "distinct arm Top-20 pairs with at least one train3-confirmed directional relation divided by 20",
+      "confirmation": "common arm-blind normal relation protocol",
+      "provenance_join": "after confirmation outcomes are frozen",
+      "sensitivity_denominator": "actual unpadded prefix count with nominal K and shortfall reported"
+    },
+    "functional_masking": {
+      "evaluation_split": "train4",
+      "operation": "NORMAL_SANITY",
+      "checkpoint": "frozen corrected best checkpoint per combined-view seed",
+      "mask_set": "intersection of corrected Top-20, GDN-unique, seed-stable, split-stable-at-20, and train3-confirmed pairs frozen before train4",
+      "secondary_mask_set": "broader stable GDN-unique Top-20 sensitivity only; cannot satisfy inclusion rule",
+      "refill_removed_edges": false,
+      "outputs": [
+        "baseline MSE",
+        "masked MSE",
+        "absolute delta",
+        "relative delta",
+        "median delta"
+      ],
+      "detectably_positive_predicate": "masked MSE increase greater than max(1e-12, 1e-9 * abs(baseline MSE))",
+      "empty_mask_status": "NOT_APPLICABLE"
+    },
+    "topk_sensitivity": {
+      "primary_k_remains": 20,
+      "sensitivity_only": [
+        10,
+        40
+      ],
+      "post_result_k_selection_allowed": false
+    }
+  },
+  "inclusion_rule": {
+    "retain_status": "RETAIN_GRAPH_GUIDED_CONDITIONALLY",
+    "retain_if_all": [
+      "all authority, custody, completion, privacy, and integrity gates pass",
+      "corrected graphs have zero self neighbors and forward/extraction graph identity matches",
+      "at least one corrected Top-20 pair is GDN-unique, seed-stable, split-stable, and train3-confirmed",
+      "primary stable+unique+split-stable+train3-confirmed mask produces a detectably positive train4 MSE increase in at least 2 of 3 seeds and positive median delta",
+      "no prohibited data, reranking, seed addition, K change, or silent fallback occurred"
+    ],
+    "demote_status": "DEMOTE_GDN_TO_ABLATION",
+    "demote_when": "valid complete experiment fails the stable-unique-confirmed or functional-use condition",
+    "unresolved_status": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
+    "unresolved_when": "authority, dependency, execution, or integrity failure",
+    "primary_path_after_demotion": "META plus STAT",
+    "title_or_contribution_lock_deferred_to": "DG-04"
+  },
+  "planned_code": [
+    "src/paperworks/gdn/upstream_candidate_backend_v2.py",
+    "src/paperworks/validation_v2/exp01_gdn_v1.py",
+    "src/paperworks/validation_v2/exp01_runner_v1.py"
+  ],
+  "planned_tests": [
+    "tests/test_validation_v2_exp01_gdn_v1.py"
+  ],
+  "freeze_order": [
+    "implementation and synthetic tests",
+    "independent implementation QA",
+    "typed preregistration and hashes",
+    "code/config/dependency/data identity freeze",
+    "Commit A before outcomes",
+    "authorized normal-only execution",
+    "raw receipts and arm-blind outcomes freeze",
+    "preregistered analysis",
+    "independent result-integrity audit",
+    "sanitized Commit B"
+  ],
+  "unresolved_blockers": [
+    "approved Torch/PyG environment not re-verified for V2",
+    "META/STAT V2 comparator identities not frozen",
+    "final typed preregistration and implementation identities not yet frozen in Commit A",
+    "normal scientific assets not authorized or accessed by this preparation task"
+  ],
+  "execution_counters": {
+    "scientific_executions": 0,
+    "private_data_accesses": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "pilot_v1_modifications": 0
+  },
+  "multi_agent": {
+    "feasibility_reviewed": true,
+    "specialist": "v2_exp01_prep",
+    "shared_file_writes": false,
+    "implementation_owner": "coordinator single writer",
+    "independent_qa_required": true,
+    "qa_status": "PASS_18_OF_18"
+  }
+}

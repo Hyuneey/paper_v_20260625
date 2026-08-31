@@ -13,7 +13,7 @@ from .schemas.schema_documents_v1 import EMBEDDED_VALIDATION_V2_SCHEMAS, META
 
 
 VALIDATION_V2_META_SCHEMA = META
-VALIDATION_V2_SCHEMA_REGISTRY_VERSION = "1.4.0"
+VALIDATION_V2_SCHEMA_REGISTRY_VERSION = "1.5.0"
 
 
 class ValidationV2SchemaRegistryError(ValueError):
@@ -72,9 +72,11 @@ def _validate_node(value: Any, schema: Mapping[str, Any], root: Mapping[str, Any
     if "$ref" in schema:
         _validate_node(value, _resolve_ref(root, schema["$ref"]), root, location)
         return
-    if "const" in schema and value != schema["const"]:
-        raise ValidationV2SchemaRegistryError(f"{location} const differs")
-    if "enum" in schema and value not in schema["enum"]:
+    if "const" in schema:
+        expected = schema["const"]
+        if type(value) is not type(expected) or value != expected:
+            raise ValidationV2SchemaRegistryError(f"{location} const differs")
+    if "enum" in schema and not any(type(value) is type(item) and value == item for item in schema["enum"]):
         raise ValidationV2SchemaRegistryError(f"{location} enum differs")
     expected_type = schema.get("type")
     type_ok = {

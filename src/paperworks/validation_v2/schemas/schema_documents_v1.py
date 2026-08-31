@@ -441,6 +441,201 @@ COMMON_COMPARISON_RESULT_SCHEMA: Mapping[str, Any] = {
     "$defs": {"sha256": SHA, "text": TEXT},
 }
 
+
+def _exp01_closed_schema(
+    *, schema_id: str, title: str, required: tuple[str, ...], schema_token: str, version: str,
+    property_overrides: Mapping[str, Any] | None = None,
+) -> Mapping[str, Any]:
+    properties: dict[str, Any] = {name: {} for name in required}
+    properties["schema"] = {"const": schema_token}
+    properties["schema_version"] = {"const": version}
+    for name in required:
+        if name.endswith("_hash") or name.endswith("_sha256"):
+            properties[name] = {"$ref": "#/$defs/sha256"}
+    if "source_commit" in properties:
+        properties["source_commit"] = {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+    if property_overrides:
+        properties.update(property_overrides)
+    return {
+        "$schema": META,
+        "$id": schema_id,
+        "title": title,
+        "type": "object",
+        "additionalProperties": False,
+        "required": list(required),
+        "properties": properties,
+        "$defs": {"sha256": SHA},
+    }
+
+
+EXP01_PREREGISTRATION_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-preregistration-v1",
+    title="VALIDATION V2 EXP-01 Preregistration V1",
+    schema_token="paperworks.validation_v2.exp01_preregistration_v1",
+    version="1.0.0",
+    required=(
+        "schema", "schema_version", "source_commit", "protocol_hash", "candidate_universe_hash",
+        "feature_contract_hash", "data_authority_hash", "neighbor_policy_hash", "training_config_hash",
+        "seeds", "primary_k", "sensitivity_k", "fit_roles", "confirmation_role", "functional_role",
+        "test1_authorized", "labels_authorized", "test2_authorized", "heldout_authorized",
+        "upstream_commit", "arms", "required_views", "functional_threshold", "failure_rule",
+        "seed_stability_rule", "split_stability_rule", "topk_prefix_rule", "primary_mask_rule",
+        "intervention_rule", "functional_inclusion_rule", "claim_boundary", "inclusion_rule",
+        "preregistration_hash",
+    ),
+    property_overrides={
+        "seeds": {"const": [11, 23, 37]},
+        "primary_k": {"const": 20},
+        "sensitivity_k": {"const": [10, 40]},
+        "fit_roles": {"const": ["train1", "train2"]},
+        "confirmation_role": {"const": "train3"},
+        "functional_role": {"const": "train4"},
+        "test1_authorized": {"const": False},
+        "labels_authorized": {"const": False},
+        "test2_authorized": {"const": False},
+        "heldout_authorized": {"const": False},
+        "upstream_commit": {"const": "9853899da860682669a134e4af315d036aab4eca"},
+        "arms": {"const": ["META_REFERENCE", "STAT_REFERENCE", "GDN_FROZEN_SELF_ELIGIBLE", "GDN_CORRECTED_SELF_EXCLUDED"]},
+        "required_views": {"const": ["TRAIN1_TRAIN2_COMBINED", "TRAIN1_ONLY", "TRAIN2_ONLY"]},
+        "functional_threshold": {"const": "DELTA_GT_MAX_1E-12_OR_1E-9_TIMES_ABS_BASELINE"},
+        "failure_rule": {"const": "INCOMPLETE_AUTHORITY_OR_EXECUTION_FAILS_CLOSED_NOT_NEGATIVE_EVIDENCE"},
+        "seed_stability_rule": {"const": "PAIR_PRESENT_IN_AT_LEAST_TWO_OF_SEEDS_11_23_37"},
+        "split_stability_rule": {"const": "PAIR_PRESENT_IN_BOTH_TRAIN1_ONLY_AND_TRAIN2_ONLY"},
+        "topk_prefix_rule": {"const": "EXACT_UNPADDED_PREFIX_K_WITH_DUPLICATES_FORBIDDEN"},
+        "primary_mask_rule": {"const": "CORRECTED_INTERSECT_UNIQUE_INTERSECT_SEED_STABLE_INTERSECT_SPLIT_STABLE_INTERSECT_CONFIRMED"},
+        "intervention_rule": {"const": "MASK_EXACT_PRIMARY_EDGES_AND_COMPARE_HELD_NORMAL_TRAIN4_MSE_PER_SEED"},
+        "functional_inclusion_rule": {"const": "POSITIVE_DELTA_IN_AT_LEAST_TWO_SEEDS_AND_POSITIVE_MEDIAN"},
+        "claim_boundary": {"const": "NORMAL_DATA_CANDIDATE_GUIDANCE_NOT_CAUSALITY_OR_DETECTION_PERFORMANCE"},
+        "inclusion_rule": {"const": "STABLE_UNIQUE_CONFIRMED_AND_FUNCTIONALLY_USED"},
+    },
+)
+
+EXP01_RUN_AUTHORIZATION_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-run-authorization-v2",
+    title="VALIDATION V2 EXP-01 Run Authorization V2",
+    schema_token="paperworks.validation_v2.exp01_run_authorization_v2",
+    version="2.0.0",
+    required=(
+        "schema", "schema_version", "preregistration_hash", "data_authority_hash",
+        "feature_contract_hash", "candidate_universe_hash", "training_config_hash",
+        "neighbor_policy_hash", "source_commit", "split_roles", "labels_authorized",
+        "test1_authorized", "test2_authorized", "heldout_authorized", "authorization_hash",
+    ),
+    property_overrides={
+        "split_roles": {"const": ["train1", "train2"]},
+        "labels_authorized": {"const": False},
+        "test1_authorized": {"const": False},
+        "test2_authorized": {"const": False},
+        "heldout_authorized": {"const": False},
+    },
+)
+
+EXP01_TRAINING_INPUT_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-training-input-v2",
+    title="VALIDATION V2 EXP-01 Authorized Training Input V2",
+    schema_token="paperworks.validation_v2.exp01_authorized_training_input_v2",
+    version="2.0.0",
+    required=(
+        "schema", "schema_version", "segments", "feature_order", "candidate_pairs",
+        "data_authority_hash", "feature_contract_hash", "candidate_universe_hash", "input_hash",
+    ),
+    property_overrides={
+        "segments": {"type": "array", "minItems": 1, "items": {"type": "array", "minItems": 1, "items": {"type": "array", "minItems": 1}}},
+        "feature_order": {"type": "array", "minItems": 6, "items": {"type": "string", "minLength": 1}},
+        "candidate_pairs": {"type": "array", "minItems": 1, "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "minLength": 1}}},
+    },
+)
+
+EXP01_SEED_RECEIPT_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-seed-receipt-v2",
+    title="VALIDATION V2 EXP-01 Seed Run Receipt V2",
+    schema_token="paperworks.validation_v2.exp01_seed_run_receipt_v2",
+    version="2.0.0",
+    required=(
+        "schema", "schema_version", "seed", "preregistration_hash", "authorization_hash", "input_hash",
+        "neighbor_policy_hash", "training_config_hash", "forward_internal_graph_hash",
+        "extraction_internal_graph_hash", "selected_edges", "candidate_similarities", "epoch_count",
+        "best_validation_loss", "graph_hash", "receipt_hash",
+    ),
+    property_overrides={
+        "seed": {"enum": [11, 23, 37]},
+        "selected_edges": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "candidate_similarities": {"type": "array", "items": {"type": "array", "minItems": 3, "maxItems": 3}},
+        "epoch_count": {"type": "integer"},
+    },
+)
+
+EXP01_SEED_BUNDLE_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-seed-bundle-v1",
+    title="VALIDATION V2 EXP-01 Seed Bundle Receipt V1",
+    schema_token="paperworks.validation_v2.exp01_seed_bundle_receipt_v1",
+    version="1.0.0",
+    required=(
+        "schema", "schema_version", "preregistration_hash", "authorization_hash", "input_hash",
+        "seeds", "seed_receipt_hashes", "seed_graph_hashes", "bundle_hash",
+    ),
+    property_overrides={
+        "seeds": {"const": [11, 23, 37]},
+        "seed_receipt_hashes": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/sha256"}},
+        "seed_graph_hashes": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/sha256"}},
+    },
+)
+
+EXP01_ANALYSIS_RECEIPT_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-analysis-receipt-v1",
+    title="VALIDATION V2 EXP-01 Analysis Receipt V1",
+    schema_token="paperworks.validation_v2.exp01_analysis_receipt_v1",
+    version="1.0.0",
+    required=(
+        "schema", "schema_version", "receipt_type", "preregistration_hash", "candidate_universe_hash",
+        "training_config_hash", "neighbor_policy_hash", "input_hashes", "output_hash", "receipt_hash",
+    ),
+    property_overrides={
+        "receipt_type": {"enum": ["CHECKPOINT_SET", "PROVENANCE", "CONFIRMATION", "INTERVENTION"]},
+        "input_hashes": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"$ref": "#/$defs/sha256"}},
+    },
+)
+
+EXP01_CONTRIBUTION_EVIDENCE_SCHEMA = _exp01_closed_schema(
+    schema_id="paperworks://validation-v2/exp01-contribution-evidence-v1",
+    title="VALIDATION V2 EXP-01 Contribution Evidence V1",
+    schema_token="paperworks.validation_v2.exp01_contribution_evidence_v1",
+    version="1.0.0",
+    required=(
+        "schema", "schema_version", "preregistration_hash", "candidate_universe_hash",
+        "training_config_hash", "neighbor_policy_hash", "seed_run_receipt_hashes", "authority_complete",
+        "execution_complete", "privacy_pass", "all_required_seeds_complete", "corrected_self_neighbor_count",
+        "forward_extraction_match", "corrected_top20_pairs", "unique_pairs", "seed_stable_pairs",
+        "split_stable_pairs", "confirmed_pairs", "primary_mask_pairs", "masking_delta_by_seed",
+        "masking_baseline_by_seed", "checkpoint_receipt", "provenance_receipt", "confirmation_receipt",
+        "intervention_receipt", "prohibited_input_used", "result_driven_change_used", "failure_reason",
+        "evidence_hash",
+    ),
+    property_overrides={
+        "seed_run_receipt_hashes": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/sha256"}},
+        "authority_complete": {"type": "boolean"},
+        "execution_complete": {"type": "boolean"},
+        "privacy_pass": {"type": "boolean"},
+        "all_required_seeds_complete": {"type": "boolean"},
+        "corrected_self_neighbor_count": {"type": "integer"},
+        "forward_extraction_match": {"type": "boolean"},
+        "corrected_top20_pairs": {"type": "array", "maxItems": 20, "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "unique_pairs": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "seed_stable_pairs": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "split_stable_pairs": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "confirmed_pairs": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "primary_mask_pairs": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2}},
+        "masking_delta_by_seed": {"type": "array", "minItems": 3, "maxItems": 3},
+        "masking_baseline_by_seed": {"type": "array", "minItems": 3, "maxItems": 3},
+        "checkpoint_receipt": {"type": "object"},
+        "provenance_receipt": {"type": "object"},
+        "confirmation_receipt": {"type": "object"},
+        "intervention_receipt": {"type": "object"},
+        "prohibited_input_used": {"type": "boolean"},
+        "result_driven_change_used": {"type": "boolean"},
+    },
+)
+
 EMBEDDED_VALIDATION_V2_SCHEMAS: Mapping[str, Mapping[str, Any]] = {
     "common_alarm_timeline_v1.schema.json": COMMON_ALARM_TIMELINE_SCHEMA,
     "common_comparison_result_v1.schema.json": COMMON_COMPARISON_RESULT_SCHEMA,
@@ -454,4 +649,11 @@ EMBEDDED_VALIDATION_V2_SCHEMAS: Mapping[str, Mapping[str, Any]] = {
     "formal_v4_runtime_authorization_v1.schema.json": RUNTIME_SCHEMA,
     "file_second_series_authority_v1.schema.json": FILE_SECOND_SERIES_SCHEMA,
     "label_timeline_v1.schema.json": LABEL_TIMELINE_SCHEMA,
+    "exp01_preregistration_v1.schema.json": EXP01_PREREGISTRATION_SCHEMA,
+    "exp01_run_authorization_v2.schema.json": EXP01_RUN_AUTHORIZATION_SCHEMA,
+    "exp01_authorized_training_input_v2.schema.json": EXP01_TRAINING_INPUT_SCHEMA,
+    "exp01_seed_run_receipt_v2.schema.json": EXP01_SEED_RECEIPT_SCHEMA,
+    "exp01_seed_bundle_receipt_v1.schema.json": EXP01_SEED_BUNDLE_SCHEMA,
+    "exp01_analysis_receipt_v1.schema.json": EXP01_ANALYSIS_RECEIPT_SCHEMA,
+    "exp01_contribution_evidence_v1.schema.json": EXP01_CONTRIBUTION_EVIDENCE_SCHEMA,
 }
