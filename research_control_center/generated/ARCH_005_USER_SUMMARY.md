@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bf68cf8b8ce1d26ec969e6833b53a2f85f5edaab0fa10a53a00b165f37d069ec authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Proposal부터 COMMON-42와 D1까지
 
 Proposal은 frozen relation에 묶인 construction 후보이고, canonical `DelayedResponseRuleV1`은
@@ -21,4 +21,4 @@ match였지만 runtime authority/reference identity는 별도로 rebound됐다.
 
 기억할 한 문장: **Verifier acceptance는 scientific validation도 runtime authorization도 아니다.**
 
-다음 task는 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**이다.
+다음 task는 **EXP-01-PREP — GDN Contribution Preregistration & Harness**이다.

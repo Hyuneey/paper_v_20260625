@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=76d1e3e02cdb89f1cc9247c9d3e0fbbeba5ad0ac6822134552e9d5ec0fea61a3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bf68cf8b8ce1d26ec969e6833b53a2f85f5edaab0fa10a53a00b165f37d069ec authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -64,5 +64,5 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract**이다. ARCH-011은 이 remediation이나 test2 access를
+다음 task는 **EXP-01-PREP — GDN Contribution Preregistration & Harness**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.
