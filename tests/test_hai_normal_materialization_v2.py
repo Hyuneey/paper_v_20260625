@@ -99,6 +99,19 @@ class HAINormalMaterializationV2Tests(unittest.TestCase):
             with self.assertRaises(subject.HAINormalMaterializationV2Error):
                 subject.validate_public_receipt(value)
 
+    def test_public_custody_binding_is_exact_four_and_zero_evaluation_access(self) -> None:
+        binding = subject.build_public_custody_binding(
+            materialization_receipt_hash="b" * 64,
+            execution_commit="a" * 40,
+            created_at_utc="2026-08-31T00:00:00Z",
+        )
+        self.assertEqual(binding["self_hash"], subject.canonical_hash(binding))
+        self.assertEqual(binding["status"], "NORMAL_ONLY_CUSTODY_READY")
+        self.assertEqual(binding["bound_split_ids"], ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"])
+        self.assertTrue(binding["binding_issued"])
+        for key in ("test1_accesses", "test2_accesses", "label_accesses", "held_out_accesses", "private_exposures"):
+            self.assertEqual(binding[key], 0)
+
     def test_runner_has_fixed_allowlist_and_no_full_historical_download(self) -> None:
         source = (Path(__file__).resolve().parents[1] / "scripts/materialize_hai_2305_normal_v2.py").read_text(encoding="utf-8")
         self.assertIn("raw_specs()", source)

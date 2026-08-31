@@ -233,9 +233,40 @@ def validate_public_receipt(document: Mapping[str, Any]) -> str:
     return str(document["self_hash"])
 
 
+def build_public_custody_binding(
+    *, materialization_receipt_hash: str, execution_commit: str, created_at_utc: str,
+) -> dict[str, Any]:
+    if any(len(value) != size or set(value) - set("0123456789abcdef") for value, size in ((materialization_receipt_hash, 64), (execution_commit, 40))):
+        fail(BLOCKED_MATERIALIZATION)
+    document: dict[str, Any] = {
+        "schema_version": "hai_normal_only_custody_binding_v2",
+        "artifact_type": "HAI_NORMAL_ONLY_CUSTODY_BINDING_V2",
+        "status": "NORMAL_ONLY_CUSTODY_READY",
+        "policy_id": POLICY_ID,
+        "study_identity": "VALIDATION_V2",
+        "materialization_receipt_hash": materialization_receipt_hash,
+        "execution_commit": execution_commit,
+        "binding_issued": True,
+        "bound_split_ids": [item.symbolic_id for item in NORMAL_SPLITS],
+        "allowed_operation_matrix": {
+            item.symbolic_id: list(item.allowed_operations) for item in NORMAL_SPLITS
+        },
+        "forbidden_split_classes": list(FORBIDDEN_SPLIT_CLASSES),
+        "private_binding_location": "LOCAL_IGNORED_CUSTODY_FILE_REDACTED",
+        "test1_accesses": 0,
+        "test2_accesses": 0,
+        "label_accesses": 0,
+        "held_out_accesses": 0,
+        "private_exposures": 0,
+        "created_at_utc": created_at_utc,
+    }
+    document["self_hash"] = canonical_hash(document)
+    return document
+
+
 __all__ = [
     "AUTHORIZED_RELATIVE_PATHS", "BLOCKED_EGRESS", "BLOCKED_EQUIVALENCE",
     "BLOCKED_MATERIALIZATION", "BLOCKED_METADATA", "HAINormalMaterializationV2Error",
-    "NORMAL_SPLITS", "POLICY_ID", "build_public_receipt", "canonical_hash",
+    "NORMAL_SPLITS", "POLICY_ID", "build_public_custody_binding", "build_public_receipt", "canonical_hash",
     "fail", "raw_specs", "require_authorized_members", "validate_public_receipt",
 ]

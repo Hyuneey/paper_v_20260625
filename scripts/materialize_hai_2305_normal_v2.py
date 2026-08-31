@@ -28,6 +28,7 @@ from paperworks.data.hai_normal_materialization_v2 import (  # noqa: E402
     HAINormalMaterializationV2Error,
     NORMAL_SPLITS,
     PINNED_GIT_COMMIT,
+    build_public_custody_binding,
     build_public_receipt,
     canonical_hash,
     fail,
@@ -43,6 +44,7 @@ from paperworks.data.hai_provenance_v1 import (  # noqa: E402
 
 
 PUBLIC_RECEIPT = ROOT / "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_MATERIALIZATION_RECEIPT_V2.json"
+PUBLIC_BINDING = ROOT / "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json"
 
 
 def _load_module(path: Path, name: str) -> ModuleType:
@@ -106,6 +108,25 @@ def _atomic_json(path: Path, document: Mapping[str, Any]) -> None:
     os.replace(temporary, path)
 
 
+def _write_private_binding(repository_root: Path, cache_root: Path) -> None:
+    """Issue the ignored capability locator without exposing it publicly."""
+
+    path = repository_root / ".env.custody.local"
+    expected = f"HAI_DATA_ROOT={cache_root.resolve()}\n"
+    if path.exists():
+        if path.is_symlink() or path.read_text(encoding="utf-8") != expected:
+            fail(BLOCKED_MATERIALIZATION)
+        return
+    temporary = path.with_suffix(path.suffix + ".part")
+    if temporary.exists():
+        fail(BLOCKED_MATERIALIZATION)
+    with temporary.open("x", encoding="utf-8", newline="\n") as stream:
+        stream.write(expected)
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temporary, path)
+
+
 def _structural_audit(cache_root: Path) -> list[dict[str, Any]]:
     first_path = cache_root / PurePosixPath(NORMAL_SPLITS[0].relative_path)
     raw_header, canonical_header, _ = _read_header(first_path)
@@ -157,7 +178,9 @@ def _structural_audit(cache_root: Path) -> list[dict[str, Any]]:
     return records
 
 
-def materialize_normal_only_v2(repository_root: Path, public_receipt: Path) -> dict[str, Any]:
+def materialize_normal_only_v2(
+    repository_root: Path, public_receipt: Path, public_binding: Path,
+) -> dict[str, Any]:
     repository_root = repository_root.resolve()
     require_authorized_members(tuple(item.relative_path for item in NORMAL_SPLITS))
     cache_root = _cache_root(repository_root)
@@ -200,15 +223,24 @@ def materialize_normal_only_v2(repository_root: Path, public_receipt: Path) -> d
         private_manifest["self_hash"] = canonical_hash(private_manifest)
         private_path = cache_root / ".validation_v2_normal_materialization_manifest.json"
         _atomic_json(private_path, private_manifest)
+        _write_private_binding(repository_root, cache_root)
+        created_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        execution_commit = _git_head(repository_root)
         receipt = build_public_receipt(
-            execution_commit=_git_head(repository_root),
+            execution_commit=execution_commit,
             code_hash=_code_hash(),
             private_manifest_hash=str(private_manifest["self_hash"]),
             structural_records=structural,
-            created_at_utc=datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            created_at_utc=created_at,
         )
         validate_public_receipt(receipt)
         _atomic_json(public_receipt, receipt)
+        binding = build_public_custody_binding(
+            materialization_receipt_hash=str(receipt["self_hash"]),
+            execution_commit=execution_commit,
+            created_at_utc=created_at,
+        )
+        _atomic_json(public_binding, binding)
         return receipt
     except HAINormalMaterializationV2Error:
         raise
@@ -228,9 +260,10 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repository-root", type=Path, default=ROOT)
     parser.add_argument("--public-receipt", type=Path, default=PUBLIC_RECEIPT)
+    parser.add_argument("--public-binding", type=Path, default=PUBLIC_BINDING)
     args = parser.parse_args()
     try:
-        receipt = materialize_normal_only_v2(args.repository_root, args.public_receipt)
+        receipt = materialize_normal_only_v2(args.repository_root, args.public_receipt, args.public_binding)
     except HAINormalMaterializationV2Error as exc:
         print(exc.state)
         return 2
