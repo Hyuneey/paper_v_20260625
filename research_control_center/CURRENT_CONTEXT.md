@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=531715147a805705e6bee5c8227139ac6ab613dab0be18a83f7552d1efb368f3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-31
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Freeze EXP-01 GDN contribution preregistration and corrected self-excluded candidate contract before normal-only execution.
-- Freeze EXP-02 numeric-policy and stronger-detector preregistrations before any development execution.
-- Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
+- Restore an explicit authorized normal-only HAI custody binding for VALIDATION V2 without searching local drives or opening test1/test2.
+- Execute EXP-01 and EXP-02 from the frozen preregistrations before any test1 development observation.
+- Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-Exact next management task: **EXP-01-PREP — GDN Contribution Preregistration & Harness**
+Exact next management task: **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

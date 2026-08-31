@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=531715147a805705e6bee5c8227139ac6ab613dab0be18a83f7552d1efb368f3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -63,25 +63,25 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - Held-out generalization is unavailable because no OUTER scientific result exists.
-- Fresh-machine reproducibility is incomplete despite strong public traceability.
+- Fresh-machine synthetic passed; scientific reproduction remains custody-blocked.
 
 ## 다음에 해야 할 것
 
-- Freeze EXP-01 GDN contribution preregistration and corrected self-excluded candidate contract before normal-only execution.
-- Freeze EXP-02 numeric-policy and stronger-detector preregistrations before any development execution.
-- Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access.
+- Restore an explicit authorized normal-only HAI custody binding for VALIDATION V2 without searching local drives or opening test1/test2.
+- Execute EXP-01 and EXP-02 from the frozen preregistrations before any test1 development observation.
+- Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-관리 작업의 다음 단계는 **EXP-01-PREP — GDN Contribution Preregistration & Harness** 이고, 이후 전체
+관리 작업의 다음 단계는 **EXP-01-EXEC — Restore authorized normal-only HAI custody binding** 이고, 이후 전체
 구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- Explain why old OUTER has no result and cannot simply retry.
-- Decide same-physical-test2 eligibility only within a new preregistered study.
-- Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
-- Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.
-- Track EXP-01 preparation as the first experiment-specific gate after all shared foundation contracts PASS.
-- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
+- Restore the authorized normal-only HAI custody binding for VALIDATION V2.
+- Do not search local drives or open test1/test2 as a workaround.
+- Resume with EXP-01 and EXP-02 from their frozen preregistrations.
+- Review DG-03 only after the natural cohort and exact provider budget are frozen.
+- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
+- Review the professor readiness package before submission; no email has been sent.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

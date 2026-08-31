@@ -14,3 +14,15 @@ Start with these controls:
 The current development split is `test1`. It remains development-only.
 No test2 or other held-out access is authorized by this program.
 
+## Current execution status
+
+- Shared V2 authority, custody, protocol, metric, and experiment-preparation
+  contracts are frozen and synthetic-tested.
+- The clean-checkout fresh-machine synthetic rehearsal passed without
+  scientific data.
+- Stage 3 scientific execution is fail-closed because the authorized
+  normal-only HAI custody binding is not present in this environment.
+- Do not search for restricted data or reuse PILOT V1 private inputs. Restore
+  an explicit VALIDATION V2 custody binding before executing EXP-01 or EXP-02.
+- EXP-03 remains additionally gated by DG-03 immediately before any provider
+  contact.

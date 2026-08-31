@@ -71,11 +71,17 @@ class DashboardV2Tests(unittest.TestCase):
         self.assertEqual({"universe": 144, "META": 20, "STAT": 20, "GDN": 20, "union": 47, "confirmed": 42}, self.vm["candidate_path"])
         self.assertEqual({"T0": "42/42", "T1": "42/42", "T1-B": "42/42", "T2": "39/42", "feedback_actions": 0}, self.vm["construction"])
 
-    def test_experiment_gates_match_gap_registry(self) -> None:
+    def test_experiment_gates_match_current_registry_state(self) -> None:
         gates = {row["experiment_id"]: row["gate"]["ready_now"] for row in self.vm["experiments"]}
         self.assertEqual("BLOCKED", gates["EXP-01"])
-        self.assertEqual("READY_WITH_CONDITIONS", gates["EXP-02"])
+        self.assertEqual("BLOCKED", gates["EXP-02"])
         self.assertEqual("NOT_REQUIRED", gates["EXP-06"])
+
+    def test_overview_uses_current_execution_actions(self) -> None:
+        self.assertIn("DATA-AUTHORITY", self.html)
+        self.assertIn("normal HAI custody binding 복원", self.html)
+        for stale in ("EXP-01-PREP", "EXP-02-PREP", "DETECTOR-PREP"):
+            self.assertNotIn(stale, self.html)
 
     def test_korean_primary_labels_preserve_scientific_identifiers(self) -> None:
         for label in ("현재 연구 단계", "정확한 다음 작업", "전체 연구 시스템 지도", "결과 무결성 확인", "과학적 검증"):

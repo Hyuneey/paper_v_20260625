@@ -408,7 +408,7 @@
     "reproduction_levels": {
       "traceability": "STRONG_SUPPORTED",
       "same_machine_replay": "PARTIAL_MODERATE",
-      "fresh_machine_synthetic": "NOT_DEMONSTRATED_PARTIALLY_PREPARED",
+      "fresh_machine_synthetic": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
       "fresh_machine_scientific": "NOT_DEMONSTRATED_BLOCKED",
       "independent_external": "PARTIAL_CODE_ONLY_FULL_SCIENCE_UNAVAILABLE"
     },
@@ -416,14 +416,14 @@
     "pilot_v1": "PRESERVED_IMMUTABLE_WITH_EXISTING_QUALIFICATIONS",
     "validation_v2": "SEPARATE_PROSPECTIVE_METHOD_CONFIG_AUTHORITY_ENVIRONMENT_AND_EXPERIMENT_IDENTITIES",
     "authority_preference": "DEC-020 RESOLVED: FORMAL_V4 is the separate VALIDATION V2 scientific Rule/runtime authority; canonical RuleV1/VerifierV1 claims are explicitly not inherited.",
-    "fresh_machine_timing": "after authority/dependency/schema/entrypoint remediation and before held-out access",
+    "fresh_machine_timing": "completed after public portability remediation and before scientific or held-out access",
     "gap_priority_changes": 0,
     "new_root_blockers": 0,
     "removed_blockers": 0,
     "warning": "Traceability is not fresh-machine reproducibility; OUTER result unavailable is not negative performance."
   },
   "pre_validation_readiness": {
-    "status": "REMEDIATION_IN_PROGRESS",
+    "status": "EXPERIMENT_PREPARATION_FROZEN_SCIENTIFIC_INPUT_AUTHORITY_BLOCKED",
     "raw_findings": 120,
     "root_issues": 19,
     "source_severity": {"critical": 0, "high": 54, "medium": 55, "low": 11},
@@ -441,13 +441,13 @@
     "p0_design_gates": [],
     "experiment_gates": {
       "EXP-01": "BLOCKED",
-      "EXP-02": "READY_WITH_CONDITIONS",
+      "EXP-02": "BLOCKED",
       "EXP-03": "BLOCKED",
       "EXP-04": "BLOCKED",
       "EXP-05": "BLOCKED",
       "EXP-06": "NOT_REQUIRED",
       "NEW_HELD_OUT": "BLOCKED",
-      "FRESH_MACHINE": "CONDITIONAL"
+      "FRESH_MACHINE": "READY"
     },
     "past_pilot": "INTERPRETABLE_WITH_QUALIFICATIONS; INVALIDATED_ARTIFACTS=0",
     "scientific_versioning": "Preserve PILOT V1; all remediated future work is VALIDATION V2.",
@@ -510,41 +510,57 @@
     "stage3_requirement": "Bind full Formal V4 descriptor/numeric timing authority, one-shot label capability, and post-metric prediction byte verification.",
     "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only."
   },
+  "validation_v2_program": {
+    "status": "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY",
+    "stage": "STAGE_3_SCIENTIFIC_INPUT_AUTHORITY_BLOCKED",
+    "preparation": "EXP-01, EXP-02, EXP-03, stronger-detector, EXP-04 and EXP-05 contracts are frozen and synthetic-tested.",
+    "scientific_input_authority": "REQUIRED_NORMAL_SCIENTIFIC_INPUT_AUTHORITY_UNAVAILABLE",
+    "blocked_scope": "Scientific Stage 3 only; reports, synthetic tests, portability and privacy validation remain available.",
+    "required_recovery": "Restore or issue the authorized normal-only HAI custody binding for VALIDATION V2 before EXP-01 or EXP-02 execution.",
+    "provider_gate": "DG-03 remains pending and is triggered only after the natural cohort and exact call/token budget can be frozen.",
+    "fresh_machine_synthetic": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
+    "fresh_machine_receipt_hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a",
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "pilot_v1_impact": "NONE; 3021 of 3021 preservation entries remain byte-identical."
+  },
   "top_priorities": [
-    "Freeze EXP-01 GDN contribution preregistration and corrected self-excluded candidate contract before normal-only execution.",
-    "Freeze EXP-02 numeric-policy and stronger-detector preregistrations before any development execution.",
-    "Close dependency schema and entrypoint portability gaps and run a synthetic-only fresh-machine rehearsal before held-out access."
+    "Restore an explicit authorized normal-only HAI custody binding for VALIDATION V2 without searching local drives or opening test1/test2.",
+    "Execute EXP-01 and EXP-02 from the frozen preregistrations before any test1 development observation.",
+    "Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists."
   ],
   "highest_priority_work": [
-    "Prepare EXP-01 EXP-02 EXP-03 stronger-detector and EXP-05 gates against the frozen shared contracts.",
-    "Execute only preregistered normal-only experiment stages before any test1 development observation.",
-    "Rehearse the public synthetic release on a fresh machine before any new held-out study."
+    "Recover the missing normal scientific input authority; do not infer or discover a private path.",
+    "Run the already frozen normal-only EXP-01 EXP-02 and stronger-detector stages, then build new V2 authority artifacts.",
+    "Keep EXP-04 and EXP-05 blocked until their upstream selections, durable predictions and materialized V2 traces exist."
   ],
   "user_todo_items": [
-    {"id": "USER-ARCH011-001", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Understand why old OUTER has no scientific result.", "why": "A custody blocker is not negative test2 performance.", "linked": "ARCH_011_OUTER_CUSTODY_AUDIT.md", "status": "OPEN"},
-    {"id": "USER-ARCH011-002", "category": "DECISION NEEDED", "priority": "HIGH", "task": "Decide whether the same physical test2 may be considered in a genuinely new preregistered study.", "why": "Content remained sealed, but reuse is not automatically authorized.", "linked": "ARCH_011_NEW_HELDOUT_REQUIREMENTS.md", "status": "OPEN"},
-    {"id": "USER-ARCH011-003", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Understand the five reproduction levels and the current partial status.", "why": "Traceability must not be mistaken for fresh-machine reproduction.", "linked": "ARCH_011_REPRODUCTION_LEVELS.md", "status": "OPEN"},
-    {"id": "USER-ARCH011-004", "category": "REVIEW COMPLETED", "priority": "HIGH", "task": "Review the canonical-to-V4 bridge recommendation.", "why": "Formal V4 was selected because lossless equivalence was not established.", "linked": "ARCH_011_AUTHORITY_OPTIONS.csv", "status": "COMPLETED"},
-    {"id": "USER-ARCH011-005", "category": "DECISION COMPLETED", "priority": "HIGH", "task": "Approve the final scientific authority target.", "why": "DEC-020 now selects Formal V4 for VALIDATION V2.", "linked": "DEC-020", "status": "COMPLETED"},
-    {"id": "USER-ARCH011-006", "category": "APPROVED POLICY", "priority": "HIGH", "task": "Confirm PILOT V1 preservation and VALIDATION V2 separation in the remediation record.", "why": "The user-approved policy applies all changes prospectively.", "linked": "ARCH_011_VALIDATION_V2_VERSIONING.md", "status": "COMPLETED"},
-    {"id": "USER-ARCH011-007", "category": "APPROVED POLICY", "priority": "HIGH", "task": "Approve the remediation sequence.", "why": "The autonomous V2 program fixes authority and custody before experiment execution.", "linked": "ARCH_011_FRESH_MACHINE_PROTOCOL.md", "status": "COMPLETED"},
-    {"id": "USER-ARCH011-008", "category": "IMPLEMENTATION COMPLETED", "priority": "HIGH", "task": "Approve the first remediation task.", "why": "GAP-FIX-001 passed independent QA without scientific execution.", "linked": "GAP-FIX-001", "status": "COMPLETED"}
+    {"id": "USER-V2-001", "category": "ACTION REQUIRED", "priority": "P0", "task": "Restore or issue the authorized normal-only HAI custody binding for VALIDATION V2.", "why": "EXP-01 and EXP-02 cannot execute without an explicit data authority; private path discovery is prohibited.", "linked": "research_control_center/validation_v2/PROGRAM_STATE.json", "status": "OPEN"},
+    {"id": "USER-V2-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Keep test1 development-only and test2/held-out unopened while the data authority is restored.", "why": "A missing binding is not authorization to search for or open restricted assets.", "linked": "research_control_center/validation_v2/VERSION_POLICY.md", "status": "OPEN"},
+    {"id": "USER-V2-003", "category": "DECISION LATER", "priority": "HIGH", "task": "Review DG-03 only after the EXP-03 natural cohort and exact call/token budget are frozen.", "why": "Provider contact remains zero and cannot be authorized from a symbolic budget.", "linked": "research_control_center/validation_v2/DECISION_GATES.md", "status": "OPEN"},
+    {"id": "USER-V2-004", "category": "DECISION LATER", "priority": "HIGH", "task": "Review Graph-Guided and Agentic framing after EXP-01 and EXP-03 results exist.", "why": "Both contribution labels remain conditional and cannot be retained from implementation evidence alone.", "linked": "DEC-021", "status": "OPEN"},
+    {"id": "USER-V2-005", "category": "MANDATORY FUTURE GATE", "priority": "HIGH", "task": "Approve a newly preregistered held-out study before any test2 or held-out access.", "why": "The consumed old OUTER protocol cannot simply be retried.", "linked": "DG-05", "status": "OPEN"},
+    {"id": "USER-V2-006", "category": "REVIEW REQUIRED", "priority": "HIGH", "task": "Review the generated professor readiness update before any submission.", "why": "The package reports preparation and blockers, not nonexistent V2 scientific results.", "linked": "docs/professor_experiment_update_v2/01_ONE_PAGE_SUMMARY.md", "status": "OPEN"},
+    {"id": "USER-V2-007", "category": "UNDERSTANDING NEEDED", "priority": "MEDIUM", "task": "Interpret the fresh-machine PASS as synthetic portability only.", "why": "It does not establish scientific-data reproduction or held-out generalization.", "linked": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json", "status": "OPEN"},
+    {"id": "USER-V2-008", "category": "PRESERVATION", "priority": "HIGH", "task": "Keep PILOT V1 immutable while Stage 3 is resumed later.", "why": "All V2 experiments require new method, authority, artifact and report identities.", "linked": "research_control_center/validation_v2/PILOT_V1_PRESERVATION_MANIFEST.json", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "Explain why old OUTER has no result and cannot simply retry.",
-    "Decide same-physical-test2 eligibility only within a new preregistered study.",
-    "Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.",
-    "Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.",
-    "Track EXP-01 preparation as the first experiment-specific gate after all shared foundation contracts PASS.",
-    "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03."
+    "Restore the authorized normal-only HAI custody binding for VALIDATION V2.",
+    "Do not search local drives or open test1/test2 as a workaround.",
+    "Resume with EXP-01 and EXP-02 from their frozen preregistrations.",
+    "Review DG-03 only after the natural cohort and exact provider budget are frozen.",
+    "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.",
+    "Review the professor readiness package before submission; no email has been sent."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
-  "fresh_machine_reproducibility": "incomplete",
-  "recommended_next_management_task": "EXP-01-PREP — GDN Contribution Preregistration & Harness",
+  "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
+  "recommended_next_management_task": "EXP-01-EXEC — Restore authorized normal-only HAI custody binding",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "GAP-FIX-METRIC-001 — Metric Portability & Common Evaluation Contract",
-  "exact_next_task": "EXP-01-PREP — GDN Contribution Preregistration & Harness",
+  "last_completed_task": "FRESH-MACHINE-SYNTHETIC — Clean-checkout rehearsal PASS",
+  "exact_next_task": "EXP-01-EXEC — Restore authorized normal-only HAI custody binding",
   "safety_counters": {
     "scientific_executions": 0,
     "test2_feature_accesses": 0,

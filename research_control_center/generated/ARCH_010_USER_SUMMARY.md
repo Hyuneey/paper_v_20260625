@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=531715147a805705e6bee5c8227139ac6ab613dab0be18a83f7552d1efb368f3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 성능 숫자를 어떻게 읽어야 하는가
 
 ## 1. alarm point와 episode는 무엇이 다른가?
@@ -63,4 +63,4 @@ complementarity, held-out generalization, 통계적 우수성은 미확인이다
 기억할 한 문장: **결과 무결성은 숫자가 고정 artifact와 맞는지 보장하지만, 그 숫자가 일반 성능을
 증명하는지는 보장하지 않는다.**
 
-ARCH-011은 완료되었다. 다음 관리 task는 **EXP-01-PREP — GDN Contribution Preregistration & Harness**이다.
+ARCH-011은 완료되었다. 다음 관리 task는 **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**이다.

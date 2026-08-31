@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import subprocess
 import unittest
@@ -19,6 +20,14 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
+        self.assertEqual(state["program_status"], "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY")
+        self.assertEqual(
+            state["fresh_machine_synthetic"]["status"],
+            "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
+        )
+        self.assertFalse(
+            state["execution_blocker"]["evidence"]["authorized_data_root_environment_binding_present"]
+        )
 
     def test_task_branches_do_not_conflict_with_integration_ref(self) -> None:
         with (V2 / "TASK_INDEX.csv").open(encoding="utf-8", newline="") as handle:
@@ -53,6 +62,64 @@ class ValidationV2ProgramTests(unittest.TestCase):
             encoding="utf-8",
         )
         self.assertIn("PILOT_V1_PRESERVATION_PASS", completed.stdout)
+
+    def test_fresh_machine_receipt_is_synthetic_and_zero_access(self) -> None:
+        receipt = json.loads(
+            (V2 / "reports" / "V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(receipt["status"], "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC")
+        self.assertFalse(receipt["scientific_data_required"])
+        for key in (
+            "scientific_executions",
+            "test1_accesses",
+            "test2_accesses",
+            "heldout_accesses",
+            "provider_calls",
+            "private_exposures",
+        ):
+            self.assertEqual(receipt[key], 0)
+
+    def test_program_status_evidence_self_hash(self) -> None:
+        evidence = json.loads(
+            (V2 / "reports" / "V2_PROGRAM_STATUS_EVIDENCE.json").read_text(encoding="utf-8")
+        )
+        expected = evidence.pop("self_hash")
+        actual = hashlib.sha256(
+            json.dumps(
+                evidence,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            ).encode("utf-8")
+        ).hexdigest()
+        self.assertEqual(expected, actual)
+
+    def test_professor_readiness_package_is_complete_and_qualified(self) -> None:
+        package = ROOT / "docs" / "professor_experiment_update_v2"
+        expected = {
+            *(f"{index:02d}_{name}.md" for index, name in (
+                (1, "ONE_PAGE_SUMMARY"),
+                (2, "WHAT_CHANGED_SINCE_PILOT_V1"),
+                (3, "VALIDATION_V2_METHOD"),
+                (4, "EXP01_GDN_RESULTS"),
+                (5, "EXP02_NUMERIC_RESULTS"),
+                (6, "EXP03_AGENTIC_RESULTS"),
+                (7, "EXP04_DETECTION_RESULTS"),
+                (8, "EXP05_EXPLANATION_RESULTS"),
+                (9, "CLAIM_AND_LIMITATION_MATRIX"),
+                (10, "HELDOUT_NEXT_PLAN"),
+                (11, "PROFESSOR_DECISION_AGENDA"),
+                (12, "EMAIL_DRAFT"),
+                (13, "SLIDE_OUTLINE"),
+            )),
+            "PROFESSOR_EXPERIMENT_UPDATE_V2.html",
+        }
+        self.assertEqual(expected, {path.name for path in package.iterdir() if path.is_file()})
+        summary = (package / "01_ONE_PAGE_SUMMARY.md").read_text(encoding="utf-8")
+        self.assertIn("과학 실행은 시작하지 않았습니다", summary)
+        self.assertIn("test2·held-out 접근", summary)
 
 
 if __name__ == "__main__":

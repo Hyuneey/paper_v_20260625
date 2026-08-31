@@ -244,12 +244,15 @@ def build_dashboard_view_model(
         extra = sorted(covered_components | catalog_only - set(components))
         raise ValueError(f"Component coverage mismatch: missing={missing}, extra={extra}")
 
+    state = data["state"]
     experiment_by_id = {row["experiment_id"]: dict(row) for row in data["experiments"]}
     gate_by_id = {row["experiment_id"]: row for row in gates}
+    current_gate_status = state["pre_validation_readiness"]["experiment_gates"]
     experiments: list[dict[str, Any]] = []
     for experiment_id in [f"EXP-{index:02d}" for index in range(1, 7)]:
         experiment = experiment_by_id[experiment_id]
-        gate = gate_by_id[experiment_id]
+        gate = dict(gate_by_id[experiment_id])
+        gate["ready_now"] = current_gate_status[experiment_id]
         experiment["gate"] = gate
         experiments.append(experiment)
 
@@ -481,9 +484,9 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     p0_count = len(vm["readiness"]["p0_global_fixes"]) + len(vm["readiness"]["p0_design_gates"])
     open_count = len(vm["unresolved_decisions"])
     actions = [
-        ("EXP-01-PREP", "GDN 기여 사전등록", "self-excluded Top-5와 seed·split·Top-K 분석을 결과 전에 고정"),
-        ("EXP-02-PREP", "numeric policy 사전등록", "normal-only 선택 기준과 test1 이전 freeze 경계를 고정"),
-        ("DETECTOR-PREP", "stronger detector 계약", "고정된 normal-only multivariate baseline 구현 범위를 고정"),
+        ("DATA-AUTHORITY", "normal HAI custody binding 복원", "승인된 binding 없이는 과학 실행을 시작하지 않음"),
+        ("EXP-01·02", "frozen normal-only 실험 실행", "승인된 binding 복원 뒤 사전등록을 변경하지 않고 실행"),
+        ("DG-03-LATER", "EXP-03 exact provider budget 고정", "natural cohort가 생긴 뒤 provider/model/call/token 상한을 확정"),
     ]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
@@ -507,12 +510,12 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     <section class="view-panel is-active" id="view-overview" data-view-panel="overview" aria-labelledby="nav-overview">
       <p class="status-separation">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</p>
       <div class="overview-header panel">
-        <div><p class="kicker">현재 연구 단계</p><h2>공유 기반 PASS · 실험별 준비 시작</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority, durable prediction custody, development/final protocol과 portable metric contract가 PASS했으며 실험별 사전등록을 준비합니다.</p>
-        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 실험 준비</span></div></div>
+        <div><p class="kicker">현재 연구 단계</p><h2>공유 기반·synthetic rehearsal PASS · 과학 입력 권한 대기</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority, durable prediction custody, protocol, metric과 실험별 사전등록은 고정되었지만 승인된 normal HAI custody binding이 없어 과학 실행은 fail-closed 상태입니다.</p>
+        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 과학 실행 대기</span></div></div>
         <div class="next-task-callout"><span>정확한 다음 작업</span><strong>{_esc(vm["exact_next_task"])}</strong></div>
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
       </div>
-      <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="done">공유 기반</li><li class="current">Validation V2 준비</li><li>Fresh-machine</li><li>Held-out</li></ol>
+      <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="done">공유 기반</li><li class="done">Fresh-machine synthetic</li><li class="current">Validation V2 실행</li><li>Held-out</li></ol>
       <div class="overview-grid">
         <article class="panel overview-map"><div class="panel-heading"><div><p class="kicker">전체 지도</p><h3>근거에서 평가까지</h3></div><button class="text-button" data-go-view="architecture">크게 보기</button></div>{_render_architecture_svg(vm, compact=True)}</article>
         <aside class="panel action-panel"><div class="panel-heading"><div><p class="kicker">지금 할 일</p><h3>확대 검증 전 우선순위</h3></div></div><ol>{action_markup}</ol></aside>

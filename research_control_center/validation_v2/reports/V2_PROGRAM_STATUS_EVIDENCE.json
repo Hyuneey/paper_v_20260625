@@ -1,0 +1,61 @@
+{
+  "schema": "paperworks.validation_v2.program_status_evidence_v1",
+  "schema_version": "1.0.0",
+  "program_id": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
+  "status": "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY",
+  "integration_branch": "validation-v2",
+  "pilot_v1_status": "IMMUTABLE_3021_OF_3021",
+  "authority": "FORMAL_V4",
+  "foundation": {
+    "authority": "PASS_FORMAL_V4",
+    "d1_durable_gate": "PASS_DURABLE_CUSTODY",
+    "protocol": "PASS_PROTOCOL_FROZEN",
+    "metric": "PASS_SYNTHETIC_PORTABLE_CONTRACT",
+    "stage2_preparation": "PASS_258_TESTS_3_EXPECTED_SKIPS",
+    "fresh_machine_synthetic": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC"
+  },
+  "scientific_input_authority": {
+    "authorized_data_root_environment_binding_present": false,
+    "local_custody_binding_present": false,
+    "drive_search_performed": false,
+    "pilot_private_artifact_reused": false
+  },
+  "experiments": {
+    "EXP-01": "PREPARED_NOT_EXECUTED",
+    "EXP-02": "PREPARED_NOT_EXECUTED",
+    "EXP-03": "PREPARED_PROVIDER_GATED_NOT_EXECUTED",
+    "EXP-04": "BLOCKED_UPSTREAM_NOT_EXECUTED",
+    "EXP-05": "BLOCKED_UPSTREAM_NOT_EXECUTED",
+    "EXP-06": "NOT_REQUIRED"
+  },
+  "decision_gates": {
+    "DG-01": "RESOLVED_FORMAL_V4",
+    "DG-02": "RESOLVED_ISOLATION_FOREST",
+    "DG-03": "PENDING_NOT_YET_TRIGGERABLE_WITH_EXACT_BUDGET",
+    "DG-04": "PENDING_RESULTS",
+    "DG-05": "PENDING_MANDATORY_BEFORE_HELDOUT",
+    "DG-06": "PENDING_COMPLETION_GATE"
+  },
+  "safety_counters": {
+    "scientific_executions": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0,
+    "pilot_v1_modifications": 0,
+    "result_driven_redesigns": 0
+  },
+  "fresh_machine_receipt": {
+    "path": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json",
+    "hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a"
+  },
+  "professor_package": "docs/professor_experiment_update_v2/PROFESSOR_EXPERIMENT_UPDATE_V2.html",
+  "independent_qa": {
+    "status": "PASS",
+    "reviewer": "v2_stage2_final_qa",
+    "residual_defects": 0,
+    "report": "research_control_center/validation_v2/reports/V2_PROGRAM_FINAL_QA.md"
+  },
+  "self_hash": "dd3fdf56cb9901cb2535ff6cef32348081d270a4a453477dc482a54a5613d21c"
+}

@@ -1,0 +1,36 @@
+{
+  "heldout_accesses": 0,
+  "machine": "amd64",
+  "platform": "windows",
+  "private_exposures": 0,
+  "provider_calls": 0,
+  "python": "3.12.13",
+  "schema": "paperworks.validation_v2.synthetic_rehearsal_receipt_v1",
+  "schema_version": "1.0.0",
+  "scientific_data_required": false,
+  "scientific_executions": 0,
+  "self_hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a",
+  "source_commit": "da11a5d69fa34e5cc449a901213b2d91de1d9114",
+  "stage2_manifest_hash": "cda8553e7b204d8a4d54dc347a065ff639f1ca968915a3d89f6afa0f245ebf7c",
+  "stages": {
+    "clean_checkout": "PASS",
+    "dependency_install_no_network": "PASS",
+    "import_static": "PASS",
+    "pilot_v1_preservation": "PASS",
+    "public_artifact_restore": "PASS",
+    "rcc_tests": "PASS_EXIT_CODE",
+    "registry_and_privacy": "PASS",
+    "synthetic_contract_and_e2e": "PASS_EXIT_CODE"
+  },
+  "status": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
+  "test1_accesses": 0,
+  "test2_accesses": 0,
+  "verified_public_wheels": [
+    "joblib-1.5.3-py3-none-any.whl",
+    "narwhals-2.25.0-py3-none-any.whl",
+    "numpy-2.5.2-cp312-cp312-win_amd64.whl",
+    "scikit_learn-1.9.0-cp312-cp312-win_amd64.whl",
+    "scipy-1.18.1-cp312-cp312-win_amd64.whl",
+    "threadpoolctl-3.6.0-py3-none-any.whl"
+  ]
+}

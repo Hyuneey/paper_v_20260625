@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=531715147a805705e6bee5c8227139ac6ab613dab0be18a83f7552d1efb368f3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 관계 후보는 왜 세 방식으로 고르는가
 
 ## 한 문장 답
@@ -63,4 +63,4 @@ STAT-only 8, GDN-only 18, 두 arm 공통 13, 세 arm 공통 0으로 총 47이다
 47개 cohort를 normal delayed-response profiling에 넘겨 step event, response direction,
 horizon과 안정성을 별도로 확인한다. 그 전에는 최종 relation이라고 부르면 안 된다.
 
-다음 task는 **EXP-01-PREP — GDN Contribution Preregistration & Harness**이다.
+다음 task는 **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**이다.

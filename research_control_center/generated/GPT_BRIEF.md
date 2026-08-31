@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=531715147a805705e6bee5c8227139ac6ab613dab0be18a83f7552d1efb368f3 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Generated from RCC registry version `0.1.0` at `2026-08-30T22:42:05Z`.
@@ -145,7 +145,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
-- **HIGH / OPEN** — Fresh-machine reproducibility is incomplete despite strong public traceability.
+- **HIGH / OPEN** — Fresh-machine synthetic passed; scientific reproduction remains custody-blocked.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
 - **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
 - **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
@@ -153,15 +153,15 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- Explain why old OUTER has no result and cannot simply retry.
-- Decide same-physical-test2 eligibility only within a new preregistered study.
-- Explain traceability, same-machine, fresh-machine synthetic/scientific, and external reproduction.
-- Review the completed Formal V4 authority decision in DEC-020 when preparing professor-facing material.
-- Track EXP-01 preparation as the first experiment-specific gate after all shared foundation contracts PASS.
-- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03.
+- Restore the authorized normal-only HAI custody binding for VALIDATION V2.
+- Do not search local drives or open test1/test2 as a workaround.
+- Resume with EXP-01 and EXP-02 from their frozen preregistrations.
+- Review DG-03 only after the natural cohort and exact provider budget are frozen.
+- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
+- Review the professor readiness package before submission; no email has been sent.
 
 ## Exact next task
 
-Management: **EXP-01-PREP — GDN Contribution Preregistration & Harness**
+Management: **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**
