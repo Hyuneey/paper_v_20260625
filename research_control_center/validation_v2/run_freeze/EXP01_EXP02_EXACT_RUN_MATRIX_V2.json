@@ -1,0 +1,133 @@
+{
+  "schema": "paperworks.validation_v2.exp01_exp02_exact_run_matrix_v1",
+  "schema_version": "1.0.0",
+  "freeze_id": "V2-RUN-MATRIX-001",
+  "program": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
+  "status": "EXP01_FROZEN_EXP02_SHELL_FROZEN_THREE_SCIENTIFIC_BINDINGS_REQUIRED",
+  "scientific_execution_count_at_freeze": 0,
+  "exp01": {
+    "preregistration_hash": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc",
+    "scientific_contract_hash": "8d02671ac87db776ee4c244bf7fe11d3348a2a0d76d35d568dd7e521e2b3200f",
+    "run_count": 12,
+    "runs": [
+      {"order": 1, "arm": "GDN_FROZEN_SELF_ELIGIBLE", "view": "TRAIN1_TRAIN2_COMBINED", "seed": 11},
+      {"order": 2, "arm": "GDN_FROZEN_SELF_ELIGIBLE", "view": "TRAIN1_TRAIN2_COMBINED", "seed": 23},
+      {"order": 3, "arm": "GDN_FROZEN_SELF_ELIGIBLE", "view": "TRAIN1_TRAIN2_COMBINED", "seed": 37},
+      {"order": 4, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN1_TRAIN2_COMBINED", "seed": 11},
+      {"order": 5, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN1_TRAIN2_COMBINED", "seed": 23},
+      {"order": 6, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN1_TRAIN2_COMBINED", "seed": 37},
+      {"order": 7, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN1_ONLY", "seed": 11},
+      {"order": 8, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN1_ONLY", "seed": 23},
+      {"order": 9, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN1_ONLY", "seed": 37},
+      {"order": 10, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN2_ONLY", "seed": 11},
+      {"order": 11, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN2_ONLY", "seed": 23},
+      {"order": 12, "arm": "GDN_CORRECTED_SELF_EXCLUDED", "view": "TRAIN2_ONLY", "seed": 37}
+    ],
+    "execution_policy": {
+      "writer_count": 1,
+      "scientific_runner_count": 1,
+      "sequential_runs": true,
+      "complete_denominator_required": true,
+      "sampling_or_denominator_reduction_allowed": false,
+      "cross_file_windows_allowed": false,
+      "checkpoint_policy": "ATOMIC_PRIVATE_BEST_STATE_PER_RUN_WITH_REOPEN_VERIFICATION",
+      "resume_policy": "ONLY_FROM_FULLY_VERIFIED_IDENTICAL_AUTHORITY_RUN_ARTIFACT",
+      "partial_result_claim_allowed": false,
+      "frozen_comparator_authority": {
+        "meta_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+        "stat_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950",
+        "replay_policy": "TRACKED_ARTIFACT_SELF_HASH_AND_PINNED_CONSTANT_REQUIRED"
+      },
+      "predeclared_fail_closed_terminal": {
+        "state": "EXP01_FROZEN_CONTRACT_CONFLICT_PRIMARY_MASK_2_OF_3_VS_SHARED_ALL_SEEDS",
+        "trigger": "PREREGISTERED_PRIMARY_MASK_CONTAINS_A_PAIR_SELECTED_BY_EXACTLY_TWO_SEEDS_WHILE_THE_FROZEN_INTERVENTION_RECEIPT_REQUIRES_THE_SAME_MASK_TO_EXIST_IN_ALL_THREE_SEED_GRAPHS",
+        "disposition": "INCOMPLETE_EXECUTION_GDN_CONTRIBUTION_UNRESOLVED_NO_MASK_NARROWING_NO_PARTIAL_CLAIM"
+      }
+    },
+    "post_training_order": [
+      "CHECKPOINT_SET_FREEZE",
+      "FOUR_ARM_VIEW_AGGREGATES",
+      "TOP_10_20_40_PREFIXES_WITHOUT_PADDING",
+      "ARM_BLIND_TRAIN3_CONFIRMATION",
+      "LATE_PROVENANCE_JOIN",
+      "PRIMARY_MASK_FREEZE",
+      "TRAIN4_FIXED_CHECKPOINT_INTERVENTION",
+      "INDEPENDENT_QA",
+      "CANDIDATE_POLICY_FREEZE"
+    ]
+  },
+  "candidate_policy": {
+    "freeze_after": "EXP01_INDEPENDENT_QA_PASS",
+    "retain_rule": "GDN_RETAINED_ONLY_IF_STABLE_UNIQUE_CONFIRMED_AND_FUNCTIONALLY_USED",
+    "complete_negative_disposition": "DEMOTE_GDN_TO_ABLATION_AND_USE_META_STAT",
+    "incomplete_execution_disposition": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
+    "post_result_reranking_allowed": false
+  },
+  "exp02": {
+    "preregistration_hash": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721",
+    "candidate_count": 37,
+    "selection_split": "train4",
+    "fit_splits": ["train1", "train2"],
+    "confirmation_split": "train3_existing_frozen_relation_confirmation_only",
+    "execution_preconditions": [
+      "CANDIDATE_POLICY_FROZEN",
+      "SEPARATE_SELF_HASHED_V2_CONFIRMED_COHORT",
+      "EXP02_IMPLEMENTATION_QA_PASS",
+      "EXP02_CODE_CONFIG_AUTHORITY_FROZEN"
+    ],
+    "pre_execution_contract_gaps": [
+      {
+        "id": "EXP02-BIND-QUANTILE",
+        "status": "UNRESOLVED",
+        "meaning": "Q50_Q75_Q90_INTERPOLATION_ALGORITHM_NOT_UNIQUELY_BOUND",
+        "blocks": ["SCIENTIFIC_SUMMARY_PRODUCER", "EXP02_EXECUTION"]
+      },
+      {
+        "id": "EXP02-BIND-RELATION-SUMMARY",
+        "status": "UNRESOLVED",
+        "meaning": "RELATION_LOCAL_NOISE_QUANTILE_TARGET_NOISE_PRODUCER_NOT_UNIQUELY_BOUND",
+        "blocks": ["SCIENTIFIC_SUMMARY_PRODUCER", "EXP02_EXECUTION"]
+      },
+      {
+        "id": "EXP02-BIND-OPPORTUNITY-CENSUS",
+        "status": "UNRESOLVED",
+        "meaning": "RELATION_SPECIFIC_THRESHOLD_OPPORTUNITY_AND_CROSS_SOURCE_ISOLATION_CENSUS_NOT_UNIQUELY_BOUND",
+        "blocks": ["TRAIN4_EVALUATOR", "EXP02_EXECUTION"]
+      }
+    ],
+    "writer_scope_now": "CUSTODY_RECEIPT_ATOMIC_FREEZE_SHELL_WITH_FAIL_CLOSED_UNRESOLVED_BINDING_REJECTION",
+    "cohort_policy": "REBIND_ONLY_WHEN_EVERY_FROZEN_V2_PAIR_IS_WITHIN_THE_PRIOR_ARM_BLIND_FIT_AND_TRAIN3_CONFIRMATION_UNIVERSE_OTHERWISE_MATERIALIZE_NEW_V2_COHORT",
+    "policy_families": [
+      "COMMON_FIXED_NORMALIZED_V1",
+      "RELATION_SPECIFIC_NORMAL_ONLY_V1"
+    ],
+    "selection_rule": "ZERO_COVERAGE_LOSS_THEN_MINIMIZE_NORMAL_FALSE_ALARMS_ABSTAIN_VARIABILITY",
+    "test1_allowed_before_policy_freeze": false,
+    "labels_allowed": false,
+    "test2_allowed": false,
+    "post_test_retuning_allowed": false
+  },
+  "namespace_ownership": {
+    "coordinator": [
+      "research_control_center/validation_v2/run_freeze",
+      "shared registries and program state"
+    ],
+    "writer_1_exp01": [
+      "src/paperworks/gdn/exp01_upstream_backend_v2.py",
+      "src/paperworks/validation_v2/exp01_execution_v2.py",
+      "src/paperworks/validation_v2/exp01_checkpoint_v2.py",
+      "src/paperworks/validation_v2/exp01_relation_confirmation_v2.py",
+      "scripts/run_validation_v2_exp01.py",
+      "tests/test_validation_v2_exp01_*_v2.py"
+    ],
+    "writer_2_exp02": [
+      "src/paperworks/validation_v2/exp02_runner_v1.py",
+      "scripts/run_validation_v2_exp02_v1.py",
+      "tests/test_validation_v2_exp02_runner_v1.py",
+      "tests/test_validation_v2_exp02_runner_v1_independent.py"
+    ]
+  },
+  "forbidden_inputs": ["test1", "test2", "heldout", "labels", "provider"],
+  "pilot_v1_mutation_allowed": false,
+  "preregistration_mutation_allowed": false
+}
