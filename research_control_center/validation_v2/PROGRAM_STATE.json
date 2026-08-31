@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_3_NORMAL_ONLY_EXPERIMENT_EXECUTION",
-  "program_status": "NORMAL_ONLY_CUSTODY_READY",
+  "current_stage": "STAGE_3_PRE_EXECUTION_AUTHORITY_COMPLETION",
+  "program_status": "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -30,10 +30,10 @@
     "DG-06": "PENDING"
   },
   "experiment_status": {
-    "EXP-01": "READY_AUTHORIZED_NORMAL_ONLY",
-    "EXP-02": "READY_AUTHORIZED_NORMAL_ONLY",
+    "EXP-01": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
+    "EXP-02": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY",
     "EXP-03": "PREPARED_PROVIDER_GATED",
-    "STRONGER-DETECTOR": "READY_AUTHORIZED_NORMAL_ONLY",
+    "STRONGER-DETECTOR": "READY_AUTHORIZED_NORMAL_ONLY_BUT_BLOCKED_BY_SHARED_V2_COHORT_ORDER",
     "EXP-04": "BLOCKED_UPSTREAM_NORMAL_ONLY_SELECTIONS_NOT_EXECUTED",
     "EXP-05": "BLOCKED_NO_MATERIALIZED_V2_RUNTIME_TRACES",
     "EXP-06": "NOT_REQUIRED"
@@ -63,6 +63,23 @@
     "test2_accesses": 0,
     "label_accesses": 0,
     "private_exposures": 0
+  },
+  "stage3_execution_readiness": {
+    "status": "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE",
+    "exp01": {
+      "status": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
+      "receipt": "research_control_center/validation_v2/reports/EXP01_EXECUTION_READINESS_V2.json",
+      "receipt_hash": "e77dcf0ff40eb89408de941c1caf77f9ce4109741730bf67f63f86cf8cbda4c9",
+      "scientific_result": false
+    },
+    "exp02": {
+      "status": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY",
+      "receipt": "research_control_center/validation_v2/reports/EXP02_EXECUTION_READINESS_V2.json",
+      "receipt_hash": "b94f31f63a856a2a75bd1a45d4677bd57ef092c4f18b65935e8cd3a7a6c124f3",
+      "scientific_result": false
+    },
+    "global_blocker": "Tracked V2 candidate/cohort materialization and full EXP-01/EXP-02 scientific entrypoints were not frozen before normal-data execution.",
+    "required_remediation": "Implement and freeze the V2 META+STAT candidate/cohort authority plus complete EXP-02 runner; keep EXP-01 unresolved until a complete 12-run checkpoint/intervention executor exists."
   },
   "historical_execution_blocker": {
     "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
@@ -138,9 +155,9 @@
     "gap_fix_002_focused_tests_passed": 33,
     "v2_protocol_001_focused_tests_passed": 20,
     "gap_fix_metric_001_focused_tests_passed": 24,
-    "validation_v2_tests_passed": 258,
+    "validation_v2_tests_passed": 275,
     "validation_v2_tests_skipped": 3,
-    "rcc_tests_passed": 132,
+    "rcc_tests_passed": 136,
     "fresh_machine_synthetic_rehearsals_passed": 1,
     "pilot_v1_modifications": 0,
     "stage0_rcc_tests_passed": 122,

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -142,7 +142,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
-- **HIGH / MITIGATING** — Fresh-machine synthetic passed; scientific reproduction remains blocked until DATA-POLICY-001 materializes and binds the four authorized normal HAI splits.
+- **HIGH / MITIGATING** — Fresh-machine synthetic and normal-only HAI custody passed; scientific reproduction remains blocked because the V2 candidate/cohort authority and complete EXP-01/EXP-02 scientific entrypoints are not frozen.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
 - **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
 - **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
@@ -150,15 +150,15 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- 발급된 normal-only HAI custody로 EXP-01과 EXP-02를 동결된 preregistration 그대로 실행한다.
+- V2 META+STAT candidate/cohort authority와 complete EXP-02 runner를 결과 관찰 전에 구현·동결한다.
 - test1/test2를 열거나 normal-only binding을 확대하는 우회는 금지한다.
-- Freeze V2 candidate and numeric policies before any test1 development observation.
+- EXP-01은 complete 12-run executor가 없으므로 fail-closed 상태를 유지한다.
 - Review DG-03 only after the natural cohort and exact provider budget are frozen.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
 - Review the professor readiness package before submission; no email has been sent.
 
 ## Exact next task
 
-Management: **EXP-01 — frozen normal-only GDN contribution execution**
+Management: **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

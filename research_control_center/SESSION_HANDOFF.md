@@ -40,7 +40,7 @@ prove scientific utility, causal or physical truth, or generalization.
 
 ## Current recovery stage
 
-`NORMAL_ONLY_CUSTODY_READY`
+`BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE`
 
 Historical state `BLOCKED_NORMAL_DATA_NOT_FOUND` is preserved, but its recovery
 interpretation was incomplete. The corrected root cause is:
@@ -66,10 +66,12 @@ Public receipts:
 All four files passed exact Git/LFS byte equivalence and schema/P1 contract
 checks. test1, test2, labels, and held-out access counters remain zero.
 
-## Program state
+## Program state after custody
 
-- EXP-01: authorized for frozen normal-only execution
-- EXP-02: authorized for frozen normal-only selection
+- EXP-01: `GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED`; no complete 12-run
+  checkpoint/train4-intervention entrypoint exists, so no partial execution ran
+- EXP-02: `BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY`; pure
+  contracts exist but the V2 confirmed cohort and scientific runner do not
 - EXP-03: prepared; DG-03 remains pending before provider calls
 - stronger detector: Isolation Forest selected and prepared, not executed
 - EXP-04: blocked by upstream normal-only selections and V2 portfolio
@@ -79,13 +81,14 @@ checks. test1, test2, labels, and held-out access counters remain zero.
 
 ## Exact next task
 
-`EXP-01 — frozen normal-only GDN contribution execution`
+`V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner`
 
-The single materialization runner completed acquisition of only train1 through
-train4 from `icsdataset/hai-security-dataset`. Git/LFS at the pinned official
-snapshot remains the identity authority. Resume the unchanged EXP-01 and
-EXP-02 preregistrations; never download or open test1/test2 during normal-only
-selection.
+The materialization runner completed acquisition of only train1 through
+train4. The next implementation must freeze an explicit V2 META+STAT
+candidate/cohort authority and a complete EXP-02 normal-only runner before any
+new scientific read. EXP-01 remains unresolved rather than producing a partial
+or denominator-reduced result. Never download or open test1/test2 during this
+work.
 
 ## Future decision gates
 

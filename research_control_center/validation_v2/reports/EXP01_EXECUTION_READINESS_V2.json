@@ -1,0 +1,66 @@
+{
+  "schema": "validation_v2_exp01_execution_readiness_v2",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-01",
+  "status": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
+  "classification": "EXECUTION_COMPLETENESS_FAILURE_NOT_SCIENTIFIC_NEGATIVE_RESULT",
+  "preregistration_hash": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc",
+  "scientific_contract_hash": "8d02671ac87db776ee4c244bf7fe11d3348a2a0d76d35d568dd7e521e2b3200f",
+  "custody_binding_hash": "05a95d576fefaae8894b6ec9ed9796a9ba0cf5eea02e9dc4781985e462b4f58d",
+  "dependency_environment": {
+    "python": "3.12.13",
+    "torch": "2.12.1+cpu",
+    "torch_geometric": "2.8.0",
+    "cuda_available": false,
+    "status": "PASS_EXACT_CPU_ENVIRONMENT"
+  },
+  "required_schedule": {
+    "run_count": 12,
+    "seeds": [11, 23, 37],
+    "arms_and_views": [
+      "GDN_FROZEN_SELF_ELIGIBLE/TRAIN1_TRAIN2_COMBINED",
+      "GDN_CORRECTED_SELF_EXCLUDED/TRAIN1_TRAIN2_COMBINED",
+      "GDN_CORRECTED_SELF_EXCLUDED/TRAIN1_ONLY",
+      "GDN_CORRECTED_SELF_EXCLUDED/TRAIN2_ONLY"
+    ],
+    "checkpoint_train4_intervention_required": true
+  },
+  "tracked_implementation": {
+    "full_scientific_entrypoint_present": false,
+    "partial_runner": "paperworks.validation_v2.exp01_runner_v1.execute_exp01_corrected_arm_v1",
+    "partial_runner_scope": "three corrected combined-view seeds only",
+    "checkpoint_persistence_present": false,
+    "train4_intervention_executor_present": false,
+    "partial_execution_permitted": false
+  },
+  "resource_preflight": {
+    "combined_windows": 572390,
+    "minimum_required_seed_runs": 12,
+    "epochs_per_run_upper_bound": 30,
+    "early_stopping_patience": 15,
+    "sampling_or_denominator_reduction_authorized": false,
+    "classification": "HIGH_COST_EAGER_CPU_PATH_REQUIRES_COMPLETE_TRACKED_ORCHESTRATOR"
+  },
+  "disposition": {
+    "gdn_primary_path": "NOT_RETAINED_WITHOUT_COMPLETE_EVIDENCE",
+    "scientific_interpretation": "NO_GDN_CONTRIBUTION_RESULT",
+    "candidate_fallback_allowed_by_frozen_rule": "META_PLUS_STAT",
+    "preregistration_changed": false,
+    "result_driven_change": false
+  },
+  "access_counters": {
+    "scientific_executions": 0,
+    "train1_opens": 0,
+    "train2_opens": 0,
+    "train3_opens": 0,
+    "train4_opens": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "label_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0
+  },
+  "exact_next": "Freeze META_PLUS_STAT V2 candidate policy and continue EXP-02 normal-only selection; implement a complete EXP-01 executor only as a separately frozen future retry.",
+  "self_hash": "e77dcf0ff40eb89408de941c1caf77f9ce4109741730bf67f63f86cf8cbda4c9"
+}

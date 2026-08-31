@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -63,23 +63,23 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
 - GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
 - Held-out generalization is unavailable because no OUTER scientific result exists.
-- Fresh-machine synthetic passed; scientific reproduction remains blocked until DATA-POLICY-001 materializes and binds the four authorized normal HAI splits.
+- Fresh-machine synthetic and normal-only HAI custody passed; scientific reproduction remains blocked because the V2 candidate/cohort authority and complete EXP-01/EXP-02 scientific entrypoints are not frozen.
 
 ## 다음에 해야 할 것
 
-- Execute EXP-01 and EXP-02 from the frozen preregistrations using the four-file normal-only custody binding.
-- Freeze the V2 candidate and numeric policies before any test1 development observation.
+- Implement and freeze the V2 META+STAT candidate/cohort authority and complete EXP-02 normal-only runner before scientific execution.
+- Keep EXP-01 fail-closed unless the complete 12-run checkpoint/intervention executor is frozen prospectively.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-관리 작업의 다음 단계는 **EXP-01 — frozen normal-only GDN contribution execution** 이고, 이후 전체
+관리 작업의 다음 단계는 **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner** 이고, 이후 전체
 구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- 발급된 normal-only HAI custody로 EXP-01과 EXP-02를 동결된 preregistration 그대로 실행한다.
+- V2 META+STAT candidate/cohort authority와 complete EXP-02 runner를 결과 관찰 전에 구현·동결한다.
 - test1/test2를 열거나 normal-only binding을 확대하는 우회는 금지한다.
-- Freeze V2 candidate and numeric policies before any test1 development observation.
+- EXP-01은 complete 12-run executor가 없으므로 fail-closed 상태를 유지한다.
 - Review DG-03 only after the natural cohort and exact provider budget are frozen.
 - Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
 - Review the professor readiness package before submission; no email has been sent.

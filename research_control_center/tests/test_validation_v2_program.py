@@ -20,7 +20,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "NORMAL_ONLY_CUSTODY_READY")
+        self.assertEqual(state["program_status"], "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE")
         self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
         self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
         self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")
@@ -162,6 +162,25 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(binding["test1_accesses"], 0)
         self.assertEqual(binding["test2_accesses"], 0)
         self.assertEqual(binding["label_accesses"], 0)
+
+    def test_exp01_exp02_readiness_fail_closed_before_scientific_read(self) -> None:
+        expected = {
+            "EXP01_EXECUTION_READINESS_V2.json": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
+            "EXP02_EXECUTION_READINESS_V2.json": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY",
+        }
+        for name, status in expected.items():
+            receipt = json.loads((V2 / "reports" / name).read_text(encoding="utf-8"))
+            self_hash = receipt.pop("self_hash")
+            actual = hashlib.sha256(
+                json.dumps(receipt, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+            ).hexdigest()
+            self.assertEqual(self_hash, actual)
+            self.assertEqual(receipt["status"], status)
+            self.assertFalse(receipt["disposition"].get("scientific_result_exists", False))
+            for key, value in receipt["access_counters"].items():
+                if key != "scientific_executions":
+                    self.assertEqual(value, 0, key)
+            self.assertEqual(receipt["access_counters"]["scientific_executions"], 0)
 
     def test_current_recovery_outputs_do_not_request_manual_hai_path(self) -> None:
         current = (

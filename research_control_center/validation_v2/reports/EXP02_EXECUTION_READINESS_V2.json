@@ -1,0 +1,50 @@
+{
+  "schema": "validation_v2_exp02_execution_readiness_v2",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-02",
+  "status": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY",
+  "classification": "PRE_EXECUTION_AUTHORITY_BLOCKER_NOT_SCIENTIFIC_RESULT",
+  "preregistration_hash": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721",
+  "custody_binding_hash": "05a95d576fefaae8894b6ec9ed9796a9ba0cf5eea02e9dc4781985e462b4f58d",
+  "available_contracts": [
+    "paperworks.validation_v2.numeric_policy_v1",
+    "paperworks.validation_v2.exp02_scientific_v1",
+    "paperworks.validation_v2.hai_feature_adapter_v1"
+  ],
+  "readiness": {
+    "tracked_scientific_entrypoint_present": false,
+    "normal_feature_adapter_present": true,
+    "selection_contract_present": true,
+    "custody_contract_present": true,
+    "separate_self_hashed_v2_confirmed_cohort_present": false,
+    "atomic_selected_policy_freeze_present": false
+  },
+  "dependency_conflict": {
+    "required_input": "SEPARATE_SELF_HASHED_V2_CONFIRMED_COHORT",
+    "current_program_order": "EXP-02_SELECTION_BEFORE_V2_RELATION_COHORT",
+    "implicit_v1_cohort_reuse_allowed": false,
+    "resolution_required": "Materialize and freeze an explicit V2 cohort authority or an evidence-reviewed immutable rebind before EXP-02 execution."
+  },
+  "disposition": {
+    "numeric_policy_frozen": false,
+    "test1_selection_used": false,
+    "preregistration_changed": false,
+    "result_driven_change": false,
+    "scientific_result_exists": false
+  },
+  "access_counters": {
+    "scientific_executions": 0,
+    "train1_opens": 0,
+    "train2_opens": 0,
+    "train3_opens": 0,
+    "train4_opens": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "label_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "private_exposures": 0
+  },
+  "exact_next": "Implement and freeze V2 candidate/cohort materialization before the EXP-02 runner, then execute the unchanged normal-only selection contract.",
+  "self_hash": "b94f31f63a856a2a75bd1a45d4677bd57ef092c4f18b65935e8cd3a7a6c124f3"
+}

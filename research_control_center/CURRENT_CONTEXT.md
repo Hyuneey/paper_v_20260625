@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=3dabdae8a9871efa214fbab2325d0789f4c0c06b19f61edfcb0ebacfca0201e5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-31
@@ -107,9 +107,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Execute EXP-01 and EXP-02 from the frozen preregistrations using the four-file normal-only custody binding.
-- Freeze the V2 candidate and numeric policies before any test1 development observation.
+- Implement and freeze the V2 META+STAT candidate/cohort authority and complete EXP-02 normal-only runner before scientific execution.
+- Keep EXP-01 fail-closed unless the complete 12-run checkpoint/intervention executor is frozen prospectively.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-Exact next management task: **EXP-01 — frozen normal-only GDN contribution execution**
+Exact next management task: **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

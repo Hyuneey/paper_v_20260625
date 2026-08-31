@@ -111,7 +111,10 @@ class HAIFeatureAdapterV1Tests(unittest.TestCase):
 
     def test_root_inside_repository_and_missing_binding_are_rejected(self) -> None:
         repository = Path(__file__).resolve().parents[1]
-        with patch.dict(os.environ, {}, clear=True):
+        with patch.dict(os.environ, {}, clear=True), patch(
+            "paperworks.validation_v2.hai_feature_adapter_v1._binding_from_file",
+            return_value=None,
+        ):
             with self.assertRaisesRegex(adapter.HAIFeatureAdapterError, "HAI_DATA_ROOT_BINDING_REQUIRED"):
                 adapter.resolve_hai_feature_root_capability_v1(repository)
         local = repository / ".adapter-test-root"
