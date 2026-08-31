@@ -14,10 +14,12 @@ from paperworks.validation_v2.isolation_forest_v1 import (
     fit_isolation_forest_v1,
     predict_isolation_forest_v1,
 )
+from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
 
 
 H = "a" * 64
-FEATURES = tuple(f"P1_F{index:02d}" for index in range(37))
+SOURCE = "a" * 40
+FEATURES = tuple(P1_FEATURE_ORDER)
 FILES = {
     "NORMAL_FIT_PRIMARY": ("hai-train1.csv", "53007b0ba604fbf338e7ac2e08cd81d874b5d1388f3aecb213ddcba5bf2bec4a"),
     "NORMAL_FIT_SECONDARY": ("hai-train2.csv", "0e520e82bf78a661ab19ce4967f3c766bd809820f457a9c90c365102d4534c56"),
@@ -48,7 +50,7 @@ class IsolationForestV2Tests(unittest.TestCase):
         cls.model = fit_isolation_forest_v1(
             cls.train1,
             cls.train2,
-            source_commit=H,
+            source_commit=SOURCE,
             preregistration_hash=H,
             environment=cls.environment,
         )
@@ -86,7 +88,7 @@ class IsolationForestV2Tests(unittest.TestCase):
             fit_isolation_forest_v1(
                 matrix_input("NORMAL_FIT_PRIMARY", 100, 1),
                 matrix_input("NORMAL_FIT_SECONDARY", 100, 2),
-                source_commit=H,
+                source_commit=SOURCE,
                 preregistration_hash=H,
                 environment=self.environment,
             )
@@ -95,36 +97,36 @@ class IsolationForestV2Tests(unittest.TestCase):
         with self.assertRaises(IsolationForestContractError):
             fit_isolation_forest_v1(
                 replace(self.train1, split_role="DEVELOPMENT_ONLY"), self.train2,
-                source_commit=H, preregistration_hash=H, environment=self.environment,
+                source_commit=SOURCE, preregistration_hash=H, environment=self.environment,
             )
         with self.assertRaises(IsolationForestContractError):
             fit_isolation_forest_v1(
                 replace(self.train1, file_id="hai-test2.csv"), self.train2,
-                source_commit=H, preregistration_hash=H, environment=self.environment,
+                source_commit=SOURCE, preregistration_hash=H, environment=self.environment,
             )
         with self.assertRaises(IsolationForestContractError):
             fit_isolation_forest_v1(
                 replace(self.train1, labels_present=True), self.train2,
-                source_commit=H, preregistration_hash=H, environment=self.environment,
+                source_commit=SOURCE, preregistration_hash=H, environment=self.environment,
             )
 
     def test_fit_rejects_wrong_feature_order_and_nonfinite(self) -> None:
         with self.assertRaises(IsolationForestContractError):
             fit_isolation_forest_v1(
                 self.train1, replace(self.train2, feature_ids=tuple(reversed(FEATURES))),
-                source_commit=H, preregistration_hash=H, environment=self.environment,
+                source_commit=SOURCE, preregistration_hash=H, environment=self.environment,
             )
         bad = np.asarray(self.train1.values).copy()
         bad[0, 0] = np.nan
         with self.assertRaises(IsolationForestContractError):
             fit_isolation_forest_v1(
                 replace(self.train1, values=bad), self.train2,
-                source_commit=H, preregistration_hash=H, environment=self.environment,
+                source_commit=SOURCE, preregistration_hash=H, environment=self.environment,
             )
 
     def test_repeated_fit_is_deterministic(self) -> None:
         repeat = fit_isolation_forest_v1(
-            self.train1, self.train2, source_commit=H,
+            self.train1, self.train2, source_commit=SOURCE,
             preregistration_hash=H, environment=self.environment,
         )
         self.assertEqual(repeat.fit_receipt.model_state_sha256, self.model.fit_receipt.model_state_sha256)
@@ -208,7 +210,7 @@ class IsolationForestV2Tests(unittest.TestCase):
     def test_external_authority_rejects_coordinated_rehash(self) -> None:
         from paperworks.validation_v2.isolation_forest_v1 import _document_hash
 
-        forged_fit = replace(self.model.fit_receipt, source_commit="b" * 64, self_hash="")
+        forged_fit = replace(self.model.fit_receipt, source_commit="b" * 40, self_hash="")
         forged_fit = replace(forged_fit, self_hash=_document_hash(forged_fit.body_document()))
         forged_model = replace(self.model, fit_receipt=forged_fit)
         forged_threshold = replace(self.threshold, fit_receipt_hash=forged_fit.self_hash, self_hash="")
@@ -242,7 +244,7 @@ class IsolationForestV2Tests(unittest.TestCase):
         forged = replace(forged, self_hash=_document_hash(forged.body_document()))
         with self.assertRaises(IsolationForestContractError):
             fit_isolation_forest_v1(
-                self.train1, self.train2, source_commit=H,
+                self.train1, self.train2, source_commit=SOURCE,
                 preregistration_hash=H, environment=forged,
             )
         with self.assertRaises(IsolationForestContractError):
@@ -263,6 +265,21 @@ class IsolationForestV2Tests(unittest.TestCase):
                 expected_role="NORMAL_CONFIRMATION_CALIBRATION",
                 expected_fit_receipt_hash=self.model.fit_receipt.self_hash,
                 expected_threshold_receipt_hash=self.threshold.self_hash,
+            )
+
+    def test_fit_rejects_unapproved_feature_names_even_when_unique(self) -> None:
+        invented = tuple(f"P1_F{index:02d}" for index in range(37))
+        with self.assertRaisesRegex(IsolationForestContractError, "approved ordered P1 authority"):
+            fit_isolation_forest_v1(
+                replace(self.train1, feature_ids=invented), self.train2,
+                source_commit=SOURCE, preregistration_hash=H, environment=self.environment,
+            )
+
+    def test_fit_requires_git_commit_not_sha256(self) -> None:
+        with self.assertRaisesRegex(IsolationForestContractError, "40-character Git commit"):
+            fit_isolation_forest_v1(
+                self.train1, self.train2, source_commit=H,
+                preregistration_hash=H, environment=self.environment,
             )
 
 

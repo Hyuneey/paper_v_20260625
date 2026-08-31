@@ -177,7 +177,7 @@ public report로 고정했다.
 
 - scientific execution: `0`
 - scientific detector fit/predict/metric execution: `0`
-- scientific-data-free synthetic tests: `15 / 15 PASS`
+- scientific-data-free synthetic tests: `17 / 17 PASS`
 - test1 access: `0`
 - test2/held-out access: `0`
 - label access: `0`

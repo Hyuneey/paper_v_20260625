@@ -222,7 +222,7 @@
     "scientific_executions": 0,
     "scientific_detector_fit_executions": 0,
     "scientific_detector_prediction_executions": 0,
-    "synthetic_tests_passed": 15,
+    "synthetic_tests_passed": 17,
     "metric_executions": 0,
     "test1_accesses": 0,
     "test2_accesses": 0,
@@ -234,7 +234,7 @@
   },
   "independent_qa": {
     "status": "PASS_IMPLEMENTATION_PREPARATION",
-    "focused_synthetic_tests": 15,
+    "focused_synthetic_tests": 17,
     "scientific_runner_expected_authority_source_required": true,
     "fresh_machine_rehearsal_pending": true,
     "scientific_execution_authorized": false

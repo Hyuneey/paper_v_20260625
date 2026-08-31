@@ -16,9 +16,12 @@ import math
 import pickle
 from typing import Any, Mapping, Sequence
 
+from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
+
 
 _HEX = set("0123456789abcdef")
 _FEATURE_COUNT = 37
+_AUTHORIZED_FEATURE_IDS = tuple(P1_FEATURE_ORDER)
 _FIT_ROLES = ("NORMAL_FIT_PRIMARY", "NORMAL_FIT_SECONDARY")
 _CALIBRATION_ROLE = "NORMAL_CONFIRMATION_CALIBRATION"
 _VERSIONS = {
@@ -72,6 +75,11 @@ def _document_hash(value: Mapping[str, Any]) -> str:
 def _require_hex64(value: str, field: str) -> None:
     if not isinstance(value, str) or len(value) != 64 or any(char not in _HEX for char in value):
         raise IsolationForestContractError(f"{field} must be lowercase sha256 hex")
+
+
+def _require_git_commit(value: str, field: str) -> None:
+    if not isinstance(value, str) or len(value) != 40 or any(char not in _HEX for char in value):
+        raise IsolationForestContractError(f"{field} must be a lowercase 40-character Git commit")
 
 
 def _require_text(value: str, field: str) -> None:
@@ -270,10 +278,8 @@ def _normalize_matrix_input(
         raise IsolationForestContractError("presence flags must be strict booleans")
     if value.labels_present or value.timestamps_present or value.attack_metadata_present:
         raise IsolationForestContractError("labels, timestamps, and attack metadata are prohibited")
-    if len(value.feature_ids) != _FEATURE_COUNT or len(set(value.feature_ids)) != _FEATURE_COUNT:
-        raise IsolationForestContractError("exactly 37 unique ordered feature IDs are required")
-    if any(not isinstance(item, str) or not item for item in value.feature_ids):
-        raise IsolationForestContractError("feature IDs must be non-empty text")
+    if value.feature_ids != _AUTHORIZED_FEATURE_IDS:
+        raise IsolationForestContractError("feature IDs differ from the approved ordered P1 authority")
     if expected_feature_ids is not None and value.feature_ids != expected_feature_ids:
         raise IsolationForestContractError("feature order differs from the fitted authority")
 
@@ -357,7 +363,7 @@ def fit_isolation_forest_v1(
     environment: DetectorEnvironmentReceiptV1,
     config: IsolationForestConfigV1 | None = None,
 ) -> IsolationForestModelV1:
-    _require_hex64(source_commit, "source_commit")
+    _require_git_commit(source_commit, "source_commit")
     _require_hex64(preregistration_hash, "preregistration_hash")
     if environment.self_hash != _document_hash(environment.body_document()):
         raise IsolationForestContractError("environment receipt hash is invalid")
