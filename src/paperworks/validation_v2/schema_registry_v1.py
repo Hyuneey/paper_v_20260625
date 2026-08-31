@@ -13,7 +13,7 @@ from .schemas.schema_documents_v1 import EMBEDDED_VALIDATION_V2_SCHEMAS, META
 
 
 VALIDATION_V2_META_SCHEMA = META
-VALIDATION_V2_SCHEMA_REGISTRY_VERSION = "1.2.0"
+VALIDATION_V2_SCHEMA_REGISTRY_VERSION = "1.4.0"
 
 
 class ValidationV2SchemaRegistryError(ValueError):
