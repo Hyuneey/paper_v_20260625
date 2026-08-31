@@ -166,7 +166,17 @@ def materialize_normal_only_v2(repository_root: Path, public_receipt: Path) -> d
             repository_root / "scripts/local/materialize_hai_d0_normal_payload_v1.py",
             "_validation_v2_normal_materialization_primitives",
         )
-        legacy._materialize_specs(repository_root, cache_root, raw_specs())
+        try:
+            legacy._materialize_specs(repository_root, cache_root, raw_specs())
+        except legacy.D0NormalMaterializationError as exc:
+            if exc.code == legacy.BLOCKED_CUSTODY:
+                fail(BLOCKED_EQUIVALENCE)
+            if exc.code in {legacy.BLOCKED_PATH, legacy.BLOCKED_STAGE}:
+                fail(BLOCKED_MATERIALIZATION)
+            # The cache root and fixed authority have already passed local
+            # predicates.  The remaining historical generic failure is the
+            # fail-closed result of both approved acquisition transports.
+            fail(BLOCKED_EGRESS)
         structural = _structural_audit(cache_root)
         private_manifest: dict[str, Any] = {
             "schema_version": "hai_normal_only_private_materialization_manifest_v2",
