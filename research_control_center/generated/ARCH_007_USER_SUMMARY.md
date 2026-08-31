@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D0 PCA-SPE를 쉽게 이해하기
 
 ## 1. PCA는 왜 쓰는가?
@@ -66,4 +66,4 @@ Rule-only 기여를 설득력 있게 평가하려면 새 독립 사전등록에�
 기억할 한 문장: **D0는 normal-only로 고정된 단순 reference detector이고, 점수·point·episode·event를
 구분해야 하며, 14-event 수치는 pilot evidence다.**
 
-다음 task는 **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**이다.
+다음 task는 **CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer**이다.

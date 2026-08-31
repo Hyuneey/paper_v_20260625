@@ -2,10 +2,13 @@
   "schema": "paperworks.validation_v2.program_status_evidence_v1",
   "schema_version": "1.0.0",
   "program_id": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
-  "status": "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY",
+  "status": "BLOCKED_NORMAL_DATA_NOT_FOUND",
   "integration_branch": "validation-v2",
   "pilot_v1_status": "IMMUTABLE_3021_OF_3021",
-  "authority": "FORMAL_V4",
+  "authority": "APPROVED_FORMAL_V4",
+  "authority_family": "FORMAL_V4",
+  "canonical_to_v4_bridge": "NOT_SELECTED",
+  "bridge_minimum_thesis_path": "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH",
   "foundation": {
     "authority": "PASS_FORMAL_V4",
     "d1_durable_gate": "PASS_DURABLE_CUSTODY",
@@ -16,8 +19,14 @@
   },
   "scientific_input_authority": {
     "authorized_data_root_environment_binding_present": false,
-    "local_custody_binding_present": false,
-    "drive_search_performed": false,
+    "active_worktree_local_custody_binding_present": false,
+    "primary_repository_local_custody_binding_present": false,
+    "approved_locator_configured": false,
+    "host_wide_search_performed": false,
+    "candidate_file_stats": 0,
+    "candidate_file_opens": 0,
+    "candidate_file_hashes": 0,
+    "candidate_file_parses": 0,
     "pilot_private_artifact_reused": false
   },
   "experiments": {
@@ -29,7 +38,7 @@
     "EXP-06": "NOT_REQUIRED"
   },
   "decision_gates": {
-    "DG-01": "RESOLVED_FORMAL_V4",
+    "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "PENDING_NOT_YET_TRIGGERABLE_WITH_EXACT_BUDGET",
     "DG-04": "PENDING_RESULTS",
@@ -38,9 +47,14 @@
   },
   "safety_counters": {
     "scientific_executions": 0,
+    "train1_payload_accesses": 0,
+    "train2_payload_accesses": 0,
+    "train3_payload_accesses": 0,
+    "train4_payload_accesses": 0,
     "test1_accesses": 0,
     "test2_accesses": 0,
     "heldout_accesses": 0,
+    "label_accesses": 0,
     "provider_calls": 0,
     "private_exposures": 0,
     "pilot_v1_modifications": 0,
@@ -50,12 +64,17 @@
     "path": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json",
     "hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a"
   },
+  "normal_custody_receipt": {
+    "path": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json",
+    "status": "BLOCKED_NORMAL_DATA_NOT_FOUND",
+    "hash": "479b04209c02d18a5a0861253094a0b830671499b3ec05193d0619233b789a84"
+  },
   "professor_package": "docs/professor_experiment_update_v2/PROFESSOR_EXPERIMENT_UPDATE_V2.html",
   "independent_qa": {
     "status": "PASS",
-    "reviewer": "v2_stage2_final_qa",
+    "reviewer": "v2_resume_final_qa",
     "residual_defects": 0,
-    "report": "research_control_center/validation_v2/reports/V2_PROGRAM_FINAL_QA.md"
+    "report": "research_control_center/validation_v2/reports/V2_RESUME_001_QA.md"
   },
-  "self_hash": "dd3fdf56cb9901cb2535ff6cef32348081d270a4a453477dc482a54a5613d21c"
+  "self_hash": "5988cde8d7b85d6cb200ceee5c96aed07d4947d058778180db98007846155fa1"
 }

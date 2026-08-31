@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -64,5 +64,5 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**이다. ARCH-011은 이 remediation이나 test2 access를
+다음 task는 **CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.

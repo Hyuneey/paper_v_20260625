@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-020 — Adopt Formal V4 as the VALIDATION V2 Rule/runtime authority
 
 ## Date
@@ -11,7 +11,7 @@
 
 ## Context
 
-The preferred canonical-to-V4 bridge was not selected because frozen RuleV1 and V4 semantics were non-equivalent and a forced bridge would overstate verifier authority.
+The research owner explicitly selected Option B Formal V4; the canonical-to-V4 bridge was not selected because frozen RuleV1 and V4 semantics are non-equivalent and a forced bridge would overstate verifier authority.
 
 ## Alternatives Considered
 
@@ -21,19 +21,19 @@ The preferred canonical-to-V4 bridge was not selected because frozen RuleV1 and 
 
 ## Decision
 
-Use a separately versioned Formal V4 portfolio/runtime authority for VALIDATION V2, with exact relation, numeric, evaluator, config, feature, file, sampling, horizon, and execution-context replay.
+APPROVED_FORMAL_V4: Use a separately versioned Formal V4 portfolio/runtime authority for VALIDATION V2, with exact relation, validity, replay, numeric binding, portfolio freeze, runtime authorization, config, feature, file, sampling, horizon, and execution-context controls.
 
 ## Why
 
-Formal V4 preserves executable V4 semantics while explicitly denying canonical RuleV1 and VerifierV1 authority claims.
+Formal V4 preserves executable V4 semantics while explicitly denying canonical RuleV1 and VerifierV1 direct runtime-authority claims.
 
 ## Consequence
 
-PILOT V1 remains immutable; future V2 materialized windows and predictions require their separate custody gates.
+PILOT V1 remains immutable; the bridge is NOT_SELECTED and NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH; future V2 materialized windows and predictions require their separate custody gates.
 
 ## Current Relevance
 
-GAP-FIX-001 passed synthetic conformance and independent QA; this is not scientific execution readiness by itself.
+DECISION_STATE=APPROVED_FORMAL_V4; DG-01=RESOLVED_BY_USER; GAP-FIX-001 synthetic conformance and independent QA remain implementation evidence rather than scientific execution.
 
 ## Supersedes
 
@@ -47,7 +47,7 @@ NONE
 
 Source class: `USER_APPROVED_VALIDATION_V2_POLICY`
 
-Reference: research_control_center/validation_v2/reports/GAP_FIX_001_REPORT.md
+Reference: research_control_center/validation_v2/VERSION_POLICY.md
 
 Source commit: `NONE`
 

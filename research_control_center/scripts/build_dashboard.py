@@ -1179,7 +1179,6 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     return f"""{_markdown_marker(state, digest)}
 # GPT Brief — Research Control Center
 
-Generated from RCC registry version `{state['registry_version']}` at `{state['generated_at']}`.
 Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -1198,7 +1197,7 @@ Phase progression: {' → '.join(state['phase_progression'])}.
 
 Engineering and scientific evidence are separate. Component `audited=true` means
 **Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
-and arithmetic, not generalization. Reproduction remains absent at component level. Scientific
+and arithmetic, not generalization. Scientific
 claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
 contract wording.
 
@@ -1251,10 +1250,8 @@ misses while increasing normal FAR. V2 is test1-informed development, not indepe
 
 ## How we got here
 
-The recorded evolution is **{phase_names}**. Early motives remain partly `USER_CONTEXT`.
-ARGOS became partial support; deterministic verification survived the earlier Verifier framing.
-Normal-only profiling and numeric authority led to COMMON-42 and the 14-unit pilot; OUTER
-ended in a custody blocker. History cannot override current state.
+The recorded evolution is **{phase_names}**. ARGOS is partial support; normal-only profiling
+and numeric authority led to COMMON-42 and the 14-unit pilot. History cannot override current state.
 
 ## Established facts
 

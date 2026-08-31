@@ -44,12 +44,13 @@ class Arch011OuterReproducibilityTests(unittest.TestCase):
         self.assertEqual(3, len(rows))
         self.assertEqual("RECOMMENDED_PROSPECTIVE_TARGET_PENDING_DEC020", rows[2]["assessment"])
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertIn("DEC-020 RESOLVED", state["outer_reproducibility"]["authority_preference"])
+        self.assertIn("DEC-020 APPROVED_FORMAL_V4", state["outer_reproducibility"]["authority_preference"])
+        self.assertIn("DG-01 RESOLVED_BY_USER", state["outer_reproducibility"]["authority_preference"])
 
     def test_registry_dashboard_safety_and_next_task(self) -> None:
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertTrue(state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC")))
-        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01")))
+        self.assertTrue(state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC", "VALIDATION-V2-RESUME-001")))
+        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE")))
         self.assertEqual(8, len(state["user_todo_items"]))
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
         for marker in ("OUTER·재현성", "new preregistered validation required", "Primary disposition", "Urgency"):

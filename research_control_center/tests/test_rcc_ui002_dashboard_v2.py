@@ -80,6 +80,9 @@ class DashboardV2Tests(unittest.TestCase):
     def test_overview_uses_current_execution_actions(self) -> None:
         self.assertIn("DATA-AUTHORITY", self.html)
         self.assertIn("normal HAI custody binding 복원", self.html)
+        self.assertIn("APPROVED_FORMAL_V4", self.html)
+        self.assertNotIn("canonical→V4 bridge 미확정", self.html)
+        self.assertNotIn("final authority decision required", self.html)
         for stale in ("EXP-01-PREP", "EXP-02-PREP", "DETECTOR-PREP"):
             self.assertNotIn(stale, self.html)
 

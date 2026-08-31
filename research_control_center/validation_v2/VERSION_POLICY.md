@@ -20,14 +20,29 @@
 
 ## Final execution authority
 
-The research owner selected formal V4 adoption for VALIDATION V2. V4 receives
-a versioned scientific authority receipt and fail-closed conformance checks.
-This does not assert that canonical `RuleV1` or `VerifierV1` directly verified
-or executed the V4 portfolio.
+`DEC-020 = APPROVED_FORMAL_V4`; `DG-01 = RESOLVED_BY_USER`.
+
+The research owner selected Formal V4 adoption for VALIDATION V2. The
+scientific execution authority is the versioned `CanonicalRuleDescriptorV4`
+representation plus V4 task validity, replay/conformance, Utility V4 numeric
+binding, portfolio freeze, runtime authorization, durable prediction custody,
+and versioned metric/result-integrity controls.
+
+Canonical `RuleV1` and `VerifierV1` remain implemented adjacent rule-validity
+components. They did not directly verify or authorize the V4 runtime. The
+canonical-to-V4 bridge is `NOT_SELECTED` and
+`NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH`.
+
+> VALIDATION V2 formally adopts the versioned V4 relational-rule descriptor
+> and its deterministic validity, numeric binding, replay, portfolio-freeze,
+> and runtime-authorization controls as the scientific execution authority.
+
+This authority controls executable eligibility and integrity. It does not
+prove scientific utility, causal direction, physical truth, generalization,
+or explanation usefulness.
 
 ## Baseline decision
 
 The additional detector is a normal-only `IsolationForest` baseline. It is
 described as an additional nonlinear multivariate baseline, not as a temporal
 SOTA detector or as superior to PCA-SPE before evaluation.
-

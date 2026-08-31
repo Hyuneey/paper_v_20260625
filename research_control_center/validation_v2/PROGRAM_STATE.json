@@ -6,11 +6,14 @@
   "pilot_v1_authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
   "pilot_v1_status": "IMMUTABLE",
   "validation_v2_authority_policy": "FORMAL_V4",
+  "authority_decision_receipt": "APPROVED_FORMAL_V4",
+  "canonical_to_v4_bridge_status": "NOT_SELECTED",
+  "bridge_minimum_thesis_path": "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH",
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_3_SCIENTIFIC_INPUT_AUTHORITY_BLOCKED",
-  "program_status": "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY",
+  "current_stage": "STAGE_3_NORMAL_DATA_LOCATOR_BLOCKED",
+  "program_status": "BLOCKED_NORMAL_DATA_NOT_FOUND",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -19,7 +22,7 @@
   },
   "remote_status": "INITIAL_PUSH_BLOCKED_BY_EXECUTION_ENVIRONMENT_REVIEW",
   "decision_gates": {
-    "DG-01": "RESOLVED_FORMAL_V4",
+    "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "PENDING",
     "DG-04": "PENDING",
@@ -36,18 +39,35 @@
     "EXP-06": "NOT_REQUIRED"
   },
   "execution_blocker": {
-    "code": "REQUIRED_NORMAL_SCIENTIFIC_INPUT_AUTHORITY_UNAVAILABLE",
+    "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
     "scope": "Stage 3 scientific execution only",
     "evidence": {
       "authorized_data_root_environment_binding_present": false,
-      "local_custody_binding_present": false
+      "active_worktree_local_custody_binding_present": false,
+      "primary_repository_local_custody_binding_present": false,
+      "approved_locator_configured": false,
+      "host_wide_search_performed": false
     },
+    "missing_symbolic_split_ids": [
+      "HAI_TRAIN1",
+      "HAI_TRAIN2",
+      "HAI_TRAIN3",
+      "HAI_TRAIN4"
+    ],
+    "expected_safe_relative_layout": {
+      "HAI_NORMAL_ROOT": "<explicit authorized external root>",
+      "HAI_TRAIN1": "hai-23.05/hai-train1.csv",
+      "HAI_TRAIN2": "hai-23.05/hai-train2.csv",
+      "HAI_TRAIN3": "hai-23.05/hai-train3.csv",
+      "HAI_TRAIN4": "hai-23.05/hai-train4.csv"
+    },
+    "public_receipt": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json",
     "prohibited_workarounds": [
       "searching local drives for restricted data",
       "opening test1 or test2 outside an authorized custody contract",
       "reusing PILOT V1 private artifacts as VALIDATION V2 inputs"
     ],
-    "required_recovery": "Restore or issue the authorized normal-only HAI custody binding for VALIDATION V2; then start EXP-01 and EXP-02 from their frozen preregistrations.",
+    "required_recovery": "Configure an explicit authorized HAI_NORMAL_ROOT or ignored local custody binding to the parent of hai-23.05; rerun the single custody issuer; then start EXP-01 and EXP-02 from their unchanged frozen preregistrations.",
     "pilot_v1_impact": "NONE"
   },
   "fresh_machine_synthetic": {
@@ -66,14 +86,25 @@
   },
   "independent_qa": {
     "status": "PASS",
-    "reviewer": "v2_stage2_final_qa",
+    "reviewer": "v2_resume_final_qa",
     "residual_defects": 0,
-    "report": "research_control_center/validation_v2/reports/V2_PROGRAM_FINAL_QA.md"
+    "report": "research_control_center/validation_v2/reports/V2_RESUME_001_QA.md"
   },
   "safety_counters": {
     "scientific_executions": 0,
+    "train1_payload_accesses": 0,
+    "train2_payload_accesses": 0,
+    "train3_payload_accesses": 0,
+    "train4_payload_accesses": 0,
+    "test1_accesses": 0,
     "test2_accesses": 0,
     "held_out_accesses": 0,
+    "label_accesses": 0,
+    "candidate_file_stats": 0,
+    "candidate_file_opens": 0,
+    "candidate_file_byte_reads": 0,
+    "candidate_file_hashes": 0,
+    "candidate_file_parses": 0,
     "provider_calls": 0,
     "private_exposures": 0,
     "gap_fix_002_focused_tests_passed": 33,
@@ -81,7 +112,7 @@
     "gap_fix_metric_001_focused_tests_passed": 24,
     "validation_v2_tests_passed": 258,
     "validation_v2_tests_skipped": 3,
-    "rcc_tests_passed": 130,
+    "rcc_tests_passed": 132,
     "fresh_machine_synthetic_rehearsals_passed": 1,
     "pilot_v1_modifications": 0,
     "stage0_rcc_tests_passed": 122,

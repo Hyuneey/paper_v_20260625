@@ -48,8 +48,8 @@ class Arch006RuntimeTraceExplanationTests(unittest.TestCase):
 
     def test_state_dashboard_and_summary(self):
         state = json.loads((RCC / "registry" / "current_state.yaml").read_text(encoding="utf-8"))
-        self.assertTrue(state["last_completed_task"] in {"ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011"} or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC")))
-        self.assertTrue(state["exact_next_task"].startswith(("ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01")))
+        self.assertTrue(state["last_completed_task"] in {"ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011"} or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC", "VALIDATION-V2-RESUME-001")))
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE")))
         self.assertEqual(0, state["runtime_trace_explanation"]["llm_calls"])
         self.assertFalse(state["runtime_trace_explanation"]["durable_persistence"])
         dashboard = (RCC / "dashboard" / "index.html").read_text(encoding="utf-8")
@@ -58,7 +58,7 @@ class Arch006RuntimeTraceExplanationTests(unittest.TestCase):
         self.assertIn("D1은 T2 Agentic Rule-only가 아닙니다", dashboard)
         summary = (RCC / "generated" / "ARCH_006_USER_SUMMARY.md").read_text(encoding="utf-8")
         self.assertIn("630 unique alarm seconds", summary)
-        self.assertTrue("ARCH-007" in summary or "ARCH-008" in summary or "ARCH-009" in summary or "ARCH-010" in summary or "GAP-000" in summary or "ARCH-011" in summary or "GAP-FIX-001" in summary or "GAP-FIX-002" in summary or "V2-PROTOCOL-001" in summary or "GAP-FIX-METRIC-001" in summary or "EXP-01-EXEC" in summary)
+        self.assertTrue("ARCH-007" in summary or "ARCH-008" in summary or "ARCH-009" in summary or "ARCH-010" in summary or "GAP-000" in summary or "ARCH-011" in summary or "GAP-FIX-001" in summary or "GAP-FIX-002" in summary or "V2-PROTOCOL-001" in summary or "GAP-FIX-METRIC-001" in summary or "EXP-01-EXEC" in summary or "CUSTODY-RESTORE" in summary)
 
 
 if __name__ == "__main__":

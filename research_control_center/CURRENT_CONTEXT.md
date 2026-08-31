@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=dd9ff198503b332719e63f9f1de6b1b05c6acb08dec03ad7eb305b476991ce7a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=0985a9ce3ffbf43bb620d5d6b1409127f6ece4c73880d3f987227dd544c466f5 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-08-31
@@ -111,5 +111,5 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - Execute EXP-01 and EXP-02 from the frozen preregistrations before any test1 development observation.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-Exact next management task: **EXP-01-EXEC — Restore authorized normal-only HAI custody binding**
+Exact next management task: **CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

@@ -20,7 +20,10 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY")
+        self.assertEqual(state["program_status"], "BLOCKED_NORMAL_DATA_NOT_FOUND")
+        self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
+        self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
+        self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")
         self.assertEqual(
             state["fresh_machine_synthetic"]["status"],
             "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
@@ -38,7 +41,8 @@ class ValidationV2ProgramTests(unittest.TestCase):
 
     def test_decision_gates_record_user_choices(self) -> None:
         text = (V2 / "DECISION_GATES.md").read_text(encoding="utf-8")
-        self.assertIn("RESOLVED_FORMAL_V4", text)
+        self.assertIn("RESOLVED_BY_USER", text)
+        self.assertIn("APPROVED_FORMAL_V4", text)
         self.assertIn("RESOLVED_ISOLATION_FOREST", text)
         self.assertIn("DG-05", text)
 
@@ -95,6 +99,42 @@ class ValidationV2ProgramTests(unittest.TestCase):
             ).encode("utf-8")
         ).hexdigest()
         self.assertEqual(expected, actual)
+
+    def test_normal_custody_blocker_receipt_is_self_hashed_and_zero_access(self) -> None:
+        receipt = json.loads(
+            (V2 / "receipts" / "HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        expected = receipt.pop("receipt_self_hash")
+        actual = hashlib.sha256(
+            json.dumps(
+                receipt,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            ).encode("utf-8")
+        ).hexdigest()
+        self.assertEqual(expected, actual)
+        self.assertEqual(receipt["status"], "BLOCKED_NORMAL_DATA_NOT_FOUND")
+        self.assertFalse(receipt["binding_issued"])
+        self.assertEqual(receipt["bound_split_ids"], [])
+        self.assertEqual(
+            receipt["missing_symbolic_split_ids"],
+            ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"],
+        )
+        self.assertFalse(receipt["locator"]["approved_locator_configured"])
+        for value in receipt["access_accounting"].values():
+            self.assertEqual(value, 0)
+
+    def test_frozen_preregistrations_remain_unchanged(self) -> None:
+        expected = {
+            "EXP01_PREREGISTRATION_V2.json": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc",
+            "EXP02_PREREGISTRATION_V2.json": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721",
+        }
+        for name, digest in expected.items():
+            document = json.loads((V2 / "preregistration" / name).read_text(encoding="utf-8"))
+            self.assertEqual(document["preregistration_hash"], digest)
 
     def test_professor_readiness_package_is_complete_and_qualified(self) -> None:
         package = ROOT / "docs" / "professor_experiment_update_v2"

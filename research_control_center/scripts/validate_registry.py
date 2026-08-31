@@ -340,8 +340,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain the six current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "FRESH-MACHINE-SYNTHETIC — Clean-checkout rehearsal PASS", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "EXP-01-EXEC — Restore authorized normal-only HAI custody binding", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "VALIDATION-V2-RESUME-001 — Formal V4 user ratification and fail-closed normal custody locator audit", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -354,10 +354,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "EXP-01-EXEC — Restore authorized normal-only HAI custody binding", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "CUSTODY-RESTORE — Configure approved HAI_NORMAL_ROOT and rerun train1~4 single custody issuer", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
-    result.require(readiness.get("status") == "EXPERIMENT_PREPARATION_FROZEN_SCIENTIFIC_INPUT_AUTHORITY_BLOCKED", "VALIDATION V2 remediation status mismatch")
+    result.require(readiness.get("status") == "FORMAL_V4_RATIFIED_BLOCKED_NORMAL_DATA_NOT_FOUND", "VALIDATION V2 remediation status mismatch")
     result.require(readiness.get("p0_global_fixes") == [], "remaining global P0 fix mismatch")
     result.require(readiness.get("raw_findings") == 120 and readiness.get("root_issues") == 19, "GAP-000 inventory counts mismatch")
     result.require(readiness.get("source_severity") == {"critical": 0, "high": 54, "medium": 55, "low": 11}, "GAP-000 source severity mismatch")
@@ -669,6 +669,10 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(open_decisions == set(), "decision registry contains an unexpected unresolved decision")
     decision_020 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-020"), None)
     result.require(decision_020 is not None and decision_020["status"] == "ACTIVE" and decision_020["user_approved"] == "true", "Formal V4 decision is not recorded as active and user-approved")
+    if decision_020 is not None:
+        result.require("APPROVED_FORMAL_V4" in decision_020["decision"], "DEC-020 lacks the user-approved Formal V4 receipt token")
+        result.require("RESOLVED_BY_USER" in decision_020["current_relevance"], "DEC-020 lacks the resolved-by-user DG-01 token")
+        result.require("NOT_SELECTED" in decision_020["consequence"], "DEC-020 does not close the bridge option")
     decision_021 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-021"), None)
     result.require(decision_021 is not None and decision_021["status"] == "ACTIVE" and decision_021["user_approved"] == "true", "ARCH-011 user-approved conditional contribution policy is not recorded")
     risk_011 = next((row for row in data["risks"] if row["risk_id"] == "RISK-11"), None)
@@ -688,8 +692,16 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(metric.get("metric_contract_hash") == "aec2dd11b8178071eb91160f1dff45f9cd0cc1be6c314aa3641ed0698df3dde4", "V2 metric contract hash mismatch")
     result.require(metric.get("scientific_eligible") is False, "synthetic metric contract must not authorize scientific execution")
     result.require("post-metric" in metric.get("stage3_requirement", ""), "Stage-3 scientific wrapper requirement is missing")
+    authority = data["state"].get("validation_v2_authority", {})
+    result.require(authority.get("decision") == "APPROVED_FORMAL_V4", "Formal V4 user decision receipt is not current")
+    result.require(authority.get("decision_gate") == "DG-01_RESOLVED_BY_USER", "DG-01 is not recorded as resolved by the user")
+    result.require(authority.get("canonical_to_v4_bridge") == "NOT_SELECTED", "canonical-to-V4 bridge remains incorrectly pending")
+    result.require(authority.get("bridge_minimum_thesis_path") == "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH", "minimum thesis path incorrectly requires the bridge")
+    result.require(authority.get("canonical_rule_v1_authoritative") is False and authority.get("verifier_v1_authoritative") is False, "canonical RuleV1/VerifierV1 authority is overstated")
     program = data["state"].get("validation_v2_program", {})
-    result.require(program.get("status") == "BLOCKED_REQUIRED_NORMAL_DATA_CUSTODY", "V2 scientific input blocker is not explicit")
+    result.require(program.get("status") == "BLOCKED_NORMAL_DATA_NOT_FOUND", "V2 normal-data locator blocker is not explicit")
+    result.require(program.get("scientific_input_authority") == "NO_APPROVED_NORMAL_DATA_LOCATOR_CONFIGURED", "V2 missing locator cause is not explicit")
+    result.require(program.get("missing_symbolic_splits") == ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"], "V2 missing symbolic normal splits are incorrect")
     result.require(program.get("fresh_machine_synthetic") == "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC", "fresh-machine synthetic PASS is not recorded")
     result.require(program.get("scientific_executions") == 0, "V2 program overstates scientific execution")
     result.require(program.get("test2_accesses") == 0 and program.get("heldout_accesses") == 0, "V2 program violates held-out safety counters")
@@ -843,10 +855,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "EXP-01-EXEC"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "EXP-01-EXEC"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "CUSTODY-RESTORE"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "CUSTODY-RESTORE"),
         "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "EXP-01-EXEC"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "CUSTODY-RESTORE"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
