@@ -1,0 +1,11 @@
+producer,object_schema,consumer,authority,hash_binding,failure_behavior,artifact,notes
+V4 authority replay,EvaluatorAuthorityBundleV1 and 42 CanonicalRuleDescriptorV4 records,real census and evaluator,COMMON-42 V4 plus evaluator bundle,bundle and descriptor hashes,fail closed,public authority reports,Not canonical RuleV1 runtime
+private authority loader,RealPrivateNumericResolverV1,real census and evaluator,normal-only runtime registry,registry and 420 relation-role bindings,fail closed,private process-local object,Serialization and copying prohibited
+test1 feature loader,RealInnerFeatureFrameV1,real census and evaluator,exact test1 feature hash and 37-feature schema,frame hash,fail closed,process-local frame,No labels in frame
+real census,RealFullCensusResultV1,execute_real_rule_v1,V4 source census plus COMMON-42,census and envelope hashes,fail closed,process-local census,6031 frozen opportunities
+execute_real_rule_v1,RealRuleExecutionResultV1,prediction builder,V4 descriptor and numeric authority,computation and trace hashes,fail closed,process-local result,Terminal trace projection only
+prediction builder,ScientificRulePredictionArtifactV1,label custody loader,committed D1 grant and bridge,self-hash plus factory custody,fail closed,in-memory then later public JSON,Not durable before labels
+label custody loader,RealLabelEventCustodyV1,metric calculation,committed label hash and metric policy,private label/event/episode hashes,fail closed,private custody only,Runs only after prediction replay
+metric episode builder,unique point indices and IntervalV1 episodes,metric calculation,frozen metric policy,private interval-set hash,fail closed,private evidence and public counts,Episode construction is downstream of prediction
+canonical runtime,RuntimeTraceV1,canonical explanation renderer,RuntimeAuthorizationBundleV1,contract artifact hash,fail closed,canonical trace,Not used by frozen D1
+canonical explanation renderer,ExplanationRecordV1,reporting or vertical slice,canonical trace/rule/verifier/window bindings,artifact hash,fail closed,canonical explanation,No frozen D1 adapter

@@ -1,0 +1,10 @@
+artifact,producer,input,role,source_split,frozen,persisted,hash,consumer,label_blind,audited,notes
+feature_contract,task039e3_r2r_d0_detector_design_v1,P1 public schema,Frozen 37-column order,metadata,true,true,feature_set_and_order_hash,training_and_inner_execution,true,true,No private values
+preprocessing_artifact,fit_preprocessing_v1,normal train1 plus train2,Mean and population scale,train1_train2,true,true,preprocessing_hash,PCA fit and all scoring,true,true,Private float-hex custody
+pca_model_artifact,select_components_v1,standardized train1 plus train2,Retained loadings and eigen authority,train1_train2,true,true,model_hash,train3_train4_test1 scoring,true,true,k10 residual27
+threshold_artifact,calibrate_threshold_v1,train3 SPE vector,Empirical q0.999 order statistic,train3,true,true,threshold_hash,strict_alarm_mask_v1,true,true,Private numeric value
+score_evidence,_freeze_private_score_evidence_v1,test1 SPE vector,Private score custody,test1,true,true,score_vector_content_hash,prediction identity,true,true,No public numeric scores
+prediction_artifact,_persist_prediction_before_label_v1,test1 alarm mask,Durable label-blind point predictions,test1,true,true,artifact_hash,metric handoff,true,true,54000 records and 876 alarms
+metric_evidence,_build_private_metric_evidence_v1,frozen prediction plus labels,Private episode and denominator evidence,test1,true,true,private_metric_evidence_hash,public metric receipts,false,true,Created only after freeze
+metrics_report,_public_result_reports_v1,private metric evidence,Sanitized pilot result,test1,true,true,report_self_hash,RCC and comparison reports,false,true,11 of 14 and FAR per hour
+integrity_audit,independent audit script,frozen score prediction and reports,Independent custody and arithmetic audit,test1,true,true,audit_bundle_hash,RCC result-integrity status,false,true,No authoritative rerun

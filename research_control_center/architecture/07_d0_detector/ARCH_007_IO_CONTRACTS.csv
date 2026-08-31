@@ -1,0 +1,14 @@
+producer,output_schema,consumer,source_split,required_fields,authority,failure_behavior,artifact,notes
+D0 design,P1 feature contract,normal and test parsers,metadata,37 ordered P1 names and hashes,design hash,fail closed,feature scope report,Separate from relation roles
+normal train1 and train2 parser,float64 feature frames,fit_preprocessing_v1,train1_train2,exact identity rows order finite values,split and file hashes,fail closed,private frames,No labels
+fit_preprocessing_v1,mean and scale,covariance and scoring,train1_train2,37 float64 means and positive scales,preprocessing hash,fail closed,preprocessing artifact,ddof0 floor1e-12
+select_components_v1,retained PCA loadings,score_spe_v1,train1_train2,k loadings eigen metadata,model hash,fail closed,model artifact,0.95 policy selected k10
+score_spe_v1,train3 SPE vector,calibrate_threshold_v1,train3,finite nonnegative one per row,frozen model,fail closed,private ephemeral scores,No interpolation
+calibrate_threshold_v1,threshold artifact,strict_alarm_mask_v1,train3,q index comparator and float-hex value,threshold hash,fail closed,private threshold artifact,q0.999 score greater-than
+test1 feature parser,float64 feature frame,compute_spe_float64_v1,test1,54000 rows and exact feature order,test1 feature hash,fail closed,private frame,Labels absent
+compute_spe_float64_v1,SPE vector,strict_alarm_mask_v1,test1,54000 finite nonnegative scores,frozen preprocessing and model,fail closed,private score artifact,Public hash only
+strict_alarm_mask_v1,bool point mask,prediction builder,test1,score greater than threshold,frozen threshold hash,fail closed,in-memory mask,Equality not alarm
+prediction builder,ScientificDetectorPredictionArtifactV1,persistence gate,test1,54000 record closure and self hash,committed grant and source hashes,fail closed,public prediction JSON,Label blind
+prediction persistence,frozen validated bytes,label custody gate,test1,byte replay and state PREDICTION_FROZEN,prediction hash,fail closed,public prediction JSON,Durable before label
+label custody,private aligned labels and attack events,metric handoff,test1,exact timestamp alignment and file hash,post-freeze gate,fail closed,private custody,Not public
+metric handoff,sanitized D0 metrics,RCC and comparison,test1,frozen prediction and private denominators,result integrity bindings,fail closed,public reports,Deep metric math deferred ARCH-010

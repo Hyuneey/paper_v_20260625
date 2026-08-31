@@ -1,0 +1,15 @@
+field,task_specific_trace,RuntimeTraceV1,semantic_equivalent,required,source,consumer,notes
+trace_object,hash-preimage only,typed RuntimeTraceV1,NO,yes,_real_rule_result_v1,scientific prediction and integrity audit,Frozen D1 does not persist a canonical trace object
+opportunity_identity,opportunity_id,input_window_id,PARTIAL,yes,census opportunity,task prediction,Opportunity and canonical window are different authorities
+rule_identity,relation_binding_hash,rule_id plus rule_hash,PARTIAL,yes,V4 descriptor,integrity replay,No canonical RuleV1 ID or verified_rule_hash in D1 record
+source_event,source_event_identity_hash,trigger_satisfied plus trigger_index,PARTIAL,yes,census,task prediction,D1 evaluates only retained isolated events
+outcome,final_state,status plus expected_effect_satisfied,PARTIAL,yes,execute_real_rule_v1,prediction,State mapping is possible but schema differs
+alarm,alarm_emitted,violation_detected plus violation_score,YES,yes,execute_real_rule_v1,prediction and metrics,D1 alarm is binary per opportunity
+abstention,final_state only in public record,abstained plus registered reason in execution outcome,PARTIAL,yes,_real_rule_result_v1,prediction,D1 public record drops abstention_reason; frozen cohort had zero abstains
+decision_time,decision_physical_row_index,response_index,PARTIAL,conditional,execute_real_rule_v1,metric handoff,Both indicate the target decision coordinate but object models differ
+numeric_authority,numeric_reference_identities,parameter_values_used with ID hash value unit,PARTIAL,yes,V4 resolver,trace/integrity,D1 intentionally exposes references not private values
+satisfaction_steps,absent,nine ordered operator results,NO,no,canonical runtime only,canonical explanation,Primary semantic trace gap
+authority,computation_identity and artifact-level bundle hashes,authorization ID and verifier result ref,PARTIAL,yes,task execution bridge,integrity audit,Different authority planes
+trace_integrity,trace_hash,artifact_hash,PARTIAL,yes,stable_hash_v1 or contract hash,integrity replay,D1 full trace preimage is not separately persisted
+created_at,absent,created_at,NO,no,canonical runtime only,canonical explanation,Task prediction is content-bound without per-trace creation time
+input_output_alignment,implicit in census and row identity,input_output_alignment_preserved,PARTIAL,no,V4 opportunity,canonical explanation,Not represented as a D1 trace field
