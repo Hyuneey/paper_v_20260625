@@ -69,9 +69,11 @@ opportunity를 처리하는 D1·EXP-05에서는 다음으로 큰 CPU/IO 병목�
 
 안전한 개선은 실행 시작 시 authority 전체를 한 번 replay해 immutable prepared
 capability와 descriptor/numeric lookup map을 만들고, 각 window는 O(1) lookup으로
-평가한 뒤 종료 시 bound bytes를 다시 hash하는 것이다. 단순 `lru_cache`로
-mutation 검사를 생략해서는 안 된다. 기존 single-window trace와 bit/field-identical
-synthetic conformance가 먼저 필요하다.
+평가한 뒤 종료 시 bound bytes를 다시 hash하는 것이다. 이 경계는
+`FORMAL_V4_PREPARED_RUNTIME_PERFORMANCE_V2.md`에 따라 구현됐다. 단순 `lru_cache`가
+아니며, 시작/종료 full replay와 mutation fail-closed를 유지한다. 기존 single-window
+trace와 PASS/FAIL/ABSTAIN bit-identical synthetic conformance도 통과했다. 실제 V2
+portfolio scientific runner 연결은 아직 수행하지 않았다.
 
 ### 2. EXP-02
 

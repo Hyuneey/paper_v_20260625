@@ -702,8 +702,33 @@ def load_formal_v4_numeric_values_v1(
 ) -> tuple[tuple[str, str, float], ...]:
     """Load exact value-bearing numeric records from the bound private artifact."""
 
-    if type(descriptor) is not FormalV4RuleDescriptorV1:
+    return load_formal_v4_numeric_value_map_v1(
+        descriptors=(descriptor,),
+        numeric_authority_binding=numeric_authority_binding,
+        repository_root=repository_root,
+    )[0][1]
+
+
+def load_formal_v4_numeric_value_map_v1(
+    *,
+    descriptors: Sequence[FormalV4RuleDescriptorV1],
+    numeric_authority_binding: FormalV4ArtifactBindingV1,
+    repository_root: Path,
+) -> tuple[tuple[str, tuple[tuple[str, str, float], ...]], ...]:
+    """Load one bound numeric document and project all requested descriptors.
+
+    The returned order exactly follows ``descriptors``.  This is a batch I/O
+    adapter only: every descriptor/reference check is identical to the single
+    descriptor loader and no numeric selection or transformation occurs.
+    """
+
+    if type(descriptors) not in {tuple, list} or not descriptors:
+        _fail("V4_DESCRIPTOR_SEQUENCE_INVALID", "descriptors must be a non-empty sequence")
+    descriptor_rows = tuple(descriptors)
+    if any(type(item) is not FormalV4RuleDescriptorV1 for item in descriptor_rows):
         _fail("V4_DESCRIPTOR_TYPE_INVALID", "descriptor type differs")
+    if len({item.relation_id for item in descriptor_rows}) != len(descriptor_rows):
+        _fail("V4_DESCRIPTOR_RELATION_DUPLICATE", "descriptor relation IDs duplicate")
     document = _read_exact_json_object_v1(repository_root, numeric_authority_binding)
     if (
         set(document) != {"artifact_type", "bindings", "schema_version"}
@@ -720,27 +745,33 @@ def load_formal_v4_numeric_values_v1(
         if key in by_key:
             _fail("V4_NUMERIC_RECORD_DUPLICATE", "numeric binding record duplicates")
         by_key[key] = record
-    result: list[tuple[str, str, float]] = []
-    for binding in descriptor.numeric_reference_bindings:
-        record = by_key.get((descriptor.relation_id, binding.numeric_role))
-        if record is None:
-            _fail("V4_NUMERIC_RECORD_MISSING", "numeric binding record missing")
-        value = record["value"]
-        payload = {
-            "numeric_role": binding.numeric_role,
-            "reference_id": binding.reference_id,
-            "relation_id": descriptor.relation_id,
-            "value": value,
-        }
-        if (
-            record["reference_id"] != binding.reference_id
-            or record["reference_hash"] != binding.reference_hash
-            or binding.reference_hash != canonical_document_hash_v1(payload)
-            or type(value) is not float
-            or not math.isfinite(value)
-        ):
-            _fail("V4_NUMERIC_VALUE_BINDING_MISMATCH", "numeric value/reference binding differs")
-        result.append((binding.numeric_role, binding.reference_id, value))
+    result: list[tuple[str, tuple[tuple[str, str, float], ...]]] = []
+    for descriptor in descriptor_rows:
+        values: list[tuple[str, str, float]] = []
+        for binding in descriptor.numeric_reference_bindings:
+            record = by_key.get((descriptor.relation_id, binding.numeric_role))
+            if record is None:
+                _fail("V4_NUMERIC_RECORD_MISSING", "numeric binding record missing")
+            value = record["value"]
+            payload = {
+                "numeric_role": binding.numeric_role,
+                "reference_id": binding.reference_id,
+                "relation_id": descriptor.relation_id,
+                "value": value,
+            }
+            if (
+                record["reference_id"] != binding.reference_id
+                or record["reference_hash"] != binding.reference_hash
+                or binding.reference_hash != canonical_document_hash_v1(payload)
+                or type(value) is not float
+                or not math.isfinite(value)
+            ):
+                _fail(
+                    "V4_NUMERIC_VALUE_BINDING_MISMATCH",
+                    "numeric value/reference binding differs",
+                )
+            values.append((binding.numeric_role, binding.reference_id, value))
+        result.append((descriptor.relation_id, tuple(values)))
     return tuple(result)
 
 
