@@ -48,7 +48,8 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 | P1 | EXP-05 runtime-to-trace | CPU/IO | unit마다 동일 Formal V4 authority/numeric replay | prepared batch start/end replay와 ordered batch binding을 구현함 |
 | P1 | EXP-05 durable custody | IO-bound 가능 | trace마다 fsync/close/reopen이면 작은 파일 IOPS 증가 | 현재 durability 의미를 유지하며 실제 cohort 규모가 확인된 뒤 별도 contract로 판단 |
 | P1 | 미래 GDN training | CPU input overhead | sample별 NumPy→Tensor 변환과 반복 edge transfer | 새 실행 버전에서만 tensor cache/DataLoader 및 device preallocation 검토 |
-| 낮음 | Isolation Forest/PCA | CPU appropriate | 표 형태·중간 규모 normal-only 계산 | GPU 강제 사용 불필요, 병렬 CPU thread 수만 환경 receipt에 고정 |
+| 낮음 | Isolation Forest/PCA model | CPU appropriate | 표 형태·중간 규모 normal-only 계산 | GPU 강제 사용 불필요, 병렬 CPU thread 수는 환경 receipt에 고정 |
+| 완료 | Detector authority hash | CPU memory copy | 대형 matrix/score의 전체 `tobytes()` 복사 | 기존 SHA-256과 byte-identical한 contiguous-buffer hash 적용 |
 | 낮음 | metric adapter | CPU appropriate | Boolean timeline/episode grouping | 현재 공통 metric 의미 유지, 불필요한 재읽기만 제거 |
 
 ## 구현하지 않은 항목
@@ -102,9 +103,9 @@ raw SHA, parser source hash, feature-order hash, sampling contract, matrix hash�
 private feature cache가 가능하지만 원본과의 value/byte parity receipt가 필요하다.
 
 Isolation Forest는 CPU-only이며 frozen `n_jobs=1`이다. GPU 이동이나 `n_jobs`
-변경은 현재 config를 바꾸므로 적용하지 않는다. 대형 matrix hash의 `tobytes()`
-임시 복사는 동일 digest를 유지하는 streaming `memoryview` hash로 별도 conformance
-후 줄일 수 있다.
+변경은 현재 config를 바꾸므로 적용하지 않는다. 대형 matrix/score hash의
+`tobytes()` 임시 복사는 동일 digest를 유지하는 contiguous-buffer `memoryview`
+hash로 교체했고 synthetic byte-equivalence와 allocation regression을 통과했다.
 
 ### 4. EXP-05, EXP-04, Metrics
 

@@ -17,6 +17,7 @@ from .isolation_forest_v1 import (
     MatrixBindingV1,
     NormalMatrixInputV1,
     _normalize_matrix_input,
+    _sha256_contiguous_array_v1,
     build_detector_environment_receipt_v1,
 )
 
@@ -304,7 +305,9 @@ def calibrate_pca_spe_threshold_v2(
     threshold = float(np.sort(scores, kind="stable")[rank - 1])
     base = PcaSpeThresholdReceiptV2(
         fit_receipt_hash=model.fit_receipt.receipt_hash, calibration_input=binding,
-        calibration_score_hash=sha256(np.ascontiguousarray(scores).tobytes(order="C")).hexdigest(),
+        calibration_score_hash=_sha256_contiguous_array_v1(
+            np.ascontiguousarray(scores, dtype=np.float64)
+        ),
         score_count=count, nearest_rank=rank, threshold_hex=threshold.hex(),
         comparator=model.config.comparator,
     )

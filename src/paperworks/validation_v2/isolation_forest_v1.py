@@ -72,6 +72,26 @@ def _document_hash(value: Mapping[str, Any]) -> str:
     return sha256(_canonical_bytes(value)).hexdigest()
 
 
+def _sha256_contiguous_array_v1(value: Any, *, prefix: bytes = b"") -> str:
+    """Hash exact C-order array bytes without allocating a full bytes copy."""
+
+    if type(prefix) is not bytes:
+        raise IsolationForestContractError("array hash prefix must be exact bytes")
+    try:
+        view = memoryview(value)
+    except TypeError as exc:
+        raise IsolationForestContractError("array hash input must expose a buffer") from exc
+    if not view.c_contiguous:
+        raise IsolationForestContractError("array hash input must be C-contiguous")
+    digest = sha256()
+    digest.update(prefix)
+    try:
+        digest.update(view.cast("B"))
+    except (TypeError, ValueError) as exc:
+        raise IsolationForestContractError("array hash buffer cannot be byte-cast") from exc
+    return digest.hexdigest()
+
+
 def _require_hex64(value: str, field: str) -> None:
     if not isinstance(value, str) or len(value) != 64 or any(char not in _HEX for char in value):
         raise IsolationForestContractError(f"{field} must be lowercase sha256 hex")
@@ -290,10 +310,13 @@ def _normalize_matrix_input(
     if not bool(np.isfinite(matrix).all()):
         raise IsolationForestContractError("matrix contains non-finite values")
     matrix = np.ascontiguousarray(matrix, dtype=np.float64)
-    matrix_hash = sha256(
-        _canonical_bytes({"shape": [int(matrix.shape[0]), int(matrix.shape[1])], "feature_ids": list(value.feature_ids)})
-        + matrix.tobytes(order="C")
-    ).hexdigest()
+    matrix_hash = _sha256_contiguous_array_v1(
+        matrix,
+        prefix=_canonical_bytes({
+            "shape": [int(matrix.shape[0]), int(matrix.shape[1])],
+            "feature_ids": list(value.feature_ids),
+        }),
+    )
     return matrix, MatrixBindingV1(
         file_id=value.file_id,
         file_content_sha256=value.file_content_sha256,
@@ -382,10 +405,15 @@ def fit_isolation_forest_v1(
     combined = np.ascontiguousarray(np.concatenate((first, second), axis=0), dtype=np.float64)
     if int(combined.shape[0]) < frozen_config.max_samples:
         raise IsolationForestContractError("combined fit cohort has fewer than 256 rows")
-    combined_hash = sha256(
-        _canonical_bytes({"ordered_matrix_hashes": [first_binding.matrix_sha256, second_binding.matrix_sha256]})
-        + combined.tobytes(order="C")
-    ).hexdigest()
+    combined_hash = _sha256_contiguous_array_v1(
+        combined,
+        prefix=_canonical_bytes({
+            "ordered_matrix_hashes": [
+                first_binding.matrix_sha256,
+                second_binding.matrix_sha256,
+            ]
+        }),
+    )
     estimator = _isolation_forest_class()(
         n_estimators=frozen_config.n_estimators,
         max_samples=frozen_config.max_samples,
@@ -500,7 +528,9 @@ def calibrate_isolation_forest_threshold_v1(
     count = int(scores.shape[0])
     rank = math.ceil(model.config.threshold_numerator * count / model.config.threshold_denominator)
     threshold = float(np.sort(scores, kind="stable")[rank - 1])
-    score_hash = sha256(np.ascontiguousarray(scores, dtype=np.float64).tobytes(order="C")).hexdigest()
+    score_hash = _sha256_contiguous_array_v1(
+        np.ascontiguousarray(scores, dtype=np.float64)
+    )
     provisional = IsolationForestThresholdReceiptV1(
         fit_receipt_hash=model.fit_receipt.self_hash,
         calibration_input=binding,
