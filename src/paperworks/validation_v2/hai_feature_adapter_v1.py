@@ -468,14 +468,46 @@ def load_authorized_hai_feature_frame_v1(
 ) -> HAIFeatureFrameV1:
     """Authorize and open one exact feature split without any label capability."""
 
+    return load_authorized_hai_feature_frame_for_operations_v1(
+        capability=capability,
+        split_id=split_id,
+        operations=(operation,),
+        protocol_guard=protocol_guard,
+        ledger=ledger,
+    )
+
+
+def load_authorized_hai_feature_frame_for_operations_v1(
+    *,
+    capability: HAIFeatureRootCapabilityV1,
+    split_id: str,
+    operations: tuple[ProtocolOperationV1, ...],
+    protocol_guard: ProtocolExecutionGuardV1,
+    ledger: HAIFeatureAccessLedgerV1,
+) -> HAIFeatureFrameV1:
+    """Authorize an exact operation set, then open the split exactly once.
+
+    This is the narrow multi-consumer entry point.  Every requested operation
+    is checked before the feature payload is opened; the resulting frame is
+    still private and immutable.  It adds no label or held-out capability.
+    """
+
     if split_id in {"test2", "outer", "heldout", "sealed", "future_heldout"}:
         _fail("HELDOUT_OR_TEST2_ALIAS_REJECTED")
     spec = _SPECS.get(split_id)
-    if spec is None or operation not in _ALLOWED_OPERATIONS[split_id]:
+    if (
+        spec is None
+        or type(operations) is not tuple
+        or not operations
+        or len(operations) != len(set(operations))
+        or any(type(operation) is not ProtocolOperationV1 for operation in operations)
+        or any(operation not in _ALLOWED_OPERATIONS[split_id] for operation in operations)
+    ):
         _fail("SPLIT_OPERATION_REJECTED")
     if type(protocol_guard) is not ProtocolExecutionGuardV1 or type(ledger) is not HAIFeatureAccessLedgerV1:
         _fail("FEATURE_GOVERNANCE_TYPE_REJECTED")
-    protocol_guard.authorize(split_id=split_id, operation=operation)
+    for operation in operations:
+        protocol_guard.authorize(split_id=split_id, operation=operation)
     ledger.authorize_once(split_id)
     return _load_feature_file_from_spec_v1(capability, spec)
 
@@ -505,5 +537,6 @@ __all__ = [
     "HAIFeatureRootCapabilityV1",
     "authorized_hai_feature_specs_v1",
     "load_authorized_hai_feature_frame_v1",
+    "load_authorized_hai_feature_frame_for_operations_v1",
     "resolve_hai_feature_root_capability_v1",
 ]

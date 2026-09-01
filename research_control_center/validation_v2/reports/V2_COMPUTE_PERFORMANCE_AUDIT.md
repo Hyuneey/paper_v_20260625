@@ -1,6 +1,6 @@
 # VALIDATION V2 계산 자원·장기 병목 감사
 
-상태: `AUDITED_EXP01_EXP02_FORMAL_V4_EXP05_PERFORMANCE_FOUNDATIONS_QA_PASS`
+상태: `AUDITED_EXP01_EXP02_FORMAL_V4_EXP05_HAI_SHARED_FRAME_PERFORMANCE_FOUNDATIONS_QA_PASS`
 
 ## 현재 계산 환경
 
@@ -50,6 +50,7 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 | P1 | 미래 GDN training | CPU input overhead | sample별 NumPy→Tensor 변환과 반복 edge transfer | 새 실행 버전에서만 tensor cache/DataLoader 및 device preallocation 검토 |
 | 낮음 | Isolation Forest/PCA model | CPU appropriate | 표 형태·중간 규모 normal-only 계산 | GPU 강제 사용 불필요, 병렬 CPU thread 수는 환경 receipt에 고정 |
 | 완료 | Detector authority hash | CPU memory copy | 대형 matrix/score의 전체 `tobytes()` 복사 | 기존 SHA-256과 byte-identical한 contiguous-buffer hash 적용 |
+| 완료 | HAI split 공유 | CPU/IO | D0·Isolation Forest·D1 소비자별 동일 CSV 재parse 가능성 | 사전 승인된 multi-consumer session에서 split 1회 open 및 읽기 전용 projection 공유 |
 | 낮음 | metric adapter | CPU appropriate | Boolean timeline/episode grouping | 현재 공통 metric 의미 유지, 불필요한 재읽기만 제거 |
 
 ## 구현하지 않은 항목
@@ -58,8 +59,9 @@ EXP-01의 증명된 병목은 checkpoint resume와 선형/indexed adapter로 해
 후속 EXP-02 효율화에서는 미동결 scientific producer semantics를 추정하지 않고,
 single-parse·summary precompute·37-candidate batch evaluation 경계만 합성 테스트로
 구현했다. Formal V4와 EXP-05 runtime-to-trace 경로는 각각 start/end authority
-replay를 가진 prepared batch로 구현했다. EXP-05 durable small-file custody와 future
-GPU GDN 개선은 별도 contract와 QA가 필요하므로 아직 변경하지 않았다.
+replay를 가진 prepared batch로 구현했다. HAI feature adapter에는 process/session-local
+one-open 공유 경계를 추가했다. EXP-05 durable small-file custody와 future GPU GDN
+개선은 별도 contract와 QA가 필요하므로 아직 변경하지 않았다.
 
 ## 비-EXP01 정적 병목 상세
 
@@ -102,6 +104,14 @@ D0, Isolation Forest, D1 consumer에 공유하는 것이 안전한 1차 개선�
 raw SHA, parser source hash, feature-order hash, sampling contract, matrix hash에 묶인
 private feature cache가 가능하지만 원본과의 value/byte parity receipt가 필요하다.
 
+이 1차 개선은 `HAI_SHARED_FEATURE_SESSION_PERFORMANCE_V2.md`에 따라 구현됐다.
+모든 소비자의 protocol operation을 payload open 전에 검증하고, split별 ledger와
+source receipt는 file open 1회를 기록한다. 같은 feature projection은 session 내부
+buffer를 공유하되 소비자마다 쓰기 불가능한 별도 NumPy view를 반환한다. 영속 cache,
+label, test2, held-out capability는 추가하지 않았다. 합성 EXP-04 모형에서 D0 PCA,
+Isolation Forest, D1 Formal V4 세 소비자가 동일 test1 split을 공유해도 parse와
+`DEVELOPMENT_PREDICTION` authorization은 각각 1회였다. 실제 test1은 열지 않았다.
+
 Isolation Forest는 CPU-only이며 frozen `n_jobs=1`이다. GPU 이동이나 `n_jobs`
 변경은 현재 config를 바꾸므로 적용하지 않는다. 대형 matrix/score hash의
 `tobytes()` 임시 복사는 동일 digest를 유지하는 contiguous-buffer `memoryview`
@@ -122,12 +132,13 @@ hash로 교체했고 synthetic byte-equivalence와 allocation regression을 통�
 
 ## 실행 우선순위
 
-1. EXP-02 runner 전에 single-parse·precompute·linear/indexed contract를 동결한다.
-2. V2 portfolio 이후 D1/EXP-05 전에 prepared Formal V4 batch runtime을 별도
-   conformance task로 구현한다.
-3. EXP-04에서는 test1을 허가된 한 번의 session에서 parse해 모든 method adapter가
-   공유하도록 한다.
-4. GPU GDN은 향후 새 실행 identity에서만 별도 동결한다.
+1. EXP-02의 single-parse·precompute·linear/indexed foundation을 실제로 동결된
+   producer/cohort에 연결한다.
+2. V2 portfolio 이후 D1/EXP-05를 이미 구현된 prepared Formal V4 batch에 연결한다.
+3. EXP-04 scientific runner가 동결되면 이미 구현된 shared HAI session을 사용해
+   test1을 정확히 한 번만 parse한다.
+4. 다음 독립 최적화 후보는 EXP-04의 rule-outcome/fusion grouped single pass다.
+5. GPU GDN은 향후 새 실행 identity에서만 별도 동결한다.
 
 ## 과학적 안전
 
