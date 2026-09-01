@@ -1,6 +1,6 @@
 # VALIDATION V2 계산 자원·장기 병목 감사
 
-상태: `AUDITED_EXP01_COMPLETE_QA_PASS`
+상태: `AUDITED_EXP01_EXP02_FORMAL_V4_EXP05_PERFORMANCE_FOUNDATIONS_QA_PASS`
 
 ## 현재 계산 환경
 
@@ -45,7 +45,8 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 | P0 | EXP-01 관계 확인 | CPU algorithmic | event index마다 전체 시퀀스 재검증, source-event 중첩 scan | 감사된 선형 extractor와 indexed isolation을 사용함 |
 | P0 | Formal V4 대량 runtime | CPU/IO | opportunity마다 동일 authority/portfolio 전체 hash·replay 가능성 | 향후 immutable pre-authorized session으로 1회 preflight 후 순수 window 평가; 결과 의미는 유지 |
 | P0 | EXP-02 | CPU algorithmic | relation×row 반복 scan 가능성, producer semantics 미동결 | 의미 contract를 먼저 동결한 뒤 1회 open·공유 sufficient-stat cache·batch 평가 |
-| P1 | EXP-05 trace custody | IO-bound 가능 | trace마다 fsync/close/reopen이면 작은 파일 IOPS 증가 | contract가 허용할 때 append-only batch와 최종 index/hash; 현재 의미를 먼저 동결 |
+| P1 | EXP-05 runtime-to-trace | CPU/IO | unit마다 동일 Formal V4 authority/numeric replay | prepared batch start/end replay와 ordered batch binding을 구현함 |
+| P1 | EXP-05 durable custody | IO-bound 가능 | trace마다 fsync/close/reopen이면 작은 파일 IOPS 증가 | 현재 durability 의미를 유지하며 실제 cohort 규모가 확인된 뒤 별도 contract로 판단 |
 | P1 | 미래 GDN training | CPU input overhead | sample별 NumPy→Tensor 변환과 반복 edge transfer | 새 실행 버전에서만 tensor cache/DataLoader 및 device preallocation 검토 |
 | 낮음 | Isolation Forest/PCA | CPU appropriate | 표 형태·중간 규모 normal-only 계산 | GPU 강제 사용 불필요, 병렬 CPU thread 수만 환경 receipt에 고정 |
 | 낮음 | metric adapter | CPU appropriate | Boolean timeline/episode grouping | 현재 공통 metric 의미 유지, 불필요한 재읽기만 제거 |
@@ -55,8 +56,9 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 EXP-01의 증명된 병목은 checkpoint resume와 선형/indexed adapter로 해결했다.
 후속 EXP-02 효율화에서는 미동결 scientific producer semantics를 추정하지 않고,
 single-parse·summary precompute·37-candidate batch evaluation 경계만 합성 테스트로
-구현했다. Formal V4, EXP-05, future GPU GDN 개선은 각각 별도 contract와 QA가
-필요하므로 아직 코드를 변경하지 않았다.
+구현했다. Formal V4와 EXP-05 runtime-to-trace 경로는 각각 start/end authority
+replay를 가진 prepared batch로 구현했다. EXP-05 durable small-file custody와 future
+GPU GDN 개선은 별도 contract와 QA가 필요하므로 아직 변경하지 않았다.
 
 ## 비-EXP01 정적 병목 상세
 
@@ -106,9 +108,12 @@ Isolation Forest는 CPU-only이며 frozen `n_jobs=1`이다. GPU 이동이나 `n_
 
 ### 4. EXP-05, EXP-04, Metrics
 
-- EXP-05는 trace별 atomic write, fsync, close, reopen 때문에 작은 파일 I/O가
-  병목이 될 수 있다. durable replay 의미를 줄이지 않는 범위에서 동일 reopen
-  bytes를 단계 내 재사용하는 정도만 안전하다.
+- EXP-05 runtime-to-trace는 prepared Formal V4 batch에 연결되어 unit 수에 비례한
+  authority/numeric file replay를 제거했다. direct unit과 bit-identical이며 종료
+  replay 전 trace를 공개하지 않는다.
+- EXP-05 trace별 atomic write, fsync, close, reopen은 그대로 유지한다. 실제 cohort
+  규모와 IOPS 증거 없이 append-only 형식으로 바꾸면 durable custody 의미가 달라질
+  수 있으므로 이번 최적화 범위에서 제외했다.
 - EXP-04 fusion은 rule outcomes 중복 순회와 coordinate별 set 정렬을 한 번의
   grouped pass로 합칠 수 있다.
 - 현재 14-unit metric의 event×episode 비교는 규모가 작아 최적화 우선순위가

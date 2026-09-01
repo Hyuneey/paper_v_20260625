@@ -23,6 +23,7 @@ from .explanation_fidelity_v1 import (
     validate_formal_v4_explanation_fidelity_v1,
 )
 from .formal_v4_authority_v1 import (
+    FormalV4AuthorityError,
     FormalV4AuthorizedRuntimeV1,
     FormalV4ExecutionContextV1,
     canonical_document_hash_v1,
@@ -31,11 +32,16 @@ from .runtime_policy_v1 import FORMAL_V4_TRACE_CONTRACT_HASH
 from .runtime_v1 import (
     FORMAL_V4_RUNTIME_VERSION,
     FormalV4ObservationWindowV1,
+    FormalV4PreparedRuntimeFinalizationReceiptV1,
+    FormalV4RuntimeTraceV1,
+    execute_formal_v4_batch_v1,
     execute_formal_v4_rule_v1,
+    validate_formal_v4_prepared_runtime_finalization_receipt_v1,
 )
 
 
 EXP05_ONE_PATH_RUNNER_VERSION = "VALIDATION_V2_EXP05_ONE_PATH_RUNNER_V1"
+EXP05_PREPARED_BATCH_RUNNER_VERSION = "VALIDATION_V2_EXP05_PREPARED_BATCH_RUNNER_V1"
 _RUNNER_CONTRACT = {
     "accepts_precomputed_trace": False,
     "execution_count_per_unit": 1,
@@ -47,6 +53,27 @@ _RUNNER_CONTRACT = {
     "runner_version": EXP05_ONE_PATH_RUNNER_VERSION,
 }
 EXP05_ONE_PATH_RUNNER_CONTRACT_HASH = canonical_document_hash_v1(_RUNNER_CONTRACT)
+_BATCH_RUNNER_CONTRACT = {
+    "accepts_precomputed_trace": False,
+    "authority_replay": ["batch_start", "batch_end"],
+    "durable_unit_contract_changed": False,
+    "execution_count_per_window": 1,
+    "heldout_authorized": False,
+    "labels_accessed": False,
+    "llm_calls": 0,
+    "network_calls": 0,
+    "pipeline": [
+        "prepared_runtime_batch",
+        "final_authority_replay",
+        "materialize",
+        "render",
+        "fidelity_validate",
+    ],
+    "runner_version": EXP05_PREPARED_BATCH_RUNNER_VERSION,
+}
+EXP05_PREPARED_BATCH_RUNNER_CONTRACT_HASH = canonical_document_hash_v1(
+    _BATCH_RUNNER_CONTRACT
+)
 _ZERO = "0" * 64
 _SCOPES = ("SYNTHETIC_CONFORMANCE", "SCIENTIFIC_V2")
 
@@ -369,26 +396,105 @@ def validate_evaluated_formal_v4_explanation_unit_v1(
     return unit.unit_hash
 
 
-def execute_and_materialize_formal_v4_rule_v1(
+@dataclass(frozen=True)
+class EvaluatedFormalV4ExplanationBatchV1:
+    """Closed EXP-05 batch bound to the prepared-runtime end replay."""
+
+    run_authorization_hash: str
+    prepared_runtime_finalization_receipt: FormalV4PreparedRuntimeFinalizationReceiptV1
+    units: tuple[EvaluatedFormalV4ExplanationUnitV1, ...]
+    batch_hash: str
+
+    def payload(self) -> dict[str, Any]:
+        return {
+            "batch_runner_contract_hash": EXP05_PREPARED_BATCH_RUNNER_CONTRACT_HASH,
+            "heldout_accessed": False,
+            "labels_accessed": False,
+            "llm_calls": 0,
+            "ordered_observation_window_hashes": [
+                item.materialization_receipt.observation_window_hash for item in self.units
+            ],
+            "ordered_unit_hashes": [item.unit_hash for item in self.units],
+            "prepared_runtime_finalization_receipt_hash": (
+                self.prepared_runtime_finalization_receipt.receipt_hash
+            ),
+            "provider_calls": 0,
+            "run_authorization_hash": self.run_authorization_hash,
+            "schema": "paperworks.validation_v2.exp05_evaluated_batch_v1",
+            "schema_version": "1.0.0",
+            "unit_count": len(self.units),
+        }
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**self.payload(), "batch_hash": self.batch_hash}
+
+
+def validate_evaluated_formal_v4_explanation_batch_v1(
+    batch: EvaluatedFormalV4ExplanationBatchV1,
+) -> str:
+    """Replay the end-replay receipt and every ordered evaluated unit."""
+
+    if type(batch) is not EvaluatedFormalV4ExplanationBatchV1:
+        _fail("EXP05_EVALUATED_BATCH_TYPE_INVALID")
+    if type(batch.units) is not tuple or not batch.units:
+        _fail("EXP05_EVALUATED_BATCH_UNITS_INVALID")
+    _hash(batch.run_authorization_hash, "EXP05_BATCH_AUTHORIZATION_HASH_INVALID")
+    finalization = batch.prepared_runtime_finalization_receipt
+    try:
+        validate_formal_v4_prepared_runtime_finalization_receipt_v1(finalization)
+    except FormalV4AuthorityError as error:
+        raise Exp05RunnerError("EXP05_BATCH_RUNTIME_FINALIZATION_REJECTED") from error
+    unit_hashes: list[str] = []
+    opportunity_keys: list[tuple[str, str]] = []
+    for unit in batch.units:
+        validate_evaluated_formal_v4_explanation_unit_v1(unit)
+        if unit.run_authorization.authorization_hash != batch.run_authorization_hash:
+            _fail("EXP05_BATCH_UNIT_AUTHORIZATION_MISMATCH")
+        if (
+            unit.materialization_receipt.authorization_hash
+            != finalization.authorization_hash
+            or unit.materialization_receipt.descriptor_set_hash
+            != finalization.descriptor_set_hash
+        ):
+            _fail("EXP05_BATCH_UNIT_RUNTIME_BINDING_MISMATCH")
+        unit_hashes.append(unit.unit_hash)
+        opportunity_keys.append(
+            (
+                unit.materialized_trace.opportunity_id,
+                unit.materialized_trace.relation_id,
+            )
+        )
+    if (
+        finalization.evaluated_window_count != len(batch.units)
+        or len(set(unit_hashes)) != len(unit_hashes)
+        or len(set(opportunity_keys)) != len(opportunity_keys)
+        or batch.batch_hash != canonical_document_hash_v1(batch.payload())
+    ):
+        _fail("EXP05_EVALUATED_BATCH_REPLAY_MISMATCH")
+    return batch.batch_hash
+
+
+def _materialize_formal_v4_runtime_trace_v1(
     bundle: FormalV4AuthorizedRuntimeV1,
     *,
     authorization: Exp05RunAuthorizationV1,
     execution_context: FormalV4ExecutionContextV1,
-    repository_root: Path,
     window: FormalV4ObservationWindowV1,
+    runtime_trace: FormalV4RuntimeTraceV1,
 ) -> EvaluatedFormalV4ExplanationUnitV1:
-    """Execute exactly once and return one indivisible, replayable EXP-05 unit."""
+    """Private exact continuation from an in-call runtime trace."""
 
-    validate_exp05_run_authorization_v1(
-        authorization, bundle=bundle, execution_context=execution_context,
+    if (
+        type(runtime_trace) is not FormalV4RuntimeTraceV1
+        or runtime_trace.opportunity_id != window.opportunity_id
+        or runtime_trace.relation_id != window.relation_id
+    ):
+        _fail("EXP05_RUNTIME_TRACE_WINDOW_BINDING_MISMATCH")
+    descriptors = tuple(
+        item
+        for item in bundle.authority.descriptors
+        if item.relation_id == runtime_trace.relation_id
     )
-    runtime_trace = execute_formal_v4_rule_v1(
-        bundle,
-        execution_context=execution_context,
-        repository_root=repository_root,
-        window=window,
-    )
-    descriptors = tuple(item for item in bundle.authority.descriptors if item.relation_id == runtime_trace.relation_id)
     if len(descriptors) != 1:
         _fail("EXP05_DESCRIPTOR_SELECTION_REJECTED")
     materialized = materialize_formal_v4_trace_v1(
@@ -457,11 +563,90 @@ def execute_and_materialize_formal_v4_rule_v1(
     return unit
 
 
+def execute_and_materialize_formal_v4_rule_v1(
+    bundle: FormalV4AuthorizedRuntimeV1,
+    *,
+    authorization: Exp05RunAuthorizationV1,
+    execution_context: FormalV4ExecutionContextV1,
+    repository_root: Path,
+    window: FormalV4ObservationWindowV1,
+) -> EvaluatedFormalV4ExplanationUnitV1:
+    """Execute exactly once and return one indivisible, replayable EXP-05 unit."""
+
+    validate_exp05_run_authorization_v1(
+        authorization, bundle=bundle, execution_context=execution_context,
+    )
+    runtime_trace = execute_formal_v4_rule_v1(
+        bundle,
+        execution_context=execution_context,
+        repository_root=repository_root,
+        window=window,
+    )
+    return _materialize_formal_v4_runtime_trace_v1(
+        bundle,
+        authorization=authorization,
+        execution_context=execution_context,
+        window=window,
+        runtime_trace=runtime_trace,
+    )
+
+
+def execute_and_materialize_formal_v4_batch_v1(
+    bundle: FormalV4AuthorizedRuntimeV1,
+    *,
+    authorization: Exp05RunAuthorizationV1,
+    execution_context: FormalV4ExecutionContextV1,
+    repository_root: Path,
+    windows: tuple[FormalV4ObservationWindowV1, ...],
+) -> EvaluatedFormalV4ExplanationBatchV1:
+    """Execute and materialize a closed batch after final authority replay."""
+
+    validate_exp05_run_authorization_v1(
+        authorization, bundle=bundle, execution_context=execution_context,
+    )
+    if type(windows) is not tuple or not windows:
+        _fail("EXP05_WINDOW_BATCH_INVALID")
+    traces, finalization = execute_formal_v4_batch_v1(
+        bundle,
+        execution_context=execution_context,
+        repository_root=repository_root,
+        windows=windows,
+    )
+    if len(traces) != len(windows):
+        _fail("EXP05_RUNTIME_BATCH_CLOSURE_MISMATCH")
+    units = tuple(
+        _materialize_formal_v4_runtime_trace_v1(
+            bundle,
+            authorization=authorization,
+            execution_context=execution_context,
+            window=window,
+            runtime_trace=trace,
+        )
+        for window, trace in zip(windows, traces, strict=True)
+    )
+    provisional = EvaluatedFormalV4ExplanationBatchV1(
+        run_authorization_hash=authorization.authorization_hash,
+        prepared_runtime_finalization_receipt=finalization,
+        units=units,
+        batch_hash=_ZERO,
+    )
+    batch = replace(
+        provisional,
+        batch_hash=canonical_document_hash_v1(provisional.payload()),
+    )
+    validate_evaluated_formal_v4_explanation_batch_v1(batch)
+    return batch
+
+
 __all__ = [
     "EXP05_ONE_PATH_RUNNER_CONTRACT_HASH", "EXP05_ONE_PATH_RUNNER_VERSION",
-    "EvaluatedFormalV4ExplanationUnitV1", "Exp05RunAuthorizationV1", "Exp05RunnerError",
+    "EXP05_PREPARED_BATCH_RUNNER_CONTRACT_HASH", "EXP05_PREPARED_BATCH_RUNNER_VERSION",
+    "EvaluatedFormalV4ExplanationBatchV1", "EvaluatedFormalV4ExplanationUnitV1",
+    "Exp05RunAuthorizationV1", "Exp05RunnerError",
     "FormalV4RuntimeMaterializationReceiptV1", "authorize_exp05_execution_v1",
+    "execute_and_materialize_formal_v4_batch_v1",
     "execute_and_materialize_formal_v4_rule_v1",
+    "validate_evaluated_formal_v4_explanation_batch_v1",
     "validate_formal_v4_runtime_materialization_receipt_v1",
     "validate_evaluated_formal_v4_explanation_unit_v1", "validate_exp05_run_authorization_v1",
 ]

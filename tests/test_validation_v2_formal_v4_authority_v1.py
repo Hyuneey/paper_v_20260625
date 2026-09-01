@@ -170,7 +170,7 @@ class FormalV4AuthorityTests(unittest.TestCase):
 
     def test_schema_registry_validates_produced_documents(self) -> None:
         records = load_validation_v2_schema_registry_v1()
-        self.assertEqual(len(records), 28)
+        self.assertEqual(len(records), 29)
         self.assertTrue({
             "formal_v4_materialized_trace_v1.schema.json",
             "formal_v4_explanation_record_v1.schema.json",

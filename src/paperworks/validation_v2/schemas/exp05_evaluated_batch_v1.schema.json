@@ -1,0 +1,106 @@
+{
+  "$defs": {
+    "git_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "numeric_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "numeric_role": {
+          "type": "string"
+        },
+        "reference_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reference_id": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "numeric_role",
+        "reference_hash",
+        "reference_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "paperworks://validation-v2/exp05-evaluated-batch-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "batch_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "batch_runner_contract_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "heldout_accessed": {
+      "const": false
+    },
+    "labels_accessed": {
+      "const": false
+    },
+    "llm_calls": {
+      "const": 0
+    },
+    "ordered_observation_window_hashes": {
+      "items": {
+        "$ref": "#/$defs/sha256"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "ordered_unit_hashes": {
+      "items": {
+        "$ref": "#/$defs/sha256"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "prepared_runtime_finalization_receipt_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "provider_calls": {
+      "const": 0
+    },
+    "run_authorization_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema": {
+      "const": "paperworks.validation_v2.exp05_evaluated_batch_v1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "unit_count": {
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "batch_hash",
+    "batch_runner_contract_hash",
+    "heldout_accessed",
+    "labels_accessed",
+    "llm_calls",
+    "ordered_observation_window_hashes",
+    "ordered_unit_hashes",
+    "prepared_runtime_finalization_receipt_hash",
+    "provider_calls",
+    "run_authorization_hash",
+    "schema",
+    "schema_version",
+    "unit_count"
+  ],
+  "title": "VALIDATION V2 EXP-05 Evaluated Batch V1",
+  "type": "object"
+}

@@ -796,6 +796,37 @@ EXP05_EVALUATED_UNIT_SCHEMA = _closed_schema(
     },
 )
 
+EXP05_EVALUATED_BATCH_SCHEMA = _closed_schema(
+    schema_id="paperworks://validation-v2/exp05-evaluated-batch-v1",
+    title="VALIDATION V2 EXP-05 Evaluated Batch V1",
+    required=(
+        "batch_hash", "batch_runner_contract_hash", "heldout_accessed",
+        "labels_accessed", "llm_calls", "ordered_observation_window_hashes",
+        "ordered_unit_hashes", "prepared_runtime_finalization_receipt_hash",
+        "provider_calls", "run_authorization_hash", "schema", "schema_version",
+        "unit_count",
+    ),
+    properties={
+        **{name: {"$ref": "#/$defs/sha256"} for name in (
+            "batch_hash", "batch_runner_contract_hash",
+            "prepared_runtime_finalization_receipt_hash", "run_authorization_hash",
+        )},
+        "heldout_accessed": {"const": False},
+        "labels_accessed": {"const": False},
+        "llm_calls": {"const": 0},
+        "ordered_observation_window_hashes": {
+            "type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sha256"},
+        },
+        "ordered_unit_hashes": {
+            "type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sha256"},
+        },
+        "provider_calls": {"const": 0},
+        "schema": {"const": "paperworks.validation_v2.exp05_evaluated_batch_v1"},
+        "schema_version": {"const": "1.0.0"},
+        "unit_count": {"type": "integer", "minimum": 1},
+    },
+)
+
 EXP05_MATERIALIZATION_RECEIPT_SCHEMA = _closed_schema(
     schema_id="paperworks://validation-v2/exp05-materialization-receipt-v1",
     title="VALIDATION V2 EXP-05 Materialization Receipt V1",
@@ -964,6 +995,7 @@ EMBEDDED_VALIDATION_V2_SCHEMAS: Mapping[str, Mapping[str, Any]] = {
     "exp01_seed_bundle_receipt_v1.schema.json": EXP01_SEED_BUNDLE_SCHEMA,
     "exp01_analysis_receipt_v1.schema.json": EXP01_ANALYSIS_RECEIPT_SCHEMA,
     "exp01_contribution_evidence_v1.schema.json": EXP01_CONTRIBUTION_EVIDENCE_SCHEMA,
+    "exp05_evaluated_batch_v1.schema.json": EXP05_EVALUATED_BATCH_SCHEMA,
     "exp05_evaluated_cohort_bundle_v1.schema.json": EXP05_EVALUATED_COHORT_BUNDLE_SCHEMA,
     "exp05_evaluated_unit_v1.schema.json": EXP05_EVALUATED_UNIT_SCHEMA,
     "exp05_full_evaluated_unit_v1.schema.json": EXP05_FULL_EVALUATED_UNIT_SCHEMA,
