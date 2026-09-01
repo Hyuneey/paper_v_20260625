@@ -25,6 +25,7 @@ from .evaluation_custody_v1 import (
     replay_dense_prediction_before_label_v1,
 )
 from .prediction_custody_v1 import (
+    D1PredictionRecordV2,
     DurablePredictionFreezeReceiptV1,
     replay_prediction_before_label_v1,
 )
@@ -512,15 +513,26 @@ def fuse_detector_with_rules_v1(
         item.rule_id: (item.source_id, item.descriptor_hash)
         for item in rule_authority.bindings
     }
-    coordinates = tuple((item.file_id, item.row_index) for item in base_predictions)
-    if coordinates != tuple(sorted(set(coordinates))):
-        raise Exp04ProtocolError("base prediction coordinates must be sorted and unique")
-    by_coordinate: dict[tuple[str, int], set[str]] = {}
-    file_hashes = {(item.file_id, item.row_index): item.feature_file_sha256 for item in base_predictions}
-    d1_coordinates = tuple((item.file_id, item.row_index) for item in d1_artifact.records)
-    if d1_coordinates != tuple(file_hashes):
+    if len(base_predictions) != len(d1_artifact.records):
         raise Exp04ProtocolError("D1 and detector dense coordinate census mismatch")
+    file_hashes: dict[tuple[str, int], str] = {}
+    dense_rows: list[tuple[DenseAlarmV1, D1PredictionRecordV2, tuple[str, int]]] = []
+    previous_coordinate: tuple[str, int] | None = None
+    for base_prediction, d1_record in zip(base_predictions, d1_artifact.records):
+        coordinate = (base_prediction.file_id, base_prediction.row_index)
+        if previous_coordinate is not None and coordinate <= previous_coordinate:
+            raise Exp04ProtocolError("base prediction coordinates must be sorted and unique")
+        if (d1_record.file_id, d1_record.row_index) != coordinate:
+            raise Exp04ProtocolError("D1 and detector dense coordinate census mismatch")
+        previous_coordinate = coordinate
+        file_hashes[coordinate] = base_prediction.feature_file_sha256
+        dense_rows.append((base_prediction, d1_record, coordinate))
+
     evidence_keys: set[tuple[str, int, str]] = set()
+    fail_groups: dict[
+        tuple[str, int],
+        tuple[set[str], list[str], list[str]],
+    ] = {}
     for item in rule_outcomes:
         coordinate = (item.file_id, item.row_index)
         if coordinate not in file_hashes or file_hashes[coordinate] != item.feature_file_sha256:
@@ -538,33 +550,45 @@ def fuse_detector_with_rules_v1(
         ):
             raise Exp04ProtocolError("rule outcome uses foreign runtime authority")
         if item.outcome == "FAIL":
-            by_coordinate.setdefault(coordinate, set()).add(item.source_id)
-    fail_records: dict[tuple[str, int], list[RuleOutcomeEvidenceV1]] = {}
-    for item in rule_outcomes:
-        if item.outcome == "FAIL":
-            fail_records.setdefault((item.file_id, item.row_index), []).append(item)
-    for record in d1_artifact.records:
-        coordinate = (record.file_id, record.row_index)
-        observed = fail_records.get(coordinate, [])
+            group = fail_groups.get(coordinate)
+            if group is None:
+                group = (set(), [], [])
+                fail_groups[coordinate] = group
+            group[0].add(item.source_id)
+            group[1].append(item.rule_id)
+            group[2].append(item.trace_hash)
+
+    decisions: list[FusionDecisionV1] = []
+    for base_prediction, record, coordinate in dense_rows:
+        group = fail_groups.get(coordinate)
+        if group is None:
+            distinct_sources: tuple[str, ...] = ()
+            contributing_rule_ids: tuple[str, ...] = ()
+            trace_hashes: tuple[str, ...] = ()
+        else:
+            distinct_sources = tuple(sorted(group[0]))
+            contributing_rule_ids = tuple(sorted(group[1]))
+            trace_hashes = tuple(sorted(group[2]))
         if (
-            record.file_content_sha256 != file_hashes[coordinate]
-            or record.alarm is not bool(observed)
-            or record.contributing_rule_ids != tuple(sorted(item.rule_id for item in observed))
-            or record.trace_hashes != tuple(sorted(item.trace_hash for item in observed))
+            record.file_content_sha256 != base_prediction.feature_file_sha256
+            or record.alarm is not bool(contributing_rule_ids)
+            or record.contributing_rule_ids != contributing_rule_ids
+            or record.trace_hashes != trace_hashes
         ):
             raise Exp04ProtocolError("D1 frozen FAIL evidence census mismatch")
-    return tuple(
-        FusionDecisionV1(
-            file_id=item.file_id,
-            feature_file_sha256=item.feature_file_sha256,
-            row_index=item.row_index,
-            base_alarm=item.alarm,
-            distinct_fail_sources=tuple(sorted(by_coordinate.get((item.file_id, item.row_index), set()))),
-            rule_addition=len(by_coordinate.get((item.file_id, item.row_index), set())) >= 2,
-            final_alarm=item.alarm or len(by_coordinate.get((item.file_id, item.row_index), set())) >= 2,
+        rule_addition = len(distinct_sources) >= 2
+        decisions.append(
+            FusionDecisionV1(
+                file_id=base_prediction.file_id,
+                feature_file_sha256=base_prediction.feature_file_sha256,
+                row_index=base_prediction.row_index,
+                base_alarm=base_prediction.alarm,
+                distinct_fail_sources=distinct_sources,
+                rule_addition=rule_addition,
+                final_alarm=base_prediction.alarm or rule_addition,
+            )
         )
-        for item in base_predictions
-    )
+    return tuple(decisions)
 
 
 EXP04_FUSION_POLICY_HASH = _hash({

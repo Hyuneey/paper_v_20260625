@@ -175,6 +175,54 @@ class Exp04ProtocolV1Tests(unittest.TestCase):
         self.assertEqual(len(self.fx.descriptors), len(authority.bindings))
         self.assertEqual(self.fx.bundle.authority.descriptor_set_hash, authority.descriptor_set_hash)
 
+    def test_grouped_fusion_matches_independent_policy_reference(self) -> None:
+        alarms = (False, False, False, False, True, False)
+        evidence = (
+            self.evidence(0, 0, "FAIL"),
+            self.evidence(1, 0, "FAIL"),
+            self.evidence(0, 1, "FAIL"),
+            self.evidence(0, 2, "PASS"),
+            self.evidence(1, 2, "FAIL"),
+            self.evidence(0, 3, "ABSTAIN"),
+            self.evidence(0, 5, "FAIL"),
+            self.evidence(1, 5, "FAIL"),
+        )
+        observed = self.fuse(alarms, evidence)
+
+        sources_by_row: dict[int, set[str]] = {}
+        for item in evidence:
+            if item.outcome == "FAIL":
+                sources_by_row.setdefault(item.row_index, set()).add(item.source_id)
+        expected = tuple(
+            (
+                row,
+                alarm,
+                tuple(sorted(sources_by_row.get(row, set()))),
+                len(sources_by_row.get(row, set())) >= 2,
+                alarm or len(sources_by_row.get(row, set())) >= 2,
+            )
+            for row, alarm in enumerate(alarms)
+        )
+        actual = tuple(
+            (
+                item.row_index,
+                item.base_alarm,
+                item.distinct_fail_sources,
+                item.rule_addition,
+                item.final_alarm,
+            )
+            for item in observed
+        )
+        self.assertEqual(expected, actual)
+
+    def test_fusion_source_keeps_one_rule_pass_and_no_repeated_coordinate_sort(self) -> None:
+        source = inspect.getsource(fuse_detector_with_rules_v1)
+        self.assertEqual(source.count("for item in rule_outcomes:"), 1)
+        self.assertEqual(source.count("for base_prediction, d1_record in zip"), 1)
+        self.assertEqual(source.count("for base_prediction, record, coordinate in dense_rows:"), 1)
+        self.assertNotIn("tuple(sorted(set(coordinates)))", source)
+        self.assertNotIn("by_coordinate.get", source)
+
 
 if __name__ == "__main__":
     unittest.main()

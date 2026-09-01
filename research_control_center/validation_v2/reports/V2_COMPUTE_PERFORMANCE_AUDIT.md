@@ -1,6 +1,6 @@
 # VALIDATION V2 계산 자원·장기 병목 감사
 
-상태: `AUDITED_EXP01_EXP02_FORMAL_V4_EXP05_HAI_SHARED_FRAME_PERFORMANCE_FOUNDATIONS_QA_PASS`
+상태: `AUDITED_EXP01_EXP02_EXP04_FORMAL_V4_EXP05_HAI_SHARED_FRAME_PERFORMANCE_FOUNDATIONS_QA_PASS`
 
 ## 현재 계산 환경
 
@@ -51,6 +51,7 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 | 낮음 | Isolation Forest/PCA model | CPU appropriate | 표 형태·중간 규모 normal-only 계산 | GPU 강제 사용 불필요, 병렬 CPU thread 수는 환경 receipt에 고정 |
 | 완료 | Detector authority hash | CPU memory copy | 대형 matrix/score의 전체 `tobytes()` 복사 | 기존 SHA-256과 byte-identical한 contiguous-buffer hash 적용 |
 | 완료 | HAI split 공유 | CPU/IO | D0·Isolation Forest·D1 소비자별 동일 CSV 재parse 가능성 | 사전 승인된 multi-consumer session에서 split 1회 open 및 읽기 전용 projection 공유 |
+| 완료 | EXP-04 fusion grouping | CPU algorithmic | rule outcome 2회 및 dense D0/D1 collection 5회 순회, 전체 coordinate sort | rule evidence 1회 grouped aggregation + paired dense 2회 순회 |
 | 낮음 | metric adapter | CPU appropriate | Boolean timeline/episode grouping | 현재 공통 metric 의미 유지, 불필요한 재읽기만 제거 |
 
 ## 구현하지 않은 항목
@@ -126,7 +127,9 @@ hash로 교체했고 synthetic byte-equivalence와 allocation regression을 통�
   규모와 IOPS 증거 없이 append-only 형식으로 바꾸면 durable custody 의미가 달라질
   수 있으므로 이번 최적화 범위에서 제외했다.
 - EXP-04 fusion은 rule outcomes 중복 순회와 coordinate별 set 정렬을 한 번의
-  grouped pass로 합칠 수 있다.
+  grouped aggregation으로 합쳤다. `EXP04_GROUPED_FUSION_PERFORMANCE_V2.md`의
+  합성 동치 검증에서 rule outcome pass는 2회에서 1회, dense D0/D1 collection
+  pass는 5회에서 2회로 줄었고 전체 coordinate set+sort는 제거됐다.
 - 현재 14-unit metric의 event×episode 비교는 규모가 작아 최적화 우선순위가
   낮다. 확대 held-out에서만 two-pointer sweep을 검토한다.
 
@@ -137,8 +140,10 @@ hash로 교체했고 synthetic byte-equivalence와 allocation regression을 통�
 2. V2 portfolio 이후 D1/EXP-05를 이미 구현된 prepared Formal V4 batch에 연결한다.
 3. EXP-04 scientific runner가 동결되면 이미 구현된 shared HAI session을 사용해
    test1을 정확히 한 번만 parse한다.
-4. 다음 독립 최적화 후보는 EXP-04의 rule-outcome/fusion grouped single pass다.
-5. GPU GDN은 향후 새 실행 identity에서만 별도 동결한다.
+4. EXP-04가 동결되면 grouped fusion foundation을 실제 D0/D1 custody output에 연결한다.
+5. 다음 성능 변경 전에는 EXP-05 durable small-file IOPS를 합성/파일시스템 profile로
+   먼저 계측해 실제 병목인지 확인한다.
+6. GPU GDN은 향후 새 실행 identity에서만 별도 동결한다.
 
 ## 과학적 안전
 
