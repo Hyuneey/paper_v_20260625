@@ -16,6 +16,7 @@ from pathlib import Path, PurePosixPath
 import re
 from typing import Any, Mapping, Sequence
 
+from .io_hash_v1 import sha256_file_v1
 from .runtime_policy_v1 import (
     FORMAL_V4_RESPONSE_POLICY_HASH,
     FORMAL_V4_TRACE_CONTRACT_HASH,
@@ -108,7 +109,7 @@ def _resolve_bound_file(repository_root: Path, relative_path: str) -> Path:
 
 
 def _file_sha256(repository_root: Path, relative_path: str) -> str:
-    return sha256(_resolve_bound_file(repository_root, relative_path).read_bytes()).hexdigest()
+    return sha256_file_v1(_resolve_bound_file(repository_root, relative_path))
 
 
 def _jsonable(value: Any) -> Any:

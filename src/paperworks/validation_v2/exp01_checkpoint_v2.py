@@ -16,6 +16,8 @@ from typing import Any, Mapping
 
 from paperworks.v6.common import stable_hash_v1
 
+from .io_hash_v1 import sha256_file_v1
+
 
 class Exp01CheckpointError(RuntimeError):
     pass
@@ -43,7 +45,10 @@ def canonical_state_hash_v2(state: Mapping[str, Any]) -> str:
         ).encode("utf-8")
         digest.update(len(header).to_bytes(8, "big"))
         digest.update(header)
-        digest.update(cpu.numpy().tobytes(order="C"))
+        try:
+            digest.update(memoryview(cpu.numpy()).cast("B"))
+        except (TypeError, ValueError) as exc:
+            raise Exp01CheckpointError("checkpoint tensor buffer cannot be hashed") from exc
     return digest.hexdigest()
 
 
@@ -123,7 +128,8 @@ def persist_private_checkpoint_v2(
                 os.fsync(directory_fd)
             finally:
                 os.close(directory_fd)
-        raw = destination.read_bytes()
+        file_sha256 = sha256_file_v1(destination)
+        byte_size = destination.stat().st_size
         reopened = torch.load(destination, map_location="cpu", weights_only=False)
     finally:
         if temporary.exists():
@@ -147,8 +153,8 @@ def persist_private_checkpoint_v2(
         "code_authority_hash": code_authority_hash,
         "training_config_hash": training_config_hash,
         "state_hash": state_hash,
-        "file_sha256": sha256(raw).hexdigest(),
-        "byte_size": len(raw),
+        "file_sha256": file_sha256,
+        "byte_size": byte_size,
         "reopened": True,
     }
     provisional = Exp01CheckpointReceiptV2(**values)
@@ -163,8 +169,7 @@ def reopen_private_checkpoint_v2(
 ) -> Mapping[str, Any]:
     import torch
 
-    raw = path.read_bytes()
-    if len(raw) != expected_receipt.byte_size or sha256(raw).hexdigest() != expected_receipt.file_sha256:
+    if path.stat().st_size != expected_receipt.byte_size or sha256_file_v1(path) != expected_receipt.file_sha256:
         raise Exp01CheckpointError("checkpoint bytes changed after freeze")
     payload = torch.load(path, map_location="cpu", weights_only=False)
     if canonical_state_hash_v2(payload.get("state_dict", {})) != expected_receipt.state_hash:
@@ -199,7 +204,8 @@ def recover_existing_private_checkpoint_v2(
     partial = destination.with_suffix(".pt.partial")
     if partial.exists():
         raise Exp01CheckpointError("partial checkpoint blocks recovery")
-    raw = destination.read_bytes()
+    file_sha256 = sha256_file_v1(destination)
+    byte_size = destination.stat().st_size
     import torch
 
     payload = torch.load(destination, map_location="cpu", weights_only=True)
@@ -226,8 +232,8 @@ def recover_existing_private_checkpoint_v2(
         "code_authority_hash": expected_code_authority_hash,
         "training_config_hash": expected_training_config_hash,
         "state_hash": state_hash,
-        "file_sha256": sha256(raw).hexdigest(),
-        "byte_size": len(raw),
+        "file_sha256": file_sha256,
+        "byte_size": byte_size,
         "reopened": True,
     }
     provisional = Exp01CheckpointReceiptV2(**values)

@@ -52,10 +52,18 @@ class Exp01BackendGraphReplayV2:
 
 
 class _FileLocalLazyWindows:
-    """Map eager global window indices to immutable file-local segments."""
+    """Map window indices to file-local slices of one prepared CPU tensor per file.
+
+    Conversion to frozen ``float32`` happens once per input segment instead of
+    once per sample per epoch.  Window ordering, file boundaries, targets, and
+    device transfer remain identical to the original lazy adapter.
+    """
 
     def __init__(self, segments: Sequence[Any], *, window: int, stride: int, torch_module: Any) -> None:
-        self._segments = tuple(segments)
+        self._segments = tuple(
+            torch_module.as_tensor(segment, dtype=torch_module.float32).contiguous()
+            for segment in segments
+        )
         self._window = window
         self._stride = stride
         self._torch = torch_module
@@ -83,8 +91,8 @@ class _FileLocalLazyWindows:
                 target = self._window + local * self._stride
                 history = segment[target - self._window : target]
                 # [time,node] -> [node,time], matching _segment_windows_v1/v2.
-                x = self._torch.as_tensor(history, dtype=self._torch.float32).transpose(0, 1).contiguous()
-                y = self._torch.as_tensor(segment[target], dtype=self._torch.float32)
+                x = history.transpose(0, 1).contiguous()
+                y = segment[target]
                 return x, y
         raise IndexError(index)
 
@@ -170,6 +178,7 @@ def train_exp01_seed_v2(
         [[source for target in range(len(feature_tuple)) for source in range(len(feature_tuple)) if source != target],
          [target for target in range(len(feature_tuple)) for source in range(len(feature_tuple)) if source != target]],
         dtype=torch.long,
+        device=config.device,
     )
     best_state: Mapping[str, Any] | None = None
     best_loss = float("inf")
@@ -179,7 +188,7 @@ def train_exp01_seed_v2(
         model.train()
         for batch_x, batch_y in train_loader:
             optimizer.zero_grad()
-            prediction = model(batch_x.to(config.device), original_edges.to(config.device))
+            prediction = model(batch_x.to(config.device), original_edges)
             loss = loss_function(prediction, batch_y.to(config.device))
             loss.backward()
             optimizer.step()
@@ -187,7 +196,7 @@ def train_exp01_seed_v2(
         losses: list[float] = []
         with torch.no_grad():
             for batch_x, batch_y in validation_loader:
-                prediction = model(batch_x.to(config.device), original_edges.to(config.device))
+                prediction = model(batch_x.to(config.device), original_edges)
                 losses.append(float(loss_function(prediction, batch_y.to(config.device)).item()))
         validation_loss = sum(losses) / len(losses)
         completed_epochs = epoch + 1
@@ -205,7 +214,7 @@ def train_exp01_seed_v2(
     model.eval()
     first_x, _ = dataset[0]
     with torch.no_grad():
-        model(first_x.unsqueeze(0).to(config.device), original_edges.to(config.device))
+        model(first_x.unsqueeze(0).to(config.device), original_edges)
     forward_indices = model.learned_graph.detach().cpu()
     weights = model.embedding.weight.detach()
     cosine = torch.matmul(weights, weights.T)

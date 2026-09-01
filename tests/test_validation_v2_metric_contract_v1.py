@@ -31,6 +31,7 @@ from paperworks.validation_v2.metric_contract_v1 import (
     validate_common_metric_contract_v1,
     validate_label_timeline_v1,
 )
+import paperworks.validation_v2.metric_contract_v1 as metric_module
 from paperworks.validation_v2.protocol_v1 import build_validation_protocol_v1
 from paperworks.validation_v2.prediction_custody_v1 import (
     D1PredictionArtifactV2,
@@ -264,6 +265,31 @@ class ValidationV2MetricContractTests(unittest.TestCase):
         self.assertEqual(len(form_alarm_episodes_v1(prediction, file_series=file_series)), 2)
         self.assertEqual(len(derive_attack_event_units_v1(labels, file_series=file_series)), 2)
         self.assertEqual({item.file_id for item in form_alarm_episodes_v1(prediction, file_series=file_series)}, {"file-a", "file-b"})
+
+    def test_linear_interval_matcher_matches_all_pairs_oracle(self) -> None:
+        lengths = (5,)
+        file_series = self.file_series(lengths)
+        for label_mask in range(32):
+            labels = tuple(bool(label_mask & (1 << index)) for index in range(5))
+            events = derive_attack_event_units_v1(
+                self.labels(tuple(int(value) for value in labels), lengths=lengths),
+                file_series=file_series,
+            )
+            for alarm_mask in range(32):
+                alarms = tuple(bool(alarm_mask & (1 << index)) for index in range(5))
+                episodes = form_alarm_episodes_v1(
+                    self.prediction(alarms, lengths=lengths),
+                    file_series=file_series,
+                )
+                event_hits, episode_hits = metric_module._match_event_episode_overlaps_v1(events, episodes)
+                self.assertEqual(
+                    event_hits,
+                    tuple(any(metric_module._overlap(event, episode) for episode in episodes) for event in events),
+                )
+                self.assertEqual(
+                    episode_hits,
+                    tuple(any(metric_module._overlap(episode, event) for event in events) for episode in episodes),
+                )
 
     def test_d1_native_outcomes_reconcile_fail_only_to_durable_boolean(self) -> None:
         coordinates = self.coordinates((4,))

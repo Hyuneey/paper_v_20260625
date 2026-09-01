@@ -19,6 +19,7 @@ import stat
 from threading import Lock
 from typing import Any, Callable, Mapping, TypeVar
 
+from .io_hash_v1 import sha256_file_v1
 from .schema_registry_v1 import validate_validation_v2_document_v1
 
 
@@ -614,12 +615,12 @@ def _capability_state(capability: LabelAccessCapabilityV1) -> _CapabilityState:
 def _verify_bound_bytes(state: _CapabilityState) -> None:
     _assert_regular_file(state.prediction_path)
     _assert_regular_file(state.receipt_path)
-    if sha256(state.prediction_path.read_bytes()).hexdigest() != state.prediction_bytes_sha256:
+    if sha256_file_v1(state.prediction_path) != state.prediction_bytes_sha256:
         _fail("PREDICTION_MUTATED_AFTER_FREEZE")
-    if sha256(state.receipt_path.read_bytes()).hexdigest() != state.receipt_bytes_sha256:
+    if sha256_file_v1(state.receipt_path) != state.receipt_bytes_sha256:
         _fail("RECEIPT_MUTATED_AFTER_FREEZE")
     _assert_regular_file(state.label_lease_path)
-    if sha256(state.label_lease_path.read_bytes()).hexdigest() != state.label_lease_bytes_sha256:
+    if sha256_file_v1(state.label_lease_path) != state.label_lease_bytes_sha256:
         _fail("LABEL_LEASE_MUTATED_AFTER_AUTHORIZATION")
 
 

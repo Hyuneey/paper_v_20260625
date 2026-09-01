@@ -23,6 +23,7 @@ import stat
 from threading import Lock
 from typing import Any, Callable, Mapping, TypeVar
 
+from .io_hash_v1 import sha256_file_v1
 
 HEX = frozenset("0123456789abcdef")
 _CAPABILITY_SENTINEL = object()
@@ -989,7 +990,7 @@ def _capability_state(capability: EvaluationLabelAccessCapabilityV1) -> _Capabil
 def _verify_bound_files(state: _CapabilityState) -> None:
     for path, expected_hash, kind in state.bound_files:
         _assert_regular_file(path)
-        if sha256(path.read_bytes()).hexdigest() != expected_hash:
+        if sha256_file_v1(path) != expected_hash:
             _fail(f"{kind}_MUTATED_AFTER_FREEZE")
 
 

@@ -683,6 +683,50 @@ def _overlap(left: FileIntervalV1, right: FileIntervalV1) -> bool:
     return left.file_id == right.file_id and left.start_index < right.end_index_exclusive and right.start_index < left.end_index_exclusive
 
 
+def _match_event_episode_overlaps_v1(
+    events: tuple[FileIntervalV1, ...],
+    episodes: tuple[FileIntervalV1, ...],
+) -> tuple[tuple[bool, ...], tuple[bool, ...]]:
+    """Match disjoint intervals in linear time per file.
+
+    Event units and alarm episodes are both maximal, disjoint runs produced by
+    ``_intervals_from_points``.  The two-pointer sweep is therefore exactly
+    equivalent to the prior all-pairs overlap oracle while avoiding quadratic
+    work when a method emits many episodes.
+    """
+
+    event_groups: dict[str, list[tuple[int, FileIntervalV1]]] = {}
+    episode_groups: dict[str, list[tuple[int, FileIntervalV1]]] = {}
+    for index, event in enumerate(events):
+        event_groups.setdefault(event.file_id, []).append((index, event))
+    for index, episode in enumerate(episodes):
+        episode_groups.setdefault(episode.file_id, []).append((index, episode))
+
+    event_hits = [False] * len(events)
+    episode_hits = [False] * len(episodes)
+    for file_id in event_groups.keys() & episode_groups.keys():
+        file_events = event_groups[file_id]
+        file_episodes = episode_groups[file_id]
+        event_cursor = 0
+        episode_cursor = 0
+        while event_cursor < len(file_events) and episode_cursor < len(file_episodes):
+            event_index, event = file_events[event_cursor]
+            episode_index, episode = file_episodes[episode_cursor]
+            if event.end_index_exclusive <= episode.start_index:
+                event_cursor += 1
+                continue
+            if episode.end_index_exclusive <= event.start_index:
+                episode_cursor += 1
+                continue
+            event_hits[event_index] = True
+            episode_hits[episode_index] = True
+            if event.end_index_exclusive <= episode.end_index_exclusive:
+                event_cursor += 1
+            if episode.end_index_exclusive <= event.end_index_exclusive:
+                episode_cursor += 1
+    return tuple(event_hits), tuple(episode_hits)
+
+
 @dataclass(frozen=True)
 class MetricValueV1:
     metric_id: str
@@ -772,8 +816,9 @@ def evaluate_common_timeline_v1(
         _fail("PREDICTION_LABEL_ALIGNMENT_REJECTED")
     events = derive_attack_event_units_v1(labels, file_series=file_series)
     episodes = form_alarm_episodes_v1(prediction, file_series=file_series)
-    detection = tuple((event.event_id, any(_overlap(event, episode) for episode in episodes)) for event in events)
-    normal_false = sum(not any(_overlap(episode, event) for event in events) for episode in episodes)
+    event_hits, episode_hits = _match_event_episode_overlaps_v1(events, episodes)
+    detection = tuple((event.event_id, detected) for event, detected in zip(events, event_hits))
+    normal_false = sum(not detected for detected in episode_hits)
     exposure = sum(point.label == 0 for point in labels.points)
     recall = _metric("ATTACK_EVENT_RECALL", sum(value for _, value in detection), len(events), scale=1, unit="RATIO", undefined_reason="NO_ATTACK_EVENTS")
     far = _metric("NORMAL_FAR_EPISODES_PER_HOUR", normal_false, exposure, scale=3600, unit="EPISODES_PER_HOUR", undefined_reason="NO_NORMAL_EXPOSURE")
