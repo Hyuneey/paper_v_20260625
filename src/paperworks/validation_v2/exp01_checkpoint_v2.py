@@ -172,7 +172,73 @@ def reopen_private_checkpoint_v2(
     return payload
 
 
+def recover_existing_private_checkpoint_v2(
+    *,
+    private_root: Path,
+    run_id: str,
+    arm_id: str,
+    view_id: str,
+    seed: int,
+    expected_code_authority_hash: str,
+    expected_training_config_hash: str,
+) -> tuple[Path, Exp01CheckpointReceiptV2, Mapping[str, Any]]:
+    """Bind a pre-existing interrupted-run checkpoint without rewriting it.
+
+    Recovery is intentionally stricter than ordinary reopen: the exact file
+    name, schedule identity, origin code authority, training configuration,
+    payload schema, file bytes, and canonical tensor state are replayed before
+    a new post-processing process may use the checkpoint.
+    """
+
+    for value, name in ((run_id, "run_id"), (arm_id, "arm_id"), (view_id, "view_id")):
+        _safe_token(value, name)
+    root = private_root.resolve(strict=True)
+    destination = (root / f"{run_id}.pt").resolve(strict=True)
+    if destination.parent != root:
+        raise Exp01CheckpointError("checkpoint recovery path escaped private root")
+    partial = destination.with_suffix(".pt.partial")
+    if partial.exists():
+        raise Exp01CheckpointError("partial checkpoint blocks recovery")
+    raw = destination.read_bytes()
+    import torch
+
+    payload = torch.load(destination, map_location="cpu", weights_only=True)
+    expected = {
+        "schema": "paperworks.validation_v2.exp01_private_checkpoint_v2",
+        "schema_version": "2.0.0",
+        "run_id": run_id,
+        "arm_id": arm_id,
+        "view_id": view_id,
+        "seed": seed,
+        "code_authority_hash": expected_code_authority_hash,
+        "training_config_hash": expected_training_config_hash,
+    }
+    if any(payload.get(name) != value for name, value in expected.items()):
+        raise Exp01CheckpointError("existing checkpoint authority or schedule mismatch")
+    state_hash = canonical_state_hash_v2(payload.get("state_dict", {}))
+    if payload.get("state_hash") != state_hash:
+        raise Exp01CheckpointError("existing checkpoint state hash mismatch")
+    values = {
+        "run_id": run_id,
+        "arm_id": arm_id,
+        "view_id": view_id,
+        "seed": seed,
+        "code_authority_hash": expected_code_authority_hash,
+        "training_config_hash": expected_training_config_hash,
+        "state_hash": state_hash,
+        "file_sha256": sha256(raw).hexdigest(),
+        "byte_size": len(raw),
+        "reopened": True,
+    }
+    provisional = Exp01CheckpointReceiptV2(**values)
+    receipt = Exp01CheckpointReceiptV2(
+        **{**values, "receipt_hash": stable_hash_v1(provisional.to_dict(include_hash=False))}
+    )
+    return destination, receipt, payload
+
+
 __all__ = [
     "Exp01CheckpointError", "Exp01CheckpointReceiptV2", "canonical_state_hash_v2",
-    "persist_private_checkpoint_v2", "reopen_private_checkpoint_v2",
+    "persist_private_checkpoint_v2", "recover_existing_private_checkpoint_v2",
+    "reopen_private_checkpoint_v2",
 ]

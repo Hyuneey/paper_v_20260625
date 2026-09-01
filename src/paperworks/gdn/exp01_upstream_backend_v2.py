@@ -44,6 +44,13 @@ class Exp01BackendTrainingResultV2:
     window_count: int
 
 
+@dataclass(frozen=True)
+class Exp01BackendGraphReplayV2:
+    graph_edges: tuple[tuple[str, str], ...]
+    forward_graph_hash: str
+    extraction_graph_hash: str
+
+
 class _FileLocalLazyWindows:
     """Map eager global window indices to immutable file-local segments."""
 
@@ -270,6 +277,73 @@ def evaluate_fixed_checkpoint_mse_v2(
     return squared_error / value_count
 
 
+def replay_exp01_checkpoint_graph_v2(
+    *,
+    arm_id: ArmId,
+    state_dict: Mapping[str, Any],
+    segments: Sequence[Any],
+    feature_order: Sequence[str],
+    candidate_pairs: Sequence[tuple[str, str]],
+    seed: int,
+    config: UpstreamGDNTrainingConfigV1,
+) -> Exp01BackendGraphReplayV2:
+    """Reconstruct the frozen graph identity from a verified best checkpoint.
+
+    No optimization step is run.  The model is loaded in evaluation mode and
+    the original forward/extraction agreement check is replayed from the
+    checkpoint weights under the exact frozen arm and feature context.
+    """
+
+    if seed not in FROZEN_SEEDS or config.seeds != FROZEN_SEEDS:
+        raise UpstreamGDNFidelityError("EXP-01 checkpoint replay seed policy changed")
+    feature_tuple = tuple(feature_order)
+    pair_set = set(candidate_pairs)
+    if len(feature_tuple) <= config.learned_graph_topk:
+        raise UpstreamGDNFidelityError("feature context must exceed Top-K")
+    if any(source not in feature_tuple or target not in feature_tuple for source, target in pair_set):
+        raise UpstreamGDNDataBoundaryError("candidate projection is outside model context")
+    loader = _load_runtime_types_v1 if arm_id is ArmId.FROZEN_SELF_ELIGIBLE else _load_runtime_types_v2
+    torch, _, model_type = loader()
+    _set_all_seeds_v1(torch, seed)
+    dataset = _FileLocalLazyWindows(
+        segments, window=config.slide_window, stride=config.slide_stride, torch_module=torch,
+    )
+    model = model_type(len(feature_tuple), config).to(config.device)
+    model.load_state_dict(state_dict, strict=True)
+    model.eval()
+    original_edges = torch.tensor(
+        [[source for target in range(len(feature_tuple)) for source in range(len(feature_tuple)) if source != target],
+         [target for target in range(len(feature_tuple)) for source in range(len(feature_tuple)) if source != target]],
+        dtype=torch.long,
+    )
+    first_x, _ = dataset[0]
+    with torch.no_grad():
+        model(first_x.unsqueeze(0).to(config.device), original_edges.to(config.device))
+    forward_indices = model.learned_graph.detach().cpu()
+    weights = model.embedding.weight.detach()
+    cosine = torch.matmul(weights, weights.T)
+    norms = torch.matmul(weights.norm(dim=-1).view(-1, 1), weights.norm(dim=-1).view(1, -1))
+    cosine = cosine / norms
+    extraction_indices = (
+        torch.topk(cosine, config.learned_graph_topk, dim=-1)[1]
+        if arm_id is ArmId.FROZEN_SELF_ELIGIBLE
+        else stable_torch_neighbors_v2(cosine, torch_module=torch)
+    ).detach().cpu()
+    forward_edges = _graph_from_indices(feature_tuple, forward_indices)
+    extraction_edges = _graph_from_indices(feature_tuple, extraction_indices)
+    forward_hash = stable_hash_v1({"graph_edges": forward_edges})
+    extraction_hash = stable_hash_v1({"graph_edges": extraction_edges})
+    if forward_hash != extraction_hash:
+        raise UpstreamGDNFidelityError("checkpoint forward and extraction graph identities diverged")
+    return Exp01BackendGraphReplayV2(
+        graph_edges=forward_edges,
+        forward_graph_hash=forward_hash,
+        extraction_graph_hash=extraction_hash,
+    )
+
+
 __all__ = [
-    "Exp01BackendTrainingResultV2", "evaluate_fixed_checkpoint_mse_v2", "train_exp01_seed_v2",
+    "Exp01BackendGraphReplayV2", "Exp01BackendTrainingResultV2",
+    "evaluate_fixed_checkpoint_mse_v2", "replay_exp01_checkpoint_graph_v2",
+    "train_exp01_seed_v2",
 ]

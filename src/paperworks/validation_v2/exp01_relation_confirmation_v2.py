@@ -20,13 +20,15 @@ from paperworks.validation_v2.exp01_scientific_v1 import (
     build_profiling_submission_v1,
 )
 from paperworks.v6.common import require_sha256, stable_hash_v1
-from paperworks.v6.continuous_step_protocol_v1 import extract_sustained_step_events_v1
+from paperworks.profiling.task039d1_execution_optimization_v1 import (
+    classify_all_source_isolation_indexed_v1,
+    extract_sustained_step_events_linear_v1,
+)
 from paperworks.v6.relation_profiling_protocol_v1 import (
     FIT_FILES,
     FROZEN_SOURCES,
     FROZEN_TARGETS,
     HORIZONS,
-    classify_all_source_isolation_v1,
     derive_multi_file_source_parameters_v1,
     derive_multi_file_target_scale_v1,
     rank_direction_horizon_v1,
@@ -170,7 +172,7 @@ def fit_and_confirm_arbitrary_union_v2(
         params = source_parameters[source]
         for file_name in FIT_FILES:
             events_by_file[file_name][source] = (
-                extract_sustained_step_events_v1(
+                extract_sustained_step_events_linear_v1(
                     fit_values[file_name][source],
                     source_step_threshold=float(params["source_step_threshold"]),
                     source_stability_tolerance=float(params["source_stability_tolerance"]),
@@ -178,7 +180,7 @@ def fit_and_confirm_arbitrary_union_v2(
                 if params["status"] == "supported" else ()
             )
     isolated_fit = {
-        file_name: classify_all_source_isolation_v1(events_by_file[file_name]) for file_name in FIT_FILES
+        file_name: classify_all_source_isolation_indexed_v1(events_by_file[file_name]) for file_name in FIT_FILES
     }
     fit_relations: list[dict[str, object]] = []
     pair_fit_ledger: list[dict[str, object]] = []
@@ -226,7 +228,7 @@ def fit_and_confirm_arbitrary_union_v2(
     }
     train3_events = {
         source: (
-            extract_sustained_step_events_v1(
+            extract_sustained_step_events_linear_v1(
                 train3_values[source],
                 source_step_threshold=float(source_parameters[source]["source_step_threshold"]),
                 source_stability_tolerance=float(source_parameters[source]["source_stability_tolerance"]),
@@ -235,7 +237,7 @@ def fit_and_confirm_arbitrary_union_v2(
         )
         for source in FROZEN_SOURCES
     }
-    isolated_train3 = classify_all_source_isolation_v1(train3_events)
+    isolated_train3 = classify_all_source_isolation_indexed_v1(train3_events)
     directional_confirmation: list[dict[str, object]] = []
     confirmed_pairs: set[tuple[str, str]] = set()
     for relation in fit_relations:
