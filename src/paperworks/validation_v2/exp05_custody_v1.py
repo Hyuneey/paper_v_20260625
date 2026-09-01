@@ -439,7 +439,7 @@ def persist_exp05_full_evaluated_unit_v1(
 ) -> FullExp05UnitFreezeReceiptV1:
     document = _full_unit_document(unit)
     content = _canonical_bytes(document)
-    directory_status = _publish_no_overwrite(artifact_path, content)
+    artifact_replay, directory_status = _publish_no_overwrite(artifact_path, content)
     provisional = FullExp05UnitFreezeReceiptV1(
         opportunity_id=unit.materialized_trace.opportunity_id,
         relation_id=unit.materialized_trace.relation_id,
@@ -452,12 +452,42 @@ def persist_exp05_full_evaluated_unit_v1(
         reopened_bytes_match=True,
     )
     receipt = replace(provisional, receipt_hash=canonical_document_hash_v1(provisional.payload()))
-    _publish_no_overwrite(receipt_path, _canonical_bytes(receipt.to_dict()))
-    replay_exp05_full_evaluated_unit_v1(
-        artifact_path=artifact_path, receipt_path=receipt_path, expected_receipt=receipt,
+    receipt_replay, _ = _publish_no_overwrite(receipt_path, _canonical_bytes(receipt.to_dict()))
+    _replay_exp05_full_evaluated_unit_bytes_v1(
+        artifact_bytes=artifact_replay,
+        receipt_bytes=receipt_replay,
+        expected_receipt=receipt,
     )
     _PUBLISHED_FULL_UNITS[receipt.receipt_hash] = receipt
     return receipt
+
+
+def _replay_exp05_full_evaluated_unit_bytes_v1(
+    *,
+    artifact_bytes: bytes,
+    receipt_bytes: bytes,
+    expected_receipt: FullExp05UnitFreezeReceiptV1,
+) -> EvaluatedFormalV4ExplanationUnitV1:
+    """Validate one already reopened durable unit without another file read."""
+
+    try:
+        document = json.loads(artifact_bytes.decode("utf-8"))
+        receipt_document = json.loads(receipt_bytes.decode("utf-8"))
+    except (UnicodeError, json.JSONDecodeError):
+        _fail("EXP05_FULL_UNIT_REPLAY_PARSE_FAILED")
+    receipt = _validate_full_unit_receipt_document(receipt_document)
+    unit = _replay_full_unit_document(document)
+    if receipt != expected_receipt:
+        _fail("EXP05_FULL_UNIT_EXPECTED_RECEIPT_MISMATCH")
+    if (
+        receipt.artifact_file_sha256 != sha256(artifact_bytes).hexdigest()
+        or receipt.byte_count != len(artifact_bytes)
+        or receipt.unit_hash != unit.unit_hash
+        or receipt.opportunity_id != unit.materialized_trace.opportunity_id
+        or receipt.relation_id != unit.materialized_trace.relation_id
+    ):
+        _fail("EXP05_FULL_UNIT_FROZEN_BINDING_MISMATCH")
+    return unit
 
 
 def replay_exp05_full_evaluated_unit_v1(
@@ -475,26 +505,18 @@ def replay_exp05_full_evaluated_unit_v1(
             _fail("EXP05_FULL_UNIT_REPLAY_NONREGULAR_FILE")
     try:
         artifact_bytes = artifact_path.read_bytes()
-        document = json.loads(artifact_bytes.decode("utf-8"))
-        receipt_document = json.loads(receipt_path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError):
+        receipt_bytes = receipt_path.read_bytes()
+    except OSError:
         _fail("EXP05_FULL_UNIT_REPLAY_PARSE_FAILED")
-    receipt = _validate_full_unit_receipt_document(receipt_document)
-    unit = _replay_full_unit_document(document)
-    if receipt != expected_receipt:
-        _fail("EXP05_FULL_UNIT_EXPECTED_RECEIPT_MISMATCH")
-    if (
-        receipt.artifact_file_sha256 != sha256(artifact_bytes).hexdigest()
-        or receipt.byte_count != len(artifact_bytes)
-        or receipt.unit_hash != unit.unit_hash
-        or receipt.opportunity_id != unit.materialized_trace.opportunity_id
-        or receipt.relation_id != unit.materialized_trace.relation_id
-    ):
-        _fail("EXP05_FULL_UNIT_FROZEN_BINDING_MISMATCH")
+    unit = _replay_exp05_full_evaluated_unit_bytes_v1(
+        artifact_bytes=artifact_bytes,
+        receipt_bytes=receipt_bytes,
+        expected_receipt=expected_receipt,
+    )
     # A verified replay is the process-local proof consumed by cohort assembly.
     # Re-populating this index makes durable custody usable after a process
     # restart without weakening the no-path public cohort artifact.
-    _PUBLISHED_FULL_UNITS[receipt.receipt_hash] = receipt
+    _PUBLISHED_FULL_UNITS[expected_receipt.receipt_hash] = expected_receipt
     return unit
 
 
@@ -556,7 +578,7 @@ def _directory_fsync(parent: Path) -> str:
     return "PERFORMED"
 
 
-def _publish_no_overwrite(path: Path, content: bytes) -> str:
+def _publish_no_overwrite(path: Path, content: bytes) -> tuple[bytes, str]:
     _assert_safe_target(path)
     temporary = path.with_name(path.name + ".tmp")
     if temporary.exists() or temporary.is_symlink():
@@ -567,14 +589,15 @@ def _publish_no_overwrite(path: Path, content: bytes) -> str:
             stream.flush()
             os.fsync(stream.fileno())
         metadata = temporary.lstat()
-        if not stat.S_ISREG(metadata.st_mode) or temporary.read_bytes() != content:
-            _fail("EXP05_FREEZE_TEMP_REPLAY_MISMATCH")
+        if not stat.S_ISREG(metadata.st_mode):
+            _fail("EXP05_FREEZE_TEMP_NONREGULAR_FILE")
         os.link(temporary, path, follow_symlinks=False)
         temporary.unlink()
         directory_status = _directory_fsync(path.parent)
-        if path.read_bytes() != content:
+        replay = path.read_bytes()
+        if replay != content:
             _fail("EXP05_FREEZE_REOPEN_MISMATCH")
-        return directory_status
+        return replay, directory_status
     except Exp05CustodyError:
         raise
     except FileExistsError:
@@ -655,11 +678,11 @@ def persist_exp05_evaluated_bundle_v1(
     if canonical_document_hash_v1(bundle.payload()) != bundle.bundle_hash:
         _fail("EXP05_BUNDLE_HASH_MISMATCH")
     content = _canonical_bytes(bundle.to_dict())
-    directory_status = _publish_no_overwrite(bundle_path, content)
+    bundle_replay, directory_status = _publish_no_overwrite(bundle_path, content)
     provisional = HashOnlyExp05BundleFreezeReceiptV1(
         cohort_id=bundle.cohort_id,
         bundle_hash=bundle.bundle_hash,
-        bundle_file_sha256=canonical_document_hash_v1(bundle.to_dict()),
+        bundle_file_sha256=sha256(content).hexdigest(),
         opportunity_manifest_hash=bundle.opportunity_manifest_hash,
         d1_native_outcome_binding_hash=bundle.d1_native_outcome_binding_hash,
         unit_count=bundle.opportunity_count,
@@ -670,11 +693,43 @@ def persist_exp05_evaluated_bundle_v1(
         reopened_bytes_match=True,
     )
     receipt = replace(provisional, receipt_hash=canonical_document_hash_v1(provisional.payload()))
-    _publish_no_overwrite(receipt_path, _canonical_bytes(receipt.to_dict()))
-    replay_exp05_evaluated_bundle_v1(
-        bundle_path=bundle_path, receipt_path=receipt_path, expected_receipt=receipt,
+    receipt_replay, _ = _publish_no_overwrite(receipt_path, _canonical_bytes(receipt.to_dict()))
+    _replay_exp05_evaluated_bundle_bytes_v1(
+        bundle_bytes=bundle_replay,
+        receipt_bytes=receipt_replay,
+        expected_receipt=receipt,
     )
     return receipt
+
+
+def _replay_exp05_evaluated_bundle_bytes_v1(
+    *,
+    bundle_bytes: bytes,
+    receipt_bytes: bytes,
+    expected_receipt: HashOnlyExp05BundleFreezeReceiptV1,
+) -> Exp05EvaluatedCohortBundleV1:
+    """Validate one already reopened durable bundle without another file read."""
+
+    try:
+        receipt_document = json.loads(receipt_bytes.decode("utf-8"))
+        bundle_document = json.loads(bundle_bytes.decode("utf-8"))
+    except (UnicodeError, json.JSONDecodeError):
+        _fail("EXP05_REPLAY_PARSE_FAILED")
+    receipt = _validate_receipt_document(receipt_document)
+    bundle = _validate_bundle_document(bundle_document)
+    if receipt != expected_receipt:
+        _fail("EXP05_EXPECTED_RECEIPT_MISMATCH")
+    if (
+        receipt.bundle_file_sha256 != sha256(bundle_bytes).hexdigest()
+        or receipt.byte_count != len(bundle_bytes)
+        or receipt.bundle_hash != bundle.bundle_hash
+        or receipt.cohort_id != bundle.cohort_id
+        or receipt.opportunity_manifest_hash != bundle.opportunity_manifest_hash
+        or receipt.d1_native_outcome_binding_hash != bundle.d1_native_outcome_binding_hash
+        or receipt.unit_count != bundle.opportunity_count
+    ):
+        _fail("EXP05_FROZEN_BUNDLE_BINDING_MISMATCH")
+    return bundle
 
 
 def replay_exp05_evaluated_bundle_v1(
@@ -692,25 +747,14 @@ def replay_exp05_evaluated_bundle_v1(
             _fail("EXP05_REPLAY_NONREGULAR_FILE")
     try:
         bundle_bytes = bundle_path.read_bytes()
-        receipt_document = json.loads(receipt_path.read_text(encoding="utf-8"))
-        bundle_document = json.loads(bundle_bytes.decode("utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError):
+        receipt_bytes = receipt_path.read_bytes()
+    except OSError:
         _fail("EXP05_REPLAY_PARSE_FAILED")
-    receipt = _validate_receipt_document(receipt_document)
-    bundle = _validate_bundle_document(bundle_document)
-    if receipt != expected_receipt:
-        _fail("EXP05_EXPECTED_RECEIPT_MISMATCH")
-    if (
-        receipt.bundle_file_sha256 != canonical_document_hash_v1(bundle.to_dict())
-        or receipt.byte_count != len(bundle_bytes)
-        or receipt.bundle_hash != bundle.bundle_hash
-        or receipt.cohort_id != bundle.cohort_id
-        or receipt.opportunity_manifest_hash != bundle.opportunity_manifest_hash
-        or receipt.d1_native_outcome_binding_hash != bundle.d1_native_outcome_binding_hash
-        or receipt.unit_count != bundle.opportunity_count
-    ):
-        _fail("EXP05_FROZEN_BUNDLE_BINDING_MISMATCH")
-    return bundle
+    return _replay_exp05_evaluated_bundle_bytes_v1(
+        bundle_bytes=bundle_bytes,
+        receipt_bytes=receipt_bytes,
+        expected_receipt=expected_receipt,
+    )
 
 
 __all__ = [

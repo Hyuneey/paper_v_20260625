@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 from paperworks.validation_v2 import exp05_custody_v1 as custody
 from paperworks.validation_v2 import exp05_runner_v1 as runner
@@ -204,6 +205,52 @@ class Exp05CustodyV1Tests(unittest.TestCase):
             self.assertNotIn("source_pre_values", private)
             self.assertNotIn("target_response_values", private)
             self.assertNotIn(str(root), public)
+
+    def test_persist_reuses_single_reopen_for_typed_replay(self) -> None:
+        original_read_bytes = Path.read_bytes
+
+        def record_read(path: Path) -> bytes:
+            reads.append(path)
+            return original_read_bytes(path)
+
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            artifact_path = root / "unit.private.json"
+            receipt_path = root / "unit.receipt.json"
+            reads: list[Path] = []
+            with patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+                receipt = custody.persist_exp05_full_evaluated_unit_v1(
+                    self.units[0], artifact_path=artifact_path, receipt_path=receipt_path,
+                )
+            self.assertEqual([artifact_path, receipt_path], reads)
+            reads = []
+            with patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+                custody.replay_exp05_full_evaluated_unit_v1(
+                    artifact_path=artifact_path,
+                    receipt_path=receipt_path,
+                    expected_receipt=receipt,
+                )
+            self.assertEqual([artifact_path, receipt_path], reads)
+
+        bundle = self.bundle()
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            bundle_path = root / "cohort.private.json"
+            receipt_path = root / "cohort.receipt.json"
+            reads = []
+            with patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+                receipt = custody.persist_exp05_evaluated_bundle_v1(
+                    bundle, bundle_path=bundle_path, receipt_path=receipt_path,
+                )
+            self.assertEqual([bundle_path, receipt_path], reads)
+            reads = []
+            with patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+                custody.replay_exp05_evaluated_bundle_v1(
+                    bundle_path=bundle_path,
+                    receipt_path=receipt_path,
+                    expected_receipt=receipt,
+                )
+            self.assertEqual([bundle_path, receipt_path], reads)
 
     def test_closed_cohort_schema_rejects_malformed_nested_references_and_strata(self) -> None:
         document = self.bundle().to_dict()
