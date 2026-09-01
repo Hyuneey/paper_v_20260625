@@ -13,7 +13,7 @@ payload produced by :mod:`exp02_scientific_v1`.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from hashlib import sha256
 import json
 import os
@@ -28,6 +28,7 @@ from .exp02_scientific_v1 import (
     Exp02OperationV1,
     Exp02ScientificError,
     FormalV4NumericAuthorityPublicReceiptV1,
+    NumericPolicySelectionSummaryV1,
     PrivateSummaryHashReceiptV1,
     SelectedPolicyFreezeReceiptV1,
     SelectionDecisionReceiptV1,
@@ -333,7 +334,10 @@ def execute_authorized_split_open_v1(
         _fail("EXP02_RUNNER_BINDING_RECEIPT_MUTATED", "binding bundle receipt differs")
     if not binding_bundle.complete or not binding_bundle.data_io_authorized:
         _fail("EXP02_RUNNER_DATA_IO_NOT_AUTHORIZED", "complete frozen bindings are required")
-    if type(ledger) is not SplitOpenLedgerV1 or ledger.self_hash != _hash(ledger.body_dict()):
+    if (
+        type(ledger) is not SplitOpenLedgerV1
+        or ledger.self_hash != _hash(ledger.body_dict())
+    ):
         _fail("EXP02_RUNNER_OPEN_LEDGER_MUTATED", "split-open ledger differs from replay")
     if ledger.binding_bundle_hash != binding_bundle.self_hash:
         _fail("EXP02_RUNNER_OPEN_LEDGER_STALE", "ledger binds another binding bundle")
@@ -511,6 +515,409 @@ def close_exact_candidate_set_v1(
 
 
 @dataclass(frozen=True)
+class FitSplitPreparationReceiptV1:
+    """Public-safe proof that train1/train2 were each opened exactly once."""
+
+    binding_bundle_hash: str
+    split_event_hashes: tuple[tuple[str, str], ...]
+    split_order: tuple[str, str]
+    opener_calls: int
+    single_parse_enforced: bool
+    test1_accesses: int
+    test2_accesses: int
+    label_accesses: int
+    heldout_accesses: int
+    self_hash: str
+
+    def body_dict(self) -> dict[str, Any]:
+        return {
+            "artifact_type": "validation_v2_exp02_fit_split_preparation_receipt_v1",
+            "binding_bundle_hash": self.binding_bundle_hash,
+            "heldout_accesses": self.heldout_accesses,
+            "label_accesses": self.label_accesses,
+            "opener_calls": self.opener_calls,
+            "schema_version": "1.0.0",
+            "single_parse_enforced": self.single_parse_enforced,
+            "split_event_hashes": [list(item) for item in self.split_event_hashes],
+            "split_order": list(self.split_order),
+            "test1_accesses": self.test1_accesses,
+            "test2_accesses": self.test2_accesses,
+        }
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**self.body_dict(), "self_hash": self.self_hash}
+
+
+@dataclass(frozen=True)
+class PreparedFitSplitsV1:
+    """Private in-memory fit payloads plus a path-free preparation receipt."""
+
+    train1_payload: Any = field(repr=False, compare=False)
+    train2_payload: Any = field(repr=False, compare=False)
+    ledger: SplitOpenLedgerV1
+    receipt: FitSplitPreparationReceiptV1
+
+
+def prepare_exp02_fit_splits_once_v1(
+    *, binding_bundle: ScientificBindingBundleReceiptV1,
+    ledger: SplitOpenLedgerV1,
+    train1_opener: OpenCallbackV1[Any],
+    train2_opener: OpenCallbackV1[Any],
+) -> PreparedFitSplitsV1:
+    """Open train1/train2 exactly once before any candidate-level loop exists."""
+
+    if type(ledger) is not SplitOpenLedgerV1 or ledger.self_hash != _hash(ledger.body_dict()):
+        _fail("EXP02_RUNNER_OPEN_LEDGER_MUTATED", "split-open ledger differs from replay")
+    if ledger.events:
+        _fail("EXP02_RUNNER_FIT_SPLIT_REENTRY", "fit split preparation requires an unused ledger")
+    train1, after_train1 = execute_authorized_split_open_v1(
+        binding_bundle=binding_bundle,
+        ledger=ledger,
+        split_id="train1",
+        operation=Exp02OperationV1.DERIVE_PRIVATE_SUMMARIES,
+        purpose_id="EXP02-FIT-SUMMARY-TRAIN1-V1",
+        opener=train1_opener,
+    )
+    train2, after_train2 = execute_authorized_split_open_v1(
+        binding_bundle=binding_bundle,
+        ledger=after_train1,
+        split_id="train2",
+        operation=Exp02OperationV1.DERIVE_PRIVATE_SUMMARIES,
+        purpose_id="EXP02-FIT-SUMMARY-TRAIN2-V1",
+        opener=train2_opener,
+    )
+    if tuple(item.split_id for item in after_train2.events) != ("train1", "train2"):
+        _fail("EXP02_RUNNER_FIT_SPLIT_ORDER", "fit splits must open once in train1/train2 order")
+    provisional = FitSplitPreparationReceiptV1(
+        binding_bundle_hash=binding_bundle.self_hash,
+        split_event_hashes=tuple(
+            (item.split_id, item.self_hash) for item in after_train2.events
+        ),
+        split_order=("train1", "train2"),
+        opener_calls=2,
+        single_parse_enforced=True,
+        test1_accesses=after_train2.test1_accesses,
+        test2_accesses=after_train2.test2_accesses,
+        label_accesses=after_train2.label_accesses,
+        heldout_accesses=after_train2.heldout_accesses,
+        self_hash="",
+    )
+    receipt = replace(provisional, self_hash=_hash(provisional.body_dict()))
+    return PreparedFitSplitsV1(train1, train2, after_train2, receipt)
+
+
+@dataclass(frozen=True)
+class FitSummaryBatchReceiptV1:
+    binding_bundle_hash: str
+    fit_split_preparation_hash: str
+    cohort_binding_hash: str
+    fit_summary_receipts_hash: str
+    summary_receipt_hashes: tuple[tuple[str, str], ...]
+    relation_count: int
+    builder_calls: int
+    candidate_loop_count: int
+    batch_precomputed: bool
+    self_hash: str
+
+    def body_dict(self) -> dict[str, Any]:
+        return {
+            "artifact_type": "validation_v2_exp02_fit_summary_batch_receipt_v1",
+            **{key: value for key, value in self.__dict__.items() if key not in {
+                "self_hash", "summary_receipt_hashes",
+            }},
+            "schema_version": "1.0.0",
+            "summary_receipt_hashes": [list(item) for item in self.summary_receipt_hashes],
+        }
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**self.body_dict(), "self_hash": self.self_hash}
+
+
+@dataclass(frozen=True)
+class PreparedFitSummaryBatchV1:
+    private_payload: Any = field(repr=False, compare=False)
+    summary_receipts: tuple[PrivateSummaryHashReceiptV1, ...]
+    receipt: FitSummaryBatchReceiptV1
+
+
+FitSummaryBatchBuilderV1 = Callable[
+    [Any, Any], tuple[Any, Sequence[PrivateSummaryHashReceiptV1]]
+]
+
+
+def build_exp02_fit_summary_batch_once_v1(
+    *, binding_bundle: ScientificBindingBundleReceiptV1,
+    prepared_fit: PreparedFitSplitsV1,
+    cohort_binding: V2ConfirmedCohortBindingV1,
+    expected_summary_receipt_hashes: Mapping[str, str],
+    summary_builder: FitSummaryBatchBuilderV1,
+) -> PreparedFitSummaryBatchV1:
+    """Call one externally bound summary producer for both fit splits."""
+
+    if type(prepared_fit) is not PreparedFitSplitsV1:
+        _fail("EXP02_RUNNER_FIT_PREPARATION_TYPE", "prepared fit split type differs")
+    if prepared_fit.receipt.self_hash != _hash(prepared_fit.receipt.body_dict()):
+        _fail("EXP02_RUNNER_FIT_PREPARATION_MUTATED", "fit preparation receipt differs")
+    if prepared_fit.receipt.binding_bundle_hash != binding_bundle.self_hash:
+        _fail("EXP02_RUNNER_FIT_PREPARATION_STALE", "fit preparation binds another bundle")
+    if not callable(summary_builder):
+        _fail("EXP02_RUNNER_SUMMARY_BUILDER_INVALID", "one batch summary builder is required")
+    private_payload, summary_rows = summary_builder(
+        prepared_fit.train1_payload, prepared_fit.train2_payload
+    )
+    if type(summary_rows) not in (tuple, list):
+        _fail("EXP02_RUNNER_SUMMARY_BATCH_INVALID", "summary builder must return one exact sequence")
+    receipts = tuple(summary_rows)
+    fit_summary_hash = validate_private_summary_hash_receipts_v1(
+        receipts,
+        cohort=cohort_binding,
+        expected_receipt_hashes=expected_summary_receipt_hashes,
+    )
+    provisional = FitSummaryBatchReceiptV1(
+        binding_bundle_hash=binding_bundle.self_hash,
+        fit_split_preparation_hash=prepared_fit.receipt.self_hash,
+        cohort_binding_hash=cohort_binding.self_hash,
+        fit_summary_receipts_hash=fit_summary_hash,
+        summary_receipt_hashes=tuple(
+            (item.split_id, item.self_hash) for item in sorted(
+                receipts, key=lambda item: item.split_id
+            )
+        ),
+        relation_count=cohort_binding.relation_count,
+        builder_calls=1,
+        candidate_loop_count=0,
+        batch_precomputed=True,
+        self_hash="",
+    )
+    receipt = replace(provisional, self_hash=_hash(provisional.body_dict()))
+    return PreparedFitSummaryBatchV1(private_payload, receipts, receipt)
+
+
+@dataclass(frozen=True)
+class Train4PreparationReceiptV1:
+    binding_bundle_hash: str
+    fit_summary_batch_hash: str
+    candidate_closure_hash: str
+    candidate_set_receipt_hash: str
+    candidate_set_hash: str
+    train4_event_hash: str
+    train4_opener_calls: int
+    cumulative_normal_split_opens: int
+    opened_after_candidate_closure: bool
+    test1_accesses: int
+    test2_accesses: int
+    label_accesses: int
+    heldout_accesses: int
+    self_hash: str
+
+    def body_dict(self) -> dict[str, Any]:
+        return {
+            "artifact_type": "validation_v2_exp02_train4_preparation_receipt_v1",
+            **{key: value for key, value in self.__dict__.items() if key != "self_hash"},
+            "schema_version": "1.0.0",
+        }
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**self.body_dict(), "self_hash": self.self_hash}
+
+
+@dataclass(frozen=True)
+class PreparedTrain4InputV1:
+    private_payload: Any = field(repr=False, compare=False)
+    ledger: SplitOpenLedgerV1
+    receipt: Train4PreparationReceiptV1
+
+
+def prepare_exp02_train4_once_after_candidate_freeze_v1(
+    *, binding_bundle: ScientificBindingBundleReceiptV1,
+    prepared_fit: PreparedFitSplitsV1,
+    prepared_summary: PreparedFitSummaryBatchV1,
+    candidate_set_receipt: CandidateSetFreezeReceiptV1,
+    candidate_closure: CandidateClosureReceiptV1,
+    train4_opener: OpenCallbackV1[Any],
+) -> PreparedTrain4InputV1:
+    """Open train4 once, and only after exact candidate closure is frozen."""
+
+    if (
+        type(prepared_fit) is not PreparedFitSplitsV1
+        or prepared_fit.receipt.self_hash != _hash(prepared_fit.receipt.body_dict())
+        or prepared_fit.ledger.self_hash != _hash(prepared_fit.ledger.body_dict())
+    ):
+        _fail("EXP02_RUNNER_FIT_PREPARATION_MUTATED", "fit preparation differs")
+    if type(prepared_summary) is not PreparedFitSummaryBatchV1:
+        _fail("EXP02_RUNNER_SUMMARY_BATCH_TYPE", "prepared summary batch type differs")
+    if prepared_summary.receipt.self_hash != _hash(prepared_summary.receipt.body_dict()):
+        _fail("EXP02_RUNNER_SUMMARY_BATCH_MUTATED", "prepared summary receipt differs")
+    if prepared_summary.receipt.fit_split_preparation_hash != prepared_fit.receipt.self_hash:
+        _fail("EXP02_RUNNER_SUMMARY_BATCH_STALE", "summary batch binds another fit preparation")
+    if (
+        type(candidate_closure) is not CandidateClosureReceiptV1
+        or candidate_closure.self_hash != _hash(candidate_closure.body_dict())
+    ):
+        _fail("EXP02_RUNNER_CANDIDATE_CLOSURE_MUTATED", "candidate closure differs")
+    if (
+        type(candidate_set_receipt) is not CandidateSetFreezeReceiptV1
+        or candidate_set_receipt.self_hash != _hash(candidate_set_receipt.body_dict())
+    ):
+        _fail("EXP02_RUNNER_CANDIDATE_RECEIPT_MUTATED", "candidate-set receipt differs")
+    if (
+        not candidate_closure.closed_before_train4
+        or candidate_closure.candidate_count != 37
+        or candidate_closure.binding_bundle_hash != binding_bundle.self_hash
+        or candidate_closure.candidate_set_receipt_hash != candidate_set_receipt.self_hash
+        or candidate_set_receipt.fit_summary_receipts_hash
+        != prepared_summary.receipt.fit_summary_receipts_hash
+    ):
+        _fail("EXP02_RUNNER_TRAIN4_BEFORE_CANDIDATE_FREEZE", "exact candidate closure must precede train4")
+    if tuple(item.split_id for item in prepared_fit.ledger.events) != ("train1", "train2"):
+        _fail("EXP02_RUNNER_FIT_SPLIT_ORDER", "train4 requires one prior train1/train2 preparation")
+    train4, ledger = execute_authorized_split_open_v1(
+        binding_bundle=binding_bundle,
+        ledger=prepared_fit.ledger,
+        split_id="train4",
+        operation=Exp02OperationV1.SELECT_ON_NORMAL_TRAIN4,
+        purpose_id="EXP02-TRAIN4-BATCH-SELECTION-V1",
+        opener=train4_opener,
+    )
+    if tuple(item.split_id for item in ledger.events) != ("train1", "train2", "train4"):
+        _fail("EXP02_RUNNER_NORMAL_SPLIT_ORDER", "normal split order must be train1/train2/train4")
+    provisional = Train4PreparationReceiptV1(
+        binding_bundle_hash=binding_bundle.self_hash,
+        fit_summary_batch_hash=prepared_summary.receipt.self_hash,
+        candidate_closure_hash=candidate_closure.self_hash,
+        candidate_set_receipt_hash=candidate_set_receipt.self_hash,
+        candidate_set_hash=candidate_closure.candidate_set_hash,
+        train4_event_hash=ledger.events[-1].self_hash,
+        train4_opener_calls=1,
+        cumulative_normal_split_opens=3,
+        opened_after_candidate_closure=True,
+        test1_accesses=ledger.test1_accesses,
+        test2_accesses=ledger.test2_accesses,
+        label_accesses=ledger.label_accesses,
+        heldout_accesses=ledger.heldout_accesses,
+        self_hash="",
+    )
+    receipt = replace(provisional, self_hash=_hash(provisional.body_dict()))
+    return PreparedTrain4InputV1(train4, ledger, receipt)
+
+
+@dataclass(frozen=True)
+class CandidateBatchEvaluationReceiptV1:
+    train4_preparation_hash: str
+    fit_summary_batch_hash: str
+    candidate_set_hash: str
+    candidate_count: int
+    evaluator_calls: int
+    summary_count: int
+    candidate_hashes_hash: str
+    summary_hashes_hash: str
+    selection_authority_hash: str
+    full_coverage: bool
+    deterministic_order: bool
+    self_hash: str
+
+    def body_dict(self) -> dict[str, Any]:
+        return {
+            "artifact_type": "validation_v2_exp02_candidate_batch_evaluation_receipt_v1",
+            **{key: value for key, value in self.__dict__.items() if key != "self_hash"},
+            "schema_version": "1.0.0",
+        }
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**self.body_dict(), "self_hash": self.self_hash}
+
+
+CandidateBatchEvaluatorV1 = Callable[
+    [tuple[NumericPolicyCandidateV1, ...], Any, Any],
+    Sequence[NumericPolicySelectionSummaryV1],
+]
+
+
+def evaluate_exp02_candidate_batch_once_v1(
+    *, candidates: Sequence[NumericPolicyCandidateV1],
+    candidate_closure: CandidateClosureReceiptV1,
+    prepared_summary: PreparedFitSummaryBatchV1,
+    prepared_train4: PreparedTrain4InputV1,
+    selection_authority_hash: str,
+    evaluator: CandidateBatchEvaluatorV1,
+) -> tuple[tuple[NumericPolicySelectionSummaryV1, ...], CandidateBatchEvaluationReceiptV1]:
+    """Evaluate the closed 37-candidate set through one batch callback."""
+
+    _sha(selection_authority_hash, "selection_authority_hash")
+    if (
+        type(candidate_closure) is not CandidateClosureReceiptV1
+        or candidate_closure.self_hash != _hash(candidate_closure.body_dict())
+    ):
+        _fail("EXP02_RUNNER_CANDIDATE_CLOSURE_MUTATED", "candidate closure differs")
+    if (
+        type(prepared_summary) is not PreparedFitSummaryBatchV1
+        or prepared_summary.receipt.self_hash != _hash(prepared_summary.receipt.body_dict())
+    ):
+        _fail("EXP02_RUNNER_SUMMARY_BATCH_MUTATED", "prepared summary receipt differs")
+    if (
+        type(prepared_train4) is not PreparedTrain4InputV1
+        or prepared_train4.receipt.self_hash != _hash(prepared_train4.receipt.body_dict())
+    ):
+        _fail("EXP02_RUNNER_TRAIN4_PREPARATION_MUTATED", "train4 preparation differs")
+    candidate_tuple = tuple(candidates)
+    if (
+        len(candidate_tuple) != 37
+        or candidate_set_hash_v1(candidate_tuple) != candidate_closure.candidate_set_hash
+        or prepared_train4.receipt.candidate_closure_hash != candidate_closure.self_hash
+        or prepared_train4.receipt.fit_summary_batch_hash != prepared_summary.receipt.self_hash
+    ):
+        _fail("EXP02_RUNNER_BATCH_CANDIDATE_SET_MISMATCH", "batch input differs from frozen closure")
+    if not callable(evaluator):
+        _fail("EXP02_RUNNER_BATCH_EVALUATOR_INVALID", "one batch evaluator is required")
+    returned = evaluator(
+        candidate_tuple, prepared_train4.private_payload, prepared_summary.private_payload
+    )
+    if type(returned) not in (tuple, list):
+        _fail("EXP02_RUNNER_BATCH_RESULT_INVALID", "batch evaluator must return one exact sequence")
+    summaries = tuple(returned)
+    if len(summaries) != 37 or any(
+        type(item) is not NumericPolicySelectionSummaryV1 for item in summaries
+    ):
+        _fail("EXP02_RUNNER_BATCH_COVERAGE", "batch evaluator must return 37 typed summaries")
+    candidate_by_hash = {item.candidate_hash: item for item in candidate_tuple}
+    if len(candidate_by_hash) != 37:
+        _fail("EXP02_RUNNER_BATCH_CANDIDATE_DUPLICATE", "candidate hashes duplicate")
+    summary_by_hash: dict[str, NumericPolicySelectionSummaryV1] = {}
+    for summary in summaries:
+        if summary.summary_hash != _hash(summary.body_dict()):
+            _fail("EXP02_RUNNER_BATCH_SUMMARY_MUTATED", "summary hash differs from replay")
+        candidate = candidate_by_hash.get(summary.candidate_hash)
+        if candidate is None or summary.cohort_hash != candidate.cohort_hash:
+            _fail("EXP02_RUNNER_BATCH_SUMMARY_FOREIGN", "summary binds a foreign candidate or cohort")
+        if summary.selection_authority_hash != selection_authority_hash:
+            _fail("EXP02_RUNNER_BATCH_AUTHORITY_MISMATCH", "summary binds another selection authority")
+        if summary.candidate_hash in summary_by_hash:
+            _fail("EXP02_RUNNER_BATCH_COVERAGE", "summary candidate duplicates")
+        summary_by_hash[summary.candidate_hash] = summary
+    if set(summary_by_hash) != set(candidate_by_hash):
+        _fail("EXP02_RUNNER_BATCH_COVERAGE", "summary coverage is partial or foreign")
+    ordered = tuple(summary_by_hash[key] for key in sorted(summary_by_hash))
+    provisional = CandidateBatchEvaluationReceiptV1(
+        train4_preparation_hash=prepared_train4.receipt.self_hash,
+        fit_summary_batch_hash=prepared_summary.receipt.self_hash,
+        candidate_set_hash=candidate_closure.candidate_set_hash,
+        candidate_count=37,
+        evaluator_calls=1,
+        summary_count=37,
+        candidate_hashes_hash=_hash({"candidate_hashes": sorted(candidate_by_hash)}),
+        summary_hashes_hash=_hash({
+            "summary_hashes": [item.summary_hash for item in ordered]
+        }),
+        selection_authority_hash=selection_authority_hash,
+        full_coverage=True,
+        deterministic_order=True,
+        self_hash="",
+    )
+    receipt = replace(provisional, self_hash=_hash(provisional.body_dict()))
+    return ordered, receipt
+
+
+@dataclass(frozen=True)
 class AtomicPersistenceReceiptV1:
     artifact_id: str
     byte_count: int
@@ -668,12 +1075,20 @@ def freeze_selected_policy_atomically_v1(
 
 __all__ = [
     "EXP02_FORBIDDEN_SPLITS", "EXP02_REQUIRED_BINDING_IDS", "EXP02_RUNNER_VERSION",
-    "AtomicPersistenceReceiptV1", "CandidateClosureReceiptV1",
-    "CohortProjectionReceiptV1", "Exp02RunnerError", "FrozenScientificBindingV1",
+    "AtomicPersistenceReceiptV1", "CandidateBatchEvaluationReceiptV1",
+    "CandidateClosureReceiptV1", "CohortProjectionReceiptV1", "Exp02RunnerError",
+    "FitSplitPreparationReceiptV1", "FitSummaryBatchReceiptV1",
+    "FrozenScientificBindingV1", "PreparedFitSplitsV1",
+    "PreparedFitSummaryBatchV1", "PreparedTrain4InputV1",
     "ScientificBindingBundleReceiptV1", "SplitOpenEventV1", "SplitOpenLedgerV1",
+    "Train4PreparationReceiptV1",
     "atomic_persist_selected_policy_v1", "build_cohort_projection_receipt_v1",
+    "build_exp02_fit_summary_batch_once_v1",
     "build_frozen_scientific_binding_v1", "close_exact_candidate_set_v1",
-    "execute_authorized_split_open_v1", "freeze_selected_policy_atomically_v1",
-    "frozen_scientific_binding_from_dict_v1", "start_split_open_ledger_v1",
+    "evaluate_exp02_candidate_batch_once_v1", "execute_authorized_split_open_v1",
+    "freeze_selected_policy_atomically_v1", "frozen_scientific_binding_from_dict_v1",
+    "prepare_exp02_fit_splits_once_v1",
+    "prepare_exp02_train4_once_after_candidate_freeze_v1",
+    "start_split_open_ledger_v1",
     "validate_cohort_projection_receipt_v1", "validate_scientific_binding_bundle_v1",
 ]

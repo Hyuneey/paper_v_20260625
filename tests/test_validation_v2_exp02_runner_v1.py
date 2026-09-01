@@ -12,10 +12,14 @@ from paperworks.validation_v2.exp02_runner_v1 import (
     Exp02RunnerError,
     atomic_persist_selected_policy_v1,
     build_cohort_projection_receipt_v1,
+    build_exp02_fit_summary_batch_once_v1,
     build_frozen_scientific_binding_v1,
     close_exact_candidate_set_v1,
+    evaluate_exp02_candidate_batch_once_v1,
     execute_authorized_split_open_v1,
     frozen_scientific_binding_from_dict_v1,
+    prepare_exp02_fit_splits_once_v1,
+    prepare_exp02_train4_once_after_candidate_freeze_v1,
     start_split_open_ledger_v1,
     validate_cohort_projection_receipt_v1,
     validate_scientific_binding_bundle_v1,
@@ -27,6 +31,7 @@ from paperworks.validation_v2.exp02_scientific_v1 import (
 )
 from paperworks.validation_v2.numeric_policy_v1 import (
     ConfirmedRelationIdentityV1,
+    NumericPolicySelectionSummaryV1,
     build_confirmed_cohort_authority_v1,
 )
 
@@ -36,6 +41,13 @@ COMMIT = "1" * 40
 
 def h(label: str) -> str:
     return sha256(label.encode("utf-8")).hexdigest()
+
+
+def h_json(payload) -> str:
+    return sha256(json.dumps(
+        payload, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
+    ).encode("utf-8")).hexdigest()
 
 
 class Exp02RunnerV1Tests(unittest.TestCase):
@@ -82,6 +94,41 @@ class Exp02RunnerV1Tests(unittest.TestCase):
             )
             for split in ("train1", "train2")
         )
+
+    def close_candidates(self):
+        return close_exact_candidate_set_v1(
+            binding_bundle=self.bundle, projection=self.projection,
+            expected_projection_hash=self.projection.self_hash,
+            cohort=self.cohort, cohort_binding=self.cohort_binding,
+            candidate_policy_hash=self.candidate_policy_hash,
+            normal_fit_input_hash=h("normal-fit-input"),
+            summary_receipts=self.summary_receipts,
+            expected_summary_receipt_hashes={
+                item.split_id: item.self_hash for item in self.summary_receipts
+            },
+        )
+
+    def build_summary(self, candidate, selection_authority_hash):
+        provisional = NumericPolicySelectionSummaryV1(
+            candidate_hash=candidate.candidate_hash,
+            selection_authority_hash=selection_authority_hash,
+            cohort_hash=candidate.cohort_hash,
+            retained_relations=2,
+            cohort_relations=2,
+            opportunity_relations=2,
+            pass_count=1,
+            fail_count=0,
+            abstain_count=0,
+            unsupported_relation_count=0,
+            system_error_count=0,
+            false_alarm_seconds=0,
+            false_alarm_episodes=0,
+            normal_exposure_seconds=1,
+            split_variability_numerator=0,
+            split_variability_denominator=1,
+            summary_hash="",
+        )
+        return replace(provisional, summary_hash=h_json(provisional.body_dict()))
 
     def test_binding_bundle_is_exact_and_public_safe(self) -> None:
         self.assertEqual(self.bundle.binding_count, 3)
@@ -189,23 +236,188 @@ class Exp02RunnerV1Tests(unittest.TestCase):
             )
 
     def test_candidate_closure_is_exactly_one_plus_36(self) -> None:
-        candidates, candidate_receipt, closure = close_exact_candidate_set_v1(
-            binding_bundle=self.bundle, projection=self.projection,
-            expected_projection_hash=self.projection.self_hash,
-            cohort=self.cohort, cohort_binding=self.cohort_binding,
-            candidate_policy_hash=self.candidate_policy_hash,
-            normal_fit_input_hash=h("normal-fit-input"),
-            summary_receipts=self.summary_receipts,
-            expected_summary_receipt_hashes={
-                item.split_id: item.self_hash for item in self.summary_receipts
-            },
-        )
+        candidates, candidate_receipt, closure = self.close_candidates()
         self.assertEqual(len(candidates), 37)
         self.assertEqual(candidate_receipt.candidate_count, 37)
         self.assertEqual(closure.common_candidate_count, 1)
         self.assertEqual(closure.relation_specific_candidate_count, 36)
         self.assertTrue(closure.closed_before_train4)
         self.assertEqual(closure.test1_accesses, 0)
+
+    def test_fit_splits_and_summaries_are_prepared_once_before_train4(self) -> None:
+        opened: list[str] = []
+        prepared_fit = prepare_exp02_fit_splits_once_v1(
+            binding_bundle=self.bundle,
+            ledger=start_split_open_ledger_v1(self.bundle),
+            train1_opener=lambda: (
+                opened.append("train1") or "private-train1", 11, h("train1")
+            ),
+            train2_opener=lambda: (
+                opened.append("train2") or "private-train2", 12, h("train2")
+            ),
+        )
+        self.assertEqual(opened, ["train1", "train2"])
+        self.assertEqual(prepared_fit.receipt.opener_calls, 2)
+        self.assertTrue(prepared_fit.receipt.single_parse_enforced)
+
+        builder_calls = 0
+
+        def summary_builder(train1, train2):
+            nonlocal builder_calls
+            builder_calls += 1
+            self.assertEqual((train1, train2), ("private-train1", "private-train2"))
+            return "private-fit-summary", self.summary_receipts
+
+        prepared_summary = build_exp02_fit_summary_batch_once_v1(
+            binding_bundle=self.bundle,
+            prepared_fit=prepared_fit,
+            cohort_binding=self.cohort_binding,
+            expected_summary_receipt_hashes={
+                item.split_id: item.self_hash for item in self.summary_receipts
+            },
+            summary_builder=summary_builder,
+        )
+        self.assertEqual(builder_calls, 1)
+        self.assertEqual(prepared_summary.receipt.builder_calls, 1)
+        self.assertEqual(prepared_summary.receipt.candidate_loop_count, 0)
+
+        candidates, candidate_receipt, closure = self.close_candidates()
+        prepared_train4 = prepare_exp02_train4_once_after_candidate_freeze_v1(
+            binding_bundle=self.bundle,
+            prepared_fit=prepared_fit,
+            prepared_summary=prepared_summary,
+            candidate_set_receipt=candidate_receipt,
+            candidate_closure=closure,
+            train4_opener=lambda: (
+                opened.append("train4") or "private-train4", 13, h("train4")
+            ),
+        )
+        self.assertEqual(len(candidates), 37)
+        self.assertEqual(opened, ["train1", "train2", "train4"])
+        self.assertEqual(prepared_train4.receipt.train4_opener_calls, 1)
+        self.assertEqual(prepared_train4.receipt.cumulative_normal_split_opens, 3)
+        self.assertTrue(prepared_train4.receipt.opened_after_candidate_closure)
+        self.assertEqual(prepared_train4.receipt.test1_accesses, 0)
+        self.assertEqual(prepared_train4.receipt.test2_accesses, 0)
+
+    def test_fit_reentry_rejects_before_any_extra_open(self) -> None:
+        prepared_fit = prepare_exp02_fit_splits_once_v1(
+            binding_bundle=self.bundle,
+            ledger=start_split_open_ledger_v1(self.bundle),
+            train1_opener=lambda: ("private-train1", 11, h("train1")),
+            train2_opener=lambda: ("private-train2", 12, h("train2")),
+        )
+        extra_opens = 0
+
+        def extra_opener():
+            nonlocal extra_opens
+            extra_opens += 1
+            return object(), 1, h("extra")
+
+        with self.assertRaisesRegex(Exp02RunnerError, "FIT_SPLIT_REENTRY"):
+            prepare_exp02_fit_splits_once_v1(
+                binding_bundle=self.bundle,
+                ledger=prepared_fit.ledger,
+                train1_opener=extra_opener,
+                train2_opener=extra_opener,
+            )
+        self.assertEqual(extra_opens, 0)
+
+    def test_train4_rejects_mutated_closure_before_open(self) -> None:
+        prepared_fit = prepare_exp02_fit_splits_once_v1(
+            binding_bundle=self.bundle,
+            ledger=start_split_open_ledger_v1(self.bundle),
+            train1_opener=lambda: ("private-train1", 11, h("train1")),
+            train2_opener=lambda: ("private-train2", 12, h("train2")),
+        )
+        prepared_summary = build_exp02_fit_summary_batch_once_v1(
+            binding_bundle=self.bundle,
+            prepared_fit=prepared_fit,
+            cohort_binding=self.cohort_binding,
+            expected_summary_receipt_hashes={
+                item.split_id: item.self_hash for item in self.summary_receipts
+            },
+            summary_builder=lambda train1, train2: (
+                (train1, train2), self.summary_receipts
+            ),
+        )
+        _, candidate_receipt, closure = self.close_candidates()
+        mutated = replace(closure, closed_before_train4=False)
+        train4_opens = 0
+
+        def train4_opener():
+            nonlocal train4_opens
+            train4_opens += 1
+            return "private-train4", 13, h("train4")
+
+        with self.assertRaisesRegex(Exp02RunnerError, "CANDIDATE_CLOSURE_MUTATED"):
+            prepare_exp02_train4_once_after_candidate_freeze_v1(
+                binding_bundle=self.bundle,
+                prepared_fit=prepared_fit,
+                prepared_summary=prepared_summary,
+                candidate_set_receipt=candidate_receipt,
+                candidate_closure=mutated,
+                train4_opener=train4_opener,
+            )
+        self.assertEqual(train4_opens, 0)
+
+    def test_candidate_batch_is_evaluated_once_with_exact_coverage(self) -> None:
+        prepared_fit = prepare_exp02_fit_splits_once_v1(
+            binding_bundle=self.bundle,
+            ledger=start_split_open_ledger_v1(self.bundle),
+            train1_opener=lambda: ("private-train1", 11, h("train1")),
+            train2_opener=lambda: ("private-train2", 12, h("train2")),
+        )
+        prepared_summary = build_exp02_fit_summary_batch_once_v1(
+            binding_bundle=self.bundle,
+            prepared_fit=prepared_fit,
+            cohort_binding=self.cohort_binding,
+            expected_summary_receipt_hashes={
+                item.split_id: item.self_hash for item in self.summary_receipts
+            },
+            summary_builder=lambda train1, train2: (
+                (train1, train2), self.summary_receipts
+            ),
+        )
+        candidates, candidate_receipt, closure = self.close_candidates()
+        prepared_train4 = prepare_exp02_train4_once_after_candidate_freeze_v1(
+            binding_bundle=self.bundle,
+            prepared_fit=prepared_fit,
+            prepared_summary=prepared_summary,
+            candidate_set_receipt=candidate_receipt,
+            candidate_closure=closure,
+            train4_opener=lambda: ("private-train4", 13, h("train4")),
+        )
+        selection_authority_hash = h("selection-authority")
+        evaluator_calls = 0
+
+        def evaluator(candidate_rows, train4, fit_summary):
+            nonlocal evaluator_calls
+            evaluator_calls += 1
+            self.assertEqual(train4, "private-train4")
+            self.assertEqual(fit_summary, ("private-train1", "private-train2"))
+            return tuple(
+                self.build_summary(candidate, selection_authority_hash)
+                for candidate in reversed(candidate_rows)
+            )
+
+        summaries, receipt = evaluate_exp02_candidate_batch_once_v1(
+            candidates=candidates,
+            candidate_closure=closure,
+            prepared_summary=prepared_summary,
+            prepared_train4=prepared_train4,
+            selection_authority_hash=selection_authority_hash,
+            evaluator=evaluator,
+        )
+        self.assertEqual(evaluator_calls, 1)
+        self.assertEqual(receipt.evaluator_calls, 1)
+        self.assertEqual(receipt.summary_count, 37)
+        self.assertTrue(receipt.full_coverage)
+        self.assertEqual(
+            [item.candidate_hash for item in summaries],
+            sorted(item.candidate_hash for item in candidates),
+        )
+        self.assertNotIn("private-train", json.dumps(receipt.to_dict()))
 
     def test_atomic_persistence_writes_fsyncs_reopens_and_directory_syncs(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

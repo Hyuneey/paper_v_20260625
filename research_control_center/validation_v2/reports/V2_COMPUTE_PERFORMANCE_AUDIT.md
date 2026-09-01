@@ -52,10 +52,11 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 
 ## 구현하지 않은 항목
 
-이번 변경은 EXP-01의 증명된 병목만 고쳤다. Formal V4, EXP-02, EXP-05, future GPU
-GDN의 개선은 각각 contract와 QA를 동반해야 하므로 이 감사에서 코드를 변경하지
-않았다. 특히 EXP-02의 미동결 scientific producer semantics를 속도 목적만으로
-추정하지 않는다.
+EXP-01의 증명된 병목은 checkpoint resume와 선형/indexed adapter로 해결했다.
+후속 EXP-02 효율화에서는 미동결 scientific producer semantics를 추정하지 않고,
+single-parse·summary precompute·37-candidate batch evaluation 경계만 합성 테스트로
+구현했다. Formal V4, EXP-05, future GPU GDN 개선은 각각 별도 contract와 QA가
+필요하므로 아직 코드를 변경하지 않았다.
 
 ## 비-EXP01 정적 병목 상세
 
@@ -84,7 +85,9 @@ scientific runner를 구현하기 전에 다음 성능 계약을 고정해야 �
 - candidate, relation, row, seed 분모를 줄이지 않는다.
 
 이는 다시 발생할 수 있는 relation×row×full-sequence 반복 scan을 실행 전에
-차단하는 조건이다. 이 로직은 branch 중심 CPU 작업이므로 GPU 대상이 아니다.
+차단하는 조건이다. 이 경계는 `EXP02_PERFORMANCE_FOUNDATION_V2.md`에 따라 구현됐고,
+실제 producer 연결은 세 external scientific binding과 별도 V2 cohort가 동결된 뒤에만
+허용된다. 이 로직은 branch 중심 CPU 작업이므로 GPU 대상이 아니다.
 
 ### 3. HAI parsing 및 detector
 
