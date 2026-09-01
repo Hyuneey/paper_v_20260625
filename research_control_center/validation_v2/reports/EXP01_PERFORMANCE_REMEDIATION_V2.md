@@ -1,6 +1,6 @@
 # EXP-01 장기 병목 복구 기록
 
-상태: `IMPLEMENTED_PENDING_CHECKPOINT_RECOVERY_AND_SCIENTIFIC_RESUME`
+상태: `COMPLETE_QA_PASS`
 
 ## 결론
 
@@ -16,6 +16,18 @@ VALIDATION V2 EXP-01 경로에 연결했다.
 
 관계식, threshold, horizon, refractory window, isolation radius, 후보 집합,
 seed, 모델, 데이터, split, preregistration은 변경하지 않았다.
+
+## 실행 결과
+
+- 12/12 checkpoint를 byte/state/authority로 복구했다.
+- training을 다시 실행하지 않았다.
+- 최적화된 post-processing은 `COMPLETE_PENDING_INDEPENDENT_QA`로 종료했고,
+  후속 독립 QA가 PASS했다.
+- primary mask pair는 0개였다.
+- 사전등록 규칙에 따라 GDN은 ablation으로 보존하고 primary discovery path는
+  `META_PLUS_STAT`로 동결한다.
+- result hash는
+  `53ee74a8036357dacf18486d4ef562dcdc948ff9e7f71fc23c53be17feb22a7e`다.
 
 ## 중단된 실행의 처리
 

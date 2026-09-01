@@ -1,0 +1,43 @@
+{
+  "schema": "paperworks.validation_v2.candidate_policy_freeze_v2",
+  "schema_version": "2.0.0",
+  "policy_id": "VALIDATION_V2_CANDIDATE_POLICY_META_STAT_V1",
+  "status": "FROZEN_AFTER_EXP01_INDEPENDENT_QA_PASS",
+  "source_experiment": "EXP-01",
+  "source_result_hash": "53ee74a8036357dacf18486d4ef562dcdc948ff9e7f71fc23c53be17feb22a7e",
+  "source_result_public_receipt_hash": "c58595af858835bd4f88d6f3e3345af352ff1f907f91a8b48cc2ad8cfc749a03",
+  "source_postprocessing_commit": "63776787d31276eb9457445eaef2729f3d746fc0",
+  "source_preregistration_hash": "6da75dd0d8a21ae8fe3fd85286beca93536c8cea6eac6ff35d620192063661cc",
+  "source_scientific_contract_hash": "8d02671ac87db776ee4c244bf7fe11d3348a2a0d76d35d568dd7e521e2b3200f",
+  "independent_qa": {
+    "status": "PASS",
+    "focused_tests_passed": 39,
+    "focused_tests_failed": 0,
+    "primary_mask_pair_count": 0
+  },
+  "decision_rule": "GDN_RETAINED_ONLY_IF_STABLE_UNIQUE_CONFIRMED_AND_FUNCTIONALLY_USED",
+  "decision": "DEMOTE_GDN_TO_ABLATION_AND_USE_META_STAT",
+  "primary_discovery_arms": [
+    "META",
+    "STAT"
+  ],
+  "gdn_role": "ABLATION_ONLY_NOT_PRIMARY_V2_DISCOVERY",
+  "gdn_claim": "COMPLETE_NEGATIVE_INCLUSION_RESULT_NOT_DETECTION_RESULT",
+  "frozen_comparator_authority": {
+    "meta_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+    "stat_artifact_hash": "7351e295be7e5bdd2b1cb9677091426899e5a2616c60245f953ff6602d106950"
+  },
+  "pair_identity_materialization": "PENDING_SEPARATE_V2_RELATION_COHORT_AUTHORITY",
+  "post_result_reranking_allowed": false,
+  "preregistration_changed": false,
+  "scientific_configuration_changed": false,
+  "access_counters": {
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "label_accesses": 0,
+    "provider_calls": 0
+  },
+  "claim_boundary": "NORMAL_DATA_CANDIDATE_GUIDANCE_NOT_CAUSALITY_OR_DETECTION_PERFORMANCE",
+  "policy_self_hash": "cd91cb8af5ea2405dec9c04714e48e293504fa30745135c47f568299e3055c77"
+}

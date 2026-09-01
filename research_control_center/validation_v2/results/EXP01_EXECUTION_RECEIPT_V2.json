@@ -1,0 +1,214 @@
+{
+  "access_counters": {
+    "heldout_accesses": 0,
+    "label_accesses": 0,
+    "provider_calls": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "train1_opens": 1,
+    "train2_opens": 1,
+    "train3_opens": 1,
+    "train4_opens": 1
+  },
+  "arm_blind_relation_evaluator_calls": 1,
+  "candidate_aggregate_hashes": [
+    "52df5f43ebf57f87d128adbfdd3fe65048be8fc806123b3521fec703bf1584d1",
+    "f6c8519c554c28e613468b4520adbe4a383bf5251c63589bd5e523190a138d10",
+    "d1f6188f5f00e367a55c572e433178a21b76325a7af0461b594970ac79aa5961",
+    "b4c730a4a6c446d5ee9f6f87ba11abb4e13ddb719d08aa0fcd730aa5cd0589e7"
+  ],
+  "checkpoint_origin_code_authority_hash": "cf1ccb2720aa64e49c6798adc43cc2fd2d90dc16aa8d6af6287ecda27fc997d0",
+  "checkpoint_recovery_receipt_hash": "7fb6bca115a7336b30a51a7b29a8b7b472f93f74b19e33560a6f50fb69e9cb6b",
+  "checkpoint_set_hash": "1d26e8b17fa8cf160083d0b39cd47c073660ff5266baba38c2d2aa39ee348c5b",
+  "claim_boundary": "NORMAL_DATA_CANDIDATE_GUIDANCE_NOT_CAUSALITY_OR_DETECTION_PERFORMANCE",
+  "compute_environment": {
+    "compute_device": "cpu",
+    "cuda_available": false,
+    "deterministic_flags": {
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "deterministic_algorithms": false
+    },
+    "device_change_from_training": false,
+    "driver_reported_cuda_version": "13.3",
+    "driver_version": "610.47",
+    "dtype": "float32",
+    "gpu_model": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "gpu_used": false,
+    "gpu_utilization_percent_at_receipt": 0,
+    "host_gpu_available": true,
+    "inventory_status": "NVIDIA_SMI_PASS",
+    "python_version": "3.12.13",
+    "seed_set": [
+      11,
+      23,
+      37
+    ],
+    "torch_cuda_version": null,
+    "torch_version": "2.12.1+cpu",
+    "vram_total_mib": 8151,
+    "vram_used_mib_at_receipt": 834
+  },
+  "confirmation_receipt_hash": "29e954dcc3c85d9368f02c926047f191e6763806dfcbf3a78c8f6eedcf06be41",
+  "contract_hash": "8d02671ac87db776ee4c244bf7fe11d3348a2a0d76d35d568dd7e521e2b3200f",
+  "cumulative_known_access_counters": {
+    "heldout_accesses": 0,
+    "label_accesses": 0,
+    "provider_calls": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "train1_opens": 2,
+    "train2_opens": 2,
+    "train3_opens": 2,
+    "train4_opens": 1
+  },
+  "execution_mode": "CHECKPOINT_RESUME_POSTPROCESSING_V2",
+  "feature_access_ledger": {
+    "experiment_id": "VALIDATION-V2-EXP-01-POSTPROCESSING-RESUME",
+    "feature_file_open_count": 4,
+    "heldout_accesses": 0,
+    "labels_accessed": false,
+    "opened_split_ids": [
+      "train1",
+      "train2",
+      "train3",
+      "train4"
+    ],
+    "schema": "paperworks.validation_v2.hai_feature_access_ledger_v1",
+    "test2_accesses": 0
+  },
+  "inclusion_handoff_hash": "35996e43b43064a212397f39d90ebfa15e98cbeaa588bdacf7ebc91996fa40ca",
+  "interrupted_attempt_access_counters": {
+    "heldout_accesses": 0,
+    "label_accesses": 0,
+    "provider_calls": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "train1_opens": 1,
+    "train2_opens": 1,
+    "train3_opens": 1,
+    "train4_opens": 0
+  },
+  "intervention_receipt_hashes": [
+    "faa1ce3e95517cd292935e863fbd42982df559b8a462923e4361e5e426c65a99",
+    "a429766cb4f2fbcbdb5afdc201f08e05699c1c2e856c931cc2d6ff099f839c58",
+    "ca9ec1aa45ac430f6e5fee7f11c32e81402dadb3621af0a46ce366ff54ce0373"
+  ],
+  "optimization_authority": {
+    "artifact_hash": "6639c6c767af749775eed8cbd98dc43ccff8cf603ee8cdd009a169b45944bef0",
+    "event_complexity_class": "linear_in_sequence_length",
+    "event_semantic_parity": "passed",
+    "isolation_complexity_class": "O(E log E)_with_fixed_12_source_context",
+    "isolation_semantic_parity": "passed",
+    "protocol_changed": false,
+    "scientific_configuration_changed": false,
+    "scientific_formulas_changed": false,
+    "semantic_preserving_implementation_change": true,
+    "status": "passed_task039d1r_semantics_preserving_complexity_recovery",
+    "task_id": "TASK-039D1R"
+  },
+  "postprocessing_code_authority_hash": "27ccf22876de8a59f2124fcb279b2f27e1964c4384221588bce38b3fc795bea6",
+  "postprocessing_source_commit": "63776787d31276eb9457445eaef2729f3d746fc0",
+  "preregistration_changed": false,
+  "primary_mask_pair_count": 0,
+  "primary_mask_pair_set_hash": "f405c6c4372b5562ae3573863b8d265b641849eb646239514dfcc5cd47ce6f46",
+  "private_checkpoint_receipt_hashes": [
+    "a0cadd4fefd76f361aecc7a7cedbd905ac4fc840eb945945cddd9633ae5d0407",
+    "7b38052438362fc05ae710491a9348502ca471542285550b1505dcd8ea7582a9",
+    "8639dae3d1a3a13cbd0c91974e92d5ce7a8e9affb7dd990f26cf1eb7c5a97890",
+    "cd1d797da9f29ce1fe7cfabca4f585989374febc8118f30e3be6fd29268c2470",
+    "5aad5612aa837e1ef01311e6b0aca890e6832fbc28c2c401116d012e22d46d37",
+    "09559692138a8ce20de1e5f36acd4054f602db1b960d59eef1b15d8749e4ca91",
+    "f6c2d3f6c2fd67fed8b29d19e7098b8ace0f196496f9e748bcdd8f04ac58f6ab",
+    "bd6f99874f0fb926dfc77f0f0d0a10df1d8c7ce7e44e2a10b346b61eff2c1dd2",
+    "5c37168a6f7f14f10e79b5389a0972a44550d7e15e6813bf9dd9c5eb6add030a",
+    "ec837c0fbe93e2eaec3e9393767c6907916fb7c9b49e02ce413dc0c18362f1b5",
+    "52956e92593e8b92274284af9b43a948ed884d326d606c9ed088ec22bd4b9c55",
+    "8049a8c1820fb8a8f85f36122ce96d8cff175604ed1210262c0ad8cc7f853101"
+  ],
+  "public_receipt_hash": "c58595af858835bd4f88d6f3e3345af352ff1f907f91a8b48cc2ad8cfc749a03",
+  "redaction": "NO_PRIVATE_PATHS_VALUES_SCORES_LOSSES_OR_CHECKPOINT_BYTES",
+  "result_driven_change": false,
+  "result_hash": "53ee74a8036357dacf18486d4ef562dcdc948ff9e7f71fc23c53be17feb22a7e",
+  "resume_attempt_access_counters": {
+    "heldout_accesses": 0,
+    "label_accesses": 0,
+    "provider_calls": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "train1_opens": 1,
+    "train2_opens": 1,
+    "train3_opens": 1,
+    "train4_opens": 1
+  },
+  "schedule": [
+    [
+      "GDN_FROZEN_SELF_ELIGIBLE",
+      "TRAIN1_TRAIN2_COMBINED",
+      11
+    ],
+    [
+      "GDN_FROZEN_SELF_ELIGIBLE",
+      "TRAIN1_TRAIN2_COMBINED",
+      23
+    ],
+    [
+      "GDN_FROZEN_SELF_ELIGIBLE",
+      "TRAIN1_TRAIN2_COMBINED",
+      37
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN1_TRAIN2_COMBINED",
+      11
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN1_TRAIN2_COMBINED",
+      23
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN1_TRAIN2_COMBINED",
+      37
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN1_ONLY",
+      11
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN1_ONLY",
+      23
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN1_ONLY",
+      37
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN2_ONLY",
+      11
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN2_ONLY",
+      23
+    ],
+    [
+      "GDN_CORRECTED_SELF_EXCLUDED",
+      "TRAIN2_ONLY",
+      37
+    ]
+  ],
+  "schema": "paperworks.validation_v2.exp01_execution_public_receipt_v2",
+  "schema_version": "2.0.0",
+  "scientific_configuration_changed": false,
+  "semantic_preserving_implementation_change": true,
+  "status": "COMPLETE_PENDING_INDEPENDENT_QA",
+  "train4_provider_calls": 1,
+  "training_reexecuted": false,
+  "training_source_commit": "6e2360da4f8d0be87daf602023b82ab54f792a58"
+}

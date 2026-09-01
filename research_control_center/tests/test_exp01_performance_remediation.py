@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import inspect
+import json
 import pickle
 import sys
 import tempfile
@@ -72,6 +73,30 @@ def _fake_torch():
 
 
 class Exp01PerformanceRemediationTests(unittest.TestCase):
+    def test_candidate_policy_freeze_binds_complete_negative_exp01_result(self) -> None:
+        policy_path = Path(
+            "research_control_center/validation_v2/policies/CANDIDATE_POLICY_FREEZE_V2.json"
+        )
+        result_path = Path(
+            "research_control_center/validation_v2/results/EXP01_EXECUTION_RECEIPT_V2.json"
+        )
+        policy = json.loads(policy_path.read_text(encoding="utf-8"))
+        result = json.loads(result_path.read_text(encoding="utf-8"))
+        expected_hash = policy.pop("policy_self_hash")
+        self.assertEqual(stable_hash_v1(policy), expected_hash)
+        self.assertEqual(policy["source_result_hash"], result["result_hash"])
+        self.assertEqual(
+            policy["source_result_public_receipt_hash"], result["public_receipt_hash"]
+        )
+        self.assertEqual(result["primary_mask_pair_count"], 0)
+        self.assertEqual(
+            policy["decision"], "DEMOTE_GDN_TO_ABLATION_AND_USE_META_STAT"
+        )
+        self.assertEqual(policy["primary_discovery_arms"], ["META", "STAT"])
+        self.assertTrue(
+            all(value == 0 for value in policy["access_counters"].values())
+        )
+
     def test_resume_path_never_calls_training(self) -> None:
         source = inspect.getsource(resume_exp01_postprocessing_v2)
         self.assertNotIn("train_exp01_seed_v2(", source)

@@ -1,6 +1,6 @@
 # VALIDATION V2 계산 자원·장기 병목 감사
 
-상태: `AUDITED_WITH_EXP01_SAFE_REMEDIATION`
+상태: `AUDITED_EXP01_COMPLETE_QA_PASS`
 
 ## 현재 계산 환경
 
@@ -34,6 +34,9 @@
 따라서 현재 checkpoint salvage에는 GPU를 사용하지 않는다. 향후 새로운 V2 GDN
 실행에서 GPU를 선택하려면 별도 backend/config/environment receipt와 CPU/GPU
 수치 비결정성 경계를 결과 관찰 전에 동결해야 한다.
+
+실제 재개 실행 중 GPU utilization은 0%, Python working set은 약 630MB였고,
+CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반복하지 않고 완료됐다.
 
 ## 병목 우선순위
 
