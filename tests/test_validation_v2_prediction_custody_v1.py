@@ -8,6 +8,8 @@ import threading
 import unittest
 from unittest import mock
 
+import paperworks.validation_v2.prediction_custody_v1 as custody
+
 from paperworks.validation_v2.prediction_custody_v1 import (
     D1PredictionArtifactV2,
     D1PredictionRecordV2,
@@ -82,6 +84,46 @@ class DurablePredictionCustodyTests(unittest.TestCase):
         self.assertEqual(verify_prediction_unchanged_v1(capability), sha256((self.root / PREDICTION).read_bytes()).hexdigest())
         with self.assertRaisesRegex(PredictionCustodyError, "LABEL_CAPABILITY_ALREADY_CONSUMED"):
             consume_label_access_capability_v1(capability, lambda: None)
+
+    def test_persist_replay_and_authorize_have_bounded_reopen_counts(self) -> None:
+        original_read_bytes = Path.read_bytes
+
+        def record_read(path: Path) -> bytes:
+            reads.append(path)
+            return original_read_bytes(path)
+
+        prediction_path = self.root / PREDICTION
+        receipt_path = self.root / RECEIPT
+        lease_path = self.root / (RECEIPT + ".label_access_authorized")
+        reads: list[Path] = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            receipt = persist_prediction_before_label_v1(
+                artifact(), artifact_root=self.root,
+                prediction_relative_path=PREDICTION, receipt_relative_path=RECEIPT,
+            )
+        self.assertEqual([prediction_path, receipt_path], reads)
+
+        reads = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            replayed = custody.replay_prediction_before_label_v1(
+                artifact_root=self.root,
+                prediction_relative_path=PREDICTION,
+                receipt_relative_path=RECEIPT,
+                expected_receipt=receipt,
+                expected_authority_hash=H_A,
+                expected_runtime_authorization_hash=H_B,
+                expected_execution_context_hash=H_C,
+                expected_source_commit="d" * 40,
+                expected_portfolio_hash=H_B,
+                expected_file_contract_hash=H_C,
+            )
+        self.assertEqual(artifact(), replayed)
+        self.assertEqual([prediction_path, receipt_path], reads)
+
+        reads = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            self.authorize()
+        self.assertEqual([prediction_path, receipt_path, lease_path], reads)
 
     def test_label_access_before_freeze_rejected(self) -> None:
         with self.assertRaisesRegex(PredictionCustodyError, "ARTIFACT_MISSING"):

@@ -1,6 +1,6 @@
 # VALIDATION V2 계산 자원·장기 병목 감사
 
-상태: `AUDITED_EXP01_EXP02_EXP04_FORMAL_V4_EXP05_CUSTODY_HAI_SHARED_FRAME_PERFORMANCE_FOUNDATIONS_QA_PASS`
+상태: `AUDITED_EXP01_EXP02_EXP04_FORMAL_V4_DURABLE_CUSTODY_EXP05_HAI_SHARED_FRAME_PERFORMANCE_FOUNDATIONS_QA_PASS`
 
 ## 현재 계산 환경
 
@@ -47,6 +47,7 @@ CPU가 주 계산 자원이었다. 최적화된 경로는 이전 학습을 반�
 | P0 | EXP-02 | CPU algorithmic | relation×row 반복 scan 가능성, producer semantics 미동결 | 의미 contract를 먼저 동결한 뒤 1회 open·공유 sufficient-stat cache·batch 평가 |
 | P1 | EXP-05 runtime-to-trace | CPU/IO | unit마다 동일 Formal V4 authority/numeric replay | prepared batch start/end replay와 ordered batch binding을 구현함 |
 | 완료 | EXP-05 durable custody | IO-bound | artifact·receipt별 임시/최종/typed replay 전체-file 중복 읽기 | 최종 게시 파일의 단일 reopen bytes를 byte 검증과 typed replay에 재사용 |
+| 완료 | D1/evaluation durable custody | IO-bound | prediction·receipt·bundle replay 후 receipt/capability binding을 위한 재읽기 | 완전 replay된 bytes를 binding에 재사용하고 post-label mutation 검증은 유지 |
 | P1 | 미래 GDN training | CPU input overhead | sample별 NumPy→Tensor 변환과 반복 edge transfer | 새 실행 버전에서만 tensor cache/DataLoader 및 device preallocation 검토 |
 | 낮음 | Isolation Forest/PCA model | CPU appropriate | 표 형태·중간 규모 normal-only 계산 | GPU 강제 사용 불필요, 병렬 CPU thread 수는 환경 receipt에 고정 |
 | 완료 | Detector authority hash | CPU memory copy | 대형 matrix/score의 전체 `tobytes()` 복사 | 기존 SHA-256과 byte-identical한 contiguous-buffer hash 적용 |
@@ -63,7 +64,9 @@ single-parse·summary precompute·37-candidate batch evaluation 경계만 합성
 replay를 가진 prepared batch로 구현했다. HAI feature adapter에는 process/session-local
 one-open 공유 경계를 추가했다. EXP-05 durable custody는 fsync·close·no-overwrite
 publish·reopen/replay 의미를 유지하면서 persist 전체-file read를 6회에서 2회로
-줄였다. future GPU GDN 개선은 별도 contract와 QA가 필요하므로 변경하지 않았다.
+줄였다. D1/evaluation durable custody도 같은 원칙으로 prediction persist를 5회에서
+2회, 2-method label authorization을 15회에서 7회로 줄였다. future GPU GDN 개선은
+별도 contract와 QA가 필요하므로 변경하지 않았다.
 
 ## 비-EXP01 정적 병목 상세
 
@@ -128,6 +131,10 @@ hash로 교체했고 synthetic byte-equivalence와 allocation regression을 통�
   그대로 유지한다. 최종 게시 파일을 한 번 읽은 bytes를 typed replay에도 재사용해
   full unit/bundle persist의 전체-file read를 각각 6회에서 2회로 줄였다. 여러 unit을
   append-only 파일로 합치거나 fsync 빈도를 낮추는 의미 변경은 하지 않았다.
+- D1/evaluation custody는 publish·replay에서 확인한 bytes를 receipt와 label capability
+  binding에 재사용한다. D1/dense prediction persist는 5회에서 2회, 2-method evaluation
+  authorization은 15회에서 7회로 줄었다. label read 직전·직후와 post-metric의
+  mutation 검증은 실제 파일을 계속 다시 읽으므로 custody 강도는 변경되지 않았다.
 - EXP-04 fusion은 rule outcomes 중복 순회와 coordinate별 set 정렬을 한 번의
   grouped aggregation으로 합쳤다. `EXP04_GROUPED_FUSION_PERFORMANCE_V2.md`의
   합성 동치 검증에서 rule outcome pass는 2회에서 1회, dense D0/D1 collection

@@ -116,6 +116,58 @@ class MultiMethodEvaluationCustodyTests(unittest.TestCase):
         with self.assertRaisesRegex(EvaluationCustodyError, "ALREADY_CONSUMED"):
             consume_evaluation_label_access_v1(capability, lambda: None)
 
+    def test_durable_paths_reuse_reopened_bytes_without_weakening_replay(self) -> None:
+        original_read_bytes = Path.read_bytes
+
+        def record_read(path: Path) -> bytes:
+            reads.append(path)
+            return original_read_bytes(path)
+
+        method = METHODS[0]
+        prediction_path = self.root / f"methods/{method}/prediction.json"
+        prediction_receipt_path = self.root / f"methods/{method}/prediction.freeze.json"
+        reads: list[Path] = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            reference = self.freeze_method(method)
+        self.assertEqual([prediction_path, prediction_receipt_path], reads)
+
+        reads = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            replayed = custody.replay_dense_prediction_before_label_v1(
+                artifact_root=self.root,
+                reference=reference,
+                expected_policy_hash=H_B,
+                expected_metric_contract_hash=H_C,
+                expected_source_commit=COMMIT,
+            )
+        self.assertEqual(artifact(method), replayed)
+        self.assertEqual([prediction_path, prediction_receipt_path], reads)
+
+        references = (reference, self.freeze_method(METHODS[1]))
+        expected_prediction_reads = [
+            path
+            for item in references
+            for path in (
+                self.root / item.prediction_relative_path,
+                self.root / item.receipt_relative_path,
+            )
+        ]
+        bundle_path = self.root / BUNDLE
+        bundle_receipt_path = self.root / BUNDLE_RECEIPT
+        lease_path = self.root / (BUNDLE_RECEIPT + ".label_access_authorized")
+        reads = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            bundle_receipt = self.freeze_bundle(references)
+        self.assertEqual(expected_prediction_reads + [bundle_path, bundle_receipt_path], reads)
+
+        reads = []
+        with mock.patch.object(Path, "read_bytes", autospec=True, side_effect=record_read):
+            self.authorize(references, bundle_receipt)
+        self.assertEqual(
+            expected_prediction_reads + [bundle_path, bundle_receipt_path, lease_path],
+            reads,
+        )
+
     def test_prediction_is_dense_file_local_boolean_and_label_blind(self) -> None:
         document = artifact(METHODS[0]).to_document()
         self.assertTrue(document["label_blind"])
@@ -252,6 +304,25 @@ class MultiMethodEvaluationCustodyTests(unittest.TestCase):
         with self.assertRaisesRegex(EvaluationCustodyError, "PREDICTION_MUTATED"):
             consume_evaluation_label_access_v1(capability, lambda: reads.append("read"))
         self.assertEqual(reads, [])
+
+    def test_mutation_between_replay_and_capability_registration_is_rejected(self) -> None:
+        references = self.freeze_methods()
+        bundle_receipt = self.freeze_bundle(references)
+        target = self.root / references[0].prediction_relative_path
+        original_publish = custody._publish_no_overwrite
+
+        def publish_then_mutate(path: Path, content: bytes):
+            result = original_publish(path, content)
+            if path.name.endswith(".label_access_authorized"):
+                target.write_bytes(b"mutated-after-replay")
+            return result
+
+        with mock.patch.object(custody, "_publish_no_overwrite", side_effect=publish_then_mutate):
+            capability = self.authorize(references, bundle_receipt)
+        reads: list[str] = []
+        with self.assertRaisesRegex(EvaluationCustodyError, "PREDICTION_MUTATED"):
+            consume_evaluation_label_access_v1(capability, lambda: reads.append("labels"))
+        self.assertEqual([], reads)
 
     def test_bundle_mutation_after_label_is_detected(self) -> None:
         references = self.freeze_methods()

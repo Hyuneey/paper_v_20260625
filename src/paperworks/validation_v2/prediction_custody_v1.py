@@ -318,8 +318,7 @@ def _publish_no_overwrite(target: Path, content: bytes) -> tuple[bytes, str]:
             stream.write(content)
             stream.flush()
             os.fsync(stream.fileno())
-        if temporary.read_bytes() != content:
-            _fail("TEMPORARY_REPLAY_MISMATCH")
+        _assert_regular_file(temporary)
         os.link(temporary, target, follow_symlinks=False)
         temporary.unlink()
         directory_fsync = _directory_fsync(target.parent)
@@ -450,7 +449,7 @@ def persist_prediction_before_label_v1(
     receipt_bytes = _canonical_bytes(receipt_body)
     receipt_replay, _ = _publish_no_overwrite(receipt_path, receipt_bytes)
     parsed_receipt = _validate_receipt_document(json.loads(receipt_replay.decode("utf-8")))
-    if parsed_receipt.prediction_bytes_sha256 != sha256(prediction_path.read_bytes()).hexdigest():
+    if parsed_receipt.prediction_bytes_sha256 != sha256(replay).hexdigest():
         _fail("RECEIPT_PREDICTION_BINDING_MISMATCH")
     return parsed_receipt
 

@@ -314,6 +314,24 @@ class _CapabilityState:
     state: EvaluationCustodyStateV1
 
 
+@dataclass(frozen=True)
+class _ReplayedPredictionReference:
+    prediction_path: Path
+    receipt_path: Path
+    receipt: HashOnlyPredictionFreezeReceiptV1
+    artifact: DenseBooleanPredictionArtifactV1
+    prediction_bytes_sha256: str
+    receipt_bytes_sha256: str
+
+
+@dataclass(frozen=True)
+class _ReplayedEvaluationBundle:
+    bundle_path: Path
+    receipt_path: Path
+    bundle_bytes_sha256: str
+    receipt_bytes_sha256: str
+
+
 _CAPABILITIES: dict[str, _CapabilityState] = {}
 _CAPABILITY_LOCK = Lock()
 _PUBLICATION_LOCK = Lock()
@@ -413,8 +431,6 @@ def _publish_no_overwrite(target: Path, content: bytes) -> tuple[bytes, str]:
             stream.flush()
             os.fsync(stream.fileno())
         _assert_regular_file(temporary)
-        if temporary.read_bytes() != content:
-            _fail("TEMPORARY_REPLAY_MISMATCH")
         os.link(temporary, target, follow_symlinks=False)
         temporary.unlink()
         directory_fsync = _directory_fsync(target.parent)
@@ -578,7 +594,7 @@ def persist_dense_prediction_before_label_v1(
     receipt_body["self_hash"] = _self_hash(receipt_body)
     receipt_bytes, _ = _publish_no_overwrite(receipt_path, _canonical_bytes(receipt_body))
     receipt = _validate_prediction_receipt_document(json.loads(receipt_bytes.decode("utf-8")))
-    if receipt.prediction_bytes_sha256 != sha256(prediction_path.read_bytes()).hexdigest():
+    if receipt.prediction_bytes_sha256 != sha256(prediction_bytes).hexdigest():
         _fail("PREDICTION_RECEIPT_BINDING_MISMATCH")
     with _PUBLICATION_LOCK:
         _PUBLISHED_PREDICTIONS[(str(root), receipt.self_hash)] = (prediction_path, receipt_path, receipt)
@@ -592,7 +608,7 @@ def _replay_prediction_reference(
     expected_policy_hash: str,
     expected_metric_contract_hash: str,
     expected_source_commit: str,
-) -> tuple[Path, Path, HashOnlyPredictionFreezeReceiptV1]:
+) -> _ReplayedPredictionReference:
     prediction_path = _resolve_relative(root, reference.prediction_relative_path, create_parents=False)
     receipt_path = _resolve_relative(root, reference.receipt_relative_path, create_parents=False)
     with _PUBLICATION_LOCK:
@@ -634,7 +650,14 @@ def _replay_prediction_reference(
         _fail("WRONG_METRIC_CONTRACT_REFERENCE")
     if artifact.source_commit != expected_source_commit or receipt.source_commit != expected_source_commit:
         _fail("WRONG_SOURCE_COMMIT_REFERENCE")
-    return prediction_path, receipt_path, receipt
+    return _ReplayedPredictionReference(
+        prediction_path=prediction_path,
+        receipt_path=receipt_path,
+        receipt=receipt,
+        artifact=artifact,
+        prediction_bytes_sha256=receipt.prediction_bytes_sha256,
+        receipt_bytes_sha256=sha256(receipt_bytes).hexdigest(),
+    )
 
 
 def replay_dense_prediction_before_label_v1(
@@ -645,18 +668,12 @@ def replay_dense_prediction_before_label_v1(
     """Replay one durable dense prediction without authorizing label access."""
 
     root = _validated_root(artifact_root)
-    prediction_path, _, _ = _replay_prediction_reference(
+    replayed = _replay_prediction_reference(
         root, reference, expected_policy_hash=expected_policy_hash,
         expected_metric_contract_hash=expected_metric_contract_hash,
         expected_source_commit=expected_source_commit,
     )
-    try:
-        document = json.loads(prediction_path.read_bytes().decode("utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        _fail("PREDICTION_REFERENCE_NOT_CANONICAL_JSON")
-    return validate_dense_prediction_document_v1(
-        document, expected_method_id=reference.method_id,
-    )
+    return replayed.artifact
 
 
 def _validate_exact_method_set(exact_method_ids: tuple[str, ...]) -> tuple[str, ...]:
@@ -784,13 +801,14 @@ def freeze_multi_method_evaluation_bundle_v1(
     bundle_receipt_path = _resolve_relative(root, bundle_receipt_relative_path, create_parents=True)
     if bundle_path == bundle_receipt_path:
         _fail("BUNDLE_RECEIPT_PATH_COLLISION")
-    receipts = tuple(
+    replayed = tuple(
         _replay_prediction_reference(
             root, reference, expected_policy_hash=evaluation_policy_hash,
             expected_metric_contract_hash=metric_contract_hash, expected_source_commit=source_commit,
-        )[2]
+        )
         for reference in references
     )
+    receipts = tuple(item.receipt for item in replayed)
     bundle_body = _bundle_document(
         bundle_id=bundle_id, exact_method_ids=methods, receipts=receipts,
         evaluation_policy_hash=evaluation_policy_hash, metric_contract_hash=metric_contract_hash,
@@ -818,7 +836,7 @@ def freeze_multi_method_evaluation_bundle_v1(
     receipt_body["self_hash"] = _self_hash(receipt_body)
     receipt_bytes, _ = _publish_no_overwrite(bundle_receipt_path, _canonical_bytes(receipt_body))
     receipt = _validate_bundle_receipt_document(json.loads(receipt_bytes.decode("utf-8")))
-    if receipt.bundle_bytes_sha256 != sha256(bundle_path.read_bytes()).hexdigest():
+    if receipt.bundle_bytes_sha256 != sha256(bundle_bytes).hexdigest():
         _fail("BUNDLE_RECEIPT_BINDING_MISMATCH")
     with _PUBLICATION_LOCK:
         _PUBLISHED_BUNDLES[(str(root), receipt.self_hash)] = (bundle_path, bundle_receipt_path, receipt)
@@ -831,7 +849,7 @@ def _replay_bundle(
     expected_method_ids: tuple[str, ...], expected_policy_hash: str,
     expected_metric_contract_hash: str, expected_source_commit: str,
     prediction_receipts: tuple[HashOnlyPredictionFreezeReceiptV1, ...],
-) -> tuple[Path, Path]:
+) -> _ReplayedEvaluationBundle:
     bundle_path = _resolve_relative(root, bundle_relative_path, create_parents=False)
     bundle_receipt_path = _resolve_relative(root, bundle_receipt_relative_path, create_parents=False)
     with _PUBLICATION_LOCK:
@@ -841,8 +859,10 @@ def _replay_bundle(
     _assert_regular_file(bundle_path)
     _assert_regular_file(bundle_receipt_path)
     try:
-        bundle = json.loads(bundle_path.read_bytes().decode("utf-8"))
-        receipt = _validate_bundle_receipt_document(json.loads(bundle_receipt_path.read_bytes().decode("utf-8")))
+        bundle_bytes = bundle_path.read_bytes()
+        receipt_bytes = bundle_receipt_path.read_bytes()
+        bundle = json.loads(bundle_bytes.decode("utf-8"))
+        receipt = _validate_bundle_receipt_document(json.loads(receipt_bytes.decode("utf-8")))
     except (UnicodeDecodeError, json.JSONDecodeError):
         _fail("BUNDLE_NOT_CANONICAL_JSON")
     if receipt != expected_bundle_receipt:
@@ -864,9 +884,14 @@ def _replay_bundle(
         _fail("BUNDLE_CONTENT_REPLAY_MISMATCH")
     if receipt.bundle_self_hash != expected_bundle["self_hash"]:
         _fail("BUNDLE_SELF_HASH_RECEIPT_MISMATCH")
-    if sha256(bundle_path.read_bytes()).hexdigest() != receipt.bundle_bytes_sha256:
+    if sha256(bundle_bytes).hexdigest() != receipt.bundle_bytes_sha256:
         _fail("BUNDLE_BYTES_RECEIPT_MISMATCH")
-    return bundle_path, bundle_receipt_path
+    return _ReplayedEvaluationBundle(
+        bundle_path=bundle_path,
+        receipt_path=bundle_receipt_path,
+        bundle_bytes_sha256=receipt.bundle_bytes_sha256,
+        receipt_bytes_sha256=sha256(receipt_bytes).hexdigest(),
+    )
 
 
 def authorize_evaluation_label_access_v1(
@@ -898,12 +923,13 @@ def authorize_evaluation_label_access_v1(
         )
         for reference in references
     )
-    bundle_path, bundle_receipt_path = _replay_bundle(
+    replayed_bundle = _replay_bundle(
         root=root, bundle_relative_path=bundle_relative_path,
         bundle_receipt_relative_path=bundle_receipt_relative_path,
         expected_bundle_receipt=expected_bundle_receipt, expected_method_ids=methods,
         expected_policy_hash=evaluation_policy_hash, expected_metric_contract_hash=metric_contract_hash,
-        expected_source_commit=source_commit, prediction_receipts=tuple(item[2] for item in replayed),
+        expected_source_commit=source_commit,
+        prediction_receipts=tuple(item.receipt for item in replayed),
     )
     lease_body: dict[str, Any] = {
         "schema": "paperworks.validation_v2.evaluation_label_access_lease_v1",
@@ -917,17 +943,27 @@ def authorize_evaluation_label_access_v1(
         "state": EvaluationCustodyStateV1.LABEL_ACCESS_AUTHORIZED.value,
     }
     lease_body["self_hash"] = _self_hash(lease_body)
-    lease_path = bundle_receipt_path.with_name(bundle_receipt_path.name + ".label_access_authorized")
+    lease_path = replayed_bundle.receipt_path.with_name(
+        replayed_bundle.receipt_path.name + ".label_access_authorized"
+    )
     with _CAPABILITY_LOCK:
         lease_bytes, _ = _publish_no_overwrite(lease_path, _canonical_bytes(lease_body))
         bound: list[tuple[Path, str, str]] = []
-        for prediction_path, receipt_path, _ in replayed:
-            bound.append((prediction_path, sha256(prediction_path.read_bytes()).hexdigest(), "PREDICTION"))
-            bound.append((receipt_path, sha256(receipt_path.read_bytes()).hexdigest(), "PREDICTION_RECEIPT"))
+        for item in replayed:
+            bound.append((item.prediction_path, item.prediction_bytes_sha256, "PREDICTION"))
+            bound.append((item.receipt_path, item.receipt_bytes_sha256, "PREDICTION_RECEIPT"))
         bound.extend(
             (
-                (bundle_path, sha256(bundle_path.read_bytes()).hexdigest(), "BUNDLE"),
-                (bundle_receipt_path, sha256(bundle_receipt_path.read_bytes()).hexdigest(), "BUNDLE_RECEIPT"),
+                (
+                    replayed_bundle.bundle_path,
+                    replayed_bundle.bundle_bytes_sha256,
+                    "BUNDLE",
+                ),
+                (
+                    replayed_bundle.receipt_path,
+                    replayed_bundle.receipt_bytes_sha256,
+                    "BUNDLE_RECEIPT",
+                ),
                 (lease_path, sha256(lease_bytes).hexdigest(), "LABEL_LEASE"),
             )
         )
