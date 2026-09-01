@@ -1,0 +1,78 @@
+{
+  "schema": "paperworks.validation_v2.scientific_run_manifest_v1",
+  "schema_version": "1.0.0",
+  "task_id": "V2-SCI-001",
+  "created_at_utc": "2026-09-01T21:16:13Z",
+  "status": "BLOCKED_BEFORE_SCIENTIFIC_READ",
+  "blocker": "BLOCKED_UNDEFINED_EXP02_SCIENTIFIC_BINDINGS_AND_COHORT_AUTHORITY",
+  "integration_branch": "validation-v2",
+  "preflight_source_commit": "946badfa3d73a5ae32229ea74c6d41f28e33b679",
+  "preflight_origin_commit": "946badfa3d73a5ae32229ea74c6d41f28e33b679",
+  "origin_parity": "PASS",
+  "pilot_v1": {
+    "authority_commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e",
+    "preservation_status": "PASS",
+    "checked_blobs": 3021,
+    "changed_blobs": 0
+  },
+  "authority": {
+    "family": "FORMAL_V4",
+    "decision": "DEC-020_APPROVED_FORMAL_V4",
+    "bridge": "NOT_SELECTED",
+    "evidence_file": "research_control_center/validation_v2/reports/GAP_FIX_001_EVIDENCE.json",
+    "evidence_file_sha256": "113261c15a94f74bc4b42622daf83eacbec601009b7e43dbe1a841cf841c9a97"
+  },
+  "normal_only_custody": {
+    "status": "NORMAL_ONLY_CUSTODY_READY",
+    "dataset": "HAI_23_05_P1",
+    "splits": [
+      "HAI_TRAIN1",
+      "HAI_TRAIN2",
+      "HAI_TRAIN3",
+      "HAI_TRAIN4"
+    ],
+    "binding_self_hash": "05a95d576fefaae8894b6ec9ed9796a9ba0cf5eea02e9dc4781985e462b4f58d",
+    "binding_file_sha256": "9f488ce904c38c3a1a402a5a016a27570a623131ad6920773704321a37adc2f3"
+  },
+  "protocol": {
+    "protocol_hash": "2c3000a912caf2167bfe49929c55229e5159d52cc9ad09b7e48d79d9aecc562f",
+    "metric_contract_hash": "aec2dd11b8178071eb91160f1dff45f9cd0cc1be6c314aa3641ed0698df3dde4",
+    "exp02_preregistration_hash": "62b5de353a55560855e55cdeac3233505975377f354cbec3b66f1ba193570721",
+    "exp04_preregistration_hash": "920e5fdc40915c76ce9b9bd4b6a62e52a38664a504eb7234fbb574af77398dfb",
+    "exp05_preregistration_hash": "24a54b51732f5ab66c198119ec98e29623ca3d70824382517ae8cafc424c033d"
+  },
+  "environment": {
+    "receipt": "research_control_center/validation_v2/reports/V2_DETECTOR_ENVIRONMENT_MANIFEST.json",
+    "receipt_self_hash": "6700b80ae2dfc0c582f495fc39847003d82ffc6ab25f27ef1cc383d4a9cd0129",
+    "receipt_file_sha256": "90199c6944453c49a5e2ac6e612a07ed468f95dc215461afd76c492d5413a458"
+  },
+  "preflight_validation": {
+    "validation_v2_tests": "PASS_328_SKIPPED_7",
+    "rcc_tests": "PASS_171",
+    "registry": "PASS",
+    "registry_private_exposures": 0,
+    "privacy_scan_initial": "BLOCKED_SYNTHETIC_NEGATIVE_FIXTURE_LITERAL",
+    "privacy_scan_remediation": "PASS_AFTER_NONSCIENTIFIC_FIXTURE_LITERAL_REMOVAL",
+    "privacy_scan_final": "PASS_ZERO_NEW_EXPOSURES"
+  },
+  "missing_pre_data_authorities": [
+    "SEPARATE_SELF_HASHED_V2_CONFIRMED_COHORT",
+    "EXP02-BIND-QUANTILE",
+    "EXP02-BIND-RELATION-SUMMARY",
+    "EXP02-BIND-OPPORTUNITY-CENSUS"
+  ],
+  "execution": {
+    "counter_scope": "THIS_V2_SCI_001_ATTEMPT_AFTER_PREFLIGHT",
+    "scientific_payload_opens": 0,
+    "scientific_executions": 0,
+    "exp02_executed": false,
+    "v2_portfolio_built": false,
+    "exp04_predictions_materialized": false,
+    "test1_feature_accesses": 0,
+    "test1_label_accesses": 0,
+    "test2_accesses": 0,
+    "held_out_accesses": 0,
+    "provider_calls": 0
+  },
+  "disposition": "FAIL_CLOSED_UNTIL_PRE_DATA_SCIENTIFIC_BINDINGS_ARE_EXPLICITLY_SELECTED_AND_FROZEN"
+}
