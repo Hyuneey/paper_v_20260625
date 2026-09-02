@@ -20,8 +20,10 @@ No test2 or other held-out access is authorized by this program.
   contracts are frozen and synthetic-tested.
 - The clean-checkout fresh-machine synthetic rehearsal passed without
   scientific data.
-- Stage 3 scientific execution is fail-closed while the four normal HAI files
-  are materialized and bound under `DATA-POLICY-001`.
+- The four normal HAI files are materialized and bound under `DATA-POLICY-001`.
+- EXP-01, the separate EXP-01B GDN-XAI experiment, and EXP-02 are complete.
+- `META_PLUS_STAT` and the 39-rule Formal V4 V2A portfolio are frozen.
+- EXP-04 label-blind predictions and durable freeze are the exact next work.
 - Missing HAI 23.05 data must trigger `CODE_BASED_MATERIALIZATION` through the
   approved official distribution workflow before any user-path request.
 - EXP-03 remains additionally gated by DG-03 immediately before any provider
@@ -35,10 +37,10 @@ No test2 or other held-out access is authorized by this program.
 - Minimum thesis path bridge requirement: `NOT_REQUIRED`
 - Historical blocker: `BLOCKED_NORMAL_DATA_NOT_FOUND`
 - Corrected root cause: `HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`
-- Current recovery: `NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
-- Scientific payload opens, hashes, parses, and label accesses in the recovery
-  stage: `0`
+- Current state: `NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT`
+- test1, labels, test2, held-out, and provider accesses during the completed
+  normal-only tracks: `0`
 
-The approved recovery path is `scripts/materialize_hai_2305_normal_v2.py`,
-which may acquire only train1 through train4. Never perform a host-wide search,
-manual upload, or test1/test2 acquisition as a substitute.
+The approved recovery path remains `scripts/materialize_hai_2305_normal_v2.py`
+for future restoration. Never perform a host-wide search, manual upload, or
+test1/test2 acquisition as a substitute.

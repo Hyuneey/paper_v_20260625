@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리가 어떤 데이터를 쓰고 있는가
 
 ## 한 문장 답
@@ -69,4 +69,4 @@ enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossib
 3. label-blind object와 durable prediction file은 서로 다른 보장이다.
 4. test1은 pilot이고 test2는 결과가 없다.
 
-다음 task는 **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**이다.
+다음 task는 **V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels**이다.

@@ -2,79 +2,72 @@
   "schema": "paperworks.validation_v2.program_status_evidence_v1",
   "schema_version": "1.0.0",
   "program_id": "VALIDATION-V2-AUTONOMOUS-PROGRAM-V1",
-  "status": "BLOCKED_NORMAL_DATA_NOT_FOUND",
+  "status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
   "integration_branch": "validation-v2",
   "pilot_v1_status": "IMMUTABLE_3021_OF_3021",
   "authority": "APPROVED_FORMAL_V4",
   "authority_family": "FORMAL_V4",
   "canonical_to_v4_bridge": "NOT_SELECTED",
-  "bridge_minimum_thesis_path": "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH",
   "foundation": {
     "authority": "PASS_FORMAL_V4",
     "d1_durable_gate": "PASS_DURABLE_CUSTODY",
     "protocol": "PASS_PROTOCOL_FROZEN",
     "metric": "PASS_SYNTHETIC_PORTABLE_CONTRACT",
-    "stage2_preparation": "PASS_258_TESTS_3_EXPECTED_SKIPS",
     "fresh_machine_synthetic": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC"
   },
-  "scientific_input_authority": {
-    "authorized_data_root_environment_binding_present": false,
-    "active_worktree_local_custody_binding_present": false,
-    "primary_repository_local_custody_binding_present": false,
-    "approved_locator_configured": false,
-    "host_wide_search_performed": false,
-    "candidate_file_stats": 0,
-    "candidate_file_opens": 0,
-    "candidate_file_hashes": 0,
-    "candidate_file_parses": 0,
-    "pilot_private_artifact_reused": false
+  "normal_only_authorities": {
+    "custody": "NORMAL_ONLY_CUSTODY_READY",
+    "candidate_policy": "META_PLUS_STAT",
+    "candidate_union_count": 29,
+    "confirmed_pair_count": 21,
+    "confirmed_directional_relation_count": 39,
+    "selected_numeric_policy": "RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05",
+    "formal_v4_rule_count": 39,
+    "v2a_portfolio_hash": "ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa"
   },
   "experiments": {
-    "EXP-01": "PREPARED_NOT_EXECUTED",
-    "EXP-02": "PREPARED_NOT_EXECUTED",
-    "EXP-03": "PREPARED_PROVIDER_GATED_NOT_EXECUTED",
-    "EXP-04": "BLOCKED_UPSTREAM_NOT_EXECUTED",
-    "EXP-05": "BLOCKED_UPSTREAM_NOT_EXECUTED",
+    "EXP-01": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
+    "EXP-01B": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
+    "EXP-02": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
+    "EXP-03": "PREPARED_PROVIDER_GATED",
+    "EXP-04": "READY_LABEL_BLIND_PREDICTION_FREEZE",
+    "EXP-05": "BLOCKED_BY_RUNTIME_TRACE",
     "EXP-06": "NOT_REQUIRED"
+  },
+  "exp01b_integrity": {
+    "scientific_run_count": 9,
+    "backend": "CUDA",
+    "public_freeze_hash": "ba405bb3cae4d46efb9c8a3c0fc57a099140be28516fe3993428e195980f2ed3",
+    "reference_receipt_hash": "fec277ba1f4c007cededf8ecde498477529483fff3dd79eed8aeea3039cd0ab5",
+    "independent_metric_mismatch_count": 0,
+    "disposition": "GDN_ABLATION_ONLY"
   },
   "decision_gates": {
     "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
-    "DG-03": "PENDING_NOT_YET_TRIGGERABLE_WITH_EXACT_BUDGET",
-    "DG-04": "PENDING_RESULTS",
+    "DG-03": "PENDING_BEFORE_PROVIDER_CALLS",
+    "DG-04": "PENDING_FINAL_CONTRIBUTION_WORDING",
     "DG-05": "PENDING_MANDATORY_BEFORE_HELDOUT",
-    "DG-06": "PENDING_COMPLETION_GATE"
+    "DG-06": "PENDING_PROFESSOR_SUBMISSION"
   },
   "safety_counters": {
-    "scientific_executions": 0,
-    "train1_payload_accesses": 0,
-    "train2_payload_accesses": 0,
-    "train3_payload_accesses": 0,
-    "train4_payload_accesses": 0,
+    "scientific_executions": 3,
     "test1_accesses": 0,
+    "label_accesses": 0,
     "test2_accesses": 0,
     "heldout_accesses": 0,
-    "label_accesses": 0,
     "provider_calls": 0,
     "private_exposures": 0,
     "pilot_v1_modifications": 0,
     "result_driven_redesigns": 0
   },
-  "fresh_machine_receipt": {
-    "path": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json",
-    "hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a"
-  },
-  "normal_custody_receipt": {
-    "path": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_RECEIPT_V2.json",
-    "status": "BLOCKED_NORMAL_DATA_NOT_FOUND",
-    "hash": "479b04209c02d18a5a0861253094a0b830671499b3ec05193d0619233b789a84"
-  },
+  "next_task": "V2-SCI-EXP04-001_LABEL_BLIND_PREDICTION_AND_DURABLE_FREEZE",
   "professor_package": "docs/professor_experiment_update_v2/PROFESSOR_EXPERIMENT_UPDATE_V2.html",
   "independent_qa": {
-    "status": "PASS",
-    "reviewer": "v2_resume_final_qa",
-    "residual_defects": 0,
-    "report": "research_control_center/validation_v2/reports/V2_RESUME_001_QA.md"
+    "status": "PASS_WITH_NONBLOCKING_INTEGRATION_NOTES",
+    "reviewer": "dualtrack_a_binding_qa",
+    "report": "research_control_center/validation_v2/exp01b_gdn_xai/reports/EXP01B_INDEPENDENT_QA.md"
   },
-  "self_hash": "5988cde8d7b85d6cb200ceee5c96aed07d4947d058778180db98007846155fa1"
+  "historical_blocker_preserved": "BLOCKED_NORMAL_DATA_NOT_FOUND",
+  "self_hash": "3131b08d35cad7b58ee9c101f919b164481da4248fac1f78aaff86e4f4d1e59a"
 }

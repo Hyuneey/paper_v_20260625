@@ -1,15 +1,15 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
-Registry snapshot: `2026-08-30T22:42:05Z`
+Registry snapshot: `2026-09-02T17:00:00Z`
 
 ## 현재 단계
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-아키텍처 구현과 예비 운영은 완료됐다. 과학적 검증은 일부에 그치며 확대 평가와 가설 검증은 아직 완료되지 않았다.
+VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STAT and its Formal V4 portfolio are frozen; EXP-04 label-blind development predictions are next.
 
 ## 상태를 읽는 방법
 
@@ -101,8 +101,9 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 
 | 실험 | 상태 | 결과 범위 |
 |---|---|---|
-| EXP-01 | 구현 완료·미실행 | META·STAT·GDN의 고유하고 유용한 후보 기여가 있는지 비교한다. |
-| EXP-02 | 구현 완료·미실행 | 응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다. |
+| EXP-01 | 실행·근거 점검 완료·개발 결과 | META·STAT·GDN의 고유하고 유용한 후보 기여가 있는지 비교한다. |
+| EXP-01B | 실행·근거 점검 완료·개발 결과 | Embedding·Attention·EdgeMask·Source Occlusion을 동일 정상 관계 기준에서 비교한다. |
+| EXP-02 | 실행·근거 점검 완료·개발 결과 | 응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다. |
 | EXP-03 | 실행·근거 점검 완료·예비 실험 | T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다. |
 | EXP-04 | 실행·근거 점검 완료·예비 실험 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
 | EXP-05 | 구현 완료·미실행 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
@@ -118,7 +119,7 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 | CLAIM-B | 구현 근거로 지원됨 | 정상 관계 근거를 권한 통제 아래 실행 가능한 규칙으로 변환했다. |
 | CLAIM-C | 구현 근거로 지원됨 | 구조·근거·수치·split·실행 계약을 검사하지만 과학적 진실을 증명하지 않는다. |
 | CLAIM-D | 구현 근거로 지원됨 | 고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다. |
-| CLAIM-E | 미검증 (UNVALIDATED) | set-unique 후보는 있으나 안정적이고 유용한 고유 기여는 미검증이다. |
+| CLAIM-E | 현재 개발 결과로 지원되지 않음 | EXP-01과 EXP-01B의 동결된 정상 전용 기준은 GDN의 핵심·보조 기여를 지원하지 않았다. |
 | CLAIM-F | 현재 근거로 지원되지 않음 | 현재 feedback action이 0이므로 이점은 지원되지 않는다. |
 | CLAIM-G | 예비 실험 수준 (PILOT_ONLY) | 현재 14-unit pilot에서 서로 다른 event response가 관찰됐다. |
 | CLAIM-H | 미검증 (UNVALIDATED) | 높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다. |
@@ -131,9 +132,9 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 ## 연구 상태의 서로 다른 차원
 
 - **엔지니어링:** 아키텍처는 대부분 구현됐고 주요 frozen INNER 경로가 실행됐다.
-- **결과 무결성:** D0·D1·D2 V1·D2 V2 INNER 결과의 명시적 무결성 점검이 있으며, 이는 custody와 산술을 확인할 뿐 성능 타당성을 뜻하지 않는다.
+- **결과 무결성:** Explicit integrity audits exist for frozen D0, D1, D2 V1, D2 V2, EXP-01, EXP-01B, and EXP-02 results; this checks result custody and arithmetic, not performance validity.
 - **과학적 검증:** 부분적이고 미완료다. 주요 성능·기여 가설은 미검증이거나 현재 근거로 지원되지 않는다.
-- **재현성:** 새 환경 독립 재현(Fresh-machine Reproduction)은 아직이다.
+- **재현성:** Fresh-machine synthetic rehearsal passed; authorized scientific-data reproduction and external reproduction remain pending.
 - **일반화:** OUTER 과학 결과가 없어 held-out 일반화는 미확인이다.
 - **연구 주장:** 좁은 구현·계약 주장만 지원되며 `claims.csv`가 공식 주장 기준이다.
 
@@ -141,7 +142,7 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 
 아직 확립되지 않음:
 
-- META·STAT 너머의 GDN 고유·안정적 과학 기여
+- GDN general utility beyond the current normal-only EXP-01 and EXP-01B scope
 - Agentic verifier-feedback 이점
 - Rule-only의 실제 운영 유용성
 - Detector+Rule 성능 향상
@@ -150,4 +151,4 @@ Registry snapshot: `2026-08-30T22:42:05Z`
 
 ## 정확한 다음 작업
 
-**V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**
+**V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels**

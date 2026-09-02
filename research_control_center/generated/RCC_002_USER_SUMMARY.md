@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -46,7 +46,6 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 아직 증명되지 않은 것
 
-- GDN unique and stable scientific contribution beyond META and STAT
 - Agentic verifier-feedback advantage
 - Practical Rule-only operational utility
 - Detector-plus-Rule improvement beyond the tested negative pilot policies
@@ -61,27 +60,27 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 - The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
 - Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
-- GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
+- EXP-01 and EXP-01B did not support retaining GDN as a primary or supporting V2 contribution under their frozen normal-only criteria.
 - Held-out generalization is unavailable because no OUTER scientific result exists.
-- Fresh-machine synthetic and normal-only HAI custody passed; scientific reproduction remains blocked because the V2 candidate/cohort authority and complete EXP-01/EXP-02 scientific entrypoints are not frozen.
+- Fresh-machine synthetic and normal HAI custody pass; V2A authorities and EXP-02 are frozen, while full fresh-machine scientific reproduction remains private-custody dependent.
 
 ## 다음에 해야 할 것
 
-- Implement and freeze the V2 META+STAT candidate/cohort authority and complete EXP-02 normal-only runner before scientific execution.
-- Keep EXP-01 fail-closed unless the complete 12-run checkpoint/intervention executor is frozen prospectively.
+- Generate and durably freeze all preregistered EXP-04 label-blind method predictions before any test1 label access.
+- Use only the frozen V2A META+STAT Formal V4 portfolio; do not create a result-driven V2B GDN portfolio.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-관리 작업의 다음 단계는 **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner** 이고, 이후 전체
+관리 작업의 다음 단계는 **V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation** 이고, 이후 전체
 구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- V2 META+STAT candidate/cohort authority와 complete EXP-02 runner를 결과 관찰 전에 구현·동결한다.
-- test1/test2를 열거나 normal-only binding을 확대하는 우회는 금지한다.
-- EXP-01은 complete 12-run executor가 없으므로 fail-closed 상태를 유지한다.
+- 동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction과 durable freeze를 완료한다.
+- 모든 prediction freeze 전 test1 label을 열지 않고 test2/held-out은 계속 금지한다.
+- EXP-01과 EXP-01B의 GDN_ABLATION_ONLY 결과를 보존하고 V2B를 post-hoc 생성하지 않는다.
 - Review DG-03 only after the natural cohort and exact provider budget are frozen.
-- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
-- Review the professor readiness package before submission; no email has been sent.
+- Review Graph-Guided removal and Agentic conditional framing at DG-04.
+- Review the professor update before submission; no email has been sent.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

@@ -36,4 +36,4 @@ prediction custody, versioned metric/result-integrity controls가 실행 적격�
 
 ## 현재 중단점
 
-위 방법을 실제 정상 HAI 입력에 적용하려면 승인된 custody binding이 필요합니다. 현 환경에는 그 binding이 없으므로 과학 실행은 0회로 유지되었습니다.
+승인된 HAI 23.05 normal train1~4 custody를 코드 기반 공식 materialization 경로로 복구했습니다. 이 custody 아래 EXP-01·EXP-01B·EXP-02 정상 데이터 실행을 완료했으며, test1과 모든 label은 아직 열지 않았습니다.

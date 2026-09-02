@@ -1,11 +1,44 @@
-# EXP-01 GDN 기여 결과
+# EXP-01 및 EXP-01B GDN 결과
 
-## 상태
+## 기존 EXP-01
 
-**PREPARED / NOT EXECUTED — AUTHORIZED NORMAL DATA BINDING REQUIRED**
+기존 EXP-01의 동결 결과는 변경하지 않았습니다. primary mask pair가 0개였고,
+사전등록 판정에 따라 GDN은 ablation으로 강등되었습니다. 이에 따라 VALIDATION V2의
+주 후보 탐색 경로는 `META_PLUS_STAT`으로 고정되었습니다.
 
-corrected self-excluded Top-5, frozen-behavior ablation, seed/split stability, unique candidate provenance, confirmed-relation yield, masking analysis, Top-K sensitivity의 contract와 테스트를 고정했습니다.
+## 교수님 피드백에 따른 GDN Prediction Model + XAI 추가 검증
 
-실제 정상 데이터 실행은 하지 않았으므로 GDN 고유 기여 결과는 없습니다. 따라서 Graph-Guided 기여는 계속 조건부입니다. 향후 preregistered inclusion rule을 충족하지 못하면 GDN은 primary V2 discovery path에서 제외하고 ablation으로만 보존합니다.
+기존 음성 결과를 지우거나 재해석하지 않고 별도 실험 `EXP-01B-GDN-XAI-V1`을
+사전등록했습니다. corrected self-excluded GDN을 3개 view와 seed 11/23/37로 실행하고,
+Embedding, Attention, EdgeMask, Source Occlusion 및 Functional-Consensus를 동일한
+144-pair normal-confirmed relation reference에서 비교했습니다.
 
-현재 말할 수 있는 것은 구현과 실행 준비가 완료되었다는 것뿐입니다. 안정성, 고유 기여, masking 효과는 아직 결과가 아닙니다.
+### 실행 경계
+
+- train1/train2: GDN 학습과 후보 근거
+- train3: arm-blind 정상 관계 확인
+- train4: 고정 checkpoint 기능 검증
+- CUDA 과학 실행: 9회
+- test1, 공격 label, test2, held-out, provider: 접근 0
+
+### K=29 동일 예산 결과
+
+| 순위 | confirmed pair yield | NDCG |
+|---|---:|---:|
+| META+STAT | 20 | 0.7427828733 |
+| META+STAT+GDN Functional-Consensus | 21 | 0.7628608206 |
+
+combined view에서는 작은 개선이 관찰됐습니다. 하지만 TRAIN1_ONLY와 TRAIN2_ONLY에서
+비열화 조건이 유지되지 않았고, GDN 고유 confirmed pair 3개 중 Formal V4 executable
+rule로 변환된 pair는 0개였습니다. primary Top-K EdgeMask 중앙값도 양수가 아니었습니다.
+EdgeMask가 matched random보다 큰 combined seed는 3개 중 2개였으나, 이것만으로
+supporting evidence의 동결 조건을 충족하지 못했습니다.
+
+### 최종 판정
+
+동결된 3단계 판정 규칙의 결과는 `GDN_ABLATION_ONLY`입니다. 따라서 V2A META+STAT
+portfolio를 유지하고 V2B primary GDN portfolio는 만들지 않습니다.
+
+이 결과는 GDN이 일반적으로 무용하다는 뜻이 아닙니다. 이번 정상 데이터 범위에서
+안정적·고유·기능적 contribution 요건을 통과하지 못했다는 뜻입니다. Attention과
+EdgeMask는 모델 내부 예측 근거이며 인과 또는 물리적 ground truth로 해석하지 않습니다.

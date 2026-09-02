@@ -67,8 +67,8 @@ class Arch002CandidateDiscoveryTests(unittest.TestCase):
         self.assertFalse(discovery["attention_as_final_evidence"])
         self.assertFalse(discovery["posthoc_xai_used"])
         self.assertEqual("unscored provenance-preserving set union of 47 unique pairs", discovery["union"])
-        self.assertIn("GDN unique", state["current_unvalidated"][0])
-        self.assertTrue(state["exact_next_task"].startswith(("ARCH-005", "ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE", "V2-HAI", "V2-EXEC-AUTH")))
+        self.assertIn("GDN general utility", state["not_established"][0])
+        self.assertTrue(state["exact_next_task"].startswith(("ARCH-005", "ARCH-006", "ARCH-007", "ARCH-008", "ARCH-009", "ARCH-010", "GAP-000", "ARCH-011", "GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE", "V2-HAI", "V2-EXEC-AUTH", "V2-SCI-EXP04")))
 
     def test_generated_user_and_dashboard_views_are_explicit(self) -> None:
         summary = (RCC_ROOT / "generated" / "ARCH_002_USER_SUMMARY.md").read_text(encoding="utf-8")

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D1 검증된 관계 규칙 단독 평가를 쉽게 이해하기
 
 ## 1. D1은 정확히 무엇인가?
@@ -72,4 +72,4 @@ durable gate가 필요하다.
 기억할 한 문장: **D1은 D0와 다른 pilot event response를 보였지만 normal false-alarm 부담이 매우 높아,
 Rule-only utility와 complementarity는 아직 검증되지 않았다.**
 
-다음 task는 **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**이다.
+다음 task는 **V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels**이다.

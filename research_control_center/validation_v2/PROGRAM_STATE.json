@@ -12,15 +12,15 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_3_PRE_EXECUTION_AUTHORITY_COMPLETION",
-  "program_status": "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE",
+  "current_stage": "STAGE_3_EXP04_LABEL_BLIND_PREPARATION",
+  "program_status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
     "V2-PROTOCOL-001": "PASS_PROTOCOL_FROZEN",
     "GAP-FIX-METRIC-001": "PASS_SYNTHETIC_PORTABLE_CONTRACT"
   },
-  "remote_status": "LOCAL_ONLY_REMOTE_EGRESS_UNAVAILABLE",
+  "remote_status": "APPROVED_TASK_BRANCH_AND_INTEGRATION_PUSH_WORKFLOW",
   "decision_gates": {
     "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
@@ -30,11 +30,12 @@
     "DG-06": "PENDING"
   },
   "experiment_status": {
-    "EXP-01": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
-    "EXP-02": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY",
+    "EXP-01": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
+    "EXP-01B": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
+    "EXP-02": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
     "EXP-03": "PREPARED_PROVIDER_GATED",
-    "STRONGER-DETECTOR": "READY_AUTHORIZED_NORMAL_ONLY_BUT_BLOCKED_BY_SHARED_V2_COHORT_ORDER",
-    "EXP-04": "BLOCKED_UPSTREAM_NORMAL_ONLY_SELECTIONS_NOT_EXECUTED",
+    "STRONGER-DETECTOR": "READY_FIXED_ISOLATION_FOREST",
+    "EXP-04": "READY_LABEL_BLIND_PREDICTION_FREEZE",
     "EXP-05": "BLOCKED_NO_MATERIALIZED_V2_RUNTIME_TRACES",
     "EXP-06": "NOT_REQUIRED"
   },
@@ -65,21 +66,30 @@
     "private_exposures": 0
   },
   "stage3_execution_readiness": {
-    "status": "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE",
+    "status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
     "exp01": {
-      "status": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED",
-      "receipt": "research_control_center/validation_v2/reports/EXP01_EXECUTION_READINESS_V2.json",
-      "receipt_hash": "e77dcf0ff40eb89408de941c1caf77f9ce4109741730bf67f63f86cf8cbda4c9",
-      "scientific_result": false
+      "status": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
+      "receipt": "research_control_center/validation_v2/reports/EXP01_RESULT_DISPOSITION_V2.md",
+      "scientific_result": true
+    },
+    "exp01b": {
+      "status": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
+      "receipt": "research_control_center/validation_v2/exp01b_gdn_xai/results/EXP01B_PUBLIC_RESULT_FREEZE_V2.json",
+      "receipt_hash": "ba405bb3cae4d46efb9c8a3c0fc57a099140be28516fe3993428e195980f2ed3",
+      "scientific_result": true
     },
     "exp02": {
-      "status": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY",
-      "receipt": "research_control_center/validation_v2/reports/EXP02_EXECUTION_READINESS_V2.json",
-      "receipt_hash": "b94f31f63a856a2a75bd1a45d4677bd57ef092c4f18b65935e8cd3a7a6c124f3",
-      "scientific_result": false
+      "status": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
+      "receipt": "research_control_center/validation_v2/core_v2a/authorities/EXP02_SELECTED_POLICY_AUTHORITY_V2A.json",
+      "scientific_result": true
     },
-    "global_blocker": "Tracked V2 candidate/cohort materialization and full EXP-01/EXP-02 scientific entrypoints were not frozen before normal-data execution.",
-    "required_remediation": "Implement and freeze the V2 META+STAT candidate/cohort authority plus complete EXP-02 runner; keep EXP-01 unresolved until a complete 12-run checkpoint/intervention executor exists."
+    "v2a_portfolio": {
+      "status": "FROZEN_FORMAL_V4_RUNTIME_AUTHORIZED",
+      "rule_count": 39,
+      "portfolio_hash": "ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa"
+    },
+    "global_blocker": null,
+    "next": "V2-SCI-EXP04-001_LABEL_BLIND_PREDICTION_AND_DURABLE_FREEZE"
   },
   "historical_execution_blocker": {
     "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
@@ -123,24 +133,25 @@
     "scientific_data_required": false
   },
   "professor_package": {
-    "status": "PREPARED_BLOCKER_UPDATE_NOT_SUBMITTED",
+    "status": "UPDATED_NORMAL_ONLY_RESULTS_NOT_SUBMITTED",
     "html": "docs/professor_experiment_update_v2/PROFESSOR_EXPERIMENT_UPDATE_V2.html",
     "email_sent": false,
     "submission_authorized": false,
-    "qualification": "Preparation and blocker update only; no VALIDATION V2 scientific result exists."
+    "qualification": "Normal-only EXP-01, EXP-01B, and EXP-02 results are included. EXP-04, held-out validation, and professor submission remain pending."
   },
   "independent_qa": {
-    "status": "PASS",
-    "reviewer": "v2_resume_final_qa",
+    "status": "PASS_WITH_NONBLOCKING_INTEGRATION_NOTES",
+    "reviewer": "dualtrack_a_binding_qa",
     "residual_defects": 0,
-    "report": "research_control_center/validation_v2/reports/V2_RESUME_001_QA.md"
+    "report": "research_control_center/validation_v2/exp01b_gdn_xai/reports/EXP01B_INDEPENDENT_QA.md"
   },
   "safety_counters": {
-    "scientific_executions": 0,
-    "train1_payload_accesses": 1,
-    "train2_payload_accesses": 1,
-    "train3_payload_accesses": 1,
-    "train4_payload_accesses": 1,
+    "scientific_executions": 3,
+    "materialization_train1_payload_accesses": 1,
+    "materialization_train2_payload_accesses": 1,
+    "materialization_train3_payload_accesses": 1,
+    "materialization_train4_payload_accesses": 1,
+    "normal_only_scientific_access_accounting": "PHASE_RECEIPTS_AUTHORITATIVE_NOT_COLLAPSED_TO_ONE_PUBLIC_COUNTER",
     "test1_accesses": 0,
     "test2_accesses": 0,
     "held_out_accesses": 0,
@@ -152,12 +163,15 @@
     "candidate_file_parses": 0,
     "provider_calls": 0,
     "private_exposures": 0,
+    "result_driven_redesigns": 0,
     "gap_fix_002_focused_tests_passed": 33,
     "v2_protocol_001_focused_tests_passed": 20,
     "gap_fix_metric_001_focused_tests_passed": 24,
     "validation_v2_tests_passed": 275,
     "validation_v2_tests_skipped": 3,
-    "rcc_tests_passed": 136,
+    "dualtrack_applicable_tests_passed": 76,
+    "dualtrack_applicable_tests_skipped": 2,
+    "rcc_tests_passed": 172,
     "fresh_machine_synthetic_rehearsals_passed": 1,
     "pilot_v1_modifications": 0,
     "stage0_rcc_tests_passed": 122,

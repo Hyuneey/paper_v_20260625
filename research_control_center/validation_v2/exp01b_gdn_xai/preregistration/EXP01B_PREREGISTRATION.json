@@ -1,0 +1,129 @@
+{
+  "schema": "paperworks.validation_v2.exp01b_preregistration_v1",
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-01B-GDN-XAI-V1",
+  "title": "GDN Prediction-based Relation Extraction Comparison",
+  "status": "FROZEN_BEFORE_SCIENTIFIC_EXECUTION",
+  "research_question": "Among embedding similarity, graph attention, functional edge masking, and source-history occlusion, which GDN-derived evidence most stably ranks normal-confirmed source-to-target relations?",
+  "input_roles": {
+    "train1_train2": "GDN_TRAINING_AND_CANDIDATE_EVIDENCE",
+    "train3": "ARM_BLIND_NORMAL_RELATION_REFERENCE",
+    "train4": "FIXED_CHECKPOINT_FUNCTIONAL_FIDELITY"
+  },
+  "prohibited_inputs": ["test1", "test1_labels", "test2", "heldout", "provider_data"],
+  "training_config": {
+    "batch_size": 32,
+    "epochs": 30,
+    "slide_window": 5,
+    "slide_stride": 1,
+    "embedding_dim": 64,
+    "out_layer_num": 1,
+    "out_layer_inter_dim": 128,
+    "learned_graph_topk": 5,
+    "validation_ratio": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "early_stopping_patience": 15,
+    "dropout": 0.2,
+    "dtype": "float32",
+    "corrected_neighbor_policy": "SELF_EXCLUDED_STABLE_TOPK_V1",
+    "seeds": [11, 23, 37],
+    "views": ["TRAIN1_TRAIN2_COMBINED", "TRAIN1_ONLY", "TRAIN2_ONLY"]
+  },
+  "training_config_hash": "64510d8ac918101c4641abdddd987d42f0f567035682490f8caeeea53beaeaf6",
+  "schedule": [
+    {"view": "TRAIN1_TRAIN2_COMBINED", "seed": 11, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN1_TRAIN2_COMBINED", "seed": 23, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN1_TRAIN2_COMBINED", "seed": 37, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN1_ONLY", "seed": 11, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN1_ONLY", "seed": 23, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN1_ONLY", "seed": 37, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN2_ONLY", "seed": 11, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN2_ONLY", "seed": 23, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"},
+    {"view": "TRAIN2_ONLY", "seed": 37, "backend": "ONE_BACKEND_FROZEN_BEFORE_RUN_1"}
+  ],
+  "run_count": 9,
+  "compute_policy": {
+    "primary": "SEPARATE_OFFICIAL_CUDA_PYTORCH_ENVIRONMENT",
+    "fallback": "ONE_SEPARATE_CPU_ENVIRONMENT_FROZEN_BEFORE_RUN_1",
+    "backend_mixing": "PROHIBITED",
+    "synthetic_smoke_required": true,
+    "process_launch": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "PYTHONHASHSEED": "0",
+      "must_be_set_before_interpreter": true
+    },
+    "deterministic_flags": {
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "cudnn_tf32": false,
+      "deterministic_algorithms": true,
+      "matmul_tf32": false
+    },
+    "synthetic_smoke": "FULL_FORWARD_BACKWARD_OPTIMIZER_STEP",
+    "functional_variant_chunk_size": 8,
+    "chunk_size_role": "EXECUTION_ONLY_PRE_RUN_BOUND_NO_SCIENTIFIC_SEMANTIC_EFFECT",
+    "functional_batch_equivalence_atol": 1e-06,
+    "functional_batch_equivalence_rtol": 1e-05
+  },
+  "upstream_gdn_commit": "9853899da860682669a134e4af315d036aab4eca",
+  "feature_order_hash": "a612bdb9850ad0dd865dc62b23199bf2b696452c492e4aabe09fe554fa246d57",
+  "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+  "corrected_self_exclusion": true,
+  "evidence_arms": ["GDN_EMBEDDING", "GDN_ATTENTION", "GDN_EDGEMASK", "GDN_SOURCE_OCCLUSION", "GDN_FUNCTIONAL_CONSENSUS"],
+  "attention_capture": {
+    "post_normalization_weights_used_for_target_prediction": true,
+    "direction": "SOURCE_TO_TARGET",
+    "atol": 1e-07,
+    "rtol": 1e-06,
+    "output_invariance_required": true,
+    "unavailable_is_nonblocking": true
+  },
+  "edge_mask": {
+    "primary_functional_arm": true,
+    "fixed_checkpoint": true,
+    "target_specific_mse": true,
+    "relative_delta_epsilon": 1e-12,
+    "no_edge_refill": true,
+    "matched_random": ["target", "graph_membership_eligibility", "seed", "view", "mask_cardinality"]
+  },
+  "source_occlusion": {
+    "secondary_robustness_only": true,
+    "transform": "FIXED_SEED_WITHIN_FILE_SOURCE_HISTORY_BLOCK_PERMUTATION_V1",
+    "block_width": 5,
+    "file_local": true,
+    "cross_split_mixing": false
+  },
+  "rank_policy": {
+    "within_target": true,
+    "percentile": "TARGET_LOCAL_BEST_ONE_WORST_ZERO_LEXICAL_TIES_V1",
+    "seed_aggregation": "MEDIAN_PERCENTILE",
+    "view_aggregation": "SEPARATE_AND_COMBINED",
+    "tie": "LEXICAL_PAIR_IDENTITY_ASCENDING",
+    "functional_consensus": "MEAN_EDGEMASK_ATTENTION_OR_EDGEMASK_IF_ATTENTION_UNAVAILABLE",
+    "embedding_is_baseline_only": true
+  },
+  "evaluation_budgets": [10, 20, 29, 40],
+  "primary_budget": 29,
+  "primary_budget_authority": "FROZEN_META_STAT_UNION_COUNT_MUST_REPLAY_AS_29_BEFORE_RESULT_EVALUATION",
+  "reference": {
+    "pair_count": 144,
+    "construction": "TRAIN1_TRAIN2_PROFILE_THEN_TRAIN3_ARM_BLIND_CONFIRMATION",
+    "wording": "normal-confirmed relation reference",
+    "causal_ground_truth": false
+  },
+  "augmented_rank": {
+    "meta_stat_score": "MEAN_META_STAT_PERCENTILES",
+    "augmented_score": "MEAN_META_STAT_GDN_FUNCTIONAL_CONSENSUS_PERCENTILES",
+    "missing_membership_percentile": 0.0,
+    "weights": "EQUAL_FIXED",
+    "weight_tuning": false,
+    "same_total_budget": true
+  },
+  "disposition_rule": "FROZEN_THREE_WAY_EXP01B_GDN_DISPOSITION_V1",
+  "claim_boundary": "NORMAL_CONFIRMED_PREDICTIVE_OR_FUNCTIONAL_EVIDENCE_NOT_CAUSALITY",
+  "post_result_change_allowed": false,
+  "test_accesses_authorized": 0,
+  "label_accesses_authorized": 0,
+  "preregistration_hash": "fbd95d1d079d5f0c1eed40a6a4a2ef530ebcee65fdfb6ea994b49696d6bb627c"
+}

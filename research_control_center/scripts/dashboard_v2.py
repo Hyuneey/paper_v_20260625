@@ -249,9 +249,18 @@ def build_dashboard_view_model(
     gate_by_id = {row["experiment_id"]: row for row in gates}
     current_gate_status = state["pre_validation_readiness"]["experiment_gates"]
     experiments: list[dict[str, Any]] = []
-    for experiment_id in [f"EXP-{index:02d}" for index in range(1, 7)]:
+    for experiment_id in ["EXP-01", "EXP-01B", "EXP-02", "EXP-03", "EXP-04", "EXP-05", "EXP-06"]:
         experiment = experiment_by_id[experiment_id]
-        gate = dict(gate_by_id[experiment_id])
+        gate = dict(gate_by_id.get(experiment_id, {}))
+        if not gate:
+            gate = {
+                "experiment_id": experiment_id,
+                "must_fix_before_start": "별도 사전등록과 정상 전용 실행을 완료함",
+                "must_freeze_before_results": "완료된 public lineage와 disposition 유지",
+                "design_requirements": "새 실험 identity와 동일 예산 비교",
+                "does_not_block": "V2A META+STAT 경로",
+                "reason": "EXP-01B는 GAP-000 이후 별도로 사전등록된 정상 전용 실험이다.",
+            }
         gate["ready_now"] = current_gate_status[experiment_id]
         experiment["gate"] = gate
         experiments.append(experiment)
@@ -328,6 +337,12 @@ def build_dashboard_view_model(
         "pilot_results": _derive_pilot_results(state),
         "overlap": overlap,
         "candidate_path": {"universe": 144, "META": 20, "STAT": 20, "GDN": 20, "union": 47, "confirmed": 42},
+        "v2_normal_only": state["validation_v2a_normal_only"],
+        "exp01b": {
+            "status": state["candidate_discovery"]["exp01b_status"],
+            "equal_budget": state["candidate_discovery"]["exp01b_equal_budget"],
+            "limitation": state["candidate_discovery"]["exp01b_limitation"],
+        },
         "construction": {"T0": "42/42", "T1": "42/42", "T1-B": "42/42", "T2": "39/42", "feedback_actions": 0},
         "runtime_status_tokens": ["PASS", "FAIL", "ABSTAIN"],
         "experiments": experiments,
@@ -340,7 +355,11 @@ def build_dashboard_view_model(
         "recent_events": current_events[:3],
         "history_events": current_events[:12],
         "labels": config["labels"],
-        "safety": {"scientific_executions": 0, "test2_accesses": 0, "private_exposures": 0},
+        "safety": {
+            "scientific_executions": state["safety_counters"]["scientific_executions"],
+            "test2_accesses": state["safety_counters"]["test2_feature_accesses"] + state["safety_counters"]["test2_label_accesses"],
+            "private_exposures": state["safety_counters"]["new_private_exposures"],
+        },
     }
     return vm
 
@@ -484,8 +503,8 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     p0_count = len(vm["readiness"]["p0_global_fixes"]) + len(vm["readiness"]["p0_design_gates"])
     open_count = len(vm["unresolved_decisions"])
     actions = [
-        ("DATA-AUTHORITY", "normal HAI custody binding 복원", "승인된 binding 없이는 과학 실행을 시작하지 않음"),
-        ("EXP-01·02", "frozen normal-only 실험 실행", "승인된 binding 복원 뒤 사전등록을 변경하지 않고 실행"),
+        ("EXP-04", "모든 label-blind prediction 생성·동결", "D0·Isolation Forest·Rule-only·고정 fusion을 label 없이 먼저 저장하고 replay"),
+        ("LABEL-GATE", "test1 label 접근 gate 유지", "필수 prediction이 모두 durable freeze되기 전에는 label을 열지 않음"),
         ("DG-03-LATER", "EXP-03 exact provider budget 고정", "natural cohort가 생긴 뒤 provider/model/call/token 상한을 확정"),
     ]
     action_markup = "".join(
@@ -510,8 +529,8 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     <section class="view-panel is-active" id="view-overview" data-view-panel="overview" aria-labelledby="nav-overview">
       <p class="status-separation">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</p>
       <div class="overview-header panel">
-        <div><p class="kicker">현재 연구 단계</p><h2>공유 기반·synthetic rehearsal PASS · 과학 입력 권한 대기</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2의 Formal V4 authority, durable prediction custody, protocol, metric과 실험별 사전등록은 고정되었지만 승인된 normal HAI custody binding이 없어 과학 실행은 fail-closed 상태입니다.</p>
-        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 과학 실행 대기</span></div></div>
+        <div><p class="kicker">현재 연구 단계</p><h2>정상 전용 V2A authority 고정 · EXP-04 준비</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2에서는 EXP-01·EXP-01B·EXP-02를 정상 데이터로 완료했고, META+STAT 기반 39-rule Formal V4 portfolio를 test1 접근 전에 고정했습니다.</p>
+        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 정상 전용 단계 완료</span></div></div>
         <div class="next-task-callout"><span>정확한 다음 작업</span><strong>{_esc(vm["exact_next_task"])}</strong></div>
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
       </div>
@@ -551,7 +570,8 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
     )
     return f'''
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
-      <header class="view-heading"><div><p class="kicker">Pilot V1 · descriptive evidence</p><h2>실험·결과</h2><p>Attack-event Recall과 Normal FAR/hour를 분리해 비교합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
+      <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 V2 결과와 test1 Pilot 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
+      <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. test1·label·test2·held-out 접근은 0입니다.</p></section>
       <aside class="warning-banner">현재 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">Experiment Roadmap</p><h3>실험 Gate와 claim 영향</h3></div></div><div class="table-wrap"><table><thead><tr><th>실험</th><th>확인할 가설</th><th>현재 상태</th><th>현재 근거</th><th>먼저 해결할 것</th><th>결과에 따른 결정</th></tr></thead><tbody>{exp_rows}</tbody></table></div></section>
