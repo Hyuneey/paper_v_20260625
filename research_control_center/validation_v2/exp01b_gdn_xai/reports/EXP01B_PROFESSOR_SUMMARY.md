@@ -17,4 +17,3 @@ K=29에서 META+STAT+GDN 결합 순위는 META+STAT보다 confirmed pair yield�
 
 이번 실험은 normal train1~4만 사용했습니다. test1, 공격 label, test2, held-out,
 외부 provider 접근은 모두 0입니다.
-

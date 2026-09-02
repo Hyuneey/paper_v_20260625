@@ -54,4 +54,3 @@ replay 상태를 확인했다. Raw HAI, checkpoint, `.env`, test1, label, test2,
 재생된다. 기존 typed `directional_relation_id_v1` authority와 동일하다고 해석해서는
 안 되며, 이 receipt는 EXP-01B 결과를 검증하기 위한 mirror이다. downstream scientific
 runtime authority는 V2A의 별도 self-hashed Formal V4 authority를 사용한다.
-

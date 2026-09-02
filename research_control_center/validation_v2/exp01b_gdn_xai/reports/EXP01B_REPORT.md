@@ -68,4 +68,3 @@ portfolio는 생성하지 않는다.
 - GDN이 causal relation 또는 물리적 ground truth를 발견했다.
 - GDN이 일반적으로 효과가 없거나, 반대로 성능을 검증했다.
 - test1 탐지 성능이나 held-out 일반화를 개선했다.
-
