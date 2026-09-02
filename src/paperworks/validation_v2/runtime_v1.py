@@ -134,6 +134,28 @@ class FormalV4PreparedParametersV1:
     cross_source_isolation_radius_seconds: float
 
 
+@dataclass(frozen=True)
+class FormalV4SemanticOutcomeV1:
+    """Authority-free result from the one canonical Formal V4 rule kernel.
+
+    EXP-02 may use this pure kernel for label-free normal-policy selection.
+    Runtime authorization remains mandatory for producing a runtime trace.
+    """
+
+    outcome: str
+    reason: str
+
+    def __post_init__(self) -> None:
+        if self.outcome not in ("PASS", "FAIL", "ABSTAIN"):
+            raise FormalV4AuthorityError(
+                "V4_RUNTIME_OUTCOME_INVALID", "semantic outcome differs"
+            )
+        if type(self.reason) is not str or not self.reason:
+            raise FormalV4AuthorityError(
+                "V4_RUNTIME_REASON_INVALID", "semantic reason differs"
+            )
+
+
 @dataclass
 class _PreparedRuntimeStateV1:
     active: bool = True
@@ -330,6 +352,121 @@ def _trace(
     )
 
 
+def evaluate_formal_v4_semantics_v1(
+    *,
+    source_direction: str,
+    target_direction: str,
+    parameters: FormalV4PreparedParametersV1,
+    source_pre_values: tuple[float, ...],
+    source_post_values: tuple[float, ...],
+    target_baseline_values: tuple[float, ...],
+    target_response_values: tuple[float, ...],
+    seconds_since_previous_source_trigger: float | None,
+    seconds_to_nearest_other_source_trigger: float | None,
+    future_window_complete: bool,
+) -> FormalV4SemanticOutcomeV1:
+    """Evaluate the shared deterministic trigger and response semantics.
+
+    This function grants no runtime authority and emits no trace.  It exists so
+    selection-only EXP-02 cannot drift into a second rule evaluator.
+    """
+
+    if type(parameters) is not FormalV4PreparedParametersV1:
+        raise FormalV4AuthorityError(
+            "V4_RUNTIME_PARAMETER_TYPE_INVALID", "prepared parameter type differs"
+        )
+    if source_direction not in ("step_up", "step_down") or target_direction not in (
+        "increase", "decrease"
+    ):
+        raise FormalV4AuthorityError(
+            "V4_RUNTIME_DIRECTION_INVALID", "direction differs"
+        )
+    for name, values in (
+        ("source_pre_values", source_pre_values),
+        ("source_post_values", source_post_values),
+        ("target_baseline_values", target_baseline_values),
+        ("target_response_values", target_response_values),
+    ):
+        if type(values) is not tuple or any(
+            type(value) is not float or not math.isfinite(value) for value in values
+        ):
+            raise FormalV4AuthorityError(
+                "V4_RUNTIME_WINDOW_VALUE_INVALID", f"{name} contains invalid value"
+            )
+    for name, distance in (
+        ("seconds_since_previous_source_trigger", seconds_since_previous_source_trigger),
+        ("seconds_to_nearest_other_source_trigger", seconds_to_nearest_other_source_trigger),
+    ):
+        if distance is not None and (
+            type(distance) is not float or not math.isfinite(distance) or distance < 0.0
+        ):
+            raise FormalV4AuthorityError(
+                "V4_RUNTIME_DISTANCE_INVALID", f"{name} differs"
+            )
+    if type(future_window_complete) is not bool:
+        raise FormalV4AuthorityError(
+            "V4_RUNTIME_FUTURE_FLAG_INVALID", "future flag must be exact bool"
+        )
+    if (
+        len(source_pre_values) != parameters.source_pre_count
+        or len(source_post_values) != parameters.source_post_count
+    ):
+        return FormalV4SemanticOutcomeV1("ABSTAIN", "incomplete_source_window")
+    pre_level = float(statistics.median(source_pre_values))
+    post_level = float(statistics.median(source_post_values))
+    amplitude = post_level - pre_level
+    pre_fraction = sum(
+        abs(value - pre_level) <= parameters.source_stability_tolerance
+        for value in source_pre_values
+    ) / parameters.source_pre_count
+    post_fraction = sum(
+        abs(value - post_level) <= parameters.source_stability_tolerance
+        for value in source_post_values
+    ) / parameters.source_post_count
+    observed_direction = "step_up" if amplitude > 0.0 else "step_down"
+    refractory_ok = (
+        seconds_since_previous_source_trigger is None
+        or seconds_since_previous_source_trigger >= parameters.source_refractory_seconds
+    )
+    isolation_ok = (
+        seconds_to_nearest_other_source_trigger is None
+        or seconds_to_nearest_other_source_trigger
+        >= parameters.cross_source_isolation_radius_seconds
+    )
+    source_triggered = (
+        amplitude != 0.0
+        and abs(amplitude) >= parameters.source_step_threshold
+        and pre_fraction >= parameters.minimum_source_stability_fraction
+        and post_fraction >= parameters.minimum_source_stability_fraction
+        and observed_direction == source_direction
+        and refractory_ok
+        and isolation_ok
+    )
+    if not source_triggered:
+        return FormalV4SemanticOutcomeV1("ABSTAIN", "source_not_triggered")
+    if (
+        not future_window_complete
+        or len(target_baseline_values) != parameters.target_baseline_count
+        or len(target_response_values) != parameters.target_response_count
+    ):
+        return FormalV4SemanticOutcomeV1(
+            "ABSTAIN", "incomplete_target_response_window"
+        )
+    baseline = float(statistics.median(target_baseline_values))
+    response_delta = float(statistics.median(target_response_values)) - baseline
+    response_matched = (
+        response_delta > parameters.target_noise_scale
+        if target_direction == "increase"
+        else response_delta < -parameters.target_noise_scale
+    )
+    return FormalV4SemanticOutcomeV1(
+        "PASS" if response_matched else "FAIL",
+        "expected_response_observed"
+        if response_matched
+        else "expected_response_not_observed",
+    )
+
+
 def _execute_with_prepared_parameters_v1(
     *,
     bundle: FormalV4AuthorizedRuntimeV1,
@@ -347,64 +484,24 @@ def _execute_with_prepared_parameters_v1(
         raise FormalV4AuthorityError("V4_RUNTIME_WINDOW_CONTRACT_MISMATCH", "window provenance differs")
     if window.target_response_start_index != window.event_index + descriptor.selected_horizon_seconds:
         raise FormalV4AuthorityError("V4_RUNTIME_HORIZON_COORDINATE_MISMATCH", "target response start does not replay horizon")
-    if (
-        len(window.source_pre_values) != parameters.source_pre_count
-        or len(window.source_post_values) != parameters.source_post_count
-    ):
-        return _trace(bundle=bundle, descriptor=descriptor, window=window, outcome="ABSTAIN", reason="incomplete_source_window")
-    pre_level = float(statistics.median(window.source_pre_values))
-    post_level = float(statistics.median(window.source_post_values))
-    amplitude = post_level - pre_level
-    pre_fraction = sum(
-        abs(value - pre_level) <= parameters.source_stability_tolerance
-        for value in window.source_pre_values
-    ) / parameters.source_pre_count
-    post_fraction = sum(
-        abs(value - post_level) <= parameters.source_stability_tolerance
-        for value in window.source_post_values
-    ) / parameters.source_post_count
-    observed_direction = "step_up" if amplitude > 0.0 else "step_down"
-    refractory_ok = (
-        window.seconds_since_previous_source_trigger is None
-        or window.seconds_since_previous_source_trigger
-        >= parameters.source_refractory_seconds
-    )
-    isolation_ok = (
-        window.seconds_to_nearest_other_source_trigger is None
-        or window.seconds_to_nearest_other_source_trigger
-        >= parameters.cross_source_isolation_radius_seconds
-    )
-    source_triggered = (
-        amplitude != 0.0
-        and abs(amplitude) >= parameters.source_step_threshold
-        and pre_fraction >= parameters.minimum_source_stability_fraction
-        and post_fraction >= parameters.minimum_source_stability_fraction
-        and observed_direction == descriptor.source_direction
-        and refractory_ok
-        and isolation_ok
-    )
-    if not source_triggered:
-        return _trace(bundle=bundle, descriptor=descriptor, window=window, outcome="ABSTAIN", reason="source_not_triggered")
-    if (
-        not window.future_window_complete
-        or len(window.target_baseline_values) != parameters.target_baseline_count
-        or len(window.target_response_values) != parameters.target_response_count
-    ):
-        return _trace(bundle=bundle, descriptor=descriptor, window=window, outcome="ABSTAIN", reason="incomplete_target_response_window")
-
-    baseline = float(statistics.median(window.target_baseline_values))
-    response_delta = float(statistics.median(window.target_response_values)) - baseline
-    response_matched = (
-        response_delta > parameters.target_noise_scale
-        if descriptor.target_direction == "increase"
-        else response_delta < -parameters.target_noise_scale
+    semantic = evaluate_formal_v4_semantics_v1(
+        source_direction=descriptor.source_direction,
+        target_direction=descriptor.target_direction,
+        parameters=parameters,
+        source_pre_values=window.source_pre_values,
+        source_post_values=window.source_post_values,
+        target_baseline_values=window.target_baseline_values,
+        target_response_values=window.target_response_values,
+        seconds_since_previous_source_trigger=window.seconds_since_previous_source_trigger,
+        seconds_to_nearest_other_source_trigger=window.seconds_to_nearest_other_source_trigger,
+        future_window_complete=window.future_window_complete,
     )
     return _trace(
         bundle=bundle,
         descriptor=descriptor,
         window=window,
-        outcome="PASS" if response_matched else "FAIL",
-        reason="expected_response_observed" if response_matched else "expected_response_not_observed",
+        outcome=semantic.outcome,
+        reason=semantic.reason,
     )
 
 

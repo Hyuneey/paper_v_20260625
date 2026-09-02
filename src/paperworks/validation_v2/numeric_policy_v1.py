@@ -463,12 +463,19 @@ def build_split_normal_summary_v1(
         _fail("EXP02_QUANTILE_TUPLE_INVALID", "source quantiles must be an exact q50/q75/q90 tuple")
     if type(relation_quantiles) is not tuple or len(relation_quantiles) != 3:
         _fail("EXP02_QUANTILE_TUPLE_INVALID", "relation quantiles must be an exact q50/q75/q90 tuple")
-    values = (
-        source_scope_noise, *source_scope_quantiles, target_scope_noise,
-        relation_noise, *relation_quantiles, relation_target_noise,
-    )
-    for index, value in enumerate(values):
-        _finite_nonnegative(value, f"normal_summary_value_{index}", positive=True)
+    # The frozen V2A binding defines source noise as the median of all finite
+    # absolute first differences.  A piecewise-constant control source may
+    # therefore have an exact zero noise floor.  Directional/source amplitude
+    # quantiles and target scales must remain strictly positive so the derived
+    # threshold and Formal V4 response boundary are executable.
+    _finite_nonnegative(source_scope_noise, "source_scope_noise")
+    _finite_nonnegative(relation_noise, "relation_noise")
+    for index, value in enumerate(source_scope_quantiles):
+        _finite_nonnegative(value, f"source_scope_quantile_{index}", positive=True)
+    for index, value in enumerate(relation_quantiles):
+        _finite_nonnegative(value, f"relation_quantile_{index}", positive=True)
+    _finite_nonnegative(target_scope_noise, "target_scope_noise", positive=True)
+    _finite_nonnegative(relation_target_noise, "relation_target_noise", positive=True)
     if not (source_scope_quantiles[0] <= source_scope_quantiles[1] <= source_scope_quantiles[2]):
         _fail("EXP02_QUANTILE_ORDER_INVALID", "source quantiles must be ordered")
     if not (relation_quantiles[0] <= relation_quantiles[1] <= relation_quantiles[2]):
