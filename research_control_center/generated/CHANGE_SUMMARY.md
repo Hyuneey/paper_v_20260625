@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -6,6 +6,8 @@ Registry version: `0.1.0`
 
 ## Recorded timeline
 
+- **2026-09-03 — EXP-01B GDN Prediction-XAI completed with ablation-only disposition** (`ACTIVE_CONTEXT`): Nine CUDA runs compared Embedding Attention EdgeMask Source Occlusion and Functional-Consensus against an arm-blind normal relation reference. A small combined K29 increase failed frozen split functional and rule-conversion criteria; GDN remained ablation-only.
+- **2026-09-02 — VALIDATION V2A normal-only candidate numeric and portfolio authorities frozen** (`ACTIVE_CONTEXT`): EXP-01 selected META_PLUS_STAT; the 29-pair union yielded 39 confirmed directional relations and EXP-02 selected one relation-specific policy from 37 candidates before any test access.
 - **2026-08-29 — Research Control Center established and normalized** (`ACTIVE_CONTEXT`): RCC-001 created the operating skeleton RCC-002 populated current state and RCC-002A separated engineering evidence-review result-integrity reproduction and scientific-validation semantics.
 - **2026-08-26 — Integrated report preparation update** (`HISTORICAL`): The research owner confirms this was integrated report preparation or update and not automatically new professor feedback; the Git-supported package milestone is August 24.
 - **2026-08-24 — Professor first-results package and scientific checkpoint frozen** (`ACTIVE_CONTEXT`): The repository finalized a professor-facing synthesis and audited the canonical scientific checkpoint. The package requested decisions and was not itself new professor feedback or approval.
@@ -37,4 +39,4 @@ Registry version: `0.1.0`
 
 ## Next
 
-**V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**
+**V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels**

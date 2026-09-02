@@ -150,11 +150,11 @@ def _badge_class(status: str) -> str:
         return "badge-green"
     if status in {"IMPLEMENTED_EXECUTED", "IMPLEMENTED_NOT_EXECUTED", "CODE_IMPLEMENTED", "INTEGRATED", "SUPPORTED_IMPLEMENTATION"}:
         return "badge-blue"
-    if status in {"PARTIAL", "EXECUTED_AUDITED_PILOT", "PILOT_ONLY", "CONDITIONAL", "MITIGATING", "CURRENT", "HISTORICAL"}:
+    if status in {"PARTIAL", "EXECUTED_AUDITED_PILOT", "EXECUTED_AUDITED_DEVELOPMENT", "PILOT_ONLY", "CONDITIONAL", "MITIGATING", "CURRENT", "HISTORICAL"}:
         return "badge-yellow"
     if status in {"BLOCKED", "HIGH"}:
         return "badge-orange"
-    if status in {"NOT_SUPPORTED", "CRITICAL"}:
+    if status in {"NOT_SUPPORTED", "DEVELOPMENT_NOT_SUPPORTED", "CRITICAL"}:
         return "badge-red"
     return "badge-gray"
 
@@ -177,8 +177,10 @@ STATUS_DISPLAY_LABELS = {
     "IMPLEMENTED_NOT_EXECUTED": "구현 완료·미실행",
     "EXECUTED_NOT_AUDITED": "실행 완료·근거 점검 대기",
     "EXECUTED_AUDITED_PILOT": "실행·근거 점검 완료·예비 실험",
+    "EXECUTED_AUDITED_DEVELOPMENT": "실행·근거 점검 완료·개발 결과",
     "SUPPORTED_IMPLEMENTATION": "구현 근거로 지원됨",
     "NOT_SUPPORTED": "현재 근거로 지원되지 않음",
+    "DEVELOPMENT_NOT_SUPPORTED": "현재 개발 결과로 지원되지 않음",
     "RESEARCH_ONLY": "연구 범위만 정의됨",
     "DESIGN_ONLY": "설계만 완료",
     "PARTIAL": "부분 완료",
@@ -192,6 +194,8 @@ STATUS_DISPLAY_LABELS = {
     "MITIGATING": "완화 중",
     "OPEN": "미결정",
     "COMPLETED": "완료",
+    "COMPLETE": "완료",
+    "READY": "진행 가능",
     "HIGH": "높음 (HIGH)",
     "MEDIUM": "중간 (MEDIUM)",
     "LOW": "낮음 (LOW)",
@@ -212,7 +216,7 @@ EXPERIMENT_STATUS_LABELS = {
     key: STATUS_DISPLAY_LABELS[key]
     for key in (
         "NOT_STARTED", "DESIGN_ONLY", "IMPLEMENTED_NOT_EXECUTED",
-        "EXECUTED_NOT_AUDITED", "EXECUTED_AUDITED_PILOT", "BLOCKED",
+        "EXECUTED_NOT_AUDITED", "EXECUTED_AUDITED_PILOT", "EXECUTED_AUDITED_DEVELOPMENT", "BLOCKED",
         "SUPERSEDED", "UNKNOWN",
     )
 }
@@ -223,6 +227,7 @@ GPT_EXPERIMENT_STATUS_LABELS = {
     "IMPLEMENTED_NOT_EXECUTED": "CODE PRESENT · COMPARISON NOT EXECUTED",
     "EXECUTED_NOT_AUDITED": "EXECUTED · EVIDENCE REVIEW PENDING",
     "EXECUTED_AUDITED_PILOT": "EXECUTED · EVIDENCE-REVIEWED PILOT",
+    "EXECUTED_AUDITED_DEVELOPMENT": "EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT",
     "BLOCKED": "BLOCKED",
     "SUPERSEDED": "SUPERSEDED",
     "UNKNOWN": "UNKNOWN",
@@ -285,6 +290,7 @@ COMPONENT_CARD_COPY = {
 
 EXPERIMENT_CARD_COPY = {
     "EXP-01": ("변수 관계 탐색 방법 비교", "META·STAT·GDN의 고유하고 유용한 후보 기여가 있는지 비교한다."),
+    "EXP-01B": ("GDN Prediction-XAI 추가 검증", "Embedding·Attention·EdgeMask·Source Occlusion을 동일 정상 관계 기준에서 비교한다."),
     "EXP-02": ("규칙 수치 기준 비교", "응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다."),
     "EXP-03": ("검증 피드백 기반 규칙 생성 비교", "T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다."),
     "EXP-04": ("검증된 관계 규칙의 이상탐지 성능 비교", "D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다."),
@@ -297,7 +303,7 @@ CLAIM_CARD_COPY = {
     "CLAIM-B": ("정상 근거에서 실행 규칙으로 변환", "정상 관계 근거를 권한 통제 아래 실행 가능한 규칙으로 변환했다."),
     "CLAIM-C": ("결정론적 verifier의 계약 검사", "구조·근거·수치·split·실행 계약을 검사하지만 과학적 진실을 증명하지 않는다."),
     "CLAIM-D": ("고정 규칙 runtime의 LLM-free 실행", "고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다."),
-    "CLAIM-E": ("GDN의 고유한 유용성", "set-unique 후보는 있으나 안정적이고 유용한 고유 기여는 미검증이다."),
+    "CLAIM-E": ("GDN의 고유한 유용성", "EXP-01과 EXP-01B의 동결된 정상 전용 기준은 GDN의 핵심·보조 기여를 지원하지 않았다."),
     "CLAIM-F": ("Agentic feedback의 품질 향상", "현재 feedback action이 0이므로 이점은 지원되지 않는다."),
     "CLAIM-G": ("D1과 D0의 다른 pilot 반응", "현재 14-unit pilot에서 서로 다른 event response가 관찰됐다."),
     "CLAIM-H": ("Rule-only의 운영 유용성", "높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다."),
@@ -311,11 +317,11 @@ CLAIM_CARD_COPY = {
 RISK_CARD_COPY = {
     "RISK-01": ("14개 event unit의 작은 평가 범위", "통계적 독립성과 안정적 우수성을 추론할 수 없다."),
     "RISK-02": ("D1의 높은 정상 FAR", "Rule-only 운영 유용성이 아직 확립되지 않았다."),
-    "RISK-03": ("GDN 고유 기여 미검증", "META·STAT 너머의 안정적 기여를 별도 검증해야 한다."),
+    "RISK-03": ("현재 V2에서 GDN 기여 미지원", "EXP-01과 EXP-01B의 동결 기준은 GDN의 핵심·보조 기여를 지원하지 않았다."),
     "RISK-04": ("T2 feedback 이점 미검증", "현재 feedback repair action은 0이었다."),
     "RISK-05": ("D2의 D0 miss 회복 실패", "V1/V2 모두 세 D0 miss를 회복하지 못했다."),
     "RISK-06": ("Held-out 일반화 결과 부재", "새 승인과 preregistration 전에는 OUTER 주장을 할 수 없다."),
-    "RISK-07": ("Fresh-machine 재현 미완료", "추적성은 강하지만 새 환경 재현 rehearsal은 아직이다."),
+    "RISK-07": ("과학 데이터 재현 미완료", "Fresh-machine synthetic rehearsal은 PASS지만 private custody를 포함한 과학 재현은 아직이다."),
     "RISK-08": ("강한 다변량 baseline 부재", "현재 D0는 단순 PCA-SPE 기준선이다."),
     "RISK-09": ("설명의 인간 유용성 미검증", "자동 trace grounding은 사람의 이해 향상을 증명하지 않는다."),
     "RISK-10": ("과거 checkout과 authority 혼동", "RCC 화면은 고정 scientific authority를 계속 명시해야 한다."),
@@ -323,7 +329,7 @@ RISK_CARD_COPY = {
     "RISK-12": ("분산된 split enforcement", "여러 task reader의 계약이 하나의 universal adapter로 증명되지 않았다."),
     "RISK-13": ("VALIDATION V2 Rule/runtime authority 결정 완료", "DEC-020과 GAP-FIX-001이 Formal V4를 선택·고정했으며 canonical RuleV1·VerifierV1 authority를 주장하지 않는다."),
     "RISK-14": ("no_rule failure taxonomy 혼합", "provider·parse·verifier·budget failure가 no_rule로 합쳐질 수 있다."),
-    "RISK-15": ("GDN self-neighbor Top-5 영향", "self가 내부 neighbor slot을 소비할 수 있다."),
+    "RISK-15": ("GDN self-neighbor prospective correction", "PILOT V1은 보존하고 V2 실험은 corrected self-exclusion을 사용했다."),
     "RISK-16": ("metric portability 계약 부족", "1초·file-local 가정과 cross-arm aggregator 추적성이 불완전하다."),
 }
 
@@ -1174,8 +1180,6 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
         f"- **{row['severity']} / {row['status']}** — {row['description']}"
         for row in data["risks"] if row["severity"] in {"CRITICAL", "HIGH"}
     )
-    phases = data["history"]["phases"]
-    phase_names = " → ".join(phase["title"] for phase in phases[:9])
     return f"""{_markdown_marker(state, digest)}
 # GPT Brief — Research Control Center
 
@@ -1191,19 +1195,17 @@ Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 **{state['current_phase']}** — {state['current_phase_statement']}
 
-Phase progression: {' → '.join(state['phase_progression'])}.
-
 ## How to read RCC status
 
 Engineering and scientific evidence are separate. Component `audited=true` means
 **Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
 and arithmetic, not generalization. Scientific
 claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
-contract wording.
+    contract wording.
 
-These counts are not a single completion percentage.
+    These states are not a single completion percentage.
 
-## Architecture in one line
+    ## Architecture in one line
 
 {state['architecture_flow']}
 
@@ -1215,8 +1217,8 @@ durable pre-label persistence; D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-META, STAT, and GDN separately rank the 144-pair universe; their Top-20 views form an unscored
-47-pair union. Attention is not ranking evidence, XAI is absent, and GDN benefit is unvalidated.
+    PILOT V1은 47-pair union을 보존한다. V2 EXP-01은 META_PLUS_STAT을 선택했고,
+    EXP-01B는 GDN-XAI arm을 동일 예산으로 비교한 뒤 `GDN_ABLATION_ONLY`로 끝났다.
 
 ## Relation and numeric-authority boundary
 
@@ -1250,15 +1252,14 @@ misses while increasing normal FAR. V2 is test1-informed development, not indepe
 
 ## How we got here
 
-The recorded evolution is **{phase_names}**. ARGOS is partial support; normal-only profiling
-and numeric authority led to COMMON-42 and the 14-unit pilot. History cannot override current state.
+    History cannot override current state. ARGOS remains partial support.
 
 ## Established facts
 
 {_md_bullets(state['established_facts'])}
 
-Frozen discovery and construction counts establish execution and custody, not causality,
-physical truth, unique GDN benefit, or agentic-feedback advantage. T2 feedback actions: zero.
+    Frozen discovery and construction counts establish execution and custody, not causality,
+    physical truth, general GDN utility, or agentic-feedback advantage. T2 feedback actions: zero.
 
 ## Frozen INNER pilot observations
 
@@ -1277,9 +1278,9 @@ observations, not new calculations.
 
 {_md_bullets(state['not_established'])}
 
-Graph-Guided and Agentic remain provisional contribution labels. GDN produced candidate
-evidence, but unique stable downstream usefulness remains unvalidated. The T2 control
-path exists, but current evidence does not support a verifier-feedback advantage.
+    Graph-Guided and Agentic remain provisional contribution labels. EXP-01 and EXP-01B do not
+    support GDN as a primary or supporting V2 contribution; DG-04 controls final wording. T2
+    feedback advantage also remains unsupported.
 
 ## Current experiments
 
@@ -2347,8 +2348,10 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Universe:** {state['candidate_discovery']['candidate_universe']}.
 - **META:** reviewed metadata domain-prior candidate ranking.
 - **STAT:** normal train1/train2 directional lagged-association candidate ranking.
-- **GDN:** embedding-cosine learned-graph candidate ranking; attention is internal message passing, not final evidence; post-hoc XAI is absent.
-- **Union:** {state['candidate_discovery']['union']}.
+    - **GDN / PILOT V1:** embedding-cosine learned-graph candidate ranking; attention and post-hoc XAI were not final Pilot evidence.
+    - **PILOT V1 union:** {state['candidate_discovery']['union']}.
+    - **VALIDATION V2A:** META+STAT 29-pair union, 39 confirmed directional relations, and 39-rule Formal V4 portfolio are frozen.
+    - **EXP-01B:** nine CUDA runs compared Embedding, Attention, EdgeMask, and Source Occlusion; the frozen disposition is `GDN_ABLATION_ONLY`.
 - **Boundary:** {state['candidate_discovery']['warning']}
 
 ## RULE CONSTRUCTION FOUNDATION
@@ -2372,7 +2375,8 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - All three discovery arms produced evidence-reviewed top-20 rankings.
 - Profiling produced 23 pair contexts and 42 frozen directed relations.
 - T0, T1, T1-B, and T2 executed; their accepted counts were 42, 42, 42, and 39.
-- Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.
+    - Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.
+    - Normal-only VALIDATION V2 EXP-01, EXP-01B, and EXP-02 completed without test or label access.
 - The OUTER bridge produced a blocker record only; it produced no scientific outcome.
 
 ## WHAT WAS OBSERVED
@@ -2419,6 +2423,10 @@ def render_my_todo(data: Mapping[str, Any], digest: str) -> str:
         "REVIEW NEEDED": "검토 필요",
         "WAITING ON CODEX": "Codex 작업 대기",
         "APPROVED POLICY": "승인된 정책",
+        "PRESERVATION": "보존 원칙",
+        "DECISION LATER": "추후 결정",
+        "MANDATORY FUTURE GATE": "필수 향후 Gate",
+        "REVIEW REQUIRED": "검토 필요",
     }
     sections: list[str] = []
     for heading, display_heading in heading_labels.items():

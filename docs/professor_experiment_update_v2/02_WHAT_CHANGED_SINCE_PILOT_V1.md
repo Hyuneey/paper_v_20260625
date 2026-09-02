@@ -8,8 +8,8 @@ PILOT V1은 그대로 보존됩니다. VALIDATION V2는 이를 수정한 이름�
 | D1 pre-label custody | 메모리 내 freeze | atomic durable write → close → reopen/replay → label lease → post-label byte check |
 | split 역할 | pilot 절차로 추적 | train/test/final 역할과 no-post-test-tuning contract 고정 |
 | metrics | frozen pilot 구현 | portable common per-second adapter와 합성 contract tests |
-| GDN | self-neighbor 포함 가능 pilot behavior | self-excluded corrected behavior와 ablation 계획 고정 |
-| numeric policy | pilot fixed authority | normal-only policy comparison 계획 고정 |
+| GDN | self-neighbor 포함 가능 pilot behavior | self-excluded EXP-01과 별도 EXP-01B Prediction-XAI를 실행했으나 모두 ablation 판정 |
+| numeric policy | pilot fixed authority | 37개 normal-only policy를 비교해 `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05` 동결 |
 | stronger detector | PCA-SPE reference only | normal-only Isolation Forest 비교 arm 준비 |
 | explanation | frozen D1 trace와 canonical renderer 미연결 | V2 runtime trace → deterministic renderer → structural validator 경로 준비 |
 | 재현성 | traceability 중심 | clean checkout fresh-environment synthetic rehearsal PASS |

@@ -1,0 +1,25 @@
+{
+  "checkpoint_count": 9,
+  "environment_hash": "f7dd49e75cc270c45c2c5af7b306fc38cff97a5fc750a29e0ca635e9ead883bc",
+  "experiment_id": "EXP-01B-GDN-XAI-V1",
+  "heldout_accesses": 0,
+  "label_accesses": 0,
+  "private_paths_disclosed": false,
+  "receipt_hash": "cfdc2c640c7cfa9383105a5f8f7e0d936522f8b8b175ac5b31cfdd48f10184f5",
+  "run_receipt_hashes": [
+    "a07e9b587ec44ad6b54eba692e72e27f0d816903c82788e802950b051160b3fc",
+    "f3dba97bd5e2cecb19bf4fd9da7a4065320ea5f67114e1cccfe056a48fcdce28",
+    "7d53d75c8d1651cf3c08684d10cdbf9075dedbeceb48782c6df765c04fb8110f",
+    "83f8484e5b46c4eb046ce52221ce71bc07e99b1a9ddff6e8c630a972fcf3ef5f",
+    "0f3b9a9f5f8e04f0b75ccc107c103ca8dae8a0fe41f8ea0dfb90c6c74144a9b4",
+    "0572f7f14ad0cb68febd55755024baeb52950cf96332e988dec6903578f92740",
+    "d802fb6f2c97df785f56d5980b6fd2125d1c27d14e1e427cf01c399948f303a0",
+    "054602c6360c6aaa5fe2e69b81a7bee7da8d448cbea8fc7bd0c036f2ff9360ce",
+    "653defe4b7c40597baa05917c3cea6bdc116d1d6bb88154b78c0d11bc53db18a"
+  ],
+  "schema": "paperworks.validation_v2.exp01b_checkpoint_set_receipt_v1",
+  "schema_version": "1.0.0",
+  "test1_accesses": 0,
+  "test2_accesses": 0,
+  "training_config_hash": "64510d8ac918101c4641abdddd987d42f0f567035682490f8caeeea53beaeaf6"
+}

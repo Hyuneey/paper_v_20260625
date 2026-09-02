@@ -20,7 +20,16 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE")
+        self.assertEqual(state["program_status"], "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT")
+        self.assertEqual(
+            state["experiment_status"]["EXP-01B"],
+            "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
+        )
+        self.assertEqual(
+            state["experiment_status"]["EXP-04"],
+            "READY_LABEL_BLIND_PREDICTION_FREEZE",
+        )
+        self.assertEqual(state["safety_counters"]["scientific_executions"], 3)
         self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
         self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
         self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")
@@ -228,8 +237,8 @@ class ValidationV2ProgramTests(unittest.TestCase):
         }
         self.assertEqual(expected, {path.name for path in package.iterdir() if path.is_file()})
         summary = (package / "01_ONE_PAGE_SUMMARY.md").read_text(encoding="utf-8")
-        self.assertIn("과학 실행은 시작하지 않았습니다", summary)
-        self.assertIn("test2·held-out 접근", summary)
+        self.assertIn("EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료", summary)
+        self.assertIn("test1·공격 label·test2·held-out 접근", summary)
 
 
 if __name__ == "__main__":

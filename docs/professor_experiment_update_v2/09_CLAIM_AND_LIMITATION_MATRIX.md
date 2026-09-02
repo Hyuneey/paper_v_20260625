@@ -4,8 +4,8 @@
 |---|---|---|
 | V2 공통 authority·custody·metric contract가 구현되었다 | SUPPORTED_IMPLEMENTATION | 합성·negative tests와 독립 QA |
 | fresh-machine synthetic 경로가 동작한다 | SUPPORTED_SYNTHETIC | clean checkout/fresh environment receipt |
-| V2 GDN이 고유 기여를 한다 | UNVALIDATED | EXP-01 미실행 |
-| relation-specific numeric policy가 우수하다 | UNVALIDATED | EXP-02 미실행 |
+| V2 GDN이 primary 또는 supporting contribution 요건을 충족한다 | DEVELOPMENT_NOT_SUPPORTED | EXP-01과 EXP-01B 모두 ablation 판정; EXP-01B combined K=29 소폭 향상은 split 안정성·기능·rule conversion 요건을 통과하지 못함 |
+| relation-specific numeric policy가 정상 데이터 선택 규칙에서 선택되었다 | NORMAL_ONLY_SUPPORTED | EXP-02는 37개 후보 중 `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05`를 동결 선택; 공격 성능 우수성은 아직 미평가 |
 | verifier feedback이 construction을 개선한다 | UNVALIDATED | EXP-03 natural cohort/provider 미실행 |
 | Isolation Forest가 PCA-SPE보다 낫다 | UNVALIDATED | 선택만 완료, scientific fit/evaluation 미실행 |
 | V2 Rule-only가 유용하다 | UNVALIDATED | EXP-04 미실행 |

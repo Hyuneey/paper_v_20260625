@@ -21,6 +21,14 @@ AUTHORITY_REF = "origin/research-v6-thesis-checkpoint"
 OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
+CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-core-exp02": {"9cb47e0efb868048d4a523ec4cfaca53bd342ab7"},
+    "validation-v2-exp01b-gdn-xai": {
+        "9e2aad7ded63238f6300f282d0841671c7c14ce0",
+        "e0a14ab61762f7e7ce8319d58643dc483dda6a02",
+    },
+    "validation-v2": {"7125c038817a6ac9ee4392748de802e2069b44f6e"},
+}
 ID_PATTERN = re.compile(r"^[A-Z][A-Z0-9_-]*$")
 FORMULA_MARKERS = ("=", "+", "@")
 BOOLEAN_FIELDS = {"true", "false"}
@@ -84,11 +92,11 @@ STATUS_ENUMS = {
     },
     "experiments": {
         "NOT_STARTED", "DESIGN_ONLY", "IMPLEMENTED_NOT_EXECUTED", "EXECUTED_NOT_AUDITED",
-        "EXECUTED_AUDITED_PILOT", "BLOCKED", "SUPERSEDED", "UNKNOWN",
+        "EXECUTED_AUDITED_PILOT", "EXECUTED_AUDITED_DEVELOPMENT", "BLOCKED", "SUPERSEDED", "UNKNOWN",
     },
     "claims": {
         "SUPPORTED_IMPLEMENTATION", "PILOT_ONLY", "UNVALIDATED", "NOT_SUPPORTED",
-        "CONDITIONAL", "SUPERSEDED",
+        "DEVELOPMENT_NOT_SUPPORTED", "CONDITIONAL", "SUPERSEDED",
     },
     "risks": {"OPEN", "MITIGATING", "ACCEPTED", "CLOSED"},
     "decisions": DECISION_STATUSES,
@@ -340,8 +348,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain the six current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "V2-HAI-NORMAL-MATERIALIZATION-001 — official normal-only materialization and custody", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "V2-DUALTRACK-002 — V2A META+STAT and EXP-01B GDN-XAI normal-only execution", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -354,10 +362,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
-    result.require(readiness.get("status") == "NORMAL_CUSTODY_READY_EXECUTION_AUTHORITY_BLOCKED", "VALIDATION V2 remediation status mismatch")
+    result.require(readiness.get("status") == "NORMAL_ONLY_V2A_READY_EXP04_PENDING", "VALIDATION V2 remediation status mismatch")
     result.require(readiness.get("p0_global_fixes") == [], "remaining global P0 fix mismatch")
     result.require(readiness.get("raw_findings") == 120 and readiness.get("root_issues") == 19, "GAP-000 inventory counts mismatch")
     result.require(readiness.get("source_severity") == {"critical": 0, "high": 54, "medium": 55, "low": 11}, "GAP-000 source severity mismatch")
@@ -467,7 +475,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(
         state.get("safety_counters") == {
-            "scientific_executions": 0,
+            "scientific_executions": 3,
             "test2_feature_accesses": 0,
             "test2_label_accesses": 0,
             "new_private_exposures": 0,
@@ -483,8 +491,13 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
 
     for registry in ("experiments", "claims", "risks"):
         for row in data[registry]:
-            result.require(row["scientific_source_ref"] == AUTHORITY_REF, f"{registry} row has a non-authoritative scientific source ref")
-            result.require(row["scientific_source_commit"] == AUTHORITY_COMMIT, f"{registry} row has a non-authoritative scientific source commit")
+            source_ref = row["scientific_source_ref"]
+            source_commit = row["scientific_source_commit"]
+            valid = (
+                (source_ref == AUTHORITY_REF and source_commit == AUTHORITY_COMMIT)
+                or source_commit in CURRENT_V2_SCIENTIFIC_SOURCES.get(source_ref, set())
+            )
+            result.require(valid, f"{registry} row has a non-authoritative scientific source binding")
     for row in data["components"]:
         expected = (OVERLAY_REF, OVERLAY_COMMIT) if row["component_id"] == "THESIS_DRAFT" else (AUTHORITY_REF, AUTHORITY_COMMIT)
         result.require(
@@ -504,12 +517,18 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(row["source_commit"] == "NONE", f"{registry} context-only row must not claim a Git commit")
             else:
                 result.require(
-                    row["source_commit"] in {AUTHORITY_COMMIT, OVERLAY_COMMIT, "e81baadcfd6cf6b9f23d307056455e024876c2ed"},
+                    row["source_commit"] in {
+                        AUTHORITY_COMMIT,
+                        OVERLAY_COMMIT,
+                        "e81baadcfd6cf6b9f23d307056455e024876c2ed",
+                        *(commit for commits in CURRENT_V2_SCIENTIFIC_SOURCES.values() for commit in commits),
+                    },
                     f"{registry} row has an unsupported source commit",
                 )
     for row in data["artifacts"]:
         expected = (OVERLAY_REF, OVERLAY_COMMIT) if row["artifact_id"] == "ART-THESIS-DRAFT" else (AUTHORITY_REF, AUTHORITY_COMMIT)
-        result.require((row["source_ref"], row["source_commit"]) == expected, f"artifact {row['artifact_id']} has an invalid authority binding")
+        valid = (row["source_ref"], row["source_commit"]) == expected or row["source_commit"] in CURRENT_V2_SCIENTIFIC_SOURCES.get(row["source_ref"], set())
+        result.require(valid, f"artifact {row['artifact_id']} has an invalid authority binding")
 
 
 def _validate_enums(data: Mapping[str, Any], result: ValidationResult) -> None:
@@ -699,7 +718,7 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(authority.get("bridge_minimum_thesis_path") == "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH", "minimum thesis path incorrectly requires the bridge")
     result.require(authority.get("canonical_rule_v1_authoritative") is False and authority.get("verifier_v1_authoritative") is False, "canonical RuleV1/VerifierV1 authority is overstated")
     program = data["state"].get("validation_v2_program", {})
-    result.require(program.get("status") == "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE", "V2 execution-authority blocker is not explicit")
+    result.require(program.get("status") == "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT", "V2 normal-only completion status is not explicit")
     result.require(program.get("scientific_input_authority") == "DATA-POLICY-001_NORMAL_ONLY_CUSTODY_READY", "V2 materialization authority is not explicit")
     result.require(program.get("dataset_acquisition_policy") == "DATA-POLICY-001", "HAI acquisition policy is not bound")
     result.require(program.get("acquisition_mode") == "CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION", "HAI acquisition mode is not code-based")
@@ -710,7 +729,7 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(program.get("bound_symbolic_splits") == ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"], "V2 bound symbolic normal splits are incorrect")
     result.require(program.get("missing_symbolic_splits") == [], "V2 normal custody still reports missing splits")
     result.require(program.get("fresh_machine_synthetic") == "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC", "fresh-machine synthetic PASS is not recorded")
-    result.require(program.get("scientific_executions") == 0, "V2 program overstates scientific execution")
+    result.require(program.get("scientific_executions") == 3, "V2 program scientific execution count mismatch")
     result.require(program.get("test2_accesses") == 0 and program.get("heldout_accesses") == 0, "V2 program violates held-out safety counters")
     result.require(program.get("provider_calls") == 0, "V2 program provider-call counter must remain zero")
     policy_path = repo_root / "research_control_center" / "validation_v2" / "policies" / "DATA_POLICY_001.json"
@@ -793,18 +812,21 @@ def _git_has_path(repo_root: Path, commit: str, path: str) -> bool:
 
 
 def _validate_paths(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
-    candidates: list[tuple[str, str]] = []
+    candidates: list[tuple[str, str] | tuple[str, str, str | None]] = []
     for row in data["components"]:
         candidates.append((f"component {row['component_id']} representative_path", row["representative_path"]))
         for value in _split_refs(row["test_refs"]):
             candidates.append((f"component {row['component_id']} test_refs", value))
     for row in data["artifacts"]:
         if row["public_private"] == "PUBLIC_SAFE":
-            commit = OVERLAY_COMMIT if row["artifact_id"] == "ART-THESIS-DRAFT" else AUTHORITY_COMMIT
+            if row["source_ref"] in CURRENT_V2_SCIENTIFIC_SOURCES:
+                commit = None
+            else:
+                commit = OVERLAY_COMMIT if row["artifact_id"] == "ART-THESIS-DRAFT" else AUTHORITY_COMMIT
             candidates.append((f"artifact {row['artifact_id']} safe_path", row["safe_path"], commit))
         else:
             result.require(row["safe_path"] in {"LOCAL_DATA_CUSTODY", "PRIVATE_ARTIFACT_CUSTODY"}, f"private artifact {row['artifact_id']} lacks a symbolic safe identity")
-    normalized: list[tuple[str, str, str]] = []
+    normalized: list[tuple[str, str, str | None]] = []
     for candidate in candidates:
         if len(candidate) == 2:
             label, value = candidate
@@ -816,8 +838,11 @@ def _validate_paths(data: Mapping[str, Any], result: ValidationResult, repo_root
         safe = is_safe_relative_path(value)
         result.require(safe, f"{label} is not a safe relative path")
         if safe and check_git:
-            tree_name = "documentation overlay" if commit == OVERLAY_COMMIT else "pinned scientific Git tree"
-            result.require(_git_has_path(repo_root, commit, value), f"{label} is absent from the {tree_name}")
+            if commit is None:
+                result.require((repo_root / value).is_file(), f"{label} is absent from the current V2 worktree")
+            else:
+                tree_name = "documentation overlay" if commit == OVERLAY_COMMIT else "pinned scientific Git tree"
+                result.require(_git_has_path(repo_root, commit, value), f"{label} is absent from the {tree_name}")
 
 
 def privacy_exposures(rcc_root: Path) -> list[str]:
@@ -891,10 +916,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "V2-EXEC-AUTH-001"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "V2-EXEC-AUTH-001"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "V2-SCI-EXP04-001"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "V2-SCI-EXP04-001"),
         "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "V2-EXEC-AUTH-001"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "V2-SCI-EXP04-001"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),

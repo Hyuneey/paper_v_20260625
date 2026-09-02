@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -11,9 +11,7 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 ## Current phase
 
-**EVALUATION_SCOPE_EXPANSION** — Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.
-
-Phase progression: ARCHITECTURE_COMPLETE → EVALUATION_SCOPE_EXPANSION → HYPOTHESIS_VALIDATION.
+**EVALUATION_SCOPE_EXPANSION** — VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STAT and its Formal V4 portfolio are frozen; EXP-04 label-blind development predictions are next.
 
 ## How to read RCC status
 
@@ -21,11 +19,11 @@ Engineering and scientific evidence are separate. Component `audited=true` means
 **Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
 and arithmetic, not generalization. Scientific
 claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
-contract wording.
+    contract wording.
 
-These counts are not a single completion percentage.
+    These states are not a single completion percentage.
 
-## Architecture in one line
+    ## Architecture in one line
 
 HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unscored candidate union -> normal relation profiling -> construction evidence -> T0 / T1 / T1-B / T2 -> task deterministic verifier; T0 / T1 / T1-B equivalence -> COMMON-42 metadata plus private runtime numeric authority -> real D1; HAI plus frozen detector authority -> D0; frozen D0 + D1 -> D2 policies -> event / episode metrics -> result-integrity governance
 
@@ -37,8 +35,8 @@ durable pre-label persistence; D2 V2 is test1-informed.
 
 ## Candidate-discovery boundary
 
-META, STAT, and GDN separately rank the 144-pair universe; their Top-20 views form an unscored
-47-pair union. Attention is not ranking evidence, XAI is absent, and GDN benefit is unvalidated.
+    PILOT V1은 47-pair union을 보존한다. V2 EXP-01은 META_PLUS_STAT을 선택했고,
+    EXP-01B는 GDN-XAI arm을 동일 예산으로 비교한 뒤 `GDN_ABLATION_ONLY`로 끝났다.
 
 ## Relation and numeric-authority boundary
 
@@ -72,8 +70,7 @@ misses while increasing normal FAR. V2 is test1-informed development, not indepe
 
 ## How we got here
 
-The recorded evolution is **DHAG Extension Period → ARGOS / LLMAD Exploration → Verifier-Centric Period → Professor-Driven Reframing → CPS Relational Rule Foundation → HAI P1 Scope and Pairwise Relation Family → Candidate Evidence and COMMON-42 → D0 / D1 / D2 INNER Pilot → OUTER Blocker and Thesis Synthesis**. ARGOS is partial support; normal-only profiling
-and numeric authority led to COMMON-42 and the 14-unit pilot. History cannot override current state.
+    History cannot override current state. ARGOS remains partial support.
 
 ## Established facts
 
@@ -82,8 +79,8 @@ and numeric authority led to COMMON-42 and the 14-unit pilot. History cannot ove
 - D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.
 - The OUTER path has a blocker record and no scientific result.
 
-Frozen discovery and construction counts establish execution and custody, not causality,
-physical truth, unique GDN benefit, or agentic-feedback advantage. T2 feedback actions: zero.
+    Frozen discovery and construction counts establish execution and custody, not causality,
+    physical truth, general GDN utility, or agentic-feedback advantage. T2 feedback actions: zero.
 
 ## Frozen INNER pilot observations
 
@@ -100,21 +97,22 @@ observations, not new calculations.
 
 ## Unresolved scientific questions
 
-- GDN unique and stable scientific contribution beyond META and STAT
+- GDN general utility beyond the current normal-only EXP-01 and EXP-01B scope
 - Agentic verifier-feedback advantage
 - Practical Rule-only operational utility
 - Detector-plus-Rule improvement
 - Held-out generalization
 - Human explanation usefulness
 
-Graph-Guided and Agentic remain provisional contribution labels. GDN produced candidate
-evidence, but unique stable downstream usefulness remains unvalidated. The T2 control
-path exists, but current evidence does not support a verifier-feedback advantage.
+    Graph-Guided and Agentic remain provisional contribution labels. EXP-01 and EXP-01B do not
+    support GDN as a primary or supporting V2 contribution; DG-04 controls final wording. T2
+    feedback advantage also remains unsupported.
 
 ## Current experiments
 
-- **EXP-01 · 변수 관계 탐색 방법 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
-- **EXP-02 · 규칙 수치 기준 비교** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
+- **EXP-01 · 변수 관계 탐색 방법 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
+- **EXP-01B · GDN Prediction-XAI 추가 검증** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
+- **EXP-02 · 규칙 수치 기준 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
 - **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
 - **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
 - **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
@@ -126,7 +124,7 @@ path exists, but current evidence does not support a verifier-feedback advantage
 - **CLAIM-B · SUPPORTED_IMPLEMENTATION** — The implemented pipeline transformed confirmed normal-data relation evidence into frozen executable rules under deterministic authority controls.
 - **CLAIM-C · SUPPORTED_IMPLEMENTATION** — VerifierV1 deterministically checks its canonical contract; VALIDATION V2 executable eligibility is separately governed by Formal V4 validity replay numeric binding portfolio-freeze runtime-authorization and custody controls.
 - **CLAIM-D · SUPPORTED_IMPLEMENTATION** — Given frozen Formal V4 descriptor validity numeric-reference portfolio runtime-authorization and input authorities the fixed-rule VALIDATION V2 runtime evaluates without an LLM and produces deterministic traces.
-- **CLAIM-E · UNVALIDATED** — The frozen GDN arm contributed set-unique candidates; their unique scientific usefulness remains unvalidated.
+- **CLAIM-E · DEVELOPMENT_NOT_SUPPORTED** — EXP-01 and EXP-01B both retained GDN as ablation. EXP-01B showed a small combined K=29 yield and NDCG increase but failed frozen split-stability functional and unique executable-rule criteria.
 - **CLAIM-F · NOT_SUPPORTED** — The current pilot did not establish a feedback advantage and the feedback mechanism was not empirically exercised.
 - **CLAIM-G · PILOT_ONLY** — In the current 14-event INNER pilot D1 responded to three D0-missed events and D0 responded to one D1-missed event.
 - **CLAIM-H · UNVALIDATED** — Rule-only showed high event response and high normal false-alarm burden in the INNER pilot; practical utility remains unvalidated.
@@ -140,9 +138,9 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 - **HIGH / OPEN** — The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
 - **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
-- **HIGH / OPEN** — GDN candidate evidence exists but unique stable contribution beyond META and STAT is unvalidated.
+- **HIGH / MITIGATING** — EXP-01 and EXP-01B did not support retaining GDN as a primary or supporting V2 contribution under their frozen normal-only criteria.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
-- **HIGH / MITIGATING** — Fresh-machine synthetic and normal-only HAI custody passed; scientific reproduction remains blocked because the V2 candidate/cohort authority and complete EXP-01/EXP-02 scientific entrypoints are not frozen.
+- **HIGH / MITIGATING** — Fresh-machine synthetic and normal HAI custody pass; V2A authorities and EXP-02 are frozen, while full fresh-machine scientific reproduction remains private-custody dependent.
 - **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
 - **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
 - **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
@@ -150,15 +148,15 @@ path exists, but current evidence does not support a verifier-feedback advantage
 
 ## Top user TODO
 
-- V2 META+STAT candidate/cohort authority와 complete EXP-02 runner를 결과 관찰 전에 구현·동결한다.
-- test1/test2를 열거나 normal-only binding을 확대하는 우회는 금지한다.
-- EXP-01은 complete 12-run executor가 없으므로 fail-closed 상태를 유지한다.
+- 동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction과 durable freeze를 완료한다.
+- 모든 prediction freeze 전 test1 label을 열지 않고 test2/held-out은 계속 금지한다.
+- EXP-01과 EXP-01B의 GDN_ABLATION_ONLY 결과를 보존하고 V2B를 post-hoc 생성하지 않는다.
 - Review DG-03 only after the natural cohort and exact provider budget are frozen.
-- Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.
-- Review the professor readiness package before submission; no email has been sent.
+- Review Graph-Guided removal and Agentic conditional framing at DG-04.
+- Review the professor update before submission; no email has been sent.
 
 ## Exact next task
 
-Management: **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**
+Management: **V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

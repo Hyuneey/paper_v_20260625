@@ -160,7 +160,7 @@ class Exp01BBackendCheckpointTests(unittest.TestCase):
             graph_edges=(("S0", "T"), ("S1", "T")), batch_size=2,
         )
         for edge in explicit:
-            self.assertAlmostEqual(optimized[edge], explicit[edge], places=7)
+            self.assertEqual(optimized[edge], explicit[edge])
 
         reordered = aggregate_attention_from_augmented_tensors_v2(
             torch_module=torch,
@@ -169,8 +169,8 @@ class Exp01BBackendCheckpointTests(unittest.TestCase):
             node_count=3, feature_order=("S0", "S1", "T"),
             graph_edges=(("S1", "T"), ("S0", "T")), batch_size=2,
         )
-        self.assertAlmostEqual(reordered[("S0", "T")], explicit[("S0", "T")], places=7)
-        self.assertAlmostEqual(reordered[("S1", "T")], explicit[("S1", "T")], places=7)
+        self.assertEqual(reordered[("S0", "T")], explicit[("S0", "T")])
+        self.assertEqual(reordered[("S1", "T")], explicit[("S1", "T")])
 
     def test_vectorized_attention_rejects_incomplete_and_nonfinite_edges(self) -> None:
         try:

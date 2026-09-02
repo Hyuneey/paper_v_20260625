@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
-Last updated: 2026-08-31
+Last updated: 2026-09-03
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Documentation overlay: `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @ `ebc5a57bfdb7d8266f96f2990338effb9d0a2743`
 RCC version: `0.1.0`
@@ -48,8 +48,10 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - **Universe:** 12 ordered sources x 12 ordered targets = 144 directed pairs.
 - **META:** reviewed metadata domain-prior candidate ranking.
 - **STAT:** normal train1/train2 directional lagged-association candidate ranking.
-- **GDN:** embedding-cosine learned-graph candidate ranking; attention is internal message passing, not final evidence; post-hoc XAI is absent.
-- **Union:** unscored provenance-preserving set union of 47 unique pairs.
+    - **GDN / PILOT V1:** embedding-cosine learned-graph candidate ranking; attention and post-hoc XAI were not final Pilot evidence.
+    - **PILOT V1 union:** unscored provenance-preserving set union of 47 unique pairs.
+    - **VALIDATION V2A:** META+STAT 29-pair union, 39 confirmed directional relations, and 39-rule Formal V4 portfolio are frozen.
+    - **EXP-01B:** nine CUDA runs compared Embedding, Attention, EdgeMask, and Source Occlusion; the frozen disposition is `GDN_ABLATION_ONLY`.
 - **Boundary:** Candidate discovery proposes relationships. It does not establish causal or final temporal relations.
 
 ## RULE CONSTRUCTION FOUNDATION
@@ -73,7 +75,8 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
 - All three discovery arms produced evidence-reviewed top-20 rankings.
 - Profiling produced 23 pair contexts and 42 frozen directed relations.
 - T0, T1, T1-B, and T2 executed; their accepted counts were 42, 42, 42, and 39.
-- Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.
+    - Frozen integrity-audited INNER results exist for D0, D1, D2 V1, and D2 V2.
+    - Normal-only VALIDATION V2 EXP-01, EXP-01B, and EXP-02 completed without test or label access.
 - The OUTER bridge produced a blocker record only; it produced no scientific outcome.
 
 ## WHAT WAS OBSERVED
@@ -98,7 +101,6 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## WHAT REMAINS UNKNOWN
 
-- GDN unique and stable scientific contribution beyond META and STAT
 - Agentic verifier-feedback advantage
 - Practical Rule-only operational utility
 - Detector-plus-Rule improvement beyond the tested negative pilot policies
@@ -107,9 +109,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Implement and freeze the V2 META+STAT candidate/cohort authority and complete EXP-02 normal-only runner before scientific execution.
-- Keep EXP-01 fail-closed unless the complete 12-run checkpoint/intervention executor is frozen prospectively.
+- Generate and durably freeze all preregistered EXP-04 label-blind method predictions before any test1 label access.
+- Use only the frozen V2A META+STAT Formal V4 portfolio; do not create a result-driven V2B GDN portfolio.
 - Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
 
-Exact next management task: **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**
+Exact next management task: **V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

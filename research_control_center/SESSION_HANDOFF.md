@@ -38,9 +38,9 @@ prove scientific utility, causal or physical truth, or generalization.
 - prior independent program QA: PASS
 - PILOT V1 preservation: 3,021/3,021 blobs PASS
 
-## Current recovery stage
+## Current normal-only scientific stage
 
-`BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE`
+`NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT`
 
 Historical state `BLOCKED_NORMAL_DATA_NOT_FOUND` is preserved, but its recovery
 interpretation was incomplete. The corrected root cause is:
@@ -51,7 +51,7 @@ interpretation was incomplete. The corrected root cause is:
 official distribution workflow before any user-path request. No host-wide
 search or manual upload is part of the normal recovery path.
 
-Issued symbolic bindings:
+Issued symbolic bindings and completed normal-only use:
 
 - `HAI_TRAIN1` → `hai-23.05/hai-train1.csv`
 - `HAI_TRAIN2` → `hai-23.05/hai-train2.csv`
@@ -64,31 +64,34 @@ Public receipts:
 - `research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json`
 
 All four files passed exact Git/LFS byte equivalence and schema/P1 contract
-checks. test1, test2, labels, and held-out access counters remain zero.
+checks. EXP-01, EXP-01B, and EXP-02 used only the authorized normal splits.
+test1, labels, test2, and held-out access counters remain zero.
 
-## Program state after custody
+## Program state after normal-only execution
 
-- EXP-01: `GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED`; no complete 12-run
-  checkpoint/train4-intervention entrypoint exists, so no partial execution ran
-- EXP-02: `BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY`; pure
-  contracts exist but the V2 confirmed cohort and scientific runner do not
+- EXP-01: `COMPLETE_QA_PASS`; the frozen result remains negative and GDN is
+  demoted to ablation; `META_PLUS_STAT` is the primary V2 discovery policy
+- EXP-01B: `COMPLETE_NORMAL_ONLY`; nine CUDA runs and the independent public
+  lineage replay preserve `GDN_ABLATION_ONLY`
+- EXP-02: `COMPLETE_QA_PASS`; 37 frozen candidates were evaluated and
+  `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05` was selected
+- V2A portfolio: 39 Formal V4 directional rules are frozen and runtime-authorized
 - EXP-03: prepared; DG-03 remains pending before provider calls
-- stronger detector: Isolation Forest selected and prepared, not executed
-- EXP-04: blocked by upstream normal-only selections and V2 portfolio
+- stronger detector: Isolation Forest selected and prepared for EXP-04
+- EXP-04: ready for label-blind prediction and durable freeze
 - EXP-05: blocked because no materialized V2 runtime traces exist
 - EXP-06: not required
-- test1/test2/held-out/labels/provider accesses in this resume: 0
+- test1/test2/held-out/labels/provider accesses in these normal-only tracks: 0
 
 ## Exact next task
 
-`V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner`
+`V2-SCI-EXP04-001 — freeze all label-blind EXP-04 predictions before test1 labels`
 
-The materialization runner completed acquisition of only train1 through
-train4. The next implementation must freeze an explicit V2 META+STAT
-candidate/cohort authority and a complete EXP-02 normal-only runner before any
-new scientific read. EXP-01 remains unresolved rather than producing a partial
-or denominator-reduced result. Never download or open test1/test2 during this
-work.
+The next execution must use the already frozen V2A META+STAT candidate,
+39-relation Formal V4 portfolio, selected EXP-02 numeric policy, PCA-SPE D0,
+and fixed Isolation Forest configuration. All method predictions must pass the
+durable no-overwrite replay gate before any DEVELOPMENT_ONLY test1 label access.
+Never access test2 or held-out data.
 
 ## Future decision gates
 
@@ -99,8 +102,6 @@ work.
 
 ## Git remote status
 
-`LOCAL_ONLY_REMOTE_EGRESS_UNAVAILABLE`
-
-The verified task branch remains local because the execution environment
-rejected export of internal RCC/custody documentation to the unverified remote.
-No workaround or repeated push was attempted.
+The Track A and Track B task branches use the approved remote workflow. The
+integration branch must remain at origin parity after final QA; no main-branch
+merge or force push is authorized.

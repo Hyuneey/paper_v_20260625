@@ -2,87 +2,68 @@
 
 ## Verdict
 
-`NORMAL_ONLY_CODE_MATERIALIZATION_PENDING`
+`NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT`
 
-All currently possible non-scientific work is complete: the shared V2
-foundation, experiment-preparation contracts, portable public audit inputs,
-clean-checkout fresh-environment synthetic rehearsal, RCC synchronization, and
-the professor readiness package.
+The shared V2 foundation, official normal-only custody, EXP-01, the separate
+EXP-01B GDN-XAI experiment, EXP-02 numeric selection, and the Formal V4 V2A
+portfolio are complete. The exact next scientific work is EXP-04 label-blind
+prediction followed by durable freeze. test1 labels remain unopened.
 
-Stage 3 scientific execution remains fail-closed until `DATA-POLICY-001`
-materializes and binds exactly train1 through train4. The prior
-`BLOCKED_NORMAL_DATA_NOT_FOUND` state is preserved, with root cause corrected
-to `HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`.
+The historical `BLOCKED_NORMAL_DATA_NOT_FOUND` record is preserved. Its root
+cause remains `HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`;
+it is not the current program state.
 
-## Formal V4 authority ratification
+## Formal V4 authority
 
 - `DEC-020 = APPROVED_FORMAL_V4`
 - `DG-01 = RESOLVED_BY_USER`
-- final execution authority: `CanonicalRuleDescriptorV4` plus V4 task
-  validity, replay/conformance, Utility V4 numeric binding, portfolio freeze,
-  runtime authorization, durable prediction custody, and versioned
-  metric/result-integrity controls
-- canonical `RuleV1` / `VerifierV1`: adjacent contract components, not the
+- Formal V4 controls validity, numeric binding, replay, portfolio freeze,
+  runtime authorization, and custody
+- canonical `RuleV1` / `VerifierV1` remain adjacent components rather than the
   direct VALIDATION V2 runtime authority
-- canonical-to-V4 bridge: `NOT_SELECTED` and
-  `NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH`
+- canonical-to-V4 bridge: `NOT_SELECTED`
 
-Formal V4 controls executable eligibility and integrity. It does not prove
-scientific utility, causal or physical truth, generalization, or explanation
-usefulness.
+## Completed normal-only work
 
-## Normal-only custody recovery
-
-The approved recovery action is `CODE_BASED_MATERIALIZATION` through the
-official `icsdataset/hai-security-dataset` payload route. Git/LFS at the pinned
-official snapshot remains the identity authority. The historical public-safe
-blocker receipt remains unchanged.
-
-## Experiment disposition
-
-| Track | Status | Exact blocker |
+| Track | Status | Frozen outcome |
 |---|---|---|
-| EXP-01 | PREPARED | code materialization and custody pending; preregistration unchanged |
-| EXP-02 | PREPARED | code materialization and custody pending; preregistration unchanged |
-| EXP-03 | PREPARED | normal cohort absent; DG-03 remains pending before provider calls |
-| Stronger detector | PREPARED | authorized normal-only HAI custody binding absent |
-| EXP-04 | BLOCKED UPSTREAM | normal-only selections and V2 portfolio do not exist |
-| EXP-05 | BLOCKED UPSTREAM | materialized V2 runtime traces do not exist |
-| EXP-06 | NOT REQUIRED | outside the current minimum thesis path |
+| EXP-01 | `COMPLETE_QA_PASS` | GDN demoted; `META_PLUS_STAT` selected |
+| EXP-01B | `COMPLETE_NORMAL_ONLY` | nine CUDA runs; `GDN_ABLATION_ONLY` |
+| EXP-02 | `COMPLETE_QA_PASS` | 37 policies; `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05` |
+| V2A portfolio | `FROZEN_RUNTIME_AUTHORIZED` | 39 Formal V4 directional rules |
+| Stronger detector | `READY` | fixed normal-only Isolation Forest |
+| EXP-04 | `READY_WITH_CONDITIONS` | all predictions must freeze before test1 labels |
+| EXP-05 | `BLOCKED_BY_RUNTIME_TRACE` | waits for actual V2 runtime traces |
 
-## Fresh-machine result
+EXP-01B observed a small combined-view equal-budget gain, but failed the
+preregistered split non-degradation, positive functional effect, and unique
+executable-rule conditions. The old EXP-01 negative result remains visible and
+unchanged. No V2B primary GDN portfolio was created.
 
-The synthetic rehearsal passed from a clean checkout in a fresh Python 3.12.13
-environment using the locked public detector wheels. It exercised imports,
-RCC tests, synthetic candidate-to-metric smoke, public artifact restoration,
-registry/privacy validation, and PILOT V1 preservation without scientific data.
+## Reproducibility and optimization
 
-Receipt: `V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json`
-
-This result supports synthetic portability only. It is not scientific-data
-reproduction and does not establish held-out generalization.
-
-## Independent resume QA
-
-The `v2_resume_final_qa` independent read-only review passed with zero residual defects. It
-reproduced 258 VALIDATION V2 test passes with three expected skips, 132 RCC test
-passes, Registry/privacy PASS, and the 3,021/3,021 PILOT V1 preservation check.
-The review remains an implementation and integrity result, not scientific
-performance validation.
+The fresh-machine synthetic rehearsal remains PASS. The EXP-01B public-lineage
+replay was optimized without changing checkpoints, data, seeds, models,
+hyperparameters, or selection rules: scalar CUDA-to-host synchronization was
+replaced by equivalent vector aggregation and private atomic per-checkpoint
+caches. Independent replay found zero result mismatch and preserved the frozen
+`GDN_ABLATION_ONLY` disposition.
 
 ## Safety accounting
 
-- scientific executions: 0
+- normal-only scientific executions: 3
 - test1 accesses: 0
+- label accesses: 0
 - test2 accesses: 0
 - held-out accesses: 0
 - provider/LLM calls: 0
-- private exposures: 0
-- PILOT V1 modifications: 0
 - result-driven redesigns: 0
+- private exposures in public outputs: 0
+- PILOT V1 modifications: 0
 
-## Resume condition
+## Exact next
 
-Execute `scripts/materialize_hai_2305_normal_v2.py`, issue custody after exact
-byte/schema verification, then resume the already frozen EXP-01 and EXP-02
-preregistrations. Do not rebuild their protocols after observing outcomes.
+Run `V2-SCI-EXP04-001`: generate D0, fixed Isolation Forest, V2A Rule-only,
+and preregistered fusion predictions label-blind; atomically persist and replay
+all predictions; only then authorize DEVELOPMENT_ONLY test1 labels. DG-05
+remains mandatory before any held-out or test2 access.

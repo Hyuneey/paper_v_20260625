@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9354aedf376b4d04de0e0781c2dee042af0230809203282a5086ecab3e3570c6 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5233a060f1386f7cf785c6437e6d70b7e9bf7796130abaab4dfe9d63ff3c87 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D0 PCA-SPE를 쉽게 이해하기
 
 ## 1. PCA는 왜 쓰는가?
@@ -66,4 +66,4 @@ Rule-only 기여를 설득력 있게 평가하려면 새 독립 사전등록에�
 기억할 한 문장: **D0는 normal-only로 고정된 단순 reference detector이고, 점수·point·episode·event를
 구분해야 하며, 14-event 수치는 pilot evidence다.**
 
-다음 task는 **V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner**이다.
+다음 task는 **V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels**이다.

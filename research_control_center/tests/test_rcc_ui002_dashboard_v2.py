@@ -73,14 +73,18 @@ class DashboardV2Tests(unittest.TestCase):
 
     def test_experiment_gates_match_current_registry_state(self) -> None:
         gates = {row["experiment_id"]: row["gate"]["ready_now"] for row in self.vm["experiments"]}
-        self.assertEqual("BLOCKED", gates["EXP-01"])
-        self.assertEqual("BLOCKED", gates["EXP-02"])
+        self.assertEqual("COMPLETE", gates["EXP-01"])
+        self.assertEqual("COMPLETE", gates["EXP-01B"])
+        self.assertEqual("COMPLETE", gates["EXP-02"])
+        self.assertEqual("READY_WITH_CONDITIONS", gates["EXP-04"])
         self.assertEqual("NOT_REQUIRED", gates["EXP-06"])
 
     def test_overview_uses_current_execution_actions(self) -> None:
-        self.assertIn("DATA-AUTHORITY", self.html)
-        self.assertIn("normal HAI custody binding 복원", self.html)
+        self.assertIn("EXP-04", self.html)
+        self.assertIn("모든 label-blind prediction 생성·동결", self.html)
+        self.assertIn("LABEL-GATE", self.html)
         self.assertIn("APPROVED_FORMAL_V4", self.html)
+        self.assertNotIn("normal HAI custody binding 복원", self.html)
         self.assertNotIn("canonical→V4 bridge 미확정", self.html)
         self.assertNotIn("final authority decision required", self.html)
         for stale in ("EXP-01-PREP", "EXP-02-PREP", "DETECTOR-PREP"):
@@ -130,6 +134,13 @@ class DashboardV2Tests(unittest.TestCase):
         self.assertEqual(digest, self.vm["registry_digest"])
         self.assertIn(digest, self.html)
         self.assertEqual(0, self.vm["safety"]["private_exposures"])
+
+    def test_v2_normal_only_results_are_separate_from_pilot_results(self) -> None:
+        self.assertEqual(29, self.vm["v2_normal_only"]["candidate_union_count"])
+        self.assertEqual(39, self.vm["v2_normal_only"]["formal_v4_rule_count"])
+        self.assertIn("GDN_ABLATION_ONLY", self.vm["exp01b"]["status"])
+        self.assertIn("VALIDATION V2 · normal-only", self.html)
+        self.assertIn("PILOT V1 · VALIDATION V2 development evidence", self.html)
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
   "schema_version": "rcc-current-state-v1",
   "rcc_version": "0.1.0",
   "registry_version": "0.1.0",
-  "generated_at": "2026-08-30T22:42:05Z",
-  "last_updated": "2026-08-31",
+  "generated_at": "2026-09-02T17:00:00Z",
+  "last_updated": "2026-09-03",
   "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
   "scientific_authority": {
     "ref": "origin/research-v6-thesis-checkpoint",
@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "Architecture implementation and pilot operation are complete. Scientific validation is partial; expanded evaluation and hypothesis validation remain incomplete.",
+  "current_phase_statement": "VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STAT and its Formal V4 portfolio are frozen; EXP-04 label-blind development predictions are next.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -56,7 +56,7 @@
     "leakage_status": "NO VERIFIED LEAKAGE FOUND. PILOT V1 retains its documented D1 custody qualification; GAP-FIX-002 closes the prospective VALIDATION V2 custody gap. D2 V2 remains test1-informed development.",
     "test1_status": "INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
+    "next_deep_review": "EXP-04 label-blind prediction and durable freeze next; test1 remains unopened"
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -239,18 +239,28 @@
       {
         "id": "GDN",
         "input": "normal train1/train2 full 37-node context",
-        "method": "next-value prediction plus embedding-cosine learned graph",
-        "output": "learned-graph candidate edges",
-        "top_k": "20",
+        "method": "corrected self-excluded next-value prediction with Embedding Attention EdgeMask and Source Occlusion evidence",
+        "output": "EXP-01 and EXP-01B ablation evidence",
+        "top_k": "equal budgets 10/20/29/40; primary 29",
         "frozen_execution": true,
-        "scientific_validation": "UNVALIDATED"
+        "scientific_validation": "DEVELOPMENT_NOT_SUPPORTED_AS_PRIMARY_OR_SUPPORTING"
       }
     ],
     "learned_graph_used": true,
     "attention_as_final_evidence": false,
     "posthoc_xai_used": false,
+    "exp01b_attention_evidence_used": true,
+    "exp01b_posthoc_xai_used": true,
     "union": "unscored provenance-preserving set union of 47 unique pairs",
-    "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
+    "pilot_union": "PILOT V1 unscored provenance-preserving META/STAT/GDN union of 47 unique pairs",
+    "validation_v2a_union": "META+STAT only; 29 directed pairs",
+    "validation_v2a_confirmed": "21 pairs; 39 directional relations",
+    "exp01_status": "COMPLETE_QA_PASS; GDN_DEMOTED_TO_ABLATION; META_PLUS_STAT selected",
+    "exp01b_status": "COMPLETE_NORMAL_ONLY; 9 CUDA runs; GDN_ABLATION_ONLY",
+    "exp01b_primary_budget": 29,
+    "exp01b_equal_budget": "META+STAT yield 20 NDCG 0.7427828733; augmented yield 21 NDCG 0.7628608206",
+    "exp01b_limitation": "Combined gain failed split-view non-degradation, positive median EdgeMask, and unique executable-rule criteria; evidence is noncausal.",
+    "next_deep_review": "EXP-04 uses frozen V2A META+STAT; no V2B primary GDN portfolio"
   },
   "relation_numeric_authority": {
     "candidate_pairs": 47,
@@ -269,6 +279,22 @@
     "traceability": "FULLY_TRACEABLE_WITH_PRIVATE_VALUE_CUSTODY",
     "warning": "Normal repeated response is not causal proof. All 420 shared numeric values matched E1 in the focused audit, but historical and runtime authority/reference identities remain separate.",
     "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
+  },
+  "validation_v2a_normal_only": {
+    "status": "COMPLETE_QA_PASS",
+    "candidate_policy": "META_PLUS_STAT",
+    "candidate_union_count": 29,
+    "confirmed_pair_count": 21,
+    "confirmed_directional_relation_count": 39,
+    "exp02_candidate_count": 37,
+    "exp02_eligible_count": 28,
+    "selected_numeric_policy": "RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05",
+    "selection_split": "normal train4",
+    "selection_used_test_or_labels": false,
+    "formal_v4_rule_count": 39,
+    "portfolio_hash": "ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa",
+    "runtime_authorization_hash": "b0aefc9dab7655aaaf18774d4c90c047db8ed976ba2b67443f1c5343228a49b8",
+    "next": "EXP-04 label-blind D0 Isolation Forest Rule-only and frozen fusion predictions"
   },
   "rule_construction_authority": {
     "evidence_view": "42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata",
@@ -296,9 +322,9 @@
   },
   "research_status_summary": {
     "engineering": "Architecture substantially implemented; most frozen INNER paths executed.",
-    "result_integrity": "Explicit integrity audits exist for frozen D0, D1, D2 V1, and D2 V2 INNER results; this checks result custody and arithmetic, not performance validity.",
+    "result_integrity": "Explicit integrity audits exist for frozen D0, D1, D2 V1, D2 V2, EXP-01, EXP-01B, and EXP-02 results; this checks result custody and arithmetic, not performance validity.",
     "scientific_validation": "Partial and incomplete; major performance and contribution hypotheses remain unvalidated or unsupported.",
-    "reproducibility": "Fresh-machine independent reproduction remains pending.",
+    "reproducibility": "Fresh-machine synthetic rehearsal passed; authorized scientific-data reproduction and external reproduction remain pending.",
     "generalization": "Held-out generalization remains unconfirmed because no OUTER scientific result exists.",
     "claims": "Only narrow implementation or contract claims are supported; claims.csv is the authoritative claim view."
   },
@@ -350,7 +376,9 @@
     "Normal-only profiling and authority controls produced 23 pair contexts and 42 frozen directed relations in COMMON-42.",
     "T0, T1, T1-B, and T2 construction paths were executed on the frozen cohort; T2 performed no feedback action.",
     "Frozen integrity-audited INNER pilot artifacts exist for D0, D1, D2 V1, and D2 V2.",
-    "The OUTER record is a blocker and custody record; it is not a held-out scientific result."
+    "The OUTER record is a blocker and custody record; it is not a held-out scientific result.",
+    "VALIDATION V2A froze a 29-pair META+STAT candidate union, 39 confirmed directional relations, one selected normal-only numeric policy, and a 39-rule Formal V4 portfolio before any test access.",
+    "EXP-01 and the separate nine-run CUDA EXP-01B both retained GDN as ablation under their frozen normal-only criteria."
   ],
   "established_facts": [
     "The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.",
@@ -359,7 +387,6 @@
     "The OUTER path has a blocker record and no scientific result."
   ],
   "current_unvalidated": [
-    "GDN unique and stable scientific contribution beyond META and STAT",
     "Agentic verifier-feedback advantage",
     "Practical Rule-only operational utility",
     "Detector-plus-Rule improvement beyond the tested negative pilot policies",
@@ -367,7 +394,7 @@
     "Human explanation usefulness"
   ],
   "not_established": [
-    "GDN unique and stable scientific contribution beyond META and STAT",
+    "GDN general utility beyond the current normal-only EXP-01 and EXP-01B scope",
     "Agentic verifier-feedback advantage",
     "Practical Rule-only operational utility",
     "Detector-plus-Rule improvement",
@@ -423,7 +450,7 @@
     "warning": "Traceability is not fresh-machine reproducibility; OUTER result unavailable is not negative performance."
   },
   "pre_validation_readiness": {
-    "status": "NORMAL_CUSTODY_READY_EXECUTION_AUTHORITY_BLOCKED",
+    "status": "NORMAL_ONLY_V2A_READY_EXP04_PENDING",
     "raw_findings": 120,
     "root_issues": 19,
     "source_severity": {"critical": 0, "high": 54, "medium": 55, "low": 11},
@@ -440,10 +467,11 @@
     "p0_global_fixes": [],
     "p0_design_gates": [],
     "experiment_gates": {
-      "EXP-01": "BLOCKED",
-      "EXP-02": "BLOCKED",
+      "EXP-01": "COMPLETE",
+      "EXP-01B": "COMPLETE",
+      "EXP-02": "COMPLETE",
       "EXP-03": "BLOCKED",
-      "EXP-04": "BLOCKED",
+      "EXP-04": "READY_WITH_CONDITIONS",
       "EXP-05": "BLOCKED",
       "EXP-06": "NOT_REQUIRED",
       "NEW_HELD_OUT": "BLOCKED",
@@ -458,7 +486,7 @@
       "Retain Graph-Guided only if EXP-01 supports contribution.",
       "Retain Agentic only if EXP-03 supports contribution."
     ],
-    "warning": "Authority, durable custody, split roles, event semantics and no-tuning policy are prospectively frozen. Common metric implementation, test2 access and held-out evaluation remain unauthorized."
+    "warning": "Authority, durable custody, split roles, event semantics, common metric implementation, and no-tuning policy are frozen prospectively. EXP-04 label-blind prediction is next; test1 labels remain gated and test2/held-out remain unauthorized."
   },
   "validation_v2_authority": {
     "decision": "APPROVED_FORMAL_V4",
@@ -517,9 +545,9 @@
     "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only."
   },
   "validation_v2_program": {
-    "status": "BLOCKED_V2_SCIENTIFIC_EXECUTION_AUTHORITY_INCOMPLETE",
-    "stage": "STAGE_3_PRE_EXECUTION_AUTHORITY_COMPLETION",
-    "preparation": "EXP-01, EXP-02, EXP-03, stronger-detector, EXP-04 and EXP-05 contracts are frozen and synthetic-tested.",
+    "status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
+    "stage": "STAGE_3_EXP04_LABEL_BLIND_PREDICTION_NEXT",
+    "preparation": "EXP-01, EXP-01B, and EXP-02 normal-only work is complete; V2A META+STAT Formal V4 portfolio is frozen.",
     "scientific_input_authority": "DATA-POLICY-001_NORMAL_ONLY_CUSTODY_READY",
     "dataset_acquisition_policy": "DATA-POLICY-001",
     "dataset_acquisition_policy_path": "research_control_center/validation_v2/policies/DATA_POLICY_001.json",
@@ -537,59 +565,61 @@
     "custody_candidate_status": "NORMAL_ONLY_CUSTODY_READY; FOUR_NORMAL_SPLITS_BOUND",
     "bound_symbolic_splits": ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"],
     "missing_symbolic_splits": [],
-    "blocked_scope": "NONE_FOR_AUTHORIZED_NORMAL_ONLY_WORK; test1 test2 labels and held-out remain outside this custody binding.",
-    "required_recovery": "COMPLETED_BY_CODE_BASED_MATERIALIZATION; continue frozen EXP-01 and EXP-02 without changing preregistration.",
+    "blocked_scope": "NONE_FOR_AUTHORIZED_EXP04_LABEL_BLIND_PREDICTION; test1 labels require all-arm durable freeze; test2 and held-out remain prohibited.",
+    "required_recovery": "COMPLETED_BY_CODE_BASED_MATERIALIZATION.",
     "provider_gate": "DG-03 remains pending and is triggered only after the natural cohort and exact call/token budget can be frozen.",
-    "exp01_status": "GDN_CONTRIBUTION_UNRESOLVED_FAIL_CLOSED; execution completeness failure, not a negative GDN result.",
+    "exp01_status": "COMPLETE_QA_PASS; GDN_DEMOTED_TO_ABLATION; META_PLUS_STAT selected.",
     "exp01_readiness_receipt": "research_control_center/validation_v2/reports/EXP01_EXECUTION_READINESS_V2.json",
-    "exp02_status": "BLOCKED_EXP02_SCIENTIFIC_RUNNER_AND_COHORT_AUTHORITY; no numeric result exists.",
+    "exp01b_status": "COMPLETE_NORMAL_ONLY; GDN_ABLATION_ONLY after nine CUDA runs.",
+    "exp02_status": "COMPLETE_NORMAL_ONLY_SELECTED_POLICY_FROZEN; 37 candidates evaluated; 28 eligible.",
     "exp02_readiness_receipt": "research_control_center/validation_v2/reports/EXP02_EXECUTION_READINESS_V2.json",
-    "execution_authority_blocker": "V2 META+STAT candidate/cohort materialization and complete EXP-02 runner must be frozen before normal scientific execution; partial EXP-01 execution is prohibited.",
+    "execution_authority_blocker": "NONE_FOR_EXP04_PREDICTION; label access remains blocked until every required method prediction is durably frozen and replayed.",
     "fresh_machine_synthetic": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
     "fresh_machine_receipt_hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a",
-    "scientific_executions": 0,
+    "scientific_executions": 3,
+    "scientific_execution_scope": "EXP-01 normal-only; EXP-01B normal-only nine-run CUDA; EXP-02 normal-only selection",
     "test2_accesses": 0,
     "heldout_accesses": 0,
     "provider_calls": 0,
     "pilot_v1_impact": "NONE; 3021 of 3021 preservation entries remain byte-identical."
   },
   "top_priorities": [
-    "Implement and freeze the V2 META+STAT candidate/cohort authority and complete EXP-02 normal-only runner before scientific execution.",
-    "Keep EXP-01 fail-closed unless the complete 12-run checkpoint/intervention executor is frozen prospectively.",
+    "Generate and durably freeze all preregistered EXP-04 label-blind method predictions before any test1 label access.",
+    "Use only the frozen V2A META+STAT Formal V4 portfolio; do not create a result-driven V2B GDN portfolio.",
     "Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists."
   ],
   "highest_priority_work": [
-    "Use the issued normal-only custody binding only after the missing tracked execution authorities are frozen.",
-    "Build the V2 META+STAT cohort first, then execute the unchanged EXP-02 normal-only selection contract.",
-    "Keep EXP-04 and EXP-05 blocked until their upstream selections, durable predictions and materialized V2 traces exist."
+    "Execute EXP-04 label-blind D0 Isolation Forest Rule-only and frozen fusion predictions under their fixed authorities.",
+    "Close every prediction custody receipt before authorizing DEVELOPMENT_ONLY test1 labels.",
+    "Run EXP-05 only from actual V2 runtime traces; keep human usefulness unvalidated."
   ],
   "user_todo_items": [
     {"id": "USER-V2-001", "category": "APPROVED POLICY", "priority": "P0", "task": "DATA-POLICY-001 CODE_BASED_MATERIALIZATION으로 공식 HAI 23.05 normal 파일을 materialize하고 custody를 발급한다.", "why": "네 normal split의 byte equivalence와 schema identity가 확인되어 custody가 발급되었다.", "linked": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json", "status": "COMPLETED"},
-    {"id": "USER-V2-002", "category": "UNDERSTANDING NEEDED", "priority": "HIGH", "task": "Keep test1 development-only and test2/held-out unopened while the data authority is restored.", "why": "A missing binding is not authorization to search for or open restricted assets.", "linked": "research_control_center/validation_v2/VERSION_POLICY.md", "status": "OPEN"},
+    {"id": "USER-V2-002", "category": "PRESERVATION", "priority": "HIGH", "task": "Keep test1 development-only and test2/held-out unopened until their explicit gates.", "why": "Normal-only execution does not authorize test or held-out access.", "linked": "research_control_center/validation_v2/VERSION_POLICY.md", "status": "OPEN"},
     {"id": "USER-V2-003", "category": "DECISION LATER", "priority": "HIGH", "task": "Review DG-03 only after the EXP-03 natural cohort and exact call/token budget are frozen.", "why": "Provider contact remains zero and cannot be authorized from a symbolic budget.", "linked": "research_control_center/validation_v2/DECISION_GATES.md", "status": "OPEN"},
-    {"id": "USER-V2-004", "category": "DECISION LATER", "priority": "HIGH", "task": "Review Graph-Guided and Agentic framing after EXP-01 and EXP-03 results exist.", "why": "Both contribution labels remain conditional and cannot be retained from implementation evidence alone.", "linked": "DEC-021", "status": "OPEN"},
+    {"id": "USER-V2-004", "category": "DECISION LATER", "priority": "HIGH", "task": "Review removal of Graph-Guided from the core contribution and retain Agentic only if EXP-03 supports it.", "why": "EXP-01 and EXP-01B both left GDN as ablation; DG-04 final wording remains a user decision.", "linked": "DEC-021", "status": "OPEN"},
     {"id": "USER-V2-005", "category": "MANDATORY FUTURE GATE", "priority": "HIGH", "task": "Approve a newly preregistered held-out study before any test2 or held-out access.", "why": "The consumed old OUTER protocol cannot simply be retried.", "linked": "DG-05", "status": "OPEN"},
-    {"id": "USER-V2-006", "category": "REVIEW REQUIRED", "priority": "HIGH", "task": "Review the generated professor readiness update before any submission.", "why": "The package reports preparation and blockers, not nonexistent V2 scientific results.", "linked": "docs/professor_experiment_update_v2/01_ONE_PAGE_SUMMARY.md", "status": "OPEN"},
+    {"id": "USER-V2-006", "category": "REVIEW REQUIRED", "priority": "HIGH", "task": "Review the updated professor package before any submission.", "why": "The package now includes normal-only V2 results but no EXP-04 development or held-out performance result.", "linked": "docs/professor_experiment_update_v2/01_ONE_PAGE_SUMMARY.md", "status": "OPEN"},
     {"id": "USER-V2-007", "category": "UNDERSTANDING NEEDED", "priority": "MEDIUM", "task": "Interpret the fresh-machine PASS as synthetic portability only.", "why": "It does not establish scientific-data reproduction or held-out generalization.", "linked": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json", "status": "OPEN"},
     {"id": "USER-V2-008", "category": "PRESERVATION", "priority": "HIGH", "task": "Keep PILOT V1 immutable while Stage 3 is resumed later.", "why": "All V2 experiments require new method, authority, artifact and report identities.", "linked": "research_control_center/validation_v2/PILOT_V1_PRESERVATION_MANIFEST.json", "status": "OPEN"}
   ],
   "top_user_todo": [
-    "V2 META+STAT candidate/cohort authority와 complete EXP-02 runner를 결과 관찰 전에 구현·동결한다.",
-    "test1/test2를 열거나 normal-only binding을 확대하는 우회는 금지한다.",
-    "EXP-01은 complete 12-run executor가 없으므로 fail-closed 상태를 유지한다.",
+    "동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction과 durable freeze를 완료한다.",
+    "모든 prediction freeze 전 test1 label을 열지 않고 test2/held-out은 계속 금지한다.",
+    "EXP-01과 EXP-01B의 GDN_ABLATION_ONLY 결과를 보존하고 V2B를 post-hoc 생성하지 않는다.",
     "Review DG-03 only after the natural cohort and exact provider budget are frozen.",
-    "Keep Graph-Guided and Agentic conditional on EXP-01 and EXP-03 evidence.",
-    "Review the professor readiness package before submission; no email has been sent."
+    "Review Graph-Guided removal and Agentic conditional framing at DG-04.",
+    "Review the professor update before submission; no email has been sent."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner",
+  "recommended_next_management_task": "V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "V2-HAI-NORMAL-MATERIALIZATION-001 — official normal-only materialization and custody",
-  "exact_next_task": "V2-EXEC-AUTH-001 — freeze META+STAT cohort and complete EXP-02 runner",
+  "last_completed_task": "V2-DUALTRACK-002 — V2A META+STAT and EXP-01B GDN-XAI normal-only execution",
+  "exact_next_task": "V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels",
   "safety_counters": {
-    "scientific_executions": 0,
+    "scientific_executions": 3,
     "test2_feature_accesses": 0,
     "test2_label_accesses": 0,
     "new_private_exposures": 0
