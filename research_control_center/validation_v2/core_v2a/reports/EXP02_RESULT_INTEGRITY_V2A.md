@@ -20,4 +20,6 @@
 - focused tests: 77 PASS
 - QA의 raw HAI 및 `.env` open: 0
 
+private 실행 결과에 남은 `COMPLETE_QA_PENDING`은 결과 생성 직후의 역사적 단계 token이며, 이 독립 무결성 보고서가 해당 실행을 `PASS`로 종결한다.
+
 이 PASS는 정상 전용 정책 선택과 artifact 무결성을 뜻한다. test1 탐지 성능 검증이나 held-out 일반화를 뜻하지 않는다.

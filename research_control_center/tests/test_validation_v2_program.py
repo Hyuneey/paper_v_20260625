@@ -239,6 +239,10 @@ class ValidationV2ProgramTests(unittest.TestCase):
         summary = (package / "01_ONE_PAGE_SUMMARY.md").read_text(encoding="utf-8")
         self.assertIn("EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료", summary)
         self.assertIn("test1·공격 label·test2·held-out 접근", summary)
+        detection = (package / "07_EXP04_DETECTION_RESULTS.md").read_text(encoding="utf-8")
+        self.assertIn("META+STAT 기반 39-rule Formal V4 V2A portfolio가 고정", detection)
+        self.assertIn("LABEL-BLIND PREDICTION FREEZE NEXT", detection)
+        self.assertNotIn("EXP-01과 EXP-02, stronger detector normal-only fit, V2 portfolio가 아직 실행되지 않아", detection)
 
 
 if __name__ == "__main__":

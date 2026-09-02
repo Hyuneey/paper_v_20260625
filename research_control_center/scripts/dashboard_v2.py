@@ -303,8 +303,19 @@ def build_dashboard_view_model(
         )
         catalog.append(item)
 
+    current_gap_status = data["state"]["pre_validation_readiness"].get("current_gap_status", {})
+
+    def current_gap_row(row: Mapping[str, str]) -> dict[str, str]:
+        merged = {**row, **remediations.get(row["gap_id"], {})}
+        merged["historical_status"] = merged.get("status", "UNKNOWN")
+        current = current_gap_status.get(row["gap_id"])
+        if current:
+            merged["status"] = current["status"]
+            merged["current_resolution"] = current["summary"]
+        return merged
+
     p0 = [
-        {**row, **remediations.get(row["gap_id"], {})}
+        current_gap_row(row)
         for row in root_issues
         if remediations.get(row["gap_id"], {}).get("priority") == "P0"
     ]
@@ -347,7 +358,7 @@ def build_dashboard_view_model(
         "runtime_status_tokens": ["PASS", "FAIL", "ABSTAIN"],
         "experiments": experiments,
         "p0": p0,
-        "root_issues": [{**row, **remediations.get(row["gap_id"], {})} for row in root_issues],
+        "root_issues": [current_gap_row(row) for row in root_issues],
         "risks": [dict(row) for row in data["risks"]],
         "claims": [dict(row) for row in data["claims"]],
         "decisions": [dict(row) for row in data["decisions"]],
@@ -581,11 +592,11 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
 def _render_readiness_view(vm: Mapping[str, Any]) -> str:
     gap_labels = vm["labels"].get("gap_labels_ko", {})
     callouts = "".join(
-        f'<article class="p0-card"><span>{_esc(item["gap_id"])}</span><h3>{_esc(gap_labels.get(item["gap_id"], {}).get("title", item["title"]))}</h3><p>{_esc(gap_labels.get(item["gap_id"], {}).get("description", item["root_cause"]))}</p><dl><div><dt>주요 처분 (Primary disposition)</dt><dd>{_esc(vm["labels"].get(item["disposition"], item["disposition"]))}</dd></div><div><dt>긴급도 (Urgency)</dt><dd>{_esc(item["priority"])}</dd></div></dl></article>'
+        f'<article class="p0-card"><span>{_esc(item["gap_id"])}</span><h3>{_esc(gap_labels.get(item["gap_id"], {}).get("title", item["title"]))}</h3><p>{_esc(item.get("current_resolution", gap_labels.get(item["gap_id"], {}).get("description", item["root_cause"])))}</p><dl><div><dt>현재 V2 상태</dt><dd>{_esc(item.get("status", "UNKNOWN"))}</dd></div><div><dt>GAP-000 주요 처분</dt><dd>{_esc(vm["labels"].get(item["disposition"], item["disposition"]))}</dd></div><div><dt>GAP-000 긴급도</dt><dd>{_esc(item["priority"])}</dd></div></dl></article>'
         for item in vm["p0"]
     )
     root_rows = "".join(
-        f'<tr data-disposition="{_esc(item.get("disposition", "UNKNOWN"))}" data-priority="{_esc(item.get("priority", "UNKNOWN"))}"><th scope="row"><code>{_esc(item["gap_id"])}</code><strong>{_esc(item["title"])}</strong></th><td>{_esc(vm["labels"].get(item.get("disposition", "UNKNOWN"), item.get("disposition", "UNKNOWN")))}</td><td>{_esc(item.get("priority", "UNKNOWN"))}</td><td>{_esc(item["scientific_impact"])}</td><td>{_esc(item.get("recommended_action", "UNKNOWN"))}</td><td>{_esc(item.get("status", "UNKNOWN"))}</td></tr>'
+        f'<tr data-disposition="{_esc(item.get("disposition", "UNKNOWN"))}" data-priority="{_esc(item.get("priority", "UNKNOWN"))}"><th scope="row"><code>{_esc(item["gap_id"])}</code><strong>{_esc(gap_labels.get(item["gap_id"], {}).get("title", item["title"]))}</strong></th><td>{_esc(vm["labels"].get(item.get("disposition", "UNKNOWN"), item.get("disposition", "UNKNOWN")))}</td><td>{_esc(item.get("priority", "UNKNOWN"))}</td><td>{_esc(item["scientific_impact"])}</td><td>{_esc(item.get("current_resolution", item.get("recommended_action", "UNKNOWN")))}</td><td>{_esc(item.get("status", "UNKNOWN"))}</td></tr>'
         for item in vm["root_issues"]
     )
     disposition_items = "".join(
@@ -595,9 +606,9 @@ def _render_readiness_view(vm: Mapping[str, Any]) -> str:
     priority_items = "".join(f'<li><span>{_esc(key)}</span><strong>{value}</strong></li>' for key, value in vm["readiness"]["priority_counts"].items())
     return f'''
     <section class="view-panel" id="view-readiness" data-view-panel="readiness" aria-labelledby="nav-readiness" hidden>
-      <header class="view-heading"><div><p class="kicker">GAP-000 · triage only</p><h2>준비도·위험</h2><p>주요 처분 (Primary disposition)과 긴급도 (Urgency)는 서로 다른 축입니다. 전체 완료율은 만들지 않습니다.</p></div></header>
+      <header class="view-heading"><div><p class="kicker">GAP-000 원분류 · 현재 V2 해결 상태</p><h2>준비도·위험</h2><p>GAP-000의 주요 처분 (Primary disposition)·긴급도 (Urgency)와 이후 VALIDATION V2의 해결 상태를 분리해 표시합니다. 전체 완료율은 만들지 않습니다.</p></div></header>
       <div class="p0-grid">{callouts}</div>
-      <div class="readiness-summary"><article class="panel"><h3>주요 처분</h3><ul>{disposition_items}</ul></article><article class="panel"><h3>긴급도</h3><ul>{priority_items}</ul></article><article class="panel core-gate"><h3>핵심 검증 Gate</h3><ol><li>완료: Final scientific authority</li><li>완료: D1 durable pre-label custody</li><li>완료: Validation/final 역할과 event 의미 고정</li><li>현재: portable metric contract 구현</li><li>예정: stronger detector와 fusion selection protocol</li></ol></article></div>
+      <div class="readiness-summary"><article class="panel"><h3>GAP-000 원분류</h3><ul>{disposition_items}</ul></article><article class="panel"><h3>GAP-000 원긴급도</h3><ul>{priority_items}</ul></article><article class="panel core-gate"><h3>핵심 검증 Gate</h3><ol><li>완료: Final scientific authority</li><li>완료: D1 durable pre-label custody</li><li>완료: Validation/final 역할과 event 의미 고정</li><li>완료: portable metric contract</li><li>현재: frozen EXP-04 label-blind prediction과 durable freeze</li></ol></article></div>
       <section class="panel readiness-table"><div class="panel-heading"><div><p class="kicker">19 root issues</p><h3>전체 remediation inventory</h3></div><div class="inline-filters"><label>Disposition<select id="gap-disposition"><option value="">전체</option>{''.join(f'<option value="{_esc(key)}">{_esc(vm["labels"].get(key,key))}</option>' for key in vm["readiness"]["disposition_counts"])}</select></label><label>Urgency<select id="gap-priority"><option value="">전체</option><option>P0</option><option>P1</option><option>P2</option><option>P3</option></select></label></div></div><div class="table-wrap"><table><thead><tr><th>Gap</th><th>Primary disposition</th><th>Urgency</th><th>과학 영향</th><th>권고 조치</th><th>상태</th></tr></thead><tbody id="gap-table-body">{root_rows}</tbody></table></div></section>
     </section>'''
 

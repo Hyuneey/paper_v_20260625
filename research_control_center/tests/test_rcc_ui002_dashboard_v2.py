@@ -90,6 +90,19 @@ class DashboardV2Tests(unittest.TestCase):
         for stale in ("EXP-01-PREP", "EXP-02-PREP", "DETECTOR-PREP"):
             self.assertNotIn(stale, self.html)
 
+    def test_readiness_separates_historical_gap_triage_from_current_v2_resolution(self) -> None:
+        current = {row["gap_id"]: row["status"] for row in self.vm["root_issues"]}
+        self.assertEqual("CLOSED_VALIDATION_V2", current["GAP-001"])
+        self.assertEqual("CLOSED_VALIDATION_V2", current["GAP-002"])
+        self.assertEqual("V2_PROTOCOL_FROZEN_HELDOUT_GATE_PENDING", current["GAP-003"])
+        self.assertEqual(
+            "V2_EVENT_METRIC_SEMANTICS_FROZEN_EXTERNAL_VALIDITY_PENDING",
+            current["GAP-004"],
+        )
+        self.assertIn("GAP-000 원분류 · 현재 V2 해결 상태", self.html)
+        self.assertIn("VALIDATION V2 durable pre-label gate 완료", self.html)
+        self.assertNotIn("D1에 label 접근 전 영구 prediction gate가 없음", self.html)
+
     def test_korean_primary_labels_preserve_scientific_identifiers(self) -> None:
         for label in ("현재 연구 단계", "정확한 다음 작업", "전체 연구 시스템 지도", "결과 무결성 확인", "과학적 검증"):
             self.assertIn(label, self.html)
