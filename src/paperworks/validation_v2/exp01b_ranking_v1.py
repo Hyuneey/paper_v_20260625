@@ -47,6 +47,16 @@ def target_local_percentiles_v1(scores: Mapping[Pair, float]) -> dict[Pair, floa
     return result
 
 
+def ranking_membership_percentiles_v1(ranking: Sequence[Pair]) -> dict[Pair, float]:
+    ordered = tuple(ranking)
+    if not ordered or len(ordered) != len(set(ordered)) or any(pair not in PAIR_UNIVERSE for pair in ordered):
+        raise Exp01BRankingError("arm ranking identities are invalid")
+    result = {pair: 0.0 for pair in PAIR_UNIVERSE}
+    for index, pair in enumerate(ordered):
+        result[pair] = 1.0 if len(ordered) == 1 else 1.0 - index / (len(ordered) - 1)
+    return result
+
+
 def aggregate_seed_percentiles_v1(
     percentiles_by_seed: Mapping[int, Mapping[Pair, float]],
 ) -> dict[Pair, float]:
@@ -215,5 +225,6 @@ __all__ = [
     "aggregate_seed_percentiles_v1", "apply_frozen_disposition_rule_v1",
     "deterministic_ranking_v1", "directional_relation_yield_at_k_v1", "equal_weight_augmented_scores_v1",
     "functional_consensus_v1", "jaccard_at_k_v1",
-    "precision_recall_ndcg_at_k_v1", "target_local_percentiles_v1",
+    "precision_recall_ndcg_at_k_v1", "ranking_membership_percentiles_v1",
+    "target_local_percentiles_v1",
 ]

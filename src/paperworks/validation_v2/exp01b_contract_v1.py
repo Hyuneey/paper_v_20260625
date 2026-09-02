@@ -36,6 +36,18 @@ ATTENTION_ATOL = 1e-7
 ATTENTION_RTOL = 1e-6
 RELATIVE_DELTA_EPSILON = 1e-12
 OCCLUSION_BLOCK_WIDTH = 5
+REQUIRED_CUBLAS_WORKSPACE_CONFIG = ":4096:8"
+REQUIRED_PYTHONHASHSEED = "0"
+FUNCTIONAL_VARIANT_CHUNK_SIZE = 8
+FUNCTIONAL_BATCH_EQUIVALENCE_ATOL = 1e-6
+FUNCTIONAL_BATCH_EQUIVALENCE_RTOL = 1e-5
+REQUIRED_DETERMINISTIC_FLAGS = (
+    ("cudnn_benchmark", False),
+    ("cudnn_deterministic", True),
+    ("cudnn_tf32", False),
+    ("deterministic_algorithms", True),
+    ("matmul_tf32", False),
+)
 SOURCE_OCCLUSION_TRANSFORM = "FIXED_SEED_WITHIN_FILE_SOURCE_HISTORY_BLOCK_PERMUTATION_V1"
 RANK_TIE_POLICY = "LEXICAL_PAIR_IDENTITY_ASCENDING"
 PERCENTILE_POLICY = "TARGET_LOCAL_BEST_ONE_WORST_ZERO_LEXICAL_TIES_V1"
@@ -56,6 +68,9 @@ def _environment_body_v1(
     cuda_build: str, driver_version: str, gpu_model: str, dtype: str,
     deterministic_flags: tuple[tuple[str, bool], ...], synthetic_smoke_passed: bool,
     model_device: str, tensor_device: str,
+    cublas_workspace_config: str, pythonhashseed: str,
+    process_launch_verified: bool,
+    functional_variant_chunk_size: int,
 ) -> dict[str, Any]:
     return {
         "schema": "paperworks.validation_v2.exp01b_environment_freeze_v1",
@@ -72,6 +87,10 @@ def _environment_body_v1(
         "synthetic_smoke_passed": synthetic_smoke_passed,
         "model_device": model_device,
         "tensor_device": tensor_device,
+        "cublas_workspace_config": cublas_workspace_config,
+        "pythonhashseed": pythonhashseed,
+        "process_launch_verified": process_launch_verified,
+        "functional_variant_chunk_size": functional_variant_chunk_size,
     }
 
 
@@ -85,6 +104,7 @@ class Exp01BTrainingConfigV1:
     slide_stride: int = 1
     embedding_dim: int = 64
     out_layer_num: int = 1
+    out_layer_inter_dim: int = 128
     learned_graph_topk: int = 5
     validation_ratio: float = 0.2
     learning_rate: float = 0.001
@@ -116,6 +136,7 @@ class Exp01BTrainingConfigV1:
             "slide_stride": self.slide_stride,
             "embedding_dim": self.embedding_dim,
             "out_layer_num": self.out_layer_num,
+            "out_layer_inter_dim": self.out_layer_inter_dim,
             "learned_graph_topk": self.learned_graph_topk,
             "validation_ratio": self.validation_ratio,
             "learning_rate": self.learning_rate,
@@ -145,6 +166,10 @@ class Exp01BEnvironmentFreezeV1:
     synthetic_smoke_passed: bool
     model_device: str
     tensor_device: str
+    cublas_workspace_config: str
+    pythonhashseed: str
+    process_launch_verified: bool
+    functional_variant_chunk_size: int
 
     def __post_init__(self) -> None:
         require_sha256(self.environment_hash, "environment_hash")
@@ -165,6 +190,14 @@ class Exp01BEnvironmentFreezeV1:
             "NONE_CPU_BUILD", "CUDA_UNAVAILABLE_IN_SEPARATE_FALLBACK_ENVIRONMENT"
         }:
             raise Exp01BContractError("CPU fallback identity is ambiguous")
+        if (
+            self.cublas_workspace_config != REQUIRED_CUBLAS_WORKSPACE_CONFIG
+            or self.pythonhashseed != REQUIRED_PYTHONHASHSEED
+            or not self.process_launch_verified
+            or self.deterministic_flags != REQUIRED_DETERMINISTIC_FLAGS
+            or self.functional_variant_chunk_size != FUNCTIONAL_VARIANT_CHUNK_SIZE
+        ):
+            raise Exp01BContractError("frozen process-launch determinism is incomplete")
 
     def body_document(self) -> dict[str, Any]:
         return _environment_body_v1(
@@ -174,6 +207,10 @@ class Exp01BEnvironmentFreezeV1:
             dtype=self.dtype, deterministic_flags=self.deterministic_flags,
             synthetic_smoke_passed=self.synthetic_smoke_passed,
             model_device=self.model_device, tensor_device=self.tensor_device,
+            cublas_workspace_config=self.cublas_workspace_config,
+            pythonhashseed=self.pythonhashseed,
+            process_launch_verified=self.process_launch_verified,
+            functional_variant_chunk_size=self.functional_variant_chunk_size,
         )
 
 
@@ -182,6 +219,10 @@ def build_environment_freeze_v1(
     cuda_build: str, driver_version: str, gpu_model: str,
     deterministic_flags: Mapping[str, bool], synthetic_smoke_passed: bool,
     model_device: str, tensor_device: str,
+    cublas_workspace_config: str = REQUIRED_CUBLAS_WORKSPACE_CONFIG,
+    pythonhashseed: str = REQUIRED_PYTHONHASHSEED,
+    process_launch_verified: bool = True,
+    functional_variant_chunk_size: int = FUNCTIONAL_VARIANT_CHUNK_SIZE,
 ) -> Exp01BEnvironmentFreezeV1:
     flags = tuple(sorted((str(key), value) for key, value in deterministic_flags.items()))
     if not flags or any(type(value) is not bool for _, value in flags):
@@ -192,6 +233,10 @@ def build_environment_freeze_v1(
         dtype="float32", deterministic_flags=flags,
         synthetic_smoke_passed=synthetic_smoke_passed,
         model_device=model_device, tensor_device=tensor_device,
+        cublas_workspace_config=cublas_workspace_config,
+        pythonhashseed=pythonhashseed,
+        process_launch_verified=process_launch_verified,
+        functional_variant_chunk_size=functional_variant_chunk_size,
     ))
     return Exp01BEnvironmentFreezeV1(
         backend=backend, python_version=python_version, torch_version=torch_version,
@@ -199,6 +244,10 @@ def build_environment_freeze_v1(
         dtype="float32", deterministic_flags=flags, environment_hash=digest,
         synthetic_smoke_passed=synthetic_smoke_passed,
         model_device=model_device, tensor_device=tensor_device,
+        cublas_workspace_config=cublas_workspace_config,
+        pythonhashseed=pythonhashseed,
+        process_launch_verified=process_launch_verified,
+        functional_variant_chunk_size=functional_variant_chunk_size,
     )
 
 
@@ -233,6 +282,17 @@ def preregistration_body_v1() -> dict[str, Any]:
             "fallback": "ONE_SEPARATE_CPU_ENVIRONMENT_FROZEN_BEFORE_RUN_1",
             "backend_mixing": "PROHIBITED",
             "synthetic_smoke_required": True,
+            "process_launch": {
+                "CUBLAS_WORKSPACE_CONFIG": REQUIRED_CUBLAS_WORKSPACE_CONFIG,
+                "PYTHONHASHSEED": REQUIRED_PYTHONHASHSEED,
+                "must_be_set_before_interpreter": True,
+            },
+            "deterministic_flags": dict(REQUIRED_DETERMINISTIC_FLAGS),
+            "synthetic_smoke": "FULL_FORWARD_BACKWARD_OPTIMIZER_STEP",
+            "functional_variant_chunk_size": FUNCTIONAL_VARIANT_CHUNK_SIZE,
+            "chunk_size_role": "EXECUTION_ONLY_PRE_RUN_BOUND_NO_SCIENTIFIC_SEMANTIC_EFFECT",
+            "functional_batch_equivalence_atol": FUNCTIONAL_BATCH_EQUIVALENCE_ATOL,
+            "functional_batch_equivalence_rtol": FUNCTIONAL_BATCH_EQUIVALENCE_RTOL,
         },
         "upstream_gdn_commit": UPSTREAM_GDN_COMMIT,
         "feature_order_hash": FEATURE_ORDER_HASH,
@@ -317,7 +377,10 @@ __all__ = [
     "ATTENTION_ATOL", "ATTENTION_RTOL", "ComputeBackend", "EVALUATION_BUDGETS",
     "EXPERIMENT_ID", "Exp01BContractError", "Exp01BEnvironmentFreezeV1",
     "Exp01BTrainingConfigV1", "OCCLUSION_BLOCK_WIDTH", "PRIMARY_BUDGET",
-    "RELATIVE_DELTA_EPSILON", "SOURCE_OCCLUSION_TRANSFORM", "VIEWS",
+    "FUNCTIONAL_BATCH_EQUIVALENCE_ATOL", "FUNCTIONAL_BATCH_EQUIVALENCE_RTOL",
+    "FUNCTIONAL_VARIANT_CHUNK_SIZE", "RELATIVE_DELTA_EPSILON", "REQUIRED_CUBLAS_WORKSPACE_CONFIG",
+    "REQUIRED_DETERMINISTIC_FLAGS", "REQUIRED_PYTHONHASHSEED",
+    "SOURCE_OCCLUSION_TRANSFORM", "VIEWS",
     "build_environment_freeze_v1", "preregistration_body_v1", "preregistration_document_v1",
     "validate_environment_schedule_v1",
 ]

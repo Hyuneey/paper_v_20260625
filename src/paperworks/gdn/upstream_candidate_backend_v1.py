@@ -283,8 +283,18 @@ class DependencyEnvironmentV1:
 
     @property
     def exact_approved_backend(self) -> bool:
+        # Official PyTorch binary builds append a PEP 440 local-version tag
+        # (for example ``+cpu`` or ``+cu130``) to the frozen public version.
+        # The tag identifies the compute backend; it does not change the
+        # upstream PyTorch release.  Keep the release gate exact while allowing
+        # that separately receipt-bound backend identity.
+        torch_release = (
+            self.torch_version.split("+", 1)[0]
+            if self.torch_version is not None
+            else None
+        )
         return (
-            self.torch_version == APPROVED_PORT_DEPENDENCIES["torch"]
+            torch_release == APPROVED_PORT_DEPENDENCIES["torch"]
             and self.torch_geometric_version == APPROVED_PORT_DEPENDENCIES["torch-geometric"]
         )
 

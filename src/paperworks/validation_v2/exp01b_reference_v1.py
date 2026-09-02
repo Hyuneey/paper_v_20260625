@@ -11,6 +11,7 @@ from paperworks.validation_v2.exp01_scientific_v1 import (
     SOURCE_VARIABLES,
     TARGET_VARIABLES,
 )
+from paperworks.validation_v2.formal_v4_authority_v1 import V4_HORIZONS_SECONDS
 from paperworks.v6.common import require_sha256, stable_hash_v1
 
 
@@ -35,7 +36,7 @@ class NormalConfirmedDirectionalRelationV1:
             raise Exp01BReferenceError("source direction is invalid")
         if self.target_direction not in {"increase", "decrease"}:
             raise Exp01BReferenceError("target direction is invalid")
-        if self.selected_horizon_seconds not in {1, 2, 3, 5, 10}:
+        if self.selected_horizon_seconds not in V4_HORIZONS_SECONDS:
             raise Exp01BReferenceError("relation horizon is outside the frozen protocol")
         require_sha256(self.relation_binding_hash, "relation_binding_hash")
         expected = directional_relation_id_v1(
