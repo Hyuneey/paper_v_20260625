@@ -72,6 +72,10 @@ ORIGINAL_RESULT_NAMES = (
     "EXP01B_FUNCTIONAL_RESULTS.csv",
     "EXP01B_RULE_CONVERSION_RESULTS.csv",
 )
+CACHE_PRODUCER_SOURCE_COMMIT = "6fda849bfa2328a495cd33620f97c22e15b9656f"
+CACHE_PRODUCER_SCRIPT_SHA256 = "60d01e44a5a722fafe9dc13733e4767bb6bd1e2f316702a84dfe17662a0354a8"
+CACHE_PRODUCER_BACKEND_SHA256 = "f6e9e83e2fc55457c73f980eaf38dfef227fc4b29062fefc80205ba26890e3a4"
+CACHE_PRODUCER_IMPLEMENTATION_HASH = "77000d7aaf4922122e4d0e98984f009f696bb9962d76713cb1d4eb10e522fc57"
 
 
 class Exp01BLineageClosureError(RuntimeError):
@@ -106,6 +110,11 @@ def _sha256_file(path: Path) -> str:
 def _write_new_json(path: Path, body: Mapping[str, Any], *, hash_field: str = "receipt_hash") -> dict[str, Any]:
     document = {**body, hash_field: stable_hash_v1(body)}
     original._assert_public_document_safe(document)
+    payload = _canonical(document) + b"\n"
+    if path.exists():
+        if path.read_bytes() != payload:
+            raise Exp01BLineageClosureError("EXP01B_EXISTING_PUBLIC_JSON_MISMATCH")
+        return document
     original._write_new(path, document)
     return document
 
@@ -122,6 +131,10 @@ def _write_new_csv(path: Path, rows: Sequence[Mapping[str, Any]]) -> str:
     writer.writerows(rows)
     payload = buffer.getvalue().encode("utf-8")
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        if path.read_bytes() != payload:
+            raise Exp01BLineageClosureError("EXP01B_EXISTING_PUBLIC_TABLE_MISMATCH")
+        return sha256(payload).hexdigest()
     descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     try:
         with os.fdopen(descriptor, "wb", closefd=False) as stream:
@@ -156,14 +169,35 @@ def _write_atomic_private_json(path: Path, document: Mapping[str, Any]) -> None:
         raise Exp01BLineageClosureError("EXP01B_PRIVATE_CACHE_REOPEN_MISMATCH")
 
 
-def _implementation_identity(root: Path) -> dict[str, Any]:
+def _cache_producer_implementation_identity(root: Path) -> dict[str, Any]:
+    files = {
+        "lineage_script": "scripts/finalize_exp01b_public_lineage.py",
+        "lineage_backend": "src/paperworks/validation_v2/exp01b_backend_v1.py",
+    }
+    if _sha256_file(root / files["lineage_backend"]) != CACHE_PRODUCER_BACKEND_SHA256:
+        raise Exp01BLineageClosureError("EXP01B_CACHE_BACKEND_IMPLEMENTATION_CHANGED")
+    hashes = {
+        "lineage_script": CACHE_PRODUCER_SCRIPT_SHA256,
+        "lineage_backend": CACHE_PRODUCER_BACKEND_SHA256,
+    }
+    body = {
+        "algorithm": "EXP01B_VECTORIZED_ATTENTION_LINEAGE_V2",
+        "files": files,
+        "file_sha256": hashes,
+    }
+    if stable_hash_v1(body) != CACHE_PRODUCER_IMPLEMENTATION_HASH:
+        raise Exp01BLineageClosureError("EXP01B_CACHE_IMPLEMENTATION_IDENTITY_INVALID")
+    return {**body, "implementation_hash": CACHE_PRODUCER_IMPLEMENTATION_HASH}
+
+
+def _publisher_implementation_identity(root: Path) -> dict[str, Any]:
     files = {
         "lineage_script": "scripts/finalize_exp01b_public_lineage.py",
         "lineage_backend": "src/paperworks/validation_v2/exp01b_backend_v1.py",
     }
     hashes = {name: _sha256_file(root / path) for name, path in files.items()}
     body = {
-        "algorithm": "EXP01B_VECTORIZED_ATTENTION_LINEAGE_V2",
+        "algorithm": "EXP01B_PUBLIC_LINEAGE_PUBLISHER_V2",
         "files": files,
         "file_sha256": hashes,
     }
@@ -349,6 +383,18 @@ def _mean_pairwise_jaccard(rankings: Mapping[int, Sequence[tuple[str, str]]], k:
     )
 
 
+def _aggregate_functional_consensus(
+    *, edge_by_seed: Mapping[int, Mapping[tuple[str, str], float]],
+    attention_by_seed: Mapping[int, Mapping[tuple[str, str], float]],
+) -> dict[tuple[str, str], float]:
+    """Apply the immutable scientific runner's seed-then-consensus order."""
+
+    return functional_consensus_v1(
+        edge_mask=aggregate_seed_percentiles_v1(edge_by_seed),
+        attention=aggregate_seed_percentiles_v1(attention_by_seed),
+    )
+
+
 def _reference_rows(
     *, train1: Any, train2: Any, train3: Any, receipt_hashes: Mapping[str, str],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], str]:
@@ -474,7 +520,8 @@ def finalize(root: Path) -> None:
         raise Exp01BLineageClosureError("EXP01B_ORIGINAL_DISPOSITION_CHANGED")
     functional = _read_functional_rows(root / RESULT_ROOT / "EXP01B_FUNCTIONAL_RESULTS.csv")
     config = Exp01BDeviceTrainingConfigV1(device="cuda")
-    implementation = _implementation_identity(root)
+    cache_implementation = _cache_producer_implementation_identity(root)
+    publisher_implementation = _publisher_implementation_identity(root)
     source_commit = original._head(root)
     evidence: dict[tuple[str, int], Any] = {}
     checkpoint_payloads: dict[tuple[str, int], dict[str, Any]] = {}
@@ -496,7 +543,8 @@ def finalize(root: Path) -> None:
             original_input_receipt_hash=original_input_receipt_hash,
             preregistration_hash=str(preregistration["preregistration_hash"]),
             environment_hash=str(environment_document["environment"]["environment_hash"]),
-            source_commit=source_commit, implementation=implementation, config=config,
+            source_commit=CACHE_PRODUCER_SOURCE_COMMIT,
+            implementation=cache_implementation, config=config,
         )
         cache_path = cache_root / f"{run_id}.json"
         cached = _load_private_cache(cache_path, expected_identity=identity)
@@ -589,6 +637,21 @@ def finalize(root: Path) -> None:
             aggregate_scores[(arm, view)] = aggregate_seed_percentiles_v1({
                 seed: arm_seed_scores[(arm, view, seed)] for seed in (11, 23, 37)
             })
+    # Replay the frozen scientific runner's exact operation order: aggregate
+    # EdgeMask and Attention across seeds first, then form the functional
+    # consensus.  Per-seed consensus remains available only for the expanded
+    # stability table and must not replace this authoritative aggregate.
+    for view in VIEWS:
+        aggregate_scores[("GDN_FUNCTIONAL_CONSENSUS", view)] = _aggregate_functional_consensus(
+            edge_by_seed={
+                seed: arm_seed_scores[("GDN_EDGEMASK", view, seed)]
+                for seed in (11, 23, 37)
+            },
+            attention_by_seed={
+                seed: arm_seed_scores[("GDN_ATTENTION", view, seed)]
+                for seed in (11, 23, 37)
+            },
+        )
 
     pair_ranking_rows: list[dict[str, Any]] = []
     seed_ranking_rows: list[dict[str, Any]] = []
@@ -751,8 +814,10 @@ def finalize(root: Path) -> None:
             "status": "COMPLETE_NINE_CHECKPOINT_CACHE_CLOSURE",
             "cache_count": len(lineage_cache_hashes),
             "run_cache_hashes": dict(sorted(lineage_cache_hashes.items())),
-            "implementation": implementation,
-            "source_commit": source_commit,
+            "cache_producer_implementation": cache_implementation,
+            "cache_producer_source_commit": CACHE_PRODUCER_SOURCE_COMMIT,
+            "publisher_implementation": publisher_implementation,
+            "publisher_source_commit": source_commit,
             "private_cache_committed": False,
             "private_paths_disclosed": False,
             "training_reexecuted": False,
@@ -825,7 +890,8 @@ def finalize(root: Path) -> None:
         "original_result_hash": original_result["result_hash"],
         "original_scientific_run_source_commit": environment_document["source_commit"],
         "lineage_closure_source_commit": original._head(root),
-        "lineage_implementation": implementation,
+        "cache_producer_implementation": cache_implementation,
+        "lineage_publisher_implementation": publisher_implementation,
         "preregistration_hash": preregistration["preregistration_hash"],
         "environment_receipt_hash": environment_document["receipt_hash"],
         "checkpoint_set_receipt_hash": original_result["checkpoint_set_receipt_hash"],

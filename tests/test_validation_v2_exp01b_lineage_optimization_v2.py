@@ -107,6 +107,34 @@ class Exp01BLineageOptimizationTests(unittest.TestCase):
         ignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn("artifacts/", ignore)
 
+    def test_functional_consensus_preserves_frozen_seed_then_consensus_order(self) -> None:
+        pairs = tuple(PAIR_UNIVERSE[:3])
+        def full(first: float, second: float, third: float) -> dict[tuple[str, str], float]:
+            result = {pair: 0.0 for pair in PAIR_UNIVERSE}
+            result.update({pairs[0]: first, pairs[1]: second, pairs[2]: third})
+            return result
+
+        edge = {
+            11: full(1.0, 0.0, 0.5),
+            23: full(0.0, 1.0, 0.5),
+            37: full(0.8, 0.2, 0.4),
+        }
+        attention = {
+            11: full(0.2, 0.8, 0.4),
+            23: full(0.9, 0.1, 0.6),
+            37: full(0.7, 0.3, 0.5),
+        }
+        expected = MODULE.functional_consensus_v1(
+            edge_mask=MODULE.aggregate_seed_percentiles_v1(edge),
+            attention=MODULE.aggregate_seed_percentiles_v1(attention),
+        )
+        self.assertEqual(
+            MODULE._aggregate_functional_consensus(
+                edge_by_seed=edge, attention_by_seed=attention,
+            ),
+            expected,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
