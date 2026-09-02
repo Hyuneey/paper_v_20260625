@@ -15,10 +15,14 @@ from paperworks.gdn.exp01_upstream_backend_v2 import (
     Exp01BackendTrainingResultV2,
     _FileLocalLazyWindows,
     _edge_index_from_graph,
+    _graph_from_indices,
     _predict_with_fixed_graph,
     train_exp01_seed_v2,
 )
-from paperworks.gdn.upstream_candidate_backend_v2 import _load_runtime_types_v2
+from paperworks.gdn.upstream_candidate_backend_v2 import (
+    _load_runtime_types_v2,
+    stable_torch_neighbors_v2,
+)
 from paperworks.validation_v2.exp01_scientific_v1 import (
     ArmId,
     PAIR_UNIVERSE,
@@ -83,6 +87,86 @@ def aggregate_attention_from_augmented_edges_v1(
     if any(counts[edge] != batch_size for edge in graph_edges):
         raise AttentionArmUnavailableError("explicit attention edge multiplicity mismatch")
     return {edge: sums[edge] / batch_size for edge in graph_edges}
+
+
+def aggregate_attention_from_augmented_tensors_v2(
+    *, torch_module: Any, augmented_edges: Any, alpha_values: Any,
+    node_count: int, feature_order: Sequence[str],
+    graph_edges: Sequence[tuple[str, str]], batch_size: int,
+) -> dict[tuple[str, str], float]:
+    """Vectorized equivalent of the audited explicit-edge aggregation.
+
+    The V1 implementation transferred every augmented edge and alpha value
+    separately from CUDA.  That introduced thousands of synchronization
+    points per batch.  This adapter validates the same explicit identities on
+    device, performs one bulk transfer, and retains the V1 Python-float
+    accumulation order for each frozen edge.
+    """
+
+    if (
+        node_count != len(feature_order)
+        or batch_size <= 0
+        or int(augmented_edges.ndim) != 2
+        or int(augmented_edges.shape[0]) != 2
+        or int(alpha_values.shape[0]) != int(augmented_edges.shape[1])
+    ):
+        raise AttentionArmUnavailableError("attention edge/value dimensions differ")
+    edges = tuple(graph_edges)
+    if not edges or len(edges) != len(set(edges)):
+        raise AttentionArmUnavailableError("frozen graph edge identities are invalid")
+    positions = {name: index for index, name in enumerate(feature_order)}
+    try:
+        graph_codes = tuple(
+            positions[source] * node_count + positions[target]
+            for source, target in edges
+        )
+    except KeyError as exc:
+        raise AttentionArmUnavailableError("frozen graph edge is outside feature order") from exc
+    if len(graph_codes) != len(set(graph_codes)):
+        raise AttentionArmUnavailableError("frozen graph local edge identities collide")
+
+    device = alpha_values.device
+    augmented = augmented_edges.to(device=device, dtype=torch_module.long)
+    raw_source, raw_target = augmented[0], augmented[1]
+    source_batch = torch_module.div(raw_source, node_count, rounding_mode="floor")
+    target_batch = torch_module.div(raw_target, node_count, rounding_mode="floor")
+    if bool(torch_module.any(source_batch != target_batch)):
+        raise AttentionArmUnavailableError("augmented attention crosses batch graphs")
+    source_local = torch_module.remainder(raw_source, node_count)
+    target_local = torch_module.remainder(raw_target, node_count)
+    non_self = source_local != target_local
+
+    lookup = torch_module.full(
+        (node_count * node_count,), -1, dtype=torch_module.long, device=device,
+    )
+    code_tensor = torch_module.tensor(graph_codes, dtype=torch_module.long, device=device)
+    lookup[code_tensor] = torch_module.arange(len(edges), dtype=torch_module.long, device=device)
+    active_codes = source_local[non_self] * node_count + target_local[non_self]
+    graph_ids = lookup[active_codes]
+    if bool(torch_module.any(graph_ids < 0)):
+        raise AttentionArmUnavailableError("augmented attention edge is not in the frozen graph")
+    slots = source_batch[non_self] * len(edges) + graph_ids
+    expected_count = batch_size * len(edges)
+    if int(slots.numel()) != expected_count:
+        raise AttentionArmUnavailableError("explicit attention edge multiplicity mismatch")
+    ordered_slots, order = torch_module.sort(slots)
+    if not bool(torch_module.equal(
+        ordered_slots,
+        torch_module.arange(expected_count, dtype=torch_module.long, device=device),
+    )):
+        raise AttentionArmUnavailableError("explicit attention edge identities are incomplete")
+
+    alpha = alpha_values.detach().reshape(int(alpha_values.shape[0]), -1).mean(dim=1)
+    active_alpha = alpha[non_self]
+    if not bool(torch_module.all(torch_module.isfinite(active_alpha))):
+        raise AttentionArmUnavailableError("attention value is non-finite")
+    # One device-to-host synchronization replaces one .item() per augmented
+    # edge.  Sorting by (batch, graph edge) preserves the V1 accumulation order.
+    by_edge = active_alpha[order].reshape(batch_size, len(edges)).T.cpu().tolist()
+    return {
+        edge: sum(float(value) for value in values) / batch_size
+        for edge, values in zip(edges, by_edge)
+    }
 
 
 @dataclass(frozen=True)
@@ -160,6 +244,23 @@ class Exp01BCheckpointEvidenceV1:
     attention_invariance_passed: bool
 
 
+@dataclass(frozen=True)
+class Exp01BLineageEvidenceV1:
+    """Minimal fixed-checkpoint evidence used to close public audit lineage.
+
+    This adapter intentionally excludes training, full EdgeMask evaluation, and
+    source occlusion.  Those scientific outputs were already frozen by the
+    original run.  It recovers only embedding/attention rankings and graph
+    identity from the immutable checkpoint.
+    """
+
+    embedding_scores: Mapping[tuple[str, str], float]
+    attention_scores: Mapping[tuple[str, str], float]
+    attention_invariance_passed: bool
+    graph_edges: tuple[tuple[str, str], ...]
+    graph_hash: str
+
+
 def train_exp01b_seed_v1(
     *, segments: Sequence[Any], feature_order: Sequence[str], seed: int,
     config: Exp01BDeviceTrainingConfigV1,
@@ -172,6 +273,149 @@ def train_exp01b_seed_v1(
         seed=seed,
         config=config,  # type: ignore[arg-type] -- exact device-only V2 adapter
     )
+
+
+def replay_exp01b_graph_v1(
+    *, state_dict: Mapping[str, Any], feature_order: Sequence[str],
+    config: Exp01BDeviceTrainingConfigV1,
+) -> tuple[tuple[tuple[str, str], ...], str]:
+    """Reconstruct the corrected self-excluded Top-5 graph from a checkpoint."""
+
+    torch, _, model_type = _load_runtime_types_v2()
+    order = tuple(feature_order)
+    model = model_type(len(order), config).to(config.device)
+    model.load_state_dict(state_dict, strict=True)
+    model.eval()
+    weights = model.embedding.weight.detach()
+    cosine = torch.matmul(weights, weights.T)
+    norms = torch.matmul(
+        weights.norm(dim=-1).view(-1, 1),
+        weights.norm(dim=-1).view(1, -1),
+    )
+    if bool(torch.any(norms <= 0)):
+        raise Exp01BBackendError("checkpoint embedding norm is non-positive")
+    indices = stable_torch_neighbors_v2(cosine / norms, torch_module=torch)
+    graph = _graph_from_indices(order, indices.detach().cpu())
+    if len(graph) != len(set(graph)) or any(source == target for source, target in graph):
+        raise Exp01BBackendError("replayed checkpoint graph is invalid")
+    return graph, stable_hash_v1({"graph_edges": graph})
+
+
+def evaluate_exp01b_lineage_v1(
+    *, state_dict: Mapping[str, Any], train4_segments: Sequence[Any],
+    feature_order: Sequence[str], expected_graph_hash: str,
+    config: Exp01BDeviceTrainingConfigV1,
+) -> Exp01BLineageEvidenceV1:
+    """Recover embedding/attention evidence without retraining a checkpoint."""
+
+    order = tuple(feature_order)
+    graph, graph_hash = replay_exp01b_graph_v1(
+        state_dict=state_dict, feature_order=order, config=config,
+    )
+    if graph_hash != expected_graph_hash:
+        raise Exp01BBackendError("replayed checkpoint graph hash differs")
+    torch, model, loader, _ = _model_and_loader(
+        state_dict=state_dict, segments=train4_segments,
+        feature_order=order, config=config,
+    )
+    graph_index = _edge_index_from_graph(torch, order, graph)
+    target_positions = tuple(order.index(name) for name in TARGET_VARIABLES)
+    _, raw_attention = _target_mse_and_attention(
+        torch=torch, model=model, loader=loader,
+        graph_edge_index=graph_index, graph_edges=graph,
+        target_positions=target_positions, capture_attention=True,
+        feature_order=order,
+    )
+    if raw_attention is None:
+        raise AttentionArmUnavailableError("attention lineage replay is unavailable")
+    graph_set = set(graph)
+    attention = {
+        pair: float(raw_attention[pair])
+        for pair in PAIR_UNIVERSE
+        if pair in graph_set
+    }
+    return Exp01BLineageEvidenceV1(
+        embedding_scores=_embedding_scores(
+            torch=torch, model=model, feature_order=order,
+        ),
+        attention_scores=attention,
+        attention_invariance_passed=True,
+        graph_edges=graph,
+        graph_hash=graph_hash,
+    )
+
+
+def evaluate_selected_edge_masks_v1(
+    *, state_dict: Mapping[str, Any], train4_segments: Sequence[Any],
+    feature_order: Sequence[str], graph_edges: Sequence[tuple[str, str]],
+    selected_edges: Sequence[tuple[str, str]],
+    config: Exp01BDeviceTrainingConfigV1,
+) -> dict[tuple[str, str], float]:
+    """Evaluate a preregistered subset of fixed-graph EdgeMask controls."""
+
+    order = tuple(feature_order)
+    graph = tuple(graph_edges)
+    selected = tuple(selected_edges)
+    if (
+        len(selected) != len(set(selected))
+        or any(edge not in graph for edge in selected)
+        or any(edge[1] not in TARGET_VARIABLES for edge in selected)
+    ):
+        raise Exp01BBackendError("selected EdgeMask control set is invalid")
+    if not selected:
+        return {}
+    torch, model, loader, _ = _model_and_loader(
+        state_dict=state_dict, segments=train4_segments,
+        feature_order=order, config=config,
+    )
+    graph_index = _edge_index_from_graph(torch, order, graph)
+    target_positions = tuple(order.index(name) for name in TARGET_VARIABLES)
+    baseline_mse, _ = _target_mse_and_attention(
+        torch=torch, model=model, loader=loader,
+        graph_edge_index=graph_index, graph_edges=graph,
+        target_positions=target_positions, capture_attention=False,
+        feature_order=order,
+    )
+    replay_loader = torch.utils.data.DataLoader(
+        loader.dataset, batch_size=config.batch_size, shuffle=False,
+    )
+    graphs = tuple(tuple(item for item in graph if item != edge) for edge in selected)
+    graph_indices = tuple(
+        _edge_index_from_graph(torch, order, item).to(config.device)
+        for item in graphs
+    )
+    squared = [0.0] * len(selected)
+    count = 0
+    positions = {name: index for index, name in enumerate(order)}
+    with torch.no_grad():
+        for batch_x, batch_y in replay_loader:
+            batch_x = batch_x.to(config.device)
+            batch_y = batch_y.to(config.device)
+            batch_count = int(batch_x.shape[0])
+            for start in range(0, len(selected), config.functional_variant_chunk_size):
+                stop = min(len(selected), start + config.functional_variant_chunk_size)
+                variant_x = batch_x.unsqueeze(0).expand(stop - start, -1, -1, -1)
+                predictions = _predict_with_variant_graphs(
+                    torch=torch, model=model, data=variant_x,
+                    variant_graph_indices=graph_indices[start:stop],
+                    node_count=len(order),
+                )
+                for local, edge in enumerate(selected[start:stop]):
+                    target_index = positions[edge[1]]
+                    squared[start + local] += float(
+                        ((predictions[local, :, target_index] - batch_y[:, target_index]) ** 2)
+                        .sum().item()
+                    )
+            count += batch_count
+    if count <= 0:
+        raise Exp01BBackendError("selected EdgeMask denominator is empty")
+    return {
+        edge: relative_delta_mse_v1(
+            baseline_target_mse=baseline_mse[positions[edge[1]]],
+            masked_target_mse=squared[index] / count,
+        )
+        for index, edge in enumerate(selected)
+    }
 
 
 def configure_and_smoke_exp01b_backend_v1(
@@ -286,13 +530,8 @@ def _target_mse_and_attention(
                 augmented, _ = add_self_loops(augmented, num_nodes=batch_size * node_count)
                 if int(alpha.shape[0]) != int(augmented.shape[1]):
                     raise AttentionArmUnavailableError("attention/augmented-edge alignment is unavailable")
-                alpha_values = alpha.detach().reshape(int(alpha.shape[0]), -1).mean(dim=1).cpu().tolist()
-                explicit_edges = tuple(
-                    (int(augmented[0, column].item()), int(augmented[1, column].item()))
-                    for column in range(int(augmented.shape[1]))
-                )
-                mapped = aggregate_attention_from_augmented_edges_v1(
-                    augmented_edges=explicit_edges, alpha_values=alpha_values,
+                mapped = aggregate_attention_from_augmented_tensors_v2(
+                    torch_module=torch, augmented_edges=augmented, alpha_values=alpha,
                     node_count=node_count, feature_order=feature_order,
                     graph_edges=graph_edges, batch_size=batch_size,
                 )
@@ -302,8 +541,14 @@ def _target_mse_and_attention(
                 prediction = captured
             else:
                 prediction = baseline
-            for index in target_positions:
-                squared[index] += float(((prediction[:, index] - batch_y[:, index]) ** 2).sum().item())
+            # Preserve the original per-target reduction while synchronizing
+            # CUDA once per batch instead of once per target.
+            batch_squared = torch.stack(tuple(
+                ((prediction[:, index] - batch_y[:, index]) ** 2).sum()
+                for index in target_positions
+            )).detach().cpu().tolist()
+            for index, value in zip(target_positions, batch_squared):
+                squared[index] += float(value)
             count += int(batch_y.shape[0])
     if count <= 0:
         raise Exp01BBackendError("fixed-checkpoint metric denominator is empty")
@@ -599,10 +844,14 @@ def evaluate_exp01b_checkpoint_v1(
 
 __all__ = [
     "AttentionArmUnavailableError", "Exp01BBackendError", "Exp01BCheckpointEvidenceV1",
+    "Exp01BLineageEvidenceV1",
     "aggregate_attention_from_augmented_edges_v1",
+    "aggregate_attention_from_augmented_tensors_v2",
     "disjoint_variant_offset_plan_v1",
     "stack_occluded_history_batch_v1",
     "Exp01BDeviceTrainingConfigV1", "configure_and_smoke_exp01b_backend_v1",
     "evaluate_exp01b_checkpoint_v1",
+    "evaluate_exp01b_lineage_v1", "evaluate_selected_edge_masks_v1",
+    "replay_exp01b_graph_v1",
     "train_exp01b_seed_v1",
 ]
