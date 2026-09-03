@@ -59,6 +59,20 @@ class CorrectedRankingTests(unittest.TestCase):
         scores, union = corrected_meta_stat_scores_r1(meta_ranking=meta, stat_ranking=stat)
         self.assertEqual(set(deterministic_ranking_r1(scores)[: len(union)]), set(union))
 
+    def test_aggregate_and_augmented_helpers_are_complete(self) -> None:
+        from paperworks.validation_v2.gdn_corr_v1 import (
+            aggregate_seed_percentiles_r1, augmented_scores_r1,
+        )
+
+        complete = {pair: 0.25 for pair in PAIR_UNIVERSE}
+        aggregate = aggregate_seed_percentiles_r1({11: complete, 23: complete, 37: complete})
+        baseline, augmented = augmented_scores_r1(
+            meta=complete, stat=complete, functional=aggregate,
+        )
+        self.assertEqual(set(baseline), set(PAIR_UNIVERSE))
+        self.assertEqual(set(augmented), set(PAIR_UNIVERSE))
+        self.assertTrue(all(value == 0.25 for value in augmented.values()))
+
 
 class CorrectedFunctionalTests(unittest.TestCase):
     def test_negative_and_neutral_are_not_positive_evidence(self) -> None:

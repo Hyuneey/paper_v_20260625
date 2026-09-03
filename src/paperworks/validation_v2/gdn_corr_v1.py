@@ -384,12 +384,49 @@ def loss_concentration_v1(matrix: Any, *, horizons: Sequence[int] = (1, 5, 10, 3
     }
 
 
+def aggregate_seed_percentiles_r1(
+    values: Mapping[int, Mapping[Pair, float]],
+) -> dict[Pair, float]:
+    """Median-aggregate exactly seeds 11/23/37 over the complete universe."""
+
+    import statistics
+
+    if set(values) != {11, 23, 37} or any(set(row) != set(PAIR_UNIVERSE) for row in values.values()):
+        raise GDNCorrError("seed percentile closure differs from 11/23/37 and 144 pairs")
+    return {
+        pair: float(statistics.median(float(values[seed][pair]) for seed in (11, 23, 37)))
+        for pair in PAIR_UNIVERSE
+    }
+
+
+def augmented_scores_r1(
+    *, meta: Mapping[Pair, float], stat: Mapping[Pair, float],
+    functional: Mapping[Pair, float],
+) -> tuple[dict[Pair, float], dict[Pair, float]]:
+    if any(set(item) != set(PAIR_UNIVERSE) for item in (meta, stat, functional)):
+        raise GDNCorrError("augmented ranking inputs must cover the pair universe")
+    baseline = {pair: (float(meta[pair]) + float(stat[pair])) / 2.0 for pair in PAIR_UNIVERSE}
+    augmented = {
+        pair: (float(meta[pair]) + float(stat[pair]) + float(functional[pair])) / 3.0
+        for pair in PAIR_UNIVERSE
+    }
+    return baseline, augmented
+
+
+def jaccard_at_k_r1(left: Sequence[Pair], right: Sequence[Pair], *, k: int) -> float:
+    if k <= 0:
+        raise GDNCorrError("K must be positive")
+    a, b = set(left[:k]), set(right[:k])
+    return len(a & b) / len(a | b) if a or b else 1.0
+
+
 __all__ = [
     "FeatureScaleSummaryV1", "GDNCorrError", "Pair", "PurgedValidationPlanV1",
     "R1_EDGE_TOLERANCE", "SignedEdgeMaskEvidenceR1",
+    "aggregate_seed_percentiles_r1", "augmented_scores_r1",
     "corrected_functional_consensus_r1", "corrected_meta_stat_scores_r1",
     "deterministic_ranking_r1", "fit_transform_policy_v1", "loss_concentration_v1",
-    "matched_random_controls_r1", "observed_percentiles_r1",
+    "jaccard_at_k_r1", "matched_random_controls_r1", "observed_percentiles_r1",
     "purged_contiguous_validation_plan_v1", "ranking_membership_percentiles_r1",
     "signed_edgemask_evidence_r1", "summarize_feature_scales_v1",
     "window_raw_support_v1",
