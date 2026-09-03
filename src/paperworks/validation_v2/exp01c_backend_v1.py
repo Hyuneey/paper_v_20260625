@@ -14,10 +14,8 @@ import math
 import random
 from typing import Any, Mapping, Sequence
 
-from paperworks.gdn.upstream_candidate_backend_v2 import (
-    _load_runtime_types_v2,
-    stable_torch_neighbors_v2,
-)
+from paperworks.gdn.upstream_candidate_backend_v1 import upstream_sparse_softmax_compat_v1
+from paperworks.gdn.upstream_candidate_backend_v2 import stable_torch_neighbors_v2
 from paperworks.validation_v2.exp01_scientific_v1 import PAIR_UNIVERSE
 from paperworks.validation_v2.exp01b_backend_v1 import (
     aggregate_attention_from_augmented_tensors_v2,
@@ -132,8 +130,88 @@ def _config_adapter(config: Exp01CConfigV1) -> Any:
 
 
 def _model_type_v1(config: Exp01CConfigV1) -> tuple[Any, Any, type]:
-    torch, nn, base_type = _load_runtime_types_v2()
+    # EXP-01C uses the already frozen CUDA local-build variant
+    # ``torch==2.12.1+cu130``.  The historical dependency gate compares the
+    # distribution string to CPU ``2.12.1`` exactly, so this prospective path
+    # performs the equivalent base-version check and defines the audited V2
+    # equations locally.  Frozen EXP-01/EXP-01B loaders remain untouched.
+    from importlib import metadata
+
+    if (
+        metadata.version("torch").split("+", 1)[0] != "2.12.1"
+        or metadata.version("torch-geometric") != "2.8.0"
+    ):
+        raise Exp01CBackendError("EXP-01C CUDA dependency identity differs from the frozen environment")
+    import torch
+    import torch.nn.functional as functional
+    from torch import nn
+    from torch.nn import Parameter
+    from torch_geometric.nn.conv import MessagePassing
+    from torch_geometric.nn.inits import glorot, zeros
+    from torch_geometric.utils import add_self_loops, remove_self_loops
     adapter = _config_adapter(config)
+
+    class GraphLayer(MessagePassing):
+        def __init__(self, in_channels: int, out_channels: int) -> None:
+            super().__init__(aggr="add", node_dim=0)
+            self.in_channels, self.out_channels = in_channels, out_channels
+            self.heads, self.concat, self.negative_slope = 1, False, 0.2
+            self.dropout = 0.0
+            self.lin = nn.Linear(in_channels, out_channels, bias=False)
+            self.att_i = Parameter(torch.empty(1, 1, out_channels))
+            self.att_j = Parameter(torch.empty(1, 1, out_channels))
+            self.att_em_i = Parameter(torch.empty(1, 1, out_channels))
+            self.att_em_j = Parameter(torch.empty(1, 1, out_channels))
+            self.bias = Parameter(torch.empty(out_channels))
+            self._alpha = None
+            self.reset_parameters()
+
+        def reset_parameters(self) -> None:
+            glorot(self.lin.weight); glorot(self.att_i); glorot(self.att_j)
+            zeros(self.att_em_i); zeros(self.att_em_j); zeros(self.bias)
+
+        def forward(self, x: Any, edge_index: Any, embedding: Any) -> Any:
+            transformed = self.lin(x)
+            pair = (transformed, transformed)
+            edge_index, _ = remove_self_loops(edge_index)
+            edge_index, _ = add_self_loops(edge_index, num_nodes=pair[1].size(self.node_dim))
+            out = self.propagate(edge_index, x=pair, embedding=embedding, edges=edge_index)
+            return out.mean(dim=1) + self.bias
+
+        def message(self, x_i: Any, x_j: Any, edge_index_i: Any, size_i: Any, embedding: Any, edges: Any) -> Any:
+            x_i = x_i.view(-1, 1, self.out_channels)
+            x_j = x_j.view(-1, 1, self.out_channels)
+            embedding_i = embedding[edge_index_i].unsqueeze(1)
+            embedding_j = embedding[edges[0]].unsqueeze(1)
+            key_i = torch.cat((x_i, embedding_i), dim=-1)
+            key_j = torch.cat((x_j, embedding_j), dim=-1)
+            alpha = (key_i * torch.cat((self.att_i, self.att_em_i), dim=-1)).sum(-1)
+            alpha += (key_j * torch.cat((self.att_j, self.att_em_j), dim=-1)).sum(-1)
+            alpha = functional.leaky_relu(alpha.view(-1, 1, 1), self.negative_slope)
+            alpha = upstream_sparse_softmax_compat_v1(alpha, edge_index_i, size_i)
+            self._alpha = alpha
+            return x_j * alpha.view(-1, 1, 1)
+
+    class GNNLayer(nn.Module):
+        def __init__(self, input_dim: int, output_dim: int) -> None:
+            super().__init__()
+            self.gnn = GraphLayer(input_dim, output_dim)
+            self.bn = nn.BatchNorm1d(output_dim)
+            self.relu = nn.ReLU()
+
+        def forward(self, x: Any, edge_index: Any, embedding: Any) -> Any:
+            return self.relu(self.bn(self.gnn(x, edge_index, embedding)))
+
+    class BaseGDN(nn.Module):
+        def __init__(self, node_count: int, config_value: Any) -> None:
+            super().__init__()
+            self.embedding = nn.Embedding(node_count, config_value.embedding_dim)
+            self.gnn_layer = GNNLayer(config_value.slide_window, config_value.embedding_dim)
+            self.bn_outlayer_in = nn.BatchNorm1d(config_value.embedding_dim)
+            self.dropout = nn.Dropout(config_value.dropout)
+            nn.init.kaiming_uniform_(self.embedding.weight, a=math.sqrt(5))
+
+    base_type = BaseGDN
 
     class MultiHorizonGDN(nn.Module):
         def __init__(self, node_count: int) -> None:
