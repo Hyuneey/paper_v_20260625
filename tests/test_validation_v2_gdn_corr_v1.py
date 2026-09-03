@@ -131,6 +131,34 @@ class HAIReadinessPrimitiveTests(unittest.TestCase):
             self.assertEqual(local_rows, tuple(range(start, stop)))
         self.assertEqual(plan.purge_rows, 66)
 
+    def test_interval_purge_matches_raw_support_oracle(self) -> None:
+        from paperworks.validation_v2.gdn_corr_v1 import window_raw_support_v1
+
+        history, maximum = 5, 12
+        plan = purged_contiguous_validation_plan_v1(
+            segment_lengths=(70, 75), seed=23, history=history,
+            max_horizon=maximum, validation_ratio=0.2,
+        )
+        validation_support = {
+            (file_index, row)
+            for file_index, local in plan.validation_window_indices
+            for row in window_raw_support_v1(
+                stop=history + local, history=history, max_horizon=maximum,
+            )
+        }
+        available = (70 - history - maximum + 1, 75 - history - maximum + 1)
+        oracle = tuple(
+            (file_index, local)
+            for file_index, count in enumerate(available)
+            for local in range(count)
+            if not {
+                (file_index, row) for row in window_raw_support_v1(
+                    stop=history + local, history=history, max_horizon=maximum,
+                )
+            } & validation_support
+        )
+        self.assertEqual(plan.train_window_indices, oracle)
+
     def test_purged_validation_fails_on_short_file(self) -> None:
         with self.assertRaises(GDNCorrError):
             purged_contiguous_validation_plan_v1(

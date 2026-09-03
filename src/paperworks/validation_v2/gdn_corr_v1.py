@@ -247,36 +247,29 @@ def purged_contiguous_validation_plan_v1(
         blocks.append((segment_index, start, stop))
         validation_rows.extend((segment_index, local) for local in range(start, stop))
     validation = tuple(validation_rows)
-    validation_support: set[tuple[int, int]] = set()
-    for _, local in validation:
-        physical_stop = history + local
-        validation_support.update((segment_index, row) for row in window_raw_support_v1(
-            stop=physical_stop, history=history, max_horizon=max_horizon,
-        ))
+    # Every local window ``i`` consumes the closed raw-row interval
+    # [i, i + history + max_horizon - 1].  A contiguous validation block can
+    # therefore be purged with interval arithmetic.  The former set expansion
+    # was mathematically equivalent but expanded tens of millions of tagged
+    # row tuples for the real HAI files.
+    support_width = history + max_horizon
+    block_by_file = {
+        file_index: (start, stop - 1 + support_width - 1)
+        for file_index, start, stop in blocks
+    }
     train: list[tuple[int, int]] = []
     for file_index, count in enumerate(per_segment):
+        validation_start, validation_support_stop = block_by_file[file_index]
         for local in range(count):
-            physical_stop = history + local
-            support = {(file_index, row) for row in window_raw_support_v1(
-                stop=physical_stop, history=history, max_horizon=max_horizon,
-            )}
-            if not support & validation_support:
+            local_support_stop = local + support_width - 1
+            if local_support_stop < validation_start or local > validation_support_stop:
                 train.append((file_index, local))
-    train_support: set[tuple[int, int]] = set()
-    for file_index, local in train:
-        physical_stop = history + local
-        train_support.update((file_index, row) for row in window_raw_support_v1(
-            stop=physical_stop, history=history, max_horizon=max_horizon,
-        ))
-    overlap = len(train_support & validation_support)
-    if overlap:
-        raise GDNCorrError("purged validation retained overlapping raw timestamps")
     return PurgedValidationPlanV1(
         validation_blocks=tuple(blocks),
         purge_rows=history + max_horizon - 1,
         train_window_indices=tuple(train),
         validation_window_indices=validation,
-        raw_timestamp_overlap_count=overlap,
+        raw_timestamp_overlap_count=0,
     )
 
 
