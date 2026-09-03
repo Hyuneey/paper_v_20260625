@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -6,6 +6,7 @@ Registry version: `0.1.0`
 
 ## Recorded timeline
 
+- **2026-09-04 — 다중 HAI 평가 확대 계획 승인·고정** (`ACTIVE_CONTEXT`): HAI23 test2 primary heldout와 HAI22/21 external replications를 version-separated panel로 고정;146 nominal scenarios는 IID pooling 금지;attack access0.
 - **2026-09-04 — V2A 개발 평가와 GDN 보조 설명 full-census QA 완료** (`ACTIVE_CONTEXT`): 5개 방법 prediction freeze 후 label 접근. 두 fusion Recall개선0 FAR증가;actual6418trace와GDNclauses130보존;private122artifact snapshot.
 - **2026-09-03 — EXP-01B GDN Prediction-XAI completed with ablation-only disposition** (`ACTIVE_CONTEXT`): Nine CUDA runs compared Embedding Attention EdgeMask Source Occlusion and Functional-Consensus against an arm-blind normal relation reference. A small combined K29 increase failed frozen split functional and rule-conversion criteria; GDN remained ablation-only.
 - **2026-09-02 — VALIDATION V2A normal-only candidate numeric and portfolio authorities frozen** (`ACTIVE_CONTEXT`): EXP-01 selected META_PLUS_STAT; the 29-pair union yielded 39 confirmed directional relations and EXP-02 selected one relation-specific policy from 37 candidates before any test access.

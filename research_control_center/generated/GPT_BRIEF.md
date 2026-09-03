@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -19,7 +19,9 @@ PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
 GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 130개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
 EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
+146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
 
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -32,7 +34,7 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 ## Current phase
 
-**EVALUATION_SCOPE_EXPANSION** — V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418개 생성 완료. 두 fusion은 Recall 개선 없이 FAR가 증가했다. GDN은 설명용 보조 근거이며 최종 일반화는 미확인이다.
+**EVALUATION_SCOPE_EXPANSION** — V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-out와 HAI22/21 external replications로 version 분리하며 146 nominal scenarios를 IID로 합치지 않는다. 공격 접근은 DG-05 전 0이다.
 
 ## How to read RCC status
 
@@ -50,6 +52,14 @@ HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms rel
 calibrates D0; train4 is a guard. test1 is development evidence. OUTER produced no result.
 PILOT V1 D1 lacks durable pre-label persistence; PILOT V1 D2 V2 is test1-informed.
 VALIDATION V2 completed durable five-method prediction replay before its one-shot label access.
+
+## Evaluation expansion boundary
+
+The frozen 14-scenario test1 result remains DEVELOPMENT_ONLY and will not be reopened.
+The prospective panels are HAI 23.05 test2 as PRIMARY_HELDOUT and HAI 22.04 plus
+HAI 21.03 as version-separated external replications. Their 146 nominal scenarios are
+not IID and one pooled Recall is prohibited as the primary result. DG-05 is mandatory
+before any new attack payload or label access; DG-03 is the exact current decision gate.
 
 ## Candidate-discovery boundary
 
@@ -71,35 +81,21 @@ normal response is not causal proof.
 E3 exposes a fixed relation, horizon, and normal-only references to a closed proposal schema.
 `accepted_proposal` grants neither runtime authority nor detection performance. T2 feedback was zero.
 
-## Frozen D1 runtime boundary
+## Frozen pilot runtime boundary
 
-Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse to 630 seconds
-and 626 metric episodes; 574 were normal false episodes. It is COMMON-42 Verified Relational
-Rule-only, not T2 Agentic Rule-only. Prediction preceded labels but was not durably persisted.
-
-## Frozen D0 detector boundary
-
-PILOT V1 D0: 37-feature 정상 PCA-SPE. Train1+train2 fit, train3 no-interpolation q=.999 calibration,
-strict score > threshold, prediction-before-label. 11/14는 SOTA 주장 근거가 아니다.
-
-## Frozen D2 fusion boundary
-
-PILOT V1 D2 V1은 same-second 두 source, D2 V2는 native horizon corroboration이다.
-둘 다 D0를 pointwise 보존했고 11/14·회수0/3·FAR 증가였다. D2 V2는 test1-informed development다.
+D1 is COMMON-42 Verified Relational Rule-only, not T2 Agentic Rule-only. D0 is the frozen
+37-feature PCA-SPE baseline. D2 V1/V2 preserved D0 pointwise and recovered 0/3 misses;
+their development-only FAR increased. PILOT V1 lacks the later V2 durable custody gate.
 
 ## How we got here
 
     History cannot override current state. ARGOS remains partial support.
 
-## Established facts
+## Established boundary
 
-- The pinned HAI 23.05 P1 INNER architecture is implemented; source evidence is reviewed and named frozen pilot results have explicit integrity audits where registered.
-- Normal-only evidence was transformed into a 42-descriptor COMMON-42 V4 executable relation portfolio under task-specific authority controls.
-- D0, D1, D2 V1, and D2 V2 have frozen integrity-audited INNER pilot results.
-- The OUTER path has a blocker record and no scientific result.
-
-    Frozen discovery and construction counts establish execution and custody, not causality,
-    physical truth, general GDN utility, or agentic-feedback advantage. T2 feedback actions: zero.
+Frozen discovery, construction, runtime, and integrity artifacts establish execution and custody,
+not causality, physical truth, general GDN utility, agentic-feedback advantage, or generalization.
+T2 feedback actions were zero.
 
 ## Frozen INNER pilot observations
 
@@ -128,16 +124,6 @@ observations, not new calculations.
     evidence only; it does not replace the META+STAT discovery policy. DG-04 controls final wording. T2
     feedback advantage also remains unsupported.
 
-## Current experiments
-
-- **EXP-01 · 변수 관계 탐색 방법 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
-- **EXP-01B · GDN Prediction-XAI 추가 검증** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
-- **EXP-02 · 규칙 수치 기준 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
-- **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
-- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
-- **EXP-05 · 규칙 설명의 일치성 검증** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
-- **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`.
-
 ## Claim boundaries
 
 - **CLAIM-A · SUPPORTED_IMPLEMENTATION** — The pinned HAI P1 INNER architecture and its frozen execution paths were implemented.
@@ -153,24 +139,18 @@ observations, not new calculations.
 - **CLAIM-K · DEVELOPMENT_SUPPORTED** — 실제6418trace 전체에서11개 automated structural checks가 PASS했다. GDN clauses130개는 원래 outcome을 바꾸지 않았다.
 - **CLAIM-L · UNVALIDATED** — A trace-grounded explanation interface is implemented; human usefulness has not been evaluated.
 - **CLAIM-M · NOT_SUPPORTED** — The system records bounded temporal relation evidence and trace-grounded violations without causal attribution.
+- **CLAIM-N · UNVALIDATED** — A version-separated preregistered evaluation plan exists; no new attack panel result exists.
 
-## Current risks
+## Current execution gates
 
-- **HIGH / OPEN** — The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
-- **HIGH / OPEN** — V2A Rule-only도 정상 FAR37.6095/hour로 높아 운영 효용 미확인.
-- **HIGH / MITIGATING** — EXP-01/01B primary GDN 미지원;EXP-01C는 bounded supporting evidence만 제공한다.
-- **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
-- **HIGH / MITIGATING** — 필수 private122artifact 보존/재생 PASS이나 SINGLE_COPY_LOCAL_ONLY이고 fresh-machine scientific reproduction은 미실시.
-- **HIGH / CLOSED** — Fixed Isolation Forest 비교를 완료했으나 이 test1에서는 PCA보다 우수하지 않았다.
-- **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
-- **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
-- **HIGH / OPEN** — Construction orchestration can collapse provider parse verifier and budget failures into no_rule.
+EXP-03 awaits DG-03. Final contribution wording awaits DG-04; all new attack panels await DG-05;
+professor submission awaits DG-06. Cross-version P1 compatibility remains unresolved.
 
 ## Top user TODO
 
-- DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.
-- 음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.
-- DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다.
+- DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.
+- 다중 HAI plan은 승인됐지만 실제 P1 denominator와 공격 결과는 아직 없음을 확인한다.
+- DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 별도로 검토한다.
 
 ## Exact next task
 

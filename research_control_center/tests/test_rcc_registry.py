@@ -48,10 +48,10 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(3, len(data["state"]["top_user_todo"]))
         self.assertEqual(8, len(data["state"]["user_todo_items"]))
         self.assertEqual(32, len(data["components"]))
-        self.assertEqual(7, len(data["experiments"]))
-        self.assertEqual(13, len(data["claims"]))
-        self.assertEqual(16, len(data["risks"]))
-        self.assertEqual(40, len(data["artifacts"]))
+        self.assertEqual(10, len(data["experiments"]))
+        self.assertEqual(14, len(data["claims"]))
+        self.assertEqual(18, len(data["risks"]))
+        self.assertEqual(41, len(data["artifacts"]))
         self.assertEqual(
             {
                 "scientific_executions": 4,
@@ -83,6 +83,10 @@ class RegistryValidationTests(unittest.TestCase):
                 "e0a14ab61762f7e7ce8319d58643dc483dda6a02",
             },
             "validation-v2": {"7125c038817a6ac9ee4392748de802e2069b44f6e"},
+            "validation-v2-eval-expansion-001": {
+                "07ed817cd809762a93a910cb10dc14c1d4b91c1f",
+                "d1489b67618b1e307a31a15ccb27d6dad57795c4",
+            },
         }
         for name in ("experiments", "claims", "risks"):
             for row in data[name]:
@@ -102,6 +106,8 @@ class RegistryValidationTests(unittest.TestCase):
             "9cb47e0efb868048d4a523ec4cfaca53bd342ab7",
             "e0a14ab61762f7e7ce8319d58643dc483dda6a02",
             "94ae44dac900cce75ed83ee2801be38750afed4a",
+            "07ed817cd809762a93a910cb10dc14c1d4b91c1f",
+            "d1489b67618b1e307a31a15ccb27d6dad57795c4",
         }
         for name in ("decisions", "timeline"):
             self.assertLessEqual({row["source_commit"] for row in data[name]}, allowed_history_commits)
@@ -130,8 +136,12 @@ class RegistryValidationTests(unittest.TestCase):
         data = load_registry(RCC_ROOT)
         self.assertNotIn("EXP-GDN-CONTRIBUTION", {row["experiment_id"] for row in data["experiments"]})
         self.assertNotIn("CLAIM-ARCH-IMPLEMENTED", {row["claim_id"] for row in data["claims"]})
-        self.assertEqual({f"EXP-{index:02d}" for index in range(1, 7)} | {"EXP-01B"}, {row["experiment_id"] for row in data["experiments"]})
-        self.assertEqual({f"CLAIM-{letter}" for letter in "ABCDEFGHIJKLM"}, {row["claim_id"] for row in data["claims"]})
+        self.assertEqual(
+            {f"EXP-{index:02d}" for index in range(1, 7)}
+            | {"EXP-01B", "EXP-H23-HOLDOUT", "EXP-H22-XVER", "EXP-H21-XVER"},
+            {row["experiment_id"] for row in data["experiments"]},
+        )
+        self.assertEqual({f"CLAIM-{letter}" for letter in "ABCDEFGHIJKLMN"}, {row["claim_id"] for row in data["claims"]})
 
     def test_local_authority_refs_resolve_to_exact_pins(self) -> None:
         result = validator.ValidationResult()
@@ -154,8 +164,8 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(31, len(data["timeline"]))
-        self.assertEqual(21, len(data["decisions"]))
+        self.assertEqual(32, len(data["timeline"]))
+        self.assertEqual(22, len(data["decisions"]))
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
         result = validator.ValidationResult()
         validator._validate_dates(data, result)

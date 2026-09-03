@@ -1217,6 +1217,14 @@ calibrates D0; train4 is a guard. test1 is development evidence. OUTER produced 
 PILOT V1 D1 lacks durable pre-label persistence; PILOT V1 D2 V2 is test1-informed.
 VALIDATION V2 completed durable five-method prediction replay before its one-shot label access.
 
+## Evaluation expansion boundary
+
+The frozen 14-scenario test1 result remains DEVELOPMENT_ONLY and will not be reopened.
+The prospective panels are HAI 23.05 test2 as PRIMARY_HELDOUT and HAI 22.04 plus
+HAI 21.03 as version-separated external replications. Their 146 nominal scenarios are
+not IID and one pooled Recall is prohibited as the primary result. DG-05 is mandatory
+before any new attack payload or label access; DG-03 is the exact current decision gate.
+
 ## Candidate-discovery boundary
 
     PILOT V1은 47-pair union을 보존한다. V2 EXP-01은 META_PLUS_STAT을 선택했고,
@@ -1237,32 +1245,21 @@ normal response is not causal proof.
 E3 exposes a fixed relation, horizon, and normal-only references to a closed proposal schema.
 `accepted_proposal` grants neither runtime authority nor detection performance. T2 feedback was zero.
 
-## Frozen D1 runtime boundary
+## Frozen pilot runtime boundary
 
-Frozen D1 uses task V4 with zero LLM calls. Its 788 anomalous records collapse to 630 seconds
-and 626 metric episodes; 574 were normal false episodes. It is COMMON-42 Verified Relational
-Rule-only, not T2 Agentic Rule-only. Prediction preceded labels but was not durably persisted.
-
-## Frozen D0 detector boundary
-
-PILOT V1 D0: 37-feature 정상 PCA-SPE. Train1+train2 fit, train3 no-interpolation q=.999 calibration,
-strict score > threshold, prediction-before-label. 11/14는 SOTA 주장 근거가 아니다.
-
-## Frozen D2 fusion boundary
-
-PILOT V1 D2 V1은 same-second 두 source, D2 V2는 native horizon corroboration이다.
-둘 다 D0를 pointwise 보존했고 11/14·회수0/3·FAR 증가였다. D2 V2는 test1-informed development다.
+D1 is COMMON-42 Verified Relational Rule-only, not T2 Agentic Rule-only. D0 is the frozen
+37-feature PCA-SPE baseline. D2 V1/V2 preserved D0 pointwise and recovered 0/3 misses;
+their development-only FAR increased. PILOT V1 lacks the later V2 durable custody gate.
 
 ## How we got here
 
     History cannot override current state. ARGOS remains partial support.
 
-## Established facts
+## Established boundary
 
-{_md_bullets(state['established_facts'])}
-
-    Frozen discovery and construction counts establish execution and custody, not causality,
-    physical truth, general GDN utility, or agentic-feedback advantage. T2 feedback actions: zero.
+Frozen discovery, construction, runtime, and integrity artifacts establish execution and custody,
+not causality, physical truth, general GDN utility, agentic-feedback advantage, or generalization.
+T2 feedback actions were zero.
 
 ## Frozen INNER pilot observations
 
@@ -1286,17 +1283,14 @@ observations, not new calculations.
     evidence only; it does not replace the META+STAT discovery policy. DG-04 controls final wording. T2
     feedback advantage also remains unsupported.
 
-## Current experiments
-
-{experiments}
-
 ## Claim boundaries
 
 {claims}
 
-## Current risks
+## Current execution gates
 
-{risks}
+EXP-03 awaits DG-03. Final contribution wording awaits DG-04; all new attack panels await DG-05;
+professor submission awaits DG-06. Cross-version P1 compatibility remains unresolved.
 
 ## Top user TODO
 
@@ -2358,6 +2352,17 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
   train4 normal sanity; test1 INNER pilot; test2 held-out result unavailable.
 - **Label ordering:** {state['data_governance']['label_access']}
 - **Leakage finding:** {state['data_governance']['leakage_status']}
+
+## EVALUATION EXPANSION (PLAN ONLY)
+
+- **Development:** HAI 23.05 test1 — existing 14-scenario DEVELOPMENT_ONLY result; immutable and not reopened.
+- **Primary held-out:** HAI 23.05 test2 — 38 nominal scenarios; DG-05 required before any access.
+- **External replication 1:** HAI 22.04 — 58 nominal scenarios; compatibility and normal-only re-instantiation first.
+- **External replication 2:** HAI 21.03 — 50 nominal scenarios; compatibility and deterministic normal split first.
+- **Interpretation:** the 146 non-development scenarios are not IID. Primary results are version-specific;
+  P1 eligibility is frozen outcome-blind before denominators, and pooled Recall is descriptive only with an explicit warning.
+- **Metrics:** P1-eligible Scenario Recall and normal false episodes/hour are primary; eTaPR,
+  coverage, delay, overlap, and uncertainty are secondary under a pinned pre-label contract.
 
 ## CANDIDATE DISCOVERY FOUNDATION
 

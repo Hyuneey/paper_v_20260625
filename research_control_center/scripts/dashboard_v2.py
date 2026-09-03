@@ -172,6 +172,14 @@ def _read_gap_tables(rcc_root: Path) -> tuple[list[dict[str, str]], list[dict[st
     )
 
 
+def _read_evaluation_panels(rcc_root: Path) -> list[dict[str, str]]:
+    """Load the public planning registry; it contains no attack payload or labels."""
+    path = rcc_root / "validation_v2" / "evaluation_expansion" / "PANEL_REGISTRY_V1.csv"
+    if not path.is_file():
+        return []
+    return _read_csv(path)
+
+
 def build_dashboard_view_model(
     data: Mapping[str, Any], digest: str, rcc_root: Path
 ) -> dict[str, Any]:
@@ -179,6 +187,7 @@ def build_dashboard_view_model(
     components = {row["component_id"]: dict(row) for row in data["components"]}
     artifacts = {row["artifact_id"]: dict(row) for row in data["artifacts"]}
     root_issues, remediation, gates = _read_gap_tables(rcc_root)
+    evaluation_panels = _read_evaluation_panels(rcc_root)
     remediations = {row["gap_id"]: row for row in remediation}
 
     nodes: list[dict[str, Any]] = []
@@ -361,6 +370,7 @@ def build_dashboard_view_model(
         "construction": {"T0": "42/42", "T1": "42/42", "T1-B": "42/42", "T2": "39/42", "feedback_actions": 0},
         "runtime_status_tokens": ["PASS", "FAIL", "ABSTAIN"],
         "experiments": experiments,
+        "evaluation_panels": evaluation_panels,
         "p0": p0,
         "root_issues": [current_gap_row(row) for row in root_issues],
         "risks": [dict(row) for row in data["risks"]],
@@ -604,11 +614,36 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
         f'<tr class="experiment-row" tabindex="0" data-experiment-id="{_esc(exp["experiment_id"])}"><th scope="row"><code>{_esc(exp["experiment_id"])}</code><strong>{_esc(exp["name"])}</strong></th><td>{_esc(exp["research_question"])}</td><td><span class="gate gate-{_esc(exp["gate"]["ready_now"].lower())}">{_esc(vm["labels"].get(exp["gate"]["ready_now"], exp["gate"]["ready_now"]))}</span></td><td>{_esc(exp["current_evidence"])}</td><td>{_esc(exp["gate"]["must_fix_before_start"])}</td><td>{_esc(exp["claim_impact"])}</td></tr>'
         for exp in vm["experiments"]
     )
+    panel_role_labels = {
+        "DEVELOPMENT_ONLY": "개발 평가",
+        "PRIMARY_HELDOUT": "주 held-out",
+        "EXTERNAL_VERSION_REPLICATION_1": "외부 버전 재현 1",
+        "EXTERNAL_VERSION_REPLICATION_2": "외부 버전 재현 2",
+    }
+    panel_rows = "".join(
+        '<tr>'
+        f'<th scope="row"><code>{_esc(panel["panel_id"])}</code><strong>HAI {_esc(panel["dataset_version"])}</strong></th>'
+        f'<td>{_esc(panel_role_labels.get(panel["role"], panel["role"]))}</td>'
+        f'<td>{_esc(panel["nominal_attack_count"])}</td>'
+        '<td>사전 P1 eligibility 확정 후 산출</td>'
+        f'<td>{_esc(panel["attack_access_status"])}</td>'
+        f'<td>{_esc(panel["method_policy"])}</td>'
+        f'<td>{_esc(panel["metric_policy"])}</td>'
+        f'<td>{_esc(panel["result_status"])}</td>'
+        '</tr>'
+        for panel in vm["evaluation_panels"]
+    )
+    panel_section = f'''
+      <section class="panel roadmap evaluation-expansion" aria-labelledby="evaluation-expansion-heading">
+        <div class="panel-heading"><div><p class="kicker">Evaluation Expansion · DG-05 이전 계획</p><h3 id="evaluation-expansion-heading">버전별 평가 panel</h3></div><a class="text-button" href="../validation_v2/evaluation_expansion/EVALUATION_MASTER_PLAN_V1.md">동결 계획</a></div>
+        <div class="table-wrap"><table><thead><tr><th>Panel</th><th>역할</th><th>명목 scenario</th><th>실제 P1 분모</th><th>접근</th><th>방법</th><th>지표</th><th>결과</th></tr></thead><tbody>{panel_rows}</tbody></table></div>
+        <p class="pilot-warning">버전별 공격 시나리오는 동일 분포의 독립 표본으로 간주하지 않으며, 주 결과는 버전별로 분리해 보고합니다.</p>
+      </section>''' if panel_rows else ""
     return f'''
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
       <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 근거, PILOT V1, VALIDATION V2 test1 개발 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. 위 정상 전용 단계 당시 test1·label·test2·held-out 접근은 0이었습니다. 아래 후속 EXP-04는 승인된 test1 개발 평가입니다.</p></section>
-      {_render_front_results(vm)}
+      {_render_front_results(vm)}{panel_section}
       <aside class="warning-banner">PILOT V1 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">Experiment Roadmap</p><h3>실험 Gate와 claim 영향</h3></div></div><div class="table-wrap"><table><thead><tr><th>실험</th><th>확인할 가설</th><th>현재 상태</th><th>현재 근거</th><th>먼저 해결할 것</th><th>결과에 따른 결정</th></tr></thead><tbody>{exp_rows}</tbody></table></div></section>

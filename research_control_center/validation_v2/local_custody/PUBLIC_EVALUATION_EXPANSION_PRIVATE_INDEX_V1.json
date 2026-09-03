@@ -1,0 +1,18 @@
+{
+  "attack_payload_accesses": 0,
+  "contains_private_paths": false,
+  "contains_scientific_values": false,
+  "future_private_requirement_count": 5,
+  "independent_second_storage_verified": false,
+  "label_accesses": 0,
+  "private_exposures": 0,
+  "private_manifest_hash": "f96d92ca8e3252637369197dc5af7e3530f52158321fc9c4917d1d1771b30a80",
+  "registered_public_authority_count": 6,
+  "restore_read_smoke": "PASS",
+  "schema": "public_evaluation_expansion_private_index_v1",
+  "self_hash": "dfaa237ea71341796a2e90d5308a44e32c8b7cf8d1f56aba09db347e8726959d",
+  "storage_policy": "SINGLE_COPY_LOCAL_ONLY",
+  "task_id": "V2-EVAL-EXPANSION-001",
+  "test1_accesses": 0,
+  "test2_accesses": 0
+}

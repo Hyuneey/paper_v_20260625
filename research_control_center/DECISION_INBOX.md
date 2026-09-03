@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 결정이 필요한 사항
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -19,7 +19,9 @@ PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
 GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 130개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
 EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
+146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
 
 
 현재 미결정 사용자 항목은 없다. RCC-000의 결정 001·002는 `registry/decisions.csv`에서 승인 상태를 유지한다.

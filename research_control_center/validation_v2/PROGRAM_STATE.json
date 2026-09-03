@@ -13,7 +13,7 @@
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
   "current_stage": "STAGE_6_EVALUATION_EXPANSION_PREPARATION",
-  "program_status": "DEVELOPMENT_COMPLETE_EXPANSION_PLAN_FROZEN",
+  "program_status": "DEVELOPMENT_COMPLETE_QA_PASS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",

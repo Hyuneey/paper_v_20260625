@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Superseded and Conditional Directions
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -14,3 +14,4 @@ current claims without current evidence.
 | Binary or discrete control delayed-response on HAI | 2026-08-02 | Original preregistered MVP family | Zero eligible reviewed nonconstant sources | Pairwise delayed-response and normal-only discipline | continuous_step_delayed_response_v1 | SUPERSEDED | Yes |
 | Construction-only final thesis boundary | 2026-08-14 ~ 2026-08-19 | Utility protocol was stopped before execution | Later authority closure and INNER pilot superseded the never-executed statement | Construction validity and governance remain defensible layers | Current architecture plus pilot-only utility observations | SUPERSEDED | Yes |
 | Segment or localization Method Sketch as headline direction | 2026-05 onward | Professor-driven ARTIST and anomaly-detection-model reframing | User-confirmed formal intermediate direction later superseded before becoming current implementation | Trace-based transition and horizon localization | Current relational-rule and satisfaction-trace architecture | SUPERSEDED | Yes |
+| Single future HAI23 test2 evaluation with Recall/FAR-centered reporting | 2026-08-23 ~ 2026-09-03 | The old OUTER blocker left one obvious same-edition held-out target | The 14-unit development panel cannot support version-level generalization and a single future panel is too narrow | HAI23 test2 remains the primary held-out panel | Version-separated HAI23 held-out plus HAI22 and HAI21 external replications | SUPERSEDED | Yes |

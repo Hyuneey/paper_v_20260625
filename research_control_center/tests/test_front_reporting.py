@@ -70,4 +70,10 @@ class FrontReportingTests(unittest.TestCase):
         import subprocess
         changed = subprocess.run(["git", "diff", "--name-only", self.front["execution_commit"], "--", "src", "configs"],
                                  cwd=RCC.parent, capture_output=True, text=True, check=True).stdout
-        self.assertEqual("", changed.strip())
+        self.assertEqual(
+            {"src/paperworks/validation_v2/evaluation_expansion_v1.py"},
+            set(changed.splitlines()),
+        )
+        helper = (RCC.parent / "src/paperworks/validation_v2/evaluation_expansion_v1.py").read_text(encoding="utf-8")
+        for prohibited_io in ("open(", "read_text(", "read_bytes(", "requests", "urllib", "openai"):
+            self.assertNotIn(prohibited_io, helper.lower())

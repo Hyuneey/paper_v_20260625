@@ -67,5 +67,7 @@ PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
 GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 {front['gdn_annotated_count']}개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
 EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
+146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
 """

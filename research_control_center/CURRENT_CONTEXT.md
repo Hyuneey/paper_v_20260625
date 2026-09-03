@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-04
@@ -42,6 +42,17 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
   train4 normal sanity; test1 INNER pilot; test2 held-out result unavailable.
 - **Label ordering:** Normal construction is label-blind. PILOT V1 D1 retains its weaker in-memory boundary; VALIDATION V2 now requires durable no-overwrite prediction freeze replay one-shot label lease and post-label byte verification.
 - **Leakage finding:** NO VERIFIED LEAKAGE FOUND. PILOT V1 retains its documented D1 custody qualification; GAP-FIX-002 closes the prospective VALIDATION V2 custody gap. D2 V2 remains test1-informed development.
+
+## EVALUATION EXPANSION (PLAN ONLY)
+
+- **Development:** HAI 23.05 test1 — existing 14-scenario DEVELOPMENT_ONLY result; immutable and not reopened.
+- **Primary held-out:** HAI 23.05 test2 — 38 nominal scenarios; DG-05 required before any access.
+- **External replication 1:** HAI 22.04 — 58 nominal scenarios; compatibility and normal-only re-instantiation first.
+- **External replication 2:** HAI 21.03 — 50 nominal scenarios; compatibility and deterministic normal split first.
+- **Interpretation:** the 146 non-development scenarios are not IID. Primary results are version-specific;
+  P1 eligibility is frozen outcome-blind before denominators, and pooled Recall is descriptive only with an explicit warning.
+- **Metrics:** P1-eligible Scenario Recall and normal false episodes/hour are primary; eTaPR,
+  coverage, delay, overlap, and uncertainty are secondary under a pinned pre-label contract.
 
 ## CANDIDATE DISCOVERY FOUNDATION
 
@@ -109,9 +120,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.
-- 음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.
-- DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다.
+- DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.
+- HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.
+- DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다.
 
 Exact next management task: **DG-03 — EXP-03 Provider Execution Decision**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

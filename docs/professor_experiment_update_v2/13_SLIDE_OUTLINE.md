@@ -9,4 +9,9 @@
 7. 두 fusion 개선 없음 및 Rule-only 고FAR
 8. actual6418 trace와 optional GDN clauses130
 9. integrity vs scientific validation vs generalization
-10. DG-03/04/05/06 결정 안건
+10. 14개 test1 scenario의 정밀도 한계와 pseudo-replication 금지
+11. HAI 23.05 test2 primary held-out + HAI 22.04/21.03 external replications
+12. official scenario → P1 eligibility → prediction freeze → label lease
+13. Scenario Recall·normal FAR + eTaPR·coverage·delay의 버전별 reporting
+14. 146개 명목 시나리오의 non-IID/no-primary-pooling 원칙
+15. DG-03/04/05/06 결정 안건

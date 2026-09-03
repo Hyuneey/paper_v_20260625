@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 내가 해야 할 연구 검토
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -19,7 +19,9 @@ PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
 GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 130개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
 EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
+146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
 
 
 이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.
@@ -68,9 +70,9 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 - **ID:** USER-V2-003
   **우선순위:** 높음 (HIGH)
-  **할 일:** EXP-03 natural cohort와 정확한 provider/model·call/token 상한을 먼저 확정하고 DG-03 실행 승인을 검토한다.
-  **사용자 확인이 필요한 이유:** 현재 provider 호출은 0이며 기호적 예산만으로 호출을 승인할 수 없다.
-  **연결 문서:** research_control_center/validation_v2/DECISION_GATES.md
+  **할 일:** DG-03에서 OpenAI gpt-5.4-mini, 최대 819 calls, 5,031,936 tokens, USD 10.07 ceiling의 EXP-03 실행을 검토한다.
+  **사용자 확인이 필요한 이유:** 39-relation natural cohort와 exact redacted projection은 준비됐으나 외부 provider 호출은 별도 승인이 필요하다.
+  **연결 문서:** research_control_center/validation_v2/exp03/DG03_PROVIDER_DECISION_BRIEF_V1.md
   **상태:** 미결정
 
 - **ID:** USER-V2-004
@@ -83,9 +85,9 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 - **ID:** USER-V2-005
   **우선순위:** 높음 (HIGH)
-  **할 일:** test2/heldout 접근 전에 새 held-out 연구의 사전등록과 DG-05 승인을 검토한다.
-  **사용자 확인이 필요한 이유:** 이미 소진된 기존 OUTER protocol을 재시도하지 않는다.
-  **연결 문서:** DG-05
+  **할 일:** HAI23 test2·HAI22·HAI21 attack panel 첫 접근 전에 combined DG-05 package를 검토한다.
+  **사용자 확인이 필요한 이유:** old OUTER를 재사용하지 않고 P1 eligibility·scenario authority·version별 prediction custody를 먼저 고정한다.
+  **연결 문서:** research_control_center/validation_v2/evaluation_expansion/DECISION_GATE_PLAN_V1.md
   **상태:** 미결정
 ## 검토 필요
 

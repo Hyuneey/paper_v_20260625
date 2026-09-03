@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -19,7 +19,9 @@ PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
 GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 130개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
 EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
+146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -30,7 +32,7 @@ Registry snapshot: `2026-09-03T17:08:57Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418개 생성 완료. 두 fusion은 Recall 개선 없이 FAR가 증가했다. GDN은 설명용 보조 근거이며 최종 일반화는 미확인이다.
+V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-out와 HAI22/21 external replications로 version 분리하며 146 nominal scenarios를 IID로 합치지 않는다. 공격 접근은 DG-05 전 0이다.
 
 ## 상태를 읽는 방법
 
@@ -138,6 +140,9 @@ V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418�
 | EXP-04 | 실행·근거 점검 완료·개발 결과 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
 | EXP-05 | 실행·근거 점검 완료·개발 결과 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
 | EXP-06 | 설계만 완료 | 고정 규칙 결과나 정답을 받지 않는 별도 runtime LLM 비교 가능성을 검토한다. |
+| EXP-H23-HOLDOUT | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
+| EXP-H22-XVER | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
+| EXP-H21-XVER | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
 
 ## 공식 연구 주장
 
@@ -158,6 +163,7 @@ V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418�
 | CLAIM-K | DEVELOPMENT_SUPPORTED | renderer 결속은 구현됐지만 전체 corpus의 fidelity는 조건부다. |
 | CLAIM-L | 미검증 (UNVALIDATED) | trace 기반 interface는 있으나 사람에게 유용한지는 평가하지 않았다. |
 | CLAIM-M | 현재 근거로 지원되지 않음 | 현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다. |
+| CLAIM-N | 미검증 (UNVALIDATED) | A version-separated preregistered evaluation plan exists; no new attack panel result exists. |
 
 ## 연구 상태의 서로 다른 차원
 

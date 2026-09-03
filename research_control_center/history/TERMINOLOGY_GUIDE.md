@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Historical Terminology Guide
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -13,5 +13,7 @@ Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 | OUTER | Different reference-track partitions and later HAI held-out authority | A separately preregistered one-way held-out stage | Old blocker equals negative performance |
 | Detector complement | Directional FN or FP correction concept | Observed D1 event complementarity distinct from D2 utility | Complementarity proves improved fusion |
 | segment or localization | Possible ARTIST or segment-selection direction | Source transition target relation horizon and trace localization | Current method implements learned segment selection or causal localization |
+| attack event | Contiguous positive-label runs or task-specific event units | Official attack scenario is the primary unit; intervals and interventions are secondary descriptions | Treating every interval or all 146 nominal scenarios as IID |
+| pooled Recall | A possible aggregate across panels | Descriptive only with an explicit non-IID warning | Primary cross-version scientific result |
 
 Historical documents remain untouched. This guide controls current-facing interpretation.

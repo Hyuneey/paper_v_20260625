@@ -109,6 +109,17 @@ class DashboardV2Tests(unittest.TestCase):
         for identifier in ("D0", "D1", "D2", "META", "STAT", "GDN", "COMMON-42", "PASS", "FAIL", "ABSTAIN"):
             self.assertIn(identifier, self.html)
 
+    def test_evaluation_expansion_panels_are_version_separated(self) -> None:
+        for panel_id in (
+            "HAI23_TEST1_DEVELOPMENT_V1",
+            "HAI23_TEST2_PRIMARY_HELDOUT_V1",
+            "HAI22_EXTERNAL_REPLICATION_V1",
+            "HAI21_EXTERNAL_REPLICATION_V1",
+        ):
+            self.assertIn(panel_id, self.html)
+        self.assertIn("실제 P1 분모", self.html)
+        self.assertIn("주 결과는 버전별로 분리해 보고합니다", self.html)
+
     def test_no_external_runtime_dependency(self) -> None:
         self.assertIsNone(re.search(r'<(?:script|link)[^>]+(?:https?:)?//', self.html))
         self.assertNotIn("fetch(", self.js)

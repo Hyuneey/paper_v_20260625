@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Research Evolution
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -366,6 +366,42 @@ No single completion percentage and no history-driven promotion of current claim
 ### Evidence
 
 RCC-001 RCC-002 RCC-002A and RCC-003 local history
+
+## 11. Version-Separated HAI Evaluation Expansion
+
+**Period:** 2026-09-04 (`DAY`)
+
+**Source class:** `USER_APPROVED_RCC_POLICY`
+
+**Status:** `ACTIVE_CONTEXT` · **Confidence:** `HIGH`
+
+### Goal at the time
+
+Replace a single narrow held-out plan with a version-separated primary held-out and two external-version replications.
+
+### What was implemented / investigated
+
+Official HAI release metadata, P1 compatibility requirements, official scenario hierarchy, eTaPR integration, and EXP-03 provider budget.
+
+### What problem was found
+
+Fourteen development units do not support precise final Recall or release-level generalization, while subdividing attacks would create pseudo-replication.
+
+### Decision
+
+Preserve test1; plan HAI23 test2, HAI22, and HAI21 as separate panels with outcome-blind P1 eligibility and no primary pooled Recall.
+
+### What survived into the current method
+
+The frozen V2A method set, negative fusion results, Formal V4 authority, and prediction-before-label custody.
+
+### What was abandoned or deferred
+
+A single pooled final Recall and treating intervention intervals as independent attacks are prohibited; attack access remains DG-05 gated.
+
+### Evidence
+
+DEC-022; research_control_center/validation_v2/evaluation_expansion/
 
 
 ## Current State

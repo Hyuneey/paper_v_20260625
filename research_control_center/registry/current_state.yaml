@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418개 생성 완료. 두 fusion은 Recall 개선 없이 FAR가 증가했다. GDN은 설명용 보조 근거이며 최종 일반화는 미확인이다.",
+  "current_phase_statement": "V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-out와 HAI22/21 external replications로 version 분리하며 146 nominal scenarios를 IID로 합치지 않는다. 공격 접근은 DG-05 전 0이다.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",

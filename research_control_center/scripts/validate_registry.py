@@ -29,6 +29,10 @@ CURRENT_V2_SCIENTIFIC_SOURCES = {
         "e0a14ab61762f7e7ce8319d58643dc483dda6a02",
     },
     "validation-v2": {"7125c038817a6ac9ee4392748de802e2069b44f6e"},
+    "validation-v2-eval-expansion-001": {
+        "07ed817cd809762a93a910cb10dc14c1d4b91c1f",
+        "d1489b67618b1e307a31a15ccb27d6dad57795c4",
+    },
 }
 ID_PATTERN = re.compile(r"^[A-Z][A-Z0-9_-]*$")
 FORMULA_MARKERS = ("=", "+", "@")
@@ -117,6 +121,14 @@ REQUIRED_RCC_FILES = (
     "dashboard/assets/rcc.css", "dashboard/assets/rcc.js",
     "scripts/build_dashboard.py", "scripts/validate_registry.py", "scripts/refresh_all.py",
     "scripts/open_dashboard.bat",
+    "validation_v2/evaluation_expansion/CHANGE_SUMMARY_V1.md",
+    "validation_v2/evaluation_expansion/EVALUATION_MASTER_PLAN_V1.md",
+    "validation_v2/evaluation_expansion/PANEL_REGISTRY_V1.csv",
+    "validation_v2/evaluation_expansion/METRIC_POLICY_V1.md",
+    "validation_v2/evaluation_expansion/EVALUATION_EXPANSION_AUTHORITY_V1.json",
+    "validation_v2/evaluation_expansion/INDEPENDENT_QA_V1.md",
+    "validation_v2/local_custody/PUBLIC_EVALUATION_EXPANSION_PRIVATE_INDEX_V1.json",
+    "validation_v2/exp03/DG03_PROVIDER_DECISION_BRIEF_V1.md",
     "bootstrap/ARCH_006/ARCH_006_REPORT.md",
     "bootstrap/ARCH_006/ARCH_006_RUNTIME_AUDIT.md",
     "bootstrap/ARCH_006/ARCH_006_TRACE_AUDIT.md",
@@ -349,7 +361,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain the three current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "V2-GDN-FRONT-EXP04-001 — 개발 평가·전체 trace 무결성 QA 완료", "last completed task mismatch")
+    result.require(state.get("last_completed_task") == "V2-EVAL-EXPANSION-001 — 다중 HAI 평가 계획·계약 준비 완료", "last completed task mismatch")
     result.require(state.get("exact_next_task") == "DG-03 — EXP-03 Provider Execution Decision", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
@@ -365,6 +377,14 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
     result.require(state.get("recommended_next_management_task") == "DG-03 — EXP-03 Provider Execution Decision", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
+    expansion = state.get("evaluation_expansion", {})
+    result.require(expansion.get("decision_id") == "DEC-022", "evaluation expansion decision is missing")
+    result.require(expansion.get("nominal_non_development_scenarios") == 146, "evaluation expansion nominal count mismatch")
+    result.require(expansion.get("primary_pooling") == "PROHIBITED", "primary pooled Recall is not prohibited")
+    result.require(expansion.get("p1_denominators") == "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY", "P1 eligibility boundary mismatch")
+    result.require(expansion.get("attack_data_accesses") == 0 and expansion.get("provider_calls") == 0, "preparation-only access boundary mismatch")
+    panels = expansion.get("panels", [])
+    result.require([item.get("nominal_scenarios") for item in panels] == [14, 38, 58, 50], "evaluation panel counts mismatch")
     readiness = state.get("pre_validation_readiness", {})
     result.require(readiness.get("status") == "DEVELOPMENT_COMPLETE_FINAL_GATES_PENDING", "VALIDATION V2 remediation status mismatch")
     result.require(readiness.get("p0_global_fixes") == [], "remaining global P0 fix mismatch")
@@ -636,7 +656,7 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
 
 def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
     history = data["history"]
-    result.require(15 <= len(data["timeline"]) <= 31, "timeline must contain 15 to 31 meaningful events")
+    result.require(15 <= len(data["timeline"]) <= 32, "timeline must contain 15 to 32 meaningful events")
     result.require(10 <= len(data["decisions"]) <= 25, "decision registry must contain 10 to 25 meaningful decisions")
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
     result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")
@@ -695,6 +715,11 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
         result.require("NOT_SELECTED" in decision_020["consequence"], "DEC-020 does not close the bridge option")
     decision_021 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-021"), None)
     result.require(decision_021 is not None and decision_021["status"] == "ACTIVE" and decision_021["user_approved"] == "true", "ARCH-011 user-approved conditional contribution policy is not recorded")
+    decision_022 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-022"), None)
+    result.require(decision_022 is not None and decision_022["status"] == "ACTIVE" and decision_022["user_approved"] == "true", "multi-version HAI evaluation decision is not active and user-approved")
+    if decision_022 is not None:
+        result.require("primary pooled Recall" in decision_022["decision"], "DEC-022 lacks the no-pooling boundary")
+        result.require("DG-05" in decision_022["current_relevance"], "DEC-022 lacks the attack-access gate")
     risk_011 = next((row for row in data["risks"] if row["risk_id"] == "RISK-11"), None)
     result.require(risk_011 is not None and risk_011["status"] == "CLOSED", "VALIDATION V2 durable D1 custody risk is not prospectively closed")
     custody = data["state"].get("validation_v2_custody", {})
