@@ -1,0 +1,217 @@
+{
+  "bindings": {
+    "descriptor_set_hash": "75b45bdd6cb6912ca710a640080d19ac028548e4a6be64ccffeeddef21bd6f83",
+    "disposition_hash": "4382a44b0cc323b566a2a84faae5f381a9c9421d09652e87c1db810218b930d8",
+    "functional_receipt_hash": "9b9abc432c773cfc7d81a15ae08c883e398416826e3c7e37ee9dfd08c85c4057",
+    "portfolio_hash": "ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa",
+    "reference_hash": "fec277ba1f4c007cededf8ecde498477529483fff3dd79eed8aeea3039cd0ab5"
+  },
+  "documentation_only": true,
+  "horizon_projection": "SAME_DIRECTIONAL_REFERENCE_POSITIVE_IN_TWO_COMBINED_SEEDS",
+  "pair_rule": "UNCHANGED_EXP01C_POOLED_MEDIAN_POSITIVE_IN_TWO_COMBINED_SEEDS",
+  "pairs": [
+    {
+      "classification": "PAIR_AND_HORIZON_CORROBORATION",
+      "directional_evidence": [
+        {
+          "relation_binding_hash": "59b280720c7d2484499501e7b624222e82752a768b41b063b298885a2f7b4ff8",
+          "relation_id": "EXP01B-REL-59b280720c7d2484499501e7",
+          "seed_sign_counts": {
+            "TRAIN1_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 3,
+              "positive": 0
+            },
+            "TRAIN1_TRAIN2_COMBINED": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 1,
+              "positive": 2
+            },
+            "TRAIN2_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 1,
+              "positive": 2
+            }
+          },
+          "selected_horizon_seconds": 1,
+          "source": "P1_FCV01D",
+          "source_direction": "step_down",
+          "target": "P1_FT02",
+          "target_direction": "increase"
+        },
+        {
+          "relation_binding_hash": "cd8465fe83e4876e575a5fdf68996a4d4941431898cee2a09e76d955509c69c0",
+          "relation_id": "EXP01B-REL-cd8465fe83e4876e575a5fdf",
+          "seed_sign_counts": {
+            "TRAIN1_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 3,
+              "positive": 0
+            },
+            "TRAIN1_TRAIN2_COMBINED": {
+              "negative": 1,
+              "neutral": 0,
+              "not_evaluable": 1,
+              "positive": 1
+            },
+            "TRAIN2_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 1,
+              "positive": 2
+            }
+          },
+          "selected_horizon_seconds": 1,
+          "source": "P1_FCV01D",
+          "source_direction": "step_up",
+          "target": "P1_FT02",
+          "target_direction": "decrease"
+        }
+      ],
+      "event_conditioned_sign": "STABLE_POSITIVE_POOLED_DIRECTIONAL_MEDIAN",
+      "exact_horizon_rule_ids": [
+        "V2A-REL-70d685eed094f26e40419c6b",
+        "V2A-REL-b2bf2474a84dc5f1497bd43a"
+      ],
+      "source": "P1_FCV01D",
+      "stable_seed_count": 2,
+      "supported_horizons": [
+        1
+      ],
+      "target": "P1_FT02",
+      "v2a_rule_ids": [
+        "V2A-REL-70d685eed094f26e40419c6b",
+        "V2A-REL-b2bf2474a84dc5f1497bd43a"
+      ],
+      "v2a_rules": [
+        {
+          "descriptor_hash": "e712698f36bff63804a9856f4064a41cd94b22aa3d4f2477cb89b56440fb7079",
+          "relation_id": "V2A-REL-70d685eed094f26e40419c6b",
+          "selected_horizon_seconds": 1,
+          "source_direction": "step_down",
+          "target_direction": "increase"
+        },
+        {
+          "descriptor_hash": "14b27997ef09907a015ff3193bdc91d13f7829cbb82f90f9150fa617559f417a",
+          "relation_id": "V2A-REL-b2bf2474a84dc5f1497bd43a",
+          "selected_horizon_seconds": 1,
+          "source_direction": "step_up",
+          "target_direction": "decrease"
+        }
+      ],
+      "view_positive_seed_counts": {
+        "TRAIN1_ONLY": 0,
+        "TRAIN1_TRAIN2_COMBINED": 2,
+        "TRAIN2_ONLY": 2
+      }
+    },
+    {
+      "classification": "PAIR_AND_HORIZON_CORROBORATION",
+      "directional_evidence": [
+        {
+          "relation_binding_hash": "2118f9a9329f48fa5d1d9f5be4b4b7b65fb1cde76ee8ea88afb93f1813eea046",
+          "relation_id": "EXP01B-REL-2118f9a9329f48fa5d1d9f5b",
+          "seed_sign_counts": {
+            "TRAIN1_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 2,
+              "positive": 1
+            },
+            "TRAIN1_TRAIN2_COMBINED": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 1,
+              "positive": 2
+            },
+            "TRAIN2_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 3,
+              "positive": 0
+            }
+          },
+          "selected_horizon_seconds": 5,
+          "source": "P1_FCV01Z",
+          "source_direction": "step_down",
+          "target": "P1_FT02",
+          "target_direction": "decrease"
+        },
+        {
+          "relation_binding_hash": "7f3192fdb892cfa297d449b38e23cb2ddad5c42179ad587034d73d9dea869b0e",
+          "relation_id": "EXP01B-REL-7f3192fdb892cfa297d449b3",
+          "seed_sign_counts": {
+            "TRAIN1_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 2,
+              "positive": 1
+            },
+            "TRAIN1_TRAIN2_COMBINED": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 1,
+              "positive": 2
+            },
+            "TRAIN2_ONLY": {
+              "negative": 0,
+              "neutral": 0,
+              "not_evaluable": 3,
+              "positive": 0
+            }
+          },
+          "selected_horizon_seconds": 60,
+          "source": "P1_FCV01Z",
+          "source_direction": "step_up",
+          "target": "P1_FT02",
+          "target_direction": "increase"
+        }
+      ],
+      "event_conditioned_sign": "STABLE_POSITIVE_POOLED_DIRECTIONAL_MEDIAN",
+      "exact_horizon_rule_ids": [
+        "V2A-REL-060652cc8163f930bb96dd8c",
+        "V2A-REL-c89e044a17f04b0698f0e750"
+      ],
+      "source": "P1_FCV01Z",
+      "stable_seed_count": 2,
+      "supported_horizons": [
+        5,
+        60
+      ],
+      "target": "P1_FT02",
+      "v2a_rule_ids": [
+        "V2A-REL-060652cc8163f930bb96dd8c",
+        "V2A-REL-c89e044a17f04b0698f0e750"
+      ],
+      "v2a_rules": [
+        {
+          "descriptor_hash": "5c605cbf915bd6b60fd30d9efbba029c7dbe794e7a5a7fe10d92e2d56cb20d47",
+          "relation_id": "V2A-REL-060652cc8163f930bb96dd8c",
+          "selected_horizon_seconds": 5,
+          "source_direction": "step_down",
+          "target_direction": "decrease"
+        },
+        {
+          "descriptor_hash": "1423052849e28f7017b4f7b678a41c17768f2384c1fa97ece3f2ea775fe6c878",
+          "relation_id": "V2A-REL-c89e044a17f04b0698f0e750",
+          "selected_horizon_seconds": 60,
+          "source_direction": "step_up",
+          "target_direction": "increase"
+        }
+      ],
+      "view_positive_seed_counts": {
+        "TRAIN1_ONLY": 1,
+        "TRAIN1_TRAIN2_COMBINED": 2,
+        "TRAIN2_ONLY": 0
+      }
+    }
+  ],
+  "schema": "gdn_to_v2a_rule_evidence_map_v1",
+  "self_hash": "372558f9543ebc143e4a1201b221d37ee8f67d21b5c9d6b4a0141d74a57cfdec",
+  "stable_pair_count": 2,
+  "target_response_sign_corroborated": false
+}

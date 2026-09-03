@@ -147,15 +147,19 @@ class Exp01BBackendCheckpointTests(unittest.TestCase):
         device = "cuda" if torch.cuda.is_available() else "cpu"
         augmented = ((1, 2), (0, 2), (4, 5), (3, 5), (0, 0), (5, 5))
         alpha = (0.2, 0.4, 0.6, 0.8, 99.0, 99.0)
+        alpha_tensor = torch.tensor(alpha, dtype=torch.float32, device=device).reshape(-1, 1)
+        # Exact equivalence requires the same float32 input values in both paths;
+        # Python decimal literals otherwise supply different float64 evidence.
+        oracle_alpha = tuple(alpha_tensor.detach().cpu().flatten().tolist())
         explicit = aggregate_attention_from_augmented_edges_v1(
-            augmented_edges=augmented, alpha_values=alpha,
+            augmented_edges=augmented, alpha_values=oracle_alpha,
             node_count=3, feature_order=("S0", "S1", "T"),
             graph_edges=(("S0", "T"), ("S1", "T")), batch_size=2,
         )
         optimized = aggregate_attention_from_augmented_tensors_v2(
             torch_module=torch,
             augmented_edges=torch.tensor(augmented, dtype=torch.long, device=device).T.contiguous(),
-            alpha_values=torch.tensor(alpha, dtype=torch.float32, device=device).reshape(-1, 1),
+            alpha_values=alpha_tensor,
             node_count=3, feature_order=("S0", "S1", "T"),
             graph_edges=(("S0", "T"), ("S1", "T")), batch_size=2,
         )
@@ -165,7 +169,7 @@ class Exp01BBackendCheckpointTests(unittest.TestCase):
         reordered = aggregate_attention_from_augmented_tensors_v2(
             torch_module=torch,
             augmented_edges=torch.tensor(augmented, dtype=torch.long, device=device).T.contiguous(),
-            alpha_values=torch.tensor(alpha, dtype=torch.float32, device=device).reshape(-1, 1),
+            alpha_values=alpha_tensor,
             node_count=3, feature_order=("S0", "S1", "T"),
             graph_edges=(("S1", "T"), ("S0", "T")), batch_size=2,
         )

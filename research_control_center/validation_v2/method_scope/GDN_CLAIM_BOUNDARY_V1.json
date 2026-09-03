@@ -1,0 +1,15 @@
+{
+  "schema": "gdn_claim_boundary_v1",
+  "primary_candidate_authority": "META_PLUS_STAT",
+  "relation_admission": "NORMAL_ONLY_TEMPORAL_RELATION_CONFIRMATION",
+  "numeric_authority": "FROZEN_EXP02_SELECTED_POLICY",
+  "runtime_authority": "FORMAL_V4",
+  "learned_graph_role": "LEARNED_GRAPH_SUPPORTING",
+  "sidecar_consumers": ["documentation", "dashboard", "professor_report", "explanation_annotation"],
+  "sidecar_affects_prediction": false,
+  "new_gdn_training_authorized": false,
+  "causal_claim": false,
+  "heldout_generalization": "UNCONFIRMED",
+  "human_usefulness": "UNVALIDATED",
+  "final_title_gate": "DG-04"
+}

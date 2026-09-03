@@ -472,7 +472,11 @@ def fuse_detector_with_rules_v1(
     authorized_runtime: FormalV4AuthorizedRuntimeV1,
     execution_context: FormalV4ExecutionContextV1,
     repository_root: Path,
+    execution_source_commit: str | None = None,
 ) -> tuple[FusionDecisionV1, ...]:
+    # Portfolio production and a new frozen execution are separate identities.
+    prediction_commit = execution_source_commit or authorized_runtime.authority.source_commit
+    _commit(prediction_commit)
     if type(rule_outcomes) is not tuple or any(type(item) is not RuleOutcomeEvidenceV1 for item in rule_outcomes):
         raise Exp04ProtocolError("rule outcomes must be a typed tuple")
     try:
@@ -481,7 +485,7 @@ def fuse_detector_with_rules_v1(
             reference=base_prediction_reference,
             expected_policy_hash=expected_evaluation_policy_hash,
             expected_metric_contract_hash=expected_metric_contract_hash,
-            expected_source_commit=authorized_runtime.authority.source_commit,
+            expected_source_commit=prediction_commit,
         )
         d1_artifact = replay_prediction_before_label_v1(
             artifact_root=d1_custody_root,
@@ -491,7 +495,7 @@ def fuse_detector_with_rules_v1(
             expected_authority_hash=authorized_runtime.authority.authority_hash,
             expected_runtime_authorization_hash=authorized_runtime.receipt.authorization_hash,
             expected_execution_context_hash=execution_context.context_hash,
-            expected_source_commit=authorized_runtime.authority.source_commit,
+            expected_source_commit=prediction_commit,
             expected_portfolio_hash=authorized_runtime.authority.authority_hash,
             expected_file_contract_hash=execution_context.file_contract_binding.content_sha256,
         )

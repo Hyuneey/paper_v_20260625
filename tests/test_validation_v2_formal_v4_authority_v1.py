@@ -44,7 +44,7 @@ def git_commit(value: str) -> str:
 
 
 class V2Fixture:
-    def __init__(self) -> None:
+    def __init__(self, relation_count: int | None = None) -> None:
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)
         self.commit = git_commit("source-commit")
@@ -67,6 +67,10 @@ class V2Fixture:
         self.sampling_binding = self._binding("V2-SAMPLING", "authority/sampling.json")
         self.config_binding = self._binding("V2-RUNTIME-CONFIG", "authority/runtime-config.json")
         self.relation_specs = (("REL-1", "step_up", "increase", 5), ("REL-2", "step_down", "decrease", 60))
+        if relation_count is not None:
+            if type(relation_count) is not int or relation_count < 1:
+                raise ValueError("synthetic relation_count must be positive")
+            self.relation_specs = tuple((f"REL-{i:02d}", "step_up", "increase", 5) for i in range(relation_count))
         self.numeric_values = {
             "source_step_threshold": 1.0, "source_stability_tolerance": 0.1, "target_noise_scale": 0.2,
             "source_pre_window_seconds": 2.0, "source_post_window_seconds": 2.0,

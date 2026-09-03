@@ -809,6 +809,7 @@ def freeze_multi_method_evaluation_bundle_v1(
         )
         for reference in references
     )
+    _validate_coordinate_census_v1(tuple(item.artifact for item in replayed))
     receipts = tuple(item.receipt for item in replayed)
     bundle_body = _bundle_document(
         bundle_id=bundle_id, exact_method_ids=methods, receipts=receipts,
@@ -924,6 +925,7 @@ def authorize_evaluation_label_access_v1(
         )
         for reference in references
     )
+    _validate_coordinate_census_v1(tuple(item.artifact for item in replayed))
     replayed_bundle = _replay_bundle(
         root=root, bundle_relative_path=bundle_relative_path,
         bundle_receipt_relative_path=bundle_receipt_relative_path,
@@ -985,6 +987,35 @@ def _capability_state(capability: EvaluationLabelAccessCapabilityV1) -> _Capabil
     if state is None or state.capability is not capability:
         _fail("UNREGISTERED_LABEL_CAPABILITY_REJECTED")
     return state
+
+
+def _validate_coordinate_census_v1(artifacts: tuple[DenseBooleanPredictionArtifactV1, ...]) -> None:
+    expected = tuple((r.file_id, r.file_content_sha256, r.row_index) for r in artifacts[0].records)
+    for artifact in artifacts[1:]:
+        observed = tuple((r.file_id, r.file_content_sha256, r.row_index) for r in artifact.records)
+        if observed != expected:
+            _fail("CROSS_METHOD_COORDINATE_CENSUS_MISMATCH")
+
+
+def validate_evaluation_label_capability_v1(capability: EvaluationLabelAccessCapabilityV1, *,
+    exact_method_ids: tuple[str, ...], evaluation_policy_hash: str, metric_contract_hash: str,
+    source_commit: str) -> None:
+    """Validate the opaque bundle token without resolving or opening labels."""
+    with _CAPABILITY_LOCK:
+        state = _capability_state(capability)
+        if state.state is not EvaluationCustodyStateV1.LABEL_ACCESS_AUTHORIZED:
+            _fail("LABEL_CAPABILITY_ALREADY_CONSUMED")
+        if (state.exact_method_ids != exact_method_ids or state.evaluation_policy_hash != evaluation_policy_hash
+            or state.metric_contract_hash != metric_contract_hash or state.source_commit != source_commit):
+            _fail("LABEL_CAPABILITY_EXECUTION_BINDING_MISMATCH")
+        _verify_bound_files(state)
+
+
+def destroy_evaluation_label_capability_v1(capability: EvaluationLabelAccessCapabilityV1) -> None:
+    """Destroy in-memory access; durable lease prevents issuing a second token."""
+    with _CAPABILITY_LOCK:
+        _capability_state(capability)
+        del _CAPABILITIES[capability._token]
 
 
 def _verify_bound_files(state: _CapabilityState) -> None:

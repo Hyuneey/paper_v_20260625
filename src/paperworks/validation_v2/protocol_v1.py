@@ -437,6 +437,22 @@ class ProtocolExecutionGuardV1:
             _fail("PREDICTION_FREEZE_WITHOUT_AUTHORIZATION")
         self._state = ProtocolGuardStateV1.DEVELOPMENT_PREDICTION_FROZEN
 
+    def authorize_multi_method_label_metrics_v1(self, capability: object, *, exact_method_ids: tuple[str, ...],
+                                               evaluation_policy_hash: str, metric_contract_hash: str,
+                                               execution_source_commit: str) -> None:
+        """Bundle-custody path; historical single-D1 capability remains unchanged."""
+        from .evaluation_custody_v1 import validate_evaluation_label_capability_v1
+        if (self._state is not ProtocolGuardStateV1.DEVELOPMENT_PREDICTION_FROZEN
+            or self._policy_freeze_receipt is None or self._development_label_metrics_authorized):
+            _fail("MULTI_METHOD_LABEL_AUTHORIZATION_OUT_OF_ORDER")
+        if (metric_contract_hash != self._policy_freeze_receipt.metric_contract_hash
+            or evaluation_policy_hash not in self._policy_freeze_receipt.method_policy_hashes):
+            _fail("MULTI_METHOD_FROZEN_POLICY_MISMATCH")
+        validate_evaluation_label_capability_v1(capability, exact_method_ids=exact_method_ids,
+            evaluation_policy_hash=evaluation_policy_hash, metric_contract_hash=metric_contract_hash,
+            source_commit=execution_source_commit)
+        self._development_label_metrics_authorized = True
+
     def record_development_labels_accessed(self) -> None:
         if self._state is not ProtocolGuardStateV1.DEVELOPMENT_PREDICTION_FROZEN:
             _fail("LABEL_STATE_OUT_OF_ORDER")
