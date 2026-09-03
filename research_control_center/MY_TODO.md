@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bd3c29b1e277c640a8c1ee23c0f21c3fa323f8841c06180eff9ab277d13d3180 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 내가 해야 할 연구 검토
 
 이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.

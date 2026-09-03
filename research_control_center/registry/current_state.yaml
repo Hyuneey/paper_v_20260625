@@ -217,11 +217,19 @@
   "candidate_discovery": {
     "candidate_universe": "12 ordered sources x 12 ordered targets = 144 directed pairs",
     "warning": "Candidate discovery proposes relationships. It does not establish causal or final temporal relations.",
+    "meta_lineage": {
+      "source": "HYBRID_REVIEWED_METADATA",
+      "authorship_qualifier": "AI_ASSISTED_METADATA_EXTRACTION",
+      "user_intervention": "HUMAN_INTERVENTION_LEVEL_1",
+      "declaration_intervention_surface": "PAIR_LEVEL_DECLARATIONS_WITH_DETERMINISTIC_FINAL_RANKING",
+      "exact_public_reproducibility": "PARTIALLY_REPRODUCIBLE_PRIVATE_REVIEWED_INPUT_REQUIRED",
+      "audit_ref": "validation_v2/meta_lineage/META_LINEAGE_AUDIT_V1.md"
+    },
     "arms": [
       {
         "id": "META",
-        "input": "reviewed P1 metadata and public physical graph",
-        "method": "M1/M2/M3 deterministic domain-prior ranking",
+        "input": "official HAI manual and physical graph plus AI-assisted reviewed semantic declarations",
+        "method": "M1/M2/M3 deterministic ranking over hybrid reviewed metadata",
         "output": "metadata-supported pair candidates",
         "top_k": "20",
         "frozen_execution": true,

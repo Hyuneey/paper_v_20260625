@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bd3c29b1e277c640a8c1ee23c0f21c3fa323f8841c06180eff9ab277d13d3180 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -39,6 +39,15 @@ VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STA
 - **정보 누출:** 확인된 정보 누출은 없다. PILOT V1의 D1 custody 조건은 유지되며 GAP-FIX-002가 향후 VALIDATION V2 custody gap을 닫았다. D2 V2는 여전히 test1-informed development다.
 - **Test1:** INNER 개발용 14개 연속 attack-event unit 예비 실험이다. 통계적 독립성은 확립되지 않았고 최종 검증이 아니다.
 - **Test2:** custody 단계의 file 접근 시도 1회가 byte read 전에 거부됐으며 held-out 결과는 없다.
+
+## META provenance 점검
+
+- **META SOURCE:** `HYBRID_REVIEWED_METADATA`
+- **META USER INTERVENTION:** `HUMAN_INTERVENTION_LEVEL_1`
+- **META EXACT PUBLIC REPRODUCIBILITY:** `PARTIALLY_REPRODUCIBLE_PRIVATE_REVIEWED_INPUT_REQUIRED`
+- **경계:** 공식 P1 graph 자동 처리와 AI-assisted reviewed semantic declaration이 함께
+  ranking에 기여했다. 최종 Top-20은 deterministic code가 선택했으며 researcher pair
+  selection은 확인되지 않았다.
 
 ## 고정 D1 runtime·trace 점검
 

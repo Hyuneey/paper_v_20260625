@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bd3c29b1e277c640a8c1ee23c0f21c3fa323f8841c06180eff9ab277d13d3180 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -37,6 +37,10 @@ durable pre-label persistence; D2 V2 is test1-informed.
 
     PILOT V1은 47-pair union을 보존한다. V2 EXP-01은 META_PLUS_STAT을 선택했고,
     EXP-01B는 GDN-XAI arm을 동일 예산으로 비교한 뒤 `GDN_ABLATION_ONLY`로 끝났다.
+    META provenance는 `HYBRID_REVIEWED_METADATA`이고,
+    researcher intervention은 `HUMAN_INTERVENTION_LEVEL_1`이다.
+    exact replay에는 private reviewed semantic declaration이 필요하므로 공개 재현 상태는
+    `PARTIALLY_REPRODUCIBLE_PRIVATE_REVIEWED_INPUT_REQUIRED`이다.
 
 ## Relation and numeric-authority boundary
 

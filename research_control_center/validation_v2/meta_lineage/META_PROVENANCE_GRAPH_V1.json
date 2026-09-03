@@ -1,0 +1,26 @@
+{
+  "artifact_type": "meta_provenance_graph_v1",
+  "schema_version": "1.0.0",
+  "task_id": "META-LINEAGE-001",
+  "nodes": [
+    {"node_id": "OFFICIAL_HAI_MANUAL", "kind": "OFFICIAL_REFERENCE", "public_identity": "sha256:0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556"},
+    {"node_id": "OFFICIAL_P1_PHYSICAL_GRAPH", "kind": "OFFICIAL_REFERENCE", "public_identity": "sha256:eca648d73c0444a35294608c2a1067256d7b32547257153226fece2de3febd07"},
+    {"node_id": "REVIEWED_METADATA_EVIDENCE_INPUT", "kind": "PRIVATE_REVIEWED_DECLARATION", "public_identity": "self_hash:8cdb1e606149a2d7647f4b68955280187ad7219d09fde17660cdfb80f2708e39"},
+    {"node_id": "FROZEN_144_PAIR_UNIVERSE", "kind": "PUBLIC_IDENTITY_UNIVERSE", "public_identity": "sha256:fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557"},
+    {"node_id": "META_TIER_CLASSIFICATION", "kind": "DETERMINISTIC_TRANSFORMATION", "public_identity": "M1_M2_M3_UNSUPPORTED"},
+    {"node_id": "META_SUPPORTED_RANKING", "kind": "DETERMINISTIC_TRANSFORMATION", "public_identity": "ledger_hash:efc495f5754d5cd31b0017847df5423bece170da8ea87358d44daac1ee9b4c62"},
+    {"node_id": "META_TOP20", "kind": "FROZEN_RESULT_VIEW", "public_identity": "sha256:6a46d85891dd3d4f95f2b4c859bf91cbbdeb4582be3d2b72c6396737431d7286"}
+  ],
+  "edges": [
+    {"edge_id": "E1", "source": "OFFICIAL_HAI_MANUAL", "target": "REVIEWED_METADATA_EVIDENCE_INPUT", "transformation": "AI_ASSISTED_EXTRACTION", "certainty": "EVIDENCED_BY_ARCHIVED_EXECUTION_TRANSCRIPT"},
+    {"edge_id": "E2", "source": "OFFICIAL_P1_PHYSICAL_GRAPH", "target": "REVIEWED_METADATA_EVIDENCE_INPUT", "transformation": "AI_ASSISTED_EXTRACTION", "certainty": "EVIDENCED_BY_ARCHIVED_EXECUTION_TRANSCRIPT"},
+    {"edge_id": "E3", "source": "OFFICIAL_P1_PHYSICAL_GRAPH", "target": "META_TIER_CLASSIFICATION", "transformation": "AUTOMATIC_CODE_TRANSFORMATION", "certainty": "CODE_VERIFIED"},
+    {"edge_id": "E4", "source": "REVIEWED_METADATA_EVIDENCE_INPUT", "target": "META_TIER_CLASSIFICATION", "transformation": "STATIC_DECLARATION", "certainty": "PUBLIC_HASH_AND_SCHEMA_ATTESTED_PRIVATE_BYTES_CURRENTLY_ABSENT"},
+    {"edge_id": "E5", "source": "FROZEN_144_PAIR_UNIVERSE", "target": "META_TIER_CLASSIFICATION", "transformation": "AUTOMATIC_CODE_TRANSFORMATION", "certainty": "CODE_VERIFIED"},
+    {"edge_id": "E6", "source": "META_TIER_CLASSIFICATION", "target": "META_SUPPORTED_RANKING", "transformation": "AUTOMATIC_CODE_TRANSFORMATION", "certainty": "CODE_AND_RESULT_VERIFIED"},
+    {"edge_id": "E7", "source": "META_SUPPORTED_RANKING", "target": "META_TOP20", "transformation": "AUTOMATIC_CODE_TRANSFORMATION", "certainty": "CODE_AND_RESULT_VERIFIED"}
+  ],
+  "classification": "HYBRID_REVIEWED_METADATA",
+  "claim_boundary": "CANDIDATE_PRIOR_ONLY_NOT_CAUSAL_NOT_DETECTION_PERFORMANCE",
+  "artifact_hash": "cf752777fb0d5ef9175f88e53e2d76517afce17cdbfde4388223bd6419e49f64"
+}

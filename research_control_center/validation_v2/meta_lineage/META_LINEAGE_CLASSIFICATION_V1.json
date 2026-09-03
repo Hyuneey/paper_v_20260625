@@ -1,0 +1,68 @@
+{
+  "artifact_type": "meta_lineage_classification_v1",
+  "schema_version": "1.0.0",
+  "task_id": "META-LINEAGE-001",
+  "audit_base_commit": "2f5eabdb9fb5c9f01947a17a086a20ecab325d3f",
+  "primary_provenance_class": "HYBRID_REVIEWED_METADATA",
+  "authorship_qualifier": "AI_ASSISTED_METADATA_EXTRACTION",
+  "human_intervention_level": "HUMAN_INTERVENTION_LEVEL_1",
+  "declaration_intervention_surface": "PAIR_LEVEL_DECLARATIONS_WITH_DETERMINISTIC_FINAL_RANKING",
+  "public_reproducibility": "PARTIALLY_REPRODUCIBLE_PRIVATE_REVIEWED_INPUT_REQUIRED",
+  "reviewed_input": {
+    "expected_relative_path": "artifacts/task039c_meta/TASK-039C_META_REVIEWED_EVIDENCE_INPUT.json",
+    "exists_at_audit": false,
+    "tracked": false,
+    "ignored_by_policy": true,
+    "bytes_unchanged": "NOT_VERIFIABLE_ABSENT",
+    "attested_self_hash": "8cdb1e606149a2d7647f4b68955280187ad7219d09fde17660cdfb80f2708e39"
+  },
+  "structural_counts": {
+    "source_graph_bindings": 12,
+    "target_graph_bindings": 12,
+    "source_subsystem_bindings": 12,
+    "target_subsystem_bindings": 12,
+    "manual_explicit_pair_declarations": 12,
+    "evaluated_pairs": 144,
+    "supported_pairs": 30,
+    "unsupported_pairs": 114,
+    "m1_explicit": 12,
+    "m2_graph_adjacent": 11,
+    "m3_subsystem_supported": 7,
+    "top20_m1": 12,
+    "top20_m2": 8
+  },
+  "author_evidence": {
+    "classification": "AI_CODEX_AUTHORED_REVIEWED_DECLARATION_FROM_OFFICIAL_REFERENCES",
+    "researcher_pair_level_authorship": "UNRESOLVED",
+    "pair_direct_copy_vs_semantic_inference": "UNRESOLVED",
+    "execution_transcript_id": "019fea51-699a-78a0-a6e6-e717cda13b02",
+    "execution_transcript_sha256": "96d0ab6eb2a6a33308dcd6c56c4420127bc8882bb1859b0b5e7994592635267c"
+  },
+  "manual_intervention_questions": {
+    "researcher_selected_final_top20": "NO",
+    "human_or_ai_enumerated_explicit_pairs": "YES",
+    "pairs_copied_directly_from_official_statements": "UNRESOLVED",
+    "exact_ranking_without_private_reviewed_declaration": "NO",
+    "private_declaration_adds_material_semantic_information": "YES",
+    "real_hai_time_series_values_used": "NO",
+    "attack_labels_or_downstream_outcomes_used": "NO"
+  },
+  "frozen_invariants": {
+    "meta_result_artifact_hash": "0e3b055df911c74bd0e0993b7b3bb122860b265192ad0cf91d54edc1e74635bf",
+    "meta_result_file_sha256": "7af95ab723a9fd3ea1ab0e2dae5be5a5796e0e58dbd14563652dfb0c6e65e688",
+    "meta_result_git_blob": "3b3534d25fd7e2e6385e4b36050ebf76a31543ac",
+    "meta_top20_identity_hash": "6a46d85891dd3d4f95f2b4c859bf91cbbdeb4582be3d2b72c6396737431d7286",
+    "pair_universe_hash": "fc072d3e18ce4623972c2cb64f6266727092ecae03fdb0f0dd929d705e1d8557",
+    "metadata_policy_hash": "5fc43a043f0e75a56cab855a466a97a394fc1a6fdb67461b17696034547e4af3"
+  },
+  "safety": {
+    "scientific_executions": 0,
+    "hai_feature_value_accesses": 0,
+    "label_accesses": 0,
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "private_exposures": 0
+  },
+  "artifact_hash": "315bbd615c24ea6b347e8f54c71910aa66132e365a66f816536f08be642c2aae"
+}

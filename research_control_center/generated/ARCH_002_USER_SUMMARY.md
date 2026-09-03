@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bd3c29b1e277c640a8c1ee23c0f21c3fa323f8841c06180eff9ab277d13d3180 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 관계 후보는 왜 세 방식으로 고르는가
 
 ## 한 문장 답
@@ -24,9 +24,10 @@ P1의 ordered source 역할 12개와 target 역할 12개의 directed cross produ
 
 ## META는 무엇을 보는가?
 
-실제 센서 값을 읽지 않고 reviewed official metadata와 directed physical graph를 본다.
-명시 연결, graph adjacency, subsystem support 순으로 분류하고 공식 reference 수와
-identity로 결정적으로 정렬한다. 학습 score는 없다.
+실제 센서 값을 읽지 않고 공식 HAI manual·directed physical graph와 AI-assisted reviewed
+semantic declaration을 본다. 명시 연결, graph adjacency, subsystem support 순으로 분류하고
+공식 reference category 수와 identity로 결정적으로 정렬한다. 학습 score와 researcher의
+최종 Top-20 수동 선택은 없다. Exact public replay에는 private reviewed declaration이 필요하다.
 
 ## STAT은 무엇을 보는가?
 

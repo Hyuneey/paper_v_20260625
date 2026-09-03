@@ -1219,6 +1219,10 @@ durable pre-label persistence; D2 V2 is test1-informed.
 
     PILOT V1은 47-pair union을 보존한다. V2 EXP-01은 META_PLUS_STAT을 선택했고,
     EXP-01B는 GDN-XAI arm을 동일 예산으로 비교한 뒤 `GDN_ABLATION_ONLY`로 끝났다.
+    META provenance는 `{state['candidate_discovery']['meta_lineage']['source']}`이고,
+    researcher intervention은 `{state['candidate_discovery']['meta_lineage']['user_intervention']}`이다.
+    exact replay에는 private reviewed semantic declaration이 필요하므로 공개 재현 상태는
+    `{state['candidate_discovery']['meta_lineage']['exact_public_reproducibility']}`이다.
 
 ## Relation and numeric-authority boundary
 
@@ -1367,6 +1371,15 @@ Registry snapshot: `{state['generated_at']}`
 - **정보 누출:** {_ko_text(state['data_governance']['leakage_status'])}
 - **Test1:** {_ko_text(state['data_governance']['test1_status'])}
 - **Test2:** {_ko_text(state['data_governance']['test2_status'])}
+
+## META provenance 점검
+
+- **META SOURCE:** `{state['candidate_discovery']['meta_lineage']['source']}`
+- **META USER INTERVENTION:** `{state['candidate_discovery']['meta_lineage']['user_intervention']}`
+- **META EXACT PUBLIC REPRODUCIBILITY:** `{state['candidate_discovery']['meta_lineage']['exact_public_reproducibility']}`
+- **경계:** 공식 P1 graph 자동 처리와 AI-assisted reviewed semantic declaration이 함께
+  ranking에 기여했다. 최종 Top-20은 deterministic code가 선택했으며 researcher pair
+  selection은 확인되지 않았다.
 
 ## 고정 D1 runtime·trace 점검
 
@@ -1534,9 +1547,10 @@ P1의 ordered source 역할 12개와 target 역할 12개의 directed cross produ
 
 ## META는 무엇을 보는가?
 
-실제 센서 값을 읽지 않고 reviewed official metadata와 directed physical graph를 본다.
-명시 연결, graph adjacency, subsystem support 순으로 분류하고 공식 reference 수와
-identity로 결정적으로 정렬한다. 학습 score는 없다.
+실제 센서 값을 읽지 않고 공식 HAI manual·directed physical graph와 AI-assisted reviewed
+semantic declaration을 본다. 명시 연결, graph adjacency, subsystem support 순으로 분류하고
+공식 reference category 수와 identity로 결정적으로 정렬한다. 학습 score와 researcher의
+최종 Top-20 수동 선택은 없다. Exact public replay에는 private reviewed declaration이 필요하다.
 
 ## STAT은 무엇을 보는가?
 
