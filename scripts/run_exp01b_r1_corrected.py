@@ -147,7 +147,10 @@ def _private_evidence(private_root: Path) -> tuple[
                 return {(str(row["source"]), str(row["target"])): float(row["value"]) for row in document[name]}
             embedding[(view, seed)] = scores("embedding_scores")
             attention[(view, seed)] = scores("attention_scores")
-            graphs[(view, seed)] = tuple((str(row[0]), str(row[1])) for row in document["graph_edges"])
+            graphs[(view, seed)] = tuple(
+                pair for pair in ((str(row[0]), str(row[1])) for row in document["graph_edges"])
+                if pair in PAIR_UNIVERSE
+            )
     return embedding, attention, graphs
 
 
@@ -306,7 +309,8 @@ def _convert_unique_relations(
 
 def execute(root: Path, private_root: Path) -> None:
     contract = _load(root / CONTRACT); _self_hash(contract, "contract_hash")
-    binding = _load(root / EXECUTION_BINDING); _self_hash(binding, "binding_hash")
+    binding_path = root / EXECUTION_BINDING.with_name("EXP01B_R1_EXECUTION_BINDING_R2.json")
+    binding = _load(binding_path); _self_hash(binding, "binding_hash")
     if binding.get("contract_hash") != contract["contract_hash"]:
         raise R1ExecutionError("EXP01B_R1_EXECUTION_BINDING_CONTRACT_MISMATCH")
     old = _load(root / "research_control_center/validation_v2/exp01b_gdn_xai/results/EXP01B_DISPOSITION.json")

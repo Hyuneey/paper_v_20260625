@@ -22,16 +22,20 @@ def main() -> None:
         "src/paperworks/validation_v2/gdn_corr_r1_runner_v1.py",
         "scripts/run_exp01b_r1_corrected.py",
     )
+    previous = root / "research_control_center/validation_v2/gdn_corr_001/contracts/EXP01B_R1_EXECUTION_BINDING.json"
+    previous_document = json.loads(previous.read_text(encoding="utf-8"))
     body = {
         "schema": "paperworks.validation_v2.exp01b_r1_execution_binding_v1",
         "schema_version": "1.0.0", "experiment_id": "EXP-01B-R1",
         "source_commit": source_commit, "contract_hash": contract["contract_hash"],
         "implementation_hashes": {name: sha256((root / name).read_bytes()).hexdigest() for name in files},
+        "supersedes_binding_hash": previous_document["binding_hash"],
+        "repair_scope": "FILTER_LEARNED_GRAPH_CONTROL_ELIGIBILITY_TO_FROZEN_144_PAIR_UNIVERSE",
         "status": "FROZEN_BEFORE_CORRECTED_RESULT_ACCESS", "retraining": False,
         "test1_allowed": False, "labels_allowed": False, "test2_allowed": False, "heldout_allowed": False,
     }
     document = {**body, "binding_hash": stable_hash_v1(body)}
-    target = root / "research_control_center/validation_v2/gdn_corr_001/contracts/EXP01B_R1_EXECUTION_BINDING.json"
+    target = root / "research_control_center/validation_v2/gdn_corr_001/contracts/EXP01B_R1_EXECUTION_BINDING_R2.json"
     payload = json.dumps(document, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode() + b"\n"
     target.parent.mkdir(parents=True, exist_ok=True)
     descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
