@@ -293,7 +293,8 @@ class _MultiHorizonDataset:
         targets = []
         for horizon in self.config.horizons:
             start = stop + horizon - 1
-            targets.append(segment[start:start + 3].median(dim=0).values)
+            values = segment[start:start + 3]
+            targets.append(values.sum(dim=0) - values.amin(dim=0) - values.amax(dim=0))
         return history, self._stack(targets), file_index, stop
 
     def _stack(self, targets: Sequence[Any]) -> Any:
@@ -393,7 +394,10 @@ def _window_batch(
     horizon_offsets = torch.tensor(config.horizons, dtype=torch.long, device=matrix.device) - 1
     response_offsets = torch.arange(3, device=matrix.device)
     target_indices = starts[:, None, None] + config.history_rows + horizon_offsets[None, :, None] + response_offsets[None, None, :]
-    targets = matrix[target_indices].median(dim=2).values.permute(0, 2, 1).contiguous()
+    response = matrix[target_indices]
+    targets = (
+        response.sum(dim=2) - response.amin(dim=2) - response.amax(dim=2)
+    ).permute(0, 2, 1).contiguous()
     return history, targets
 
 
