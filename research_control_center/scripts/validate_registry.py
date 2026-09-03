@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
     "validation-v2-core-exp02": {"9cb47e0efb868048d4a523ec4cfaca53bd342ab7"},
     "validation-v2-exp01b-gdn-xai": {
         "9e2aad7ded63238f6300f282d0841671c7c14ce0",
@@ -96,7 +97,7 @@ STATUS_ENUMS = {
     },
     "claims": {
         "SUPPORTED_IMPLEMENTATION", "PILOT_ONLY", "UNVALIDATED", "NOT_SUPPORTED",
-        "DEVELOPMENT_NOT_SUPPORTED", "CONDITIONAL", "SUPERSEDED",
+        "DEVELOPMENT_NOT_SUPPORTED", "DEVELOPMENT_SUPPORTED", "CONDITIONAL", "SUPERSEDED",
     },
     "risks": {"OPEN", "MITIGATING", "ACCEPTED", "CLOSED"},
     "decisions": DECISION_STATUSES,
@@ -346,10 +347,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(state.get("current_phase") == "EVALUATION_SCOPE_EXPANSION", "current phase mismatch")
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
-    result.require(len(state.get("top_user_todo", [])) == 6, "top_user_todo must contain the six current V2 review entries")
+    result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain the three current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "V2-DUALTRACK-002 — V2A META+STAT and EXP-01B GDN-XAI normal-only execution", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "V2-GDN-FRONT-EXP04-001 — 개발 평가·전체 trace 무결성 QA 완료", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "DG-03 — EXP-03 Provider Execution Decision", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -362,10 +363,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "DG-03 — EXP-03 Provider Execution Decision", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     readiness = state.get("pre_validation_readiness", {})
-    result.require(readiness.get("status") == "NORMAL_ONLY_V2A_READY_EXP04_PENDING", "VALIDATION V2 remediation status mismatch")
+    result.require(readiness.get("status") == "DEVELOPMENT_COMPLETE_FINAL_GATES_PENDING", "VALIDATION V2 remediation status mismatch")
     result.require(readiness.get("p0_global_fixes") == [], "remaining global P0 fix mismatch")
     result.require(readiness.get("raw_findings") == 120 and readiness.get("root_issues") == 19, "GAP-000 inventory counts mismatch")
     result.require(readiness.get("source_severity") == {"critical": 0, "high": 54, "medium": 55, "low": 11}, "GAP-000 source severity mismatch")
@@ -475,7 +476,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(
         state.get("safety_counters") == {
-            "scientific_executions": 3,
+            "scientific_executions": 4,
             "test2_feature_accesses": 0,
             "test2_label_accesses": 0,
             "new_private_exposures": 0,
@@ -635,7 +636,7 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
 
 def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
     history = data["history"]
-    result.require(15 <= len(data["timeline"]) <= 30, "timeline must contain 15 to 30 meaningful events")
+    result.require(15 <= len(data["timeline"]) <= 31, "timeline must contain 15 to 31 meaningful events")
     result.require(10 <= len(data["decisions"]) <= 25, "decision registry must contain 10 to 25 meaningful decisions")
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
     result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")
@@ -718,7 +719,7 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(authority.get("bridge_minimum_thesis_path") == "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH", "minimum thesis path incorrectly requires the bridge")
     result.require(authority.get("canonical_rule_v1_authoritative") is False and authority.get("verifier_v1_authoritative") is False, "canonical RuleV1/VerifierV1 authority is overstated")
     program = data["state"].get("validation_v2_program", {})
-    result.require(program.get("status") == "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT", "V2 normal-only completion status is not explicit")
+    result.require(program.get("status") == "DEVELOPMENT_COMPLETE_QA_PASS", "V2 normal-only completion status is not explicit")
     result.require(program.get("scientific_input_authority") == "DATA-POLICY-001_NORMAL_ONLY_CUSTODY_READY", "V2 materialization authority is not explicit")
     result.require(program.get("dataset_acquisition_policy") == "DATA-POLICY-001", "HAI acquisition policy is not bound")
     result.require(program.get("acquisition_mode") == "CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION", "HAI acquisition mode is not code-based")
@@ -729,7 +730,7 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(program.get("bound_symbolic_splits") == ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"], "V2 bound symbolic normal splits are incorrect")
     result.require(program.get("missing_symbolic_splits") == [], "V2 normal custody still reports missing splits")
     result.require(program.get("fresh_machine_synthetic") == "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC", "fresh-machine synthetic PASS is not recorded")
-    result.require(program.get("scientific_executions") == 3, "V2 program scientific execution count mismatch")
+    result.require(program.get("scientific_executions") == 4, "V2 program scientific execution count mismatch")
     result.require(program.get("test2_accesses") == 0 and program.get("heldout_accesses") == 0, "V2 program violates held-out safety counters")
     result.require(program.get("provider_calls") == 0, "V2 program provider-call counter must remain zero")
     policy_path = repo_root / "research_control_center" / "validation_v2" / "policies" / "DATA_POLICY_001.json"
@@ -916,10 +917,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "V2-SCI-EXP04-001"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "V2-SCI-EXP04-001"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "DG-03"),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "DG-03"),
         "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "V2-SCI-EXP04-001"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "DG-03"),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),

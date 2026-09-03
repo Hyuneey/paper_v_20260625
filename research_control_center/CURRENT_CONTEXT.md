@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
-Last updated: 2026-09-03
+Last updated: 2026-09-04
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Documentation overlay: `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @ `ebc5a57bfdb7d8266f96f2990338effb9d0a2743`
 RCC version: `0.1.0`
@@ -109,9 +109,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Generate and durably freeze all preregistered EXP-04 label-blind method predictions before any test1 label access.
-- Use only the frozen V2A META+STAT Formal V4 portfolio; do not create a result-driven V2B GDN portfolio.
-- Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
+- DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.
+- 음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.
+- DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다.
 
-Exact next management task: **V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation**
+Exact next management task: **DG-03 — EXP-03 Provider Execution Decision**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_3_EXP04_LABEL_BLIND_PREPARATION",
-  "program_status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
+  "current_stage": "STAGE_5_REPORTING",
+  "program_status": "DEVELOPMENT_COMPLETE_QA_PASS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -34,9 +34,9 @@
     "EXP-01B": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
     "EXP-02": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
     "EXP-03": "PREPARED_PROVIDER_GATED",
-    "STRONGER-DETECTOR": "READY_FIXED_ISOLATION_FOREST",
-    "EXP-04": "READY_LABEL_BLIND_PREDICTION_FREEZE",
-    "EXP-05": "BLOCKED_NO_MATERIALIZED_V2_RUNTIME_TRACES",
+    "STRONGER-DETECTOR": "EXECUTED_FIXED_ISOLATION_FOREST_NO_SUPERIORITY_CLAIM",
+    "EXP-04": "COMPLETE_QA_PASS_DEVELOPMENT",
+    "EXP-05": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS",
     "EXP-06": "NOT_REQUIRED"
   },
   "dataset_acquisition_policy": {
@@ -48,7 +48,7 @@
     "user_local_path_required": false,
     "recovery_policy": "REACQUIRE_BY_APPROVED_CODE_BEFORE_REQUESTING_USER_PATH",
     "materialization_history": "CODE_BASED_MATERIALIZATION_COMPLETED",
-    "next_action": "NORMAL_ONLY_EXPERIMENT_EXECUTION"
+    "next_action": "PRESERVE_CUSTODY_NO_FURTHER_DATA_ACCESS"
   },
   "normal_only_custody": {
     "status": "NORMAL_ONLY_CUSTODY_READY",
@@ -57,7 +57,12 @@
     "materialization_receipt_hash": "b9b7ec090916495ff6ba3706636293f9f2b4c0787f7a53b4408bee66b48530c4",
     "custody_binding": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json",
     "custody_binding_hash": "05a95d576fefaae8894b6ec9ed9796a9ba0cf5eea02e9dc4781985e462b4f58d",
-    "bound_split_ids": ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"],
+    "bound_split_ids": [
+      "HAI_TRAIN1",
+      "HAI_TRAIN2",
+      "HAI_TRAIN3",
+      "HAI_TRAIN4"
+    ],
     "byte_equivalence": "PASS_ALL_FOUR",
     "schema_identity": "PASS_ALL_FOUR",
     "test1_accesses": 0,
@@ -66,7 +71,7 @@
     "private_exposures": 0
   },
   "stage3_execution_readiness": {
-    "status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
+    "status": "DEVELOPMENT_COMPLETE_QA_PASS",
     "exp01": {
       "status": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
       "receipt": "research_control_center/validation_v2/reports/EXP01_RESULT_DISPOSITION_V2.md",
@@ -89,7 +94,7 @@
       "portfolio_hash": "ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa"
     },
     "global_blocker": null,
-    "next": "V2-SCI-EXP04-001_LABEL_BLIND_PREDICTION_AND_DURABLE_FREEZE"
+    "next": "DG-03 — EXP-03 Provider Execution Decision"
   },
   "historical_execution_blocker": {
     "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
@@ -133,11 +138,11 @@
     "scientific_data_required": false
   },
   "professor_package": {
-    "status": "UPDATED_NORMAL_ONLY_RESULTS_NOT_SUBMITTED",
+    "status": "UPDATED_DEVELOPMENT_RESULTS_QA_PASS_NOT_SUBMITTED",
     "html": "docs/professor_experiment_update_v2/PROFESSOR_EXPERIMENT_UPDATE_V2.html",
     "email_sent": false,
     "submission_authorized": false,
-    "qualification": "Normal-only EXP-01, EXP-01B, and EXP-02 results are included. EXP-04, held-out validation, and professor submission remain pending."
+    "qualification": "EXP01/01B negative history, EXP01C supporting evidence, normal-only EXP02, actual EXP04/05 development results included. EXP03 provider, final title, heldout and submission remain gated."
   },
   "independent_qa": {
     "status": "PASS_WITH_NONBLOCKING_INTEGRATION_NOTES",
@@ -146,16 +151,16 @@
     "report": "research_control_center/validation_v2/exp01b_gdn_xai/reports/EXP01B_INDEPENDENT_QA.md"
   },
   "safety_counters": {
-    "scientific_executions": 3,
+    "scientific_executions": 4,
     "materialization_train1_payload_accesses": 1,
     "materialization_train2_payload_accesses": 1,
     "materialization_train3_payload_accesses": 1,
     "materialization_train4_payload_accesses": 1,
     "normal_only_scientific_access_accounting": "PHASE_RECEIPTS_AUTHORITATIVE_NOT_COLLAPSED_TO_ONE_PUBLIC_COUNTER",
-    "test1_accesses": 0,
+    "test1_accesses": 1,
     "test2_accesses": 0,
     "held_out_accesses": 0,
-    "label_accesses": 0,
+    "label_accesses": 1,
     "candidate_file_stats": 0,
     "candidate_file_opens": 0,
     "candidate_file_byte_reads": 0,
@@ -167,15 +172,38 @@
     "gap_fix_002_focused_tests_passed": 33,
     "v2_protocol_001_focused_tests_passed": 20,
     "gap_fix_metric_001_focused_tests_passed": 24,
-    "validation_v2_tests_passed": 275,
-    "validation_v2_tests_skipped": 3,
+    "validation_v2_tests_passed": 466,
+    "validation_v2_tests_skipped": 5,
     "dualtrack_applicable_tests_passed": 76,
     "dualtrack_applicable_tests_skipped": 2,
-    "rcc_tests_passed": 172,
+    "rcc_tests_passed": 187,
     "fresh_machine_synthetic_rehearsals_passed": 1,
     "pilot_v1_modifications": 0,
     "stage0_rcc_tests_passed": 122,
     "stage0_registry_validation": "PASS",
-    "stage0_dashboard_build": "PASS"
+    "stage0_dashboard_build": "PASS",
+    "current_task_access_scope": "test1_accesses=feature adapter semantic pass; label_accesses=one-shot semantic parse. These are not total OS byte-open/download counts. candidate_file_* retain normal recovery metadata phase scope.",
+    "registry_generated_validation": "PASS_PRIVATE_EXPOSURES_0"
+  },
+  "front_execution": {
+    "task_id": "V2-GDN-FRONT-EXP04-001",
+    "status": "COMPLETE_QA_PASS_DEVELOPMENT",
+    "scope": "DEVELOPMENT_ONLY",
+    "execution_commit": "94ae44dac900cce75ed83ee2801be38750afed4a",
+    "result_ref": "research_control_center/validation_v2/gdn_front_exp04_001/results/EXP04_RESULTS_V1.json",
+    "result_hash": "0f3f5966a35e35ae663e60ddbb8afb7ce62e35081a7f9383e9aaf61b75064db1",
+    "trace_ref": "research_control_center/validation_v2/gdn_front_exp04_001/results/EXP05_FULL_CENSUS_V1.json",
+    "trace_hash": "3a85a41ba9311715b19538d599e23dc6d82cefe859fb7c2823ecc1b97cddb582",
+    "prediction_methods": 5,
+    "trace_count": 6418,
+    "gdn_annotated_count": 130,
+    "test1_role": "DEVELOPMENT_ONLY",
+    "test1_labels_before_freeze": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "additional_gdn_training": 0,
+    "task_scientific_runner_executions": 1,
+    "gdn_role": "LEARNED_GRAPH_SUPPORTING"
   }
 }

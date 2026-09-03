@@ -2,8 +2,8 @@
   "schema_version": "rcc-current-state-v1",
   "rcc_version": "0.1.0",
   "registry_version": "0.1.0",
-  "generated_at": "2026-09-02T17:00:00Z",
-  "last_updated": "2026-09-03",
+  "generated_at": "2026-09-03T17:08:57Z",
+  "last_updated": "2026-09-04",
   "research_objective": "Graph-guided, training-time agentic verified rule construction for explainable multivariate time-series anomaly detection.",
   "scientific_authority": {
     "ref": "origin/research-v6-thesis-checkpoint",
@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STAT and its Formal V4 portfolio are frozen; EXP-04 label-blind development predictions are next.",
+  "current_phase_statement": "V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418개 생성 완료. 두 fusion은 Recall 개선 없이 FAR가 증가했다. GDN은 설명용 보조 근거이며 최종 일반화는 미확인이다.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -45,18 +45,42 @@
     "process": "P1 Boiler",
     "source_scope": "86 dataset points; 37-feature P1 frame; purpose-specific role and runtime subsets",
     "splits": [
-      {"id": "train1", "badge": "NORMAL FIT", "role": "candidate discovery, relation fit, normal numeric authority, D0 fit"},
-      {"id": "train2", "badge": "NORMAL FIT", "role": "independent file-local fit evidence paired with train1"},
-      {"id": "train3", "badge": "CONFIRMATION / CALIBRATION", "role": "one-way relation confirmation and D0 threshold calibration"},
-      {"id": "train4", "badge": "SANITY", "role": "normal guard and D0 sanity evaluation"},
-      {"id": "test1", "badge": "PILOT EVALUATION", "role": "INNER development predictions and post-freeze label metrics"},
-      {"id": "test2", "badge": "HELD-OUT / UNAVAILABLE", "role": "custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome"}
+      {
+        "id": "train1",
+        "badge": "NORMAL FIT",
+        "role": "candidate discovery, relation fit, normal numeric authority, D0 fit"
+      },
+      {
+        "id": "train2",
+        "badge": "NORMAL FIT",
+        "role": "independent file-local fit evidence paired with train1"
+      },
+      {
+        "id": "train3",
+        "badge": "CONFIRMATION / CALIBRATION",
+        "role": "one-way relation confirmation and D0 threshold calibration"
+      },
+      {
+        "id": "train4",
+        "badge": "SANITY",
+        "role": "normal guard and D0 sanity evaluation"
+      },
+      {
+        "id": "test1",
+        "badge": "PILOT EVALUATION",
+        "role": "INNER development predictions and post-freeze label metrics"
+      },
+      {
+        "id": "test2",
+        "badge": "HELD-OUT / UNAVAILABLE",
+        "role": "custody-blocked OUTER; no feature bytes, labels, predictions, metrics, or outcome"
+      }
     ],
     "label_access": "Normal construction is label-blind. PILOT V1 D1 retains its weaker in-memory boundary; VALIDATION V2 now requires durable no-overwrite prediction freeze replay one-shot label lease and post-label byte verification.",
     "leakage_status": "NO VERIFIED LEAKAGE FOUND. PILOT V1 retains its documented D1 custody qualification; GAP-FIX-002 closes the prospective VALIDATION V2 custody gap. D2 V2 remains test1-informed development.",
     "test1_status": "INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation",
     "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
-    "next_deep_review": "EXP-04 label-blind prediction and durable freeze next; test1 remains unopened"
+    "next_deep_review": "EXP04/05 개발 결과 QA 완료; EXP03 DG-03 및 DG-04/05/06 별도 결정."
   },
   "verifier_common42_authority": {
     "canonical_verifier": "VerifierV1 has 20 ordered deterministic contract/binding stages and returns accepted, needs_repair, or rejected; it never emits no_rule or runtime authority.",
@@ -67,7 +91,11 @@
     "numeric_rebinding": "420 construction/runtime shared values matched exactly in the focused audit, while runtime reference and authority identities were separately rebound; horizon remains descriptor-bound.",
     "no_rule": "The frozen three T2 cases were non-repairable unsupported-variable validity outcomes, but the general task orchestration can collapse response, parse, verifier, and budget failures into no_rule.",
     "preferred_d1_term": "COMMON-42 Verified Relational Rule-only",
-    "warnings": ["Verifier acceptance is not scientific validation.", "Verifier acceptance is not runtime authorization.", "Verified refers only to contract, provenance, authority and integrity checks."],
+    "warnings": [
+      "Verifier acceptance is not scientific validation.",
+      "Verifier acceptance is not runtime authorization.",
+      "Verified refers only to contract, provenance, authority and integrity checks."
+    ],
     "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
   },
   "d2_fusion": {
@@ -124,11 +152,25 @@
     "comparability": "SEMANTICALLY_EQUIVALENT",
     "fairness": "FAIR_WITH_LIMITATIONS",
     "d1_non_opportunity": "non-opportunity, non-alarm and abstain contribute no alarm timestamp at the Boolean metric interface; frozen abstain count is zero",
-    "overlap": {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0},
-    "recovery": {"D1": "3/3", "D2_V1": "0/3", "D2_V2": "0/3"},
+    "overlap": {
+      "both": 10,
+      "d0_only": 1,
+      "d1_only": 3,
+      "neither": 0
+    },
+    "recovery": {
+      "D1": "3/3",
+      "D2_V1": "0/3",
+      "D2_V2": "0/3"
+    },
     "integrity_guarantee": "frozen artifact identity, label identity, ordering, arithmetic, mutation/replay and report binding",
     "integrity_limit": "does not establish independence, sample sufficiency, generalization, superiority, utility, or scientific validity",
-    "freeze_boundary": {"D0": "DURABLE_PRE_LABEL", "D1": "IN_MEMORY_PRE_LABEL_WEAKER", "D2_V1": "DURABLE_PRE_LABEL", "D2_V2": "DURABLE_PRE_LABEL"},
+    "freeze_boundary": {
+      "D0": "DURABLE_PRE_LABEL",
+      "D1": "IN_MEMORY_PRE_LABEL_WEAKER",
+      "D2_V1": "DURABLE_PRE_LABEL",
+      "D2_V2": "DURABLE_PRE_LABEL"
+    },
     "cross_arm_reporting_lineage": "PARTIAL; frozen comparison artifact exists but aggregation source is not discoverable in the current scientific tree",
     "inferential_statistics": "NONE_FROZEN_OR_AUTHORITATIVE",
     "next_deep_review": "ARCH-011 completed; prospective remediation decision next"
@@ -202,7 +244,12 @@
     "attack_events_detected": 13,
     "attack_event_recall": 0.9285714285714286,
     "normal_far_episodes_per_hour": 40.50255787059723,
-    "overlap": {"both": 10, "d0_only": 1, "d1_only": 3, "neither": 0},
+    "overlap": {
+      "both": 10,
+      "d0_only": 1,
+      "d1_only": 3,
+      "neither": 0
+    },
     "d1_response_to_d0_misses": "VERIFIED_PILOT_OBSERVATION; 3 of 3 D0-missed events had D1 response",
     "complementarity": "Response diversity and a pilot complementarity signal are observed; statistical and operational complementarity remain unvalidated.",
     "rule_only_utility": "UNVALIDATED; high pilot attack-event response coexists with a very high normal false-episode burden.",
@@ -458,10 +505,15 @@
     "warning": "Traceability is not fresh-machine reproducibility; OUTER result unavailable is not negative performance."
   },
   "pre_validation_readiness": {
-    "status": "NORMAL_ONLY_V2A_READY_EXP04_PENDING",
+    "status": "DEVELOPMENT_COMPLETE_FINAL_GATES_PENDING",
     "raw_findings": 120,
     "root_issues": 19,
-    "source_severity": {"critical": 0, "high": 54, "medium": 55, "low": 11},
+    "source_severity": {
+      "critical": 0,
+      "high": 54,
+      "medium": 55,
+      "low": 11
+    },
     "disposition_counts": {
       "P0_FIX_BEFORE_EXPANDED_VALIDATION": 2,
       "P1_FIX_BEFORE_SPECIFIC_EXPERIMENT": 3,
@@ -471,7 +523,12 @@
       "ACCEPTABLE_THESIS_LIMITATION": 3,
       "FUTURE_WORK_ONLY": 1
     },
-    "priority_counts": {"P0": 4, "P1": 10, "P2": 3, "P3": 2},
+    "priority_counts": {
+      "P0": 4,
+      "P1": 10,
+      "P2": 3,
+      "P3": 2
+    },
     "p0_global_fixes": [],
     "p0_design_gates": [],
     "current_gap_status": {
@@ -497,8 +554,8 @@
       "EXP-01B": "COMPLETE",
       "EXP-02": "COMPLETE",
       "EXP-03": "BLOCKED",
-      "EXP-04": "READY_WITH_CONDITIONS",
-      "EXP-05": "BLOCKED",
+      "EXP-04": "COMPLETE",
+      "EXP-05": "COMPLETE",
       "EXP-06": "NOT_REQUIRED",
       "NEW_HELD_OUT": "BLOCKED",
       "FRESH_MACHINE": "READY"
@@ -512,7 +569,7 @@
       "Retain Graph-Guided only if EXP-01 supports contribution.",
       "Retain Agentic only if EXP-03 supports contribution."
     ],
-    "warning": "Authority, durable custody, split roles, event semantics, common metric implementation, and no-tuning policy are frozen prospectively. EXP-04 label-blind prediction is next; test1 labels remain gated and test2/held-out remain unauthorized."
+    "warning": "V2 개발 예측 5개를 모두 durable freeze한 뒤에만 test1 label을 해석했다. 개발 결과와 전체 actual trace QA는 완료; 최종 검증·일반화는 미확인. DG-03/04/05/06 유지."
   },
   "validation_v2_authority": {
     "decision": "APPROVED_FORMAL_V4",
@@ -526,9 +583,28 @@
     "canonical_to_v4_bridge": "NOT_SELECTED",
     "bridge_minimum_thesis_path": "NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH",
     "runtime_entrypoint": "paperworks.validation_v2.runtime_v1.execute_formal_v4_rule_v1",
-    "execution_authority_stack": ["CanonicalRuleDescriptorV4", "V4 task validity", "V4 replay/conformance controls", "Validation V2 Utility V4 numeric authority", "V4 portfolio freeze", "V4 runtime authorization", "durable prediction custody", "versioned metric/result integrity controls"],
-    "replayed_bindings": ["source commit", "runtime config", "evaluator implementation", "relation authority", "numeric value authority", "feature contract", "file contract", "sampling contract", "selected horizon"],
-    "scope_limit": "An already materialized V2 observation window can be authority-checked and evaluated and its resulting prediction can use the GAP-FIX-002 custody gate. Scientific frame-to-window materialization and protocol/metric freeze remain separately gated.",
+    "execution_authority_stack": [
+      "CanonicalRuleDescriptorV4",
+      "V4 task validity",
+      "V4 replay/conformance controls",
+      "Validation V2 Utility V4 numeric authority",
+      "V4 portfolio freeze",
+      "V4 runtime authorization",
+      "durable prediction custody",
+      "versioned metric/result integrity controls"
+    ],
+    "replayed_bindings": [
+      "source commit",
+      "runtime config",
+      "evaluator implementation",
+      "relation authority",
+      "numeric value authority",
+      "feature contract",
+      "file contract",
+      "sampling contract",
+      "selected horizon"
+    ],
+    "scope_limit": "Formal V4 window·frame·39-rule execution binding과 metric freeze를 완료한 뒤 V2-GDN-FRONT-EXP04-001이 개발 평가를 실행했다. 일반화 권한은 부여하지 않는다.",
     "pilot_v1_impact": "NONE; PILOT V1 remains immutable and retains its historical V4 COMMON-42 authority."
   },
   "validation_v2_custody": {
@@ -538,10 +614,18 @@
     "freeze": "PREDICTION_AND_RECEIPT_REOPENED_SCHEMA_HASH_RECORD_REPLAYED",
     "label_authorization": "DURABLE_NO_OVERWRITE_LEASE_PLUS_FACTORY_ONE_SHOT_CAPABILITY",
     "post_label": "PREDICTION_RECEIPT_AND_LEASE_BYTE_IDENTITY_REVERIFIED",
-    "bindings": ["Formal V4 authority", "runtime authorization", "execution context", "source commit", "portfolio", "file contract", "DEVELOPMENT_TEST1 split role"],
+    "bindings": [
+      "Formal V4 authority",
+      "runtime authorization",
+      "execution context",
+      "source commit",
+      "portfolio",
+      "file contract",
+      "DEVELOPMENT_TEST1 split role"
+    ],
     "windows_directory_fsync": "UNSUPPORTED_WINDOWS_RECORDED_NOT_OVERSTATED",
     "pilot_v1_impact": "NONE; PILOT V1 keeps the historical in-memory-only qualification.",
-    "scope_limit": "Synthetic custody contract only; no D1 scientific prediction label metric test1 test2 or held-out execution occurred."
+    "scope_limit": "GAP-FIX-002는 synthetic contract로 시작했다. 이후 pushed Commit B의 별도 5-method bundle이 실제 test1 prediction-before-label·post-label identity를 완료했다."
   },
   "validation_v2_protocol": {
     "v2_protocol_001": "PASS",
@@ -556,7 +640,7 @@
     "d1_metric_adapter_boundary": "FAIL alarms; PASS ABSTAIN and NO_OPPORTUNITY do not alarm; system error never coerces to no alarm",
     "policy_freeze": "candidate set objective split tie-break selected config authority method policies metric contract and source commit self-hashed before test1",
     "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only.",
-    "scope_limit": "The protocol is implemented prospectively; metric portability is separately frozen and scientific evaluation remains unauthorized."
+    "scope_limit": "현재 V2 개발 평가는 frozen protocol에 따라 완료. test2·heldout 및 새로운 평가 선택은 별도 승인 전 금지."
   },
   "validation_v2_metric_contract": {
     "gap_fix_metric_001": "PASS_SYNTHETIC_PORTABLE_CONTRACT",
@@ -567,13 +651,14 @@
     "method_adapters": "D0/D2 dense Boolean; D1 durable Formal V4 FAIL-only with explicit PASS ABSTAIN NO_OPPORTUNITY",
     "metric_contract": "PA-free half-open attack units; zero-gap episodes; strict-zero normal exposure; exact Recall FAR overlap recovery incremental metrics",
     "scientific_eligible": false,
-    "stage3_requirement": "Bind full Formal V4 descriptor/numeric timing authority, one-shot label capability, and post-metric prediction byte verification.",
-    "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only."
+    "stage3_requirement": "Completed: full Formal V4 descriptor/numeric/timing authority, one-shot label capability, and post-metric prediction byte verification.",
+    "pilot_v1_impact": "NONE; prospective VALIDATION V2 contract only.",
+    "scientific_eligible_scope": "위 false는 독립된 synthetic 계약 자체의 비인가 상태이며 실제 실행은 front_execution의 별도 bundle/label gate가 승인했다."
   },
   "validation_v2_program": {
-    "status": "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT",
-    "stage": "STAGE_3_EXP04_LABEL_BLIND_PREDICTION_NEXT",
-    "preparation": "EXP-01, EXP-01B, and EXP-02 normal-only work is complete; V2A META+STAT Formal V4 portfolio is frozen.",
+    "status": "DEVELOPMENT_COMPLETE_QA_PASS",
+    "stage": "STAGE_5_REPORTING",
+    "preparation": "5개 방법의 예측·bundle freeze 후 label을 한 번 해석하여 개발 metric 생성; actual trace 전체 보존.",
     "scientific_input_authority": "DATA-POLICY-001_NORMAL_ONLY_CUSTODY_READY",
     "dataset_acquisition_policy": "DATA-POLICY-001",
     "dataset_acquisition_policy_path": "research_control_center/validation_v2/policies/DATA_POLICY_001.json",
@@ -589,9 +674,14 @@
     "historical_blocker": "BLOCKED_NORMAL_DATA_NOT_FOUND",
     "historical_blocker_disposition": "HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC",
     "custody_candidate_status": "NORMAL_ONLY_CUSTODY_READY; FOUR_NORMAL_SPLITS_BOUND",
-    "bound_symbolic_splits": ["HAI_TRAIN1", "HAI_TRAIN2", "HAI_TRAIN3", "HAI_TRAIN4"],
+    "bound_symbolic_splits": [
+      "HAI_TRAIN1",
+      "HAI_TRAIN2",
+      "HAI_TRAIN3",
+      "HAI_TRAIN4"
+    ],
     "missing_symbolic_splits": [],
-    "blocked_scope": "NONE_FOR_AUTHORIZED_EXP04_LABEL_BLIND_PREDICTION; test1 labels require all-arm durable freeze; test2 and held-out remain prohibited.",
+    "blocked_scope": "EXP-03 provider DG-03; 최종 제목 DG-04; heldout DG-05; 실제 제출 DG-06",
     "required_recovery": "COMPLETED_BY_CODE_BASED_MATERIALIZATION.",
     "provider_gate": "DG-03 remains pending and is triggered only after the natural cohort and exact call/token budget can be frozen.",
     "exp01_status": "COMPLETE_QA_PASS; GDN_DEMOTED_TO_ABLATION; META_PLUS_STAT selected.",
@@ -599,55 +689,139 @@
     "exp01b_status": "COMPLETE_NORMAL_ONLY; GDN_ABLATION_ONLY after nine CUDA runs.",
     "exp02_status": "COMPLETE_NORMAL_ONLY_SELECTED_POLICY_FROZEN; 37 candidates evaluated; 28 eligible.",
     "exp02_readiness_receipt": "research_control_center/validation_v2/reports/EXP02_EXECUTION_READINESS_V2.json",
-    "execution_authority_blocker": "NONE_FOR_EXP04_PREDICTION; label access remains blocked until every required method prediction is durably frozen and replayed.",
+    "execution_authority_blocker": "NONE_FOR_COMPLETED_DEVELOPMENT_EXECUTION",
     "fresh_machine_synthetic": "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
     "fresh_machine_receipt_hash": "30922bb0589e0033ae7bdc5dee64d63cc25882d01aafc4f9ea17d0c6bf6c6d0a",
-    "scientific_executions": 3,
-    "scientific_execution_scope": "EXP-01 normal-only; EXP-01B normal-only nine-run CUDA; EXP-02 normal-only selection",
+    "scientific_executions": 4,
+    "scientific_execution_scope": "기존 registry 3회 + 본 단일 scientific runner 1회(EXP-04와 같은 runtime의 EXP-05). EXP-01C 학습 횟수는 별도 역사 receipt.",
     "test2_accesses": 0,
     "heldout_accesses": 0,
     "provider_calls": 0,
-    "pilot_v1_impact": "NONE; 3021 of 3021 preservation entries remain byte-identical."
+    "pilot_v1_impact": "NONE; 3021 of 3021 preservation entries remain byte-identical.",
+    "exp04_status": "COMPLETE_QA_PASS_DEVELOPMENT",
+    "exp05_status": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS"
   },
   "top_priorities": [
-    "Generate and durably freeze all preregistered EXP-04 label-blind method predictions before any test1 label access.",
-    "Use only the frozen V2A META+STAT Formal V4 portfolio; do not create a result-driven V2B GDN portfolio.",
-    "Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists."
+    "DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.",
+    "음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.",
+    "DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다."
   ],
   "highest_priority_work": [
-    "Execute EXP-04 label-blind D0 Isolation Forest Rule-only and frozen fusion predictions under their fixed authorities.",
-    "Close every prediction custody receipt before authorizing DEVELOPMENT_ONLY test1 labels.",
-    "Run EXP-05 only from actual V2 runtime traces; keep human usefulness unvalidated."
+    "DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.",
+    "음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.",
+    "DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다."
   ],
   "user_todo_items": [
-    {"id": "USER-V2-001", "category": "APPROVED POLICY", "priority": "P0", "task": "DATA-POLICY-001 CODE_BASED_MATERIALIZATION으로 공식 HAI 23.05 normal 파일을 materialize하고 custody를 발급한다.", "why": "네 normal split의 byte equivalence와 schema identity가 확인되어 custody가 발급되었다.", "linked": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json", "status": "COMPLETED"},
-    {"id": "USER-V2-002", "category": "PRESERVATION", "priority": "HIGH", "task": "Keep test1 development-only and test2/held-out unopened until their explicit gates.", "why": "Normal-only execution does not authorize test or held-out access.", "linked": "research_control_center/validation_v2/VERSION_POLICY.md", "status": "OPEN"},
-    {"id": "USER-V2-003", "category": "DECISION LATER", "priority": "HIGH", "task": "Review DG-03 only after the EXP-03 natural cohort and exact call/token budget are frozen.", "why": "Provider contact remains zero and cannot be authorized from a symbolic budget.", "linked": "research_control_center/validation_v2/DECISION_GATES.md", "status": "OPEN"},
-    {"id": "USER-V2-004", "category": "DECISION LATER", "priority": "HIGH", "task": "Review removal of Graph-Guided from the core contribution and retain Agentic only if EXP-03 supports it.", "why": "EXP-01 and EXP-01B both left GDN as ablation; DG-04 final wording remains a user decision.", "linked": "DEC-021", "status": "OPEN"},
-    {"id": "USER-V2-005", "category": "MANDATORY FUTURE GATE", "priority": "HIGH", "task": "Approve a newly preregistered held-out study before any test2 or held-out access.", "why": "The consumed old OUTER protocol cannot simply be retried.", "linked": "DG-05", "status": "OPEN"},
-    {"id": "USER-V2-006", "category": "REVIEW REQUIRED", "priority": "HIGH", "task": "Review the updated professor package before any submission.", "why": "The package now includes normal-only V2 results but no EXP-04 development or held-out performance result.", "linked": "docs/professor_experiment_update_v2/01_ONE_PAGE_SUMMARY.md", "status": "OPEN"},
-    {"id": "USER-V2-007", "category": "UNDERSTANDING NEEDED", "priority": "MEDIUM", "task": "Interpret the fresh-machine PASS as synthetic portability only.", "why": "It does not establish scientific-data reproduction or held-out generalization.", "linked": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json", "status": "OPEN"},
-    {"id": "USER-V2-008", "category": "PRESERVATION", "priority": "HIGH", "task": "Keep PILOT V1 immutable while Stage 3 is resumed later.", "why": "All V2 experiments require new method, authority, artifact and report identities.", "linked": "research_control_center/validation_v2/PILOT_V1_PRESERVATION_MANIFEST.json", "status": "OPEN"}
+    {
+      "id": "USER-V2-001",
+      "category": "APPROVED POLICY",
+      "priority": "P0",
+      "task": "DATA-POLICY-001 CODE_BASED_MATERIALIZATION으로 공식 HAI 23.05 normal 파일을 materialize하고 custody를 발급한다.",
+      "why": "네 normal split의 byte equivalence와 schema identity가 확인되어 custody가 발급되었다.",
+      "linked": "research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "USER-V2-002",
+      "category": "PRESERVATION",
+      "priority": "HIGH",
+      "task": "test1은 DEVELOPMENT_ONLY로만 해석하고 test2/heldout gate를 유지한다.",
+      "why": "test1은 모든 prediction freeze 뒤에만 label을 해석했다. 최종 검증은 아니다.",
+      "linked": "research_control_center/validation_v2/VERSION_POLICY.md",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-V2-003",
+      "category": "DECISION LATER",
+      "priority": "HIGH",
+      "task": "EXP-03 natural cohort와 정확한 provider/model·call/token 상한을 먼저 확정하고 DG-03 실행 승인을 검토한다.",
+      "why": "현재 provider 호출은 0이며 기호적 예산만으로 호출을 승인할 수 없다.",
+      "linked": "research_control_center/validation_v2/DECISION_GATES.md",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-V2-004",
+      "category": "DECISION LATER",
+      "priority": "HIGH",
+      "task": "DG-04에서 GDN-Assisted 제목과 조건부 Agentic 표현을 결정한다.",
+      "why": "EXP-01/01B 음성 결과를 유지하며 EXP-01C는 LEARNED_GRAPH_SUPPORTING이다.",
+      "linked": "DEC-021",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-V2-005",
+      "category": "MANDATORY FUTURE GATE",
+      "priority": "HIGH",
+      "task": "test2/heldout 접근 전에 새 held-out 연구의 사전등록과 DG-05 승인을 검토한다.",
+      "why": "이미 소진된 기존 OUTER protocol을 재시도하지 않는다.",
+      "linked": "DG-05",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-V2-006",
+      "category": "REVIEW REQUIRED",
+      "priority": "HIGH",
+      "task": "실제 EXP04/05 결과가 포함된 교수님 package를 제출 전에 검토한다.",
+      "why": "DG-06 전 이메일을 보내지 않는다.",
+      "linked": "docs/professor_experiment_update_v2/01_ONE_PAGE_SUMMARY.md",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-V2-007",
+      "category": "UNDERSTANDING NEEDED",
+      "priority": "MEDIUM",
+      "task": "Fresh-machine PASS는 과거 synthetic 환경 재현에 한정된 근거로 읽는다.",
+      "why": "이번 과학 실행 코드의 새 환경 재현이나 private data 복원을 의미하지 않는다.",
+      "linked": "research_control_center/validation_v2/reports/V2_FRESH_MACHINE_SYNTHETIC_REHEARSAL_RECEIPT.json",
+      "status": "OPEN"
+    },
+    {
+      "id": "USER-V2-008",
+      "category": "PRESERVATION",
+      "priority": "HIGH",
+      "task": "PILOT V1과 이미 동결된 V2 결과를 그대로 보존한다.",
+      "why": "후속 연구는 별도 방법·authority·artifact·report ID가 필요하다.",
+      "linked": "research_control_center/validation_v2/PILOT_V1_PRESERVATION_MANIFEST.json",
+      "status": "OPEN"
+    }
   ],
   "top_user_todo": [
-    "동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction과 durable freeze를 완료한다.",
-    "모든 prediction freeze 전 test1 label을 열지 않고 test2/held-out은 계속 금지한다.",
-    "EXP-01과 EXP-01B의 GDN_ABLATION_ONLY 결과를 보존하고 V2B를 post-hoc 생성하지 않는다.",
-    "Review DG-03 only after the natural cohort and exact provider budget are frozen.",
-    "Review Graph-Guided removal and Agentic conditional framing at DG-04.",
-    "Review the professor update before submission; no email has been sent."
+    "DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.",
+    "음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.",
+    "DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation",
+  "recommended_next_management_task": "DG-03 — EXP-03 Provider Execution Decision",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "V2-DUALTRACK-002 — V2A META+STAT and EXP-01B GDN-XAI normal-only execution",
-  "exact_next_task": "V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels",
+  "last_completed_task": "V2-GDN-FRONT-EXP04-001 — 개발 평가·전체 trace 무결성 QA 완료",
+  "exact_next_task": "DG-03 — EXP-03 Provider Execution Decision",
   "safety_counters": {
-    "scientific_executions": 3,
+    "scientific_executions": 4,
     "test2_feature_accesses": 0,
     "test2_label_accesses": 0,
     "new_private_exposures": 0
+  },
+  "front_execution": {
+    "task_id": "V2-GDN-FRONT-EXP04-001",
+    "status": "COMPLETE_QA_PASS_DEVELOPMENT",
+    "scope": "DEVELOPMENT_ONLY",
+    "execution_commit": "94ae44dac900cce75ed83ee2801be38750afed4a",
+    "result_ref": "research_control_center/validation_v2/gdn_front_exp04_001/results/EXP04_RESULTS_V1.json",
+    "result_hash": "0f3f5966a35e35ae663e60ddbb8afb7ce62e35081a7f9383e9aaf61b75064db1",
+    "trace_ref": "research_control_center/validation_v2/gdn_front_exp04_001/results/EXP05_FULL_CENSUS_V1.json",
+    "trace_hash": "3a85a41ba9311715b19538d599e23dc6d82cefe859fb7c2823ecc1b97cddb582",
+    "prediction_methods": 5,
+    "trace_count": 6418,
+    "gdn_annotated_count": 130,
+    "test1_role": "DEVELOPMENT_ONLY",
+    "test1_labels_before_freeze": 0,
+    "test2_accesses": 0,
+    "heldout_accesses": 0,
+    "provider_calls": 0,
+    "additional_gdn_training": 0,
+    "task_scientific_runner_executions": 1,
+    "gdn_role": "LEARNED_GRAPH_SUPPORTING"
   }
 }

@@ -76,13 +76,13 @@ class DashboardV2Tests(unittest.TestCase):
         self.assertEqual("COMPLETE", gates["EXP-01"])
         self.assertEqual("COMPLETE", gates["EXP-01B"])
         self.assertEqual("COMPLETE", gates["EXP-02"])
-        self.assertEqual("READY_WITH_CONDITIONS", gates["EXP-04"])
+        self.assertEqual("COMPLETE", gates["EXP-04"])
         self.assertEqual("NOT_REQUIRED", gates["EXP-06"])
 
     def test_overview_uses_current_execution_actions(self) -> None:
         self.assertIn("EXP-04", self.html)
-        self.assertIn("모든 label-blind prediction 생성·동결", self.html)
-        self.assertIn("LABEL-GATE", self.html)
+        self.assertIn("DG-03", self.html)
+        self.assertIn("V2 개발 평가 완료", self.html)
         self.assertIn("APPROVED_FORMAL_V4", self.html)
         self.assertNotIn("normal HAI custody binding 복원", self.html)
         self.assertNotIn("canonical→V4 bridge 미확정", self.html)

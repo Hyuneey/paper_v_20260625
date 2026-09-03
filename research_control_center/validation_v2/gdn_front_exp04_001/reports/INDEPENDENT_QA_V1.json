@@ -1,0 +1,56 @@
+{
+  "task_id": "V2-GDN-FRONT-EXP04-001",
+  "verdict": "PASS",
+  "status_scope": "RESULT_INTEGRITY_NOT_SCIENTIFIC_VALIDATION",
+  "pre_feature": {
+    "source_and_protected_hashes": 575,
+    "mismatches": 0,
+    "commit_a": "621d2bb",
+    "commit_b": "94ae44dac900cce75ed83ee2801be38750afed4a",
+    "origin_parity": true
+  },
+  "independent_arithmetic": {
+    "reviewer": "front_gdn_mapping",
+    "oracle": "INDEPENDENT_STDLIB_INTERVAL_AND_FRACTION",
+    "assertions": 67797,
+    "method_count": 5,
+    "rows_per_method": 54000,
+    "attack_units": 14,
+    "normal_seconds": 51019,
+    "source_prediction_bundle_post_label_hashes": "PASS",
+    "episode_event_arithmetic": "PASS",
+    "report_binding": "PASS",
+    "raw_label_reparse": false
+  },
+  "independent_exp05": {
+    "reviewer": "front_performance",
+    "full_batches": 26,
+    "full_units": 6418,
+    "represented_rules": 39,
+    "duplicate_opportunities": 0,
+    "missing_opportunities": 0,
+    "fidelity_checks_per_unit": 11,
+    "all_pass": true,
+    "annotations": 6418,
+    "optional_gdn_clauses": 130,
+    "no_gdn_clause": 6288,
+    "files_rehashed": 80,
+    "changed_files": 0
+  },
+  "limitations": [
+    "No second semantic read of raw labels: event authority checked through exact label hash and frozen one-shot parser plus independently recomputed interval arithmetic.",
+    "Single local storage is not independent backup.",
+    "Fresh-machine synthetic receipt predates this execution; this task does not establish fresh-machine scientific reproduction.",
+    "14 contiguous attack-event units are not proven statistically independent.",
+    "No human usefulness or causal/generalization claim."
+  ],
+  "audit_access": {
+    "raw_hai": 0,
+    "raw_labels": 0,
+    "test2": 0,
+    "heldout": 0,
+    "runtime_reruns": 0,
+    "provider": 0,
+    "private_exposure": 0
+  }
+}

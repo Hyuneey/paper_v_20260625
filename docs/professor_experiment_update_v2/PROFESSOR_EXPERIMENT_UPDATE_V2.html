@@ -1,36 +1,239 @@
 <!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VALIDATION V2 교수용 진행 업데이트</title>
-  <style>
-    :root{color-scheme:light;--navy:#17324d;--blue:#276fbf;--green:#1f7a5c;--amber:#9a6200;--red:#a63434;--ink:#18222d;--muted:#5a6978;--line:#d9e1e8;--bg:#f4f7fa}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif}header{background:var(--navy);color:#fff;padding:2rem max(1.25rem,calc((100% - 1100px)/2))}main{max-width:1100px;margin:auto;padding:1.5rem}.eyebrow{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.card,section{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1.15rem;margin-bottom:1rem}.status{font-weight:700}.pass{color:var(--green)}.blocked{color:var(--red)}.pending{color:var(--amber)}table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;padding:.65rem;border-bottom:1px solid var(--line)}th{background:#eef3f7}code{font-family:ui-monospace,Consolas,monospace}footer{color:var(--muted);padding:1rem 0}@media(max-width:760px){.grid{grid-template-columns:1fr}header{padding:1.5rem 1rem}main{padding:1rem}table{font-size:.9rem}}
-  </style>
-</head>
-<body>
-<header><div class="eyebrow">교수님 검토용 · 제출 전 초안</div><h1>VALIDATION V2 진행 업데이트</h1><p>PILOT V1을 보존하면서 검증 기반을 분리 구축한 현황과 과학 실행 gate</p></header>
-<main>
-  <div class="grid">
-    <div class="card"><div class="status pass">Foundation PASS</div><p>Formal V4, durable D1 custody, split·metric contract</p></div>
-    <div class="card"><div class="status pass">Synthetic rehearsal PASS</div><p>clean checkout, fresh environment, scientific data 0</p></div>
-    <div class="card"><div class="status pass">Normal-only tracks PASS</div><p>EXP-01·EXP-01B·EXP-02 완료, V2A portfolio 동결</p></div>
-  </div>
-  <section><h2>핵심 결론</h2><p>정상 데이터만 사용한 EXP-01·EXP-01B·EXP-02를 완료했습니다. 주 후보 경로는 META+STAT, numeric policy는 <code>RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05</code>로 동결했으며 39개 방향 관계의 Formal V4 V2A portfolio를 승인했습니다. EXP-04 test1 개발 비교는 아직 시작하지 않았습니다.</p></section>
-  <section><h2>실험 상태</h2><table><thead><tr><th>실험</th><th>준비</th><th>실행</th><th>현재 해석</th></tr></thead><tbody>
-    <tr><td>EXP-01 GDN</td><td>PASS</td><td>완료</td><td>GDN ablation 강등, META+STAT 선택</td></tr>
-    <tr><td>EXP-01B GDN-XAI</td><td>PASS</td><td>CUDA 9-run 완료</td><td><code>GDN_ABLATION_ONLY</code></td></tr>
-    <tr><td>EXP-02 Numeric</td><td>PASS</td><td>37개 후보 완료</td><td>normal-only numeric policy 동결</td></tr>
-    <tr><td>EXP-03 Agentic</td><td>PASS</td><td>미실행</td><td>DG-03 예정, benefit 미확인</td></tr>
-    <tr><td>EXP-04 Detection</td><td>PASS</td><td>미실행</td><td>label-blind prediction freeze가 다음 단계</td></tr>
-    <tr><td>EXP-05 Explanation</td><td>PASS</td><td>미실행</td><td>실제 V2 trace 필요</td></tr>
-  </tbody></table></section>
-  <section><h2>GDN 추가 검증</h2><p>K=29에서 META+STAT의 confirmed pair yield/NDCG는 20/0.7427828733, GDN Functional-Consensus를 동일 예산으로 결합한 값은 21/0.7628608206이었습니다. 그러나 split 비열화, 양의 EdgeMask 효과, GDN 고유 executable rule 조건을 통과하지 못해 사전등록 판정은 <code>GDN_ABLATION_ONLY</code>입니다. 이는 GDN의 일반적 무용성이나 인과성을 뜻하지 않습니다.</p></section>
-  <section><h2>안전·보존</h2><ul><li>PILOT V1: 3,021/3,021 보존 항목 byte-identical</li><li>normal-only scientific execution: 3</li><li>test1/labels/test2/held-out access: 0</li><li>provider call: 0</li><li>result-driven redesign: 0</li></ul></section>
-  <section><h2>다음 순서</h2><ol><li>D0·Isolation Forest·V2A Rule-only·동결 fusion의 label-blind prediction 생성</li><li>모든 prediction atomic persistence·replay·hash freeze</li><li>그 뒤에만 test1을 DEVELOPMENT_ONLY로 열기</li><li>EXP-04 common metrics와 result-integrity audit</li><li>실제 V2 trace가 있으면 EXP-05 fidelity 평가</li><li>DG-05 전 held-out 접근 금지</li></ol></section>
-  <section><h2>해석 경고</h2><p>PILOT V1의 14개 contiguous attack-event units는 통계적으로 독립임이 확립되지 않았습니다. Result integrity는 scientific validation이 아니며 held-out 일반화는 미확인입니다.</p></section>
-  <footer>이 파일은 전송·게시되지 않은 로컬 검토 산출물입니다.</footer>
-</main>
-</body>
-</html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VALIDATION V2 교수님 실험 업데이트</title><style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;max-width:1100px;margin:auto;padding:32px;color:#18212f;line-height:1.6}
+nav,section{border:1px solid #d9e0e8;border-radius:10px;padding:20px;margin:18px 0;background:#fff}body{background:#f5f7fa}
+pre{white-space:pre-wrap;font:inherit}a{color:#155eef}.warning{border-left:5px solid #d97706;padding:12px;background:#fff7ed}
+@media print{nav{display:none}body{background:white}section{break-inside:avoid;border-color:#bbb}}
+</style></head><body><h1>VALIDATION V2 교수님 실험 업데이트</h1>
+<p class="warning">test1 DEVELOPMENT_ONLY 결과입니다. held-out 일반화와 human usefulness는 미확인입니다. 이메일은 전송하지 않았습니다.</p>
+<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">VALIDATION V2 방법</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP-03 Agentic feedback 결과</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">Held-out 다음 계획</a></li><li><a href="#section-11">교수님 논의 안건</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">발표 개요</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
+
+EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule portfolio로 EXP-04 개발 평가와 실제 EXP-05 trace 전체 생성을 마쳤습니다. PILOT V1 source/artifact/result는 그대로 보존했습니다.
+
+| 방법 | Attack-event Recall | Normal FAR/hour | 정상 false episode |
+|---|---:|---:|---:|
+| D0 PCA-SPE | 11/14 | 0.4939336325682588839451968874340932 | 7 |
+| Isolation Forest | 5/14 | 1.764048687743781728375703169407476 | 25 |
+| Rule-only V2A | 11/14 | 37.60951802269742644896999157176738 | 533 |
+| PCA+Rule | 11/14 | 0.6350575275877614222152531409866912 | 9 |
+| IF+Rule | 5/14 | 1.905172582763284266645759422960074 | 27 |
+
+핵심 결과: 두 fixed fusion은 Recall 개선 없이 FAR가 증가했습니다. Rule-only의 높은 FAR 문제는 남아 있습니다. Isolation Forest도 이 test1에서는 PCA보다 우수하지 않았습니다. 음성 결과를 유지하며 결과 후 정책 변경은 하지 않았습니다.
+
+## 교수님 피드백에 따른 GDN Prediction Model + XAI 추가 검증
+
+과거 EXP-01/01B ablation 결과는 그대로이고 EXP-01C의 결과는 LEARNED_GRAPH_SUPPORTING입니다. 안정적 양성 pair 2개는 V2A의 일부 동일 horizon과 연결됐습니다. GDN은 설명용 sidecar이고 META+STAT 후보 권한이나 Formal V4 탐지 결과를 바꾸지 않습니다. 잠정 GDN-Assisted 표현은 DG-04에서 검토합니다.
+
+## 검증 수준
+
+test1은 DEVELOPMENT_ONLY입니다. 14개 contiguous attack-event units의 독립성과 held-out 일반화는 미확인입니다. EXP-05 실제 trace는 6,418개이며 human usefulness는 평가하지 않았습니다. 새 환경의 기존 PASS는 synthetic rehearsal일 뿐 이번 과학 결과를 fresh-machine에서 재생한 것은 아닙니다.
+
+test1·공격 label·test2·held-out 접근을 구분합니다: test1 features는 승인된 예측 단계에서, label은 모든 5개 예측 동결 후에만 해석했습니다. test2/held-out과 provider 호출은 0입니다.
+
+다음은 DG-03 provider 실행 예산/허가 검토입니다. Agentic 이점은 아직 지원되지 않으며 EXP-06 runtime LLM은 불필요합니다. 이 package는 작성본이며 DG-06 전 실제 제출하지 않습니다.
+</pre></section><section id="section-02"><h2>PILOT V1 이후 변경</h2><pre># PILOT V1 이후 변경
+
+V1은 변경하지 않았습니다. V2에는 Formal V4 선택, durable multi-method prediction-before-label gate, 정상 전용 37-candidate numeric selection, 별도 39-rule portfolio, fixed Isolation Forest, 공통 metric contract를 사용했습니다. 이번 실행은 이 동결된 경로를 처음 label-blind test1 개발 평가에 연결했습니다.
+
+GDN은 EXP-01C의 학습 그래프 보조 근거를 explanation sidecar로 연결했으며 detector나 primary candidate authority로 승격하지 않았습니다. 256-unit full trace batch와 one prepared runtime은 I/O 효율화이며 scientific semantics는 그대로입니다.
+
+과거 V1 D1/COMMON-42와 이번 V2A는 다른 cohort이므로 V1/V2 수치 차이만으로 개선 효과를 주장하지 않습니다. 총 6,418 actual trace를 보존했고 최종 result integrity는 별도 QA로 점검합니다.
+</pre></section><section id="section-03"><h2>VALIDATION V2 방법</h2><pre># VALIDATION V2 방법
+
+후보 prior는 META+STAT입니다. META는 공식 process graph와 reviewed semantic metadata의 hybrid이며 완전 자동 graph extraction이라고 설명하지 않습니다. 정상 관계 분석/확인은 29 candidate pairs에서 21 confirmed pairs, 39 directional relations를 만들었습니다.
+
+수치는 정상 train1/train2로 도출하고 train4에서 동결된 EXP-02 기준으로 선택한 RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05입니다. 이후 test1을 보고 수치를 선택하거나 수정하지 않았습니다.
+
+VALIDATION V2 formally adopts the versioned V4 relational-rule descriptor and its deterministic validity, numeric binding, replay, portfolio-freeze, and runtime-authorization controls as the scientific execution authority. Canonical RuleV1/VerifierV1은 adjacent components이고 lossless canonical→V4 bridge를 주장하지 않습니다.
+
+PCA와 fixed Isolation Forest는 train1/train2 fit, train3 calibration입니다. Rule-only와 same-second distinct-source confirm2 fusion을 포함한 5개 예측을 durable freeze/replay한 후 label을 해석했습니다. fixed runtime은 deterministic·LLM-free입니다.
+
+GDN은 별도 normal-only EXP-01C의 predictive supporting evidence를 제공하며 설명 sidecar 외에는 runtime에 입력되지 않습니다. 자동 EXP-05는 실제 native trace와 deterministic explanation의 structural fidelity만 평가합니다. test1=DEVELOPMENT_ONLY, held-out과 human usefulness는 미검증입니다.
+</pre></section><section id="section-04"><h2>EXP-01 및 EXP-01B GDN 결과</h2><pre># EXP-01 및 EXP-01B GDN 결과
+
+## 기존 EXP-01
+
+기존 EXP-01의 동결 결과는 변경하지 않았습니다. primary mask pair가 0개였고,
+사전등록 판정에 따라 GDN은 ablation으로 강등되었습니다. 이에 따라 VALIDATION V2의
+주 후보 탐색 경로는 `META_PLUS_STAT`으로 고정되었습니다.
+
+## 교수님 피드백에 따른 GDN Prediction Model + XAI 추가 검증
+
+기존 음성 결과를 지우거나 재해석하지 않고 별도 실험 `EXP-01B-GDN-XAI-V1`을
+사전등록했습니다. corrected self-excluded GDN을 3개 view와 seed 11/23/37로 실행하고,
+Embedding, Attention, EdgeMask, Source Occlusion 및 Functional-Consensus를 동일한
+144-pair normal-confirmed relation reference에서 비교했습니다.
+
+### 실행 경계
+
+- train1/train2: GDN 학습과 후보 근거
+- train3: arm-blind 정상 관계 확인
+- train4: 고정 checkpoint 기능 검증
+- CUDA 과학 실행: 9회
+- test1, 공격 label, test2, held-out, provider: 접근 0
+
+### K=29 동일 예산 결과
+
+| 순위 | confirmed pair yield | NDCG |
+|---|---:|---:|
+| META+STAT | 20 | 0.7427828733 |
+| META+STAT+GDN Functional-Consensus | 21 | 0.7628608206 |
+
+combined view에서는 작은 개선이 관찰됐습니다. 하지만 TRAIN1_ONLY와 TRAIN2_ONLY에서
+비열화 조건이 유지되지 않았고, GDN 고유 confirmed pair 3개 중 Formal V4 executable
+rule로 변환된 pair는 0개였습니다. primary Top-K EdgeMask 중앙값도 양수가 아니었습니다.
+EdgeMask가 matched random보다 큰 combined seed는 3개 중 2개였으나, 이것만으로
+supporting evidence의 동결 조건을 충족하지 못했습니다.
+
+### 최종 판정
+
+동결된 3단계 판정 규칙의 결과는 `GDN_ABLATION_ONLY`입니다. 따라서 V2A META+STAT
+portfolio를 유지하고 V2B primary GDN portfolio는 만들지 않습니다.
+
+이 결과는 GDN이 일반적으로 무용하다는 뜻이 아닙니다. 이번 정상 데이터 범위에서
+안정적·고유·기능적 contribution 요건을 통과하지 못했다는 뜻입니다. Attention과
+EdgeMask는 모델 내부 예측 근거이며 인과 또는 물리적 ground truth로 해석하지 않습니다.
+
+## 후속 EXP-01B-R1 / EXP-01C와 현재 GDN 역할
+
+위 EXP-01B 수치는 원래 frozen protocol의 역사적 결과다. 평가 구현 문제와 별도 수정 분석은 GDN-CORR-001에서 분리했다.
+Rule conversion과 ranking 문제를 고친 분석으로 과거 결과를 덮어쓰지 않았다.
+이후 한 번의 HAI-adapted multi-horizon EXP-01C는 `LEARNED_GRAPH_SUPPORTING`으로 동결됐다.
+
+현재 GDN은 주 후보 탐색 authority가 아니다. META+STAT의 29pair·39-rule V2A portfolio는 바뀌지 않았다.
+정상 source-event-conditioned EdgeMask의 안정 양성 pair를 immutable evidence에서 읽어 V2A에 대응시킨 결과:
+2pair 모두 pair+horizon 일치, pair-only 0, no-overlap 0이다.
+COMBINED view의 2/3 이상 seed 조건이며 모든 split에서 안정하다고 주장하지 않는다.
+예측 MSE의 기능적 의존 근거는 physical causality나 Rule response sign의 증명이 아니다.
+
+GDN sidecar는 39-rule descriptor를 변경하지 않는 설명용 annotation이다.
+실제 EXP-05 6,418개 설명 중 130개에만 승인된 GDN 문구가 붙었다.
+제목 eligibility는 `GDN_ASSISTED_TITLE_STRONG`이지만 문서상 일치 기준일 뿐이다.
+잠정 제목: “GDN-Assisted Evidence-Bound Relational Rule Construction for Explainable Multivariate Time-Series Anomaly Detection”.
+최종 제목은 DG-04 결정 전까지 잠정이다.
+</pre></section><section id="section-05"><h2>EXP-02 Numeric criteria 결과</h2><pre># EXP-02 Numeric criteria 결과
+
+## 상태
+
+**COMPLETE_NORMAL_ONLY / SELECTED POLICY FROZEN**
+
+V2A의 39개 방향 관계에 대해 common fixed 1개와 relation-specific normal-only grid 36개, 총 37개 후보를 train1/train2에서 수치화하고 normal train4에서 선택했습니다. 선택에는 공격 label, test1, detector 결과를 사용하지 않았습니다.
+
+동결된 선택 규칙이 고른 policy는 `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05`입니다. 28개 후보가 coverage guard를 통과했으며, 선택 policy의 train4 관찰값은 false-alarm second 1,470, false-alarm episode 1,461, opportunity 39, PASS 16,361, FAIL 1,790, ABSTAIN 3,764입니다. normal exposure는 198,000초였습니다.
+
+이 결과는 normal-only 선택 결과이며 test1 공격 탐지 우수성을 뜻하지 않습니다. 선택 authority와 39-rule Formal V4 V2A portfolio는 별도 V2 identity로 동결했습니다. provider 호출은 0회입니다.
+</pre></section><section id="section-06"><h2>EXP-03 Agentic feedback 결과</h2><pre># EXP-03 Agentic feedback 결과
+
+## 상태
+
+**IMPLEMENTED AND SYNTHETICALLY TESTED / NATURAL COHORT NOT EXECUTED / PROVIDER-GATED**
+
+`INTENTIONAL_NO_RULE`, `UNSUPPORTED_EVIDENCE`, `PROVIDER_ERROR`, `EMPTY_RESPONSE`, `PARSE_FAILURE`, `VERIFIER_REJECTION`, `BUDGET_EXHAUSTION`, `RETRIEVAL_FAILURE`, `SYSTEM_ERROR`를 서로 다른 terminal class로 고정했습니다. natural cohort와 synthetic stress cohort는 절대 합산하지 않습니다.
+
+provider 호출 직전에는 모델·provider·cohort 크기·arm별 최대 호출 수·input/output token 상한·비용·노출 평가·artifact를 확정해 DG-03 승인을 받아야 합니다. 현재 natural cohort가 아직 없어 exact budget을 산정할 수 없고 provider 호출은 0회입니다.
+
+따라서 Agentic benefit 결과는 없습니다. 자연 cohort에서 feedback action이 다시 0이면 “feedback capability는 구현되었지만 benefit은 관찰되지 않았다”고 보고합니다.
+</pre></section><section id="section-07"><h2>EXP-04 개발 평가 결과</h2><pre># EXP-04 개발 평가 결과
+
+상태: DEVELOPMENT_ONLY · 실행 완료, 독립 결과 무결성 QA PASS.
+
+META+STAT 기반 39-rule Formal V4 V2A portfolio가 고정된 뒤, D0·Isolation Forest·Rule-only·두 고정 confirm2 fusion의 예측을 모두 durable freeze했다. 그 후 one-shot capability로 test1 label을 해석했다. test1 결과로 수치·threshold·fusion 정책을 변경하지 않았다.
+
+| 방법 | Attack-event Recall | Normal FAR/hour | 정상 false episode |
+|---|---:|---:|---:|
+| D0 PCA-SPE | 11/14 | 0.4939336325682588839451968874340932 | 7 |
+| Isolation Forest | 5/14 | 1.764048687743781728375703169407476 | 25 |
+| Rule-only V2A | 11/14 | 37.60951802269742644896999157176738 | 533 |
+| PCA+Rule | 11/14 | 0.6350575275877614222152531409866912 | 9 |
+| IF+Rule | 5/14 | 1.905172582763284266645759422960074 | 27 |
+
+모든 5개 prediction freeze·bundle replay·post-label byte identity 검사는 PASS입니다.
+
+## 해석
+
+14개는 연속 공격 구간 단위(contiguous attack-event units)이며 통계적으로 독립인 14개 사건이라고 주장하지 않는다. 정상 노출은 51,019초이고 FAR/hour는 정상 false episodes × 3,600 / 51,019이다. 경계가 공격 구간과 겹치는 episode는 정상 false episode로 세지 않는다.
+
+PCA와 Rule-only는 both 9, PCA only 2, Rule only 2, neither 1이다. Rule-only가 PCA 미탐 3개 중 2개에 반응했지만 고정 confirm2 fusion은 회수 0/3이다. IF와 Rule-only는 both 5, IF only 0, Rule only 6, neither 3이고, IF 미탐 9개 중 Rule-only 반응은 6개이나 fusion 회수는 0/9이다.
+
+두 fusion은 각 기준 탐지기의 Recall을 유지했으나 정상 false episode를 각각 2개 추가했다. incremental Recall=0, incremental FAR/hour=0.1411238950195025382700562535525981이다. 이 동결 정책의 탐지 개선 주장은 DEVELOPMENT_NOT_SUPPORTED다. 이후 새 fusion이나 threshold를 만들지 않았다.
+
+Isolation Forest는 더 강한 후보 baseline으로 사전 선정됐지만 관찰 결과가 PCA보다 우수하지 않았다. 이름만으로 superior detector라고 설명하지 않는다. Rule-only FAR 37.6095/hour는 여전히 높아 운영 효용은 미검증이다. V1 D1과 규칙 cohort/수치가 다르므로 FAR 차이를 통제된 개선 효과로 해석하지 않는다.
+
+원본 V2 결과 hash: `0f3f5966a35e35ae663e60ddbb8afb7ce62e35081a7f9383e9aaf61b75064db1`. PILOT V1은 별도 frozen authority이고 이 표로 덮어쓰지 않는다. held-out 일반화는 UNCONFIRMED.
+</pre></section><section id="section-08"><h2>EXP-05 실제 trace 일치성</h2><pre># EXP-05 실제 trace 일치성
+
+상태: 실제 실행 및 artifact 보존 완료, 독립 전체-census QA PASS.
+
+실제 Formal V4 runtime opportunity 6,418개 전부에 대해 trace → deterministic renderer → fidelity artifact를 생성했다. PASS 4,561 / FAIL 681 / ABSTAIN 1,176이다. FAIL rule record 681개는 unique alarm seconds 568개와 구분한다. 전체 alarm episode 565개 중 정상 false episode는 533개다.
+
+원래 full-unit schema를 유지한 26개 batch가 close/reopen/hash replay됐다. Runtime 시작/종료 authority가 일치해야 accepted full-census receipt가 만들어진다. sample-only 평가나 digest-only trace 대체가 아니다.
+
+GDN optional clause는 130개 설명에만 존재한다. 나머지에도 기본 설명은 존재한다. sidecar는 같은 pair/horizon의 predictive functional supporting evidence이며 원래 outcome을 바꾸지 않는다. 모든 split에서의 안정성이나 인과성을 주장하지 않는다.
+
+자동 structural fidelity는 source/target/direction/horizon/numeric provenance/outcome/no-new-variable/no-new-number/noncausal 및 deterministic replay 범위이다. human usefulness는 UNVALIDATED이며 자동 일치성 통과를 인간 유용성이나 물리적 진실로 설명하지 않는다.
+
+독립 reviewer가 원본 26개 full-unit batch를 모두 replay하여 6,418/6,418개에서 11개 검사 전부 PASS를 확인했다. 샘플 대체가 아니며 80개 관련 파일의 before/after hash가 동일하다.
+</pre></section><section id="section-09"><h2>주장과 한계</h2><pre># 주장과 한계
+
+| 주장 | 현재 상태 | 허용 해석 |
+|---|---|---|
+| end-to-end 구현/실행 | 구현 및 개발 실행 완료 | 최종 성능 검증 아님 |
+| GDN primary discovery | 지원되지 않음 | META+STAT 유지 |
+| EXP-01C learned graph | LEARNED_GRAPH_SUPPORTING | 2 pair의 bounded predictive evidence; causal 아님 |
+| Rule-only utility | UNVALIDATED | 11/14와 FAR37.61/hour 동시 보고 |
+| Detector+Rule 개선 | DEVELOPMENT_NOT_SUPPORTED | 두 fusion의 Recall 증가0, FAR 증가 |
+| 설명 structural fidelity | actual6418 corpus의 자동 감사 | human usefulness 아님 |
+| Agentic benefit | 미지원/EXP-03 gated | 최종 title DG-04 |
+| held-out 일반화 | UNCONFIRMED | DG-05 필요 |
+
+무결성은 bytes/lineage/arithmetic의 일치성이고 scientific validity/generalization의 증거와 다릅니다. 14 contiguous attack-event units는 독립 사건으로 입증되지 않았습니다. 독립 외부 재현은 private data/authority custody에 의존합니다.
+</pre></section><section id="section-10"><h2>Held-out 다음 계획</h2><pre># Held-out 다음 계획
+
+현재 held-out 일반화는 미확인입니다. old OUTER는 custody check에서 byte read 전에 중단되었고 단순 재시도 권한은 없습니다.
+
+다음 held-out 연구 전에 다음을 동결해야 합니다.
+
+1. 새 study identity와 preregistration
+2. 사용할 data/split identity와 event-unit contract
+3. 최종 method·authority·feature·numeric policy
+4. detector와 fusion policy
+5. metric과 reporting plan
+6. durable prediction-before-label gate
+7. no-post-test-tuning 규칙
+8. 한 번의 실행 및 custody log
+
+동일 physical test2를 새 연구에서 사용할 수 있는지는 자동 결정하지 않습니다. DG-05에서 same physical test2, new split/data, 기타 근거 기반 대안을 비교하고 사용자 승인을 받은 뒤에만 접근합니다.
+</pre></section><section id="section-11"><h2>교수님 논의 안건</h2><pre># 교수님 논의 안건
+
+1. 두 fixed fusion이 Recall 개선 없이 FAR를 늘린 음성 결과의 해석과 thesis 범위.
+2. 높은 Rule-only FAR를 현재 한계로 명시하고 개발 결과를 최종 검증과 구분.
+3. DG-03: EXP-03 provider/model/exact call·token budget 승인 전 호출 금지.
+4. DG-04: GDN-Assisted supporting evidence 표현과 조건부 Agentic 제목 검토.
+5. DG-05: consumed old OUTER와 다른 새 held-out study 사전등록; 현재 test2 접근0.
+6. DG-06: 이 package를 사용자 검토 후 제출. 자동 이메일 없음.
+</pre></section><section id="section-12"><h2>이메일 초안 — 미전송</h2><pre># 이메일 초안 — 미전송
+
+제목: HAI P1 VALIDATION V2 개발 실험 및 GDN 보조 근거 업데이트
+
+교수님 안녕하세요.
+PILOT V1을 보존한 채 별도 V2 39-rule portfolio와 PCA/Isolation Forest, 고정 Rule fusion의 test1 개발 평가를 완료했습니다. 두 fusion은 Recall을 개선하지 못했고 정상 FAR가 증가했습니다. 이 음성 결과와 한계를 그대로 보고드립니다.
+
+GDN은 normal-only EXP-01C의 보조 근거로 정리했으며 일부 V2A 규칙과 pair/horizon 연결을 확인했습니다. 실제 trace 6,418개에 대한 자동 설명 일치성도 함께 점검했습니다. test1은 최종 검증이 아니며 held-out 및 인간 유용성은 미확인입니다.
+
+첨부 package의 방법·결과·한계를 검토 부탁드립니다. 제목/기여 범위와 후속 provider/held-out 설계는 별도 논의하고자 합니다.
+
+[사용자 최종 검토 및 DG-06 승인 전 전송 금지]
+</pre></section><section id="section-13"><h2>발표 개요</h2><pre># 발표 개요
+
+1. V1 보존과 V2 별도 identity
+2. META+STAT → normal-confirmed39 → EXP-02 numeric → Formal V4
+3. EXP-01/01B 음성 결과와 EXP-01C supporting evidence 구분
+4. GDN→V2A pair/horizon map:2pair; prediction 영향0
+5. five-method prediction-before-label gate
+6. 실제 test1 개발 결과: Recall과 FAR를 함께 비교
+7. 두 fusion 개선 없음 및 Rule-only 고FAR
+8. actual6418 trace와 optional GDN clauses130
+9. integrity vs scientific validation vs generalization
+10. DG-03/04/05/06 결정 안건
+</pre></section></body></html>

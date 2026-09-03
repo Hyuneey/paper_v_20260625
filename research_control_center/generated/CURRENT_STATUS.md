@@ -1,15 +1,36 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
+
+## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
+
+모든 5개 prediction freeze와 replay 후에만 test1 label을 해석했습니다.
+PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
+
+| 방법 | Attack-event Recall | Normal FAR/hour | 정상 false episode |
+|---|---:|---:|---:|
+| D0 PCA-SPE | 11/14 | 0.4939336325682588839451968874340932 | 7 |
+| Isolation Forest | 5/14 | 1.764048687743781728375703169407476 | 25 |
+| Rule-only V2A | 11/14 | 37.60951802269742644896999157176738 | 533 |
+| PCA+Rule | 11/14 | 0.6350575275877614222152531409866912 | 9 |
+| IF+Rule | 5/14 | 1.905172582763284266645759422960074 | 27 |
+
+두 고정 fusion은 추가 탐지 0개, 정상 false episode 각각 2개 증가로 탐지 개선이 지지되지 않았습니다.
+전체 6,418개 actual trace의 자동 구조 충실도 QA는 PASS입니다.
+GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 130개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
+EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
+14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Registry version: `0.1.0`
-Registry snapshot: `2026-09-02T17:00:00Z`
+Registry snapshot: `2026-09-03T17:08:57Z`
 
 ## 현재 단계
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STAT and its Formal V4 portfolio are frozen; EXP-04 label-blind development predictions are next.
+V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418개 생성 완료. 두 fusion은 Recall 개선 없이 FAR가 증가했다. GDN은 설명용 보조 근거이며 최종 일반화는 미확인이다.
 
 ## 상태를 읽는 방법
 
@@ -114,8 +135,8 @@ VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STA
 | EXP-01B | 실행·근거 점검 완료·개발 결과 | Embedding·Attention·EdgeMask·Source Occlusion을 동일 정상 관계 기준에서 비교한다. |
 | EXP-02 | 실행·근거 점검 완료·개발 결과 | 응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다. |
 | EXP-03 | 실행·근거 점검 완료·예비 실험 | T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다. |
-| EXP-04 | 실행·근거 점검 완료·예비 실험 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
-| EXP-05 | 구현 완료·미실행 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
+| EXP-04 | 실행·근거 점검 완료·개발 결과 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
+| EXP-05 | 실행·근거 점검 완료·개발 결과 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
 | EXP-06 | 설계만 완료 | 고정 규칙 결과나 정답을 받지 않는 별도 runtime LLM 비교 가능성을 검토한다. |
 
 ## 공식 연구 주장
@@ -130,11 +151,11 @@ VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STA
 | CLAIM-D | 구현 근거로 지원됨 | 고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다. |
 | CLAIM-E | 현재 개발 결과로 지원되지 않음 | EXP-01과 EXP-01B의 동결된 정상 전용 기준은 GDN의 핵심·보조 기여를 지원하지 않았다. |
 | CLAIM-F | 현재 근거로 지원되지 않음 | 현재 feedback action이 0이므로 이점은 지원되지 않는다. |
-| CLAIM-G | 예비 실험 수준 (PILOT_ONLY) | 현재 14-unit pilot에서 서로 다른 event response가 관찰됐다. |
+| CLAIM-G | DEVELOPMENT_SUPPORTED | 현재 14-unit pilot에서 서로 다른 event response가 관찰됐다. |
 | CLAIM-H | 미검증 (UNVALIDATED) | 높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다. |
-| CLAIM-I | 현재 근거로 지원되지 않음 | 현재 D2 V1/V2는 D0 Recall을 개선하지 못했다. |
+| CLAIM-I | 현재 개발 결과로 지원되지 않음 | 현재 D2 V1/V2는 D0 Recall을 개선하지 못했다. |
 | CLAIM-J | 현재 근거로 지원되지 않음 | OUTER 과학 결과가 없어 일반화는 확인되지 않았다. |
-| CLAIM-K | 조건부 (CONDITIONAL) | renderer 결속은 구현됐지만 전체 corpus의 fidelity는 조건부다. |
+| CLAIM-K | DEVELOPMENT_SUPPORTED | renderer 결속은 구현됐지만 전체 corpus의 fidelity는 조건부다. |
 | CLAIM-L | 미검증 (UNVALIDATED) | trace 기반 interface는 있으나 사람에게 유용한지는 평가하지 않았다. |
 | CLAIM-M | 현재 근거로 지원되지 않음 | 현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다. |
 
@@ -160,4 +181,4 @@ VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STA
 
 ## 정확한 다음 작업
 
-**V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels**
+**DG-03 — EXP-03 Provider Execution Decision**

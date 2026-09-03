@@ -1,0 +1,7 @@
+claim_id,status,allowed_interpretation
+RULE_COMPLEMENTARITY,DEVELOPMENT_SUPPORTED,Rule-only responds to 2 PCA-missed and 6 IF-missed units but this is not fusion recovery
+RULE_OPERATIONAL_UTILITY,UNVALIDATED,High normal FAR remains
+PCA_RULE_IMPROVEMENT,DEVELOPMENT_NOT_SUPPORTED,Recall unchanged and normal false episodes increase by2
+IF_RULE_IMPROVEMENT,DEVELOPMENT_NOT_SUPPORTED,Recall unchanged and normal false episodes increase by2
+HELDOUT_GENERALIZATION,UNVALIDATED,No heldout access or result
+HUMAN_USEFULNESS,UNVALIDATED,Automated structural fidelity only

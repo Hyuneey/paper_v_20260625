@@ -42,3 +42,21 @@ portfolio를 유지하고 V2B primary GDN portfolio는 만들지 않습니다.
 이 결과는 GDN이 일반적으로 무용하다는 뜻이 아닙니다. 이번 정상 데이터 범위에서
 안정적·고유·기능적 contribution 요건을 통과하지 못했다는 뜻입니다. Attention과
 EdgeMask는 모델 내부 예측 근거이며 인과 또는 물리적 ground truth로 해석하지 않습니다.
+
+## 후속 EXP-01B-R1 / EXP-01C와 현재 GDN 역할
+
+위 EXP-01B 수치는 원래 frozen protocol의 역사적 결과다. 평가 구현 문제와 별도 수정 분석은 GDN-CORR-001에서 분리했다.
+Rule conversion과 ranking 문제를 고친 분석으로 과거 결과를 덮어쓰지 않았다.
+이후 한 번의 HAI-adapted multi-horizon EXP-01C는 `LEARNED_GRAPH_SUPPORTING`으로 동결됐다.
+
+현재 GDN은 주 후보 탐색 authority가 아니다. META+STAT의 29pair·39-rule V2A portfolio는 바뀌지 않았다.
+정상 source-event-conditioned EdgeMask의 안정 양성 pair를 immutable evidence에서 읽어 V2A에 대응시킨 결과:
+2pair 모두 pair+horizon 일치, pair-only 0, no-overlap 0이다.
+COMBINED view의 2/3 이상 seed 조건이며 모든 split에서 안정하다고 주장하지 않는다.
+예측 MSE의 기능적 의존 근거는 physical causality나 Rule response sign의 증명이 아니다.
+
+GDN sidecar는 39-rule descriptor를 변경하지 않는 설명용 annotation이다.
+실제 EXP-05 6,418개 설명 중 130개에만 승인된 GDN 문구가 붙었다.
+제목 eligibility는 `GDN_ASSISTED_TITLE_STRONG`이지만 문서상 일치 기준일 뿐이다.
+잠정 제목: “GDN-Assisted Evidence-Bound Relational Rule Construction for Explainable Multivariate Time-Series Anomaly Detection”.
+최종 제목은 DG-04 결정 전까지 잠정이다.

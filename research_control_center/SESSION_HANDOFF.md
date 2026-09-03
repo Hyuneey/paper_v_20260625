@@ -1,107 +1,52 @@
-# Session Handoff
+# 세션 인계 — VALIDATION V2 개발 결과 완료
 
-## Current scientific authority
+## 정확한 다음 작업
 
-- PILOT V1: `origin/research-v6-thesis-checkpoint`
-- Commit: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
-- Immutable pin: `thesis-v1-post-push-audit` at the same commit
-- VALIDATION V2 integration branch: `validation-v2`
+DG-03 — EXP-03 Provider Execution Decision.
+Provider/model·natural cohort·정확한 call/token 상한을 고정하고 사용자 승인을 받기 전 호출하지 않는다.
+DG-04 제목·기여, DG-05 held-out, DG-06 실제 교수님 제출은 별도 Gate다.
 
-PILOT V1 remains immutable. The historical checkout, chat memory, and thesis
-overlay cannot override the pinned authority or RCC Registry.
+## 완료된 실행 — 재실행 금지
 
-## Final VALIDATION V2 execution authority
+V2-GDN-FRONT-EXP04-001은 pushed clean Commit B `94ae44dac900cce75ed83ee2801be38750afed4a`에서 실행했다.
+5개 prediction과 동일 coordinate bundle을 durable freeze/replay한 뒤에만 opaque one-shot test1 label capability를 소비했다.
+test1은 DEVELOPMENT_ONLY이며 통계적으로 독립이라는 근거가 없는 14 contiguous attack-event units다.
+추가 tuning, 새 fusion, test2/heldout/provider/GDN training은 0.
 
-- `DEC-020 = APPROVED_FORMAL_V4`
-- `DG-01 = RESOLVED_BY_USER`
-- selected authority: Formal V4
-- canonical-to-V4 bridge: `NOT_SELECTED`
-- bridge requirement: `NOT_REQUIRED_FOR_MINIMUM_THESIS_PATH`
+- PCA: 11/14; FAR 0.4939336325682588839451968874340932
+- Isolation Forest: 5/14; FAR 1.764048687743781728375703169407476
+- Rule-only V2A: 11/14; FAR 37.60951802269742644896999157176738
+- PCA+Rule: 11/14; FAR 0.6350575275877614222152531409866912
+- IF+Rule: 5/14; FAR 1.905172582763284266645759422960074
 
-The execution authority is `CanonicalRuleDescriptorV4` plus V4 task validity,
-replay/conformance, Utility V4 numeric binding, portfolio freeze, runtime
-authorization, durable prediction custody, and versioned metric/result-
-integrity controls.
+두 fusion 모두 실제 미탐 회수 0, 정상 false episode +2. 음성 결과를 그대로 유지한다.
+EXP-05는 6,418개 actual trace 전체, 11개 구조 검사와 replay PASS. GDN 문구 130개; human usefulness 미검증.
 
-Canonical `RuleV1` and `VerifierV1` remain adjacent contract components. They
-are not the proven direct VALIDATION V2 runtime authority. Formal V4 does not
-prove scientific utility, causal or physical truth, or generalization.
+## 권한과 역사 보존
 
-## Completed foundation
+DEC-020 APPROVED_FORMAL_V4 / DG-01 RESOLVED_BY_USER.
+Formal V4는 runtime authority이며 RuleV1/VerifierV1 직접 실행 권한이나 lossless bridge를 주장하지 않는다.
+META = HYBRID_REVIEWED_METADATA: 공식 process graph + AI-assisted reviewed semantic 선언.
+주 후보는 META+STAT; 29pair→21confirmed pair→39directional rule 및 EXP02 selected policy 유지.
+EXP-01·EXP-01B 음성 결과는 변경하지 않음.
+EXP-01C = LEARNED_GRAPH_SUPPORTING, 2pair의 pair/horizon 보조 근거만 설명 sidecar로 사용.
+GDN-Assisted title eligibility STRONG은 문서 기준이며 최종 제목은 DG-04.
+PILOT V1 `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e` 3,021개 보존 entry 불변.
 
-- GAP-FIX-001 Formal V4 authority: PASS
-- GAP-FIX-002 durable D1 prediction-before-label custody: PASS
-- V2-PROTOCOL-001 split/event/no-tuning contract: PASS
-- GAP-FIX-METRIC-001 common synthetic metric contract: PASS
-- Stage-2 experiment preparation: PASS
-- clean-checkout fresh-machine synthetic rehearsal: PASS
-- prior independent program QA: PASS
-- PILOT V1 preservation: 3,021/3,021 blobs PASS
+## 로컬 보존
 
-## Current normal-only scientific stage
+TASK_PRIVATE_VAULT에 122개 task-scoped artifact hash/restore 기록.
+SINGLE_COPY_LOCAL_ONLY: 독립 두 번째 backup이나 fresh-machine scientific reproduction을 주장하지 않는다.
+이전 META reviewed input·old checkpoint locator 등 비필수 과거 artifact는 비차단 재현성 부채.
+DATA-POLICY-001: HAI 23.05는 CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION으로 복원하며 사용자 경로 요구가 기본이 아니다.
+역사 BLOCKED_NORMAL_DATA_NOT_FOUND의 원인은 HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC.
 
-`NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT`
+## 결과 근거
 
-Historical state `BLOCKED_NORMAL_DATA_NOT_FOUND` is preserved, but its recovery
-interpretation was incomplete. The corrected root cause is:
+- research_control_center/validation_v2/gdn_front_exp04_001/results/EXP04_RESULTS_V1.json
+- research_control_center/validation_v2/gdn_front_exp04_001/results/EXP05_FULL_CENSUS_V1.json
+- research_control_center/validation_v2/gdn_front_exp04_001/reports/INDEPENDENT_QA_V1.json
+- docs/professor_experiment_update_v2/ (초안; 미제출)
 
-`HAI_CODE_MATERIALIZATION_POLICY_NOT_PROPAGATED_TO_V2_RECOVERY_LOGIC`
-
-`DATA-POLICY-001` requires `CODE_BASED_MATERIALIZATION` through the approved
-official distribution workflow before any user-path request. No host-wide
-search or manual upload is part of the normal recovery path.
-
-Issued symbolic bindings and completed normal-only use:
-
-- `HAI_TRAIN1` → `hai-23.05/hai-train1.csv`
-- `HAI_TRAIN2` → `hai-23.05/hai-train2.csv`
-- `HAI_TRAIN3` → `hai-23.05/hai-train3.csv`
-- `HAI_TRAIN4` → `hai-23.05/hai-train4.csv`
-
-Public receipts:
-
-- `research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_MATERIALIZATION_RECEIPT_V2.json`
-- `research_control_center/validation_v2/receipts/HAI_NORMAL_ONLY_CUSTODY_BINDING_V2.json`
-
-All four files passed exact Git/LFS byte equivalence and schema/P1 contract
-checks. EXP-01, EXP-01B, and EXP-02 used only the authorized normal splits.
-test1, labels, test2, and held-out access counters remain zero.
-
-## Program state after normal-only execution
-
-- EXP-01: `COMPLETE_QA_PASS`; the frozen result remains negative and GDN is
-  demoted to ablation; `META_PLUS_STAT` is the primary V2 discovery policy
-- EXP-01B: `COMPLETE_NORMAL_ONLY`; nine CUDA runs and the independent public
-  lineage replay preserve `GDN_ABLATION_ONLY`
-- EXP-02: `COMPLETE_QA_PASS`; 37 frozen candidates were evaluated and
-  `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05` was selected
-- V2A portfolio: 39 Formal V4 directional rules are frozen and runtime-authorized
-- EXP-03: prepared; DG-03 remains pending before provider calls
-- stronger detector: Isolation Forest selected and prepared for EXP-04
-- EXP-04: ready for label-blind prediction and durable freeze
-- EXP-05: blocked because no materialized V2 runtime traces exist
-- EXP-06: not required
-- test1/test2/held-out/labels/provider accesses in these normal-only tracks: 0
-
-## Exact next task
-
-`V2-SCI-EXP04-001 — freeze all label-blind EXP-04 predictions before test1 labels`
-
-The next execution must use the already frozen V2A META+STAT candidate,
-39-relation Formal V4 portfolio, selected EXP-02 numeric policy, PCA-SPE D0,
-and fixed Isolation Forest configuration. All method predictions must pass the
-durable no-overwrite replay gate before any DEVELOPMENT_ONLY test1 label access.
-Never access test2 or held-out data.
-
-## Future decision gates
-
-- DG-03: immediately before external or paid EXP-03 provider calls
-- DG-04: after EXP-01 and EXP-03 evidence for contribution naming
-- DG-05: mandatory before any test2 or held-out access
-- DG-06: before professor submission or publication
-
-## Git remote status
-
-The Track A and Track B task branches use the approved remote workflow. The
-integration branch must remain at origin parity after final QA; no main-branch
-merge or force push is authorized.
+기존 fresh-machine PASS는 과거 synthetic baseline에 한정된다.
+현재 scientific code/config는 feature access 후 변경하지 않았다. 후속 변경은 새로운 사전등록/버전에서만 가능하다.

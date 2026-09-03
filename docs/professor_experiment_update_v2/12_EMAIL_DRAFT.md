@@ -1,13 +1,12 @@
-# 이메일 초안 — 전송하지 않음
+# 이메일 초안 — 미전송
 
-제목: VALIDATION V2 실험 기반 구축 및 현재 실행 gate 공유
+제목: HAI P1 VALIDATION V2 개발 실험 및 GDN 보조 근거 업데이트
 
 교수님 안녕하세요.
+PILOT V1을 보존한 채 별도 V2 39-rule portfolio와 PCA/Isolation Forest, 고정 Rule fusion의 test1 개발 평가를 완료했습니다. 두 fusion은 Recall을 개선하지 못했고 정상 FAR가 증가했습니다. 이 음성 결과와 한계를 그대로 보고드립니다.
 
-기존 PILOT V1을 변경하지 않고 별도 VALIDATION V2를 구축했습니다. Rule/runtime authority, D1 prediction-before-label 보존, split·metric protocol, GDN/numeric/Agentic/detection/explanation 실험 사전등록과 합성 검증을 완료했고, 새 환경의 clean checkout에서 synthetic end-to-end rehearsal도 통과했습니다.
+GDN은 normal-only EXP-01C의 보조 근거로 정리했으며 일부 V2A 규칙과 pair/horizon 연결을 확인했습니다. 실제 trace 6,418개에 대한 자동 설명 일치성도 함께 점검했습니다. test1은 최종 검증이 아니며 held-out 및 인간 유용성은 미확인입니다.
 
-이후 승인된 정상 HAI custody를 복구해 EXP-01·EXP-01B·EXP-02를 실행했습니다. V2의 주 후보 경로는 META+STAT으로 동결됐고, 별도 GDN Prediction-XAI 실험도 동결 기준상 ablation 판정이었습니다. test1·test2·held-out 접근과 provider 호출은 아직 모두 0회이며, EXP-04 개발 성능 비교는 시작 전입니다.
+첨부 package의 방법·결과·한계를 검토 부탁드립니다. 제목/기여 범위와 후속 provider/held-out 설계는 별도 논의하고자 합니다.
 
-다음에는 동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction을 먼저 모두 보존한 뒤 test1을 DEVELOPMENT_ONLY로 평가하겠습니다. Graph-Guided는 현재 primary/supporting 근거가 지지되지 않았고, Agentic은 EXP-03 결과가 지지할 때만 유지합니다. held-out 평가는 별도 preregistration과 승인 이후에만 수행합니다.
-
-감사합니다.
+[사용자 최종 검토 및 DG-06 승인 전 전송 금지]

@@ -20,16 +20,16 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "NORMAL_ONLY_TRACKS_COMPLETE_EXP04_NEXT")
+        self.assertEqual(state["program_status"], "DEVELOPMENT_COMPLETE_QA_PASS")
         self.assertEqual(
             state["experiment_status"]["EXP-01B"],
             "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
         )
         self.assertEqual(
             state["experiment_status"]["EXP-04"],
-            "READY_LABEL_BLIND_PREDICTION_FREEZE",
+            "COMPLETE_QA_PASS_DEVELOPMENT",
         )
-        self.assertEqual(state["safety_counters"]["scientific_executions"], 3)
+        self.assertEqual(state["safety_counters"]["scientific_executions"], 4)
         self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
         self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
         self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")
@@ -38,7 +38,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
             "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC",
         )
         self.assertEqual(state["dataset_acquisition_policy"]["policy_id"], "DATA-POLICY-001")
-        self.assertEqual(state["dataset_acquisition_policy"]["next_action"], "NORMAL_ONLY_EXPERIMENT_EXECUTION")
+        self.assertEqual(state["dataset_acquisition_policy"]["next_action"], "PRESERVE_CUSTODY_NO_FURTHER_DATA_ACCESS")
         self.assertFalse(state["dataset_acquisition_policy"]["user_local_path_required"])
         self.assertEqual(state["historical_execution_blocker"]["code"], "BLOCKED_NORMAL_DATA_NOT_FOUND")
         self.assertEqual(
@@ -241,7 +241,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertIn("test1·공격 label·test2·held-out 접근", summary)
         detection = (package / "07_EXP04_DETECTION_RESULTS.md").read_text(encoding="utf-8")
         self.assertIn("META+STAT 기반 39-rule Formal V4 V2A portfolio가 고정", detection)
-        self.assertIn("LABEL-BLIND PREDICTION FREEZE NEXT", detection)
+        self.assertIn("모든 5개 prediction freeze", detection)
         self.assertNotIn("EXP-01과 EXP-02, stronger detector normal-only fit, V2 portfolio가 아직 실행되지 않아", detection)
 
 

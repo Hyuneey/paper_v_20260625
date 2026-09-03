@@ -1,5 +1,26 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
+
+## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
+
+모든 5개 prediction freeze와 replay 후에만 test1 label을 해석했습니다.
+PILOT V1과 별도 결과이며 최종 과학적 검증은 아닙니다.
+
+| 방법 | Attack-event Recall | Normal FAR/hour | 정상 false episode |
+|---|---:|---:|---:|
+| D0 PCA-SPE | 11/14 | 0.4939336325682588839451968874340932 | 7 |
+| Isolation Forest | 5/14 | 1.764048687743781728375703169407476 | 25 |
+| Rule-only V2A | 11/14 | 37.60951802269742644896999157176738 | 533 |
+| PCA+Rule | 11/14 | 0.6350575275877614222152531409866912 | 9 |
+| IF+Rule | 5/14 | 1.905172582763284266645759422960074 | 27 |
+
+두 고정 fusion은 추가 탐지 0개, 정상 false episode 각각 2개 증가로 탐지 개선이 지지되지 않았습니다.
+전체 6,418개 actual trace의 자동 구조 충실도 QA는 PASS입니다.
+GDN은 LEARNED_GRAPH_SUPPORTING: 2개 pair의 보조 근거이며 130개 설명에 선택적 문구를 붙였을 뿐 예측에는 영향을 주지 않습니다.
+EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 GDN 안정성을 입증한 것은 아닙니다.
+14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
+다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 held-out, DG-06 실제 제출은 별도 Gate입니다.
+
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
 
@@ -11,17 +32,13 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 ## Current phase
 
-**EVALUATION_SCOPE_EXPANSION** — VALIDATION V2 normal-only EXP-01, EXP-01B, and EXP-02 are complete. V2A META+STAT and its Formal V4 portfolio are frozen; EXP-04 label-blind development predictions are next.
+**EVALUATION_SCOPE_EXPANSION** — V2A 39-rule Formal V4의 5개 방법 개발 평가와 실제 EXP-05 trace 6,418개 생성 완료. 두 fusion은 Recall 개선 없이 FAR가 증가했다. GDN은 설명용 보조 근거이며 최종 일반화는 미확인이다.
 
 ## How to read RCC status
 
-Engineering and scientific evidence are separate. Component `audited=true` means
-**Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
-and arithmetic, not generalization. Scientific
-claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
-    contract wording.
-
-    These states are not a single completion percentage.
+`audited=true`는 Evidence-reviewed이며 scientific validation이 아니다.
+A Result-integrity audit checks custody and arithmetic, not generalization.
+이 상태들은 not a single completion percentage다. claim은 claims.csv가 관리한다.
 
     ## Architecture in one line
 
@@ -30,8 +47,9 @@ HAI provenance and P1 scope -> frozen role universe -> META / STAT / GDN -> unsc
 ## Data and split boundary
 
 HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
-calibrates D0; train4 is a guard. test1 is pilot evidence. OUTER produced no result. D1 lacks
-durable pre-label persistence; D2 V2 is test1-informed.
+calibrates D0; train4 is a guard. test1 is development evidence. OUTER produced no result.
+PILOT V1 D1 lacks durable pre-label persistence; PILOT V1 D2 V2 is test1-informed.
+VALIDATION V2 completed durable five-method prediction replay before its one-shot label access.
 
 ## Candidate-discovery boundary
 
@@ -61,16 +79,13 @@ Rule-only, not T2 Agentic Rule-only. Prediction preceded labels but was not dura
 
 ## Frozen D0 detector boundary
 
-D0 is a 37-feature normal-only PCA-SPE reference. Train1+train2 fit custom NumPy PCA; train3
-calibrates a no-interpolation q=.999 threshold; test1 uses strict `score > threshold`. Prediction
-bytes were frozen before labels. The 11/14 pilot is neither SOTA nor thesis-contribution evidence.
+PILOT V1 D0: 37-feature 정상 PCA-SPE. Train1+train2 fit, train3 no-interpolation q=.999 calibration,
+strict score > threshold, prediction-before-label. 11/14는 SOTA 주장 근거가 아니다.
 
 ## Frozen D2 fusion boundary
 
-V1 uses exact-row two-distinct-source corroboration; V2 keeps each D1 alarm active through its
-frozen native relation horizon and applies the same source threshold. Both preserve D0 pointwise
-and durably freeze combined predictions before labels. Both returned 11/14 and recovered 0/3 D0
-misses while increasing normal FAR. V2 is test1-informed development, not independent confirmation.
+PILOT V1 D2 V1은 same-second 두 source, D2 V2는 native horizon corroboration이다.
+둘 다 D0를 pointwise 보존했고 11/14·회수0/3·FAR 증가였다. D2 V2는 test1-informed development다.
 
 ## How we got here
 
@@ -109,7 +124,8 @@ observations, not new calculations.
 - Human explanation usefulness
 
     Graph-Guided and Agentic remain provisional contribution labels. EXP-01 and EXP-01B do not
-    support GDN as a primary or supporting V2 contribution; DG-04 controls final wording. T2
+    support GDN under their original protocols. Later EXP-01C provides LEARNED_GRAPH_SUPPORTING
+    evidence only; it does not replace the META+STAT discovery policy. DG-04 controls final wording. T2
     feedback advantage also remains unsupported.
 
 ## Current experiments
@@ -118,8 +134,8 @@ observations, not new calculations.
 - **EXP-01B · GDN Prediction-XAI 추가 검증** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
 - **EXP-02 · 규칙 수치 기준 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
 - **EXP-03 · 검증 피드백 기반 규칙 생성 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
-- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED PILOT`.
-- **EXP-05 · 규칙 설명의 일치성 검증** — `CODE PRESENT · COMPARISON NOT EXECUTED`.
+- **EXP-04 · 검증된 관계 규칙의 이상탐지 성능 비교** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
+- **EXP-05 · 규칙 설명의 일치성 검증** — `EXECUTED · EVIDENCE-REVIEWED DEVELOPMENT RESULT`.
 - **EXP-06 · 실시간 LLM 활용 비교** — `DESIGNED ONLY`.
 
 ## Claim boundaries
@@ -128,39 +144,36 @@ observations, not new calculations.
 - **CLAIM-B · SUPPORTED_IMPLEMENTATION** — The implemented pipeline transformed confirmed normal-data relation evidence into frozen executable rules under deterministic authority controls.
 - **CLAIM-C · SUPPORTED_IMPLEMENTATION** — VerifierV1 deterministically checks its canonical contract; VALIDATION V2 executable eligibility is separately governed by Formal V4 validity replay numeric binding portfolio-freeze runtime-authorization and custody controls.
 - **CLAIM-D · SUPPORTED_IMPLEMENTATION** — Given frozen Formal V4 descriptor validity numeric-reference portfolio runtime-authorization and input authorities the fixed-rule VALIDATION V2 runtime evaluates without an LLM and produces deterministic traces.
-- **CLAIM-E · DEVELOPMENT_NOT_SUPPORTED** — EXP-01 and EXP-01B both retained GDN as ablation. EXP-01B showed a small combined K=29 yield and NDCG increase but failed frozen split-stability functional and unique executable-rule criteria.
+- **CLAIM-E · DEVELOPMENT_NOT_SUPPORTED** — EXP-01/01B 음성 결과 유지. 별도 EXP-01C는 LEARNED_GRAPH_SUPPORTING이며2pair의 일부 horizon이 V2A와 겹친다. GDN은 primary discovery나 detector가 아니다.
 - **CLAIM-F · NOT_SUPPORTED** — The current pilot did not establish a feedback advantage and the feedback mechanism was not empirically exercised.
-- **CLAIM-G · PILOT_ONLY** — In the current 14-event INNER pilot D1 responded to three D0-missed events and D0 responded to one D1-missed event.
-- **CLAIM-H · UNVALIDATED** — Rule-only showed high event response and high normal false-alarm burden in the INNER pilot; practical utility remains unvalidated.
-- **CLAIM-I · NOT_SUPPORTED** — The two frozen D2 policies did not improve D0 attack-event recall in the current INNER pilot.
+- **CLAIM-G · DEVELOPMENT_SUPPORTED** — Rule-only 반응은 PCA미탐2/3 및 IF미탐6/9이다. 고정 fusion의 실제 회수는 둘다0이다.
+- **CLAIM-H · UNVALIDATED** — V2A Rule-only는11/14이나 정상 FAR37.6095/hour로 운영 효용은 미검증이다.
+- **CLAIM-I · DEVELOPMENT_NOT_SUPPORTED** — 두 V2 frozen confirm2 fusion은 기준 detector Recall을 개선하지 못하고 정상false episodes를2개씩 늘렸다. V1 음성 결과도 보존한다.
 - **CLAIM-J · NOT_SUPPORTED** — Held-out generalization remains unconfirmed because no OUTER scientific result is available.
-- **CLAIM-K · CONDITIONAL** — The implemented renderer is deterministically bound to frozen rule and trace information; comprehensive faithfulness remains to be evaluated.
+- **CLAIM-K · DEVELOPMENT_SUPPORTED** — 실제6418trace 전체에서11개 automated structural checks가 PASS했다. GDN clauses130개는 원래 outcome을 바꾸지 않았다.
 - **CLAIM-L · UNVALIDATED** — A trace-grounded explanation interface is implemented; human usefulness has not been evaluated.
 - **CLAIM-M · NOT_SUPPORTED** — The system records bounded temporal relation evidence and trace-grounded violations without causal attribution.
 
 ## Current risks
 
 - **HIGH / OPEN** — The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
-- **HIGH / OPEN** — Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
-- **HIGH / MITIGATING** — EXP-01 and EXP-01B did not support retaining GDN as a primary or supporting V2 contribution under their frozen normal-only criteria.
+- **HIGH / OPEN** — V2A Rule-only도 정상 FAR37.6095/hour로 높아 운영 효용 미확인.
+- **HIGH / MITIGATING** — EXP-01/01B primary GDN 미지원;EXP-01C는 bounded supporting evidence만 제공한다.
 - **HIGH / OPEN** — Held-out generalization is unavailable because no OUTER scientific result exists.
-- **HIGH / MITIGATING** — Fresh-machine synthetic and normal HAI custody pass; V2A authorities and EXP-02 are frozen, while full fresh-machine scientific reproduction remains private-custody dependent.
-- **HIGH / OPEN** — The current detector reference is PCA-SPE and expanded validation lacks a stronger multivariate baseline.
+- **HIGH / MITIGATING** — 필수 private122artifact 보존/재생 PASS이나 SINGLE_COPY_LOCAL_ONLY이고 fresh-machine scientific reproduction은 미실시.
+- **HIGH / CLOSED** — Fixed Isolation Forest 비교를 완료했으나 이 test1에서는 PCA보다 우수하지 않았다.
 - **HIGH / CLOSED** — PILOT V1 D1 retains its documented in-memory-only pre-label boundary; VALIDATION V2 now has durable no-overwrite prediction freeze replay label lease and post-label identity verification.
 - **HIGH / CLOSED** — VALIDATION V2 previously lacked one formally selected Rule verifier and runtime authority across canonical RuleV1 and the executed V4 path.
 - **HIGH / OPEN** — Construction orchestration can collapse provider parse verifier and budget failures into no_rule.
 
 ## Top user TODO
 
-- 동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction과 durable freeze를 완료한다.
-- 모든 prediction freeze 전 test1 label을 열지 않고 test2/held-out은 계속 금지한다.
-- EXP-01과 EXP-01B의 GDN_ABLATION_ONLY 결과를 보존하고 V2B를 post-hoc 생성하지 않는다.
-- Review DG-03 only after the natural cohort and exact provider budget are frozen.
-- Review Graph-Guided removal and Agentic conditional framing at DG-04.
-- Review the professor update before submission; no email has been sent.
+- DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.
+- 음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.
+- DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다.
 
 ## Exact next task
 
-Management: **V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation**
+Management: **DG-03 — EXP-03 Provider Execution Decision**
 
 Following architecture review: **NONE — ARCH-000 through ARCH-011 complete**

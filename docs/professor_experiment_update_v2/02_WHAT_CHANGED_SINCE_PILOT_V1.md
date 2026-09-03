@@ -1,17 +1,7 @@
-# PILOT V1 이후 무엇이 달라졌는가
+# PILOT V1 이후 변경
 
-PILOT V1은 그대로 보존됩니다. VALIDATION V2는 이를 수정한 이름이 아니라 별도 scientific version입니다.
+V1은 변경하지 않았습니다. V2에는 Formal V4 선택, durable multi-method prediction-before-label gate, 정상 전용 37-candidate numeric selection, 별도 39-rule portfolio, fixed Isolation Forest, 공통 metric contract를 사용했습니다. 이번 실행은 이 동결된 경로를 처음 label-blind test1 개발 평가에 연결했습니다.
 
-| 영역 | PILOT V1 | VALIDATION V2 |
-|---|---|---|
-| Rule/runtime authority | frozen V4 COMMON-42 경로 | 별도 Formal V4 authority와 exact binding replay |
-| D1 pre-label custody | 메모리 내 freeze | atomic durable write → close → reopen/replay → label lease → post-label byte check |
-| split 역할 | pilot 절차로 추적 | train/test/final 역할과 no-post-test-tuning contract 고정 |
-| metrics | frozen pilot 구현 | portable common per-second adapter와 합성 contract tests |
-| GDN | self-neighbor 포함 가능 pilot behavior | self-excluded EXP-01과 별도 EXP-01B Prediction-XAI를 실행했으나 모두 ablation 판정 |
-| numeric policy | pilot fixed authority | 37개 normal-only policy를 비교해 `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05` 동결 |
-| stronger detector | PCA-SPE reference only | normal-only Isolation Forest 비교 arm 준비 |
-| explanation | frozen D1 trace와 canonical renderer 미연결 | V2 runtime trace → deterministic renderer → structural validator 경로 준비 |
-| 재현성 | traceability 중심 | clean checkout fresh-environment synthetic rehearsal PASS |
+GDN은 EXP-01C의 학습 그래프 보조 근거를 explanation sidecar로 연결했으며 detector나 primary candidate authority로 승격하지 않았습니다. 256-unit full trace batch와 one prepared runtime은 I/O 효율화이며 scientific semantics는 그대로입니다.
 
-바뀌지 않은 것은 더 중요합니다. test1은 development-only이고, test2/held-out은 열지 않았으며, Runtime LLM은 사용하지 않습니다. V2 결과를 보기 전 사전등록과 contract를 먼저 고정했습니다.
+과거 V1 D1/COMMON-42와 이번 V2A는 다른 cohort이므로 V1/V2 수치 차이만으로 개선 효과를 주장하지 않습니다. 총 6,418 actual trace를 보존했고 최종 result integrity는 별도 QA로 점검합니다.

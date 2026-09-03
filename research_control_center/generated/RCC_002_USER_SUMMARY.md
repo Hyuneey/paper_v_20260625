@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=bc728359648c41240a2a68a90092b9e4e9e5f93027238b566d9dae8115f649f0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=7843bc595fd526de37fa6765d7982848c00d23c6391d954f25e1ba155557c3ea authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -59,28 +59,25 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 ## 가장 큰 위험 5개
 
 - The INNER pilot contains only 14 contiguous attack-event units; statistical independence is not established, so stable performance and superiority cannot be inferred.
-- Rule-only normal FAR is high in the frozen INNER pilot so operational utility is not established.
-- EXP-01 and EXP-01B did not support retaining GDN as a primary or supporting V2 contribution under their frozen normal-only criteria.
+- V2A Rule-only도 정상 FAR37.6095/hour로 높아 운영 효용 미확인.
+- EXP-01/01B primary GDN 미지원;EXP-01C는 bounded supporting evidence만 제공한다.
 - Held-out generalization is unavailable because no OUTER scientific result exists.
-- Fresh-machine synthetic and normal HAI custody pass; V2A authorities and EXP-02 are frozen, while full fresh-machine scientific reproduction remains private-custody dependent.
+- 필수 private122artifact 보존/재생 PASS이나 SINGLE_COPY_LOCAL_ONLY이고 fresh-machine scientific reproduction은 미실시.
 
 ## 다음에 해야 할 것
 
-- Generate and durably freeze all preregistered EXP-04 label-blind method predictions before any test1 label access.
-- Use only the frozen V2A META+STAT Formal V4 portfolio; do not create a result-driven V2B GDN portfolio.
-- Freeze the exact EXP-03 provider/model/call/token budget at DG-03 only after the natural V2 cohort exists.
+- DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.
+- 음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.
+- DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다.
 
-관리 작업의 다음 단계는 **V2-SCI-EXP04-001 — frozen label-blind method prediction and development evaluation** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-03 — EXP-03 Provider Execution Decision** 이고, 이후 전체
 구조 검토는 **NONE — ARCH-000 through ARCH-011 complete** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- 동결된 V2A META+STAT portfolio로 EXP-04 label-blind prediction과 durable freeze를 완료한다.
-- 모든 prediction freeze 전 test1 label을 열지 않고 test2/held-out은 계속 금지한다.
-- EXP-01과 EXP-01B의 GDN_ABLATION_ONLY 결과를 보존하고 V2B를 post-hoc 생성하지 않는다.
-- Review DG-03 only after the natural cohort and exact provider budget are frozen.
-- Review Graph-Guided removal and Agentic conditional framing at DG-04.
-- Review the professor update before submission; no email has been sent.
+- DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.
+- 음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.
+- DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다.
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

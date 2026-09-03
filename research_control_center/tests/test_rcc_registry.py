@@ -45,16 +45,16 @@ class RegistryValidationTests(unittest.TestCase):
         result = validator.ValidationResult()
         validator._validate_authority(data, result)
         self.assertEqual([], result.errors)
-        self.assertEqual(6, len(data["state"]["top_user_todo"]))
+        self.assertEqual(3, len(data["state"]["top_user_todo"]))
         self.assertEqual(8, len(data["state"]["user_todo_items"]))
         self.assertEqual(32, len(data["components"]))
         self.assertEqual(7, len(data["experiments"]))
         self.assertEqual(13, len(data["claims"]))
         self.assertEqual(16, len(data["risks"]))
-        self.assertEqual(35, len(data["artifacts"]))
+        self.assertEqual(40, len(data["artifacts"]))
         self.assertEqual(
             {
-                "scientific_executions": 3,
+                "scientific_executions": 4,
                 "test2_feature_accesses": 0,
                 "test2_label_accesses": 0,
                 "new_private_exposures": 0,
@@ -75,6 +75,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
+            "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
             "origin/research-v6-thesis-checkpoint": {AUTHORITY_COMMIT},
             "validation-v2-core-exp02": {"9cb47e0efb868048d4a523ec4cfaca53bd342ab7"},
             "validation-v2-exp01b-gdn-xai": {
@@ -100,6 +101,7 @@ class RegistryValidationTests(unittest.TestCase):
             "e81baadcfd6cf6b9f23d307056455e024876c2ed",
             "9cb47e0efb868048d4a523ec4cfaca53bd342ab7",
             "e0a14ab61762f7e7ce8319d58643dc483dda6a02",
+            "94ae44dac900cce75ed83ee2801be38750afed4a",
         }
         for name in ("decisions", "timeline"):
             self.assertLessEqual({row["source_commit"] for row in data[name]}, allowed_history_commits)
@@ -152,7 +154,7 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(30, len(data["timeline"]))
+        self.assertEqual(31, len(data["timeline"]))
         self.assertEqual(21, len(data["decisions"]))
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
         result = validator.ValidationResult()
@@ -178,7 +180,7 @@ class RegistryValidationTests(unittest.TestCase):
         claim_status = {row["claim_id"]: row["status"] for row in data["claims"]}
         self.assertEqual("DEVELOPMENT_NOT_SUPPORTED", claim_status["CLAIM-E"])
         self.assertEqual("NOT_SUPPORTED", claim_status["CLAIM-F"])
-        self.assertEqual("NOT_SUPPORTED", claim_status["CLAIM-I"])
+        self.assertEqual("DEVELOPMENT_NOT_SUPPORTED", claim_status["CLAIM-I"])
         self.assertEqual("NOT_SUPPORTED", claim_status["CLAIM-J"])
 
     def test_august_feedback_temporal_corrections_are_explicit(self) -> None:
@@ -192,7 +194,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual("V2-SCI-EXP04-001 — freeze all label-blind predictions before DEVELOPMENT_ONLY test1 labels", data["state"]["exact_next_task"])
+        self.assertEqual("DG-03 — EXP-03 Provider Execution Decision", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

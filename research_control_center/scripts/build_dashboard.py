@@ -13,6 +13,7 @@ import hashlib
 import html
 import json
 import re
+from front_results_view import front_markdown
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -110,6 +111,8 @@ def load_registry(rcc_root: Path) -> dict[str, Any]:
     }
     detail = rcc_root / "architecture" / "00_overview" / "ARCH_000_COMPONENT_DETAIL.csv"
     data["architecture_details"] = _read_csv(detail) if detail.is_file() else []
+    from front_results_view import load_front_results
+    data["front_results"] = load_front_results(rcc_root.parent, state)
     return data
 
 
@@ -1183,6 +1186,8 @@ def render_gpt_brief(data: Mapping[str, Any], digest: str) -> str:
     return f"""{_markdown_marker(state, digest)}
 # GPT Brief — Research Control Center
 
+{front_markdown(data['front_results'])}
+
 Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 > Chat memory must not override the scientific authority or RCC registry.
@@ -1197,13 +1202,9 @@ Scientific authority: `{authority['ref']}` @ `{authority['commit']}`.
 
 ## How to read RCC status
 
-Engineering and scientific evidence are separate. Component `audited=true` means
-**Evidence-reviewed**, not performance validated. A **Result-integrity audit** checks custody
-and arithmetic, not generalization. Scientific
-claim status comes only from `claims.csv`; `claim_ready` supports narrow implementation or
-    contract wording.
-
-    These states are not a single completion percentage.
+`audited=true`는 Evidence-reviewed이며 scientific validation이 아니다.
+A Result-integrity audit checks custody and arithmetic, not generalization.
+이 상태들은 not a single completion percentage다. claim은 claims.csv가 관리한다.
 
     ## Architecture in one line
 
@@ -1212,8 +1213,9 @@ claim status comes only from `claims.csv`; `claim_ready` supports narrow impleme
 ## Data and split boundary
 
 HAI 23.05 P1 is selected. train1/train2 fit normal evidence; train3 confirms relations and
-calibrates D0; train4 is a guard. test1 is pilot evidence. OUTER produced no result. D1 lacks
-durable pre-label persistence; D2 V2 is test1-informed.
+calibrates D0; train4 is a guard. test1 is development evidence. OUTER produced no result.
+PILOT V1 D1 lacks durable pre-label persistence; PILOT V1 D2 V2 is test1-informed.
+VALIDATION V2 completed durable five-method prediction replay before its one-shot label access.
 
 ## Candidate-discovery boundary
 
@@ -1243,16 +1245,13 @@ Rule-only, not T2 Agentic Rule-only. Prediction preceded labels but was not dura
 
 ## Frozen D0 detector boundary
 
-D0 is a 37-feature normal-only PCA-SPE reference. Train1+train2 fit custom NumPy PCA; train3
-calibrates a no-interpolation q=.999 threshold; test1 uses strict `score > threshold`. Prediction
-bytes were frozen before labels. The 11/14 pilot is neither SOTA nor thesis-contribution evidence.
+PILOT V1 D0: 37-feature 정상 PCA-SPE. Train1+train2 fit, train3 no-interpolation q=.999 calibration,
+strict score > threshold, prediction-before-label. 11/14는 SOTA 주장 근거가 아니다.
 
 ## Frozen D2 fusion boundary
 
-V1 uses exact-row two-distinct-source corroboration; V2 keeps each D1 alarm active through its
-frozen native relation horizon and applies the same source threshold. Both preserve D0 pointwise
-and durably freeze combined predictions before labels. Both returned 11/14 and recovered 0/3 D0
-misses while increasing normal FAR. V2 is test1-informed development, not independent confirmation.
+PILOT V1 D2 V1은 same-second 두 source, D2 V2는 native horizon corroboration이다.
+둘 다 D0를 pointwise 보존했고 11/14·회수0/3·FAR 증가였다. D2 V2는 test1-informed development다.
 
 ## How we got here
 
@@ -1283,7 +1282,8 @@ observations, not new calculations.
 {_md_bullets(state['not_established'])}
 
     Graph-Guided and Agentic remain provisional contribution labels. EXP-01 and EXP-01B do not
-    support GDN as a primary or supporting V2 contribution; DG-04 controls final wording. T2
+    support GDN under their original protocols. Later EXP-01C provides LEARNED_GRAPH_SUPPORTING
+    evidence only; it does not replace the META+STAT discovery policy. DG-04 controls final wording. T2
     feedback advantage also remains unsupported.
 
 ## Current experiments
@@ -1335,6 +1335,8 @@ def render_current_status(data: Mapping[str, Any], digest: str) -> str:
     )
     return f"""{_markdown_marker(state, digest)}
 # RCC 현재 연구 상태
+
+{front_markdown(data['front_results'])}
 
 과학 source authority: `{authority['ref']}` @ `{authority['commit']}`
 Registry version: `{state['registry_version']}`
@@ -2446,12 +2448,14 @@ def render_my_todo(data: Mapping[str, Any], digest: str) -> str:
     for heading, display_heading in heading_labels.items():
         items = grouped.get(heading, [])
         body = "\n\n".join(
-            f"- **ID:** {item['id']}\n  **우선순위:** {({'HIGH': '높음 (HIGH)', 'MEDIUM': '중간 (MEDIUM)', 'LOW': '낮음 (LOW)'}).get(item['priority'], item['priority'])}\n  **할 일:** {TODO_CARD_COPY.get(item['id'], (item['task'], item['why']))[0]}\n  **사용자 확인이 필요한 이유:** {TODO_CARD_COPY.get(item['id'], (item['task'], item['why']))[1]}\n  **연결 문서:** {item['linked']}\n  **상태:** {STATUS_DISPLAY_LABELS.get(item['status'], item['status'])}"
+            f"- **ID:** {item['id']}\n  **우선순위:** {({'HIGH': '높음 (HIGH)', 'MEDIUM': '중간 (MEDIUM)', 'LOW': '낮음 (LOW)'}).get(item['priority'], item['priority'])}\n  **할 일:** {item['task']}\n  **사용자 확인이 필요한 이유:** {item['why']}\n  **연결 문서:** {item['linked']}\n  **상태:** {STATUS_DISPLAY_LABELS.get(item['status'], item['status'])}"
             for item in items
         ) or "현재 항목이 없습니다."
         sections.append(f"## {display_heading}\n\n{body}")
     return f"""{_markdown_marker(state, digest)}
 # 내가 해야 할 연구 검토
+
+{front_markdown(data['front_results'])}
 
 이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.
 
@@ -2470,6 +2474,8 @@ def render_decision_inbox(data: Mapping[str, Any], digest: str) -> str:
     ) or "현재 미결정 사용자 항목은 없다. RCC-000의 결정 001·002는 `registry/decisions.csv`에서 승인 상태를 유지한다."
     return f"""{_markdown_marker(state, digest)}
 # 결정이 필요한 사항
+
+{front_markdown(data['front_results'])}
 
 {body}
 

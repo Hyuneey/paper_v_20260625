@@ -81,6 +81,11 @@ class DashboardGenerationTests(unittest.TestCase):
             for source in (RCC_ROOT / "registry").iterdir():
                 if source.is_file():
                     (root / "registry" / source.name).write_bytes(source.read_bytes())
+            for reference in ("result_ref", "trace_ref"):
+                relative = load_registry(RCC_ROOT)["state"]["front_execution"][reference]
+                destination = root.parent / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_bytes((RCC_ROOT.parent / relative).read_bytes())
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())

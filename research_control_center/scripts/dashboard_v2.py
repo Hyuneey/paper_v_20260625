@@ -261,6 +261,8 @@ def build_dashboard_view_model(
                 "does_not_block": "V2A META+STAT 경로",
                 "reason": "EXP-01B는 GAP-000 이후 별도로 사전등록된 정상 전용 실험이다.",
             }
+        if current_gate_status[experiment_id] == "COMPLETE":
+            gate["must_fix_before_start"] = "해당 실행 완료; 동결 결과 유지"
         gate["ready_now"] = current_gate_status[experiment_id]
         experiment["gate"] = gate
         experiments.append(experiment)
@@ -348,6 +350,7 @@ def build_dashboard_view_model(
         "pilot_results": _derive_pilot_results(state),
         "overlap": overlap,
         "candidate_path": {"universe": 144, "META": 20, "STAT": 20, "GDN": 20, "union": 47, "confirmed": 42},
+        "front_results": data["front_results"],
         "v2_normal_only": state["validation_v2a_normal_only"],
         "exp01b": {
             "status": state["candidate_discovery"]["exp01b_status"],
@@ -511,13 +514,31 @@ def _render_results_table(vm: Mapping[str, Any]) -> str:
     )
 
 
+def _render_front_results(vm: Mapping[str, Any], *, compact: bool = False) -> str:
+    front = vm["front_results"]
+    rows = "".join(
+        f'<tr><th scope="row">{_esc(row["display_name"])}</th>'
+        f'<td>{row["recall"]["numerator"]}/{row["recall"]["denominator"]}</td>'
+        f'<td title="{_esc(row["far_per_hour"]["value_decimal"])}">{_esc(row["far_per_hour"]["value_decimal"][:8] if compact else row["far_per_hour"]["value_decimal"])}</td>'
+        f'<td>{row["normal_false_episodes"]}</td></tr>'
+        for row in front["rows"]
+    )
+    return f'''<section class="panel roadmap v2-development-results" aria-label="VALIDATION V2 개발 결과">
+      <div class="panel-heading"><div><p class="kicker">VALIDATION V2 · DEVELOPMENT_ONLY</p><h3>개발 결과 · 최종 검증 아님</h3></div>
+      <a class="text-button" href="../validation_v2/gdn_front_exp04_001/reports/EXP04_DEVELOPMENT_REPORT_V1.md">결과와 한계</a></div>
+      <div class="table-wrap"><table><caption>5개 방법 · 14개 연속 공격 구간 단위 · 결과 무결성 QA PASS</caption><thead><tr><th>방법</th><th>Recall</th><th>FAR/hour</th><th>정상 false episode</th></tr></thead><tbody>{rows}</tbody></table></div>
+      <p>두 fusion: 추가 탐지 0개 · 정상 false episode 각각 2개 증가. Rule-only의 높은 FAR는 해결되지 않았습니다.</p>
+      <p>EXP-05: {front['trace_count']:,}개 actual trace 전체 구조 점검 PASS. EXP-01C GDN은 <code>LEARNED_GRAPH_SUPPORTING</code>이며 2개 pair를 통해 {front['gdn_annotated_count']}개 설명에만 보조 문구를 추가했습니다. 예측·Rule 권한은 변경하지 않았습니다.</p>
+      <p class="chart-note">통계적 독립성·사람에게 주는 유용성·held-out 일반화는 미확인. GDN의 이전 EXP-01·EXP-01B 음성 결과는 그대로 보존합니다.</p></section>'''
+
+
 def _render_overview(vm: Mapping[str, Any]) -> str:
     p0_count = len(vm["readiness"]["p0_global_fixes"]) + len(vm["readiness"]["p0_design_gates"])
     open_count = len(vm["unresolved_decisions"])
     actions = [
-        ("EXP-04", "모든 label-blind prediction 생성·동결", "D0·Isolation Forest·Rule-only·고정 fusion을 label 없이 먼저 저장하고 replay"),
-        ("LABEL-GATE", "test1 label 접근 gate 유지", "필수 prediction이 모두 durable freeze되기 전에는 label을 열지 않음"),
-        ("DG-03-LATER", "EXP-03 exact provider budget 고정", "natural cohort가 생긴 뒤 provider/model/call/token 상한을 확정"),
+        ("DG-03", "EXP-03 provider 예산·승인 검토", "natural cohort와 정확한 model/call/token 상한 확정 후 별도 승인"),
+        ("DG-04", "기여·제목 표현 결정", "GDN은 설명용 보조 근거; Agentic 효용은 아직 미검증"),
+        ("DG-06", "교수님 개발 결과 package 검토", "음성 결과를 포함한 보고서 확인; 실제 제출은 별도 승인"),
     ]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
@@ -541,12 +562,13 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     <section class="view-panel is-active" id="view-overview" data-view-panel="overview" aria-labelledby="nav-overview">
       <p class="status-separation">구현 완료, 실행 완료, 결과 무결성 확인, 과학적 검증, 재현성, 일반화는 서로 다른 상태입니다.</p>
       <div class="overview-header panel">
-        <div><p class="kicker">현재 연구 단계</p><h2>정상 전용 V2A authority 고정 · EXP-04 준비</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2에서는 EXP-01·EXP-01B·EXP-02를 정상 데이터로 완료했고, META+STAT 기반 39-rule Formal V4 portfolio를 test1 접근 전에 고정했습니다.</p>
-        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 정상 전용 단계 완료</span></div></div>
+        <div><p class="kicker">현재 연구 단계</p><h2>V2 개발 평가 완료 · 결과 무결성 확인</h2><p>PILOT V1은 그대로 보존됩니다. VALIDATION V2에서는 EXP-01·EXP-01B·EXP-02를 정상 데이터로 완료했고, META+STAT 기반 39-rule Formal V4 portfolio를 test1 접근 전에 고정했습니다. 다섯 방법의 예측 동결 뒤 평가했고, 두 fusion의 추가 탐지는 없었습니다.</p>
+        <div class="version-pills"><span>PILOT V1 · 보존</span><span>VALIDATION V2 · 개발 결과 QA PASS</span></div></div>
         <div class="next-task-callout"><span>정확한 다음 작업</span><strong>{_esc(vm["exact_next_task"])}</strong></div>
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
       </div>
-      <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="done">공유 기반</li><li class="done">Fresh-machine synthetic</li><li class="current">Validation V2 실행</li><li>Held-out</li></ol>
+      <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="done">공유 기반</li><li class="done">Fresh-machine synthetic</li><li class="done">V2 개발 평가</li><li>Held-out</li></ol>
+      {_render_front_results(vm, compact=True)}
       <div class="overview-grid">
         <article class="panel overview-map"><div class="panel-heading"><div><p class="kicker">전체 지도</p><h3>근거에서 평가까지</h3></div><button class="text-button" data-go-view="architecture">크게 보기</button></div>{_render_architecture_svg(vm, compact=True)}</article>
         <aside class="panel action-panel"><div class="panel-heading"><div><p class="kicker">지금 할 일</p><h3>확대 검증 전 우선순위</h3></div></div><ol>{action_markup}</ol></aside>
@@ -571,6 +593,7 @@ def _render_architecture_view(vm: Mapping[str, Any]) -> str:
       <div class="architecture-workspace panel"><div class="map-scroll"><div id="map-stage" class="map-stage">{_render_architecture_svg(vm)}</div></div><div id="subnode-strip" class="subnode-strip" aria-live="polite"><span>관계 후보 탐색 또는 Rule Construction을 선택하면 세부 node가 펼쳐집니다.</span></div></div>
       <div class="edge-legend" aria-label="연결선 의미"><span class="legend-frozen">굵은 실선 · frozen execution</span><span class="legend-verified">얇은 실선 · 코드·테스트 확인</span><span class="legend-conditional">점선 · 설계/조건부</span><span class="legend-gap">빨간 점선 · authority gap</span><span class="legend-legacy">회색선 · legacy/reference</span></div>
       <section class="panel roadmap" aria-labelledby="meta-lineage-heading"><div class="panel-heading"><div><p class="kicker">META provenance</p><h3 id="meta-lineage-heading">META 근거 출처와 개입 경계</h3></div><a class="text-button" href="../validation_v2/meta_lineage/META_LINEAGE_AUDIT_V1.md">감사 보고서</a></div><div class="readiness-summary"><article><h4>META SOURCE</h4><strong>{_esc(vm['meta_lineage']['source'])}</strong><p>공식 physical graph와 AI-assisted reviewed semantic declaration이 함께 기여합니다.</p></article><article><h4>META USER INTERVENTION</h4><strong>{_esc(vm['meta_lineage']['user_intervention'])}</strong><p>최종 Top-20은 code가 결정적으로 선택했습니다. 별도로 AI-authored declaration은 <code>{_esc(vm['meta_lineage']['declaration_intervention_surface'])}</code>입니다.</p></article><article><h4>META EXACT PUBLIC REPRODUCIBILITY</h4><strong>{_esc(vm['meta_lineage']['exact_public_reproducibility'])}</strong><p>Exact replay에는 self-hashed private reviewed input이 필요합니다.</p></article></div></section>
+      <section class="panel roadmap gdn-evidence-flow" aria-labelledby="gdn-flow-heading"><div class="panel-heading"><div><p class="kicker">Learned-Graph evidence · 설명용 sidecar</p><h3 id="gdn-flow-heading">HAI-adapted GDN의 제한된 연결</h3></div><a class="text-button" href="../validation_v2/gdn_rule_evidence/GDN_TO_RULE_MAPPING_REPORT_V1.md">근거 map</a></div><svg viewBox="0 0 930 155" role="img" aria-label="HAI-adapted GDN에서 learned graph evidence와 temporal evidence 및 explanation annotation으로 이어지는 비권한 경로"><defs><marker id="gdn-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#64748b"/></marker></defs><g fill="#fff" stroke="#64748b"><rect x="20" y="30" width="210" height="75" rx="8"/><rect x="270" y="30" width="210" height="75" rx="8"/><rect x="520" y="30" width="180" height="75" rx="8"/><rect x="740" y="30" width="170" height="75" rx="8"/></g><g font-size="15" text-anchor="middle" fill="#172033"><text x="125" y="62">HAI-adapted GDN</text><text x="125" y="85">EXP-01C supporting</text><text x="375" y="62">Learned-Graph Evidence</text><text x="375" y="85">2 pair+horizon</text><text x="610" y="62">Temporal Evidence</text><text x="610" y="85">V2A Rule 유지</text><text x="825" y="62">설명 annotation</text><text x="825" y="85">130 / 6,418</text></g><g stroke="#64748b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#gdn-arrow)"><path d="M230 68H265"/><path d="M480 68H515"/><path d="M700 68H735"/></g><text x="465" y="140" text-anchor="middle" font-size="13" fill="#64748b">예측·Rule 포함·수치·방향·horizon을 바꾸지 않는 보조 근거 경로</text></svg><p class="chart-note"><code>GDN_ASSISTED_TITLE_STRONG</code>은 pair+horizon overlap에 따른 잠정 문서 eligibility입니다. 최종 제목은 DG-04이며 causal graph·detector·primary candidate authority가 아닙니다.</p></section>
       <details class="catalog-panel panel"><summary><span><b>구성요소 카탈로그</b> · Registry 32개</span><small>카드 wall 대신 검색 가능한 표로 제공합니다.</small></summary><div class="catalog-tools"><label>구성요소 검색<input id="catalog-search" type="search" placeholder="component ID, 역할, input…"></label><label>Lane<select id="catalog-lane"><option value="">전체</option>{lane_options}<option value="LANE_GOVERNANCE_CATALOG">Governance / catalog</option></select></label><label>위험<select id="catalog-risk"><option value="">전체</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select></label><span id="catalog-count">32개</span></div><div class="table-wrap catalog-table"><table><thead><tr><th>구성요소</th><th>역할</th><th>Input</th><th>Output</th><th>코드</th><th>실행</th><th>근거</th><th>무결성</th><th>재현</th><th>과학 검증</th><th>위험</th></tr></thead><tbody>{catalog_rows}</tbody></table></div></details>
     </section>'''
 
@@ -583,9 +606,10 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
     )
     return f'''
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
-      <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 V2 결과와 test1 Pilot 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
-      <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. test1·label·test2·held-out 접근은 0입니다.</p></section>
-      <aside class="warning-banner">현재 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
+      <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 근거, PILOT V1, VALIDATION V2 test1 개발 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
+      <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. 위 정상 전용 단계 당시 test1·label·test2·held-out 접근은 0이었습니다. 아래 후속 EXP-04는 승인된 test1 개발 평가입니다.</p></section>
+      {_render_front_results(vm)}
+      <aside class="warning-banner">PILOT V1 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">Experiment Roadmap</p><h3>실험 Gate와 claim 영향</h3></div></div><div class="table-wrap"><table><thead><tr><th>실험</th><th>확인할 가설</th><th>현재 상태</th><th>현재 근거</th><th>먼저 해결할 것</th><th>결과에 따른 결정</th></tr></thead><tbody>{exp_rows}</tbody></table></div></section>
     </section>'''
@@ -650,7 +674,7 @@ def render_dashboard_v2(data: Mapping[str, Any], digest: str, rcc_root: Path) ->
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="rcc-registry-binding" content="registry_version={_esc(vm['registry_version'])} registry_digest={_esc(vm['registry_digest'])} authority={_esc(vm['scientific_authority']['commit'])}"><title>Research Control Center · Dashboard V2</title><link rel="stylesheet" href="assets/rcc.css"></head>
 <body data-dashboard-version="2">
 <a class="skip-link" href="#main-workspace">본문으로 건너뛰기</a>
-<header class="app-header"><button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="메뉴 열기">☰</button><a class="brand" href="#overview" aria-label="Research Control Center 개요"><span>RCC</span><strong>연구 아키텍처</strong></a><div class="header-context"><span>PILOT V1</span><b>감사 완료 · Remediation 준비</b></div><div class="header-state"><span class="state-dot"></span>Registry 최신</div></header>
+<header class="app-header"><button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="메뉴 열기">☰</button><a class="brand" href="#overview" aria-label="Research Control Center 개요"><span>RCC</span><strong>연구 아키텍처</strong></a><div class="header-context"><span>PILOT V1 보존</span><b>VALIDATION V2 개발 평가 QA PASS</b></div><div class="header-state"><span class="state-dot"></span>Registry 최신</div></header>
 <div class="app-shell"><nav id="primary-navigation" class="primary-navigation" aria-label="주요 화면">{nav}<div class="nav-foot"><span>과학 기준</span><code title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</code><small>구현·실행·무결성·과학 검증·재현·일반화는 서로 다른 상태입니다.</small></div></nav>
 <main id="main-workspace" class="workspace" tabindex="-1">{_render_overview(vm)}{_render_architecture_view(vm)}{_render_experiments_view(vm)}{_render_readiness_view(vm)}{_render_evidence_view(vm)}</main></div>
 <aside id="detail-drawer" class="detail-drawer" aria-labelledby="drawer-title" aria-hidden="true"><div class="drawer-head"><div><p class="kicker" id="drawer-kicker">구성요소 상세</p><h2 id="drawer-title">선택된 항목</h2></div><button id="drawer-close" aria-label="상세 패널 닫기">×</button></div><div class="drawer-tabs" role="tablist"><button id="drawer-tab-easy" role="tab" aria-selected="true" data-drawer-mode="easy">쉽게 보기</button><button id="drawer-tab-technical" role="tab" aria-selected="false" data-drawer-mode="technical">기술 상세</button></div><div id="drawer-body" class="drawer-body"></div></aside><div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
