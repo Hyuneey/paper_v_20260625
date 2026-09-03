@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_5_REPORTING",
-  "program_status": "DEVELOPMENT_COMPLETE_QA_PASS",
+  "current_stage": "STAGE_6_EVALUATION_EXPANSION_PREPARATION",
+  "program_status": "DEVELOPMENT_COMPLETE_EXPANSION_PLAN_FROZEN",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -38,6 +38,18 @@
     "EXP-04": "COMPLETE_QA_PASS_DEVELOPMENT",
     "EXP-05": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS",
     "EXP-06": "NOT_REQUIRED"
+  },
+  "evaluation_expansion": {
+    "decision": "DEC-022_USER_APPROVED_MULTI_VERSION_HAI_EVALUATION_EXPANSION",
+    "panel_registry": "research_control_center/validation_v2/evaluation_expansion/PANEL_REGISTRY_V1.csv",
+    "development_panel": "HAI23_TEST1_DEVELOPMENT_V1_COMPLETE_IMMUTABLE",
+    "primary_heldout": "HAI23_TEST2_PRIMARY_HELDOUT_V1_DG05",
+    "external_replications": ["HAI22_EXTERNAL_REPLICATION_V1", "HAI21_EXTERNAL_REPLICATION_V1"],
+    "nominal_non_development_scenarios": 146,
+    "primary_pooled_recall": false,
+    "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
+    "attack_data_accesses": 0,
+    "provider_calls": 0
   },
   "dataset_acquisition_policy": {
     "policy_id": "DATA-POLICY-001",

@@ -701,15 +701,34 @@
     "exp04_status": "COMPLETE_QA_PASS_DEVELOPMENT",
     "exp05_status": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS"
   },
+  "evaluation_expansion": {
+    "decision_id": "DEC-022",
+    "status": "PREREGISTRATION_PREPARATION_COMPLETE",
+    "official_hai_snapshot": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "panels": [
+      {"panel_id": "HAI23_TEST1_DEVELOPMENT_V1", "role": "DEVELOPMENT_ONLY", "nominal_scenarios": 14, "status": "COMPLETE_DEVELOPMENT_ONLY"},
+      {"panel_id": "HAI23_TEST2_PRIMARY_HELDOUT_V1", "role": "PRIMARY_HELDOUT", "nominal_scenarios": 38, "status": "PREREGISTRATION_PREPARATION_ONLY"},
+      {"panel_id": "HAI22_EXTERNAL_REPLICATION_V1", "role": "EXTERNAL_VERSION_REPLICATION_1", "nominal_scenarios": 58, "status": "PREREGISTRATION_PREPARATION_ONLY"},
+      {"panel_id": "HAI21_EXTERNAL_REPLICATION_V1", "role": "EXTERNAL_VERSION_REPLICATION_2", "nominal_scenarios": 50, "status": "PREREGISTRATION_PREPARATION_ONLY"}
+    ],
+    "nominal_non_development_scenarios": 146,
+    "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
+    "primary_pooling": "PROHIBITED",
+    "external_p1_compatibility": "UNRESOLVED_NO_TRACKED_TAG_UNIT_ROLE_CROSSWALK",
+    "metric_policy": "SCENARIO_RECALL_AND_NORMAL_FALSE_EPISODES_PRIMARY_ETAPR_COVERAGE_DELAY_SECONDARY",
+    "etapr_pin": "saurf4ng/eTaPR@af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
+    "attack_data_accesses": 0,
+    "provider_calls": 0
+  },
   "top_priorities": [
-    "DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.",
-    "음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.",
-    "DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다."
+    "DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.",
+    "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
+    "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다."
   ],
   "highest_priority_work": [
-    "DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.",
-    "음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.",
-    "DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다."
+    "DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.",
+    "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
+    "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다."
   ],
   "user_todo_items": [
     {
@@ -734,9 +753,9 @@
       "id": "USER-V2-003",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "EXP-03 natural cohort와 정확한 provider/model·call/token 상한을 먼저 확정하고 DG-03 실행 승인을 검토한다.",
-      "why": "현재 provider 호출은 0이며 기호적 예산만으로 호출을 승인할 수 없다.",
-      "linked": "research_control_center/validation_v2/DECISION_GATES.md",
+      "task": "DG-03에서 OpenAI gpt-5.4-mini, 최대 819 calls, 5,031,936 tokens, USD 10.07 ceiling의 EXP-03 실행을 검토한다.",
+      "why": "39-relation natural cohort와 exact redacted projection은 준비됐으나 외부 provider 호출은 별도 승인이 필요하다.",
+      "linked": "research_control_center/validation_v2/exp03/DG03_PROVIDER_DECISION_BRIEF_V1.md",
       "status": "OPEN"
     },
     {
@@ -752,9 +771,9 @@
       "id": "USER-V2-005",
       "category": "MANDATORY FUTURE GATE",
       "priority": "HIGH",
-      "task": "test2/heldout 접근 전에 새 held-out 연구의 사전등록과 DG-05 승인을 검토한다.",
-      "why": "이미 소진된 기존 OUTER protocol을 재시도하지 않는다.",
-      "linked": "DG-05",
+      "task": "HAI23 test2·HAI22·HAI21 attack panel 첫 접근 전에 combined DG-05 package를 검토한다.",
+      "why": "old OUTER를 재사용하지 않고 P1 eligibility·scenario authority·version별 prediction custody를 먼저 고정한다.",
+      "linked": "research_control_center/validation_v2/evaluation_expansion/DECISION_GATE_PLAN_V1.md",
       "status": "OPEN"
     },
     {
@@ -786,16 +805,16 @@
     }
   ],
   "top_user_todo": [
-    "DG-03에서 EXP-03 provider와 exact budget을 검토한다. 승인 전 호출은 0이다.",
-    "음성인 두 fusion 결과를 보존하고 GDN 보조 근거와 탐지 성능 주장을 구분한다.",
-    "DG-04 제목과 DG-06 교수님 제출을 검토한다. held-out은 DG-05 전 금지한다."
+    "DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.",
+    "다중 HAI plan은 승인됐지만 실제 P1 denominator와 공격 결과는 아직 없음을 확인한다.",
+    "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 별도로 검토한다."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
   "recommended_next_management_task": "DG-03 — EXP-03 Provider Execution Decision",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "V2-GDN-FRONT-EXP04-001 — 개발 평가·전체 trace 무결성 QA 완료",
+  "last_completed_task": "V2-EVAL-EXPANSION-001 — 다중 HAI 평가 계획·계약 준비 완료",
   "exact_next_task": "DG-03 — EXP-03 Provider Execution Decision",
   "safety_counters": {
     "scientific_executions": 4,

@@ -164,6 +164,22 @@
       "status": "ACTIVE_CONTEXT",
       "confidence": "HIGH",
       "evidence": "RCC-001 RCC-002 RCC-002A and RCC-003 local history"
+    },
+    {
+      "phase_id": "PHASE-11",
+      "title": "Version-Separated HAI Evaluation Expansion",
+      "period": "2026-09-04",
+      "date_precision": "DAY",
+      "source_class": "USER_APPROVED_RCC_POLICY",
+      "goal": "Replace a single narrow held-out plan with a version-separated primary held-out and two external-version replications.",
+      "investigated": "Official HAI release metadata, P1 compatibility requirements, official scenario hierarchy, eTaPR integration, and EXP-03 provider budget.",
+      "problem": "Fourteen development units do not support precise final Recall or release-level generalization, while subdividing attacks would create pseudo-replication.",
+      "decision": "Preserve test1; plan HAI23 test2, HAI22, and HAI21 as separate panels with outcome-blind P1 eligibility and no primary pooled Recall.",
+      "survived": "The frozen V2A method set, negative fusion results, Formal V4 authority, and prediction-before-label custody.",
+      "abandoned_or_deferred": "A single pooled final Recall and treating intervention intervals as independent attacks are prohibited; attack access remains DG-05 gated.",
+      "status": "ACTIVE_CONTEXT",
+      "confidence": "HIGH",
+      "evidence": "DEC-022; research_control_center/validation_v2/evaluation_expansion/"
     }
   ],
   "professor_feedback_lineage": [
@@ -181,7 +197,8 @@
     {"direction": "Direct ARGOS reproduction as primary thesis path", "period": "2026-07-13 ~ 2026-07-24", "why_explored": "Related executable-rule and agent concepts", "why_reduced": "Only partial methodological support and exposed reference evaluation", "survived": "Executable rules, bounded repair or review, no-op, deterministic runtime", "replacement": "ARGOS-informed multivariate CPS method", "status": "HISTORICAL", "current_claim": false},
     {"direction": "Binary or discrete control delayed-response on HAI", "period": "2026-08-02", "why_explored": "Original preregistered MVP family", "why_reduced": "Zero eligible reviewed nonconstant sources", "survived": "Pairwise delayed-response and normal-only discipline", "replacement": "continuous_step_delayed_response_v1", "status": "SUPERSEDED", "current_claim": false},
     {"direction": "Construction-only final thesis boundary", "period": "2026-08-14 ~ 2026-08-19", "why_explored": "Utility protocol was stopped before execution", "why_reduced": "Later authority closure and INNER pilot superseded the never-executed statement", "survived": "Construction validity and governance remain defensible layers", "replacement": "Current architecture plus pilot-only utility observations", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "Segment or localization Method Sketch as headline direction", "period": "2026-05 onward", "why_explored": "Professor-driven ARTIST and anomaly-detection-model reframing", "why_reduced": "User-confirmed formal intermediate direction later superseded before becoming current implementation", "survived": "Trace-based transition and horizon localization", "replacement": "Current relational-rule and satisfaction-trace architecture", "status": "SUPERSEDED", "current_claim": false}
+    {"direction": "Segment or localization Method Sketch as headline direction", "period": "2026-05 onward", "why_explored": "Professor-driven ARTIST and anomaly-detection-model reframing", "why_reduced": "User-confirmed formal intermediate direction later superseded before becoming current implementation", "survived": "Trace-based transition and horizon localization", "replacement": "Current relational-rule and satisfaction-trace architecture", "status": "SUPERSEDED", "current_claim": false},
+    {"direction": "Single future HAI23 test2 evaluation with Recall/FAR-centered reporting", "period": "2026-08-23 ~ 2026-09-03", "why_explored": "The old OUTER blocker left one obvious same-edition held-out target", "why_reduced": "The 14-unit development panel cannot support version-level generalization and a single future panel is too narrow", "survived": "HAI23 test2 remains the primary held-out panel", "replacement": "Version-separated HAI23 held-out plus HAI22 and HAI21 external replications", "status": "SUPERSEDED", "current_claim": false}
   ],
   "terminology": [
     {"term": "Faithfulness Verifier", "historical": "User-context explanation-fidelity headline", "current": "Deterministic verifier-admissibility", "deprecated": "Proves faithfulness causality or scientific validity"},
@@ -191,7 +208,9 @@
     {"term": "Rule-only", "historical": "Multiple ARGOS and project-specific rule paths", "current": "D1 execution of frozen COMMON-42 independently from D0 and D2", "deprecated": "Operationally useful or Agentic Rule-only without evidence"},
     {"term": "OUTER", "historical": "Different reference-track partitions and later HAI held-out authority", "current": "A separately preregistered one-way held-out stage", "deprecated": "Old blocker equals negative performance"},
     {"term": "Detector complement", "historical": "Directional FN or FP correction concept", "current": "Observed D1 event complementarity distinct from D2 utility", "deprecated": "Complementarity proves improved fusion"},
-    {"term": "segment or localization", "historical": "Possible ARTIST or segment-selection direction", "current": "Source transition target relation horizon and trace localization", "deprecated": "Current method implements learned segment selection or causal localization"}
+    {"term": "segment or localization", "historical": "Possible ARTIST or segment-selection direction", "current": "Source transition target relation horizon and trace localization", "deprecated": "Current method implements learned segment selection or causal localization"},
+    {"term": "attack event", "historical": "Contiguous positive-label runs or task-specific event units", "current": "Official attack scenario is the primary unit; intervals and interventions are secondary descriptions", "deprecated": "Treating every interval or all 146 nominal scenarios as IID"},
+    {"term": "pooled Recall", "historical": "A possible aggregate across panels", "current": "Descriptive only with an explicit non-IID warning", "deprecated": "Primary cross-version scientific result"}
   ],
   "confirmation_questions": [
     {"id": "HIST-Q002", "question": "Which LLMAD papers or method family were reviewed in March to April 2026, and did they trigger a formal decision?", "why": "The repository formalizes ARGOS later but not the broader exploration.", "evidence": "User context only for the broader LLMAD set.", "suggested": "Treat as exploratory context and do not guess paper titles.", "confidence": "LOW"}

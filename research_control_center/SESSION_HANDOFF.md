@@ -1,10 +1,22 @@
-# 세션 인계 — VALIDATION V2 개발 결과 완료
+# 세션 인계 — 다중 HAI 평가 확대 계획 고정
 
 ## 정확한 다음 작업
 
 DG-03 — EXP-03 Provider Execution Decision.
-Provider/model·natural cohort·정확한 call/token 상한을 고정하고 사용자 승인을 받기 전 호출하지 않는다.
-DG-04 제목·기여, DG-05 held-out, DG-06 실제 교수님 제출은 별도 Gate다.
+권고안은 OpenAI `gpt-5.4-mini`, natural 39 relations, 최대 819 calls,
+5,031,936 tokens, USD 10.07 ceiling이다. 사용자 승인 전 provider 호출은 0이다.
+DG-04 제목·기여, DG-05 다중 attack panel, DG-06 실제 교수님 제출은 별도 Gate다.
+
+## 사용자 승인 평가 확대
+
+- `PANEL-D`: HAI 23.05 test1 14-unit 결과는 immutable DEVELOPMENT_ONLY.
+- `PANEL-H`: HAI 23.05 test2 38 nominal scenarios, future PRIMARY_HELDOUT.
+- `PANEL-X1`: HAI 22.04 58 nominal scenarios, external replication 1.
+- `PANEL-X2`: HAI 21.03 50 nominal scenarios, external replication 2.
+- 146 nominal non-development scenarios는 IID가 아니며 primary pooled Recall을 만들지 않는다.
+- 실제 P1 denominator는 outcome-blind eligibility custodian이 prediction freeze 뒤 공개한다.
+- HAI22/21 P1 tag·unit·role crosswalk는 아직 `UNRESOLVED`; attack data 전에 별도 normal-only/public metadata task가 필요하다.
+- HAIEnd는 HAI23과 같은 experiment에서 동시 수집된 확장 표현이므로 별도 attack panel이 아니다.
 
 ## 완료된 실행 — 재실행 금지
 
