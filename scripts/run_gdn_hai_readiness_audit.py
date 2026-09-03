@@ -70,15 +70,27 @@ def _loss_shares(segments: Sequence[np.ndarray], scale: np.ndarray) -> dict[str,
     }
 
 
-def _validation_rows(lengths: Sequence[int], seed: int) -> dict[str, Any]:
+def _validation_rows(
+    lengths: Sequence[int],
+    seed: int,
+    *,
+    single_file_location: str | None = None,
+) -> dict[str, Any]:
     counts = [length - 5 for length in lengths]
     total = sum(counts); train_length = int(total * 0.8); validation_count = int(total * 0.2)
     start = random.Random(seed).randrange(train_length); stop = start + validation_count
     boundary = counts[0] if len(counts) == 2 else None
     crosses = bool(boundary is not None and start < boundary < stop)
-    location = "CROSSES_TRAIN1_TRAIN2_BOUNDARY" if crosses else (
-        "TRAIN1" if boundary is None or stop <= boundary else "TRAIN2"
-    )
+    if boundary is None:
+        if single_file_location not in {"TRAIN1", "TRAIN2"}:
+            raise HAIReadinessError(
+                "single-file validation location must be explicit"
+            )
+        location = single_file_location
+    else:
+        location = "CROSSES_TRAIN1_TRAIN2_BOUNDARY" if crosses else (
+            "TRAIN1" if stop <= boundary else "TRAIN2"
+        )
     overlap_count = 10 if start > 0 and stop < total else 5
     return {
         "seed": seed, "validation_window_count": validation_count,
@@ -143,8 +155,22 @@ def execute(root: Path) -> None:
     }
     public["audit_hash"] = stable_hash_v1(public); _write_new(root / PUBLIC / "HAI_PREPROCESSING_AUDIT.json", public)
     overlap_rows = []
-    for view, lengths in (("TRAIN1_TRAIN2_COMBINED", tuple(len(item) for item in segments)), ("TRAIN1_ONLY", (len(segments[0]),)), ("TRAIN2_ONLY", (len(segments[1]),))):
-        for seed in (11, 23, 37): overlap_rows.append({"view": view, **_validation_rows(lengths, seed)})
+    for view, lengths, single_file_location in (
+        ("TRAIN1_TRAIN2_COMBINED", tuple(len(item) for item in segments), None),
+        ("TRAIN1_ONLY", (len(segments[0]),), "TRAIN1"),
+        ("TRAIN2_ONLY", (len(segments[1]),), "TRAIN2"),
+    ):
+        for seed in (11, 23, 37):
+            overlap_rows.append(
+                {
+                    "view": view,
+                    **_validation_rows(
+                        lengths,
+                        seed,
+                        single_file_location=single_file_location,
+                    ),
+                }
+            )
     overlap = {
         "schema": "paperworks.validation_v2.exp01b_validation_overlap_audit_v1",
         "frozen_v1_validation_policy": "UPSTREAM_SEEDED_CONTIGUOUS_RANDOM_WINDOW_BLOCK_NO_PURGE",

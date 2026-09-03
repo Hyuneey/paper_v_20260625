@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
 import unittest
 
 import numpy as np
@@ -24,6 +26,7 @@ from paperworks.validation_v2.gdn_corr_contract_v1 import (
     exp01b_r1_contract_document_v1,
     exp01c_preregistration_document_v1,
 )
+from paperworks.v6.common import stable_hash_v1
 
 
 class CorrectedRankingTests(unittest.TestCase):
@@ -111,6 +114,25 @@ class CorrectedFunctionalTests(unittest.TestCase):
 
 
 class HAIReadinessPrimitiveTests(unittest.TestCase):
+    def test_single_file_validation_location_is_explicit(self) -> None:
+        from scripts.run_gdn_hai_readiness_audit import (
+            HAIReadinessError,
+            _validation_rows,
+        )
+
+        train1 = _validation_rows(
+            (1_000,), 11, single_file_location="TRAIN1"
+        )
+        train2 = _validation_rows(
+            (1_000,), 11, single_file_location="TRAIN2"
+        )
+        self.assertEqual(train1["validation_block_location"], "TRAIN1")
+        self.assertEqual(train2["validation_block_location"], "TRAIN2")
+        with self.assertRaisesRegex(
+            HAIReadinessError, "single-file validation location must be explicit"
+        ):
+            _validation_rows((1_000,), 11)
+
     def test_scaler_is_fit_to_supplied_training_matrix_only(self) -> None:
         train = np.array([[1.0, 10.0], [3.0, 20.0], [5.0, 100.0]])
         transformed, receipt = fit_transform_policy_v1(train, policy="TRAIN_ONLY_ROBUST_MEDIAN_IQR")
@@ -204,6 +226,60 @@ class FrozenContractTests(unittest.TestCase):
             apply_exp01c_disposition_v1(Exp01CDispositionEvidenceV1(**base)),
             LearnedGraphDisposition.ABLATION,
         )
+
+
+class ReportingClosureTests(unittest.TestCase):
+    def test_all_public_result_csvs_are_hash_bound(self) -> None:
+        path = Path(
+            "research_control_center/validation_v2/gdn_corr_001/"
+            "GDN_CORR_001_RESULT_BINDING_RECEIPT.json"
+        )
+        value = json.loads(path.read_text(encoding="utf-8"))
+        expected = value.pop("receipt_hash")
+        self.assertEqual(expected, stable_hash_v1(value))
+        self.assertEqual(value["artifact_count"], 6)
+        self.assertEqual(len(value["artifacts"]), 6)
+        self.assertEqual(
+            {row["experiment"] for row in value["artifacts"]},
+            {"EXP-01B-R1", "EXP-01C-GDN-HAI-V1"},
+        )
+        self.assertFalse(value["scientific_values_recomputed"])
+
+    def test_overlap_r2_corrects_only_train2_location_reporting(self) -> None:
+        path = Path(
+            "research_control_center/validation_v2/gdn_corr_001/hai_readiness/"
+            "VALIDATION_OVERLAP_AUDIT_R2.json"
+        )
+        value = json.loads(path.read_text(encoding="utf-8"))
+        expected = value.pop("audit_hash")
+        self.assertEqual(expected, stable_hash_v1(value))
+        self.assertEqual(value["corrected_row_count"], 3)
+        self.assertFalse(value["scientific_values_recomputed"])
+        train2_rows = [row for row in value["runs"] if row["view"] == "TRAIN2_ONLY"]
+        self.assertEqual(len(train2_rows), 3)
+        self.assertTrue(
+            all(row["validation_block_location"] == "TRAIN2" for row in train2_rows)
+        )
+
+    def test_shared_attention_is_explicitly_bound_to_each_horizon(self) -> None:
+        path = Path(
+            "research_control_center/validation_v2/gdn_corr_001/"
+            "exp01c_gdn_hai/receipts/"
+            "EXP01C_ATTENTION_HORIZON_BINDING_RECEIPT.json"
+        )
+        value = json.loads(path.read_text(encoding="utf-8"))
+        expected = value.pop("receipt_hash")
+        self.assertEqual(expected, stable_hash_v1(value))
+        self.assertEqual(value["horizons_seconds"], [1, 5, 10, 30, 60])
+        self.assertFalse(value["head_specific"])
+        self.assertTrue(
+            all(
+                row["same_shared_attention_evidence"]
+                and row["semantic"] == "SHARED_ENCODER_ATTENTION_NOT_HEAD_SPECIFIC"
+                for row in value["horizon_bindings"]
+            )
+        )
+        self.assertFalse(value["scientific_values_recomputed"])
 
 
 if __name__ == "__main__":
