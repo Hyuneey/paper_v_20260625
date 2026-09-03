@@ -166,6 +166,18 @@ def _functional(root: Path) -> dict[tuple[str, int], dict[tuple[str, str], float
     return result
 
 
+def _frozen_v1_unique_pairs(root: Path) -> tuple[tuple[str, str], ...]:
+    path = root / "research_control_center/validation_v2/exp01b_gdn_xai/results/EXP01B_RULE_CONVERSION_RESULTS.csv"
+    result = []
+    with path.open("r", encoding="utf-8", newline="") as stream:
+        for row in csv.DictReader(stream):
+            if row["gdn_unique_at_primary_budget"] == "True" and row["normal_confirmed"] == "True":
+                result.append((row["source"], row["target"]))
+    if len(result) != 3 or len(set(result)) != 3:
+        raise R1ExecutionError("EXP01B_R1_FROZEN_V1_UNIQUE_SET_MISMATCH")
+    return tuple(sorted(result))
+
+
 def _binding_file(root: Path, artifact_id: str, relative: Path) -> FormalV4ArtifactBindingV1:
     return FormalV4ArtifactBindingV1(artifact_id, relative.as_posix(), sha256((root / relative).read_bytes()).hexdigest())
 
@@ -300,6 +312,11 @@ def _convert_unique_relations(
         "complete_numeric_authorities": len(identities), "valid_descriptors": len(descriptors),
         "runtime_admissible_rules": len(authorization.authority.descriptors),
         "runtime_admissible_pairs": len({(item.source, item.target) for item in authorization.authority.descriptors}),
+        "runtime_admissible_pair_ids": [
+            [source, target] for source, target in sorted({
+                (item.source, item.target) for item in authorization.authority.descriptors
+            })
+        ],
         "rejection_reasons": {}, "selected_numeric_policy": selected_id,
         "access_ledger": ledger.public_document(), "test1_accesses": 0, "label_accesses": 0,
         "test2_accesses": 0, "heldout_accesses": 0,
@@ -309,7 +326,7 @@ def _convert_unique_relations(
 
 def execute(root: Path, private_root: Path) -> None:
     contract = _load(root / CONTRACT); _self_hash(contract, "contract_hash")
-    binding_path = root / EXECUTION_BINDING.with_name("EXP01B_R1_EXECUTION_BINDING_R2.json")
+    binding_path = root / EXECUTION_BINDING.with_name("EXP01B_R1_EXECUTION_BINDING_R3.json")
     binding = _load(binding_path); _self_hash(binding, "binding_hash")
     if binding.get("contract_hash") != contract["contract_hash"]:
         raise R1ExecutionError("EXP01B_R1_EXECUTION_BINDING_CONTRACT_MISMATCH")
@@ -321,10 +338,15 @@ def execute(root: Path, private_root: Path) -> None:
     edge_mask = _functional(root)
     inputs = R1EvidenceInputsV1(meta, stat, confirmed, directional, embedding, attention, edge_mask, graphs)
     preliminary = analyze_exp01b_r1_v1(inputs, unique_executable_rule_pair_count=0)
+    frozen_v1_unique = _frozen_v1_unique_pairs(root)
     _private_numeric, conversion = _convert_unique_relations(
-        root, preliminary.gdn_unique_confirmed_pairs, relation_rows, source_commit=str(binding["source_commit"]),
+        root, frozen_v1_unique, relation_rows, source_commit=str(binding["source_commit"]),
     )
-    result = analyze_exp01b_r1_v1(inputs, unique_executable_rule_pair_count=int(conversion["runtime_admissible_pairs"]))
+    corrected_unique_set = set(preliminary.gdn_unique_confirmed_pairs)
+    corrected_conversion_count = sum(
+        tuple(pair) in corrected_unique_set for pair in conversion.get("runtime_admissible_pair_ids", [])
+    )
+    result = analyze_exp01b_r1_v1(inputs, unique_executable_rule_pair_count=corrected_conversion_count)
     metric_hash = _write_csv(root / RESULTS / "EXP01B_R1_CORRECTED_RESULTS.csv", result.metric_rows)
     _write_csv(root / RESULTS / "EXP01B_R1_STABILITY_RESULTS.csv", result.stability_rows)
     _write_csv(root / RESULTS / "EXP01B_R1_RANDOM_CONTROL_RESULTS.csv", result.random_rows)
@@ -349,7 +371,8 @@ def execute(root: Path, private_root: Path) -> None:
         f"- Corrected R1 disposition: `{result.disposition.value}`\n"
         "- Corrections: positive observed percentiles with tie equality, signed EdgeMask, whole-focal random controls, and true Formal V4 conversion.\n"
         f"- GDN-unique normal-confirmed pairs: {len(result.gdn_unique_confirmed_pairs)}\n"
-        f"- Runtime-admissible GDN-unique pairs: {conversion['runtime_admissible_pairs']}\n"
+        f"- Frozen V1 GDN-unique pairs audited through Formal V4: {len(frozen_v1_unique)}\n"
+        f"- Runtime-admissible frozen-V1 GDN-unique pairs: {conversion['runtime_admissible_pairs']}\n"
         "- No retraining; test1/labels/test2/held-out accesses: 0.\n"
         "- R1 does not rewrite or supersede the original protocol-specific result.\n"
     )
