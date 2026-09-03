@@ -65,8 +65,8 @@ from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
 PUBLIC = Path("research_control_center/validation_v2/gdn_corr_001/exp01c_gdn_hai")
 PRIVATE = Path("artifacts/validation_v2/gdn_corr_001/exp01c_gdn_hai/private")
 PREREG = PUBLIC / "preregistration/EXP01C_PREREGISTRATION.json"
-ENV = PUBLIC / "environment/EXP01C_GPU_ENVIRONMENT_RECEIPT_R2.json"
-BINDING = PUBLIC / "contracts/EXP01C_EXECUTION_BINDING_R2.json"
+ENV = PUBLIC / "environment/EXP01C_GPU_ENVIRONMENT_RECEIPT_R3.json"
+BINDING = PUBLIC / "contracts/EXP01C_EXECUTION_BINDING_R3.json"
 PREPROCESSING = Path("research_control_center/validation_v2/gdn_corr_001/hai_readiness/EXP01C_PREPROCESSING_DECISION.json")
 REFERENCE = Path("research_control_center/validation_v2/exp01b_gdn_xai/receipts/EXP01B_REFERENCE_SET_RECEIPT.json")
 SELECTED_POLICY = Path("research_control_center/validation_v2/core_v2a/authorities/EXP02_SELECTED_POLICY_AUTHORITY_V2A.json")

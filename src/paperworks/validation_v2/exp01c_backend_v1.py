@@ -228,11 +228,10 @@ def _model_type_v1(config: Exp01CConfigV1) -> tuple[Any, Any, type]:
 
         @staticmethod
         def _batch_edges(edges: Any, batch_size: int, node_count: int) -> Any:
-            edge_count = int(edges.shape[1])
-            batched = edges.repeat(1, batch_size).contiguous()
-            for index in range(batch_size):
-                batched[:, index * edge_count:(index + 1) * edge_count] += index * node_count
-            return batched.long()
+            offsets = torch.arange(
+                batch_size, dtype=edges.dtype, device=edges.device,
+            ).view(1, batch_size, 1) * node_count
+            return (edges.unsqueeze(1) + offsets).reshape(2, -1).long()
 
         def encode(self, data: Any, graph_edge_index: Any) -> Any:
             import torch.nn.functional as functional
@@ -449,10 +448,14 @@ def _predict_variant_graphs_v1(
     x = flattened.reshape(-1, width).contiguous()
     all_embeddings = model.embedding(torch.arange(node_count, device=data.device))
     edges = []
+    offsets = torch.arange(
+        batch_size, dtype=torch.long, device=data.device,
+    ).view(1, batch_size, 1) * node_count
     for variant, graph in enumerate(graphs):
         graph = graph.to(data.device)
-        for sample in range(batch_size):
-            edges.append(graph + (variant * batch_size + sample) * node_count)
+        edges.append(
+            (graph.unsqueeze(1) + offsets + variant * batch_size * node_count).reshape(2, -1)
+        )
     disjoint = torch.cat(edges, dim=1).long()
     embeddings = all_embeddings.repeat(variant_count * batch_size, 1)
     out = model.gnn_layer(x, disjoint, embeddings).view(variant_count * batch_size, node_count, -1)
@@ -787,11 +790,31 @@ def smoke_exp01c_backend_v1(*, config: Exp01CConfigV1) -> dict[str, Any]:
     y = torch.zeros_like(prediction)
     loss = ((prediction - y) ** 2).mean()
     loss.backward()
+    model.eval()
+    small_graph = graph[:, 1:]
+    with torch.no_grad():
+        scalar = torch.stack((
+            model.predict_fixed(x, graph), model.predict_fixed(x, small_graph),
+        ))
+        batched = _predict_variant_graphs_v1(
+            torch=torch, model=model, data=x, graphs=(graph, small_graph),
+            node_count=37,
+        )
+    if not bool(torch.allclose(scalar, batched, atol=1e-7, rtol=1e-6)):
+        raise Exp01CBackendError("vectorized graph batching changed model output")
+    oracle = graph.repeat(1, int(x.shape[0])).contiguous()
+    edge_count = int(graph.shape[1])
+    for index in range(int(x.shape[0])):
+        oracle[:, index * edge_count:(index + 1) * edge_count] += index * 37
+    if not bool(torch.equal(model._batch_edges(graph, int(x.shape[0]), 37), oracle)):
+        raise Exp01CBackendError("vectorized edge offsets changed edge ordering")
     return {
         "status": "PASS", "model_device": str(next(model.parameters()).device).split(":", 1)[0],
         "tensor_device": str(x.device).split(":", 1)[0],
         "output_shape": list(prediction.shape), "loss_finite": bool(torch.isfinite(loss)),
         "equal_feature_horizon_weight": True,
+        "vectorized_edge_order_equivalent": True,
+        "vectorized_variant_prediction_equivalent": True,
     }
 
 
