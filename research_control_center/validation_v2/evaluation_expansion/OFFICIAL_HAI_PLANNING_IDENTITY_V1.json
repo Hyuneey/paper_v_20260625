@@ -1,0 +1,17 @@
+{
+  "artifact_type": "validation_v2_official_hai_planning_identity_v1",
+  "schema_version": "1.0.0",
+  "status": "PUBLIC_METADATA_ONLY",
+  "official_repository": "https://github.com/icsdataset/hai",
+  "pinned_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "pinned_readme": "https://raw.githubusercontent.com/icsdataset/hai/2a814cebc9a66b06c9e5cd545e2d72e65d383737/README.md",
+  "versions": {
+    "23.05": {"points": 86, "normal_files": 4, "attack_files": 2, "nominal_attacks": 52, "planned_panels": ["test1:14", "test2:38"]},
+    "22.04": {"points": 86, "normal_files": 6, "attack_files": 4, "nominal_attacks": 58},
+    "21.03": {"points": 78, "normal_files": 3, "attack_files": 5, "nominal_attacks": 50}
+  },
+  "haiend": "COLLECTED_SIMULTANEOUSLY_WITH_HAI23_NOT_A_SEPARATE_ATTACK_PANEL",
+  "scientific_payload_opened": false,
+  "attack_payload_opened": false,
+  "labels_opened": false
+}

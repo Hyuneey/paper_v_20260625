@@ -1,0 +1,18 @@
+{
+  "artifact_type": "validation_v2_etapr_dependency_receipt_v1",
+  "schema_version": "1.0.0",
+  "status": "PINNED_PREEXECUTION_CONFORMANCE_PENDING",
+  "upstream": "https://github.com/saurf4ng/eTaPR",
+  "commit": "af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
+  "implementation_mode": "OFFICIAL_OR_CONFORMANCE_VERIFIED_WRAPPER",
+  "parameters": {"theta_p": 0.5, "theta_r": 0.1, "delta": 0.0},
+  "parameter_basis": "OFFICIAL_CLI_DEFAULTS_FROZEN_BEFORE_ATTACK_ACCESS",
+  "point_adjustment": false,
+  "official_fixture_status": "REQUIRED_BEFORE_DG05_NOT_EXECUTED_IN_THIS_TASK",
+  "local_synthetic_fixture_status": "CONTRACT_TESTED_NO_ETAPR_LOOKALIKE_IMPLEMENTED",
+  "wrapper_comparison_status": "REQUIRED_BEFORE_DG05",
+  "performance_preflight_status": "REQUIRED_BEFORE_DG05",
+  "attack_data_accessed": false,
+  "label_data_accessed": false,
+  "provider_contacted": false
+}

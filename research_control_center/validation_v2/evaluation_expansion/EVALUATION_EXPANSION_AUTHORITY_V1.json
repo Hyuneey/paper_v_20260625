@@ -1,0 +1,77 @@
+{
+  "artifact_type": "validation_v2_evaluation_expansion_authority_v1",
+  "schema_version": "1.0.0",
+  "status": "PREPARATION_ONLY_FROZEN",
+  "files": [
+    {
+      "path": "CHANGE_SUMMARY_V1.md",
+      "sha256": "41c6f2cf0b25508cd6fdb5c02b9fbb3d16341455a40aa2642a5bcf363f681da6"
+    },
+    {
+      "path": "EVALUATION_MASTER_PLAN_V1.md",
+      "sha256": "8d7cb686c3ecae519faefdf831d63db547e4950f4d90a195ed3bddac815e4f8a"
+    },
+    {
+      "path": "PANEL_REGISTRY_V1.csv",
+      "sha256": "da1813e06926e2af4964d96f1eafc3e4185d2906f01c72794f0c1767f6b5b59f"
+    },
+    {
+      "path": "CROSS_VERSION_REPLICATION_POLICY_V1.md",
+      "sha256": "b8e19b791383101ad38e69a44415ceb5804d5e01e6e0e7f632a41040241cf1fa"
+    },
+    {
+      "path": "METRIC_POLICY_V1.md",
+      "sha256": "b5e1e4879b87918d99a445fd42c45b3bf08e875cccbd1518b1dfcc940e2940e3"
+    },
+    {
+      "path": "P1_ELIGIBILITY_POLICY_V1.md",
+      "sha256": "98b7a8190d6cc940eeb24059c77d3ccc383008dfe16c2f736de0ded92d0820cf"
+    },
+    {
+      "path": "NO_POOLING_INTERPRETATION_V1.md",
+      "sha256": "b2f9d863df05f46510c73f9877d89c73cbacf8b9423272f18f91a659597c5a3b"
+    },
+    {
+      "path": "DATASET_COMPATIBILITY_MATRIX_V1.csv",
+      "sha256": "4d1692fc59ddfe933ab03d6461dd39fa3509c86725d540cf383a559703300da6"
+    },
+    {
+      "path": "NORMAL_SPLIT_ROLE_POLICY_V1.md",
+      "sha256": "6898dd203ba860583f930fe884ddcd5c6eb1ff029c3af42dbf0483205998208f"
+    },
+    {
+      "path": "EXP03_TO_FINAL_METHOD_LOCK_V1.md",
+      "sha256": "61b5c5d5d7e8a084c5d651958c2b2f46bc536e9d9409a81bbc06a33ed33f9122"
+    },
+    {
+      "path": "DECISION_GATE_PLAN_V1.md",
+      "sha256": "e648f4de39756dccfd9951d0d0d70c2bee6821628d878c8dd3d8406d2725b314"
+    },
+    {
+      "path": "IMPLEMENTATION_TASK_INDEX_V1.csv",
+      "sha256": "6bd0acc34b97404a14e7c76b0a84d896e6cad1d54990d0139befb7a0dbc7a304"
+    },
+    {
+      "path": "ETAPR_DEPENDENCY_RECEIPT_V1.json",
+      "sha256": "9f2535d724c66ce97b89bda8f4481863902622a345abc329fb53a4722acbe418"
+    },
+    {
+      "path": "OFFICIAL_HAI_PLANNING_IDENTITY_V1.json",
+      "sha256": "5f0c3ab8a7a12dfb1158ae689c312039444c4bb67e73341c4c0dcff4af1ec67e"
+    },
+    {
+      "path": "DG04_DECISION_BRIEF_TEMPLATE_V1.md",
+      "sha256": "b02dba28689ac2903ae143c36f8a9d2f407070129643459513ec3cab8afa32d7"
+    },
+    {
+      "path": "DG05_COMBINED_EVALUATION_AUTHORIZATION_PACKAGE_V1.md",
+      "sha256": "141d579789b7a71b261ca2dc2a51583b657e6c69116879327f711a7b7c0cccb0"
+    }
+  ],
+  "official_hai_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+  "official_etapr_commit": "af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
+  "attack_data_accesses": 0,
+  "label_accesses": 0,
+  "provider_calls": 0,
+  "self_hash": "3e40e18d753b48b8425a1798fdf8312af012670669d592edac4173284f1b3b3e"
+}
