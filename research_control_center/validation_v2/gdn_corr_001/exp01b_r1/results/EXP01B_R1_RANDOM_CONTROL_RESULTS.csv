@@ -1,0 +1,4 @@
+view,seed,focal_count,matched_count,unmatched_count,focal_median_positive,focal_exceeds_control
+TRAIN1_TRAIN2_COMBINED,11,11,2,9,True,True
+TRAIN1_TRAIN2_COMBINED,23,3,1,2,True,True
+TRAIN1_TRAIN2_COMBINED,37,20,8,12,True,True
