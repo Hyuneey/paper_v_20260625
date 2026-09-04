@@ -3,6 +3,7 @@ import json
 import subprocess
 from pathlib import Path
 from xver_execution_common import ROOT, PUB, private_root, document, publish, seal, require, sha256_file
+from xver_result_integrity_v1 import scientific_receipts
 
 
 def main():
@@ -20,6 +21,7 @@ def main():
         relative=path.relative_to(private_root()).as_posix();require(relative not in identities,'DUPLICATE_PRIVATE_RECORD');identities.add(relative)
         records.append({'path':str(path.resolve()),'symbolic_id':relative,'kind':kind,'sha256':h,'bytes':path.stat().st_size})
     for version in ('22.04','21.03'):
+        scientific_receipts(version)
         for split in ('train1','train2'):
             for seed in (11,23,37):
                 r=document(PUB/'runs'/f'HAI{version[:2]}_{split.upper()}_SEED{seed}_RECEIPT_V1.json')

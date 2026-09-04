@@ -2,6 +2,7 @@
 from collections import Counter
 from decimal import Decimal
 from xver_execution_common import ROOT, PUB, PARENT, document, publish, seal, require
+from xver_result_integrity_v1 import scientific_receipts
 
 
 def write_report(path,text):
@@ -13,7 +14,7 @@ def main():
     for version in ('22.04','21.03'):
         v=version[:2];context=document(PUB/f'HAI{v}_GDN_CONTEXT_MAPPING_V1.json')
         candidate=document(PARENT/f'HAI{v}_META_STAT_CANDIDATE_AUTHORITY_V2.json')
-        records=[document(PUB/'runs'/f'HAI{v}_{s.upper()}_SEED{k}_RECEIPT_V1.json') for s in ('train1','train2') for k in (11,23,37)]
+        records=scientific_receipts(version)
         require(all(r['status']=='PASS' and r['scope']=='SCIENTIFIC' and r['node_count']==context['context_count'] for r in records),'TWELVE_SCIENTIFIC_RUNS_REQUIRED')
         states=Counter()
         for r in records:states.update(r['auxiliary_states'])
