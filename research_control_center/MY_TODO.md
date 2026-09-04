@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 내가 해야 할 연구 검토
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-04 — 최종 제목·Agentic 기여 표현 결정. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B). DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.
@@ -77,9 +77,9 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 - **ID:** USER-V2-004
   **우선순위:** 높음 (HIGH)
-  **할 일:** DG-04 — 최종 제목·Agentic 기여 표현 결정
-  **사용자 확인이 필요한 이유:** 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.
-  **연결 문서:** research_control_center/validation_v2/exp03/execution_v1/DG04_CONTRIBUTION_DECISION_BRIEF_V1.md
+  **할 일:** DG-03B — EXP-03B 신규 provider 예산·전송 승인
+  **사용자 확인이 필요한 이유:** 정상 evidence 준비 완료;최대609회·USD65.90. DG-04는 EXP-03B 결과 뒤로 연기합니다.
+  **연결 문서:** research_control_center/validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V1.md
   **상태:** 미결정
 ## 필수 향후 Gate
 

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-04
@@ -120,9 +120,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.
+- DG-03B — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD65.90. DG-04는 EXP03B 이후로 연기.
 - HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.
-- DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다.
+- DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다.
 
-Exact next management task: **DG-04 — 최종 제목·Agentic 기여 표현 결정**
-Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**
+Exact next management task: **DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**
+Following architecture task: **EXP-03B 승인 후 실행·독립 QA; 이후 DG-04**

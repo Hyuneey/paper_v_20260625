@@ -76,10 +76,15 @@ class FrontReportingTests(unittest.TestCase):
         import subprocess
         changed = subprocess.run(["git", "diff", "--name-only", self.front["execution_commit"], "--", "src", "configs"],
                                  cwd=RCC.parent, capture_output=True, text=True, check=True).stdout
+        prep=json.loads((RCC/'validation_v2/exp03b/EXP03B_FINAL_PREPARATION_FREEZE_V2.json').read_text())
+        additions={p for p in prep['implementation_hashes'] if p.startswith('src/paperworks/validation_v2/exp03b_')}
+        for p in additions:
+            self.assertEqual(prep['implementation_hashes'][p],hashlib.sha256((RCC.parent/p).read_bytes()).hexdigest())
+            self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',p],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",
-             "src/paperworks/validation_v2/exp03_live_custody_v1.py"},
+             "src/paperworks/validation_v2/exp03_live_custody_v1.py"}|additions,
             set(changed.splitlines()),
         )
         # New DG-03 namespace is authorized independently; no pre-existing

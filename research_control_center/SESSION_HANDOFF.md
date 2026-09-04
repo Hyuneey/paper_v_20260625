@@ -1,3 +1,12 @@
+# 현재 세션 인계 — EXP03B-BIND-001
+
+SCI-01~04 승인 사항을 구현하고 train1 provider/T0 및 train2 hidden evidence 29 pair를 준비했습니다. train3는 frozen reference만 재생했으며 train4는 guard 입력 identity만 확인했습니다. 실제 provider/guard 결과는 없습니다.
+상태 PREPARED_DG03B_PENDING. 다음은 DG-03B 신규 승인입니다. model gpt-5.4-mini-2026-03-17, 609 calls, input 80373993, output 1247232, 총 81621225, USD 65.90.
+기존 audit7c의 SCI 미정 blocker는 사용자 승인으로 해소됐습니다. EXP03 V1은 CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK로 보존. DG-04는 EXP03B 이후로 연기. test1/2/외부공격/provider 접근 금지 유지.
+private vault는 SINGLE_COPY_LOCAL_ONLY이며 독립 backup을 주장하지 않습니다. 지침: validation_v2/exp03b/EXP03B_PROVIDER_EXECUTION_INSTRUCTION_V1.md.
+
+## 이전 기록 — 역사적 보존
+
 # 세션 인계 — EXP03B 준비 감사 / 과학 binding 결정 필요
 
 ## 최신 task-local 보정 (EXP03B-PREP-001)

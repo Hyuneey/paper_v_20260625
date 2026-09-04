@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -6,6 +6,7 @@ Registry version: `0.1.0`
 
 ## Recorded timeline
 
+- **2026-09-04 — EXP-03B 과학 binding과 정상-only 준비 완료** (`ACTIVE_CONTEXT`): SCI01~04;29 pair;37 options;split-pure GDN;provider0;DG-03B 대기
 - **2026-09-04 — EXP-03 고정 snapshot 비교·독립 QA 완료** (`ACTIVE_CONTEXT`): T0 39/39; T1 104/117; T1-B 115/117; T2 105/117; T2 feedback 0/117; repair NOT_OBSERVED (denominator=0)
 - **2026-09-04 — 다중 HAI 평가 확대 계획 승인·고정** (`ACTIVE_CONTEXT`): HAI23 test2 primary heldout와 HAI22/21 external replications를 version-separated panel로 고정;146 nominal scenarios는 IID pooling 금지;attack access0.
 - **2026-09-04 — V2A 개발 평가와 GDN 보조 설명 full-census QA 완료** (`ACTIVE_CONTEXT`): 5개 방법 prediction freeze 후 label 접근. 두 fusion Recall개선0 FAR증가;actual6418trace와GDNclauses130보존;private122artifact snapshot.
@@ -42,4 +43,4 @@ Registry version: `0.1.0`
 
 ## Next
 
-**DG-04 — 최종 제목·Agentic 기여 표현 결정**
+**DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**

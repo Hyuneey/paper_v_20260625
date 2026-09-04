@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리가 어떤 데이터를 쓰고 있는가
 
 ## 한 문장 답
@@ -69,4 +69,4 @@ enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossib
 3. label-blind object와 durable prediction file은 서로 다른 보장이다.
 4. test1은 pilot이고 test2는 결과가 없다.
 
-다음 task는 **DG-04 — 최종 제목·Agentic 기여 표현 결정**이다.
+다음 task는 **DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**이다.

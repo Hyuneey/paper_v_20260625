@@ -1,3 +1,11 @@
+# EXP-03B construct-validity 보정 — 준비 완료
+
+EXP-03 V1은 고정 방향·horizon·numeric reference를 Formal V4 envelope로 만드는 CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK입니다. feedback 0 결과와 모든 수치는 그대로 보존합니다. evidence-to-rule induction 또는 Agentic 우월성을 검증한 결과가 아닙니다.
+EXP-03B는 train1 evidence에서 RULE_SET/NO_RULE·방향·horizon·NUM option을 추론하고 train2 hidden verifier의 제한된 feedback을 비교합니다. 29 pair, 37 options, T0/T1/T1-B/T2, R3 (T0는 단일 실행), Repeat1 portfolio 정책. train3 hidden reference 및 train4 one-way guard로 평가합니다.
+SCI-01~04 binding과 정상 evidence 준비 완료, provider 호출 0. DG-03B 신규 예산 승인 필요: 고정 gpt-5.4-mini-2026-03-17, 최대609회, 최대USD65.90. DG-04는 EXP03B 결과 이후로 연기합니다. EXP04/05·V2A39-rule·held-out 방법은 변경하지 않습니다. test/공격 접근 및 제출 없음.
+
+## 이전 기록 — 역사적 보존
+
 # EXP-03 고정 snapshot 규칙 구성 비교 결과
 
 상태: COMPLETE_QA_PASS. 모델: `gpt-5.4-mini-2026-03-17`.

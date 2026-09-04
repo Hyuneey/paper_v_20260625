@@ -89,7 +89,7 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(48, len(summaries))
+            self.assertEqual(49, len(summaries))
             self.assertTrue(all(path.is_file() for path in summaries))
             self.assertTrue((root / "history" / "PROJECT_TIMELINE.md").is_file())
             self.assertTrue((root / "generated" / "RCC_003_HISTORY_SUMMARY.md").is_file())
@@ -137,7 +137,7 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
-        self.assertEqual(48, len(generated))
+        self.assertEqual(49, len(generated))
         user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
         context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
         self.assertIn("14", user_summary)
@@ -208,7 +208,9 @@ class DashboardGenerationTests(unittest.TestCase):
         self.assertIn("| 구성요소 |", current_status)
         self.assertIn("| 실험 |", current_status)
         self.assertIn("**우선순위:** 높음 (HIGH)", my_todo)
-        self.assertIn("현재 미결정 사용자 항목은 없다", decision_inbox)
+        self.assertNotIn("현재 미결정 사용자 항목은 없다", decision_inbox)
+        self.assertIn("DG-03B",decision_inbox)
+        self.assertIn("USER_DECISION_REQUIRED",decision_inbox)
         self.assertNotIn("**필요한 이유:** The choice", decision_inbox)
 
     def test_generated_history_preserves_temporal_corrections(self) -> None:

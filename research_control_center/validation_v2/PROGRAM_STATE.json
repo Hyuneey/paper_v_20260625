@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "DG04_CONTRIBUTION_FRAMING",
-  "program_status": "DEVELOPMENT_COMPLETE_QA_PASS",
+  "current_stage": "EXP03B_PREPARED_DG03B_PENDING",
+  "program_status": "PREPARED_DG03B_PENDING",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -25,11 +25,13 @@
     "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
-    "DG-04": "USER_DECISION_REQUIRED",
+    "DG-04": "DEFERRED_UNTIL_EXP03B",
     "DG-05": "PENDING_MANDATORY",
-    "DG-06": "PENDING"
+    "DG-06": "PENDING",
+    "DG-03B": "USER_DECISION_REQUIRED"
   },
   "experiment_status": {
+    "EXP-03B": "PREPARED_DG03B_PENDING",
     "EXP-01": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
     "EXP-01B": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
     "EXP-02": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
@@ -388,5 +390,19 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-04 — 최종 제목·Agentic 기여 표현 결정"
+  "exact_next_task": "DG-03B — EXP-03B Provider Execution Decision",
+  "exp03b_preparation": {
+    "status": "PREPARED_DG03B_PENDING",
+    "classification": "AGENTIC_EVIDENCE_TO_RULE_INDUCTION",
+    "cohort_count": 29,
+    "options": 37,
+    "provider_calls": 0,
+    "model_snapshot": "gpt-5.4-mini-2026-03-17",
+    "maximum_calls": 609,
+    "maximum_total_tokens": 81621225,
+    "cost_ceiling_usd": "65.90",
+    "next_gate": "DG-03B",
+    "DG04": "DEFERRED_UNTIL_EXP03B",
+    "source_commit": "ca78664d03464b81f56cf42c169c24f1153e69c9"
+  }
 }

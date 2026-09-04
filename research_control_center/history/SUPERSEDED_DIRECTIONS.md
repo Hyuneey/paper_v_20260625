@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Superseded and Conditional Directions
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -15,3 +15,4 @@ current claims without current evidence.
 | Construction-only final thesis boundary | 2026-08-14 ~ 2026-08-19 | Utility protocol was stopped before execution | Later authority closure and INNER pilot superseded the never-executed statement | Construction validity and governance remain defensible layers | Current architecture plus pilot-only utility observations | SUPERSEDED | Yes |
 | Segment or localization Method Sketch as headline direction | 2026-05 onward | Professor-driven ARTIST and anomaly-detection-model reframing | User-confirmed formal intermediate direction later superseded before becoming current implementation | Trace-based transition and horizon localization | Current relational-rule and satisfaction-trace architecture | SUPERSEDED | Yes |
 | Single future HAI23 test2 evaluation with Recall/FAR-centered reporting | 2026-08-23 ~ 2026-09-03 | The old OUTER blocker left one obvious same-edition held-out target | The 14-unit development panel cannot support version-level generalization and a single future panel is too narrow | HAI23 test2 remains the primary held-out panel | Version-separated HAI23 held-out plus HAI22 and HAI21 external replications | SUPERSEDED | Yes |
+| EXP-03 V1을 evidence induction으로 해석 | 2026-09-04 | T0/T1/T1-B/T2 구성 비교 | 정답 방향·horizon·numeric reference가 입력에 포함 | constrained Rule materialization 결과·feedback0 보존 | EXP-03B 정상 evidence-to-rule induction | SUPERSEDED | Yes |

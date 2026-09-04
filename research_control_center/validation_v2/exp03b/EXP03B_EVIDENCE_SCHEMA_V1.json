@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProviderTrain1EvidencePackV1 serialization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidate_id", "source", "target", "split", "structural_columns", "structural_rows", "option_columns", "option_rows", "stat_association", "gdn_columns", "gdn_rows"],
+  "properties": {
+    "candidate_id": {"type": "string", "pattern": "^EXP03B-CAND-[0-9a-f]{20}$"},
+    "source": {"type": "string", "pattern": "^P1_[A-Z0-9]+$"},
+    "target": {"type": "string", "pattern": "^P1_[A-Z0-9]+$"},
+    "split": {"const": "train1"},
+    "structural_columns": {"const": ["source_direction", "target_direction", "horizon_seconds", "support", "consistency", "opposite_consistency", "effect", "evidence_slice_id"]},
+    "structural_rows": {"type": "array", "minItems": 20, "maxItems": 20, "items": {"type": "array", "minItems": 8, "maxItems": 8}},
+    "option_columns": {"const": ["structural_slice", "alias", "materializable", "formed", "PASS", "FAIL", "ABSTAIN", "system_errors", "false_seconds", "false_episodes", "exposure", "evidence_slice_id"]},
+    "option_rows": {"type": "array", "minItems": 740, "maxItems": 740, "items": {"type": "array", "minItems": 12, "maxItems": 12}},
+    "stat_association": {"type": "number"},
+    "gdn_columns": {"const": ["horizon", "embedding", "shared_encoder_attention", "edge_relative_delta"]},
+    "gdn_rows": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"type": "array", "minItems": 4, "maxItems": 4}}
+  },
+  "$comment": "Envelope schema only. Mandatory field/type/tuple closure, numeric finiteness, provenance and taint validation remain enforced by frozen exp03b_prompt.validate_projection and exp03b_firewall_v1; schema alone grants no provider authority."
+}

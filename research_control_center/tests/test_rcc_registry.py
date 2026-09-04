@@ -48,10 +48,10 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(3, len(data["state"]["top_user_todo"]))
         self.assertEqual(8, len(data["state"]["user_todo_items"]))
         self.assertEqual(32, len(data["components"]))
-        self.assertEqual(10, len(data["experiments"]))
-        self.assertEqual(14, len(data["claims"]))
-        self.assertEqual(18, len(data["risks"]))
-        self.assertEqual(42, len(data["artifacts"]))
+        self.assertEqual(11, len(data["experiments"]))
+        self.assertEqual(15, len(data["claims"]))
+        self.assertEqual(19, len(data["risks"]))
+        self.assertEqual(43, len(data["artifacts"]))
         self.assertEqual(
             {
                 "scientific_executions": 4,
@@ -75,6 +75,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
+            "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
             "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
             "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
             "origin/research-v6-thesis-checkpoint": {AUTHORITY_COMMIT},
@@ -140,10 +141,10 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertNotIn("CLAIM-ARCH-IMPLEMENTED", {row["claim_id"] for row in data["claims"]})
         self.assertEqual(
             {f"EXP-{index:02d}" for index in range(1, 7)}
-            | {"EXP-01B", "EXP-H23-HOLDOUT", "EXP-H22-XVER", "EXP-H21-XVER"},
+            | {"EXP-01B", "EXP-03B", "EXP-H23-HOLDOUT", "EXP-H22-XVER", "EXP-H21-XVER"},
             {row["experiment_id"] for row in data["experiments"]},
         )
-        self.assertEqual({f"CLAIM-{letter}" for letter in "ABCDEFGHIJKLMN"}, {row["claim_id"] for row in data["claims"]})
+        self.assertEqual({f"CLAIM-{letter}" for letter in "ABCDEFGHIJKLMN"}|{'CLAIM-EXP03B-PREP'}, {row["claim_id"] for row in data["claims"]})
 
     def test_local_authority_refs_resolve_to_exact_pins(self) -> None:
         result = validator.ValidationResult()
@@ -166,8 +167,8 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(33, len(data["timeline"]))
-        self.assertEqual(23, len(data["decisions"]))
+        self.assertEqual(34, len(data["timeline"]))
+        self.assertEqual(24, len(data["decisions"]))
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
         result = validator.ValidationResult()
         validator._validate_dates(data, result)
@@ -206,7 +207,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual("DG-04 — 최종 제목·Agentic 기여 표현 결정", data["state"]["exact_next_task"])
+        self.assertEqual("DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

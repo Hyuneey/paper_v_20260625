@@ -1,8 +1,15 @@
 {
   "schema_version": "rcc-history-v1",
   "rcc_version": "0.1.0",
-  "scientific_authority": {"ref": "origin/research-v6-thesis-checkpoint", "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"},
-  "documentation_overlay": {"ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1", "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743", "role": "NARRATIVE_CONTEXT_ONLY"},
+  "scientific_authority": {
+    "ref": "origin/research-v6-thesis-checkpoint",
+    "commit": "2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e"
+  },
+  "documentation_overlay": {
+    "ref": "origin/task-039e3-r2r-thesis-draft-scaffold-v1",
+    "commit": "ebc5a57bfdb7d8266f96f2990338effb9d0a2743",
+    "role": "NARRATIVE_CONTEXT_ONLY"
+  },
   "history_rule": "Current scientific state remains governed by RCC-002 and claims.csv. History explains lineage and cannot promote an old claim.",
   "phases": [
     {
@@ -183,39 +190,251 @@
     }
   ],
   "professor_feedback_lineage": [
-    {"date": "2026-05", "date_precision": "MONTH", "classification": "USER_CONFIRMED_CONTEXT", "feedback": "ARTIST, anomaly-detection-model, and localization-oriented reframing.", "interpretation": "Verifier-only novelty was superseded and segment or localization reached formal Method Sketch-level planning.", "decision_ref": "DEC-005;DEC-019", "effect": "The intermediate direction was later superseded by relational rules; bounded trace localization survived.", "confidence": "MEDIUM"},
-    {"date": "2026-07-14", "date_precision": "DAY", "classification": "DOCUMENT_COMMIT_DATE_NOT_PROVEN_DELIVERY_DATE", "feedback": "Explain ARGOS, Rule-only behavior, detector combination, thresholds, and rule control.", "interpretation": "Reference reproduction and proposed-method safeguards had to be separated.", "decision_ref": "DEC-004;DEC-006;DEC-012;DEC-014", "effect": "ARGOS audits and a controlled CPS extension contract followed.", "confidence": "HIGH"},
-    {"date": "2026-07-24", "date_precision": "DAY", "classification": "DECISION_REQUEST_COMMIT_DATE", "feedback": "Decide whether to freeze ARGOS and preserve sealed confirmation.", "interpretation": "Further exposed-reference tuning had diminishing value.", "decision_ref": "DEC-004", "effect": "ARGOS became a frozen partial-support reference.", "confidence": "HIGH"},
-    {"date": "2026-08-04", "date_precision": "DAY", "classification": "USER_CONFIRMED_CONTEXT_WITH_REPOSITORY_CORROBORATED_CONSEQUENCES", "feedback": "Pairwise first, Rule-only visibility, Detector or Detector+Rule or Rule-only comparison, deterministic-verifier and validation clarification, runtime-LLM openness, GDN extraction clarification, and narrow agent terminology.", "interpretation": "The feedback reinforced and clarified scope; the pairwise protocol had already frozen on August 3.", "decision_ref": "DEC-009;DEC-010;DEC-012;DEC-014;DEC-015;DEC-016", "effect": "Later P1 work kept pairwise evidence, separate D1, candidate-only GDN, deterministic verification, and conservative agentic claims.", "confidence": "HIGH"},
-    {"date": "2026-08-18", "date_precision": "DAY", "classification": "USER_CONFIRMED_NOT_PROFESSOR_FEEDBACK", "feedback": "NONE", "interpretation": "The research owner confirms an internal progress update.", "decision_ref": "NONE", "effect": "No professor-feedback decision is attributed to this date.", "confidence": "HIGH"},
-    {"date": "2026-08-24", "date_precision": "DAY", "classification": "PROFESSOR_PACKAGE_PREPARATION_NOT_APPROVAL", "feedback": "A retrospective matrix and agenda organized unresolved professor decisions.", "interpretation": "Current results supported narrow framing while major scientific questions remained open.", "decision_ref": "DEC-016;DEC-017;DEC-018", "effect": "A professor-ready synthesis was frozen without authorizing new science.", "confidence": "HIGH"},
-    {"date": "2026-08-26", "date_precision": "DAY", "classification": "USER_CONFIRMED_NOT_PROFESSOR_FEEDBACK", "feedback": "NONE", "interpretation": "The research owner confirms integrated report preparation or update rather than new feedback.", "decision_ref": "NONE", "effect": "No new professor decision is inferred.", "confidence": "HIGH"}
+    {
+      "date": "2026-05",
+      "date_precision": "MONTH",
+      "classification": "USER_CONFIRMED_CONTEXT",
+      "feedback": "ARTIST, anomaly-detection-model, and localization-oriented reframing.",
+      "interpretation": "Verifier-only novelty was superseded and segment or localization reached formal Method Sketch-level planning.",
+      "decision_ref": "DEC-005;DEC-019",
+      "effect": "The intermediate direction was later superseded by relational rules; bounded trace localization survived.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "date": "2026-07-14",
+      "date_precision": "DAY",
+      "classification": "DOCUMENT_COMMIT_DATE_NOT_PROVEN_DELIVERY_DATE",
+      "feedback": "Explain ARGOS, Rule-only behavior, detector combination, thresholds, and rule control.",
+      "interpretation": "Reference reproduction and proposed-method safeguards had to be separated.",
+      "decision_ref": "DEC-004;DEC-006;DEC-012;DEC-014",
+      "effect": "ARGOS audits and a controlled CPS extension contract followed.",
+      "confidence": "HIGH"
+    },
+    {
+      "date": "2026-07-24",
+      "date_precision": "DAY",
+      "classification": "DECISION_REQUEST_COMMIT_DATE",
+      "feedback": "Decide whether to freeze ARGOS and preserve sealed confirmation.",
+      "interpretation": "Further exposed-reference tuning had diminishing value.",
+      "decision_ref": "DEC-004",
+      "effect": "ARGOS became a frozen partial-support reference.",
+      "confidence": "HIGH"
+    },
+    {
+      "date": "2026-08-04",
+      "date_precision": "DAY",
+      "classification": "USER_CONFIRMED_CONTEXT_WITH_REPOSITORY_CORROBORATED_CONSEQUENCES",
+      "feedback": "Pairwise first, Rule-only visibility, Detector or Detector+Rule or Rule-only comparison, deterministic-verifier and validation clarification, runtime-LLM openness, GDN extraction clarification, and narrow agent terminology.",
+      "interpretation": "The feedback reinforced and clarified scope; the pairwise protocol had already frozen on August 3.",
+      "decision_ref": "DEC-009;DEC-010;DEC-012;DEC-014;DEC-015;DEC-016",
+      "effect": "Later P1 work kept pairwise evidence, separate D1, candidate-only GDN, deterministic verification, and conservative agentic claims.",
+      "confidence": "HIGH"
+    },
+    {
+      "date": "2026-08-18",
+      "date_precision": "DAY",
+      "classification": "USER_CONFIRMED_NOT_PROFESSOR_FEEDBACK",
+      "feedback": "NONE",
+      "interpretation": "The research owner confirms an internal progress update.",
+      "decision_ref": "NONE",
+      "effect": "No professor-feedback decision is attributed to this date.",
+      "confidence": "HIGH"
+    },
+    {
+      "date": "2026-08-24",
+      "date_precision": "DAY",
+      "classification": "PROFESSOR_PACKAGE_PREPARATION_NOT_APPROVAL",
+      "feedback": "A retrospective matrix and agenda organized unresolved professor decisions.",
+      "interpretation": "Current results supported narrow framing while major scientific questions remained open.",
+      "decision_ref": "DEC-016;DEC-017;DEC-018",
+      "effect": "A professor-ready synthesis was frozen without authorizing new science.",
+      "confidence": "HIGH"
+    },
+    {
+      "date": "2026-08-26",
+      "date_precision": "DAY",
+      "classification": "USER_CONFIRMED_NOT_PROFESSOR_FEEDBACK",
+      "feedback": "NONE",
+      "interpretation": "The research owner confirms integrated report preparation or update rather than new feedback.",
+      "decision_ref": "NONE",
+      "effect": "No new professor decision is inferred.",
+      "confidence": "HIGH"
+    }
   ],
   "superseded_directions": [
-    {"direction": "DHAG extension as headline method", "period": "2025-10 ~ 2026-02", "why_explored": "User-context proof of concept", "why_reduced": "User-confirmed PoC-reported structural limitations; details remain unverified", "survived": "Possible lesson about explicit structural constraints", "replacement": "Project-owned verified relational-rule architecture", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "Faithfulness Verifier as headline contribution", "period": "2026-04 ~ 2026-05", "why_explored": "Explanation-fidelity framing", "why_reduced": "Reported ground-truth ambiguity", "survived": "Deterministic verifier-admissibility", "replacement": "Evidence-bound rule construction and governance", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "Direct ARGOS reproduction as primary thesis path", "period": "2026-07-13 ~ 2026-07-24", "why_explored": "Related executable-rule and agent concepts", "why_reduced": "Only partial methodological support and exposed reference evaluation", "survived": "Executable rules, bounded repair or review, no-op, deterministic runtime", "replacement": "ARGOS-informed multivariate CPS method", "status": "HISTORICAL", "current_claim": false},
-    {"direction": "Binary or discrete control delayed-response on HAI", "period": "2026-08-02", "why_explored": "Original preregistered MVP family", "why_reduced": "Zero eligible reviewed nonconstant sources", "survived": "Pairwise delayed-response and normal-only discipline", "replacement": "continuous_step_delayed_response_v1", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "Construction-only final thesis boundary", "period": "2026-08-14 ~ 2026-08-19", "why_explored": "Utility protocol was stopped before execution", "why_reduced": "Later authority closure and INNER pilot superseded the never-executed statement", "survived": "Construction validity and governance remain defensible layers", "replacement": "Current architecture plus pilot-only utility observations", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "Segment or localization Method Sketch as headline direction", "period": "2026-05 onward", "why_explored": "Professor-driven ARTIST and anomaly-detection-model reframing", "why_reduced": "User-confirmed formal intermediate direction later superseded before becoming current implementation", "survived": "Trace-based transition and horizon localization", "replacement": "Current relational-rule and satisfaction-trace architecture", "status": "SUPERSEDED", "current_claim": false},
-    {"direction": "Single future HAI23 test2 evaluation with Recall/FAR-centered reporting", "period": "2026-08-23 ~ 2026-09-03", "why_explored": "The old OUTER blocker left one obvious same-edition held-out target", "why_reduced": "The 14-unit development panel cannot support version-level generalization and a single future panel is too narrow", "survived": "HAI23 test2 remains the primary held-out panel", "replacement": "Version-separated HAI23 held-out plus HAI22 and HAI21 external replications", "status": "SUPERSEDED", "current_claim": false}
+    {
+      "direction": "DHAG extension as headline method",
+      "period": "2025-10 ~ 2026-02",
+      "why_explored": "User-context proof of concept",
+      "why_reduced": "User-confirmed PoC-reported structural limitations; details remain unverified",
+      "survived": "Possible lesson about explicit structural constraints",
+      "replacement": "Project-owned verified relational-rule architecture",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    },
+    {
+      "direction": "Faithfulness Verifier as headline contribution",
+      "period": "2026-04 ~ 2026-05",
+      "why_explored": "Explanation-fidelity framing",
+      "why_reduced": "Reported ground-truth ambiguity",
+      "survived": "Deterministic verifier-admissibility",
+      "replacement": "Evidence-bound rule construction and governance",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    },
+    {
+      "direction": "Direct ARGOS reproduction as primary thesis path",
+      "period": "2026-07-13 ~ 2026-07-24",
+      "why_explored": "Related executable-rule and agent concepts",
+      "why_reduced": "Only partial methodological support and exposed reference evaluation",
+      "survived": "Executable rules, bounded repair or review, no-op, deterministic runtime",
+      "replacement": "ARGOS-informed multivariate CPS method",
+      "status": "HISTORICAL",
+      "current_claim": false
+    },
+    {
+      "direction": "Binary or discrete control delayed-response on HAI",
+      "period": "2026-08-02",
+      "why_explored": "Original preregistered MVP family",
+      "why_reduced": "Zero eligible reviewed nonconstant sources",
+      "survived": "Pairwise delayed-response and normal-only discipline",
+      "replacement": "continuous_step_delayed_response_v1",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    },
+    {
+      "direction": "Construction-only final thesis boundary",
+      "period": "2026-08-14 ~ 2026-08-19",
+      "why_explored": "Utility protocol was stopped before execution",
+      "why_reduced": "Later authority closure and INNER pilot superseded the never-executed statement",
+      "survived": "Construction validity and governance remain defensible layers",
+      "replacement": "Current architecture plus pilot-only utility observations",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    },
+    {
+      "direction": "Segment or localization Method Sketch as headline direction",
+      "period": "2026-05 onward",
+      "why_explored": "Professor-driven ARTIST and anomaly-detection-model reframing",
+      "why_reduced": "User-confirmed formal intermediate direction later superseded before becoming current implementation",
+      "survived": "Trace-based transition and horizon localization",
+      "replacement": "Current relational-rule and satisfaction-trace architecture",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    },
+    {
+      "direction": "Single future HAI23 test2 evaluation with Recall/FAR-centered reporting",
+      "period": "2026-08-23 ~ 2026-09-03",
+      "why_explored": "The old OUTER blocker left one obvious same-edition held-out target",
+      "why_reduced": "The 14-unit development panel cannot support version-level generalization and a single future panel is too narrow",
+      "survived": "HAI23 test2 remains the primary held-out panel",
+      "replacement": "Version-separated HAI23 held-out plus HAI22 and HAI21 external replications",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    },
+    {
+      "direction": "EXP-03 V1을 evidence induction으로 해석",
+      "period": "2026-09-04",
+      "why_explored": "T0/T1/T1-B/T2 구성 비교",
+      "why_reduced": "정답 방향·horizon·numeric reference가 입력에 포함",
+      "survived": "constrained Rule materialization 결과·feedback0 보존",
+      "replacement": "EXP-03B 정상 evidence-to-rule induction",
+      "status": "SUPERSEDED",
+      "current_claim": false
+    }
   ],
   "terminology": [
-    {"term": "Faithfulness Verifier", "historical": "User-context explanation-fidelity headline", "current": "Deterministic verifier-admissibility", "deprecated": "Proves faithfulness causality or scientific validity"},
-    {"term": "Agentic", "historical": "Broad proposal repair or review language", "current": "Bounded T2 verifier-feedback construction label", "deprecated": "Autonomous multi-agent or empirically superior feedback"},
-    {"term": "Graph-Guided", "historical": "Graph evidence restricted candidate relationships", "current": "META STAT and GDN multi-source candidate curation", "deprecated": "Causal graph physical truth or unique GDN benefit"},
-    {"term": "LLM Rule", "historical": "Could include free-form generated logic", "current": "Bounded structured proposal with frozen references", "deprecated": "LLM authors authoritative numbers approves itself or runs online"},
-    {"term": "Rule-only", "historical": "Multiple ARGOS and project-specific rule paths", "current": "D1 execution of frozen COMMON-42 independently from D0 and D2", "deprecated": "Operationally useful or Agentic Rule-only without evidence"},
-    {"term": "OUTER", "historical": "Different reference-track partitions and later HAI held-out authority", "current": "A separately preregistered one-way held-out stage", "deprecated": "Old blocker equals negative performance"},
-    {"term": "Detector complement", "historical": "Directional FN or FP correction concept", "current": "Observed D1 event complementarity distinct from D2 utility", "deprecated": "Complementarity proves improved fusion"},
-    {"term": "segment or localization", "historical": "Possible ARTIST or segment-selection direction", "current": "Source transition target relation horizon and trace localization", "deprecated": "Current method implements learned segment selection or causal localization"},
-    {"term": "attack event", "historical": "Contiguous positive-label runs or task-specific event units", "current": "Official attack scenario is the primary unit; intervals and interventions are secondary descriptions", "deprecated": "Treating every interval or all 146 nominal scenarios as IID"},
-    {"term": "pooled Recall", "historical": "A possible aggregate across panels", "current": "Descriptive only with an explicit non-IID warning", "deprecated": "Primary cross-version scientific result"}
+    {
+      "term": "Faithfulness Verifier",
+      "historical": "User-context explanation-fidelity headline",
+      "current": "Deterministic verifier-admissibility",
+      "deprecated": "Proves faithfulness causality or scientific validity"
+    },
+    {
+      "term": "Agentic",
+      "historical": "Broad proposal repair or review language",
+      "current": "Bounded T2 verifier-feedback construction label",
+      "deprecated": "Autonomous multi-agent or empirically superior feedback"
+    },
+    {
+      "term": "Graph-Guided",
+      "historical": "Graph evidence restricted candidate relationships",
+      "current": "META STAT and GDN multi-source candidate curation",
+      "deprecated": "Causal graph physical truth or unique GDN benefit"
+    },
+    {
+      "term": "LLM Rule",
+      "historical": "Could include free-form generated logic",
+      "current": "Bounded structured proposal with frozen references",
+      "deprecated": "LLM authors authoritative numbers approves itself or runs online"
+    },
+    {
+      "term": "Rule-only",
+      "historical": "Multiple ARGOS and project-specific rule paths",
+      "current": "D1 execution of frozen COMMON-42 independently from D0 and D2",
+      "deprecated": "Operationally useful or Agentic Rule-only without evidence"
+    },
+    {
+      "term": "OUTER",
+      "historical": "Different reference-track partitions and later HAI held-out authority",
+      "current": "A separately preregistered one-way held-out stage",
+      "deprecated": "Old blocker equals negative performance"
+    },
+    {
+      "term": "Detector complement",
+      "historical": "Directional FN or FP correction concept",
+      "current": "Observed D1 event complementarity distinct from D2 utility",
+      "deprecated": "Complementarity proves improved fusion"
+    },
+    {
+      "term": "segment or localization",
+      "historical": "Possible ARTIST or segment-selection direction",
+      "current": "Source transition target relation horizon and trace localization",
+      "deprecated": "Current method implements learned segment selection or causal localization"
+    },
+    {
+      "term": "attack event",
+      "historical": "Contiguous positive-label runs or task-specific event units",
+      "current": "Official attack scenario is the primary unit; intervals and interventions are secondary descriptions",
+      "deprecated": "Treating every interval or all 146 nominal scenarios as IID"
+    },
+    {
+      "term": "pooled Recall",
+      "historical": "A possible aggregate across panels",
+      "current": "Descriptive only with an explicit non-IID warning",
+      "deprecated": "Primary cross-version scientific result"
+    },
+    {
+      "term": "EXP-03 / EXP-03B",
+      "historical": "reference-bound materialization을 Agentic 구성으로 해석",
+      "current": "V1 constrained materialization;EXP-03B evidence induction 준비",
+      "deprecated": "V1으로 direction/horizon induction 또는 Agentic 우월성을 주장"
+    }
   ],
   "confirmation_questions": [
-    {"id": "HIST-Q002", "question": "Which LLMAD papers or method family were reviewed in March to April 2026, and did they trigger a formal decision?", "why": "The repository formalizes ARGOS later but not the broader exploration.", "evidence": "User context only for the broader LLMAD set.", "suggested": "Treat as exploratory context and do not guess paper titles.", "confidence": "LOW"}
+    {
+      "id": "HIST-Q002",
+      "question": "Which LLMAD papers or method family were reviewed in March to April 2026, and did they trigger a formal decision?",
+      "why": "The repository formalizes ARGOS later but not the broader exploration.",
+      "evidence": "User context only for the broader LLMAD set.",
+      "suggested": "Treat as exploratory context and do not guess paper titles.",
+      "confidence": "LOW"
+    }
   ],
-  "dashboard_event_ids": ["EVENT-001", "EVENT-002", "EVENT-003", "EVENT-005", "EVENT-008", "EVENT-009", "EVENT-013", "EVENT-014", "EVENT-020", "EVENT-021", "EVENT-022", "EVENT-025"],
+  "dashboard_event_ids": [
+    "EVENT-001",
+    "EVENT-002",
+    "EVENT-003",
+    "EVENT-005",
+    "EVENT-008",
+    "EVENT-009",
+    "EVENT-013",
+    "EVENT-014",
+    "EVENT-020",
+    "EVENT-021",
+    "EVENT-022",
+    "EVENT-025"
+  ],
   "current_method_inheritance": {
     "from_dhag": "구조적 한계를 명시적인 계약으로 다뤄야 한다는 교훈일 가능성만 남았으며, 정확한 계승 관계는 아직 확인되지 않았다.",
     "from_argos": "실행 가능한 규칙, 학습 단계의 제한된 제안·수정, 탐지기 보완, 명시적 no-op, 저비용 결정론적 런타임이라는 아이디어가 남았다.",
@@ -223,5 +442,12 @@
     "from_professor_reframing": "pairwise-first 범위, 독립적인 Rule-only 비교, 좁은 용어 사용, 보수적인 검증 경계가 강화되었다.",
     "current_combination": "여러 후보 근거의 분리·통합, 정상 데이터 전용 시간 관계 프로파일링과 수치 권한, 제한된 규칙 구성, 결정론적 검증, COMMON-42, LLM 없는 런타임, 분리 관리되는 D0·D1·D2 근거가 결합되었다."
   },
-  "safety_counters": {"scientific_executions": 0, "test2_accesses": 0, "private_payload_accesses": 0, "production_changes": 0, "frozen_result_changes": 0, "new_private_exposures": 0}
+  "safety_counters": {
+    "scientific_executions": 0,
+    "test2_accesses": 0,
+    "private_payload_accesses": 0,
+    "production_changes": 0,
+    "frozen_result_changes": 0,
+    "new_private_exposures": 0
+  }
 }

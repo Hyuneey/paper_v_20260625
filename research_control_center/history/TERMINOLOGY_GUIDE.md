@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Historical Terminology Guide
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -15,5 +15,6 @@ Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 | segment or localization | Possible ARTIST or segment-selection direction | Source transition target relation horizon and trace localization | Current method implements learned segment selection or causal localization |
 | attack event | Contiguous positive-label runs or task-specific event units | Official attack scenario is the primary unit; intervals and interventions are secondary descriptions | Treating every interval or all 146 nominal scenarios as IID |
 | pooled Recall | A possible aggregate across panels | Descriptive only with an explicit non-IID warning | Primary cross-version scientific result |
+| EXP-03 / EXP-03B | reference-bound materialization을 Agentic 구성으로 해석 | V1 constrained materialization;EXP-03B evidence induction 준비 | V1으로 direction/horizon induction 또는 Agentic 우월성을 주장 |
 
 Historical documents remain untouched. This guide controls current-facing interpretation.

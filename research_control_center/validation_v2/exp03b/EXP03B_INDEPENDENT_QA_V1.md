@@ -1,3 +1,18 @@
+# EXP03B-BIND-001 현재 독립 QA
+
+판정: 구현·정상 preparation PASS. 상태 PREPARED_DG03B_PENDING. Provider 실행 또는 Agentic 결과 PASS가 아닙니다.
+
+- Agent temporal: SCI01 event/threshold 역할 검토. Agent numeric:37옵션·split-purity 및 independent synthetic oracle222/222 exact match.
+- Agent custody:6개 split-pure GDN checkpoint 경로/authority 확인; coordinator가 byte/state 재생 및 fixed inference 수행.
+- Independent guard QA:raw/admitted·strict metrics·call replay·hidden evaluation 코드 검토 PASS_WITH_SCOPE. Private payload는 agent가 읽지 않았습니다.
+- QA가 발견한 request/response swap·resumed probe-only·horizon metric·preferred tuple 누락은 provider 호출 전에 수정하고 regression을 추가했습니다. pre-I/O evidence 및 결과는 재실행하지 않았습니다.
+- Focused70 PASS. Validation V2 458 PASS (기존 optional dependency14 skip). RCC/UI는 release receipt의 통합 결과를 참조합니다.
+- Coordinator 최종재생:private215 hashes,implementation31 hashes,PILOT3021/3021,protected V2 149/149 PASS. Private vault215 records 복구/read smoke PASS;SINGLE_COPY_LOCAL_ONLY.
+- Provider0,credential0,capability probe0,test1/2/heldout/externalattack/labels0. Train1/2 정상 evidence 생성과 train4 identity 준비는 승인된 실제 normal-only read이며 synthetic-only라고 부르지 않습니다. train3 feature값은 열지 않고 기존 reference만 재생했습니다.
+- Shared scientific writer:Coordinator1, agent writes0, conflicts0. Formal V4 conversion은 descriptor/numeric validity를 검사하지만 production/heldout runtime권한은 생성하지 않습니다.
+
+## 이전 EXP03B-PREP-001 감사 — 역사적 보존
+
 # EXP03B-PREP-001 독립 QA — 제한된 사전 감사
 
 판정: `BOUNDED_PREFLIGHT_QA_PASS`.

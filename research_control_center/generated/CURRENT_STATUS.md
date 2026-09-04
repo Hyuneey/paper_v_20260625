@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-04 — 최종 제목·Agentic 기여 표현 결정. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B). DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,7 +32,7 @@ Registry snapshot: `2026-09-03T17:08:57Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다. V2 개발 결과는 보존하며 DG-04에서 제목·기여 표현 결정을 기다린다.
+EXP-03B SCI-01~04 binding과 정상 전용 evidence 준비 완료. Provider 호출 0회이며 DG-03B 별도 승인 대기. EXP-03 V1은 constrained Rule materialization 결과로 보존하고 DG-04는 EXP-03B 이후로 연기합니다.
 
 ## 상태를 읽는 방법
 
@@ -143,6 +143,7 @@ EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback�
 | EXP-H23-HOLDOUT | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
 | EXP-H22-XVER | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
 | EXP-H21-XVER | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
+| EXP-03B | PREPARED_DG03B_PENDING | 준비 결과이며 Agentic 성능 결과 아님 |
 
 ## 공식 연구 주장
 
@@ -164,6 +165,7 @@ EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback�
 | CLAIM-L | 미검증 (UNVALIDATED) | trace 기반 interface는 있으나 사람에게 유용한지는 평가하지 않았다. |
 | CLAIM-M | 현재 근거로 지원되지 않음 | 현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다. |
 | CLAIM-N | 미검증 (UNVALIDATED) | A version-separated preregistered evaluation plan exists; no new attack panel result exists. |
+| CLAIM-EXP03B-PREP | 구현 근거로 지원됨 | 정상 evidence-to-rule 실험 준비;DG-03B 대기 |
 
 ## 연구 상태의 서로 다른 차원
 
@@ -187,4 +189,4 @@ EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback�
 
 ## 정확한 다음 작업
 
-**DG-04 — 최종 제목·Agentic 기여 표현 결정**
+**DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**

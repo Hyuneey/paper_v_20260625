@@ -6,6 +6,7 @@ RCC=ROOT/'research_control_center';REG=RCC/'registry';PUB=RCC/'validation_v2/exp
 def write(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 def append_csv(name,row):
     if name=='artifacts' and row.get('artifact_id')=='ART-EXP03B-PREP':row['safe_path']='research_control_center/validation_v2/exp03b/EXP03B_FINAL_PREPARATION_FREEZE_V2.json'
+    if name=='claims' and row.get('claim_id')=='CLAIM-EXP03B-PREP':row['contradicting_evidence']='artifact:ART-EXP03-LIVE-RESULT'
     path=REG/(name+'.csv')
     with path.open(encoding='utf-8-sig',newline='') as f:reader=csv.DictReader(f);fields=reader.fieldnames;rows=list(reader)
     key=fields[0]
@@ -14,6 +15,10 @@ def append_csv(name,row):
 def prepend(path,text):
     old=path.read_text(encoding='utf-8');path.write_text(text.strip()+'\n\n## 이전 기록 — 역사적 보존\n\n'+old,encoding='utf-8',newline='\n')
 def main():
+    for name,identity in (('decisions','DEC-024'),('experiments','EXP-03B')):
+        with (REG/(name+'.csv')).open(encoding='utf-8',newline='') as f:
+            reader=csv.DictReader(f);key=reader.fieldnames[0]
+            if any(r[key]==identity for r in reader):raise ValueError('RECORDS_ALREADY_SYNCHRONIZED_NO_MUTATION')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     state=json.loads((REG/'current_state.yaml').read_text(encoding='utf-8'))
     budget=json.loads((PUB/'EXP03B_PROVIDER_BUDGET_V1.json').read_text())
@@ -26,13 +31,16 @@ def main():
     state['top_user_todo']=['DG-03B: 고정 snapshot·609회·최대 81,621,225 tokens·USD 65.90 예산과 aggregate 전송 검토','DG-04는 EXP-03B 결과 이후 결정','DG-05 공격 접근 및 DG-06 실제 제출은 별도 승인']
     write(REG/'current_state.yaml',state)
     history=json.loads((REG/'history.yaml').read_text(encoding='utf-8'))
+    history['superseded_directions']=[r for r in history['superseded_directions'] if r['direction']!='EXP-03 V1을 evidence induction으로 해석']
+    history['terminology']=[r for r in history['terminology'] if r['term']!='EXP-03 / EXP-03B']
     history['superseded_directions'].append({'direction':'EXP-03 V1을 evidence induction으로 해석','period':'2026-09-04','why_explored':'T0/T1/T1-B/T2 구성 비교','why_reduced':'정답 방향·horizon·numeric reference가 입력에 포함','survived':'constrained Rule materialization 결과·feedback0 보존','replacement':'EXP-03B 정상 evidence-to-rule induction','status':'SUPERSEDED','current_claim':False})
     history['terminology'].append({'term':'EXP-03 / EXP-03B','historical':'reference-bound materialization을 Agentic 구성으로 해석','current':'V1 constrained materialization;EXP-03B evidence induction 준비','deprecated':'V1으로 direction/horizon induction 또는 Agentic 우월성을 주장'})
     write(REG/'history.yaml',history)
     program=json.loads((RCC/'validation_v2/PROGRAM_STATE.json').read_text(encoding='utf-8'))
     program['current_stage']='EXP03B_PREPARED_DG03B_PENDING';program['program_status']='PREPARED_DG03B_PENDING';program['exp03b_preparation']=status
     program['decision_gates']['DG-04']='DEFERRED_UNTIL_EXP03B';program['decision_gates']['DG-03B']='USER_DECISION_REQUIRED'
-    program['experiments']['EXP-03B']='PREPARED_DG03B_PENDING'
+    program['experiment_status']['EXP-03B']='PREPARED_DG03B_PENDING'
+    program['exact_next_task']='DG-03B — EXP-03B Provider Execution Decision'
     write(RCC/'validation_v2/PROGRAM_STATE.json',program)
     source={'scientific_source_ref':'validation-v2-exp03b-prep-001','scientific_source_commit':commit}
     append_csv('experiments',{'experiment_id':'EXP-03B','name':'Agentic evidence-to-rule induction','research_question':'train1 evidence에서 규칙 구조를 추론하고 bounded feedback으로 개선하는가','comparison':'T0;T1;T1-B;T2','dataset_scope':'HAI23.05 정상 train1/2/3/4; 공격 금지','status':'PREPARED_DG03B_PENDING','current_evidence':'SCI-01~04 승인;29 pair split-pure evidence;synthetic QA PASS;provider0','result_scope':'준비 결과이며 Agentic 성능 결과 아님','primary_metrics':'strict full-cohort F1;semantic exact set;directional F1;train4 burden','limitations':'single-copy private custody;새 provider 승인 필요','next_action':'DG-03B','claim_impact':'DG-04 연기;Agentic 미검증',**source,'linked_component_ids':'T2_AGENTIC_FEEDBACK;RESULT_INTEGRITY','artifact_refs':'ART-EXP03B-PREP'})

@@ -1,3 +1,9 @@
+# DEC-024 현재 disposition
+
+SCI-01~04는 EXP03B-BIND-001 사용자 지시로 승인됐습니다. 준비 완료: PREPARED_DG03B_PENDING. 중앙 Registry 승격. DG-04 DEFERRED_UNTIL_EXP03B. 아래 미정 binding 감사는 역사적 기록입니다.
+
+## 이전 기록 — 역사적 보존
+
 # DEC-024 — DEFER_DG04_AND_RUN_EXP03B_CONSTRUCT_VALIDITY_CORRECTION
 
 기록 범위: 사용자 승인 방향의 task-local 결정 기록. 전체 준비 완료 전 중앙 Registry 승격은 보류한다.

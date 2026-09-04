@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
     "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
     "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
     "validation-v2-core-exp02": {"9cb47e0efb868048d4a523ec4cfaca53bd342ab7"},
@@ -97,6 +98,7 @@ STATUS_ENUMS = {
         "RESEARCH_ONLY", "DESIGN_ONLY", "PARTIAL", "BLOCKED", "LEGACY_OR_SUPERSEDED", "UNKNOWN",
     },
     "experiments": {
+        "PREPARED_DG03B_PENDING",
         "NOT_STARTED", "DESIGN_ONLY", "IMPLEMENTED_NOT_EXECUTED", "EXECUTED_NOT_AUDITED",
         "EXECUTED_AUDITED_PILOT", "EXECUTED_AUDITED_DEVELOPMENT", "BLOCKED", "SUPERSEDED", "UNKNOWN",
     },
@@ -363,7 +365,9 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain the three current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
     result.require(state.get("last_completed_task") == "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "DG-04 — 최종 제목·Agentic 기여 표현 결정", "exact next task mismatch")
+    result.require(state.get("exact_next_task") == "DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", "exact next task mismatch")
+    prep=state.get('exp03b_preparation',{})
+    result.require(prep.get('status')=='PREPARED_DG03B_PENDING' and prep.get('provider_calls')==0 and prep.get('DG04')=='DEFERRED_UNTIL_EXP03B','EXP03B preparation gate mismatch')
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -376,8 +380,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "DG-04 — 최종 제목·Agentic 기여 표현 결정", "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
+    result.require(state.get("recommended_next_management_task") == state.get('exact_next_task'), "next management task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04", "next architecture task mismatch")
     expansion = state.get("evaluation_expansion", {})
     result.require(expansion.get("decision_id") == "DEC-022", "evaluation expansion decision is missing")
     result.require(expansion.get("nominal_non_development_scenarios") == 146, "evaluation expansion nominal count mismatch")
@@ -657,7 +661,7 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
 
 def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
     history = data["history"]
-    result.require(15 <= len(data["timeline"]) <= 33, "timeline must contain 15 to 33 meaningful events")
+    result.require(15 <= len(data["timeline"]) <= 34, "timeline must contain 15 to 34 meaningful events")
     result.require(10 <= len(data["decisions"]) <= 25, "decision registry must contain 10 to 25 meaningful decisions")
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
     result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")

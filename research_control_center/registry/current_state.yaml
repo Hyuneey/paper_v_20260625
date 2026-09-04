@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다. V2 개발 결과는 보존하며 DG-04에서 제목·기여 표현 결정을 기다린다.",
+  "current_phase_statement": "EXP-03B SCI-01~04 binding과 정상 전용 evidence 준비 완료. Provider 호출 0회이며 DG-03B 별도 승인 대기. EXP-03 V1은 constrained Rule materialization 결과로 보존하고 DG-04는 EXP-03B 이후로 연기합니다.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -742,14 +742,14 @@
     "provider_calls": 0
   },
   "top_priorities": [
-    "DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
+    "DG-03B — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD65.90. DG-04는 EXP03B 이후로 연기.",
     "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
-    "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다."
+    "DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다."
   ],
   "highest_priority_work": [
-    "DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
+    "DG-03B — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD65.90. DG-04는 EXP03B 이후로 연기.",
     "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
-    "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다."
+    "DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다."
   ],
   "user_todo_items": [
     {
@@ -783,9 +783,9 @@
       "id": "USER-V2-004",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "DG-04 — 최종 제목·Agentic 기여 표현 결정",
-      "why": "자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
-      "linked": "research_control_center/validation_v2/exp03/execution_v1/DG04_CONTRIBUTION_DECISION_BRIEF_V1.md",
+      "task": "DG-03B — EXP-03B 신규 provider 예산·전송 승인",
+      "why": "정상 evidence 준비 완료;최대609회·USD65.90. DG-04는 EXP-03B 결과 뒤로 연기합니다.",
+      "linked": "research_control_center/validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V1.md",
       "status": "OPEN"
     },
     {
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
-    "다중 HAI plan은 승인됐지만 실제 P1 denominator와 공격 결과는 아직 없음을 확인한다.",
-    "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 별도로 검토한다."
+    "DG-03B: 고정 snapshot·609회·최대 81,621,225 tokens·USD 65.90 예산과 aggregate 전송 검토",
+    "DG-04는 EXP-03B 결과 이후 결정",
+    "DG-05 공격 접근 및 DG-06 실제 제출은 별도 승인"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-04 — 최종 제목·Agentic 기여 표현 결정",
-  "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
+  "recommended_next_management_task": "DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)",
+  "recommended_next_architecture_task": "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04",
   "last_completed_task": "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료",
-  "exact_next_task": "DG-04 — 최종 제목·Agentic 기여 표현 결정",
+  "exact_next_task": "DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)",
   "safety_counters": {
     "scientific_executions": 4,
     "test2_feature_accesses": 0,
@@ -1030,5 +1030,20 @@
     "qa_hash": "b47f9170557b1b89646c6ba9c4b5c0f8cbbefb174cffe183beaac1c58b26c06d",
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
-  }
+  },
+  "exp03b_preparation": {
+    "status": "PREPARED_DG03B_PENDING",
+    "classification": "AGENTIC_EVIDENCE_TO_RULE_INDUCTION",
+    "cohort_count": 29,
+    "options": 37,
+    "provider_calls": 0,
+    "model_snapshot": "gpt-5.4-mini-2026-03-17",
+    "maximum_calls": 609,
+    "maximum_total_tokens": 81621225,
+    "cost_ceiling_usd": "65.90",
+    "next_gate": "DG-03B",
+    "DG04": "DEFERRED_UNTIL_EXP03B",
+    "source_commit": "ca78664d03464b81f56cf42c169c24f1153e69c9"
+  },
+  "exp03_v1_construct_classification": "CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK"
 }
