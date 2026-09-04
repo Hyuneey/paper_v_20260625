@@ -20,7 +20,7 @@ from paperworks.validation_v2.exp01c_backend_v1 import (_model_type_v1,_set_dete
 from paperworks.validation_v2.gdn_corr_v1 import purged_contiguous_validation_plan_v1
 from paperworks.validation_v2.xver_gdn_execution_v1 import train_exp01c_seed_v1,infer_global,auxiliary_events,validate_checkpoint
 
-CONTRACT=PUB/'GDN_EXECUTION_AUTHORITY_V1.json'
+CONTRACT=PUB/'GDN_EXECUTION_AUTHORITY_V2.json'
 IMPLEMENTATION=('scripts/run_xver_gdn_execution_v1.py','scripts/xver_execution_common.py',
     'scripts/replay_xver_execution_inputs_v1.py','src/paperworks/validation_v2/xver_gdn_execution_v1.py',
     'src/paperworks/validation_v2/xver_gdn_roles_v1.py','src/paperworks/validation_v2/xver_gdn_provider_v1.py',
@@ -28,7 +28,9 @@ IMPLEMENTATION=('scripts/run_xver_gdn_execution_v1.py','scripts/xver_execution_c
     'src/paperworks/validation_v2/gdn_corr_v1.py','src/paperworks/validation_v2/exp03b_gdn_v1.py',
     'src/paperworks/validation_v2/exp01b_backend_v1.py','src/paperworks/validation_v2/exp01b_functional_v1.py',
     'src/paperworks/validation_v2/exp02_bindings_v2a.py','src/paperworks/v6/continuous_step_protocol_v1.py',
-    'src/paperworks/validation_v2/exp03b_numeric_v1.py')
+    'src/paperworks/validation_v2/exp03b_numeric_v1.py',
+    'src/paperworks/gdn/upstream_candidate_backend_v1.py',
+    'src/paperworks/gdn/upstream_candidate_backend_v2.py','src/paperworks/v6/common.py')
 
 
 def environment():
@@ -40,6 +42,7 @@ def environment():
         'CUDA_build':torch.version.cuda,'GPU':torch.cuda.get_device_name(0),'driver':driver,
         'dtype':config.dtype,'device':config.device,'deterministic_algorithms':torch.are_deterministic_algorithms_enabled(),
         'cudnn_deterministic':torch.backends.cudnn.deterministic,'cudnn_benchmark':torch.backends.cudnn.benchmark,
+        'matmul_tf32':torch.backends.cuda.matmul.allow_tf32,'cudnn_tf32':torch.backends.cudnn.allow_tf32,
         'cublas_workspace_config':os.environ.get('CUBLAS_WORKSPACE_CONFIG'),'pythonhashseed':os.environ.get('PYTHONHASHSEED')}
 
 
@@ -54,7 +57,8 @@ def freeze():
         versions[version]={'context_hash':context['self_hash'],'context_order':context['context_order'],
             'candidate_hash':candidate['self_hash'],'N':len(pairs),'source_universe':roles['sources'],
             'projection_bundle_hash':projections['self_hash']}
-    value=seal({'schema':'xver_gdn_execution_authority_v1','status':'FROZEN_BEFORE_PREFLIGHT_AND_RUN1',
+    value=seal({'schema':'xver_gdn_execution_authority_v2','status':'FROZEN_BEFORE_PREFLIGHT_AND_RUN1',
+        'supersedes_engineering_custody_only':'GDN_EXECUTION_AUTHORITY_V1.json',
         'source_commit':head(),'implementation_hashes':hashes,'environment':env,'environment_hash':digest(env),
         'binding_hash':document(PUB/'GDN_SEPARATED_EVIDENCE_BINDING_V1.json')['self_hash'],
         'configuration':config.to_dict(),'configuration_hash':config.config_hash,'versions':versions,
@@ -72,7 +76,13 @@ def replay_execution():
         require(sha256_file(ROOT/path)==h,'EXECUTION_CODE_CHANGED');committed(ROOT/path)
     require(environment()==authority['environment'],'EXECUTION_ENVIRONMENT_CHANGED')
     require(document(PUB/'GDN_SEPARATED_EVIDENCE_BINDING_V1.json')['self_hash']==authority['binding_hash'],'BINDING_CHANGED')
+    for version,bound in authority['versions'].items():
+        validate_projection_freeze(document(PUB/f'HAI{version[:2]}_GDN_CONTEXT_PROJECTION_RECEIPT_V1.json'),bound)
     return authority
+
+
+def validate_projection_freeze(bundle,bound):
+    require(bundle['self_hash']==bound['projection_bundle_hash'],'FROZEN_PROJECTION_BUNDLE')
 
 
 def identity_for(authority,version,split,seed,matrix,order,receipt,scope):
@@ -141,7 +151,7 @@ def run_one(version,split,seed,preflight=False):
     authority=replay_execution()
     require({'version':version,'split':split,'seed':seed} in authority['schedule'],'RUN_SCHEDULE')
     if not preflight:
-        pre=document(PUB/f'HAI{version[:2]}_GDN_PREFLIGHT_RECEIPT_V1.json')
+        pre=document(PUB/f'HAI{version[:2]}_GDN_PREFLIGHT_RECEIPT_V2.json')
         require(pre['status']=='PASS' and pre['authority_hash']==authority['self_hash'],'PREFLIGHT_REQUIRED')
     started=time.perf_counter();matrix,order,receipt=load_projection(version,split,context=True)
     if preflight:matrix=matrix[:authority['preflight_rows']].copy()
@@ -150,7 +160,7 @@ def run_one(version,split,seed,preflight=False):
     directory=private_root()/('preflight' if preflight else 'runs')/digest(identity)
     directory.mkdir(parents=True,exist_ok=True)
     publish(directory/'identity.json',seal(identity))
-    public_result=PUB/f'HAI{version[:2]}_GDN_PREFLIGHT_RECEIPT_V1.json' if preflight else PUB/'runs'/f'HAI{version[:2]}_{split.upper()}_SEED{seed}_RECEIPT_V1.json'
+    public_result=PUB/f'HAI{version[:2]}_GDN_PREFLIGHT_RECEIPT_V2.json' if preflight else PUB/'runs'/f'HAI{version[:2]}_{split.upper()}_SEED{seed}_RECEIPT_V1.json'
     if public_result.exists():
         result=document(public_result)
         require(result['run_identity_hash']==digest(identity) and result['authority_hash']==authority['self_hash'],'COMPLETED_RUN_IDENTITY')
@@ -217,7 +227,7 @@ def run_one(version,split,seed,preflight=False):
             'window_reference_equivalence':True,'global_kernel_AST_equivalence':True,'global_auxiliary_fused':False,
             'provider_calls':0,'credential_reads':0,'attack_accesses':0,'excluded_label_values_parsed':False})
         publish(directory/f'attempt_{attempt}_complete.json',result)
-        if preflight:publish(PUB/f'HAI{version[:2]}_GDN_PREFLIGHT_RECEIPT_V1.json',result)
+        if preflight:publish(PUB/f'HAI{version[:2]}_GDN_PREFLIGHT_RECEIPT_V2.json',result)
         else:publish(PUB/'runs'/f'HAI{version[:2]}_{split.upper()}_SEED{seed}_RECEIPT_V1.json',result)
         print(json.dumps({'phase':scope,'status':'PASS','version':version,'split':split,'seed':seed,'wall_seconds':elapsed}),flush=True)
     except Exception as error:

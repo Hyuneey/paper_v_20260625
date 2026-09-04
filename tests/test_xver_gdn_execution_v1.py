@@ -61,5 +61,11 @@ class ExecutionAdapterTests(unittest.TestCase):
         for token in ('openai','load_checkpoint','normal_capability','fit_and_confirm_arbitrary_union','train3','train4'):
             self.assertNotIn(token,source)
 
+    def test_resealed_projection_cannot_replace_frozen_input(self):
+        from run_xver_gdn_execution_v1 import validate_projection_freeze
+        validate_projection_freeze({'self_hash':'a'*64},{'projection_bundle_hash':'a'*64})
+        with self.assertRaisesRegex(ValueError,'FROZEN_PROJECTION_BUNDLE'):
+            validate_projection_freeze({'self_hash':'b'*64},{'projection_bundle_hash':'a'*64})
+
 
 if __name__=='__main__':unittest.main()
