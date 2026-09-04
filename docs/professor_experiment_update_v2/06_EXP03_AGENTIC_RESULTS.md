@@ -1,3 +1,13 @@
+# EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
+
+상태 PREPARED_DG03B_REVISED_PENDING. EXP-03B는 RULE_SET/NO_RULE·source/target direction·horizon만 추론합니다. numeric option은 provider에서 제거했고 모든 출력·train2 admission·train3 평가가 frozen된 뒤 고정 EXP02 policy를 SCI02B로 결속합니다. 기존 SCI01/04와 disposition 기준은 유지합니다.
+29 pair, 20 structural rows(+5 GDN horizon rows/STAT), numeric rows740→0. 고정 gpt-5.4-mini-2026-03-17; 최대 609 calls, input 7,216,128, output 1,247,232, total 8,463,360, USD 11.03. 기존80,373,993 input/USD65.90은 historical superseded이며 새 승인으로 사용하지 않습니다.
+DG-03B_REVISED 별도 승인 전 provider/credential/probe0. DG-04는 EXP03B 이후입니다. EXP03V1·V2A39·EXP04/05·PILOT 불변; test1/2/heldout/외부공격 접근 없음. Private vault는 SINGLE_COPY_LOCAL_ONLY. 최신 지침: validation_v2/exp03b/EXP03B_PROVIDER_EXECUTION_INSTRUCTION_V2.md.
+
+이 내용은 준비 계약 수정이며 새로운 과학 성능 결과가 아닙니다. 교수님에게 제출하지 않았습니다.
+
+## 이전 기록 — 역사적 보존·현재 승인값 아님
+
 # EXP-03B construct-validity 보정 — 준비 완료
 
 EXP-03 V1은 고정 방향·horizon·numeric reference를 Formal V4 envelope로 만드는 CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK입니다. feedback 0 결과와 모든 수치는 그대로 보존합니다. evidence-to-rule induction 또는 Agentic 우월성을 검증한 결과가 아닙니다.

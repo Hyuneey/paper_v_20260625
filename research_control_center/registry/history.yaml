@@ -341,6 +341,16 @@
       "replacement": "EXP-03B 정상 evidence-to-rule induction",
       "status": "SUPERSEDED",
       "current_claim": false
+    },
+    {
+      "direction": "EXP-03B provider numeric option selection",
+      "period": "2026-09-04",
+      "why_explored": "의미적 구조와 NUM option을 함께 추론",
+      "why_reduced": "740행/pair 및80M input ceiling은 주 Agentic construct에 불필요",
+      "survived": "SCI01/04·cohort29·split-pure evidence·기존 V1 계약과 기록",
+      "replacement": "의미적 구조 추론 후 SCI02B fixed numeric binding",
+      "status": "SUPERSEDED",
+      "current_claim": false
     }
   ],
   "terminology": [
@@ -409,6 +419,12 @@
       "historical": "reference-bound materialization을 Agentic 구성으로 해석",
       "current": "V1 constrained materialization;EXP-03B evidence induction 준비",
       "deprecated": "V1으로 direction/horizon induction 또는 Agentic 우월성을 주장"
+    },
+    {
+      "term": "EXP-03B semantic induction / SCI02B",
+      "historical": "provider NUM selection 포함",
+      "current": "provider는 의미적 Rule Set만 추론; 수치는 hidden confirmation 뒤 deterministic binding",
+      "deprecated": "provider가 executable numeric policy를 선택한다"
     }
   ],
   "confirmation_questions": [

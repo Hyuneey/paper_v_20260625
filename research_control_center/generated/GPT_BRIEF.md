@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B). DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B). DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -34,7 +34,7 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 ## Current phase
 
-**EVALUATION_SCOPE_EXPANSION** — EXP-03B SCI-01~04 binding과 정상 전용 evidence 준비 완료. Provider 호출 0회이며 DG-03B 별도 승인 대기. EXP-03 V1은 constrained Rule materialization 결과로 보존하고 DG-04는 EXP-03B 이후로 연기합니다.
+**EVALUATION_SCOPE_EXPANSION** — EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선택을 제거하고 SCI02B로 후결속합니다. 기존 결과는 그대로 보존. DG-03B_REVISED 신규 승인 전 provider0, DG-04는 EXP03B 이후입니다.
 
 ## How to read RCC status
 
@@ -59,7 +59,7 @@ The frozen 14-scenario test1 result remains DEVELOPMENT_ONLY and will not be reo
 The prospective panels are HAI 23.05 test2 as PRIMARY_HELDOUT and HAI 22.04 plus
 HAI 21.03 as version-separated external replications. Their 146 nominal scenarios are
 not IID and one pooled Recall is prohibited as the primary result. DG-05 is mandatory
-before any new attack payload or label access. Current next gate: DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B).
+before any new attack payload or label access. Current next gate: DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B).
 
 ## Candidate-discovery boundary
 
@@ -140,22 +140,22 @@ observations, not new calculations.
 - **CLAIM-L · UNVALIDATED** — A trace-grounded explanation interface is implemented; human usefulness has not been evaluated.
 - **CLAIM-M · NOT_SUPPORTED** — The system records bounded temporal relation evidence and trace-grounded violations without causal attribution.
 - **CLAIM-N · UNVALIDATED** — A version-separated preregistered evaluation plan exists; no new attack panel result exists.
-- **CLAIM-EXP03B-PREP · SUPPORTED_IMPLEMENTATION** — 정상 evidence-to-rule 실험 준비;DG-03B 대기
+- **CLAIM-EXP03B-PREP · SUPPORTED_IMPLEMENTATION** — 의미적 evidence-to-rule 준비; DG-03B_REVISED 대기
 
 ## Current execution gates
 
 EXP-03 V1: COMPLETE_QA_PASS — constrained Rule materialization, not evidence-to-rule induction.
-EXP-03B: PREPARED_DG03B_PENDING. DG-03B 별도 승인 전 provider 0회. DG-04는 EXP-03B 이후로 연기합니다. All new attack panels await DG-05;
+EXP-03B: PREPARED_DG03B_REVISED_PENDING. 의미적 구조20행·numeric provider0·SCI02B 후결속. DG-03B_REVISED 별도 승인 전 provider0. DG-04는 EXP-03B 이후입니다. All new attack panels await DG-05;
 professor submission awaits DG-06. Cross-version P1 compatibility remains unresolved.
 
 ## Top user TODO
 
-- DG-03B: 고정 snapshot·609회·최대 81,621,225 tokens·USD 65.90 예산과 aggregate 전송 검토
-- DG-04는 EXP-03B 결과 이후 결정
-- DG-05 공격 접근 및 DG-06 실제 제출은 별도 승인
+- DG-03B_REVISED: 고정 snapshot·609회·최대 8,463,360 tokens·USD 11.03 승인 검토
+- DG-04는 EXP-03B 의미적 추론 결과 이후 결정
+- DG-05 공격 접근 및 DG-06 실제 제출 별도 승인
 
 ## Exact next task
 
-Management: **DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**
+Management: **DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**
 
 Following architecture review: **EXP-03B 승인 후 실행·독립 QA; 이후 DG-04**

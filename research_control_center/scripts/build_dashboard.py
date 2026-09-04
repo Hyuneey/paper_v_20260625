@@ -1290,7 +1290,7 @@ observations, not new calculations.
 ## Current execution gates
 
 EXP-03 V1: {state.get('exp03_execution', {}).get('status', 'PREPARED_PROVIDER_GATED')} — constrained Rule materialization, not evidence-to-rule induction.
-EXP-03B: {state.get('exp03b_preparation', {}).get('status', 'NOT_PREPARED')}. DG-03B 별도 승인 전 provider 0회. DG-04는 EXP-03B 이후로 연기합니다. All new attack panels await DG-05;
+EXP-03B: {state.get('exp03b_preparation', {}).get('status', 'NOT_PREPARED')}. 의미적 구조20행·numeric provider0·SCI02B 후결속. DG-03B_REVISED 별도 승인 전 provider0. DG-04는 EXP-03B 이후입니다. All new attack panels await DG-05;
 professor submission awaits DG-06. Cross-version P1 compatibility remains unresolved.
 
 ## Top user TODO
@@ -2479,7 +2479,8 @@ def render_decision_inbox(data: Mapping[str, Any], digest: str) -> str:
         for row in unresolved
     ) or "현재 미결정 사용자 항목은 없다. RCC-000의 결정 001·002는 `registry/decisions.csv`에서 승인 상태를 유지한다."
     if state.get('exp03b_preparation'):
-        body='## DG-03B — EXP-03B provider 실행 승인 필요\n\n상태 USER_DECISION_REQUIRED. 최대609회 / 81,621,225 tokens / USD65.90. 승인 snapshot gpt-5.4-mini-2026-03-17. 현재 provider0이며 기존 DG-03 승인은 상속하지 않습니다.\n\n[정확한 예산·privacy brief](validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V1.md)\n\nDEC-024 SCI-01~04 과학 결정은 승인 완료이지만 이 별도 provider 예산은 미승인입니다. DG-04는 EXP03B 이후로 연기합니다.'
+        p=state['exp03b_preparation']
+        body=f"## {p['next_gate']} — EXP-03B 의미적 추론 provider 승인 필요\n\nUSER_DECISION_REQUIRED. 최대{p['maximum_calls']}회 / {p['maximum_total_tokens']:,} tokens / USD{p['cost_ceiling_usd']}. 고정 snapshot {p['model_snapshot']}. Provider numeric option은 제거했고 SCI02B에서 후결속합니다. 현재 호출0이며 이전 승인·예산은 상속하지 않습니다.\n\n[정확한 예산·privacy brief](validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md)\n\nDEC-024 Amendment2 과학 단순화는 승인 완료지만 이 별도 provider 예산은 미승인입니다. DG-04는 EXP03B 이후입니다."
     return f"""{_markdown_marker(state, digest)}
 # 결정이 필요한 사항
 
@@ -2902,7 +2903,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
     paths: list[Path] = []
     for name, payload in outputs.items():
         if name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data['state'].get('exp03b_preparation'):
-            payload += '\n## 현재 provider Gate\n\nEXP-03B PREPARED_DG03B_PENDING. DG-03B 별도 승인 전 provider 호출 0. EXP-03 V1은 constrained materialization 결과로 보존하며 DG-04는 EXP-03B 이후로 연기합니다. DG-05/06 미승인.\n'
+            payload += '\n## 현재 provider Gate\n\nEXP-03B PREPARED_DG03B_REVISED_PENDING. DG-03B_REVISED 승인 전 provider0. 의미적 추론 뒤 SCI02B 결정론적 수치 결속. EXP-03 V1은 constrained materialization으로 보존하며 DG-04는 EXP-03B 이후입니다. DG-05/06 미승인.\n'
         elif name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data["state"].get("exp03_execution"):
             payload += "\n## 현재 provider Gate\n\nDG-03은 고정 snapshot으로 승인·실행되었으며 EXP-03 독립 QA가 완료되었습니다. 현재는 DG-04 제목·기여 결정 대기입니다. DG-05 공격 접근과 DG-06 제출은 승인되지 않았습니다.\n"
         path = generated / name

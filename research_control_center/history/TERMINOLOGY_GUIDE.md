@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Historical Terminology Guide
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -16,5 +16,6 @@ Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 | attack event | Contiguous positive-label runs or task-specific event units | Official attack scenario is the primary unit; intervals and interventions are secondary descriptions | Treating every interval or all 146 nominal scenarios as IID |
 | pooled Recall | A possible aggregate across panels | Descriptive only with an explicit non-IID warning | Primary cross-version scientific result |
 | EXP-03 / EXP-03B | reference-bound materialization을 Agentic 구성으로 해석 | V1 constrained materialization;EXP-03B evidence induction 준비 | V1으로 direction/horizon induction 또는 Agentic 우월성을 주장 |
+| EXP-03B semantic induction / SCI02B | provider NUM selection 포함 | provider는 의미적 Rule Set만 추론; 수치는 hidden confirmation 뒤 deterministic binding | provider가 executable numeric policy를 선택한다 |
 
 Historical documents remain untouched. This guide controls current-facing interpretation.

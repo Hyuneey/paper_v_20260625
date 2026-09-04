@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "EXP03B_PREPARED_DG03B_PENDING",
-  "program_status": "PREPARED_DG03B_PENDING",
+  "current_stage": "EXP03B_SEMANTIC_PREPARED_DG03B_REVISED_PENDING",
+  "program_status": "PREPARED_DG03B_REVISED_PENDING",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -28,10 +28,11 @@
     "DG-04": "DEFERRED_UNTIL_EXP03B",
     "DG-05": "PENDING_MANDATORY",
     "DG-06": "PENDING",
-    "DG-03B": "USER_DECISION_REQUIRED"
+    "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
+    "DG-03B_REVISED": "USER_DECISION_REQUIRED"
   },
   "experiment_status": {
-    "EXP-03B": "PREPARED_DG03B_PENDING",
+    "EXP-03B": "PREPARED_DG03B_REVISED_PENDING",
     "EXP-01": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
     "EXP-01B": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
     "EXP-02": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
@@ -390,19 +391,26 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-03B — EXP-03B Provider Execution Decision",
+  "exact_next_task": "DG-03B_REVISED — EXP-03B Provider Execution Decision",
   "exp03b_preparation": {
-    "status": "PREPARED_DG03B_PENDING",
-    "classification": "AGENTIC_EVIDENCE_TO_RULE_INDUCTION",
+    "status": "PREPARED_DG03B_REVISED_PENDING",
+    "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
     "cohort_count": 29,
-    "options": 37,
+    "structural_rows_per_pair": 20,
+    "provider_numeric_rows": 0,
+    "numeric_provider_visible": false,
     "provider_calls": 0,
     "model_snapshot": "gpt-5.4-mini-2026-03-17",
     "maximum_calls": 609,
-    "maximum_total_tokens": 81621225,
-    "cost_ceiling_usd": "65.90",
-    "next_gate": "DG-03B",
+    "maximum_input_tokens": 7216128,
+    "maximum_output_tokens": 1247232,
+    "maximum_total_tokens": 8463360,
+    "cost_ceiling_usd": "11.03",
+    "next_gate": "DG-03B_REVISED",
     "DG04": "DEFERRED_UNTIL_EXP03B",
-    "source_commit": "ca78664d03464b81f56cf42c169c24f1153e69c9"
+    "source_commit": "6b8463f5e420485fca0848d315db8cb7af112117",
+    "budget_hash": "e6731a2fcfc1969287f74217b6cccb05f970673b5684a20493dec535b0ad28b6",
+    "freeze_hash": "bacfd22859bb7014f3604abf4ad81b63586e1a98f21ddb0206b4a8e892f8ab8c",
+    "brief": "research_control_center/validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md"
   }
 }

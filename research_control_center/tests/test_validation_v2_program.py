@@ -20,11 +20,12 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["test1_role"], "DEVELOPMENT_ONLY")
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
-        self.assertEqual(state["program_status"], "PREPARED_DG03B_PENDING")
-        self.assertEqual(state['decision_gates']['DG-03B'],'USER_DECISION_REQUIRED')
+        self.assertEqual(state["program_status"], "PREPARED_DG03B_REVISED_PENDING")
+        self.assertEqual(state['decision_gates']['DG-03B'],'SUPERSEDED_BY_DG03B_REVISED')
+        self.assertEqual(state['decision_gates']['DG-03B_REVISED'],'USER_DECISION_REQUIRED')
         self.assertEqual(state['decision_gates']['DG-04'],'DEFERRED_UNTIL_EXP03B')
-        self.assertEqual(state['exact_next_task'],'DG-03B — EXP-03B Provider Execution Decision')
-        self.assertEqual(state['experiment_status']['EXP-03B'],'PREPARED_DG03B_PENDING')
+        self.assertEqual(state['exact_next_task'],'DG-03B_REVISED — EXP-03B Provider Execution Decision')
+        self.assertEqual(state['experiment_status']['EXP-03B'],'PREPARED_DG03B_REVISED_PENDING')
         self.assertEqual(
             state["experiment_status"]["EXP-01B"],
             "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",

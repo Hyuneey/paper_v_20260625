@@ -81,6 +81,12 @@ class FrontReportingTests(unittest.TestCase):
         for p in additions:
             self.assertEqual(prep['implementation_hashes'][p],hashlib.sha256((RCC.parent/p).read_bytes()).hexdigest())
             self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',p],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+        revised=json.loads((RCC/'validation_v2/exp03b/EXP03B_SEMANTIC_PREPARATION_FREEZE_V2.json').read_text())
+        for p,h in revised['implementation_hashes'].items():
+            if p.startswith('src/paperworks/validation_v2/exp03b_'):
+                self.assertEqual(h,hashlib.sha256((RCC.parent/p).read_bytes()).hexdigest())
+                self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',p],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+                additions.add(p)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

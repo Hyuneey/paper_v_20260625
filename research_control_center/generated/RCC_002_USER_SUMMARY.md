@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=24d722f03806385e5a7b7739ad685cadcf6f9d3be9565cb0c9fdbed17de02ada authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,18 +66,18 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- DG-03B — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD65.90. DG-04는 EXP03B 이후로 연기.
+- DG-03B_REVISED — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD11.03. DG-04는 EXP03B 이후로 연기.
 - HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.
 - DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다.
 
-관리 작업의 다음 단계는 **DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)** 이고, 이후 전체
 구조 검토는 **EXP-03B 승인 후 실행·독립 QA; 이후 DG-04** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DG-03B: 고정 snapshot·609회·최대 81,621,225 tokens·USD 65.90 예산과 aggregate 전송 검토
-- DG-04는 EXP-03B 결과 이후 결정
-- DG-05 공격 접근 및 DG-06 실제 제출은 별도 승인
+- DG-03B_REVISED: 고정 snapshot·609회·최대 8,463,360 tokens·USD 11.03 승인 검토
+- DG-04는 EXP-03B 의미적 추론 결과 이후 결정
+- DG-05 공격 접근 및 DG-06 실제 제출 별도 승인
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

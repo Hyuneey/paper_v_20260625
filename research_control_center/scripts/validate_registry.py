@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
     "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
     "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
     "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
@@ -99,6 +100,7 @@ STATUS_ENUMS = {
     },
     "experiments": {
         "PREPARED_DG03B_PENDING",
+        "PREPARED_DG03B_REVISED_PENDING",
         "NOT_STARTED", "DESIGN_ONLY", "IMPLEMENTED_NOT_EXECUTED", "EXECUTED_NOT_AUDITED",
         "EXECUTED_AUDITED_PILOT", "EXECUTED_AUDITED_DEVELOPMENT", "BLOCKED", "SUPERSEDED", "UNKNOWN",
     },
@@ -365,9 +367,10 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain the three current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
     result.require(state.get("last_completed_task") == "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "DG-03B — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", "exact next task mismatch")
+    result.require(state.get("exact_next_task") == "DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", "exact next task mismatch")
     prep=state.get('exp03b_preparation',{})
-    result.require(prep.get('status')=='PREPARED_DG03B_PENDING' and prep.get('provider_calls')==0 and prep.get('DG04')=='DEFERRED_UNTIL_EXP03B','EXP03B preparation gate mismatch')
+    result.require(prep.get('status')=='PREPARED_DG03B_REVISED_PENDING' and prep.get('provider_calls')==0 and prep.get('DG04')=='DEFERRED_UNTIL_EXP03B' and prep.get('numeric_provider_visible') is False,'EXP03B preparation gate mismatch')
+    result.require((prep.get('maximum_calls'),prep.get('maximum_input_tokens'),prep.get('maximum_output_tokens'),prep.get('maximum_total_tokens'),prep.get('cost_ceiling_usd'))==(609,7216128,1247232,8463360,'11.03'),'EXP03B revised budget synchronization')
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
