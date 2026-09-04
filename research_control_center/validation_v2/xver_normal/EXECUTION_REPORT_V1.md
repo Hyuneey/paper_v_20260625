@@ -42,3 +42,11 @@ The scoped EXP03B claim is T2 versus T1-B, not T2 superiority over T0.
 eTaPR109 official hypothetical/synthetic cases pass; multi-file aggregation,
 empty-input interpretation and secondary P1 treatment remain pre-DG05 decisions.
 P1 eligibility remains design-only. No pooled primary Recall or IID claim.
+
+## Independent final QA
+
+`PASS_SCOPED_NORMAL_ONLY_PREPARATION`; authority
+`bdea8635c390243e830d6bdab7a4b17060368cf67503eaa11296e305ee5844c4`.
+The audit replayed 49 public self-hashes, both version sub-QA authorities,
+Stage-A portfolio identities, the 3,021-entry PILOT manifest, privacy counters,
+and provider budgets without scientific re-execution or private-value access.

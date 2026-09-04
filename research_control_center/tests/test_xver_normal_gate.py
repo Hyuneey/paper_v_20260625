@@ -31,15 +31,25 @@ class XverNormalGateTests(unittest.TestCase):
     def test_no_gate_authorization(self):
         p=json.loads((RCC/'validation_v2/PROGRAM_STATE.json').read_text(encoding='utf-8'))
         self.assertEqual(p['decision_gates']['DG-05'],'NOT_APPROVED')
-        self.assertEqual(p['decision_gates']['DG-XVER-PROVIDER'],'NOT_READY_EVIDENCE_PENDING')
+        self.assertEqual(
+            p['decision_gates']['DG-XVER-PROVIDER'],
+            'USER_DECISION_REQUIRED' if p.get('xver_normal_execution') else 'NOT_READY_EVIDENCE_PENDING',
+        )
         self.assertFalse(p['held_out_authorized'])
 
     def test_current_reporting_has_precise_blocker(self):
+        state=json.loads((RCC/'registry/current_state.yaml').read_text(encoding='utf-8'))
         for f in ('CURRENT_CONTEXT.md','MY_TODO.md','DECISION_INBOX.md','history/PROJECT_TIMELINE.md','history/TERMINOLOGY_GUIDE.md'):
             text=(RCC/f).read_text(encoding='utf-8')
-            self.assertIn('BLOCKED_GDN_METHOD_CHANGE_REQUIRED',text)
-            self.assertIn('APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES',text)
-        self.assertIn('GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md',(RCC/'dashboard/index.html').read_text(encoding='utf-8'))
+            if state.get('xver_normal_execution'):
+                self.assertIn('DG-XVER-PROVIDER',text)
+                self.assertIn('GLOBAL5',text)
+                self.assertIn('EVENT10',text)
+            else:
+                self.assertIn('BLOCKED_GDN_METHOD_CHANGE_REQUIRED',text)
+                self.assertIn('APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES',text)
+        dashboard=(RCC/'dashboard/index.html').read_text(encoding='utf-8')
+        self.assertIn('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md',dashboard)
 
     def test_approved_role_choice_is_not_execution(self):
         s=json.loads((PUB/'XVER_NORMAL_PREPARATION_STATUS_V2.json').read_text());replay(s)

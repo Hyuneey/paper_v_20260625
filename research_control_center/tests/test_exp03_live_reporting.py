@@ -44,7 +44,10 @@ class LiveReportingTests(unittest.TestCase):
     def test_current_state_requires_dg04_and_preserves_other_gates(self):
         state = read(RCC / "registry/current_state.yaml")
         program = read(RCC / "validation_v2/PROGRAM_STATE.json")
-        self.assertEqual("HAI-XVER-NORMAL-PREP-001", state["exact_next_task"])
+        self.assertEqual(
+            "DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001",
+            state["exact_next_task"],
+        )
         self.assertEqual("COMPLETE_QA_PASS", state["exp03_execution"]["status"])
         executed=bool(state.get('exp03b_execution'))
         if state.get('dg04_method_lock'):

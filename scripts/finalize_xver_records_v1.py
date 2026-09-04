@@ -37,7 +37,18 @@ eTaPR109 합성/가상 동등성 PASS. 다중파일/empty/secondary P1 해석은
     table('timeline','event_id','EVENT-XVER-NORMAL-EXECUTION-001',dict(date='2026-09-05',date_precision='DAY',event_type='GOVERNANCE_MILESTONE',title='외부 버전 정상-only 실행 및 provider Gate 준비',summary='12 split-pure GDN runs;separate global/auxiliary;T0 portfolios;T2 packs;no provider or attack',source='USER_APPROVED_VALIDATION_V2_POLICY',source_ref=report,source_commit='NONE',affected_components='PROJECT_WIDE',decision_refs='DEC-025;DEC-026',status='ACTIVE_CONTEXT',superseded_by='NONE',notes='Normal evidence only;not attack utility or generalization'))
     table('risks','risk_id','RISK-XVER-NORMAL-CUSTODY',dict(description='Normal execution custody restored;single copy and unapproved provider/attack stages remain',evidence='artifact:ART-XVER-NORMAL-EXECUTION',mitigation='Exact restore/hash;DG-XVER-PROVIDER and DG05 remain explicit gates',status='MITIGATING',scientific_source_ref='validation-v2-hai-xver-normal-prep-001',scientific_source_commit=source))
     marker='# HAI-XVER — 정상-only 실행 완료 / Provider 승인 대기'
-    for path in [RCC/'SESSION_HANDOFF.md',RCC/'history/TERMINOLOGY_GUIDE.md',ROOT/'docs/professor_experiment_update_v2/03_VALIDATION_V2_METHOD.md',ROOT/'docs/professor_experiment_update_v2/10_HELDOUT_NEXT_PLAN.md',ROOT/'docs/professor_experiment_update_v2/11_PROFESSOR_DECISION_AGENDA.md',ROOT/'docs/professor_experiment_update_v2/13_SLIDE_OUTLINE.md']:
+    for path in [
+        RCC/'CURRENT_CONTEXT.md',
+        RCC/'SESSION_HANDOFF.md',
+        RCC/'MY_TODO.md',
+        RCC/'DECISION_INBOX.md',
+        RCC/'history/PROJECT_TIMELINE.md',
+        RCC/'history/TERMINOLOGY_GUIDE.md',
+        ROOT/'docs/professor_experiment_update_v2/03_VALIDATION_V2_METHOD.md',
+        ROOT/'docs/professor_experiment_update_v2/10_HELDOUT_NEXT_PLAN.md',
+        ROOT/'docs/professor_experiment_update_v2/11_PROFESSOR_DECISION_AGENDA.md',
+        ROOT/'docs/professor_experiment_update_v2/13_SLIDE_OUTLINE.md',
+    ]:
         old=path.read_text(encoding='utf-8')
         if old.startswith(marker):old=old.split('## 이전 기록 — 역사적 상태\n\n',1)[1]
         path.write_text(marker+'\n\n'+summary+'\n\n## 이전 기록 — 역사적 상태\n\n'+old,encoding='utf-8',newline='\n')

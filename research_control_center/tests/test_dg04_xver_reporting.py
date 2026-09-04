@@ -32,7 +32,10 @@ class Dg04XverReportingTests(unittest.TestCase):
         self.assertEqual(state['xver_preparation']['status'],'BLOCKED_PENDING_HAI_XVER_NORMAL_PREP')
         self.assertIsNone(state['xver_preparation']['exact_provider_budget'])
         self.assertEqual(program['decision_gates']['DG-04'],'APPROVED_WITH_SCOPED_AGENTIC_CLAIM')
-        self.assertEqual(program['decision_gates']['DG-03C'],'NOT_READY_EVIDENCE_PENDING')
+        self.assertEqual(
+            program['decision_gates']['DG-03C'],
+            'USER_DECISION_REQUIRED' if state.get('xver_normal_execution') else 'NOT_READY_EVIDENCE_PENDING',
+        )
         self.assertEqual(program['xver_normal_preparation']['scientific_GDN_runs'],0)
         blocker=read(PUB/'XVER_NORMAL_CUSTODY_BLOCKER_V1.json');replay(blocker)
         self.assertTrue(blocker['normal_container_bytes_downloaded_hashed_and_decompressed'])

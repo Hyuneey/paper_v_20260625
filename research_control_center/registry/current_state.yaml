@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "HAI-XVER-NORMAL-PREP-001: APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES.\n이전 BLOCKED_GDN_METHOD_CHANGE_REQUIRED의 estimator 역할 선택은 사용자 승인으로 해소됐습니다.\nProvider train1 / bounded retrieval train2에는 EXP03B-compatible split-pure GLOBAL 5-row GDN만 사용합니다.\nSCI01 split-local event와 seed별 purged validation 교집합의 EVENT 10-row는 AUXILIARY_CORROBORATION_ONLY입니다.\nGlobal/event 융합, event의 provider·retrieval·verifier·candidate 사용, train3/4 또는 numeric policy 기반 event 선택을 금지합니다.\n3개 seed 전부 유지; best-seed 선택 없음. 별도 타입과 실제 frozen projector adapter 합성검사 15 PASS 및 독립 scoped QA PASS.\n과학적 역할 binding은 완료됐지만 버전별 execution adapter·custody·environment·performance preflight 통합은 남아 있습니다.\n현재 GDN scientific runs 0/12, 외부 T0·T2 pack·정확 token/cost 미완료; provider/credential/공격0.\nDG-03B_REVISED 승인으로 완료된 EXP03B와 기존 DEC-025 / Stage A / V2A39 / T0 22 / T2 Repeat1 21 Rules / EXP02 / EXP04/05 / PILOT 결과는 불변입니다.\nT2 > T1-B는 정상-only 의미 유도 비교에 한정되고 T0보다 우수하지 않습니다.\nDG-03C의 현재 gate명 DG-XVER-PROVIDER는 NOT_READY_EVIDENCE_PENDING; DG05 NOT_APPROVED; 교수 package NOT_SUBMITTED; vault SINGLE_COPY_LOCAL_ONLY.",
+  "current_phase_statement": "HAI-XVER-NORMAL-PREP-001: 정상-only 실행 완료, 독립 최종 QA PASS. DG-XVER-PROVIDER에서 정지합니다.\nHAI22/HAI21 GDN은 각각6회, 총12회입니다. GLOBAL5는 train1 provider / train2 retrieval, EVENT10은 보조 분석 전용이며 융합·후보·verifier·T0·숫자·guard 사용을 금지합니다.\nHAI22 T0: 13 Rules/12 pairs. HAI21 T0: 7 Rules/5 pairs. 모두 HELDOUT_CANDIDATE, 공격 검증·production 결과가 아닙니다.\nT2 provider/retrieval packs와 정확 예산은 버전별 고정됐습니다. 합계 최대 174 calls, 3622912 tokens, 표준 공개가격 상한 USD 4.06이며 실제 지출이 아닙니다.\nDG-XVER-PROVIDER는 USER_DECISION_REQUIRED; provider/credential/공격 접근0. DG05 NOT_APPROVED; 교수 package NOT_SUBMITTED; DG06 필수.\nDEC025 제목·claim·HAI23 V2A/T0/T2·EXP03B·EXP02·EXP04/05·PILOT 결과 불변. T2>T1-B는 정상 의미 유도에 한정하며 T0보다 우수하지 않습니다.\n후보 권한 META+STAT, GDN은 비인과적 learned-graph evidence, SCI02B 고정 숫자 결합, FormalV4 실행권한, guard 단방향. 37정책 재선택·META 재구성·best seed 없음.\neTaPR109 합성/가상 동등성 PASS. 다중파일/empty/secondary P1 해석은 DG05 전 결정 항목으로 유지하며 실제 eligibility는 생성하지 않았습니다. 백업 SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -742,14 +742,14 @@
     "provider_calls": 0
   },
   "top_priorities": [
-    "승인된 GLOBAL5 / AUX EVENT10 분리 binding 유지",
-    "Execution adapter·custody·환경·preflight 완성 후 정상-only 12-run",
-    "T0·provider pack·budget 완료 후 DG-XVER-PROVIDER 별도 승인"
+    "DG-XVER-PROVIDER 버전별 정확 예산 승인 검토",
+    "별도 승인 전 provider 호출 금지",
+    "DG05 공격 접근 및 DG06 교수 제출 별도"
   ],
   "highest_priority_work": [
-    "승인된 GLOBAL5 / AUX EVENT10 분리 binding 유지",
-    "Execution adapter·custody·환경·preflight 완성 후 정상-only 12-run",
-    "T0·provider pack·budget 완료 후 DG-XVER-PROVIDER 별도 승인"
+    "DG-XVER-PROVIDER 버전별 정확 예산 승인 검토",
+    "별도 승인 전 provider 호출 금지",
+    "DG05 공격 접근 및 DG06 교수 제출 별도"
   ],
   "user_todo_items": [
     {
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "현재 GDN evidence 역할 추가 결정 불필요",
-    "정확 evidence/budget 후 DG-XVER-PROVIDER 승인",
-    "DG05 공격 접근 및 DG06 교수 제출은 별도"
+    "DG-XVER-PROVIDER: 버전별 정확 예산 검토",
+    "DG05: 최종 prediction/label custody와 미결 metric 결정",
+    "DG06: 교수 package 실제 제출 승인"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "HAI-XVER-NORMAL-PREP-001",
+  "recommended_next_management_task": "DG-XVER-PROVIDER",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
-  "last_completed_task": "EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료",
-  "exact_next_task": "HAI-XVER-NORMAL-PREP-001",
+  "last_completed_task": "HAI-XVER-NORMAL-PREP-001 — COMPLETE_QA_PASS",
+  "exact_next_task": "DG-XVER-PROVIDER",
   "safety_counters": {
     "scientific_executions": 4,
     "test2_feature_accesses": 0,
@@ -1781,5 +1781,79 @@
     "self_hash": "590d029a2918f9578d0929a2c4f52efc6513d9ea30641cfa05013594dc13489d",
     "report": "research_control_center/validation_v2/xver_normal/GDN_SEPARATED_EVIDENCE_BINDING_V1.json"
   },
-  "scientific_decision_required": "NONE_FOR_GDN_EVIDENCE_ROLE_BINDING"
+  "scientific_decision_required": "NONE_FOR_GDN_EVIDENCE_ROLE_BINDING",
+  "xver_normal_execution": {
+    "DG05": "NOT_APPROVED",
+    "DG_XVER_PROVIDER": "USER_DECISION_REQUIRED",
+    "attack_accesses": 0,
+    "combined_provider_ceiling": {
+      "cost_ceiling_usd": "4.06",
+      "maximum_calls": 174,
+      "maximum_input_tokens": 3266560,
+      "maximum_output_tokens": 356352,
+      "maximum_total_tokens": 3622912
+    },
+    "credential_reads": 0,
+    "event_role": "AUXILIARY_CORROBORATION_ONLY",
+    "excluded_values_parsed": false,
+    "global_provider_role": "EXP03B_COMPATIBLE_SPLIT_PURE_GLOBAL",
+    "professor_package": "NOT_SUBMITTED",
+    "provider_calls": 0,
+    "schema": "xver_normal_execution_result_v1",
+    "scientific_GDN_runs": 12,
+    "stage_a_changed": false,
+    "status": "COMPLETE_QA_PASS_DG_XVER_PROVIDER_PENDING",
+    "storage_policy": "SINGLE_COPY_LOCAL_ONLY",
+    "versions": {
+      "21.03": {
+        "GDN_evidence_hash": "15a4657245e6fb81cd1532b20ceb397e4e6012fde2270ac7ec83d9ef0503fd35",
+        "GDN_scientific_runs": 6,
+        "N": 29,
+        "T0_pair_count": 5,
+        "T0_portfolio_hash": "f9cad3c00c422614012b2147f3c21951632f8738ce2d8f9f1108d61ae69d6ef3",
+        "T0_retained_rules": 7,
+        "T2_evidence_ready": true,
+        "auxiliary_states": {
+          "AVAILABLE": 300,
+          "NOT_IN_LEARNED_GRAPH": 1370,
+          "NO_VALIDATION_EVENT": 70
+        },
+        "budget_hash": "51bef64337cc5a4d965945b09b39d4e03d84ef56414a479e9436b728bb345313",
+        "context_count": 30,
+        "context_status": "SCHEMA_BOUND_PARTIAL_CONTEXT_REPLICATION",
+        "cost_ceiling_usd": "2.03",
+        "hard_token_ceiling": 1811456,
+        "max_calls": 87,
+        "provider_pack_count": 29,
+        "retrieval_pack_count": 29
+      },
+      "22.04": {
+        "GDN_evidence_hash": "6fc7823c4e6dbfcf6a9db2f30d48e6795347e871773bbaa0f8420cace93d8674",
+        "GDN_scientific_runs": 6,
+        "N": 29,
+        "T0_pair_count": 12,
+        "T0_portfolio_hash": "94f130408361e6b4a8051ed4a72a0ad385e90cb3212e2bf0d27af300f481503f",
+        "T0_retained_rules": 13,
+        "T2_evidence_ready": true,
+        "auxiliary_states": {
+          "AVAILABLE": 415,
+          "NOT_IN_LEARNED_GRAPH": 1280,
+          "NO_VALIDATION_EVENT": 45
+        },
+        "budget_hash": "42de5ca54b478874d53a756a7ed16eba67957abc1a57413cc1b6119a33877ebb",
+        "context_count": 36,
+        "context_status": "SCHEMA_BOUND_PARTIAL_CONTEXT_REPLICATION",
+        "cost_ceiling_usd": "2.03",
+        "hard_token_ceiling": 1811456,
+        "max_calls": 87,
+        "provider_pack_count": 29,
+        "retrieval_pack_count": 29
+      }
+    },
+    "result_authority_hash": "1646bc0cbf21a3011566f8a8690e888ba062274ca7893a17e6521df52b708e1e",
+    "independent_qa_hash": "bdea8635c390243e830d6bdab7a4b17060368cf67503eaa11296e305ee5844c4",
+    "report": "research_control_center/validation_v2/xver_normal/EXECUTION_REPORT_V1.md",
+    "private_index_hash": "a0b5b51f12b1b8902f67be8b6956d5d01dbc50a04dc99d227be5ffb150df84be",
+    "self_hash": "0bbf949bc55dab0b6f68caca84ccf2250f465c47e75e7356c3eae88c6b8fb7f2"
+  }
 }

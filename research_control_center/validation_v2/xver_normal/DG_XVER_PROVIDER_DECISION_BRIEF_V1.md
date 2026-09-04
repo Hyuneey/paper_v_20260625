@@ -69,3 +69,10 @@ DG-05 remains NOT_APPROVED. No attack performance or generalization claim.
 {'maximum_calls': 174, 'maximum_input_tokens': 3266560, 'maximum_output_tokens': 356352, 'maximum_total_tokens': 3622912, 'cost_ceiling_usd': '4.06'}
 
 Provider calls in preparation:0. Credential reads:0. Attack access:0.
+
+## Independent final QA
+
+- Status: `PASS_SCOPED_NORMAL_ONLY_PREPARATION`.
+- Authority: `bdea8635c390243e830d6bdab7a4b17060368cf67503eaa11296e305ee5844c4`.
+- The QA replayed public receipts and hashes only; no private values, provider,
+  credentials, GPU, test, attack, or label data were accessed.

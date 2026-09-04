@@ -22,7 +22,11 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
-    "validation-v2-hai-xver-normal-prep-001": {"ef993009dab13b59c8bdcb94a9825a27b8a8ea8c", "a207dceecd1903705af904624e8e7289c9f4b036"},
+    "validation-v2-hai-xver-normal-prep-001": {
+        "ef993009dab13b59c8bdcb94a9825a27b8a8ea8c",
+        "a207dceecd1903705af904624e8e7289c9f4b036",
+        "449e263ef12010163a4b8718f7182c9d9cd18b8c",
+    },
     "validation-v2-dg04-xver-prep-001": {"f7ce07955e56ce0140b30faea201e7f8ac11f8a3", "7d3178b9664e3cfa8c0a930dd00bb874723016b7"},
     "codex/exp03b-provider-exec-001": {"811d5817bed1484bb3d0c36704bd74f224f4c526"},
     "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
@@ -722,7 +726,11 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     separated_events=[row for row in data['timeline'] if row['event_id']=='EVENT-XVER-GDN-SEPARATED-001']
     result.require(len(separated_events)==1 and separated_events[0]['source_ref'].endswith('GDN_SEPARATED_EVIDENCE_BINDING_V1.json')
                    and separated_events[0]['event_type']=='GOVERNANCE_MILESTONE','Explicit separated-role approval event')
-    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events) <= 34, "historical timeline plus explicitly validated new governance events")
+    execution_events=[row for row in data['timeline'] if row['event_id']=='EVENT-XVER-NORMAL-EXECUTION-001']
+    if data['state'].get('xver_normal_execution'):
+        result.require(len(execution_events)==1 and execution_events[0]['decision_refs']=='DEC-025;DEC-026'
+                       and execution_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact external normal execution event required')
+    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events) <= 34, "historical timeline plus explicitly validated new governance events")
     result.require(10 <= len(data["decisions"]) <= 26, "decision registry including schema-only approval")
     amendment=[row for row in data['decisions'] if row['decision_id']=='DEC-026']
     result.require(len(amendment)==1 and amendment[0]['decision']=='APPROVED' and amendment[0]['title']=='NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION','Exact DEC026 authority')
@@ -1001,6 +1009,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         result.require(dashboard.count('id="map-svg-NODE_') == 14, "dashboard architecture map must contain fourteen top-level nodes")
         for heading in ("현재 연구 단계", "전체 연구 시스템 지도", "실험·결과", "준비도·위험", "이력·근거"):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
+    current_gate = "DG-XVER-PROVIDER" if data["state"].get("xver_normal_execution") else "DG-03"
     required_semantic_outputs = {
         "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "결과 무결성 확인", "claims.csv", "하나의 완료율이 아니며"),
         "generated/GPT_BRIEF.md": ("Evidence-reviewed", "Result-integrity audit", "claims.csv", "not a single completion percentage"),
@@ -1014,10 +1023,10 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         "generated/ARCH_006_USER_SUMMARY.md": ("Rule은 실제 시계열에서 어떻게 판단하는가", "630 unique alarm seconds", "RuntimeTraceV1", "다음 task"),
         "generated/ARCH_007_USER_SUMMARY.md": ("D0 PCA-SPE를 쉽게 이해하기", "q=.999", "11/14", "stronger detector", "다음 task"),
         "generated/ARCH_008_USER_SUMMARY.md": ("D1 검증된 관계 규칙 단독 평가", "788", "574", "13/14", "다음 task"),
-        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", "DG-03"),
-        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", "DG-03"),
+        "generated/ARCH_009_USER_SUMMARY.md": ("D2에서 Detector와 Rule을 어떻게 합쳤는가", "same-second", "native horizon", "0/3", current_gate),
+        "generated/ARCH_010_USER_SUMMARY.md": ("성능 숫자를 어떻게 읽어야 하는가", "51,019", "FAIR_WITH_LIMITATIONS", "integrity PASS", current_gate),
         "generated/GAP_000_USER_SUMMARY.md": ("본격 실험 전에 무엇을 고쳐야 하는가", "PILOT V1", "VALIDATION V2", "primary disposition", "Urgency priority", "Graph-Guided", "Agentic"),
-        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", "DG-03"),
+        "generated/ARCH_011_USER_SUMMARY.md": ("OUTER와 재현성을 쉽게 이해하기", "NOT_RETRYABLE", "fresh-machine", "PILOT V1", "VALIDATION V2", current_gate),
         "history/PROJECT_TIMELINE.md": ("Research Evolution", "USER_CONTEXT", "What survived into the current method"),
         "history/PROFESSOR_FEEDBACK_LINEAGE.md": ("2026-08-18", "not professor feedback", "2026-08-26"),
         "history/SUPERSEDED_DIRECTIONS.md": ("Superseded and Conditional Directions", "Do not use as current claim"),
