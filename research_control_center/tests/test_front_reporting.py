@@ -115,6 +115,19 @@ class FrontReportingTests(unittest.TestCase):
             self.assertEqual(binding['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
             self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',path],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
             additions.add(path)
+        # Explicitly authorized external execution adapters; old scientific kernels
+        # above are still exact-byte checked. Only these five new source files enter.
+        for authority_name, names in (
+            ('GDN_EXECUTION_AUTHORITY_V2.json', ('xver_gdn_execution_v1.py',)),
+            ('SEMANTIC_EXECUTION_AUTHORITY_V1.json', ('xver_structural_v1.py','xver_confirmation_v1.py','xver_numeric_closure_v1.py')),
+            ('XVER_PROVIDER_SERIALIZER_FREEZE_V1.json', ('xver_prompt_v1.py',)),
+        ):
+            authority=json.loads((RCC/'validation_v2/xver_normal'/authority_name).read_text())
+            for name in names:
+                path='src/paperworks/validation_v2/'+name
+                self.assertEqual(authority['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+                self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',path],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+                additions.add(path)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",
