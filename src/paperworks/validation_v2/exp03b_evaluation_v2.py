@@ -34,6 +34,3 @@ def admitted_exact_repair(candidate_id,initial,final,truth,*,initial_status,feed
     require(final is None or type(final) is VerifiedAdmission and final.candidate_id==candidate_id,"REPAIR_ADMISSION_PAIR")
     if final:final.replay()
     return exact_repair(initial,final.proposal if final else None,truth,initial_status=initial_status,feedback_actions=feedback_actions)
-
-
-
