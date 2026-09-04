@@ -99,6 +99,14 @@ class FrontReportingTests(unittest.TestCase):
             self.assertEqual(frozen,(RCC.parent/p).read_bytes())
             self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',p],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
         additions |= prospective
+        projection='src/paperworks/data/hai_normal_projection_v2.py'
+        frozen_projection=subprocess.check_output(['git','show','1b6195c3:'+projection],cwd=RCC.parent)
+        self.assertEqual(frozen_projection,(RCC.parent/projection).read_bytes())
+        contract=json.loads((RCC/'validation_v2/dg04_xver_prep/NORMAL_SCHEMA_ONLY_PROJECTION_CONTRACT_V2.json').read_text())
+        self.assertEqual(contract['approval'],'NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION')
+        self.assertEqual(contract['implementation_hashes'][projection],hashlib.sha256(frozen_projection).hexdigest())
+        self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',projection],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+        additions.add(projection)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

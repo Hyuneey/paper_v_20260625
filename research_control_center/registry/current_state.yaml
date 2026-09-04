@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "DG-04 / DEC-025 승인 완료. DG-03B_REVISED 승인 후 동결한 EXP-03B에서 T2는 T1-B 대비 이점이 있으나 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules는 별도 HELDOUT_CANDIDATE이며 V2A39·기존 결과는 불변입니다.\n\nStage B는 BLOCKED_NORMAL_DATA_CUSTODY. 공식 정상 train1 두 컨테이너의 byte identity 검증 후 embedded label schema에서 중단했습니다. label 값 해석·과학 사용 0이며 정상 컨테이너 byte traversal은 있었습니다. 추가 header 접근 자동심사를 우회하지 않았습니다. Schema-only label 식별 및 feature-only projection 범위를 확인해야 합니다.\n\n외부 STAT/GDN/T0 미실행, DG-03C N/token/cost 미정. eTaPR109 synthetic per-file 일치; 버전 내 집계는 미정. Provider·credential·공격 payload 0. 상세: validation_v2/dg04_xver_prep/CURRENT_PREPARATION_STATUS_V1.md. 전체 task PASS가 아니며 integration merge/push·교수 제출은 하지 않습니다.",
+  "current_phase_statement": "DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.\n\n사용자 schema-only allowlist projection 승인으로 정상 custody 차단을 해결했습니다. HAI22 train1~6/HAI21 train1~3 모두 NORMAL_ONLY_CUSTODY_READY. Label 이름은 header metadata로만 관찰하고 값 decode·검증·사용0. META/STAT union은 각29pairs, GDN admission0입니다.\n\n현재 BLOCKED_PENDING_HAI_XVER_NORMAL_PREP: external GDN context/evidence, T0, provider packs 미완료. DG-XVER-PROVIDER exact token/cost 미정, calls0. eTaPR per-file109 PASS; 세 metric binding은 공격 전 결정 필요. 공격·credential0, 제출/merge/push 없음.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -735,21 +735,21 @@
     "nominal_non_development_scenarios": 146,
     "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
     "primary_pooling": "PROHIBITED",
-    "external_p1_compatibility": "UNRESOLVED_NO_TRACKED_TAG_UNIT_ROLE_CROSSWALK",
+    "external_p1_compatibility": "ROLE_MAPPING_COMPLETE_GDN_CONTEXT_PENDING",
     "metric_policy": "SCENARIO_RECALL_AND_NORMAL_FALSE_EPISODES_PRIMARY_ETAPR_COVERAGE_DELAY_SECONDARY",
     "etapr_pin": "saurf4ng/eTaPR@af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
     "attack_data_accesses": 0,
     "provider_calls": 0
   },
   "top_priorities": [
-    "DG04·T0/T2 고정 완료, 기존 결과 보존",
-    "정상 schema projection 자동심사 차단 범위 확인",
-    "DG03C budget 미정; provider·공격 접근 금지"
+    "정상 custody/role mapping/STAT 완료; Stage A 보존",
+    "외부 GDN context와 split-pure evidence 후속 준비",
+    "Provider 예산·공격 전 metric binding 각각 동결"
   ],
   "highest_priority_work": [
-    "DG04·T0/T2 고정 완료, 기존 결과 보존",
-    "정상 schema projection 자동심사 차단 범위 확인",
-    "DG03C budget 미정; provider·공격 접근 금지"
+    "정상 custody/role mapping/STAT 완료; Stage A 보존",
+    "외부 GDN context와 split-pure evidence 후속 준비",
+    "Provider 예산·공격 전 metric binding 각각 동결"
   ],
   "user_todo_items": [
     {
@@ -783,10 +783,10 @@
       "id": "USER-V2-004",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "정상 schema-only projection 접근 범위 확인",
-      "why": "자동심사가 embedded label 열 이름까지 label 접근으로 해석하여 차단",
-      "linked": "research_control_center/validation_v2/dg04_xver_prep/XVER_NORMAL_CUSTODY_BLOCKER_V1.json",
-      "status": "OPEN"
+      "task": "정상 schema-only projection 승인·custody 복원 완료",
+      "why": "DEC-026;9개 projection 비간섭 PASS",
+      "linked": "research_control_center/validation_v2/dg04_xver_prep/STAGE_B_RESUME_STATUS_V2.json",
+      "status": "RESOLVED"
     },
     {
       "id": "USER-V2-005",
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "정상 schema-only label 열 식별 및 feature-only projection 범위 확인",
-    "DG-03C: 외부 evidence·정확한 예산 동결 후 별도 승인",
-    "DG-05/06: 공격 접근과 교수 제출 별도 승인"
+    "추가 정상-only GDN/evidence 준비는 HAI-XVER-NORMAL-PREP-001",
+    "DG-XVER-PROVIDER: exact evidence·예산 후 별도 승인",
+    "DG05 metric 선택/공격 접근과 DG06 제출 별도 승인"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)",
+  "recommended_next_management_task": "HAI-XVER-NORMAL-PREP-001",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
   "last_completed_task": "EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료",
-  "exact_next_task": "DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)",
+  "exact_next_task": "HAI-XVER-NORMAL-PREP-001",
   "safety_counters": {
     "scientific_executions": 4,
     "test2_feature_accesses": 0,
@@ -1646,28 +1646,44 @@
     "report": "research_control_center/validation_v2/dg04_xver_prep/FINAL_TITLE_CLAIMS_AND_RQ_V1.md"
   },
   "xver_preparation": {
-    "status": "BLOCKED_NORMAL_DATA_CUSTODY",
-    "blocker_hash": "3a70f5e13a872b89dcca2a88f461a9679fbedeeb81348f4f7e6d833791f3fe3d",
-    "stage_a": "COMPLETE_QA_PASS",
-    "mapping_hash": "95a8c594c4127c0ddac88c45ebca7979583bd6436b6704bc83977364176c9f99",
-    "metadata_feature_counts": {
-      "22.04": 24,
-      "21.03": 22
-    },
-    "portable_meta_counts": {
-      "21.03": 19,
-      "22.04": 20
-    },
-    "external_GDN_runs": 0,
-    "external_STAT_runs": 0,
-    "external_T0_runs": 0,
-    "DG03C": "NOT_READY",
-    "exact_provider_budget": null,
-    "provider_calls": 0,
-    "etapr_per_file": "PASS",
-    "etapr_conformance_hash": "1d33927cb8f2fbb99cd30bb290fc8103714f2240dfa5e016269477ad2540697a",
-    "multi_file_metric_aggregation": "UNRESOLVED",
+    "GDN_scientific_runs": 0,
+    "additional_dependencies": [
+      "GDN_CONTEXT_MAPPING_P1_PP04D",
+      "PRE_ATTACK_METRIC_BINDING_DECISION"
+    ],
     "attack_payload_accesses": 0,
-    "report": "research_control_center/validation_v2/dg04_xver_prep/XVER_NORMAL_CUSTODY_BLOCKER_V1.json"
+    "candidate_counts": {
+      "21.03": 29,
+      "22.04": 29
+    },
+    "candidate_hashes": {
+      "21.03": "2ba9348255852272d1762f3674086acfed193fdf71822872697457b11613eb44",
+      "22.04": "14c0947506003280778843561da7622fd4b6da33b10a017e0364b886fbbf1d54"
+    },
+    "exact_next": "HAI-XVER-NORMAL-PREP-001",
+    "exact_provider_budget": null,
+    "external_T0_runs": 0,
+    "external_provider_evidence_ready": false,
+    "historical_blocker": "RESOLVED_BY_SCHEMA_ONLY_USER_APPROVAL",
+    "integration_merge_allowed": false,
+    "label_values_parsed": false,
+    "mapping_hash": "b087ca1a8e64778300f8c69f0ec86b8e3feac9fc05b02964c05485802b321060",
+    "normal_custody_hashes": {
+      "21.03": "4fd2578f40d5b4d9a2461ed25a2b757cd439ffe7ecca587897bf3ec3cfb29e3b",
+      "22.04": "fbb54d32e16e42412f8e099ab5e42493ff8e4ef09812e8752c55e194fd7afd8d"
+    },
+    "private_exposures": 0,
+    "projection_contract_hash": "b68d940bd520c0b6e555e80bfc5a431907a8bc07975a7e3a02b9b3a2c97d8543",
+    "projection_files": 9,
+    "provider_calls": 0,
+    "schema": "dg04_xver_resumed_preparation_v2",
+    "self_hash": "0a78981b457f6dc6f7e4f72dcb24fb74cd7b0a61df56b4a9168da92245875e19",
+    "stage_a": "COMPLETE_QA_PASS",
+    "stage_a_changed": false,
+    "status": "BLOCKED_PENDING_HAI_XVER_NORMAL_PREP",
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "DG03C": "NOT_READY",
+    "report": "research_control_center/validation_v2/dg04_xver_prep/STAGE_B_RESUME_STATUS_V2.json"
   }
 }

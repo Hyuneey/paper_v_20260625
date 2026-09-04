@@ -51,7 +51,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(11, len(data["experiments"]))
         self.assertEqual(15, len(data["claims"]))
         self.assertEqual(20, len(data["risks"]))
-        self.assertEqual(49, len(data["artifacts"]))
+        self.assertEqual(50, len(data["artifacts"]))
         self.assertEqual(
             {
                 "scientific_executions": 4,
@@ -75,7 +75,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
-            "validation-v2-dg04-xver-prep-001": {"f7ce07955e56ce0140b30faea201e7f8ac11f8a3"},
+            "validation-v2-dg04-xver-prep-001": {"f7ce07955e56ce0140b30faea201e7f8ac11f8a3", "7d3178b9664e3cfa8c0a930dd00bb874723016b7"},
             "codex/exp03b-provider-exec-001": {"811d5817bed1484bb3d0c36704bd74f224f4c526"},
             "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
             "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
@@ -170,8 +170,8 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(35, len(data["timeline"]))
-        self.assertEqual(25, len(data["decisions"]))
+        self.assertEqual(36, len(data["timeline"]))
+        self.assertEqual(26, len(data["decisions"]))
         self.assertIn('EVENT-DG04-XVER-PREP-001',{r['event_id'] for r in data['timeline']})
         self.assertIn('DEC-025',{r['decision_id'] for r in data['decisions']})
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
@@ -212,7 +212,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual('DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)',data['state']['exact_next_task'])
+        self.assertEqual('HAI-XVER-NORMAL-PREP-001',data['state']['exact_next_task'])
         self.assertEqual('DEC-025',data['state']['dg04_method_lock']['decision_id'])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:

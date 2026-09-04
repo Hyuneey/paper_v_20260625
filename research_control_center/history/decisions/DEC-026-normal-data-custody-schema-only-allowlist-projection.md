@@ -1,5 +1,5 @@
 <!-- RCC_GENERATED registry_version=0.1.0 registry_digest=073cac6b59ccb55f5028c6eaef8d8d9e952e42d6df500ceaf1f780e24212e814 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
-# DEC-023 — DG03_FIXED_SNAPSHOT_PROVIDER_EXECUTION_APPROVED
+# DEC-026 — NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION
 
 ## Date
 
@@ -11,27 +11,27 @@
 
 ## Context
 
-Explicit research owner approval
+StageA불변;normal containers contain excluded label schema
 
 ## Alternatives Considered
 
-- Moving alias and fallback prohibited
+- 사용자 지정 positive allowlist projection
 
 ## Decision
 
-OpenAI gpt-5.4-mini-2026-03-17;819 calls;5031936 tokens;USD10.07;concurrency1
+APPROVED
 
 ## Why
 
-Exact reproducible snapshot and bounded privacy-safe execution
+Normal identity와 label value 해석을 분리
 
 ## Consequence
 
-EXP-03 only; immutable portfolio and detection results
+정상9파일 custody PASS;provider/attack 금지;GDN 후속 준비
 
 ## Current Relevance
 
-Execution completed; DG-04 mandatory
+NORMAL_CUSTODY_RESTORED;HAI_XVER_NORMAL_PREP_PENDING
 
 ## Supersedes
 
@@ -45,7 +45,7 @@ NONE
 
 Source class: `USER_APPROVED_VALIDATION_V2_POLICY`
 
-Reference: research_control_center/validation_v2/exp03/DG03_FIXED_SNAPSHOT_APPROVAL_V1.json
+Reference: research_control_center/validation_v2/dg04_xver_prep/NORMAL_CUSTODY_AMENDMENT_V2.md
 
 Source commit: `NONE`
 

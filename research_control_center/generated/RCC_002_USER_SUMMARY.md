@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5895a48395a92c97930f1c6b72d5583c95b0df7eb675bbe21b768d168a8b6a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=073cac6b59ccb55f5028c6eaef8d8d9e952e42d6df500ceaf1f780e24212e814 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,26 +66,26 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- DG04·T0/T2 고정 완료, 기존 결과 보존
-- 정상 schema projection 자동심사 차단 범위 확인
-- DG03C budget 미정; provider·공격 접근 금지
+- 정상 custody/role mapping/STAT 완료; Stage A 보존
+- 외부 GDN context와 split-pure evidence 후속 준비
+- Provider 예산·공격 전 metric binding 각각 동결
 
-관리 작업의 다음 단계는 **DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)** 이고, 이후 전체
+관리 작업의 다음 단계는 **HAI-XVER-NORMAL-PREP-001** 이고, 이후 전체
 구조 검토는 **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- 정상 schema-only label 열 식별 및 feature-only projection 범위 확인
-- DG-03C: 외부 evidence·정확한 예산 동결 후 별도 승인
-- DG-05/06: 공격 접근과 교수 제출 별도 승인
+- 추가 정상-only GDN/evidence 준비는 HAI-XVER-NORMAL-PREP-001
+- DG-XVER-PROVIDER: exact evidence·예산 후 별도 승인
+- DG05 metric 선택/공격 접근과 DG06 제출 별도 승인
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG-04 / DEC-025 승인 완료. DG-03B_REVISED 승인 후 동결한 EXP-03B에서 T2는 T1-B 대비 이점이 있으나 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules는 별도 HELDOUT_CANDIDATE이며 V2A39·기존 결과는 불변입니다.
+DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.
 
-Stage B는 BLOCKED_NORMAL_DATA_CUSTODY. 공식 정상 train1 두 컨테이너의 byte identity 검증 후 embedded label schema에서 중단했습니다. label 값 해석·과학 사용 0이며 정상 컨테이너 byte traversal은 있었습니다. 추가 header 접근 자동심사를 우회하지 않았습니다. Schema-only label 식별 및 feature-only projection 범위를 확인해야 합니다.
+사용자 schema-only allowlist projection 승인으로 정상 custody 차단을 해결했습니다. HAI22 train1~6/HAI21 train1~3 모두 NORMAL_ONLY_CUSTODY_READY. Label 이름은 header metadata로만 관찰하고 값 decode·검증·사용0. META/STAT union은 각29pairs, GDN admission0입니다.
 
-외부 STAT/GDN/T0 미실행, DG-03C N/token/cost 미정. eTaPR109 synthetic per-file 일치; 버전 내 집계는 미정. Provider·credential·공격 payload 0. 상세: validation_v2/dg04_xver_prep/CURRENT_PREPARATION_STATUS_V1.md. 전체 task PASS가 아니며 integration merge/push·교수 제출은 하지 않습니다.
+현재 BLOCKED_PENDING_HAI_XVER_NORMAL_PREP: external GDN context/evidence, T0, provider packs 미완료. DG-XVER-PROVIDER exact token/cost 미정, calls0. eTaPR per-file109 PASS; 세 metric binding은 공격 전 결정 필요. 공격·credential0, 제출/merge/push 없음.

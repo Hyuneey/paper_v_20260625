@@ -29,10 +29,10 @@ class Dg04XverReportingTests(unittest.TestCase):
 
     def test_no_fabricated_budget_or_label_zero_claim(self):
         state=read(RCC/'registry/current_state.yaml');program=read(RCC/'validation_v2/PROGRAM_STATE.json')
-        self.assertEqual(state['xver_preparation']['status'],'BLOCKED_NORMAL_DATA_CUSTODY')
+        self.assertEqual(state['xver_preparation']['status'],'BLOCKED_PENDING_HAI_XVER_NORMAL_PREP')
         self.assertIsNone(state['xver_preparation']['exact_provider_budget'])
         self.assertEqual(program['decision_gates']['DG-04'],'APPROVED_WITH_SCOPED_AGENTIC_CLAIM')
-        self.assertEqual(program['decision_gates']['DG-03C'],'NOT_READY_BLOCKED_NORMAL_DATA_CUSTODY')
+        self.assertEqual(program['decision_gates']['DG-03C'],'NOT_READY_PENDING_HAI_XVER_NORMAL_PREP')
         blocker=read(PUB/'XVER_NORMAL_CUSTODY_BLOCKER_V1.json');replay(blocker)
         self.assertTrue(blocker['normal_container_bytes_downloaded_hashed_and_decompressed'])
         self.assertEqual(blocker['embedded_label_value_semantic_validation_or_use'],0)
@@ -40,6 +40,25 @@ class Dg04XverReportingTests(unittest.TestCase):
 
     def test_dashboard_scope_and_no_pooling(self):
         html=(RCC/'dashboard/index.html').read_text(encoding='utf-8')
-        for token in ('dg04-xver-heading','Repeat 1','BLOCKED_NORMAL_DATA_CUSTODY','DG-03C exact budget 미정',
+        for token in ('dg04-xver-heading','Repeat 1','BLOCKED_PENDING_HAI_XVER_NORMAL_PREP','DG-03C exact budget 미정',
                       '동일 분포의 독립 표본으로 간주하지'):
             self.assertIn(token,html)
+
+    def test_projection_amendment_exact_normal_closure(self):
+        for version,count in (('22.04',6),('21.03',3)):
+            receipt=read(PUB/f'HAI{version[:2]}_NORMAL_PROJECTION_RECEIPT_V2.json');replay(receipt)
+            self.assertEqual(receipt['status'],'NORMAL_ONLY_CUSTODY_READY')
+            self.assertEqual(len(receipt['records']),count)
+            self.assertEqual({r['source_file_identity'] for r in receipt['records']},
+                             {f'HAI{version[:2]}_TRAIN{i}' for i in range(1,count+1)})
+            for r in receipt['records']:
+                replay(r);self.assertFalse(r['label_values_parsed']);self.assertFalse(r['label_values_validated'])
+                self.assertEqual(r['projection_policy'],'TIMESTAMP_PLUS_APPROVED_FEATURE_ALLOWLIST')
+
+    def test_mapping_and_exact_candidate_counts(self):
+        mapping=read(PUB/'P1_FEATURE_MAPPING_AUTHORITY_V2.json');replay(mapping)
+        self.assertEqual(mapping['scope'],'CANDIDATE_ROLE_FEATURES_NOT_FULL_GDN_CONTEXT')
+        for v,expected in (('22.04',144),('21.03',121)):
+            c=read(PUB/f'HAI{v[:2]}_META_STAT_CANDIDATE_AUTHORITY_V2.json');replay(c)
+            self.assertEqual(c['universe_count'],expected);self.assertEqual(c['candidate_count'],len(c['pairs']))
+            self.assertFalse(c['GDN_admission']);self.assertEqual(c['STAT_shortfall_count'],0)

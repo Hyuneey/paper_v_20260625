@@ -44,7 +44,7 @@ class LiveReportingTests(unittest.TestCase):
     def test_current_state_requires_dg04_and_preserves_other_gates(self):
         state = read(RCC / "registry/current_state.yaml")
         program = read(RCC / "validation_v2/PROGRAM_STATE.json")
-        self.assertIn("DG-04", state["exact_next_task"])
+        self.assertEqual("HAI-XVER-NORMAL-PREP-001", state["exact_next_task"])
         self.assertEqual("COMPLETE_QA_PASS", state["exp03_execution"]["status"])
         executed=bool(state.get('exp03b_execution'))
         if state.get('dg04_method_lock'):
@@ -57,7 +57,7 @@ class LiveReportingTests(unittest.TestCase):
         self.assertEqual("APPROVED_EXECUTED" if executed else "USER_DECISION_REQUIRED", program["decision_gates"]["DG-03B_REVISED"])
         self.assertEqual("PREPARED_DG03B_REVISED_PENDING",state['exp03b_preparation']['status'])
         self.assertFalse(program["held_out_authorized"])
-        self.assertEqual("PENDING_MANDATORY", program["decision_gates"]["DG-05"])
+        self.assertEqual("USER_DECISION_REQUIRED", program["decision_gates"]["DG-05"])
         self.assertEqual("PENDING", program["decision_gates"]["DG-06"])
 
     def test_no_dataset_access_or_runtime_mutation_claim(self):
