@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 결정이 필요한 사항
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,15 +21,13 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B). DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
-## DG-03B_REVISED — EXP-03B 의미적 추론 provider 승인 필요
+## DG-04 — EXP-03B 이후 최종 기여 결정
 
-USER_DECISION_REQUIRED. 최대609회 / 8,463,360 tokens / USD11.03. 고정 snapshot gpt-5.4-mini-2026-03-17. Provider numeric option은 제거했고 SCI02B에서 후결속합니다. 현재 호출0이며 이전 승인·예산은 상속하지 않습니다.
+USER_DECISION_REQUIRED. DG-03B_REVISED 승인 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls; provider의 numeric policy 선택 없음. [결과·한계·다음 결정](validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md).
 
-[정확한 예산·privacy brief](validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md)
-
-DEC-024 Amendment2 과학 단순화는 승인 완료지만 이 별도 provider 예산은 미승인입니다. DG-04는 EXP03B 이후입니다.
+EXP-03 V1 및 V2A·EXP04/05 보존. 추가 Agentic rescue 금지. DG-05 공격 접근·DG-06 실제 제출은 별도 승인입니다.
 
 과학 source authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`

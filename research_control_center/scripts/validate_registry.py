@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "codex/exp03b-provider-exec-001": {"811d5817bed1484bb3d0c36704bd74f224f4c526"},
     "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
     "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
     "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
@@ -366,8 +367,15 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain the three current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", "exact next task mismatch")
+    if state.get('exp03b_execution'):
+        execution=state['exp03b_execution']
+        result.require(state.get('last_completed_task')=='EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료','last completed EXP03B task')
+        result.require(state.get('exact_next_task')=='DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정','EXP03B DG04 stop')
+        result.require(execution.get('status')=='COMPLETE_QA_PASS' and execution.get('numeric_provider_visible') is False and execution.get('next_gate')=='DG-04','EXP03B execution gate')
+        result.require(0<execution.get('calls',0)<=609 and execution.get('input_tokens',0)<=7216128 and execution.get('output_tokens',0)<=1247232,'EXP03B approved usage limits')
+    else:
+        result.require(state.get("last_completed_task") == "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료", "last completed task mismatch")
+        result.require(state.get("exact_next_task") == "DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", "exact next task mismatch")
     prep=state.get('exp03b_preparation',{})
     result.require(prep.get('status')=='PREPARED_DG03B_REVISED_PENDING' and prep.get('provider_calls')==0 and prep.get('DG04')=='DEFERRED_UNTIL_EXP03B' and prep.get('numeric_provider_visible') is False,'EXP03B preparation gate mismatch')
     result.require((prep.get('maximum_calls'),prep.get('maximum_input_tokens'),prep.get('maximum_output_tokens'),prep.get('maximum_total_tokens'),prep.get('cost_ceiling_usd'))==(609,7216128,1247232,8463360,'11.03'),'EXP03B revised budget synchronization')
@@ -384,7 +392,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
     result.require(state.get("recommended_next_management_task") == state.get('exact_next_task'), "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04", "next architecture task mismatch")
+    result.require(state.get("recommended_next_architecture_task") == ("DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지" if state.get('exp03b_execution') else "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04"), "next architecture task mismatch")
     expansion = state.get("evaluation_expansion", {})
     result.require(expansion.get("decision_id") == "DEC-022", "evaluation expansion decision is missing")
     result.require(expansion.get("nominal_non_development_scenarios") == 146, "evaluation expansion nominal count mismatch")

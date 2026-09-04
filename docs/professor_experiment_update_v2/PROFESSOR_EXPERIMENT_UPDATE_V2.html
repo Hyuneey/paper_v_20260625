@@ -7,7 +7,7 @@ pre{white-space:pre-wrap;font:inherit}a{color:#155eef}.warning{border-left:5px s
 @media print{nav{display:none}body{background:white}section{break-inside:avoid;border-color:#bbb}}
 </style></head><body><h1>VALIDATION V2 교수님 실험 업데이트</h1>
 <p class="warning">test1 DEVELOPMENT_ONLY 결과입니다. held-out 일반화와 human usefulness는 미확인입니다. 이메일은 전송하지 않았습니다.</p>
-<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">VALIDATION V2 방법</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">Held-out 및 외부 버전 평가 다음 계획</a></li><li><a href="#section-11">EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
+<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">VALIDATION V2 방법</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">Held-out 및 외부 버전 평가 다음 계획</a></li><li><a href="#section-11">EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
 
 EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule portfolio로 EXP-04 개발 평가와 실제 EXP-05 trace 전체 생성을 마쳤습니다. PILOT V1 source/artifact/result는 그대로 보존했습니다.
 
@@ -123,7 +123,17 @@ V2A의 39개 방향 관계에 대해 common fixed 1개와 relation-specific norm
 동결된 선택 규칙이 고른 policy는 `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05`입니다. 28개 후보가 coverage guard를 통과했으며, 선택 policy의 train4 관찰값은 false-alarm second 1,470, false-alarm episode 1,461, opportunity 39, PASS 16,361, FAIL 1,790, ABSTAIN 3,764입니다. normal exposure는 198,000초였습니다.
 
 이 결과는 normal-only 선택 결과이며 test1 공격 탐지 우수성을 뜻하지 않습니다. 선택 authority와 39-rule Formal V4 V2A portfolio는 별도 V2 identity로 동결했습니다. provider 호출은 0회입니다.
-</pre></section><section id="section-06"><h2>EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태</h2><pre># EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
+</pre></section><section id="section-06"><h2>EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</h2><pre># EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과
+
+현재 결과의 필수 한계: T0는 T2보다 strict pair/directional F1 및 exact set에서 높았습니다. T2의 abstain은 T1-B보다 높았고, 동결 train4 burden 기준은 lexicographic입니다. 따라서 T2 대 T1-B의 사전등록 이점이며 전체 방법 우월성이 아닙니다. [동결 결과](../../research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md) · [DG-04 결정안](../../research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md).
+
+EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.
+
+DG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.
+
+## 이전 준비·실행 기록 — 역사적 보존
+
+# EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
 
 상태 PREPARED_DG03B_REVISED_PENDING. EXP-03B는 RULE_SET/NO_RULE·source/target direction·horizon만 추론합니다. numeric option은 provider에서 제거했고 모든 출력·train2 admission·train3 평가가 frozen된 뒤 고정 EXP02 policy를 SCI02B로 결속합니다. 기존 SCI01/04와 disposition 기준은 유지합니다.
 29 pair, 20 structural rows(+5 GDN horizon rows/STAT), numeric rows740→0. 고정 gpt-5.4-mini-2026-03-17; 최대 609 calls, input 7,216,128, output 1,247,232, total 8,463,360, USD 11.03. 기존80,373,993 input/USD65.90은 historical superseded이며 새 승인으로 사용하지 않습니다.
@@ -261,7 +271,17 @@ GDN optional clause는 130개 설명에만 존재한다. 나머지에도 기본 
 8. no-post-result-tuning 및 버전별 reporting plan
 
 DG-05 승인 전에는 test2나 외부 버전 attack payload 및 label을 열지 않습니다. HAI 22.04/21.03은 같은 Rule bytes를 복사하지 않고 각 버전의 정상 데이터만으로 같은 방법을 다시 인스턴스화합니다.
-</pre></section><section id="section-11"><h2>EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태</h2><pre># EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
+</pre></section><section id="section-11"><h2>EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</h2><pre># EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과
+
+현재 결과의 필수 한계: T0는 T2보다 strict pair/directional F1 및 exact set에서 높았습니다. T2의 abstain은 T1-B보다 높았고, 동결 train4 burden 기준은 lexicographic입니다. 따라서 T2 대 T1-B의 사전등록 이점이며 전체 방법 우월성이 아닙니다. [동결 결과](../../research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md) · [DG-04 결정안](../../research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md).
+
+EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.
+
+DG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.
+
+## 이전 준비·실행 기록 — 역사적 보존
+
+# EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
 
 상태 PREPARED_DG03B_REVISED_PENDING. EXP-03B는 RULE_SET/NO_RULE·source/target direction·horizon만 추론합니다. numeric option은 provider에서 제거했고 모든 출력·train2 admission·train3 평가가 frozen된 뒤 고정 EXP02 policy를 SCI02B로 결속합니다. 기존 SCI01/04와 disposition 기준은 유지합니다.
 29 pair, 20 structural rows(+5 GDN horizon rows/STAT), numeric rows740→0. 고정 gpt-5.4-mini-2026-03-17; 최대 609 calls, input 7,216,128, output 1,247,232, total 8,463,360, USD 11.03. 기존80,373,993 input/USD65.90은 historical superseded이며 새 승인으로 사용하지 않습니다.
@@ -303,7 +323,17 @@ GDN은 normal-only EXP-01C의 보조 근거로 정리했으며 일부 V2A 규칙
 첨부 package의 방법·결과·한계를 검토 부탁드립니다. 제목/기여 범위와 후속 provider/held-out 설계는 별도 논의하고자 합니다.
 
 [사용자 최종 검토 및 DG-06 승인 전 전송 금지]
-</pre></section><section id="section-13"><h2>EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태</h2><pre># EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
+</pre></section><section id="section-13"><h2>EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</h2><pre># EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과
+
+현재 결과의 필수 한계: T0는 T2보다 strict pair/directional F1 및 exact set에서 높았습니다. T2의 abstain은 T1-B보다 높았고, 동결 train4 burden 기준은 lexicographic입니다. 따라서 T2 대 T1-B의 사전등록 이점이며 전체 방법 우월성이 아닙니다. [동결 결과](../../research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md) · [DG-04 결정안](../../research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md).
+
+EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.
+
+DG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.
+
+## 이전 준비·실행 기록 — 역사적 보존
+
+# EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
 
 상태 PREPARED_DG03B_REVISED_PENDING. EXP-03B는 RULE_SET/NO_RULE·source/target direction·horizon만 추론합니다. numeric option은 provider에서 제거했고 모든 출력·train2 admission·train3 평가가 frozen된 뒤 고정 EXP02 policy를 SCI02B로 결속합니다. 기존 SCI01/04와 disposition 기준은 유지합니다.
 29 pair, 20 structural rows(+5 GDN horizon rows/STAT), numeric rows740→0. 고정 gpt-5.4-mini-2026-03-17; 최대 609 calls, input 7,216,128, output 1,247,232, total 8,463,360, USD 11.03. 기존80,373,993 input/USD65.90은 historical superseded이며 새 승인으로 사용하지 않습니다.

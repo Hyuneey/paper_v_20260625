@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-003 — Reduce DHAG extension as headline direction
 
 ## Date

@@ -75,6 +75,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
+            "codex/exp03b-provider-exec-001": {"811d5817bed1484bb3d0c36704bd74f224f4c526"},
             "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
             "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
             "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
@@ -208,7 +209,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual("DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", data["state"]["exact_next_task"])
+        self.assertEqual("DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정" if data['state'].get('exp03b_execution') else "DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

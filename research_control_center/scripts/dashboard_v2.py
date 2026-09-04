@@ -336,7 +336,9 @@ def build_dashboard_view_model(
         reverse=True,
     )
     unresolved = [dict(row) for row in data["decisions"] if row["status"] == "OPEN"]
-    if data['state'].get('exp03b_preparation'):
+    if data['state'].get('exp03b_execution'):
+        unresolved.append({'decision_id':'DG-04','title':'EXP-03B 이후 최종 기여 결정','status':'OPEN','reason':'정상 semantic induction 실행 결과와 한계 검토','decision':'USER_DECISION_REQUIRED'})
+    elif data['state'].get('exp03b_preparation'):
         p=data['state']['exp03b_preparation']
         unresolved.append({'decision_id':p['next_gate'],'title':'EXP-03B 의미적 추론 provider 별도 승인','status':'OPEN','reason':f"최대{p['maximum_calls']}회·USD{p['cost_ceiling_usd']};현재 provider0",'decision':'USER_DECISION_REQUIRED'})
     state = data["state"]
@@ -376,6 +378,7 @@ def build_dashboard_view_model(
         "evaluation_panels": evaluation_panels,
         "exp03_execution": state.get("exp03_execution", {}),
         "exp03b_preparation": state.get("exp03b_preparation", {}),
+        "exp03b_execution": state.get("exp03b_execution", {}),
         "p0": p0,
         "root_issues": [current_gap_row(row) for row in root_issues],
         "risks": [dict(row) for row in data["risks"]],
@@ -561,7 +564,10 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
             ("DG-05", "다중 HAI 공격 접근 별도 승인", "버전별 P1 호환성·시나리오·custody 준비 전 공격 데이터 접근 금지"),
             ("DG-06", "교수님 package 제출 검토", "초안 작성 완료와 실제 제출을 구분; 자동 발송 금지"),
         ]
-    if vm.get('exp03b_preparation'):
+    if vm.get('exp03b_execution'):
+        e=vm['exp03b_execution']
+        actions=[('DG-04','최종 제목·Agentic 기여 결정',e['disposition']),('DG-05','공격 접근 별도 승인','현재 test1 재개봉·test2·외부공격 접근 금지'),('DG-06','교수님 제출 검토','초안만 갱신; 실제 제출하지 않음')]
+    elif vm.get('exp03b_preparation'):
         p=vm['exp03b_preparation']
         actions=[(p['next_gate'],'EXP-03B 의미적 추론 provider 승인',f"{p['cohort_count']} pair;numeric provider0;최대{p['maximum_calls']}회·USD{p['cost_ceiling_usd']};현재 호출0"),('DG-04','EXP-03B 이후 기여 결정','DEFERRED_UNTIL_EXP03B; V1은 constrained materialization 결과로 보존'),('DG-05/06','공격 접근·교수님 제출 별도 승인','현재 test/held-out 접근 및 제출 금지')]
     action_markup = "".join(
@@ -665,6 +671,11 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
 
 
 def _render_exp03b(vm: Mapping[str, Any]) -> str:
+    if vm.get('exp03b_execution'):
+        e=vm['exp03b_execution']; p=vm['exp03b_preparation']
+        def ratio(value):return f"{value['numerator']}/{value['denominator']}"
+        rows=''.join(f"<tr><th>{_esc(arm)}</th><td>{ratio(r['strict']['F1'])}</td><td>{ratio(r['strict']['directional_F1'])}</td><td>{r['strict']['semantic_exact_match_count']}/29</td></tr>" for arm,r in e['reports'].items())
+        return f'''<section class="panel roadmap" aria-labelledby="exp03b-heading"><h3 id="exp03b-heading">EXP-03B · 의미적 Rule induction 실행</h3><p>{_esc(e['status'])} · {_esc(e['disposition'])}</p><p>29 pair · 20 structural rows · numeric option rows 0. DG-03B_REVISED 승인 후 {e['calls']} calls · {e['total_tokens']:,} tokens · 표준 uncached 비용 상한 USD{_esc(e['cost_upper_bound_usd'])}.</p><table><thead><tr><th>arm</th><th>strict pair F1</th><th>directional F1</th><th>exact semantic set</th></tr></thead><tbody>{rows}</tbody></table><p>Feedback {e['feedback_actions']}회/{e['feedback_distinct_pairs']} pair · train3-confirmed exact repair {e['exact_repair_distinct_pairs']} pair. 정상 확인 reference 기반 결과이며, 인과·공격 탐지·일반화 검증이 아닙니다. 수치는 hidden train3 freeze 후 SCI02B로 결속했습니다.</p><p>원 승인 ceiling: {p['maximum_total_tokens']:,} tokens / USD{_esc(p['cost_ceiling_usd'])}. EXP-03 V1과 V2A·EXP04/05는 보존. 다음 DG-04; 추가 provider 호출·공격 접근·교수님 자동 제출 금지.</p><a href="../validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md">실행 결과·독립 QA</a> · <a href="../validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md">승인된 예산 계약</a></section>'''
     if not vm.get('exp03b_preparation'):return ''
     p=vm['exp03b_preparation']
     return f'''<section class="panel roadmap" aria-labelledby="exp03b-heading"><h3 id="exp03b-heading">EXP-03B · 의미적 Rule induction V2 준비</h3><p>{_esc(p['status'])} · {p['cohort_count']} pair · 20 structural rows · numeric option rows 0 · provider 호출 0</p><p>train1 근거 → 모든 outputs·train2 admission·train3 평가 동결 → SCI02B 결정론적 수치 결속 → Formal V4 → train4 guard. 준비 완료는 Agentic 결과가 아닙니다.</p><p>{_esc(p['next_gate'])} 별도 승인: 최대{p['maximum_calls']}회 · {p['maximum_total_tokens']:,} tokens · USD{_esc(p['cost_ceiling_usd'])}. DG-04는 EXP-03B 결과 이후입니다.</p><p>EXP-03 V1: CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK · COMPLETE · AGENTIC FEEDBACK NOT EXERCISED. 기존 결과와 과거 EXP03B V1 계약은 보존합니다.</p><a href="../validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md">수정된 DG-03B 결정 brief</a></section>'''

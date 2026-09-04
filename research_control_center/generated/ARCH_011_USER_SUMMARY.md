@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # OUTER와 재현성을 쉽게 이해하기
 
 ## 1. OUTER가 정확히 무엇인가?
@@ -51,8 +51,8 @@ Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 gui
 
 기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
 
-다음 task는 **DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+다음 task는 **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**이다. ARCH-011은 이 remediation을 실행하지 않았다.
 
 ## 현재 provider Gate
 
-EXP-03B PREPARED_DG03B_REVISED_PENDING. DG-03B_REVISED 승인 전 provider0. 의미적 추론 뒤 SCI02B 결정론적 수치 결속. EXP-03 V1은 constrained materialization으로 보존하며 DG-04는 EXP-03B 이후입니다. DG-05/06 미승인.
+DG-03B_REVISED 승인 실행 완료. EXP-03B semantic induction 결과는 DG-04 검토 대기. 추가 provider·공격 접근·제출 금지. EXP-03 V1·V2A·EXP04/05 보존.

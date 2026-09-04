@@ -1240,10 +1240,10 @@ The lineage is 47 pairs → 94 directions → 25/45 fit-supported → 23/42 conf
 cannot search or retune. Construction and runtime numeric identities remain separate. Repeated
 normal response is not causal proof.
 
-## Rule-construction boundary
+## Rule-construction boundary — historical PILOT V1 / EXP-03 V1
 
 E3 exposes a fixed relation, horizon, and normal-only references to a closed proposal schema.
-`accepted_proposal` grants neither runtime authority nor detection performance. T2 feedback was zero.
+`accepted_proposal` grants neither runtime authority nor detection performance. Historical T2 feedback was zero; current EXP-03B is reported separately below.
 
 ## Frozen pilot runtime boundary
 
@@ -1255,11 +1255,11 @@ their development-only FAR increased. PILOT V1 lacks the later V2 durable custod
 
     History cannot override current state. ARGOS remains partial support.
 
-## Established boundary
+## Historical PILOT V1 / EXP-03 V1 boundary
 
 Frozen discovery, construction, runtime, and integrity artifacts establish execution and custody,
 not causality, physical truth, general GDN utility, agentic-feedback advantage, or generalization.
-T2 feedback actions were zero.
+T2 feedback actions were zero in PILOT V1 / EXP-03 V1, not in the separately reported EXP-03B experiment.
 
 ## Frozen INNER pilot observations
 
@@ -1280,8 +1280,8 @@ observations, not new calculations.
 
     Graph-Guided and Agentic remain provisional contribution labels. EXP-01 and EXP-01B do not
     support GDN under their original protocols. Later EXP-01C provides LEARNED_GRAPH_SUPPORTING
-    evidence only; it does not replace the META+STAT discovery policy. DG-04 controls final wording. T2
-    feedback advantage also remains unsupported.
+    evidence only; it does not replace the META+STAT discovery policy. DG-04 controls final wording.
+    {'EXP-03B satisfies its T2-versus-T1-B criteria; T0 superiority and higher T2 abstain remain limitations. See the current execution result and DG-04 brief.' if state.get('exp03b_execution') else 'feedback advantage remains unestablished pending EXP-03B.'}
 
 ## Claim boundaries
 
@@ -1290,7 +1290,7 @@ observations, not new calculations.
 ## Current execution gates
 
 EXP-03 V1: {state.get('exp03_execution', {}).get('status', 'PREPARED_PROVIDER_GATED')} — constrained Rule materialization, not evidence-to-rule induction.
-EXP-03B: {state.get('exp03b_preparation', {}).get('status', 'NOT_PREPARED')}. 의미적 구조20행·numeric provider0·SCI02B 후결속. DG-03B_REVISED 별도 승인 전 provider0. DG-04는 EXP-03B 이후입니다. All new attack panels await DG-05;
+EXP-03B: {state.get('exp03b_execution', state.get('exp03b_preparation', {})).get('status', 'NOT_PREPARED')}. 의미적 구조20행·numeric provider0·SCI02B 후결속. DG-03B_REVISED: {'승인 후 실행 완료; 다음 DG-04' if state.get('exp03b_execution') else '별도 승인 전 provider0; DG-04는 EXP-03B 이후'}. All new attack panels await DG-05;
 professor submission awaits DG-06. Cross-version P1 compatibility remains unresolved.
 
 ## Top user TODO
@@ -2376,7 +2376,7 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
     - **EXP-01B:** nine CUDA runs compared Embedding, Attention, EdgeMask, and Source Occlusion; the frozen disposition is `GDN_ABLATION_ONLY`.
 - **Boundary:** {state['candidate_discovery']['warning']}
 
-## RULE CONSTRUCTION FOUNDATION
+## RULE CONSTRUCTION FOUNDATION — HISTORICAL PILOT V1
 
 - **Evidence view:** {state['rule_construction_authority']['evidence_view']}.
 - **Withheld:** {state['rule_construction_authority']['withheld']}.
@@ -2401,17 +2401,19 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
     - Normal-only VALIDATION V2 EXP-01, EXP-01B, and EXP-02 completed without test or label access.
 - The OUTER bridge produced a blocker record only; it produced no scientific outcome.
 
-## WHAT WAS OBSERVED
+## WHAT WAS OBSERVED — HISTORICAL PILOT V1
 
 - D0: {pilot['d0']}
 - D1: {pilot['d1']}
 - Event overlap: {pilot['overlap']}.
 - D2 V1: {pilot['d2_v1']}.
 - D2 V2: {pilot['d2_v2']}.
-- T2 feedback actions: zero; the current cohort did not exercise feedback recovery.
+- PILOT V1 / EXP-03 V1 T2 feedback actions: zero; those historical cohorts did not exercise feedback recovery.
 
 These are frozen observations from 14 contiguous INNER attack-event units. Statistical
 independence is not established; they are pilot evidence only and are not validated performance conclusions.
+
+{'현재 EXP-03B: feedback ' + str(state['exp03b_execution']['feedback_actions']) + '회 / ' + str(state['exp03b_execution']['feedback_distinct_pairs']) + ' pair; train3 exact repair ' + str(state['exp03b_execution']['exact_repair_distinct_pairs']) + ' pair. T2 대 T1-B 기준 충족은 T0 대비 우월성이나 held-out 일반화를 의미하지 않습니다.' if state.get('exp03b_execution') else ''}
 
 ## WHAT IS VALIDATED
 
@@ -2478,7 +2480,10 @@ def render_decision_inbox(data: Mapping[str, Any], digest: str) -> str:
         f"## {row['decision_id']} — {DECISION_CARD_COPY.get(row['decision_id'], (row['title'], row['reason']))[0]}\n\n**필요한 이유:** {DECISION_CARD_COPY.get(row['decision_id'], (row['decision'], row['reason']))[1]}\n\n**registry 원문 결정:** {row['decision']}\n\n**registry 원문 이유:** {row['reason']}"
         for row in unresolved
     ) or "현재 미결정 사용자 항목은 없다. RCC-000의 결정 001·002는 `registry/decisions.csv`에서 승인 상태를 유지한다."
-    if state.get('exp03b_preparation'):
+    if state.get('exp03b_execution'):
+        e=state['exp03b_execution']
+        body=f"## DG-04 — EXP-03B 이후 최종 기여 결정\n\nUSER_DECISION_REQUIRED. DG-03B_REVISED 승인 실행·독립 QA 완료. 판정 `{e['disposition']}`. {e['calls']} calls; provider의 numeric policy 선택 없음. [결과·한계·다음 결정](validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md).\n\nEXP-03 V1 및 V2A·EXP04/05 보존. 추가 Agentic rescue 금지. DG-05 공격 접근·DG-06 실제 제출은 별도 승인입니다."
+    elif state.get('exp03b_preparation'):
         p=state['exp03b_preparation']
         body=f"## {p['next_gate']} — EXP-03B 의미적 추론 provider 승인 필요\n\nUSER_DECISION_REQUIRED. 최대{p['maximum_calls']}회 / {p['maximum_total_tokens']:,} tokens / USD{p['cost_ceiling_usd']}. 고정 snapshot {p['model_snapshot']}. Provider numeric option은 제거했고 SCI02B에서 후결속합니다. 현재 호출0이며 이전 승인·예산은 상속하지 않습니다.\n\n[정확한 예산·privacy brief](validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md)\n\nDEC-024 Amendment2 과학 단순화는 승인 완료지만 이 별도 provider 예산은 미승인입니다. DG-04는 EXP03B 이후입니다."
     return f"""{_markdown_marker(state, digest)}
@@ -2903,7 +2908,7 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
     paths: list[Path] = []
     for name, payload in outputs.items():
         if name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data['state'].get('exp03b_preparation'):
-            payload += '\n## 현재 provider Gate\n\nEXP-03B PREPARED_DG03B_REVISED_PENDING. DG-03B_REVISED 승인 전 provider0. 의미적 추론 뒤 SCI02B 결정론적 수치 결속. EXP-03 V1은 constrained materialization으로 보존하며 DG-04는 EXP-03B 이후입니다. DG-05/06 미승인.\n'
+            payload += ('\n## 현재 provider Gate\n\nDG-03B_REVISED 승인 실행 완료. EXP-03B semantic induction 결과는 DG-04 검토 대기. 추가 provider·공격 접근·제출 금지. EXP-03 V1·V2A·EXP04/05 보존.\n' if data['state'].get('exp03b_execution') else '\n## 현재 provider Gate\n\nEXP-03B PREPARED_DG03B_REVISED_PENDING. DG-03B_REVISED 승인 전 provider0. 의미적 추론 뒤 SCI02B 결정론적 수치 결속. EXP-03 V1은 constrained materialization으로 보존하며 DG-04는 EXP-03B 이후입니다. DG-05/06 미승인.\n')
         elif name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data["state"].get("exp03_execution"):
             payload += "\n## 현재 provider Gate\n\nDG-03은 고정 snapshot으로 승인·실행되었으며 EXP-03 독립 QA가 완료되었습니다. 현재는 DG-04 제목·기여 결정 대기입니다. DG-05 공격 접근과 DG-06 제출은 승인되지 않았습니다.\n"
         path = generated / name

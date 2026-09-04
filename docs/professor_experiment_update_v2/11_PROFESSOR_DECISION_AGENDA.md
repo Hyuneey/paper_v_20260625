@@ -1,3 +1,13 @@
+# EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과
+
+현재 결과의 필수 한계: T0는 T2보다 strict pair/directional F1 및 exact set에서 높았습니다. T2의 abstain은 T1-B보다 높았고, 동결 train4 burden 기준은 lexicographic입니다. 따라서 T2 대 T1-B의 사전등록 이점이며 전체 방법 우월성이 아닙니다. [동결 결과](../../research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md) · [DG-04 결정안](../../research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md).
+
+EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.
+
+DG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.
+
+## 이전 준비·실행 기록 — 역사적 보존
+
 # EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
 
 상태 PREPARED_DG03B_REVISED_PENDING. EXP-03B는 RULE_SET/NO_RULE·source/target direction·horizon만 추론합니다. numeric option은 provider에서 제거했고 모든 출력·train2 admission·train3 평가가 frozen된 뒤 고정 EXP02 policy를 SCI02B로 결속합니다. 기존 SCI01/04와 disposition 기준은 유지합니다.

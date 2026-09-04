@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D0 PCA-SPE를 쉽게 이해하기
 
 ## 1. PCA는 왜 쓰는가?
@@ -66,4 +66,4 @@ Rule-only 기여를 설득력 있게 평가하려면 새 독립 사전등록에�
 기억할 한 문장: **D0는 normal-only로 고정된 단순 reference detector이고, 점수·point·episode·event를
 구분해야 하며, 14-event 수치는 pilot evidence다.**
 
-다음 task는 **DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**이다.
+다음 task는 **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**이다.

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-04
@@ -65,7 +65,7 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
     - **EXP-01B:** nine CUDA runs compared Embedding, Attention, EdgeMask, and Source Occlusion; the frozen disposition is `GDN_ABLATION_ONLY`.
 - **Boundary:** Candidate discovery proposes relationships. It does not establish causal or final temporal relations.
 
-## RULE CONSTRUCTION FOUNDATION
+## RULE CONSTRUCTION FOUNDATION — HISTORICAL PILOT V1
 
 - **Evidence view:** 42 normal-only confirmed-relation views; E1 stores eleven roles, while E3 exposes the fixed horizon as a relation field plus ten approved numeric value/reference bindings, provenance identities, and bounded process metadata.
 - **Withheld:** raw HAI rows, labels, attacks, test or utility outcomes, candidate-arm performance, D0/D1 results, and runtime authority.
@@ -90,17 +90,19 @@ runtime, D0/D1/D2 evaluation, event/episode metrics, and integrity audits.
     - Normal-only VALIDATION V2 EXP-01, EXP-01B, and EXP-02 completed without test or label access.
 - The OUTER bridge produced a blocker record only; it produced no scientific outcome.
 
-## WHAT WAS OBSERVED
+## WHAT WAS OBSERVED — HISTORICAL PILOT V1
 
 - D0: 11/14 attack-event response; Normal FAR 0.4939336325682589 episodes/hour
 - D1: 13/14 attack-event response; Normal FAR 40.50255787059723 episodes/hour
 - Event overlap: both 10; D0-only 1; D1-only 3; neither 0.
 - D2 V1: 11/14; Normal FAR 0.7056194750975128 episodes/hour; D0-miss recovery 0/3.
 - D2 V2: 11/14; Normal FAR 6.915070855955625 episodes/hour; D0-miss recovery 0/3.
-- T2 feedback actions: zero; the current cohort did not exercise feedback recovery.
+- PILOT V1 / EXP-03 V1 T2 feedback actions: zero; those historical cohorts did not exercise feedback recovery.
 
 These are frozen observations from 14 contiguous INNER attack-event units. Statistical
 independence is not established; they are pilot evidence only and are not validated performance conclusions.
+
+현재 EXP-03B: feedback 83회 / 22 pair; train3 exact repair 10 pair. T2 대 T1-B 기준 충족은 T0 대비 우월성이나 held-out 일반화를 의미하지 않습니다.
 
 ## WHAT IS VALIDATED
 
@@ -112,7 +114,7 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## WHAT REMAINS UNKNOWN
 
-- Agentic verifier-feedback advantage
+- Agentic의 T0 대비 우월성·고정 cohort 밖 전이·held-out utility
 - Practical Rule-only operational utility
 - Detector-plus-Rule improvement beyond the tested negative pilot policies
 - Held-out generalization
@@ -120,9 +122,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- DG-03B_REVISED — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD11.03. DG-04는 EXP03B 이후로 연기.
-- HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.
-- DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다.
+- DG-04: EXP-03B의 T2 대 T1-B 이점과 T0 대비 한계를 구분해 기여 표현을 결정한다.
+- HAI 22.04/21.03 호환성은 별도 normal-only/public metadata 작업이며 공격 접근은 DG-05 전 금지한다.
+- DG-03B_REVISED는 승인 실행 완료; 추가 Agentic rescue·provider 호출·교수님 자동 제출 금지.
 
-Exact next management task: **DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**
-Following architecture task: **EXP-03B 승인 후 실행·독립 QA; 이후 DG-04**
+Exact next management task: **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**
+Following architecture task: **DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지**

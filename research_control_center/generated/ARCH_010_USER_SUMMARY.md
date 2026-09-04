@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 성능 숫자를 어떻게 읽어야 하는가
 
 ## 1. alarm point와 episode는 무엇이 다른가?
@@ -63,8 +63,8 @@ complementarity, held-out generalization, 통계적 우수성은 미확인이다
 기억할 한 문장: **결과 무결성은 숫자가 고정 artifact와 맞는지 보장하지만, 그 숫자가 일반 성능을
 증명하는지는 보장하지 않는다.**
 
-ARCH-011은 완료되었다. 다음 관리 task는 **DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**이다.
+ARCH-011은 완료되었다. 다음 관리 task는 **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**이다.
 
 ## 현재 provider Gate
 
-EXP-03B PREPARED_DG03B_REVISED_PENDING. DG-03B_REVISED 승인 전 provider0. 의미적 추론 뒤 SCI02B 결정론적 수치 결속. EXP-03 V1은 constrained materialization으로 보존하며 DG-04는 EXP-03B 이후입니다. DG-05/06 미승인.
+DG-03B_REVISED 승인 실행 완료. EXP-03B semantic induction 결과는 DG-04 검토 대기. 추가 provider·공격 접근·제출 금지. EXP-03 V1·V2A·EXP04/05 보존.

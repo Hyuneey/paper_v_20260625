@@ -1,3 +1,11 @@
+# EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과
+
+EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.
+
+DG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.
+
+## 이전 준비·실행 기록 — 역사적 보존
+
 # EXP03B-PAYLOAD-REDUCE-001 — 현재 준비 상태
 
 상태 PREPARED_DG03B_REVISED_PENDING. EXP-03B는 RULE_SET/NO_RULE·source/target direction·horizon만 추론합니다. numeric option은 provider에서 제거했고 모든 출력·train2 admission·train3 평가가 frozen된 뒤 고정 EXP02 policy를 SCI02B로 결속합니다. 기존 SCI01/04와 disposition 기준은 유지합니다.

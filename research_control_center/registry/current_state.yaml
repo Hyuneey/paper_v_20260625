@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선택을 제거하고 SCI02B로 후결속합니다. 기존 결과는 그대로 보존. DG-03B_REVISED 신규 승인 전 provider0, DG-04는 EXP03B 이후입니다.",
+  "current_phase_statement": "EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.\n\nDG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -442,7 +442,7 @@
     "The OUTER path has a blocker record and no scientific result."
   ],
   "current_unvalidated": [
-    "Agentic verifier-feedback advantage",
+    "Agentic의 T0 대비 우월성·고정 cohort 밖 전이·held-out utility",
     "Practical Rule-only operational utility",
     "Detector-plus-Rule improvement beyond the tested negative pilot policies",
     "Held-out generalization",
@@ -450,7 +450,7 @@
   ],
   "not_established": [
     "GDN general utility beyond the current normal-only EXP-01 and EXP-01B scope",
-    "Agentic verifier-feedback advantage",
+    "Agentic의 T0 대비 우월성·고정 cohort 밖 전이·held-out utility",
     "Practical Rule-only operational utility",
     "Detector-plus-Rule improvement",
     "Held-out generalization",
@@ -742,14 +742,14 @@
     "provider_calls": 0
   },
   "top_priorities": [
-    "DG-03B_REVISED — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD11.03. DG-04는 EXP03B 이후로 연기.",
-    "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
-    "DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다."
+    "DG-04: EXP-03B의 T2 대 T1-B 이점과 T0 대비 한계를 구분해 기여 표현을 결정한다.",
+    "HAI 22.04/21.03 호환성은 별도 normal-only/public metadata 작업이며 공격 접근은 DG-05 전 금지한다.",
+    "DG-03B_REVISED는 승인 실행 완료; 추가 Agentic rescue·provider 호출·교수님 자동 제출 금지."
   ],
   "highest_priority_work": [
-    "DG-03B_REVISED — EXP-03B provider 신규 승인:29 pair 정상 evidence 준비 완료;provider0;최대USD11.03. DG-04는 EXP03B 이후로 연기.",
-    "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
-    "DG-03B provider·DG-04 제목·기여·DG-05 attack panel·DG-06 제출은 별도 승인이다."
+    "DG-04: EXP-03B의 T2 대 T1-B 이점과 T0 대비 한계를 구분해 기여 표현을 결정한다.",
+    "HAI 22.04/21.03 호환성은 별도 normal-only/public metadata 작업이며 공격 접근은 DG-05 전 금지한다.",
+    "DG-03B_REVISED는 승인 실행 완료; 추가 Agentic rescue·provider 호출·교수님 자동 제출 금지."
   ],
   "user_todo_items": [
     {
@@ -783,9 +783,9 @@
       "id": "USER-V2-004",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "DG-03B_REVISED — EXP-03B 신규 provider 예산·전송 승인",
-      "why": "정상 evidence 준비 완료;최대609회·USD11.03. DG-04는 EXP-03B 결과 뒤로 연기합니다.",
-      "linked": "research_control_center/validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md",
+      "task": "DG-04 — EXP-03B 이후 제목·Agentic 기여 결정",
+      "why": "DG-03B_REVISED 승인 실행 완료. Frozen T2 대 T1-B 기준과 T0 비교 한계를 검토한다.",
+      "linked": "research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md",
       "status": "OPEN"
     },
     {
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "DG-03B_REVISED: 고정 snapshot·609회·최대 8,463,360 tokens·USD 11.03 승인 검토",
-    "DG-04는 EXP-03B 의미적 추론 결과 이후 결정",
-    "DG-05 공격 접근 및 DG-06 실제 제출 별도 승인"
+    "DG-04: EXP-03B 결과 기반 제목·Agentic 기여 범위 결정",
+    "DG-05: 다중 HAI 공격 접근 별도 승인; 현재 접근 금지",
+    "DG-06: 교수님 package 실제 제출 전 검토"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)",
-  "recommended_next_architecture_task": "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04",
-  "last_completed_task": "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료",
-  "exact_next_task": "DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)",
+  "recommended_next_management_task": "DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정",
+  "recommended_next_architecture_task": "DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지",
+  "last_completed_task": "EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료",
+  "exact_next_task": "DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정",
   "safety_counters": {
     "scientific_executions": 4,
     "test2_feature_accesses": 0,
@@ -1052,5 +1052,558 @@
     "freeze_hash": "bacfd22859bb7014f3604abf4ad81b63586e1a98f21ddb0206b4a8e892f8ab8c",
     "brief": "research_control_center/validation_v2/exp03b/DG03B_PROVIDER_DECISION_BRIEF_V2.md"
   },
-  "exp03_v1_construct_classification": "CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK"
+  "exp03_v1_construct_classification": "CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK",
+  "exp03b_execution": {
+    "status": "COMPLETE_QA_PASS",
+    "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
+    "calls": 518,
+    "model_snapshot": "gpt-5.4-mini-2026-03-17",
+    "input_tokens": 1027725,
+    "output_tokens": 60236,
+    "total_tokens": 1087961,
+    "cost_upper_bound_usd": "1.04185575",
+    "disposition": "AGENTIC_ADVANTAGE_SUPPORTED",
+    "feedback_actions": 83,
+    "feedback_distinct_pairs": 22,
+    "exact_repair_distinct_pairs": 10,
+    "result_hash": "a187e89e345e9f1eb42ca993c3d53c6f317a8ff5f33ee9fa7c7e8955baa962c8",
+    "qa_hash": "f6bf6d42a0dc9cd240d4c3e1a3afec811461f92f2ac3c2bda8b8090c6aded447",
+    "source_commit": "811d5817bed1484bb3d0c36704bd74f224f4c526",
+    "next_gate": "DG-04",
+    "numeric_provider_visible": false,
+    "report": "research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md",
+    "reports": {
+      "T0": {
+        "conditional": {
+          "F1": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "FN": 0,
+          "FP": 0,
+          "N": 20,
+          "TN": 5,
+          "TP": 15,
+          "directional_F1": {
+            "denominator": 29,
+            "numerator": 28
+          },
+          "directional_FN": 0,
+          "directional_FP": 2,
+          "directional_TP": 28,
+          "directional_precision": {
+            "denominator": 15,
+            "numerator": 14
+          },
+          "directional_recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "semantic_exact_match_count": 18,
+          "strict_accuracy": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "valid_output_coverage": {
+            "denominator": 1,
+            "numerator": 1
+          }
+        },
+        "conditional_denominator": 20,
+        "exact_horizon_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 28,
+          "value": {
+            "denominator": 39,
+            "numerator": 28
+          }
+        },
+        "raw_and_admitted_coverage": {
+          "admitted": 20,
+          "observations": 29,
+          "raw_draws": 29,
+          "raw_draws_parsed": 29,
+          "selected_raw_parsed": 29,
+          "terminals": {
+            "ADMITTED": 20,
+            "VERIFIER_REJECTION": 9
+          }
+        },
+        "source_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 28,
+          "value": {
+            "denominator": 39,
+            "numerator": 28
+          }
+        },
+        "strict": {
+          "F1": {
+            "denominator": 13,
+            "numerator": 10
+          },
+          "FN": 6,
+          "FP": 3,
+          "N": 29,
+          "TN": 5,
+          "TP": 15,
+          "directional_F1": {
+            "denominator": 69,
+            "numerator": 56
+          },
+          "directional_FN": 11,
+          "directional_FP": 2,
+          "directional_TP": 28,
+          "directional_precision": {
+            "denominator": 15,
+            "numerator": 14
+          },
+          "directional_recall": {
+            "denominator": 39,
+            "numerator": 28
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 6,
+            "numerator": 5
+          },
+          "recall": {
+            "denominator": 7,
+            "numerator": 5
+          },
+          "semantic_exact_match_count": 18,
+          "strict_accuracy": {
+            "denominator": 29,
+            "numerator": 20
+          },
+          "valid_output_coverage": {
+            "denominator": 29,
+            "numerator": 20
+          }
+        },
+        "structure_reference_rule_denominator": 39,
+        "target_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 28,
+          "value": {
+            "denominator": 39,
+            "numerator": 28
+          }
+        }
+      },
+      "T1": {
+        "conditional": {
+          "F1": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "FN": 0,
+          "FP": 0,
+          "N": 13,
+          "TN": 4,
+          "TP": 9,
+          "directional_F1": {
+            "denominator": 35,
+            "numerator": 34
+          },
+          "directional_FN": 0,
+          "directional_FP": 1,
+          "directional_TP": 17,
+          "directional_precision": {
+            "denominator": 18,
+            "numerator": 17
+          },
+          "directional_recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "semantic_exact_match_count": 12,
+          "strict_accuracy": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "valid_output_coverage": {
+            "denominator": 1,
+            "numerator": 1
+          }
+        },
+        "conditional_denominator": 13,
+        "exact_horizon_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 17,
+          "value": {
+            "denominator": 39,
+            "numerator": 17
+          }
+        },
+        "raw_and_admitted_coverage": {
+          "admitted": 38,
+          "observations": 87,
+          "raw_draws": 87,
+          "raw_draws_parsed": 87,
+          "selected_raw_parsed": 87,
+          "terminals": {
+            "ACCEPTED_RULE_SET": 26,
+            "INTENTIONAL_NO_RULE": 12,
+            "VERIFIER_REJECTION": 49
+          }
+        },
+        "source_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 17,
+          "value": {
+            "denominator": 39,
+            "numerator": 17
+          }
+        },
+        "strict": {
+          "F1": {
+            "denominator": 17,
+            "numerator": 9
+          },
+          "FN": 12,
+          "FP": 4,
+          "N": 29,
+          "TN": 4,
+          "TP": 9,
+          "directional_F1": {
+            "denominator": 57,
+            "numerator": 34
+          },
+          "directional_FN": 22,
+          "directional_FP": 1,
+          "directional_TP": 17,
+          "directional_precision": {
+            "denominator": 18,
+            "numerator": 17
+          },
+          "directional_recall": {
+            "denominator": 39,
+            "numerator": 17
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 13,
+            "numerator": 9
+          },
+          "recall": {
+            "denominator": 7,
+            "numerator": 3
+          },
+          "semantic_exact_match_count": 12,
+          "strict_accuracy": {
+            "denominator": 29,
+            "numerator": 13
+          },
+          "valid_output_coverage": {
+            "denominator": 29,
+            "numerator": 13
+          }
+        },
+        "structure_reference_rule_denominator": 39,
+        "target_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 17,
+          "value": {
+            "denominator": 39,
+            "numerator": 17
+          }
+        }
+      },
+      "T1-B": {
+        "conditional": {
+          "F1": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "FN": 0,
+          "FP": 0,
+          "N": 14,
+          "TN": 4,
+          "TP": 10,
+          "directional_F1": {
+            "denominator": 19,
+            "numerator": 16
+          },
+          "directional_FN": 2,
+          "directional_FP": 4,
+          "directional_TP": 16,
+          "directional_precision": {
+            "denominator": 5,
+            "numerator": 4
+          },
+          "directional_recall": {
+            "denominator": 9,
+            "numerator": 8
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "semantic_exact_match_count": 10,
+          "strict_accuracy": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "valid_output_coverage": {
+            "denominator": 1,
+            "numerator": 1
+          }
+        },
+        "conditional_denominator": 14,
+        "exact_horizon_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 16,
+          "value": {
+            "denominator": 39,
+            "numerator": 16
+          }
+        },
+        "raw_and_admitted_coverage": {
+          "admitted": 45,
+          "observations": 87,
+          "raw_draws": 261,
+          "raw_draws_parsed": 261,
+          "selected_raw_parsed": 87,
+          "terminals": {
+            "ACCEPTED_RULE_SET": 33,
+            "INTENTIONAL_NO_RULE": 12,
+            "VERIFIER_REJECTION": 42
+          }
+        },
+        "source_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 18,
+          "value": {
+            "denominator": 13,
+            "numerator": 6
+          }
+        },
+        "strict": {
+          "F1": {
+            "denominator": 7,
+            "numerator": 4
+          },
+          "FN": 11,
+          "FP": 4,
+          "N": 29,
+          "TN": 4,
+          "TP": 10,
+          "directional_F1": {
+            "denominator": 59,
+            "numerator": 32
+          },
+          "directional_FN": 23,
+          "directional_FP": 4,
+          "directional_TP": 16,
+          "directional_precision": {
+            "denominator": 5,
+            "numerator": 4
+          },
+          "directional_recall": {
+            "denominator": 39,
+            "numerator": 16
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 7,
+            "numerator": 5
+          },
+          "recall": {
+            "denominator": 21,
+            "numerator": 10
+          },
+          "semantic_exact_match_count": 10,
+          "strict_accuracy": {
+            "denominator": 29,
+            "numerator": 14
+          },
+          "valid_output_coverage": {
+            "denominator": 29,
+            "numerator": 14
+          }
+        },
+        "structure_reference_rule_denominator": 39,
+        "target_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 18,
+          "value": {
+            "denominator": 13,
+            "numerator": 6
+          }
+        }
+      },
+      "T2": {
+        "conditional": {
+          "F1": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "FN": 0,
+          "FP": 0,
+          "N": 19,
+          "TN": 6,
+          "TP": 13,
+          "directional_F1": {
+            "denominator": 25,
+            "numerator": 24
+          },
+          "directional_FN": 0,
+          "directional_FP": 2,
+          "directional_TP": 24,
+          "directional_precision": {
+            "denominator": 13,
+            "numerator": 12
+          },
+          "directional_recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "recall": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "semantic_exact_match_count": 17,
+          "strict_accuracy": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "valid_output_coverage": {
+            "denominator": 1,
+            "numerator": 1
+          }
+        },
+        "conditional_denominator": 19,
+        "exact_horizon_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 24,
+          "value": {
+            "denominator": 13,
+            "numerator": 8
+          }
+        },
+        "raw_and_admitted_coverage": {
+          "admitted": 61,
+          "observations": 87,
+          "raw_draws": 170,
+          "raw_draws_parsed": 170,
+          "selected_raw_parsed": 87,
+          "terminals": {
+            "ACCEPTED_RULE_SET": 43,
+            "INTENTIONAL_NO_RULE": 18,
+            "NEEDS_REPAIR_BUDGET_EXHAUSTED": 26
+          }
+        },
+        "source_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 24,
+          "value": {
+            "denominator": 13,
+            "numerator": 8
+          }
+        },
+        "strict": {
+          "F1": {
+            "denominator": 18,
+            "numerator": 13
+          },
+          "FN": 8,
+          "FP": 2,
+          "N": 29,
+          "TN": 6,
+          "TP": 13,
+          "directional_F1": {
+            "denominator": 65,
+            "numerator": 48
+          },
+          "directional_FN": 15,
+          "directional_FP": 2,
+          "directional_TP": 24,
+          "directional_precision": {
+            "denominator": 13,
+            "numerator": 12
+          },
+          "directional_recall": {
+            "denominator": 13,
+            "numerator": 8
+          },
+          "disposition_reference_valid": true,
+          "no_predicted_positives": false,
+          "precision": {
+            "denominator": 15,
+            "numerator": 13
+          },
+          "recall": {
+            "denominator": 21,
+            "numerator": 13
+          },
+          "semantic_exact_match_count": 17,
+          "strict_accuracy": {
+            "denominator": 29,
+            "numerator": 19
+          },
+          "valid_output_coverage": {
+            "denominator": 29,
+            "numerator": 19
+          }
+        },
+        "structure_reference_rule_denominator": 39,
+        "target_direction_accuracy": {
+          "defined": true,
+          "denominator": 39,
+          "numerator": 24,
+          "value": {
+            "denominator": 13,
+            "numerator": 8
+          }
+        }
+      }
+    }
+  }
 }

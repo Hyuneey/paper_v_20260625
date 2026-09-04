@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e46d8693784d1b02603c10764c3a14f9a8ee34266d00953472cfa581a1c90937 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B). DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,7 +32,9 @@ Registry snapshot: `2026-09-03T17:08:57Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선택을 제거하고 SCI02B로 후결속합니다. 기존 결과는 그대로 보존. DG-03B_REVISED 신규 승인 전 provider0, DG-04는 EXP03B 이후입니다.
+EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.
+
+DG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.
 
 ## 상태를 읽는 방법
 
@@ -143,7 +145,7 @@ EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선
 | EXP-H23-HOLDOUT | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
 | EXP-H22-XVER | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
 | EXP-H21-XVER | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
-| EXP-03B | PREPARED_DG03B_REVISED_PENDING | 준비 결과이며 Agentic 성능 결과 아님 |
+| EXP-03B | 실행·근거 점검 완료·개발 결과 | 정상 확인 reference 기반 DEVELOPMENT_ONLY;T2 대 T1-B 사전등록 비교 |
 
 ## 공식 연구 주장
 
@@ -165,7 +167,7 @@ EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선
 | CLAIM-L | 미검증 (UNVALIDATED) | trace 기반 interface는 있으나 사람에게 유용한지는 평가하지 않았다. |
 | CLAIM-M | 현재 근거로 지원되지 않음 | 현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다. |
 | CLAIM-N | 미검증 (UNVALIDATED) | A version-separated preregistered evaluation plan exists; no new attack panel result exists. |
-| CLAIM-EXP03B-PREP | 구현 근거로 지원됨 | 의미적 evidence-to-rule 준비; DG-03B_REVISED 대기 |
+| CLAIM-EXP03B-PREP | DEVELOPMENT_SUPPORTED | 정상 확인 reference에서 T2 대 T1-B 사전등록 기준 충족;T0 대비 우월성 아님 |
 
 ## 연구 상태의 서로 다른 차원
 
@@ -181,7 +183,7 @@ EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선
 아직 확립되지 않음:
 
 - GDN general utility beyond the current normal-only EXP-01 and EXP-01B scope
-- Agentic verifier-feedback 이점
+- Agentic의 T0 대비 우월성·고정 cohort 밖 전이·held-out utility
 - Rule-only의 실제 운영 유용성
 - Detector+Rule 성능 향상
 - Held-out 일반화
@@ -189,4 +191,4 @@ EXP-03B 의미적 Rule induction V2 준비 완료. Provider의 수치 옵션 선
 
 ## 정확한 다음 작업
 
-**DG-03B_REVISED — EXP-03B Provider Execution Decision (DG-04 DEFERRED_UNTIL_EXP03B)**
+**DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**
