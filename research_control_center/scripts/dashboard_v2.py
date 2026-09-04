@@ -386,6 +386,7 @@ def build_dashboard_view_model(
         "dg04_method_lock": state.get("dg04_method_lock"),
         "xver_preparation": state.get("xver_preparation"),
         "xver_normal_preparation": state.get("xver_normal_preparation"),
+        "xver_normal_execution": state.get("xver_normal_execution"),
         "decisions": [dict(row) for row in data["decisions"]],
         "unresolved_decisions": unresolved,
         "recent_events": current_events[:3],
@@ -670,7 +671,7 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
       <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 근거, PILOT V1, VALIDATION V2 test1 개발 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. 위 정상 전용 단계 당시 test1·label·test2·held-out 접근은 0이었습니다. 아래 후속 EXP-04는 승인된 test1 개발 평가입니다.</p></section>
-      {('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 정상 custody는 DEC-026 projection으로 복원됐으며 외부 GDN evidence와 DG-XVER-PROVIDER 예산은 아직 미완료입니다.</p>' if vm.get('dg04_method_lock') else '')}
+      {('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 외부 정상-only GDN/T0·T2 pack과 정확 예산 준비 완료; 현재 DG-XVER-PROVIDER 승인 대기이며 provider·공격 접근은 없습니다.</p>' if vm.get('xver_normal_execution') else ('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 정상 custody는 DEC-026 projection으로 복원됐으며 외부 GDN evidence와 DG-XVER-PROVIDER 예산은 아직 미완료입니다.</p>' if vm.get('dg04_method_lock') else ''))}
       {_render_exp03b(vm)}{_render_exp03_execution(vm)}{_render_front_results(vm)}{panel_section}
       <aside class="warning-banner">PILOT V1 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
@@ -688,6 +689,23 @@ def _render_dg04(vm: Mapping[str, Any]) -> str:
                '<a href="../validation_v2/xver_normal/GDN_SEPARATED_EVIDENCE_BINDING_V1.md">승인된 분리 binding</a> · '
                '<a href="../validation_v2/xver_normal/GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md">이전 blocker 기록</a></p><p>아래 Stage B는 부모 task 종료 당시 기록입니다.</p>'
                if vm.get('xver_normal_preparation') else '')
+    if vm.get('xver_normal_execution'):
+        execution = vm['xver_normal_execution']
+        budget = execution['combined_provider_ceiling']
+        version_rows = ''.join(
+            f"<tr><th>HAI {_esc(version)}</th><td>{v['GDN_scientific_runs']}</td>"
+            f"<td>{v['T0_retained_rules']} / {v['T0_pair_count']}</td>"
+            f"<td>{v['provider_pack_count']} / {v['retrieval_pack_count']}</td>"
+            f"<td>{v['max_calls']}</td><td>{v['hard_token_ceiling']:,}</td></tr>"
+            for version, v in execution['versions'].items())
+        current = f'''<div id="xver-normal-execution"><h4>현재: 정상-only 실행 완료 · DG-XVER-PROVIDER 승인 대기</h4>
+        <p>{_esc(execution['status'])}. GDN {execution['scientific_GDN_runs']}/12; provider/credential/공격 접근 0.</p>
+        <table><thead><tr><th>버전</th><th>GDN runs</th><th>T0 Rules / pairs</th><th>provider / retrieval packs</th><th>최대 calls</th><th>hard tokens</th></tr></thead><tbody>{version_rows}</tbody></table>
+        <p>GLOBAL5만 train1 provider / train2 retrieval에 사용. EVENT10은 보조 분석 전용으로 융합·후보·T0·verifier·숫자·guard에 사용하지 않습니다.</p>
+        <p>합계 최대 {budget['maximum_calls']} calls / {budget['maximum_total_tokens']:,} tokens / USD {_esc(budget['cost_ceiling_usd'])}. 공개 표준가격 기준 사전 상한이며 실제 지출이 아닙니다.</p>
+        <p>DG-XVER-PROVIDER USER_DECISION_REQUIRED; DG-05 NOT_APPROVED. 외부 T0는 held-out candidate이며 공격 효용·일반화가 검증되지 않았습니다. 교수 package NOT_SUBMITTED.</p>
+        <a href="../validation_v2/xver_normal/DG_XVER_PROVIDER_DECISION_BRIEF_V1.md">정확한 버전별 provider 결정 brief</a></div>
+        <h4>이전 Stage B 종료 당시 기록 — 현재 실행 상태 아님</h4>'''
     return f'''<section class="panel roadmap" aria-labelledby="dg04-xver-heading"><h3 id="dg04-xver-heading">DG-04 방법 고정 · 외부 정상 준비</h3>{current}
     <p>DEC-025 · APPROVED_WITH_SCOPED_AGENTIC_CLAIM</p><p>{_esc(lock['title'])}</p>
     <p>EXP-03B 정상-only: T2는 matched-maximum-budget T1-B 대비 이점이 있으나 주요 의미 지표에서 T0보다 우수하지 않았습니다. GDN은 learned-graph evidence이며 후보·탐지·수치 권한이 아닙니다. Fusion은 사전등록 비교입니다.</p>

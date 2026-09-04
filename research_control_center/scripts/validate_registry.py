@@ -371,7 +371,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
     if state.get('exp03b_execution'):
         execution=state['exp03b_execution']
-        result.require(state.get('last_completed_task')=='EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료','last completed EXP03B task')
+        if not state.get('xver_normal_execution'):
+            result.require(state.get('last_completed_task')=='EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료','last completed EXP03B task')
         if state.get('dg04_method_lock'):
             lock=state['dg04_method_lock']
             result.require(lock.get('decision_id')=='DEC-025' and lock.get('decision')=='APPROVED_WITH_SCOPED_AGENTIC_CLAIM', 'DG04 explicit decision required')
@@ -383,7 +384,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('projection_files')==9 and xver.get('label_values_parsed') is False and xver.get('stage_a_changed') is False,'XVER label-blind amendment and preservation')
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
-                result.require(state.get('exact_next_task')=='HAI-XVER-NORMAL-PREP-001','XVER exact normal preparation stop')
+                result.require(state.get('exact_next_task')==('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001'),'XVER exact authorized stop')
                 if state.get('xver_normal_preparation'):
                     normal=state['xver_normal_preparation']
                     result.require(normal.get('status')=='BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING','Exact approved binding preparation state')
@@ -392,6 +393,17 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                     result.require(normal.get('stage_a_changed') is False and normal.get('scientific_GDN_runs')==0,'No unbound scientific run')
                     result.require(normal.get('provider_calls')==0 and normal.get('credential_reads')==0 and normal.get('excluded_values_parsed') is False,'XVER normal-only privacy')
                     result.require(all(v.get('T2_evidence_ready') is False and v.get('hard_token_ceiling') is None for v in normal.get('versions',{}).values()),'No fabricated T2 readiness')
+                if state.get('xver_normal_execution'):
+                    closed=state['xver_normal_execution']
+                    result.require(closed.get('scientific_GDN_runs')==12 and set(closed.get('versions',{}))=={'22.04','21.03'},'Both exact external GDN schedules closed')
+                    result.require(closed.get('stage_a_changed') is False and closed.get('excluded_values_parsed') is False,'Execution immutable label-blind boundary')
+                    result.require(all(closed.get(k)==0 for k in ('provider_calls','credential_reads','attack_accesses')),'External normal execution safety')
+                    result.require(closed.get('DG_XVER_PROVIDER')=='USER_DECISION_REQUIRED' and closed.get('DG05')=='NOT_APPROVED','External future gates remain closed')
+                    result.require(closed.get('event_role')=='AUXILIARY_CORROBORATION_ONLY' and closed.get('global_provider_role')=='EXP03B_COMPATIBLE_SPLIT_PURE_GLOBAL','Execution GDN roles separated')
+                    for v in closed.get('versions',{}).values():
+                        result.require(v.get('GDN_scientific_runs')==6 and v.get('T2_evidence_ready') is True,'Version six-run evidence closure')
+                        result.require(v.get('N',0)>0 and v.get('max_calls')==3*v.get('N',0) and v.get('provider_pack_count')==v.get('N') and v.get('retrieval_pack_count')==v.get('N'),'Version exact provider cohort')
+                        result.require(v.get('hard_token_ceiling',0)>0 and len(v.get('budget_hash',''))==64 and len(v.get('T0_portfolio_hash',''))==64,'Version exact frozen budget and portfolio')
             else:
                 result.require(state.get('exact_next_task')=='DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비', 'DG04 normal preparation next')
         else:
