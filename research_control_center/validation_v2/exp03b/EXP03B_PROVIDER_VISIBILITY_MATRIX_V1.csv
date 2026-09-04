@@ -1,0 +1,11 @@
+field,classification,provider_visible
+candidate_identity,CANDIDATE_IDENTITY,true
+train1_tuple_aggregates,NONANSWER_EVIDENCE,true
+train1_numeric_alias_metrics,NONANSWER_EVIDENCE,true
+train1_STAT_GDN,NONANSWER_EVIDENCE,true
+output_schema,FORMAT_CONSTRAINT,true
+V2A_final_direction_horizon,PROHIBITED,false
+final_numeric_reference,PROHIBITED,false
+META_rank_tier,PROHIBITED,false
+train2_hidden_outcomes,PROHIBITED,false
+train3_train4,PROHIBITED,false
