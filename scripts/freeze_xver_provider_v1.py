@@ -36,6 +36,9 @@ def offline_encoder():
 def freeze_version(version):
     tiktoken,encoder,rank_hash=offline_encoder()
     authority,context,candidate,roles,pairs=replay_authority(version)
+    serializer=document(PUB/'XVER_PROVIDER_SERIALIZER_FREEZE_V1.json');committed(PUB/'XVER_PROVIDER_SERIALIZER_FREEZE_V1.json')
+    for path,h in serializer['implementation_hashes'].items():require(sha256_file(ROOT/path)==h,'FROZEN_SERIALIZER_CHANGED')
+    require(serializer['configuration']==execution_config(),'FROZEN_PROVIDER_SETTINGS_CHANGED')
     for p in ('scripts/freeze_xver_provider_v1.py','src/paperworks/validation_v2/xver_prompt_v1.py','src/paperworks/validation_v2/exp03b_prompt_v2.py','research_control_center/validation_v2/xver_normal/PROVIDER_PRICE_AUTHORITY_V1.md'):committed(ROOT/p)
     directory=run_directory(version);evidence=document(directory/'EVIDENCE_FROZEN.json')
     portfolio=document(PUB/f'HAI{version[:2]}_T0_PORTFOLIO_AUTHORITY_V1.json')
