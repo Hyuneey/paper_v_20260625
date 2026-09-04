@@ -7,6 +7,8 @@ import math
 from .exp03b_prompt_v2 import request_body as initial_request, validate_repair, validate_projection, execution_config as base_config
 from .exp03b_contract_v1 import require, digest, encoded, HORIZONS
 from .exp03b_firewall_v2 import assert_clean
+from .exp03b_evidence_v1 import slice_id
+from .exp03b_contract_v1 import SemanticTupleV1
 
 
 def validate_global_retrieval(q):
@@ -30,6 +32,9 @@ def request_body(evidence, *, repair=None):
     structural=validate_global_retrieval(q) if q is not None else None
     # Validate unchanged proposal/feedback and all twenty structural alternatives.
     validate_repair({'previous_proposal':repair['previous_proposal'],'feedback':repair['feedback'],'retrieval':structural})
+    if q is not None:
+        pair=(evidence['source'],evidence['target'])
+        require(all(r['evidence_slice_id']==slice_id('train2',pair,SemanticTupleV1(**r['semantic']),'structure') for r in q['alternatives']), 'RETRIEVAL_FIXED_PAIR_BINDING')
     assert_clean(repair)
     body['input']=encoded({'evidence':evidence,'repair':repair}).decode()
     return body
