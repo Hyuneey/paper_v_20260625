@@ -1,0 +1,30 @@
+{
+  "authority_replay": "PASS",
+  "base_commit": "4cbd13cec2e439f352adaf5b4e37163c6f18a485",
+  "candidate_authority_hash": "906ccb4a434dc7c73f8a16aaaf6d5385b3121637cb33e3c8064ace01dbddfc29",
+  "candidate_pair_count": 29,
+  "cohort_hash": "7bfb75e6559bd80af30c824439a73261212feb59d6d77ec334e48900bf1531f2",
+  "confirmed_pair_count": 21,
+  "cost_ceiling": "NOT_FROZEN",
+  "credential_reads": 0,
+  "directional_relation_count": 39,
+  "execution_readiness": "BLOCKED_UNDEFINED_SCIENTIFIC_BINDINGS",
+  "exp03_v1_result_hash": "653ee0d36255e22fcc0a145b9872418aeceac4022c32df71b803db3afe357238",
+  "input_tokens": "NOT_FROZEN",
+  "maximum_generation_calls": {
+    "T0": 0,
+    "T1": 87,
+    "T1-B": 261,
+    "T2": 261,
+    "total": 609
+  },
+  "output_tokens": "NOT_FROZEN",
+  "private_payload_reads": 0,
+  "protected_public_blob_count": 149,
+  "protected_public_inventory_hash": "d901aa5c23550005c9c0d8d08b106b347528a9494e6ce473b93ff63d1db753d4",
+  "provider_calls": 0,
+  "schema": "exp03b_preparation_authority_replay_v1",
+  "scientific_data_reads": 0,
+  "self_hash": "2012340755149e9f87f926f4c2938b8232f3907640a7769350ab812394513a55",
+  "writes": 0
+}

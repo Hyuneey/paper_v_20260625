@@ -1,4 +1,16 @@
-# 세션 인계 — EXP-03 고정 snapshot 실행 완료 / DG-04 대기
+# 세션 인계 — EXP03B 준비 감사 / 과학 binding 결정 필요
+
+## 최신 task-local 보정 (EXP03B-PREP-001)
+
+EXP-03 V1은 `CONSTRAINED_RULE_MATERIALIZATION_BENCHMARK`로 해석하며 결과 bytes는 보존한다.
+사용자가 DG-04를 EXP03B 뒤로 연기했다. 이전 DG-04 문서는 historical이며 수정하지 않는다.
+EXP03B는 아직 PREPARED가 아니다: train1 T0/train2 verifier 임계값·numeric-option 선택,
+normal guard admission/집계와 majority scoring의 정확한 과학 binding이 필요하다.
+기존 train1 통계는 pooled train1/train2 scale에 의존하고 GDN functional evidence는 train4여서
+단순 재사용할 수 없다. 실제 데이터·provider·credential 접근 없이 감사를 마쳤다.
+다음: `validation_v2/exp03b/EXP03B_CONSTRUCT_VALIDITY_RATIONALE_V1.md`의 SCI-01~04 결정.
+이후 나머지 준비를 완료하고 DG-03B로 간다. 현재 Registry/Dashboard는 이전 완료 상태이며
+이번 미완료 task를 READY로 게시하지 않았다. 아래는 EXP-03 완료 시점의 역사적 인계다.
 
 ## 정확한 다음 작업
 
