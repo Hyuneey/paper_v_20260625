@@ -1223,7 +1223,7 @@ The frozen 14-scenario test1 result remains DEVELOPMENT_ONLY and will not be reo
 The prospective panels are HAI 23.05 test2 as PRIMARY_HELDOUT and HAI 22.04 plus
 HAI 21.03 as version-separated external replications. Their 146 nominal scenarios are
 not IID and one pooled Recall is prohibited as the primary result. DG-05 is mandatory
-before any new attack payload or label access; DG-03 is the exact current decision gate.
+before any new attack payload or label access. Current next gate: {state['exact_next_task']}.
 
 ## Candidate-discovery boundary
 
@@ -1289,7 +1289,7 @@ observations, not new calculations.
 
 ## Current execution gates
 
-EXP-03 awaits DG-03. Final contribution wording awaits DG-04; all new attack panels await DG-05;
+EXP-03: {state.get('exp03_execution', {}).get('status', 'PREPARED_PROVIDER_GATED')}. Final contribution wording awaits DG-04; all new attack panels await DG-05;
 professor submission awaits DG-06. Cross-version P1 compatibility remains unresolved.
 
 ## Top user TODO
@@ -2898,6 +2898,8 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
     }
     paths: list[Path] = []
     for name, payload in outputs.items():
+        if name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data["state"].get("exp03_execution"):
+            payload += "\n## 현재 provider Gate\n\nDG-03은 고정 snapshot으로 승인·실행되었으며 EXP-03 독립 QA가 완료되었습니다. 현재는 DG-04 제목·기여 결정 대기입니다. DG-05 공격 접근과 DG-06 제출은 승인되지 않았습니다.\n"
         path = generated / name
         path.write_text(payload, encoding="utf-8", newline="\n")
         paths.append(path)

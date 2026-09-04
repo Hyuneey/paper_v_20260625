@@ -1,10 +1,14 @@
-# 세션 인계 — 다중 HAI 평가 확대 계획 고정
+# 세션 인계 — EXP-03 고정 snapshot 실행 완료 / DG-04 대기
 
 ## 정확한 다음 작업
 
-DG-03 — EXP-03 Provider Execution Decision.
-권고안은 OpenAI `gpt-5.4-mini`, natural 39 relations, 최대 819 calls,
-5,031,936 tokens, USD 10.07 ceiling이다. 사용자 승인 전 provider 호출은 0이다.
+DG-04 — 최종 제목·Agentic 기여 표현 결정.
+DG-03은 사용자 승인 exact snapshot `gpt-5.4-mini-2026-03-17`으로 완료했다.
+실제 585 calls, 636,270 tokens, 표준요금 상한 USD 1.21379625; 독립 QA PASS.
+T0 39/39, T1 104/117, T1-B 115/117, T2 105/117 승인. T2 feedback 0/117이므로 repair는 NOT_OBSERVED다.
+41개 call-level PARSE_FAILURE는 valid JSON의 NO_RULE envelope 일관성 실패이며 기존 분류를 변경하지 않았다.
+전체 응답·ledger는 별도 EXP-03 private vault namespace에 local-only로 보관됐다. 재호출·재실행하지 않는다.
+공개 결과와 QA: `validation_v2/exp03/execution_v1/`. frozen result hash `653ee0d36255e22fcc0a145b9872418aeceac4022c32df71b803db3afe357238`.
 DG-04 제목·기여, DG-05 다중 attack panel, DG-06 실제 교수님 제출은 별도 Gate다.
 
 ## 사용자 승인 평가 확대

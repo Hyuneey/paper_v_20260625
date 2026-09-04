@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -64,5 +64,5 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **DG-03 — EXP-03 Provider Execution Decision**이다. ARCH-011은 이 remediation이나 test2 access를
+다음 task는 **DG-04 — 최종 제목·Agentic 기여 표현 결정**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.

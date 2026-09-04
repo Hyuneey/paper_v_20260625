@@ -51,7 +51,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(10, len(data["experiments"]))
         self.assertEqual(14, len(data["claims"]))
         self.assertEqual(18, len(data["risks"]))
-        self.assertEqual(41, len(data["artifacts"]))
+        self.assertEqual(42, len(data["artifacts"]))
         self.assertEqual(
             {
                 "scientific_executions": 4,
@@ -75,6 +75,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
+            "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
             "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
             "origin/research-v6-thesis-checkpoint": {AUTHORITY_COMMIT},
             "validation-v2-core-exp02": {"9cb47e0efb868048d4a523ec4cfaca53bd342ab7"},
@@ -100,6 +101,7 @@ class RegistryValidationTests(unittest.TestCase):
             {row["scientific_source_commit"] for row in data["components"] if row["component_id"] != "THESIS_DRAFT"},
         )
         allowed_history_commits = {
+            "9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4",
             AUTHORITY_COMMIT,
             "NONE",
             "e81baadcfd6cf6b9f23d307056455e024876c2ed",
@@ -164,8 +166,8 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(32, len(data["timeline"]))
-        self.assertEqual(22, len(data["decisions"]))
+        self.assertEqual(33, len(data["timeline"]))
+        self.assertEqual(23, len(data["decisions"]))
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
         result = validator.ValidationResult()
         validator._validate_dates(data, result)
@@ -204,7 +206,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
-        self.assertEqual("DG-03 — EXP-03 Provider Execution Decision", data["state"]["exact_next_task"])
+        self.assertEqual("DG-04 — 최종 제목·Agentic 기여 표현 결정", data["state"]["exact_next_task"])
 
     def test_bootstrap_is_excluded_from_new_file_privacy_scan(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

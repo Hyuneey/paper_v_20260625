@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-04
@@ -120,9 +120,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.
+- DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.
 - HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.
 - DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다.
 
-Exact next management task: **DG-03 — EXP-03 Provider Execution Decision**
+Exact next management task: **DG-04 — 최종 제목·Agentic 기여 표현 결정**
 Following architecture task: **NONE — ARCH-000 through ARCH-011 complete**

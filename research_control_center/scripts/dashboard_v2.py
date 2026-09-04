@@ -371,6 +371,7 @@ def build_dashboard_view_model(
         "runtime_status_tokens": ["PASS", "FAIL", "ABSTAIN"],
         "experiments": experiments,
         "evaluation_panels": evaluation_panels,
+        "exp03_execution": state.get("exp03_execution", {}),
         "p0": p0,
         "root_issues": [current_gap_row(row) for row in root_issues],
         "risks": [dict(row) for row in data["risks"]],
@@ -550,6 +551,12 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
         ("DG-04", "기여·제목 표현 결정", "GDN은 설명용 보조 근거; Agentic 효용은 아직 미검증"),
         ("DG-06", "교수님 개발 결과 package 검토", "음성 결과를 포함한 보고서 확인; 실제 제출은 별도 승인"),
     ]
+    if vm.get("exp03_execution"):
+        actions = [
+            ("DG-04", "최종 제목·Agentic 기여 결정", "EXP-03 실행·QA 완료; 자연 feedback 발생 0으로 이점은 관찰되지 않음"),
+            ("DG-05", "다중 HAI 공격 접근 별도 승인", "버전별 P1 호환성·시나리오·custody 준비 전 공격 데이터 접근 금지"),
+            ("DG-06", "교수님 package 제출 검토", "초안 작성 완료와 실제 제출을 구분; 자동 발송 금지"),
+        ]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
         for gap, title, body in actions
@@ -643,11 +650,19 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
       <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 근거, PILOT V1, VALIDATION V2 test1 개발 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. 위 정상 전용 단계 당시 test1·label·test2·held-out 접근은 0이었습니다. 아래 후속 EXP-04는 승인된 test1 개발 평가입니다.</p></section>
-      {_render_front_results(vm)}{panel_section}
+      {_render_exp03_execution(vm)}{_render_front_results(vm)}{panel_section}
       <aside class="warning-banner">PILOT V1 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">Experiment Roadmap</p><h3>실험 Gate와 claim 영향</h3></div></div><div class="table-wrap"><table><thead><tr><th>실험</th><th>확인할 가설</th><th>현재 상태</th><th>현재 근거</th><th>먼저 해결할 것</th><th>결과에 따른 결정</th></tr></thead><tbody>{exp_rows}</tbody></table></div></section>
     </section>'''
+
+
+def _render_exp03_execution(vm: Mapping[str, Any]) -> str:
+    result = vm.get("exp03_execution", {})
+    if not result:
+        return ""
+    rows = "".join(f'<tr><th scope="row">{_esc(row["arm"])}</th><td>{row["accepted"]}/{row["scheduled"]}</td><td>{row["calls"]}</td><td>{row["feedback_activated"]}</td></tr>' for row in result["arm_metrics"])
+    return f'''<section class="panel roadmap" aria-labelledby="exp03-live-heading"><div class="panel-heading"><div><p class="kicker">EXP-03 · 고정 snapshot 구성 비교</p><h3 id="exp03-live-heading">규칙 구성 결과와 feedback 관찰</h3></div><a class="text-button" href="../validation_v2/exp03/execution_v1/EXP03_RESULTS_REPORT_V1.md">결과·해석 경계</a></div><p>{_esc(result['model_snapshot'])} · {_esc(result['status'])} · {result['calls']}회 호출 · 표준요금 상한 USD {_esc(result['cost_upper_bound_usd'])}</p><div class="table-wrap"><table><thead><tr><th>arm</th><th>승인/예정</th><th>생성 호출</th><th>feedback 발생</th></tr></thead><tbody>{rows}</tbody></table></div><p class="chart-note">39개 고정 관계의 reference-bound construction 비교입니다. 새로운 관계 발견·탐지 성능 또는 Agentic 우월성을 뜻하지 않습니다. synthetic stress는 별도입니다. DG-04에서 제목·기여 표현을 결정합니다.</p></section>'''
 
 
 def _render_readiness_view(vm: Mapping[str, Any]) -> str:

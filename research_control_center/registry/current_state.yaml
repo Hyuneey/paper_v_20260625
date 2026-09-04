@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-out와 HAI22/21 external replications로 version 분리하며 146 nominal scenarios를 IID로 합치지 않는다. 공격 접근은 DG-05 전 0이다.",
+  "current_phase_statement": "EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다. V2 개발 결과는 보존하며 DG-04에서 제목·기여 표현 결정을 기다린다.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -553,7 +553,7 @@
       "EXP-01": "COMPLETE",
       "EXP-01B": "COMPLETE",
       "EXP-02": "COMPLETE",
-      "EXP-03": "BLOCKED",
+      "EXP-03": "COMPLETE",
       "EXP-04": "COMPLETE",
       "EXP-05": "COMPLETE",
       "EXP-06": "NOT_REQUIRED",
@@ -681,9 +681,9 @@
       "HAI_TRAIN4"
     ],
     "missing_symbolic_splits": [],
-    "blocked_scope": "EXP-03 provider DG-03; 최종 제목 DG-04; heldout DG-05; 실제 제출 DG-06",
+    "blocked_scope": "최종 제목·기여 DG-04; attack/heldout DG-05; 실제 제출 DG-06",
     "required_recovery": "COMPLETED_BY_CODE_BASED_MATERIALIZATION.",
-    "provider_gate": "DG-03 remains pending and is triggered only after the natural cohort and exact call/token budget can be frozen.",
+    "provider_gate": "DG-03 APPROVED_WITH_FIXED_SNAPSHOT; EXP-03 COMPLETE_QA_PASS; DG-04 pending.",
     "exp01_status": "COMPLETE_QA_PASS; GDN_DEMOTED_TO_ABLATION; META_PLUS_STAT selected.",
     "exp01_readiness_receipt": "research_control_center/validation_v2/reports/EXP01_EXECUTION_READINESS_V2.json",
     "exp01b_status": "COMPLETE_NORMAL_ONLY; GDN_ABLATION_ONLY after nine CUDA runs.",
@@ -696,20 +696,41 @@
     "scientific_execution_scope": "기존 registry 3회 + 본 단일 scientific runner 1회(EXP-04와 같은 runtime의 EXP-05). EXP-01C 학습 횟수는 별도 역사 receipt.",
     "test2_accesses": 0,
     "heldout_accesses": 0,
-    "provider_calls": 0,
+    "provider_calls": 585,
     "pilot_v1_impact": "NONE; 3021 of 3021 preservation entries remain byte-identical.",
     "exp04_status": "COMPLETE_QA_PASS_DEVELOPMENT",
-    "exp05_status": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS"
+    "exp05_status": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS",
+    "exp03_status": "COMPLETE_QA_PASS"
   },
   "evaluation_expansion": {
     "decision_id": "DEC-022",
     "status": "PREREGISTRATION_PREPARATION_COMPLETE",
     "official_hai_snapshot": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
     "panels": [
-      {"panel_id": "HAI23_TEST1_DEVELOPMENT_V1", "role": "DEVELOPMENT_ONLY", "nominal_scenarios": 14, "status": "COMPLETE_DEVELOPMENT_ONLY"},
-      {"panel_id": "HAI23_TEST2_PRIMARY_HELDOUT_V1", "role": "PRIMARY_HELDOUT", "nominal_scenarios": 38, "status": "PREREGISTRATION_PREPARATION_ONLY"},
-      {"panel_id": "HAI22_EXTERNAL_REPLICATION_V1", "role": "EXTERNAL_VERSION_REPLICATION_1", "nominal_scenarios": 58, "status": "PREREGISTRATION_PREPARATION_ONLY"},
-      {"panel_id": "HAI21_EXTERNAL_REPLICATION_V1", "role": "EXTERNAL_VERSION_REPLICATION_2", "nominal_scenarios": 50, "status": "PREREGISTRATION_PREPARATION_ONLY"}
+      {
+        "panel_id": "HAI23_TEST1_DEVELOPMENT_V1",
+        "role": "DEVELOPMENT_ONLY",
+        "nominal_scenarios": 14,
+        "status": "COMPLETE_DEVELOPMENT_ONLY"
+      },
+      {
+        "panel_id": "HAI23_TEST2_PRIMARY_HELDOUT_V1",
+        "role": "PRIMARY_HELDOUT",
+        "nominal_scenarios": 38,
+        "status": "PREREGISTRATION_PREPARATION_ONLY"
+      },
+      {
+        "panel_id": "HAI22_EXTERNAL_REPLICATION_V1",
+        "role": "EXTERNAL_VERSION_REPLICATION_1",
+        "nominal_scenarios": 58,
+        "status": "PREREGISTRATION_PREPARATION_ONLY"
+      },
+      {
+        "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+        "role": "EXTERNAL_VERSION_REPLICATION_2",
+        "nominal_scenarios": 50,
+        "status": "PREREGISTRATION_PREPARATION_ONLY"
+      }
     ],
     "nominal_non_development_scenarios": 146,
     "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
@@ -721,12 +742,12 @@
     "provider_calls": 0
   },
   "top_priorities": [
-    "DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.",
+    "DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
     "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
     "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다."
   ],
   "highest_priority_work": [
-    "DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.",
+    "DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
     "HAI 22.04/21.03 P1 tag·unit·role 호환성을 normal-only/public metadata로 별도 검증한다.",
     "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 승인 전까지 열지 않는다."
   ],
@@ -753,18 +774,18 @@
       "id": "USER-V2-003",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "DG-03에서 OpenAI gpt-5.4-mini, 최대 819 calls, 5,031,936 tokens, USD 10.07 ceiling의 EXP-03 실행을 검토한다.",
-      "why": "39-relation natural cohort와 exact redacted projection은 준비됐으나 외부 provider 호출은 별도 승인이 필요하다.",
-      "linked": "research_control_center/validation_v2/exp03/DG03_PROVIDER_DECISION_BRIEF_V1.md",
-      "status": "OPEN"
+      "task": "DG-03 고정 snapshot 승인·EXP-03 실행 완료",
+      "why": "T0 39/39; T1 104/117; T1-B 115/117; T2 105/117",
+      "linked": "research_control_center/validation_v2/exp03/execution_v1/EXP03_RESULTS_REPORT_V1.md",
+      "status": "COMPLETED"
     },
     {
       "id": "USER-V2-004",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "DG-04에서 GDN-Assisted 제목과 조건부 Agentic 표현을 결정한다.",
-      "why": "EXP-01/01B 음성 결과를 유지하며 EXP-01C는 LEARNED_GRAPH_SUPPORTING이다.",
-      "linked": "DEC-021",
+      "task": "DG-04 — 최종 제목·Agentic 기여 표현 결정",
+      "why": "자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
+      "linked": "research_control_center/validation_v2/exp03/execution_v1/DG04_CONTRIBUTION_DECISION_BRIEF_V1.md",
       "status": "OPEN"
     },
     {
@@ -805,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "DG-03에서 EXP-03 provider/model과 819-call·5,031,936-token 상한을 검토한다. 승인 전 호출은 0이다.",
+    "DG-04 — 최종 제목·Agentic 기여 표현 결정: 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.",
     "다중 HAI plan은 승인됐지만 실제 P1 denominator와 공격 결과는 아직 없음을 확인한다.",
     "DG-04 제목·기여, DG-05 attack panel, DG-06 교수님 제출을 각각 별도로 검토한다."
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-03 — EXP-03 Provider Execution Decision",
+  "recommended_next_management_task": "DG-04 — 최종 제목·Agentic 기여 표현 결정",
   "recommended_next_architecture_task": "NONE — ARCH-000 through ARCH-011 complete",
-  "last_completed_task": "V2-EVAL-EXPANSION-001 — 다중 HAI 평가 계획·계약 준비 완료",
-  "exact_next_task": "DG-03 — EXP-03 Provider Execution Decision",
+  "last_completed_task": "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료",
+  "exact_next_task": "DG-04 — 최종 제목·Agentic 기여 표현 결정",
   "safety_counters": {
     "scientific_executions": 4,
     "test2_feature_accesses": 0,
@@ -842,5 +863,172 @@
     "additional_gdn_training": 0,
     "task_scientific_runner_executions": 1,
     "gdn_role": "LEARNED_GRAPH_SUPPORTING"
+  },
+  "exp03_execution": {
+    "status": "COMPLETE_QA_PASS",
+    "model_snapshot": "gpt-5.4-mini-2026-03-17",
+    "calls": 585,
+    "total_tokens": 636270,
+    "cost_upper_bound_usd": "1.21379625",
+    "arm_metrics": [
+      {
+        "accepted": 39,
+        "arm": "T0",
+        "by_repeat": [
+          {
+            "accepted": 39,
+            "repeat": 0,
+            "scheduled": 39
+          }
+        ],
+        "calls": 0,
+        "executable_projections": 39,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 39,
+        "scheduled": 39,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 39,
+          "ALL_DRAWS_FAILED": 0,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 0,
+          "PARSE_FAILURE": 0,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 0
+        }
+      },
+      {
+        "accepted": 104,
+        "arm": "T1",
+        "by_repeat": [
+          {
+            "accepted": 34,
+            "repeat": 1,
+            "scheduled": 39
+          },
+          {
+            "accepted": 36,
+            "repeat": 2,
+            "scheduled": 39
+          },
+          {
+            "accepted": 34,
+            "repeat": 3,
+            "scheduled": 39
+          }
+        ],
+        "calls": 117,
+        "executable_projections": 104,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 104,
+        "scheduled": 117,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 104,
+          "ALL_DRAWS_FAILED": 0,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 2,
+          "PARSE_FAILURE": 9,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 2
+        }
+      },
+      {
+        "accepted": 115,
+        "arm": "T1-B",
+        "by_repeat": [
+          {
+            "accepted": 39,
+            "repeat": 1,
+            "scheduled": 39
+          },
+          {
+            "accepted": 39,
+            "repeat": 2,
+            "scheduled": 39
+          },
+          {
+            "accepted": 37,
+            "repeat": 3,
+            "scheduled": 39
+          }
+        ],
+        "calls": 351,
+        "executable_projections": 115,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 103,
+        "scheduled": 117,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 115,
+          "ALL_DRAWS_FAILED": 2,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 0,
+          "PARSE_FAILURE": 0,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 0
+        }
+      },
+      {
+        "accepted": 105,
+        "arm": "T2",
+        "by_repeat": [
+          {
+            "accepted": 35,
+            "repeat": 1,
+            "scheduled": 39
+          },
+          {
+            "accepted": 35,
+            "repeat": 2,
+            "scheduled": 39
+          },
+          {
+            "accepted": 35,
+            "repeat": 3,
+            "scheduled": 39
+          }
+        ],
+        "calls": 117,
+        "executable_projections": 105,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 105,
+        "scheduled": 117,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 105,
+          "ALL_DRAWS_FAILED": 0,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 4,
+          "PARSE_FAILURE": 8,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 0
+        }
+      }
+    ],
+    "results_hash": "653ee0d36255e22fcc0a145b9872418aeceac4022c32df71b803db3afe357238",
+    "qa_hash": "b47f9170557b1b89646c6ba9c4b5c0f8cbbefb174cffe183beaac1c58b26c06d",
+    "next_gate": "DG-04",
+    "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   }
 }

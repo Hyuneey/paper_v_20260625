@@ -60,7 +60,13 @@ class FrontReportingTests(unittest.TestCase):
         state = self.data["state"]
         for exp in ("EXP-04", "EXP-05"):
             self.assertEqual("COMPLETE", state["pre_validation_readiness"]["experiment_gates"][exp])
-        self.assertEqual("BLOCKED", state["pre_validation_readiness"]["experiment_gates"]["EXP-03"])
+        exp03 = state.get("exp03_execution")
+        if exp03:
+            self.assertEqual("COMPLETE_QA_PASS", exp03["status"])
+            self.assertEqual("COMPLETE", state["pre_validation_readiness"]["experiment_gates"]["EXP-03"])
+            self.assertEqual("DG-04", exp03["next_gate"])
+        else:
+            self.assertEqual("BLOCKED", state["pre_validation_readiness"]["experiment_gates"]["EXP-03"])
         self.assertEqual("BLOCKED", state["pre_validation_readiness"]["experiment_gates"]["NEW_HELD_OUT"])
         self.assertEqual(0, self.front["test1_labels_before_freeze"])
         self.assertEqual(0, self.front["test2_accesses"])
@@ -71,9 +77,17 @@ class FrontReportingTests(unittest.TestCase):
         changed = subprocess.run(["git", "diff", "--name-only", self.front["execution_commit"], "--", "src", "configs"],
                                  cwd=RCC.parent, capture_output=True, text=True, check=True).stdout
         self.assertEqual(
-            {"src/paperworks/validation_v2/evaluation_expansion_v1.py"},
+            {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
+             "src/paperworks/validation_v2/exp03_live_contract_v1.py",
+             "src/paperworks/validation_v2/exp03_live_custody_v1.py"},
             set(changed.splitlines()),
         )
+        # New DG-03 namespace is authorized independently; no pre-existing
+        # detection source/config may change. Bind additions to pre-call freeze.
+        freeze = json.loads((RCC / "validation_v2/exp03/execution_v1/EXP03_EXECUTION_FREEZE_V1.json").read_text(encoding="utf-8"))
+        for name in ("exp03_live_contract_v1.py", "exp03_live_custody_v1.py"):
+            relative = "src/paperworks/validation_v2/" + name
+            self.assertEqual(freeze["bindings"][relative], hashlib.sha256((RCC.parent / relative).read_bytes()).hexdigest())
         helper = (RCC.parent / "src/paperworks/validation_v2/evaluation_expansion_v1.py").read_text(encoding="utf-8")
         for prohibited_io in ("open(", "read_text(", "read_bytes(", "requests", "urllib", "openai"):
             self.assertNotIn(prohibited_io, helper.lower())

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # OUTER와 재현성을 쉽게 이해하기
 
 ## 1. OUTER가 정확히 무엇인가?
@@ -51,4 +51,8 @@ Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 gui
 
 기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
 
-다음 task는 **DG-03 — EXP-03 Provider Execution Decision**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+다음 task는 **DG-04 — 최종 제목·Agentic 기여 표현 결정**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+
+## 현재 provider Gate
+
+DG-03은 고정 snapshot으로 승인·실행되었으며 EXP-03 독립 QA가 완료되었습니다. 현재는 DG-04 제목·기여 결정 대기입니다. DG-05 공격 접근과 DG-06 제출은 승인되지 않았습니다.

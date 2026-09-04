@@ -45,7 +45,7 @@ def load_front_results(repo_root: Path, state: Mapping[str, Any]) -> dict[str, A
         raise ValueError("Trace summary mismatch")
     if trace["human_usefulness"] != "UNVALIDATED" or trace["runner_source_commit"] != front["execution_commit"]:
         raise ValueError("Trace claim/source boundary mismatch")
-    return {**front, **documents, "rows": [{**rows[key], "display_name": label} for key, label in METHOD_LABELS.items()]}
+    return {**front, **documents, "current_next_task": state["exact_next_task"], "rows": [{**rows[key], "display_name": label} for key, label in METHOD_LABELS.items()]}
 
 
 def front_markdown(front: Mapping[str, Any]) -> str:
@@ -69,5 +69,5 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
+다음: {front['current_next_task']}. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 """

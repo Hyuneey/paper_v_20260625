@@ -7,7 +7,7 @@ pre{white-space:pre-wrap;font:inherit}a{color:#155eef}.warning{border-left:5px s
 @media print{nav{display:none}body{background:white}section{break-inside:avoid;border-color:#bbb}}
 </style></head><body><h1>VALIDATION V2 교수님 실험 업데이트</h1>
 <p class="warning">test1 DEVELOPMENT_ONLY 결과입니다. held-out 일반화와 human usefulness는 미확인입니다. 이메일은 전송하지 않았습니다.</p>
-<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">VALIDATION V2 방법</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP-03 Agentic feedback 결과</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">Held-out 및 외부 버전 평가 다음 계획</a></li><li><a href="#section-11">교수님 논의 안건</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">발표 개요</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
+<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">VALIDATION V2 방법</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP-03 고정 snapshot 규칙 구성 비교 결과</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">Held-out 및 외부 버전 평가 다음 계획</a></li><li><a href="#section-11">교수님 논의 안건</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">발표 개요</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
 
 EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule portfolio로 EXP-04 개발 평가와 실제 EXP-05 trace 전체 생성을 마쳤습니다. PILOT V1 source/artifact/result는 그대로 보존했습니다.
 
@@ -29,9 +29,9 @@ EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule
 
 test1은 DEVELOPMENT_ONLY입니다. 14개 contiguous attack-event units의 독립성과 held-out 일반화는 미확인입니다. EXP-05 실제 trace는 6,418개이며 human usefulness는 평가하지 않았습니다. 새 환경의 기존 PASS는 synthetic rehearsal일 뿐 이번 과학 결과를 fresh-machine에서 재생한 것은 아닙니다.
 
-test1·공격 label·test2·held-out 접근을 구분합니다: test1 features는 승인된 예측 단계에서, label은 모든 5개 예측 동결 후에만 해석했습니다. test2/held-out과 provider 호출은 0입니다.
+test1·공격 label·test2·held-out 접근을 구분합니다: test1 features는 승인된 예측 단계에서, label은 모든 5개 예측 동결 후에만 해석했습니다. test2/held-out 접근은 0입니다. EXP-04/05 당시 provider 호출은 0이었고, 이후 별도 DG-03 승인 EXP-03에서 585회 호출했습니다. EXP-03은 test1을 다시 열지 않았습니다.
 
-다음은 DG-03 provider 실행 예산/허가 검토입니다. Agentic 이점은 아직 지원되지 않으며 EXP-06 runtime LLM은 불필요합니다. 이 package는 작성본이며 DG-06 전 실제 제출하지 않습니다.
+DG-03 승인 아래 EXP-03 실행·QA가 완료됐으며 다음은 DG-04 기여 표현 결정입니다. Agentic 이점은 아직 지원되지 않으며 EXP-06 runtime LLM은 불필요합니다. 이 package는 작성본이며 DG-06 전 실제 제출하지 않습니다.
 </pre></section><section id="section-02"><h2>PILOT V1 이후 변경</h2><pre># PILOT V1 이후 변경
 
 V1은 변경하지 않았습니다. V2에는 Formal V4 선택, durable multi-method prediction-before-label gate, 정상 전용 37-candidate numeric selection, 별도 39-rule portfolio, fixed Isolation Forest, 공통 metric contract를 사용했습니다. 이번 실행은 이 동결된 경로를 처음 label-blind test1 개발 평가에 연결했습니다.
@@ -123,17 +123,47 @@ V2A의 39개 방향 관계에 대해 common fixed 1개와 relation-specific norm
 동결된 선택 규칙이 고른 policy는 `RELATION_SPECIFIC_NORMAL_ONLY_V1:n7-q0.90-s2-f0.05`입니다. 28개 후보가 coverage guard를 통과했으며, 선택 policy의 train4 관찰값은 false-alarm second 1,470, false-alarm episode 1,461, opportunity 39, PASS 16,361, FAIL 1,790, ABSTAIN 3,764입니다. normal exposure는 198,000초였습니다.
 
 이 결과는 normal-only 선택 결과이며 test1 공격 탐지 우수성을 뜻하지 않습니다. 선택 authority와 39-rule Formal V4 V2A portfolio는 별도 V2 identity로 동결했습니다. provider 호출은 0회입니다.
-</pre></section><section id="section-06"><h2>EXP-03 Agentic feedback 결과</h2><pre># EXP-03 Agentic feedback 결과
+</pre></section><section id="section-06"><h2>EXP-03 고정 snapshot 규칙 구성 비교 결과</h2><pre># EXP-03 고정 snapshot 규칙 구성 비교 결과
 
-## 상태
+상태: COMPLETE_QA_PASS. 모델: `gpt-5.4-mini-2026-03-17`.
 
-**IMPLEMENTED AND SYNTHETICALLY TESTED / NATURAL COHORT NOT EXECUTED / PROVIDER-GATED**
+| arm | 승인/예정 | 생성 호출 | feedback |
+|---|---:|---:|---:|
+| T0 | 39/39 | 0 | 0 |
+| T1 | 104/117 | 117 | 0 |
+| T1-B | 115/117 | 351 | 0 |
+| T2 | 105/117 | 117 | 0 |
 
-`INTENTIONAL_NO_RULE`, `UNSUPPORTED_EVIDENCE`, `PROVIDER_ERROR`, `EMPTY_RESPONSE`, `PARSE_FAILURE`, `VERIFIER_REJECTION`, `BUDGET_EXHAUSTION`, `RETRIEVAL_FAILURE`, `SYSTEM_ERROR`를 서로 다른 terminal class로 고정했습니다. natural cohort와 synthetic stress cohort는 절대 합산하지 않습니다.
+T2 feedback 0/117; repair NOT_OBSERVED (denominator=0). 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다.
 
-provider 호출 직전에는 모델·provider·cohort 크기·arm별 최대 호출 수·input/output token 상한·비용·노출 평가·artifact를 확정해 DG-03 승인을 받아야 합니다. 현재 natural cohort가 아직 없어 exact budget을 산정할 수 없고 provider 호출은 0회입니다.
+## 반복 및 실패 분류
 
-따라서 Agentic benefit 결과는 없습니다. 자연 cohort에서 feedback action이 다시 0이면 “feedback capability는 구현되었지만 benefit은 관찰되지 않았다”고 보고합니다.
+| arm | 반복 1 승인 | 반복 2 승인 | 반복 3 승인 |
+|---|---:|---:|---:|
+| T1 | 34/39 | 36/39 | 34/39 |
+| T1-B | 39/39 | 39/39 | 37/39 |
+| T2 | 35/39 | 35/39 | 35/39 |
+
+| arm | 최종 비승인 상태 |
+|---|---|
+| T0 | 없음 |
+| T1 | INTENTIONAL_NO_RULE: 2; PARSE_FAILURE: 9; VERIFIER_REJECTION: 2 |
+| T1-B | ALL_DRAWS_FAILED: 2 |
+| T2 | INTENTIONAL_NO_RULE: 4; PARSE_FAILURE: 8 |
+
+PARSE_FAILURE는 고정된 strict envelope 검사 실패이며, 모두 JSON 문법 오류라는 뜻은 아니다. T1-B의 ALL_DRAWS_FAILED는 3개 원본 draw 실패를 보존한 terminal 요약이다. operational failure를 no_rule로 바꾸지 않았다.
+
+실제 호출 585회; input 439,845, output 196,425, total 636,270 tokens. 표준요금 상한 계산 USD 1.21379625 (cache 할인 미반영, 청구서 확정액 아님). 상한 819회 / 5,031,936 tokens / USD10.07 이내.
+
+## 해석 경계
+
+이미 확인된 39개 directional relation의 identity·방향·horizon·numeric reference를 고정된 Formal V4 표현으로 구성하는 제한된 과제다. 새 관계 발견이나 numeric 추론, 탐지 성능을 측정하지 않았다. 동일 정답 reference가 입력에 있으므로 높은 승인율 자체는 LLM 또는 Agentic 필요성을 입증하지 않는다. T1-B는 항상 3회 독립 생성 후 최초 admissible 출력을 선택하며 T2는 ACCEPTED_PROPOSAL 직후 중단한다. 세 반복은 같은 관계를 재사용하므로 독립 scientific sample 수로 합산하지 않는다. snapshot·temperature 0.7·top_p 1.0·reasoning none을 고정했지만 API 재호출의 byte-identical 출력을 보장하지 않는다. 여기서 replay는 보관된 응답·판정의 무결성 재검증이다.
+
+synthetic stress 390 fixtures는 terminal/controller 계약 점검이며 provider 호출이 없는 별도 결과다. 자연 cohort의 repair evidence와 합치지 않는다. no_rule appropriateness는 관찰된 계약 범위만 다루며 전문가 유용성을 뜻하지 않는다.
+
+## 보존과 다음 단계
+
+V2A 39-rule portfolio, EXP-02, EXP-04/05, detector/fusion, 향후 held-out 방법 집합은 변경하지 않았다. 이번 task의 test1/test2/held-out/공격 label 접근은 0이다. PILOT V1 3,021개 보존 항목은 그대로다. DG-03은 고정 snapshot으로 승인·실행되었다. **DG-04에서 정지**하며 DG-05 공격 접근과 DG-06 제출은 승인되지 않았다.
 </pre></section><section id="section-07"><h2>EXP-04 개발 평가 결과</h2><pre># EXP-04 개발 평가 결과
 
 상태: DEVELOPMENT_ONLY · 실행 완료, 독립 결과 무결성 QA PASS.
@@ -184,7 +214,7 @@ GDN optional clause는 130개 설명에만 존재한다. 나머지에도 기본 
 | Rule-only utility | UNVALIDATED | 11/14와 FAR37.61/hour 동시 보고 |
 | Detector+Rule 개선 | DEVELOPMENT_NOT_SUPPORTED | 두 fusion의 Recall 증가0, FAR 증가 |
 | 설명 structural fidelity | actual6418 corpus의 자동 감사 | human usefulness 아님 |
-| Agentic benefit | 미지원/EXP-03 gated | 최종 title DG-04 |
+| Agentic benefit | EXP-03 실행·QA 완료; Agentic 우월성 미입증 | 최종 title DG-04 |
 | held-out 일반화 | UNCONFIRMED | DG-05 필요 |
 
 무결성은 bytes/lineage/arithmetic의 일치성이고 scientific validity/generalization의 증거와 다릅니다. 14 contiguous attack-event units는 독립 사건으로 입증되지 않았습니다. 독립 외부 재현은 private data/authority custody에 의존합니다.
@@ -217,7 +247,7 @@ DG-05 승인 전에는 test2나 외부 버전 attack payload 및 label을 열지
 
 1. 두 fixed fusion이 Recall 개선 없이 FAR를 늘린 음성 결과의 해석과 thesis 범위.
 2. 높은 Rule-only FAR를 현재 한계로 명시하고 개발 결과를 최종 검증과 구분.
-3. DG-03: EXP-03 provider/model/exact call·token budget 승인 전 호출 금지.
+3. DG-03 고정 snapshot 실행 완료. EXP-03 결과를 바탕으로 DG-04 제목·기여 표현 결정.
 4. DG-04: GDN-Assisted supporting evidence 표현과 조건부 Agentic 제목 검토.
 5. 14개 test1 시나리오를 인위적으로 세분하지 않고 개발 근거로만 보존하는 해석.
 6. DG-05: HAI 23.05 test2를 primary held-out으로, HAI 22.04/21.03을 version-separated external replication으로 승인할지 검토. 현재 신규 attack 접근은 0.

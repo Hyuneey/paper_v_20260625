@@ -20,6 +20,6 @@ EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule
 
 test1은 DEVELOPMENT_ONLY입니다. 14개 contiguous attack-event units의 독립성과 held-out 일반화는 미확인입니다. EXP-05 실제 trace는 6,418개이며 human usefulness는 평가하지 않았습니다. 새 환경의 기존 PASS는 synthetic rehearsal일 뿐 이번 과학 결과를 fresh-machine에서 재생한 것은 아닙니다.
 
-test1·공격 label·test2·held-out 접근을 구분합니다: test1 features는 승인된 예측 단계에서, label은 모든 5개 예측 동결 후에만 해석했습니다. test2/held-out과 provider 호출은 0입니다.
+test1·공격 label·test2·held-out 접근을 구분합니다: test1 features는 승인된 예측 단계에서, label은 모든 5개 예측 동결 후에만 해석했습니다. test2/held-out 접근은 0입니다. EXP-04/05 당시 provider 호출은 0이었고, 이후 별도 DG-03 승인 EXP-03에서 585회 호출했습니다. EXP-03은 test1을 다시 열지 않았습니다.
 
-다음은 DG-03 provider 실행 예산/허가 검토입니다. Agentic 이점은 아직 지원되지 않으며 EXP-06 runtime LLM은 불필요합니다. 이 package는 작성본이며 DG-06 전 실제 제출하지 않습니다.
+DG-03 승인 아래 EXP-03 실행·QA가 완료됐으며 다음은 DG-04 기여 표현 결정입니다. Agentic 이점은 아직 지원되지 않으며 EXP-06 runtime LLM은 불필요합니다. 이 package는 작성본이며 DG-06 전 실제 제출하지 않습니다.

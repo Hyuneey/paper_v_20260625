@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-exp03-provider-exec-001": {"9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4"},
     "validation-v2-gdn-front-exp04-001": {"94ae44dac900cce75ed83ee2801be38750afed4a"},
     "validation-v2-core-exp02": {"9cb47e0efb868048d4a523ec4cfaca53bd342ab7"},
     "validation-v2-exp01b-gdn-xai": {
@@ -361,8 +362,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(len(state.get("highest_priority_work", [])) == 3, "highest_priority_work must contain exactly three entries")
     result.require(len(state.get("top_user_todo", [])) == 3, "top_user_todo must contain the three current V2 review entries")
     result.require(len(state.get("user_todo_items", [])) == 8, "ARCH-011 must leave eight user review questions")
-    result.require(state.get("last_completed_task") == "V2-EVAL-EXPANSION-001 — 다중 HAI 평가 계획·계약 준비 완료", "last completed task mismatch")
-    result.require(state.get("exact_next_task") == "DG-03 — EXP-03 Provider Execution Decision", "exact next task mismatch")
+    result.require(state.get("last_completed_task") == "EXP03-PROVIDER-EXEC-001 — 고정 snapshot 실행·독립 QA 완료", "last completed task mismatch")
+    result.require(state.get("exact_next_task") == "DG-04 — 최종 제목·Agentic 기여 표현 결정", "exact next task mismatch")
     result.require(
         state.get("research_stage") == {
             "architecture_complete": True,
@@ -375,7 +376,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("held_out_generalization") == "unconfirmed", "held-out generalization must remain unconfirmed")
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
-    result.require(state.get("recommended_next_management_task") == "DG-03 — EXP-03 Provider Execution Decision", "next management task mismatch")
+    result.require(state.get("recommended_next_management_task") == "DG-04 — 최종 제목·Agentic 기여 표현 결정", "next management task mismatch")
     result.require(state.get("recommended_next_architecture_task") == "NONE — ARCH-000 through ARCH-011 complete", "next architecture task mismatch")
     expansion = state.get("evaluation_expansion", {})
     result.require(expansion.get("decision_id") == "DEC-022", "evaluation expansion decision is missing")
@@ -656,7 +657,7 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
 
 def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
     history = data["history"]
-    result.require(15 <= len(data["timeline"]) <= 32, "timeline must contain 15 to 32 meaningful events")
+    result.require(15 <= len(data["timeline"]) <= 33, "timeline must contain 15 to 33 meaningful events")
     result.require(10 <= len(data["decisions"]) <= 25, "decision registry must contain 10 to 25 meaningful decisions")
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
     result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")
@@ -757,7 +758,11 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(program.get("fresh_machine_synthetic") == "PASS_CLEAN_CHECKOUT_FRESH_ENVIRONMENT_SYNTHETIC", "fresh-machine synthetic PASS is not recorded")
     result.require(program.get("scientific_executions") == 4, "V2 program scientific execution count mismatch")
     result.require(program.get("test2_accesses") == 0 and program.get("heldout_accesses") == 0, "V2 program violates held-out safety counters")
-    result.require(program.get("provider_calls") == 0, "V2 program provider-call counter must remain zero")
+    live = data["state"].get("exp03_execution", {})
+    result.require(program.get("provider_calls") == live.get("calls") == 585, "completed EXP-03 provider-call counter mismatch")
+    result.require(live.get("model_snapshot") == "gpt-5.4-mini-2026-03-17" and live.get("status") == "COMPLETE_QA_PASS", "EXP-03 snapshot or QA state mismatch")
+    result.require(live.get("results_hash") == "653ee0d36255e22fcc0a145b9872418aeceac4022c32df71b803db3afe357238", "EXP-03 frozen result identity mismatch")
+    result.require(live.get("next_gate") == "DG-04", "EXP-03 must stop at DG-04")
     policy_path = repo_root / "research_control_center" / "validation_v2" / "policies" / "DATA_POLICY_001.json"
     result.require(policy_path.is_file(), "DATA-POLICY-001 is missing")
     if policy_path.is_file():

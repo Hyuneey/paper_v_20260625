@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -6,6 +6,7 @@ Registry version: `0.1.0`
 
 ## Recorded timeline
 
+- **2026-09-04 — EXP-03 고정 snapshot 비교·독립 QA 완료** (`ACTIVE_CONTEXT`): T0 39/39; T1 104/117; T1-B 115/117; T2 105/117; T2 feedback 0/117; repair NOT_OBSERVED (denominator=0)
 - **2026-09-04 — 다중 HAI 평가 확대 계획 승인·고정** (`ACTIVE_CONTEXT`): HAI23 test2 primary heldout와 HAI22/21 external replications를 version-separated panel로 고정;146 nominal scenarios는 IID pooling 금지;attack access0.
 - **2026-09-04 — V2A 개발 평가와 GDN 보조 설명 full-census QA 완료** (`ACTIVE_CONTEXT`): 5개 방법 prediction freeze 후 label 접근. 두 fusion Recall개선0 FAR증가;actual6418trace와GDNclauses130보존;private122artifact snapshot.
 - **2026-09-03 — EXP-01B GDN Prediction-XAI completed with ablation-only disposition** (`ACTIVE_CONTEXT`): Nine CUDA runs compared Embedding Attention EdgeMask Source Occlusion and Functional-Consensus against an arm-blind normal relation reference. A small combined K29 increase failed frozen split functional and rule-conversion criteria; GDN remained ablation-only.
@@ -41,4 +42,4 @@ Registry version: `0.1.0`
 
 ## Next
 
-**DG-03 — EXP-03 Provider Execution Decision**
+**DG-04 — 최종 제목·Agentic 기여 표현 결정**

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e292a040dcb35b3efff4ed02d623232f7b57003aed48ecac5716df16332272a7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2c43f9460d9ec09c5d6a4a9a97ffd096a0d2f4bf990285df3e8dde7bfea1a9f7 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-03 provider 예산·승인 검토. DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 별도 Gate입니다.
+다음: DG-04 — 최종 제목·Agentic 기여 표현 결정. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,7 +32,7 @@ Registry snapshot: `2026-09-03T17:08:57Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-out와 HAI22/21 external replications로 version 분리하며 146 nominal scenarios를 IID로 합치지 않는다. 공격 접근은 DG-05 전 0이다.
+EXP-03 고정 snapshot 비교와 독립 QA 완료. 자연 cohort에서 feedback이 발생하지 않아 Agentic feedback 이점을 관찰하지 못했다. V2 개발 결과는 보존하며 DG-04에서 제목·기여 표현 결정을 기다린다.
 
 ## 상태를 읽는 방법
 
@@ -136,7 +136,7 @@ V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-
 | EXP-01 | 실행·근거 점검 완료·개발 결과 | META·STAT·GDN의 고유하고 유용한 후보 기여가 있는지 비교한다. |
 | EXP-01B | 실행·근거 점검 완료·개발 결과 | Embedding·Attention·EdgeMask·Source Occlusion을 동일 정상 관계 기준에서 비교한다. |
 | EXP-02 | 실행·근거 점검 완료·개발 결과 | 응답 시간·허용오차·지속성 기준이 validity와 utility에 미치는 영향을 비교한다. |
-| EXP-03 | 실행·근거 점검 완료·예비 실험 | T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다. |
+| EXP-03 | 실행·근거 점검 완료·개발 결과 | T2 verifier feedback의 이점이 있는지 예산이 맞는 대조군과 비교한다. |
 | EXP-04 | 실행·근거 점검 완료·개발 결과 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
 | EXP-05 | 실행·근거 점검 완료·개발 결과 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
 | EXP-06 | 설계만 완료 | 고정 규칙 결과나 정답을 받지 않는 별도 runtime LLM 비교 가능성을 검토한다. |
@@ -187,4 +187,4 @@ V2A 개발 결과는 immutable이다. 향후 평가는 HAI23 test2 primary held-
 
 ## 정확한 다음 작업
 
-**DG-03 — EXP-03 Provider Execution Decision**
+**DG-04 — 최종 제목·Agentic 기여 표현 결정**

@@ -12,7 +12,7 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "STAGE_6_EVALUATION_EXPANSION_PREPARATION",
+  "current_stage": "DG04_CONTRIBUTION_FRAMING",
   "program_status": "DEVELOPMENT_COMPLETE_QA_PASS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
@@ -24,8 +24,8 @@
   "decision_gates": {
     "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
-    "DG-03": "PENDING",
-    "DG-04": "PENDING",
+    "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
+    "DG-04": "USER_DECISION_REQUIRED",
     "DG-05": "PENDING_MANDATORY",
     "DG-06": "PENDING"
   },
@@ -33,7 +33,7 @@
     "EXP-01": "COMPLETE_QA_PASS_GDN_DEMOTED_TO_ABLATION",
     "EXP-01B": "COMPLETE_NORMAL_ONLY_GDN_ABLATION_ONLY",
     "EXP-02": "COMPLETE_QA_PASS_SELECTED_POLICY_FROZEN",
-    "EXP-03": "PREPARED_PROVIDER_GATED",
+    "EXP-03": "COMPLETE_QA_PASS_REFERENCE_BOUND_CONSTRUCTION",
     "STRONGER-DETECTOR": "EXECUTED_FIXED_ISOLATION_FOREST_NO_SUPERIORITY_CLAIM",
     "EXP-04": "COMPLETE_QA_PASS_DEVELOPMENT",
     "EXP-05": "COMPLETE_QA_PASS_ACTUAL_FULL_CENSUS",
@@ -44,7 +44,10 @@
     "panel_registry": "research_control_center/validation_v2/evaluation_expansion/PANEL_REGISTRY_V1.csv",
     "development_panel": "HAI23_TEST1_DEVELOPMENT_V1_COMPLETE_IMMUTABLE",
     "primary_heldout": "HAI23_TEST2_PRIMARY_HELDOUT_V1_DG05",
-    "external_replications": ["HAI22_EXTERNAL_REPLICATION_V1", "HAI21_EXTERNAL_REPLICATION_V1"],
+    "external_replications": [
+      "HAI22_EXTERNAL_REPLICATION_V1",
+      "HAI21_EXTERNAL_REPLICATION_V1"
+    ],
     "nominal_non_development_scenarios": 146,
     "primary_pooled_recall": false,
     "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
@@ -106,7 +109,7 @@
       "portfolio_hash": "ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa"
     },
     "global_blocker": null,
-    "next": "DG-03 — EXP-03 Provider Execution Decision"
+    "next": "DG-04 — 최종 제목·Agentic 기여 표현 결정"
   },
   "historical_execution_blocker": {
     "code": "BLOCKED_NORMAL_DATA_NOT_FOUND",
@@ -217,5 +220,173 @@
     "additional_gdn_training": 0,
     "task_scientific_runner_executions": 1,
     "gdn_role": "LEARNED_GRAPH_SUPPORTING"
-  }
+  },
+  "exp03_execution": {
+    "status": "COMPLETE_QA_PASS",
+    "model_snapshot": "gpt-5.4-mini-2026-03-17",
+    "calls": 585,
+    "total_tokens": 636270,
+    "cost_upper_bound_usd": "1.21379625",
+    "arm_metrics": [
+      {
+        "accepted": 39,
+        "arm": "T0",
+        "by_repeat": [
+          {
+            "accepted": 39,
+            "repeat": 0,
+            "scheduled": 39
+          }
+        ],
+        "calls": 0,
+        "executable_projections": 39,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 39,
+        "scheduled": 39,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 39,
+          "ALL_DRAWS_FAILED": 0,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 0,
+          "PARSE_FAILURE": 0,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 0
+        }
+      },
+      {
+        "accepted": 104,
+        "arm": "T1",
+        "by_repeat": [
+          {
+            "accepted": 34,
+            "repeat": 1,
+            "scheduled": 39
+          },
+          {
+            "accepted": 36,
+            "repeat": 2,
+            "scheduled": 39
+          },
+          {
+            "accepted": 34,
+            "repeat": 3,
+            "scheduled": 39
+          }
+        ],
+        "calls": 117,
+        "executable_projections": 104,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 104,
+        "scheduled": 117,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 104,
+          "ALL_DRAWS_FAILED": 0,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 2,
+          "PARSE_FAILURE": 9,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 2
+        }
+      },
+      {
+        "accepted": 115,
+        "arm": "T1-B",
+        "by_repeat": [
+          {
+            "accepted": 39,
+            "repeat": 1,
+            "scheduled": 39
+          },
+          {
+            "accepted": 39,
+            "repeat": 2,
+            "scheduled": 39
+          },
+          {
+            "accepted": 37,
+            "repeat": 3,
+            "scheduled": 39
+          }
+        ],
+        "calls": 351,
+        "executable_projections": 115,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 103,
+        "scheduled": 117,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 115,
+          "ALL_DRAWS_FAILED": 2,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 0,
+          "PARSE_FAILURE": 0,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 0
+        }
+      },
+      {
+        "accepted": 105,
+        "arm": "T2",
+        "by_repeat": [
+          {
+            "accepted": 35,
+            "repeat": 1,
+            "scheduled": 39
+          },
+          {
+            "accepted": 35,
+            "repeat": 2,
+            "scheduled": 39
+          },
+          {
+            "accepted": 35,
+            "repeat": 3,
+            "scheduled": 39
+          }
+        ],
+        "calls": 117,
+        "executable_projections": 105,
+        "feedback_activated": 0,
+        "feedback_repair_denominator": 0,
+        "feedback_repair_success": 0,
+        "first_call_accepted": 105,
+        "scheduled": 117,
+        "terminal_counts": {
+          "ACCEPTED_PROPOSAL": 105,
+          "ALL_DRAWS_FAILED": 0,
+          "BUDGET_EXHAUSTION": 0,
+          "EMPTY_RESPONSE": 0,
+          "INTENTIONAL_NO_RULE": 4,
+          "PARSE_FAILURE": 8,
+          "PROVIDER_ERROR": 0,
+          "RETRIEVAL_FAILURE": 0,
+          "SYSTEM_ERROR": 0,
+          "UNSUPPORTED_EVIDENCE": 0,
+          "VERIFIER_REJECTION": 0
+        }
+      }
+    ],
+    "results_hash": "653ee0d36255e22fcc0a145b9872418aeceac4022c32df71b803db3afe357238",
+    "qa_hash": "b47f9170557b1b89646c6ba9c4b5c0f8cbbefb174cffe183beaac1c58b26c06d",
+    "next_gate": "DG-04",
+    "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
+  },
+  "exact_next_task": "DG-04 — 최종 제목·Agentic 기여 표현 결정"
 }
