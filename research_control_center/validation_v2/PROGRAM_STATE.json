@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "DG04_XVER_STAGE_B_PREPARATION",
-  "program_status": "IN_PROGRESS_NORMAL_ONLY",
+  "current_stage": "DG04_XVER_STAGE_B_BLOCKED",
+  "program_status": "BLOCKED_NORMAL_DATA_CUSTODY",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -30,7 +30,7 @@
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
-    "DG-03C": "NOT_READY_NO_PROVIDER_AUTHORIZATION"
+    "DG-03C": "NOT_READY_BLOCKED_NORMAL_DATA_CUSTODY"
   },
   "experiment_status": {
     "EXP-03B": "COMPLETE_QA_PASS",
@@ -392,7 +392,7 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비",
+  "exact_next_task": "DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)",
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",
     "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
@@ -968,7 +968,7 @@
     }
   },
   "dg04_method_lock": {
-    "status": "STAGE_A_COMPLETE_STAGE_B_IN_PROGRESS",
+    "status": "STAGE_A_COMPLETE_STAGE_B_BLOCKED",
     "decision_id": "DEC-025",
     "decision": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
     "title": "Verifier-Guided Agentic Relational Rule Induction with GDN-Based Learned-Graph Evidence for Explainable Multivariate Time-Series Anomaly Detection",
@@ -1005,5 +1005,30 @@
     "provider_calls_this_task": 0,
     "attack_access_authorized": false,
     "report": "research_control_center/validation_v2/dg04_xver_prep/FINAL_TITLE_CLAIMS_AND_RQ_V1.md"
+  },
+  "xver_preparation": {
+    "status": "BLOCKED_NORMAL_DATA_CUSTODY",
+    "blocker_hash": "3a70f5e13a872b89dcca2a88f461a9679fbedeeb81348f4f7e6d833791f3fe3d",
+    "stage_a": "COMPLETE_QA_PASS",
+    "mapping_hash": "95a8c594c4127c0ddac88c45ebca7979583bd6436b6704bc83977364176c9f99",
+    "metadata_feature_counts": {
+      "22.04": 24,
+      "21.03": 22
+    },
+    "portable_meta_counts": {
+      "21.03": 19,
+      "22.04": 20
+    },
+    "external_GDN_runs": 0,
+    "external_STAT_runs": 0,
+    "external_T0_runs": 0,
+    "DG03C": "NOT_READY",
+    "exact_provider_budget": null,
+    "provider_calls": 0,
+    "etapr_per_file": "PASS",
+    "etapr_conformance_hash": "1d33927cb8f2fbb99cd30bb290fc8103714f2240dfa5e016269477ad2540697a",
+    "multi_file_metric_aggregation": "UNRESOLVED",
+    "attack_payload_accesses": 0,
+    "report": "research_control_center/validation_v2/dg04_xver_prep/XVER_NORMAL_CUSTODY_BLOCKER_V1.json"
   }
 }

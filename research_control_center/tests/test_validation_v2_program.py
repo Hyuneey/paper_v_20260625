@@ -21,11 +21,13 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertFalse(state["held_out_authorized"])
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
         executed=bool(state.get('exp03b_execution'))
-        self.assertEqual(state["program_status"], "COMPLETE_CURRENT_AUTHORIZED_WORK_DG04_PENDING" if executed else "PREPARED_DG03B_REVISED_PENDING")
+        self.assertEqual(state['program_status'],'BLOCKED_NORMAL_DATA_CUSTODY')
+        self.assertEqual(state['dg04_method_lock']['decision_id'],'DEC-025')
         self.assertEqual(state['decision_gates']['DG-03B'],'SUPERSEDED_BY_DG03B_REVISED')
         self.assertEqual(state['decision_gates']['DG-03B_REVISED'],'APPROVED_EXECUTED' if executed else 'USER_DECISION_REQUIRED')
-        self.assertEqual(state['decision_gates']['DG-04'],'USER_DECISION_REQUIRED' if executed else 'DEFERRED_UNTIL_EXP03B')
-        self.assertEqual(state['exact_next_task'],'DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정' if executed else 'DG-03B_REVISED — EXP-03B Provider Execution Decision')
+        self.assertEqual(state['decision_gates']['DG-04'],'APPROVED_WITH_SCOPED_AGENTIC_CLAIM')
+        self.assertEqual(state['decision_gates']['DG-03C'],'NOT_READY_BLOCKED_NORMAL_DATA_CUSTODY')
+        self.assertEqual(state['exact_next_task'],'DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)')
         self.assertEqual(state['experiment_status']['EXP-03B'],'COMPLETE_QA_PASS' if executed else 'PREPARED_DG03B_REVISED_PENDING')
         self.assertEqual(
             state["experiment_status"]["EXP-01B"],

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fdfc6540a849c356224aa8a35e3cfda88c597be7724348872d36bb4e09a3a04 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5895a48395a92c97930f1c6b72d5583c95b0df7eb675bbe21b768d168a8b6a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-025 — FINAL_METHOD_AND_SCOPED_AGENTIC_CONTRIBUTION_LOCK
 
 ## Date
@@ -11,7 +11,7 @@
 
 ## Context
 
-EXP03B独立QA PASS;T2対T1-B supported;T0 superior on principal semantic metrics
+EXP03B 독립 QA PASS; T2 대 T1-B scoped support; 주요 의미 지표 T0 우월
 
 ## Alternatives Considered
 
@@ -31,7 +31,7 @@ T0/T2 별도 held-out 후보;GDN evidence only;fusion comparison only;추가 res
 
 ## Current Relevance
 
-DG04_RESOLVED;XVER_NORMAL_PREPARATION;DG03C_REQUIRED
+DG04_RESOLVED;XVER_NORMAL_CUSTODY_BLOCKED;DG03C_NOT_READY
 
 ## Supersedes
 

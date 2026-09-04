@@ -47,7 +47,12 @@ class LiveReportingTests(unittest.TestCase):
         self.assertIn("DG-04", state["exact_next_task"])
         self.assertEqual("COMPLETE_QA_PASS", state["exp03_execution"]["status"])
         executed=bool(state.get('exp03b_execution'))
-        self.assertEqual("USER_DECISION_REQUIRED" if executed else "DEFERRED_UNTIL_EXP03B", program["decision_gates"]["DG-04"])
+        if state.get('dg04_method_lock'):
+            self.assertEqual(state['dg04_method_lock']['decision_id'],'DEC-025')
+            self.assertEqual('APPROVED_WITH_SCOPED_AGENTIC_CLAIM',program['decision_gates']['DG-04'])
+            self.assertIsNone(state['xver_preparation']['exact_provider_budget'])
+        else:
+            self.assertEqual("USER_DECISION_REQUIRED" if executed else "DEFERRED_UNTIL_EXP03B", program["decision_gates"]["DG-04"])
         self.assertEqual("SUPERSEDED_BY_DG03B_REVISED", program["decision_gates"]["DG-03B"])
         self.assertEqual("APPROVED_EXECUTED" if executed else "USER_DECISION_REQUIRED", program["decision_gates"]["DG-03B_REVISED"])
         self.assertEqual("PREPARED_DG03B_REVISED_PENDING",state['exp03b_preparation']['status'])

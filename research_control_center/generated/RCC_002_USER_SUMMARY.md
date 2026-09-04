@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fdfc6540a849c356224aa8a35e3cfda88c597be7724348872d36bb4e09a3a04 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=ff5895a48395a92c97930f1c6b72d5583c95b0df7eb675bbe21b768d168a8b6a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,18 +66,26 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- DG-04 승인 반영 완료; T0/T2/V2A 별도 유지
-- HAI22/21 정상-only 준비; provider·공격·label 금지
-- DG-03C exact freeze 전 credential·probe·호출 금지
+- DG04·T0/T2 고정 완료, 기존 결과 보존
+- 정상 schema projection 자동심사 차단 범위 확인
+- DG03C budget 미정; provider·공격 접근 금지
 
-관리 작업의 다음 단계는 **DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)** 이고, 이후 전체
 구조 검토는 **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DG-03C: 외부 버전 T2 provider 예산 고정 후 승인
-- DG-05: 공격 접근 전 별도 승인
-- DG-06: 교수 package 실제 제출 전 검토
+- 정상 schema-only label 열 식별 및 feature-only projection 범위 확인
+- DG-03C: 외부 evidence·정확한 예산 동결 후 별도 승인
+- DG-05/06: 공격 접근과 교수 제출 별도 승인
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
+
+## 현재 DG-04 / 외부 준비 Gate
+
+DG-04 / DEC-025 승인 완료. DG-03B_REVISED 승인 후 동결한 EXP-03B에서 T2는 T1-B 대비 이점이 있으나 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules는 별도 HELDOUT_CANDIDATE이며 V2A39·기존 결과는 불변입니다.
+
+Stage B는 BLOCKED_NORMAL_DATA_CUSTODY. 공식 정상 train1 두 컨테이너의 byte identity 검증 후 embedded label schema에서 중단했습니다. label 값 해석·과학 사용 0이며 정상 컨테이너 byte traversal은 있었습니다. 추가 header 접근 자동심사를 우회하지 않았습니다. Schema-only label 식별 및 feature-only projection 범위를 확인해야 합니다.
+
+외부 STAT/GDN/T0 미실행, DG-03C N/token/cost 미정. eTaPR109 synthetic per-file 일치; 버전 내 집계는 미정. Provider·credential·공격 payload 0. 상세: validation_v2/dg04_xver_prep/CURRENT_PREPARATION_STATUS_V1.md. 전체 task PASS가 아니며 integration merge/push·교수 제출은 하지 않습니다.

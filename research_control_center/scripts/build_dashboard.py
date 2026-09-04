@@ -2907,7 +2907,9 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
     }
     paths: list[Path] = []
     for name, payload in outputs.items():
-        if name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data['state'].get('exp03b_preparation'):
+        if data['state'].get('dg04_method_lock'):
+            payload += '\n## 현재 DG-04 / 외부 준비 Gate\n\n'+data['state']['current_phase_statement']+'\n'
+        elif name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data['state'].get('exp03b_preparation'):
             payload += ('\n## 현재 provider Gate\n\nDG-03B_REVISED 승인 실행 완료. EXP-03B semantic induction 결과는 DG-04 검토 대기. 추가 provider·공격 접근·제출 금지. EXP-03 V1·V2A·EXP04/05 보존.\n' if data['state'].get('exp03b_execution') else '\n## 현재 provider Gate\n\nEXP-03B PREPARED_DG03B_REVISED_PENDING. DG-03B_REVISED 승인 전 provider0. 의미적 추론 뒤 SCI02B 결정론적 수치 결속. EXP-03 V1은 constrained materialization으로 보존하며 DG-04는 EXP-03B 이후입니다. DG-05/06 미승인.\n')
         elif name in {"ARCH_009_USER_SUMMARY.md", "ARCH_010_USER_SUMMARY.md", "ARCH_011_USER_SUMMARY.md"} and data["state"].get("exp03_execution"):
             payload += "\n## 현재 provider Gate\n\nDG-03은 고정 snapshot으로 승인·실행되었으며 EXP-03 독립 QA가 완료되었습니다. 현재는 DG-04 제목·기여 결정 대기입니다. DG-05 공격 접근과 DG-06 제출은 승인되지 않았습니다.\n"
@@ -2920,6 +2922,8 @@ def generate_summaries(rcc_root: Path) -> list[Path]:
         "DECISION_INBOX.md": render_decision_inbox(data, digest),
     }
     for name, payload in navigation_outputs.items():
+        if data['state'].get('dg04_method_lock'):
+            payload += '\n## 현재 승인된 DG-04 및 실제 중단 지점\n\n'+data['state']['current_phase_statement']+'\n'
         path = rcc_root / name
         path.write_text(payload, encoding="utf-8", newline="\n")
         paths.append(path)

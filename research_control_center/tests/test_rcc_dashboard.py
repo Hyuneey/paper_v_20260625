@@ -89,7 +89,7 @@ class DashboardGenerationTests(unittest.TestCase):
             dashboard = build_dashboard(root)
             summaries = generate_summaries(root)
             self.assertTrue(dashboard.is_file())
-            self.assertEqual(49, len(summaries))
+            self.assertEqual(50, len(summaries))  # DEC-025 is a new, preserved decision output.
             self.assertTrue(all(path.is_file() for path in summaries))
             self.assertTrue((root / "history" / "PROJECT_TIMELINE.md").is_file())
             self.assertTrue((root / "generated" / "RCC_003_HISTORY_SUMMARY.md").is_file())
@@ -137,7 +137,7 @@ class DashboardGenerationTests(unittest.TestCase):
 
     def test_user_summary_and_context_preserve_pilot_boundaries(self) -> None:
         generated = generate_summaries(RCC_ROOT)
-        self.assertEqual(49, len(generated))
+        self.assertEqual(50, len(generated))
         user_summary = (RCC_ROOT / "generated" / "RCC_002_USER_SUMMARY.md").read_text(encoding="utf-8")
         context = (RCC_ROOT / "CURRENT_CONTEXT.md").read_text(encoding="utf-8")
         self.assertIn("14", user_summary)

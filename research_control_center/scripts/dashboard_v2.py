@@ -383,6 +383,8 @@ def build_dashboard_view_model(
         "root_issues": [current_gap_row(row) for row in root_issues],
         "risks": [dict(row) for row in data["risks"]],
         "claims": [dict(row) for row in data["claims"]],
+        "dg04_method_lock": state.get("dg04_method_lock"),
+        "xver_preparation": state.get("xver_preparation"),
         "decisions": [dict(row) for row in data["decisions"]],
         "unresolved_decisions": unresolved,
         "recent_events": current_events[:3],
@@ -570,6 +572,10 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
     elif vm.get('exp03b_preparation'):
         p=vm['exp03b_preparation']
         actions=[(p['next_gate'],'EXP-03B 의미적 추론 provider 승인',f"{p['cohort_count']} pair;numeric provider0;최대{p['maximum_calls']}회·USD{p['cost_ceiling_usd']};현재 호출0"),('DG-04','EXP-03B 이후 기여 결정','DEFERRED_UNTIL_EXP03B; V1은 constrained materialization 결과로 보존'),('DG-05/06','공격 접근·교수님 제출 별도 승인','현재 test/held-out 접근 및 제출 금지')]
+    if vm.get('dg04_method_lock'):
+        actions=[('CUSTODY','외부 정상 schema 접근 범위 확인','label 열은 schema로만 식별하고 값은 배제하는 projection; 현재 자동심사 차단'),
+                 ('DG-03C','외부 T2 provider 예산 준비','N·evidence·예산 미동결, provider 승인 가능한 단계 아님'),
+                 ('DG-05/06','공격 접근·교수님 제출 별도 승인','공격 접근 0; 교수님 package는 미제출')]
     action_markup = "".join(
         f'<li><span>{_esc(gap)}</span><strong>{_esc(title)}</strong><small>{_esc(body)}</small></li>'
         for gap, title, body in actions
@@ -598,7 +604,7 @@ def _render_overview(vm: Mapping[str, Any]) -> str:
         <dl class="stage-facts"><div><dt>P0 문제</dt><dd>{p0_count}</dd></div><div><dt>미결정</dt><dd>{open_count}</dd></div><div><dt>갱신</dt><dd>{_esc(vm["last_updated"])}</dd></div><div><dt>과학 기준</dt><dd title="{_esc(vm["scientific_authority"]["commit"])}">{_esc(vm["scientific_authority"]["commit"][:10])}</dd></div></dl>
       </div>
       <ol class="research-rail panel" aria-label="연구 진행 단계"><li class="done">연구 방향</li><li class="done">아키텍처</li><li class="done">Pilot V1</li><li class="done">전체 감사</li><li class="done">공유 기반</li><li class="done">Fresh-machine synthetic</li><li class="done">V2 개발 평가</li><li>Held-out</li></ol>
-      {_render_front_results(vm, compact=True)}
+      {_render_dg04(vm)}{_render_front_results(vm, compact=True)}
       <div class="overview-grid">
         <article class="panel overview-map"><div class="panel-heading"><div><p class="kicker">전체 지도</p><h3>근거에서 평가까지</h3></div><button class="text-button" data-go-view="architecture">크게 보기</button></div>{_render_architecture_svg(vm, compact=True)}</article>
         <aside class="panel action-panel"><div class="panel-heading"><div><p class="kicker">지금 할 일</p><h3>확대 검증 전 우선순위</h3></div></div><ol>{action_markup}</ol></aside>
@@ -663,11 +669,27 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
       <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 근거, PILOT V1, VALIDATION V2 test1 개발 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. 위 정상 전용 단계 당시 test1·label·test2·held-out 접근은 0이었습니다. 아래 후속 EXP-04는 승인된 test1 개발 평가입니다.</p></section>
+      {('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 현재 외부 정상 준비는 custody 차단이며 DG-03C 예산은 미정입니다.</p>' if vm.get('dg04_method_lock') else '')}
       {_render_exp03b(vm)}{_render_exp03_execution(vm)}{_render_front_results(vm)}{panel_section}
       <aside class="warning-banner">PILOT V1 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">Experiment Roadmap</p><h3>실험 Gate와 claim 영향</h3></div></div><div class="table-wrap"><table><thead><tr><th>실험</th><th>확인할 가설</th><th>현재 상태</th><th>현재 근거</th><th>먼저 해결할 것</th><th>결과에 따른 결정</th></tr></thead><tbody>{exp_rows}</tbody></table></div></section>
     </section>'''
+
+
+def _render_dg04(vm: Mapping[str, Any]) -> str:
+    lock=vm.get('dg04_method_lock')
+    if not lock:return ''
+    rows=''.join(f"<tr><td>{arm}</td><td>{p['pair_count']}</td><td>{p['rule_count']}</td></tr>" for arm,p in lock['portfolios'].items())
+    return f'''<section class="panel roadmap" aria-labelledby="dg04-xver-heading"><h3 id="dg04-xver-heading">DG-04 방법 고정 · 외부 정상 준비</h3>
+    <p>DEC-025 · APPROVED_WITH_SCOPED_AGENTIC_CLAIM</p><p>{_esc(lock['title'])}</p>
+    <p>EXP-03B 정상-only: T2는 matched-maximum-budget T1-B 대비 이점이 있으나 주요 의미 지표에서 T0보다 우수하지 않았습니다. GDN은 learned-graph evidence이며 후보·탐지·수치 권한이 아닙니다. Fusion은 사전등록 비교입니다.</p>
+    <table><thead><tr><th>HELDOUT_CANDIDATE</th><th>pairs</th><th>guard-retained Rules</th></tr></thead><tbody>{rows}</tbody></table>
+    <p>V2A 39 Rules는 별도 reference로 보존. T2는 Repeat 1만 사용. 공격 검증·production 권한 없음.</p>
+    <p>Stage B: BLOCKED_NORMAL_DATA_CUSTODY. 공식 정상 train1 두 컨테이너는 identity 검증 후 헤더에서 중단했습니다. label 값 해석·검증·사용 0, 공격 payload 0. 추가 header 접근은 자동심사에서 차단되어 우회하지 않았습니다.</p>
+    <p>Metadata: HAI22 24 / HAI21 22 P1 역할 feature 대응, portable META 20 / 19. 정상 schema·STAT·GDN·외부 T0/T2는 미완료. DG-03C exact budget 미정.</p>
+    <p>eTaPR 공식/합성 109개 per-file 일치. 여러 파일 집계·secondary P1 range scope는 아직 미정입니다. 버전별 공격 시나리오는 동일 분포의 독립 표본으로 간주하지 않으며, 주 결과는 버전별로 분리해 보고합니다.</p>
+    <a href="../validation_v2/dg04_xver_prep/P1_MAPPING_REPORT_V1.md">매핑 및 차단 기록</a></section>'''
 
 
 def _render_exp03b(vm: Mapping[str, Any]) -> str:

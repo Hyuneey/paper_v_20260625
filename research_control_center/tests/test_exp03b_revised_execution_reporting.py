@@ -60,7 +60,14 @@ class ExecutedSemanticReportingTests(unittest.TestCase):
         program = json.loads((RCC / 'validation_v2/PROGRAM_STATE.json').read_text(encoding='utf-8'))
         self.assertEqual(state['exp03b_execution']['result_hash'], r['self_hash'])
         self.assertEqual(program['decision_gates']['DG-03B_REVISED'], 'APPROVED_EXECUTED')
-        self.assertEqual(program['decision_gates']['DG-04'], 'USER_DECISION_REQUIRED')
+        if state.get('dg04_method_lock'):
+            self.assertEqual(state['dg04_method_lock']['decision_id'],'DEC-025')
+            self.assertEqual(program['decision_gates']['DG-04'],'APPROVED_WITH_SCOPED_AGENTIC_CLAIM')
+            self.assertEqual(state['dg04_method_lock']['method_lock_hash'],'82b483ca92926d0bbf0020de496a61d0377429fe56807c8f96c44c89557d7c13')
+            self.assertEqual(state['xver_preparation']['DG03C'],'NOT_READY')
+            self.assertEqual(state['xver_preparation']['provider_calls'],0)
+        else:
+            self.assertEqual(program['decision_gates']['DG-04'], 'USER_DECISION_REQUIRED')
         self.assertFalse(program['held_out_authorized'])
         html = (RCC / 'dashboard/index.html').read_text(encoding='utf-8')
         self.assertIn('EXP03B_RESULTS_REPORT_V1.md', html); self.assertIn('518 calls', html)

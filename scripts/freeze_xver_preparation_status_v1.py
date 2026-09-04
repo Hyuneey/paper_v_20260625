@@ -21,7 +21,8 @@ def write_csv(path,rows):
 
 def main():
     acquisition=json.loads((PUB/'XVER_NORMAL_MATERIALIZATION_CONTRACT_V1.json').read_text());replay(acquisition)
-    manual=ROOT/'tmp/dg04_xver_public_manual/hai_dataset_technical_details.pdf'
+    manual=ROOT/'artifacts/validation_v2/dg04_xver_prep/public_manual_cache/hai_dataset_technical_details.pdf'
+    if not manual.exists():manual=ROOT/'tmp/dg04_xver_public_manual/hai_dataset_technical_details.pdf'
     raw=manual.read_bytes()
     assert sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==acquisition['manual_git_blob_sha1']
     prior=list(csv.DictReader((EXP/'DATASET_COMPATIBILITY_MATRIX_V1.csv').open(encoding='utf-8')))

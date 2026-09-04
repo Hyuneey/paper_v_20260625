@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-dg04-xver-prep-001": {"f7ce07955e56ce0140b30faea201e7f8ac11f8a3"},
     "codex/exp03b-provider-exec-001": {"811d5817bed1484bb3d0c36704bd74f224f4c526"},
     "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
     "validation-v2-exp03b-prep-001": {"ca78664d03464b81f56cf42c169c24f1153e69c9"},
@@ -375,7 +376,14 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
             result.require(lock.get('decision_id')=='DEC-025' and lock.get('decision')=='APPROVED_WITH_SCOPED_AGENTIC_CLAIM', 'DG04 explicit decision required')
             result.require(lock.get('method_lock_hash')=='82b483ca92926d0bbf0020de496a61d0377429fe56807c8f96c44c89557d7c13', 'DG04 method identity')
             result.require(lock.get('provider_calls_this_task')==0 and lock.get('attack_access_authorized') is False, 'DG04 XVER preparation boundary')
-            result.require(state.get('exact_next_task')=='DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비', 'DG04 normal preparation next')
+            if state.get('xver_preparation'):
+                xver=state['xver_preparation']
+                result.require(xver.get('status')=='BLOCKED_NORMAL_DATA_CUSTODY' and xver.get('stage_a')=='COMPLETE_QA_PASS','XVER scoped status')
+                result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
+                result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
+                result.require(state.get('exact_next_task')=='DG-04 후속 정상 준비 — BLOCKED_NORMAL_DATA_CUSTODY (schema-only projection 범위 확인)','XVER exact custody stop')
+            else:
+                result.require(state.get('exact_next_task')=='DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비', 'DG04 normal preparation next')
         else:
             result.require(state.get('exact_next_task')=='DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정','EXP03B DG04 stop')
         result.require(execution.get('status')=='COMPLETE_QA_PASS' and execution.get('numeric_provider_visible') is False and execution.get('next_gate')=='DG-04','EXP03B execution gate')
@@ -680,7 +688,10 @@ def _validate_references(data: Mapping[str, Any], result: ValidationResult) -> N
 
 def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_root: Path, check_git: bool) -> None:
     history = data["history"]
-    result.require(15 <= len(data["timeline"]) <= 34, "timeline must contain 15 to 34 meaningful events")
+    dg04_events=[row for row in data['timeline'] if row['event_id']=='EVENT-DG04-XVER-PREP-001']
+    if dg04_events:
+        result.require(len(dg04_events)==1 and dg04_events[0]['decision_refs']=='DEC-025' and dg04_events[0]['event_type']=='GOVERNANCE_MILESTONE', 'DG04 timeline event must bind explicit decision')
+    result.require(15 <= len(data["timeline"])-len(dg04_events) <= 34, "historical timeline must contain 15 to 34 meaningful events plus the explicit DG04 decision event")
     result.require(10 <= len(data["decisions"]) <= 25, "decision registry must contain 10 to 25 meaningful decisions")
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
     result.require(1 <= len(history.get("confirmation_questions", [])) <= 10, "history confirmation queue must contain 1 to 10 high-value questions")

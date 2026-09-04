@@ -87,6 +87,18 @@ class FrontReportingTests(unittest.TestCase):
                 self.assertEqual(h,hashlib.sha256((RCC.parent/p).read_bytes()).hexdigest())
                 self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',p],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
                 additions.add(p)
+        prospective={
+            'src/paperworks/data/hai_xver_normal_v1.py',
+            'src/paperworks/validation_v2/final_method_lock_v1.py',
+            'src/paperworks/validation_v2/heldout_candidate_portfolio_v1.py',
+            'src/paperworks/validation_v2/etapr_exchange_v1.py',
+            'src/paperworks/validation_v2/p1_eligibility_design_v1.py',
+        }
+        for p in prospective:
+            frozen=subprocess.check_output(['git','show','f7ce07955e56ce0140b30faea201e7f8ac11f8a3:'+p],cwd=RCC.parent)
+            self.assertEqual(frozen,(RCC.parent/p).read_bytes())
+            self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',p],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+        additions |= prospective
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",
