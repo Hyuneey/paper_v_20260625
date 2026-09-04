@@ -7,7 +7,7 @@ pre{white-space:pre-wrap;font:inherit}a{color:#155eef}.warning{border-left:5px s
 @media print{nav{display:none}body{background:white}section{break-inside:avoid;border-color:#bbb}}
 </style></head><body><h1>VALIDATION V2 교수님 실험 업데이트</h1>
 <p class="warning">test1 DEVELOPMENT_ONLY 결과입니다. held-out 일반화와 human usefulness는 미확인입니다. 이메일은 전송하지 않았습니다.</p>
-<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">DG04-XVER Stage B 재개 — 정상 custody 완료</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">DG04-XVER Stage B 재개 — 정상 custody 완료</a></li><li><a href="#section-11">DG04-XVER Stage B 재개 — 정상 custody 완료</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">DG04-XVER Stage B 재개 — 정상 custody 완료</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
+<nav aria-label="목차"><h2>목차</h2><ol><li><a href="#section-01">교수님 실험 업데이트 — VALIDATION V2</a></li><li><a href="#section-02">PILOT V1 이후 변경</a></li><li><a href="#section-03">HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</a></li><li><a href="#section-04">EXP-01 및 EXP-01B GDN 결과</a></li><li><a href="#section-05">EXP-02 Numeric criteria 결과</a></li><li><a href="#section-06">EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과</a></li><li><a href="#section-07">EXP-04 개발 평가 결과</a></li><li><a href="#section-08">EXP-05 실제 trace 일치성</a></li><li><a href="#section-09">주장과 한계</a></li><li><a href="#section-10">HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</a></li><li><a href="#section-11">HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</a></li><li><a href="#section-12">이메일 초안 — 미전송</a></li><li><a href="#section-13">HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</a></li></ol></nav><section id="section-01"><h2>교수님 실험 업데이트 — VALIDATION V2</h2><pre># 교수님 실험 업데이트 — VALIDATION V2
 
 EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule portfolio로 EXP-04 개발 평가와 실제 EXP-05 trace 전체 생성을 마쳤습니다. PILOT V1 source/artifact/result는 그대로 보존했습니다.
 
@@ -39,7 +39,21 @@ V1은 변경하지 않았습니다. V2에는 Formal V4 선택, durable multi-met
 GDN은 EXP-01C의 학습 그래프 보조 근거를 explanation sidecar로 연결했으며 detector나 primary candidate authority로 승격하지 않았습니다. 256-unit full trace batch와 one prepared runtime은 I/O 효율화이며 scientific semantics는 그대로입니다.
 
 과거 V1 D1/COMMON-42와 이번 V2A는 다른 cohort이므로 V1/V2 수치 차이만으로 개선 효과를 주장하지 않습니다. 총 6,418 actual trace를 보존했고 최종 result integrity는 별도 QA로 점검합니다.
-</pre></section><section id="section-03"><h2>DG04-XVER Stage B 재개 — 정상 custody 완료</h2><pre># DG04-XVER Stage B 재개 — 정상 custody 완료
+</pre></section><section id="section-03"><h2>HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</h2><pre># HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요
+
+HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.
+부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.
+T2 &gt; T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.
+HAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.
+Context train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.
+기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.
+Split-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.
+따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.
+DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.
+
+## 이전 기록 — 역사적 상태
+
+# DG04-XVER Stage B 재개 — 정상 custody 완료
 
 DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.
 
@@ -294,7 +308,21 @@ GDN optional clause는 130개 설명에만 존재한다. 나머지에도 기본 
 | held-out 일반화 | UNCONFIRMED | DG-05 필요 |
 
 무결성은 bytes/lineage/arithmetic의 일치성이고 scientific validity/generalization의 증거와 다릅니다. 14 contiguous attack-event units는 독립 사건으로 입증되지 않았습니다. 독립 외부 재현은 private data/authority custody에 의존합니다.
-</pre></section><section id="section-10"><h2>DG04-XVER Stage B 재개 — 정상 custody 완료</h2><pre># DG04-XVER Stage B 재개 — 정상 custody 완료
+</pre></section><section id="section-10"><h2>HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</h2><pre># HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요
+
+HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.
+부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.
+T2 &gt; T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.
+HAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.
+Context train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.
+기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.
+Split-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.
+따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.
+DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.
+
+## 이전 기록 — 역사적 상태
+
+# DG04-XVER Stage B 재개 — 정상 custody 완료
 
 DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.
 
@@ -367,7 +395,21 @@ T0 단일 출력 및 T2 Repeat 1의 기존 guard-retained Rule만 별도 HELDOUT
 8. no-post-result-tuning 및 버전별 reporting plan
 
 DG-05 승인 전에는 test2나 외부 버전 attack payload 및 label을 열지 않습니다. HAI 22.04/21.03은 같은 Rule bytes를 복사하지 않고 각 버전의 정상 데이터만으로 같은 방법을 다시 인스턴스화합니다.
-</pre></section><section id="section-11"><h2>DG04-XVER Stage B 재개 — 정상 custody 완료</h2><pre># DG04-XVER Stage B 재개 — 정상 custody 완료
+</pre></section><section id="section-11"><h2>HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</h2><pre># HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요
+
+HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.
+부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.
+T2 &gt; T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.
+HAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.
+Context train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.
+기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.
+Split-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.
+따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.
+DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.
+
+## 이전 기록 — 역사적 상태
+
+# DG04-XVER Stage B 재개 — 정상 custody 완료
 
 DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.
 
@@ -467,7 +509,21 @@ GDN은 normal-only EXP-01C의 보조 근거로 정리했으며 일부 V2A 규칙
 첨부 package의 방법·결과·한계를 검토 부탁드립니다. 제목/기여 범위와 후속 provider/held-out 설계는 별도 논의하고자 합니다.
 
 [사용자 최종 검토 및 DG-06 승인 전 전송 금지]
-</pre></section><section id="section-13"><h2>DG04-XVER Stage B 재개 — 정상 custody 완료</h2><pre># DG04-XVER Stage B 재개 — 정상 custody 완료
+</pre></section><section id="section-13"><h2>HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요</h2><pre># HAI-XVER-NORMAL-PREP-001 — context PASS / 과학 binding 필요
+
+HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.
+부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.
+T2 &gt; T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.
+HAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.
+Context train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.
+기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.
+Split-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.
+따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.
+DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.
+
+## 이전 기록 — 역사적 상태
+
+# DG04-XVER Stage B 재개 — 정상 custody 완료
 
 DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.
 

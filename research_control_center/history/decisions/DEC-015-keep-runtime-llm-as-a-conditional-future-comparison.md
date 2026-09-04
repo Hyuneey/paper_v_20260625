@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=073cac6b59ccb55f5028c6eaef8d8d9e952e42d6df500ceaf1f780e24212e814 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e1182f2793cd52c8c166d3e9db0eaaacff071524b3b32687a128a6bae131d46f authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-015 — Keep runtime LLM as a conditional future comparison
 
 ## Date

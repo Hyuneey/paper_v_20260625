@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=073cac6b59ccb55f5028c6eaef8d8d9e952e42d6df500ceaf1f780e24212e814 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e1182f2793cd52c8c166d3e9db0eaaacff071524b3b32687a128a6bae131d46f authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Research Evolution
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -410,3 +410,15 @@ The architecture is substantially implemented and the INNER path has frozen pilo
 observations. Scientific validation remains partial, held-out generalization remains
 unconfirmed, and fresh-machine reproduction remains incomplete. The exact next task is
 **HAI-XVER-NORMAL-PREP-001**.
+
+## 현재 외부 정상 준비 — 과학 결과와 분리
+
+HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.
+DG-03B_REVISED 승인 후 완료된 EXP-03B와 부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.
+T2 > T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.
+HAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.
+Context train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.
+기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.
+Split-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.
+따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.
+DG-03C의 현재 gate명 DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.

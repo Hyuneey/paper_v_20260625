@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=073cac6b59ccb55f5028c6eaef8d8d9e952e42d6df500ceaf1f780e24212e814 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=e1182f2793cd52c8c166d3e9db0eaaacff071524b3b32687a128a6bae131d46f authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -7,6 +7,7 @@ Registry version: `0.1.0`
 ## Recorded timeline
 
 - **2026-09-04 — Schema-only 승인 후 정상9파일 projection·외부 후보 완료** (`ACTIVE_CONTEXT`): StageA불변;HAI22/21 후보각29;GDN evidence 후속;provider/attack0
+- **2026-09-04 — 외부 GDN context 완료·event evidence binding 중단** (`ACTIVE_CONTEXT`): 36/30nodes CUDA synthetic PASS;GDN0/12;no provider/attack
 - **2026-09-04 — DG04 승인·T0/T2 후보 고정, 외부 정상 custody 차단** (`ACTIVE_CONTEXT`): StageA QA PASS; external train1 두 정상 컨테이너 byte identity 뒤 header guard 중단; eTaPR per-file109 PASS; 전체 완료 아님
 - **2026-09-04 — EXP-03B 과학 binding과 정상-only 준비 완료** (`ACTIVE_CONTEXT`): SCI01~04;29 pair;37 options;split-pure GDN;provider0;DG-03B 대기
 - **2026-09-04 — EXP-03 고정 snapshot 비교·독립 QA 완료** (`ACTIVE_CONTEXT`): T0 39/39; T1 104/117; T1-B 115/117; T2 105/117; T2 feedback 0/117; repair NOT_OBSERVED (denominator=0)
@@ -49,8 +50,12 @@ Registry version: `0.1.0`
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.
-
-사용자 schema-only allowlist projection 승인으로 정상 custody 차단을 해결했습니다. HAI22 train1~6/HAI21 train1~3 모두 NORMAL_ONLY_CUSTODY_READY. Label 이름은 header metadata로만 관찰하고 값 decode·검증·사용0. META/STAT union은 각29pairs, GDN admission0입니다.
-
-현재 BLOCKED_PENDING_HAI_XVER_NORMAL_PREP: external GDN context/evidence, T0, provider packs 미완료. DG-XVER-PROVIDER exact token/cost 미정, calls0. eTaPR per-file109 PASS; 세 metric binding은 공격 전 결정 필요. 공격·credential0, 제출/merge/push 없음.
+HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.
+DG-03B_REVISED 승인 후 완료된 EXP-03B와 부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.
+T2 > T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.
+HAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.
+Context train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.
+기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.
+Split-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.
+따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.
+DG-03C의 현재 gate명 DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.

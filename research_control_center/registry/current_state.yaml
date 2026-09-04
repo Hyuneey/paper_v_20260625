@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "DG-04 / DEC-025와 Stage A는 불변입니다. DG-03B_REVISED 승인 후 동결된 EXP-03B에서 T2는 matched-budget T1-B 대비 이점이 있지만 T0보다 우수하지 않았습니다. T0 22 Rules, T2 Repeat 1 21 Rules, V2A39는 별도 authority입니다.\n\n사용자 schema-only allowlist projection 승인으로 정상 custody 차단을 해결했습니다. HAI22 train1~6/HAI21 train1~3 모두 NORMAL_ONLY_CUSTODY_READY. Label 이름은 header metadata로만 관찰하고 값 decode·검증·사용0. META/STAT union은 각29pairs, GDN admission0입니다.\n\n현재 BLOCKED_PENDING_HAI_XVER_NORMAL_PREP: external GDN context/evidence, T0, provider packs 미완료. DG-XVER-PROVIDER exact token/cost 미정, calls0. eTaPR per-file109 PASS; 세 metric binding은 공격 전 결정 필요. 공격·credential0, 제출/merge/push 없음.",
+  "current_phase_statement": "HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.\nDG-03B_REVISED 승인 후 완료된 EXP-03B와 부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.\nT2 > T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.\nHAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.\nContext train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.\n기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.\nSplit-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.\n따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.\nDG-03C의 현재 gate명 DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -735,21 +735,21 @@
     "nominal_non_development_scenarios": 146,
     "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
     "primary_pooling": "PROHIBITED",
-    "external_p1_compatibility": "ROLE_MAPPING_COMPLETE_GDN_CONTEXT_PENDING",
+    "external_p1_compatibility": "ROLE_AND_GDN_CONTEXT_MAPPING_COMPLETE_EVENT_EVIDENCE_BINDING_PENDING",
     "metric_policy": "SCENARIO_RECALL_AND_NORMAL_FALSE_EPISODES_PRIMARY_ETAPR_COVERAGE_DELAY_SECONDARY",
     "etapr_pin": "saurf4ng/eTaPR@af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
     "attack_data_accesses": 0,
     "provider_calls": 0
   },
   "top_priorities": [
-    "정상 custody/role mapping/STAT 완료; Stage A 보존",
-    "외부 GDN context와 split-pure evidence 후속 준비",
-    "Provider 예산·공격 전 metric binding 각각 동결"
+    "Context 매핑·projection 완료; Stage A 보존",
+    "Split-pure event estimator 과학 binding 결정",
+    "결정 이후 12 GDN·T0·T2 pack; DG-XVER-PROVIDER는 별도"
   ],
   "highest_priority_work": [
-    "정상 custody/role mapping/STAT 완료; Stage A 보존",
-    "외부 GDN context와 split-pure evidence 후속 준비",
-    "Provider 예산·공격 전 metric binding 각각 동결"
+    "Context 매핑·projection 완료; Stage A 보존",
+    "Split-pure event estimator 과학 binding 결정",
+    "결정 이후 12 GDN·T0·T2 pack; DG-XVER-PROVIDER는 별도"
   ],
   "user_todo_items": [
     {
@@ -826,9 +826,9 @@
     }
   ],
   "top_user_todo": [
-    "추가 정상-only GDN/evidence 준비는 HAI-XVER-NORMAL-PREP-001",
-    "DG-XVER-PROVIDER: exact evidence·예산 후 별도 승인",
-    "DG05 metric 선택/공격 접근과 DG06 제출 별도 승인"
+    "Event threshold·window·direction 표현의 전향적 동결 필요",
+    "정확 evidence/budget 후 DG-XVER-PROVIDER 승인",
+    "DG05 공격 접근·metric binding 및 DG06 제출은 별도"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
@@ -1684,6 +1684,88 @@
     "test1_accesses": 0,
     "test2_accesses": 0,
     "DG03C": "NOT_READY",
-    "report": "research_control_center/validation_v2/dg04_xver_prep/STAGE_B_RESUME_STATUS_V2.json"
-  }
+    "report": "research_control_center/validation_v2/dg04_xver_prep/STAGE_B_RESUME_STATUS_V2.json",
+    "historical_parent_snapshot": true
+  },
+  "xver_normal_preparation": {
+    "37_option_reselection": 0,
+    "DG05": "NOT_APPROVED",
+    "DG_XVER_PROVIDER": "NOT_READY_USER_DECISION_REQUIRED_AFTER_EVIDENCE_FREEZE",
+    "HAI23_weights_transferred": false,
+    "attack_label_accesses": 0,
+    "backup": "SINGLE_COPY_LOCAL_ONLY",
+    "best_seed_selection": false,
+    "context_preparation": "PASS",
+    "credential_reads": 0,
+    "decision_brief": "GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md",
+    "eligibility_materialized": false,
+    "excluded_values_parsed": false,
+    "external_attack_accesses": 0,
+    "parent_commit": "3a410f5b6aa32ce7aa7547ddc445cf50c1aa347b",
+    "private_exposures": 0,
+    "professor_package": "NOT_SUBMITTED",
+    "provider_calls": 0,
+    "real_scenario_accesses": 0,
+    "schema": "xver_normal_preparation_status_v1",
+    "scientific_GDN_runs": 0,
+    "self_hash": "1d2549c3d11eea5141ffdf7c0e5e176adc795ce00960664bbc5f6ceed23639be",
+    "stage_a_changed": false,
+    "status": "BLOCKED_GDN_METHOD_CHANGE_REQUIRED",
+    "task": "HAI-XVER-NORMAL-PREP-001",
+    "test1_accesses": 0,
+    "test2_accesses": 0,
+    "training_stop_reason": "REQUIRED_EVENT_CONDITIONED_EVIDENCE_CONTRACT_NOT_UNIQUELY_BOUND_BEFORE_RUN_1",
+    "versions": {
+      "HAI21": {
+        "T0_executed": false,
+        "T0_portfolio_hash": null,
+        "T2_evidence_ready": false,
+        "absent_nodes": [
+          "P1_PIT01_HH",
+          "P1_PP04",
+          "P1_PP04D",
+          "P1_PP04SP",
+          "P1_SOL01D",
+          "P1_SOL03D",
+          "P1_TIT03"
+        ],
+        "candidate_count": 29,
+        "context_finite_type": "FINITE_FLOAT64",
+        "context_mapping_hash": "acc0030e87c9ff6ff5b9091c8e7763b0d07881d49a79cedd0284875ecb335473",
+        "context_projection_files": 2,
+        "context_projection_hash": "d3aad4af7bdb09cecf56e7d1a95daeb1fa172eb5eb92dfb6cf192fe7b9f4abe1",
+        "context_status": "SCHEMA_BOUND_PARTIAL_CONTEXT_REPLICATION",
+        "cost_ceiling": null,
+        "hard_token_ceiling": null,
+        "mapped_GDN_nodes": 30,
+        "maximum_calls_structural_only": 87,
+        "profiled_tokens": null,
+        "sample_interval_seconds": 1,
+        "scientific_GDN_runs": 0
+      },
+      "HAI22": {
+        "T0_executed": false,
+        "T0_portfolio_hash": null,
+        "T2_evidence_ready": false,
+        "absent_nodes": [
+          "P1_PP04D"
+        ],
+        "candidate_count": 29,
+        "context_finite_type": "FINITE_FLOAT64",
+        "context_mapping_hash": "06cf574195555f36a1edab889e3830c6678f38094aa40de6875b7e4d0260ae44",
+        "context_projection_files": 2,
+        "context_projection_hash": "7a3712d52dd10eea88840e8549f1e507f81db2636e1aa2ec5951d72c37929f6e",
+        "context_status": "SCHEMA_BOUND_PARTIAL_CONTEXT_REPLICATION",
+        "cost_ceiling": null,
+        "hard_token_ceiling": null,
+        "mapped_GDN_nodes": 36,
+        "maximum_calls_structural_only": 87,
+        "profiled_tokens": null,
+        "sample_interval_seconds": 1,
+        "scientific_GDN_runs": 0
+      }
+    },
+    "report": "research_control_center/validation_v2/xver_normal/XVER_NORMAL_PREPARATION_STATUS_V1.json"
+  },
+  "scientific_decision_required": "GDN_SPLIT_PURE_EVENT_CONDITIONED_ESTIMATOR_BINDING"
 }

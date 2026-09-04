@@ -385,6 +385,7 @@ def build_dashboard_view_model(
         "claims": [dict(row) for row in data["claims"]],
         "dg04_method_lock": state.get("dg04_method_lock"),
         "xver_preparation": state.get("xver_preparation"),
+        "xver_normal_preparation": state.get("xver_normal_preparation"),
         "decisions": [dict(row) for row in data["decisions"]],
         "unresolved_decisions": unresolved,
         "recent_events": current_events[:3],
@@ -681,7 +682,11 @@ def _render_dg04(vm: Mapping[str, Any]) -> str:
     lock=vm.get('dg04_method_lock')
     if not lock:return ''
     rows=''.join(f"<tr><td>{arm}</td><td>{p['pair_count']}</td><td>{p['rule_count']}</td></tr>" for arm,p in lock['portfolios'].items())
-    return f'''<section class="panel roadmap" aria-labelledby="dg04-xver-heading"><h3 id="dg04-xver-heading">DG-04 방법 고정 · 외부 정상 준비</h3>
+    current = ('<p>현재 HAI-XVER-NORMAL-PREP-001: context 36/30 nodes와 CUDA 합성검사 및 정상 context projection 4개 PASS. '
+               'BLOCKED_GDN_METHOD_CHANGE_REQUIRED: split-pure event-conditioned estimator 과학 binding 필요. GDN0/12; T0·T2 packs 미실행; exact token/cost 미정. '
+               '<a href="../validation_v2/xver_normal/GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md">정확한 결정 항목</a></p><p>아래 Stage B는 부모 task 종료 당시 기록입니다.</p>'
+               if vm.get('xver_normal_preparation') else '')
+    return f'''<section class="panel roadmap" aria-labelledby="dg04-xver-heading"><h3 id="dg04-xver-heading">DG-04 방법 고정 · 외부 정상 준비</h3>{current}
     <p>DEC-025 · APPROVED_WITH_SCOPED_AGENTIC_CLAIM</p><p>{_esc(lock['title'])}</p>
     <p>EXP-03B 정상-only: T2는 matched-maximum-budget T1-B 대비 이점이 있으나 주요 의미 지표에서 T0보다 우수하지 않았습니다. GDN은 learned-graph evidence이며 후보·탐지·수치 권한이 아닙니다. Fusion은 사전등록 비교입니다.</p>
     <table><thead><tr><th>HELDOUT_CANDIDATE</th><th>pairs</th><th>guard-retained Rules</th></tr></thead><tbody>{rows}</tbody></table>

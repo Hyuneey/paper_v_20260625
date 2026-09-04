@@ -2868,6 +2868,8 @@ def generate_history_documents(rcc_root: Path, data: Mapping[str, Any], digest: 
         name = f"{row['decision_id']}-{_slug(row['title'])}.md"
         payloads[decisions_dir / name] = render_decision_record(row, data["state"], digest)
     for path, payload in payloads.items():
+        if data['state'].get('xver_normal_preparation') and path.name in ('PROJECT_TIMELINE.md','TERMINOLOGY_GUIDE.md'):
+            payload += '\n## 현재 외부 정상 준비 — 과학 결과와 분리\n\n'+data['state']['current_phase_statement']+'\n'
         path.write_text(payload, encoding="utf-8", newline="\n")
     return list(payloads)
 

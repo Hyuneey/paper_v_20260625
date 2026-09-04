@@ -57,7 +57,7 @@ class LiveReportingTests(unittest.TestCase):
         self.assertEqual("APPROVED_EXECUTED" if executed else "USER_DECISION_REQUIRED", program["decision_gates"]["DG-03B_REVISED"])
         self.assertEqual("PREPARED_DG03B_REVISED_PENDING",state['exp03b_preparation']['status'])
         self.assertFalse(program["held_out_authorized"])
-        self.assertEqual("USER_DECISION_REQUIRED", program["decision_gates"]["DG-05"])
+        self.assertEqual("NOT_APPROVED", program["decision_gates"]["DG-05"])
         self.assertEqual("PENDING", program["decision_gates"]["DG-06"])
 
     def test_no_dataset_access_or_runtime_mutation_claim(self):
