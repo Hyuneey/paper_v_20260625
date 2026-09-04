@@ -51,7 +51,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(11, len(data["experiments"]))
         self.assertEqual(15, len(data["claims"]))
         self.assertEqual(20, len(data["risks"]))
-        self.assertEqual(51, len(data["artifacts"]))
+        self.assertEqual(52, len(data["artifacts"]))
         self.assertEqual(1, len([r for r in data['artifacts'] if r['artifact_id']=='ART-XVER-GDN-CONTEXT']))
         self.assertEqual(
             {
@@ -76,7 +76,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
-            "validation-v2-hai-xver-normal-prep-001": {"ef993009dab13b59c8bdcb94a9825a27b8a8ea8c"},
+            "validation-v2-hai-xver-normal-prep-001": {"ef993009dab13b59c8bdcb94a9825a27b8a8ea8c", "a207dceecd1903705af904624e8e7289c9f4b036"},
             "validation-v2-dg04-xver-prep-001": {"f7ce07955e56ce0140b30faea201e7f8ac11f8a3", "7d3178b9664e3cfa8c0a930dd00bb874723016b7"},
             "codex/exp03b-provider-exec-001": {"811d5817bed1484bb3d0c36704bd74f224f4c526"},
             "codex/exp03b-payload-reduce-001": {"6b8463f5e420485fca0848d315db8cb7af112117"},
@@ -172,7 +172,7 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(37, len(data["timeline"]))
+        self.assertEqual(38, len(data["timeline"]))
         self.assertEqual(1,len([r for r in data['timeline'] if r['event_id']=='EVENT-XVER-GDN-CONTEXT-001']))
         self.assertEqual(26, len(data["decisions"]))
         self.assertIn('EVENT-DG04-XVER-PREP-001',{r['event_id'] for r in data['timeline']})

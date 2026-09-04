@@ -683,8 +683,10 @@ def _render_dg04(vm: Mapping[str, Any]) -> str:
     if not lock:return ''
     rows=''.join(f"<tr><td>{arm}</td><td>{p['pair_count']}</td><td>{p['rule_count']}</td></tr>" for arm,p in lock['portfolios'].items())
     current = ('<p>현재 HAI-XVER-NORMAL-PREP-001: context 36/30 nodes와 CUDA 합성검사 및 정상 context projection 4개 PASS. '
-               'BLOCKED_GDN_METHOD_CHANGE_REQUIRED: split-pure event-conditioned estimator 과학 binding 필요. GDN0/12; T0·T2 packs 미실행; exact token/cost 미정. '
-               '<a href="../validation_v2/xver_normal/GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md">정확한 결정 항목</a></p><p>아래 Stage B는 부모 task 종료 당시 기록입니다.</p>'
+               'APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES: provider GLOBAL5 / AUX EVENT10 분리 승인. Event의 provider·verifier·candidate 사용 및 global 융합 금지. '
+               '과학 binding 선택은 해결; execution adapter·preflight 통합 대기. GDN0/12; T0·T2 packs 미실행; exact token/cost 미정. '
+               '<a href="../validation_v2/xver_normal/GDN_SEPARATED_EVIDENCE_BINDING_V1.md">승인된 분리 binding</a> · '
+               '<a href="../validation_v2/xver_normal/GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md">이전 blocker 기록</a></p><p>아래 Stage B는 부모 task 종료 당시 기록입니다.</p>'
                if vm.get('xver_normal_preparation') else '')
     return f'''<section class="panel roadmap" aria-labelledby="dg04-xver-heading"><h3 id="dg04-xver-heading">DG-04 방법 고정 · 외부 정상 준비</h3>{current}
     <p>DEC-025 · APPROVED_WITH_SCOPED_AGENTIC_CLAIM</p><p>{_esc(lock['title'])}</p>

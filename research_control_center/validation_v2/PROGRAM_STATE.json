@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "XVER_CONTEXT_COMPLETE_EVENT_EVIDENCE_BINDING_REQUIRED",
-  "program_status": "BLOCKED_GDN_METHOD_CHANGE_REQUIRED",
+  "current_stage": "XVER_GDN_SEPARATED_ROLE_BINDING_APPROVED",
+  "program_status": "BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -30,8 +30,8 @@
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
-    "DG-03C": "NOT_READY_EVENT_EVIDENCE_BINDING_REQUIRED",
-    "DG-XVER-PROVIDER": "NOT_READY_EVENT_EVIDENCE_BINDING_REQUIRED"
+    "DG-03C": "NOT_READY_EVIDENCE_PENDING",
+    "DG-XVER-PROVIDER": "NOT_READY_EVIDENCE_PENDING"
   },
   "experiment_status": {
     "EXP-03B": "COMPLETE_QA_PASS",
@@ -1051,14 +1051,14 @@
   "xver_normal_preparation": {
     "37_option_reselection": 0,
     "DG05": "NOT_APPROVED",
-    "DG_XVER_PROVIDER": "NOT_READY_USER_DECISION_REQUIRED_AFTER_EVIDENCE_FREEZE",
+    "DG_XVER_PROVIDER": "NOT_READY_EVIDENCE_PENDING",
     "HAI23_weights_transferred": false,
     "attack_label_accesses": 0,
     "backup": "SINGLE_COPY_LOCAL_ONLY",
     "best_seed_selection": false,
     "context_preparation": "PASS",
     "credential_reads": 0,
-    "decision_brief": "GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md",
+    "decision_brief": "GDN_SEPARATED_EVIDENCE_BINDING_V1.md",
     "eligibility_materialized": false,
     "excluded_values_parsed": false,
     "external_attack_accesses": 0,
@@ -1067,15 +1067,13 @@
     "professor_package": "NOT_SUBMITTED",
     "provider_calls": 0,
     "real_scenario_accesses": 0,
-    "schema": "xver_normal_preparation_status_v1",
+    "schema": "xver_normal_preparation_status_v2",
     "scientific_GDN_runs": 0,
-    "self_hash": "1d2549c3d11eea5141ffdf7c0e5e176adc795ce00960664bbc5f6ceed23639be",
     "stage_a_changed": false,
-    "status": "BLOCKED_GDN_METHOD_CHANGE_REQUIRED",
+    "status": "BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING",
     "task": "HAI-XVER-NORMAL-PREP-001",
     "test1_accesses": 0,
     "test2_accesses": 0,
-    "training_stop_reason": "REQUIRED_EVENT_CONDITIONED_EVIDENCE_CONTRACT_NOT_UNIQUELY_BOUND_BEFORE_RUN_1",
     "versions": {
       "HAI21": {
         "T0_executed": false,
@@ -1125,6 +1123,22 @@
         "sample_interval_seconds": 1,
         "scientific_GDN_runs": 0
       }
-    }
+    },
+    "historical_status_hash": "1d2549c3d11eea5141ffdf7c0e5e176adc795ce00960664bbc5f6ceed23639be",
+    "binding_hash": "a3043052702b83f897d0a21c54d6f6baef5ab28095354137b2d9999d98ac3aa6",
+    "scientific_decision_required": false,
+    "preparation_remaining": [
+      "VERSIONED_EXECUTION_ADAPTER",
+      "GLOBAL_KERNEL_EQUIVALENCE",
+      "SCI01_EVENT_AND_SEED_PARTITION_CUSTODY",
+      "ENVIRONMENT_AND_PERFORMANCE_PREFLIGHT",
+      "12_NORMAL_GDN_RUNS",
+      "T0_CONFIRM_BIND_GUARD",
+      "EXACT_PROVIDER_PACK_AND_BUDGET"
+    ],
+    "global_provider_role": "EXP03B_COMPATIBLE_SPLIT_PURE_GLOBAL",
+    "event_role": "AUXILIARY_CORROBORATION_ONLY",
+    "execution_active": false,
+    "self_hash": "590d029a2918f9578d0929a2c4f52efc6513d9ea30641cfa05013594dc13489d"
   }
 }

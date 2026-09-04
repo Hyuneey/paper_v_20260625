@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "HAI-XVER-NORMAL-PREP-001: context 준비 PASS, BLOCKED_GDN_METHOD_CHANGE_REQUIRED.\nDG-03B_REVISED 승인 후 완료된 EXP-03B와 부모 Stage A / DEC-025 / V2A39 / T0 22 / T2 Repeat1 21 Rules는 불변입니다.\nT2 > T1-B는 동결된 정상-only 의미 유도 비교에 한정되며 T0보다 우수하지 않습니다.\nHAI22 GDN context36/37, HAI21 30/37: 정확한 ordered intersection, 가변 node CUDA 합성검사 PASS.\nContext train1/train2 positive allowlist projection은 버전별2개 완료; excluded label 값 파싱0.\n기존 EXP01C event masking은 확정 relation·pooled threshold·train4를 사용하고 EXP03B는 global validation masking입니다.\nSplit-pure event-conditioned provider estimator의 threshold/window/direction 집계 정의를 새로 승인·동결해야 합니다.\n따라서 과학 GDN0/12, 외부 T0·T2 pack·정확 token/cost 미완료. Provider/credential/공격0.\nDG-03C의 현재 gate명 DG-XVER-PROVIDER는 NOT_READY, DG05 NOT_APPROVED, 교수 package NOT_SUBMITTED, vault SINGLE_COPY_LOCAL_ONLY.",
+  "current_phase_statement": "HAI-XVER-NORMAL-PREP-001: APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES.\n이전 BLOCKED_GDN_METHOD_CHANGE_REQUIRED의 estimator 역할 선택은 사용자 승인으로 해소됐습니다.\nProvider train1 / bounded retrieval train2에는 EXP03B-compatible split-pure GLOBAL 5-row GDN만 사용합니다.\nSCI01 split-local event와 seed별 purged validation 교집합의 EVENT 10-row는 AUXILIARY_CORROBORATION_ONLY입니다.\nGlobal/event 융합, event의 provider·retrieval·verifier·candidate 사용, train3/4 또는 numeric policy 기반 event 선택을 금지합니다.\n3개 seed 전부 유지; best-seed 선택 없음. 별도 타입과 실제 frozen projector adapter 합성검사 15 PASS 및 독립 scoped QA PASS.\n과학적 역할 binding은 완료됐지만 버전별 execution adapter·custody·environment·performance preflight 통합은 남아 있습니다.\n현재 GDN scientific runs 0/12, 외부 T0·T2 pack·정확 token/cost 미완료; provider/credential/공격0.\nDG-03B_REVISED 승인으로 완료된 EXP03B와 기존 DEC-025 / Stage A / V2A39 / T0 22 / T2 Repeat1 21 Rules / EXP02 / EXP04/05 / PILOT 결과는 불변입니다.\nT2 > T1-B는 정상-only 의미 유도 비교에 한정되고 T0보다 우수하지 않습니다.\nDG-03C의 현재 gate명 DG-XVER-PROVIDER는 NOT_READY_EVIDENCE_PENDING; DG05 NOT_APPROVED; 교수 package NOT_SUBMITTED; vault SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -735,21 +735,21 @@
     "nominal_non_development_scenarios": 146,
     "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
     "primary_pooling": "PROHIBITED",
-    "external_p1_compatibility": "ROLE_AND_GDN_CONTEXT_MAPPING_COMPLETE_EVENT_EVIDENCE_BINDING_PENDING",
+    "external_p1_compatibility": "ROLE_AND_CONTEXT_MAPPING_COMPLETE_GDN_ROLE_BINDING_APPROVED",
     "metric_policy": "SCENARIO_RECALL_AND_NORMAL_FALSE_EPISODES_PRIMARY_ETAPR_COVERAGE_DELAY_SECONDARY",
     "etapr_pin": "saurf4ng/eTaPR@af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
     "attack_data_accesses": 0,
     "provider_calls": 0
   },
   "top_priorities": [
-    "Context 매핑·projection 완료; Stage A 보존",
-    "Split-pure event estimator 과학 binding 결정",
-    "결정 이후 12 GDN·T0·T2 pack; DG-XVER-PROVIDER는 별도"
+    "승인된 GLOBAL5 / AUX EVENT10 분리 binding 유지",
+    "Execution adapter·custody·환경·preflight 완성 후 정상-only 12-run",
+    "T0·provider pack·budget 완료 후 DG-XVER-PROVIDER 별도 승인"
   ],
   "highest_priority_work": [
-    "Context 매핑·projection 완료; Stage A 보존",
-    "Split-pure event estimator 과학 binding 결정",
-    "결정 이후 12 GDN·T0·T2 pack; DG-XVER-PROVIDER는 별도"
+    "승인된 GLOBAL5 / AUX EVENT10 분리 binding 유지",
+    "Execution adapter·custody·환경·preflight 완성 후 정상-only 12-run",
+    "T0·provider pack·budget 완료 후 DG-XVER-PROVIDER 별도 승인"
   ],
   "user_todo_items": [
     {
@@ -826,9 +826,9 @@
     }
   ],
   "top_user_todo": [
-    "Event threshold·window·direction 표현의 전향적 동결 필요",
+    "현재 GDN evidence 역할 추가 결정 불필요",
     "정확 evidence/budget 후 DG-XVER-PROVIDER 승인",
-    "DG05 공격 접근·metric binding 및 DG06 제출은 별도"
+    "DG05 공격 접근 및 DG06 교수 제출은 별도"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
@@ -1690,14 +1690,14 @@
   "xver_normal_preparation": {
     "37_option_reselection": 0,
     "DG05": "NOT_APPROVED",
-    "DG_XVER_PROVIDER": "NOT_READY_USER_DECISION_REQUIRED_AFTER_EVIDENCE_FREEZE",
+    "DG_XVER_PROVIDER": "NOT_READY_EVIDENCE_PENDING",
     "HAI23_weights_transferred": false,
     "attack_label_accesses": 0,
     "backup": "SINGLE_COPY_LOCAL_ONLY",
     "best_seed_selection": false,
     "context_preparation": "PASS",
     "credential_reads": 0,
-    "decision_brief": "GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md",
+    "decision_brief": "GDN_SEPARATED_EVIDENCE_BINDING_V1.md",
     "eligibility_materialized": false,
     "excluded_values_parsed": false,
     "external_attack_accesses": 0,
@@ -1706,15 +1706,13 @@
     "professor_package": "NOT_SUBMITTED",
     "provider_calls": 0,
     "real_scenario_accesses": 0,
-    "schema": "xver_normal_preparation_status_v1",
+    "schema": "xver_normal_preparation_status_v2",
     "scientific_GDN_runs": 0,
-    "self_hash": "1d2549c3d11eea5141ffdf7c0e5e176adc795ce00960664bbc5f6ceed23639be",
     "stage_a_changed": false,
-    "status": "BLOCKED_GDN_METHOD_CHANGE_REQUIRED",
+    "status": "BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING",
     "task": "HAI-XVER-NORMAL-PREP-001",
     "test1_accesses": 0,
     "test2_accesses": 0,
-    "training_stop_reason": "REQUIRED_EVENT_CONDITIONED_EVIDENCE_CONTRACT_NOT_UNIQUELY_BOUND_BEFORE_RUN_1",
     "versions": {
       "HAI21": {
         "T0_executed": false,
@@ -1765,7 +1763,23 @@
         "scientific_GDN_runs": 0
       }
     },
-    "report": "research_control_center/validation_v2/xver_normal/XVER_NORMAL_PREPARATION_STATUS_V1.json"
+    "historical_status_hash": "1d2549c3d11eea5141ffdf7c0e5e176adc795ce00960664bbc5f6ceed23639be",
+    "binding_hash": "a3043052702b83f897d0a21c54d6f6baef5ab28095354137b2d9999d98ac3aa6",
+    "scientific_decision_required": false,
+    "preparation_remaining": [
+      "VERSIONED_EXECUTION_ADAPTER",
+      "GLOBAL_KERNEL_EQUIVALENCE",
+      "SCI01_EVENT_AND_SEED_PARTITION_CUSTODY",
+      "ENVIRONMENT_AND_PERFORMANCE_PREFLIGHT",
+      "12_NORMAL_GDN_RUNS",
+      "T0_CONFIRM_BIND_GUARD",
+      "EXACT_PROVIDER_PACK_AND_BUDGET"
+    ],
+    "global_provider_role": "EXP03B_COMPATIBLE_SPLIT_PURE_GLOBAL",
+    "event_role": "AUXILIARY_CORROBORATION_ONLY",
+    "execution_active": false,
+    "self_hash": "590d029a2918f9578d0929a2c4f52efc6513d9ea30641cfa05013594dc13489d",
+    "report": "research_control_center/validation_v2/xver_normal/GDN_SEPARATED_EVIDENCE_BINDING_V1.json"
   },
-  "scientific_decision_required": "GDN_SPLIT_PURE_EVENT_CONDITIONED_ESTIMATOR_BINDING"
+  "scientific_decision_required": "NONE_FOR_GDN_EVIDENCE_ROLE_BINDING"
 }

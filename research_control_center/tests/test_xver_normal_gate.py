@@ -31,14 +31,28 @@ class XverNormalGateTests(unittest.TestCase):
     def test_no_gate_authorization(self):
         p=json.loads((RCC/'validation_v2/PROGRAM_STATE.json').read_text(encoding='utf-8'))
         self.assertEqual(p['decision_gates']['DG-05'],'NOT_APPROVED')
-        self.assertEqual(p['decision_gates']['DG-XVER-PROVIDER'],'NOT_READY_EVENT_EVIDENCE_BINDING_REQUIRED')
+        self.assertEqual(p['decision_gates']['DG-XVER-PROVIDER'],'NOT_READY_EVIDENCE_PENDING')
         self.assertFalse(p['held_out_authorized'])
 
     def test_current_reporting_has_precise_blocker(self):
         for f in ('CURRENT_CONTEXT.md','MY_TODO.md','DECISION_INBOX.md','history/PROJECT_TIMELINE.md','history/TERMINOLOGY_GUIDE.md'):
             text=(RCC/f).read_text(encoding='utf-8')
             self.assertIn('BLOCKED_GDN_METHOD_CHANGE_REQUIRED',text)
+            self.assertIn('APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES',text)
         self.assertIn('GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md',(RCC/'dashboard/index.html').read_text(encoding='utf-8'))
+
+    def test_approved_role_choice_is_not_execution(self):
+        s=json.loads((PUB/'XVER_NORMAL_PREPARATION_STATUS_V2.json').read_text());replay(s)
+        b=json.loads((PUB/'GDN_SEPARATED_EVIDENCE_BINDING_V1.json').read_text());replay(b)
+        self.assertEqual(s['binding_hash'],b['self_hash'])
+        self.assertFalse(s['scientific_decision_required']);self.assertFalse(s['execution_active'])
+        self.assertEqual(s['scientific_GDN_runs'],0)
+        self.assertEqual(s['global_provider_role'],'EXP03B_COMPATIBLE_SPLIT_PURE_GLOBAL')
+        self.assertEqual(s['event_role'],'AUXILIARY_CORROBORATION_ONLY')
+        for key in ('global_event_fusion_allowed','event_provider_exposure_allowed','event_retrieval_exposure_allowed',
+                    'event_verifier_use_allowed','event_candidate_admission_allowed','event_numeric_policy_selection_allowed',
+                    'train3_GDN_allowed','train4_GDN_allowed','best_seed_selection_allowed','provider_calls_authorized'):
+            self.assertIs(b[key],False)
 
 
 if __name__=='__main__':unittest.main()

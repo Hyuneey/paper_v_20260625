@@ -107,6 +107,14 @@ class FrontReportingTests(unittest.TestCase):
         self.assertEqual(contract['implementation_hashes'][projection],hashlib.sha256(frozen_projection).hexdigest())
         self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',projection],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
         additions.add(projection)
+        # User-approved prospective separated-role helpers: exact freeze, no old kernel edits.
+        binding=json.loads((RCC/'validation_v2/xver_normal/GDN_SEPARATED_EVIDENCE_BINDING_V1.json').read_text())
+        self.assertEqual(binding['status'],'APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES')
+        for name in ('xver_gdn_roles_v1.py','xver_gdn_provider_v1.py'):
+            path='src/paperworks/validation_v2/'+name
+            self.assertEqual(binding['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+            self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',path],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+            additions.add(path)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",
