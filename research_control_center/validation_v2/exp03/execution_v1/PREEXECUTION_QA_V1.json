@@ -1,0 +1,15 @@
+{
+  "schema": "exp03_preexecution_independent_qa_v1",
+  "status": "PASS",
+  "execution_freeze_hash": "06a23ea49a720973994081b3d4f19a9e5037548135cf25283bdeb5486d368d23",
+  "source_commit": "9e0c669d5efa03afcd13342fa1fc3dbc8ba8f3f4",
+  "bound_files_replayed": 55,
+  "focused_tests": 56,
+  "rcc_tests": 188,
+  "privacy": "PASS",
+  "reviewers": ["front_custody", "front_gdn_mapping", "front_performance"],
+  "provider_generation_calls_at_review": 0,
+  "one_call_gate_required": true,
+  "test_data_access_authorized": false,
+  "self_hash": "19746aef20e6c47e8de67ea5c68e97c6bfb7616ccf53227b83255dceb14a1369"
+}
