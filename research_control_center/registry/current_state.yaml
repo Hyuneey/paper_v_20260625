@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "EXP-03B 의미적 Rule induction 실행·독립 QA 완료. 판정 `AGENTIC_ADVANTAGE_SUPPORTED`. 518 calls, 1,087,961 tokens, 표준 uncached 요금 기준 상한 USD 1.04185575 (청구서가 아닌 token-price 산식). Feedback 83회/22 pair, train3-confirmed exact repair 10 pair. Numeric policy는 provider에 공개하지 않고 모든 output/admission/train3 freeze 뒤 SCI02B로 결속했습니다.\n\nDG-03B_REVISED는 사용자 승인 후 실행 완료했습니다. 다음은 DG-04 최종 제목·Agentic 기여 결정입니다. 정상 확인 reference에 대한 개발 비교이며 causal truth·held-out generalization을 입증하지 않습니다. EXP-03 V1·V2A39·EXP02·EXP04/05·GDN·PILOT는 보존. test1/test2/heldout/외부공격/공격 label 접근0. 교수님에게 제출하지 않았습니다.",
+  "current_phase_statement": "DEC-025 / DG-04: APPROVED_WITH_SCOPED_AGENTIC_CLAIM. 제목: Verifier-Guided Agentic Relational Rule Induction with GDN-Based Learned-Graph Evidence for Explainable Multivariate Time-Series Anomaly Detection\n\n동결 정상-only EXP-03B에서 T2는 matched-maximum-budget T1-B 대비 의미적 유도를 개선했지만 주요 지표에서 T0보다 우수하지 않았습니다. GDN은 핵심 learned-graph evidence 모듈이며 후보·탐지·수치 권한이 아닙니다. Fusion은 기여가 아닌 사전등록 비교입니다.\n\nT0 단일 출력 및 T2 Repeat 1의 기존 guard-retained Rule만 별도 HELDOUT_CANDIDATE로 고정했습니다. V2A39 reference·EXP03B·EXP02·EXP04/05·PILOT 결과는 보존합니다. Stage B는 HAI22/21 정상-only 준비 중이며 provider는 DG-03C, 공격은 DG-05, 교수 제출은 DG-06 별도 승인입니다. 추가 Agentic rescue 없음.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -742,14 +742,14 @@
     "provider_calls": 0
   },
   "top_priorities": [
-    "DG-04: EXP-03B의 T2 대 T1-B 이점과 T0 대비 한계를 구분해 기여 표현을 결정한다.",
-    "HAI 22.04/21.03 호환성은 별도 normal-only/public metadata 작업이며 공격 접근은 DG-05 전 금지한다.",
-    "DG-03B_REVISED는 승인 실행 완료; 추가 Agentic rescue·provider 호출·교수님 자동 제출 금지."
+    "DG-04 승인 반영 완료; T0/T2/V2A 별도 유지",
+    "HAI22/21 정상-only 준비; provider·공격·label 금지",
+    "DG-03C exact freeze 전 credential·probe·호출 금지"
   ],
   "highest_priority_work": [
-    "DG-04: EXP-03B의 T2 대 T1-B 이점과 T0 대비 한계를 구분해 기여 표현을 결정한다.",
-    "HAI 22.04/21.03 호환성은 별도 normal-only/public metadata 작업이며 공격 접근은 DG-05 전 금지한다.",
-    "DG-03B_REVISED는 승인 실행 완료; 추가 Agentic rescue·provider 호출·교수님 자동 제출 금지."
+    "DG-04 승인 반영 완료; T0/T2/V2A 별도 유지",
+    "HAI22/21 정상-only 준비; provider·공격·label 금지",
+    "DG-03C exact freeze 전 credential·probe·호출 금지"
   ],
   "user_todo_items": [
     {
@@ -783,9 +783,9 @@
       "id": "USER-V2-004",
       "category": "DECISION LATER",
       "priority": "HIGH",
-      "task": "DG-04 — EXP-03B 이후 제목·Agentic 기여 결정",
-      "why": "DG-03B_REVISED 승인 실행 완료. Frozen T2 대 T1-B 기준과 T0 비교 한계를 검토한다.",
-      "linked": "research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md",
+      "task": "DG-03C — 외부 T2 provider 결정 준비",
+      "why": "DG-04는 DEC-025로 승인됨; Stage B 정확한 준비·예산 필요",
+      "linked": "research_control_center/validation_v2/dg04_xver_prep/FINAL_TITLE_CLAIMS_AND_RQ_V1.md",
       "status": "OPEN"
     },
     {
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "DG-04: EXP-03B 결과 기반 제목·Agentic 기여 범위 결정",
-    "DG-05: 다중 HAI 공격 접근 별도 승인; 현재 접근 금지",
-    "DG-06: 교수님 package 실제 제출 전 검토"
+    "DG-03C: 외부 버전 T2 provider 예산 고정 후 승인",
+    "DG-05: 공격 접근 전 별도 승인",
+    "DG-06: 교수 package 실제 제출 전 검토"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정",
-  "recommended_next_architecture_task": "DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지",
+  "recommended_next_management_task": "DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비",
+  "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
   "last_completed_task": "EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료",
-  "exact_next_task": "DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정",
+  "exact_next_task": "DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비",
   "safety_counters": {
     "scientific_executions": 4,
     "test2_feature_accesses": 0,
@@ -1605,5 +1605,44 @@
         }
       }
     }
+  },
+  "dg04_method_lock": {
+    "status": "STAGE_A_COMPLETE_STAGE_B_IN_PROGRESS",
+    "decision_id": "DEC-025",
+    "decision": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
+    "title": "Verifier-Guided Agentic Relational Rule Induction with GDN-Based Learned-Graph Evidence for Explainable Multivariate Time-Series Anomaly Detection",
+    "method_lock_hash": "82b483ca92926d0bbf0020de496a61d0377429fe56807c8f96c44c89557d7c13",
+    "supported_boundary": "T2_VS_MATCHED_MAXIMUM_BUDGET_T1B",
+    "T0_limitation": "T2 did not outperform deterministic T0 on the principal semantic induction metrics.",
+    "portfolios": {
+      "T0": {
+        "hash": "d95c0bb8234304f2b769e088f4399b6c071b2156982c9e1fadd175dbab5dba02",
+        "horizon_distribution": {
+          "1": 16,
+          "5": 2,
+          "60": 4
+        },
+        "pair_count": 14,
+        "rule_count": 22,
+        "source_count": 8,
+        "target_count": 7
+      },
+      "T2": {
+        "hash": "bc2b5996989228f198dbcbf38cbedaf38516366f55d5011978ecda94ccf699b6",
+        "horizon_distribution": {
+          "1": 16,
+          "5": 2,
+          "60": 3
+        },
+        "pair_count": 13,
+        "rule_count": 21,
+        "source_count": 8,
+        "target_count": 7
+      }
+    },
+    "next_gate": "DG-03C",
+    "provider_calls_this_task": 0,
+    "attack_access_authorized": false,
+    "report": "research_control_center/validation_v2/dg04_xver_prep/FINAL_TITLE_CLAIMS_AND_RQ_V1.md"
   }
 }

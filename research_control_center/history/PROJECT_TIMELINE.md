@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fdfc6540a849c356224aa8a35e3cfda88c597be7724348872d36bb4e09a3a04 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Research Evolution
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -409,4 +409,4 @@ DEC-022; research_control_center/validation_v2/evaluation_expansion/
 The architecture is substantially implemented and the INNER path has frozen pilot
 observations. Scientific validation remains partial, held-out generalization remains
 unconfirmed, and fresh-machine reproduction remains incomplete. The exact next task is
-**DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**.
+**DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비**.

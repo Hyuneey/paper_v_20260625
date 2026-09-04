@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fdfc6540a849c356224aa8a35e3cfda88c597be7724348872d36bb4e09a3a04 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-04
@@ -122,9 +122,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- DG-04: EXP-03B의 T2 대 T1-B 이점과 T0 대비 한계를 구분해 기여 표현을 결정한다.
-- HAI 22.04/21.03 호환성은 별도 normal-only/public metadata 작업이며 공격 접근은 DG-05 전 금지한다.
-- DG-03B_REVISED는 승인 실행 완료; 추가 Agentic rescue·provider 호출·교수님 자동 제출 금지.
+- DG-04 승인 반영 완료; T0/T2/V2A 별도 유지
+- HAI22/21 정상-only 준비; provider·공격·label 금지
+- DG-03C exact freeze 전 credential·probe·호출 금지
 
-Exact next management task: **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**
-Following architecture task: **DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지**
+Exact next management task: **DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비**
+Following architecture task: **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지**

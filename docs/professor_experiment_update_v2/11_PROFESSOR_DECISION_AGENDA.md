@@ -1,3 +1,13 @@
+# DG04-XVER-PREP-001 — 현재 승인된 방법 고정
+
+DEC-025 / DG-04: APPROVED_WITH_SCOPED_AGENTIC_CLAIM. 제목: Verifier-Guided Agentic Relational Rule Induction with GDN-Based Learned-Graph Evidence for Explainable Multivariate Time-Series Anomaly Detection
+
+동결 정상-only EXP-03B에서 T2는 matched-maximum-budget T1-B 대비 의미적 유도를 개선했지만 주요 지표에서 T0보다 우수하지 않았습니다. GDN은 핵심 learned-graph evidence 모듈이며 후보·탐지·수치 권한이 아닙니다. Fusion은 기여가 아닌 사전등록 비교입니다.
+
+T0 단일 출력 및 T2 Repeat 1의 기존 guard-retained Rule만 별도 HELDOUT_CANDIDATE로 고정했습니다. V2A39 reference·EXP03B·EXP02·EXP04/05·PILOT 결과는 보존합니다. Stage B는 HAI22/21 정상-only 준비 중이며 provider는 DG-03C, 공격은 DG-05, 교수 제출은 DG-06 별도 승인입니다. 추가 Agentic rescue 없음.
+
+## 이전 기록 — 역사적 상태
+
 # EXP03B-PROVIDER-EXEC-001 — 현재 실행 결과
 
 현재 결과의 필수 한계: T0는 T2보다 strict pair/directional F1 및 exact set에서 높았습니다. T2의 abstain은 T1-B보다 높았고, 동결 train4 burden 기준은 lexicographic입니다. 따라서 T2 대 T1-B의 사전등록 이점이며 전체 방법 우월성이 아닙니다. [동결 결과](../../research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md) · [DG-04 결정안](../../research_control_center/validation_v2/exp03b/execution_v2/DG04_EXP03B_DECISION_BRIEF_V1.md).

@@ -1,0 +1,4 @@
+comparison,pair_overlap,directional_overlap,exact_semantic_overlap,left_only_rules,right_only_rules,horizon_agreement,horizon_disagreement,direction_disagreement_pairs
+T0_vs_T2,12,20,20,2,1,20,0,0
+V2A_vs_T0,14,22,22,17,0,22,0,4
+V2A_vs_T2,13,21,21,18,0,21,0,3

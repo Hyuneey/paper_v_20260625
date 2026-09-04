@@ -1,3 +1,13 @@
+# DG04-XVER-PREP-001 — 현재 승인된 방법 고정
+
+DEC-025 / DG-04: APPROVED_WITH_SCOPED_AGENTIC_CLAIM. 제목: Verifier-Guided Agentic Relational Rule Induction with GDN-Based Learned-Graph Evidence for Explainable Multivariate Time-Series Anomaly Detection
+
+동결 정상-only EXP-03B에서 T2는 matched-maximum-budget T1-B 대비 의미적 유도를 개선했지만 주요 지표에서 T0보다 우수하지 않았습니다. GDN은 핵심 learned-graph evidence 모듈이며 후보·탐지·수치 권한이 아닙니다. Fusion은 기여가 아닌 사전등록 비교입니다.
+
+T0 단일 출력 및 T2 Repeat 1의 기존 guard-retained Rule만 별도 HELDOUT_CANDIDATE로 고정했습니다. V2A39 reference·EXP03B·EXP02·EXP04/05·PILOT 결과는 보존합니다. Stage B는 HAI22/21 정상-only 준비 중이며 provider는 DG-03C, 공격은 DG-05, 교수 제출은 DG-06 별도 승인입니다. 추가 Agentic rescue 없음.
+
+## 이전 기록 — 역사적 상태
+
 # VALIDATION V2 방법
 
 후보 prior는 META+STAT입니다. META는 공식 process graph와 reviewed semantic metadata의 hybrid이며 완전 자동 graph extraction이라고 설명하지 않습니다. 정상 관계 분석/확인은 29 candidate pairs에서 21 confirmed pairs, 39 directional relations를 만들었습니다.

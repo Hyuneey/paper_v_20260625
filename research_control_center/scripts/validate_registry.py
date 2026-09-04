@@ -370,7 +370,14 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     if state.get('exp03b_execution'):
         execution=state['exp03b_execution']
         result.require(state.get('last_completed_task')=='EXP03B-PROVIDER-EXEC-001 — 의미적 induction 실행·독립 QA 완료','last completed EXP03B task')
-        result.require(state.get('exact_next_task')=='DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정','EXP03B DG04 stop')
+        if state.get('dg04_method_lock'):
+            lock=state['dg04_method_lock']
+            result.require(lock.get('decision_id')=='DEC-025' and lock.get('decision')=='APPROVED_WITH_SCOPED_AGENTIC_CLAIM', 'DG04 explicit decision required')
+            result.require(lock.get('method_lock_hash')=='82b483ca92926d0bbf0020de496a61d0377429fe56807c8f96c44c89557d7c13', 'DG04 method identity')
+            result.require(lock.get('provider_calls_this_task')==0 and lock.get('attack_access_authorized') is False, 'DG04 XVER preparation boundary')
+            result.require(state.get('exact_next_task')=='DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비', 'DG04 normal preparation next')
+        else:
+            result.require(state.get('exact_next_task')=='DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정','EXP03B DG04 stop')
         result.require(execution.get('status')=='COMPLETE_QA_PASS' and execution.get('numeric_provider_visible') is False and execution.get('next_gate')=='DG-04','EXP03B execution gate')
         result.require(0<execution.get('calls',0)<=609 and execution.get('input_tokens',0)<=7216128 and execution.get('output_tokens',0)<=1247232,'EXP03B approved usage limits')
     else:
@@ -392,7 +399,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(state.get("fresh_machine_reproducibility") == "synthetic_pass_scientific_blocked", "fresh-machine reproducibility level mismatch")
     result.require(len(state.get("top_priorities", [])) == 3, "top_priorities must contain exactly three entries")
     result.require(state.get("recommended_next_management_task") == state.get('exact_next_task'), "next management task mismatch")
-    result.require(state.get("recommended_next_architecture_task") == ("DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지" if state.get('exp03b_execution') else "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04"), "next architecture task mismatch")
+    expected_architecture = '고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지' if state.get('dg04_method_lock') else ("DG-04 최종 제목·기여 결정; 추가 provider/Agentic rescue 실행 금지" if state.get('exp03b_execution') else "EXP-03B 승인 후 실행·독립 QA; 이후 DG-04")
+    result.require(state.get("recommended_next_architecture_task") == expected_architecture, "next architecture task mismatch")
     expansion = state.get("evaluation_expansion", {})
     result.require(expansion.get("decision_id") == "DEC-022", "evaluation expansion decision is missing")
     result.require(expansion.get("nominal_non_development_scenarios") == 146, "evaluation expansion nominal count mismatch")

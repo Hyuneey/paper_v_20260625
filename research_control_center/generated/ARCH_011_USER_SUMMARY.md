@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fdfc6540a849c356224aa8a35e3cfda88c597be7724348872d36bb4e09a3a04 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # OUTER와 재현성을 쉽게 이해하기
 
 ## 1. OUTER가 정확히 무엇인가?
@@ -51,7 +51,7 @@ Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 gui
 
 기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
 
-다음 task는 **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+다음 task는 **DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비**이다. ARCH-011은 이 remediation을 실행하지 않았다.
 
 ## 현재 provider Gate
 

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fe66e55fe20afe8bfad685eefdd1ad012a5394a8df1c4746d07ba2a14178322 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8fdfc6540a849c356224aa8a35e3cfda88c597be7724348872d36bb4e09a3a04 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # D2에서 Detector와 Rule을 어떻게 합쳤는가
 
 ## 1. 왜 D0와 D1을 합치려고 했는가?
@@ -74,7 +74,7 @@ D0-miss recovery가 필요하다.
 기억할 한 문장: **D1의 다른 response가 관찰됐지만, 현재 V1/V2 gate는 이를 recall 증가로 바꾸지
 못했고 V2는 독립 검증이 아니다.**
 
-다음 task는 **DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정**이다.
+다음 task는 **DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비**이다.
 
 ## 현재 provider Gate
 

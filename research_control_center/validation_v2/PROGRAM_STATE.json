@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "EXP03B_COMPLETE_DG04_PENDING",
-  "program_status": "COMPLETE_CURRENT_AUTHORIZED_WORK_DG04_PENDING",
+  "current_stage": "DG04_XVER_STAGE_B_PREPARATION",
+  "program_status": "IN_PROGRESS_NORMAL_ONLY",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -25,11 +25,12 @@
     "DG-01": "RESOLVED_BY_USER",
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
-    "DG-04": "USER_DECISION_REQUIRED",
+    "DG-04": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
     "DG-05": "PENDING_MANDATORY",
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
-    "DG-03B_REVISED": "APPROVED_EXECUTED"
+    "DG-03B_REVISED": "APPROVED_EXECUTED",
+    "DG-03C": "NOT_READY_NO_PROVIDER_AUTHORIZATION"
   },
   "experiment_status": {
     "EXP-03B": "COMPLETE_QA_PASS",
@@ -391,7 +392,7 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-04 — EXP-03B 이후 최종 제목·Agentic 기여 결정",
+  "exact_next_task": "DG04-XVER-PREP-001 Stage B — cross-version 정상-only 준비",
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",
     "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
@@ -965,5 +966,44 @@
         }
       }
     }
+  },
+  "dg04_method_lock": {
+    "status": "STAGE_A_COMPLETE_STAGE_B_IN_PROGRESS",
+    "decision_id": "DEC-025",
+    "decision": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
+    "title": "Verifier-Guided Agentic Relational Rule Induction with GDN-Based Learned-Graph Evidence for Explainable Multivariate Time-Series Anomaly Detection",
+    "method_lock_hash": "82b483ca92926d0bbf0020de496a61d0377429fe56807c8f96c44c89557d7c13",
+    "supported_boundary": "T2_VS_MATCHED_MAXIMUM_BUDGET_T1B",
+    "T0_limitation": "T2 did not outperform deterministic T0 on the principal semantic induction metrics.",
+    "portfolios": {
+      "T0": {
+        "hash": "d95c0bb8234304f2b769e088f4399b6c071b2156982c9e1fadd175dbab5dba02",
+        "horizon_distribution": {
+          "1": 16,
+          "5": 2,
+          "60": 4
+        },
+        "pair_count": 14,
+        "rule_count": 22,
+        "source_count": 8,
+        "target_count": 7
+      },
+      "T2": {
+        "hash": "bc2b5996989228f198dbcbf38cbedaf38516366f55d5011978ecda94ccf699b6",
+        "horizon_distribution": {
+          "1": 16,
+          "5": 2,
+          "60": 3
+        },
+        "pair_count": 13,
+        "rule_count": 21,
+        "source_count": 8,
+        "target_count": 7
+      }
+    },
+    "next_gate": "DG-03C",
+    "provider_calls_this_task": 0,
+    "attack_access_authorized": false,
+    "report": "research_control_center/validation_v2/dg04_xver_prep/FINAL_TITLE_CLAIMS_AND_RQ_V1.md"
   }
 }
