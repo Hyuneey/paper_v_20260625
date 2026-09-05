@@ -128,6 +128,21 @@ FROZEN_METHOD_IDS_BY_PANEL_V1: dict[str, tuple[str, ...]] = {
     ),
 }
 
+_P1_23 = "P1_FCV01D P1_FCV01Z P1_FCV02D P1_FCV02Z P1_FCV03D P1_FCV03Z P1_FT01 P1_FT01Z P1_FT02 P1_FT02Z P1_FT03 P1_FT03Z P1_LCV01D P1_LCV01Z P1_LIT01 P1_PCV01D P1_PCV01Z P1_PCV02D P1_PCV02Z P1_PIT01 P1_PIT01_HH P1_PIT02 P1_PP01AD P1_PP01AR P1_PP01BD P1_PP01BR P1_PP02D P1_PP02R P1_PP04 P1_PP04D P1_PP04SP P1_SOL01D P1_SOL03D P1_STSP P1_TIT01 P1_TIT02 P1_TIT03 x1001_05_SETPOINT_OUT x1001_15_ASSIGN_OUT x1002_07_SETPOINT_OUT x1002_08_SETPOINT_OUT x1003_10_SETPOINT_OUT x1003_18_SETPOINT_OUT x1003_24_SUM_OUT".split()
+_P1_22 = "P1_B2004 P1_B2016 P1_B3004 P1_B3005 P1_B4002 P1_B4005 P1_B400B P1_B4022 P1_FCV01D P1_FCV01Z P1_FCV02D P1_FCV02Z P1_FCV03D P1_FCV03Z P1_FT01 P1_FT01Z P1_FT02 P1_FT02Z P1_FT03 P1_FT03Z P1_LCV01D P1_LCV01Z P1_LIT01 P1_PCV01D P1_PCV01Z P1_PCV02D P1_PCV02Z P1_PIT01 P1_PIT01_HH P1_PIT02 P1_PP01AD P1_PP01AR P1_PP01BD P1_PP01BR P1_PP02D P1_PP02R P1_PP04 P1_PP04SP P1_SOL01D P1_SOL03D P1_STSP P1_TIT01 P1_TIT02 P1_TIT03".split()
+_P1_21 = "P1_B2004 P1_B2016 P1_B3004 P1_B3005 P1_B4002 P1_B4005 P1_B400B P1_B4022 P1_FCV01D P1_FCV01Z P1_FCV02D P1_FCV02Z P1_FCV03D P1_FCV03Z P1_FT01 P1_FT01Z P1_FT02 P1_FT02Z P1_FT03 P1_FT03Z P1_LCV01D P1_LCV01Z P1_LIT01 P1_PCV01D P1_PCV01Z P1_PCV02D P1_PCV02Z P1_PIT01 P1_PIT02 P1_PP01AD P1_PP01AR P1_PP01BD P1_PP01BR P1_PP02D P1_PP02R P1_STSP P1_TIT01 P1_TIT02".split()
+_P2_23_22 = "P2_24Vdc P2_ATSW_Lamp P2_AutoGO P2_AutoSD P2_Emerg P2_MASW P2_MASW_Lamp P2_ManualGO P2_ManualSD P2_OnOff P2_RTR P2_SCO P2_SCST P2_SIT01 P2_TripEx P2_VIBTR01 P2_VIBTR02 P2_VIBTR03 P2_VIBTR04 P2_VT01 P2_VTR01 P2_VTR02 P2_VTR03 P2_VTR04".split()
+_P2_21 = "P2_24Vdc P2_ASD P2_AutoGO P2_CO_rpm P2_Emerg P2_HILout P2_MSD P2_ManualGO P2_OnOff P2_RTR P2_SIT01 P2_SIT02 P2_TripEx P2_VT01 P2_VTR01 P2_VTR02 P2_VTR03 P2_VTR04 P2_VXT02 P2_VXT03 P2_VYT02 P2_VYT03".split()
+_P3_23_22 = "P3_FIT01 P3_LCP01D P3_LCV01D P3_LH01 P3_LIT01 P3_LL01 P3_PIT01".split()
+_P3_21 = "P3_FIT01 P3_LCP01D P3_LCV01D P3_LH P3_LIT01 P3_LL P3_PIT01".split()
+_P4_23_22 = "P4_HT_FD P4_HT_PO P4_HT_PS P4_LD P4_ST_FD P4_ST_GOV P4_ST_LD P4_ST_PO P4_ST_PS P4_ST_PT01 P4_ST_TT01".split()
+_P4_21 = "P4_HT_FD P4_HT_LD P4_HT_PO P4_HT_PS P4_LD P4_ST_FD P4_ST_GOV P4_ST_LD P4_ST_PO P4_ST_PS P4_ST_PT01 P4_ST_TT01".split()
+FROZEN_FULL_SCOPE_PROCESS_MAP_V1: dict[str, dict[str, tuple[str, ...]]] = {
+    "23.05": {"P1": tuple(_P1_23), "P2": tuple(_P2_23_22), "P3": tuple(_P3_23_22), "P4": tuple(_P4_23_22)},
+    "22.04": {"P1": tuple(_P1_22), "P2": tuple(_P2_23_22), "P3": tuple(_P3_23_22), "P4": tuple(_P4_23_22)},
+    "21.03": {"P1": tuple(_P1_21), "P2": tuple(_P2_21), "P3": tuple(_P3_21), "P4": tuple(_P4_21)},
+}
+
 
 @dataclass(frozen=True, order=True)
 class FullProcessPointV1:
@@ -206,6 +221,11 @@ class FullProcessScopeAuthorityV1:
             observed_hashes = {version: digest(sorted(p.canonical_identity for p in self.points if p.dataset_version == version)) for version in actual}
             if observed_hashes != dict(self.official_identity_set_hashes):
                 raise DG05ClosureError("EXACT_OFFICIAL_IDENTITY_SET_REQUIRED")
+            for version, process_map in FROZEN_FULL_SCOPE_PROCESS_MAP_V1.items():
+                expected = {(identity, process) for process, identities in process_map.items() for identity in identities}
+                observed = {(p.canonical_identity, p.official_process) for p in self.points if p.dataset_version == version}
+                if observed != expected:
+                    raise DG05ClosureError("FROZEN_OFFICIAL_PROCESS_MAP_REQUIRED")
             supplemental = dict(self.supplemental_authority_hashes)
             required_supplemental = {"HAI23_BOILER_GRAPH", "HAI23_DCS_1001H", "HAI23_DCS_1002H", "HAI23_DCS_1003H"}
             if set(supplemental) != required_supplemental:
