@@ -1,4 +1,12 @@
-# XVER-T2 — 외부 버전 정상-only 포트폴리오 동결 완료
+# 슬라이드 추가 — PRE-DG05 설계 동결
+
+- 세 버전, 다섯 primary method, version-separated reporting
+- 공식 scenario가 primary unit; P1 eligibility는 method-blind
+- eTaPR file-namespaced disjoint union, no point adjustment
+- 모든 패널 prediction 전역 동결 전 label/scenario 값 접근 불가
+- 현재 attack 결과 0; DG-05 및 DG-06 별도
+
+# 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 
 XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
 정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.

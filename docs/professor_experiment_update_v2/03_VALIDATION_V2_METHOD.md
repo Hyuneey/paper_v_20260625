@@ -1,4 +1,8 @@
-# XVER-T2 — 외부 버전 정상-only 포트폴리오 동결 완료
+# PRE-DG05 방법 동결
+
+세 향후 패널은 PCA, T0 Rule, T2 Rule, PCA+T0, PCA+T2의 동일한 다섯 primary method로 고정했습니다. HAI22/21 PCA와 보조 Isolation Forest는 공격 데이터 없이 버전별 normal authority에서 재구성했습니다. Fusion은 같은 파일·같은 초·FAIL-only·서로 다른 물리 source 2개 이상·base PCA 보존 의미를 그대로 씁니다.
+
+# 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 
 XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
 정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.

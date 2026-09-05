@@ -251,5 +251,22 @@ class CustodyEligibilityTests(unittest.TestCase):
         with self.assertRaises(ValueError):assert_method_blind_nested_v2({'nested':{'detector_score':1}})
         with self.assertRaises(ValueError):replace(authority,entries=(P1MappingEntryV2('P1_X','P1','UNRESOLVED',H),)).validate()
 
+    def test_public_allowlist_file_census_and_p1_mapping_bundles_are_exact(self):
+        root=Path(__file__).resolve().parents[1]/'research_control_center/validation_v2/multipanel_pre_dg05'
+        allowlist_bundle=json.loads((root/'ATTACK_FEATURE_ALLOWLIST_AUTHORITIES_V1.json').read_text(encoding='utf-8'))
+        file_bundle=json.loads((root/'ATTACK_FILE_CENSUS_AUTHORITIES_V1.json').read_text(encoding='utf-8'))
+        mapping_bundle=json.loads((root/'P1_MAPPING_AUTHORITIES_V1.json').read_text(encoding='utf-8'))
+        self.assertEqual(tuple(row['panel_id'] for row in allowlist_bundle['authorities']),FROZEN_PANEL_ORDER_V2)
+        expected_files=(('hai-test2.csv',),('test1.csv','test2.csv','test3.csv','test4.csv'),('test1.csv','test2.csv','test3.csv','test4.csv','test5.csv'))
+        self.assertEqual(tuple(tuple(row['file_ids']) for row in file_bundle['panels']),expected_files)
+        for row in allowlist_bundle['authorities']:
+            authority=FrozenFeatureAllowlistAuthorityV2(row['panel_id'],row['dataset_version'],row['timestamp_id'],tuple(row['feature_ids']),row['method_bundle_hash'],row['source_commit'])
+            authority.validate();self.assertEqual(authority.document(),row)
+        self.assertEqual(tuple(row['dataset_version'] for row in mapping_bundle['authorities']),('23.05','22.04','21.03'))
+        for row in mapping_bundle['authorities']:
+            authority=FrozenP1MappingAuthorityV2(row['dataset_version'],tuple(P1MappingEntryV2(**entry) for entry in row['entries']),row['official_mapping_source_hash'],row['source_commit'])
+            authority.validate();self.assertEqual(authority.document(),row)
+            self.assertTrue(all(entry.scope=='P1' and entry.mapping_state=='EXACT_MATCH' for entry in authority.entries))
+
 
 if __name__=='__main__':unittest.main()

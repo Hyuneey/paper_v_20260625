@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.\n정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.\n실제 계량 사용량은 입력 333954 / 출력 13563 / 합계 347517 tokens이고 표준 공개가격 단순 산식은 USD 0.311499입니다. 이는 청구서가 아닙니다.\nHAI22 T2는 train2 입장 20 pairs, 정상 확인 31 Rules, Formal V4 31, train4 유지 19 Rules/16 pairs입니다.\nHAI21 T2는 train2 입장 18 pairs, 정상 확인 9 Rules, Formal V4 9, Block B 유지 2 Rules/1 pairs입니다.\n두 결과는 HELDOUT_CANDIDATE이며 공격 검증·production·T2>T0 일반화 결론이 아닙니다. T0/T2/V2A는 별도 사전등록 방법으로 유지하며 선택하지 않았습니다.\n모든 provider 출력과 admission을 양 버전에서 먼저 닫은 뒤 train3/Block A, SCI02B, Formal V4, 단방향 guard를 수행했습니다. 공격/test/label/real eligibility 접근은 0입니다.\nDG-XVER-PROVIDER는 승인·실행 완료. DG05는 NOT_APPROVED, 교수 package는 NOT_SUBMITTED, DG06 필수입니다.\n정확한 다음 작업은 MULTIPANEL-PRE-DG05-FREEZE-001이며 multi-file aggregation, empty-input, secondary P1 해석과 최종 prediction-before-label custody를 공격 접근 전에 고정합니다. 백업은 SINGLE_COPY_LOCAL_ONLY입니다.",
+  "current_phase_statement": "MULTIPANEL-PRE-DG05-FREEZE-001 COMPLETE_QA_PASS. HAI22/21 PCA-SPE and secondary Isolation Forest are frozen from label-blind normal projections. Five primary methods per panel, immutable Fusion, method-blind P1 eligibility, official-scenario metrics, file-namespaced eTaPR, empty-input behavior, paired contrasts, and the global prediction-before-any-label custody state machine are frozen. No attack/test/label/scenario data was accessed. Current phase PRE_DG05_FROZEN; exact next DG-05 USER_DECISION_REQUIRED. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -826,22 +826,44 @@
     }
   ],
   "top_user_todo": [
-    "MULTIPANEL-PRE-DG05-FREEZE-001 complete normal-only contracts",
-    "DG05: first attack-panel access decision",
+    "DG-05: multi-panel attack feature and conditional label/scenario access decision",
+    "Preserve all frozen method, metric, custody, and single-copy private authorities",
     "DG06: professor package submission decision"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "MULTIPANEL-PRE-DG05-FREEZE-001",
+  "recommended_next_management_task": "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
-  "last_completed_task": "XVER-T2-PROVIDER-EXEC-001 — COMPLETE_QA_PASS",
-  "exact_next_task": "MULTIPANEL-PRE-DG05-FREEZE-001",
+  "last_completed_task": "MULTIPANEL-PRE-DG05-FREEZE-001 — COMPLETE_QA_PASS_PRE_DG05_FROZEN",
+  "exact_next_task": "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access",
   "safety_counters": {
     "scientific_executions": 5,
     "test2_feature_accesses": 0,
     "test2_label_accesses": 0,
     "new_private_exposures": 0
+  },
+  "multipanel_pre_dg05": {
+    "status": "COMPLETE_QA_PASS_PRE_DG05_FROZEN",
+    "decision": "DEC-028",
+    "method_bundle_hash": "dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2",
+    "hai23_detector_private_hash_binding": "abe9b3abfdf792b247492d7cc9e195c7f54ece57fd7b9337d38e04efd7241780",
+    "metric_authority_hash": "6b8177f83251bb18b5953782697db962adf240bd3ac23e4dd4a8055cc714a084",
+    "eligibility_authority_hash": "7df085fb00deab3c2aa6bc22988cdea908847893fdbba910296e1c908ac1f125",
+    "custody_authority_hash": "957c79d331a721eb0f04381abfdecb797d1f9f7814d2e953a93a91d3ca241879",
+    "preregistration_hash": "923e72b5aef82cf77eb24c5525c014d9ac848c701716ab824736a556a7c8bbe2",
+    "panel_registry": "research_control_center/validation_v2/evaluation_expansion/PANEL_REGISTRY_V4.csv",
+    "implementation_task_index": "research_control_center/validation_v2/evaluation_expansion/IMPLEMENTATION_TASK_INDEX_V4.csv",
+    "feature_allowlist_authorities_hash": "1ec98999df85eb9d8501439437dde7412a5188d3a40ce5f27a7beb08c2a1729f",
+    "attack_file_census_authorities_hash": "5018ba8d01e32a8a2ff4cf95cdb6ca75b51b006b812acf5cffe2b1d26b8a6a16",
+    "p1_mapping_authorities_hash": "74f15b4b7cf22972ecbeb46b7133736f93bf58af74a439b5f5cfb9de993596b5",
+    "private_index_hash": "077af81fb82102cbfa26b375d072fb9db03fc8c235474f1b53cef2991c78f52f",
+    "DG05": "USER_DECISION_REQUIRED",
+    "attack_accesses": 0,
+    "label_or_scenario_accesses": 0,
+    "real_eligibility_generated": false,
+    "professor_package": "NOT_SUBMITTED",
+    "backup": "SINGLE_COPY_LOCAL_ONLY"
   },
   "front_execution": {
     "task_id": "V2-GDN-FRONT-EXP04-001",

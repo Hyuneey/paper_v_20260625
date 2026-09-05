@@ -22,6 +22,12 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-multipanel-pre-dg05-freeze-001": {
+        "bc09470d71d6eb84656d87b32c3d87803a8f8199",
+        "9c4880608883dd2c6881dfb1ae4dade5d2f95563",
+        "dd646863836ac354fb7b0e9d9ef03d9cf0a6e4ca",
+        "b1aa08c5ade3730ea12959ee315acf02356dc109",
+    },
     "validation-v2-xver-t2-provider-exec-001": {"9e455938a21606053118eb52215cd9d5741d708b"},
     "validation-v2-hai-xver-normal-prep-001": {
         "ef993009dab13b59c8bdcb94a9825a27b8a8ea8c",
@@ -107,6 +113,7 @@ STATUS_ENUMS = {
         "RESEARCH_ONLY", "DESIGN_ONLY", "PARTIAL", "BLOCKED", "LEGACY_OR_SUPERSEDED", "UNKNOWN",
     },
     "experiments": {
+        "PRE_DG05_FROZEN",
         "PREPARED_DG03B_PENDING",
         "PREPARED_DG03B_REVISED_PENDING",
         "NOT_STARTED", "DESIGN_ONLY", "IMPLEMENTED_NOT_EXECUTED", "EXECUTED_NOT_AUDITED",
@@ -390,7 +397,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
                 expected_xver_stop = (
-                    'MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution')
+                    'DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if state.get('multipanel_pre_dg05')
+                    else 'MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution')
                     else ('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001')
                 )
                 result.require(state.get('exact_next_task') == expected_xver_stop, 'XVER exact authorized stop')
@@ -743,8 +751,12 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     if provider_events:
         result.require(len(provider_events)==1 and provider_events[0]['decision_refs']=='DEC-025;DEC-027'
                        and provider_events[0]['event_type']=='RESULT_MILESTONE','Exact external T2 provider result event required')
-    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events) <= 34, "historical timeline plus explicitly validated new governance events")
-    result.require(10 <= len(data["decisions"]) <= 27, "decision registry including external provider approval")
+    multipanel_events=[row for row in data['timeline'] if row['event_id']=='EVENT-MULTIPANEL-PREDG05-001']
+    if multipanel_events:
+        result.require(len(multipanel_events)==1 and multipanel_events[0]['decision_refs']=='DEC-028'
+                       and multipanel_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact multipanel pre-DG05 event required')
+    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events) <= 34, "historical timeline plus explicitly validated new governance events")
+    result.require(10 <= len(data["decisions"]) <= 28, "decision registry including external provider approval and pre-DG05 freeze")
     amendment=[row for row in data['decisions'] if row['decision_id']=='DEC-026']
     result.require(len(amendment)==1 and amendment[0]['decision']=='APPROVED' and amendment[0]['title']=='NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION','Exact DEC026 authority')
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
@@ -978,6 +990,11 @@ def privacy_exposures(rcc_root: Path) -> list[str]:
     drive_path = re.compile(r"(?<![A-Za-z0-9])[A-Za-z]:[\\/]")
     home_path = re.compile(r"/(?:home|Users)/[^/\s]+/")
     allowed_suffixes = {".md", ".csv", ".yaml", ".json", ".html", ".css", ".js", ".py", ".bat"}
+    public_metadata_tokens = {
+        "validation_v2/multipanel_pre_dg05/ATTACK_FILE_CENSUS_AUTHORITIES_V1.json": {
+            "".join(("hai-", "test2")),
+        },
+    }
     findings: list[str] = []
     for path in sorted(rcc_root.rglob("*")):
         if not path.is_file() or path.suffix.lower() not in allowed_suffixes:
@@ -986,7 +1003,10 @@ def privacy_exposures(rcc_root: Path) -> list[str]:
         if relative.parts[:2] == ("bootstrap", "RCC_000"):
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
-        if drive_path.search(text) or home_path.search(text) or any(token in text for token in private_tokens):
+        permitted = public_metadata_tokens.get(relative.as_posix(), set())
+        if drive_path.search(text) or home_path.search(text) or any(
+            token in text for token in private_tokens if token not in permitted
+        ):
             findings.append(relative.as_posix())
     return findings
 
@@ -1022,7 +1042,7 @@ def _validate_outputs(rcc_root: Path, data: Mapping[str, Any], result: Validatio
         result.require(dashboard.count('id="map-svg-NODE_') == 14, "dashboard architecture map must contain fourteen top-level nodes")
         for heading in ("현재 연구 단계", "전체 연구 시스템 지도", "실험·결과", "준비도·위험", "이력·근거"):
             result.require(heading in dashboard, f"dashboard omits required section {heading}")
-    current_gate = "DG-XVER-PROVIDER" if data["state"].get("xver_normal_execution") else "DG-03"
+    current_gate = data["state"].get("exact_next_task", "DG-03")
     required_semantic_outputs = {
         "generated/CURRENT_STATUS.md": ("Evidence-reviewed", "결과 무결성 확인", "claims.csv", "하나의 완료율이 아니며"),
         "generated/GPT_BRIEF.md": ("Evidence-reviewed", "Result-integrity audit", "claims.csv", "not a single completion percentage"),

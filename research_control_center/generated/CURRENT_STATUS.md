@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9e16b8482351007c7c7a47539230833ee5dd6560378b6076c1b19590c09d011a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=37991eb80f9a1f37099cd2b71c9d1117b8e2e94badee421f12cebd17fdb6cb62 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: MULTIPANEL-PRE-DG05-FREEZE-001. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,15 +32,7 @@ Registry snapshot: `2026-09-03T17:08:57Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
-정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.
-실제 계량 사용량은 입력 333954 / 출력 13563 / 합계 347517 tokens이고 표준 공개가격 단순 산식은 USD 0.311499입니다. 이는 청구서가 아닙니다.
-HAI22 T2는 train2 입장 20 pairs, 정상 확인 31 Rules, Formal V4 31, train4 유지 19 Rules/16 pairs입니다.
-HAI21 T2는 train2 입장 18 pairs, 정상 확인 9 Rules, Formal V4 9, Block B 유지 2 Rules/1 pairs입니다.
-두 결과는 HELDOUT_CANDIDATE이며 공격 검증·production·T2>T0 일반화 결론이 아닙니다. T0/T2/V2A는 별도 사전등록 방법으로 유지하며 선택하지 않았습니다.
-모든 provider 출력과 admission을 양 버전에서 먼저 닫은 뒤 train3/Block A, SCI02B, Formal V4, 단방향 guard를 수행했습니다. 공격/test/label/real eligibility 접근은 0입니다.
-DG-XVER-PROVIDER는 승인·실행 완료. DG05는 NOT_APPROVED, 교수 package는 NOT_SUBMITTED, DG06 필수입니다.
-정확한 다음 작업은 MULTIPANEL-PRE-DG05-FREEZE-001이며 multi-file aggregation, empty-input, secondary P1 해석과 최종 prediction-before-label custody를 공격 접근 전에 고정합니다. 백업은 SINGLE_COPY_LOCAL_ONLY입니다.
+MULTIPANEL-PRE-DG05-FREEZE-001 COMPLETE_QA_PASS. HAI22/21 PCA-SPE and secondary Isolation Forest are frozen from label-blind normal projections. Five primary methods per panel, immutable Fusion, method-blind P1 eligibility, official-scenario metrics, file-namespaced eTaPR, empty-input behavior, paired contrasts, and the global prediction-before-any-label custody state machine are frozen. No attack/test/label/scenario data was accessed. Current phase PRE_DG05_FROZEN; exact next DG-05 USER_DECISION_REQUIRED. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
 
 ## 상태를 읽는 방법
 
@@ -148,9 +140,9 @@ DG-XVER-PROVIDER는 승인·실행 완료. DG05는 NOT_APPROVED, 교수 package�
 | EXP-04 | 실행·근거 점검 완료·개발 결과 | D0·D1·D2의 attack response와 정상 false alarm 부담을 함께 비교한다. |
 | EXP-05 | 실행·근거 점검 완료·개발 결과 | 설명이 rule·trace·수치 출처·outcome을 벗어나지 않는지 검사한다. |
 | EXP-06 | 설계만 완료 | 고정 규칙 결과나 정답을 받지 않는 별도 runtime LLM 비교 가능성을 검토한다. |
-| EXP-H23-HOLDOUT | 설계만 완료 | PREREGISTRATION_PREPARATION_ONLY |
-| EXP-H22-XVER | 실행·근거 점검 완료·개발 결과 | NORMAL_ONLY_METHOD_REINSTANTIATION_ATTACK_EVALUATION_NOT_EXECUTED |
-| EXP-H21-XVER | 실행·근거 점검 완료·개발 결과 | NORMAL_ONLY_METHOD_REINSTANTIATION_ATTACK_EVALUATION_NOT_EXECUTED |
+| EXP-H23-HOLDOUT | PRE_DG05_FROZEN | PREREGISTRATION_FROZEN_NO_ATTACK_RESULT |
+| EXP-H22-XVER | PRE_DG05_FROZEN | PREREGISTRATION_FROZEN_NO_ATTACK_RESULT |
+| EXP-H21-XVER | PRE_DG05_FROZEN | PREREGISTRATION_FROZEN_NO_ATTACK_RESULT |
 | EXP-03B | 실행·근거 점검 완료·개발 결과 | 정상 확인 reference 기반 DEVELOPMENT_ONLY;T2 대 T1-B 사전등록 비교 |
 
 ## 공식 연구 주장
@@ -197,16 +189,8 @@ DG-XVER-PROVIDER는 승인·실행 완료. DG05는 NOT_APPROVED, 교수 package�
 
 ## 정확한 다음 작업
 
-**MULTIPANEL-PRE-DG05-FREEZE-001**
+**DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
-정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.
-실제 계량 사용량은 입력 333954 / 출력 13563 / 합계 347517 tokens이고 표준 공개가격 단순 산식은 USD 0.311499입니다. 이는 청구서가 아닙니다.
-HAI22 T2는 train2 입장 20 pairs, 정상 확인 31 Rules, Formal V4 31, train4 유지 19 Rules/16 pairs입니다.
-HAI21 T2는 train2 입장 18 pairs, 정상 확인 9 Rules, Formal V4 9, Block B 유지 2 Rules/1 pairs입니다.
-두 결과는 HELDOUT_CANDIDATE이며 공격 검증·production·T2>T0 일반화 결론이 아닙니다. T0/T2/V2A는 별도 사전등록 방법으로 유지하며 선택하지 않았습니다.
-모든 provider 출력과 admission을 양 버전에서 먼저 닫은 뒤 train3/Block A, SCI02B, Formal V4, 단방향 guard를 수행했습니다. 공격/test/label/real eligibility 접근은 0입니다.
-DG-XVER-PROVIDER는 승인·실행 완료. DG05는 NOT_APPROVED, 교수 package는 NOT_SUBMITTED, DG06 필수입니다.
-정확한 다음 작업은 MULTIPANEL-PRE-DG05-FREEZE-001이며 multi-file aggregation, empty-input, secondary P1 해석과 최종 prediction-before-label custody를 공격 접근 전에 고정합니다. 백업은 SINGLE_COPY_LOCAL_ONLY입니다.
+MULTIPANEL-PRE-DG05-FREEZE-001 COMPLETE_QA_PASS. HAI22/21 PCA-SPE and secondary Isolation Forest are frozen from label-blind normal projections. Five primary methods per panel, immutable Fusion, method-blind P1 eligibility, official-scenario metrics, file-namespaced eTaPR, empty-input behavior, paired contrasts, and the global prediction-before-any-label custody state machine are frozen. No attack/test/label/scenario data was accessed. Current phase PRE_DG05_FROZEN; exact next DG-05 USER_DECISION_REQUIRED. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

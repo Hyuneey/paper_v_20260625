@@ -14,7 +14,7 @@ class SemanticReportingTests(unittest.TestCase):
     def test_current_documents_not_old_approval_values(self):
         for name in ('CURRENT_CONTEXT.md','MY_TODO.md','DECISION_INBOX.md','generated/GPT_BRIEF.md'):
             text=(RCC/name).read_text(encoding='utf-8')
-            self.assertTrue('DG-03B_REVISED' in text or 'DG-XVER-PROVIDER' in text)
+            self.assertTrue('DG-03B_REVISED' in text or 'DG-XVER-PROVIDER' in text or 'DG-05' in text)
             self.assertNotIn('USD65.90',text);self.assertNotIn('81,621,225',text)
         html=(RCC/'dashboard/index.html').read_text(encoding='utf-8')
         self.assertIn('numeric option rows 0',html);self.assertIn('DG03B_PROVIDER_DECISION_BRIEF_V2.md',html);self.assertIn('8,463,360',html)

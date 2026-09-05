@@ -32,8 +32,8 @@ class Arch010MetricsIntegrityTests(unittest.TestCase):
         self.assertEqual(14, metrics["event_unit_count"])
         self.assertEqual("NOT_ESTABLISHED", metrics["event_independence"])
         self.assertEqual(51019, metrics["normal_exposure_seconds"])
-        self.assertTrue(state["last_completed_task"] == "ARCH-011" or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC", "VALIDATION-V2-RESUME-001", "V2-HAI", "V2-DUALTRACK-002", "V2-GDN-FRONT-EXP04-001", "V2-EVAL-EXPANSION-001", "EXP03-PROVIDER-EXEC-001", "EXP03B-PROVIDER-EXEC-001", "HAI-XVER-NORMAL-PREP-001", "XVER-T2-PROVIDER-EXEC-001")))
-        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE", "V2-HAI", "V2-EXEC-AUTH", "V2-SCI-EXP04", "DG-03", "DG-04", "HAI-XVER-NORMAL-PREP-001", "DG-XVER-PROVIDER", "MULTIPANEL-PRE-DG05-FREEZE-001")))
+        self.assertTrue(state["last_completed_task"] == "ARCH-011" or state["last_completed_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "FRESH-MACHINE-SYNTHETIC", "VALIDATION-V2-RESUME-001", "V2-HAI", "V2-DUALTRACK-002", "V2-GDN-FRONT-EXP04-001", "V2-EVAL-EXPANSION-001", "EXP03-PROVIDER-EXEC-001", "EXP03B-PROVIDER-EXEC-001", "HAI-XVER-NORMAL-PREP-001", "XVER-T2-PROVIDER-EXEC-001", "MULTIPANEL-PRE-DG05-FREEZE-001")))
+        self.assertTrue(state["exact_next_task"].startswith(("GAP-FIX-001", "GAP-FIX-002", "V2-PROTOCOL-001", "GAP-FIX-METRIC-001", "EXP-01", "CUSTODY-RESTORE", "V2-HAI", "V2-EXEC-AUTH", "V2-SCI-EXP04", "DG-03", "DG-04", "HAI-XVER-NORMAL-PREP-001", "DG-XVER-PROVIDER", "MULTIPANEL-PRE-DG05-FREEZE-001", "DG-05")))
 
     def test_generated_summary_is_plain_and_complete(self) -> None:
         summary = (RCC / "generated" / "ARCH_010_USER_SUMMARY.md").read_text(encoding="utf-8")

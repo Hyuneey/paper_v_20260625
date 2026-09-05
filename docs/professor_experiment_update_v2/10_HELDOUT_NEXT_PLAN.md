@@ -1,4 +1,8 @@
-# XVER-T2 — 외부 버전 정상-only 포트폴리오 동결 완료
+# DG-05 직전 평가 계획
+
+HAI23 test2(38), HAI22(58), HAI21(50)은 버전별로 보고하고 146개를 IID로 합치지 않습니다. Primary는 공식 P1-eligible Scenario Recall과 정상 false episodes/hour이며, eTaPR·coverage·delay·paired contrast는 보조입니다. 모든 패널·방법 prediction을 label-blind로 전역 동결한 뒤에만 one-shot label/scenario lease를 엽니다. DG-05 승인 전 attack feature도 열지 않습니다.
+
+# 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 
 XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
 정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.

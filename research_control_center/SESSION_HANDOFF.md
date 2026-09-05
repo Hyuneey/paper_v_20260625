@@ -1,4 +1,10 @@
-# XVER-T2 — 외부 버전 정상-only 포트폴리오 동결 완료
+# PRE-DG05 다중 패널 동결 완료
+
+MULTIPANEL-PRE-DG05-FREEZE-001은 `COMPLETE_QA_PASS_PRE_DG05_FROZEN`입니다. HAI22/21 PCA-SPE와 보조 Isolation Forest, 세 패널 M0–M4, 기존 Fusion을 고정했습니다. 현행 V2 계약은 exact scenario/mapping authority, per-file eTaPR, durable prediction replay·상태 체인·single-consume lease를 결속합니다. 공격/test/label/실제 시나리오 접근은 0입니다.
+
+정확한 다음 gate는 `DG-05`이며 `USER_DECISION_REQUIRED`입니다. 승인 전 feature-only attack projection도 금지되고, label/scenario lease는 전 패널·방법 prediction terminal receipt가 전역 동결된 뒤 한 번만 열립니다. 교수 package `NOT_SUBMITTED`; backup `SINGLE_COPY_LOCAL_ONLY`.
+
+# 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 
 XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
 정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.

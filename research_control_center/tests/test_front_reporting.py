@@ -134,6 +134,23 @@ class FrontReportingTests(unittest.TestCase):
             self.assertEqual(provider_freeze['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
             self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',path],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
             additions.add(path)
+        multipanel = RCC / 'validation_v2/multipanel_pre_dg05'
+        metric = json.loads((multipanel/'MULTIPANEL_METRIC_AUTHORITY_V2.json').read_text())
+        for name in ('multipanel_metrics_v1.py','multipanel_etapr_v2.py'):
+            path='src/paperworks/validation_v2/'+name
+            self.assertEqual(metric['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+            additions.add(path)
+        for authority_name, name in (
+            ('P1_ELIGIBILITY_CUSTODIAN_AUTHORITY_V2.json','p1_eligibility_custodian_v1.py'),
+            ('GLOBAL_PREDICTION_CUSTODY_AUTHORITY_V2.json','multipanel_custody_v1.py'),
+        ):
+            authority=json.loads((multipanel/authority_name).read_text())
+            path='src/paperworks/validation_v2/'+name
+            self.assertEqual(authority['implementation_hash'],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+            additions.add(path)
+        detector_path='src/paperworks/validation_v2/xver_detector_v1.py'
+        self.assertEqual(0,subprocess.run(['git','diff','--quiet','58b897471e3cbf05c896ae25e19a112d6696708e','--',detector_path],cwd=RCC.parent).returncode)
+        additions.add(detector_path)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

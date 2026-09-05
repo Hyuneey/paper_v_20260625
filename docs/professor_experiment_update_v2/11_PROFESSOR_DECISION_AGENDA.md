@@ -1,4 +1,8 @@
-# XVER-T2 — 외부 버전 정상-only 포트폴리오 동결 완료
+# 현재 의사결정 agenda
+
+연구 방법·지표·적격성·prediction custody는 PRE_DG05_FROZEN입니다. 남은 연구자 gate는 DG-05 공격 feature-only 접근과, 전역 prediction freeze가 검증된 뒤에만 열리는 조건부 label/scenario lease입니다. 교수 제출은 하지 않았으며 DG-06이 별도로 필요합니다.
+
+# 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 
 XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
 정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.

@@ -23,11 +23,12 @@ class ValidationV2ProgramTests(unittest.TestCase):
         executed=bool(state.get('exp03b_execution'))
         xver_executed=bool(state.get('xver_normal_execution'))
         xver_t2_executed=bool(state.get('xver_t2_execution'))
+        multipanel_frozen=bool(state.get('multipanel_pre_dg05'))
         self.assertEqual(
             state['program_status'],
-            'XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS' if xver_t2_executed else (
+            'MULTIPANEL_PRE_DG05_COMPLETE_QA_PASS' if multipanel_frozen else ('XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS' if xver_t2_executed else (
                 'XVER_NORMAL_EXECUTION_COMPLETE_DG_XVER_PROVIDER_PENDING'
-                if xver_executed else 'BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING'),
+                if xver_executed else 'BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING')),
         )
         self.assertEqual(state['xver_preparation']['status'],'BLOCKED_PENDING_HAI_XVER_NORMAL_PREP')
         self.assertEqual(state['dg04_method_lock']['decision_id'],'DEC-025')
@@ -40,7 +41,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
         )
         self.assertEqual(
             state['exact_next_task'],
-            'MULTIPANEL-PRE-DG05-FREEZE-001' if xver_t2_executed else ('DG-XVER-PROVIDER' if xver_executed else 'HAI-XVER-NORMAL-PREP-001'),
+            'DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if multipanel_frozen else ('MULTIPANEL-PRE-DG05-FREEZE-001' if xver_t2_executed else ('DG-XVER-PROVIDER' if xver_executed else 'HAI-XVER-NORMAL-PREP-001')),
         )
         self.assertEqual(state['experiment_status']['EXP-03B'],'COMPLETE_QA_PASS' if executed else 'PREPARED_DG03B_REVISED_PENDING')
         self.assertEqual(

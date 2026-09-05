@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "MULTIPANEL_PRE_DG05_FREEZE_PENDING",
-  "program_status": "XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS",
+  "current_stage": "PRE_DG05_FROZEN",
+  "program_status": "MULTIPANEL_PRE_DG05_COMPLETE_QA_PASS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -26,7 +26,7 @@
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
     "DG-04": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
-    "DG-05": "NOT_APPROVED",
+    "DG-05": "USER_DECISION_REQUIRED",
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
@@ -46,7 +46,7 @@
   },
   "evaluation_expansion": {
     "decision": "DEC-022_USER_APPROVED_MULTI_VERSION_HAI_EVALUATION_EXPANSION",
-    "panel_registry": "research_control_center/validation_v2/evaluation_expansion/PANEL_REGISTRY_V1.csv",
+    "panel_registry": "research_control_center/validation_v2/evaluation_expansion/PANEL_REGISTRY_V4.csv",
     "development_panel": "HAI23_TEST1_DEVELOPMENT_V1_COMPLETE_IMMUTABLE",
     "primary_heldout": "HAI23_TEST2_PRIMARY_HELDOUT_V1_DG05",
     "external_replications": [
@@ -393,7 +393,7 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "MULTIPANEL-PRE-DG05-FREEZE-001",
+  "exact_next_task": "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access",
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",
     "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
@@ -1214,6 +1214,22 @@
     "report": "research_control_center/validation_v2/xver_normal/EXECUTION_REPORT_V1.md",
     "private_index_hash": "a0b5b51f12b1b8902f67be8b6956d5d01dbc50a04dc99d227be5ffb150df84be",
     "self_hash": "0bbf949bc55dab0b6f68caca84ccf2250f465c47e75e7356c3eae88c6b8fb7f2"
+  },
+  "multipanel_pre_dg05": {
+    "status": "COMPLETE_QA_PASS_PRE_DG05_FROZEN",
+    "decision": "DEC-028",
+    "method_bundle_hash": "dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2",
+    "metric_authority_hash": "6b8177f83251bb18b5953782697db962adf240bd3ac23e4dd4a8055cc714a084",
+    "eligibility_authority_hash": "7df085fb00deab3c2aa6bc22988cdea908847893fdbba910296e1c908ac1f125",
+    "custody_authority_hash": "957c79d331a721eb0f04381abfdecb797d1f9f7814d2e953a93a91d3ca241879",
+    "preregistration_hash": "923e72b5aef82cf77eb24c5525c014d9ac848c701716ab824736a556a7c8bbe2",
+    "panel_registry": "research_control_center/validation_v2/evaluation_expansion/PANEL_REGISTRY_V4.csv",
+    "task_index": "research_control_center/validation_v2/evaluation_expansion/IMPLEMENTATION_TASK_INDEX_V4.csv",
+    "attack_accesses": 0,
+    "label_or_scenario_accesses": 0,
+    "real_eligibility_generated": false,
+    "professor_package": "NOT_SUBMITTED",
+    "backup": "SINGLE_COPY_LOCAL_ONLY"
   },
   "xver_t2_execution": {
     "status": "COMPLETE_QA_PASS_NORMAL_ONLY",

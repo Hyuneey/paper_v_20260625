@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=9e16b8482351007c7c7a47539230833ee5dd6560378b6076c1b19590c09d011a authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=37991eb80f9a1f37099cd2b71c9d1117b8e2e94badee421f12cebd17fdb6cb62 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -9,6 +9,7 @@ Registry version: `0.1.0`
 - **2026-09-05 — 외부 버전 T2 정상-only 실행 및 포트폴리오 동결** (`ACTIVE_CONTEXT`): HAI22/21 provider 61 calls each;T2 retained 19/2 Rules;no attack access
 - **2026-09-05 — 외부 버전 정상-only 실행 및 provider Gate 준비** (`ACTIVE_CONTEXT`): 12 split-pure GDN runs;separate global/auxiliary;T0 portfolios;T2 packs;no provider or attack
 - **2026-09-05 — 사용자 승인: provider GLOBAL5 / AUX EVENT10 분리** (`ACTIVE_CONTEXT`): Scientific role choice resolved;15 synthetic tests PASS;GDN0/12;no provider/attack
+- **2026-09-05 — 다중 패널 방법·지표·전역 prediction custody 동결** (`ACTIVE_CONTEXT`): External PCA/IF normal freeze;exact scenario and mapping identities;per-file eTaPR;durable exact-census pre-label manifest and one-shot lease;attack access0
 - **2026-09-04 — Schema-only 승인 후 정상9파일 projection·외부 후보 완료** (`ACTIVE_CONTEXT`): StageA불변;HAI22/21 후보각29;GDN evidence 후속;provider/attack0
 - **2026-09-04 — 외부 GDN context 완료·event evidence binding 중단** (`ACTIVE_CONTEXT`): 36/30nodes CUDA synthetic PASS;GDN0/12;no provider/attack
 - **2026-09-04 — DG04 승인·T0/T2 후보 고정, 외부 정상 custody 차단** (`ACTIVE_CONTEXT`): StageA QA PASS; external train1 두 정상 컨테이너 byte identity 뒤 header guard 중단; eTaPR per-file109 PASS; 전체 완료 아님
@@ -49,16 +50,8 @@ Registry version: `0.1.0`
 
 ## Next
 
-**MULTIPANEL-PRE-DG05-FREEZE-001**
+**DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-XVER-T2-PROVIDER-EXEC-001: COMPLETE_NORMAL_ONLY / QA PASS.
-정확한 snapshot gpt-5.4-mini-2026-03-17로 HAI22 61회, HAI21 61회, 합계 122회 호출했습니다. retry/fallback/tools/4차 호출은 0이며 EVENT10은 전송하지 않았습니다.
-실제 계량 사용량은 입력 333954 / 출력 13563 / 합계 347517 tokens이고 표준 공개가격 단순 산식은 USD 0.311499입니다. 이는 청구서가 아닙니다.
-HAI22 T2는 train2 입장 20 pairs, 정상 확인 31 Rules, Formal V4 31, train4 유지 19 Rules/16 pairs입니다.
-HAI21 T2는 train2 입장 18 pairs, 정상 확인 9 Rules, Formal V4 9, Block B 유지 2 Rules/1 pairs입니다.
-두 결과는 HELDOUT_CANDIDATE이며 공격 검증·production·T2>T0 일반화 결론이 아닙니다. T0/T2/V2A는 별도 사전등록 방법으로 유지하며 선택하지 않았습니다.
-모든 provider 출력과 admission을 양 버전에서 먼저 닫은 뒤 train3/Block A, SCI02B, Formal V4, 단방향 guard를 수행했습니다. 공격/test/label/real eligibility 접근은 0입니다.
-DG-XVER-PROVIDER는 승인·실행 완료. DG05는 NOT_APPROVED, 교수 package는 NOT_SUBMITTED, DG06 필수입니다.
-정확한 다음 작업은 MULTIPANEL-PRE-DG05-FREEZE-001이며 multi-file aggregation, empty-input, secondary P1 해석과 최종 prediction-before-label custody를 공격 접근 전에 고정합니다. 백업은 SINGLE_COPY_LOCAL_ONLY입니다.
+MULTIPANEL-PRE-DG05-FREEZE-001 COMPLETE_QA_PASS. HAI22/21 PCA-SPE and secondary Isolation Forest are frozen from label-blind normal projections. Five primary methods per panel, immutable Fusion, method-blind P1 eligibility, official-scenario metrics, file-namespaced eTaPR, empty-input behavior, paired contrasts, and the global prediction-before-any-label custody state machine are frozen. No attack/test/label/scenario data was accessed. Current phase PRE_DG05_FROZEN; exact next DG-05 USER_DECISION_REQUIRED. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
