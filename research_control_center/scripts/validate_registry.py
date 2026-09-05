@@ -22,6 +22,12 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-dg05-exec-authority-closure-001": {
+        "cdfaf4483fae6f86e4658a9a489c0a1e55b80fb6",
+    "08f563e025bac27bbc543b7296eaa9a66b5dfb44",
+    "7df377e6c4ba0770f2137d2b67df2f60972ac8cb",
+    "5926d77dea5a8dddd6de620f13b3e666b11724d6",
+    },
     "validation-v2-multipanel-pre-dg05-freeze-001": {
         "bc09470d71d6eb84656d87b32c3d87803a8f8199",
         "9c4880608883dd2c6881dfb1ae4dade5d2f95563",
@@ -400,7 +406,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
                 expected_xver_stop = (
-                    'DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if state.get('multipanel_pre_dg05')
+                    'DG-05 REAPPROVAL — EXECUTABLE V2' if state.get('dg05_executable_closure')
+                    else 'DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if state.get('multipanel_pre_dg05')
                     else 'MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution')
                     else ('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001')
                 )
@@ -758,8 +765,8 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     if multipanel_events:
         result.require(len(multipanel_events)==1 and multipanel_events[0]['decision_refs']=='DEC-028'
                        and multipanel_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact multipanel pre-DG05 event required')
-    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events) <= 34, "historical timeline plus explicitly validated new governance events")
-    result.require(10 <= len(data["decisions"]) <= 28, "decision registry including external provider approval and pre-DG05 freeze")
+    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events) <= 35, "historical timeline plus explicitly validated new governance events")
+    result.require(10 <= len(data["decisions"]) <= 29, "decision registry including DG05 conditional approval and executable closure")
     amendment=[row for row in data['decisions'] if row['decision_id']=='DEC-026']
     result.require(len(amendment)==1 and amendment[0]['decision']=='APPROVED' and amendment[0]['title']=='NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION','Exact DEC026 authority')
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")

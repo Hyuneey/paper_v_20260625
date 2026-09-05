@@ -132,3 +132,9 @@ T0 단일 출력 및 T2 Repeat 1의 기존 guard-retained Rule만 별도 HELDOUT
 8. no-post-result-tuning 및 버전별 reporting plan
 
 DG-05 승인 전에는 test2나 외부 버전 attack payload 및 label을 열지 않습니다. HAI 22.04/21.03은 같은 Rule bytes를 복사하지 않고 각 버전의 정상 데이터만으로 같은 방법을 다시 인스턴스화합니다.
+
+## 실행 권한 폐쇄와 재승인
+
+초기 DG-05 실행은 Phase A 이전의 권한 재현 단계에서 중단되었고 실제 공격/test·label·scenario 접근은 없었습니다. 이후 B1–B8 실행 결함을 폐쇄하여 exact executable manifest, full process scope, P1 custodian V3, detector별 subauthority, production projection/prediction adapter, fresh-process label custodian, scenario/denominator/result builder와 independent result replay를 고정했습니다.
+
+동일 production path의 synthetic rehearsal은 72개 cell, 146개 hypothetical scenario, 23개 result authority를 통과했습니다. 이는 실행·custody 검증일 뿐 공격 성능 결과가 아닙니다. DEC-029/DG05 V1은 역사 기록이며 새 executable hash를 승인하지 않습니다. 실제 패널 접근 전 `DG-05 REAPPROVAL — EXECUTABLE V2`가 필요합니다.

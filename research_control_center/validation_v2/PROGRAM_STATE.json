@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "PRE_DG05_FROZEN",
-  "program_status": "MULTIPANEL_PRE_DG05_COMPLETE_QA_PASS",
+  "current_stage": "DG05_EXECUTABLE_CLOSURE_FROZEN",
+  "program_status": "DG05_V2_USER_REAPPROVAL_REQUIRED",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -26,7 +26,7 @@
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
     "DG-04": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
-    "DG-05": "USER_DECISION_REQUIRED",
+    "DG-05": "V1_HISTORICAL_EXECUTION_SUSPENDED_V2_USER_REAPPROVAL_REQUIRED",
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
@@ -393,7 +393,7 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access",
+  "exact_next_task": "DG-05 REAPPROVAL — EXECUTABLE V2",
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",
     "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
@@ -1231,6 +1231,25 @@
     "real_eligibility_generated": false,
     "professor_package": "NOT_SUBMITTED",
     "backup": "SINGLE_COPY_LOCAL_ONLY"
+  },
+  "dg05_executable_closure": {
+    "status": "COMPLETE_QA_PASS_DG05_EXECUTABLE_CLOSURE_FROZEN",
+    "closure_hash": "18dc3203e1b050aca5d052f9b7995cd9ba7a5fe5f3fbe2cfb6d4aae357b482b8",
+    "executable_manifest_hash": "586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42",
+    "full_process_scope_hash": "0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619",
+    "p1_custodian_v3_hash": "f688fae22866ac5bac7ac4517fd9171d7f0d907044f3afee9cd7a609a8919166",
+    "detector_registry_hash": "c5f3f834435af6615e120f57c68c5d47eb66be8c07c4870c9f5fb0ee9cd832bb",
+    "dispatch_registry_hash": "246e19e4c9bcd81f8e139bd5ac609dac6db8a98add16013e1205641bb0c03433",
+    "synthetic_rehearsal_hash": "1f8790f482d759b51b51ac6cd3c7ca2087bf6632d4f629da4b2ab91cd9aa1c7c",
+    "rule_runtime_registry_hash": "074768ef863e481482337df4af16ee12c5ef36fb52c2129417d0ad39aa98dd14",
+    "independent_qa_hash": "30484d1204affa02dc5ba0079f06bc4b6d6be9c128a80f4a84c3b75b1543775a",
+    "private_index_hash": "f853e53e84b0e857b2cd3d72342f71004419b5103f98ecafd57d8acb3d7dc50e",
+    "blockers_passed": 8,
+    "blockers_total": 8,
+    "attack_test_accesses": 0,
+    "label_scenario_accesses": 0,
+    "real_eligibility_generated": 0,
+    "next_gate": "DG-05 REAPPROVAL — EXECUTABLE V2"
   },
   "xver_t2_execution": {
     "status": "COMPLETE_QA_PASS_NORMAL_ONLY",

@@ -1,0 +1,506 @@
+from __future__ import annotations
+
+from dataclasses import replace
+from datetime import datetime, timedelta
+import json
+from pathlib import Path
+import tempfile
+import unittest
+
+from paperworks.validation_v2.dg05_execution_closure_v1 import *
+from paperworks.validation_v2.dg05_execution_closure_v1 import STATE_ORDER_V3
+from paperworks.validation_v2.dg05_label_custodian_v1 import (
+    CustodianIsolationError, consume_and_extract_v1, validate_request_v1,
+)
+from paperworks.validation_v2.multipanel_custody_v1 import (
+    FROZEN_ATTACK_FILE_IDS_V2, FROZEN_AUTHORITY_SOURCE_COMMIT_V2,
+    FROZEN_DETECTOR_AUTHORITY_HASHES_V2, FROZEN_FEATURE_IDS_V2,
+    FROZEN_FUSION_POLICY_HASH_V2, FROZEN_METHOD_BUNDLE_HASH_V2,
+    FROZEN_PANEL_ORDER_V2, FROZEN_PORTFOLIO_HASHES_V2,
+    FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
+    PhysicalFileIdentityV2, FrozenPhysicalFileAuthorityV2,
+    frozen_feature_allowlist_authorities_v2,
+)
+
+
+H = "a" * 64
+G = "a" * 40
+
+
+def detector_registry() -> DetectorSubauthorityRegistryV1:
+    entries = []
+    for panel in FROZEN_PANEL_ORDER_V2:
+        for detector in ("PCA_SPE", "ISOLATION_FOREST"):
+            salt = digest([panel, detector])
+            entries.append(DetectorSubauthorityV1(panel, detector, FROZEN_DETECTOR_AUTHORITY_HASHES_V2[panel], salt, salt, salt, salt, salt, salt, salt))
+    return DetectorSubauthorityRegistryV1(tuple(sorted(entries)), G)
+
+
+def rule_runtime_registry() -> RuleRuntimeSubauthorityRegistryV1:
+    entries = []
+    for panel in FROZEN_PANEL_ORDER_V2:
+        for role, portfolio_hash in FROZEN_PORTFOLIO_HASHES_V2[panel].items():
+            body = {"schema":"dg05_phase_a_rule_runtime_use_authority_v1","status":"PENDING_RENEWED_DG05_V2_APPROVAL",
+                "panel_id":panel,"portfolio_role":role,"candidate_portfolio_hash":portfolio_hash,
+                "portfolio_container_hash":H,"relation_authority_hash":H,"numeric_authority_hash":H,
+                "retained_rule_identity_hash":H,"retained_rule_count":1,"formal_v4_semantics_hash":H,
+                "dg05_runtime_adapter_hash":H,"source_commit":G}
+            entries.append(RuleRuntimeSubauthorityV1(panel, role, portfolio_hash, H, H, H, 1, H, H, H, digest(body), G))
+    return RuleRuntimeSubauthorityRegistryV1(tuple(sorted(entries)), G)
+
+
+def dispatch_registry(detectors: DetectorSubauthorityRegistryV1, rules: RuleRuntimeSubauthorityRegistryV1) -> MethodDispatchRegistryV1:
+    entries = []
+    methods = {
+        "M0_PCA_SPE": ("PCA", "PCA_SPE", "PCA"),
+        "M1_T0_RULE_ONLY": ("RULE", None, "T0"),
+        "M2_T2_RULE_ONLY": ("RULE", None, "T2"),
+        "M3_PCA_PLUS_T0": ("FUSION", "PCA_SPE", "T0"),
+        "M4_PCA_PLUS_T2": ("FUSION", "PCA_SPE", "T2"),
+        "ISOLATION_FOREST": ("IF", "ISOLATION_FOREST", "IF"),
+        "ISOLATION_FOREST_PLUS_T2": ("FUSION", "ISOLATION_FOREST", "T2"),
+    }
+    for panel in FROZEN_PANEL_ORDER_V2:
+        local = dict(methods)
+        if panel == FROZEN_PANEL_ORDER_V2[0]:
+            local["V2A_RULE_ONLY_REFERENCE"] = ("RULE", None, "V2A")
+            local["HISTORICAL_PCA_PLUS_V2A_CONTINUITY"] = ("FUSION", "PCA_SPE", "V2A")
+        for method, (kind, detector, portfolio) in local.items():
+            components = []
+            if detector:
+                components.append(digest(detectors.lookup(panel, detector).document()))
+            if portfolio in ("T0", "T2", "V2A"):
+                components.append(FROZEN_PORTFOLIO_HASHES_V2[panel][portfolio])
+                components.append(digest(rules.lookup(panel, portfolio).document()))
+            if kind == "FUSION":
+                components.append(FROZEN_FUSION_POLICY_HASH_V2)
+            entries.append(MethodDispatchEntryV1(panel, method, kind, tuple(components), detector))
+    return MethodDispatchRegistryV1(tuple(sorted(entries)), detectors.document()["self_hash"], FROZEN_METHOD_BUNDLE_HASH_V2, G)
+
+
+def full_scope() -> FullProcessScopeAuthorityV1:
+    points = []
+    for version in ("21.03", "22.04", "23.05"):
+        points.extend((
+            FullProcessPointV1(version, "P1_EXACT", "P1", "YES", H),
+            FullProcessPointV1(version, "P2_EXACT", "P2", "NO", H),
+        ))
+    return FullProcessScopeAuthorityV1(tuple(sorted(points)), H, tuple((v, H) for v in ("21.03", "22.04", "23.05")), G,
+        version_counts=tuple((v, 2) for v in ("21.03", "22.04", "23.05")), authority_mode="SYNTHETIC_REHEARSAL")
+
+
+def manifest(registry: MethodDispatchRegistryV1, detectors: DetectorSubauthorityRegistryV1, rules: RuleRuntimeSubauthorityRegistryV1, scope: FullProcessScopeAuthorityV1,
+             nested_hash: str = H) -> DG05ExecutableAuthorityManifestV1:
+    implementations = tuple(sorted((name, digest(name)) for name in (
+        "state_machine", "projection_adapter", "prediction_adapter", "timestamp_builder",
+        "scenario_builder", "denominator_builder", "global_manifest_builder", "global_freeze_builder",
+        "label_custodian", "result_builder", "result_verifier", "fusion_runtime",
+    )))
+    portfolios = tuple(sorted(v for values in FROZEN_PORTFOLIO_HASHES_V2.values() for v in values.values()))
+    return DG05ExecutableAuthorityManifestV1(tuple(FROZEN_SCIENTIFIC_AUTHORITIES_V1.items()), detectors.document()["self_hash"], registry.document()["self_hash"], rules.document()["self_hash"], portfolios, scope.document()["self_hash"], digest("p1-custodian-v3"), implementations, nested_hash, G)
+
+
+def persist(path: Path, document: dict) -> Path:
+    path.write_bytes(canonical_bytes(document) + b"\n")
+    return path
+
+
+def initialization_fixture(root: Path, registry: MethodDispatchRegistryV1,
+                           detectors: DetectorSubauthorityRegistryV1,
+                           rules: RuleRuntimeSubauthorityRegistryV1,
+                           scope: FullProcessScopeAuthorityV1):
+    provisional = manifest(registry, detectors, rules, scope)
+    entries = []
+    for logical_name, authority_hash in sorted(provisional.required_nested_hashes().items()):
+        path = root / f"{digest(logical_name)}.bin"
+        if logical_name.startswith("implementation:"):
+            path.write_bytes(logical_name.encode("ascii"))
+            authority_hash = file_sha256(path)
+            expected_schema = authority_field = None
+        else:
+            document = self_hashed({"schema": "synthetic_bound_authority_v1", "bound_authority_hash": authority_hash})
+            persist(path, document)
+            expected_schema, authority_field = "synthetic_bound_authority_v1", "bound_authority_hash"
+        entries.append(PersistedAuthorityRefV1(logical_name, authority_hash, file_sha256(path),
+                                                expected_schema, authority_field, path))
+    implementation_hashes = tuple((name, next(e.expected_authority_hash for e in entries
+                                              if e.logical_name == f"implementation:{name}"))
+                                  for name, _old in provisional.implementation_hashes)
+    final = DG05ExecutableAuthorityManifestV1(
+        provisional.scientific_authorities, provisional.detector_registry_hash,
+        provisional.dispatch_registry_hash, provisional.rule_runtime_registry_hash, provisional.rule_portfolio_authority_hashes,
+        provisional.full_process_scope_hash, provisional.p1_custodian_v3_hash,
+        tuple(sorted(implementation_hashes)), H, provisional.source_commit)
+    expected = final.required_nested_hashes()
+    fixed_entries = tuple(sorted(replace(e, expected_authority_hash=expected[e.logical_name]) for e in entries))
+    bundle = NestedAuthorityReplayBundleV1(fixed_entries, G)
+    final = replace(final, nested_authority_replay_bundle_hash=bundle.document()["self_hash"])
+    manifest_path = persist(root / "manifest.json", final.document())
+    return final, bundle, manifest_path
+
+
+def transition_evidence(root: Path, kind: str, count: int, document: dict, *,
+                        next_state: str, current_state: dict,
+                        manifest: DG05ExecutableAuthorityManifestV1) -> StateTransitionEvidenceV1:
+    path = persist(root / f"{kind}.json", document)
+    binding = self_hashed({"schema":"dg05_state_transition_binding_v1","next_state":next_state,
+        "evidence_kind":kind,"evidence_authority_hash":document["self_hash"],
+        "evidence_artifact_byte_hash":file_sha256(path),"evidence_item_count":count,
+        "predecessor_state_hash":current_state["self_hash"],
+        "executable_approval_manifest_hash":manifest.document()["self_hash"],
+        "execution_id":current_state["execution_id"],"source_commit":manifest.source_commit})
+    binding_path = persist(root / f"{kind}.binding.json", binding)
+    return StateTransitionEvidenceV1(kind, document["self_hash"], count, document, path, file_sha256(path),
+                                     binding, binding_path, file_sha256(binding_path))
+
+
+def physical() -> FrozenPhysicalFileAuthorityV2:
+    files = []
+    for panel in FROZEN_PANEL_ORDER_V2:
+        for file_id in FROZEN_ATTACK_FILE_IDS_V2[panel]:
+            files.append(PhysicalFileIdentityV2(panel, file_id, digest([panel, file_id, "raw"]), digest([panel, file_id, "header"]), digest([panel, file_id, "official"])))
+    return FrozenPhysicalFileAuthorityV2(tuple(files), FROZEN_ATTACK_FILE_CENSUS_HASH_V2, H, FROZEN_AUTHORITY_SOURCE_COMMIT_V2)
+
+
+class DG05ExecutionClosureTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.detectors = detector_registry()
+        self.rules = rule_runtime_registry()
+        self.dispatch = dispatch_registry(self.detectors, self.rules)
+        self.scope = full_scope()
+        self.manifest = manifest(self.dispatch, self.detectors, self.rules, self.scope)
+        self.manifest.validate()
+
+    def test_b1_constant_bound_state_and_negative_authorities(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            final, bundle, manifest_path = initialization_fixture(Path(raw), self.dispatch, self.detectors, self.rules, self.scope)
+            mh = final.document()["self_hash"]
+            state = initialize_dg05_execution_v1(final, approved_manifest_hash=mh, execution_id="SYNTHETIC",
+                                                 manifest_artifact_path=manifest_path, nested_authority_replay=bundle)
+            self.assertEqual(state["executable_approval_manifest_hash"], mh)
+            with self.assertRaises(DG05ClosureError):
+                initialize_dg05_execution_v1(final, approved_manifest_hash=H, execution_id="SYNTHETIC",
+                                             manifest_artifact_path=manifest_path, nested_authority_replay=bundle)
+            changed = replace(final, scientific_authorities=tuple((k, H if k == "metric" else v) for k, v in final.scientific_authorities))
+            with self.assertRaises(DG05ClosureError):
+                changed.validate()
+            fake = self_hashed({"schema":"fake"})
+            with self.assertRaises(DG05ClosureError):
+                advance_dg05_state_v1(state, final, next_state=STATE_ORDER_V3[1],
+                    evidence=transition_evidence(Path(raw), "PHYSICAL_FILE_AUTHORITY", 10, fake,
+                        next_state=STATE_ORDER_V3[1], current_state=state, manifest=final))
+            manifest_path.write_bytes(manifest_path.read_bytes() + b"x")
+            with self.assertRaises(DG05ClosureError):
+                initialize_dg05_execution_v1(final, approved_manifest_hash=mh, execution_id="SYNTHETIC2",
+                                             manifest_artifact_path=manifest_path, nested_authority_replay=bundle)
+
+    def test_b4_p1_known_non_p1_unresolved_and_cross_process(self) -> None:
+        self.assertEqual(self.scope.classify("23.05", "P1_EXACT"), "P1")
+        self.assertEqual(self.scope.classify("23.05", "P2_EXACT"), "KNOWN_NON_P1")
+        self.assertEqual(self.scope.classify("23.05", "UNKNOWN"), "UNRESOLVED")
+
+    def test_b8_method_specific_subauthorities(self) -> None:
+        self.detectors.validate()
+        self.dispatch.validate()
+        pca = self.dispatch.lookup(FROZEN_PANEL_ORDER_V2[0], "M0_PCA_SPE")
+        isolation = self.dispatch.lookup(FROZEN_PANEL_ORDER_V2[0], "ISOLATION_FOREST")
+        self.assertEqual(pca.detector_id, "PCA_SPE")
+        self.assertEqual(isolation.detector_id, "ISOLATION_FOREST")
+        with self.assertRaises(DG05ClosureError):
+            replace(pca, detector_id="ISOLATION_FOREST").validate()
+        self.assertEqual(fuse_dense_masks_v1((True, False, False), {"1": ("a", "b"), "2": ("a",)}),
+                         (True, True, False))
+
+    def test_exact_seven_rule_runtime_registry_and_phase_a_use_binding(self) -> None:
+        self.rules.validate()
+        self.assertEqual(len(self.rules.entries), 7)
+        entry = self.rules.entries[0]
+        with self.assertRaisesRegex(DG05ClosureError, "DG05_PHASE_A_RUNTIME_USE_BINDING_MISMATCH"):
+            replace(entry, runtime_use_authority_hash=H).validate()
+        with self.assertRaisesRegex(DG05ClosureError, "SEVEN_RULE_RUNTIME_SUBAUTHORITIES_REQUIRED"):
+            RuleRuntimeSubauthorityRegistryV1(self.rules.entries[:-1], G).validate()
+        with self.assertRaisesRegex(DG05ClosureError, "RULE_RUNTIME_CANDIDATE_PORTFOLIO_MISMATCH"):
+            replace(entry, candidate_portfolio_hash=H).validate()
+
+    def _write_synthetic_csv(self, path: Path, authority: FrozenFeatureAllowlistAuthorityV2, label: bytes = b"0") -> None:
+        header = [authority.timestamp_id, *authority.feature_ids, "Attack", "unknown_field"]
+        lines = [b",".join(v.encode() for v in header)]
+        for index in range(2):
+            timestamp = f"2026-01-01T00:00:0{index}".encode()
+            values = [b"1.0"] * len(authority.feature_ids)
+            lines.append(b",".join([timestamp, *values, label, b"opaque"]))
+        path.write_bytes(b"\n".join(lines) + b"\n")
+
+    def test_b7_projection_non_interference_invalid_utf8_and_reserved_exclusion(self) -> None:
+        authority = frozen_feature_allowlist_authorities_v2()[FROZEN_PANEL_ORDER_V2[0]]
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            a, b = root / "a.csv", root / "b.csv"
+            self._write_synthetic_csv(a, authority, b"0")
+            self._write_synthetic_csv(b, authority, b"\xff")
+            header_hash = digest([authority.timestamp_id, *authority.feature_ids, "Attack", "unknown_field"])
+            fa = PhysicalFileIdentityV2(authority.panel_id, "hai-test2.csv", file_sha256(a), header_hash, H)
+            fb = PhysicalFileIdentityV2(authority.panel_id, "hai-test2.csv", file_sha256(b), header_hash, H)
+            pa, ta = project_attack_feature_file_v1(source=a, destination=root / "pa.jsonl", physical_file=fa, panel_authority=authority, file_id="hai-test2.csv", adapter_implementation_hash=H, source_commit=G)
+            pb, tb = project_attack_feature_file_v1(source=b, destination=root / "pb.jsonl", physical_file=fb, panel_authority=authority, file_id="hai-test2.csv", adapter_implementation_hash=H, source_commit=G)
+            self.assertEqual((pa.projection_hash, ta.timestamp_vector_hash), (pb.projection_hash, tb.timestamp_vector_hash))
+            payload = (root / "pa.jsonl").read_text("ascii").lower()
+            self.assertNotIn("attack", payload)
+            self.assertNotIn("unknown_field", payload)
+            with self.assertRaisesRegex(DG05ClosureError, "PHYSICAL_FILE_HEADER_HASH_MISMATCH"):
+                project_attack_feature_file_v1(source=a, destination=root / "wrong.jsonl",
+                    physical_file=replace(fa, header_hash=H), panel_authority=authority,
+                    file_id="hai-test2.csv", adapter_implementation_hash=H, source_commit=G)
+
+    def test_transition_binding_is_context_specific(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            final, bundle, manifest_path = initialization_fixture(root, self.dispatch, self.detectors, self.rules, self.scope)
+            state = initialize_dg05_execution_v1(final, approved_manifest_hash=final.document()["self_hash"],
+                execution_id="CTX", manifest_artifact_path=manifest_path, nested_authority_replay=bundle)
+            evidence = transition_evidence(root, "PHYSICAL_FILE_AUTHORITY", 10, physical().document(),
+                next_state=STATE_ORDER_V3[1], current_state=state, manifest=final)
+            changed = dict(state); changed["execution_id"] = "OTHER"; changed["self_hash"] = digest({k:v for k,v in changed.items() if k != "self_hash"})
+            with self.assertRaises(DG05ClosureError):
+                evidence.validate_for(STATE_ORDER_V3[1], current_state=changed,
+                    executable_manifest_hash=final.document()["self_hash"], source_commit=final.source_commit)
+
+    def test_cell_census_is_derived_and_equals_72(self) -> None:
+        census = build_expected_prediction_cell_census_v1(physical=physical(), dispatch=self.dispatch)
+        self.assertEqual(census["count"], 72)
+        self.assertEqual(len({v["cell_id"] for v in census["cells"]}), 72)
+
+    def test_b6_isolated_custodian_consumes_before_read_and_denies_prediction_root(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            incoming, outgoing, predictions = root / "labels", root / "custodian", root / "predictions"
+            incoming.mkdir(); outgoing.mkdir(); predictions.mkdir()
+            source = incoming / "scenarios.json"
+            source.write_text(json.dumps({"schema": "synthetic_raw_official_scenario_fixture_v1", "records": []}), encoding="utf-8")
+            source_hash = file_sha256(source)
+            token = "opaque"
+            policy_body = {"schema": "custodian_resource_policy_authority_v1", "input_root": str(incoming.resolve()),
+                           "output_root": str(outgoing.resolve()), "forbidden_roots": [str(predictions.resolve())],
+                           "approved_sources": [{"source_id": "SYNTHETIC", "path": str(source.resolve()), "byte_hash": source_hash,
+                                                 "official_source_hash": source_hash, "dataset_version": "MULTI_VERSION_23_22_21",
+                                                 "source_format": "SYNTHETIC_JSON_V1", "adapter_id": "SYNTHETIC_OFFICIAL_SCENARIO_FIXTURE_V1"}],
+                           "executable_manifest_hash": H, "scenario_adapter_implementation_hash": H,
+                           "resource_policy_contract_hash": H, "source_commit": G}
+            resource_policy = self_hashed(policy_body)
+            policy_path = persist(root / "policy.json", resource_policy)
+            lease_body = {"schema": "single_use_label_scenario_lease_v3", "token_hash": __import__("hashlib").sha256(token.encode()).hexdigest(), "global_freeze_hash": H, "state_hash": H, "executable_manifest_hash": H, "resource_policy_hash": resource_policy["self_hash"], "issue_count": 1, "consume_limit": 1}
+            lease_receipt = self_hashed(lease_body)
+            binding = {"panel_id": FROZEN_PANEL_ORDER_V2[0], "dataset_version": "23.05", "file_id": "hai-test2.csv", "physical_file_authority_hash": H, "timestamp_authority_hash": H, "official_source_hash": source_hash}
+            request = {"schema": "isolated_label_scenario_custodian_request_v1", "opaque_lease": token,
+                       "lease_receipt": lease_receipt, "global_freeze_hash": H, "executable_manifest_hash": H,
+                       "approved_source_id": "SYNTHETIC", "approved_output_name": "out.json",
+                       "public_authority_hashes": [H], "consumed_receipt_name": "consumed.json",
+                       "resource_policy_hash": resource_policy["self_hash"], "allowed_scenario_bindings": [binding],
+                       "authority_mode": "SYNTHETIC_REHEARSAL",
+                       "nominal_counts": {FROZEN_PANEL_ORDER_V2[0]: 0}}
+            result = consume_and_extract_v1(request, resource_policy_authority_path=policy_path)
+            self.assertTrue((outgoing / "consumed.json").exists())
+            self.assertEqual(len(result["output_byte_hash"]), 64)
+            with self.assertRaises(CustodianIsolationError):
+                consume_and_extract_v1(request, resource_policy_authority_path=policy_path)
+            tainted = dict(request); tainted["prediction_path"] = str(predictions / "x")
+            with self.assertRaises(CustodianIsolationError):
+                validate_request_v1(tainted, resource_policy=resource_policy)
+            production = dict(request); production["authority_mode"] = "PRODUCTION"
+            with self.assertRaises(CustodianIsolationError):
+                validate_request_v1(production, resource_policy=resource_policy)
+
+    def test_b3_denominator_five_fixtures_method_blind(self) -> None:
+        timestamp_hash = H
+        rows = (
+            ScenarioRecordV1(FROZEN_PANEL_ORDER_V2[0], "23.05", "hai-test2.csv", "A", (("2026-01-01T00:00:00", "2026-01-01T00:00:01"),), ("P1_EXACT",), (), H, timestamp_hash, H),
+            ScenarioRecordV1(FROZEN_PANEL_ORDER_V2[0], "23.05", "hai-test2.csv", "B", (("2026-01-01T00:00:00", "2026-01-01T00:00:01"),), ("P2_EXACT",), (), H, timestamp_hash, H),
+            ScenarioRecordV1(FROZEN_PANEL_ORDER_V2[0], "23.05", "hai-test2.csv", "C", (("2026-01-01T00:00:00", "2026-01-01T00:00:01"),), ("P2_EXACT", "UNKNOWN"), (), H, timestamp_hash, H),
+            ScenarioRecordV1(FROZEN_PANEL_ORDER_V2[0], "23.05", "hai-test2.csv", "D", (("2026-01-01T00:00:00", "2026-01-01T00:00:01"),), ("P1_EXACT", "UNKNOWN"), (), H, timestamp_hash, H),
+            ScenarioRecordV1(FROZEN_PANEL_ORDER_V2[0], "23.05", "hai-test2.csv", "E", (("2026-01-01T00:00:00", "2026-01-01T00:00:01"),), ("P2_EXACT",), ("P1",), H, timestamp_hash, H),
+        )
+        scenario = build_scenario_authority_v1(records=rows, lease_completion_hash=H, global_freeze_hash=H, source_commit=G,
+            nominal_counts={FROZEN_PANEL_ORDER_V2[0]: 5, FROZEN_PANEL_ORDER_V2[1]: 0, FROZEN_PANEL_ORDER_V2[2]: 0}, authority_mode="SYNTHETIC_REHEARSAL")
+        denominator = build_denominator_authority_v1(scenario_authority=scenario, full_scope=self.scope, p1_custodian_v3_hash=H)
+        states = {r["scenario_id"]: (r["primary_status"], r["secondary_cross_process_p1_relevant"]) for r in denominator["records"]}
+        self.assertEqual(states, {"A": ("P1_ELIGIBLE", False), "B": ("OUT_OF_SCOPE", False), "C": ("UNRESOLVED", False), "D": ("P1_ELIGIBLE", False), "E": ("OUT_OF_SCOPE", True)})
+        self.assertFalse(denominator["prediction_inputs"])
+        with self.assertRaises(DG05ClosureError):
+            build_scenario_authority_v1(records=rows, lease_completion_hash=H, global_freeze_hash=H, source_commit=G,
+                nominal_counts={FROZEN_PANEL_ORDER_V2[0]: 5, FROZEN_PANEL_ORDER_V2[1]: 0, FROZEN_PANEL_ORDER_V2[2]: 0})
+
+    def test_b2_b5_result_bytes_coordinate_and_nested_replay(self) -> None:
+        panel = FROZEN_PANEL_ORDER_V2[0]
+        timestamps = ("2026-01-01T00:00:00", "2026-01-01T00:00:01")
+        timestamp_vector_hash = __import__("hashlib").sha256(b"".join(v.encode() + b"\n" for v in timestamps)).hexdigest()
+        ta = TimestampCoordinateAuthorityV1(panel, "23.05", "hai-test2.csv", H, H, "timestamp", 2, timestamp_vector_hash,
+            "UTF8_ISO8601_BYTES", "NAIVE_AS_RECORDED_NO_CONVERSION", "STRICT_FILE_ORDER", "PRESERVE_DUPLICATES_IN_ROW_ORDER", H, G)
+        row = ScenarioRecordV1(panel, "23.05", "hai-test2.csv", "A", ((timestamps[0], timestamps[1]),), ("P1_EXACT",), (), H, ta.document()["self_hash"], H)
+        method_hash = digest(self.dispatch.lookup(panel, "M0_PCA_SPE").document())
+        prediction_hash = digest("prediction")
+        receipt = PredictionTerminalReceiptV1(digest("cell"), panel, "hai-test2.csv", "M0_PCA_SPE", method_hash,
+            ta.physical_file_authority_hash, H, ta.document()["self_hash"], 2, prediction_hash, None,
+            "NOT_APPLICABLE", "SUCCESS", None, digest({"schema":"dense_boolean_prediction_v1"}), H, G)
+        receipt.validate()
+        global_manifest = self_hashed({"schema":"global_prediction_manifest_v3", "expected_cell_census_hash":H,
+            "executable_approval_manifest_hash":H, "receipts":[receipt.document()], "success_count":1, "failure_count":0})
+        freeze = self_hashed({"schema":"global_prediction_freeze_v3", "manifest_hash":global_manifest["self_hash"],
+            "census_hash":H, "predecessor_state_hash":H, "executable_approval_manifest_hash":H,
+            "status":"GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED"})
+        scenario = build_scenario_authority_v1(records=(row,), lease_completion_hash=H, global_freeze_hash=freeze["self_hash"], source_commit=G,
+            nominal_counts={panel: 1, FROZEN_PANEL_ORDER_V2[1]: 0, FROZEN_PANEL_ORDER_V2[2]: 0}, authority_mode="SYNTHETIC_REHEARSAL")
+        denominator = build_denominator_authority_v1(scenario_authority=scenario, full_scope=self.scope, p1_custodian_v3_hash=H)
+        etapr = build_etapr_coordinate_binding_v1(panel_id=panel, file_bindings=[{"file_id":"hai-test2.csv",
+            "physical_file_authority_hash":ta.physical_file_authority_hash, "timestamp_authority_hash":ta.document()["self_hash"],
+            "prediction_artifact_hash":prediction_hash, "scenario_authority_hash":scenario["self_hash"]}], etapr_authority_hash=H)
+        result = compute_bound_panel_method_result_v1(panel_id=panel, method_id="M0_PCA_SPE", method_authority_hash=method_hash,
+            global_prediction_manifest=global_manifest, global_prediction_freeze=freeze,
+            predictions={"hai-test2.csv": (ta, timestamps, (False, True), prediction_hash, H)},
+            scenario_authority=scenario, denominator_authority=denominator, metric_authority_hash=FROZEN_SCIENTIFIC_AUTHORITIES_V1["metric"],
+            p1_custodian_hash=H, etapr_authority_hash=H, normal_burden_hash=H, source_commit=G,
+            executable_manifest_hash=H, statistical_authority_hash=H, etapr_coordinate_binding=etapr)
+        self.assertEqual((result["hit_count"], result["eligible_count"], result["scenario_recall"]), (1, 1, 1.0))
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "result.json"
+            receipt = persist_result_authority_v1(path, result)
+            audit = verify_result_authority_v1(path=path, receipt=receipt, expected_bindings={"scenario_authority_hash": scenario["self_hash"], "denominator_authority_hash": denominator["self_hash"]})
+            self.assertEqual(audit["status"], "PASS")
+            mutated = dict(result); mutated["hit_count"] = 0
+            path.write_bytes(canonical_bytes(mutated) + b"\n")
+            with self.assertRaises(DG05ClosureError):
+                verify_result_authority_v1(path=path, receipt=receipt, expected_bindings={})
+        wrong = replace(ta, file_id="other")
+        with self.assertRaises(DG05ClosureError):
+            compute_bound_panel_method_result_v1(panel_id=panel, method_id="M0_PCA_SPE", method_authority_hash=method_hash,
+                global_prediction_manifest=global_manifest, global_prediction_freeze=freeze,
+                predictions={"hai-test2.csv": (wrong, timestamps, (False, True), prediction_hash, H)},
+                scenario_authority=scenario, denominator_authority=denominator, metric_authority_hash=H, p1_custodian_hash=H,
+                etapr_authority_hash=H, normal_burden_hash=H, source_commit=G,
+                executable_manifest_hash=H, statistical_authority_hash=H, etapr_coordinate_binding=etapr)
+
+    def test_full_72_cell_production_adapter_synthetic_rehearsal(self) -> None:
+        projections = {}
+        timestamps = {}
+        artifacts = {}
+        receipts = []
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            final, nested, manifest_path = initialization_fixture(root, self.dispatch, self.detectors, self.rules, self.scope)
+            mh = final.document()["self_hash"]
+            executor = DG05ProductionExecutorV1.synthetic_rehearsal(executable_manifest_hash=mh,
+                executable_manifest=final,
+                detector_registry=self.detectors, dispatch_registry=self.dispatch,
+                rule_runtime_registry=self.rules,
+                adapter_implementation_hash=dict(final.implementation_hashes)["prediction_adapter"],
+                fusion_implementation_hash=dict(final.implementation_hashes)["fusion_runtime"])
+            authorities = frozen_feature_allowlist_authorities_v2()
+            synthetic_files = []
+            for panel in FROZEN_PANEL_ORDER_V2:
+                for file_id in FROZEN_ATTACK_FILE_IDS_V2[panel]:
+                    source = root / f"{panel}-{file_id}.csv"
+                    self._write_synthetic_csv(source, authorities[panel])
+                    header_hash = digest([authorities[panel].timestamp_id, *authorities[panel].feature_ids, "Attack", "unknown_field"])
+                    synthetic_files.append(PhysicalFileIdentityV2(panel, file_id, file_sha256(source), header_hash, digest([panel, file_id, "official"])))
+            phy = FrozenPhysicalFileAuthorityV2(tuple(synthetic_files), FROZEN_ATTACK_FILE_CENSUS_HASH_V2, H, FROZEN_AUTHORITY_SOURCE_COMMIT_V2)
+            census = build_expected_prediction_cell_census_v1(physical=phy, dispatch=self.dispatch)
+            for item in phy.files:
+                source = root / f"{item.panel_id}-{item.file_id}.csv"
+                projection, timestamp = project_attack_feature_file_v1(source=source, destination=root / f"{item.panel_id}-{item.file_id}.projection",
+                    physical_file=item, panel_authority=authorities[item.panel_id], file_id=item.file_id,
+                    adapter_implementation_hash=H, source_commit=G)
+                projections[(item.panel_id, item.file_id)] = (projection, root / f"{item.panel_id}-{item.file_id}.projection")
+                timestamps[(item.panel_id, item.file_id)] = timestamp
+            for cell in census["cells"]:
+                projection, path = projections[(cell["panel_id"], cell["file_id"])]
+                receipt = execute_prediction_cell_v1(cell=cell, dispatch=self.dispatch, projection=projection,
+                    timestamp=timestamps[(cell["panel_id"], cell["file_id"])], executable_manifest_hash=mh,
+                    executor=executor, projection_path=path, output_directory=root / "predictions", source_commit=G)
+                receipts.append(receipt)
+                receipt_path = persist(root / "predictions" / f"{receipt.cell_id}.receipt.json", receipt.document())
+                artifacts[receipt.cell_id] = (root / "predictions" / f"{receipt.cell_id}.prediction.json",
+                    None if receipt.trace_status == "NOT_APPLICABLE" else root / "predictions" / f"{receipt.cell_id}.trace.json", receipt_path)
+            global_manifest = build_global_prediction_manifest_v1(census=census, receipts=receipts, executable_manifest_hash=mh, dispatch=self.dispatch)
+            state = initialize_dg05_execution_v1(final, approved_manifest_hash=mh, execution_id="SYNTHETIC72",
+                manifest_artifact_path=manifest_path, nested_authority_replay=nested)
+            docs = (
+                phy.document(),
+                self_hashed({"schema":"dg05_feature_projection_census_v1", "count":10,
+                             "projection_authority_hashes":[p.document()["self_hash"] for p, _path in projections.values()]}),
+                self_hashed({"schema":"dg05_prediction_execution_start_v1", "start_count":1,
+                             "label_access_allowed":False, "census_hash":census["self_hash"]}),
+            )
+            for next_state, kind, count, document in zip(STATE_ORDER_V3[1:4],
+                    ("PHYSICAL_FILE_AUTHORITY", "PROJECTION_CENSUS", "EXECUTION_START"), (10,10,1), docs):
+                state = advance_dg05_state_v1(state, final, next_state=next_state,
+                    evidence=transition_evidence(root, kind, count, document,
+                        next_state=next_state, current_state=state, manifest=final))
+            freeze = freeze_global_predictions_v1(manifest=global_manifest, census=census, receipt_artifacts=artifacts, predecessor_state=state)
+            state = advance_dg05_state_v1(state, final, next_state=STATE_ORDER_V3[4],
+                evidence=transition_evidence(root, "GLOBAL_FREEZE", 72, freeze,
+                    next_state=STATE_ORDER_V3[4], current_state=state, manifest=final))
+            lease = issue_label_lease_v3(freeze=freeze, state=state, executable_manifest_hash=mh, resource_policy_authority_hash=H)
+            self.assertEqual((global_manifest["success_count"], global_manifest["failure_count"], freeze["status"], lease["receipt"]["issue_count"]), (72, 0, "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED", 1))
+            # After label lease, manifest/method replacement cannot advance the same chain.
+            with self.assertRaises(DG05ClosureError):
+                advance_dg05_state_v1(state, replace(final, dispatch_registry_hash=H), next_state=STATE_ORDER_V3[5],
+                    evidence=transition_evidence(root, "LEASE_ISSUE", 1, lease["receipt"],
+                        next_state=STATE_ORDER_V3[5], current_state=state, manifest=final))
+
+    def test_executor_is_typed_manifest_and_runtime_hash_bound(self) -> None:
+        mh = self.manifest.document()["self_hash"]
+        implementations = dict(self.manifest.implementation_hashes)
+        with self.assertRaises(DG05ClosureError):
+            DG05ProductionExecutorV1.synthetic_rehearsal(
+                executable_manifest=replace(self.manifest, source_commit="b" * 40),
+                executable_manifest_hash=mh,
+                detector_registry=self.detectors,
+                dispatch_registry=self.dispatch,
+                rule_runtime_registry=self.rules,
+                adapter_implementation_hash=implementations["prediction_adapter"],
+                fusion_implementation_hash=implementations["fusion_runtime"],
+            )
+        for field in ("prediction_adapter", "fusion_runtime"):
+            kwargs = {
+                "adapter_implementation_hash": implementations["prediction_adapter"],
+                "fusion_implementation_hash": implementations["fusion_runtime"],
+            }
+            kwargs["adapter_implementation_hash" if field == "prediction_adapter" else "fusion_implementation_hash"] = H
+            with self.assertRaises(DG05ClosureError):
+                DG05ProductionExecutorV1.synthetic_rehearsal(
+                    executable_manifest=self.manifest,
+                    executable_manifest_hash=mh,
+                    detector_registry=self.detectors,
+                    dispatch_registry=self.dispatch,
+                    rule_runtime_registry=self.rules,
+                    **kwargs,
+                )
+
+    def test_failure_is_terminal_and_not_prediction(self) -> None:
+        entry = self.dispatch.lookup(FROZEN_PANEL_ORDER_V2[0], "M0_PCA_SPE")
+        self.assertEqual(entry.detector_id, "PCA_SPE")
+        # Exact adapter behavior is exercised by omitting the registered class.
+        authority = frozen_feature_allowlist_authorities_v2()[FROZEN_PANEL_ORDER_V2[0]]
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw); source = root / "a.csv"; self._write_synthetic_csv(source, authority)
+            header_hash = digest([authority.timestamp_id, *authority.feature_ids, "Attack", "unknown_field"])
+            file_identity = PhysicalFileIdentityV2(authority.panel_id, "hai-test2.csv", file_sha256(source), header_hash, H)
+            projection, timestamp = project_attack_feature_file_v1(source=source, destination=root / "projection", physical_file=file_identity,
+                panel_authority=authority, file_id="hai-test2.csv", adapter_implementation_hash=H, source_commit=G)
+            census = build_expected_prediction_cell_census_v1(physical=physical(), dispatch=self.dispatch)
+            cell = next(v for v in census["cells"] if v["panel_id"] == FROZEN_PANEL_ORDER_V2[0] and v["method_id"] == "M0_PCA_SPE")
+            mh = self.manifest.document()["self_hash"]
+            executor = DG05ProductionExecutorV1.synthetic_rehearsal(executable_manifest_hash=mh,
+                executable_manifest=self.manifest,
+                detector_registry=self.detectors, dispatch_registry=self.dispatch,
+                rule_runtime_registry=self.rules,
+                adapter_implementation_hash=dict(self.manifest.implementation_hashes)["prediction_adapter"],
+                fusion_implementation_hash=dict(self.manifest.implementation_hashes)["fusion_runtime"],
+                synthetic_failure_cell_ids=(cell["cell_id"],))
+            receipt = execute_prediction_cell_v1(cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
+                executable_manifest_hash=mh, executor=executor, projection_path=root / "projection",
+                output_directory=root / "predictions", source_commit=G)
+            self.assertEqual((receipt.status, receipt.prediction_artifact_hash, receipt.failure_code), ("METHOD_FAILURE", None, "SYNTHETIC_FROZEN_METHOD_FAILURE"))
+
+
+if __name__ == "__main__":
+    unittest.main()

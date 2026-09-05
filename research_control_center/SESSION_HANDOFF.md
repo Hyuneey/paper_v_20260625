@@ -214,3 +214,14 @@ DATA-POLICY-001: HAI 23.05는 CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION으로 복�
 
 기존 fresh-machine PASS는 과거 synthetic baseline에 한정된다.
 현재 scientific code/config는 feature access 후 변경하지 않았다. 후속 변경은 새로운 사전등록/버전에서만 가능하다.
+
+## DG05 executable closure handoff
+
+- B1–B8: 8/8 PASS.
+- Closure: `18dc3203e1b050aca5d052f9b7995cd9ba7a5fe5f3fbe2cfb6d4aae357b482b8`.
+- Manifest: `586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42`.
+- Scope: HAI23 86 = 44 P1 + 42 non-P1; HAI22 86 = 44 + 42; HAI21 79 = 38 + 40 + 1 unresolved (`P2_SIT02`).
+- Synthetic rehearsal: 72 cells; 146 scenarios; 23 result authorities; independent replay 23/23; post-label mutation rejection 7/7.
+- Actual attack/test, label/scenario, and eligibility access: 0/0/0.
+- DEC-029 and DG05 V1 are historical and cannot be reused.
+- Exact next: `DG-05 REAPPROVAL — EXECUTABLE V2`; professor package remains unsubmitted.

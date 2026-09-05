@@ -1,0 +1,1851 @@
+"""DG-05 executable-authority closure (prospective, synthetic-testable).
+
+This module deliberately does not know where real attack, label, scenario,
+model, or portfolio files live.  All execution is capability-bound to typed
+authorities and canonical bytes.  Historical V2 custody contracts remain
+unchanged; this is the V3 execution layer that closes B1--B8.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from datetime import datetime
+from hashlib import sha256
+import json
+import math
+import os
+from pathlib import Path
+import secrets
+from typing import Any, Mapping, Sequence
+
+from paperworks.data.hai_normal_projection_v2 import schema as csv_schema, selected_rows
+from paperworks.validation_v2.multipanel_custody_v1 import (
+    FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
+    FROZEN_FEATURE_IDS_V2,
+    FROZEN_FUSION_POLICY_HASH_V2,
+    FROZEN_METHOD_BUNDLE_HASH_V2,
+    FROZEN_PANEL_ORDER_V2,
+    FROZEN_PORTFOLIO_HASHES_V2,
+    FrozenFeatureAllowlistAuthorityV2,
+    FrozenPhysicalFileAuthorityV2,
+    PhysicalFileIdentityV2,
+)
+from paperworks.validation_v2.multipanel_metrics_v1 import wilson95_v1
+
+
+class DG05ClosureError(ValueError):
+    """A fail-closed executable authority or custody violation."""
+
+
+def canonical_bytes(value: Any) -> bytes:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("ascii")
+
+
+def digest(value: Any) -> str:
+    return sha256(canonical_bytes(value)).hexdigest()
+
+
+def self_hashed(body: Mapping[str, Any]) -> dict[str, Any]:
+    value = dict(body)
+    value["self_hash"] = digest(value)
+    return value
+
+
+def validate_self_hashed(value: Mapping[str, Any]) -> None:
+    if set(value) == {"self_hash"} or value.get("self_hash") != digest({k: v for k, v in value.items() if k != "self_hash"}):
+        raise DG05ClosureError("SELF_HASH_MISMATCH")
+
+
+def _sha(value: str, field: str) -> None:
+    if type(value) is not str or len(value) != 64 or any(c not in "0123456789abcdef" for c in value):
+        raise DG05ClosureError(f"{field}:SHA256_REQUIRED")
+
+
+def _git(value: str, field: str) -> None:
+    if type(value) is not str or len(value) != 40 or any(c not in "0123456789abcdef" for c in value):
+        raise DG05ClosureError(f"{field}:FULL_GIT_SHA_REQUIRED")
+
+
+def _id(value: str, field: str) -> None:
+    if type(value) is not str or not value or any(c in value for c in ("/", "\\", ":")):
+        raise DG05ClosureError(f"{field}:SAFE_ID_REQUIRED")
+
+
+def file_sha256(path: Path) -> str:
+    h = sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def publish_new(path: Path, payload: bytes) -> str:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{secrets.token_hex(8)}.tmp")
+    try:
+        with temporary.open("xb") as stream:
+            stream.write(payload)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(temporary, path)
+    except FileExistsError as exc:
+        raise DG05ClosureError("APPEND_ONLY_CONFLICT") from exc
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+    if path.read_bytes() != payload:
+        raise DG05ClosureError("DURABLE_REPLAY_MISMATCH")
+    return sha256(payload).hexdigest()
+
+
+# Unchanged scientific authorities.  A manifest is valid only if every value
+# equals this closed set; no "latest/current/default" lookup exists.
+FROZEN_SCIENTIFIC_AUTHORITIES_V1: dict[str, str] = {
+    "scientific_preregistration": "cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61",
+    "method_bundle": FROZEN_METHOD_BUNDLE_HASH_V2,
+    "metric": "1222d0c7431376dbfa77451875f811123f41af881ae1472b30cd4a2e0f1f0776",
+    "statistical": "cf90fee47e9294873e09aa516df8163328ee924d756c66b18a811c4ea2f9b463",
+    "etapr": "5381ceb1f19f25354a8feb36488dfaa85d3f2945770dc352f2bf8c18fd86cae4",
+    "fusion": FROZEN_FUSION_POLICY_HASH_V2,
+    "attack_file_census": FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
+    "feature_allowlist_bundle": "e49ba9ee3f6a2f1273666c41ac1584636a53d5b4334d6cb95e3eed0b17a2764b",
+    "p1_mapping_bundle_v2": "93b94ab988096020907bc2de738618ce7a9121230f9d4a19111dd3b0f034689d",
+    "global_custody_v2": "df0fe200b0a2278eeb7209411c952be58f63119f77f521763419020e3c1e8e60",
+}
+
+FROZEN_METHOD_IDS_BY_PANEL_V1: dict[str, tuple[str, ...]] = {
+    "HAI23_TEST2_PRIMARY_HELDOUT_V1": (
+        "M0_PCA_SPE", "M1_T0_RULE_ONLY", "M2_T2_RULE_ONLY", "M3_PCA_PLUS_T0",
+        "M4_PCA_PLUS_T2", "ISOLATION_FOREST", "ISOLATION_FOREST_PLUS_T2",
+        "V2A_RULE_ONLY_REFERENCE", "HISTORICAL_PCA_PLUS_V2A_CONTINUITY",
+    ),
+    "HAI22_EXTERNAL_REPLICATION_V1": (
+        "M0_PCA_SPE", "M1_T0_RULE_ONLY", "M2_T2_RULE_ONLY", "M3_PCA_PLUS_T0",
+        "M4_PCA_PLUS_T2", "ISOLATION_FOREST", "ISOLATION_FOREST_PLUS_T2",
+    ),
+    "HAI21_EXTERNAL_REPLICATION_V1": (
+        "M0_PCA_SPE", "M1_T0_RULE_ONLY", "M2_T2_RULE_ONLY", "M3_PCA_PLUS_T0",
+        "M4_PCA_PLUS_T2", "ISOLATION_FOREST", "ISOLATION_FOREST_PLUS_T2",
+    ),
+}
+
+FROZEN_DATASET_VERSION_BY_PANEL_V1: dict[str, str] = dict(
+    zip(FROZEN_PANEL_ORDER_V2, ("23.05", "22.04", "21.03"), strict=True)
+)
+
+_P1_23 = "P1_FCV01D P1_FCV01Z P1_FCV02D P1_FCV02Z P1_FCV03D P1_FCV03Z P1_FT01 P1_FT01Z P1_FT02 P1_FT02Z P1_FT03 P1_FT03Z P1_LCV01D P1_LCV01Z P1_LIT01 P1_PCV01D P1_PCV01Z P1_PCV02D P1_PCV02Z P1_PIT01 P1_PIT01_HH P1_PIT02 P1_PP01AD P1_PP01AR P1_PP01BD P1_PP01BR P1_PP02D P1_PP02R P1_PP04 P1_PP04D P1_PP04SP P1_SOL01D P1_SOL03D P1_STSP P1_TIT01 P1_TIT02 P1_TIT03 x1001_05_SETPOINT_OUT x1001_15_ASSIGN_OUT x1002_07_SETPOINT_OUT x1002_08_SETPOINT_OUT x1003_10_SETPOINT_OUT x1003_18_SETPOINT_OUT x1003_24_SUM_OUT".split()
+_P1_22 = "P1_B2004 P1_B2016 P1_B3004 P1_B3005 P1_B4002 P1_B4005 P1_B400B P1_B4022 P1_FCV01D P1_FCV01Z P1_FCV02D P1_FCV02Z P1_FCV03D P1_FCV03Z P1_FT01 P1_FT01Z P1_FT02 P1_FT02Z P1_FT03 P1_FT03Z P1_LCV01D P1_LCV01Z P1_LIT01 P1_PCV01D P1_PCV01Z P1_PCV02D P1_PCV02Z P1_PIT01 P1_PIT01_HH P1_PIT02 P1_PP01AD P1_PP01AR P1_PP01BD P1_PP01BR P1_PP02D P1_PP02R P1_PP04 P1_PP04SP P1_SOL01D P1_SOL03D P1_STSP P1_TIT01 P1_TIT02 P1_TIT03".split()
+_P1_21 = "P1_B2004 P1_B2016 P1_B3004 P1_B3005 P1_B4002 P1_B4005 P1_B400B P1_B4022 P1_FCV01D P1_FCV01Z P1_FCV02D P1_FCV02Z P1_FCV03D P1_FCV03Z P1_FT01 P1_FT01Z P1_FT02 P1_FT02Z P1_FT03 P1_FT03Z P1_LCV01D P1_LCV01Z P1_LIT01 P1_PCV01D P1_PCV01Z P1_PCV02D P1_PCV02Z P1_PIT01 P1_PIT02 P1_PP01AD P1_PP01AR P1_PP01BD P1_PP01BR P1_PP02D P1_PP02R P1_STSP P1_TIT01 P1_TIT02".split()
+_P2_23_22 = "P2_24Vdc P2_ATSW_Lamp P2_AutoGO P2_AutoSD P2_Emerg P2_MASW P2_MASW_Lamp P2_ManualGO P2_ManualSD P2_OnOff P2_RTR P2_SCO P2_SCST P2_SIT01 P2_TripEx P2_VIBTR01 P2_VIBTR02 P2_VIBTR03 P2_VIBTR04 P2_VT01 P2_VTR01 P2_VTR02 P2_VTR03 P2_VTR04".split()
+_P2_21 = "P2_24Vdc P2_ASD P2_AutoGO P2_CO_rpm P2_Emerg P2_HILout P2_MSD P2_ManualGO P2_OnOff P2_RTR P2_SIT01 P2_SIT02 P2_TripEx P2_VT01 P2_VTR01 P2_VTR02 P2_VTR03 P2_VTR04 P2_VXT02 P2_VXT03 P2_VYT02 P2_VYT03".split()
+_P3_23_22 = "P3_FIT01 P3_LCP01D P3_LCV01D P3_LH01 P3_LIT01 P3_LL01 P3_PIT01".split()
+_P3_21 = "P3_FIT01 P3_LCP01D P3_LCV01D P3_LH P3_LIT01 P3_LL P3_PIT01".split()
+_P4_23_22 = "P4_HT_FD P4_HT_PO P4_HT_PS P4_LD P4_ST_FD P4_ST_GOV P4_ST_LD P4_ST_PO P4_ST_PS P4_ST_PT01 P4_ST_TT01".split()
+_P4_21 = "P4_HT_FD P4_HT_LD P4_HT_PO P4_HT_PS P4_LD P4_ST_FD P4_ST_GOV P4_ST_LD P4_ST_PO P4_ST_PS P4_ST_PT01 P4_ST_TT01".split()
+FROZEN_FULL_SCOPE_PROCESS_MAP_V1: dict[str, dict[str, tuple[str, ...]]] = {
+    "23.05": {"P1": tuple(_P1_23), "P2": tuple(_P2_23_22), "P3": tuple(_P3_23_22), "P4": tuple(_P4_23_22)},
+    "22.04": {"P1": tuple(_P1_22), "P2": tuple(_P2_23_22), "P3": tuple(_P3_23_22), "P4": tuple(_P4_23_22)},
+    "21.03": {"P1": tuple(_P1_21), "P2": tuple(_P2_21), "P3": tuple(_P3_21), "P4": tuple(_P4_21)},
+}
+
+
+@dataclass(frozen=True, order=True)
+class FullProcessPointV1:
+    dataset_version: str
+    canonical_identity: str
+    official_process: str
+    p1_membership: str
+    evidence_hash: str
+    authority_status: str = "OFFICIAL_EXACT_IDENTITY"
+
+    def validate(self) -> None:
+        _id(self.dataset_version, "dataset_version")
+        _id(self.canonical_identity, "canonical_identity")
+        if self.official_process not in ("P1", "P2", "P3", "P4"):
+            raise DG05ClosureError("OFFICIAL_PROCESS_REQUIRED")
+        if self.p1_membership not in ("YES", "NO", "UNRESOLVED"):
+            raise DG05ClosureError("P1_MEMBERSHIP_REQUIRED")
+        if self.p1_membership == "YES" and self.official_process != "P1":
+            raise DG05ClosureError("P1_PROCESS_CONTRADICTION")
+        if self.p1_membership == "NO" and self.official_process == "P1":
+            raise DG05ClosureError("NON_P1_PROCESS_CONTRADICTION")
+        _sha(self.evidence_hash, "evidence_hash")
+
+    def document(self) -> dict[str, str]:
+        return dict(self.__dict__)
+
+
+@dataclass(frozen=True)
+class FullProcessScopeAuthorityV1:
+    points: tuple[FullProcessPointV1, ...]
+    official_manual_hash: str
+    official_schema_hashes: tuple[tuple[str, str], ...]
+    source_commit: str
+    version_counts: tuple[tuple[str, int], ...] = ()
+    declared_count_discrepancies: tuple[str, ...] = ()
+    official_identity_set_hashes: tuple[tuple[str, str], ...] = ()
+    supplemental_authority_hashes: tuple[tuple[str, str], ...] = ()
+    authority_mode: str = "PRODUCTION"
+
+    def document(self) -> dict[str, Any]:
+        body = {
+            "schema": "full_process_scope_authority_v1",
+            "points": [p.document() for p in self.points],
+            "official_manual_hash": self.official_manual_hash,
+            "official_schema_hashes": [list(v) for v in self.official_schema_hashes],
+            "source_commit": self.source_commit,
+            "version_counts": {k: v for k, v in self.version_counts},
+            "declared_count_discrepancies": list(self.declared_count_discrepancies),
+            "official_identity_set_hashes": {k: v for k, v in self.official_identity_set_hashes},
+            "supplemental_authority_hashes": {k: v for k, v in self.supplemental_authority_hashes},
+            "authority_mode": self.authority_mode,
+        }
+        return self_hashed(body)
+
+    def validate(self) -> None:
+        _sha(self.official_manual_hash, "official_manual_hash")
+        _git(self.source_commit, "source_commit")
+        if not self.points or tuple(sorted(self.points)) != self.points:
+            raise DG05ClosureError("CANONICAL_FULL_SCOPE_REQUIRED")
+        keys = [(p.dataset_version, p.canonical_identity) for p in self.points]
+        if len(keys) != len(set(keys)):
+            raise DG05ClosureError("DUPLICATE_OFFICIAL_IDENTITY")
+        for p in self.points:
+            p.validate()
+        for version, value in self.official_schema_hashes:
+            _id(version, "schema_version")
+            _sha(value, "official_schema_hash")
+        actual = {version: sum(p.dataset_version == version for p in self.points) for version, _ in self.official_schema_hashes}
+        if actual != dict(self.version_counts):
+            raise DG05ClosureError("FULL_SCOPE_VERSION_COUNT_MISMATCH")
+        if self.authority_mode == "PRODUCTION":
+            if actual != {"21.03": 79, "22.04": 86, "23.05": 86}:
+                raise DG05ClosureError("FULL_OFFICIAL_SCHEMA_UNIVERSE_REQUIRED")
+            if "HAI21_MANUAL_DECLARED_78_BUT_OFFICIAL_NORMAL_SCHEMA_CONTAINS_79" not in self.declared_count_discrepancies:
+                raise DG05ClosureError("HAI21_DECLARED_SCHEMA_COUNT_DISCREPANCY_REQUIRED")
+            observed_hashes = {version: digest(sorted(p.canonical_identity for p in self.points if p.dataset_version == version)) for version in actual}
+            if observed_hashes != dict(self.official_identity_set_hashes):
+                raise DG05ClosureError("EXACT_OFFICIAL_IDENTITY_SET_REQUIRED")
+            for version, process_map in FROZEN_FULL_SCOPE_PROCESS_MAP_V1.items():
+                expected = {(identity, process) for process, identities in process_map.items() for identity in identities}
+                observed = {(p.canonical_identity, p.official_process) for p in self.points if p.dataset_version == version}
+                if observed != expected:
+                    raise DG05ClosureError("FROZEN_OFFICIAL_PROCESS_MAP_REQUIRED")
+            supplemental = dict(self.supplemental_authority_hashes)
+            required_supplemental = {"HAI23_BOILER_GRAPH", "HAI23_DCS_1001H", "HAI23_DCS_1002H", "HAI23_DCS_1003H"}
+            if set(supplemental) != required_supplemental:
+                raise DG05ClosureError("COMPLETE_HAI23_DCS_GRAPH_AUTHORITY_REQUIRED")
+            for value in supplemental.values():
+                _sha(value, "supplemental_authority_hash")
+            schema_hashes = dict(self.official_schema_hashes)
+            for point in self.points:
+                if point.authority_status not in ("MANUAL_EXACT", "OFFICIAL_HEADER_EXACT", "VERIFIED_PUBLIC_GRAPH_ALIAS", "HEADER_ONLY_MANUAL_UNDOCUMENTED"):
+                    raise DG05ClosureError("OFFICIAL_POINT_AUTHORITY_STATUS_REQUIRED")
+                extra = None
+                if point.dataset_version == "23.05" and point.canonical_identity.startswith("x100"):
+                    group = point.canonical_identity.split("_", 1)[0].upper().replace("X", "HAI23_DCS_") + "H"
+                    extra = supplemental.get(group)
+                    if point.authority_status != "VERIFIED_PUBLIC_GRAPH_ALIAS" or extra is None:
+                        raise DG05ClosureError("HAI23_XTAG_DCS_GRAPH_BINDING_REQUIRED")
+                if point.dataset_version == "21.03" and point.canonical_identity == "P2_SIT02":
+                    if point.authority_status != "HEADER_ONLY_MANUAL_UNDOCUMENTED" or point.p1_membership != "UNRESOLVED":
+                        raise DG05ClosureError("HAI21_P2_SIT02_DISCREPANCY_REQUIRED")
+                expected = digest({"manual_hash": self.official_manual_hash, "schema_hash": schema_hashes[point.dataset_version],
+                                   "identity": point.canonical_identity, "process": point.official_process,
+                                   "p1_membership": point.p1_membership, "authority_status": point.authority_status,
+                                   "supplemental_hash": extra})
+                if point.evidence_hash != expected:
+                    raise DG05ClosureError("POINT_OFFICIAL_EVIDENCE_BINDING_MISMATCH")
+        elif self.authority_mode != "SYNTHETIC_REHEARSAL":
+            raise DG05ClosureError("FULL_SCOPE_AUTHORITY_MODE_REQUIRED")
+
+    def classify(self, dataset_version: str, identity: str) -> str:
+        self.validate()
+        point = next((p for p in self.points if (p.dataset_version, p.canonical_identity) == (dataset_version, identity)), None)
+        if point is None or point.p1_membership == "UNRESOLVED":
+            return "UNRESOLVED"
+        return "P1" if point.p1_membership == "YES" else "KNOWN_NON_P1"
+
+
+@dataclass(frozen=True, order=True)
+class DetectorSubauthorityV1:
+    panel_id: str
+    detector_id: str
+    umbrella_authority_hash: str
+    implementation_hash: str
+    feature_order_hash: str
+    fitted_model_hash: str
+    fit_authority_hash: str
+    threshold_authority_hash: str
+    prediction_schema_hash: str
+    environment_hash: str
+    private_container_hash: str | None = None
+    private_container_format: str | None = None
+    model_component_index: int | None = None
+    threshold_component_index: int | None = None
+    model_mapping_key: str | None = None
+    threshold_mapping_key: str | None = None
+    model_type_id: str | None = None
+    scorer_callable_id: str | None = None
+    implementation_relative_path: str | None = None
+
+    def validate(self) -> None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2 or self.detector_id not in ("PCA_SPE", "ISOLATION_FOREST"):
+            raise DG05ClosureError("EXACT_DETECTOR_IDENTITY_REQUIRED")
+        for name in self.__dataclass_fields__:
+            if name not in ("panel_id", "detector_id", "private_container_hash", "private_container_format",
+                            "model_component_index", "threshold_component_index", "model_mapping_key",
+                            "threshold_mapping_key", "model_type_id", "scorer_callable_id", "implementation_relative_path"):
+                _sha(getattr(self, name), name)
+        if self.private_container_hash is not None:
+            _sha(self.private_container_hash, "private_container_hash")
+            if self.private_container_format == "HAI23_DETECTOR_TUPLE_V1":
+                if type(self.model_component_index) is not int or type(self.threshold_component_index) is not int:
+                    raise DG05ClosureError("DETECTOR_COMPONENT_INDEX_REQUIRED")
+                if self.model_component_index == self.threshold_component_index or min(self.model_component_index, self.threshold_component_index) < 0:
+                    raise DG05ClosureError("DISTINCT_DETECTOR_COMPONENTS_REQUIRED")
+                if self.model_mapping_key is not None or self.threshold_mapping_key is not None:
+                    raise DG05ClosureError("TUPLE_DETECTOR_MAPPING_KEYS_PROHIBITED")
+                model_locator: int | str = self.model_component_index
+                threshold_locator: int | str = self.threshold_component_index
+            elif self.private_container_format == "MODEL_THRESHOLD_MAPPING_V1":
+                if (self.model_component_index is not None or self.threshold_component_index is not None
+                        or self.model_mapping_key != "model" or self.threshold_mapping_key != "threshold"):
+                    raise DG05ClosureError("EXTERNAL_DETECTOR_MAPPING_LOCATORS_REQUIRED")
+                model_locator, threshold_locator = self.model_mapping_key, self.threshold_mapping_key
+            else:
+                raise DG05ClosureError("DETECTOR_PRIVATE_CONTAINER_FORMAT_REQUIRED")
+            _id(str(self.model_type_id), "model_type_id")
+            _id(str(self.scorer_callable_id), "scorer_callable_id")
+            if (type(self.implementation_relative_path) is not str
+                    or not self.implementation_relative_path.startswith("src/paperworks/validation_v2/")
+                    or ".." in Path(self.implementation_relative_path).parts):
+                raise DG05ClosureError("DETECTOR_IMPLEMENTATION_PATH_REQUIRED")
+            expected = digest({
+                "schema": "detector_private_component_locator_v1",
+                "private_container_hash": self.private_container_hash,
+                "private_container_format": self.private_container_format,
+                "model_locator": model_locator,
+                "threshold_locator": threshold_locator,
+                "model_type_id": self.model_type_id,
+                "fit_authority_hash": self.fit_authority_hash,
+                "threshold_authority_hash": self.threshold_authority_hash,
+            })
+            if self.fitted_model_hash != expected:
+                raise DG05ClosureError("FITTED_MODEL_COMPONENT_BINDING_MISMATCH")
+
+    def document(self) -> dict[str, str]:
+        return dict(self.__dict__)
+
+
+@dataclass(frozen=True)
+class DetectorSubauthorityRegistryV1:
+    entries: tuple[DetectorSubauthorityV1, ...]
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "detector_subauthority_registry_v1", "entries": [e.document() for e in self.entries], "source_commit": self.source_commit})
+
+    def validate(self) -> None:
+        _git(self.source_commit, "source_commit")
+        if tuple(sorted(self.entries)) != self.entries:
+            raise DG05ClosureError("CANONICAL_DETECTOR_REGISTRY_REQUIRED")
+        keys = {(e.panel_id, e.detector_id) for e in self.entries}
+        if keys != {(p, d) for p in FROZEN_PANEL_ORDER_V2 for d in ("PCA_SPE", "ISOLATION_FOREST")}:
+            raise DG05ClosureError("SIX_DETECTOR_SUBAUTHORITIES_REQUIRED")
+        for e in self.entries:
+            e.validate()
+
+    def lookup(self, panel_id: str, detector_id: str) -> DetectorSubauthorityV1:
+        self.validate()
+        for entry in self.entries:
+            if (entry.panel_id, entry.detector_id) == (panel_id, detector_id):
+                return entry
+        raise DG05ClosureError("DETECTOR_SUBAUTHORITY_NOT_FOUND")
+
+
+@dataclass(frozen=True, order=True)
+class RuleRuntimeSubauthorityV1:
+    panel_id: str
+    portfolio_role: str
+    candidate_portfolio_hash: str
+    portfolio_container_hash: str
+    relation_authority_hash: str
+    numeric_authority_hash: str
+    retained_rule_count: int
+    retained_rule_identity_hash: str
+    formal_v4_semantics_hash: str
+    dg05_runtime_adapter_hash: str
+    runtime_use_authority_hash: str
+    source_commit: str
+
+    def validate(self) -> None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2 or self.portfolio_role not in FROZEN_PORTFOLIO_HASHES_V2[self.panel_id]:
+            raise DG05ClosureError("RULE_RUNTIME_IDENTITY_REQUIRED")
+        if self.candidate_portfolio_hash != FROZEN_PORTFOLIO_HASHES_V2[self.panel_id][self.portfolio_role]:
+            raise DG05ClosureError("RULE_RUNTIME_CANDIDATE_PORTFOLIO_MISMATCH")
+        if type(self.retained_rule_count) is not int or self.retained_rule_count < 1:
+            raise DG05ClosureError("RULE_RUNTIME_NONEMPTY_RULE_COUNT_REQUIRED")
+        for name in ("portfolio_container_hash", "relation_authority_hash", "numeric_authority_hash",
+                     "retained_rule_identity_hash", "formal_v4_semantics_hash", "dg05_runtime_adapter_hash",
+                     "runtime_use_authority_hash"):
+            _sha(getattr(self, name), name)
+        _git(self.source_commit, "source_commit")
+        expected = digest({"schema": "dg05_phase_a_rule_runtime_use_authority_v1",
+            "status": "PENDING_RENEWED_DG05_V2_APPROVAL", "panel_id": self.panel_id,
+            "portfolio_role": self.portfolio_role, "candidate_portfolio_hash": self.candidate_portfolio_hash,
+            "portfolio_container_hash": self.portfolio_container_hash,
+            "relation_authority_hash": self.relation_authority_hash,
+            "numeric_authority_hash": self.numeric_authority_hash,
+            "retained_rule_identity_hash": self.retained_rule_identity_hash,
+            "retained_rule_count": self.retained_rule_count,
+            "formal_v4_semantics_hash": self.formal_v4_semantics_hash,
+            "dg05_runtime_adapter_hash": self.dg05_runtime_adapter_hash,
+            "source_commit": self.source_commit})
+        if self.runtime_use_authority_hash != expected:
+            raise DG05ClosureError("DG05_PHASE_A_RUNTIME_USE_BINDING_MISMATCH")
+
+    def document(self) -> dict[str, Any]:
+        return dict(self.__dict__)
+
+
+@dataclass(frozen=True)
+class RuleRuntimeSubauthorityRegistryV1:
+    entries: tuple[RuleRuntimeSubauthorityV1, ...]
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "rule_runtime_subauthority_registry_v1",
+            "entries": [entry.document() for entry in self.entries], "source_commit": self.source_commit})
+
+    def validate(self) -> None:
+        _git(self.source_commit, "source_commit")
+        if tuple(sorted(self.entries)) != self.entries:
+            raise DG05ClosureError("CANONICAL_RULE_RUNTIME_REGISTRY_REQUIRED")
+        expected = {(panel, role) for panel in FROZEN_PANEL_ORDER_V2 for role in FROZEN_PORTFOLIO_HASHES_V2[panel]}
+        if {(entry.panel_id, entry.portfolio_role) for entry in self.entries} != expected or len(self.entries) != 7:
+            raise DG05ClosureError("SEVEN_RULE_RUNTIME_SUBAUTHORITIES_REQUIRED")
+        for entry in self.entries:
+            entry.validate()
+
+    def lookup(self, panel_id: str, portfolio_role: str) -> RuleRuntimeSubauthorityV1:
+        self.validate()
+        matches = [entry for entry in self.entries if (entry.panel_id, entry.portfolio_role) == (panel_id, portfolio_role)]
+        if len(matches) != 1:
+            raise DG05ClosureError("EXACT_RULE_RUNTIME_SUBAUTHORITY_REQUIRED")
+        return matches[0]
+
+
+@dataclass(frozen=True, order=True)
+class MethodDispatchEntryV1:
+    panel_id: str
+    method_id: str
+    executor_class: str
+    component_hashes: tuple[str, ...]
+    detector_id: str | None = None
+
+    def validate(self) -> None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2:
+            raise DG05ClosureError("UNKNOWN_PANEL")
+        _id(self.method_id, "method_id")
+        if self.executor_class not in ("PCA", "IF", "RULE", "FUSION"):
+            raise DG05ClosureError("EXACT_EXECUTOR_CLASS_REQUIRED")
+        if not self.component_hashes:
+            raise DG05ClosureError("METHOD_COMPONENTS_REQUIRED")
+        for value in self.component_hashes:
+            _sha(value, "component_hash")
+        expected_detector = "PCA_SPE" if self.executor_class == "PCA" or self.method_id.startswith("M3_") or self.method_id.startswith("M4_") or self.method_id.startswith("HISTORICAL_PCA") else None
+        if self.executor_class == "IF" or self.method_id == "ISOLATION_FOREST_PLUS_T2":
+            expected_detector = "ISOLATION_FOREST"
+        if self.detector_id != expected_detector:
+            raise DG05ClosureError("METHOD_SPECIFIC_DETECTOR_BINDING_REQUIRED")
+
+    def document(self) -> dict[str, Any]:
+        return {**self.__dict__, "component_hashes": list(self.component_hashes)}
+
+
+@dataclass(frozen=True)
+class MethodDispatchRegistryV1:
+    entries: tuple[MethodDispatchEntryV1, ...]
+    detector_registry_hash: str
+    method_bundle_hash: str
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "method_dispatch_registry_v1", "entries": [e.document() for e in self.entries], "detector_registry_hash": self.detector_registry_hash, "method_bundle_hash": self.method_bundle_hash, "source_commit": self.source_commit})
+
+    def validate(self) -> None:
+        _git(self.source_commit, "source_commit")
+        _sha(self.detector_registry_hash, "detector_registry_hash")
+        if self.method_bundle_hash != FROZEN_METHOD_BUNDLE_HASH_V2:
+            raise DG05ClosureError("METHOD_BUNDLE_MISMATCH")
+        if tuple(sorted(self.entries)) != self.entries or len({(e.panel_id, e.method_id) for e in self.entries}) != len(self.entries):
+            raise DG05ClosureError("CANONICAL_UNIQUE_DISPATCH_REQUIRED")
+        expected = {(panel, method) for panel, methods in FROZEN_METHOD_IDS_BY_PANEL_V1.items() for method in methods}
+        if {(e.panel_id, e.method_id) for e in self.entries} != expected:
+            raise DG05ClosureError("EXACT_23_METHOD_DISPATCH_MATRIX_REQUIRED")
+        for e in self.entries:
+            e.validate()
+
+    def lookup(self, panel_id: str, method_id: str) -> MethodDispatchEntryV1:
+        self.validate()
+        matches = [e for e in self.entries if (e.panel_id, e.method_id) == (panel_id, method_id)]
+        if len(matches) != 1:
+            raise DG05ClosureError("EXACT_METHOD_DISPATCH_REQUIRED")
+        return matches[0]
+
+
+@dataclass(frozen=True)
+class DG05ExecutableAuthorityManifestV1:
+    scientific_authorities: tuple[tuple[str, str], ...]
+    detector_registry_hash: str
+    dispatch_registry_hash: str
+    rule_runtime_registry_hash: str
+    rule_portfolio_authority_hashes: tuple[str, ...]
+    full_process_scope_hash: str
+    p1_custodian_v3_hash: str
+    implementation_hashes: tuple[tuple[str, str], ...]
+    nested_authority_replay_bundle_hash: str
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({
+            "schema": "dg05_executable_authority_manifest_v1",
+            "scientific_authorities": {k: v for k, v in self.scientific_authorities},
+            "detector_registry_hash": self.detector_registry_hash,
+            "dispatch_registry_hash": self.dispatch_registry_hash,
+            "rule_runtime_registry_hash": self.rule_runtime_registry_hash,
+            "rule_portfolio_authority_hashes": list(self.rule_portfolio_authority_hashes),
+            "full_process_scope_hash": self.full_process_scope_hash,
+            "p1_custodian_v3_hash": self.p1_custodian_v3_hash,
+            "implementation_hashes": {k: v for k, v in self.implementation_hashes},
+            "nested_authority_replay_bundle_hash": self.nested_authority_replay_bundle_hash,
+            "source_commit": self.source_commit,
+        })
+
+    def validate(self) -> None:
+        if dict(self.scientific_authorities) != FROZEN_SCIENTIFIC_AUTHORITIES_V1:
+            raise DG05ClosureError("FROZEN_SCIENTIFIC_AUTHORITY_MISMATCH")
+        required_impl = {
+            "state_machine", "projection_adapter", "prediction_adapter", "timestamp_builder",
+            "scenario_builder", "denominator_builder", "global_manifest_builder", "global_freeze_builder",
+            "label_custodian", "result_builder", "result_verifier", "fusion_runtime",
+        }
+        if {k for k, _ in self.implementation_hashes} != required_impl:
+            raise DG05ClosureError("COMPLETE_EXECUTABLE_IMPLEMENTATION_BINDING_REQUIRED")
+        for value in (self.detector_registry_hash, self.dispatch_registry_hash, self.rule_runtime_registry_hash, self.full_process_scope_hash,
+                      self.p1_custodian_v3_hash, self.nested_authority_replay_bundle_hash,
+                      *self.rule_portfolio_authority_hashes, *(v for _, v in self.implementation_hashes)):
+            _sha(value, "manifest_authority_hash")
+        _git(self.source_commit, "source_commit")
+
+    def required_nested_hashes(self) -> dict[str, str]:
+        values = {f"scientific:{key}": value for key, value in self.scientific_authorities}
+        values.update({
+            "detector_registry": self.detector_registry_hash,
+            "dispatch_registry": self.dispatch_registry_hash,
+            "rule_runtime_registry": self.rule_runtime_registry_hash,
+            "full_process_scope": self.full_process_scope_hash,
+            "p1_custodian_v3": self.p1_custodian_v3_hash,
+        })
+        values.update({f"portfolio:{index:02d}": value for index, value in enumerate(self.rule_portfolio_authority_hashes)})
+        values.update({f"implementation:{key}": value for key, value in self.implementation_hashes})
+        return values
+
+
+@dataclass(frozen=True, order=True)
+class PersistedAuthorityRefV1:
+    """Runtime path plus frozen public identity; the path is never serialized."""
+
+    logical_name: str
+    expected_authority_hash: str
+    artifact_byte_hash: str
+    expected_schema: str | None
+    authority_field: str | None
+    artifact_path: Path
+
+    def document(self) -> dict[str, Any]:
+        return {
+            "logical_name": self.logical_name,
+            "expected_authority_hash": self.expected_authority_hash,
+            "artifact_byte_hash": self.artifact_byte_hash,
+            "expected_schema": self.expected_schema,
+            "authority_field": self.authority_field,
+        }
+
+    def replay(self) -> None:
+        _id(self.logical_name.replace("implementation:", "implementation-", 1).replace("scientific:", "scientific-", 1).replace("portfolio:", "portfolio-", 1), "logical_name")
+        _sha(self.expected_authority_hash, "expected_authority_hash")
+        _sha(self.artifact_byte_hash, "artifact_byte_hash")
+        if not self.artifact_path.is_file() or self.artifact_path.is_symlink() or file_sha256(self.artifact_path) != self.artifact_byte_hash:
+            raise DG05ClosureError("NESTED_AUTHORITY_BYTE_REPLAY_MISMATCH")
+        if self.expected_schema is None:
+            if self.authority_field is not None or self.expected_authority_hash != self.artifact_byte_hash:
+                raise DG05ClosureError("IMPLEMENTATION_BYTE_AUTHORITY_MISMATCH")
+            return
+        raw = self.artifact_path.read_bytes()
+        try:
+            value = json.loads(raw.decode("ascii"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise DG05ClosureError("NESTED_AUTHORITY_JSON_REQUIRED") from exc
+        if type(value) is not dict or value.get("schema") != self.expected_schema:
+            # Some older frozen Formal V4 authorities use artifact_type rather
+            # than schema; this exact field is itself frozen in the replay ref.
+            if type(value) is not dict or value.get("artifact_type") != self.expected_schema:
+                raise DG05ClosureError("NESTED_AUTHORITY_SCHEMA_MISMATCH")
+        if self.authority_field is None or "self_hash" in value:
+            validate_self_hashed(value)
+        observed_authority = value.get(self.authority_field or "self_hash")
+        if observed_authority != self.expected_authority_hash or raw != canonical_bytes(value) + b"\n":
+            raise DG05ClosureError("NESTED_AUTHORITY_CONTENT_REPLAY_MISMATCH")
+
+
+@dataclass(frozen=True)
+class NestedAuthorityReplayBundleV1:
+    entries: tuple[PersistedAuthorityRefV1, ...]
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({
+            "schema": "dg05_nested_authority_replay_bundle_v1",
+            "entries": [entry.document() for entry in self.entries],
+            "source_commit": self.source_commit,
+        })
+
+    def validate(self, *, expected_hashes: Mapping[str, str]) -> None:
+        _git(self.source_commit, "source_commit")
+        if tuple(sorted(self.entries)) != self.entries or len({entry.logical_name for entry in self.entries}) != len(self.entries):
+            raise DG05ClosureError("CANONICAL_UNIQUE_NESTED_AUTHORITY_REFS_REQUIRED")
+        observed = {entry.logical_name: entry.expected_authority_hash for entry in self.entries}
+        if observed != dict(expected_hashes):
+            raise DG05ClosureError("COMPLETE_NESTED_AUTHORITY_SET_REQUIRED")
+        for entry in self.entries:
+            entry.replay()
+
+
+STATE_ORDER_V3 = (
+    "APPROVED_EXECUTION_INITIALIZED",
+    "ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED",
+    "ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED",
+    "PREDICTIONS_IN_PROGRESS_LABEL_LOCKED",
+    "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED",
+    "LABEL_SCENARIO_LEASE_OPEN",
+    "SCENARIO_AUTHORITY_FROZEN",
+    "DENOMINATOR_AUTHORITY_FROZEN",
+    "RESULTS_COMPUTED",
+    "RESULT_INTEGRITY_AUDITED",
+)
+
+STATE_EVIDENCE_POLICY_V1 = {
+    "ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED": ("PHYSICAL_FILE_AUTHORITY", 10),
+    "ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED": ("PROJECTION_CENSUS", 10),
+    "PREDICTIONS_IN_PROGRESS_LABEL_LOCKED": ("EXECUTION_START", 1),
+    "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED": ("GLOBAL_FREEZE", 72),
+    "LABEL_SCENARIO_LEASE_OPEN": ("LEASE_ISSUE", 1),
+    "SCENARIO_AUTHORITY_FROZEN": ("SCENARIO_AUTHORITY", 146),
+    "DENOMINATOR_AUTHORITY_FROZEN": ("DENOMINATOR_AUTHORITY", 146),
+    "RESULTS_COMPUTED": ("RESULT_AUTHORITY_BUNDLE", 23),
+    "RESULT_INTEGRITY_AUDITED": ("RESULT_INTEGRITY_QA", 23),
+}
+
+STATE_EVIDENCE_SCHEMA_V1 = {
+    "ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED": "multipanel_physical_attack_file_authority_v2",
+    "ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED": "dg05_feature_projection_census_v1",
+    "PREDICTIONS_IN_PROGRESS_LABEL_LOCKED": "dg05_prediction_execution_start_v1",
+    "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED": "global_prediction_freeze_v3",
+    "LABEL_SCENARIO_LEASE_OPEN": "single_use_label_scenario_lease_v3",
+    "SCENARIO_AUTHORITY_FROZEN": "frozen_scenario_authority_v1",
+    "DENOMINATOR_AUTHORITY_FROZEN": "denominator_authority_v1",
+    "RESULTS_COMPUTED": "result_authority_bundle_v1",
+    "RESULT_INTEGRITY_AUDITED": "dg05_result_integrity_qa_v1",
+}
+
+
+def _validate_transition_document_v1(state: str, document: Mapping[str, Any], item_count: int) -> None:
+    """Validate the exact state-specific authority, not merely a self hash."""
+    expected_schema = STATE_EVIDENCE_SCHEMA_V1[state]
+    if document.get("schema") != expected_schema:
+        raise DG05ClosureError("STATE_EVIDENCE_SCHEMA_MISMATCH")
+    if state == "ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED":
+        if len(document.get("files", ())) != item_count:
+            raise DG05ClosureError("PHYSICAL_FILE_AUTHORITY_CENSUS_MISMATCH")
+        for row in document["files"]:
+            if set(row) != {"panel_id", "file_id", "raw_container_hash", "header_hash", "official_source_hash"}:
+                raise DG05ClosureError("PHYSICAL_FILE_AUTHORITY_SCHEMA_MISMATCH")
+    elif state == "ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED":
+        if document.get("count") != item_count or len(document.get("projection_authority_hashes", ())) != item_count:
+            raise DG05ClosureError("PROJECTION_CENSUS_MISMATCH")
+    elif state == "PREDICTIONS_IN_PROGRESS_LABEL_LOCKED":
+        if document.get("start_count") != 1 or document.get("label_access_allowed") is not False:
+            raise DG05ClosureError("PREDICTION_START_PRECONDITION_MISMATCH")
+    elif state == "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED":
+        required = {"manifest_hash", "census_hash", "predecessor_state_hash", "executable_approval_manifest_hash"}
+        if document.get("status") != state or not required.issubset(document):
+            raise DG05ClosureError("GLOBAL_FREEZE_AUTHORITY_INCOMPLETE")
+        for key in required:
+            _sha(document[key], key)
+    elif state == "LABEL_SCENARIO_LEASE_OPEN":
+        if document.get("issue_count") != 1 or document.get("consume_limit") != 1:
+            raise DG05ClosureError("SINGLE_USE_LEASE_REQUIRED")
+    elif state == "SCENARIO_AUTHORITY_FROZEN":
+        if sum(document.get("nominal_counts", {}).values()) != item_count or len(document.get("records", ())) != item_count:
+            raise DG05ClosureError("SCENARIO_AUTHORITY_CENSUS_MISMATCH")
+    elif state == "DENOMINATOR_AUTHORITY_FROZEN":
+        if len(document.get("records", ())) != item_count or document.get("prediction_inputs") is not False:
+            raise DG05ClosureError("DENOMINATOR_AUTHORITY_CENSUS_MISMATCH")
+    elif state == "RESULTS_COMPUTED":
+        if len(document.get("artifacts", ())) != item_count or document.get("cross_version_pooled_result") is not False:
+            raise DG05ClosureError("RESULT_AUTHORITY_BUNDLE_CENSUS_MISMATCH")
+    elif state == "RESULT_INTEGRITY_AUDITED":
+        if document.get("status") != "PASS" or document.get("result_authority_count") != item_count:
+            raise DG05ClosureError("RESULT_INTEGRITY_QA_REQUIRED")
+
+
+@dataclass(frozen=True)
+class StateTransitionEvidenceV1:
+    kind: str
+    authority_hash: str
+    item_count: int
+    authority_document: Mapping[str, Any]
+    artifact_path: Path
+    artifact_byte_hash: str
+    transition_binding_document: Mapping[str, Any]
+    transition_binding_path: Path
+    transition_binding_byte_hash: str
+
+    def validate_for(self, state: str, *, current_state: Mapping[str, Any],
+                     executable_manifest_hash: str, source_commit: str) -> None:
+        _sha(self.authority_hash, "transition_authority_hash")
+        if STATE_EVIDENCE_POLICY_V1.get(state) != (self.kind, self.item_count):
+            raise DG05ClosureError("STATE_SPECIFIC_TYPED_EVIDENCE_REQUIRED")
+        validate_self_hashed(self.authority_document)
+        if self.authority_document["self_hash"] != self.authority_hash:
+            raise DG05ClosureError("TRANSITION_ARTIFACT_REPLAY_REQUIRED")
+        _sha(self.artifact_byte_hash, "transition_artifact_byte_hash")
+        if (not self.artifact_path.is_file() or self.artifact_path.is_symlink()
+                or file_sha256(self.artifact_path) != self.artifact_byte_hash
+                or self.artifact_path.read_bytes() != canonical_bytes(dict(self.authority_document)) + b"\n"):
+            raise DG05ClosureError("TRANSITION_ARTIFACT_BYTE_REPLAY_REQUIRED")
+        _validate_transition_document_v1(state, self.authority_document, self.item_count)
+        for key in ("executable_approval_manifest_hash", "executable_manifest_hash"):
+            if key in self.authority_document and self.authority_document[key] != executable_manifest_hash:
+                raise DG05ClosureError("TRANSITION_AUTHORITY_MANIFEST_BINDING_MISMATCH")
+        if ("predecessor_state_hash" in self.authority_document
+                and self.authority_document["predecessor_state_hash"] != current_state["self_hash"]):
+            raise DG05ClosureError("TRANSITION_AUTHORITY_PREDECESSOR_BINDING_MISMATCH")
+        if "execution_id" in self.authority_document and self.authority_document["execution_id"] != current_state["execution_id"]:
+            raise DG05ClosureError("TRANSITION_AUTHORITY_EXECUTION_BINDING_MISMATCH")
+        if ("dg05_execution_source_commit" in self.authority_document
+                and self.authority_document["dg05_execution_source_commit"] != source_commit):
+            raise DG05ClosureError("TRANSITION_AUTHORITY_SOURCE_BINDING_MISMATCH")
+        validate_self_hashed(self.transition_binding_document)
+        expected_binding = {
+            "schema": "dg05_state_transition_binding_v1",
+            "next_state": state,
+            "evidence_kind": self.kind,
+            "evidence_authority_hash": self.authority_hash,
+            "evidence_artifact_byte_hash": self.artifact_byte_hash,
+            "evidence_item_count": self.item_count,
+            "predecessor_state_hash": current_state["self_hash"],
+            "executable_approval_manifest_hash": executable_manifest_hash,
+            "execution_id": current_state["execution_id"],
+            "source_commit": source_commit,
+        }
+        if {k: v for k, v in self.transition_binding_document.items() if k != "self_hash"} != expected_binding:
+            raise DG05ClosureError("STATE_TRANSITION_CONTEXT_BINDING_MISMATCH")
+        _sha(self.transition_binding_byte_hash, "transition_binding_byte_hash")
+        if (not self.transition_binding_path.is_file() or self.transition_binding_path.is_symlink()
+                or file_sha256(self.transition_binding_path) != self.transition_binding_byte_hash
+                or self.transition_binding_path.read_bytes() != canonical_bytes(dict(self.transition_binding_document)) + b"\n"):
+            raise DG05ClosureError("STATE_TRANSITION_BINDING_BYTE_REPLAY_REQUIRED")
+
+
+def initialize_dg05_execution_v1(manifest: DG05ExecutableAuthorityManifestV1, *, approved_manifest_hash: str,
+                                 execution_id: str, manifest_artifact_path: Path,
+                                 nested_authority_replay: NestedAuthorityReplayBundleV1) -> dict[str, Any]:
+    if type(manifest) is not DG05ExecutableAuthorityManifestV1:
+        raise DG05ClosureError("TYPED_EXECUTABLE_MANIFEST_REQUIRED")
+    manifest.validate()
+    actual = manifest.document()["self_hash"]
+    if approved_manifest_hash != actual:
+        raise DG05ClosureError("EXACT_APPROVED_MANIFEST_HASH_REQUIRED")
+    if (not manifest_artifact_path.is_file() or manifest_artifact_path.is_symlink()
+            or manifest_artifact_path.read_bytes() != canonical_bytes(manifest.document()) + b"\n"):
+        raise DG05ClosureError("EXECUTABLE_MANIFEST_BYTE_REPLAY_REQUIRED")
+    if type(nested_authority_replay) is not NestedAuthorityReplayBundleV1:
+        raise DG05ClosureError("TYPED_NESTED_AUTHORITY_REPLAY_REQUIRED")
+    nested_authority_replay.validate(expected_hashes=manifest.required_nested_hashes())
+    if nested_authority_replay.document()["self_hash"] != manifest.nested_authority_replay_bundle_hash:
+        raise DG05ClosureError("APPROVED_NESTED_AUTHORITY_BUNDLE_REQUIRED")
+    _id(execution_id, "execution_id")
+    return self_hashed({"schema": "dg05_execution_state_v3", "state": STATE_ORDER_V3[0], "previous_state_hash": None, "executable_approval_manifest_hash": actual, "execution_id": execution_id, "source_commit": manifest.source_commit, "evidence_hashes": []})
+
+
+def advance_dg05_state_v1(current: Mapping[str, Any], manifest: DG05ExecutableAuthorityManifestV1, *, next_state: str, evidence: StateTransitionEvidenceV1) -> dict[str, Any]:
+    validate_self_hashed(current)
+    manifest.validate()
+    manifest_hash = manifest.document()["self_hash"]
+    if current.get("executable_approval_manifest_hash") != manifest_hash:
+        raise DG05ClosureError("MANIFEST_REPLACEMENT_PROHIBITED")
+    try:
+        index = STATE_ORDER_V3.index(str(current["state"]))
+    except (ValueError, KeyError) as exc:
+        raise DG05ClosureError("INVALID_STATE") from exc
+    if index + 1 >= len(STATE_ORDER_V3) or STATE_ORDER_V3[index + 1] != next_state:
+        raise DG05ClosureError("NON_ADJACENT_STATE_TRANSITION")
+    if type(evidence) is not StateTransitionEvidenceV1:
+        raise DG05ClosureError("TYPED_TRANSITION_EVIDENCE_REQUIRED")
+    evidence.validate_for(next_state, current_state=current,
+                          executable_manifest_hash=manifest_hash, source_commit=manifest.source_commit)
+    return self_hashed({"schema": "dg05_execution_state_v3", "state": next_state, "previous_state_hash": current["self_hash"], "executable_approval_manifest_hash": manifest_hash, "execution_id": current["execution_id"], "source_commit": manifest.source_commit, "evidence": {"kind": evidence.kind, "authority_hash": evidence.authority_hash, "item_count": evidence.item_count, "authority_schema": evidence.authority_document.get("schema"), "transition_binding_hash": evidence.transition_binding_document["self_hash"]}})
+
+
+def persist_state_receipt_v1(directory: Path, state: Mapping[str, Any]) -> str:
+    validate_self_hashed(state)
+    _id(str(state["execution_id"]), "execution_id")
+    sequence = STATE_ORDER_V3.index(str(state["state"]))
+    return publish_new(directory / f"{sequence:02d}-{state['state']}.json", canonical_bytes(dict(state)) + b"\n")
+
+
+@dataclass(frozen=True)
+class TimestampCoordinateAuthorityV1:
+    panel_id: str
+    dataset_version: str
+    file_id: str
+    physical_file_authority_hash: str
+    projection_hash: str
+    timestamp_id: str
+    row_count: int
+    timestamp_vector_hash: str
+    canonical_representation: str
+    timezone_contract: str
+    monotonicity_contract: str
+    duplicate_policy: str
+    parser_implementation_hash: str
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "timestamp_coordinate_authority_v1", **self.__dict__})
+
+    def validate(self) -> None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2 or self.row_count <= 0:
+            raise DG05ClosureError("INVALID_TIMESTAMP_AUTHORITY")
+        if self.dataset_version != FROZEN_DATASET_VERSION_BY_PANEL_V1[self.panel_id]:
+            raise DG05ClosureError("TIMESTAMP_PANEL_VERSION_MISMATCH")
+        for name in ("physical_file_authority_hash", "projection_hash", "timestamp_vector_hash", "parser_implementation_hash"):
+            _sha(getattr(self, name), name)
+        _git(self.source_commit, "source_commit")
+        if self.canonical_representation != "UTF8_ISO8601_BYTES" or self.monotonicity_contract != "STRICT_FILE_ORDER":
+            raise DG05ClosureError("FROZEN_TIMESTAMP_CONTRACT_REQUIRED")
+
+
+@dataclass(frozen=True)
+class FeatureProjectionAuthorityV1:
+    panel_id: str
+    dataset_version: str
+    file_id: str
+    raw_physical_file_hash: str
+    header_hash: str
+    allowlist_authority_hash: str
+    timestamp_authority_hash: str
+    feature_order_hash: str
+    row_count: int
+    projection_hash: str
+    adapter_implementation_hash: str
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "feature_only_projection_authority_v1", **self.__dict__, "label_values_parsed": False, "scenario_values_parsed": False})
+
+    def validate(self) -> None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2 or self.row_count <= 0:
+            raise DG05ClosureError("INVALID_FEATURE_PROJECTION_AUTHORITY")
+        if self.dataset_version != FROZEN_DATASET_VERSION_BY_PANEL_V1[self.panel_id]:
+            raise DG05ClosureError("PROJECTION_PANEL_VERSION_MISMATCH")
+        for name in ("raw_physical_file_hash", "header_hash", "allowlist_authority_hash", "timestamp_authority_hash",
+                     "feature_order_hash", "projection_hash", "adapter_implementation_hash"):
+            _sha(getattr(self, name), name)
+        _git(self.source_commit, "source_commit")
+
+
+def project_attack_feature_file_v1(*, source: Path, destination: Path, physical_file: PhysicalFileIdentityV2,
+                                   panel_authority: FrozenFeatureAllowlistAuthorityV2, file_id: str,
+                                   adapter_implementation_hash: str, source_commit: str) -> tuple[FeatureProjectionAuthorityV1, TimestampCoordinateAuthorityV1]:
+    """Production positive-allowlist adapter; excluded values stay opaque bytes."""
+    panel_authority.validate()
+    if type(physical_file) is not PhysicalFileIdentityV2:
+        raise DG05ClosureError("TYPED_PHYSICAL_FILE_IDENTITY_REQUIRED")
+    physical_file.validate()
+    _sha(adapter_implementation_hash, "adapter_implementation_hash")
+    _git(source_commit, "source_commit")
+    if (physical_file.panel_id, physical_file.file_id) != (panel_authority.panel_id, file_id):
+        raise DG05ClosureError("PHYSICAL_FILE_PANEL_IDENTITY_MISMATCH")
+    if file_sha256(source) != physical_file.raw_container_hash:
+        raise DG05ClosureError("RAW_CONTAINER_HASH_REPLAY_MISMATCH")
+    if source.is_symlink() or destination.exists():
+        raise DG05ClosureError("SAFE_NEW_PROJECTION_PATH_REQUIRED")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    partial = destination.with_name(f".{destination.name}.{secrets.token_hex(8)}.partial")
+    try:
+        with source.open("rb") as incoming:
+            header, delimiter = csv_schema(incoming)
+            selected = (panel_authority.timestamp_id, *panel_authority.feature_ids)
+            if any(name not in header for name in selected):
+                raise DG05ClosureError("ALLOWLISTED_FIELD_ABSENT")
+            indices = tuple(header.index(name) for name in selected)
+            if len(set(indices)) != len(indices):
+                raise DG05ClosureError("ALLOWLIST_INDEX_COLLISION")
+            header_hash = digest(header)
+            if header_hash != physical_file.header_hash:
+                raise DG05ClosureError("PHYSICAL_FILE_HEADER_HASH_MISMATCH")
+            projection_hasher = sha256()
+            timestamp_hasher = sha256()
+            count = 0
+            previous: datetime | None = None
+            with partial.open("xb") as outgoing:
+                first = canonical_bytes(list(selected)) + b"\n"
+                outgoing.write(first)
+                projection_hasher.update(first)
+                for fields in selected_rows(incoming, delimiter, len(header), indices):
+                    timestamp = fields[0].decode("utf-8")
+                    current = datetime.fromisoformat(timestamp)
+                    if previous is not None and current < previous:
+                        raise DG05ClosureError("TIMESTAMP_ORDER_VIOLATION")
+                    previous = current
+                    numbers = [float(item.decode("ascii")) for item in fields[1:]]
+                    if not all(math.isfinite(v) for v in numbers):
+                        raise DG05ClosureError("NONFINITE_APPROVED_FEATURE")
+                    record = canonical_bytes([timestamp, *numbers]) + b"\n"
+                    outgoing.write(record)
+                    projection_hasher.update(record)
+                    timestamp_hasher.update(timestamp.encode("utf-8") + b"\n")
+                    count += 1
+                if count <= 0:
+                    raise DG05ClosureError("EMPTY_FEATURE_PROJECTION")
+                outgoing.flush()
+                os.fsync(outgoing.fileno())
+        os.link(partial, destination)
+    finally:
+        if partial.exists():
+            partial.unlink()
+    projection_hash = file_sha256(destination)
+    if projection_hash != projection_hasher.hexdigest():
+        raise DG05ClosureError("PROJECTION_REPLAY_MISMATCH")
+    feature_order_hash = digest(list(panel_authority.feature_ids))
+    timestamp = TimestampCoordinateAuthorityV1(panel_authority.panel_id, panel_authority.dataset_version, file_id,
+        digest(physical_file.document()), projection_hash, panel_authority.timestamp_id, count, timestamp_hasher.hexdigest(),
+        "UTF8_ISO8601_BYTES", "NAIVE_AS_RECORDED_NO_CONVERSION", "STRICT_FILE_ORDER", "PRESERVE_DUPLICATES_IN_ROW_ORDER",
+        adapter_implementation_hash, source_commit)
+    timestamp.validate()
+    projection = FeatureProjectionAuthorityV1(panel_authority.panel_id, panel_authority.dataset_version, file_id,
+        digest(physical_file.document()), header_hash, panel_authority.document()["self_hash"], timestamp.document()["self_hash"],
+        feature_order_hash, count, projection_hash, adapter_implementation_hash, source_commit)
+    projection.validate()
+    return projection, timestamp
+
+
+@dataclass(frozen=True, order=True)
+class ExpectedPredictionCellV1:
+    panel_id: str
+    file_id: str
+    method_id: str
+    dispatch_authority_hash: str
+
+    @property
+    def cell_id(self) -> str:
+        return digest(self.document())
+
+    def document(self) -> dict[str, str]:
+        return dict(self.__dict__)
+
+
+def build_expected_prediction_cell_census_v1(*, physical: FrozenPhysicalFileAuthorityV2,
+                                             dispatch: MethodDispatchRegistryV1) -> dict[str, Any]:
+    physical.validate()
+    dispatch.validate()
+    registry_hash = dispatch.document()["self_hash"]
+    entries = []
+    order = {p: i for i, p in enumerate(FROZEN_PANEL_ORDER_V2)}
+    method_order = {(e.panel_id, e.method_id): i for i, e in enumerate(dispatch.entries)}
+    for item in physical.files:
+        for entry in dispatch.entries:
+            if entry.panel_id == item.panel_id:
+                entries.append(ExpectedPredictionCellV1(item.panel_id, item.file_id, entry.method_id, registry_hash))
+    entries.sort(key=lambda c: (order[c.panel_id], tuple(f.file_id for f in physical.files if f.panel_id == c.panel_id).index(c.file_id), method_order[(c.panel_id, c.method_id)]))
+    if len({c.cell_id for c in entries}) != len(entries):
+        raise DG05ClosureError("DUPLICATE_EXPECTED_CELL")
+    return self_hashed({"schema": "expected_prediction_cell_census_builder_v1", "physical_file_authority_hash": physical.document()["self_hash"], "dispatch_registry_hash": registry_hash, "cells": [{**c.document(), "cell_id": c.cell_id} for c in entries], "count": len(entries)})
+
+
+@dataclass(frozen=True)
+class PredictionTerminalReceiptV1:
+    cell_id: str
+    panel_id: str
+    file_id: str
+    method_id: str
+    method_authority_hash: str
+    physical_file_authority_hash: str
+    projection_hash: str
+    timestamp_authority_hash: str
+    row_count: int
+    prediction_artifact_hash: str | None
+    trace_artifact_hash: str | None
+    trace_status: str
+    status: str
+    failure_code: str | None
+    prediction_schema_hash: str
+    executable_manifest_hash: str
+    source_commit: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "prediction_terminal_receipt_v1", **self.__dict__})
+
+    def validate(self) -> None:
+        if self.status not in ("SUCCESS", "METHOD_FAILURE"):
+            raise DG05ClosureError("TERMINAL_STATUS_REQUIRED")
+        if self.status == "SUCCESS" and (self.prediction_artifact_hash is None or self.row_count <= 0 or self.failure_code is not None):
+            raise DG05ClosureError("INVALID_SUCCESS_RECEIPT")
+        if self.status == "METHOD_FAILURE" and (self.prediction_artifact_hash is not None or self.failure_code is None):
+            raise DG05ClosureError("FAILURE_MUST_NOT_INVENT_PREDICTION")
+        if self.status == "METHOD_FAILURE" and (self.trace_status != "NOT_APPLICABLE" or self.trace_artifact_hash is not None):
+            raise DG05ClosureError("FAILURE_MUST_NOT_INVENT_TRACE")
+        if self.trace_status not in ("BOUND", "NOT_APPLICABLE"):
+            raise DG05ClosureError("TRACE_STATUS_REQUIRED")
+        if self.trace_status == "BOUND" and self.trace_artifact_hash is None:
+            raise DG05ClosureError("RULE_TRACE_REQUIRED")
+        for name in ("cell_id", "method_authority_hash", "physical_file_authority_hash", "projection_hash", "timestamp_authority_hash", "prediction_schema_hash", "executable_manifest_hash"):
+            _sha(getattr(self, name), name)
+        for name in ("prediction_artifact_hash", "trace_artifact_hash"):
+            if getattr(self, name) is not None:
+                _sha(getattr(self, name), name)
+        _git(self.source_commit, "source_commit")
+
+
+_METHOD_RUNTIME_BINDING_V1: dict[str, tuple[str | None, str | None]] = {
+    "M0_PCA_SPE": ("PCA_SPE", None),
+    "M1_T0_RULE_ONLY": (None, "T0"),
+    "M2_T2_RULE_ONLY": (None, "T2"),
+    "M3_PCA_PLUS_T0": ("PCA_SPE", "T0"),
+    "M4_PCA_PLUS_T2": ("PCA_SPE", "T2"),
+    "ISOLATION_FOREST": ("ISOLATION_FOREST", None),
+    "ISOLATION_FOREST_PLUS_T2": ("ISOLATION_FOREST", "T2"),
+    "V2A_RULE_ONLY_REFERENCE": (None, "V2A"),
+    "HISTORICAL_PCA_PLUS_V2A_CONTINUITY": ("PCA_SPE", "V2A"),
+}
+
+
+@dataclass(frozen=True, order=True)
+class PrivateDetectorAssetV1:
+    panel_id: str
+    detector_id: str
+    container_format: str
+    container_path: Path
+    container_byte_hash: str
+
+    def validate(self, authority: DetectorSubauthorityV1) -> None:
+        if (self.panel_id, self.detector_id) != (authority.panel_id, authority.detector_id):
+            raise DG05ClosureError("DETECTOR_ASSET_CROSS_BINDING")
+        if self.container_format not in ("HAI23_DETECTOR_TUPLE_V1", "MODEL_THRESHOLD_MAPPING_V1"):
+            raise DG05ClosureError("DETECTOR_CONTAINER_FORMAT_REQUIRED")
+        _sha(self.container_byte_hash, "container_byte_hash")
+        if (not self.container_path.is_file() or self.container_path.is_symlink()
+                or file_sha256(self.container_path) != self.container_byte_hash
+                or self.container_byte_hash != authority.private_container_hash):
+            raise DG05ClosureError("DETECTOR_PRIVATE_CONTAINER_REPLAY_MISMATCH")
+        expected_format = "HAI23_DETECTOR_TUPLE_V1" if authority.panel_id == FROZEN_PANEL_ORDER_V2[0] else "MODEL_THRESHOLD_MAPPING_V1"
+        if self.container_format != expected_format or authority.private_container_format != expected_format:
+            raise DG05ClosureError("DETECTOR_PRIVATE_CONTAINER_FORMAT_MISMATCH")
+
+
+@dataclass(frozen=True, order=True)
+class PrivateRuleRuntimeAssetV1:
+    panel_id: str
+    portfolio_role: str
+    portfolio_container_path: Path
+    relation_authority_path: Path
+    numeric_authority_path: Path
+
+    def validate(self, authority: RuleRuntimeSubauthorityV1) -> None:
+        if (self.panel_id, self.portfolio_role) != (authority.panel_id, authority.portfolio_role):
+            raise DG05ClosureError("RULE_RUNTIME_ASSET_CROSS_BINDING")
+        for path, expected in ((self.portfolio_container_path, authority.portfolio_container_hash),
+                               (self.relation_authority_path, authority.relation_authority_hash),
+                               (self.numeric_authority_path, authority.numeric_authority_hash)):
+            if not path.is_file() or path.is_symlink() or file_sha256(path) != expected:
+                raise DG05ClosureError("RULE_RUNTIME_PRIVATE_ASSET_REPLAY_MISMATCH")
+
+
+def _score_hai23_pca_spe_v1(model: Any, matrix: Any) -> Any:
+    """Exact frozen HAI23 PCA-SPE scoring expression, now a bound callable."""
+    import numpy as np
+    z = (matrix - model.mean) / model.scale
+    residual = z - (z @ model.retained_loadings) @ model.retained_loadings.T
+    return np.sum(residual * residual, axis=1)
+
+
+def _score_hai23_isolation_forest_v1(model: Any, matrix: Any) -> Any:
+    """Exact frozen HAI23 IF anomaly-score orientation."""
+    return -model.estimator.score_samples(matrix)
+
+
+def fuse_dense_masks_v1(detector_mask: Sequence[bool], fail_sources_by_row: Mapping[str, Sequence[str]]) -> tuple[bool, ...]:
+    """Frozen Fusion: preserve detector alarms and require two Rule sources for additions."""
+    return tuple(bool(base or len(set(fail_sources_by_row.get(str(index), ()))) >= 2)
+                 for index, base in enumerate(detector_mask))
+
+
+@dataclass(frozen=True)
+class DG05ProductionExecutorV1:
+    """Closed method assembly. No caller-provided function is accepted."""
+
+    executable_manifest_hash: str
+    detector_registry: DetectorSubauthorityRegistryV1
+    dispatch_registry: MethodDispatchRegistryV1
+    rule_runtime_registry: RuleRuntimeSubauthorityRegistryV1 | None
+    authority_mode: str
+    detector_assets: tuple[PrivateDetectorAssetV1, ...] = ()
+    rule_assets: tuple[PrivateRuleRuntimeAssetV1, ...] = ()
+    fusion_implementation_hash: str = ""
+    adapter_implementation_hash: str = ""
+    repository_root: Path | None = None
+    synthetic_failure_cell_ids: tuple[str, ...] = ()
+    executable_manifest: DG05ExecutableAuthorityManifestV1 | None = None
+
+    def validate(self) -> None:
+        _sha(self.executable_manifest_hash, "executable_manifest_hash")
+        if self.executable_manifest is None:
+            raise DG05ClosureError("EXECUTOR_TYPED_MANIFEST_REQUIRED")
+        self.executable_manifest.validate()
+        if self.executable_manifest.document()["self_hash"] != self.executable_manifest_hash:
+            raise DG05ClosureError("EXECUTOR_MANIFEST_HASH_MISMATCH")
+        self.detector_registry.validate(); self.dispatch_registry.validate()
+        if self.rule_runtime_registry is None:
+            raise DG05ClosureError("EXECUTOR_TYPED_RULE_RUNTIME_REGISTRY_REQUIRED")
+        self.rule_runtime_registry.validate()
+        if self.executable_manifest.detector_registry_hash != self.detector_registry.document()["self_hash"]:
+            raise DG05ClosureError("EXECUTOR_DETECTOR_REGISTRY_MANIFEST_MISMATCH")
+        if self.executable_manifest.dispatch_registry_hash != self.dispatch_registry.document()["self_hash"]:
+            raise DG05ClosureError("EXECUTOR_DISPATCH_REGISTRY_MANIFEST_MISMATCH")
+        if self.executable_manifest.rule_runtime_registry_hash != self.rule_runtime_registry.document()["self_hash"]:
+            raise DG05ClosureError("EXECUTOR_RULE_RUNTIME_REGISTRY_MANIFEST_MISMATCH")
+        if self.dispatch_registry.detector_registry_hash != self.detector_registry.document()["self_hash"]:
+            raise DG05ClosureError("EXECUTOR_REGISTRY_BINDING_MISMATCH")
+        _sha(self.fusion_implementation_hash, "fusion_implementation_hash")
+        _sha(self.adapter_implementation_hash, "adapter_implementation_hash")
+        implementations = dict(self.executable_manifest.implementation_hashes)
+        if self.adapter_implementation_hash != implementations["prediction_adapter"]:
+            raise DG05ClosureError("EXECUTOR_PREDICTION_ADAPTER_MANIFEST_MISMATCH")
+        if self.fusion_implementation_hash != implementations["fusion_runtime"]:
+            raise DG05ClosureError("EXECUTOR_FUSION_RUNTIME_MANIFEST_MISMATCH")
+        if self.authority_mode == "SYNTHETIC_REHEARSAL":
+            if self.detector_assets or self.rule_assets:
+                raise DG05ClosureError("SYNTHETIC_EXECUTOR_PRIVATE_ASSETS_PROHIBITED")
+            for value in self.synthetic_failure_cell_ids:
+                _sha(value, "synthetic_failure_cell_id")
+            return
+        if self.authority_mode != "PRODUCTION":
+            raise DG05ClosureError("EXECUTOR_AUTHORITY_MODE_REQUIRED")
+        if self.synthetic_failure_cell_ids:
+            raise DG05ClosureError("SYNTHETIC_FAILURE_IN_PRODUCTION_PROHIBITED")
+        expected_detectors = {(p, d) for p in FROZEN_PANEL_ORDER_V2 for d in ("PCA_SPE", "ISOLATION_FOREST")}
+        if {(a.panel_id, a.detector_id) for a in self.detector_assets} != expected_detectors or len(self.detector_assets) != 6:
+            raise DG05ClosureError("SIX_PRIVATE_DETECTOR_ASSETS_REQUIRED")
+        expected_rules = {(p, role) for p in FROZEN_PANEL_ORDER_V2 for role in FROZEN_PORTFOLIO_HASHES_V2[p]}
+        if {(a.panel_id, a.portfolio_role) for a in self.rule_assets} != expected_rules or len(self.rule_assets) != 7:
+            raise DG05ClosureError("SEVEN_PRIVATE_RULE_RUNTIME_ASSETS_REQUIRED")
+        for asset in self.detector_assets:
+            asset.validate(self.detector_registry.lookup(asset.panel_id, asset.detector_id))
+        for asset in self.rule_assets:
+            asset.validate(self.rule_runtime_registry.lookup(asset.panel_id, asset.portfolio_role))
+        if self.repository_root is None or not self.repository_root.is_dir():
+            raise DG05ClosureError("PRODUCTION_REPOSITORY_ROOT_REQUIRED")
+        if file_sha256(self.repository_root / "src/paperworks/validation_v2/dg05_execution_closure_v1.py") != next(iter(self.rule_runtime_registry.entries)).dg05_runtime_adapter_hash:
+            raise DG05ClosureError("RULE_RUNTIME_ADAPTER_BYTE_REPLAY_MISMATCH")
+        runtime_hash = file_sha256(self.repository_root / "src/paperworks/validation_v2/runtime_v1.py")
+        if any(entry.formal_v4_semantics_hash != runtime_hash for entry in self.rule_runtime_registry.entries):
+            raise DG05ClosureError("FORMAL_V4_SEMANTICS_BYTE_REPLAY_MISMATCH")
+
+    @classmethod
+    def synthetic_rehearsal(cls, *, executable_manifest: DG05ExecutableAuthorityManifestV1,
+                            executable_manifest_hash: str, detector_registry: DetectorSubauthorityRegistryV1,
+                            dispatch_registry: MethodDispatchRegistryV1, rule_runtime_registry: RuleRuntimeSubauthorityRegistryV1,
+                            adapter_implementation_hash: str,
+                            fusion_implementation_hash: str, synthetic_failure_cell_ids: Sequence[str] = ()) -> "DG05ProductionExecutorV1":
+        value = cls(executable_manifest_hash, detector_registry, dispatch_registry, rule_runtime_registry, "SYNTHETIC_REHEARSAL", (), (),
+                    fusion_implementation_hash, adapter_implementation_hash, None,
+                    tuple(sorted(synthetic_failure_cell_ids)), executable_manifest)
+        value.validate(); return value
+
+    def _projection_matrix(self, path: Path, projection: FeatureProjectionAuthorityV1) -> tuple[tuple[str, ...], Any]:
+        if file_sha256(path) != projection.projection_hash:
+            raise DG05ClosureError("PROJECTION_ARTIFACT_BYTE_REPLAY_MISMATCH")
+        lines = path.read_bytes().splitlines()
+        feature_order = tuple(json.loads(lines[0].decode("ascii"))[1:])
+        try:
+            import numpy as np
+            matrix = np.asarray([json.loads(line.decode("ascii"))[1:] for line in lines[1:]], dtype=np.float64)
+        except (ImportError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+            raise DG05ClosureError("PROJECTION_MATRIX_REPLAY_FAILED") from exc
+        if matrix.shape != (projection.row_count, len(feature_order)) or not bool(np.isfinite(matrix).all()):
+            raise DG05ClosureError("PROJECTION_MATRIX_SCHEMA_MISMATCH")
+        return feature_order, matrix
+
+    def _load_detector(self, panel_id: str, detector_id: str) -> tuple[Any, Any, DetectorSubauthorityV1]:
+        import pickle
+        authority = self.detector_registry.lookup(panel_id, detector_id)
+        asset = next(a for a in self.detector_assets if (a.panel_id, a.detector_id) == (panel_id, detector_id))
+        asset.validate(authority)
+        restored = pickle.loads(asset.container_path.read_bytes())
+        if asset.container_format == "HAI23_DETECTOR_TUPLE_V1":
+            if type(restored) is not tuple or max(authority.model_component_index or 0, authority.threshold_component_index or 0) >= len(restored):
+                raise DG05ClosureError("HAI23_DETECTOR_TUPLE_REQUIRED")
+            model, threshold = restored[authority.model_component_index], restored[authority.threshold_component_index]
+        else:
+            if type(restored) is not dict or set(restored) != {"model", "threshold"}:
+                raise DG05ClosureError("EXTERNAL_MODEL_THRESHOLD_MAPPING_REQUIRED")
+            model, threshold = restored[authority.model_mapping_key], restored[authority.threshold_mapping_key]
+        if type(model).__name__ != authority.model_type_id:
+            raise DG05ClosureError("DETECTOR_MODEL_TYPE_MISMATCH")
+        return model, threshold, authority
+
+    def _validate_bound_implementation(self, authority: DetectorSubauthorityV1) -> None:
+        if self.repository_root is None or authority.implementation_relative_path is None:
+            raise DG05ClosureError("DETECTOR_IMPLEMENTATION_SOURCE_REQUIRED")
+        root = self.repository_root.resolve()
+        path = (root / authority.implementation_relative_path).resolve()
+        if root not in path.parents or not path.is_file() or path.is_symlink() or file_sha256(path) != authority.implementation_hash:
+            raise DG05ClosureError("DETECTOR_IMPLEMENTATION_BYTE_REPLAY_MISMATCH")
+        allowed = {
+            (FROZEN_PANEL_ORDER_V2[0], "PCA_SPE"): ("src/paperworks/validation_v2/dg05_execution_closure_v1.py", "_score_hai23_pca_spe_v1"),
+            (FROZEN_PANEL_ORDER_V2[0], "ISOLATION_FOREST"): ("src/paperworks/validation_v2/dg05_execution_closure_v1.py", "_score_hai23_isolation_forest_v1"),
+        }
+        expected = allowed.get((authority.panel_id, authority.detector_id),
+            ("src/paperworks/validation_v2/xver_detector_v1.py",
+             "score_external_pca_v1" if authority.detector_id == "PCA_SPE" else "score_external_if_v1"))
+        if (authority.implementation_relative_path, authority.scorer_callable_id) != expected:
+            raise DG05ClosureError("DETECTOR_SCORER_CALLABLE_BINDING_MISMATCH")
+
+    def _detector(self, panel_id: str, detector_id: str, feature_order: tuple[str, ...], matrix: Any,
+                  projection: FeatureProjectionAuthorityV1) -> tuple[tuple[bool, ...], None]:
+        model, threshold, authority = self._load_detector(panel_id, detector_id)
+        self._validate_bound_implementation(authority)
+        try:
+            import numpy as np
+            if panel_id == FROZEN_PANEL_ORDER_V2[0] and detector_id == "PCA_SPE":
+                if tuple(model.feature_ids) != feature_order or model.fit_receipt.receipt_hash != authority.fit_authority_hash or threshold.receipt_hash != authority.threshold_authority_hash:
+                    raise DG05ClosureError("HAI23_PCA_AUTHORITY_REPLAY_MISMATCH")
+                scores = _score_hai23_pca_spe_v1(model, matrix); threshold_hex = threshold.threshold_hex
+            elif panel_id == FROZEN_PANEL_ORDER_V2[0]:
+                if tuple(model.feature_ids) != feature_order or model.fit_receipt.self_hash != authority.fit_authority_hash or threshold.self_hash != authority.threshold_authority_hash:
+                    raise DG05ClosureError("HAI23_IF_AUTHORITY_REPLAY_MISMATCH")
+                scores = _score_hai23_isolation_forest_v1(model, matrix); threshold_hex = float(threshold.threshold).hex()
+            else:
+                from paperworks.validation_v2.xver_detector_v1 import ExternalNormalMatrixV1, score_external_if_v1, score_external_pca_v1
+                split = projection.file_id
+                value = ExternalNormalMatrixV1(FROZEN_DATASET_VERSION_BY_PANEL_V1[panel_id], split, projection.projection_hash, feature_order, matrix)
+                scorer = score_external_pca_v1 if detector_id == "PCA_SPE" else score_external_if_v1
+                scores, _ = scorer(model, value, split=split); threshold_hex = threshold["threshold_hex"]
+            alarms = tuple(bool(v) for v in np.asarray(scores > float.fromhex(threshold_hex), dtype=np.bool_))
+        except DG05ClosureError:
+            raise
+        except Exception as exc:
+            raise DG05ClosureError("BOUND_DETECTOR_EXECUTION_FAILED") from exc
+        return alarms, None
+
+    def _load_rule_asset(self, panel_id: str, role: str) -> tuple[tuple[dict[str, Any], ...], dict[str, tuple[tuple[str, float], ...]], RuleRuntimeSubauthorityV1]:
+        if self.rule_runtime_registry is None:
+            raise DG05ClosureError("RULE_RUNTIME_REGISTRY_REQUIRED")
+        authority = self.rule_runtime_registry.lookup(panel_id, role)
+        asset = next(a for a in self.rule_assets if (a.panel_id, a.portfolio_role) == (panel_id, role))
+        asset.validate(authority)
+        try:
+            portfolio = json.loads(asset.portfolio_container_path.read_text(encoding="utf-8"))
+            relation_doc = json.loads(asset.relation_authority_path.read_text(encoding="utf-8"))
+            numeric_doc = json.loads(asset.numeric_authority_path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise DG05ClosureError("RULE_RUNTIME_JSON_AUTHORITY_REQUIRED") from exc
+        relations = tuple(relation_doc.get("relations", ()))
+        numeric_rows = tuple(numeric_doc.get("bindings", ()))
+        if not relations or not numeric_rows:
+            raise DG05ClosureError("FORMAL_V4_RELATION_NUMERIC_AUTHORITY_REQUIRED")
+        if isinstance(portfolio.get("descriptors"), list):
+            retained_keys = {(d["source"], d["target"], d["source_direction"], d["target_direction"], d["selected_horizon_seconds"])
+                             for d in portfolio["descriptors"]}
+        elif isinstance(portfolio.get("rules"), list):
+            retained_keys = {(d["source"], d["target"], d["semantic"]["source_direction"], d["semantic"]["target_direction"], d["semantic"]["horizon_seconds"])
+                             for d in portfolio["rules"]}
+        else:
+            raise DG05ClosureError("RULE_RUNTIME_PORTFOLIO_FORMAT_REQUIRED")
+        selected = tuple(sorted((r for r in relations if (r["source"], r["target"], r["source_direction"], r["target_direction"], r["selected_horizon_seconds"]) in retained_keys),
+                                key=lambda r: r["relation_id"]))
+        identity_hash = digest([{k: r[k] for k in ("relation_id", "source", "target", "source_direction", "target_direction", "selected_horizon_seconds", "relation_binding_hash")} for r in selected])
+        if len(selected) != authority.retained_rule_count or identity_hash != authority.retained_rule_identity_hash:
+            raise DG05ClosureError("RULE_RUNTIME_RETAINED_IDENTITY_MISMATCH")
+        by_relation: dict[str, list[tuple[str, float]]] = {}
+        for row in numeric_rows:
+            if row.get("relation_id") in {r["relation_id"] for r in selected}:
+                value = row.get("value")
+                if type(value) not in (int, float) or not math.isfinite(float(value)):
+                    raise DG05ClosureError("RULE_RUNTIME_NUMERIC_VALUE_INVALID")
+                by_relation.setdefault(row["relation_id"], []).append((row["numeric_role"], float(value)))
+        if set(by_relation) != {r["relation_id"] for r in selected}:
+            raise DG05ClosureError("RULE_RUNTIME_NUMERIC_BINDING_INCOMPLETE")
+        return selected, {key: tuple(value) for key, value in by_relation.items()}, authority
+
+    def _rule(self, panel_id: str, role: str, feature_order: tuple[str, ...], matrix: Any, file_id: str) -> tuple[tuple[bool, ...], Mapping[str, Any]]:
+        relations, numeric, authority = self._load_rule_asset(panel_id, role)
+        from bisect import bisect_left
+        from paperworks.validation_v2.exp02_bindings_v2a import extract_candidate_specific_events_v1, _nearest_distance, _parameters
+        from paperworks.validation_v2.runtime_v1 import evaluate_formal_v4_semantics_v1
+        descriptors = {d["relation_id"]: d for d in relations}
+        alarms = [False] * len(matrix); fail_sources: dict[int, set[str]] = {}; counts = {key: 0 for key in ("PASS", "FAIL", "ABSTAIN", "SYSTEM_ERROR")}
+        order = {name: index for index, name in enumerate(feature_order)}
+        if any(d["source"] not in order or d["target"] not in order for d in relations):
+            raise DG05ClosureError("RULE_RUNTIME_FEATURE_ORDER_MISMATCH")
+        params = {rid: _parameters(values) for rid, values in numeric.items()}
+        events_by_relation: dict[str, tuple[Any, ...]] = {}; own: dict[str, tuple[int, ...]] = {}; source_events: dict[str, set[int]] = {}
+        for d in relations:
+            p = params[d["relation_id"]]
+            events = extract_candidate_specific_events_v1(matrix[:, order[d["source"]]], threshold=p.source_step_threshold, tolerance=p.source_stability_tolerance)
+            events_by_relation[d["relation_id"]] = tuple(e for e in events if e.direction == d["source_direction"])
+            own[d["relation_id"]] = tuple(e.event_index for e in events)
+            source_events.setdefault(d["source"], set()).update(e.event_index for e in events)
+        other = {source: tuple(sorted(set().union(*(indices for name, indices in source_events.items() if name != source)))) for source in source_events}
+        for d in relations:
+            p = params[d["relation_id"]]; source = matrix[:, order[d["source"]]]; target = matrix[:, order[d["target"]]]
+            for event in events_by_relation[d["relation_id"]]:
+                event_index = event.event_index; start = event_index + d["selected_horizon_seconds"]; end = start + p.target_response_count
+                index = bisect_left(own[d["relation_id"]], event_index)
+                previous = None if index == 0 else float(event_index - own[d["relation_id"]][index - 1])
+                outcome = evaluate_formal_v4_semantics_v1(source_direction=d["source_direction"], target_direction=d["target_direction"], parameters=p,
+                    source_pre_values=tuple(float(v) for v in source[event_index-p.source_pre_count:event_index]),
+                    source_post_values=tuple(float(v) for v in source[event_index:event_index+p.source_post_count]),
+                    target_baseline_values=tuple(float(v) for v in target[event_index-p.target_baseline_count:event_index]),
+                    target_response_values=tuple(float(v) for v in target[start:min(end,len(target))]),
+                    seconds_since_previous_source_trigger=previous,
+                    seconds_to_nearest_other_source_trigger=_nearest_distance(event_index, other[d["source"]]), future_window_complete=end <= len(target))
+                counts[outcome.outcome] = counts.get(outcome.outcome, 0) + 1
+                decision = end - 1
+                if outcome.outcome == "FAIL" and 0 <= decision < len(alarms):
+                    alarms[decision] = True
+                    fail_sources.setdefault(decision, set()).add(d["source"])
+        trace = {"opportunities": sum(counts.values()), "pass": counts["PASS"], "fail": counts["FAIL"],
+                 "abstain": counts["ABSTAIN"], "system_errors": counts["SYSTEM_ERROR"],
+                 "rule_ids": sorted(descriptors), "physical_source_ids": sorted({d["source"] for d in descriptors.values()}),
+                 "fail_sources_by_row": {str(k): sorted(v) for k, v in sorted(fail_sources.items())},
+                 "runtime_use_authority_hash": authority.runtime_use_authority_hash,
+                 "runtime_finalization_count": 1}
+        return tuple(alarms), trace
+
+    def execute(self, *, cell_id: str, entry: MethodDispatchEntryV1, projection_path: Path,
+                projection: FeatureProjectionAuthorityV1) -> tuple[Sequence[bool], Mapping[str, Any] | None]:
+        self.validate()
+        if cell_id in self.synthetic_failure_cell_ids:
+            raise DG05ClosureError("SYNTHETIC_FROZEN_METHOD_FAILURE")
+        feature_order, matrix = self._projection_matrix(projection_path, projection)
+        detector_id, role = _METHOD_RUNTIME_BINDING_V1[entry.method_id]
+        if self.authority_mode == "SYNTHETIC_REHEARSAL":
+            detector_mask = tuple(index % 2 == 1 for index in range(projection.row_count)) if detector_id else None
+            rule_mask = tuple(index % 2 == 1 for index in range(projection.row_count)) if role else None
+            rule_trace = None if role is None else {"opportunities": projection.row_count, "pass": projection.row_count // 2,
+                "fail": projection.row_count - projection.row_count // 2, "abstain": 0, "system_errors": 0,
+                "rule_ids": [f"SYNTHETIC_{role}"], "physical_source_ids": ["P1_SYNTHETIC_A", "P1_SYNTHETIC_B"],
+                "fail_sources_by_row": {str(i): ["P1_SYNTHETIC_A", "P1_SYNTHETIC_B"] for i, v in enumerate(rule_mask) if v}}
+        else:
+            detector_mask = self._detector(entry.panel_id, detector_id, feature_order, matrix, projection)[0] if detector_id else None
+            rule_mask, rule_trace = self._rule(entry.panel_id, role, feature_order, matrix, projection.file_id) if role else (None, None)
+        if detector_mask is not None and rule_mask is not None:
+            sources = (rule_trace or {}).get("fail_sources_by_row", {})
+            alarms = fuse_dense_masks_v1(detector_mask, sources)
+            trace = {**dict(rule_trace or {}), "fusion_policy_hash": FROZEN_FUSION_POLICY_HASH_V2,
+                     "base_detector_id": detector_id, "base_preservation": all((not base) or alarm for base, alarm in zip(detector_mask, alarms, strict=True))}
+            return alarms, trace
+        if rule_mask is not None:
+            return rule_mask, rule_trace
+        if detector_mask is None:
+            raise DG05ClosureError("CLOSED_METHOD_BINDING_ABSENT")
+        return detector_mask, None
+
+
+def execute_prediction_cell_v1(*, cell: Mapping[str, Any], dispatch: MethodDispatchRegistryV1,
+                               projection: FeatureProjectionAuthorityV1, timestamp: TimestampCoordinateAuthorityV1,
+                               executable_manifest_hash: str, executor: DG05ProductionExecutorV1,
+                               projection_path: Path, output_directory: Path, source_commit: str) -> PredictionTerminalReceiptV1:
+    """Exact dispatch adapter.  There is no fallback or method autodetection."""
+    _sha(executable_manifest_hash, "executable_manifest_hash")
+    entry = dispatch.lookup(str(cell["panel_id"]), str(cell["method_id"]))
+    projection.validate()
+    expected_cell_id = digest({k: cell[k] for k in ("panel_id", "file_id", "method_id", "dispatch_authority_hash")})
+    if cell.get("cell_id") != expected_cell_id or projection.panel_id != cell["panel_id"] or projection.file_id != cell["file_id"]:
+        raise DG05ClosureError("CELL_PROJECTION_BINDING_MISMATCH")
+    if timestamp.document()["self_hash"] != projection.timestamp_authority_hash or timestamp.projection_hash != projection.projection_hash:
+        raise DG05ClosureError("TIMESTAMP_PROJECTION_BINDING_MISMATCH")
+    if file_sha256(projection_path) != projection.projection_hash:
+        raise DG05ClosureError("PROJECTION_ARTIFACT_BYTE_REPLAY_MISMATCH")
+    method_authority_hash = digest(entry.document())
+    if type(executor) is not DG05ProductionExecutorV1 or executor.executable_manifest_hash != executable_manifest_hash:
+        raise DG05ClosureError("TYPED_CLOSED_PRODUCTION_EXECUTOR_REQUIRED")
+    failure_code: str | None = None
+    try:
+        alarms, trace = executor.execute(cell_id=expected_cell_id, entry=entry, projection_path=projection_path, projection=projection)
+        if len(alarms) != projection.row_count or any(type(v) is not bool for v in alarms):
+            raise DG05ClosureError("EXECUTOR_OUTPUT_SCHEMA_MISMATCH")
+        if entry.executor_class in ("RULE", "FUSION") and trace is None:
+            raise DG05ClosureError("RULE_CAPABLE_EXECUTOR_TRACE_REQUIRED")
+        if entry.executor_class not in ("RULE", "FUSION") and trace is not None:
+            raise DG05ClosureError("DETECTOR_TRACE_PROHIBITED")
+    except DG05ClosureError as exc:
+        failure_code = str(exc)
+    except Exception:
+        failure_code = "EXECUTOR_UNEXPECTED_FAILURE"
+    if failure_code is not None:
+        failure = PredictionTerminalReceiptV1(expected_cell_id, entry.panel_id, projection.file_id, entry.method_id,
+            method_authority_hash, projection.raw_physical_file_hash, projection.projection_hash, timestamp.document()["self_hash"],
+            projection.row_count, None, None, "NOT_APPLICABLE", "METHOD_FAILURE", failure_code,
+            digest({"schema": "dense_boolean_prediction_v1"}), executable_manifest_hash, source_commit)
+        failure.validate()
+        return failure
+    prediction_body = {"schema": "dense_boolean_prediction_v1", "cell_id": expected_cell_id, "row_count": len(alarms), "alarms": list(alarms)}
+    prediction_bytes = canonical_bytes(prediction_body) + b"\n"
+    prediction_path = output_directory / f"{expected_cell_id}.prediction.json"
+    prediction_hash = publish_new(prediction_path, prediction_bytes)
+    rule_capable = entry.executor_class in ("RULE", "FUSION")
+    trace_hash = None
+    trace_status = "NOT_APPLICABLE"
+    if rule_capable:
+        trace_body = {"schema": "rule_trace_artifact_v1", "cell_id": expected_cell_id, "prediction_hash": prediction_hash,
+                      "projection_hash": projection.projection_hash, "timestamp_authority_hash": timestamp.document()["self_hash"], **dict(trace)}
+        trace_hash = publish_new(output_directory / f"{expected_cell_id}.trace.json", canonical_bytes(self_hashed(trace_body)) + b"\n")
+        trace_status = "BOUND"
+    receipt = PredictionTerminalReceiptV1(expected_cell_id, entry.panel_id, projection.file_id, entry.method_id,
+        method_authority_hash, projection.raw_physical_file_hash, projection.projection_hash, timestamp.document()["self_hash"],
+        projection.row_count, prediction_hash, trace_hash, trace_status, "SUCCESS", None,
+        digest({"schema": "dense_boolean_prediction_v1"}), executable_manifest_hash, source_commit)
+    receipt.validate()
+    return receipt
+
+
+def persist_prediction_receipt_v1(path: Path, receipt: PredictionTerminalReceiptV1) -> str:
+    receipt.validate()
+    return publish_new(path, canonical_bytes(receipt.document()) + b"\n")
+
+
+def build_global_prediction_manifest_v1(*, census: Mapping[str, Any], receipts: Sequence[PredictionTerminalReceiptV1],
+                                        executable_manifest_hash: str,
+                                        dispatch: MethodDispatchRegistryV1 | None = None) -> dict[str, Any]:
+    validate_self_hashed(census)
+    expected = tuple(cell["cell_id"] for cell in census["cells"])
+    actual = tuple(r.cell_id for r in receipts)
+    if actual != expected or len(actual) != len(set(actual)):
+        raise DG05ClosureError("GLOBAL_PREDICTION_CELL_CENSUS_INCOMPLETE")
+    cell_by_id = {cell["cell_id"]: cell for cell in census["cells"]}
+    for r in receipts:
+        r.validate()
+        if r.executable_manifest_hash != executable_manifest_hash:
+            raise DG05ClosureError("RECEIPT_MANIFEST_MISMATCH")
+        cell = cell_by_id[r.cell_id]
+        if (r.panel_id, r.file_id, r.method_id) != (cell["panel_id"], cell["file_id"], cell["method_id"]):
+            raise DG05ClosureError("RECEIPT_CELL_IDENTITY_MISMATCH")
+        if dispatch is not None:
+            entry = dispatch.lookup(r.panel_id, r.method_id)
+            if r.method_authority_hash != digest(entry.document()):
+                raise DG05ClosureError("RECEIPT_METHOD_AUTHORITY_MISMATCH")
+            expected_trace_status = "BOUND" if entry.executor_class in ("RULE", "FUSION") and r.status == "SUCCESS" else "NOT_APPLICABLE"
+            if r.trace_status != expected_trace_status:
+                raise DG05ClosureError("RECEIPT_METHOD_TRACE_CONTRACT_MISMATCH")
+    return self_hashed({"schema": "global_prediction_manifest_v3", "expected_cell_census_hash": census["self_hash"], "executable_approval_manifest_hash": executable_manifest_hash, "receipts": [r.document() for r in receipts], "success_count": sum(r.status == "SUCCESS" for r in receipts), "failure_count": sum(r.status == "METHOD_FAILURE" for r in receipts)})
+
+
+def freeze_global_predictions_v1(*, manifest: Mapping[str, Any], census: Mapping[str, Any],
+                                 receipt_artifacts: Mapping[str, tuple[Path | None, Path | None] | tuple[Path | None, Path | None, Path]],
+                                 predecessor_state: Mapping[str, Any]) -> dict[str, Any]:
+    validate_self_hashed(manifest)
+    validate_self_hashed(census)
+    validate_self_hashed(predecessor_state)
+    if manifest["expected_cell_census_hash"] != census["self_hash"]:
+        raise DG05ClosureError("FREEZE_CENSUS_MISMATCH")
+    if set(receipt_artifacts) != {receipt["cell_id"] for receipt in manifest["receipts"]}:
+        raise DG05ClosureError("RECEIPT_ARTIFACT_CENSUS_MISMATCH")
+    for receipt in manifest["receipts"]:
+        validate_self_hashed(receipt)
+        paths = receipt_artifacts[receipt["cell_id"]]
+        if len(paths) != 3:
+            raise DG05ClosureError("TERMINAL_RECEIPT_ARTIFACT_REQUIRED")
+        prediction_path, trace_path = paths[0], paths[1]
+        receipt_path = paths[2]
+        if file_sha256(receipt_path) != sha256(canonical_bytes(receipt) + b"\n").hexdigest():
+            raise DG05ClosureError("TERMINAL_RECEIPT_BYTE_REPLAY_MISMATCH")
+        if receipt["status"] == "SUCCESS":
+            if prediction_path is None or file_sha256(prediction_path) != receipt["prediction_artifact_hash"]:
+                raise DG05ClosureError("PREDICTION_BYTE_REPLAY_MISMATCH")
+            if receipt["trace_status"] == "BOUND" and (trace_path is None or file_sha256(trace_path) != receipt["trace_artifact_hash"]):
+                raise DG05ClosureError("TRACE_BYTE_REPLAY_MISMATCH")
+    return self_hashed({"schema": "global_prediction_freeze_v3", "manifest_hash": manifest["self_hash"], "census_hash": census["self_hash"], "predecessor_state_hash": predecessor_state["self_hash"], "executable_approval_manifest_hash": manifest["executable_approval_manifest_hash"], "status": "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED"})
+
+
+@dataclass(frozen=True, order=True)
+class ScenarioRecordV1:
+    panel_id: str
+    dataset_version: str
+    file_id: str
+    scenario_id: str
+    closed_intervals: tuple[tuple[str, str], ...]
+    attacked_identities: tuple[str, ...]
+    explicit_affected_processes: tuple[str, ...]
+    physical_file_authority_hash: str
+    timestamp_authority_hash: str
+    official_source_hash: str
+
+    def document(self) -> dict[str, Any]:
+        return self_hashed({"schema": "official_scenario_record_v1", **self.__dict__, "closed_intervals": [list(v) for v in self.closed_intervals], "attacked_identities": list(self.attacked_identities), "explicit_affected_processes": list(self.explicit_affected_processes)})
+
+    def validate(self) -> None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2 or not self.closed_intervals or not self.attacked_identities:
+            raise DG05ClosureError("OFFICIAL_SCENARIO_FIELDS_REQUIRED")
+        if self.dataset_version != FROZEN_DATASET_VERSION_BY_PANEL_V1[self.panel_id]:
+            raise DG05ClosureError("SCENARIO_PANEL_VERSION_MISMATCH")
+        for start, end in self.closed_intervals:
+            if datetime.fromisoformat(start) > datetime.fromisoformat(end):
+                raise DG05ClosureError("INVALID_CLOSED_INTERVAL")
+        for name in ("physical_file_authority_hash", "timestamp_authority_hash", "official_source_hash"):
+            _sha(getattr(self, name), name)
+
+
+def build_scenario_authority_v1(*, records: Sequence[ScenarioRecordV1], lease_completion_hash: str,
+                                global_freeze_hash: str, source_commit: str, nominal_counts: Mapping[str, int],
+                                authority_mode: str = "PRODUCTION",
+                                timestamp_authorities: Mapping[tuple[str, str], TimestampCoordinateAuthorityV1] | None = None) -> dict[str, Any]:
+    for value in (lease_completion_hash, global_freeze_hash):
+        _sha(value, "scenario_parent_hash")
+    _git(source_commit, "source_commit")
+    ordered = tuple(sorted(records))
+    if tuple(records) != ordered or len({(r.panel_id, r.scenario_id) for r in records}) != len(records):
+        raise DG05ClosureError("CANONICAL_UNIQUE_SCENARIOS_REQUIRED")
+    for r in records:
+        r.validate()
+        if authority_mode == "PRODUCTION" and timestamp_authorities is None:
+            raise DG05ClosureError("PRODUCTION_TIMESTAMP_AUTHORITIES_REQUIRED")
+        if timestamp_authorities is not None:
+            timestamp = timestamp_authorities.get((r.panel_id, r.file_id))
+            if timestamp is None:
+                raise DG05ClosureError("SCENARIO_TIMESTAMP_AUTHORITY_ABSENT")
+            timestamp.validate()
+            if timestamp.document()["self_hash"] != r.timestamp_authority_hash or timestamp.physical_file_authority_hash != r.physical_file_authority_hash:
+                raise DG05ClosureError("SCENARIO_PHYSICAL_TIMESTAMP_BINDING_MISMATCH")
+    actual = {p: sum(r.panel_id == p for r in records) for p in FROZEN_PANEL_ORDER_V2}
+    if actual != dict(nominal_counts):
+        raise DG05ClosureError("OFFICIAL_SCENARIO_CENSUS_MISMATCH")
+    official = dict(zip(FROZEN_PANEL_ORDER_V2, (38, 58, 50)))
+    if authority_mode == "PRODUCTION" and actual != official:
+        raise DG05ClosureError("FROZEN_NOMINAL_SCENARIO_COUNTS_REQUIRED")
+    if authority_mode not in ("PRODUCTION", "SYNTHETIC_REHEARSAL"):
+        raise DG05ClosureError("SCENARIO_AUTHORITY_MODE_REQUIRED")
+    return self_hashed({"schema": "frozen_scenario_authority_v1", "records": [r.document() for r in records], "nominal_counts": dict(nominal_counts), "lease_completion_hash": lease_completion_hash, "global_freeze_hash": global_freeze_hash, "source_commit": source_commit, "method_inputs": False, "authority_mode": authority_mode})
+
+
+def build_denominator_authority_v1(*, scenario_authority: Mapping[str, Any], full_scope: FullProcessScopeAuthorityV1,
+                                   p1_custodian_v3_hash: str) -> dict[str, Any]:
+    validate_self_hashed(scenario_authority)
+    full_scope.validate()
+    _sha(p1_custodian_v3_hash, "p1_custodian_v3_hash")
+    if scenario_authority.get("schema") != "frozen_scenario_authority_v1":
+        raise DG05ClosureError("FROZEN_SCENARIO_AUTHORITY_REQUIRED")
+    output = []
+    seen: set[tuple[str, str]] = set()
+    for record in scenario_authority["records"]:
+        validate_self_hashed(record)
+        key = (record["panel_id"], record["scenario_id"])
+        if key in seen or record["dataset_version"] != FROZEN_DATASET_VERSION_BY_PANEL_V1[record["panel_id"]]:
+            raise DG05ClosureError("DENOMINATOR_SCENARIO_IDENTITY_MISMATCH")
+        seen.add(key)
+        observed = [full_scope.classify(record["dataset_version"], identity) for identity in record["attacked_identities"]]
+        if "P1" in observed:
+            primary, reason = "P1_ELIGIBLE", "DIRECT_VERIFIED_P1_IDENTITY"
+        elif "UNRESOLVED" in observed:
+            primary, reason = "UNRESOLVED", "AT_LEAST_ONE_IDENTITY_UNRESOLVED"
+        else:
+            primary, reason = "OUT_OF_SCOPE", "ALL_IDENTITIES_VERIFIED_NON_P1"
+        cross = "P1" in record["explicit_affected_processes"] and primary != "P1_ELIGIBLE"
+        output.append(self_hashed({"schema": "p1_eligibility_record_v3", "scenario_record_hash": record["self_hash"], "panel_id": record["panel_id"], "scenario_id": record["scenario_id"], "primary_status": primary, "secondary_cross_process_p1_relevant": cross, "reason": reason, "unresolved_identity_count": observed.count("UNRESOLVED"), "full_scope_hash": full_scope.document()["self_hash"], "p1_custodian_v3_hash": p1_custodian_v3_hash}))
+    by_panel = []
+    for panel in FROZEN_PANEL_ORDER_V2:
+        rows = [r for r in output if r["panel_id"] == panel]
+        by_panel.append({"panel_id": panel, "nominal_count": len(rows), "p1_eligible_ids": [r["scenario_id"] for r in rows if r["primary_status"] == "P1_ELIGIBLE"], "out_of_scope_ids": [r["scenario_id"] for r in rows if r["primary_status"] == "OUT_OF_SCOPE"], "unresolved_ids": [r["scenario_id"] for r in rows if r["primary_status"] == "UNRESOLVED"], "cross_process_secondary_ids": [r["scenario_id"] for r in rows if r["secondary_cross_process_p1_relevant"]]})
+    return self_hashed({"schema": "denominator_authority_v1", "scenario_authority_hash": scenario_authority["self_hash"], "full_process_scope_hash": full_scope.document()["self_hash"], "p1_custodian_v3_hash": p1_custodian_v3_hash, "records": output, "panels": by_panel, "prediction_inputs": False})
+
+
+def issue_label_lease_v3(*, freeze: Mapping[str, Any], state: Mapping[str, Any], executable_manifest_hash: str,
+                         resource_policy_authority_hash: str) -> dict[str, Any]:
+    validate_self_hashed(freeze)
+    validate_self_hashed(state)
+    if state["state"] != "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED" or state["executable_approval_manifest_hash"] != executable_manifest_hash or freeze["executable_approval_manifest_hash"] != executable_manifest_hash:
+        raise DG05ClosureError("GLOBAL_FREEZE_REPLAY_REQUIRED_FOR_LEASE")
+    _sha(resource_policy_authority_hash, "resource_policy_authority_hash")
+    opaque_token = secrets.token_hex(32)
+    receipt = self_hashed({"schema": "single_use_label_scenario_lease_v3", "token_hash": sha256(opaque_token.encode("utf-8")).hexdigest(), "global_freeze_hash": freeze["self_hash"], "state_hash": state["self_hash"], "executable_manifest_hash": executable_manifest_hash, "resource_policy_hash": resource_policy_authority_hash, "issue_count": 1, "consume_limit": 1})
+    return {"opaque_token": opaque_token, "receipt": receipt}
+
+
+def compute_bound_panel_method_result_v1(*, panel_id: str, method_id: str, method_authority_hash: str,
+                                         global_prediction_manifest: Mapping[str, Any], global_prediction_freeze: Mapping[str, Any],
+                                         predictions: Mapping[str, tuple[TimestampCoordinateAuthorityV1, Sequence[str], Sequence[bool], str, str]],
+                                         scenario_authority: Mapping[str, Any], denominator_authority: Mapping[str, Any],
+                                         metric_authority_hash: str, p1_custodian_hash: str, etapr_authority_hash: str,
+                                         normal_burden_hash: str, source_commit: str,
+                                         executable_manifest_hash: str | None = None,
+                                         statistical_authority_hash: str | None = None,
+                                         failed_file_receipt_hashes: Mapping[str, str] | None = None,
+                                         etapr_coordinate_binding: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    """Compute coordinate-bound scenario recall; no anonymous cross-file rows."""
+    for authority in (global_prediction_manifest, global_prediction_freeze, scenario_authority, denominator_authority):
+        validate_self_hashed(authority)
+    prediction_manifest_hash = global_prediction_manifest["self_hash"]
+    if global_prediction_manifest.get("schema") != "global_prediction_manifest_v3" or global_prediction_freeze.get("schema") != "global_prediction_freeze_v3":
+        raise DG05ClosureError("FROZEN_GLOBAL_PREDICTION_AUTHORITIES_REQUIRED")
+    if global_prediction_freeze.get("manifest_hash") != prediction_manifest_hash:
+        raise DG05ClosureError("GLOBAL_FREEZE_MANIFEST_BINDING_MISMATCH")
+    if executable_manifest_hash is None or global_prediction_manifest.get("executable_approval_manifest_hash") != executable_manifest_hash or global_prediction_freeze.get("executable_approval_manifest_hash") != executable_manifest_hash:
+        raise DG05ClosureError("RESULT_EXECUTABLE_MANIFEST_BINDING_MISMATCH")
+    if scenario_authority.get("global_freeze_hash") != global_prediction_freeze["self_hash"]:
+        raise DG05ClosureError("SCENARIO_GLOBAL_FREEZE_BINDING_MISMATCH")
+    if denominator_authority.get("scenario_authority_hash") != scenario_authority["self_hash"]:
+        raise DG05ClosureError("DENOMINATOR_SCENARIO_BINDING_MISMATCH")
+    if denominator_authority.get("p1_custodian_v3_hash") != p1_custodian_hash:
+        raise DG05ClosureError("DENOMINATOR_P1_CUSTODIAN_BINDING_MISMATCH")
+    scenario_rows = {(r["panel_id"], r["scenario_id"]): r for r in scenario_authority["records"]}
+    denominator_rows = {(r["panel_id"], r["scenario_id"]): r for r in denominator_authority["records"]}
+    if len(scenario_rows) != len(scenario_authority["records"]) or len(denominator_rows) != len(denominator_authority["records"]) or set(scenario_rows) != set(denominator_rows):
+        raise DG05ClosureError("DENOMINATOR_SCENARIO_RECORD_CENSUS_MISMATCH")
+    for key, row in denominator_rows.items():
+        if row.get("scenario_record_hash") != scenario_rows[key]["self_hash"] or row.get("p1_custodian_v3_hash") != p1_custodian_hash:
+            raise DG05ClosureError("DENOMINATOR_SCENARIO_RECORD_BINDING_MISMATCH")
+    selected_receipts = [r for r in global_prediction_manifest.get("receipts", ()) if r.get("panel_id") == panel_id and r.get("method_id") == method_id]
+    if not selected_receipts or any(r.get("method_authority_hash") != method_authority_hash for r in selected_receipts):
+        raise DG05ClosureError("RESULT_METHOD_MANIFEST_BINDING_MISMATCH")
+    success_by_file = {r["file_id"]: r for r in selected_receipts if r["status"] == "SUCCESS"}
+    failure_by_file = {r["file_id"]: r for r in selected_receipts if r["status"] == "METHOD_FAILURE"}
+    if len(success_by_file) + len(failure_by_file) != len(selected_receipts) or set(success_by_file) != set(predictions):
+        raise DG05ClosureError("RESULT_PREDICTION_MANIFEST_CENSUS_MISMATCH")
+    for file_id, (_timestamp, _timestamps, _alarms, prediction_hash, projection_hash) in predictions.items():
+        receipt = success_by_file[file_id]
+        if receipt.get("prediction_artifact_hash") != prediction_hash or receipt.get("projection_hash") != projection_hash:
+            raise DG05ClosureError("RESULT_PREDICTION_RECEIPT_BINDING_MISMATCH")
+    if etapr_coordinate_binding is None:
+        raise DG05ClosureError("TYPED_ETAPR_COORDINATE_BINDING_REQUIRED")
+    validate_self_hashed(etapr_coordinate_binding)
+    if etapr_coordinate_binding.get("schema") != "etapr_coordinate_binding_v1" or etapr_coordinate_binding.get("panel_id") != panel_id or etapr_coordinate_binding.get("etapr_authority_hash") != etapr_authority_hash:
+        raise DG05ClosureError("ETAPR_COORDINATE_AUTHORITY_MISMATCH")
+    expected_etapr_files = {(row["file_id"], row["prediction_artifact_hash"], row["scenario_authority_hash"]) for row in etapr_coordinate_binding["file_bindings"]}
+    actual_etapr_files = {(file_id, value[3], scenario_authority["self_hash"]) for file_id, value in predictions.items()}
+    if expected_etapr_files != actual_etapr_files:
+        raise DG05ClosureError("ETAPR_PREDICTION_SCENARIO_BINDING_MISMATCH")
+    etapr_coordinate_binding_hash = etapr_coordinate_binding["self_hash"]
+    for value in (method_authority_hash, prediction_manifest_hash, metric_authority_hash, p1_custodian_hash, etapr_authority_hash, normal_burden_hash,
+                  *(v for v in (executable_manifest_hash, statistical_authority_hash, etapr_coordinate_binding_hash) if v is not None)):
+        _sha(value, "result_authority_hash")
+    failed = dict(failed_file_receipt_hashes or {})
+    expected_failed = {file_id: row["self_hash"] for file_id, row in failure_by_file.items()}
+    if failed != expected_failed:
+        raise DG05ClosureError("RESULT_FAILURE_RECEIPT_BINDING_MISMATCH")
+    for value in failed.values():
+        _sha(value, "failure_receipt_hash")
+    eligible = {r["scenario_id"] for r in denominator_authority["records"] if r["panel_id"] == panel_id and r["primary_status"] == "P1_ELIGIBLE"}
+    hits = []
+    for scenario in scenario_authority["records"]:
+        if scenario["panel_id"] != panel_id or scenario["scenario_id"] not in eligible:
+            continue
+        file_id = scenario["file_id"]
+        if file_id not in predictions:
+            raise DG05ClosureError("PRIMARY_PREDICTION_COVERAGE_INCOMPLETE")
+        timestamp, timestamp_values, alarms, prediction_hash, projection_hash = predictions[file_id]
+        timestamp.validate()
+        replayed_timestamp_hash = sha256(b"".join(str(v).encode("utf-8") + b"\n" for v in timestamp_values)).hexdigest()
+        if timestamp.panel_id != panel_id or timestamp.dataset_version != scenario["dataset_version"] or timestamp.file_id != file_id or timestamp.projection_hash != projection_hash or timestamp.physical_file_authority_hash != scenario["physical_file_authority_hash"] or len(alarms) != timestamp.row_count or len(timestamp_values) != timestamp.row_count or replayed_timestamp_hash != timestamp.timestamp_vector_hash or timestamp.document()["self_hash"] != scenario["timestamp_authority_hash"]:
+            raise DG05ClosureError("SCENARIO_PREDICTION_COORDINATE_MISMATCH")
+        _sha(prediction_hash, "prediction_hash")
+        # Synthetic/production adapters preserve row order and use ISO timestamps.
+        # The evaluator consumes an authority-bound timestamp vector sidecar via
+        # the tuple's TimestampCoordinateAuthority; intervals are canonical.
+        alarm_times = {datetime.fromisoformat(timestamp_values[i]) for i, value in enumerate(alarms) if value}
+        interval_hits = []
+        for start, end in scenario["closed_intervals"]:
+            start_dt, end_dt = datetime.fromisoformat(start), datetime.fromisoformat(end)
+            interval_hits.append(any(start_dt <= value <= end_dt for value in alarm_times))
+        hit = any(interval_hits)
+        hits.append({"scenario_id": scenario["scenario_id"], "scenario_record_hash": scenario["self_hash"], "hit": hit, "physical_file_id": file_id, "prediction_hash": prediction_hash, "projection_hash": projection_hash, "timestamp_authority_hash": timestamp.document()["self_hash"]})
+    n, k = len(hits), sum(item["hit"] for item in hits)
+    interval = wilson95_v1(k, n) if n else None
+    completeness = "NOT_EVALUABLE_INCOMPLETE_PREDICTION_COVERAGE" if failed else ("NOT_EVALUABLE_ZERO_ELIGIBLE_DENOMINATOR" if n == 0 else "COMPLETE")
+    if failed:
+        k_value = recall = interval_value = None
+    else:
+        k_value, recall, interval_value = k, (None if n == 0 else k / n), (None if interval is None else list(interval))
+    body = {"schema": "panel_method_result_authority_v1", "panel_id": panel_id, "method_id": method_id,
+            "executable_approval_manifest_hash": executable_manifest_hash,
+            "method_authority_hash": method_authority_hash, "prediction_manifest_hash": prediction_manifest_hash,
+            "scenario_authority_hash": scenario_authority["self_hash"], "denominator_authority_hash": denominator_authority["self_hash"],
+            "metric_authority_hash": metric_authority_hash, "p1_custodian_hash": p1_custodian_hash,
+            "etapr_authority_hash": etapr_authority_hash, "normal_burden_hash": normal_burden_hash,
+            "statistical_authority_hash": statistical_authority_hash,
+            "etapr_coordinate_binding_hash": etapr_coordinate_binding_hash,
+            "completeness_status": completeness, "failure_receipt_hashes": failed,
+            "eligible_count": n, "hit_count": k_value, "scenario_recall": recall,
+            "wilson95": interval_value, "scenario_hits": [] if failed else hits,
+            "physical_file_authority_hashes": sorted({v[0].physical_file_authority_hash for v in predictions.values()}),
+            "feature_projection_hashes": sorted({v[4] for v in predictions.values()}),
+            "timestamp_authority_hashes": sorted({v[0].document()["self_hash"] for v in predictions.values()}),
+            "prediction_artifact_hashes": sorted({v[3] for v in predictions.values()}),
+            "no_pooling": True, "source_commit": source_commit}
+    _git(source_commit, "source_commit")
+    return self_hashed(body)
+
+
+def persist_result_authority_v1(path: Path, result: Mapping[str, Any]) -> dict[str, Any]:
+    validate_self_hashed(result)
+    payload = canonical_bytes(dict(result)) + b"\n"
+    byte_hash = publish_new(path, payload)
+    replay = json.loads(path.read_text(encoding="ascii"))
+    validate_self_hashed(replay)
+    if replay != dict(result):
+        raise DG05ClosureError("RESULT_CANONICAL_BYTE_REPLAY_MISMATCH")
+    return self_hashed({"schema": "result_authority_artifact_receipt_v1", "result_self_hash": result["self_hash"], "artifact_byte_hash": byte_hash, "byte_count": len(payload)})
+
+
+def verify_result_authority_v1(*, path: Path, receipt: Mapping[str, Any], expected_bindings: Mapping[str, str]) -> dict[str, Any]:
+    """Read-only result verifier; it never regenerates predictions."""
+    validate_self_hashed(receipt)
+    if file_sha256(path) != receipt["artifact_byte_hash"]:
+        raise DG05ClosureError("RESULT_ARTIFACT_BYTES_CHANGED")
+    result = json.loads(path.read_text(encoding="ascii"))
+    validate_self_hashed(result)
+    if result["self_hash"] != receipt["result_self_hash"]:
+        raise DG05ClosureError("RESULT_SELF_HASH_RECEIPT_MISMATCH")
+    for field, value in expected_bindings.items():
+        if result.get(field) != value:
+            raise DG05ClosureError(f"RESULT_NESTED_AUTHORITY_MISMATCH:{field}")
+    if result["completeness_status"] == "NOT_EVALUABLE_INCOMPLETE_PREDICTION_COVERAGE":
+        if any(result[name] is not None for name in ("hit_count", "scenario_recall", "wilson95")) or result["scenario_hits"]:
+            raise DG05ClosureError("INCOMPLETE_PRIMARY_RESULT_MUST_NOT_REPORT_PARTIAL_RECALL")
+        return self_hashed({"schema": "independent_result_integrity_verifier_v1", "result_artifact_byte_hash": receipt["artifact_byte_hash"], "result_self_hash": result["self_hash"], "nested_authorities_replayed": True, "metric_arithmetic_replayed": True, "predictions_regenerated": False, "status": "PASS"})
+    n, k = result["eligible_count"], result["hit_count"]
+    if k != sum(item["hit"] for item in result["scenario_hits"]) or n != len(result["scenario_hits"]):
+        raise DG05ClosureError("RESULT_ARITHMETIC_MISMATCH")
+    expected_recall = None if n == 0 else k / n
+    if result["scenario_recall"] != expected_recall:
+        raise DG05ClosureError("RESULT_RECALL_MISMATCH")
+    expected_ci = None if n == 0 else list(wilson95_v1(k, n))
+    if result["wilson95"] != expected_ci:
+        raise DG05ClosureError("RESULT_WILSON_MISMATCH")
+    return self_hashed({"schema": "independent_result_integrity_verifier_v1", "result_artifact_byte_hash": receipt["artifact_byte_hash"], "result_self_hash": result["self_hash"], "nested_authorities_replayed": True, "metric_arithmetic_replayed": True, "predictions_regenerated": False, "status": "PASS"})
+
+
+def load_frozen_prediction_inputs_v1(*, panel_id: str, method_id: str, global_manifest: Mapping[str, Any],
+                                     receipt_paths: Mapping[str, Path], prediction_paths: Mapping[str, Path],
+                                     timestamp_authorities: Mapping[str, TimestampCoordinateAuthorityV1],
+                                     projection_authorities: Mapping[str, FeatureProjectionAuthorityV1],
+                                     projection_paths: Mapping[str, Path]) -> tuple[dict[str, tuple[TimestampCoordinateAuthorityV1, Sequence[str], Sequence[bool], str, str]], dict[str, str], str]:
+    """Reopen frozen receipts and predictions; never accept caller-made alarm arrays."""
+    validate_self_hashed(global_manifest)
+    selected = [r for r in global_manifest["receipts"] if r["panel_id"] == panel_id and r["method_id"] == method_id]
+    if not selected:
+        raise DG05ClosureError("PANEL_METHOD_TERMINAL_RECEIPTS_REQUIRED")
+    loaded: dict[str, tuple[TimestampCoordinateAuthorityV1, Sequence[str], Sequence[bool], str, str]] = {}
+    failures: dict[str, str] = {}
+    authority_hashes = set()
+    for embedded in selected:
+        validate_self_hashed(embedded)
+        path = receipt_paths[embedded["cell_id"]]
+        persisted = json.loads(path.read_text(encoding="ascii"))
+        validate_self_hashed(persisted)
+        if persisted != embedded or file_sha256(path) != sha256(canonical_bytes(embedded) + b"\n").hexdigest():
+            raise DG05ClosureError("TERMINAL_RECEIPT_REPLAY_MISMATCH")
+        authority_hashes.add(embedded["method_authority_hash"])
+        if embedded["status"] == "METHOD_FAILURE":
+            failures[embedded["file_id"]] = embedded["self_hash"]
+            continue
+        prediction_path = prediction_paths[embedded["cell_id"]]
+        if file_sha256(prediction_path) != embedded["prediction_artifact_hash"]:
+            raise DG05ClosureError("FROZEN_PREDICTION_BYTE_REPLAY_MISMATCH")
+        prediction = json.loads(prediction_path.read_text(encoding="ascii"))
+        timestamp = timestamp_authorities[embedded["file_id"]]
+        projection = projection_authorities[embedded["file_id"]]
+        timestamp.validate(); projection.validate()
+        projection_path = projection_paths[embedded["file_id"]]
+        if file_sha256(projection_path) != projection.projection_hash:
+            raise DG05ClosureError("RESULT_PROJECTION_BYTE_REPLAY_MISMATCH")
+        if (prediction.get("cell_id"), prediction.get("row_count")) != (embedded["cell_id"], embedded["row_count"]):
+            raise DG05ClosureError("PREDICTION_RECEIPT_SCHEMA_MISMATCH")
+        lines = projection_path.read_bytes().splitlines()
+        if not lines:
+            raise DG05ClosureError("EMPTY_REPLAYED_PROJECTION")
+        timestamps = tuple(str(json.loads(line.decode("ascii"))[0]) for line in lines[1:])
+        replayed = sha256(b"".join(v.encode("utf-8") + b"\n" for v in timestamps)).hexdigest()
+        if len(timestamps) != timestamp.row_count or replayed != timestamp.timestamp_vector_hash:
+            raise DG05ClosureError("RESULT_TIMESTAMP_VECTOR_REPLAY_MISMATCH")
+        loaded[embedded["file_id"]] = (timestamp, timestamps, tuple(prediction["alarms"]), embedded["prediction_artifact_hash"], projection.projection_hash)
+    if len(authority_hashes) != 1:
+        raise DG05ClosureError("ONE_METHOD_AUTHORITY_PER_PANEL_RESULT_REQUIRED")
+    return loaded, failures, next(iter(authority_hashes))
+def build_etapr_coordinate_binding_v1(*, panel_id: str, file_bindings: Sequence[Mapping[str, Any]],
+                                      etapr_authority_hash: str) -> dict[str, Any]:
+    _sha(etapr_authority_hash, "etapr_authority_hash")
+    ordered = sorted((dict(v) for v in file_bindings), key=lambda v: v["file_id"])
+    required = {"file_id", "physical_file_authority_hash", "timestamp_authority_hash", "prediction_artifact_hash", "scenario_authority_hash"}
+    if not ordered or any(set(v) != required for v in ordered) or len({v["file_id"] for v in ordered}) != len(ordered):
+        raise DG05ClosureError("ETAPR_FILE_COORDINATE_BINDINGS_REQUIRED")
+    for row in ordered:
+        for field in required - {"file_id"}:
+            _sha(row[field], field)
+    return self_hashed({"schema": "etapr_coordinate_binding_v1", "panel_id": panel_id, "file_bindings": ordered,
+                        "physical_file_set_hash": digest(sorted(v["physical_file_authority_hash"] for v in ordered)),
+                        "etapr_authority_hash": etapr_authority_hash, "cross_file_anonymous_ranges": False})
+
+
+def build_result_authority_bundle_v1(*, results: Sequence[Mapping[str, Any]], receipts: Sequence[Mapping[str, Any]],
+                                     artifact_paths: Sequence[Path], executable_manifest_hash: str,
+                                     global_prediction_manifest_hash: str, scenario_authority_hash: str,
+                                     denominator_authority_hash: str, independent_qa_hash: str) -> dict[str, Any]:
+    for value in (executable_manifest_hash, global_prediction_manifest_hash, scenario_authority_hash, denominator_authority_hash, independent_qa_hash):
+        _sha(value, "result_bundle_authority_hash")
+    if not (len(results) == len(receipts) == len(artifact_paths) == 23):
+        raise DG05ClosureError("EXACT_23_RESULT_AUTHORITIES_REQUIRED")
+    identities = []
+    artifacts = []
+    for result, receipt, path in zip(results, receipts, artifact_paths):
+        validate_self_hashed(result); validate_self_hashed(receipt)
+        if file_sha256(path) != receipt["artifact_byte_hash"] or result["self_hash"] != receipt["result_self_hash"]:
+            raise DG05ClosureError("RESULT_BUNDLE_BYTE_REPLAY_MISMATCH")
+        identities.append((result["panel_id"], result["method_id"]))
+        artifacts.append({"panel_id": result["panel_id"], "method_id": result["method_id"], "result_self_hash": result["self_hash"], "artifact_byte_hash": receipt["artifact_byte_hash"]})
+    expected = {(panel, method) for panel, methods in FROZEN_METHOD_IDS_BY_PANEL_V1.items() for method in methods}
+    if set(identities) != expected or len(identities) != len(set(identities)):
+        raise DG05ClosureError("EXACT_RESULT_METHOD_CENSUS_REQUIRED")
+    return self_hashed({"schema": "result_authority_bundle_v1", "artifacts": sorted(artifacts, key=lambda v: (FROZEN_PANEL_ORDER_V2.index(v["panel_id"]), FROZEN_METHOD_IDS_BY_PANEL_V1[v["panel_id"]].index(v["method_id"]))),
+                        "executable_approval_manifest_hash": executable_manifest_hash, "global_prediction_manifest_hash": global_prediction_manifest_hash,
+                        "scenario_authority_hash": scenario_authority_hash, "denominator_authority_hash": denominator_authority_hash,
+                        "independent_qa_hash": independent_qa_hash, "cross_version_pooled_result": False})
+
+
+def build_paired_contrast_v1(a: Mapping[str, Any], b: Mapping[str, Any]) -> dict[str, Any]:
+    for item in (a, b):
+        validate_self_hashed(item)
+    required = ("panel_id", "prediction_manifest_hash", "scenario_authority_hash", "denominator_authority_hash", "metric_authority_hash")
+    if any(a[field] != b[field] for field in required):
+        raise DG05ClosureError("PAIRED_CONTRAST_AUTHORITY_MISMATCH")
+    ah = {v["scenario_id"]: v["hit"] for v in a["scenario_hits"]}
+    bh = {v["scenario_id"]: v["hit"] for v in b["scenario_hits"]}
+    if set(ah) != set(bh):
+        raise DG05ClosureError("PAIRED_SCENARIO_SET_MISMATCH")
+    return self_hashed({"schema": "bound_paired_contrast_v1", "panel_id": a["panel_id"], "method_a_result_hash": a["self_hash"], "method_b_result_hash": b["self_hash"], "a_only": sum(ah[k] and not bh[k] for k in ah), "b_only": sum(bh[k] and not ah[k] for k in ah), **{f"bound_{field}": a[field] for field in required[1:]}})
+
+
+__all__ = [name for name in globals() if name.endswith("V1") or name in {
+    "DG05ClosureError", "canonical_bytes", "digest", "self_hashed", "validate_self_hashed",
+    "file_sha256", "publish_new", "initialize_dg05_execution_v1", "advance_dg05_state_v1",
+    "project_attack_feature_file_v1", "build_expected_prediction_cell_census_v1",
+    "execute_prediction_cell_v1", "build_global_prediction_manifest_v1", "freeze_global_predictions_v1",
+    "persist_prediction_receipt_v1", "load_frozen_prediction_inputs_v1", "build_etapr_coordinate_binding_v1",
+    "build_result_authority_bundle_v1",
+    "build_scenario_authority_v1", "build_denominator_authority_v1", "issue_label_lease_v3",
+    "compute_bound_panel_method_result_v1", "persist_result_authority_v1", "verify_result_authority_v1",
+    "build_paired_contrast_v1", "fuse_dense_masks_v1",
+}]

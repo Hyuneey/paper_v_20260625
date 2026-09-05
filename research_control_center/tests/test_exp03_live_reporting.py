@@ -45,7 +45,7 @@ class LiveReportingTests(unittest.TestCase):
         state = read(RCC / "registry/current_state.yaml")
         program = read(RCC / "validation_v2/PROGRAM_STATE.json")
         self.assertEqual(
-            "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access" if state.get("multipanel_pre_dg05") else ("MULTIPANEL-PRE-DG05-FREEZE-001" if state.get("xver_t2_execution") else ("DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001")),
+            "DG-05 REAPPROVAL — EXECUTABLE V2" if state.get("dg05_executable_closure") else ("DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access" if state.get("multipanel_pre_dg05") else ("MULTIPANEL-PRE-DG05-FREEZE-001" if state.get("xver_t2_execution") else ("DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001"))),
             state["exact_next_task"],
         )
         self.assertEqual("COMPLETE_QA_PASS", state["exp03_execution"]["status"])
@@ -60,7 +60,12 @@ class LiveReportingTests(unittest.TestCase):
         self.assertEqual("APPROVED_EXECUTED" if executed else "USER_DECISION_REQUIRED", program["decision_gates"]["DG-03B_REVISED"])
         self.assertEqual("PREPARED_DG03B_REVISED_PENDING",state['exp03b_preparation']['status'])
         self.assertFalse(program["held_out_authorized"])
-        self.assertEqual("USER_DECISION_REQUIRED" if program.get("multipanel_pre_dg05") else "NOT_APPROVED", program["decision_gates"]["DG-05"])
+        self.assertEqual(
+            "V1_HISTORICAL_EXECUTION_SUSPENDED_V2_USER_REAPPROVAL_REQUIRED"
+            if program.get("dg05_executable_closure")
+            else ("USER_DECISION_REQUIRED" if program.get("multipanel_pre_dg05") else "NOT_APPROVED"),
+            program["decision_gates"]["DG-05"],
+        )
         self.assertEqual("PENDING", program["decision_gates"]["DG-06"])
 
     def test_no_dataset_access_or_runtime_mutation_claim(self):

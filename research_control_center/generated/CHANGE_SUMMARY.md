@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=4e1500f353ecb833177ed71c25ccafb4f3fc9845e4186be0bd978e8b98c38250 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=aec8388c69f2e3890c6995d3ea06f292ff63aff54235681b692d9a7529d29798 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -10,6 +10,7 @@ Registry version: `0.1.0`
 - **2026-09-05 — 외부 버전 정상-only 실행 및 provider Gate 준비** (`ACTIVE_CONTEXT`): 12 split-pure GDN runs;separate global/auxiliary;T0 portfolios;T2 packs;no provider or attack
 - **2026-09-05 — 사용자 승인: provider GLOBAL5 / AUX EVENT10 분리** (`ACTIVE_CONTEXT`): Scientific role choice resolved;15 synthetic tests PASS;GDN0/12;no provider/attack
 - **2026-09-05 — 다중 패널 방법·지표·전역 prediction custody 동결** (`ACTIVE_CONTEXT`): External PCA/IF normal freeze;exact scenario and mapping identities;per-file eTaPR;durable exact-census pre-label manifest and one-shot lease;attack access0
+- **2026-09-05 — DG05 실행 권한 B1-B8 폐쇄** (`ACTIVE_CONTEXT`): Exact manifest full process scope P1V3 detector dispatch adapters isolated custodian canonical results and synthetic two-phase replay;real access0
 - **2026-09-04 — Schema-only 승인 후 정상9파일 projection·외부 후보 완료** (`ACTIVE_CONTEXT`): StageA불변;HAI22/21 후보각29;GDN evidence 후속;provider/attack0
 - **2026-09-04 — 외부 GDN context 완료·event evidence binding 중단** (`ACTIVE_CONTEXT`): 36/30nodes CUDA synthetic PASS;GDN0/12;no provider/attack
 - **2026-09-04 — DG04 승인·T0/T2 후보 고정, 외부 정상 custody 차단** (`ACTIVE_CONTEXT`): StageA QA PASS; external train1 두 정상 컨테이너 byte identity 뒤 header guard 중단; eTaPR per-file109 PASS; 전체 완료 아님
@@ -50,8 +51,8 @@ Registry version: `0.1.0`
 
 ## Next
 
-**DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access**
+**DG-05 REAPPROVAL — EXECUTABLE V2**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-MULTIPANEL-PRE-DG05-FREEZE-001 COMPLETE_QA_PASS. HAI22/21 PCA-SPE and secondary Isolation Forest are frozen from label-blind normal projections. Five primary methods per panel, immutable Fusion, method-blind P1 eligibility, official-scenario metrics, file-namespaced eTaPR, empty-input behavior, paired contrasts, and the global prediction-before-any-label custody state machine are frozen. No attack/test/label/scenario data was accessed. Current phase PRE_DG05_FROZEN; exact next DG-05 USER_DECISION_REQUIRED. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
