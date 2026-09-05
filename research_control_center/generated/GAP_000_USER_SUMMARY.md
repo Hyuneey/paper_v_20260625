@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=188187c9dc94da7b8e9354af38d8db038c2b9c449b89744fa677e321844c038b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=4e1500f353ecb833177ed71c25ccafb4f3fc9845e4186be0bd978e8b98c38250 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장

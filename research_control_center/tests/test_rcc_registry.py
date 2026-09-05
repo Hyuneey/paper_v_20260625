@@ -51,7 +51,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(11, len(data["experiments"]))
         self.assertEqual(15, len(data["claims"]))
         self.assertEqual(21 if data["state"].get("multipanel_pre_dg05") else 20, len(data["risks"]))
-        self.assertEqual(79 if data["state"].get("multipanel_pre_dg05") else (55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52)), len(data["artifacts"]))
+        self.assertEqual(80 if data["state"].get("multipanel_pre_dg05") else (55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52)), len(data["artifacts"]))
         self.assertEqual(1, len([r for r in data['artifacts'] if r['artifact_id']=='ART-XVER-GDN-CONTEXT']))
         self.assertEqual(
             {
