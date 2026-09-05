@@ -34,6 +34,10 @@ from paperworks.validation_v2.dg05_surface_completeness_v1 import (
     verify_static_surface_completeness_from_paths_v1,
 )
 from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
+from paperworks.validation_v2.dg05_executable_v3 import (
+    DG05ExecutableV3Error,
+    initialize_dg05_executable_v3_preaccess,
+)
 
 
 H = "a" * 64
@@ -266,6 +270,24 @@ class MetricSurfaceV3Tests(unittest.TestCase):
         self.assertNotIn("dg05_metric_surface_v1", oracle_source)
         self.assertNotIn("multipanel_metrics_v1", oracle_source)
         self.assertNotIn("multipanel_etapr_v2", oracle_source)
+
+    def test_v3_initializer_requires_exact_future_approval_hash(self):
+        authority_root = ROOT / "research_control_center/validation_v2/dg05_metric_verifier_closure"
+        nested = {
+            "contract": (authority_root / "METRIC_SURFACE_CONTRACT_V1.json", "metric_surface_contract_v1"),
+            "expected": (authority_root / "EXPECTED_RESULT_SURFACE_V1.json", "expected_result_surface_authority_v1"),
+            "builder_support": (authority_root / "BUILDER_SURFACE_SUPPORT_V1.json", "result_surface_support_declaration_v1"),
+            "verifier_support": (authority_root / "VERIFIER_SURFACE_SUPPORT_V1.json", "result_surface_support_declaration_v1"),
+            "completeness": (authority_root / "RESULT_SURFACE_COMPLETENESS_ORACLE_V1.json", "result_surface_completeness_oracle_v1"),
+        }
+        state = initialize_dg05_executable_v3_preaccess(manifest_path=authority_root / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json",
+            closure_path=authority_root / "DG05_EXECUTABLE_CLOSURE_AUTHORITY_V3.json", nested_paths=nested,
+            approved_manifest_hash=None)
+        self.assertEqual((state["state"], state["attack_access_authorized"]), ("DG05_V3_USER_REAPPROVAL_REQUIRED", False))
+        with self.assertRaises(DG05ExecutableV3Error):
+            initialize_dg05_executable_v3_preaccess(manifest_path=authority_root / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json",
+                closure_path=authority_root / "DG05_EXECUTABLE_CLOSURE_AUTHORITY_V3.json", nested_paths=nested,
+                approved_manifest_hash="0" * 64)
 
 
 if __name__ == "__main__":
