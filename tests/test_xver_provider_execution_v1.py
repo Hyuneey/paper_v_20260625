@@ -41,7 +41,7 @@ class XverProviderExecutionTests(unittest.TestCase):
         hashes = {}
         for version in ("22.04", "21.03"):
             value = seal({
-                "version": version, "model": config["model"], "gate": "DG-XVER-PROVIDER",
+                "version": version, "gate": "DG-XVER-PROVIDER",
                 "maximum_calls": 87, "maximum_input_tokens": 1_633_280,
                 "maximum_output_tokens": 178_176, "maximum_total_tokens": 1_811_456,
                 "prospective_standard_price_ceiling_usd": "2.03", "config": config,

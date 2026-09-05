@@ -64,7 +64,7 @@ def validate_budget(version: str, budget: dict, profile: dict) -> None:
     require(version in VERSIONS and budget["version"] == version, "VERSION_BUDGET_IDENTITY")
     require(budget["self_hash"] == EXPECTED_BUDGET_HASHES[version], "BUDGET_AUTHORITY_MISMATCH")
     require(
-        budget["model"] == EXPECTED_MODEL
+        budget["config"]["model"] == EXPECTED_MODEL
         and budget["gate"] == "DG-XVER-PROVIDER"
         and budget["maximum_calls"] == 87
         and budget["maximum_input_tokens"] == 1_633_280

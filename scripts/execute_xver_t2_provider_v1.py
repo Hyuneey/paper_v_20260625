@@ -38,7 +38,7 @@ from paperworks.validation_v2.xver_provider_execution_v1 import (
 
 
 PUBLIC = PUB / "provider_execution_v1"
-RUNROOT = private_root() / "provider_t2_v1"
+RUNROOT = private_root() / "provider_t2_v2"
 ENDPOINT = "https://api.openai.com/v1/responses"
 
 
@@ -105,8 +105,8 @@ def _structural(value: dict) -> Train2SemanticEvidenceV2:
 
 
 def _authorities():
-    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V2.json")
-    approval = document(PUBLIC / "XVER_T2_PROVIDER_APPROVAL_RECEIPT_V2.json")
+    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V3.json")
+    approval = document(PUBLIC / "XVER_T2_PROVIDER_APPROVAL_RECEIPT_V3.json")
     for relative, expected in freeze["implementation_hashes"].items():
         require(sha256_file(ROOT / relative) == expected, "EXECUTION_CODE_CHANGED")
     require(freeze["integration_baseline"] == "be3ff48bd2abfafc81544357af0daff69a6721a2", "SOURCE_AUTHORITY_MISMATCH")
@@ -245,7 +245,7 @@ def main(*, probe_only: bool) -> None:
             elapsed = time.perf_counter() - start
             usage = response.get("usage")
             require(type(usage) is dict and type(usage.get("input_tokens")) is int and type(usage.get("output_tokens")) is int, "PROVIDER_USAGE_UNAVAILABLE")
-            require(response.get("model") == budgets[version]["model"], "MODEL_SNAPSHOT_MISMATCH")
+            require(response.get("model") == budgets[version]["config"]["model"], "MODEL_SNAPSHOT_MISMATCH")
             require(type(response.get("id")) is str and bool(response["id"]), "PROVIDER_RESPONSE_IDENTITY")
             try:
                 proposal, no_tools = _response_proposal(response)

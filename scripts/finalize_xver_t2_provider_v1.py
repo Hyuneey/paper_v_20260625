@@ -29,7 +29,7 @@ from paperworks.validation_v2.xver_t2_closure_v1 import authorize_t2_binding, bi
 
 
 PUBLIC = PUB / "provider_execution_v1"
-RUNROOT = private_root() / "provider_t2_v1"
+RUNROOT = private_root() / "provider_t2_v2"
 VERSIONS = ("22.04", "21.03")
 
 
@@ -277,7 +277,7 @@ def finalize_version(version: str, freeze: dict, bundle: dict) -> dict:
 
 
 def main() -> None:
-    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V2.json")
+    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V3.json")
     combined, bundles = _provider_barrier(freeze)
     results = {version: finalize_version(version, freeze, bundles[version]) for version in VERSIONS}
     combined_usage = {version: _actual_usage(version) for version in VERSIONS}
