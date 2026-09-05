@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "DEC-030 records exact DG05 Executable V2 conditional reapproval, but functional pre-access replay found that the approved result builder and independent verifier omit the complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime census, and normal-burden result surface. Phase A remains unstarted; attack/test access 0; labels/scenarios 0; lease 0; predictions 0; results 0. Current phase DG05_V2_BLOCKED_PRE_ACCESS; exact next DG05-V2-METRIC-VERIFIER-CLOSURE-001, followed by DG-05 REAPPROVAL under the new hashes. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
+  "current_phase_statement": "DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001",
+    "DG-05 REAPPROVAL — EXECUTABLE V3",
     "Preserve all frozen method, metric, custody, and single-copy private authorities",
     "DG06: professor package submission decision"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001",
+  "recommended_next_management_task": "DG-05 REAPPROVAL — EXECUTABLE V3",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
-  "last_completed_task": "DG05-EXEC-AUTHORITY-CLOSURE-001 — COMPLETE_QA_PASS_DG05_EXECUTABLE_CLOSURE_FROZEN",
-  "exact_next_task": "DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001",
+  "last_completed_task": "DG05-V2-METRIC-VERIFIER-CLOSURE-001 — DG05_EXECUTABLE_V3_CLOSURE_FROZEN",
+  "exact_next_task": "DG-05 REAPPROVAL — EXECUTABLE V3",
   "safety_counters": {
     "scientific_executions": 5,
     "test2_feature_accesses": 0,
@@ -887,6 +887,30 @@
     "attack_test_accesses": 0,
     "label_scenario_accesses": 0,
     "real_eligibility_generated": 0,
+    "professor_package": "NOT_SUBMITTED",
+    "backup": "SINGLE_COPY_LOCAL_ONLY"
+  },
+  "dg05_executable_v3_closure": {
+    "status": "DG05_EXECUTABLE_V3_CLOSURE_FROZEN",
+    "approval_status": "DG05_V3_USER_REAPPROVAL_REQUIRED",
+    "historical_decision": "DEC-030_RECORDED_NOT_EXERCISED_SUSPENDED",
+    "predecessor_v2_manifest_hash": "586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42",
+    "predecessor_v2_closure_hash": "18dc3203e1b050aca5d052f9b7995cd9ba7a5fe5f3fbe2cfb6d4aae357b482b8",
+    "executable_manifest_hash": "7ea1e4c22336a9c9dd65fd96492cb6a1163b9436a0e9eb27d7c2284b206f98f3",
+    "closure_hash": "5b3f0a297f72a958a2db49dda6abd96a5b15ba293e972d7630cb3be1bdb439db",
+    "metric_surface_contract_hash": "48f72f68bf26a2593fe6f9a53134df97b6243b849ec97b05233497b7d988a649",
+    "required_surfaces": 228,
+    "builder_covered": 228,
+    "verifier_covered": 228,
+    "mutation_classes_rejected": 12,
+    "synthetic_prediction_cells": 72,
+    "synthetic_scenarios": 146,
+    "per_surface_omission_rejected": 228,
+    "per_surface_authority_binding_rejected": 228,
+    "attack_test_accesses": 0,
+    "label_scenario_accesses": 0,
+    "provider_calls": 0,
+    "credential_reads": 0,
     "professor_package": "NOT_SUBMITTED",
     "backup": "SINGLE_COPY_LOCAL_ONLY"
   },

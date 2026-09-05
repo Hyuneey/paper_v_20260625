@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8dd7e0e05f6efd13270749854b210426e7b220d0b4f521688fa4be92f000899 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리 연구가 어떻게 여기까지 왔나
 
 ## 처음 무엇을 하려 했는가
@@ -50,8 +50,8 @@ pilot evidence일 뿐이다. Rule-only 실용성, D2 개선, GDN 고유 기여, 
 
 새 독립 사전등록 아래 더 많은 사건과 더 강한 다변량 탐지기 기준선으로 Rule-only와
 detector 비교를 확장해야 한다. GDN 안정성과 고유 기여, 실제 피드백이 발생하는 T2 비교,
-fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001**이다.
+fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **DG-05 REAPPROVAL — EXECUTABLE V3**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DEC-030 records exact DG05 Executable V2 conditional reapproval, but functional pre-access replay found that the approved result builder and independent verifier omit the complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime census, and normal-burden result surface. Phase A remains unstarted; attack/test access 0; labels/scenarios 0; lease 0; predictions 0; results 0. Current phase DG05_V2_BLOCKED_PRE_ACCESS; exact next DG05-V2-METRIC-VERIFIER-CLOSURE-001, followed by DG-05 REAPPROVAL under the new hashes. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

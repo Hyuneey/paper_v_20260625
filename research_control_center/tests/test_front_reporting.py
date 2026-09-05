@@ -156,6 +156,19 @@ class FrontReportingTests(unittest.TestCase):
             'src/paperworks/validation_v2/dg05_label_custodian_v1.py',
             'src/paperworks/validation_v2/dg05_result_oracle_v1.py',
         })
+        v3_manifest = json.loads((RCC / 'validation_v2/dg05_metric_verifier_closure/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json').read_text(encoding='utf-8'))
+        v3_sources = {
+            'expected_result_surface_builder': 'src/paperworks/validation_v2/dg05_expected_surface_v1.py',
+            'independent_metric_surface_verifier': 'src/paperworks/validation_v2/dg05_metric_surface_oracle_v1.py',
+            'metric_surface_production_builder': 'src/paperworks/validation_v2/dg05_metric_surface_v1.py',
+            'metric_surface_execution_bridge': 'src/paperworks/validation_v2/dg05_metric_surface_execution_v1.py',
+            'connected_synthetic_rehearsal': 'src/paperworks/validation_v2/dg05_connected_rehearsal_v3.py',
+            'result_surface_completeness_oracle': 'src/paperworks/validation_v2/dg05_surface_completeness_v1.py',
+            'v3_preaccess_initializer': 'src/paperworks/validation_v2/dg05_executable_v3.py',
+        }
+        for authority_key, path in v3_sources.items():
+            self.assertEqual(v3_manifest['implementation_hashes'][authority_key], hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+            additions.add(path)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

@@ -79,6 +79,14 @@ Label-bearing normal container byte traversal은 있지만 excluded values deser
 
 ## 이전 상태 — 역사적 기록
 
+# 현재 결정 안건 — DG-05 Executable V3 재승인
+
+Executable V2는 미실행 상태에서 complete metric-surface 결손으로 중단되었습니다. V3 closure는 동결 과학 계약을 유지한 채 연결된 72-cell prediction/freeze/lease/custodian/146-scenario 경로에서 228/228 builder/verifier surface를 재계산했고, 12/12 mutation class 및 surface별 omission/authority-binding 228/228을 거부했습니다. 실제 attack/test·label/scenario 접근은 0이며, DEC-030은 재사용하지 않습니다.
+
+다음 연구자 결정은 새 V3 manifest/closure hash에 대한 명시적 DG-05 재승인입니다. 이 package 자체는 제출되지 않았고 DG-06은 별도입니다.
+
+## 이전 기록 — 역사적 상태
+
 # DG04-XVER-PREP-001 — 현재 중단 지점
 
 DG-04는 DEC-025 APPROVED_WITH_SCOPED_AGENTIC_CLAIM으로 고정했습니다. EXP-03B는 DG-03B_REVISED 승인 후 실행·QA 완료된 역사적 결과입니다. T2의 Agentic 의미 유도 이점은 matched-maximum-budget T1-B 대비이며 T0 우월성을 뜻하지 않습니다.
