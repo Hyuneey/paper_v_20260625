@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=aec8388c69f2e3890c6995d3ea06f292ff63aff54235681b692d9a7529d29798 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8dd7e0e05f6efd13270749854b210426e7b220d0b4f521688fa4be92f000899 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -10,6 +10,7 @@ Registry version: `0.1.0`
 - **2026-09-05 — 외부 버전 정상-only 실행 및 provider Gate 준비** (`ACTIVE_CONTEXT`): 12 split-pure GDN runs;separate global/auxiliary;T0 portfolios;T2 packs;no provider or attack
 - **2026-09-05 — 사용자 승인: provider GLOBAL5 / AUX EVENT10 분리** (`ACTIVE_CONTEXT`): Scientific role choice resolved;15 synthetic tests PASS;GDN0/12;no provider/attack
 - **2026-09-05 — 다중 패널 방법·지표·전역 prediction custody 동결** (`ACTIVE_CONTEXT`): External PCA/IF normal freeze;exact scenario and mapping identities;per-file eTaPR;durable exact-census pre-label manifest and one-shot lease;attack access0
+- **2026-09-05 — DG05 Executable V2 재승인 및 사전접근 중단** (`CONDITIONAL`): Exact hashes replayed but approved builder/oracle omit complete frozen metric replay;PhaseA0;attack0;labels0;lease0
 - **2026-09-05 — DG05 실행 권한 B1-B8 폐쇄** (`ACTIVE_CONTEXT`): Exact manifest full process scope P1V3 detector dispatch adapters isolated custodian canonical results and synthetic two-phase replay;real access0
 - **2026-09-04 — Schema-only 승인 후 정상9파일 projection·외부 후보 완료** (`ACTIVE_CONTEXT`): StageA불변;HAI22/21 후보각29;GDN evidence 후속;provider/attack0
 - **2026-09-04 — 외부 GDN context 완료·event evidence binding 중단** (`ACTIVE_CONTEXT`): 36/30nodes CUDA synthetic PASS;GDN0/12;no provider/attack
@@ -51,8 +52,8 @@ Registry version: `0.1.0`
 
 ## Next
 
-**DG-05 REAPPROVAL — EXECUTABLE V2**
+**DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-030 records exact DG05 Executable V2 conditional reapproval, but functional pre-access replay found that the approved result builder and independent verifier omit the complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime census, and normal-burden result surface. Phase A remains unstarted; attack/test access 0; labels/scenarios 0; lease 0; predictions 0; results 0. Current phase DG05_V2_BLOCKED_PRE_ACCESS; exact next DG05-V2-METRIC-VERIFIER-CLOSURE-001, followed by DG-05 REAPPROVAL under the new hashes. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
