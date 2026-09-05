@@ -98,13 +98,25 @@ def execute():
         train3full=make_input(version,'train3',features)
         calibration=train3full if short=='HAI22' else ExternalNormalMatrixV1(version,'train3',sha256((train3full.projection_hash+':0:239370').encode()).hexdigest(),features,train3full.values[:239370])
         methods={}
-        pca=fit_external_pca_v1(train1,train2,version=version,feature_ids=features,source_commit=source,preregistration_hash=prereg['self_hash'])
-        scores,binding=score_external_pca_v1(pca,calibration,split='train3');pth=calibrate_external_v1(scores,binding,fit_hash=pca.fit_authority['self_hash'],config_hash=PcaSpeConfigV2().config_hash)
+        pca_path=private/f'{short}_PCA.pkl'
+        if pca_path.exists():
+            prior=pickle.loads(pca_path.read_bytes());pca,pth=prior['model'],prior['threshold']
+            if pca.fit_authority['source_commit']!=source or pca.fit_authority['preregistration_hash']!=prereg['self_hash']:
+                raise ValueError('PRIVATE_EXISTING_SCIENTIFIC_AUTHORITY_MISMATCH')
+        else:
+            pca=fit_external_pca_v1(train1,train2,version=version,feature_ids=features,source_commit=source,preregistration_hash=prereg['self_hash'])
+            scores,binding=score_external_pca_v1(pca,calibration,split='train3');pth=calibrate_external_v1(scores,binding,fit_hash=pca.fit_authority['self_hash'],config_hash=PcaSpeConfigV2().config_hash)
         pbytes,psz=persist_private(private/f'{short}_PCA.pkl',{'model':pca,'threshold':pth})
         methods['PCA']={'fit':pca.fit_authority,'threshold_authority_hash':pth['self_hash'],'private_bytes_hash':pbytes,'private_bytes':psz}
         del scores;gc.collect()
-        forest=fit_external_if_v1(train1,train2,version=version,feature_ids=features,source_commit=source,preregistration_hash=prereg['self_hash'])
-        scores,binding=score_external_if_v1(forest,calibration,split='train3');ith=calibrate_external_v1(scores,binding,fit_hash=forest.fit_authority['self_hash'],config_hash=IsolationForestConfigV1().config_hash)
+        if_path=private/f'{short}_IF.pkl'
+        if if_path.exists():
+            prior=pickle.loads(if_path.read_bytes());forest,ith=prior['model'],prior['threshold']
+            if forest.fit_authority['source_commit']!=source or forest.fit_authority['preregistration_hash']!=prereg['self_hash']:
+                raise ValueError('PRIVATE_EXISTING_SCIENTIFIC_AUTHORITY_MISMATCH')
+        else:
+            forest=fit_external_if_v1(train1,train2,version=version,feature_ids=features,source_commit=source,preregistration_hash=prereg['self_hash'])
+            scores,binding=score_external_if_v1(forest,calibration,split='train3');ith=calibrate_external_v1(scores,binding,fit_hash=forest.fit_authority['self_hash'],config_hash=IsolationForestConfigV1().config_hash)
         ibytes,isz=persist_private(private/f'{short}_IF.pkl',{'model':forest,'threshold':ith})
         methods['IF']={'fit':forest.fit_authority,'threshold_authority_hash':ith['self_hash'],'private_bytes_hash':ibytes,'private_bytes':isz}
         del scores;gc.collect()
