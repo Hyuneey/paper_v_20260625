@@ -163,6 +163,9 @@ SECONDARY_METHODS_V2={
 }
 FROZEN_METHOD_BUNDLE_HASH_V2='dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2'
 FROZEN_ATTACK_FILE_CENSUS_HASH_V2='5018ba8d01e32a8a2ff4cf95cdb6ca75b51b006b812acf5cffe2b1d26b8a6a16'
+FROZEN_AUTHORITY_SOURCE_COMMIT_V2='fe4f42c4d40000ab369b5de0e5b0f5e748020dab'
+FROZEN_METRIC_AUTHORITY_HASH_V2='fda07178f1fa8b5b889c4043e33ee9934b99dfbf282e31cca5ae9fcc2a461dbb'
+FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2='a1c5f1ac8bde9a54e21d29c261f33e876fbd4fe84e9aa92ffd36eb0968570ea0'
 FROZEN_DATASET_VERSIONS_V2={
     FROZEN_PANEL_ORDER_V2[0]:'23.05',FROZEN_PANEL_ORDER_V2[1]:'22.04',FROZEN_PANEL_ORDER_V2[2]:'21.03',
 }
@@ -252,7 +255,14 @@ class FrozenFeatureAllowlistAuthorityV2:
         if (self.dataset_version,self.timestamp_id,self.feature_ids)!=(FROZEN_DATASET_VERSIONS_V2[self.panel_id],FROZEN_TIMESTAMP_IDS_V2[self.panel_id],FROZEN_FEATURE_IDS_V2[self.panel_id]):
             raise MultiPanelCustodyError('allowlist differs from frozen panel authority')
         if self.method_bundle_hash!=FROZEN_METHOD_BUNDLE_HASH_V2:raise MultiPanelCustodyError('frozen method bundle mismatch')
-        _gitsha(self.source_commit,'source_commit')
+        if self.source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('allowlist source commit differs from frozen authority')
+
+
+def frozen_feature_allowlist_authorities_v2()->dict[str,FrozenFeatureAllowlistAuthorityV2]:
+    """Return the only feature-allowlist authorities admissible to DG-05 custody."""
+    return {panel:FrozenFeatureAllowlistAuthorityV2(panel,FROZEN_DATASET_VERSIONS_V2[panel],
+            FROZEN_TIMESTAMP_IDS_V2[panel],FROZEN_FEATURE_IDS_V2[panel],FROZEN_METHOD_BUNDLE_HASH_V2,
+            FROZEN_AUTHORITY_SOURCE_COMMIT_V2) for panel in FROZEN_PANEL_ORDER_V2}
 
 
 @dataclass(frozen=True,order=True)
@@ -284,7 +294,8 @@ class FrozenPhysicalFileAuthorityV2:
         by_panel={panel:tuple(item.file_id for item in self.files if item.panel_id==panel) for panel in FROZEN_PANEL_ORDER_V2}
         if by_panel!=FROZEN_ATTACK_FILE_IDS_V2:raise MultiPanelCustodyError('physical files differ from frozen public census')
         if self.attack_file_census_authority_hash!=FROZEN_ATTACK_FILE_CENSUS_HASH_V2:raise MultiPanelCustodyError('attack file census authority mismatch')
-        _sha(self.dg05_authorization_hash,'dg05_authorization_hash');_gitsha(self.source_commit,'source_commit')
+        _sha(self.dg05_authorization_hash,'dg05_authorization_hash')
+        if self.source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('physical authority source commit mismatch')
     def lookup(self,panel_id:str,file_id:str)->PhysicalFileIdentityV2:
         self.validate()
         for item in self.files:
@@ -312,7 +323,8 @@ class AttackFeatureProjectionReceiptV2:
         if (self.panel_id,self.timestamp_id,self.approved_feature_ids)!=(authority.panel_id,authority.timestamp_id,authority.feature_ids):
             raise MultiPanelCustodyError('projection is not bound to exact allowlist')
         if self.feature_allowlist_authority_hash!=authority.document()['self_hash']:raise MultiPanelCustodyError('allowlist authority hash mismatch')
-        _identity(self.file_id,'file_id');_gitsha(self.source_commit,'source_commit')
+        _identity(self.file_id,'file_id')
+        if self.source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('projection source commit mismatch')
         for name in ('feature_allowlist_authority_hash','raw_container_hash','header_hash','projection_hash','timestamp_range_hash'):_sha(getattr(self,name),name)
         if type(self.row_count) is not int or self.row_count<=0:raise MultiPanelCustodyError('invalid projection row count')
         flags=(self.label_values_parsed,self.label_values_decoded,self.label_values_inspected,self.label_values_counted,
@@ -345,16 +357,17 @@ class GlobalCellCensusAuthorityV2:
         if tuple(panel for panel,_ in self.files_by_panel)!=FROZEN_PANEL_ORDER_V2 or tuple(panel for panel,_ in self.methods_by_panel)!=FROZEN_PANEL_ORDER_V2:
             raise MultiPanelCustodyError('exact frozen panel order required')
         for panel,files in self.files_by_panel:
-            if not files or len(set(files))!=len(files):raise MultiPanelCustodyError('exact physical file census required')
+            if files!=FROZEN_ATTACK_FILE_IDS_V2[panel] or len(set(files))!=len(files):raise MultiPanelCustodyError('exact physical file census required')
             for value in files:_identity(value,'file_id')
         for panel,methods in self.methods_by_panel:
             expected=PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel]
             if tuple(item.method_id for item in methods)!=expected:raise MultiPanelCustodyError('exact frozen method census required')
             for item in methods:item.validate(panel)
         if self.method_bundle_hash!=FROZEN_METHOD_BUNDLE_HASH_V2:raise MultiPanelCustodyError('frozen method bundle mismatch')
-        if tuple(panel for panel,_ in self.allowlist_authority_hashes)!=FROZEN_PANEL_ORDER_V2:raise MultiPanelCustodyError('exact allowlist authority census required')
-        for _,value in self.allowlist_authority_hashes:_sha(value,'allowlist_authority_hash')
-        _sha(self.physical_file_authority_hash,'physical_file_authority_hash');_gitsha(self.source_commit,'source_commit')
+        expected_allowlists=tuple((panel,authority.document()['self_hash']) for panel,authority in frozen_feature_allowlist_authorities_v2().items())
+        if self.allowlist_authority_hashes!=expected_allowlists:raise MultiPanelCustodyError('exact frozen allowlist authority census required')
+        _sha(self.physical_file_authority_hash,'physical_file_authority_hash')
+        if self.source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('census source commit mismatch')
     def body(self)->dict[str,Any]:
         return {'schema':'multipanel_global_cell_census_authority_v2','files_by_panel':[[p,list(v)] for p,v in self.files_by_panel],
                 'methods_by_panel':[[p,[m.document() for m in v]] for p,v in self.methods_by_panel],
@@ -409,7 +422,8 @@ class PredictionFailureReceiptV2:
 
 
 def _validate_cell_identity_v2(receipt:Any,census:GlobalCellCensusAuthorityV2)->None:
-    census.validate();_identity(receipt.file_id,'file_id');_gitsha(receipt.source_commit,'source_commit')
+    census.validate();_identity(receipt.file_id,'file_id')
+    if receipt.source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('prediction receipt source commit mismatch')
     if (receipt.panel_id,receipt.file_id,receipt.method_id) not in set(census.expected_cells()):raise MultiPanelCustodyError('cell outside frozen census')
     authority=census.method(receipt.panel_id,receipt.method_id)
     if (receipt.method_authority_hash,receipt.execution_authority_hash)!=(authority.method_authority_hash,authority.execution_authority_hash):
@@ -434,8 +448,11 @@ class GlobalPredictionManifestV2:
               'dg05_authorization_hash':self.dg05_authorization_hash,'source_commit':self.source_commit,'state':self.state.value}
         return {**body,'self_hash':_hash(body)}
     def validate(self,allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],physical:FrozenPhysicalFileAuthorityV2)->None:
-        self.census.validate();_gitsha(self.source_commit,'source_commit')
+        self.census.validate()
         for name in ('evaluation_policy_hash','metric_authority_hash','p1_custodian_authority_hash','dg05_authorization_hash'):_sha(getattr(self,name),name)
+        if self.source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('manifest source commit mismatch')
+        if self.metric_authority_hash!=FROZEN_METRIC_AUTHORITY_HASH_V2:raise MultiPanelCustodyError('manifest metric authority mismatch')
+        if self.p1_custodian_authority_hash!=FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2:raise MultiPanelCustodyError('manifest P1 custodian authority mismatch')
         if self.state is not GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED:raise MultiPanelCustodyError('global label-locked freeze required')
         physical.validate()
         if physical.document()['self_hash']!=self.census.physical_file_authority_hash:raise MultiPanelCustodyError('physical authority hash mismatch')
@@ -465,7 +482,8 @@ class GlobalPredictionManifestV2:
 def project_attack_columns_v2(*,header:Sequence[str],column_readers:Mapping[str,Callable[[],Sequence[Any]]],
                               authority:FrozenFeatureAllowlistAuthorityV2,file_id:str,raw_container_hash:str,
                               source_commit:str)->tuple[dict[str,tuple[Any,...]],AttackFeatureProjectionReceiptV2]:
-    authority.validate();_sha(raw_container_hash,'raw_container_hash');_gitsha(source_commit,'source_commit');_identity(file_id,'file_id')
+    authority.validate();_sha(raw_container_hash,'raw_container_hash');_identity(file_id,'file_id')
+    if source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('projection source commit mismatch')
     if not header or len(set(header))!=len(header) or set(column_readers)!=set(header):raise MultiPanelCustodyError('invalid attack container schema')
     selected=(authority.timestamp_id,*authority.feature_ids)
     if any(value not in header for value in selected):raise MultiPanelCustodyError('allowlisted field absent')
@@ -515,10 +533,19 @@ def persist_global_manifest_v2(directory:Path,manifest:GlobalPredictionManifestV
             raise MultiPanelCustodyError('prediction artifact replay mismatch')
     body=manifest.document();payload=canonical_json_line_v2(body)
     manifest_path=directory/'global_prediction_manifest_v2.json';file_hash=_publish_new(manifest_path,payload)
+    prediction_records=[]
+    for cell,path in prediction_artifacts.items():
+        try:relative=path.resolve().relative_to(directory.resolve()).as_posix()
+        except ValueError as exc:raise MultiPanelCustodyError('prediction artifact outside custody directory') from exc
+        prediction_records.append({'panel_id':cell[0],'file_id':cell[1],'method_id':cell[2],
+                                   'artifact_relative_path':relative,'artifact_file_hash':sha256(path.read_bytes()).hexdigest()})
     freeze={'schema':'multipanel_global_prediction_manifest_freeze_receipt_v2','manifest_self_hash':body['self_hash'],
             'manifest_file_hash':file_hash,'census_authority_hash':manifest.census.document()['self_hash'],
             'physical_file_authority_hash':physical.document()['self_hash'],'projection_artifact_count':len(projection_artifacts),
-            'prediction_artifact_count':len(prediction_artifacts),'state':manifest.state.value,'source_commit':manifest.source_commit}
+            'prediction_artifact_count':len(prediction_artifacts),
+            'projection_receipt_hashes':[item.document()['self_hash'] for item in manifest.projection_receipts],
+            'terminal_receipt_hashes':[item.document()['self_hash'] for item in manifest.receipts],
+            'prediction_records':prediction_records,'state':manifest.state.value,'source_commit':manifest.source_commit}
     freeze={**freeze,'self_hash':_hash(freeze)};_publish_new(directory/'global_prediction_manifest_v2.freeze.json',canonical_json_line_v2(freeze))
     return freeze
 
@@ -526,17 +553,35 @@ def persist_global_manifest_v2(directory:Path,manifest:GlobalPredictionManifestV
 def canonical_json_line_v2(value:Mapping[str,Any])->bytes:return _canon(value)+b'\n'
 
 
-def initialize_state_chain_v2(directory:Path,*,census_authority_hash:str,evaluation_policy_hash:str,
+def initialize_state_chain_v2(directory:Path,*,census_authority:GlobalCellCensusAuthorityV2,
+                              physical_authority:FrozenPhysicalFileAuthorityV2,
+                              allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],evaluation_policy_hash:str,
                               metric_authority_hash:str,p1_custodian_authority_hash:str,dg05_authorization_hash:str,
                               source_commit:str)->dict[str,Any]:
-    for name,value in locals().copy().items():
-        if name not in ('directory','source_commit'):_sha(value,name)
-    _gitsha(source_commit,'source_commit')
+    if type(census_authority) is not GlobalCellCensusAuthorityV2:raise MultiPanelCustodyError('typed exact census authority required')
+    if type(physical_authority) is not FrozenPhysicalFileAuthorityV2:raise MultiPanelCustodyError('typed exact physical authority required')
+    census_authority.validate();physical_authority.validate();census_authority_hash=census_authority.document()['self_hash']
+    if set(allowlists)!=set(FROZEN_PANEL_ORDER_V2):raise MultiPanelCustodyError('exact allowlist authority map required')
+    for panel,authority in allowlists.items():
+        authority.validate()
+        if authority.document()['self_hash']!=dict(census_authority.allowlist_authority_hashes)[panel]:
+            raise MultiPanelCustodyError('state-chain allowlist authority mismatch')
+    if physical_authority.document()['self_hash']!=census_authority.physical_file_authority_hash:
+        raise MultiPanelCustodyError('state-chain physical authority mismatch')
+    if physical_authority.dg05_authorization_hash!=dg05_authorization_hash:
+        raise MultiPanelCustodyError('state-chain DG05 authority mismatch')
+    for name,value in (('evaluation_policy_hash',evaluation_policy_hash),('metric_authority_hash',metric_authority_hash),
+                       ('p1_custodian_authority_hash',p1_custodian_authority_hash),('dg05_authorization_hash',dg05_authorization_hash)):_sha(value,name)
+    if source_commit!=FROZEN_AUTHORITY_SOURCE_COMMIT_V2:raise MultiPanelCustodyError('state-chain source commit mismatch')
+    if metric_authority_hash!=FROZEN_METRIC_AUTHORITY_HASH_V2:raise MultiPanelCustodyError('state-chain metric authority mismatch')
+    if p1_custodian_authority_hash!=FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2:raise MultiPanelCustodyError('state-chain P1 authority mismatch')
     body={'schema':'multipanel_global_custody_transition_v2','sequence':0,'state':_STATE_ORDER[0].value,
           'predecessor_receipt_hash':None,'census_authority_hash':census_authority_hash,
           'evaluation_policy_hash':evaluation_policy_hash,'metric_authority_hash':metric_authority_hash,
           'p1_custodian_authority_hash':p1_custodian_authority_hash,'dg05_authorization_hash':dg05_authorization_hash,
           'source_commit':source_commit}
+    _publish_new(directory/'physical-file-authority-v2.json',canonical_json_line_v2(physical_authority.document()))
+    _publish_new(directory/'global-cell-census-authority-v2.json',canonical_json_line_v2(census_authority.document()))
     body={**body,'self_hash':_hash(body)};_publish_new(directory/'custody-transition-000.json',canonical_json_line_v2(body));return body
 
 
@@ -553,6 +598,120 @@ _TRANSITION_EVIDENCE_V2={
         ('RESULT_INTEGRITY_RECEIPT','result-integrity.receipt.json','multipanel_result_integrity_receipt_v2'),
 }
 
+_TRANSITION_EVIDENCE_KEYS_V2={
+    GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED:{
+        'schema','census_authority_hash','projection_artifact_count','projection_records','source_commit','self_hash'},
+    GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED:{
+        'schema','projection_transition_hash','census_authority_hash','projection_census_hash','source_commit','self_hash'},
+    GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED:{
+        'schema','manifest_self_hash','manifest_file_hash','census_authority_hash','physical_file_authority_hash',
+        'projection_artifact_count','prediction_artifact_count','projection_receipt_hashes','terminal_receipt_hashes',
+        'prediction_records','state','source_commit','self_hash'},
+    GlobalPredictionStateV1.LABEL_SCENARIO_LEASE_OPEN:{
+        'schema','manifest_hash','manifest_file_hash','transition_receipt_hash','census_authority_hash',
+        'evaluation_policy_hash','metric_authority_hash','p1_custodian_authority_hash','dg05_authorization_hash',
+        'token_hash','source_commit','self_hash'},
+    GlobalPredictionStateV1.RESULTS_COMPUTED:{
+        'schema','lease_completion_receipt_hash','lease_open_transition_hash','manifest_hash',
+        'result_bundle_self_hash','result_bundle_file_hash','result_record_count','source_commit','self_hash'},
+}
+
+
+def _read_canonical_self_hashed_v2(path:Path,schema:str)->dict[str,Any]:
+    if not path.is_file():raise MultiPanelCustodyError(f'{schema} missing')
+    try:value=json.loads(path.read_text(encoding='utf-8'))
+    except (UnicodeDecodeError,json.JSONDecodeError) as exc:raise MultiPanelCustodyError(f'{schema} invalid') from exc
+    if (type(value) is not dict or value.get('schema')!=schema
+            or value.get('self_hash')!=_hash({k:v for k,v in value.items() if k!='self_hash'})
+            or path.read_bytes()!=canonical_json_line_v2(value)):
+        raise MultiPanelCustodyError(f'{schema} replay mismatch')
+    return value
+
+
+def _physical_from_document_v2(value:Mapping[str,Any])->FrozenPhysicalFileAuthorityV2:
+    exact={'schema','files','attack_file_census_authority_hash','dg05_authorization_hash','source_commit','self_hash'}
+    if set(value)!=exact or type(value.get('files')) is not list:raise MultiPanelCustodyError('physical authority fields mismatch')
+    authority=FrozenPhysicalFileAuthorityV2(tuple(PhysicalFileIdentityV2(**item) for item in value['files']),
+        value['attack_file_census_authority_hash'],value['dg05_authorization_hash'],value['source_commit'])
+    authority.validate()
+    if authority.document()!=dict(value):raise MultiPanelCustodyError('physical authority typed replay mismatch')
+    return authority
+
+
+def _census_from_document_v2(value:Mapping[str,Any])->GlobalCellCensusAuthorityV2:
+    exact={'schema','files_by_panel','methods_by_panel','method_bundle_hash','physical_file_authority_hash',
+           'allowlist_authority_hashes','source_commit','self_hash'}
+    if set(value)!=exact:raise MultiPanelCustodyError('census authority fields mismatch')
+    authority=GlobalCellCensusAuthorityV2(
+        tuple((panel,tuple(files)) for panel,files in value['files_by_panel']),
+        tuple((panel,tuple(MethodCellAuthorityV2(**item) for item in methods)) for panel,methods in value['methods_by_panel']),
+        value['method_bundle_hash'],value['physical_file_authority_hash'],
+        tuple((panel,authority_hash) for panel,authority_hash in value['allowlist_authority_hashes']),value['source_commit'])
+    authority.validate()
+    if authority.document()!=dict(value):raise MultiPanelCustodyError('census authority typed replay mismatch')
+    return authority
+
+
+def _projection_from_document_v2(value:Mapping[str,Any])->AttackFeatureProjectionReceiptV2:
+    exact={'schema','panel_id','file_id','timestamp_id','approved_feature_ids','feature_allowlist_authority_hash',
+           'raw_container_hash','header_hash','projection_hash','row_count','timestamp_range_hash','source_commit',
+           'label_values_parsed','label_values_decoded','label_values_inspected','label_values_counted',
+           'label_values_validated','label_values_filtered_on','label_values_used','scenario_values_parsed',
+           'scenario_values_decoded','scenario_values_inspected','scenario_values_counted','scenario_values_validated',
+           'scenario_values_filtered_on','scenario_values_used','self_hash'}
+    if set(value)!=exact:raise MultiPanelCustodyError('projection receipt fields mismatch')
+    kwargs={key:item for key,item in value.items() if key not in ('schema','self_hash')}
+    kwargs['approved_feature_ids']=tuple(kwargs['approved_feature_ids'])
+    receipt=AttackFeatureProjectionReceiptV2(**kwargs)
+    if receipt.document()!=dict(value):raise MultiPanelCustodyError('projection receipt typed replay mismatch')
+    return receipt
+
+
+def _manifest_from_document_v2(value:Mapping[str,Any],census:GlobalCellCensusAuthorityV2)->GlobalPredictionManifestV2:
+    exact={'schema','census_authority_hash','expected_cells','projection_receipts','receipts','evaluation_policy_hash',
+           'metric_authority_hash','p1_custodian_authority_hash','dg05_authorization_hash','source_commit','state','self_hash'}
+    if set(value)!=exact or value.get('census_authority_hash')!=census.document()['self_hash']:
+        raise MultiPanelCustodyError('manifest authority fields mismatch')
+    projections=tuple(_projection_from_document_v2(item) for item in value['projection_receipts'])
+    receipts=[]
+    for item in value['receipts']:
+        if item.get('schema')=='multipanel_prediction_success_receipt_v2':kind=PredictionSuccessReceiptV2
+        elif item.get('schema')=='multipanel_prediction_failure_receipt_v2':kind=PredictionFailureReceiptV2
+        else:raise MultiPanelCustodyError('unknown terminal receipt schema')
+        kwargs={key:entry for key,entry in item.items() if key not in ('schema','self_hash')};receipt=kind(**kwargs)
+        if receipt.document()!=item:raise MultiPanelCustodyError('terminal receipt typed replay mismatch')
+        receipts.append(receipt)
+    manifest=GlobalPredictionManifestV2(census,projections,tuple(receipts),value['evaluation_policy_hash'],
+        value['metric_authority_hash'],value['p1_custodian_authority_hash'],value['dg05_authorization_hash'],
+        value['source_commit'],GlobalPredictionStateV1(value['state']))
+    if manifest.document()!=dict(value):raise MultiPanelCustodyError('manifest typed replay mismatch')
+    return manifest
+
+
+def persist_projection_census_v2(directory:Path,*,census:GlobalCellCensusAuthorityV2,
+                                  allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],
+                                  physical:FrozenPhysicalFileAuthorityV2,
+                                  receipts:Sequence[AttackFeatureProjectionReceiptV2],
+                                  projection_artifacts:Mapping[tuple[str,str],Path])->dict[str,Any]:
+    """Freeze and replay every feature-only projection before prediction may start."""
+    census.validate();physical.validate()
+    expected=tuple((panel,file_id) for panel,files in census.files_by_panel for file_id in files)
+    by_cell={(item.panel_id,item.file_id):item for item in receipts}
+    if tuple(by_cell)!=expected or set(projection_artifacts)!=set(expected):raise MultiPanelCustodyError('exact projection census required')
+    records=[]
+    for cell in expected:
+        receipt=by_cell[cell];receipt.validate(allowlists[cell[0]],physical)
+        path=projection_artifacts[cell]
+        try:relative=path.resolve().relative_to(directory.resolve()).as_posix()
+        except ValueError as exc:raise MultiPanelCustodyError('projection artifact outside custody directory') from exc
+        if not path.is_file() or not replay_projection_artifact_v2(path,receipt):raise MultiPanelCustodyError('projection artifact replay mismatch')
+        records.append({'panel_id':cell[0],'file_id':cell[1],'receipt':receipt.document(),
+                        'artifact_relative_path':relative,'artifact_file_hash':sha256(path.read_bytes()).hexdigest()})
+    body={'schema':'multipanel_feature_projection_census_freeze_v2','census_authority_hash':census.document()['self_hash'],
+          'projection_artifact_count':len(records),'projection_records':records,'source_commit':census.source_commit}
+    body={**body,'self_hash':_hash(body)}
+    _publish_new(directory/'feature-projection-census.freeze.json',canonical_json_line_v2(body));return body
+
 
 def _validate_transition_evidence_v2(directory:Path,current:Mapping[str,Any],after:GlobalPredictionStateV1,
                                      evidence_kind:str,evidence_hash:str,evidence_path:Path)->dict[str,Any]:
@@ -564,12 +723,103 @@ def _validate_transition_evidence_v2(directory:Path,current:Mapping[str,Any],aft
     except (UnicodeDecodeError,json.JSONDecodeError) as exc:raise MultiPanelCustodyError('state transition evidence invalid') from exc
     if type(evidence) is not dict or evidence.get('schema')!=required_schema or evidence.get('self_hash')!=_hash({k:v for k,v in evidence.items() if k!='self_hash'}):
         raise MultiPanelCustodyError('state transition evidence self-hash/schema mismatch')
+    if set(evidence)!=_TRANSITION_EVIDENCE_KEYS_V2[after]:raise MultiPanelCustodyError('state transition evidence fields mismatch')
     if evidence_path.read_bytes()!=canonical_json_line_v2(evidence) or evidence.get('self_hash')!=evidence_hash:
         raise MultiPanelCustodyError('state transition evidence replay mismatch')
     for key in ('census_authority_hash','evaluation_policy_hash','metric_authority_hash','p1_custodian_authority_hash','dg05_authorization_hash'):
-        if key in evidence and evidence[key]!=current.get(key):raise MultiPanelCustodyError('transition evidence authority mismatch')
+        if key in evidence:
+            _sha(evidence[key],key)
+            if evidence[key]!=current.get(key):raise MultiPanelCustodyError('transition evidence authority mismatch')
+    if evidence.get('source_commit')!=current.get('source_commit'):raise MultiPanelCustodyError('transition evidence source mismatch')
+    if after is GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED:
+        physical_document=_read_canonical_self_hashed_v2(directory/'physical-file-authority-v2.json','multipanel_physical_attack_file_authority_v2')
+        census_document=_read_canonical_self_hashed_v2(directory/'global-cell-census-authority-v2.json','multipanel_global_cell_census_authority_v2')
+        physical=_physical_from_document_v2(physical_document);census=_census_from_document_v2(census_document)
+        if census.document()['self_hash']!=current.get('census_authority_hash') or census.physical_file_authority_hash!=physical.document()['self_hash']:
+            raise MultiPanelCustodyError('projection census root authority mismatch')
+        records=evidence.get('projection_records');count=evidence.get('projection_artifact_count')
+        expected=tuple((panel,file_id) for panel,files in census.files_by_panel for file_id in files)
+        if type(count) is not int or count!=len(expected) or type(records) is not list or len(records)!=count:
+            raise MultiPanelCustodyError('projection census evidence incomplete')
+        actual=[]
+        for record in records:
+            if type(record) is not dict or set(record)!={'panel_id','file_id','receipt','artifact_relative_path','artifact_file_hash'}:
+                raise MultiPanelCustodyError('projection census record fields mismatch')
+            cell=(record['panel_id'],record['file_id']);actual.append(cell)
+            receipt=_projection_from_document_v2(record['receipt']);receipt.validate(frozen_feature_allowlist_authorities_v2()[cell[0]],physical)
+            if (receipt.panel_id,receipt.file_id)!=cell:raise MultiPanelCustodyError('projection census cell mismatch')
+            relative=Path(record['artifact_relative_path'])
+            if relative.is_absolute() or '..' in relative.parts:raise MultiPanelCustodyError('unsafe projection artifact locator')
+            artifact_path=(directory/relative).resolve()
+            try:artifact_path.relative_to(directory.resolve())
+            except ValueError as exc:raise MultiPanelCustodyError('projection artifact outside custody directory') from exc
+            _sha(record['artifact_file_hash'],'artifact_file_hash')
+            if (not artifact_path.is_file() or sha256(artifact_path.read_bytes()).hexdigest()!=record['artifact_file_hash']
+                    or not replay_projection_artifact_v2(artifact_path,receipt)):
+                raise MultiPanelCustodyError('projection census artifact replay mismatch')
+        if tuple(actual)!=expected:raise MultiPanelCustodyError('projection census cells differ from frozen census')
     if after is GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED and evidence.get('projection_transition_hash')!=current.get('self_hash'):
         raise MultiPanelCustodyError('prediction start does not bind projection transition')
+    if after is GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED and evidence.get('projection_census_hash')!=current.get('evidence_hash'):
+        raise MultiPanelCustodyError('prediction start does not bind projection census evidence')
+    if after is GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED:
+        transition_zero=_read_canonical_self_hashed_v2(directory/'custody-transition-000.json','multipanel_global_custody_transition_v2')
+        transition_one=_read_canonical_self_hashed_v2(directory/'custody-transition-001.json','multipanel_global_custody_transition_v2')
+        if (transition_one.get('predecessor_receipt_hash')!=transition_zero['self_hash']
+                or transition_one.get('evidence_kind')!='FEATURE_PROJECTION_CENSUS_FREEZE'):
+            raise MultiPanelCustodyError('global transition projection predecessor mismatch')
+        _validate_transition_evidence_v2(directory,transition_zero,
+            GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,
+            transition_one['evidence_kind'],transition_one['evidence_hash'],directory/'feature-projection-census.freeze.json')
+        manifest_path=directory/'global_prediction_manifest_v2.json'
+        if not manifest_path.is_file() or sha256(manifest_path.read_bytes()).hexdigest()!=evidence.get('manifest_file_hash'):
+            raise MultiPanelCustodyError('global transition manifest bytes missing')
+        try:manifest_document=json.loads(manifest_path.read_text(encoding='utf-8'))
+        except (UnicodeDecodeError,json.JSONDecodeError) as exc:raise MultiPanelCustodyError('global transition manifest invalid') from exc
+        census=_census_from_document_v2(_read_canonical_self_hashed_v2(directory/'global-cell-census-authority-v2.json','multipanel_global_cell_census_authority_v2'))
+        physical=_physical_from_document_v2(_read_canonical_self_hashed_v2(directory/'physical-file-authority-v2.json','multipanel_physical_attack_file_authority_v2'))
+        manifest=_manifest_from_document_v2(manifest_document,census);manifest.validate(frozen_feature_allowlist_authorities_v2(),physical)
+        if (manifest_path.read_bytes()!=canonical_json_line_v2(manifest_document)
+                or manifest_document.get('self_hash')!=_hash({k:v for k,v in manifest_document.items() if k!='self_hash'})
+                or manifest_document.get('self_hash')!=evidence.get('manifest_self_hash')
+                or manifest_document.get('schema')!='multipanel_global_prediction_manifest_v2'
+                or manifest_document.get('census_authority_hash')!=current.get('census_authority_hash')
+                or manifest_document.get('evaluation_policy_hash')!=current.get('evaluation_policy_hash')
+                or manifest_document.get('metric_authority_hash')!=current.get('metric_authority_hash')
+                or manifest_document.get('p1_custodian_authority_hash')!=current.get('p1_custodian_authority_hash')
+                or manifest_document.get('dg05_authorization_hash')!=current.get('dg05_authorization_hash')
+                or manifest_document.get('state')!=GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED.value):
+            raise MultiPanelCustodyError('global transition manifest authority mismatch')
+        success_count=sum(type(item) is PredictionSuccessReceiptV2 for item in manifest.receipts)
+        if (evidence.get('census_authority_hash')!=census.document()['self_hash']
+                or evidence.get('physical_file_authority_hash')!=physical.document()['self_hash']
+                or evidence.get('projection_artifact_count')!=len(manifest.projection_receipts)
+                or evidence.get('prediction_artifact_count')!=success_count
+                or evidence.get('state')!=GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED.value):
+            raise MultiPanelCustodyError('global transition freeze census mismatch')
+        if evidence.get('projection_receipt_hashes')!=[item.document()['self_hash'] for item in manifest.projection_receipts]:
+            raise MultiPanelCustodyError('global transition projection receipt census mismatch')
+        if evidence.get('terminal_receipt_hashes')!=[item.document()['self_hash'] for item in manifest.receipts]:
+            raise MultiPanelCustodyError('global transition terminal receipt census mismatch')
+        success={(item.panel_id,item.file_id,item.method_id):item for item in manifest.receipts if type(item) is PredictionSuccessReceiptV2}
+        records=evidence.get('prediction_records')
+        if type(records) is not list or len(records)!=len(success):raise MultiPanelCustodyError('global prediction artifact census mismatch')
+        actual=[]
+        for record in records:
+            if type(record) is not dict or set(record)!={'panel_id','file_id','method_id','artifact_relative_path','artifact_file_hash'}:
+                raise MultiPanelCustodyError('global prediction artifact record fields mismatch')
+            cell=(record['panel_id'],record['file_id'],record['method_id']);actual.append(cell)
+            if cell not in success:raise MultiPanelCustodyError('global prediction artifact cell mismatch')
+            relative=Path(record['artifact_relative_path'])
+            if relative.is_absolute() or '..' in relative.parts:raise MultiPanelCustodyError('unsafe prediction artifact locator')
+            artifact_path=(directory/relative).resolve()
+            try:artifact_path.relative_to(directory.resolve())
+            except ValueError as exc:raise MultiPanelCustodyError('prediction artifact outside custody directory') from exc
+            _sha(record['artifact_file_hash'],'prediction_artifact_file_hash')
+            if (not artifact_path.is_file() or sha256(artifact_path.read_bytes()).hexdigest()!=record['artifact_file_hash']
+                    or not replay_prediction_artifact_v2(artifact_path,success[cell])):
+                raise MultiPanelCustodyError('global prediction artifact replay mismatch')
+        if tuple(actual)!=tuple(success):raise MultiPanelCustodyError('global prediction artifact order mismatch')
     if after is GlobalPredictionStateV1.LABEL_SCENARIO_LEASE_OPEN and evidence.get('transition_receipt_hash')!=current.get('self_hash'):
         raise MultiPanelCustodyError('lease issue does not bind global freeze transition')
     if after is GlobalPredictionStateV1.RESULTS_COMPUTED and evidence.get('lease_open_transition_hash')!=current.get('self_hash'):
@@ -689,17 +939,88 @@ def consume_label_scenario_lease_v2(lease:LabelScenarioLeaseV2,manifest:GlobalPr
     return result
 
 
+@dataclass(frozen=True,order=True)
+class ResultRecordReceiptV2:
+    panel_id:str; method_id:str; result_hash:str
+    def document(self)->dict[str,str]:return dict(self.__dict__)
+    def validate(self)->None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2:raise MultiPanelCustodyError('unknown result panel')
+        if self.method_id not in PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[self.panel_id]:raise MultiPanelCustodyError('unknown result method')
+        _sha(self.result_hash,'result_hash')
+
+
+def persist_result_bundle_v2(directory:Path,lease:LabelScenarioLeaseV2,
+                             records:Sequence[ResultRecordReceiptV2])->dict[str,Any]:
+    """Persist one hash-only result census after the one-shot lease is consumed."""
+    if type(lease) is not LabelScenarioLeaseV2:raise MultiPanelCustodyError('typed label/scenario lease required')
+    completion=_read_canonical_self_hashed_v2(directory/'label-scenario-lease.completed.json','multipanel_label_scenario_lease_completion_v2')
+    issue=_read_canonical_self_hashed_v2(directory/'label-scenario-lease.issue.json','multipanel_label_scenario_lease_issue_v2')
+    manifest=_read_canonical_self_hashed_v2(directory/'global_prediction_manifest_v2.json','multipanel_global_prediction_manifest_v2')
+    if (completion.get('reader_status')!='SUCCESS' or issue['self_hash']!=lease.issue_receipt_hash
+            or manifest['self_hash']!=lease.manifest_hash):raise MultiPanelCustodyError('result bundle lease authority mismatch')
+    expected=tuple((panel,method_id) for panel in FROZEN_PANEL_ORDER_V2
+                   for method_id in PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel])
+    actual=[]
+    for record in records:
+        if type(record) is not ResultRecordReceiptV2:raise MultiPanelCustodyError('typed result record required')
+        record.validate();actual.append((record.panel_id,record.method_id))
+    if tuple(actual)!=expected:raise MultiPanelCustodyError('exact result record census required')
+    body={'schema':'multipanel_result_bundle_v2','manifest_hash':manifest['self_hash'],
+          'lease_issue_receipt_hash':issue['self_hash'],'lease_completion_receipt_hash':completion['self_hash'],
+          'metric_authority_hash':FROZEN_METRIC_AUTHORITY_HASH_V2,
+          'p1_custodian_authority_hash':FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2,
+          'records':[record.document() for record in records],'source_commit':FROZEN_AUTHORITY_SOURCE_COMMIT_V2}
+    body={**body,'self_hash':_hash(body)}
+    _publish_new(directory/'result-bundle.json',canonical_json_line_v2(body));return body
+
+
 def complete_results_state_v2(directory:Path,lease:LabelScenarioLeaseV2,result_integrity_receipt:Mapping[str,Any])->dict[str,Any]:
-    """Close the chain only after a separately persisted result-integrity receipt."""
+    """Close only after replaying the exact durable result census and its authority chain."""
+    if type(lease) is not LabelScenarioLeaseV2:raise MultiPanelCustodyError('typed label/scenario lease required')
     transition_path=directory/'custody-transition-004.json'
     completion_path=directory/'label-scenario-lease.completed.json'
     if not transition_path.is_file() or not completion_path.is_file():raise MultiPanelCustodyError('completed label lease required')
     current=json.loads(transition_path.read_text(encoding='utf-8'));validate_transition_receipt_v2(directory,current)
-    completion=json.loads(completion_path.read_text(encoding='utf-8'))
-    if completion.get('self_hash')!=_hash({k:v for k,v in completion.items() if k!='self_hash'}):raise MultiPanelCustodyError('lease completion receipt invalid')
+    if (current.get('state')!=GlobalPredictionStateV1.LABEL_SCENARIO_LEASE_OPEN.value
+            or current.get('self_hash')!=lease.lease_open_transition_hash):raise MultiPanelCustodyError('lease-open state authority mismatch')
+    completion=_read_canonical_self_hashed_v2(completion_path,'multipanel_label_scenario_lease_completion_v2')
     if completion.get('reader_status')!='SUCCESS':raise MultiPanelCustodyError('successful label lease completion required')
+    consumed=_read_canonical_self_hashed_v2(directory/'label-scenario-lease.consumed.json','multipanel_label_scenario_lease_consumed_v2')
+    issue=_read_canonical_self_hashed_v2(directory/'label-scenario-lease.issue.json','multipanel_label_scenario_lease_issue_v2')
+    if (completion.get('consumed_receipt_hash')!=consumed['self_hash'] or consumed.get('issue_receipt_hash')!=issue['self_hash']
+            or issue['self_hash']!=lease.issue_receipt_hash or issue.get('manifest_hash')!=lease.manifest_hash):
+        raise MultiPanelCustodyError('result lease receipt chain mismatch')
+    manifest=_read_canonical_self_hashed_v2(directory/'global_prediction_manifest_v2.json','multipanel_global_prediction_manifest_v2')
+    if manifest['self_hash']!=lease.manifest_hash:raise MultiPanelCustodyError('result manifest authority mismatch')
+    result_path=directory/'result-bundle.json'
+    result_bundle=_read_canonical_self_hashed_v2(result_path,'multipanel_result_bundle_v2')
+    result_exact={'schema','manifest_hash','lease_issue_receipt_hash','lease_completion_receipt_hash','metric_authority_hash',
+                  'p1_custodian_authority_hash','records','source_commit','self_hash'}
+    if set(result_bundle)!=result_exact or type(result_bundle.get('records')) is not list:
+        raise MultiPanelCustodyError('result bundle fields mismatch')
+    expected=tuple((panel,method_id) for panel in FROZEN_PANEL_ORDER_V2
+                   for method_id in PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel])
+    actual=[]
+    for item in result_bundle['records']:
+        if type(item) is not dict or set(item)!={'panel_id','method_id','result_hash'}:raise MultiPanelCustodyError('result record fields mismatch')
+        record=ResultRecordReceiptV2(**item);record.validate();actual.append((record.panel_id,record.method_id))
+    if tuple(actual)!=expected:raise MultiPanelCustodyError('result record census mismatch')
+    if (result_bundle['manifest_hash']!=manifest['self_hash']
+            or result_bundle['lease_issue_receipt_hash']!=issue['self_hash']
+            or result_bundle['lease_completion_receipt_hash']!=completion['self_hash']
+            or result_bundle['metric_authority_hash']!=current['metric_authority_hash']
+            or result_bundle['p1_custodian_authority_hash']!=current['p1_custodian_authority_hash']
+            or result_bundle['source_commit']!=current['source_commit']):
+        raise MultiPanelCustodyError('result bundle authority mismatch')
     body=dict(result_integrity_receipt)
-    if body.get('schema')!='multipanel_result_integrity_receipt_v2' or body.get('lease_completion_receipt_hash')!=completion['self_hash'] or body.get('lease_open_transition_hash')!=lease.lease_open_transition_hash:
+    allowed_without_hash=_TRANSITION_EVIDENCE_KEYS_V2[GlobalPredictionStateV1.RESULTS_COMPUTED]-{'self_hash'}
+    if set(body) not in (allowed_without_hash,_TRANSITION_EVIDENCE_KEYS_V2[GlobalPredictionStateV1.RESULTS_COMPUTED]):
+        raise MultiPanelCustodyError('result integrity fields mismatch')
+    expected_values={'schema':'multipanel_result_integrity_receipt_v2','lease_completion_receipt_hash':completion['self_hash'],
+        'lease_open_transition_hash':lease.lease_open_transition_hash,'manifest_hash':manifest['self_hash'],
+        'result_bundle_self_hash':result_bundle['self_hash'],'result_bundle_file_hash':sha256(result_path.read_bytes()).hexdigest(),
+        'result_record_count':len(expected),'source_commit':current['source_commit']}
+    if any(body.get(key)!=value for key,value in expected_values.items()):
         raise MultiPanelCustodyError('result integrity authority mismatch')
     if 'self_hash' in body:
         if body['self_hash']!=_hash({k:v for k,v in body.items() if k!='self_hash'}):raise MultiPanelCustodyError('result integrity self hash mismatch')
@@ -755,7 +1076,10 @@ __all__=['GlobalPredictionStateV1','PredictionCellReceiptV1','GlobalPredictionMa
          'PhysicalFileIdentityV2','FrozenPhysicalFileAuthorityV2','replay_projection_artifact_v2',
          'initialize_state_chain_v2','advance_state_chain_v2','validate_transition_receipt_v2',
          'LabelScenarioLeaseV2','issue_label_scenario_lease_v2','consume_label_scenario_lease_v2',
-         'complete_results_state_v2','build_prediction_artifact_v2','replay_prediction_artifact_v2',
+         'ResultRecordReceiptV2','persist_result_bundle_v2','complete_results_state_v2',
+         'build_prediction_artifact_v2','replay_prediction_artifact_v2','persist_projection_census_v2',
          'FROZEN_DATASET_VERSIONS_V2','FROZEN_TIMESTAMP_IDS_V2','FROZEN_FEATURE_IDS_V2',
          'FROZEN_ATTACK_FILE_IDS_V2','FROZEN_ATTACK_FILE_CENSUS_HASH_V2',
-         'FROZEN_METHOD_BUNDLE_HASH_V2','frozen_method_cell_authorities_v2']
+         'FROZEN_METHOD_BUNDLE_HASH_V2','FROZEN_AUTHORITY_SOURCE_COMMIT_V2','FROZEN_METRIC_AUTHORITY_HASH_V2',
+         'FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2','frozen_feature_allowlist_authorities_v2',
+         'frozen_method_cell_authorities_v2']

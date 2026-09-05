@@ -15,7 +15,7 @@ from paperworks.validation_v2.multipanel_custody_v1 import *
 from paperworks.validation_v2.p1_eligibility_custodian_v1 import *
 from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
 
-H='a'*64; C='b'*40
+H='a'*64; C=FROZEN_AUTHORITY_SOURCE_COMMIT_V2
 BUNDLE='dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2'
 
 
@@ -125,8 +125,7 @@ class CustodyEligibilityTests(unittest.TestCase):
         with self.assertRaises(ValueError):assert_method_blind_payload_v1({'detector_score':1})
 
     def allowlists_v2(self):
-        return {panel:FrozenFeatureAllowlistAuthorityV2(panel,FROZEN_DATASET_VERSIONS_V2[panel],FROZEN_TIMESTAMP_IDS_V2[panel],FROZEN_FEATURE_IDS_V2[panel],BUNDLE,C)
-                for panel in FROZEN_PANEL_ORDER_V2}
+        return frozen_feature_allowlist_authorities_v2()
 
     def physical_v2(self):
         files=[]
@@ -165,19 +164,26 @@ class CustodyEligibilityTests(unittest.TestCase):
             provisional=PredictionSuccessReceiptV2(panel,file_id,method_id,method.method_authority_hash,method.execution_authority_hash,projection.projection_hash,H,2,projection.timestamp_range_hash,0,1,C)
             payload=build_prediction_artifact_v2(provisional,(False,False));path.write_bytes(payload)
             fixed.append(replace(provisional,prediction_artifact_hash=sha256(payload).hexdigest()))
-        manifest=GlobalPredictionManifestV2(census,tuple(projections),tuple(fixed),H,H,H,H,C)
+        manifest=GlobalPredictionManifestV2(census,tuple(projections),tuple(fixed),H,FROZEN_METRIC_AUTHORITY_HASH_V2,
+                                            FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2,H,C)
         return manifest,allowlists,physical,projection_artifacts,artifacts
 
     def issued_v2(self,root:Path):
         manifest,allowlists,physical,projections,artifacts=self.manifest_v2(root)
         freeze=persist_global_manifest_v2(root,manifest,allowlists,physical,projections,artifacts)
-        transition=initialize_state_chain_v2(root,census_authority_hash=manifest.census.document()['self_hash'],evaluation_policy_hash=H,metric_authority_hash=H,p1_custodian_authority_hash=H,dg05_authorization_hash=H,source_commit=C)
+        transition=initialize_state_chain_v2(root,census_authority=manifest.census,physical_authority=physical,
+            allowlists=allowlists,evaluation_policy_hash=H,metric_authority_hash=FROZEN_METRIC_AUTHORITY_HASH_V2,
+            p1_custodian_authority_hash=FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2,dg05_authorization_hash=H,source_commit=C)
         def evidence(name,schema,**extra):
             body={'schema':schema,**extra};body['self_hash']=sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
             path=root/name;path.write_bytes(json.dumps(body,sort_keys=True,separators=(',',':')).encode()+b'\n');return path,body
-        path,item=evidence('feature-projection-census.freeze.json','multipanel_feature_projection_census_freeze_v2',census_authority_hash=manifest.census.document()['self_hash'])
+        item=persist_projection_census_v2(root,census=manifest.census,allowlists=allowlists,physical=physical,
+                                          receipts=manifest.projection_receipts,projection_artifacts=projections)
+        path=root/'feature-projection-census.freeze.json'
         transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,evidence_kind='FEATURE_PROJECTION_CENSUS_FREEZE',evidence_hash=item['self_hash'],evidence_path=path)
-        path,item=evidence('prediction-execution-start.json','multipanel_prediction_execution_start_receipt_v2',projection_transition_hash=transition['self_hash'])
+        path,item=evidence('prediction-execution-start.json','multipanel_prediction_execution_start_receipt_v2',
+                           projection_transition_hash=transition['self_hash'],census_authority_hash=manifest.census.document()['self_hash'],
+                           projection_census_hash=transition['evidence_hash'],source_commit=C)
         transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED,evidence_kind='PREDICTION_EXECUTION_START_RECEIPT',evidence_hash=item['self_hash'],evidence_path=path)
         transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED,evidence_kind='GLOBAL_MANIFEST_FREEZE',evidence_hash=freeze['self_hash'],evidence_path=root/'global_prediction_manifest_v2.freeze.json')
         lease=issue_label_scenario_lease_v2(root,manifest,freeze,transition,allowlists,physical,projections,artifacts)
@@ -188,8 +194,14 @@ class CustodyEligibilityTests(unittest.TestCase):
             root=Path(raw);manifest,allowlists,physical,projections,artifacts,freeze,transition,lease=self.issued_v2(root)
             self.assertEqual(consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,lambda:'labels'),'labels')
             completion=json.loads((root/'label-scenario-lease.completed.json').read_text(encoding='utf-8'))
+            records=tuple(ResultRecordReceiptV2(panel,method,H) for panel in FROZEN_PANEL_ORDER_V2
+                          for method in PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel])
+            bundle=persist_result_bundle_v2(root,lease,records)
             result_receipt={'schema':'multipanel_result_integrity_receipt_v2','lease_completion_receipt_hash':completion['self_hash'],
-                            'lease_open_transition_hash':lease.lease_open_transition_hash,'result_bundle_hash':H}
+                            'lease_open_transition_hash':lease.lease_open_transition_hash,'manifest_hash':lease.manifest_hash,
+                            'result_bundle_self_hash':bundle['self_hash'],
+                            'result_bundle_file_hash':sha256((root/'result-bundle.json').read_bytes()).hexdigest(),
+                            'result_record_count':len(records),'source_commit':C}
             final=complete_results_state_v2(root,lease,result_receipt)
             self.assertEqual(final['state'],GlobalPredictionStateV1.RESULTS_COMPUTED.value)
             with self.assertRaises(MultiPanelCustodyError):consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,lambda:None)
@@ -248,7 +260,9 @@ class CustodyEligibilityTests(unittest.TestCase):
         with TemporaryDirectory() as raw:
             root=Path(raw);manifest,_,physical,projections,artifacts=self.manifest_v2(root)
             with self.assertRaises(MultiPanelCustodyError):manifest.validate(bad_allowlists,physical)
-            current=initialize_state_chain_v2(root,census_authority_hash=manifest.census.document()['self_hash'],evaluation_policy_hash=H,metric_authority_hash=H,p1_custodian_authority_hash=H,dg05_authorization_hash=H,source_commit=C)
+            current=initialize_state_chain_v2(root,census_authority=manifest.census,physical_authority=physical,
+                allowlists=allowlists,evaluation_policy_hash=H,metric_authority_hash=FROZEN_METRIC_AUTHORITY_HASH_V2,
+                p1_custodian_authority_hash=FROZEN_P1_CUSTODIAN_AUTHORITY_HASH_V2,dg05_authorization_hash=H,source_commit=C)
             with self.assertRaises(MultiPanelCustodyError):
                 advance_state_chain_v2(root,current,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,evidence_kind='WRONG',evidence_hash=H,evidence_path=root/'missing.json')
             mutated_physical=replace(physical,dg05_authorization_hash='f'*64)
@@ -257,6 +271,72 @@ class CustodyEligibilityTests(unittest.TestCase):
             panel=FROZEN_PANEL_ORDER_V2[0];methods=list(dict(census.methods_by_panel)[panel]);methods[0]=replace(methods[0],method_authority_hash=H)
             tampered=replace(census,methods_by_panel=((panel,tuple(methods)),*census.methods_by_panel[1:]))
             with self.assertRaises(MultiPanelCustodyError):tampered.validate()
+
+    def test_v2_exact_authority_hashes_and_source_commits_are_not_replaceable(self):
+        allowlists=self.allowlists_v2();physical=self.physical_v2()
+        with self.assertRaises(MultiPanelCustodyError):replace(next(iter(allowlists.values())),source_commit='c'*40).validate()
+        with self.assertRaises(MultiPanelCustodyError):replace(physical,source_commit='c'*40).validate()
+        with TemporaryDirectory() as raw:
+            root=Path(raw);manifest,_,physical,_,_=self.manifest_v2(root)
+            with self.assertRaises(MultiPanelCustodyError):replace(manifest,p1_custodian_authority_hash=H).validate(allowlists,physical)
+            with self.assertRaises(MultiPanelCustodyError):replace(manifest,metric_authority_hash=H).validate(allowlists,physical)
+        provenance=FROZEN_P1_MAPPING_SOURCE_HASHES_V2['22.04']
+        mapping=FrozenP1MappingAuthorityV2('22.04',tuple(P1MappingEntryV2(name,'P1','EXACT_MATCH',provenance)
+            for name in FROZEN_P1_FEATURES_BY_VERSION_V2['22.04']),provenance,C)
+        with self.assertRaises(ValueError):replace(mapping,source_commit='c'*40).validate()
+
+    def test_v2_transition_evidence_replays_projection_and_global_artifacts(self):
+        def rewrite(path,mutate):
+            value=json.loads(path.read_text(encoding='utf-8'));mutate(value);value.pop('self_hash',None)
+            value['self_hash']=sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            path.write_bytes(json.dumps(value,sort_keys=True,separators=(',',':')).encode()+b'\n');return value
+        with TemporaryDirectory() as raw:
+            root=Path(raw);self.issued_v2(root)
+            current=json.loads((root/'custody-transition-000.json').read_text(encoding='utf-8'))
+            item=rewrite(root/'feature-projection-census.freeze.json',lambda value:value['projection_records'][0].update(artifact_file_hash=H))
+            with self.assertRaises(MultiPanelCustodyError):advance_state_chain_v2(root,current,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,
+                evidence_kind='FEATURE_PROJECTION_CENSUS_FREEZE',evidence_hash=item['self_hash'],evidence_path=root/'feature-projection-census.freeze.json')
+        for field,bad in (('state','WRONG'),('projection_artifact_count',9),('physical_file_authority_hash',H)):
+            with self.subTest(field=field),TemporaryDirectory() as raw:
+                root=Path(raw);self.issued_v2(root);current=json.loads((root/'custody-transition-002.json').read_text(encoding='utf-8'))
+                item=rewrite(root/'global_prediction_manifest_v2.freeze.json',lambda value:value.update({field:bad}))
+                with self.assertRaises(MultiPanelCustodyError):advance_state_chain_v2(root,current,GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED,
+                    evidence_kind='GLOBAL_MANIFEST_FREEZE',evidence_hash=item['self_hash'],evidence_path=root/'global_prediction_manifest_v2.freeze.json')
+        with TemporaryDirectory() as raw:
+            root=Path(raw);self.issued_v2(root);current=json.loads((root/'custody-transition-002.json').read_text(encoding='utf-8'))
+            manifest_path=root/'global_prediction_manifest_v2.json'
+            manifest=rewrite(manifest_path,lambda value:value['receipts'][0].update(method_authority_hash=H))
+            freeze=rewrite(root/'global_prediction_manifest_v2.freeze.json',lambda value:value.update(
+                manifest_self_hash=manifest['self_hash'],manifest_file_hash=sha256(manifest_path.read_bytes()).hexdigest()))
+            with self.assertRaises(MultiPanelCustodyError):advance_state_chain_v2(root,current,GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED,
+                evidence_kind='GLOBAL_MANIFEST_FREEZE',evidence_hash=freeze['self_hash'],evidence_path=root/'global_prediction_manifest_v2.freeze.json')
+
+    def test_v2_results_require_exact_durable_result_bundle(self):
+        def prepared(root):
+            manifest,allowlists,physical,projections,artifacts,_,_,lease=self.issued_v2(root)
+            consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,lambda:'labels')
+            records=tuple(ResultRecordReceiptV2(panel,method,H) for panel in FROZEN_PANEL_ORDER_V2
+                          for method in PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel])
+            bundle=persist_result_bundle_v2(root,lease,records)
+            completion=json.loads((root/'label-scenario-lease.completed.json').read_text(encoding='utf-8'))
+            receipt={'schema':'multipanel_result_integrity_receipt_v2','lease_completion_receipt_hash':completion['self_hash'],
+                'lease_open_transition_hash':lease.lease_open_transition_hash,'manifest_hash':lease.manifest_hash,
+                'result_bundle_self_hash':bundle['self_hash'],'result_bundle_file_hash':sha256((root/'result-bundle.json').read_bytes()).hexdigest(),
+                'result_record_count':len(records),'source_commit':C}
+            return lease,receipt
+        for mutation in ('missing','record_count','manifest','bytes'):
+            with self.subTest(mutation=mutation),TemporaryDirectory() as raw:
+                root=Path(raw);lease,receipt=prepared(root);path=root/'result-bundle.json'
+                if mutation=='missing':path.rename(root/'missing-result-bundle.json')
+                elif mutation=='record_count':receipt['result_record_count']-=1
+                elif mutation=='manifest':receipt['manifest_hash']=H
+                else:path.write_bytes(path.read_bytes()+b' ')
+                with self.assertRaises(MultiPanelCustodyError):complete_results_state_v2(root,lease,receipt)
+        with TemporaryDirectory() as raw:
+            root=Path(raw);lease,receipt=prepared(root)
+            with self.assertRaises(MultiPanelCustodyError):complete_results_state_v2(root,object(),receipt)
+            final=complete_results_state_v2(root,lease,receipt);self.assertEqual(final['state'],GlobalPredictionStateV1.RESULTS_COMPUTED.value)
+            with self.assertRaises(MultiPanelCustodyError):complete_results_state_v2(root,lease,receipt)
 
     def test_v2_failure_receipt_has_no_prediction_fields(self):
         census=self.census_v2();panel,file_id,method_id=census.expected_cells()[0]

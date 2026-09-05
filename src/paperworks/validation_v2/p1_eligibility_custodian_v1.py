@@ -74,6 +74,7 @@ FROZEN_P1_MAPPING_SOURCE_HASHES_V2={
     '22.04':'95a8c594c4127c0ddac88c45ebca7979583bd6436b6704bc83977364176c9f99',
     '21.03':'95a8c594c4127c0ddac88c45ebca7979583bd6436b6704bc83977364176c9f99',
 }
+FROZEN_P1_AUTHORITY_SOURCE_COMMIT_V2='fe4f42c4d40000ab369b5de0e5b0f5e748020dab'
 
 
 @dataclass(frozen=True,order=True)
@@ -105,7 +106,7 @@ class FrozenP1MappingAuthorityV2:
     def validate(self)->None:
         if self.dataset_version not in FROZEN_P1_FEATURES_BY_VERSION_V2:raise ValueError('unknown frozen mapping dataset version')
         if self.official_mapping_source_hash!=FROZEN_P1_MAPPING_SOURCE_HASHES_V2[self.dataset_version]:raise ValueError('mapping source differs from frozen authority')
-        _gitsha(self.source_commit,'source_commit')
+        if self.source_commit!=FROZEN_P1_AUTHORITY_SOURCE_COMMIT_V2:raise ValueError('mapping source commit differs from frozen authority')
         if not self.entries or tuple(sorted(self.entries))!=self.entries or len({item.official_identity for item in self.entries})!=len(self.entries):raise ValueError('canonical unique mapping entries required')
         for item in self.entries:item.validate()
         expected=FROZEN_P1_FEATURES_BY_VERSION_V2[self.dataset_version]
@@ -170,4 +171,4 @@ def classify_p1_scenario_v2(scenario:OfficialScenarioMetadataV2,authority:Frozen
 __all__=['OfficialScenarioMetadataV1','classify_p1_scenario_v1','assert_method_blind_payload_v1','STATUSES',
          'P1MappingEntryV2','FrozenP1MappingAuthorityV2','OfficialScenarioMetadataV2','classify_p1_scenario_v2',
          'assert_method_blind_nested_v2','MAPPING_STATES','MAPPING_SCOPES','FROZEN_P1_FEATURES_BY_VERSION_V2',
-         'FROZEN_P1_MAPPING_SOURCE_HASHES_V2']
+         'FROZEN_P1_MAPPING_SOURCE_HASHES_V2','FROZEN_P1_AUTHORITY_SOURCE_COMMIT_V2']
