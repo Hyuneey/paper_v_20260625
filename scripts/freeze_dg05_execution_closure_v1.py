@@ -213,6 +213,7 @@ def synthetic_rehearsal(manifest, dispatch, detectors, scope, *, manifest_path: 
         failed_cell = next(cell["cell_id"] for cell in census["cells"]
                            if (cell["panel_id"], cell["file_id"], cell["method_id"]) == failed_identity)
         executor = DG05ProductionExecutorV1.synthetic_rehearsal(
+            executable_manifest=manifest,
             executable_manifest_hash=manifest.document()["self_hash"], detector_registry=detectors,
             dispatch_registry=dispatch,
             adapter_implementation_hash=file_sha256(ROOT / "src/paperworks/validation_v2/dg05_execution_closure_v1.py"),
@@ -399,7 +400,8 @@ def main() -> None:
         "scenario_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py","denominator_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py",
         "global_manifest_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py","global_freeze_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py",
         "label_custodian":"src/paperworks/validation_v2/dg05_label_custodian_v1.py","result_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py",
-        "result_verifier":"src/paperworks/validation_v2/dg05_result_oracle_v1.py"}.items()}
+        "result_verifier":"src/paperworks/validation_v2/dg05_result_oracle_v1.py",
+        "fusion_runtime":"src/paperworks/validation_v2/exp04_protocol_v1.py"}.items()}
     portfolios=tuple(sorted(v for values in FROZEN_PORTFOLIO_HASHES_V2.values() for v in values.values()))
     # Persist authorities before constructing the replay bundle. Initialization
     # reopens these exact bytes; it never trusts only a caller-created object.
@@ -452,7 +454,8 @@ def main() -> None:
         "scenario_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py","denominator_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py",
         "global_manifest_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py","global_freeze_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py",
         "label_custodian":"src/paperworks/validation_v2/dg05_label_custodian_v1.py","result_builder":"src/paperworks/validation_v2/dg05_execution_closure_v1.py",
-        "result_verifier":"src/paperworks/validation_v2/dg05_result_oracle_v1.py"}
+        "result_verifier":"src/paperworks/validation_v2/dg05_result_oracle_v1.py",
+        "fusion_runtime":"src/paperworks/validation_v2/exp04_protocol_v1.py"}
     for key, expected in sorted(implementations.items()):
         path = ROOT / implementation_paths[key]
         refs.append(PersistedAuthorityRefV1(f"implementation:{key}", expected, file_sha256(path), None, None, path))

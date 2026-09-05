@@ -80,7 +80,7 @@ def manifest(registry: MethodDispatchRegistryV1, detectors: DetectorSubauthority
     implementations = tuple(sorted((name, digest(name)) for name in (
         "state_machine", "projection_adapter", "prediction_adapter", "timestamp_builder",
         "scenario_builder", "denominator_builder", "global_manifest_builder", "global_freeze_builder",
-        "label_custodian", "result_builder", "result_verifier",
+        "label_custodian", "result_builder", "result_verifier", "fusion_runtime",
     )))
     portfolios = tuple(sorted(v for values in FROZEN_PORTFOLIO_HASHES_V2.values() for v in values.values()))
     return DG05ExecutableAuthorityManifestV1(tuple(FROZEN_SCIENTIFIC_AUTHORITIES_V1.items()), detectors.document()["self_hash"], registry.document()["self_hash"], portfolios, scope.document()["self_hash"], digest("p1-custodian-v3"), implementations, nested_hash, G)
@@ -330,8 +330,10 @@ class DG05ExecutionClosureTest(unittest.TestCase):
             final, nested, manifest_path = initialization_fixture(root, self.dispatch, self.detectors, self.scope)
             mh = final.document()["self_hash"]
             executor = DG05ProductionExecutorV1.synthetic_rehearsal(executable_manifest_hash=mh,
+                executable_manifest=final,
                 detector_registry=self.detectors, dispatch_registry=self.dispatch,
-                adapter_implementation_hash=H, fusion_implementation_hash=H)
+                adapter_implementation_hash=dict(final.implementation_hashes)["prediction_adapter"],
+                fusion_implementation_hash=dict(final.implementation_hashes)["fusion_runtime"])
             authorities = frozen_feature_allowlist_authorities_v2()
             synthetic_files = []
             for panel in FROZEN_PANEL_ORDER_V2:
@@ -381,6 +383,33 @@ class DG05ExecutionClosureTest(unittest.TestCase):
                 advance_dg05_state_v1(state, replace(final, dispatch_registry_hash=H), next_state=STATE_ORDER_V3[5],
                     evidence=transition_evidence(root, "LEASE_ISSUE", 1, lease["receipt"]))
 
+    def test_executor_is_typed_manifest_and_runtime_hash_bound(self) -> None:
+        mh = self.manifest.document()["self_hash"]
+        implementations = dict(self.manifest.implementation_hashes)
+        with self.assertRaises(DG05ClosureError):
+            DG05ProductionExecutorV1.synthetic_rehearsal(
+                executable_manifest=replace(self.manifest, source_commit="b" * 40),
+                executable_manifest_hash=mh,
+                detector_registry=self.detectors,
+                dispatch_registry=self.dispatch,
+                adapter_implementation_hash=implementations["prediction_adapter"],
+                fusion_implementation_hash=implementations["fusion_runtime"],
+            )
+        for field in ("prediction_adapter", "fusion_runtime"):
+            kwargs = {
+                "adapter_implementation_hash": implementations["prediction_adapter"],
+                "fusion_implementation_hash": implementations["fusion_runtime"],
+            }
+            kwargs["adapter_implementation_hash" if field == "prediction_adapter" else "fusion_implementation_hash"] = H
+            with self.assertRaises(DG05ClosureError):
+                DG05ProductionExecutorV1.synthetic_rehearsal(
+                    executable_manifest=self.manifest,
+                    executable_manifest_hash=mh,
+                    detector_registry=self.detectors,
+                    dispatch_registry=self.dispatch,
+                    **kwargs,
+                )
+
     def test_failure_is_terminal_and_not_prediction(self) -> None:
         entry = self.dispatch.lookup(FROZEN_PANEL_ORDER_V2[0], "M0_PCA_SPE")
         self.assertEqual(entry.detector_id, "PCA_SPE")
@@ -395,8 +424,11 @@ class DG05ExecutionClosureTest(unittest.TestCase):
             cell = next(v for v in census["cells"] if v["panel_id"] == FROZEN_PANEL_ORDER_V2[0] and v["method_id"] == "M0_PCA_SPE")
             mh = self.manifest.document()["self_hash"]
             executor = DG05ProductionExecutorV1.synthetic_rehearsal(executable_manifest_hash=mh,
-                detector_registry=self.detectors, dispatch_registry=self.dispatch, adapter_implementation_hash=H,
-                fusion_implementation_hash=H, synthetic_failure_cell_ids=(cell["cell_id"],))
+                executable_manifest=self.manifest,
+                detector_registry=self.detectors, dispatch_registry=self.dispatch,
+                adapter_implementation_hash=dict(self.manifest.implementation_hashes)["prediction_adapter"],
+                fusion_implementation_hash=dict(self.manifest.implementation_hashes)["fusion_runtime"],
+                synthetic_failure_cell_ids=(cell["cell_id"],))
             receipt = execute_prediction_cell_v1(cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
                 executable_manifest_hash=mh, executor=executor, projection_path=root / "projection",
                 output_directory=root / "predictions", source_commit=G)

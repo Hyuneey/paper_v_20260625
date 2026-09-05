@@ -449,7 +449,7 @@ class DG05ExecutableAuthorityManifestV1:
         required_impl = {
             "state_machine", "projection_adapter", "prediction_adapter", "timestamp_builder",
             "scenario_builder", "denominator_builder", "global_manifest_builder", "global_freeze_builder",
-            "label_custodian", "result_builder", "result_verifier",
+            "label_custodian", "result_builder", "result_verifier", "fusion_runtime",
         }
         if {k for k, _ in self.implementation_hashes} != required_impl:
             raise DG05ClosureError("COMPLETE_EXECUTABLE_IMPLEMENTATION_BINDING_REQUIRED")
@@ -970,14 +970,29 @@ class DG05ProductionExecutorV1:
     adapter_implementation_hash: str = ""
     repository_root: Path | None = None
     synthetic_failure_cell_ids: tuple[str, ...] = ()
+    executable_manifest: DG05ExecutableAuthorityManifestV1 | None = None
 
     def validate(self) -> None:
         _sha(self.executable_manifest_hash, "executable_manifest_hash")
+        if self.executable_manifest is None:
+            raise DG05ClosureError("EXECUTOR_TYPED_MANIFEST_REQUIRED")
+        self.executable_manifest.validate()
+        if self.executable_manifest.document()["self_hash"] != self.executable_manifest_hash:
+            raise DG05ClosureError("EXECUTOR_MANIFEST_HASH_MISMATCH")
         self.detector_registry.validate(); self.dispatch_registry.validate()
+        if self.executable_manifest.detector_registry_hash != self.detector_registry.document()["self_hash"]:
+            raise DG05ClosureError("EXECUTOR_DETECTOR_REGISTRY_MANIFEST_MISMATCH")
+        if self.executable_manifest.dispatch_registry_hash != self.dispatch_registry.document()["self_hash"]:
+            raise DG05ClosureError("EXECUTOR_DISPATCH_REGISTRY_MANIFEST_MISMATCH")
         if self.dispatch_registry.detector_registry_hash != self.detector_registry.document()["self_hash"]:
             raise DG05ClosureError("EXECUTOR_REGISTRY_BINDING_MISMATCH")
         _sha(self.fusion_implementation_hash, "fusion_implementation_hash")
         _sha(self.adapter_implementation_hash, "adapter_implementation_hash")
+        implementations = dict(self.executable_manifest.implementation_hashes)
+        if self.adapter_implementation_hash != implementations["prediction_adapter"]:
+            raise DG05ClosureError("EXECUTOR_PREDICTION_ADAPTER_MANIFEST_MISMATCH")
+        if self.fusion_implementation_hash != implementations["fusion_runtime"]:
+            raise DG05ClosureError("EXECUTOR_FUSION_RUNTIME_MANIFEST_MISMATCH")
         if self.authority_mode == "SYNTHETIC_REHEARSAL":
             if self.detector_assets or self.rule_assets:
                 raise DG05ClosureError("SYNTHETIC_EXECUTOR_PRIVATE_ASSETS_PROHIBITED")
@@ -1002,11 +1017,13 @@ class DG05ProductionExecutorV1:
             raise DG05ClosureError("PRODUCTION_REPOSITORY_ROOT_REQUIRED")
 
     @classmethod
-    def synthetic_rehearsal(cls, *, executable_manifest_hash: str, detector_registry: DetectorSubauthorityRegistryV1,
+    def synthetic_rehearsal(cls, *, executable_manifest: DG05ExecutableAuthorityManifestV1,
+                            executable_manifest_hash: str, detector_registry: DetectorSubauthorityRegistryV1,
                             dispatch_registry: MethodDispatchRegistryV1, adapter_implementation_hash: str,
                             fusion_implementation_hash: str, synthetic_failure_cell_ids: Sequence[str] = ()) -> "DG05ProductionExecutorV1":
         value = cls(executable_manifest_hash, detector_registry, dispatch_registry, "SYNTHETIC_REHEARSAL", (), (),
-                    fusion_implementation_hash, adapter_implementation_hash, None, tuple(sorted(synthetic_failure_cell_ids)))
+                    fusion_implementation_hash, adapter_implementation_hash, None,
+                    tuple(sorted(synthetic_failure_cell_ids)), executable_manifest)
         value.validate(); return value
 
     def _projection_matrix(self, path: Path, projection: FeatureProjectionAuthorityV1) -> tuple[tuple[str, ...], Any]:
