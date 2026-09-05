@@ -95,8 +95,10 @@ def _replay_predecessor_v2(*, manifest_path: Path, closure_path: Path,
             value = json.loads(raw.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
             raise DG05ExecutableV3Error("PREDECESSOR_NESTED_JSON_REQUIRED") from exc
-        if value.get("schema") != schema:
+        if value.get("schema") != schema and value.get("artifact_type") != schema:
             raise DG05ExecutableV3Error(f"PREDECESSOR_NESTED_SCHEMA_MISMATCH:{logical_name}")
+        if raw != _canonical(value) + b"\n":
+            raise DG05ExecutableV3Error(f"PREDECESSOR_NESTED_CANONICAL_MISMATCH:{logical_name}")
         authority_field = row.get("authority_field") or "self_hash"
         if value.get(authority_field) != row["expected_authority_hash"]:
             raise DG05ExecutableV3Error(f"PREDECESSOR_NESTED_AUTHORITY_MISMATCH:{logical_name}")
