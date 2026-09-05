@@ -62,10 +62,19 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
             replace(registry, entries=entries[:-1]).validate()
 
     def test_transition_requires_replayed_artifact(self):
-        artifact = self_hashed({"schema":"global_prediction_freeze_v3"})
-        StateTransitionEvidenceV1("GLOBAL_FREEZE",artifact["self_hash"],72,artifact).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
-        with self.assertRaises(DG05ClosureError):
-            StateTransitionEvidenceV1("GLOBAL_FREEZE",H,72,artifact).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
+        artifact = self_hashed({"schema":"global_prediction_freeze_v3", "manifest_hash":H, "census_hash":H,
+            "predecessor_state_hash":H, "executable_approval_manifest_hash":H,
+            "status":"GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED"})
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "freeze.json"
+            path.write_bytes(json.dumps(artifact, sort_keys=True, separators=(",",":"), ensure_ascii=True).encode("ascii") + b"\n")
+            byte_hash = file_sha256(path)
+            StateTransitionEvidenceV1("GLOBAL_FREEZE",artifact["self_hash"],72,artifact,path,byte_hash).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
+            with self.assertRaises(DG05ClosureError):
+                StateTransitionEvidenceV1("GLOBAL_FREEZE",H,72,artifact,path,byte_hash).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
+            path.write_bytes(path.read_bytes() + b"x")
+            with self.assertRaises(DG05ClosureError):
+                StateTransitionEvidenceV1("GLOBAL_FREEZE",artifact["self_hash"],72,artifact,path,byte_hash).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
 
     def test_projection_bytes_replay_and_etapr_coordinates(self):
         authority = frozen_feature_allowlist_authorities_v2()[FROZEN_PANEL_ORDER_V2[0]]
