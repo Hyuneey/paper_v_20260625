@@ -28,12 +28,24 @@ class GlobalPredictionStateV1(str,Enum):
     RESULTS_COMPUTED='RESULTS_COMPUTED'
 
 
+_STATE_ORDER = tuple(GlobalPredictionStateV1)
+
+
+def validate_state_transition_v1(before: GlobalPredictionStateV1, after: GlobalPredictionStateV1) -> None:
+    """Allow only the preregistered adjacent custody transition."""
+    if type(before) is not GlobalPredictionStateV1 or type(after) is not GlobalPredictionStateV1:
+        raise MultiPanelCustodyError('typed custody state required')
+    if _STATE_ORDER.index(after) != _STATE_ORDER.index(before) + 1:
+        raise MultiPanelCustodyError('CUSTODY_STATE_TRANSITION_SKIPPED')
+
+
 @dataclass(frozen=True)
 class PredictionCellReceiptV1:
     panel_id:str; file_id:str; method_id:str; method_authority_hash:str
     feature_projection_hash:str; prediction_artifact_hash:str; row_count:int
     timestamp_range_hash:str; alarm_count:int; system_error_count:int
     runtime_milliseconds:int; source_commit:str
+    terminal_status:str='SUCCESS'
     def document(self)->dict[str,Any]:return dict(self.__dict__)
     def validate(self)->None:
         for field in ('panel_id','file_id','method_id','source_commit'):
@@ -41,6 +53,9 @@ class PredictionCellReceiptV1:
         for field in ('method_authority_hash','feature_projection_hash','prediction_artifact_hash','timestamp_range_hash'):_sha(getattr(self,field),field)
         if type(self.row_count) is not int or self.row_count<=0 or any(type(getattr(self,f)) is not int or getattr(self,f)<0 for f in ('alarm_count','system_error_count','runtime_milliseconds')):raise MultiPanelCustodyError('invalid prediction census')
         if self.alarm_count>self.row_count:raise MultiPanelCustodyError('alarm count exceeds rows')
+        if self.terminal_status not in ('SUCCESS','METHOD_FAILURE'):raise MultiPanelCustodyError('invalid terminal status')
+        if self.terminal_status == 'METHOD_FAILURE' and self.alarm_count != 0:
+            raise MultiPanelCustodyError('failure cannot be represented as alarm output')
 
 
 @dataclass(frozen=True)
@@ -91,5 +106,23 @@ def validate_attack_feature_projection_contract_v1(document:Mapping[str,Any])->N
     _sha(document['projection_hash'],'projection_hash')
 
 
+def project_attack_columns_v1(*, header: Sequence[str], column_readers: Mapping[str, Any],
+                              timestamp_id: str, approved_feature_ids: Sequence[str]) -> dict[str, tuple[Any, ...]]:
+    """Positive-allowlist projection; excluded column readers are never invoked."""
+    if not header or len(set(header)) != len(header) or set(column_readers) != set(header):
+        raise MultiPanelCustodyError('invalid attack container schema')
+    selected=(timestamp_id,*tuple(approved_feature_ids))
+    if len(selected) != len(set(selected)) or any(name not in header for name in selected):
+        raise MultiPanelCustodyError('unresolved positive allowlist')
+    if not approved_feature_ids or any(not name.startswith('P1_') for name in approved_feature_ids):
+        raise MultiPanelCustodyError('positive feature allowlist required')
+    values={name:tuple(column_readers[name]()) for name in selected}
+    lengths={len(value) for value in values.values()}
+    if len(lengths) != 1 or not lengths or next(iter(lengths)) <= 0:
+        raise MultiPanelCustodyError('projection row mismatch')
+    return values
+
+
 __all__=['GlobalPredictionStateV1','PredictionCellReceiptV1','GlobalPredictionManifestV1','LabelScenarioLeaseV1',
-         'issue_label_scenario_lease_v1','consume_label_scenario_lease_v1','validate_attack_feature_projection_contract_v1','MultiPanelCustodyError']
+         'issue_label_scenario_lease_v1','consume_label_scenario_lease_v1','validate_attack_feature_projection_contract_v1',
+         'project_attack_columns_v1','validate_state_transition_v1','MultiPanelCustodyError']

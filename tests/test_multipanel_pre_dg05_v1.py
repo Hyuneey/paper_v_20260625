@@ -60,15 +60,26 @@ class CustodyEligibilityTests(unittest.TestCase):
         self.assertEqual(consume_label_scenario_lease_v1(lease,manifest,lambda:'labels'),'labels')
         with self.assertRaises(MultiPanelCustodyError):consume_label_scenario_lease_v1(lease,manifest,lambda:None)
         with self.assertRaises(MultiPanelCustodyError):GlobalPredictionManifestV1(cells,receipts[:1],H,H,H).validate()
+        for before,after in zip(tuple(GlobalPredictionStateV1),tuple(GlobalPredictionStateV1)[1:]):validate_state_transition_v1(before,after)
+        with self.assertRaises(MultiPanelCustodyError):
+            validate_state_transition_v1(GlobalPredictionStateV1.ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED,GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED)
+        failed=replace(receipts[0],terminal_status='METHOD_FAILURE')
+        GlobalPredictionManifestV1(cells,(failed,receipts[1]),H,H,H).validate()
     def test_feature_projection_and_postfreeze_mutation(self):
         value={'panel_id':'P','file_id':'F','timestamp_id':'t','approved_feature_ids':['P1_X'],'projection_hash':H,'row_count':2,'label_values_parsed':False,'scenario_values_parsed':False}
         validate_attack_feature_projection_contract_v1(value)
         with self.assertRaises(MultiPanelCustodyError):validate_attack_feature_projection_contract_v1({**value,'label_values_parsed':True})
+        def forbidden(): raise AssertionError('excluded value parsed')
+        readers={'time':lambda:[1,2],'P1_X':lambda:[3.,4.],'attack':forbidden,'scenario':forbidden}
+        first=project_attack_columns_v1(header=tuple(readers),column_readers=readers,timestamp_id='time',approved_feature_ids=('P1_X',))
+        readers['attack']=lambda:['malformed','different']
+        second=project_attack_columns_v1(header=tuple(readers),column_readers=readers,timestamp_id='time',approved_feature_ids=('P1_X',))
+        self.assertEqual(first,second);self.assertNotIn('attack',first);self.assertNotIn('scenario',first)
     def test_method_blind_p1_logic(self):
         mapping={'P1_X':'P1','P2_X':'OUT_OF_SCOPE','MYSTERY':'UNRESOLVED'}
-        self.assertEqual(classify_p1_scenario_v1(OfficialScenarioMetadataV1('s',('P1_X',)),mapping)['status'],'P1_ELIGIBLE')
-        self.assertEqual(classify_p1_scenario_v1(OfficialScenarioMetadataV1('s',('P2_X',),('P1',)),mapping)['status'],'CROSS_PROCESS_P1_RELEVANT')
-        self.assertEqual(classify_p1_scenario_v1(OfficialScenarioMetadataV1('s',('MYSTERY',)),mapping)['status'],'UNRESOLVED')
+        self.assertEqual(classify_p1_scenario_v1(OfficialScenarioMetadataV1('v','f','s',('P1_X',)),mapping,mapping_authority_hash=H)['status'],'P1_ELIGIBLE')
+        self.assertEqual(classify_p1_scenario_v1(OfficialScenarioMetadataV1('v','f','s',('P2_X',),('P1',)),mapping,mapping_authority_hash=H)['status'],'CROSS_PROCESS_P1_RELEVANT')
+        self.assertEqual(classify_p1_scenario_v1(OfficialScenarioMetadataV1('v','f','s',('MYSTERY',)),mapping,mapping_authority_hash=H)['status'],'UNRESOLVED')
         with self.assertRaises(ValueError):assert_method_blind_payload_v1({'detector_score':1})
 
 

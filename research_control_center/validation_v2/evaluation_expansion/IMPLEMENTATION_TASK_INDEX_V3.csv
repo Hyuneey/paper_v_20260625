@@ -1,0 +1,5 @@
+task_id,status,prerequisite,allowed_data,prohibited_data,expected_artifacts,user_gate,parallelization,scientific_stop_condition
+MULTIPANEL-PRE-DG05-FREEZE-001,COMPLETE_QA_PASS,Frozen normal-only authorities,Normal-only and synthetic fixtures,Attack/test/labels/real scenarios,Exact method metric eligibility and custody authorities,NONE,Read-only audits and sole writer,Authority mismatch or contract ambiguity
+MULTIPANEL-DG05-EXEC-001,BLOCKED_DG05,DEC028 and exact preregistration,Feature-only attack projection then conditional label lease,Labels before global freeze;post-result tuning,Frozen all-panel predictions and version-specific metrics,DG05,One scientific writer plus independent QA,Any freeze custody or privacy failure
+CROSS-VERSION-SYNTHESIS-001,BLOCKED_PANEL_RESULTS,Three version-specific frozen results,Public-safe aggregate results,Primary pooled IID Recall,Version-separated synthesis,NONE,Read-only interpretation,Missing panel authority
+PROFESSOR-PACKAGE-FINAL-001,DRAFT_ONLY,Final frozen results,Public-safe reports,Automatic submission,Final professor package,DG06,Read-only review,Submission without approval
