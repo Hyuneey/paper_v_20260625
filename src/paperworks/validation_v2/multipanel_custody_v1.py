@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from enum import Enum
 from hashlib import sha256
 import json
+import os
 from pathlib import Path
 import secrets
 from typing import Any, Callable, Mapping, Sequence
@@ -24,11 +25,19 @@ def _identity(value: str, field: str)->None:
     if type(value) is not str or not value or any(ch in value for ch in ('/', '\\', ':')):raise MultiPanelCustodyError(f'invalid {field}')
 def _publish_new(path: Path, payload: bytes)->str:
     path.parent.mkdir(parents=True,exist_ok=True)
+    temporary=path.with_name(f'.{path.name}.{secrets.token_hex(12)}.tmp')
     try:
-        with path.open('xb') as handle:
-            handle.write(payload);handle.flush()
+        with temporary.open('xb') as handle:
+            handle.write(payload);handle.flush();os.fsync(handle.fileno())
+        os.link(temporary,path)
+        if os.name != 'nt':
+            descriptor=os.open(path.parent,os.O_RDONLY)
+            try:os.fsync(descriptor)
+            finally:os.close(descriptor)
     except FileExistsError as exc:
         raise MultiPanelCustodyError('APPEND_ONLY_ARTIFACT_CONFLICT') from exc
+    finally:
+        if temporary.exists():temporary.unlink()
     if path.read_bytes()!=payload:raise MultiPanelCustodyError('DURABLE_REPLAY_MISMATCH')
     return sha256(payload).hexdigest()
 
@@ -171,6 +180,38 @@ class FrozenFeatureAllowlistAuthorityV2:
         _sha(self.method_bundle_hash,'method_bundle_hash');_gitsha(self.source_commit,'source_commit')
 
 
+@dataclass(frozen=True,order=True)
+class PhysicalFileIdentityV2:
+    panel_id:str; file_id:str; raw_container_hash:str; header_hash:str; official_source_hash:str
+    def validate(self)->None:
+        if self.panel_id not in FROZEN_PANEL_ORDER_V2:raise MultiPanelCustodyError('unknown physical file panel')
+        _identity(self.file_id,'file_id')
+        for name in ('raw_container_hash','header_hash','official_source_hash'):_sha(getattr(self,name),name)
+    def document(self)->dict[str,str]:return dict(self.__dict__)
+
+
+@dataclass(frozen=True)
+class FrozenPhysicalFileAuthorityV2:
+    files:tuple[PhysicalFileIdentityV2,...]; dg05_authorization_hash:str; source_commit:str
+    def body(self)->dict[str,Any]:
+        return {'schema':'multipanel_physical_attack_file_authority_v2','files':[item.document() for item in self.files],
+                'dg05_authorization_hash':self.dg05_authorization_hash,'source_commit':self.source_commit}
+    def document(self)->dict[str,Any]:
+        body=self.body();return {**body,'self_hash':_hash(body)}
+    def validate(self)->None:
+        expected=tuple(sorted(self.files,key=lambda item:(FROZEN_PANEL_ORDER_V2.index(item.panel_id),item.file_id))) if self.files else ()
+        if not self.files or expected!=self.files or len({(v.panel_id,v.file_id) for v in self.files})!=len(self.files):
+            raise MultiPanelCustodyError('canonical exact physical file authority required')
+        if {item.panel_id for item in self.files}!=set(FROZEN_PANEL_ORDER_V2):raise MultiPanelCustodyError('all frozen panels required')
+        for item in self.files:item.validate()
+        _sha(self.dg05_authorization_hash,'dg05_authorization_hash');_gitsha(self.source_commit,'source_commit')
+    def lookup(self,panel_id:str,file_id:str)->PhysicalFileIdentityV2:
+        self.validate()
+        for item in self.files:
+            if (item.panel_id,item.file_id)==(panel_id,file_id):return item
+        raise MultiPanelCustodyError('file absent from frozen physical authority')
+
+
 @dataclass(frozen=True)
 class AttackFeatureProjectionReceiptV2:
     panel_id:str; file_id:str; timestamp_id:str; approved_feature_ids:tuple[str,...]
@@ -183,7 +224,7 @@ class AttackFeatureProjectionReceiptV2:
         body={'schema':'multipanel_attack_feature_projection_receipt_v2',**self.__dict__}
         body['approved_feature_ids']=list(self.approved_feature_ids)
         return {**body,'self_hash':_hash(body)}
-    def validate(self,authority:FrozenFeatureAllowlistAuthorityV2)->None:
+    def validate(self,authority:FrozenFeatureAllowlistAuthorityV2,physical:FrozenPhysicalFileAuthorityV2|None=None)->None:
         if type(authority) is not FrozenFeatureAllowlistAuthorityV2:raise MultiPanelCustodyError('typed allowlist authority required')
         authority.validate()
         if (self.panel_id,self.timestamp_id,self.approved_feature_ids)!=(authority.panel_id,authority.timestamp_id,authority.feature_ids):
@@ -195,6 +236,9 @@ class AttackFeatureProjectionReceiptV2:
         flags=(self.label_values_parsed,self.label_values_decoded,self.label_values_inspected,self.label_values_counted,
                self.label_values_validated,self.label_values_filtered_on,self.label_values_used,self.scenario_values_parsed,self.scenario_values_used)
         if any(type(v) is not bool or v for v in flags):raise MultiPanelCustodyError('excluded label/scenario value contact')
+        if physical is not None:
+            item=physical.lookup(self.panel_id,self.file_id)
+            if (self.raw_container_hash,self.header_hash)!=(item.raw_container_hash,item.header_hash):raise MultiPanelCustodyError('projection/physical file authority mismatch')
 
 
 @dataclass(frozen=True)
@@ -209,7 +253,8 @@ class MethodCellAuthorityV2:
 class GlobalCellCensusAuthorityV2:
     files_by_panel:tuple[tuple[str,tuple[str,...]],...]
     methods_by_panel:tuple[tuple[str,tuple[MethodCellAuthorityV2,...]],...]
-    method_bundle_hash:str; physical_file_authority_hash:str; source_commit:str
+    method_bundle_hash:str; physical_file_authority_hash:str
+    allowlist_authority_hashes:tuple[tuple[str,str],...]; source_commit:str
     def validate(self)->None:
         if tuple(panel for panel,_ in self.files_by_panel)!=FROZEN_PANEL_ORDER_V2 or tuple(panel for panel,_ in self.methods_by_panel)!=FROZEN_PANEL_ORDER_V2:
             raise MultiPanelCustodyError('exact frozen panel order required')
@@ -220,11 +265,15 @@ class GlobalCellCensusAuthorityV2:
             expected=PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel]
             if tuple(item.method_id for item in methods)!=expected:raise MultiPanelCustodyError('exact frozen method census required')
             for item in methods:item.validate()
-        _sha(self.method_bundle_hash,'method_bundle_hash');_sha(self.physical_file_authority_hash,'physical_file_authority_hash');_gitsha(self.source_commit,'source_commit')
+        if self.method_bundle_hash!='dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2':raise MultiPanelCustodyError('frozen method bundle mismatch')
+        if tuple(panel for panel,_ in self.allowlist_authority_hashes)!=FROZEN_PANEL_ORDER_V2:raise MultiPanelCustodyError('exact allowlist authority census required')
+        for _,value in self.allowlist_authority_hashes:_sha(value,'allowlist_authority_hash')
+        _sha(self.physical_file_authority_hash,'physical_file_authority_hash');_gitsha(self.source_commit,'source_commit')
     def body(self)->dict[str,Any]:
         return {'schema':'multipanel_global_cell_census_authority_v2','files_by_panel':[[p,list(v)] for p,v in self.files_by_panel],
                 'methods_by_panel':[[p,[m.document() for m in v]] for p,v in self.methods_by_panel],
                 'method_bundle_hash':self.method_bundle_hash,'physical_file_authority_hash':self.physical_file_authority_hash,
+                'allowlist_authority_hashes':[list(v) for v in self.allowlist_authority_hashes],
                 'source_commit':self.source_commit}
     def document(self)->dict[str,Any]:
         body=self.body();return {**body,'self_hash':_hash(body)}
@@ -298,16 +347,24 @@ class GlobalPredictionManifestV2:
               'metric_authority_hash':self.metric_authority_hash,'p1_custodian_authority_hash':self.p1_custodian_authority_hash,
               'dg05_authorization_hash':self.dg05_authorization_hash,'source_commit':self.source_commit,'state':self.state.value}
         return {**body,'self_hash':_hash(body)}
-    def validate(self,allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2])->None:
+    def validate(self,allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],physical:FrozenPhysicalFileAuthorityV2)->None:
         self.census.validate();_gitsha(self.source_commit,'source_commit')
         for name in ('evaluation_policy_hash','metric_authority_hash','p1_custodian_authority_hash','dg05_authorization_hash'):_sha(getattr(self,name),name)
         if self.state is not GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED:raise MultiPanelCustodyError('global label-locked freeze required')
+        physical.validate()
+        if physical.document()['self_hash']!=self.census.physical_file_authority_hash:raise MultiPanelCustodyError('physical authority hash mismatch')
+        if self.source_commit!=self.census.source_commit or physical.source_commit!=self.source_commit:raise MultiPanelCustodyError('source commit authority mismatch')
         files={(panel,file_id) for panel,values in self.census.files_by_panel for file_id in values}
+        if files!={(item.panel_id,item.file_id) for item in physical.files}:raise MultiPanelCustodyError('physical file/census mismatch')
         projections={(item.panel_id,item.file_id):item for item in self.projection_receipts}
         if len(projections)!=len(self.projection_receipts) or set(projections)!=files:raise MultiPanelCustodyError('projection receipt census mismatch')
+        expected_allowlists=dict(self.census.allowlist_authority_hashes)
+        if set(allowlists)!=set(FROZEN_PANEL_ORDER_V2):raise MultiPanelCustodyError('exact allowlist authority map required')
         for (panel,_),item in projections.items():
             if panel not in allowlists:raise MultiPanelCustodyError('missing allowlist authority')
-            item.validate(allowlists[panel])
+            if allowlists[panel].document()['self_hash']!=expected_allowlists[panel] or allowlists[panel].method_bundle_hash!=self.census.method_bundle_hash or allowlists[panel].source_commit!=self.source_commit:
+                raise MultiPanelCustodyError('allowlist authority/census mismatch')
+            item.validate(allowlists[panel],physical)
         actual=[]
         for receipt in self.receipts:
             if type(receipt) not in (PredictionSuccessReceiptV2,PredictionFailureReceiptV2):raise MultiPanelCustodyError('tagged terminal receipt required')
@@ -341,20 +398,40 @@ def canonical_projection_bytes_v2(values:Mapping[str,Sequence[Any]],order:Sequen
     return _canon({'columns':list(order),'values':[list(values[name]) for name in order]})
 
 
+def replay_projection_artifact_v2(path:Path,receipt:AttackFeatureProjectionReceiptV2)->bool:
+    payload=path.read_bytes()
+    if sha256(payload).hexdigest()!=receipt.projection_hash:return False
+    try:value=json.loads(payload.decode('utf-8'))
+    except (UnicodeDecodeError,json.JSONDecodeError):return False
+    if type(value) is not dict or set(value)!= {'columns','values'}:return False
+    expected_columns=[receipt.timestamp_id,*receipt.approved_feature_ids]
+    if value.get('columns')!=expected_columns:return False
+    vectors=value.get('values')
+    return (isinstance(vectors,list) and len(vectors)==len(expected_columns)
+            and all(isinstance(vector,list) and len(vector)==receipt.row_count for vector in vectors))
+
+
 def persist_global_manifest_v2(directory:Path,manifest:GlobalPredictionManifestV2,
-                               allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],
+                               allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],physical:FrozenPhysicalFileAuthorityV2,
+                               projection_artifacts:Mapping[tuple[str,str],Path],
                                prediction_artifacts:Mapping[tuple[str,str,str],Path])->dict[str,Any]:
-    manifest.validate(allowlists)
+    manifest.validate(allowlists,physical)
+    projections={(r.panel_id,r.file_id):r for r in manifest.projection_receipts}
+    if set(projection_artifacts)!=set(projections):raise MultiPanelCustodyError('projection artifact census mismatch')
+    for cell,path in projection_artifacts.items():
+        if not path.is_file() or not replay_projection_artifact_v2(path,projections[cell]):
+            raise MultiPanelCustodyError('projection artifact replay mismatch')
     success={(r.panel_id,r.file_id,r.method_id):r for r in manifest.receipts if type(r) is PredictionSuccessReceiptV2}
     if set(prediction_artifacts)!=set(success):raise MultiPanelCustodyError('success artifact census mismatch')
     for cell,path in prediction_artifacts.items():
-        if not path.is_file() or sha256(path.read_bytes()).hexdigest()!=success[cell].prediction_artifact_hash:
+        if not path.is_file() or replay_prediction_artifact_v2(path,success[cell]) is False:
             raise MultiPanelCustodyError('prediction artifact replay mismatch')
     body=manifest.document();payload=canonical_json_line_v2(body)
     manifest_path=directory/'global_prediction_manifest_v2.json';file_hash=_publish_new(manifest_path,payload)
     freeze={'schema':'multipanel_global_prediction_manifest_freeze_receipt_v2','manifest_self_hash':body['self_hash'],
             'manifest_file_hash':file_hash,'census_authority_hash':manifest.census.document()['self_hash'],
-            'state':manifest.state.value,'source_commit':manifest.source_commit}
+            'physical_file_authority_hash':physical.document()['self_hash'],'projection_artifact_count':len(projection_artifacts),
+            'prediction_artifact_count':len(prediction_artifacts),'state':manifest.state.value,'source_commit':manifest.source_commit}
     freeze={**freeze,'self_hash':_hash(freeze)};_publish_new(directory/'global_prediction_manifest_v2.freeze.json',canonical_json_line_v2(freeze))
     return freeze
 
@@ -376,11 +453,19 @@ def initialize_state_chain_v2(directory:Path,*,census_authority_hash:str,evaluat
     body={**body,'self_hash':_hash(body)};_publish_new(directory/'custody-transition-000.json',canonical_json_line_v2(body));return body
 
 
-def advance_state_chain_v2(directory:Path,current:Mapping[str,Any],after:GlobalPredictionStateV1)->dict[str,Any]:
+def advance_state_chain_v2(directory:Path,current:Mapping[str,Any],after:GlobalPredictionStateV1,*,evidence_kind:str,evidence_hash:str)->dict[str,Any]:
     validate_transition_receipt_v2(directory,current)
     before=GlobalPredictionStateV1(current['state']);validate_state_transition_v1(before,after)
+    required={GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED:'FEATURE_PROJECTION_CENSUS_FREEZE',
+              GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED:'PREDICTION_EXECUTION_START_RECEIPT',
+              GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED:'GLOBAL_MANIFEST_FREEZE',
+              GlobalPredictionStateV1.LABEL_SCENARIO_LEASE_OPEN:'LABEL_SCENARIO_LEASE_ISSUE',
+              GlobalPredictionStateV1.RESULTS_COMPUTED:'RESULT_INTEGRITY_RECEIPT'}[after]
+    if evidence_kind!=required:raise MultiPanelCustodyError('state-specific transition evidence required')
+    _sha(evidence_hash,'transition_evidence_hash')
     body={key:value for key,value in current.items() if key not in ('self_hash','sequence','state','predecessor_receipt_hash')}
-    body.update({'sequence':current['sequence']+1,'state':after.value,'predecessor_receipt_hash':current['self_hash']})
+    body.update({'sequence':current['sequence']+1,'state':after.value,'predecessor_receipt_hash':current['self_hash'],
+                 'evidence_kind':evidence_kind,'evidence_hash':evidence_hash})
     body={**body,'self_hash':_hash(body)};_publish_new(directory/f"custody-transition-{body['sequence']:03d}.json",canonical_json_line_v2(body));return body
 
 
@@ -392,7 +477,8 @@ def validate_transition_receipt_v2(directory:Path,receipt:Mapping[str,Any])->Non
         prior_path=directory/f'custody-transition-{sequence-1:03d}.json'
         if not prior_path.is_file():raise MultiPanelCustodyError('missing transition predecessor')
         prior=json.loads(prior_path.read_text(encoding='utf-8'))
-        if receipt.get('predecessor_receipt_hash')!=prior.get('self_hash'):raise MultiPanelCustodyError('transition chain broken')
+        if prior.get('self_hash')!=_hash({k:v for k,v in prior.items() if k!='self_hash'}) or receipt.get('predecessor_receipt_hash')!=prior.get('self_hash'):
+            raise MultiPanelCustodyError('transition chain broken')
 
 
 _LEASE_SENTINEL=object()
@@ -407,14 +493,20 @@ class LabelScenarioLeaseV2:
 
 def issue_label_scenario_lease_v2(directory:Path,manifest:GlobalPredictionManifestV2,
                                   freeze_receipt:Mapping[str,Any],transition_receipt:Mapping[str,Any],
-                                  allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2])->LabelScenarioLeaseV2:
-    manifest.validate(allowlists);validate_transition_receipt_v2(directory,transition_receipt)
+                                  allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],physical:FrozenPhysicalFileAuthorityV2,
+                                  projection_artifacts:Mapping[tuple[str,str],Path],
+                                  prediction_artifacts:Mapping[tuple[str,str,str],Path])->LabelScenarioLeaseV2:
+    manifest.validate(allowlists,physical);validate_transition_receipt_v2(directory,transition_receipt)
     if transition_receipt['state']!=GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED.value:raise MultiPanelCustodyError('global frozen transition required')
     manifest_path=directory/'global_prediction_manifest_v2.json';freeze_path=directory/'global_prediction_manifest_v2.freeze.json'
     if not manifest_path.is_file() or not freeze_path.is_file() or json.loads(freeze_path.read_text(encoding='utf-8'))!=dict(freeze_receipt):raise MultiPanelCustodyError('durable manifest freeze required')
+    if freeze_receipt.get('self_hash')!=_hash({k:v for k,v in freeze_receipt.items() if k!='self_hash'}):raise MultiPanelCustodyError('invalid freeze receipt self hash')
     document=manifest.document()
     if sha256(manifest_path.read_bytes()).hexdigest()!=freeze_receipt.get('manifest_file_hash') or document['self_hash']!=freeze_receipt.get('manifest_self_hash'):
         raise MultiPanelCustodyError('manifest freeze mismatch')
+    _replay_frozen_artifacts_v2(manifest,projection_artifacts,prediction_artifacts)
+    if transition_receipt.get('evidence_kind')!='GLOBAL_MANIFEST_FREEZE' or transition_receipt.get('evidence_hash')!=freeze_receipt['self_hash']:
+        raise MultiPanelCustodyError('global freeze transition evidence mismatch')
     for key in ('census_authority_hash','evaluation_policy_hash','metric_authority_hash','p1_custodian_authority_hash','dg05_authorization_hash'):
         expected=manifest.census.document()['self_hash'] if key=='census_authority_hash' else getattr(manifest,key)
         if transition_receipt.get(key)!=expected:raise MultiPanelCustodyError('transition/manifest authority mismatch')
@@ -427,29 +519,76 @@ def issue_label_scenario_lease_v2(directory:Path,manifest:GlobalPredictionManife
 
 
 def consume_label_scenario_lease_v2(lease:LabelScenarioLeaseV2,manifest:GlobalPredictionManifestV2,
-                                    allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],reader:Callable[[],Any])->Any:
+                                    allowlists:Mapping[str,FrozenFeatureAllowlistAuthorityV2],physical:FrozenPhysicalFileAuthorityV2,
+                                    projection_artifacts:Mapping[tuple[str,str],Path],prediction_artifacts:Mapping[tuple[str,str,str],Path],
+                                    reader:Callable[[],Any])->Any:
     if type(lease) is not LabelScenarioLeaseV2 or not callable(reader):raise MultiPanelCustodyError('valid opaque lease and reader required')
-    manifest.validate(allowlists);document=manifest.document();directory=lease.directory
+    manifest.validate(allowlists,physical);document=manifest.document();directory=lease.directory
     issue_path=directory/'label-scenario-lease.issue.json'
     if not issue_path.is_file():raise MultiPanelCustodyError('durable lease issue missing')
     issue=json.loads(issue_path.read_text(encoding='utf-8'))
+    if issue.get('self_hash')!=_hash({k:v for k,v in issue.items() if k!='self_hash'}):raise MultiPanelCustodyError('lease issue self hash mismatch')
     if (issue.get('self_hash'),issue.get('manifest_hash'),issue.get('token_hash'))!=(lease.issue_receipt_hash,document['self_hash'],lease.token_hash()):
         raise MultiPanelCustodyError('lease authority mismatch')
     manifest_path=directory/'global_prediction_manifest_v2.json';before=sha256(manifest_path.read_bytes()).hexdigest()
+    if before!=issue.get('manifest_file_hash'):raise MultiPanelCustodyError('manifest mutated after lease issue')
+    _replay_frozen_artifacts_v2(manifest,projection_artifacts,prediction_artifacts)
     consumed={'schema':'multipanel_label_scenario_lease_consumed_v2','issue_receipt_hash':issue['self_hash'],
               'manifest_hash':document['self_hash'],'manifest_file_hash_before':before,'token_hash':lease.token_hash(),
               'source_commit':manifest.source_commit}
     consumed={**consumed,'self_hash':_hash(consumed)}
     _publish_new(directory/'label-scenario-lease.consumed.json',canonical_json_line_v2(consumed))
     try:
-        result=reader()
-    finally:
-        after=sha256(manifest_path.read_bytes()).hexdigest()
-        if after!=before:raise MultiPanelCustodyError('post-freeze manifest mutation')
+        result=reader();reader_status='SUCCESS';caught=False
+    except BaseException:
+        reader_status='READER_FAILED_LEASE_CONSUMED';result=None;caught=True
+    after=sha256(manifest_path.read_bytes()).hexdigest()
+    if after!=before:
+        reader_status='POST_READ_MANIFEST_MUTATION';result=None;caught=True
     completed={'schema':'multipanel_label_scenario_lease_completion_v2','consumed_receipt_hash':consumed['self_hash'],
-               'manifest_file_hash_after':after,'source_commit':manifest.source_commit}
+               'manifest_file_hash_after':after,'reader_status':reader_status,'source_commit':manifest.source_commit}
     completed={**completed,'self_hash':_hash(completed)}
-    _publish_new(directory/'label-scenario-lease.completed.json',canonical_json_line_v2(completed));return result
+    _publish_new(directory/'label-scenario-lease.completed.json',canonical_json_line_v2(completed))
+    if caught:
+        message='LABEL_READER_FAILED_LEASE_CONSUMED' if reader_status=='READER_FAILED_LEASE_CONSUMED' else reader_status
+        raise MultiPanelCustodyError(message)
+    return result
+
+
+def build_prediction_artifact_v2(receipt:PredictionSuccessReceiptV2,alarms:Sequence[bool])->bytes:
+    if any(type(value) is not bool for value in alarms) or len(alarms)!=receipt.row_count or sum(alarms)!=receipt.alarm_count:
+        raise MultiPanelCustodyError('prediction stream census mismatch')
+    body={'schema':'multipanel_prediction_artifact_v2','panel_id':receipt.panel_id,'file_id':receipt.file_id,
+          'method_id':receipt.method_id,'method_authority_hash':receipt.method_authority_hash,
+          'execution_authority_hash':receipt.execution_authority_hash,'feature_projection_hash':receipt.feature_projection_hash,
+          'row_count':receipt.row_count,'timestamp_range_hash':receipt.timestamp_range_hash,'alarms':list(alarms)}
+    body={**body,'self_hash':_hash(body)};return canonical_json_line_v2(body)
+
+
+def replay_prediction_artifact_v2(path:Path,receipt:PredictionSuccessReceiptV2)->bool:
+    payload=path.read_bytes()
+    if sha256(payload).hexdigest()!=receipt.prediction_artifact_hash:return False
+    try:value=json.loads(payload.decode('utf-8'))
+    except (UnicodeDecodeError,json.JSONDecodeError):return False
+    if value.get('self_hash')!=_hash({k:v for k,v in value.items() if k!='self_hash'}):return False
+    exact={'schema':'multipanel_prediction_artifact_v2','panel_id':receipt.panel_id,'file_id':receipt.file_id,
+           'method_id':receipt.method_id,'method_authority_hash':receipt.method_authority_hash,
+           'execution_authority_hash':receipt.execution_authority_hash,'feature_projection_hash':receipt.feature_projection_hash,
+           'row_count':receipt.row_count,'timestamp_range_hash':receipt.timestamp_range_hash}
+    if any(value.get(key)!=expected for key,expected in exact.items()):return False
+    alarms=value.get('alarms')
+    return isinstance(alarms,list) and len(alarms)==receipt.row_count and all(type(v) is bool for v in alarms) and sum(alarms)==receipt.alarm_count
+
+
+def _replay_frozen_artifacts_v2(manifest:GlobalPredictionManifestV2,projection_artifacts:Mapping[tuple[str,str],Path],
+                                prediction_artifacts:Mapping[tuple[str,str,str],Path])->None:
+    projections={(r.panel_id,r.file_id):r for r in manifest.projection_receipts}
+    success={(r.panel_id,r.file_id,r.method_id):r for r in manifest.receipts if type(r) is PredictionSuccessReceiptV2}
+    if set(projection_artifacts)!=set(projections) or set(prediction_artifacts)!=set(success):raise MultiPanelCustodyError('frozen artifact census mismatch')
+    for cell,path in projection_artifacts.items():
+        if not path.is_file() or not replay_projection_artifact_v2(path,projections[cell]):raise MultiPanelCustodyError('projection artifact mutated')
+    for cell,path in prediction_artifacts.items():
+        if not path.is_file() or not replay_prediction_artifact_v2(path,success[cell]):raise MultiPanelCustodyError('prediction artifact mutated')
 
 
 __all__=['GlobalPredictionStateV1','PredictionCellReceiptV1','GlobalPredictionManifestV1','LabelScenarioLeaseV1',
@@ -459,5 +598,7 @@ __all__=['GlobalPredictionStateV1','PredictionCellReceiptV1','GlobalPredictionMa
          'AttackFeatureProjectionReceiptV2','MethodCellAuthorityV2','GlobalCellCensusAuthorityV2',
          'PredictionSuccessReceiptV2','PredictionFailureReceiptV2','GlobalPredictionManifestV2',
          'project_attack_columns_v2','canonical_projection_bytes_v2','persist_global_manifest_v2',
+         'PhysicalFileIdentityV2','FrozenPhysicalFileAuthorityV2','replay_projection_artifact_v2',
          'initialize_state_chain_v2','advance_state_chain_v2','validate_transition_receipt_v2',
-         'LabelScenarioLeaseV2','issue_label_scenario_lease_v2','consume_label_scenario_lease_v2']
+         'LabelScenarioLeaseV2','issue_label_scenario_lease_v2','consume_label_scenario_lease_v2',
+         'build_prediction_artifact_v2','replay_prediction_artifact_v2']
