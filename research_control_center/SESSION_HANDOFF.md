@@ -1,3 +1,11 @@
+# DG05 Executable V3 metric-surface closure 완료
+
+`DG05-V2-METRIC-VERIFIER-CLOSURE-001`은 사전 접근 executable closure만 수행했습니다. 하나의 연결된 합성 경로에서 production projection/dispatch 72셀, global freeze, 단일 lease, 격리 custodian, 146개 합성 scenario, denominator, complete builder, 별도 path-based verifier까지 실행해 228/228 surface를 재계산했습니다. 12/12 mutation class와 각 surface의 omission 228/228 및 authority-binding 228/228도 실제 verifier rejection에서 파생했습니다. V2 nested authority 34개와 implementation bytes 12개를 초기화 시 재검증합니다. 실제 attack/test container, label/scenario, provider, credential 접근은 모두 0입니다.
+
+DEC-030과 Executable V2는 실행되지 않은 역사적 승인/권한으로 보존되며 suspended 상태입니다. 새 authority는 `DG05_EXECUTABLE_V3_CLOSURE_FROZEN`; exact next는 `DG-05 REAPPROVAL — EXECUTABLE V3`입니다. 재승인 전 attack/test 접근은 금지됩니다. 과학 사전등록·방법·지표 정의·Rule·detector·Fusion·기존 결과는 변경하지 않았습니다. 교수 package는 `NOT_SUBMITTED`, backup 상태는 `SINGLE_COPY_LOCAL_ONLY`입니다.
+
+## 이전 기록 — 역사적 상태
+
 # PRE-DG05 다중 패널 동결 완료
 
 MULTIPANEL-PRE-DG05-FREEZE-001은 `COMPLETE_QA_PASS_PRE_DG05_FROZEN`입니다. HAI22/21 PCA-SPE와 보조 Isolation Forest, 세 패널 M0–M4, 기존 Fusion을 고정했습니다. 현행 V2 계약은 exact scenario/mapping authority, per-file eTaPR, durable prediction replay·상태 체인·single-consume lease를 결속합니다. 공격/test/label/실제 시나리오 접근은 0입니다.

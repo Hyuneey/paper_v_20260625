@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8dd7e0e05f6efd13270749854b210426e7b220d0b4f521688fa4be92f000899 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-030 — DG05_EXECUTABLE_V2_MULTI_PANEL_EVALUATION_APPROVAL
 
 ## Date
@@ -16,23 +16,23 @@ The research owner reapproved exact Executable V2 two-phase DG05 execution;pre-a
 ## Alternatives Considered
 
 - Begin Phase A after byte-hash replay
-- close the missing result/verifier authority and obtain new exact approval
+- preserve as not exercised and require fresh V3 approval
 
 ## Decision
 
-APPROVED_CONDITIONAL_TWO_PHASE_EXECUTION_BLOCKED_BEFORE_PHASE_A
+RECORDED_NOT_EXERCISED_SUSPENDED
 
 ## Why
 
-The bound builder and verifier cannot produce and independently replay the complete preregistered metric surface.
+The V2 builder and verifier could not produce and independently replay the complete preregistered metric surface.
 
 ## Consequence
 
-DEC-029 remains historical;Phase A and B unstarted;new metric/verifier closure and exact reapproval required.
+DEC-029 and DEC-030 remain historical;Phase A and B unstarted;V3 metric closure is frozen under new hashes.
 
 ## Current Relevance
 
-DG05_V2_METRIC_VERIFIER_CLOSURE_REQUIRED
+DG05_V3_USER_REAPPROVAL_REQUIRED
 
 ## Supersedes
 
