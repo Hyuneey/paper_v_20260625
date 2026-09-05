@@ -4,7 +4,7 @@
 `4719f3da01c47b61b85365f593a483872a8934a2`. Prospective exact-root replay,
 fresh-process multi-source custody, strict runtime census, source-derived normal
 burden, and upstream primitive reconstruction components are implemented at
-`e1a6d7b16ca57ad3e78f844bf5264526269cdffe`; this is not a complete executable
+`814eabc49f9fb58205a5fa878eadd49bb0b0c8e3`; this is not a complete executable
 release and grants no data access.
 
 Real DG05 remains `NO_GO_FOR_REAL_DG05_ACCESS`. DEC-031 is the single open

@@ -80,6 +80,7 @@ class RegistryValidationTests(unittest.TestCase):
             "validation-v2-dg05-production-chain-closure-001": {
                 "4719f3da01c47b61b85365f593a483872a8934a2",
                 "e1a6d7b16ca57ad3e78f844bf5264526269cdffe",
+                "814eabc49f9fb58205a5fa878eadd49bb0b0c8e3",
             },
             "validation-v2-dg05-v3-metric-verifier-closure-001": {
                 "13265fb22f7919ebc942ded630054a06271c7196",
@@ -157,6 +158,7 @@ class RegistryValidationTests(unittest.TestCase):
             "c317ffc06610c7d7dd72f0810ecdd8a673bcd4d3",
             "4719f3da01c47b61b85365f593a483872a8934a2",
             "e1a6d7b16ca57ad3e78f844bf5264526269cdffe",
+            "814eabc49f9fb58205a5fa878eadd49bb0b0c8e3",
         }
         for name in ("decisions", "timeline"):
             self.assertLessEqual({row["source_commit"] for row in data[name]}, allowed_history_commits)

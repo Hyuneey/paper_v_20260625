@@ -19,7 +19,7 @@ No test2 or other held-out access is authorized by this program.
 - The current exact stop is DEC-031: consolidated scenario/time/runtime and
   normal-source binding. Real DG05 is `NO_GO_FOR_REAL_DG05_ACCESS`.
 - The 16-file PRE-DG05 audit is preserved unchanged at `4719f3da`; prospective
-  engineering components at `e1a6d7b` are not a complete release or approval.
+  engineering and decision-record components at `814eabc` are not a complete release or approval.
 - Historical DEC-029/DEC-030 and V2/V3 executable packages must not be reused as
   current execution authority.
 - No primary held-out result exists. Attack/test/label/scenario access remains

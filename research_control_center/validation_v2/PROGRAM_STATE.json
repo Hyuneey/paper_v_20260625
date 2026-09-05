@@ -399,6 +399,7 @@
     "status": "DECISION_REQUIRED",
     "go_no_go": "NO_GO_FOR_REAL_DG05_ACCESS",
     "audit_commit": "4719f3da01c47b61b85365f593a483872a8934a2",
+    "implementation_commit": "814eabc49f9fb58205a5fa878eadd49bb0b0c8e3",
     "prospective_components": [
       "EXACT_RELEASE_ROOT_REPLAY",
       "FRESH_PROCESS_MULTI_SOURCE_CUSTODIAN",

@@ -24,6 +24,7 @@ IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
     "validation-v2-dg05-production-chain-closure-001": {
         "e1a6d7b16ca57ad3e78f844bf5264526269cdffe",
+        "814eabc49f9fb58205a5fa878eadd49bb0b0c8e3",
     },
     "validation-v2-pre-dg05-state-audit-001": {
         "4719f3da01c47b61b85365f593a483872a8934a2",
