@@ -192,6 +192,13 @@ def verify_result_from_persisted_artifacts_v1(
             raise DG05ResultOracleError("TIMESTAMP_VECTOR_REPLAY_MISMATCH")
         if timestamp["self_hash"] != persisted["timestamp_authority_hash"] or timestamp["projection_hash"] != projection["projection_hash"]:
             raise DG05ResultOracleError("TIMESTAMP_AUTHORITY_BINDING_MISMATCH")
+        if projection.get("timestamp_authority_hash") != timestamp["self_hash"]:
+            raise DG05ResultOracleError("PROJECTION_TIMESTAMP_AUTHORITY_BINDING_MISMATCH")
+        if projection.get("raw_physical_file_hash") != timestamp.get("physical_file_authority_hash"):
+            raise DG05ResultOracleError("PROJECTION_PHYSICAL_FILE_BINDING_MISMATCH")
+        if (projection.get("row_count") != timestamp.get("row_count")
+                or projection.get("row_count") != persisted.get("row_count")):
+            raise DG05ResultOracleError("PROJECTION_TIMESTAMP_ROW_COUNT_BINDING_MISMATCH")
         if (projection["panel_id"], projection["dataset_version"], projection["file_id"]) != (panel, timestamp["dataset_version"], persisted["file_id"]):
             raise DG05ResultOracleError("PANEL_VERSION_FILE_BINDING_MISMATCH")
         predictions[persisted["file_id"]] = (timestamps, alarms, timestamp, projection)
