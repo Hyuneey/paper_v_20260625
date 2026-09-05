@@ -16,6 +16,7 @@ from xver_execution_common import ROOT, load_projection, private_root
 
 OUT=ROOT/'research_control_center/validation_v2/multipanel_pre_dg05'
 BASE='3e8799155ede1e4e6b7b835e8e8866c4e21b6d16'
+SCIENTIFIC_SOURCE='58b89747f33ebae9663026a82e928a39e81da057'
 FUSION='587868f42fbdaedbd802541763e0390c09d2f04e4ba5944c45ad7e6e6593cbcc'
 PORTFOLIOS={
  'HAI23':{'V2A':'ec0b3e2a32d457287cb8b101bec39059e99335be3fd85a3d1fb98668224c52aa','T0':'d95c0bb8234304f2b769e088f4399b6c071b2156982c9e1fadd175dbab5dba02','T2':'bc2b5996989228f198dbcbf38cbedaf38516366f55d5011978ecda94ccf699b6'},
@@ -88,7 +89,9 @@ def persist_private(path,obj):
 def execute():
     prereg=document(OUT/'MULTIPANEL_DETECTOR_PREREGISTRATION_V1.json')
     if subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip():raise ValueError('COMMITTED_CLEAN_SOURCE_REQUIRED')
-    source=head(); results={}; private=private_root()/'multipanel_pre_dg05_v1'
+    # Commit A froze the scientific adapter. Later script-only custody recovery
+    # must not create a new scientific run identity.
+    source=SCIENTIFIC_SOURCE; results={}; private=private_root()/'multipanel_pre_dg05_v1'
     for short,version in [('HAI22','22.04'),('HAI21','21.03')]:
         spec=prereg['versions'][short];features=tuple(spec['feature_ids'])
         train1=make_input(version,'train1',features);train2=make_input(version,'train2',features)
