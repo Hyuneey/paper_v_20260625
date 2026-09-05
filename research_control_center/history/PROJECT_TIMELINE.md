@@ -414,3 +414,12 @@ unconfirmed, and fresh-machine reproduction remains incomplete. The exact next t
 ## 현재 외부 정상 준비 — 과학 결과와 분리
 
 DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+
+## 2026-09-05 — DG-05 Executable V2 pre-access audit
+
+DEC-030 records exact conditional V2 reapproval. Hash replay passed, but the
+approved production result builder and independent verifier do not cover the
+complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime
+census, and normal-burden result surface. Execution stopped before Phase A:
+attack/test access 0, label/scenario access 0, lease 0, predictions 0, results 0.
+Exact next: `DG05-V2-METRIC-VERIFIER-CLOSURE-001` and renewed exact approval.

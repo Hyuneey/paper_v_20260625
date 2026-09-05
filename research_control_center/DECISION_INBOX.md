@@ -35,3 +35,10 @@ EXP-03 V1 및 V2A·EXP04/05 보존. 추가 Agentic rescue 금지. DG-05 공격 �
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
 DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+
+## DG05 V2 metric/verifier closure
+
+DEC-030 approval is recorded but Phase A remains unstarted. The exact approved
+result builder/oracle surface is incomplete for the frozen metric contract.
+Required next action: `DG05-V2-METRIC-VERIFIER-CLOSURE-001`; after new hashes
+are frozen, obtain a new exact DG-05 approval before attack/test custody.

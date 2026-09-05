@@ -103,3 +103,10 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
 DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+
+- **ID:** USER-V2-007
+  **우선순위:** 높음 (HIGH)
+  **할 일:** DG05 V2 complete metric/result builder와 independent verifier를 새 hash로 폐쇄하고 재승인한다.
+  **사용자 확인이 필요한 이유:** DEC-030; 기존 exact authority는 전체 eTaPR·delay·paired/McNemar·Rule/Fusion/runtime census replay를 제공하지 않는다.
+  **연결 문서:** research_control_center/validation_v2/multipanel_dg05_v2_exec/DEC030_DG05_V2_APPROVAL_AND_PREACCESS_BLOCKER_V1.md
+  **상태:** BLOCKED_PRE_ACCESS

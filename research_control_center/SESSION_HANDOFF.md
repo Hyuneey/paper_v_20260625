@@ -225,3 +225,12 @@ DATA-POLICY-001: HAI 23.05는 CODE_MATERIALIZED_OFFICIAL_DISTRIBUTION으로 복�
 - Actual attack/test, label/scenario, and eligibility access: 0/0/0.
 - DEC-029 and DG05 V1 are historical and cannot be reused.
 - Exact next: `DG-05 REAPPROVAL — EXECUTABLE V2`; professor package remains unsubmitted.
+
+## DG05 V2 pre-access handoff
+
+- DEC-030: `APPROVED_CONDITIONAL_TWO_PHASE_EXECUTION`, not exercised.
+- Stop: `BLOCKED_DG05_V2_EXECUTABLE_AUTHORITY_REPLAY` before Phase A.
+- Cause: exact approved builder/oracle cannot produce and independently replay
+  the complete frozen metric and trace-result surface.
+- Counters: attack/test 0; label/scenario 0; lease 0; prediction 0; result 0.
+- Next: `DG05-V2-METRIC-VERIFIER-CLOSURE-001`, then new exact reapproval.
