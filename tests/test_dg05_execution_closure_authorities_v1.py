@@ -9,7 +9,7 @@ import unittest
 from paperworks.validation_v2.dg05_execution_closure_v1 import (
     DG05ClosureError, DetectorSubauthorityV1, FROZEN_METHOD_IDS_BY_PANEL_V1, FullProcessPointV1,
     FullProcessScopeAuthorityV1, MethodDispatchEntryV1, MethodDispatchRegistryV1,
-    StateTransitionEvidenceV1, build_etapr_coordinate_binding_v1, digest,
+    RuleRuntimeSubauthorityV1, RuleRuntimeSubauthorityRegistryV1, StateTransitionEvidenceV1, build_etapr_coordinate_binding_v1, digest,
     file_sha256, project_attack_feature_file_v1, self_hashed,
 )
 from paperworks.validation_v2.multipanel_custody_v1 import (
@@ -69,7 +69,8 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
         for entry in entries:
             entry.validate()
         hai23 = {entry.detector_id: entry for entry in entries if entry.panel_id == FROZEN_PANEL_ORDER_V2[0]}
-        self.assertNotEqual(hai23["PCA_SPE"].implementation_hash, hai23["ISOLATION_FOREST"].implementation_hash)
+        self.assertEqual(hai23["PCA_SPE"].implementation_hash, hai23["ISOLATION_FOREST"].implementation_hash)
+        self.assertNotEqual(hai23["PCA_SPE"].scorer_callable_id, hai23["ISOLATION_FOREST"].scorer_callable_id)
         self.assertNotEqual(hai23["PCA_SPE"].fitted_model_hash, hai23["ISOLATION_FOREST"].fitted_model_hash)
         self.assertEqual((hai23["PCA_SPE"].model_component_index, hai23["PCA_SPE"].threshold_component_index), (0, 2))
         self.assertEqual((hai23["ISOLATION_FOREST"].model_component_index, hai23["ISOLATION_FOREST"].threshold_component_index), (1, 3))
@@ -80,6 +81,7 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
         expected = {f"scientific:{key}": value for key, value in manifest["scientific_authorities"].items()}
         expected.update({"detector_registry": manifest["detector_registry_hash"],
                          "dispatch_registry": manifest["dispatch_registry_hash"],
+                         "rule_runtime_registry": manifest["rule_runtime_registry_hash"],
                          "full_process_scope": manifest["full_process_scope_hash"],
                          "p1_custodian_v3": manifest["p1_custodian_v3_hash"]})
         expected.update({f"portfolio:{index:02d}": value for index, value in enumerate(manifest["rule_portfolio_authority_hashes"])})
@@ -89,19 +91,27 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
         self.assertEqual(nested["self_hash"], manifest["nested_authority_replay_bundle_hash"])
 
     def test_transition_requires_replayed_artifact(self):
+        current = self_hashed({"schema":"dg05_execution_state_v3","state":"PREDICTION_EXECUTION_STARTED_LABEL_LOCKED",
+            "previous_state_hash":H,"executable_approval_manifest_hash":H,"execution_id":"SYNTHETIC","source_commit":G,"evidence_hashes":[]})
         artifact = self_hashed({"schema":"global_prediction_freeze_v3", "manifest_hash":H, "census_hash":H,
-            "predecessor_state_hash":H, "executable_approval_manifest_hash":H,
+            "predecessor_state_hash":current["self_hash"], "executable_approval_manifest_hash":H,
             "status":"GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED"})
         with tempfile.TemporaryDirectory() as raw:
-            path = Path(raw) / "freeze.json"
+            root = Path(raw); path = root / "freeze.json"
             path.write_bytes(json.dumps(artifact, sort_keys=True, separators=(",",":"), ensure_ascii=True).encode("ascii") + b"\n")
             byte_hash = file_sha256(path)
-            StateTransitionEvidenceV1("GLOBAL_FREEZE",artifact["self_hash"],72,artifact,path,byte_hash).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
+            binding = self_hashed({"schema":"dg05_state_transition_binding_v1","next_state":"GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED",
+                "evidence_kind":"GLOBAL_FREEZE","evidence_authority_hash":artifact["self_hash"],"evidence_artifact_byte_hash":byte_hash,
+                "evidence_item_count":72,"predecessor_state_hash":current["self_hash"],"executable_approval_manifest_hash":H,
+                "execution_id":"SYNTHETIC","source_commit":G})
+            binding_path=root/"binding.json"; binding_path.write_bytes(json.dumps(binding,sort_keys=True,separators=(",",":"),ensure_ascii=True).encode("ascii")+b"\n")
+            evidence = StateTransitionEvidenceV1("GLOBAL_FREEZE",artifact["self_hash"],72,artifact,path,byte_hash,binding,binding_path,file_sha256(binding_path))
+            evidence.validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED",current_state=current,executable_manifest_hash=H,source_commit=G)
             with self.assertRaises(DG05ClosureError):
-                StateTransitionEvidenceV1("GLOBAL_FREEZE",H,72,artifact,path,byte_hash).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
+                replace(evidence,authority_hash=H).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED",current_state=current,executable_manifest_hash=H,source_commit=G)
             path.write_bytes(path.read_bytes() + b"x")
             with self.assertRaises(DG05ClosureError):
-                StateTransitionEvidenceV1("GLOBAL_FREEZE",artifact["self_hash"],72,artifact,path,byte_hash).validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED")
+                evidence.validate_for("GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED",current_state=current,executable_manifest_hash=H,source_commit=G)
 
     def test_projection_bytes_replay_and_etapr_coordinates(self):
         authority = frozen_feature_allowlist_authorities_v2()[FROZEN_PANEL_ORDER_V2[0]]
@@ -109,7 +119,7 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
             root=Path(raw); source=root/"source.csv"; destination=root/"projection.jsonl"
             header=[authority.timestamp_id,*authority.feature_ids,"Attack"]
             source.write_text(",".join(header)+"\n"+",".join(["2026-01-01T00:00:00",*(["1"]*len(authority.feature_ids)),"opaque"])+"\n",encoding="utf-8")
-            physical=PhysicalFileIdentityV2(authority.panel_id,"hai-test2.csv",file_sha256(source),H,H)
+            physical=PhysicalFileIdentityV2(authority.panel_id,"hai-test2.csv",file_sha256(source),digest(header),H)
             projection,timestamp=project_attack_feature_file_v1(source=source,destination=destination,physical_file=physical,
                 panel_authority=authority,file_id="hai-test2.csv",adapter_implementation_hash=H,source_commit=G)
             projection.validate(); timestamp.validate()
