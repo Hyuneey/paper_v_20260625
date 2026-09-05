@@ -5,6 +5,8 @@ from hashlib import sha256
 import json
 from pathlib import Path
 
+from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
+
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'research_control_center/validation_v2/multipanel_pre_dg05'
 IMPLEMENTATION_COMMIT='b1aa08c5ade3730ea12959ee315acf02356dc109'
@@ -38,7 +40,7 @@ def main()->None:
     mapping=read('../dg04_xver_prep/P1_FEATURE_MAPPING_AUTHORITY_V1.json')
     external={v:read(f'{v}_DETECTOR_AUTHORITY_V1.json') for v in ('HAI22','HAI21')}
     panel_specs=(
-        ('HAI23_TEST2_PRIMARY_HELDOUT_V1','23.05','timestamp',tuple(gdn['source_roles']+gdn['target_roles'])),
+        ('HAI23_TEST2_PRIMARY_HELDOUT_V1','23.05','timestamp',tuple(P1_FEATURE_ORDER)),
         ('HAI22_EXTERNAL_REPLICATION_V1','22.04','timestamp',tuple(external['HAI22']['feature_ids'])),
         ('HAI21_EXTERNAL_REPLICATION_V1','21.03','time',tuple(external['HAI21']['feature_ids'])),
     )

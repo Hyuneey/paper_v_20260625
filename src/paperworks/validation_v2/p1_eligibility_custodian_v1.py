@@ -5,6 +5,8 @@ from hashlib import sha256
 import json
 from typing import Any, Mapping
 
+from paperworks.validation_v2.multipanel_custody_v1 import FROZEN_FEATURE_IDS_V2, FROZEN_PANEL_ORDER_V2
+
 STATUSES=frozenset({'P1_ELIGIBLE','CROSS_PROCESS_P1_RELEVANT','OUT_OF_SCOPE','UNRESOLVED'})
 FORBIDDEN=frozenset({'prediction','alarm','hit','miss','rule','score','detector','metric','signal_response'})
 
@@ -62,6 +64,16 @@ def _identity(value:str,field:str)->None:
 
 MAPPING_STATES=frozenset({'EXACT_MATCH','VERIFIED_ALIAS','ABSENT','UNIT_MISMATCH','ROLE_MISMATCH','SEMANTIC_MISMATCH','DATATYPE_MISMATCH','SAMPLE_RATE_MISMATCH','UNRESOLVED'})
 MAPPING_SCOPES=frozenset({'P1','OUT_OF_SCOPE','UNRESOLVED'})
+FROZEN_P1_FEATURES_BY_VERSION_V2={
+    '23.05':tuple(sorted(FROZEN_FEATURE_IDS_V2[FROZEN_PANEL_ORDER_V2[0]])),
+    '22.04':tuple(sorted(FROZEN_FEATURE_IDS_V2[FROZEN_PANEL_ORDER_V2[1]])),
+    '21.03':tuple(sorted(FROZEN_FEATURE_IDS_V2[FROZEN_PANEL_ORDER_V2[2]])),
+}
+FROZEN_P1_MAPPING_SOURCE_HASHES_V2={
+    '23.05':'6013547dd6567584d1fd2a8ff6438db6dde4dc164021af5197889a107cb3c149',
+    '22.04':'95a8c594c4127c0ddac88c45ebca7979583bd6436b6704bc83977364176c9f99',
+    '21.03':'95a8c594c4127c0ddac88c45ebca7979583bd6436b6704bc83977364176c9f99',
+}
 
 
 @dataclass(frozen=True,order=True)
@@ -91,9 +103,15 @@ class FrozenP1MappingAuthorityV2:
     def document(self)->dict[str,Any]:
         body=self.body();return {**body,'self_hash':_hash(body)}
     def validate(self)->None:
-        _identity(self.dataset_version,'dataset_version');_sha(self.official_mapping_source_hash,'official_mapping_source_hash');_gitsha(self.source_commit,'source_commit')
+        if self.dataset_version not in FROZEN_P1_FEATURES_BY_VERSION_V2:raise ValueError('unknown frozen mapping dataset version')
+        if self.official_mapping_source_hash!=FROZEN_P1_MAPPING_SOURCE_HASHES_V2[self.dataset_version]:raise ValueError('mapping source differs from frozen authority')
+        _gitsha(self.source_commit,'source_commit')
         if not self.entries or tuple(sorted(self.entries))!=self.entries or len({item.official_identity for item in self.entries})!=len(self.entries):raise ValueError('canonical unique mapping entries required')
         for item in self.entries:item.validate()
+        expected=FROZEN_P1_FEATURES_BY_VERSION_V2[self.dataset_version]
+        if tuple(item.official_identity for item in self.entries)!=expected:raise ValueError('mapping entries differ from frozen version bundle')
+        if any(item.scope!='P1' or item.mapping_state!='EXACT_MATCH' or item.provenance_hash!=self.official_mapping_source_hash for item in self.entries):
+            raise ValueError('mapping entry differs from frozen exact authority')
     def lookup(self,identity:str)->P1MappingEntryV2|None:
         self.validate()
         return next((item for item in self.entries if item.official_identity==identity),None)
@@ -151,4 +169,5 @@ def classify_p1_scenario_v2(scenario:OfficialScenarioMetadataV2,authority:Frozen
 
 __all__=['OfficialScenarioMetadataV1','classify_p1_scenario_v1','assert_method_blind_payload_v1','STATUSES',
          'P1MappingEntryV2','FrozenP1MappingAuthorityV2','OfficialScenarioMetadataV2','classify_p1_scenario_v2',
-         'assert_method_blind_nested_v2','MAPPING_STATES','MAPPING_SCOPES']
+         'assert_method_blind_nested_v2','MAPPING_STATES','MAPPING_SCOPES','FROZEN_P1_FEATURES_BY_VERSION_V2',
+         'FROZEN_P1_MAPPING_SOURCE_HASHES_V2']

@@ -124,38 +124,44 @@ class CustodyEligibilityTests(unittest.TestCase):
         with self.assertRaises(ValueError):assert_method_blind_payload_v1({'detector_score':1})
 
     def allowlists_v2(self):
-        return {panel:FrozenFeatureAllowlistAuthorityV2(panel,'23.05' if 'HAI23' in panel else ('22.04' if 'HAI22' in panel else '21.03'),'time',('P1_X',),BUNDLE,C)
+        return {panel:FrozenFeatureAllowlistAuthorityV2(panel,FROZEN_DATASET_VERSIONS_V2[panel],FROZEN_TIMESTAMP_IDS_V2[panel],FROZEN_FEATURE_IDS_V2[panel],BUNDLE,C)
                 for panel in FROZEN_PANEL_ORDER_V2}
 
     def physical_v2(self):
-        header_hash=sha256(json.dumps({'header':['time','P1_X','label']},sort_keys=True,separators=(',',':')).encode()).hexdigest()
-        files=tuple(PhysicalFileIdentityV2(panel,f'f{index}',H,header_hash,H) for index,panel in enumerate(FROZEN_PANEL_ORDER_V2))
-        return FrozenPhysicalFileAuthorityV2(files,H,C)
+        files=[]
+        for panel in FROZEN_PANEL_ORDER_V2:
+            header=[FROZEN_TIMESTAMP_IDS_V2[panel],*FROZEN_FEATURE_IDS_V2[panel],'label']
+            header_hash=sha256(json.dumps({'header':header},sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            files.extend(PhysicalFileIdentityV2(panel,file_id,H,header_hash,H) for file_id in FROZEN_ATTACK_FILE_IDS_V2[panel])
+        return FrozenPhysicalFileAuthorityV2(tuple(files),FROZEN_ATTACK_FILE_CENSUS_HASH_V2,H,C)
 
     def census_v2(self,allowlists=None,physical=None):
         allowlists=allowlists or self.allowlists_v2();physical=physical or self.physical_v2()
-        methods=[]
-        for panel in FROZEN_PANEL_ORDER_V2:
-            ids=PRIMARY_METHODS_V2+SECONDARY_METHODS_V2[panel]
-            methods.append((panel,tuple(MethodCellAuthorityV2(item,H,H) for item in ids)))
+        methods=[(panel,frozen_method_cell_authorities_v2(panel)) for panel in FROZEN_PANEL_ORDER_V2]
         allowlist_hashes=tuple((panel,allowlists[panel].document()['self_hash']) for panel in FROZEN_PANEL_ORDER_V2)
-        return GlobalCellCensusAuthorityV2(tuple((panel,(f'f{index}',)) for index,panel in enumerate(FROZEN_PANEL_ORDER_V2)),tuple(methods),BUNDLE,physical.document()['self_hash'],allowlist_hashes,C)
+        return GlobalCellCensusAuthorityV2(tuple((panel,FROZEN_ATTACK_FILE_IDS_V2[panel]) for panel in FROZEN_PANEL_ORDER_V2),tuple(methods),BUNDLE,physical.document()['self_hash'],allowlist_hashes,C)
 
     def manifest_v2(self,root:Path):
         allowlists=self.allowlists_v2();physical=self.physical_v2();census=self.census_v2(allowlists,physical)
         projections=[];projection_artifacts={};artifacts={}
-        for index,(panel,files) in enumerate(census.files_by_panel):
-            file_id=files[0];authority=allowlists[panel]
-            values,projection=project_attack_columns_v2(header=('time','P1_X','label'),column_readers={'time':lambda:[1,2], 'P1_X':lambda:[3.,4.], 'label':lambda:(_ for _ in ()).throw(AssertionError('excluded read'))},authority=authority,file_id=file_id,raw_container_hash=H,source_commit=C)
-            self.assertEqual(set(values),{'time','P1_X'});projections.append(projection)
-            projection_path=root/f'projection-{index}.json';projection_path.write_bytes(canonical_projection_bytes_v2(values,('time','P1_X')))
-            projection_artifacts[(panel,file_id)]=projection_path
-            for method in dict(census.methods_by_panel)[panel]:
-                cell=(panel,file_id,method.method_id);artifacts[cell]=root/f'artifact-{index}-{method.method_id}.json'
+        index=0
+        for panel,files in census.files_by_panel:
+            authority=allowlists[panel];selected=(authority.timestamp_id,*authority.feature_ids)
+            for file_id in files:
+                readers={name:(lambda:[1,2]) if name==authority.timestamp_id else (lambda:[3.,4.]) for name in selected}
+                readers['label']=lambda:(_ for _ in ()).throw(AssertionError('excluded read'))
+                values,projection=project_attack_columns_v2(header=tuple(readers),column_readers=readers,authority=authority,file_id=file_id,raw_container_hash=H,source_commit=C)
+                self.assertEqual(set(values),set(selected));projections.append(projection)
+                projection_path=root/f'projection-{index}.json';projection_path.write_bytes(canonical_projection_bytes_v2(values,selected))
+                projection_artifacts[(panel,file_id)]=projection_path
+                for method in dict(census.methods_by_panel)[panel]:
+                    cell=(panel,file_id,method.method_id);artifacts[cell]=root/f'artifact-{index}-{method.method_id}.json'
+                index+=1
         fixed=[]
         for cell,path in artifacts.items():
             panel,file_id,method_id=cell;projection=next(p for p in projections if p.panel_id==panel and p.file_id==file_id)
-            provisional=PredictionSuccessReceiptV2(panel,file_id,method_id,H,H,projection.projection_hash,H,2,projection.timestamp_range_hash,0,1,C)
+            method=census.method(panel,method_id)
+            provisional=PredictionSuccessReceiptV2(panel,file_id,method_id,method.method_authority_hash,method.execution_authority_hash,projection.projection_hash,H,2,projection.timestamp_range_hash,0,1,C)
             payload=build_prediction_artifact_v2(provisional,(False,False));path.write_bytes(payload)
             fixed.append(replace(provisional,prediction_artifact_hash=sha256(payload).hexdigest()))
         manifest=GlobalPredictionManifestV2(census,tuple(projections),tuple(fixed),H,H,H,H,C)
@@ -165,9 +171,14 @@ class CustodyEligibilityTests(unittest.TestCase):
         manifest,allowlists,physical,projections,artifacts=self.manifest_v2(root)
         freeze=persist_global_manifest_v2(root,manifest,allowlists,physical,projections,artifacts)
         transition=initialize_state_chain_v2(root,census_authority_hash=manifest.census.document()['self_hash'],evaluation_policy_hash=H,metric_authority_hash=H,p1_custodian_authority_hash=H,dg05_authorization_hash=H,source_commit=C)
-        transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,evidence_kind='FEATURE_PROJECTION_CENSUS_FREEZE',evidence_hash=H)
-        transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED,evidence_kind='PREDICTION_EXECUTION_START_RECEIPT',evidence_hash=H)
-        transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED,evidence_kind='GLOBAL_MANIFEST_FREEZE',evidence_hash=freeze['self_hash'])
+        def evidence(name,schema,**extra):
+            body={'schema':schema,**extra};body['self_hash']=sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            path=root/name;path.write_bytes(json.dumps(body,sort_keys=True,separators=(',',':')).encode()+b'\n');return path,body
+        path,item=evidence('feature-projection-census.freeze.json','multipanel_feature_projection_census_freeze_v2',census_authority_hash=manifest.census.document()['self_hash'])
+        transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,evidence_kind='FEATURE_PROJECTION_CENSUS_FREEZE',evidence_hash=item['self_hash'],evidence_path=path)
+        path,item=evidence('prediction-execution-start.json','multipanel_prediction_execution_start_receipt_v2',projection_transition_hash=transition['self_hash'])
+        transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.PREDICTIONS_IN_PROGRESS_LABEL_LOCKED,evidence_kind='PREDICTION_EXECUTION_START_RECEIPT',evidence_hash=item['self_hash'],evidence_path=path)
+        transition=advance_state_chain_v2(root,transition,GlobalPredictionStateV1.GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED,evidence_kind='GLOBAL_MANIFEST_FREEZE',evidence_hash=freeze['self_hash'],evidence_path=root/'global_prediction_manifest_v2.freeze.json')
         lease=issue_label_scenario_lease_v2(root,manifest,freeze,transition,allowlists,physical,projections,artifacts)
         return manifest,allowlists,physical,projections,artifacts,freeze,transition,lease
 
@@ -175,9 +186,14 @@ class CustodyEligibilityTests(unittest.TestCase):
         with TemporaryDirectory() as raw:
             root=Path(raw);manifest,allowlists,physical,projections,artifacts,freeze,transition,lease=self.issued_v2(root)
             self.assertEqual(consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,lambda:'labels'),'labels')
+            completion=json.loads((root/'label-scenario-lease.completed.json').read_text(encoding='utf-8'))
+            result_receipt={'schema':'multipanel_result_integrity_receipt_v2','lease_completion_receipt_hash':completion['self_hash'],
+                            'lease_open_transition_hash':lease.lease_open_transition_hash,'result_bundle_hash':H}
+            final=complete_results_state_v2(root,lease,result_receipt)
+            self.assertEqual(final['state'],GlobalPredictionStateV1.RESULTS_COMPUTED.value)
             with self.assertRaises(MultiPanelCustodyError):consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,lambda:None)
             with self.assertRaises(MultiPanelCustodyError):issue_label_scenario_lease_v2(root,manifest,freeze,transition,allowlists,physical,projections,artifacts)
-            with self.assertRaises(MultiPanelCustodyError):LabelScenarioLeaseV2(None,'x',H,H,root)
+            with self.assertRaises(MultiPanelCustodyError):LabelScenarioLeaseV2(None,'x',H,H,H,root)
 
     def test_v2_post_issue_artifact_and_manifest_mutation_block_reader(self):
         for mutate in ('prediction','projection','manifest'):
@@ -212,6 +228,16 @@ class CustodyEligibilityTests(unittest.TestCase):
             with self.assertRaises(MultiPanelCustodyError):
                 consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,lambda:None)
 
+    def test_v2_reader_cannot_mutate_frozen_prediction_artifact(self):
+        with TemporaryDirectory() as raw:
+            root=Path(raw);manifest,allowlists,physical,projections,artifacts,_,_,lease=self.issued_v2(root)
+            target=next(iter(artifacts.values()))
+            def mutate():target.write_bytes(target.read_bytes()+b' ');return 'labels'
+            with self.assertRaisesRegex(MultiPanelCustodyError,'POST_READ_FROZEN_ARTIFACT_MUTATION'):
+                consume_label_scenario_lease_v2(lease,manifest,allowlists,physical,projections,artifacts,mutate)
+            completion=json.loads((root/'label-scenario-lease.completed.json').read_text(encoding='utf-8'))
+            self.assertEqual(completion['reader_status'],'POST_READ_FROZEN_ARTIFACT_MUTATION')
+
     def test_v2_authority_cross_binding_and_transition_prerequisites(self):
         allowlists=self.allowlists_v2();physical=self.physical_v2();census=self.census_v2(allowlists,physical)
         with self.assertRaises(MultiPanelCustodyError):
@@ -223,33 +249,41 @@ class CustodyEligibilityTests(unittest.TestCase):
             with self.assertRaises(MultiPanelCustodyError):manifest.validate(bad_allowlists,physical)
             current=initialize_state_chain_v2(root,census_authority_hash=manifest.census.document()['self_hash'],evaluation_policy_hash=H,metric_authority_hash=H,p1_custodian_authority_hash=H,dg05_authorization_hash=H,source_commit=C)
             with self.assertRaises(MultiPanelCustodyError):
-                advance_state_chain_v2(root,current,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,evidence_kind='WRONG',evidence_hash=H)
+                advance_state_chain_v2(root,current,GlobalPredictionStateV1.ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED,evidence_kind='WRONG',evidence_hash=H,evidence_path=root/'missing.json')
+            mutated_physical=replace(physical,dg05_authorization_hash='f'*64)
+            mutated_physical.validate()
+            with self.assertRaises(MultiPanelCustodyError):manifest.validate(allowlists,mutated_physical)
+            panel=FROZEN_PANEL_ORDER_V2[0];methods=list(dict(census.methods_by_panel)[panel]);methods[0]=replace(methods[0],method_authority_hash=H)
+            tampered=replace(census,methods_by_panel=((panel,tuple(methods)),*census.methods_by_panel[1:]))
+            with self.assertRaises(MultiPanelCustodyError):tampered.validate()
 
     def test_v2_failure_receipt_has_no_prediction_fields(self):
         census=self.census_v2();panel,file_id,method_id=census.expected_cells()[0]
-        failure=PredictionFailureReceiptV2(panel,file_id,method_id,H,H,H,2,H,'SYSTEM_ERROR',H,1,1,C)
+        method=census.method(panel,method_id)
+        failure=PredictionFailureReceiptV2(panel,file_id,method_id,method.method_authority_hash,method.execution_authority_hash,H,2,H,'SYSTEM_ERROR',H,1,1,C)
         failure.validate(census);document=failure.document()
         self.assertNotIn('prediction_artifact_hash',document);self.assertNotIn('alarm_count',document)
         with self.assertRaises(MultiPanelCustodyError):replace(failure,system_error_count=0).validate(census)
 
     def test_v2_projection_is_authority_bound_and_label_invariant(self):
-        authority=self.allowlists_v2()[FROZEN_PANEL_ORDER_V2[0]]
+        authority=self.allowlists_v2()[FROZEN_PANEL_ORDER_V2[1]];feature=authority.feature_ids[0]
         def project(label):
-            readers={'time':lambda:[1,2],'P1_X':lambda:[3.,4.],'label':lambda:label}
+            readers={authority.timestamp_id:lambda:[1,2],**{name:lambda:[3.,4.] for name in authority.feature_ids},'label':lambda:label}
             return project_attack_columns_v2(header=tuple(readers),column_readers=readers,authority=authority,file_id='f',raw_container_hash=H,source_commit=C)
         first=project([0,0]);second=project(['bad',object()])
         self.assertEqual(first[0],second[0]);self.assertEqual(first[1].projection_hash,second[1].projection_hash)
         with self.assertRaises(MultiPanelCustodyError):
-            project_attack_columns_v2(header=('time','P1_X'),column_readers={'time':lambda:[1],'P1_X':lambda:[2]},authority=replace(authority,feature_ids=('P1_X','P1_UNKNOWN')),file_id='f',raw_container_hash=H,source_commit=C)
+            project_attack_columns_v2(header=(authority.timestamp_id,feature),column_readers={authority.timestamp_id:lambda:[1],feature:lambda:[2]},authority=replace(authority,feature_ids=(feature,'P1_UNKNOWN')),file_id='f',raw_container_hash=H,source_commit=C)
 
     def test_v2_p1_mapping_authority_and_nested_taint(self):
-        authority=FrozenP1MappingAuthorityV2('22.04',(P1MappingEntryV2('P1_X','P1','EXACT_MATCH',H),P1MappingEntryV2('P2_X','OUT_OF_SCOPE','EXACT_MATCH',H)),H,C)
-        scenario=OfficialScenarioMetadataV2('22.04','f','s',('P1_X',),(),H,H)
+        provenance=FROZEN_P1_MAPPING_SOURCE_HASHES_V2['22.04']
+        authority=FrozenP1MappingAuthorityV2('22.04',tuple(P1MappingEntryV2(name,'P1','EXACT_MATCH',provenance) for name in FROZEN_P1_FEATURES_BY_VERSION_V2['22.04']),provenance,C)
+        scenario=OfficialScenarioMetadataV2('22.04','f','s',(authority.entries[0].official_identity,),(),H,H)
         result=classify_p1_scenario_v2(scenario,authority)
         self.assertEqual(result['status'],'P1_ELIGIBLE');self.assertEqual(result['mapping_authority_hash'],authority.document()['self_hash'])
         with self.assertRaises(ValueError):classify_p1_scenario_v2(replace(scenario,dataset_version='21.03'),authority)
         with self.assertRaises(ValueError):assert_method_blind_nested_v2({'nested':{'detector_score':1}})
-        with self.assertRaises(ValueError):replace(authority,entries=(P1MappingEntryV2('P1_X','P1','UNRESOLVED',H),)).validate()
+        with self.assertRaises(ValueError):replace(authority,entries=(P1MappingEntryV2('P1_X','P1','EXACT_MATCH',provenance),)).validate()
 
     def test_public_allowlist_file_census_and_p1_mapping_bundles_are_exact(self):
         root=Path(__file__).resolve().parents[1]/'research_control_center/validation_v2/multipanel_pre_dg05'
