@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 from paperworks.validation_v2.dg05_execution_closure_v1 import (
-    DG05ClosureError, FROZEN_METHOD_IDS_BY_PANEL_V1, FullProcessPointV1,
+    DG05ClosureError, DetectorSubauthorityV1, FROZEN_METHOD_IDS_BY_PANEL_V1, FullProcessPointV1,
     FullProcessScopeAuthorityV1, MethodDispatchEntryV1, MethodDispatchRegistryV1,
     StateTransitionEvidenceV1, build_etapr_coordinate_binding_v1, digest,
     file_sha256, project_attack_feature_file_v1, self_hashed,
@@ -25,8 +25,10 @@ G = "a" * 40
 
 
 def read(name: str) -> dict:
-    value = json.loads((OUT / name).read_text(encoding="ascii"))
+    raw = (OUT / name).read_bytes()
+    value = json.loads(raw.decode("ascii"))
     assert value["self_hash"] == digest({k:v for k,v in value.items() if k != "self_hash"})
+    assert raw == json.dumps(value, sort_keys=True, separators=(",",":"), ensure_ascii=True).encode("ascii") + b"\n"
     return value
 
 
@@ -60,6 +62,31 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
         self.assertEqual(len(entries), 23)
         with self.assertRaises(DG05ClosureError):
             replace(registry, entries=entries[:-1]).validate()
+
+    def test_detector_locators_are_explicit_and_hai23_pca_if_are_distinct(self):
+        raw = read("DETECTOR_SUBAUTHORITY_REGISTRY_V1.json")
+        entries = tuple(DetectorSubauthorityV1(**row) for row in raw["entries"])
+        for entry in entries:
+            entry.validate()
+        hai23 = {entry.detector_id: entry for entry in entries if entry.panel_id == FROZEN_PANEL_ORDER_V2[0]}
+        self.assertNotEqual(hai23["PCA_SPE"].implementation_hash, hai23["ISOLATION_FOREST"].implementation_hash)
+        self.assertNotEqual(hai23["PCA_SPE"].fitted_model_hash, hai23["ISOLATION_FOREST"].fitted_model_hash)
+        self.assertEqual((hai23["PCA_SPE"].model_component_index, hai23["PCA_SPE"].threshold_component_index), (0, 2))
+        self.assertEqual((hai23["ISOLATION_FOREST"].model_component_index, hai23["ISOLATION_FOREST"].threshold_component_index), (1, 3))
+
+    def test_nested_replay_bundle_has_exact_manifest_authority_set(self):
+        manifest = read("DG05_EXECUTABLE_AUTHORITY_MANIFEST_V1.json")
+        nested = read("NESTED_AUTHORITY_REPLAY_BUNDLE_V1.json")
+        expected = {f"scientific:{key}": value for key, value in manifest["scientific_authorities"].items()}
+        expected.update({"detector_registry": manifest["detector_registry_hash"],
+                         "dispatch_registry": manifest["dispatch_registry_hash"],
+                         "full_process_scope": manifest["full_process_scope_hash"],
+                         "p1_custodian_v3": manifest["p1_custodian_v3_hash"]})
+        expected.update({f"portfolio:{index:02d}": value for index, value in enumerate(manifest["rule_portfolio_authority_hashes"])})
+        expected.update({f"implementation:{key}": value for key, value in manifest["implementation_hashes"].items()})
+        observed = {row["logical_name"]: row["expected_authority_hash"] for row in nested["entries"]}
+        self.assertEqual(observed, expected)
+        self.assertEqual(nested["self_hash"], manifest["nested_authority_replay_bundle_hash"])
 
     def test_transition_requires_replayed_artifact(self):
         artifact = self_hashed({"schema":"global_prediction_freeze_v3", "manifest_hash":H, "census_hash":H,
