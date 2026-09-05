@@ -1,0 +1,18 @@
+risk_id,severity,risk,must_close_before_dg05,changes_v3_authority,recommended_timing
+R01,P0 BLOCKER,V3 user approval absent,yes,execution state only,after technical closure
+R02,P0 BLOCKER,V3 preaccess not connected to typed prediction executor,yes,yes,pre-access closure
+R03,P0 BLOCKER,plural scenario intervals rejected by metric bridge,yes,yes,pre-access closure
+R04,P0 BLOCKER,timestamp duplicate/gap and row-delay mismatch,yes,yes,pre-access closure
+R05,P0 BLOCKER,Rule runtime census episodes and participation not faithful,yes,yes,pre-access closure
+R06,P0 BLOCKER,independent verifier starts at trusted primitive,yes,yes,pre-access closure
+R07,P0 BLOCKER,normal burden numerics not independently authority-bound,yes,yes,pre-access closure
+R08,P0 BLOCKER,fresh custodian CLI not wired into V3 production orchestration,yes,likely,pre-access closure
+R09,P1 MATERIAL,T0/T2 effective evidence asymmetry wording,reporting required,no,before interpretation
+R10,P1 MATERIAL,stale mandatory current-state documents,yes,documentation,with closure
+R11,P1 MATERIAL,single-copy private custody,operationally yes,no,before irreversible lease
+R12,P1 MATERIAL,canonical versus validation_v2 ownership unclear,document before execution,maybe,closure review
+R13,P2 MODERATE,V3 initializer does not enforce own implementation hashes,desirable,yes,closure task
+R14,P2 MODERATE,professor package and indexes stale,before submission,no,after closure
+R15,P2 MODERATE,one ancillary QA byte-hash mismatch,no,yes for index,later correction task
+R16,P2 MODERATE,historical and current APIs coexist,no if explicit routing,yes,closure routing
+R17,P3 COSMETIC,repeated current/next wording,no,no,routine cleanup

@@ -1,0 +1,21 @@
+experiment_or_gate,question_or_role,data_scope,result,status,claim_boundary,authority
+PILOT_V1,COMMON42 detector-rule-fusion development,HAI23 INNER,11/13/11 detected units for PCA/Rule/D2,IMMUTABLE_HISTORICAL_DEVELOPMENT,not controlled against V2,bc72768fb01c1f4d1f0a6f36de1be146d5b62ec5b4bc73f7b64f7b774d26e3d3
+EXP-01,GDN primary discovery,normal only,zero primary-mask pairs,COMPLETE_NEGATIVE,retain META+STAT candidate authority,53ee74a8036357dacf18486d4ef562dcdc948ff9e7f71fc23c53be17feb22a7e
+EXP-01B,GDN learned graph/XAI,normal only,0 executable GDN-unique pairs,GDN_ABLATION_ONLY,original unique3 superseded by R1,58b5ff8227543f9c5c64085dea525378593067150a43f8d65968caa3bb9a7ac2
+EXP-01B-R1,corrected GDN scoring,normal only,baseline and augmented yield both 21,COMPLETE_CORRECTION,no unique-pair current claim,ad280998c79d212ec021848342c1fa367ab4f8dbacd638b49ff06aaf7269c2b1
+EXP-01C,HAI-adapted GDN,normal only,learned evidence supporting,LEARNED_GRAPH_SUPPORTING,not causal or admission authority,4382a44b0cc323b566a2a84faae5f381a9c9421d09652e87c1db810218b930d8
+EXP-02,numeric policy selection,normal train1 train2 train4,n7-q0.90-s2-f0.05 selected,COMPLETE_DEVELOPMENT,not held-out utility,effb335cecdda1780977658bb6a965a8b8bf52351650822f1b5cd60000062536
+EXP-03_V1,constrained materialization,normal only,feedback 0,COMPLETE_RECLASSIFIED,not induction,653ee0d36255e22fcc0a145b9872418aeceac4022c32df71b803db3afe357238
+EXP-03B,semantic induction,normal only,T2 17/29 exact vs T1-B 10/29,COMPLETE_QA_PASS,supported vs T1-B not T0,a187e89e345e9f1eb42ca993c3d53c6f317a8ff5f33ee9fa7c7e8955baa962c8
+EXP-04,attack response development,HAI23 test1 14 units,fusions gain 0 and add 2 false episodes,DEVELOPMENT_NOT_SUPPORTED,no test1 reopening,0f3f5966a35e35ae663e60ddbb8afb7ce62e35081a7f9383e9aaf61b75064db1
+EXP-05,trace fidelity,development trace census,6418/6418 pass,STRUCTURAL_FIDELITY_SUPPORTED,human usefulness unvalidated,3a85a41ba9311715b19538d599e23dc6d82cefe859fb7c2823ecc1b97cddb582
+DG-04,method and claim lock,normal-only evidence,scoped Agentic claim,APPROVED_WITH_SCOPED_AGENTIC_CLAIM,no further rescue,82b483ca92926d0bbf0020de496a61d0377429fe56807c8f96c44c89557d7c13
+DG04-XVER-PREP,portfolio and external normal preparation,normal only,separate V2A T0 T2 authorities,COMPLETE_NORMAL_ONLY,no attack utility,6a14740f57c329eb33647429505527ecbb755779619a449e4deab76d5d09d31a
+HAI-XVER-NORMAL-PREP,cross-version normal construction,HAI22 HAI21 normal,12 GDN runs and T0 portfolios,COMPLETE_NORMAL_ONLY,no attack utility,1646bc0cbf21a3011566f8a8690e888ba062274ca7893a17e6521df52b708e1e
+XVER-T2-PROVIDER,external semantic induction,HAI22 HAI21 normal,122 calls and frozen portfolios,COMPLETE_NORMAL_ONLY,no attack generalization,1745ce8fa68934486c1b19a53b811b13a2bc63664805c2ec3560a8ed63352434
+MULTIPANEL-PRE-DG05,method metric detector and custody freeze,prospective only,five primary methods per version,PRE_DG05_FROZEN,no real panel results,dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2
+EXECUTABLE_V1,first two-phase executable closure,synthetic public only,blocked before access,HISTORICAL_BLOCKER,no scientific result,V1_blocker_report
+EXECUTABLE_V2,metric-complete executable attempt,synthetic public only,blocked by missing metric surfaces,HISTORICAL_BLOCKER_DEC030_SUSPENDED,no scientific result,586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42
+EXECUTABLE_V3,complete metric surface,synthetic hypothetical,228/228 surface identifiers,DG05_EXECUTABLE_V3_CLOSURE_FROZEN,real execution still unapproved and audit NO_GO,7ea1e4c22336a9c9dd65fd96492cb6a1163b9436a0e9eb27d7c2284b206f98f3
+DG-05_V3,three-panel held-out evaluation,HAI23 test2 HAI22 attack HAI21 attack,not executed,USER_DECISION_REQUIRED_AND_AUDIT_NO_GO,no access authorized,current_v3_brief
+DG-06,professor submission,package only,not submitted,USER_DECISION_REQUIRED,no submission,current_rcc

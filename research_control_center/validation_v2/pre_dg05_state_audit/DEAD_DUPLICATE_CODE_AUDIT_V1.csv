@@ -1,0 +1,8 @@
+classification,paths_or_pattern,basis,current_execution_risk
+SAFE_HISTORICAL,experiments/argos_reproduction and legacy dsl verification runtime,explicitly frozen and no validation_v2 imports,none observed
+SAFE_HISTORICAL,front_execution_v1 front_runtime_v1 exp04_protocol_v1,frozen EXP04 development route,none when not manually selected
+CONFUSING_BUT_ISOLATED,dg05_result_oracle_v1.py,historical fuller-provenance result oracle not called by V3,manual naming ambiguity
+CONFUSING_BUT_ISOLATED,unversioned exp03b provider modules,old path coexists with v2 frozen execution,manual naming ambiguity
+CONFUSING_BUT_ISOLATED,evaluation_expansion_v1 multipanel_metrics_v1 dg05_metric_surface_v1,repeated metric helpers with explicit imports,low under explicit routing
+POTENTIAL_EXECUTION_RISK,dg05_execution_closure_v1.py,mixes historical manifest/result APIs and current prediction/custody primitives,V3 approval transition is unbound
+POTENTIAL_EXECUTION_RISK,old authority freeze and generation scripts,can regenerate historical authorities if selected manually,requires explicit entrypoint control

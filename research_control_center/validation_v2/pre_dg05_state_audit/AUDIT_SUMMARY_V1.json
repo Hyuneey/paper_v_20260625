@@ -1,0 +1,45 @@
+{
+  "schema": "pre_dg05_research_state_audit_summary_v1",
+  "task_id": "PRE-DG05-RESEARCH-STATE-AUDIT-001",
+  "audited_branch": "validation-v2",
+  "audited_head": "a90d0e669b4a5ab87177c9188695345faf81e2ea",
+  "origin_parity_at_start": [0, 0],
+  "status": "COMPLETE_REPORT_ONLY",
+  "verdict": "NO_GO",
+  "current_approval": "DG05_V3_USER_REAPPROVAL_REQUIRED",
+  "v3_manifest_hash": "7ea1e4c22336a9c9dd65fd96492cb6a1163b9436a0e9eb27d7c2284b206f98f3",
+  "v3_closure_hash": "5b3f0a297f72a958a2db49dda6abd96a5b15ba293e972d7630cb3be1bdb439db",
+  "metric_surface_count": 228,
+  "metric_surface_by_panel": {
+    "HAI23_TEST2_PRIMARY_HELDOUT_V1": 88,
+    "HAI22_EXTERNAL_REPLICATION_V1": 70,
+    "HAI21_EXTERNAL_REPLICATION_V1": 70
+  },
+  "builder_missing_surfaces": 0,
+  "verifier_missing_surfaces": 0,
+  "p0_blockers": [
+    "V3_APPROVAL_TO_PREDICTION_ROUTING_UNBOUND",
+    "FRESH_PROCESS_CUSTODIAN_NOT_V3_ORCHESTRATED",
+    "SCENARIO_INTERVAL_CARDINALITY_MISMATCH",
+    "TIMESTAMP_COORDINATE_AND_DELAY_CONTRACT_MISMATCH",
+    "RULE_RUNTIME_CENSUS_NOT_FAITHFUL",
+    "NORMAL_BURDEN_NUMERIC_LINEAGE_NOT_INDEPENDENTLY_BOUND",
+    "RESULT_VERIFIER_DOES_NOT_REPLAY_FULL_UPSTREAM_LINEAGE",
+    "DG05_V3_USER_REAPPROVAL_ABSENT"
+  ],
+  "access_counters": {
+    "attack_test": 0,
+    "label_scenario": 0,
+    "provider_calls": 0,
+    "credential_reads": 0,
+    "scientific_runs": 0,
+    "predictions": 0
+  },
+  "changes": {
+    "scientific": 0,
+    "executable": 0,
+    "existing_documentation": 0,
+    "new_public_safe_audit_reports_only": true
+  },
+  "recommended_next": "SEPARATELY_AUTHORIZED_PREACCESS_EXECUTABLE_AUTHORITY_CLOSURE_THEN_INDEPENDENT_AUDIT_AND_EXACT_DG05_V3_REAPPROVAL"
+}

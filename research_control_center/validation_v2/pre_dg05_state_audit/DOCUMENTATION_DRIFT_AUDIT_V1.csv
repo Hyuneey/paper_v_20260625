@@ -1,0 +1,15 @@
+severity,file,location,stale_or_conflicting_fact,authoritative_fact,impact
+SCIENTIFICALLY_MATERIAL,docs/project_state/CURRENT_STATE.json,5-17,old head and professor-first next task,V3 closure at a90d0e6 and reapproval pending,mandatory entrypoint stale
+MISLEADING,docs/project_state/HANDOFF.md,"21;58",two obsolete next tasks,current V3 closure blockers and reapproval next,continuity ambiguity
+SCIENTIFICALLY_MATERIAL,research_control_center/START_HERE.md,"10;24",2dc7 sole authority,historical PILOT pin only,wrong authority selector
+SCIENTIFICALLY_MATERIAL,research_control_center/validation_v2/PROGRAM_STATE.json,"16;29;396;1252",DG05 V2 next,V3 closure frozen and reapproval needed,control plane ambiguity
+MISLEADING,research_control_center/validation_v2/DECISION_GATES.md,7-8,DG03 DG04 pending,completed and DEC025 locked,gate drift
+SCIENTIFICALLY_MATERIAL,docs/professor_experiment_update_v2/01_ONE_PAGE_SUMMARY.md,25,Agentic benefit unsupported,T2 vs T1-B supported and T2 vs T0 not supported,claim drift
+MISLEADING,docs/professor_experiment_update_v2/04_EXP01_GDN_RESULTS.md,61-62,provisional title,DEC025 final title,title drift
+MISLEADING,docs/professor_experiment_update_v2/13_SLIDE_OUTLINE.md,90-91,12 scenarios,146 hypothetical scenarios and 228 surfaces,census contradiction
+SCIENTIFICALLY_MATERIAL,docs/professor_experiment_update_v2/13_SLIDE_OUTLINE.md,167,scenario before prediction freeze,prediction freeze before lease/scenario,custody order reversed
+MISLEADING,research_control_center/validation_v2/TASK_INDEX.csv,10-17,ends before EXP03B and DG05,later stages complete,index incomplete
+SCIENTIFICALLY_MATERIAL,research_control_center/validation_v2/exp03b/execution_v2/EXP03B_RESULTS_REPORT_V1.md,26,Frozen limitation None,DEC025 T0 and other limitations,claim boundary understatement
+SCIENTIFICALLY_MATERIAL,research_control_center/history/PROJECT_TIMELINE.md,276,14 independent events,14 contiguous units not asserted independent,statistical wording
+MISLEADING,research_control_center/validation_v2/dg05_metric_verifier_closure/PUBLIC_PRIVATE_DG05_METRIC_CLOSURE_INDEX_V1.json,public_artifacts.qa_report,recorded byte hash 71c977...,actual QA report byte hash f7de1c...,ancillary integrity drift not V3 manifest failure
+MISLEADING,research_control_center/validation_v2/dg04_xver_prep/FINAL_METHOD_LOCK_V1.json,T0 role,STRONG_SAME_INFORMATION_DETERMINISTIC_BASELINE,T0 structural-only while T2 includes STAT and GLOBAL5,comparison wording caveat

@@ -1,0 +1,30 @@
+path_or_module,classification,current_role,risk
+src/paperworks/candidates/metadata_candidate_discovery_v1.py,CURRENT_SUPPORTING_CODE,META prior,none current
+src/paperworks/candidates/statistical_candidate_discovery_v1.py,CURRENT_SUPPORTING_CODE,STAT candidate and evidence,private normal input required
+src/paperworks/validation_v2/xver_structural_v1.py,CURRENT_SUPPORTING_CODE,SCI01 structural evidence,none current
+src/paperworks/validation_v2/xver_gdn_roles_v1.py,CURRENT_SUPPORTING_CODE,GLOBAL5 and EVENT10 isolation,none current
+src/paperworks/validation_v2/exp03b_semantic_v2.py,CURRENT_SUPPORTING_CODE,T0 semantic induction,T0 field set structural only
+src/paperworks/validation_v2/exp03b_hidden_v2.py,CURRENT_SUPPORTING_CODE,hidden verifier and feedback,none current
+src/paperworks/validation_v2/exp03b_binder_v2.py,CURRENT_SUPPORTING_CODE,SCI02B numeric binding,private normal authority required
+src/paperworks/validation_v2/exp02_bindings_v2a.py,CURRENT_SUPPORTING_CODE,current event and parameter helpers,reused beyond historical EXP02
+src/paperworks/validation_v2/exp03b_evaluation.py,CURRENT_SUPPORTING_CODE,current guard portfolio execution,unversioned but live dependency
+src/paperworks/validation_v2/exp03b_guard_v1.py,CURRENT_SUPPORTING_CODE,one-way guard and census,current closure support
+src/paperworks/validation_v2/formal_v4_authority_v1.py,CURRENT_SUPPORTING_CODE,Formal V4 authority,frozen portfolio source
+src/paperworks/validation_v2/runtime_v1.py,CURRENT_EXECUTABLE_AUTHORITY,LLM-free Rule runtime,validation_v2 ownership distinct from contracts
+src/paperworks/validation_v2/xver_detector_v1.py,CURRENT_EXECUTABLE_AUTHORITY,external detector scoring,fit path must not run at DG05
+src/paperworks/validation_v2/dg05_execution_closure_v1.py,CURRENT_EXECUTABLE_AUTHORITY,projection dispatch freeze lease scenario denominator,V3 routing and timestamp and census risks
+src/paperworks/validation_v2/dg05_label_custodian_v1.py,CURRENT_EXECUTABLE_AUTHORITY,one-shot scenario extraction,no V3 production launcher
+src/paperworks/validation_v2/dg05_executable_v3.py,CURRENT_EXECUTABLE_AUTHORITY,V3 public preaccess replay,no adapter to prediction executor
+src/paperworks/validation_v2/dg05_metric_surface_execution_v1.py,CURRENT_EXECUTABLE_AUTHORITY,metric primitive and close,single interval and normal burden lineage
+src/paperworks/validation_v2/dg05_metric_surface_v1.py,CURRENT_EXECUTABLE_AUTHORITY,228 surface builder,Rule episode default zero
+src/paperworks/validation_v2/dg05_metric_surface_oracle_v1.py,CURRENT_EXECUTABLE_AUTHORITY,independent arithmetic oracle,does not replay full provenance
+src/paperworks/validation_v2/dg05_expected_surface_v1.py,CURRENT_SUPPORTING_CODE,surface census,identifier semantics only
+src/paperworks/validation_v2/dg05_surface_completeness_v1.py,CURRENT_SUPPORTING_CODE,set equality,not semantic verification
+src/paperworks/validation_v2/etapr_exchange_v1.py,CURRENT_EXECUTABLE_AUTHORITY,official eTaPR wrapper,secondary metric
+src/paperworks/validation_v2/dg05_connected_rehearsal_v3.py,TEST_ONLY,synthetic connected rehearsal,uses synthetic predecessor manifest
+src/paperworks/validation_v2/dg05_result_oracle_v1.py,HISTORICAL_FROZEN,historical fuller-provenance oracle,confusing but isolated and not called by V3
+src/paperworks/validation_v2/front_execution_v1.py,HISTORICAL_FROZEN,EXP04 development path,not current DG05
+src/paperworks/validation_v2/exp03b_prompt.py,HISTORICAL_FROZEN,old provider prompt path,confusing but isolated and current v2 path separate
+experiments/argos_reproduction,HISTORICAL_REFERENCE_ONLY,frozen ARGOS track,no continuation authority
+src/paperworks/dsl,HISTORICAL_FROZEN,legacy RuleAst,not imported by validation_v2
+research_control_center,"RCC / DOCUMENTATION",authority and history records,stale selector documents coexist

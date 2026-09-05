@@ -1,0 +1,17 @@
+claim_id,claim,classification,evidence,boundary
+A,Verifier feedback improves LLM semantic induction relative to T1-B,SUPPORTED,EXP03B 17/29 vs 10/29 and paired-only 8:1,normal-only matched-maximum-budget protocol
+B,T2 outperforms T0,NOT_SUPPORTED,T0 18/29 vs T2 17/29,mandatory limitation
+C,GDN supplies learned-graph evidence,SUPPORTED,EXP01C and GLOBAL5,noncausal supporting role
+D,GDN is primary discovery authority,PROHIBITED_CLAIM,META+STAT candidate authority,GDN not admission
+E,Rule system detects anomalies,PARTIALLY_SUPPORTED,V2A 11/14 development with high burden,current T0/T2 held-out pending
+F,Rules add detector recovery,PARTIALLY_SUPPORTED,development complementary responses but fusion recovery 0,held-out recovery pending DG05 and response is not recovery
+G,PCA plus Rule improves detector,NOT_SUPPORTED,EXP04 no recall gain and added false episodes,new portfolio evidence pending DG05
+H,Method transfers across versions,PARTIALLY_SUPPORTED,normal re-instantiation complete,attack portability pending DG05
+I,Explanation is structurally trace-grounded,SUPPORTED,EXP05 6418/6418,not human usefulness
+J,Explanation is useful to humans,NOT_SUPPORTED,no human study,unvalidated
+K,Learned graph is causal,PROHIBITED_CLAIM,no causal authority,predictive functional only
+L,System is production-ready,PROHIBITED_CLAIM,DG05 unexecuted and P0 blockers,candidate portfolios only
+M,V3 surface identifiers are complete,SUPPORTED,228 builder verifier exact match,not full provenance proof
+N,DG05 V3 ready for immediate execution,NOT_SUPPORTED,current reapproval required and P0 blockers,NO_GO
+O,146 scenarios are one primary sample,PROHIBITED_CLAIM,no-pooling policy,version-specific primary results
+P,HAI21 T2 two Rules one pair is an implementation error,NOT_SUPPORTED,frozen normal-only lineage and QA,treat as portability outcome without rescue
