@@ -22,6 +22,7 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-xver-t2-provider-exec-001": {"9e455938a21606053118eb52215cd9d5741d708b"},
     "validation-v2-hai-xver-normal-prep-001": {
         "ef993009dab13b59c8bdcb94a9825a27b8a8ea8c",
         "a207dceecd1903705af904624e8e7289c9f4b036",
@@ -388,7 +389,11 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('projection_files')==9 and xver.get('label_values_parsed') is False and xver.get('stage_a_changed') is False,'XVER label-blind amendment and preservation')
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
-                result.require(state.get('exact_next_task')==('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001'),'XVER exact authorized stop')
+                expected_xver_stop = (
+                    'MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution')
+                    else ('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001')
+                )
+                result.require(state.get('exact_next_task') == expected_xver_stop, 'XVER exact authorized stop')
                 if state.get('xver_normal_preparation'):
                     normal=state['xver_normal_preparation']
                     result.require(normal.get('status')=='BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING','Exact approved binding preparation state')
@@ -401,8 +406,11 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                     closed=state['xver_normal_execution']
                     result.require(closed.get('scientific_GDN_runs')==12 and set(closed.get('versions',{}))=={'22.04','21.03'},'Both exact external GDN schedules closed')
                     result.require(closed.get('stage_a_changed') is False and closed.get('excluded_values_parsed') is False,'Execution immutable label-blind boundary')
-                    result.require(all(closed.get(k)==0 for k in ('provider_calls','credential_reads','attack_accesses')),'External normal execution safety')
-                    result.require(closed.get('DG_XVER_PROVIDER')=='USER_DECISION_REQUIRED' and closed.get('DG05')=='NOT_APPROVED','External future gates remain closed')
+                    result.require(all(closed.get(k)==0 for k in ('provider_calls','credential_reads','attack_accesses')),'External normal execution receipt safety')
+                    result.require(closed.get('DG_XVER_PROVIDER')=='USER_DECISION_REQUIRED' and closed.get('DG05')=='NOT_APPROVED','Historical external normal receipt gate')
+                    if state.get('xver_t2_execution'):
+                        t2 = state['xver_t2_execution']
+                        result.require(t2.get('status') == 'COMPLETE_QA_PASS_NORMAL_ONLY' and t2.get('calls') == 122 and t2.get('tokens') == 347517 and t2.get('attack_accesses') == 0, 'External T2 result authority')
                     result.require(closed.get('event_role')=='AUXILIARY_CORROBORATION_ONLY' and closed.get('global_provider_role')=='EXP03B_COMPATIBLE_SPLIT_PURE_GLOBAL','Execution GDN roles separated')
                     for v in closed.get('versions',{}).values():
                         result.require(v.get('GDN_scientific_runs')==6 and v.get('T2_evidence_ready') is True,'Version six-run evidence closure')
@@ -440,7 +448,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     result.require(expansion.get("nominal_non_development_scenarios") == 146, "evaluation expansion nominal count mismatch")
     result.require(expansion.get("primary_pooling") == "PROHIBITED", "primary pooled Recall is not prohibited")
     result.require(expansion.get("p1_denominators") == "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY", "P1 eligibility boundary mismatch")
-    result.require(expansion.get("attack_data_accesses") == 0 and expansion.get("provider_calls") == 0, "preparation-only access boundary mismatch")
+    expected_provider_calls = 122 if state.get('xver_t2_execution') else 0
+    result.require(expansion.get("attack_data_accesses") == 0 and expansion.get("provider_calls") == expected_provider_calls, "evaluation expansion access boundary mismatch")
     panels = expansion.get("panels", [])
     result.require([item.get("nominal_scenarios") for item in panels] == [14, 38, 58, 50], "evaluation panel counts mismatch")
     readiness = state.get("pre_validation_readiness", {})
@@ -554,7 +563,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
     )
     result.require(
         state.get("safety_counters") == {
-            "scientific_executions": 4,
+            "scientific_executions": 5 if state.get('xver_t2_execution') else 4,
             "test2_feature_accesses": 0,
             "test2_label_accesses": 0,
             "new_private_exposures": 0,
@@ -730,8 +739,12 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     if data['state'].get('xver_normal_execution'):
         result.require(len(execution_events)==1 and execution_events[0]['decision_refs']=='DEC-025;DEC-026'
                        and execution_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact external normal execution event required')
-    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events) <= 34, "historical timeline plus explicitly validated new governance events")
-    result.require(10 <= len(data["decisions"]) <= 26, "decision registry including schema-only approval")
+    provider_events=[row for row in data['timeline'] if row['event_id']=='EVENT-XVER-T2-PROVIDER-001']
+    if provider_events:
+        result.require(len(provider_events)==1 and provider_events[0]['decision_refs']=='DEC-025;DEC-027'
+                       and provider_events[0]['event_type']=='RESULT_MILESTONE','Exact external T2 provider result event required')
+    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events) <= 34, "historical timeline plus explicitly validated new governance events")
+    result.require(10 <= len(data["decisions"]) <= 27, "decision registry including external provider approval")
     amendment=[row for row in data['decisions'] if row['decision_id']=='DEC-026']
     result.require(len(amendment)==1 and amendment[0]['decision']=='APPROVED' and amendment[0]['title']=='NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION','Exact DEC026 authority')
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")

@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "CROSS_VERSION_NORMAL_ONLY_EXECUTION_COMPLETE",
-  "program_status": "XVER_NORMAL_EXECUTION_COMPLETE_DG_XVER_PROVIDER_PENDING",
+  "current_stage": "MULTIPANEL_PRE_DG05_FREEZE_PENDING",
+  "program_status": "XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -30,8 +30,8 @@
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
-    "DG-03C": "USER_DECISION_REQUIRED",
-    "DG-XVER-PROVIDER": "USER_DECISION_REQUIRED"
+    "DG-03C": "SUPERSEDED_BY_DG_XVER_PROVIDER_EXECUTED",
+    "DG-XVER-PROVIDER": "APPROVED_EXECUTED_QA_PASS"
   },
   "experiment_status": {
     "EXP-03B": "COMPLETE_QA_PASS",
@@ -57,7 +57,7 @@
     "primary_pooled_recall": false,
     "p1_denominators": "PENDING_OUTCOME_BLIND_ELIGIBILITY_AUTHORITY",
     "attack_data_accesses": 0,
-    "provider_calls": 0
+    "provider_calls": 122
   },
   "dataset_acquisition_policy": {
     "policy_id": "DATA-POLICY-001",
@@ -171,7 +171,7 @@
     "report": "research_control_center/validation_v2/exp01b_gdn_xai/reports/EXP01B_INDEPENDENT_QA.md"
   },
   "safety_counters": {
-    "scientific_executions": 4,
+    "scientific_executions": 5,
     "materialization_train1_payload_accesses": 1,
     "materialization_train2_payload_accesses": 1,
     "materialization_train3_payload_accesses": 1,
@@ -393,7 +393,7 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-XVER-PROVIDER",
+  "exact_next_task": "MULTIPANEL-PRE-DG05-FREEZE-001",
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",
     "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",
@@ -1214,5 +1214,44 @@
     "report": "research_control_center/validation_v2/xver_normal/EXECUTION_REPORT_V1.md",
     "private_index_hash": "a0b5b51f12b1b8902f67be8b6956d5d01dbc50a04dc99d227be5ffb150df84be",
     "self_hash": "0bbf949bc55dab0b6f68caca84ccf2250f465c47e75e7356c3eae88c6b8fb7f2"
+  },
+  "xver_t2_execution": {
+    "status": "COMPLETE_QA_PASS_NORMAL_ONLY",
+    "result_hash": "1745ce8fa68934486c1b19a53b811b13a2bc63664805c2ec3560a8ed63352434",
+    "QA_hash": "152f8894ff7592661e4ab634343d94f804b077d6c10c00b13417081c0048a333",
+    "portfolio_hashes": {
+      "21.03": "9815c9a66debed593e21364377113d18422a840389d306a4a7648d5f035599dc",
+      "22.04": "b58313cd142256d000f89fd4a40512763b35e6b50752229109646bafc243fb5c"
+    },
+    "calls": 122,
+    "tokens": 347517,
+    "input_tokens": 333954,
+    "output_tokens": 13563,
+    "standard_price_estimate_usd": "0.311499",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "versions": {
+      "22.04": {
+        "calls": 61,
+        "train2_admitted_pairs": 20,
+        "confirmed_rules": 31,
+        "Formal_V4_rules": 31,
+        "retained_rules": 19,
+        "retained_pairs": 16,
+        "portfolio_hash": "b58313cd142256d000f89fd4a40512763b35e6b50752229109646bafc243fb5c"
+      },
+      "21.03": {
+        "calls": 61,
+        "train2_admitted_pairs": 18,
+        "confirmed_rules": 9,
+        "Formal_V4_rules": 9,
+        "retained_rules": 2,
+        "retained_pairs": 1,
+        "portfolio_hash": "9815c9a66debed593e21364377113d18422a840389d306a4a7648d5f035599dc"
+      }
+    },
+    "attack_accesses": 0,
+    "report": "research_control_center/validation_v2/xver_normal/provider_execution_v1/XVER_T2_PROVIDER_EXECUTION_REPORT_V1.md",
+    "independent_QA": "PASS_FOR_COMMIT_AND_INTEGRATION",
+    "independent_QA_report": "research_control_center/validation_v2/xver_normal/provider_execution_v1/XVER_T2_INDEPENDENT_QA_V1.md"
   }
 }

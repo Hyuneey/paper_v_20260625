@@ -22,10 +22,12 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state["safety_counters"]["test2_accesses"], 0)
         executed=bool(state.get('exp03b_execution'))
         xver_executed=bool(state.get('xver_normal_execution'))
+        xver_t2_executed=bool(state.get('xver_t2_execution'))
         self.assertEqual(
             state['program_status'],
-            'XVER_NORMAL_EXECUTION_COMPLETE_DG_XVER_PROVIDER_PENDING'
-            if xver_executed else 'BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING',
+            'XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS' if xver_t2_executed else (
+                'XVER_NORMAL_EXECUTION_COMPLETE_DG_XVER_PROVIDER_PENDING'
+                if xver_executed else 'BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING'),
         )
         self.assertEqual(state['xver_preparation']['status'],'BLOCKED_PENDING_HAI_XVER_NORMAL_PREP')
         self.assertEqual(state['dg04_method_lock']['decision_id'],'DEC-025')
@@ -34,11 +36,11 @@ class ValidationV2ProgramTests(unittest.TestCase):
         self.assertEqual(state['decision_gates']['DG-04'],'APPROVED_WITH_SCOPED_AGENTIC_CLAIM')
         self.assertEqual(
             state['decision_gates']['DG-03C'],
-            'USER_DECISION_REQUIRED' if xver_executed else 'NOT_READY_EVIDENCE_PENDING',
+            'SUPERSEDED_BY_DG_XVER_PROVIDER_EXECUTED' if xver_t2_executed else ('USER_DECISION_REQUIRED' if xver_executed else 'NOT_READY_EVIDENCE_PENDING'),
         )
         self.assertEqual(
             state['exact_next_task'],
-            'DG-XVER-PROVIDER' if xver_executed else 'HAI-XVER-NORMAL-PREP-001',
+            'MULTIPANEL-PRE-DG05-FREEZE-001' if xver_t2_executed else ('DG-XVER-PROVIDER' if xver_executed else 'HAI-XVER-NORMAL-PREP-001'),
         )
         self.assertEqual(state['experiment_status']['EXP-03B'],'COMPLETE_QA_PASS' if executed else 'PREPARED_DG03B_REVISED_PENDING')
         self.assertEqual(
@@ -49,7 +51,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
             state["experiment_status"]["EXP-04"],
             "COMPLETE_QA_PASS_DEVELOPMENT",
         )
-        self.assertEqual(state["safety_counters"]["scientific_executions"], 4)
+        self.assertEqual(state["safety_counters"]["scientific_executions"], 5 if xver_t2_executed else 4)
         self.assertEqual(state["authority_decision_receipt"], "APPROVED_FORMAL_V4")
         self.assertEqual(state["decision_gates"]["DG-01"], "RESOLVED_BY_USER")
         self.assertEqual(state["canonical_to_v4_bridge_status"], "NOT_SELECTED")

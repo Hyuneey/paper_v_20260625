@@ -51,11 +51,11 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(11, len(data["experiments"]))
         self.assertEqual(15, len(data["claims"]))
         self.assertEqual(20, len(data["risks"]))
-        self.assertEqual(53 if data["state"].get("xver_normal_execution") else 52, len(data["artifacts"]))
+        self.assertEqual(55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52), len(data["artifacts"]))
         self.assertEqual(1, len([r for r in data['artifacts'] if r['artifact_id']=='ART-XVER-GDN-CONTEXT']))
         self.assertEqual(
             {
-                "scientific_executions": 4,
+                "scientific_executions": 5,
                 "test2_feature_accesses": 0,
                 "test2_label_accesses": 0,
                 "new_private_exposures": 0,
@@ -76,6 +76,7 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
+            "validation-v2-xver-t2-provider-exec-001": {"9e455938a21606053118eb52215cd9d5741d708b"},
             "validation-v2-hai-xver-normal-prep-001": {
                 "ef993009dab13b59c8bdcb94a9825a27b8a8ea8c",
                 "a207dceecd1903705af904624e8e7289c9f4b036",
@@ -120,6 +121,7 @@ class RegistryValidationTests(unittest.TestCase):
             "94ae44dac900cce75ed83ee2801be38750afed4a",
             "07ed817cd809762a93a910cb10dc14c1d4b91c1f",
             "d1489b67618b1e307a31a15ccb27d6dad57795c4",
+            "9e455938a21606053118eb52215cd9d5741d708b",
         }
         for name in ("decisions", "timeline"):
             self.assertLessEqual({row["source_commit"] for row in data[name]}, allowed_history_commits)
@@ -176,9 +178,9 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(39 if data["state"].get("xver_normal_execution") else 38, len(data["timeline"]))
+        self.assertEqual(40 if data["state"].get("xver_t2_execution") else (39 if data["state"].get("xver_normal_execution") else 38), len(data["timeline"]))
         self.assertEqual(1,len([r for r in data['timeline'] if r['event_id']=='EVENT-XVER-GDN-CONTEXT-001']))
-        self.assertEqual(26, len(data["decisions"]))
+        self.assertEqual(27, len(data["decisions"]))
         self.assertIn('EVENT-DG04-XVER-PREP-001',{r['event_id'] for r in data['timeline']})
         self.assertIn('DEC-025',{r['decision_id'] for r in data['decisions']})
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
@@ -220,7 +222,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
         self.assertEqual(
-            'DG-XVER-PROVIDER' if data['state'].get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001',
+            'MULTIPANEL-PRE-DG05-FREEZE-001' if data['state'].get('xver_t2_execution') else ('DG-XVER-PROVIDER' if data['state'].get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001'),
             data['state']['exact_next_task'],
         )
         self.assertEqual('DEC-025',data['state']['dg04_method_lock']['decision_id'])

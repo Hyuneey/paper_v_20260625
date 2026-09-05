@@ -128,6 +128,12 @@ class FrontReportingTests(unittest.TestCase):
                 self.assertEqual(authority['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
                 self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',path],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
                 additions.add(path)
+        provider_freeze=json.loads((RCC/'validation_v2/xver_normal/provider_execution_v1/XVER_T2_PROVIDER_EXECUTION_FREEZE_V3.json').read_text())
+        for name in ('xver_provider_execution_v1.py','xver_t2_closure_v1.py'):
+            path='src/paperworks/validation_v2/'+name
+            self.assertEqual(provider_freeze['implementation_hashes'][path],hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+            self.assertEqual('',subprocess.run(['git','ls-tree',self.front['execution_commit'],'--',path],cwd=RCC.parent,capture_output=True,text=True,check=True).stdout)
+            additions.add(path)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

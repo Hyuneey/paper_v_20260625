@@ -45,7 +45,7 @@ class LiveReportingTests(unittest.TestCase):
         state = read(RCC / "registry/current_state.yaml")
         program = read(RCC / "validation_v2/PROGRAM_STATE.json")
         self.assertEqual(
-            "DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001",
+            "MULTIPANEL-PRE-DG05-FREEZE-001" if state.get("xver_t2_execution") else ("DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001"),
             state["exact_next_task"],
         )
         self.assertEqual("COMPLETE_QA_PASS", state["exp03_execution"]["status"])

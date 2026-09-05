@@ -33,7 +33,7 @@ class XverNormalGateTests(unittest.TestCase):
         self.assertEqual(p['decision_gates']['DG-05'],'NOT_APPROVED')
         self.assertEqual(
             p['decision_gates']['DG-XVER-PROVIDER'],
-            'USER_DECISION_REQUIRED' if p.get('xver_normal_execution') else 'NOT_READY_EVIDENCE_PENDING',
+            'APPROVED_EXECUTED_QA_PASS' if p.get('xver_t2_execution') else ('USER_DECISION_REQUIRED' if p.get('xver_normal_execution') else 'NOT_READY_EVIDENCE_PENDING'),
         )
         self.assertFalse(p['held_out_authorized'])
 
@@ -41,7 +41,9 @@ class XverNormalGateTests(unittest.TestCase):
         state=json.loads((RCC/'registry/current_state.yaml').read_text(encoding='utf-8'))
         for f in ('CURRENT_CONTEXT.md','MY_TODO.md','DECISION_INBOX.md','history/PROJECT_TIMELINE.md','history/TERMINOLOGY_GUIDE.md'):
             text=(RCC/f).read_text(encoding='utf-8')
-            if state.get('xver_normal_execution'):
+            if state.get('xver_t2_execution'):
+                self.assertIn('MULTIPANEL-PRE-DG05-FREEZE-001', text)
+            elif state.get('xver_normal_execution'):
                 self.assertIn('DG-XVER-PROVIDER',text)
                 self.assertIn('GLOBAL5',text)
                 self.assertIn('EVENT10',text)
@@ -49,7 +51,7 @@ class XverNormalGateTests(unittest.TestCase):
                 self.assertIn('BLOCKED_GDN_METHOD_CHANGE_REQUIRED',text)
                 self.assertIn('APPROVED_WITH_SEPARATED_GDN_EVIDENCE_ROLES',text)
         dashboard=(RCC/'dashboard/index.html').read_text(encoding='utf-8')
-        self.assertIn('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md',dashboard)
+        self.assertIn('MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution') else ('DG-XVER-PROVIDER' if state.get('xver_normal_execution') else 'GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md'),dashboard)
 
     def test_approved_role_choice_is_not_execution(self):
         s=json.loads((PUB/'XVER_NORMAL_PREPARATION_STATUS_V2.json').read_text());replay(s)

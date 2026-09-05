@@ -336,9 +336,9 @@ def build_dashboard_view_model(
         reverse=True,
     )
     unresolved = [dict(row) for row in data["decisions"] if row["status"] == "OPEN"]
-    if data['state'].get('exp03b_execution'):
+    if data['state'].get('exp03b_execution') and not data['state'].get('dg04_method_lock'):
         unresolved.append({'decision_id':'DG-04','title':'EXP-03B 이후 최종 기여 결정','status':'OPEN','reason':'정상 semantic induction 실행 결과와 한계 검토','decision':'USER_DECISION_REQUIRED'})
-    elif data['state'].get('exp03b_preparation'):
+    elif not data['state'].get('exp03b_execution') and data['state'].get('exp03b_preparation'):
         p=data['state']['exp03b_preparation']
         unresolved.append({'decision_id':p['next_gate'],'title':'EXP-03B 의미적 추론 provider 별도 승인','status':'OPEN','reason':f"최대{p['maximum_calls']}회·USD{p['cost_ceiling_usd']};현재 provider0",'decision':'USER_DECISION_REQUIRED'})
     state = data["state"]
@@ -387,6 +387,7 @@ def build_dashboard_view_model(
         "xver_preparation": state.get("xver_preparation"),
         "xver_normal_preparation": state.get("xver_normal_preparation"),
         "xver_normal_execution": state.get("xver_normal_execution"),
+        "xver_t2_execution": state.get("xver_t2_execution"),
         "decisions": [dict(row) for row in data["decisions"]],
         "unresolved_decisions": unresolved,
         "recent_events": current_events[:3],
@@ -671,7 +672,7 @@ def _render_experiments_view(vm: Mapping[str, Any]) -> str:
     <section class="view-panel" id="view-experiments" data-view-panel="experiments" aria-labelledby="nav-experiments" hidden>
       <header class="view-heading"><div><p class="kicker">PILOT V1 · VALIDATION V2 development evidence</p><h2>실험·결과</h2><p>정상 전용 근거, PILOT V1, VALIDATION V2 test1 개발 성능을 분리합니다. 결과 무결성 확인은 과학적 검증이 아닙니다.</p></div></header>
       <section class="panel roadmap"><div class="panel-heading"><div><p class="kicker">VALIDATION V2 · normal-only</p><h3>test1을 열기 전에 고정된 결과</h3></div></div><div class="readiness-summary"><article><h4>EXP-01</h4><strong>GDN ablation 유지</strong><p>동결 기준에 따라 V2A의 주 후보 정책은 META+STAT입니다.</p></article><article><h4>EXP-01B</h4><strong>GDN_ABLATION_ONLY</strong><p>{_esc(vm['exp01b']['equal_budget'])}</p></article><article><h4>EXP-02</h4><strong>{_esc(vm['v2_normal_only']['selected_numeric_policy'])}</strong><p>29개 후보 pair → 39개 directional relation → 39-rule Formal V4 portfolio</p></article></div><p class="chart-note">EXP-01B의 combined 증가는 split 안정성·양의 EdgeMask·고유 executable Rule 기준을 통과하지 못했습니다. 위 정상 전용 단계 당시 test1·label·test2·held-out 접근은 0이었습니다. 아래 후속 EXP-04는 승인된 test1 개발 평가입니다.</p></section>
-      {('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 외부 정상-only GDN/T0·T2 pack과 정확 예산 준비 완료; 현재 DG-XVER-PROVIDER 승인 대기이며 provider·공격 접근은 없습니다.</p>' if vm.get('xver_normal_execution') else ('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 정상 custody는 DEC-026 projection으로 복원됐으며 외부 GDN evidence와 DG-XVER-PROVIDER 예산은 아직 미완료입니다.</p>' if vm.get('dg04_method_lock') else ''))}
+      {('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. HAI22/21 정상-only T2 provider 실행과 포트폴리오 동결은 완료됐고, 다음 단계는 공격 접근 없는 MULTIPANEL-PRE-DG05-FREEZE-001입니다. DG-05는 승인되지 않았습니다.</p>' if vm.get('xver_t2_execution') else ('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 외부 정상-only GDN/T0·T2 pack과 정확 예산 준비 완료; 현재 DG-XVER-PROVIDER 승인 대기이며 provider·공격 접근은 없습니다.</p>' if vm.get('xver_normal_execution') else ('<p class="chart-note">현재 DG-04는 DEC-025로 승인되었습니다. 아래 완료된 EXP-03/03B의 다음 Gate 설명은 각 실행 종료 당시의 역사적 상태입니다. 정상 custody는 DEC-026 projection으로 복원됐으며 외부 GDN evidence와 DG-XVER-PROVIDER 예산은 아직 미완료입니다.</p>' if vm.get('dg04_method_lock') else '')))}
       {_render_exp03b(vm)}{_render_exp03_execution(vm)}{_render_front_results(vm)}{panel_section}
       <aside class="warning-banner">PILOT V1 결과는 test1의 14개 연속 공격 구간 단위(contiguous attack-event units)를 이용한 예비 결과입니다. 통계적 독립성과 held-out 일반화는 확인되지 않았습니다. D1은 T2 Agentic Rule-only가 아닙니다.</aside>
       <div class="results-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">Attack-event Recall</p><h3>14개 unit 중 반응한 unit</h3></div></div>{_render_result_bars(vm)}</article><article class="panel"><div class="panel-heading"><div><p class="kicker">Normal FAR/hour</p><h3>정상 구간 false episode 부담</h3></div></div>{_render_far_panels(vm)}</article><article class="panel overlap-panel"><div class="panel-heading"><div><p class="kicker">D0 / D1 overlap</p><h3>사건 단위 반응 2×2</h3></div></div><table class="overlap-matrix"><thead><tr><th></th><th>D1 탐지</th><th>D1 미탐</th></tr></thead><tbody><tr><th>D0 탐지</th><td>{overlap['both']}<small>둘 다</small></td><td>{overlap['d0_only']}<small>D0만</small></td></tr><tr><th>D0 미탐</th><td>{overlap['d1_only']}<small>D1만</small></td><td>{overlap['neither']}<small>둘 다 미탐</small></td></tr></tbody></table></article><article class="panel exact-table-panel"><div class="panel-heading"><div><p class="kicker">Accessible data table</p><h3>정확한 고정 값</h3></div></div>{_render_results_table(vm)}</article></div>
@@ -689,7 +690,21 @@ def _render_dg04(vm: Mapping[str, Any]) -> str:
                '<a href="../validation_v2/xver_normal/GDN_SEPARATED_EVIDENCE_BINDING_V1.md">승인된 분리 binding</a> · '
                '<a href="../validation_v2/xver_normal/GDN_EVENT_EVIDENCE_BINDING_DECISION_V1.md">이전 blocker 기록</a></p><p>아래 Stage B는 부모 task 종료 당시 기록입니다.</p>'
                if vm.get('xver_normal_preparation') else '')
-    if vm.get('xver_normal_execution'):
+    if vm.get('xver_t2_execution'):
+        execution = vm['xver_t2_execution']
+        version_rows = ''.join(
+            f"<tr><th>HAI {_esc(version)}</th><td>{v['calls']}</td>"
+            f"<td>{v['train2_admitted_pairs']}</td><td>{v['confirmed_rules']}</td>"
+            f"<td>{v['Formal_V4_rules']}</td><td>{v['retained_rules']} / {v['retained_pairs']}</td></tr>"
+            for version, v in execution['versions'].items())
+        current = f'''<div id="xver-t2-execution"><h4>현재: 외부 버전 정상-only T2 실행 · QA PASS</h4>
+        <p>정확한 snapshot {_esc(execution['model'])}; HAI22/21 합계 {execution['calls']} calls / {execution['tokens']:,} tokens / 표준가격 단순 추정 USD {_esc(execution['standard_price_estimate_usd'])}. 실제 청구서가 아닙니다.</p>
+        <table><thead><tr><th>버전</th><th>calls</th><th>train2 admitted pairs</th><th>정상 확인 Rules</th><th>Formal V4</th><th>guard Rules / pairs</th></tr></thead><tbody>{version_rows}</tbody></table>
+        <p>GLOBAL5만 provider/retrieval에 사용했고 EVENT10, META rank/tier, T0, train3, 수치·guard·attack/test 정보는 전송하지 않았습니다. T0/T2 선택은 없었습니다.</p>
+        <p>DG-XVER-PROVIDER APPROVED_EXECUTED_QA_PASS; DG-05 NOT_APPROVED; 교수 package NOT_SUBMITTED.</p>
+        <a href="../validation_v2/xver_normal/provider_execution_v1/XVER_T2_PROVIDER_EXECUTION_REPORT_V1.md">정상-only 실행 결과와 경계</a></div>
+        <h4>이전 준비 상태 — 현재 실행 상태 아님</h4>'''
+    elif vm.get('xver_normal_execution'):
         execution = vm['xver_normal_execution']
         budget = execution['combined_provider_ceiling']
         version_rows = ''.join(

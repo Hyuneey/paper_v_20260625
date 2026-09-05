@@ -34,7 +34,7 @@ class Dg04XverReportingTests(unittest.TestCase):
         self.assertEqual(program['decision_gates']['DG-04'],'APPROVED_WITH_SCOPED_AGENTIC_CLAIM')
         self.assertEqual(
             program['decision_gates']['DG-03C'],
-            'USER_DECISION_REQUIRED' if state.get('xver_normal_execution') else 'NOT_READY_EVIDENCE_PENDING',
+            'SUPERSEDED_BY_DG_XVER_PROVIDER_EXECUTED' if state.get('xver_t2_execution') else ('USER_DECISION_REQUIRED' if state.get('xver_normal_execution') else 'NOT_READY_EVIDENCE_PENDING'),
         )
         self.assertEqual(program['xver_normal_preparation']['scientific_GDN_runs'],0)
         blocker=read(PUB/'XVER_NORMAL_CUSTODY_BLOCKER_V1.json');replay(blocker)
