@@ -108,7 +108,7 @@ def execute():
             scores,binding=score_external_pca_v1(pca,calibration,split='train3');pth=calibrate_external_v1(scores,binding,fit_hash=pca.fit_authority['self_hash'],config_hash=PcaSpeConfigV2().config_hash)
         pbytes,psz=persist_private(private/f'{short}_PCA.pkl',{'model':pca,'threshold':pth})
         methods['PCA']={'fit':pca.fit_authority,'threshold_authority_hash':pth['self_hash'],'private_bytes_hash':pbytes,'private_bytes':psz}
-        del scores;gc.collect()
+        gc.collect()
         if_path=private/f'{short}_IF.pkl'
         if if_path.exists():
             prior=pickle.loads(if_path.read_bytes());forest,ith=prior['model'],prior['threshold']
@@ -119,7 +119,7 @@ def execute():
             scores,binding=score_external_if_v1(forest,calibration,split='train3');ith=calibrate_external_v1(scores,binding,fit_hash=forest.fit_authority['self_hash'],config_hash=IsolationForestConfigV1().config_hash)
         ibytes,isz=persist_private(private/f'{short}_IF.pkl',{'model':forest,'threshold':ith})
         methods['IF']={'fit':forest.fit_authority,'threshold_authority_hash':ith['self_hash'],'private_bytes_hash':ibytes,'private_bytes':isz}
-        del scores;gc.collect()
+        gc.collect()
         audits={}
         audit_inputs=[]
         if short=='HAI22':
