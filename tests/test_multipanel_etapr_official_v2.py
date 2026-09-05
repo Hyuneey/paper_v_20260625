@@ -25,6 +25,8 @@ class OfficialMultiFileBindingTests(unittest.TestCase):
                 result=score_namespaced_union_v2(self.wrapper,files,separator=separator)
                 values.append((result['eTaP'],result['eTaR'],result['F1']))
         self.assertTrue(all(value==values[0] for value in values))
+        self.assertEqual([row['file_id'] for row in result['per_file']],['a','b'])
+        self.assertTrue(all(row['status']=='PASS' for row in result['per_file']))
         # Independent block-diagonal oracle: construct the disjoint ranges
         # directly rather than calling the versioned wrapper.
         refs=[];preds=[];offset=0

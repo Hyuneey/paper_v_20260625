@@ -8,6 +8,17 @@ from .etapr_exchange_v1 import OfficialEtaprV1, EtaprFileExchangeV1, validate_fi
 TARGET_SCOPE='P1_ELIGIBLE_OFFICIAL_SCENARIO_RANGES_WITH_ALL_FILE_LOCAL_PREDICTION_RANGES'
 
 
+def _score_file_v2(wrapper:OfficialEtaprV1,item:EtaprFileExchangeV1)->dict:
+    base={'file_id':item.file_id,'reference_range_count':len(item.reference_ranges),
+          'prediction_range_count':len(item.prediction_ranges)}
+    if not item.reference_ranges:
+        return {**base,'status':'NOT_APPLICABLE','eTaP':None,'eTaR':None,'F1':None}
+    if not item.prediction_ranges:
+        return {**base,'status':'PASS_EMPTY_PREDICTION','eTaP':0.0,'eTaR':0.0,'F1':0.0}
+    scored=wrapper.score_file(item)
+    return {**base,'status':'PASS','eTaP':scored['eTaP'],'eTaR':scored['eTaR'],'F1':scored['F1']}
+
+
 def score_namespaced_union_v2(wrapper:OfficialEtaprV1,files:Sequence[EtaprFileExchangeV1],*,separator:int=1024)->dict:
     """Canonical disjoint union; primary eligibility never derives from eTaPR.
 
@@ -20,10 +31,13 @@ def score_namespaced_union_v2(wrapper:OfficialEtaprV1,files:Sequence[EtaprFileEx
     if type(separator) is not int or separator < 1:raise ValueError('UNSAFE_FILE_NAMESPACE_SEPARATOR')
     ordered=tuple(sorted(files,key=lambda item:item.file_id))
     prediction_count=sum(len(item.prediction_ranges) for item in ordered)
+    per_file=[_score_file_v2(wrapper,item) for item in ordered]
     if not any(item.reference_ranges for item in ordered):
-        return {'status':'NOT_APPLICABLE','eTaP':None,'eTaR':None,'F1':None,'prediction_range_count':prediction_count,'target_scope':TARGET_SCOPE}
+        return {'status':'NOT_APPLICABLE','eTaP':None,'eTaR':None,'F1':None,'prediction_range_count':prediction_count,
+                'per_file':per_file,'target_scope':TARGET_SCOPE}
     if prediction_count==0:
-        return {'status':'PASS_EMPTY_PREDICTION','eTaP':0.0,'eTaR':0.0,'F1':0.0,'prediction_range_count':0,'target_scope':TARGET_SCOPE}
+        return {'status':'PASS_EMPTY_PREDICTION','eTaP':0.0,'eTaR':0.0,'F1':0.0,'prediction_range_count':0,
+                'per_file':per_file,'target_scope':TARGET_SCOPE}
     references=[];predictions=[];offset=0
     for namespace,item in enumerate(ordered):
         references.extend(wrapper._range_class(offset+a,offset+b,f'f{namespace}:r{i}') for i,(a,b) in enumerate(item.reference_ranges))
@@ -34,6 +48,7 @@ def score_namespaced_union_v2(wrapper:OfficialEtaprV1,files:Sequence[EtaprFileEx
     if not all(isfinite(value) and 0<=value<=1 for value in (precision,recall)):raise ValueError('INVALID_ETAPR_RESULT')
     f1=0.0 if precision+recall==0 else 2*precision*recall/(precision+recall)
     return {'status':'PASS','eTaP':precision,'eTaR':recall,'F1':f1,'prediction_range_count':prediction_count,
-            'file_count':len(ordered),'separator':separator,'file_order':'LEXICAL_FILE_ID','target_scope':TARGET_SCOPE}
+            'file_count':len(ordered),'separator':separator,'file_order':'LEXICAL_FILE_ID','per_file':per_file,
+            'target_scope':TARGET_SCOPE}
 
 __all__=['score_namespaced_union_v2','TARGET_SCOPE']

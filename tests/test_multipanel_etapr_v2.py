@@ -9,6 +9,8 @@ class MultiPanelEtaprV2Tests(unittest.TestCase):
         self.assertEqual(score_namespaced_union_v2(wrapper,[EtaprFileExchangeV1('A',3,(),((1,1),))])['status'],'NOT_APPLICABLE')
         value=score_namespaced_union_v2(wrapper,[EtaprFileExchangeV1('A',3,((1,1),),())])
         self.assertEqual((value['eTaP'],value['eTaR'],value['F1']),(0,0,0))
+        self.assertEqual(value['per_file'][0]['status'],'PASS_EMPTY_PREDICTION')
+        self.assertEqual(score_namespaced_union_v2(wrapper,[EtaprFileExchangeV1('A',3,(),((1,1),))])['per_file'][0]['status'],'NOT_APPLICABLE')
     def test_separator_rejects_no_gap(self):
         with self.assertRaises(ValueError):score_namespaced_union_v2(self.wrapper(),[EtaprFileExchangeV1('A',2,((0,0),),())],separator=0)
 
