@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=aec8388c69f2e3890c6995d3ea06f292ff63aff54235681b692d9a7529d29798 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8dd7e0e05f6efd13270749854b210426e7b220d0b4f521688fa4be92f000899 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -70,13 +70,13 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 - DG05 remains NOT_APPROVED; no attack/test/label access
 - DG06 remains required for professor submission
 
-관리 작업의 다음 단계는 **DG-05 REAPPROVAL — EXECUTABLE V2** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001** 이고, 이후 전체
 구조 검토는 **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DG-05 REAPPROVAL — EXECUTABLE V2
+- DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001
 - Preserve all frozen method, metric, custody, and single-copy private authorities
 - DG06: professor package submission decision
 
@@ -84,4 +84,4 @@ Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-030 records exact DG05 Executable V2 conditional reapproval, but functional pre-access replay found that the approved result builder and independent verifier omit the complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime census, and normal-burden result surface. Phase A remains unstarted; attack/test access 0; labels/scenarios 0; lease 0; predictions 0; results 0. Current phase DG05_V2_BLOCKED_PRE_ACCESS; exact next DG05-V2-METRIC-VERIFIER-CLOSURE-001, followed by DG-05 REAPPROVAL under the new hashes. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

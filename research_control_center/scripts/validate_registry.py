@@ -22,6 +22,9 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-multipanel-dg05-v2-exec-001": {
+        "8c937be65fd6c62474eb8a8764b89373f2d648d6",
+    },
     "validation-v2-dg05-exec-authority-closure-001": {
         "cdfaf4483fae6f86e4658a9a489c0a1e55b80fb6",
     "08f563e025bac27bbc543b7296eaa9a66b5dfb44",
@@ -406,7 +409,7 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
                 expected_xver_stop = (
-                    'DG05-V2-METRIC-VERIFIER-CLOSURE-001' if any(row.get('decision_id') == 'DEC-030' for row in data.get('decisions', []))
+                    'DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001' if any(row.get('decision_id') == 'DEC-030' for row in data.get('decisions', []))
                     else 'DG-05 REAPPROVAL — EXECUTABLE V2' if state.get('dg05_executable_closure')
                     else 'DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if state.get('multipanel_pre_dg05')
                     else 'MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution')

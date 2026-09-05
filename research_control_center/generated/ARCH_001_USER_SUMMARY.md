@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=aec8388c69f2e3890c6995d3ea06f292ff63aff54235681b692d9a7529d29798 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8dd7e0e05f6efd13270749854b210426e7b220d0b4f521688fa4be92f000899 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리가 어떤 데이터를 쓰고 있는가
 
 ## 한 문장 답
@@ -69,8 +69,8 @@ enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossib
 3. label-blind object와 durable prediction file은 서로 다른 보장이다.
 4. test1은 pilot이고 test2는 결과가 없다.
 
-다음 task는 **DG-05 REAPPROVAL — EXECUTABLE V2**이다.
+다음 task는 **DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-030 records exact DG05 Executable V2 conditional reapproval, but functional pre-access replay found that the approved result builder and independent verifier omit the complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime census, and normal-burden result surface. Phase A remains unstarted; attack/test access 0; labels/scenarios 0; lease 0; predictions 0; results 0. Current phase DG05_V2_BLOCKED_PRE_ACCESS; exact next DG05-V2-METRIC-VERIFIER-CLOSURE-001, followed by DG-05 REAPPROVAL under the new hashes. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

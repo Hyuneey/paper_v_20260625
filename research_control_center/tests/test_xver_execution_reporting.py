@@ -90,7 +90,7 @@ class ExternalExecutionReportingTests(unittest.TestCase):
         self.assertEqual(current['result_authority_hash'],read(PUB/'NORMAL_EXECUTION_RESULT_V1.json')['self_hash'])
         self.assertEqual(current['scientific_GDN_runs'],12)
         self.assertEqual(state['xver_normal_preparation']['scientific_GDN_runs'],0)
-        self.assertEqual(state['exact_next_task'],'DG-05 REAPPROVAL — EXECUTABLE V2' if state.get('dg05_executable_closure') else ('DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if state.get('multipanel_pre_dg05') else ('MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution') else 'DG-XVER-PROVIDER')))
+        self.assertEqual(state['exact_next_task'],'DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001' if 'DEC-030,' in (RCC/'registry/decisions.csv').read_text(encoding='utf-8') else ('DG-05 REAPPROVAL — EXECUTABLE V2' if state.get('dg05_executable_closure') else ('DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if state.get('multipanel_pre_dg05') else ('MULTIPANEL-PRE-DG05-FREEZE-001' if state.get('xver_t2_execution') else 'DG-XVER-PROVIDER'))))
         self.assertEqual(current['DG05'],'NOT_APPROVED')
         self.assertEqual(current['professor_package'],'NOT_SUBMITTED')
         self.assertTrue(all(current[k]==0 for k in ('provider_calls','credential_reads','attack_accesses')))

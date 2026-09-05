@@ -50,8 +50,9 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(32, len(data["components"]))
         self.assertEqual(12 if data["state"].get("dg05_executable_closure") else 11, len(data["experiments"]))
         self.assertEqual(16 if data["state"].get("dg05_executable_closure") else 15, len(data["claims"]))
-        self.assertEqual(22 if data["state"].get("dg05_executable_closure") else (21 if data["state"].get("multipanel_pre_dg05") else 20), len(data["risks"]))
-        self.assertEqual(89 if data["state"].get("dg05_executable_closure") else (80 if data["state"].get("multipanel_pre_dg05") else (55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52))), len(data["artifacts"]))
+        dg05_v2_blocked = any(row["decision_id"] == "DEC-030" for row in data["decisions"])
+        self.assertEqual(23 if dg05_v2_blocked else (22 if data["state"].get("dg05_executable_closure") else (21 if data["state"].get("multipanel_pre_dg05") else 20)), len(data["risks"]))
+        self.assertEqual(91 if dg05_v2_blocked else (89 if data["state"].get("dg05_executable_closure") else (80 if data["state"].get("multipanel_pre_dg05") else (55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52)))), len(data["artifacts"]))
         self.assertEqual(1, len([r for r in data['artifacts'] if r['artifact_id']=='ART-XVER-GDN-CONTEXT']))
         self.assertEqual(
             {
@@ -76,6 +77,9 @@ class RegistryValidationTests(unittest.TestCase):
     def test_every_scientific_source_commit_is_explicitly_allowlisted(self) -> None:
         data = load_registry(RCC_ROOT)
         allowed = {
+            "validation-v2-multipanel-dg05-v2-exec-001": {
+                "8c937be65fd6c62474eb8a8764b89373f2d648d6",
+            },
             "validation-v2-dg05-exec-authority-closure-001": {
                 "cdfaf4483fae6f86e4658a9a489c0a1e55b80fb6",
                 "08f563e025bac27bbc543b7296eaa9a66b5dfb44",
@@ -196,9 +200,10 @@ class RegistryValidationTests(unittest.TestCase):
 
     def test_history_counts_precision_and_cross_references(self) -> None:
         data = load_registry(RCC_ROOT)
-        self.assertEqual(42 if data["state"].get("dg05_executable_closure") else (41 if data["state"].get("multipanel_pre_dg05") else (40 if data["state"].get("xver_t2_execution") else (39 if data["state"].get("xver_normal_execution") else 38))), len(data["timeline"]))
+        dg05_v2_blocked = any(row["decision_id"] == "DEC-030" for row in data["decisions"])
+        self.assertEqual(43 if dg05_v2_blocked else (42 if data["state"].get("dg05_executable_closure") else (41 if data["state"].get("multipanel_pre_dg05") else (40 if data["state"].get("xver_t2_execution") else (39 if data["state"].get("xver_normal_execution") else 38)))), len(data["timeline"]))
         self.assertEqual(1,len([r for r in data['timeline'] if r['event_id']=='EVENT-XVER-GDN-CONTEXT-001']))
-        self.assertEqual(29 if data["state"].get("dg05_executable_closure") else (28 if data["state"].get("multipanel_pre_dg05") else 27), len(data["decisions"]))
+        self.assertEqual(30 if dg05_v2_blocked else (29 if data["state"].get("dg05_executable_closure") else (28 if data["state"].get("multipanel_pre_dg05") else 27)), len(data["decisions"]))
         self.assertIn('EVENT-DG04-XVER-PREP-001',{r['event_id'] for r in data['timeline']})
         self.assertIn('DEC-025',{r['decision_id'] for r in data['decisions']})
         self.assertEqual(1, len(data["history"]["confirmation_questions"]))
@@ -240,7 +245,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual({f"ARCH-{index:03d}" for index in range(1, 12)}, {row["deep_review_part"] for row in data["components"]})
         self.assertEqual(11, len(data["architecture_details"]))
         self.assertEqual(
-            'DG-05 REAPPROVAL — EXECUTABLE V2' if data['state'].get('dg05_executable_closure') else ('DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if data['state'].get('multipanel_pre_dg05') else ('MULTIPANEL-PRE-DG05-FREEZE-001' if data['state'].get('xver_t2_execution') else ('DG-XVER-PROVIDER' if data['state'].get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001'))),
+            'DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001' if any(row['decision_id']=='DEC-030' for row in data['decisions']) else ('DG-05 REAPPROVAL — EXECUTABLE V2' if data['state'].get('dg05_executable_closure') else ('DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if data['state'].get('multipanel_pre_dg05') else ('MULTIPANEL-PRE-DG05-FREEZE-001' if data['state'].get('xver_t2_execution') else ('DG-XVER-PROVIDER' if data['state'].get('xver_normal_execution') else 'HAI-XVER-NORMAL-PREP-001')))),
             data['state']['exact_next_task'],
         )
         self.assertEqual('DEC-025',data['state']['dg04_method_lock']['decision_id'])

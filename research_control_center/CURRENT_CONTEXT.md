@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=aec8388c69f2e3890c6995d3ea06f292ff63aff54235681b692d9a7529d29798 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=c8dd7e0e05f6efd13270749854b210426e7b220d0b4f521688fa4be92f000899 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-05
@@ -126,18 +126,9 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 - DG05 remains NOT_APPROVED; no attack/test/label access
 - DG06 remains required for professor submission
 
-Exact next management task: **DG-05 REAPPROVAL — EXECUTABLE V2**
+Exact next management task: **DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001**
 Following architecture task: **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지**
-
-## DG-05 Executable V2 pre-access disposition
-
-DEC-030 records the user's exact Executable V2 reapproval. Phase A did not
-start because functional authority replay found that the bound production
-result builder and independent verifier omit required eTaPR values, delay,
-complete paired/McNemar, Rule/Fusion recovery, Rule census, and normal-burden
-replay. Attack/test access, labels, lease, projections, predictions, and
-results all remain zero. Exact next: `DG05-V2-METRIC-VERIFIER-CLOSURE-001`.
 
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
-DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-030 records exact DG05 Executable V2 conditional reapproval, but functional pre-access replay found that the approved result builder and independent verifier omit the complete frozen eTaPR, delay, paired/McNemar, Rule/Fusion recovery, Rule runtime census, and normal-burden result surface. Phase A remains unstarted; attack/test access 0; labels/scenarios 0; lease 0; predictions 0; results 0. Current phase DG05_V2_BLOCKED_PRE_ACCESS; exact next DG05-V2-METRIC-VERIFIER-CLOSURE-001, followed by DG-05 REAPPROVAL under the new hashes. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
