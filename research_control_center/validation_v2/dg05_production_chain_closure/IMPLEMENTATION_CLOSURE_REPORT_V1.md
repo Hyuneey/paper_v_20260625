@@ -14,7 +14,7 @@ Real attack/test/label/scenario access: `0`
 - The custodian is launched through a distinct Python process with a minimal environment allowlist. Error receipts contain fixed codes rather than child tracebacks or private paths. This is application-level capability/path isolation, not an OS sandbox.
 - The launcher binds the exact release, global freeze, lease-issued predecessor, lease receipt, token, resource policy, custodian implementation, and authority mode.
 - Primary scenario overlap supports one official scenario with multiple closed intervals and does not require interval endpoints to equal sampled timestamps.
-- Strict runtime census code requires file-local Rule alarm rows and per-Rule counts; it derives episodes and distinguishes configured, formed, evaluated, and alarming identities. Missing evidence is an error, not zero.
+- Strict runtime census code requires file-local Rule alarm rows plus per-Rule FAIL-row provenance and counts; it derives episodes from the row union, permits distinct Rules to fail on the same physical row, and distinguishes configured, formed, evaluated, and alarming identities. Missing evidence is an error, not zero.
 - Normal burden is recomputed from method-specific immutable source bytes; caller-supplied decimals are not accepted.
 - The upstream verifier independently reconstructs the metric primitive from prediction/projection/scenario/denominator/runtime/normal sources and does not call the production primitive builder. A coherently rehashed primitive mutation is rejected.
 
@@ -36,7 +36,11 @@ The current code is prospective pre-access infrastructure. It is not a productio
 
 ## Verification evidence
 
-- Focused closure and historical DG-05 suites: `45/45 PASS`.
+- Focused closure, historical DG-05, and multipanel suites: `71/71 PASS`.
+- Complete Validation V2 pattern suite: `458/458 PASS` with `14` expected skips.
+- EXP-03B regression suite: `95/95 PASS`.
+- Complete RCC/UI suite: `218/218 PASS`.
+- Registry/generated validation and public privacy scan: `PASS`, exposures `0`.
 - Fresh-process custodian: distinct child PID, mode/format gate, token reuse rejection, failure-after-consume replay rejection.
 - Scenario fixtures: plural intervals and unsampled endpoints.
 - Time fixtures: duplicate and non-unit-gap fail closed pending binding.
@@ -45,3 +49,6 @@ The current code is prospective pre-access infrastructure. It is not a productio
 - Upstream verifier: exact replay pass and coherent primitive self-hash mutation rejection.
 
 These checks prove the implemented pre-access components. They do not prove real DG-05 readiness while the consolidated decision and evidence dependencies remain open.
+
+Independent read-only review verdict: `PASS_FOR_DECISION_REQUIRED_RECORD`.
+This is explicitly not a production-release QA pass.

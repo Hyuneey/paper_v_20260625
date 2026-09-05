@@ -36,6 +36,12 @@ Architecture implementation and frozen INNER pilot operation are complete.
 Scientific validation is partial; expanded evaluation and hypothesis
 validation remain incomplete. This is not a claim of final thesis validation.
 
+Current operational stop: `DG05-PRODUCTION-CHAIN-CLOSURE-001` is
+`DECISION_REQUIRED / NO_GO_FOR_REAL_DG05_ACCESS`. The preserved audit and
+prospective closure components do not constitute an executable release or an
+approval. Exact next is DEC-031, the consolidated scenario/time/runtime and
+normal-source binding decision. No primary held-out result exists.
+
 ## Important distinction
 
 `Implemented` and `Executed` are engineering states. `Evidence-reviewed` means

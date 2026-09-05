@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "DG05_EXECUTABLE_CLOSURE_FROZEN",
-  "program_status": "DG05_V2_USER_REAPPROVAL_REQUIRED",
+  "current_stage": "DG05_PRODUCTION_CHAIN_PREACCESS_CLOSURE",
+  "program_status": "DECISION_REQUIRED_NO_GO_REAL_ACCESS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -26,7 +26,7 @@
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
     "DG-04": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
-    "DG-05": "V1_HISTORICAL_EXECUTION_SUSPENDED_V2_USER_REAPPROVAL_REQUIRED",
+    "DG-05": "HISTORICAL_APPROVALS_SUSPENDED_PRODUCTION_BINDINGS_AND_SOURCE_LINEAGE_REQUIRED",
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
@@ -393,7 +393,30 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-05 REAPPROVAL — EXECUTABLE V2",
+  "exact_next_task": "DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION",
+  "dg05_production_chain_closure": {
+    "task_id": "DG05-PRODUCTION-CHAIN-CLOSURE-001",
+    "status": "DECISION_REQUIRED",
+    "go_no_go": "NO_GO_FOR_REAL_DG05_ACCESS",
+    "audit_commit": "4719f3da01c47b61b85365f593a483872a8934a2",
+    "prospective_components": [
+      "EXACT_RELEASE_ROOT_REPLAY",
+      "FRESH_PROCESS_MULTI_SOURCE_CUSTODIAN",
+      "STRICT_RUNTIME_CENSUS",
+      "SOURCE_DERIVED_NORMAL_BURDEN",
+      "UPSTREAM_PRIMITIVE_RECONSTRUCTION"
+    ],
+    "open_scientific_bindings": [
+      "MULTI_INTERVAL_DELAY",
+      "DUPLICATE_TIMESTAMPS",
+      "TIMESTAMP_GAPS_AND_ROW_TIME",
+      "RUNTIME_PARTICIPATION_VOCABULARY"
+    ],
+    "normal_burden_source_status": "EVIDENCE_MISSING_FOR_COMPLETE_PRODUCTION_REPLAY",
+    "held_out_accesses": 0,
+    "label_scenario_accesses": 0,
+    "provider_calls": 0
+  },
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",
     "classification": "SEMANTIC_RELATIONAL_RULE_INDUCTION",

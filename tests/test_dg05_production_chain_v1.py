@@ -372,10 +372,10 @@ class ProductionChainClosureTests(unittest.TestCase):
             "file_id": "F0",
             "rule_alarm_rows": [9],
             "per_rule_runtime": [
-                {"rule_id": "R0", "source_id": "S0", "opportunities": 0, "pass": 0, "fail": 0, "abstain": 0, "system_errors": 0},
-                {"rule_id": "R1", "source_id": "S1", "opportunities": 2, "pass": 0, "fail": 0, "abstain": 2, "system_errors": 0},
-                {"rule_id": "R2", "source_id": "S2", "opportunities": 1, "pass": 1, "fail": 0, "abstain": 0, "system_errors": 0},
-                {"rule_id": "R3", "source_id": "S3", "opportunities": 1, "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0},
+                {"rule_id": "R0", "source_id": "S0", "opportunities": 0, "pass": 0, "fail": 0, "abstain": 0, "system_errors": 0, "fail_rows": []},
+                {"rule_id": "R1", "source_id": "S1", "opportunities": 2, "pass": 0, "fail": 0, "abstain": 2, "system_errors": 0, "fail_rows": []},
+                {"rule_id": "R2", "source_id": "S2", "opportunities": 1, "pass": 1, "fail": 0, "abstain": 0, "system_errors": 0, "fail_rows": []},
+                {"rule_id": "R3", "source_id": "S3", "opportunities": 1, "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0, "fail_rows": [9]},
             ],
         }
         result = derive_runtime_census_strict_v1([trace])
@@ -392,15 +392,31 @@ class ProductionChainClosureTests(unittest.TestCase):
             "abstain": 0, "system_errors": 0, "rule_alarm_rows": [],
             "per_rule_runtime": [
                 {"rule_id": "R0", "source_id": "S0", "opportunities": 1,
-                 "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0}
+                 "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0, "fail_rows": [3]}
             ],
         }
-        with self.assertRaisesRegex(DG05ProductionChainError, "RUNTIME_ALARM_FAIL_COUNT_MISMATCH"):
+        with self.assertRaisesRegex(DG05ProductionChainError, "RUNTIME_ALARM_ROW_UNION_MISMATCH"):
             derive_runtime_census_strict_v1([invalid])
         invalid["rule_alarm_rows"] = [3]
         invalid["per_rule_runtime"][0]["fail"] = -1
         with self.assertRaisesRegex(DG05ProductionChainError, "INVALID_PER_RULE_RUNTIME_COUNT"):
             derive_runtime_census_strict_v1([invalid])
+
+    def test_runtime_census_allows_two_rule_fails_on_one_alarm_row(self) -> None:
+        trace = {
+            "file_id": "F0", "opportunities": 2, "pass": 0, "fail": 2,
+            "abstain": 0, "system_errors": 0, "rule_alarm_rows": [3],
+            "per_rule_runtime": [
+                {"rule_id": "R0", "source_id": "S0", "opportunities": 1,
+                 "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0, "fail_rows": [3]},
+                {"rule_id": "R1", "source_id": "S1", "opportunities": 1,
+                 "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0, "fail_rows": [3]},
+            ],
+        }
+        result = derive_runtime_census_strict_v1([trace])
+        self.assertEqual(result["fail"], 2)
+        self.assertEqual(result["rule_alarm_episodes"], 1)
+        self.assertEqual(result["alarming_rules"], ["R0", "R1"])
 
     def test_normal_burden_replayed_and_source_mutation_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
@@ -493,7 +509,7 @@ class ProductionChainClosureTests(unittest.TestCase):
                         "rule_alarm_rows": [1],
                         "per_rule_runtime": [
                             {"rule_id": f"R-{method_id}", "source_id": "P1_X", "opportunities": 1,
-                             "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0}
+                             "pass": 0, "fail": 1, "abstain": 0, "system_errors": 0, "fail_rows": [1]}
                         ],
                     }
                 )

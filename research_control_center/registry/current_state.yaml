@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
+  "current_phase_statement": "PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -742,12 +742,12 @@
     "provider_calls": 122
   },
   "top_priorities": [
-    "DG-05: review conditional multi-panel feature access and post-global-freeze label/scenario lease",
+    "Resolve the consolidated DG05 scenario/time/runtime binding and exact normal-source replay/materialization scope",
     "DG05 remains NOT_APPROVED; no attack/test/label access",
     "DG06 remains required for professor submission"
   ],
   "highest_priority_work": [
-    "DG-05: review conditional multi-panel feature access and post-global-freeze label/scenario lease",
+    "Resolve the consolidated DG05 scenario/time/runtime binding and exact normal-source replay/materialization scope",
     "DG05 remains NOT_APPROVED; no attack/test/label access",
     "DG06 remains required for professor submission"
   ],
@@ -792,9 +792,9 @@
       "id": "USER-V2-005",
       "category": "MANDATORY FUTURE GATE",
       "priority": "HIGH",
-      "task": "HAI23 test2·HAI22·HAI21 attack panel 첫 접근 전에 combined DG-05 package를 검토한다.",
-      "why": "old OUTER를 재사용하지 않고 P1 eligibility·scenario authority·version별 prediction custody를 먼저 고정한다.",
-      "linked": "research_control_center/validation_v2/evaluation_expansion/DECISION_GATE_PLAN_V1.md",
+      "task": "DG-05 재승인 전에 scenario/time/runtime binding과 normal-burden source lineage를 한 번에 결정·고정한다.",
+      "why": "V3 synthetic surface coverage만으로 실제 production upstream lineage와 시간 의미가 닫히지 않는다.",
+      "linked": "research_control_center/validation_v2/dg05_production_chain_closure/SCENARIO_TIME_RUNTIME_BINDING_DECISION_BRIEF_V1.md",
       "status": "OPEN"
     },
     {
@@ -826,17 +826,29 @@
     }
   ],
   "top_user_todo": [
-    "DG-05 REAPPROVAL — EXECUTABLE V3",
+    "Consolidated DG05 scenario/time/runtime and normal-source scope decision",
     "Preserve all frozen method, metric, custody, and single-copy private authorities",
     "DG06: professor package submission decision"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-05 REAPPROVAL — EXECUTABLE V3",
+  "recommended_next_management_task": "DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
-  "last_completed_task": "DG05-V2-METRIC-VERIFIER-CLOSURE-001 — DG05_EXECUTABLE_V3_CLOSURE_FROZEN",
-  "exact_next_task": "DG-05 REAPPROVAL — EXECUTABLE V3",
+  "last_completed_task": "DG05-PRODUCTION-CHAIN-CLOSURE-001 — DECISION_REQUIRED_NO_GO",
+  "exact_next_task": "DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION",
+  "dg05_production_chain_closure": {
+    "task_id": "DG05-PRODUCTION-CHAIN-CLOSURE-001",
+    "status": "DECISION_REQUIRED",
+    "go_no_go": "NO_GO_FOR_REAL_DG05_ACCESS",
+    "audit_commit": "4719f3da01c47b61b85365f593a483872a8934a2",
+    "implementation_commit": "e1a6d7b16ca57ad3e78f844bf5264526269cdffe",
+    "open_decision": "DEC-031",
+    "normal_burden_source_status": "EVIDENCE_MISSING_FOR_COMPLETE_PRODUCTION_REPLAY",
+    "held_out_accesses": 0,
+    "label_scenario_accesses": 0,
+    "provider_calls": 0
+  },
   "safety_counters": {
     "scientific_executions": 5,
     "test2_feature_accesses": 0,

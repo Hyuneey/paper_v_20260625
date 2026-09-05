@@ -155,6 +155,10 @@ class FrontReportingTests(unittest.TestCase):
             'src/paperworks/validation_v2/dg05_execution_closure_v1.py',
             'src/paperworks/validation_v2/dg05_label_custodian_v1.py',
             'src/paperworks/validation_v2/dg05_result_oracle_v1.py',
+            'src/paperworks/validation_v2/dg05_label_custodian_v2.py',
+            'src/paperworks/validation_v2/dg05_normal_burden_replay_v1.py',
+            'src/paperworks/validation_v2/dg05_production_chain_v1.py',
+            'src/paperworks/validation_v2/dg05_upstream_lineage_verifier_v1.py',
         })
         v3_manifest = json.loads((RCC / 'validation_v2/dg05_metric_verifier_closure/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json').read_text(encoding='utf-8'))
         v3_sources = {

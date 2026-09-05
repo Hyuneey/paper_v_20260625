@@ -1,3 +1,22 @@
+# DG05 production-chain closure — decision required / NO_GO
+
+`DG05-PRODUCTION-CHAIN-CLOSURE-001` preserved the 16-file PRE-DG05 NO_GO audit at
+`4719f3da01c47b61b85365f593a483872a8934a2`. Prospective exact-root replay,
+fresh-process multi-source custody, strict runtime census, source-derived normal
+burden, and upstream primitive reconstruction components are implemented at
+`e1a6d7b16ca57ad3e78f844bf5264526269cdffe`; this is not a complete executable
+release and grants no data access.
+
+Real DG05 remains `NO_GO_FOR_REAL_DG05_ACCESS`. DEC-031 is the single open
+decision covering multi-interval delay, duplicate timestamps, timestamp gaps /
+row-time semantics, runtime participation vocabulary, and—if the required
+method-specific frozen normal sources do not already exist—narrow normal-only
+source materialization. No attack/test/label/scenario/provider/credential
+resource was accessed. Professor package is `NOT_SUBMITTED`; backup remains
+`SINGLE_COPY_LOCAL_ONLY`.
+
+## Previous record — historical state
+
 # DG05 Executable V3 metric-surface closure 완료
 
 `DG05-V2-METRIC-VERIFIER-CLOSURE-001`은 사전 접근 executable closure만 수행했습니다. 하나의 연결된 합성 경로에서 production projection/dispatch 72셀, global freeze, 단일 lease, 격리 custodian, 146개 합성 scenario, denominator, complete builder, 별도 path-based verifier까지 실행해 228/228 surface를 재계산했습니다. 12/12 mutation class와 각 surface의 omission 228/228 및 authority-binding 228/228도 실제 verifier rejection에서 파생했습니다. V2 nested authority 34개와 implementation bytes 12개를 초기화 시 재검증합니다. 실제 attack/test container, label/scenario, provider, credential 접근은 모두 0입니다.

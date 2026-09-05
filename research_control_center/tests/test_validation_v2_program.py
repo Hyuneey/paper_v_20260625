@@ -26,9 +26,9 @@ class ValidationV2ProgramTests(unittest.TestCase):
         multipanel_frozen=bool(state.get('multipanel_pre_dg05'))
         self.assertEqual(
             state['program_status'],
-            'DG05_V2_USER_REAPPROVAL_REQUIRED' if state.get('dg05_executable_closure') else ('MULTIPANEL_PRE_DG05_COMPLETE_QA_PASS' if multipanel_frozen else ('XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS' if xver_t2_executed else (
+            'DECISION_REQUIRED_NO_GO_REAL_ACCESS' if state.get('dg05_production_chain_closure') else ('DG05_V2_USER_REAPPROVAL_REQUIRED' if state.get('dg05_executable_closure') else ('MULTIPANEL_PRE_DG05_COMPLETE_QA_PASS' if multipanel_frozen else ('XVER_T2_NORMAL_PORTFOLIOS_COMPLETE_QA_PASS' if xver_t2_executed else (
                 'XVER_NORMAL_EXECUTION_COMPLETE_DG_XVER_PROVIDER_PENDING'
-                if xver_executed else 'BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING'))),
+                if xver_executed else 'BINDING_APPROVED_EXECUTION_INTEGRATION_PENDING')))),
         )
         self.assertEqual(state['xver_preparation']['status'],'BLOCKED_PENDING_HAI_XVER_NORMAL_PREP')
         self.assertEqual(state['dg04_method_lock']['decision_id'],'DEC-025')
@@ -41,7 +41,7 @@ class ValidationV2ProgramTests(unittest.TestCase):
         )
         self.assertEqual(
             state['exact_next_task'],
-            'DG-05 REAPPROVAL — EXECUTABLE V2' if state.get('dg05_executable_closure') else ('DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if multipanel_frozen else ('MULTIPANEL-PRE-DG05-FREEZE-001' if xver_t2_executed else ('DG-XVER-PROVIDER' if xver_executed else 'HAI-XVER-NORMAL-PREP-001'))),
+            'DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION' if state.get('dg05_production_chain_closure') else ('DG-05 REAPPROVAL — EXECUTABLE V2' if state.get('dg05_executable_closure') else ('DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access' if multipanel_frozen else ('MULTIPANEL-PRE-DG05-FREEZE-001' if xver_t2_executed else ('DG-XVER-PROVIDER' if xver_executed else 'HAI-XVER-NORMAL-PREP-001')))),
         )
         self.assertEqual(state['experiment_status']['EXP-03B'],'COMPLETE_QA_PASS' if executed else 'PREPARED_DG03B_REVISED_PENDING')
         self.assertEqual(

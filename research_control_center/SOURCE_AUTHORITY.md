@@ -28,3 +28,13 @@ RCC version: `0.1.0`
 
 The checkout `task-039c-gdn@c0efdb6218385ec326be1a929371242314e63cb6`
 is historical and is **not authoritative** for RCC scientific claims.
+
+## Current prospective DG05 engineering record
+
+The PRE-DG05 NO_GO audit is preserved at
+`validation-v2-dg05-production-chain-closure-001@4719f3da01c47b61b85365f593a483872a8934a2`.
+Prospective closure components are recorded at
+`validation-v2-dg05-production-chain-closure-001@e1a6d7b16ca57ad3e78f844bf5264526269cdffe`.
+Neither commit is an execution approval or a complete executable release.
+Frozen scientific authorities remain unchanged; DEC-031 must be resolved before
+a new exact release and DG05 reapproval package can be created.

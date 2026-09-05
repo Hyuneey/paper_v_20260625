@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=f96b1f6d3ec63273d5492890aacf37d41c7147dd0047367cf2934f496036ce07 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # OUTER와 재현성을 쉽게 이해하기
 
 ## 1. OUTER가 정확히 무엇인가?
@@ -51,8 +51,8 @@ Source, tests, schemas, synthetic fixture, public configs, RCC docs, lock과 gui
 
 기억할 한 문장: **현재 연구는 잘 추적되지만, 새 컴퓨터에서 과학 결과를 다시 만드는 상태는 아직 아니다.**
 
-다음 task는 **DG-05 REAPPROVAL — EXECUTABLE V3**이다. ARCH-011은 이 remediation을 실행하지 않았다.
+다음 task는 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**이다. ARCH-011은 이 remediation을 실행하지 않았다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

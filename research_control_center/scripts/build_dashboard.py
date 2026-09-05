@@ -307,7 +307,7 @@ CLAIM_CARD_COPY = {
     "CLAIM-C": ("결정론적 verifier의 계약 검사", "구조·근거·수치·split·실행 계약을 검사하지만 과학적 진실을 증명하지 않는다."),
     "CLAIM-D": ("고정 규칙 runtime의 LLM-free 실행", "고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다."),
     "CLAIM-E": ("GDN의 고유한 유용성", "EXP-01과 EXP-01B의 동결된 정상 전용 기준은 GDN의 핵심·보조 기여를 지원하지 않았다."),
-    "CLAIM-F": ("Agentic feedback의 품질 향상", "현재 feedback action이 0이므로 이점은 지원되지 않는다."),
+    "CLAIM-F": ("Agentic feedback의 품질 향상", "PILOT V1 / EXP-03 V1에서는 feedback action이 0이었다. 별도 EXP-03B 결과는 현재 claim registry에서 구분한다."),
     "CLAIM-G": ("D1과 D0의 다른 pilot 반응", "현재 14-unit pilot에서 서로 다른 event response가 관찰됐다."),
     "CLAIM-H": ("Rule-only의 운영 유용성", "높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다."),
     "CLAIM-I": ("Detector+Rule 성능 향상", "현재 D2 V1/V2는 D0 Recall을 개선하지 못했다."),

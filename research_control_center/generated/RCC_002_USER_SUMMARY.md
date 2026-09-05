@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=f96b1f6d3ec63273d5492890aacf37d41c7147dd0047367cf2934f496036ce07 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,17 +66,17 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- DG-05: review conditional multi-panel feature access and post-global-freeze label/scenario lease
+- Resolve the consolidated DG05 scenario/time/runtime binding and exact normal-source replay/materialization scope
 - DG05 remains NOT_APPROVED; no attack/test/label access
 - DG06 remains required for professor submission
 
-관리 작업의 다음 단계는 **DG-05 REAPPROVAL — EXECUTABLE V3** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION** 이고, 이후 전체
 구조 검토는 **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DG-05 REAPPROVAL — EXECUTABLE V3
+- Consolidated DG05 scenario/time/runtime and normal-source scope decision
 - Preserve all frozen method, metric, custody, and single-copy private authorities
 - DG06: professor package submission decision
 
@@ -84,4 +84,4 @@ Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

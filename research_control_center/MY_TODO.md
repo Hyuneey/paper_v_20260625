@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=f96b1f6d3ec63273d5492890aacf37d41c7147dd0047367cf2934f496036ce07 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 내가 해야 할 연구 검토
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-05 REAPPROVAL — EXECUTABLE V3. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.
@@ -85,9 +85,9 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 - **ID:** USER-V2-005
   **우선순위:** 높음 (HIGH)
-  **할 일:** HAI23 test2·HAI22·HAI21 attack panel 첫 접근 전에 combined DG-05 package를 검토한다.
-  **사용자 확인이 필요한 이유:** old OUTER를 재사용하지 않고 P1 eligibility·scenario authority·version별 prediction custody를 먼저 고정한다.
-  **연결 문서:** research_control_center/validation_v2/evaluation_expansion/DECISION_GATE_PLAN_V1.md
+  **할 일:** DG-05 재승인 전에 scenario/time/runtime binding과 normal-burden source lineage를 한 번에 결정·고정한다.
+  **사용자 확인이 필요한 이유:** V3 synthetic surface coverage만으로 실제 production upstream lineage와 시간 의미가 닫히지 않는다.
+  **연결 문서:** research_control_center/validation_v2/dg05_production_chain_closure/SCENARIO_TIME_RUNTIME_BINDING_DECISION_BRIEF_V1.md
   **상태:** 미결정
 ## 검토 필요
 
@@ -102,4 +102,4 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
-DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

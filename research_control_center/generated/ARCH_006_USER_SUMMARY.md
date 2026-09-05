@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=f96b1f6d3ec63273d5492890aacf37d41c7147dd0047367cf2934f496036ce07 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 실제 시계열에서 어떻게 판단하는가
 
 ## 1. Rule은 언제 발동하는가?
@@ -70,8 +70,8 @@ synthetic path의 구조적 binding뿐이며 사람에게 유용한지는 **UNVA
 V4 frozen path와 canonical Rule/Trace 설명을 혼동하는 것, label 전 durable persistence가 없는 것,
 그리고 설명 구현이 frozen D1에 실제 연결된 것처럼 표현하는 것이 가장 중요한 위험이다.
 
-다음 task는 **DG-05 REAPPROVAL — EXECUTABLE V3**이다.
+다음 task는 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

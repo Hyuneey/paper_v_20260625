@@ -22,6 +22,12 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-dg05-production-chain-closure-001": {
+        "e1a6d7b16ca57ad3e78f844bf5264526269cdffe",
+    },
+    "validation-v2-pre-dg05-state-audit-001": {
+        "4719f3da01c47b61b85365f593a483872a8934a2",
+    },
     "validation-v2-dg05-v3-metric-verifier-closure-001": {
         "13265fb22f7919ebc942ded630054a06271c7196",
         "467cd59ccf74bf9261d3170b0b1f1aeb5d94172e",
@@ -414,6 +420,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
                 expected_xver_stop = (
+                    'DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION' if state.get('dg05_production_chain_closure')
+                    else
                     'DG-05 REAPPROVAL — EXECUTABLE V3' if state.get('dg05_executable_v3_closure')
                     else
                     'DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001' if any(row.get('decision_id') == 'DEC-030' for row in data.get('decisions', []))
@@ -784,8 +792,14 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     if data['state'].get('dg05_executable_v3_closure'):
         result.require(len(dg05_v3_events)==1 and dg05_v3_events[0]['decision_refs']=='DEC-030'
                        and dg05_v3_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact DG05 V3 metric-closure event required')
-    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events)-len(dg05_v2_events)-len(dg05_v3_events) <= 35, "historical timeline plus explicitly validated new governance events")
-    result.require(10 <= len(data["decisions"]) <= 30, "decision registry including DG05 V2 conditional approval and pre-access blocker")
+    preaudit_events=[row for row in data['timeline'] if row['event_id']=='EVENT-PRE-DG05-STATE-AUDIT-001']
+    closure_events=[row for row in data['timeline'] if row['event_id']=='EVENT-DG05-PRODUCTION-CLOSURE-001']
+    if data['state'].get('dg05_production_chain_closure'):
+        result.require(len(preaudit_events)==1 and preaudit_events[0]['event_type']=='AUDIT_MILESTONE', 'Exact PRE-DG05 audit event required')
+        result.require(len(closure_events)==1 and closure_events[0]['decision_refs']=='DEC-031'
+                       and closure_events[0]['event_type']=='GOVERNANCE_MILESTONE', 'Exact DG05 production closure event required')
+    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events)-len(dg05_v2_events)-len(dg05_v3_events)-len(preaudit_events)-len(closure_events) <= 35, "historical timeline plus explicitly validated new governance events")
+    result.require(10 <= len(data["decisions"]) <= 31, "decision registry including DG05 production binding request")
     amendment=[row for row in data['decisions'] if row['decision_id']=='DEC-026']
     result.require(len(amendment)==1 and amendment[0]['decision']=='APPROVED' and amendment[0]['title']=='NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION','Exact DEC026 authority')
     result.require(5 <= len(history.get("phases", [])) <= 12, "history must contain a concise major-phase sequence")
@@ -836,7 +850,8 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(any(row["status"] == "SUPERSEDED" for row in data["decisions"]), "decision history lacks superseded decisions")
     result.require(any(row["status"] == "CONDITIONAL" for row in data["decisions"]), "decision history lacks conditional decisions")
     open_decisions = {row["decision_id"] for row in data["decisions"] if row["status"] == "OPEN"}
-    result.require(open_decisions == set(), "decision registry contains an unexpected unresolved decision")
+    expected_open = {"DEC-031"} if data['state'].get('dg05_production_chain_closure') else set()
+    result.require(open_decisions == expected_open, "decision registry contains an unexpected unresolved decision")
     decision_020 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-020"), None)
     result.require(decision_020 is not None and decision_020["status"] == "ACTIVE" and decision_020["user_approved"] == "true", "Formal V4 decision is not recorded as active and user-approved")
     if decision_020 is not None:

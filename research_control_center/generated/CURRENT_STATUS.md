@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=73287bb04d86eaaa02e3b43dfe51d0278631e341990df3a28641ebddc3c3bbfe authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=f96b1f6d3ec63273d5492890aacf37d41c7147dd0047367cf2934f496036ce07 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-05 REAPPROVAL — EXECUTABLE V3. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,7 +32,7 @@ Registry snapshot: `2026-09-05T10:16:36Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
 
 ## 상태를 읽는 방법
 
@@ -144,8 +144,9 @@ DG05 Executable V3 metric-surface closure is frozen after one connected syntheti
 | EXP-H22-XVER | PRE_DG05_FROZEN | PREREGISTRATION_FROZEN_NO_ATTACK_RESULT |
 | EXP-H21-XVER | PRE_DG05_FROZEN | PREREGISTRATION_FROZEN_NO_ATTACK_RESULT |
 | EXP-03B | 실행·근거 점검 완료·개발 결과 | 정상 확인 reference 기반 DEVELOPMENT_ONLY;T2 대 T1-B 사전등록 비교 |
-| EXP-DG05-CLOSURE | 구현 완료·미실행 | IMPLEMENTATION_AND_CUSTODY_ONLY_NO_ATTACK_RESULT |
-| EXP-DG05-V3-CLOSURE | 구현 완료·미실행 | EXECUTABLE_COMPLETENESS_ONLY_NO_ATTACK_RESULT |
+| EXP-DG05-CLOSURE | 구현 완료·미실행 | HISTORICAL_IMPLEMENTATION_AND_CUSTODY_ONLY_NO_ATTACK_RESULT |
+| EXP-DG05-V3-CLOSURE | 구현 완료·미실행 | HISTORICAL_EXECUTABLE_COMPLETENESS_ONLY_NO_ATTACK_RESULT |
+| EXP-DG05-PRODUCTION-CLOSURE | 구현 완료·미실행 | PREACCESS_IMPLEMENTATION_ONLY_NO_ATTACK_RESULT |
 
 ## 공식 연구 주장
 
@@ -158,7 +159,7 @@ DG05 Executable V3 metric-surface closure is frozen after one connected syntheti
 | CLAIM-C | 구현 근거로 지원됨 | 구조·근거·수치·split·실행 계약을 검사하지만 과학적 진실을 증명하지 않는다. |
 | CLAIM-D | 구현 근거로 지원됨 | 고정 authority가 같으면 현재 runtime은 LLM 없이 결정론적으로 평가한다. |
 | CLAIM-E | 현재 개발 결과로 지원되지 않음 | EXP-01과 EXP-01B의 동결된 정상 전용 기준은 GDN의 핵심·보조 기여를 지원하지 않았다. |
-| CLAIM-F | 현재 근거로 지원되지 않음 | 현재 feedback action이 0이므로 이점은 지원되지 않는다. |
+| CLAIM-F | 현재 근거로 지원되지 않음 | PILOT V1 / EXP-03 V1에서는 feedback action이 0이었다. 별도 EXP-03B 결과는 현재 claim registry에서 구분한다. |
 | CLAIM-G | DEVELOPMENT_SUPPORTED | 현재 14-unit pilot에서 서로 다른 event response가 관찰됐다. |
 | CLAIM-H | 미검증 (UNVALIDATED) | 높은 event response와 높은 정상 FAR가 함께 있어 운영 유용성은 미검증이다. |
 | CLAIM-I | 현재 개발 결과로 지원되지 않음 | 현재 D2 V1/V2는 D0 Recall을 개선하지 못했다. |
@@ -168,8 +169,9 @@ DG05 Executable V3 metric-surface closure is frozen after one connected syntheti
 | CLAIM-M | 현재 근거로 지원되지 않음 | 현재 근거는 시간 관계와 위반을 기록할 뿐 인과를 지원하지 않는다. |
 | CLAIM-N | 미검증 (UNVALIDATED) | External versions completed normal-only T0/T2 method re-instantiation; attack panels remain unexecuted. |
 | CLAIM-EXP03B-PREP | DEVELOPMENT_SUPPORTED | 정상-only 동결 EXP03B에서 T2 대 T1-B 이점;주요 의미 지표 T0 우월성 아님 |
-| CLAIM-DG05-EXEC-CLOSURE | 구현 근거로 지원됨 | The executable custody path passed synthetic rehearsal and independent replay;real panel execution still requires DG05 V2 approval. |
-| CLAIM-DG05-V3-METRIC-CLOSURE | 구현 근거로 지원됨 | Executable V3 covers and independently replays all 228 required surfaces on synthetic authorities;real panel access remains unapproved. |
+| CLAIM-DG05-EXEC-CLOSURE | 구현 근거로 지원됨 | Historical V2 synthetic rehearsal and replay are preserved;they do not establish the current production route. |
+| CLAIM-DG05-V3-METRIC-CLOSURE | 구현 근거로 지원됨 | Historical V3 independently replayed 228 synthetic surfaces;the PRE-DG05 audit found that current upstream production-source readiness was not thereby established. |
+| CLAIM-DG05-PRODUCTION-CLOSURE | 현재 근거로 지원되지 않음 | Prospective production-chain components are implemented but real access remains NO_GO pending scientific bindings normal-source lineage final route rehearsal and independent release review. |
 
 ## 연구 상태의 서로 다른 차원
 
@@ -193,8 +195,8 @@ DG05 Executable V3 metric-surface closure is frozen after one connected syntheti
 
 ## 정확한 다음 작업
 
-**DG-05 REAPPROVAL — EXECUTABLE V3**
+**DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V3 metric-surface closure is frozen after one connected synthetic production-path replay: 72/72 prediction cells, one-shot custodian lease, 146 synthetic scenarios, 228/228 typed surfaces, 12/12 mutation classes, and 228/228 per-surface omission and authority-binding rejections. The V2 nested authority and implementation bytes also replay. DEC-030 remains historical, suspended, and not exercised. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: DG-05 REAPPROVAL — EXECUTABLE V3. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

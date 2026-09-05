@@ -321,7 +321,6 @@ def launch_custodian_fresh_process_v2(
             "predecessor_state_hash": predecessor_state["self_hash"],
             "global_freeze_hash": expected_global_freeze_hash,
             "release_manifest_hash": expected_release_manifest_hash,
-            "release_manifest_hash": expected_release_manifest_hash,
             "custodian_pid": receipt["custodian_pid"],
             "custodian_parent_pid": receipt["custodian_parent_pid"],
             "consume_receipt_hash": receipt["consume_receipt_hash"],
@@ -329,7 +328,6 @@ def launch_custodian_fresh_process_v2(
             "output_byte_hash": receipt["output_byte_hash"],
             "isolation_mechanism": "FRESH_PROCESS_PLUS_APPLICATION_PATH_CAPABILITY_GUARDS",
             "os_sandbox_claimed": False,
-            "coordinator_environment_forwarding": "MINIMAL_ALLOWLIST_NO_PROVIDER_OR_CREDENTIAL_VARIABLES",
             "coordinator_environment_forwarding": "MINIMAL_ALLOWLIST_NO_PROVIDER_OR_CREDENTIAL_VARIABLES",
         }
     )
@@ -391,12 +389,11 @@ def derive_runtime_census_strict_v1(traces: Sequence[Mapping[str, Any]]) -> dict
             totals[field] += trace[field]
         if trace["opportunities"] != trace["pass"] + trace["fail"] + trace["abstain"] + trace["system_errors"]:
             raise DG05ProductionChainError("RUNTIME_OUTCOME_CENSUS_MISMATCH")
-        if len(alarm_rows) != trace["fail"]:
-            raise DG05ProductionChainError("RUNTIME_ALARM_FAIL_COUNT_MISMATCH")
         per_rule_sums = {field: 0 for field in totals}
         local_rule_ids: set[str] = set()
+        local_fail_row_union: set[int] = set()
         for row in per_rule:
-            required = {"rule_id", "source_id", "opportunities", "pass", "fail", "abstain", "system_errors"}
+            required = {"rule_id", "source_id", "opportunities", "pass", "fail", "abstain", "system_errors", "fail_rows"}
             if type(row) is not dict or set(row) != required:
                 raise DG05ProductionChainError("PER_RULE_RUNTIME_SCHEMA_REQUIRED")
             rule_id, source_id = str(row["rule_id"]), str(row["source_id"])
@@ -407,6 +404,15 @@ def derive_runtime_census_strict_v1(traces: Sequence[Mapping[str, Any]]) -> dict
                 raise DG05ProductionChainError("INVALID_PER_RULE_RUNTIME_COUNT")
             if row["opportunities"] != row["pass"] + row["fail"] + row["abstain"] + row["system_errors"]:
                 raise DG05ProductionChainError("PER_RULE_OUTCOME_CENSUS_MISMATCH")
+            fail_rows = row["fail_rows"]
+            if (
+                type(fail_rows) is not list
+                or any(type(fail_row) is not int or fail_row < 0 for fail_row in fail_rows)
+                or fail_rows != sorted(set(fail_rows))
+                or len(fail_rows) != row["fail"]
+            ):
+                raise DG05ProductionChainError("PER_RULE_FAIL_ROW_PROVENANCE_MISMATCH")
+            local_fail_row_union.update(fail_rows)
             for field in totals:
                 per_rule_sums[field] += row[field]
             if rule_id in rule_sources and rule_sources[rule_id] != source_id:
@@ -425,6 +431,8 @@ def derive_runtime_census_strict_v1(traces: Sequence[Mapping[str, Any]]) -> dict
                 sources["alarming"].add(source_id)
         if any(per_rule_sums[field] != trace[field] for field in totals):
             raise DG05ProductionChainError("AGGREGATE_PER_RULE_RUNTIME_MISMATCH")
+        if sorted(local_fail_row_union) != alarm_rows:
+            raise DG05ProductionChainError("RUNTIME_ALARM_ROW_UNION_MISMATCH")
     return {
         **totals,
         "configured_rules": sorted(configured),
