@@ -91,38 +91,3 @@ class OfficialEtaprV1:
         validate_file_batch_v1(files)
         return {'files':[self.score_file(f) for f in files],
                 'aggregation_status':'UNRESOLVED_NOT_EXECUTED', 'pooled_metric':None}
-
-    def score_namespaced_union(self, files: Sequence[EtaprFileExchangeV1], *, separator: int = 1024) -> dict:
-        """Score one canonical file-namespaced disjoint range union.
-
-        File IDs are sorted before mapping, and every physical file receives a
-        disjoint coordinate block.  This is a range-coordinate transform only;
-        it never joins file-local ranges or treats physical adjacency as one
-        event.  Empty semantics are frozen prospectively by the V2 wrapper.
-        """
-        validate_file_batch_v1(files)
-        if type(separator) is not int or separator < 64:
-            raise ValueError('UNSAFE_FILE_NAMESPACE_SEPARATOR')
-        ordered = tuple(sorted(files, key=lambda item: item.file_id))
-        if not any(item.reference_ranges for item in ordered):
-            return {'status':'NOT_APPLICABLE','eTaP':None,'eTaR':None,'F1':None,
-                    'prediction_range_count':sum(len(item.prediction_ranges) for item in ordered)}
-        if not any(item.prediction_ranges for item in ordered):
-            return {'status':'PASS_EMPTY_PREDICTION','eTaP':0.0,'eTaR':0.0,'F1':0.0,
-                    'prediction_range_count':0}
-        references=[]; predictions=[]; offset=0
-        for namespace,item in enumerate(ordered):
-            references.extend(self._range_class(offset+a,offset+b,f'f{namespace}:r{i}')
-                              for i,(a,b) in enumerate(item.reference_ranges))
-            predictions.extend(self._range_class(offset+a,offset+b,f'f{namespace}:p{i}')
-                               for i,(a,b) in enumerate(item.prediction_ranges))
-            offset += item.row_count + separator
-        engine=self._engine_class(theta_p=0.5,theta_r=0.1,delta=0.0)
-        engine.set(references,predictions)
-        precision,recall=float(engine.eTaP()),float(engine.eTaR())
-        if not all(isfinite(value) and 0 <= value <= 1 for value in (precision,recall)):
-            raise ValueError('NONFINITE_OR_OUT_OF_RANGE_ETAPR')
-        f1=0.0 if precision+recall==0 else 2*precision*recall/(precision+recall)
-        return {'status':'PASS','eTaP':precision,'eTaR':recall,'F1':f1,
-                'prediction_range_count':len(predictions),'file_count':len(ordered),
-                'separator':separator,'file_order':'LEXICAL_FILE_ID'}

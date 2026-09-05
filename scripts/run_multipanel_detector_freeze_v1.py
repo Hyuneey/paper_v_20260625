@@ -75,7 +75,11 @@ def make_input(version,split,features, *, subset=None):
 
 def persist_private(path,obj):
     path.parent.mkdir(parents=True,exist_ok=True)
-    if path.exists():raise ValueError('PRIVATE_NO_OVERWRITE')
+    if path.exists():
+        raw=path.read_bytes();existing=pickle.loads(raw)
+        if existing['model'].fit_authority['self_hash']!=obj['model'].fit_authority['self_hash'] or existing['threshold']['self_hash']!=obj['threshold']['self_hash']:
+            raise ValueError('PRIVATE_EXISTING_SEMANTIC_MISMATCH')
+        return sha256(raw).hexdigest(),len(raw)
     raw=pickle.dumps(obj,protocol=5)
     with path.open('xb') as stream:stream.write(raw);stream.flush()
     if sha256(path.read_bytes()).hexdigest()!=sha256(raw).hexdigest():raise ValueError('PRIVATE_REPLAY')
