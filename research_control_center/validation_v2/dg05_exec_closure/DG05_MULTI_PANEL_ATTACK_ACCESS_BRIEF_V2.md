@@ -1,6 +1,6 @@
 # DG-05 V2 — Multi-panel executable attack-access decision brief
 
-Status: `DRAFT_PENDING_INDEPENDENT_EXECUTABLE_QA`
+Status: `USER_DECISION_REQUIRED`
 
 Decision requested: `DG-05 REAPPROVAL — EXECUTABLE V2`
 
@@ -31,7 +31,7 @@ During closure:
 
 ## New executable authorities
 
-- Executable closure pre-QA: `4fc3cea754bb36cac84569eca485b8f2deac519b87d80f0db71975f1b55b7e24`
+- Executable closure: `18dc3203e1b050aca5d052f9b7995cd9ba7a5fe5f3fbe2cfb6d4aae357b482b8`
 - Approval manifest: `586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42`
 - Full process scope: `0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619`
 - P1 eligibility custodian V3: `f688fae22866ac5bac7ac4517fd9171d7f0d907044f3afee9cd7a609a8919166`
@@ -41,8 +41,9 @@ During closure:
 - State machine: `71e0febb462aa0580799781b9e8f2605ca944da3285f2720896dadb88a734beb`
 - Production projection/prediction adapters: `fdbd373815c09e042c4cce0edaa2541a7cca7a46874f268481799db8a72539cb`
 - Expected cell census: `87167612f6efa76b678334f7df66400a1fed40ee2264952f416b730f1836c009`
-- Synthetic end-to-end rehearsal: `f273488e06465d6d3e2134093ab7990909bfc2e3f432418a0d47a43503695565`
+- Synthetic end-to-end rehearsal: `1f8790f482d759b51b51ac6cd3c7ca2087bf6632d4f629da4b2ab91cd9aa1c7c`
 - Nested byte-replay bundle: `2f260ddeb5e64177578d140f7ce573921c4ff43cbe9886cbfddc8fe7d99a3f01`
+- Independent QA: `30484d1204affa02dc5ba0079f06bc4b6d6be9c128a80f4a84c3b75b1543775a`
 
 ## Proposed two-phase authorization
 

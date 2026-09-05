@@ -1,6 +1,6 @@
 # DG05 executable authority closure V1
 
-Status: `COORDINATOR_PRECHECK_PASS_INDEPENDENT_QA_PENDING`
+Status: `COMPLETE_QA_PASS_DG05_EXECUTABLE_CLOSURE_FROZEN`
 
 This task closed the eight pre-access execution blockers reported by the immutable `MULTIPANEL-DG05-EXEC-001` audit. It did not execute DG-05. Attack/test payload access, label/scenario access, and real eligibility generation were all zero.
 
@@ -18,8 +18,8 @@ The scientific preregistration, method bundle, portfolios, detector methods, Fus
 | B4 | Full official process scope distinguishes verified P1, verified non-P1, and unresolved identities. | `FULL_PROCESS_SCOPE_AUTHORITY_V1.json`; `P1_ELIGIBILITY_CUSTODIAN_V3.json` | PASS |
 | B5 | Prediction, projection, timestamp, scenario, denominator, eTaPR, and paired-result coordinates must replay and agree on version, physical file, and authority hash. | production adapter and result tests | PASS |
 | B6 | Label/scenario custody runs in a fresh process with a separately persisted private resource policy, closed source-format adapters, prediction-root denial, durable consume-before-read, and no prediction-capable request field. | `run_dg05_label_custodian_v1.py` | PASS |
-| B7 | Production positive-allowlist projection and a closed, typed executor bind six detector assets and an exact-seven Rule-runtime registry. Candidate-portfolio lineage, retained semantic Rules, private relation/numeric bytes, Formal V4 semantics, and the pending DG05 V2 runtime-use authority are separate bindings. | `PRODUCTION_ADAPTER_AUTHORITY_V1.json`; `RULE_RUNTIME_SUBAUTHORITY_REGISTRY_V1.json` | COORDINATOR PASS; INDEPENDENT QA PENDING |
-| B8 | PCA and Isolation Forest have separate panel-specific fit, threshold, model, mapping, callable, implementation-source, schema, and environment bindings. The bound callable is invoked, its source bytes replay at production time, and Fusion uses the bound local runtime helper. | `DETECTOR_SUBAUTHORITY_REGISTRY_V1.json`; `METHOD_DISPATCH_REGISTRY_V1.json` | COORDINATOR PASS; INDEPENDENT QA PENDING |
+| B7 | Production positive-allowlist projection and a closed, typed executor bind six detector assets and an exact-seven Rule-runtime registry. Candidate-portfolio lineage, retained semantic Rules, private relation/numeric bytes, Formal V4 semantics, and the pending DG05 V2 runtime-use authority are separate bindings. | `PRODUCTION_ADAPTER_AUTHORITY_V1.json`; `RULE_RUNTIME_SUBAUTHORITY_REGISTRY_V1.json` | PASS |
+| B8 | PCA and Isolation Forest have separate panel-specific fit, threshold, model, mapping, callable, implementation-source, schema, and environment bindings. The bound callable is invoked, its source bytes replay at production time, and Fusion uses the bound local runtime helper. | `DETECTOR_SUBAUTHORITY_REGISTRY_V1.json`; `METHOD_DISPATCH_REGISTRY_V1.json` | PASS |
 
 ## Full process scope
 
@@ -43,7 +43,7 @@ The production adapters were exercised on synthetic label-bearing containers thr
 
 `manifest initialization → positive allowlist projection → 72-cell dispatch → 71 success + 1 deliberate method failure receipt → global freeze → one lease → fresh-process custodian → 146 synthetic scenarios → method-blind P1 denominator → 23 result authorities → 23 independent result replays`.
 
-The rehearsal reached `RESULT_INTEGRITY_AUDITED`. Seven post-label mutation attempts were rejected. The intentional failed cell remained a failure and yielded `NOT_EVALUABLE_INCOMPLETE_PREDICTION_COVERAGE`; it was never converted into an empty prediction or a scientific negative.
+The rehearsal reached `RESULT_INTEGRITY_AUDITED`. Seven distinct post-label authority mutations were rejected with their exact expected failure classes: manifest, metric, Rule portfolio, Fusion, P1 custodian, prediction bytes, and detector threshold. The intentional failed cell remained a failure and yielded `NOT_EVALUABLE_INCOMPLETE_PREDICTION_COVERAGE`; it was never converted into an empty prediction or a scientific negative.
 
 ## Authority hashes
 
@@ -57,12 +57,13 @@ The rehearsal reached `RESULT_INTEGRITY_AUDITED`. Seven post-label mutation atte
 - Dispatch registry: `246e19e4c9bcd81f8e139bd5ac609dac6db8a98add16013e1205641bb0c03433`
 - Cell census: `87167612f6efa76b678334f7df66400a1fed40ee2264952f416b730f1836c009`
 - Production adapters: `fdbd373815c09e042c4cce0edaa2541a7cca7a46874f268481799db8a72539cb`
-- Synthetic rehearsal: `f273488e06465d6d3e2134093ab7990909bfc2e3f432418a0d47a43503695565`
+- Synthetic rehearsal: `1f8790f482d759b51b51ac6cd3c7ca2087bf6632d4f629da4b2ab91cd9aa1c7c`
 - Nested byte-replay bundle: `2f260ddeb5e64177578d140f7ce573921c4ff43cbe9886cbfddc8fe7d99a3f01`
-- Executable closure pre-QA: `4fc3cea754bb36cac84569eca485b8f2deac519b87d80f0db71975f1b55b7e24`
+- Independent QA: `30484d1204affa02dc5ba0079f06bc4b6d6be9c128a80f4a84c3b75b1543775a`
+- Executable closure: `18dc3203e1b050aca5d052f9b7995cd9ba7a5fe5f3fbe2cfb6d4aae357b482b8`
 
 ## Scientific interpretation
 
 This is an execution-authority and custody result, not attack-performance evidence. No held-out, external-version, superiority, generalization, or causal claim follows from the synthetic rehearsal.
 
-Independent read-only QA is still required. If and only if it passes and the final authority is regenerated against that QA receipt, the exact next gate is `DG-05 REAPPROVAL — EXECUTABLE V2`.
+Independent read-only QA passed and the final closure authority was regenerated against its immutable receipt. The exact next gate is `DG-05 REAPPROVAL — EXECUTABLE V2`.

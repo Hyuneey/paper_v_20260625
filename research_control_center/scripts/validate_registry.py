@@ -26,6 +26,7 @@ CURRENT_V2_SCIENTIFIC_SOURCES = {
         "cdfaf4483fae6f86e4658a9a489c0a1e55b80fb6",
     "08f563e025bac27bbc543b7296eaa9a66b5dfb44",
     "7df377e6c4ba0770f2137d2b67df2f60972ac8cb",
+    "5926d77dea5a8dddd6de620f13b3e666b11724d6",
     },
     "validation-v2-multipanel-pre-dg05-freeze-001": {
         "bc09470d71d6eb84656d87b32c3d87803a8f8199",

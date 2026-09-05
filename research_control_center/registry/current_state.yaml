@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "MULTIPANEL-PRE-DG05-FREEZE-001 COMPLETE_QA_PASS. HAI22/21 PCA-SPE and secondary Isolation Forest are frozen from label-blind normal projections. Five primary methods per panel, immutable Fusion, method-blind P1 eligibility, official-scenario metrics, file-namespaced eTaPR, empty-input behavior, paired contrasts, and the global prediction-before-any-label custody state machine are frozen. No attack/test/label/scenario data was accessed. Current phase PRE_DG05_FROZEN; exact next DG-05 USER_DECISION_REQUIRED. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
+  "current_phase_statement": "DG05-EXEC-AUTHORITY-CLOSURE-001 COMPLETE_QA_PASS. B1-B8 are closed by an exact executable manifest, full process scope, P1 custodian V3, detector subauthorities, production projection/prediction adapters, scenario/denominator/result builders, isolated label custodian, canonical result bytes, and independent replay. Synthetic two-phase rehearsal reached RESULT_INTEGRITY_AUDITED. Attack/test access 0; labels/scenarios 0; real eligibility 0. Current phase DG05_EXECUTABLE_CLOSURE_FROZEN; exact next DG-05 REAPPROVAL — EXECUTABLE V2. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -826,17 +826,17 @@
     }
   ],
   "top_user_todo": [
-    "DG-05: multi-panel attack feature and conditional label/scenario access decision",
+    "DG-05 REAPPROVAL — EXECUTABLE V2",
     "Preserve all frozen method, metric, custody, and single-copy private authorities",
     "DG06: professor package submission decision"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access",
+  "recommended_next_management_task": "DG-05 REAPPROVAL — EXECUTABLE V2",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
-  "last_completed_task": "MULTIPANEL-PRE-DG05-FREEZE-001 — COMPLETE_QA_PASS_PRE_DG05_FROZEN",
-  "exact_next_task": "DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access",
+  "last_completed_task": "DG05-EXEC-AUTHORITY-CLOSURE-001 — COMPLETE_QA_PASS_DG05_EXECUTABLE_CLOSURE_FROZEN",
+  "exact_next_task": "DG-05 REAPPROVAL — EXECUTABLE V2",
   "safety_counters": {
     "scientific_executions": 5,
     "test2_feature_accesses": 0,
@@ -862,6 +862,31 @@
     "attack_accesses": 0,
     "label_or_scenario_accesses": 0,
     "real_eligibility_generated": false,
+    "professor_package": "NOT_SUBMITTED",
+    "backup": "SINGLE_COPY_LOCAL_ONLY"
+  },
+  "dg05_executable_closure": {
+    "status": "COMPLETE_QA_PASS_DG05_EXECUTABLE_CLOSURE_FROZEN",
+    "historical_decision": "DEC-029_APPROVED_CONDITIONAL_TWO_PHASE_EXECUTION_SUSPENDED_BY_PREACCESS_BLOCKER",
+    "renewed_gate": "DG05_V2_USER_REAPPROVAL_REQUIRED",
+    "blocker_matrix": {"B1":"PASS","B2":"PASS","B3":"PASS","B4":"PASS","B5":"PASS","B6":"PASS","B7":"PASS","B8":"PASS"},
+    "closure_hash": "18dc3203e1b050aca5d052f9b7995cd9ba7a5fe5f3fbe2cfb6d4aae357b482b8",
+    "executable_manifest_hash": "586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42",
+    "full_process_scope_hash": "0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619",
+    "p1_custodian_v3_hash": "f688fae22866ac5bac7ac4517fd9171d7f0d907044f3afee9cd7a609a8919166",
+    "detector_registry_hash": "c5f3f834435af6615e120f57c68c5d47eb66be8c07c4870c9f5fb0ee9cd832bb",
+    "dispatch_registry_hash": "246e19e4c9bcd81f8e139bd5ac609dac6db8a98add16013e1205641bb0c03433",
+    "state_machine_hash": "71e0febb462aa0580799781b9e8f2605ca944da3285f2720896dadb88a734beb",
+    "production_adapter_hash": "fdbd373815c09e042c4cce0edaa2541a7cca7a46874f268481799db8a72539cb",
+    "synthetic_rehearsal_hash": "1f8790f482d759b51b51ac6cd3c7ca2087bf6632d4f629da4b2ab91cd9aa1c7c",
+    "rule_runtime_registry_hash": "074768ef863e481482337df4af16ee12c5ef36fb52c2129417d0ad39aa98dd14",
+    "independent_qa_hash": "30484d1204affa02dc5ba0079f06bc4b6d6be9c128a80f4a84c3b75b1543775a",
+    "private_index_hash": "f853e53e84b0e857b2cd3d72342f71004419b5103f98ecafd57d8acb3d7dc50e",
+    "expected_prediction_cells": 72,
+    "synthetic_scenarios": 146,
+    "attack_test_accesses": 0,
+    "label_scenario_accesses": 0,
+    "real_eligibility_generated": 0,
     "professor_package": "NOT_SUBMITTED",
     "backup": "SINGLE_COPY_LOCAL_ONLY"
   },

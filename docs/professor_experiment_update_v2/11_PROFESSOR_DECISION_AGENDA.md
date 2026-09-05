@@ -147,3 +147,7 @@ SCI-01~04 binding과 정상 evidence 준비 완료, provider 호출 0. DG-03B �
 8. Scenario Recall·normal false episodes/hour를 주 지표로, eTaPR·coverage·delay·overlap을 보조 지표로 사용하는 계획.
 9. 146개 명목 시나리오를 IID로 보거나 하나의 pooled Recall을 주 결과로 사용하지 않는 reporting 원칙.
 10. DG-06: 이 package를 사용자 검토 후 제출. 자동 이메일 없음.
+
+## 현재 Gate 보정
+
+DG-05 V1 실행은 사전 권한 결손 때문에 Phase A 전에 중단되었습니다. 실제 공격/test·label·scenario 접근은 0입니다. B1–B8 폐쇄 및 synthetic production-path rehearsal은 완료했지만 과학 방법과 결과는 변경하지 않았습니다. 따라서 DEC-029를 재사용하지 않고 새 executable authority를 결속한 `DG-05 V2`의 명시적 재승인을 다음 결정으로 요청합니다.

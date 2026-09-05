@@ -151,6 +151,11 @@ class FrontReportingTests(unittest.TestCase):
         detector_path='src/paperworks/validation_v2/xver_detector_v1.py'
         self.assertEqual(0,subprocess.run(['git','diff','--quiet','58b897471e3cbf05c896ae25e19a112d6696708e','--',detector_path],cwd=RCC.parent).returncode)
         additions.add(detector_path)
+        additions.update({
+            'src/paperworks/validation_v2/dg05_execution_closure_v1.py',
+            'src/paperworks/validation_v2/dg05_label_custodian_v1.py',
+            'src/paperworks/validation_v2/dg05_result_oracle_v1.py',
+        })
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

@@ -1,6 +1,6 @@
 # DG05 executable closure independent QA V1
 
-Status: `PENDING_FINAL_READ_ONLY_AGENT_REPLAY`
+Status: `PASS`
 
 ## Required blocker matrix
 
@@ -37,5 +37,16 @@ Status: `PENDING_FINAL_READ_ONLY_AGENT_REPLAY`
 - Scientific authority changes: 0
 - Professor submission: no
 
-Final verdict will be written only after an independent read-only agent replays the committed implementation, generated authorities, focused tests, and privacy boundary.
+## Final independent verdict
 
+`COMPLETE_QA_PASS`
+
+The independent read-only agent replayed commit
+`5926d77dea5a8dddd6de620f13b3e666b11724d6`, all B1--B8
+bindings, 50 focused tests, 14 public self-hashes, frozen-authority
+immutability, and the privacy/restricted-access boundary. The corrected
+rehearsal performs seven actual authority mutations and verifies each exact
+rejection class. No blocker remains.
+
+Independent QA authority:
+`30484d1204affa02dc5ba0079f06bc4b6d6be9c128a80f4a84c3b75b1543775a`.

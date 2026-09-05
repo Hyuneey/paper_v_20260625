@@ -16,11 +16,14 @@ AUTHORITY_NAMES = (
     "FULL_PROCESS_SCOPE_AUTHORITY_V1.json",
     "P1_ELIGIBILITY_CUSTODIAN_V3.json",
     "DETECTOR_SUBAUTHORITY_REGISTRY_V1.json",
+    "RULE_RUNTIME_SUBAUTHORITY_REGISTRY_V1.json",
     "METHOD_DISPATCH_REGISTRY_V1.json",
+    "NESTED_AUTHORITY_REPLAY_BUNDLE_V1.json",
     "EXECUTION_STATE_MACHINE_AUTHORITY_V1.json",
     "EXPECTED_PREDICTION_CELL_CENSUS_AUTHORITY_V1.json",
     "PRODUCTION_ADAPTER_AUTHORITY_V1.json",
     "SYNTHETIC_DG05_REHEARSAL_V1.json",
+    "INDEPENDENT_QA_AUTHORITY_V1.json",
     "DG05_EXECUTABLE_CLOSURE_AUTHORITY_V1.json",
 )
 FUTURE_NAMESPACES = (
@@ -60,10 +63,14 @@ def main() -> None:
         item = document(PUBLIC / name)
         public_authorities.append({"relative_authority": name, "self_hash": item["self_hash"]})
 
+    prior_path = vault / "dg05-exec-authority-closure-001/TASK_PRIVATE_VAULT_MANIFEST_V2.json"
+    prior = document(prior_path)
+    require(prior["self_hash"] == "15e3e1a86b3ecb5997a9c53ca3c1e652e474797697c85cf6dc770e545ee6be93", "PRIOR_DG05_MANIFEST")
     manifest = seal({
-        "schema": "task_private_vault_dg05_exec_closure_v1",
+        "schema": "task_private_vault_dg05_exec_closure_v3",
         "task": "DG05-EXEC-AUTHORITY-CLOSURE-001",
         "parent_manifest_hash": parent["self_hash"],
+        "supersedes_private_manifest_hash": prior["self_hash"],
         "records": [],
         "public_authorities": public_authorities,
         "future_namespaces": list(FUTURE_NAMESPACES),
@@ -75,15 +82,17 @@ def main() -> None:
         "storage_policy": "SINGLE_COPY_LOCAL_ONLY",
         "second_copy_verified": False,
     })
-    destination = vault / "dg05-exec-authority-closure-001/TASK_PRIVATE_VAULT_MANIFEST_V1.json"
+    destination = vault / "dg05-exec-authority-closure-001/TASK_PRIVATE_VAULT_MANIFEST_V3.json"
     publish(destination, manifest)
     require(document(destination) == manifest, "PRIVATE_MANIFEST_RESTORE")
 
     index = seal({
-        "schema": "public_private_dg05_execution_index_v1",
+        "schema": "public_private_dg05_execution_index_v3",
         "task": "DG05-EXEC-AUTHORITY-CLOSURE-001",
         "status": "PROSPECTIVE_NAMESPACES_REGISTERED_NO_REAL_ATTACK_ARTIFACTS",
         "parent_private_manifest_hash": parent["self_hash"],
+        "supersedes_private_manifest_hash": prior["self_hash"],
+        "supersedes_public_index_hash": "e86bee6e854ef974bf3f7f061c62779b7ab60e7a53818ac9673e568da6d532b4",
         "private_manifest_hash": manifest["self_hash"],
         "public_authority_count": len(public_authorities),
         "prospective_namespace_count": len(FUTURE_NAMESPACES),
@@ -98,7 +107,7 @@ def main() -> None:
         "storage_policy": "SINGLE_COPY_LOCAL_ONLY",
         "second_copy_verified": False,
     })
-    publish(PUBLIC / "PUBLIC_PRIVATE_DG05_EXECUTION_INDEX_V1.json", index)
+    publish(PUBLIC / "PUBLIC_PRIVATE_DG05_EXECUTION_INDEX_V3.json", index)
     print(json.dumps({"status": "PRIVATE_VAULT_RESTORE_PASS", "private_manifest_hash": manifest["self_hash"], "index_hash": index["self_hash"]}, sort_keys=True))
 
 
