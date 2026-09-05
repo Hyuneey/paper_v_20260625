@@ -122,7 +122,8 @@ def finalize_version(version: str, freeze: dict, bundle: dict) -> dict:
             retrieval_pack = json.loads((evidence_dir / "retrieval" / f"{candidate_id}.json").read_text(encoding="utf-8"))
             retrieval_ids = frozenset(item["evidence_slice_id"] for item in retrieval_pack["alternatives"])
         result = verify(proposal, authority, retrieval_ids=retrieval_ids)
-        require(asdict(result) == row["verifier_results"][-1] and result.status == "ACCEPTED", "ADMISSION_REPLAY_CHANGED")
+        # JSON custody canonicalizes tuple issue records to arrays.
+        require(digest(asdict(result)) == digest(row["verifier_results"][-1]) and result.status == "ACCEPTED", "ADMISSION_REPLAY_CHANGED")
         value = admit(
             proposal, authority, implementation_hash=freeze["implementation_bundle_hash"],
             config_hash=document(PUB / f"HAI{version[:2]}_T2_PROVIDER_BUDGET_V1.json")["config_hash"],
@@ -278,6 +279,14 @@ def finalize_version(version: str, freeze: dict, bundle: dict) -> dict:
 
 def main() -> None:
     freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V3.json")
+    repair = document(PUBLIC / "XVER_T2_POSTPROVIDER_REPAIR_V1.json")
+    require(
+        repair["provider_execution_freeze_hash"] == freeze["self_hash"]
+        and repair["scientific_method_changed"] is False
+        and repair["provider_outputs_changed"] is False
+        and repair["new_finalizer_hash"] == sha256_file(ROOT / "scripts/finalize_xver_t2_provider_v1.py"),
+        "POSTPROVIDER_REPAIR_AUTHORITY",
+    )
     combined, bundles = _provider_barrier(freeze)
     results = {version: finalize_version(version, freeze, bundles[version]) for version in VERSIONS}
     combined_usage = {version: _actual_usage(version) for version in VERSIONS}
