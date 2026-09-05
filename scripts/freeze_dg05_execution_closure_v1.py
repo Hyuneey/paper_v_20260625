@@ -27,7 +27,7 @@ from paperworks.validation_v2.multipanel_custody_v1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "research_control_center/validation_v2/dg05_exec_closure"
-SOURCE_COMMIT = "1dd48442934812b095a69cb503bab6d9132c80fc"
+SOURCE_COMMIT = "08f563e025bac27bbc543b7296eaa9a66b5dfb44"
 BLOCKER_COMMIT = "ed0c8dc1fbc5cadb0bf1b9e6a8cfed2c698c896c"
 BLOCKER_AUDIT_HASH = "cf972caae96dee3345a029345463ad7e6bddcd96c226104f14742e15eb387c3e"
 MANUAL_HASH = "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556"
@@ -480,13 +480,27 @@ def main() -> None:
         "prediction_adapter_hash":implementations["prediction_adapter"],"timestamp_builder_hash":implementations["timestamp_builder"],
         "exact_method_hash_dispatch":True,"positive_allowlist_row_deserialization":True,"read_all_drop_later":False,"failure_receipts":True,
         "expected_cell_census_hash":census_summary["self_hash"],"source_commit":SOURCE_COMMIT})
-    closure=self_hashed({"schema":"dg05_executable_closure_authority_v1","status":"DG05_EXECUTABLE_CLOSURE_FROZEN",
+    independent_qa_path = OUT / "INDEPENDENT_QA_AUTHORITY_V1.json"
+    independent_qa_hash = None
+    closure_status = "COORDINATOR_PRECHECK_PASS_INDEPENDENT_QA_PENDING"
+    if independent_qa_path.is_file():
+        independent_qa = json.loads(independent_qa_path.read_text(encoding="ascii"))
+        if (independent_qa.get("self_hash") != digest({k: v for k, v in independent_qa.items() if k != "self_hash"})
+                or independent_qa.get("status") != "PASS"
+                or independent_qa.get("executable_manifest_hash") != manifest.document()["self_hash"]
+                or independent_qa.get("synthetic_rehearsal_hash") != rehearsal["self_hash"]
+                or independent_qa.get("blocker_matrix") != {f"B{i}": "PASS" for i in range(1, 9)}):
+            raise RuntimeError("INDEPENDENT_QA_AUTHORITY_REPLAY_MISMATCH")
+        independent_qa_hash = independent_qa["self_hash"]
+        closure_status = "DG05_EXECUTABLE_CLOSURE_FROZEN"
+    closure=self_hashed({"schema":"dg05_executable_closure_authority_v1","status":closure_status,
         "blocker_audit_hash":BLOCKER_AUDIT_HASH,"blocker_commit":BLOCKER_COMMIT,"implementation_source_commit":SOURCE_COMMIT,
         "executable_manifest_hash":manifest.document()["self_hash"],"full_process_scope_hash":scope.document()["self_hash"],
         "p1_custodian_v3_hash":p1["self_hash"],"detector_registry_hash":detectors.document()["self_hash"],"dispatch_registry_hash":dispatch.document()["self_hash"],
         "state_machine_hash":state_authority["self_hash"],"production_adapter_hash":adapter["self_hash"],"expected_cell_census_hash":census_summary["self_hash"],
         "scenario_denominator_result_builder_hash":implementations["result_builder"],"isolated_custodian_hash":implementations["label_custodian"],
         "independent_result_verifier_hash":implementations["result_verifier"],"synthetic_rehearsal_hash":rehearsal["self_hash"],
+        "independent_qa_authority_hash":independent_qa_hash,
         "blocker_matrix":{f"B{i}":"PASS" for i in range(1,9)},"attack_test_accesses":0,"label_accesses":0,"real_eligibility_generated":0})
     for name,value in (
         ("FULL_PROCESS_SCOPE_AUTHORITY_V1.json",scope.document()),("P1_ELIGIBILITY_CUSTODIAN_V3.json",p1),
