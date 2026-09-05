@@ -155,7 +155,7 @@ def derive_executable_test_evidence(*, root: Path, connected: dict, contract: di
         elif suffix == "MCNEMAR_EXACT":
             row["status"] = "PASS"; row["payload"] = {"p_value": .123, "discordant": 1,
                                                        "implementation": "EXACT_TWO_SIDED_BINOMIAL"}
-        elif suffix == "RULE_FUSION_RECOVERY": row["payload"]["pca_t0_actual_recovery_ids"] = []
+        elif suffix == "RULE_FUSION_RECOVERY": row["payload"]["incremental_recall_t0"] += .5
         elif suffix == "RULE_RUNTIME_CENSUS": row["payload"]["system_errors"] += 1
         else: row["payload"]["false_seconds_per_hour"] += 1
         mutations.append((class_name, "result", _rehash(value)))
