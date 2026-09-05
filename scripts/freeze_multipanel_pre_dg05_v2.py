@@ -9,7 +9,7 @@ from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'research_control_center/validation_v2/multipanel_pre_dg05'
-IMPLEMENTATION_COMMIT='b1aa08c5ade3730ea12959ee315acf02356dc109'
+IMPLEMENTATION_COMMIT='fe4f42c4d40000ab369b5de0e5b0f5e748020dab'
 BASELINE='3e8799155ede1e4e6b7b835e8e8866c4e21b6d16'
 
 
@@ -135,19 +135,22 @@ def main()->None:
         'method_bundle_authority_hash':method['self_hash'],'panels':method['operational_order'],
         'attack_file_census_authority_hash':file_census_hash,'feature_allowlist_authority_bundle_hash':allowlist_hash,
         'physical_file_authority':'FrozenPhysicalFileAuthorityV2_PHASE_A_RAW_HEADER_AND_OFFICIAL_SOURCE_HASH_BOUND',
+        'physical_file_binding':'EXACT_PUBLIC_FILE_CENSUS_AND_MANIFEST_DG05_HASH_REQUIRED',
         'states':['ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED','ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED',
                   'PREDICTIONS_IN_PROGRESS_LABEL_LOCKED','GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED','LABEL_SCENARIO_LEASE_OPEN','RESULTS_COMPUTED'],
-        'transition_policy':'DURABLE_APPEND_ONLY_HASH_CHAIN_ADJACENT_ONLY_NO_SKIP','labels_between_panels':False,
-        'cell_census':'GlobalCellCensusAuthorityV2_EXACT_PANEL_FILE_METHOD_AUTHORITY_PRODUCT',
+        'transition_policy':'STATE_SPECIFIC_DURABLE_APPEND_ONLY_HASH_CHAIN_ADJACENT_ONLY_NO_SKIP','labels_between_panels':False,
+        'cell_census':'GlobalCellCensusAuthorityV2_EXACT_PANEL_FILE_AND_DETECTOR_PORTFOLIO_FUSION_DERIVED_METHOD_PRODUCT',
         'success_receipt':'PredictionSuccessReceiptV2_WITH_DURABLE_ARTIFACT_HASH_REPLAY',
         'failure_receipt':'PredictionFailureReceiptV2_NO_SYNTHETIC_PREDICTION_OR_ALARM_FIELDS',
         'attack_projection':'FrozenFeatureAllowlistAuthorityV2_BOUND_TIMESTAMP_PLUS_APPROVED_FEATURES',
         'projection_artifact_replay':'CANONICAL_COLUMNS_VALUES_ROW_COUNT_AND_SHA256',
-        'excluded_value_contact_flags':'ALL_FALSE_REQUIRED','manifest':'GlobalPredictionManifestV2_DURABLE_REOPEN_HASH_REPLAY',
+        'excluded_value_contact_flags':'LABEL_AND_SCENARIO_PARSE_DECODE_INSPECT_COUNT_VALIDATE_FILTER_USE_ALL_FALSE_REQUIRED',
+        'manifest':'GlobalPredictionManifestV2_DURABLE_REOPEN_HASH_REPLAY',
         'lease_precondition':'DURABLE_EXACT_GLOBAL_CENSUS_AND_GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED',
         'lease':'OPAQUE_APPEND_ONLY_SINGLE_ISSUE_SINGLE_CONSUME_NO_RETRY','lease_count':1,
         'publication':'FILE_FSYNC_ATOMIC_NO_OVERWRITE_LINK_POST_PUBLICATION_REPLAY',
-        'reader_failure_consumes_lease':True,'post_label_prediction_mutation':'PROHIBITED',
+        'reader_failure_consumes_lease':True,'post_reader_projection_prediction_replay':'REQUIRED',
+        'results_state':'SEPARATE_DURABLE_RESULT_INTEGRITY_RECEIPT_REQUIRED','post_label_prediction_mutation':'PROHIBITED',
         'implementation_hash':sha_file(ROOT/'src/paperworks/validation_v2/multipanel_custody_v1.py'),
         'attack_accesses':0,'label_accesses':0})
     prereg_hash=write('MULTIPANEL_PREREGISTRATION_V2.json',{

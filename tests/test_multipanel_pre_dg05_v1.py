@@ -13,6 +13,7 @@ from paperworks.validation_v2.xver_detector_v1 import (
 from paperworks.validation_v2.multipanel_metrics_v1 import *
 from paperworks.validation_v2.multipanel_custody_v1 import *
 from paperworks.validation_v2.p1_eligibility_custodian_v1 import *
+from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
 
 H='a'*64; C='b'*40
 BUNDLE='dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2'
@@ -291,6 +292,8 @@ class CustodyEligibilityTests(unittest.TestCase):
         file_bundle=json.loads((root/'ATTACK_FILE_CENSUS_AUTHORITIES_V1.json').read_text(encoding='utf-8'))
         mapping_bundle=json.loads((root/'P1_MAPPING_AUTHORITIES_V1.json').read_text(encoding='utf-8'))
         self.assertEqual(tuple(row['panel_id'] for row in allowlist_bundle['authorities']),FROZEN_PANEL_ORDER_V2)
+        self.assertEqual(tuple(len(row['feature_ids']) for row in allowlist_bundle['authorities']),(37,24,22))
+        self.assertEqual(tuple(allowlist_bundle['authorities'][0]['feature_ids']),tuple(P1_FEATURE_ORDER))
         expected_files=(('hai-test2.csv',),('test1.csv','test2.csv','test3.csv','test4.csv'),('test1.csv','test2.csv','test3.csv','test4.csv','test5.csv'))
         self.assertEqual(tuple(tuple(row['file_ids']) for row in file_bundle['panels']),expected_files)
         for row in allowlist_bundle['authorities']:
@@ -301,6 +304,14 @@ class CustodyEligibilityTests(unittest.TestCase):
             authority=FrozenP1MappingAuthorityV2(row['dataset_version'],tuple(P1MappingEntryV2(**entry) for entry in row['entries']),row['official_mapping_source_hash'],row['source_commit'])
             authority.validate();self.assertEqual(authority.document(),row)
             self.assertTrue(all(entry.scope=='P1' and entry.mapping_state=='EXACT_MATCH' for entry in authority.entries))
+
+    def test_projection_receipt_records_complete_label_scenario_noncontact(self):
+        with TemporaryDirectory() as raw:
+            manifest,*_=self.issued_v2(Path(raw))
+            for receipt in manifest.projection_receipts:
+                document=receipt.document()
+                flags=(name for name in document if name.startswith('label_values_') or name.startswith('scenario_values_'))
+                self.assertEqual(sum(1 for name in flags if document[name] is False),14)
 
 
 if __name__=='__main__':unittest.main()

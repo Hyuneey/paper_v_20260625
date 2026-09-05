@@ -94,19 +94,25 @@ def main() -> None:
     prior_public_v1=document(PUBLIC/'PUBLIC_PRIVATE_MULTIPANEL_INDEX_V1.json')
     prior_public_v2=document(PUBLIC/'PUBLIC_PRIVATE_MULTIPANEL_INDEX_V2.json')
     prior_public_v3=document(PUBLIC/'PUBLIC_PRIVATE_MULTIPANEL_INDEX_V3.json')
+    prior_public_v4=document(PUBLIC/'PUBLIC_PRIVATE_MULTIPANEL_INDEX_V4.json')
+    prior_public_v5=document(PUBLIC/'PUBLIC_PRIVATE_MULTIPANEL_INDEX_V5.json')
     prior_private_v1=document(vault/'multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V1.json')
     prior_private_v2=document(vault/'multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V2.json')
     prior_private_v3=document(vault/'multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V3.json')
+    prior_private_v4=document(vault/'multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V4.json')
+    prior_private_v5=document(vault/'multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V5.json')
     require(prior_public_v1['private_manifest_hash']==prior_private_v1['self_hash'],'V1_PRIVATE_LINEAGE')
     require(prior_public_v2['private_manifest_hash']==prior_private_v2['self_hash'],'V2_PRIVATE_LINEAGE')
     require(prior_public_v3['private_manifest_hash']==prior_private_v3['self_hash'],'V3_PRIVATE_LINEAGE')
+    require(prior_public_v4['private_manifest_hash']==prior_private_v4['self_hash'],'V4_PRIVATE_LINEAGE')
+    require(prior_public_v5['private_manifest_hash']==prior_private_v5['self_hash'],'V5_PRIVATE_LINEAGE')
     manifest = seal(
         {
-            "schema": "task_private_vault_multipanel_pre_dg05_v4",
+            "schema": "task_private_vault_multipanel_pre_dg05_v6",
             "task": TASK_ID,
             "parent_manifest_hash": parent["self_hash"],
-            "previous_private_manifest_hashes": [prior_private_v1['self_hash'],prior_private_v2['self_hash'],prior_private_v3['self_hash']],
-            "previous_public_index_hashes": [prior_public_v1['self_hash'],prior_public_v2['self_hash'],prior_public_v3['self_hash']],
+            "previous_private_manifest_hashes": [prior_private_v1['self_hash'],prior_private_v2['self_hash'],prior_private_v3['self_hash'],prior_private_v4['self_hash'],prior_private_v5['self_hash']],
+            "previous_public_index_hashes": [prior_public_v1['self_hash'],prior_public_v2['self_hash'],prior_public_v3['self_hash'],prior_public_v4['self_hash'],prior_public_v5['self_hash']],
             "records": records,
             "public_authorities": public_authorities,
             "future_namespaces": list(FUTURE_NAMESPACES),
@@ -120,7 +126,7 @@ def main() -> None:
             "second_copy_verified": False,
         }
     )
-    destination = vault / "multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V4.json"
+    destination = vault / "multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V6.json"
     publish(destination, manifest)
     restored = document(destination)
     require(restored == manifest, "PRIVATE_MANIFEST_RESTORE")
@@ -129,12 +135,12 @@ def main() -> None:
 
     index = seal(
         {
-            "schema": "public_private_multipanel_pre_dg05_index_v4",
+            "schema": "public_private_multipanel_pre_dg05_index_v6",
             "task": TASK_ID,
             "private_manifest_hash": manifest["self_hash"],
             "parent_manifest_hash": parent["self_hash"],
-            "previous_private_manifest_hashes": [prior_private_v1['self_hash'],prior_private_v2['self_hash'],prior_private_v3['self_hash']],
-            "previous_public_index_hashes": [prior_public_v1['self_hash'],prior_public_v2['self_hash'],prior_public_v3['self_hash']],
+            "previous_private_manifest_hashes": [prior_private_v1['self_hash'],prior_private_v2['self_hash'],prior_private_v3['self_hash'],prior_private_v4['self_hash'],prior_private_v5['self_hash']],
+            "previous_public_index_hashes": [prior_public_v1['self_hash'],prior_public_v2['self_hash'],prior_public_v3['self_hash'],prior_public_v4['self_hash'],prior_public_v5['self_hash']],
             "actual_private_record_count": len(records),
             "prospective_namespace_count": len(FUTURE_NAMESPACES),
             "prospective_namespace_status": "NOT_MATERIALIZED_PRE_DG05",
@@ -150,7 +156,7 @@ def main() -> None:
             "provider_calls": 0,
         }
     )
-    publish(PUBLIC / "PUBLIC_PRIVATE_MULTIPANEL_INDEX_V4.json", index)
+    publish(PUBLIC / "PUBLIC_PRIVATE_MULTIPANEL_INDEX_V6.json", index)
     print(
         json.dumps(
             {

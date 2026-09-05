@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=37991eb80f9a1f37099cd2b71c9d1117b8e2e94badee421f12cebd17fdb6cb62 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=188187c9dc94da7b8e9354af38d8db038c2b9c449b89744fa677e321844c038b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,7 +66,7 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- MULTIPANEL-PRE-DG05-FREEZE-001: unresolved metric and final custody bindings
+- DG-05: review conditional multi-panel feature access and post-global-freeze label/scenario lease
 - DG05 remains NOT_APPROVED; no attack/test/label access
 - DG06 remains required for professor submission
 

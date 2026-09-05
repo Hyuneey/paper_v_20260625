@@ -51,7 +51,7 @@ class RegistryValidationTests(unittest.TestCase):
         self.assertEqual(11, len(data["experiments"]))
         self.assertEqual(15, len(data["claims"]))
         self.assertEqual(21 if data["state"].get("multipanel_pre_dg05") else 20, len(data["risks"]))
-        self.assertEqual(74 if data["state"].get("multipanel_pre_dg05") else (55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52)), len(data["artifacts"]))
+        self.assertEqual(78 if data["state"].get("multipanel_pre_dg05") else (55 if data["state"].get("xver_t2_execution") else (53 if data["state"].get("xver_normal_execution") else 52)), len(data["artifacts"]))
         self.assertEqual(1, len([r for r in data['artifacts'] if r['artifact_id']=='ART-XVER-GDN-CONTEXT']))
         self.assertEqual(
             {
@@ -81,6 +81,7 @@ class RegistryValidationTests(unittest.TestCase):
                 "9c4880608883dd2c6881dfb1ae4dade5d2f95563",
                 "dd646863836ac354fb7b0e9d9ef03d9cf0a6e4ca",
                 "b1aa08c5ade3730ea12959ee315acf02356dc109",
+                "fe4f42c4d40000ab369b5de0e5b0f5e748020dab",
             },
             "validation-v2-xver-t2-provider-exec-001": {"9e455938a21606053118eb52215cd9d5741d708b"},
             "validation-v2-hai-xver-normal-prep-001": {
@@ -130,6 +131,7 @@ class RegistryValidationTests(unittest.TestCase):
             "9e455938a21606053118eb52215cd9d5741d708b",
             "dd646863836ac354fb7b0e9d9ef03d9cf0a6e4ca",
             "b1aa08c5ade3730ea12959ee315acf02356dc109",
+            "fe4f42c4d40000ab369b5de0e5b0f5e748020dab",
         }
         for name in ("decisions", "timeline"):
             self.assertLessEqual({row["source_commit"] for row in data[name]}, allowed_history_commits)
