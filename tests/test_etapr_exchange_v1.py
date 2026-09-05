@@ -26,3 +26,11 @@ class EtaprExchangeTests(unittest.TestCase):
         EtaprFileExchangeV1('SYNTHETIC',4,((0,1),(2,3)),((0,3),)).validate()
         with self.assertRaisesRegex(ValueError,'MAXIMAL'):
             EtaprFileExchangeV1('SYNTHETIC',4,((0,1),),((0,1),(2,3))).validate()
+
+    def test_namespaced_empty_contract_without_engine(self):
+        from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
+        wrapper=object.__new__(OfficialEtaprV1)
+        no_gt=wrapper.score_namespaced_union([EtaprFileExchangeV1('A',3,(),((1,1),))])
+        no_prediction=wrapper.score_namespaced_union([EtaprFileExchangeV1('A',3,((1,1),),())])
+        self.assertEqual(no_gt['status'],'NOT_APPLICABLE')
+        self.assertEqual((no_prediction['eTaP'],no_prediction['eTaR'],no_prediction['F1']),(0,0,0))
