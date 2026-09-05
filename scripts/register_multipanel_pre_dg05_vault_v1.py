@@ -66,6 +66,7 @@ def main() -> None:
         )
 
     authority_names = (
+        "HAI23_DETECTOR_PRIVATE_HASH_BINDING_V1.json",
         "HAI23_DETECTOR_REPLAY_AUTHORITY_V1.json",
         "HAI22_DETECTOR_AUTHORITY_V1.json",
         "HAI21_DETECTOR_AUTHORITY_V1.json",
@@ -83,7 +84,7 @@ def main() -> None:
 
     manifest = seal(
         {
-            "schema": "task_private_vault_multipanel_pre_dg05_v1",
+            "schema": "task_private_vault_multipanel_pre_dg05_v2",
             "task": TASK_ID,
             "parent_manifest_hash": parent["self_hash"],
             "records": records,
@@ -99,7 +100,7 @@ def main() -> None:
             "second_copy_verified": False,
         }
     )
-    destination = vault / "multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V1.json"
+    destination = vault / "multipanel-pre-dg05-freeze-001/TASK_PRIVATE_VAULT_MANIFEST_V2.json"
     publish(destination, manifest)
     restored = document(destination)
     require(restored == manifest, "PRIVATE_MANIFEST_RESTORE")
@@ -108,7 +109,7 @@ def main() -> None:
 
     index = seal(
         {
-            "schema": "public_private_multipanel_pre_dg05_index_v1",
+            "schema": "public_private_multipanel_pre_dg05_index_v2",
             "task": TASK_ID,
             "private_manifest_hash": manifest["self_hash"],
             "parent_manifest_hash": parent["self_hash"],
@@ -127,7 +128,7 @@ def main() -> None:
             "provider_calls": 0,
         }
     )
-    publish(PUBLIC / "PUBLIC_PRIVATE_MULTIPANEL_INDEX_V1.json", index)
+    publish(PUBLIC / "PUBLIC_PRIVATE_MULTIPANEL_INDEX_V2.json", index)
     print(
         json.dumps(
             {

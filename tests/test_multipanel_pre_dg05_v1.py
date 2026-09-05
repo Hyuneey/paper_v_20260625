@@ -1,5 +1,7 @@
 import unittest
 from dataclasses import replace
+import json
+from pathlib import Path
 import numpy as np
 
 from paperworks.validation_v2.xver_detector_v1 import (
@@ -30,6 +32,21 @@ class DetectorPortabilityTests(unittest.TestCase):
         bad=replace(self.matrix('train1'),feature_ids=('BAD','P1_X1','P1_X2'))
         with self.assertRaises(ExternalDetectorError):
             fit_external_pca_v1(bad,self.matrix('train2'),version='22.04',feature_ids=bad.feature_ids,source_commit=C,preregistration_hash=H)
+
+    def test_hai23_private_detector_authority_is_exactly_hash_bound(self):
+        root=Path(__file__).resolve().parents[1]/'research_control_center/validation_v2/multipanel_pre_dg05'
+        binding=json.loads((root/'HAI23_DETECTOR_PRIVATE_HASH_BINDING_V1.json').read_text(encoding='utf-8'))
+        replay=json.loads((root/'HAI23_DETECTOR_REPLAY_AUTHORITY_V1.json').read_text(encoding='utf-8'))
+        self.assertEqual(binding['status'],'EXACT_PRIVATE_HASH_REPLAY_PASS')
+        self.assertEqual(replay['private_model_bytes'],'EXACT_HASH_BOUND_LOCAL_ONLY')
+        self.assertEqual(replay['private_hash_binding'],binding['self_hash'])
+        for key in ('pca_fit_authority_hash','pca_threshold_authority_hash','if_fit_authority_hash','if_threshold_authority_hash'):
+            self.assertEqual(replay[key],binding[key])
+        self.assertFalse(binding['private_paths_published'])
+        self.assertFalse(binding['private_numeric_values_published'])
+        self.assertFalse(binding['model_bytes_deserialized'])
+        self.assertEqual(binding['test_or_attack_payload_accesses'],0)
+        self.assertEqual(binding['label_or_scenario_accesses'],0)
 
 
 class MetricTests(unittest.TestCase):
