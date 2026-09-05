@@ -40,6 +40,16 @@ class DG05ClosureAuthorityTest(unittest.TestCase):
         rehearsal = read("SYNTHETIC_DG05_REHEARSAL_V1.json")
         self.assertEqual((rehearsal["phase_a_cells"], rehearsal["scenario_count"], rehearsal["result_authority_count"]), (72,146,23))
         self.assertEqual(rehearsal["final_state"], "RESULT_INTEGRITY_AUDITED")
+        self.assertEqual(rehearsal["post_label_mutation_rejections"], 7)
+        self.assertEqual(rehearsal["post_label_mutation_rejection_codes"], {
+            "fusion": "RECEIPT_METHOD_AUTHORITY_MISMATCH",
+            "manifest": "EXACT_APPROVED_MANIFEST_HASH_REQUIRED",
+            "metric": "RESULT_NESTED_AUTHORITY_MISMATCH:metric_authority_hash",
+            "p1": "RESULT_NESTED_AUTHORITY_MISMATCH:p1_custodian_hash",
+            "portfolio": "RECEIPT_METHOD_AUTHORITY_MISMATCH",
+            "prediction": "PREDICTION_BYTE_REPLAY_MISMATCH",
+            "threshold": "FITTED_MODEL_COMPONENT_BINDING_MISMATCH",
+        })
 
     def test_full_scope_exact_counts_and_hai21_discrepancy(self):
         raw = read("FULL_PROCESS_SCOPE_AUTHORITY_V1.json")

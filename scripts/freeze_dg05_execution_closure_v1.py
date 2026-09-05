@@ -1,6 +1,7 @@
 """Freeze DG05 executable closure authorities using synthetic-only rehearsal."""
 from __future__ import annotations
 
+from dataclasses import replace
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -449,23 +450,73 @@ def synthetic_rehearsal(manifest, dispatch, detectors, rules, scope, *, manifest
         state = advance_dg05_state_v1(state, manifest, next_state=STATE_ORDER_V3[9],
             evidence=_transition(root, kind="RESULT_INTEGRITY_QA", count=23, document=oracle_bundle,
                                  next_state=STATE_ORDER_V3[9], current_state=state, manifest=manifest))
-        negative=0
-        for mutation in ("manifest","metric","portfolio","fusion","p1","prediction","threshold"):
+        # Seven genuinely distinct authority mutations.  Preserve the exact
+        # failure class so the rehearsal is evidence of the corresponding
+        # boundary, rather than seven aliases for one state-machine failure.
+        mutation_rejections = {}
+
+        def reject(name, expected_error, action):
             try:
-                if mutation == "prediction":
-                    first = next(iter(prediction_paths.values())); original=first.read_bytes(); first.write_bytes(original+b"x")
-                    try: freeze_global_predictions_v1(manifest=global_manifest,census=census,receipt_artifacts=artifact_paths,predecessor_state=state)
-                    finally: first.write_bytes(original)
-                else:
-                    advance_dg05_state_v1(state, manifest, next_state=STATE_ORDER_V3[-1],
-                        evidence=_transition(root, kind="RESULT_INTEGRITY_QA", count=23, document=oracle_bundle,
-                                             next_state=STATE_ORDER_V3[-1], current_state=state, manifest=manifest))
-            except DG05ClosureError:
-                negative += 1
+                action()
+            except DG05ClosureError as exc:
+                observed = str(exc)
+                if observed != expected_error:
+                    raise RuntimeError(f"UNEXPECTED_MUTATION_REJECTION:{name}:{observed}") from exc
+                mutation_rejections[name] = observed
+                return
+            raise RuntimeError(f"MUTATION_WAS_NOT_REJECTED:{name}")
+
+        reject("manifest", "EXACT_APPROVED_MANIFEST_HASH_REQUIRED", lambda:
+            initialize_dg05_execution_v1(manifest, approved_manifest_hash="a" * 64,
+                execution_id="SYNTHETIC_DG05_MUTATED_MANIFEST", manifest_artifact_path=manifest_path,
+                nested_authority_replay=nested_replay))
+
+        reject("metric", "RESULT_NESTED_AUTHORITY_MISMATCH:metric_authority_hash", lambda:
+            verify_result_authority_v1(path=result_paths[0], receipt=result_receipts[0],
+                expected_bindings={"metric_authority_hash": "a" * 64}))
+
+        def reject_dispatch_component(executor_class):
+            selected = next(item for item in dispatch.entries if item.executor_class == executor_class)
+            components = list(selected.component_hashes)
+            components[-1] = "a" * 64
+            changed = replace(selected, component_hashes=tuple(components))
+            changed_dispatch = replace(dispatch, entries=tuple(sorted(
+                changed if item == selected else item for item in dispatch.entries)))
+            changed_dispatch.validate()
+            build_global_prediction_manifest_v1(census=census, receipts=receipts,
+                executable_manifest_hash=mh, dispatch=changed_dispatch)
+
+        reject("portfolio", "RECEIPT_METHOD_AUTHORITY_MISMATCH", lambda: reject_dispatch_component("RULE"))
+        reject("fusion", "RECEIPT_METHOD_AUTHORITY_MISMATCH", lambda: reject_dispatch_component("FUSION"))
+
+        reject("p1", "RESULT_NESTED_AUTHORITY_MISMATCH:p1_custodian_hash", lambda:
+            verify_result_authority_v1(path=result_paths[0], receipt=result_receipts[0],
+                expected_bindings={"p1_custodian_hash": "a" * 64}))
+
+        def reject_prediction_bytes():
+            first = next(iter(prediction_paths.values()))
+            original = first.read_bytes()
+            first.write_bytes(original + b"x")
+            try:
+                freeze_global_predictions_v1(manifest=global_manifest, census=census,
+                    receipt_artifacts=artifact_paths, predecessor_state=state)
+            finally:
+                first.write_bytes(original)
+
+        reject("prediction", "PREDICTION_BYTE_REPLAY_MISMATCH", reject_prediction_bytes)
+
+        def reject_detector_threshold():
+            selected = detectors.entries[0]
+            changed = replace(selected, threshold_authority_hash="a" * 64)
+            replace(detectors, entries=tuple(sorted(
+                changed if item == selected else item for item in detectors.entries))).validate()
+
+        reject("threshold", "FITTED_MODEL_COMPONENT_BINDING_MISMATCH", reject_detector_threshold)
         return self_hashed({"schema":"synthetic_dg05_end_to_end_rehearsal_v1","phase_a_cells":72,
             "prediction_successes":71,"prediction_failures":1,"global_freeze_hash":freeze["self_hash"],"lease_issue_count":1,
             "custodian_fresh_process":True,"scenario_count":146,"denominator_count":146,"result_authority_count":23,
-            "independent_result_replay_count":23,"post_label_mutation_rejections":negative,"final_state":state["state"],
+            "independent_result_replay_count":23,"post_label_mutation_rejections":len(mutation_rejections),
+            "post_label_mutation_rejection_codes":mutation_rejections,"final_state":state["state"],
             "p1_fixture_states":["P1_ELIGIBLE","OUT_OF_SCOPE","UNRESOLVED","P1_ELIGIBLE","OUT_OF_SCOPE_CROSS_PROCESS_SECONDARY"],
             "attack_test_accesses":0,"real_label_accesses":0,"real_eligibility_generated":0,"status":"PASS"})
 
