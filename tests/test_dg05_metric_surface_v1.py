@@ -37,7 +37,9 @@ from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
 from paperworks.validation_v2.dg05_executable_v3 import (
     DG05ExecutableV3Error,
     initialize_dg05_executable_v3_preaccess,
+    predecessor_v2_nested_repository_paths_v1,
 )
+from paperworks.validation_v2.dg05_connected_rehearsal_v3 import run_connected_synthetic_rehearsal_v3
 
 
 H = "a" * 64
@@ -273,21 +275,45 @@ class MetricSurfaceV3Tests(unittest.TestCase):
 
     def test_v3_initializer_requires_exact_future_approval_hash(self):
         authority_root = ROOT / "research_control_center/validation_v2/dg05_metric_verifier_closure"
+        predecessor_root = ROOT / "research_control_center/validation_v2/dg05_exec_closure"
         nested = {
             "contract": (authority_root / "METRIC_SURFACE_CONTRACT_V1.json", "metric_surface_contract_v1"),
             "expected": (authority_root / "EXPECTED_RESULT_SURFACE_V1.json", "expected_result_surface_authority_v1"),
             "builder_support": (authority_root / "BUILDER_SURFACE_SUPPORT_V1.json", "result_surface_support_declaration_v1"),
             "verifier_support": (authority_root / "VERIFIER_SURFACE_SUPPORT_V1.json", "result_surface_support_declaration_v1"),
             "completeness": (authority_root / "RESULT_SURFACE_COMPLETENESS_ORACLE_V1.json", "result_surface_completeness_oracle_v1"),
+            "coverage": (authority_root / "RESULT_SURFACE_COVERAGE_MATRIX_V1.json", "result_surface_coverage_matrix_authority_v1"),
+            "mutation": (authority_root / "MUTATION_EVIDENCE_V1.json", "dg05_metric_surface_mutation_receipt_v1"),
+            "rehearsal": (authority_root / "SYNTHETIC_DG05_REHEARSAL_V2.json", "synthetic_dg05_rehearsal_v2"),
+        }
+        predecessor = {
+            "predecessor_manifest_path": predecessor_root / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V1.json",
+            "predecessor_closure_path": predecessor_root / "DG05_EXECUTABLE_CLOSURE_AUTHORITY_V1.json",
+            "predecessor_bundle_path": predecessor_root / "NESTED_AUTHORITY_REPLAY_BUNDLE_V1.json",
+            "predecessor_nested_paths": predecessor_v2_nested_repository_paths_v1(ROOT),
         }
         state = initialize_dg05_executable_v3_preaccess(manifest_path=authority_root / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json",
             closure_path=authority_root / "DG05_EXECUTABLE_CLOSURE_AUTHORITY_V3.json", nested_paths=nested,
-            approved_manifest_hash=None)
+            approved_manifest_hash=None, **predecessor)
         self.assertEqual((state["state"], state["attack_access_authorized"]), ("DG05_V3_USER_REAPPROVAL_REQUIRED", False))
+        self.assertEqual(state["predecessor_v2_replay"]["nested_artifact_count"], 34)
         with self.assertRaises(DG05ExecutableV3Error):
             initialize_dg05_executable_v3_preaccess(manifest_path=authority_root / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json",
                 closure_path=authority_root / "DG05_EXECUTABLE_CLOSURE_AUTHORITY_V3.json", nested_paths=nested,
-                approved_manifest_hash="0" * 64)
+                approved_manifest_hash="0" * 64, **predecessor)
+
+    def test_connected_prediction_lease_metric_surface_rehearsal(self):
+        contract = build_metric_surface_contract_v1(source_commit=G)
+        with tempfile.TemporaryDirectory() as raw:
+            evidence = run_connected_synthetic_rehearsal_v3(
+                root=Path(raw), contract=contract, wrapper=self.wrapper, source_commit=G)
+        self.assertEqual(evidence["derived_prediction_cells"], 72)
+        self.assertEqual(evidence["successful_prediction_cells"], 72)
+        self.assertEqual(evidence["synthetic_scenarios"], 146)
+        self.assertEqual(evidence["verified_surface_count"], 228)
+        self.assertEqual(evidence["lease_issue_count"], 1)
+        self.assertEqual(evidence["lease_consume_count"], 1)
+        self.assertEqual(evidence["final_state"], "RESULT_INTEGRITY_AUDITED")
 
 
 if __name__ == "__main__":
