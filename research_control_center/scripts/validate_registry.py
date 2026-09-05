@@ -28,6 +28,7 @@ CURRENT_V2_SCIENTIFIC_SOURCES = {
         "dd646863836ac354fb7b0e9d9ef03d9cf0a6e4ca",
         "b1aa08c5ade3730ea12959ee315acf02356dc109",
         "fe4f42c4d40000ab369b5de0e5b0f5e748020dab",
+        "e8ad3a141eb204415079e7415f69167a8d30dbae",
     },
     "validation-v2-xver-t2-provider-exec-001": {"9e455938a21606053118eb52215cd9d5741d708b"},
     "validation-v2-hai-xver-normal-prep-001": {

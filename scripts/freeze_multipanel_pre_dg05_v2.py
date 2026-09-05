@@ -9,7 +9,7 @@ from paperworks.v6.task039e3_r2r_d0_detector_design_v1 import P1_FEATURE_ORDER
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'research_control_center/validation_v2/multipanel_pre_dg05'
-IMPLEMENTATION_COMMIT='fe4f42c4d40000ab369b5de0e5b0f5e748020dab'
+IMPLEMENTATION_COMMIT='e8ad3a141eb204415079e7415f69167a8d30dbae'
 BASELINE='3e8799155ede1e4e6b7b835e8e8866c4e21b6d16'
 
 
@@ -139,6 +139,7 @@ def main()->None:
         'states':['ATTACK_CONTAINER_CUSTODIED_LABEL_LOCKED','ATTACK_FEATURE_PROJECTION_READY_LABEL_LOCKED',
                   'PREDICTIONS_IN_PROGRESS_LABEL_LOCKED','GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED','LABEL_SCENARIO_LEASE_OPEN','RESULTS_COMPUTED'],
         'transition_policy':'STATE_SPECIFIC_DURABLE_APPEND_ONLY_HASH_CHAIN_ADJACENT_ONLY_NO_SKIP','labels_between_panels':False,
+        'projection_transition_evidence':'EXACT_TEN_FILE_TYPED_RECEIPT_AND_PROJECTION_BYTE_REPLAY',
         'cell_census':'GlobalCellCensusAuthorityV2_EXACT_PANEL_FILE_AND_DETECTOR_PORTFOLIO_FUSION_DERIVED_METHOD_PRODUCT',
         'success_receipt':'PredictionSuccessReceiptV2_WITH_DURABLE_ARTIFACT_HASH_REPLAY',
         'failure_receipt':'PredictionFailureReceiptV2_NO_SYNTHETIC_PREDICTION_OR_ALARM_FIELDS',
@@ -150,7 +151,10 @@ def main()->None:
         'lease':'OPAQUE_APPEND_ONLY_SINGLE_ISSUE_SINGLE_CONSUME_NO_RETRY','lease_count':1,
         'publication':'FILE_FSYNC_ATOMIC_NO_OVERWRITE_LINK_POST_PUBLICATION_REPLAY',
         'reader_failure_consumes_lease':True,'post_reader_projection_prediction_replay':'REQUIRED',
-        'results_state':'SEPARATE_DURABLE_RESULT_INTEGRITY_RECEIPT_REQUIRED','post_label_prediction_mutation':'PROHIBITED',
+        'global_freeze_transition_evidence':'TYPED_MANIFEST_CELL_AND_SUCCESS_ARTIFACT_BYTE_REPLAY',
+        'results_state':'EXACT_PANEL_METHOD_RESULT_CENSUS_BUNDLE_AND_SEPARATE_DURABLE_RESULT_INTEGRITY_RECEIPT_REQUIRED',
+        'result_bundle':'HASH_ONLY_EXACT_PANEL_METHOD_CENSUS_BOUND_TO_MANIFEST_LEASE_METRIC_AND_P1_AUTHORITIES',
+        'post_label_prediction_mutation':'PROHIBITED',
         'implementation_hash':sha_file(ROOT/'src/paperworks/validation_v2/multipanel_custody_v1.py'),
         'attack_accesses':0,'label_accesses':0})
     prereg_hash=write('MULTIPANEL_PREREGISTRATION_V2.json',{

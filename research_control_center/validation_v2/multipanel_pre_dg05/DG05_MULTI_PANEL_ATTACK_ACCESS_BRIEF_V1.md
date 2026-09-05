@@ -11,15 +11,15 @@ One conditional approval covers exactly HAI23 test2 (38 nominal scenarios), HAI2
 ## Frozen authorities
 
 - method bundle: `dab320da47489e5093862b7c4675523c3e6b710faceb753e7f39c8e56f002fe2`
-- metric V2: `fda07178f1fa8b5b889c4043e33ee9934b99dfbf282e31cca5ae9fcc2a461dbb`
-- P1 custodian V2: `a1c5f1ac8bde9a54e21d29c261f33e876fbd4fe84e9aa92ffd36eb0968570ea0`
-- global custody V2: `32c3ef1d0c588e97af71ab9a54f7fc4e054760233940e6078be29299f898d18b`
-- preregistration V2: `c9dfb75d91198c4b89e0366e368a229a5ee4ba8c606463315ca2dbbe765eea9e`
-- eTaPR conformance V2: `88aa2ede67c2a69eddb2398cd09f0b499570227c1dfd98192d18c4747b6a185f`
+- metric V2: `1222d0c7431376dbfa77451875f811123f41af881ae1472b30cd4a2e0f1f0776`
+- P1 custodian V2: `05434bec55a1db1d941cdeb81eef293e692aa9ebb182530ae3c8712c9537695a`
+- global custody V2: `df0fe200b0a2278eeb7209411c952be58f63119f77f521763419020e3c1e8e60`
+- preregistration V2: `cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61`
+- eTaPR conformance V2: `5381ceb1f19f25354a8feb36488dfaa85d3f2945770dc352f2bf8c18fd86cae4`
 - statistical analysis V2: `cf90fee47e9294873e09aa516df8163328ee924d756c66b18a811c4ea2f9b463`
-- attack feature allowlists: `52728c17dbb8f8530c351d80790e892b34f0e40e6f99217c0ecd6c91abf6d777`
+- attack feature allowlists: `e49ba9ee3f6a2f1273666c41ac1584636a53d5b4334d6cb95e3eed0b17a2764b`
 - exact public attack-file census: `5018ba8d01e32a8a2ff4cf95cdb6ca75b51b006b812acf5cffe2b1d26b8a6a16`
-- P1 mapping authorities: `583ce12caddd9b6a9459119999d7077e8699dae1eeb67536742e4ded015efda4`
+- P1 mapping authorities: `93b94ab988096020907bc2de738618ce7a9121230f9d4a19111dd3b0f034689d`
 - Fusion: `587868f42fbdaedbd802541763e0390c09d2f04e4ba5944c45ad7e6e6593cbcc`
 - HAI23 detector private binding: `abe9b3abfdf792b247492d7cc9e195c7f54ece57fd7b9337d38e04efd7241780`
 - HAI23 PCA fit/threshold: `f1f29e8a51f2c3fd81654b2b11ab86c3208446db8effdb9e86902bb9fc2ca530` / `58d38959d47b3dced9a450bfd8bde9af1dcb8fab0a013e4145c4a657ff4d284b`
