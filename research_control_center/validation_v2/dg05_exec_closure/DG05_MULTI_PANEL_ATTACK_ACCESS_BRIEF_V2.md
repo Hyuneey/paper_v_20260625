@@ -1,6 +1,6 @@
 # DG-05 V2 — Multi-panel executable attack-access decision brief
 
-Status: `USER_DECISION_REQUIRED`
+Status: `DRAFT_PENDING_INDEPENDENT_EXECUTABLE_QA`
 
 Decision requested: `DG-05 REAPPROVAL — EXECUTABLE V2`
 
@@ -31,16 +31,18 @@ During closure:
 
 ## New executable authorities
 
-- Executable closure: `140c21f2c273318d513d4bba4c95e67db81240bd17c0848d8166ff4b3a9b02e3`
-- Approval manifest: `e82c86c2c910354273446f8b7f1bcb46003348773e144bd5f6493e4ddacb27b9`
-- Full process scope: `8b1dc060ff79d7698de477f8e985281f708b5434a9a203f1cd51592621df4e93`
-- P1 eligibility custodian V3: `ec52abaa497628b794db2fccaef2c1b957ca2b92e6f7e3b9fb4f1219d069afe6`
-- Detector subauthority registry: `81aee7f314945d2826b4e7e0f549a08e37c9efcc90e74197fe41fb46a89d213b`
-- Exact dispatch registry: `8a929acbb515abd0ce7b47328dcf3b0401c60e74a596d22c7e507cd6bbf58ae6`
-- State machine: `8ef08163b61d6b2715f66d801987b0b845d339a6aa95000f94907ed21ccd4ad3`
-- Production projection/prediction adapters: `0cb8560fb02aa3360a63d665a5d88dec66a28633a4b26c5b574d1e26e08006b3`
-- Expected cell census: `b3d7d328ffafb3e995a2f04f32df3cfb7ae707d86cdad27692bbbd3ef28b0659`
-- Synthetic end-to-end rehearsal: `c95966da093d5eb5e8d141f4d558dfce224d4c4cbf862d7951d823d8066654d2`
+- Executable closure pre-QA: `4fc3cea754bb36cac84569eca485b8f2deac519b87d80f0db71975f1b55b7e24`
+- Approval manifest: `586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42`
+- Full process scope: `0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619`
+- P1 eligibility custodian V3: `f688fae22866ac5bac7ac4517fd9171d7f0d907044f3afee9cd7a609a8919166`
+- Detector subauthority registry: `c5f3f834435af6615e120f57c68c5d47eb66be8c07c4870c9f5fb0ee9cd832bb`
+- Rule-runtime subauthority registry: `074768ef863e481482337df4af16ee12c5ef36fb52c2129417d0ad39aa98dd14`
+- Exact dispatch registry: `246e19e4c9bcd81f8e139bd5ac609dac6db8a98add16013e1205641bb0c03433`
+- State machine: `71e0febb462aa0580799781b9e8f2605ca944da3285f2720896dadb88a734beb`
+- Production projection/prediction adapters: `fdbd373815c09e042c4cce0edaa2541a7cca7a46874f268481799db8a72539cb`
+- Expected cell census: `87167612f6efa76b678334f7df66400a1fed40ee2264952f416b730f1836c009`
+- Synthetic end-to-end rehearsal: `f273488e06465d6d3e2134093ab7990909bfc2e3f432418a0d47a43503695565`
+- Nested byte-replay bundle: `2f260ddeb5e64177578d140f7ce573921c4ff43cbe9886cbfddc8fe7d99a3f01`
 
 ## Proposed two-phase authorization
 
@@ -61,4 +63,3 @@ Primary reporting remains version-separated P1-eligible Scenario Recall and froz
 Execution must fail closed for any authority, schema, projection, dispatch, custody, hash, cell-census, timestamp, lease, scenario, denominator, result, or independent-replay mismatch. No post-result tuning, method substitution, fallback executor, attack-informed eligibility, or provider action is authorized.
 
 Approval of this V2 brief would authorize DG-05 execution under the exact manifest above. Until that explicit approval is given, all attack/test and label/scenario access remains prohibited.
-

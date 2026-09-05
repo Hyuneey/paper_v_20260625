@@ -27,7 +27,7 @@ from paperworks.validation_v2.multipanel_custody_v1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "research_control_center/validation_v2/dg05_exec_closure"
-SOURCE_COMMIT = "08f563e025bac27bbc543b7296eaa9a66b5dfb44"
+SOURCE_COMMIT = "7df377e6c4ba0770f2137d2b67df2f60972ac8cb"
 BLOCKER_COMMIT = "ed0c8dc1fbc5cadb0bf1b9e6a8cfed2c698c896c"
 BLOCKER_AUDIT_HASH = "cf972caae96dee3345a029345463ad7e6bddcd96c226104f14742e15eb387c3e"
 MANUAL_HASH = "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556"

@@ -1,6 +1,6 @@
 # DG05 executable authority closure V1
 
-Status: `COMPLETE_QA_PASS_DG05_EXECUTABLE_CLOSURE_FROZEN`
+Status: `COORDINATOR_PRECHECK_PASS_INDEPENDENT_QA_PENDING`
 
 This task closed the eight pre-access execution blockers reported by the immutable `MULTIPANEL-DG05-EXEC-001` audit. It did not execute DG-05. Attack/test payload access, label/scenario access, and real eligibility generation were all zero.
 
@@ -13,13 +13,13 @@ The scientific preregistration, method bundle, portfolios, detector methods, Fus
 | Blocker | Closure | Evidence | Status |
 |---|---|---|---|
 | B1 | State initialization accepts only the exact executable manifest and replays all nested scientific and executable authorities. Every transition binds the manifest, prior state, execution identity, evidence, and source commit. | `DG05_EXECUTABLE_AUTHORITY_MANIFEST_V1.json`; `EXECUTION_STATE_MACHINE_AUTHORITY_V1.json` | PASS |
-| B2 | Result authorities use deterministic canonical bytes; persistence closes and reopens bytes, verifies file and self hashes, and rejects any bound-authority or metric mutation. | implementation plus independent oracle | PASS |
+| B2 | Result authorities use deterministic canonical bytes. The independent oracle accepts paths only and reopens the executable manifest, dispatch registry, complete cell census, terminal receipts, projections, timestamps, scenarios, denominators, eTaPR coordinates, and result bytes before recomputation. | implementation plus independent oracle | PASS |
 | B3 | Method-blind scenario, denominator, and bound result builders are executable and covered by an end-to-end rehearsal. | `SYNTHETIC_DG05_REHEARSAL_V1.json` | PASS |
 | B4 | Full official process scope distinguishes verified P1, verified non-P1, and unresolved identities. | `FULL_PROCESS_SCOPE_AUTHORITY_V1.json`; `P1_ELIGIBILITY_CUSTODIAN_V3.json` | PASS |
 | B5 | Prediction, projection, timestamp, scenario, denominator, eTaPR, and paired-result coordinates must replay and agree on version, physical file, and authority hash. | production adapter and result tests | PASS |
-| B6 | Label/scenario custody runs in a fresh process with a minimal serialized request, explicit path allowlist, prediction-root denial, single-consume lease, and no prediction-capable input field. | `run_dg05_label_custodian_v1.py` | PASS |
-| B7 | Production positive-allowlist projection, exact cell-census derivation, exact dispatch, success/failure receipts, global manifest, and byte-replaying freeze are implemented. | `PRODUCTION_ADAPTER_AUTHORITY_V1.json`; `EXPECTED_PREDICTION_CELL_CENSUS_AUTHORITY_V1.json` | PASS |
-| B8 | PCA and Isolation Forest have separate panel-specific fit, threshold, model, mapping, implementation, schema, and environment bindings. Generic detector roots cannot execute a cell. | `DETECTOR_SUBAUTHORITY_REGISTRY_V1.json`; `METHOD_DISPATCH_REGISTRY_V1.json` | PASS |
+| B6 | Label/scenario custody runs in a fresh process with a separately persisted private resource policy, closed source-format adapters, prediction-root denial, durable consume-before-read, and no prediction-capable request field. | `run_dg05_label_custodian_v1.py` | PASS |
+| B7 | Production positive-allowlist projection and a closed, typed executor bind six detector assets and an exact-seven Rule-runtime registry. Candidate-portfolio lineage, retained semantic Rules, private relation/numeric bytes, Formal V4 semantics, and the pending DG05 V2 runtime-use authority are separate bindings. | `PRODUCTION_ADAPTER_AUTHORITY_V1.json`; `RULE_RUNTIME_SUBAUTHORITY_REGISTRY_V1.json` | COORDINATOR PASS; INDEPENDENT QA PENDING |
+| B8 | PCA and Isolation Forest have separate panel-specific fit, threshold, model, mapping, callable, implementation-source, schema, and environment bindings. The bound callable is invoked, its source bytes replay at production time, and Fusion uses the bound local runtime helper. | `DETECTOR_SUBAUTHORITY_REGISTRY_V1.json`; `METHOD_DISPATCH_REGISTRY_V1.json` | COORDINATOR PASS; INDEPENDENT QA PENDING |
 
 ## Full process scope
 
@@ -48,20 +48,21 @@ The rehearsal reached `RESULT_INTEGRITY_AUDITED`. Seven post-label mutation atte
 ## Authority hashes
 
 - Scientific preregistration V2: `cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61`
-- Executable manifest: `e82c86c2c910354273446f8b7f1bcb46003348773e144bd5f6493e4ddacb27b9`
-- State machine: `8ef08163b61d6b2715f66d801987b0b845d339a6aa95000f94907ed21ccd4ad3`
-- Full process scope: `8b1dc060ff79d7698de477f8e985281f708b5434a9a203f1cd51592621df4e93`
-- P1 custodian V3: `ec52abaa497628b794db2fccaef2c1b957ca2b92e6f7e3b9fb4f1219d069afe6`
-- Detector registry: `81aee7f314945d2826b4e7e0f549a08e37c9efcc90e74197fe41fb46a89d213b`
-- Dispatch registry: `8a929acbb515abd0ce7b47328dcf3b0401c60e74a596d22c7e507cd6bbf58ae6`
-- Cell census: `b3d7d328ffafb3e995a2f04f32df3cfb7ae707d86cdad27692bbbd3ef28b0659`
-- Production adapters: `0cb8560fb02aa3360a63d665a5d88dec66a28633a4b26c5b574d1e26e08006b3`
-- Synthetic rehearsal: `c95966da093d5eb5e8d141f4d558dfce224d4c4cbf862d7951d823d8066654d2`
-- Executable closure: `140c21f2c273318d513d4bba4c95e67db81240bd17c0848d8166ff4b3a9b02e3`
+- Executable manifest: `586202aedc3ea7996646035f29ee5c6fa62824ed4c0a255cd6bff17f0202ac42`
+- State machine: `71e0febb462aa0580799781b9e8f2605ca944da3285f2720896dadb88a734beb`
+- Full process scope: `0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619`
+- P1 custodian V3: `f688fae22866ac5bac7ac4517fd9171d7f0d907044f3afee9cd7a609a8919166`
+- Detector registry: `c5f3f834435af6615e120f57c68c5d47eb66be8c07c4870c9f5fb0ee9cd832bb`
+- Rule-runtime registry: `074768ef863e481482337df4af16ee12c5ef36fb52c2129417d0ad39aa98dd14`
+- Dispatch registry: `246e19e4c9bcd81f8e139bd5ac609dac6db8a98add16013e1205641bb0c03433`
+- Cell census: `87167612f6efa76b678334f7df66400a1fed40ee2264952f416b730f1836c009`
+- Production adapters: `fdbd373815c09e042c4cce0edaa2541a7cca7a46874f268481799db8a72539cb`
+- Synthetic rehearsal: `f273488e06465d6d3e2134093ab7990909bfc2e3f432418a0d47a43503695565`
+- Nested byte-replay bundle: `2f260ddeb5e64177578d140f7ce573921c4ff43cbe9886cbfddc8fe7d99a3f01`
+- Executable closure pre-QA: `4fc3cea754bb36cac84569eca485b8f2deac519b87d80f0db71975f1b55b7e24`
 
 ## Scientific interpretation
 
 This is an execution-authority and custody result, not attack-performance evidence. No held-out, external-version, superiority, generalization, or causal claim follows from the synthetic rehearsal.
 
-Exact next gate: `DG-05 REAPPROVAL — EXECUTABLE V2`.
-
+Independent read-only QA is still required. If and only if it passes and the final authority is regenerated against that QA receipt, the exact next gate is `DG-05 REAPPROVAL — EXECUTABLE V2`.
