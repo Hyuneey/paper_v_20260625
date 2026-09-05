@@ -69,7 +69,7 @@ def main() -> None:
         "event_evidence_transmission": False,
         "attack_access": False,
     })
-    publish(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V1.json", freeze)
+    publish(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V2.json", freeze)
     approval = seal({
         "schema": "xver_t2_provider_user_approval_receipt_v1",
         "task": "XVER-T2-PROVIDER-EXEC-001",
@@ -91,7 +91,7 @@ def main() -> None:
         "attack_access": False,
         "scope": "NORMAL_ONLY_T2_SEMANTIC_RULE_INDUCTION",
     })
-    publish(PUBLIC / "XVER_T2_PROVIDER_APPROVAL_RECEIPT_V1.json", approval)
+    publish(PUBLIC / "XVER_T2_PROVIDER_APPROVAL_RECEIPT_V2.json", approval)
     print(json.dumps({"status": "APPROVAL_AND_EXECUTION_SOURCE_FROZEN", "freeze_hash": freeze["self_hash"], "approval_hash": approval["self_hash"]}))
 
 

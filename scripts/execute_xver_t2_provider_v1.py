@@ -23,10 +23,10 @@ from xver_execution_common import (
 from paperworks.validation_v2.exp03b_contract_v1 import encoded
 from paperworks.validation_v2.exp03b_execution_v2 import admit
 from paperworks.validation_v2.exp03b_hidden_v2 import (
-    Train2HiddenVerifierAuthorityV2, feedback, verify,
+    Train2HiddenVerifierAuthorityV2, Train2SemanticEvidenceV2, feedback, verify,
 )
 from paperworks.validation_v2.exp03b_semantic_v2 import (
-    Train2SemanticEvidenceV2, SemanticTupleV1, StructuralTupleEvidenceV1,
+    SemanticTupleV1, StructuralTupleEvidenceV1,
     parse_proposal, proposal_document,
 )
 from paperworks.validation_v2.exp03b_custody_v1 import replay
@@ -105,8 +105,8 @@ def _structural(value: dict) -> Train2SemanticEvidenceV2:
 
 
 def _authorities():
-    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V1.json")
-    approval = document(PUBLIC / "XVER_T2_PROVIDER_APPROVAL_RECEIPT_V1.json")
+    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V2.json")
+    approval = document(PUBLIC / "XVER_T2_PROVIDER_APPROVAL_RECEIPT_V2.json")
     for relative, expected in freeze["implementation_hashes"].items():
         require(sha256_file(ROOT / relative) == expected, "EXECUTION_CODE_CHANGED")
     require(freeze["integration_baseline"] == "be3ff48bd2abfafc81544357af0daff69a6721a2", "SOURCE_AUTHORITY_MISMATCH")

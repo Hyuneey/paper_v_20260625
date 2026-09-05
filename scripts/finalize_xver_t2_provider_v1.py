@@ -15,9 +15,9 @@ from xver_execution_common import (
 from run_xver_semantic_execution_v1 import audit_fixed_portfolio
 from paperworks.validation_v2.exp03b_contract_v1 import SemanticTupleV1, StructuralTupleEvidenceV1
 from paperworks.validation_v2.exp03b_semantic_v2 import (
-    Train2SemanticEvidenceV2, parse_proposal, proposal_document,
+    parse_proposal, proposal_document,
 )
-from paperworks.validation_v2.exp03b_hidden_v2 import Train2HiddenVerifierAuthorityV2, verify
+from paperworks.validation_v2.exp03b_hidden_v2 import Train2HiddenVerifierAuthorityV2, Train2SemanticEvidenceV2, verify
 from paperworks.validation_v2.exp03b_execution_v2 import admit
 from paperworks.validation_v2.exp03b_numeric_v1 import summarize_column
 from paperworks.validation_v2.exp03b_binder_v2 import POLICY
@@ -277,7 +277,7 @@ def finalize_version(version: str, freeze: dict, bundle: dict) -> dict:
 
 
 def main() -> None:
-    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V1.json")
+    freeze = document(PUBLIC / "XVER_T2_PROVIDER_EXECUTION_FREEZE_V2.json")
     combined, bundles = _provider_barrier(freeze)
     results = {version: finalize_version(version, freeze, bundles[version]) for version in VERSIONS}
     combined_usage = {version: _actual_usage(version) for version in VERSIONS}
