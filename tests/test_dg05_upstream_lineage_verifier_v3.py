@@ -28,6 +28,7 @@ from paperworks.validation_v2.dg05_upstream_lineage_verifier_v3 import (
 )
 from paperworks.validation_v2.multipanel_custody_v1 import (
     FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
+    FROZEN_ATTACK_FILE_IDS_V2,
     FROZEN_AUTHORITY_SOURCE_COMMIT_V2,
     FROZEN_PANEL_ORDER_V2,
     FrozenPhysicalFileAuthorityV2,
@@ -37,6 +38,7 @@ from paperworks.validation_v2.multipanel_custody_v1 import (
 
 H = "a" * 64
 G = "b" * 40
+TEST_FILE = "hai-test2.csv"
 
 
 def persist(path: Path, value: dict) -> Path:
@@ -93,13 +95,20 @@ class RootReplayV3Tests(unittest.TestCase):
         lines = [",".join(header)]
         lines.extend(",".join([stamp, *(["1.0"] * len(allowlist.feature_ids)), "opaque"]) for stamp in timestamps)
         raw_path.write_text("\n".join(lines) + "\n", encoding="ascii")
-        physical_item = PhysicalFileIdentityV2(panel, "F1", sha256(raw_path.read_bytes()).hexdigest(), digest(header), H)
+        physical_item = PhysicalFileIdentityV2(panel, TEST_FILE, sha256(raw_path.read_bytes()).hexdigest(), digest(header), H)
+        all_items = []
+        for frozen_panel in FROZEN_PANEL_ORDER_V2:
+            for frozen_file in FROZEN_ATTACK_FILE_IDS_V2[frozen_panel]:
+                all_items.append(
+                    physical_item if (frozen_panel, frozen_file) == (panel, TEST_FILE)
+                    else PhysicalFileIdentityV2(frozen_panel, frozen_file, H, H, H)
+                )
         physical = FrozenPhysicalFileAuthorityV2(
-            (physical_item,), FROZEN_ATTACK_FILE_CENSUS_HASH_V2, H, FROZEN_AUTHORITY_SOURCE_COMMIT_V2)
+            tuple(all_items), FROZEN_ATTACK_FILE_CENSUS_HASH_V2, H, FROZEN_AUTHORITY_SOURCE_COMMIT_V2)
         projection_path = root / "projection.jsonl"
         projection, timestamp = project_attack_feature_file_v1(
             source=raw_path, destination=projection_path, physical_file=physical_item,
-            panel_authority=allowlist, file_id="F1", adapter_implementation_hash=projection_impl_hash, source_commit=G)
+            panel_authority=allowlist, file_id=TEST_FILE, adapter_implementation_hash=projection_impl_hash, source_commit=G)
         physical_path = persist(root / "physical.json", physical.document())
         projection_doc_path = persist(root / "projection-authority.json", projection.document())
         timestamp_doc_path = persist(root / "timestamp-authority.json", timestamp.document())
@@ -115,7 +124,7 @@ class RootReplayV3Tests(unittest.TestCase):
         raw_scenario = {
             "schema": "synthetic_raw_official_scenario_fixture_v2",
             "records": [{
-                "panel_id": panel, "dataset_version": "23.05", "file_id": "F1",
+                "panel_id": panel, "dataset_version": "23.05", "file_id": TEST_FILE,
                 "scenario_id": "S1", "closed_intervals": [[timestamps[0], timestamps[-1]]],
                 "attacked_identities": ["P1_FCV01D"], "explicit_affected_processes": [],
             }],
@@ -156,7 +165,7 @@ class RootReplayV3Tests(unittest.TestCase):
         })
         issued_path = persist(root / "issued.json", issued)
         binding = {
-            "source_id": source_id, "panel_id": panel, "dataset_version": "23.05", "file_id": "F1",
+            "source_id": source_id, "panel_id": panel, "dataset_version": "23.05", "file_id": TEST_FILE,
             "physical_file_authority_hash": projection.raw_physical_file_hash,
             "timestamp_authority_hash": timestamp.document()["self_hash"], "official_source_hash": H,
         }
@@ -217,12 +226,12 @@ class RootReplayV3Tests(unittest.TestCase):
         asserted = self_hashed({"schema": "metric_surface_primitives_v2", "fixture": True})
         asserted_path = persist(root / "asserted.json", asserted)
         intermediate = UpstreamPanelReplayPathsV2(
-            manifest_path, freeze_path, scenario_path, denominator_path, {"F1": projection_path},
+            manifest_path, freeze_path, scenario_path, denominator_path, {TEST_FILE: projection_path},
             {"CELL": persist(root / "predictions" / "cell.json", {"schema": "fixture_prediction"})},
             {}, registry_path, {}, asserted_path)
         paths = RootToResultReplayPathsV3(
-            intermediate, release_path, physical_path, {"F1": raw_path}, {"F1": projection_doc_path},
-            {"F1": timestamp_doc_path}, {source_id: scenario_source_path}, policy_path,
+            intermediate, release_path, physical_path, {TEST_FILE: raw_path}, {TEST_FILE: projection_doc_path},
+            {TEST_FILE: timestamp_doc_path}, {source_id: scenario_source_path}, policy_path,
             request_path, issued_path, consumed_path, invocation_path, output_path, scope_path)
         roots = {
             "release": release_hash,
@@ -327,7 +336,7 @@ class RootReplayV3Tests(unittest.TestCase):
     def test_raw_source_projection_disconnect_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
             panel, paths, roots, asserted = self._fixture(Path(raw))
-            paths.raw_physical_paths["F1"].write_bytes(b"changed\n")
+            paths.raw_physical_paths[TEST_FILE].write_bytes(b"changed\n")
             with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "RAW_PHYSICAL_SOURCE_BYTE_MISMATCH"):
                 self._run(panel, paths, roots, asserted)
 
@@ -449,18 +458,18 @@ class RootReplayV3Tests(unittest.TestCase):
     def test_coherently_rehashed_timestamp_contract_is_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
             panel, paths, roots, asserted = self._fixture(Path(raw))
-            timestamp = _load_json(paths.timestamp_authority_paths["F1"])
+            timestamp = _load_json(paths.timestamp_authority_paths[TEST_FILE])
             timestamp = self_hashed({
                 **{k: v for k, v in timestamp.items() if k != "self_hash"},
                 "timezone_contract": "UNAPPROVED_NORMALIZATION",
             })
-            persist(paths.timestamp_authority_paths["F1"], timestamp)
-            projection = _load_json(paths.projection_authority_paths["F1"])
+            persist(paths.timestamp_authority_paths[TEST_FILE], timestamp)
+            projection = _load_json(paths.projection_authority_paths[TEST_FILE])
             projection = self_hashed({
                 **{k: v for k, v in projection.items() if k != "self_hash"},
                 "timestamp_authority_hash": timestamp["self_hash"],
             })
-            persist(paths.projection_authority_paths["F1"], projection)
+            persist(paths.projection_authority_paths[TEST_FILE], projection)
             with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "RAW_TO_PROJECTION_LINEAGE_MISMATCH"):
                 self._run(panel, paths, roots, asserted)
 

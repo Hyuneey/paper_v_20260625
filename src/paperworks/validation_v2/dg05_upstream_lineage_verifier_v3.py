@@ -36,6 +36,8 @@ from .dg05_upstream_lineage_verifier_v2 import (
 from .multipanel_custody_v1 import (
     FROZEN_DATASET_VERSIONS_V2,
     FROZEN_PANEL_ORDER_V2,
+    FrozenPhysicalFileAuthorityV2,
+    PhysicalFileIdentityV2,
     frozen_feature_allowlist_authorities_v2,
 )
 
@@ -369,7 +371,10 @@ def _replay_custodian_roots(
     }
     if len(bindings) != len(request.get("allowed_scenario_bindings", ())):
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_BINDING_DUPLICATE")
+    verified_panels = {key[0] for key in verified_coordinate_bindings}
     for binding in request.get("allowed_scenario_bindings", ()):
+        if binding["panel_id"] not in verified_panels:
+            continue
         expected_coordinate = verified_coordinate_bindings.get(
             (binding["panel_id"], binding["dataset_version"], binding["file_id"])
         )
@@ -420,6 +425,15 @@ def _replay_custodian_roots(
                 or any(not isinstance(value, str) or not value for value in row["explicit_affected_processes"])
             ):
                 raise DG05UpstreamVerifierV3Error("RAW_SCENARIO_RECORD_SCHEMA_MISMATCH")
+            try:
+                parsed_intervals = [
+                    (datetime.fromisoformat(interval[0]), datetime.fromisoformat(interval[1]))
+                    for interval in row["closed_intervals"]
+                ]
+                if any(start > end for start, end in parsed_intervals):
+                    raise DG05UpstreamVerifierV3Error("RAW_SCENARIO_INTERVAL_SEMANTICS_MISMATCH")
+            except (ValueError, TypeError) as exc:
+                raise DG05UpstreamVerifierV3Error("RAW_SCENARIO_INTERVAL_SEMANTICS_MISMATCH") from exc
             key = (source["source_id"], row["panel_id"], row["dataset_version"], row["file_id"])
             binding = bindings.get(key)
             if binding is None:
@@ -532,6 +546,15 @@ def reconstruct_metric_primitive_from_roots_v3(
     physical = _load(paths.physical_file_authority_path, "multipanel_physical_attack_file_authority_v2")
     if physical["self_hash"] != expected_physical_authority_hash:
         raise DG05UpstreamVerifierV3Error("RAW_PHYSICAL_AUTHORITY_ROOT_MISMATCH")
+    try:
+        FrozenPhysicalFileAuthorityV2(
+            files=tuple(PhysicalFileIdentityV2(**row) for row in physical["files"]),
+            attack_file_census_authority_hash=physical["attack_file_census_authority_hash"],
+            dg05_authorization_hash=physical["dg05_authorization_hash"],
+            source_commit=physical["source_commit"],
+        ).validate()
+    except (TypeError, ValueError) as exc:
+        raise DG05UpstreamVerifierV3Error("RAW_PHYSICAL_AUTHORITY_CONTRACT_MISMATCH") from exc
     physical_rows = {(row["panel_id"], row["file_id"]): row for row in physical["files"]}
     if len(physical_rows) != len(physical["files"]):
         raise DG05UpstreamVerifierV3Error("RAW_PHYSICAL_AUTHORITY_DUPLICATE")

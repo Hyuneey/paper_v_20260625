@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from hashlib import sha256
 import json
 from pathlib import Path
 from typing import Any, Mapping
@@ -115,23 +116,34 @@ def validate_release_execution_kernel_v5(
                           (predecessor_v3, "dg05_executable_authority_manifest_v3")):
         if value.get("schema") != schema or value.get("self_hash") != digest({k: v for k, v in value.items() if k != "self_hash"}):
             raise DG05ProductionRouteV5Error("RELEASE_OR_PREDECESSOR_REPLAY_FAILED")
+    selected_executor = executor.frozen if type(executor) is PreaccessFrozenKernelExecutorV5 else executor
     common_invalid = (
         release.get("executable_version") not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6"}
-        or release.get("historical_execution_kernel_hash") is None
+        or release.get("historical_execution_kernel_hash")
+        != getattr(selected_executor, "executable_manifest_hash", None)
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
         or initialized_release_state.get("release_manifest_hash") != release["self_hash"]
         or initialized_release_state.get("execution_kernel_identity") != "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1"
+        or initialized_release_state.get("schema") != "dg05_production_chain_state_v2"
+        or initialized_release_state.get("self_hash") != digest({
+            k: v for k, v in initialized_release_state.items() if k != "self_hash"
+        })
+        or initialized_release_state.get("predecessor_v4_manifest_hash") != release.get("predecessor_v4_manifest_hash")
+        or initialized_release_state.get("implementation_authority_hash") != digest(release.get("implementation_authorities"))
+        or initialized_release_state.get("nested_authority_hash") != digest(release.get("nested_authority_hashes"))
     )
     mode = initialized_release_state.get("authority_mode")
     if mode == PREACCESS_EXECUTION_MODE_V5:
         mode_invalid = (
-            initialized_release_state.get("data_access_mode") != "SYNTHETIC_ONLY_NO_PROTECTED_DISCOVERY"
+            initialized_release_state.get("state") != "PREACCESS_FROZEN_KERNEL_RELEASE_INITIALIZED"
+            or initialized_release_state.get("data_access_mode") != "SYNTHETIC_ONLY_NO_PROTECTED_DISCOVERY"
             or initialized_release_state.get("protected_access_authorized") is not False
             or type(executor) is not PreaccessFrozenKernelExecutorV5
         )
     elif mode == "PRODUCTION":
         mode_invalid = (
-            initialized_release_state.get("data_access_mode") != "PROTECTED_DATA_ACCESS_REQUIRES_EXACT_USER_APPROVAL"
+            initialized_release_state.get("state") != "APPROVED_PRODUCTION_RELEASE_INITIALIZED"
+            or initialized_release_state.get("data_access_mode") != "PROTECTED_DATA_ACCESS_REQUIRES_EXACT_USER_APPROVAL"
             or initialized_release_state.get("protected_access_authorized") is not True
             or type(executor) is not DG05ProductionExecutorV1
             or getattr(executor, "authority_mode", None) != "PRODUCTION"
@@ -169,7 +181,29 @@ def execute_prediction_cell_v5(
     expected_cell_id = digest({key: cell[key] for key in ("panel_id", "file_id", "method_id", "dispatch_authority_hash")})
     if cell.get("cell_id") != expected_cell_id or projection.panel_id != cell["panel_id"] or projection.file_id != cell["file_id"]:
         raise DG05ProductionRouteV5Error("CELL_PROJECTION_BINDING_MISMATCH")
+    try:
+        projection.validate()
+        timestamp.validate()
+    except ValueError as exc:
+        raise DG05ProductionRouteV5Error("PROJECTION_TIMESTAMP_AUTHORITY_INVALID") from exc
+    timestamp_hash = timestamp.document()["self_hash"]
+    if (
+        projection.timestamp_authority_hash != timestamp_hash
+        or timestamp.projection_hash != projection.projection_hash
+        or timestamp.physical_file_authority_hash != projection.raw_physical_file_hash
+        or (timestamp.panel_id, timestamp.dataset_version, timestamp.file_id)
+        != (projection.panel_id, projection.dataset_version, projection.file_id)
+        or timestamp.row_count != projection.row_count
+        or timestamp.source_commit != source_commit
+        or projection.source_commit != source_commit
+    ):
+        raise DG05ProductionRouteV5Error("PROJECTION_TIMESTAMP_AUTHORITY_BINDING_MISMATCH")
     timestamps = _projection_timestamps(projection_path, projection.projection_hash)
+    replayed_timestamp_hash = sha256(
+        b"".join(value.encode("utf-8") + b"\n" for value in timestamps)
+    ).hexdigest()
+    if len(timestamps) != timestamp.row_count or replayed_timestamp_hash != timestamp.timestamp_vector_hash:
+        raise DG05ProductionRouteV5Error("PROJECTION_TIMESTAMP_VECTOR_MISMATCH")
     timeline = build_physical_timeline_authority_v1(
         panel_id=cell["panel_id"], file_id=cell["file_id"], timestamps=timestamps,
         physical_file_authority_hash=projection.raw_physical_file_hash,
@@ -181,7 +215,7 @@ def execute_prediction_cell_v5(
     except ValueError as exc:
         failure = PredictionTerminalReceiptV1(
             expected_cell_id, entry.panel_id, projection.file_id, entry.method_id, method_hash,
-            projection.raw_physical_file_hash, projection.projection_hash, timestamp.document()["self_hash"],
+            projection.raw_physical_file_hash, projection.projection_hash, timestamp_hash,
             projection.row_count, None, None, "NOT_APPLICABLE", "METHOD_FAILURE", str(exc),
             digest({"schema": "dense_boolean_prediction_v1"}), release_hash, source_commit)
         failure.validate()
@@ -201,7 +235,7 @@ def execute_prediction_cell_v5(
     except (DG05ClosureError, DG05ProductionRouteV5Error, ValueError) as exc:
         failure = PredictionTerminalReceiptV1(
             expected_cell_id, entry.panel_id, projection.file_id, entry.method_id, method_hash,
-            projection.raw_physical_file_hash, projection.projection_hash, timestamp.document()["self_hash"],
+            projection.raw_physical_file_hash, projection.projection_hash, timestamp_hash,
             projection.row_count, None, None, "NOT_APPLICABLE", "METHOD_FAILURE", str(exc),
             digest({"schema": "dense_boolean_prediction_v1"}), release_hash, source_commit)
         failure.validate()
@@ -216,14 +250,14 @@ def execute_prediction_cell_v5(
         trace_doc = self_hashed({
             "schema": "rule_trace_artifact_v4", "cell_id": expected_cell_id,
             "prediction_hash": prediction_hash, "projection_hash": projection.projection_hash,
-            "timestamp_authority_hash": timestamp.document()["self_hash"], **dict(trace),
+            "timestamp_authority_hash": timestamp_hash, **dict(trace),
         })
         trace_hash = publish_new(output_directory / f"{expected_cell_id}.trace.json",
                                  canonical_bytes(trace_doc) + b"\n")
         trace_status = "BOUND"
     receipt = PredictionTerminalReceiptV1(
         expected_cell_id, entry.panel_id, projection.file_id, entry.method_id, method_hash,
-        projection.raw_physical_file_hash, projection.projection_hash, timestamp.document()["self_hash"],
+        projection.raw_physical_file_hash, projection.projection_hash, timestamp_hash,
         projection.row_count, prediction_hash, trace_hash, trace_status, "SUCCESS", None,
         digest({"schema": "dense_boolean_prediction_v1"}), release_hash, source_commit)
     receipt.validate()

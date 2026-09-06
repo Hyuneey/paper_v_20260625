@@ -44,16 +44,25 @@ class ProductionRouteV5Tests(unittest.TestCase):
         self.predecessor = self_hashed({"schema": "dg05_executable_authority_manifest_v3"})
         self.release = self_hashed({
             "schema": "dg05_production_release_manifest_v2",
-            "executable_version": "DG05_EXECUTABLE_V5", "historical_execution_kernel_hash": H,
+            "executable_version": "DG05_EXECUTABLE_V5",
+            "historical_execution_kernel_hash": self.executor.executable_manifest_hash,
+            "predecessor_v4_manifest_hash": H,
+            "implementation_authorities": [], "nested_authority_hashes": {},
             "readiness": "READY_FOR_USER_REAPPROVAL", "source_commit": G,
         })
-        self.initialized = {
+        self.initialized = self_hashed({
+            "schema": "dg05_production_chain_state_v2",
+            "state": "PREACCESS_FROZEN_KERNEL_RELEASE_INITIALIZED",
             "release_manifest_hash": self.release["self_hash"],
+            "predecessor_v4_manifest_hash": H,
             "authority_mode": "PREACCESS_FROZEN_KERNEL_REHEARSAL",
             "data_access_mode": "SYNTHETIC_ONLY_NO_PROTECTED_DISCOVERY",
             "protected_access_authorized": False,
             "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
-        }
+            "implementation_authority_hash": digest([]),
+            "nested_authority_hash": digest({}),
+            "attack_test_accesses": 0, "label_scenario_accesses": 0,
+        })
 
     def _fixture(self, root: Path, timestamps: list[str]):
         panel = next(iter(frozen_feature_allowlist_authorities_v2()))
@@ -118,18 +127,62 @@ class ProductionRouteV5Tests(unittest.TestCase):
     def test_approved_production_mode_uses_same_route_kernel_contract(self) -> None:
         executor = object.__new__(DG05ProductionExecutorV1)
         object.__setattr__(executor, "authority_mode", "PRODUCTION")
-        production = {
+        object.__setattr__(executor, "executable_manifest_hash", self.release["historical_execution_kernel_hash"])
+        production = self_hashed({
+            "schema": "dg05_production_chain_state_v2",
+            "state": "APPROVED_PRODUCTION_RELEASE_INITIALIZED",
+            "release_manifest_hash": self.release["self_hash"],
+            "predecessor_v4_manifest_hash": H,
+            "authority_mode": "PRODUCTION",
+            "data_access_mode": "PROTECTED_DATA_ACCESS_REQUIRES_EXACT_USER_APPROVAL",
+            "protected_access_authorized": True,
+            "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
+            "implementation_authority_hash": digest([]),
+            "nested_authority_hash": digest({}),
+            "attack_test_accesses": 0, "label_scenario_accesses": 0,
+        })
+        with patch.object(DG05ProductionExecutorV1, "validate", autospec=True) as validate:
+            validate_release_execution_kernel_v5(
+                release=self.release, predecessor_v3=self.predecessor,
+                initialized_release_state=production, executor=executor)
+        validate.assert_called_once_with(executor)
+
+    def test_handcrafted_unhashed_production_state_is_rejected(self) -> None:
+        executor = object.__new__(DG05ProductionExecutorV1)
+        object.__setattr__(executor, "authority_mode", "PRODUCTION")
+        object.__setattr__(executor, "executable_manifest_hash", self.release["historical_execution_kernel_hash"])
+        handcrafted = {
             "release_manifest_hash": self.release["self_hash"],
             "authority_mode": "PRODUCTION",
             "data_access_mode": "PROTECTED_DATA_ACCESS_REQUIRES_EXACT_USER_APPROVAL",
             "protected_access_authorized": True,
             "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
         }
-        with patch.object(DG05ProductionExecutorV1, "validate", autospec=True) as validate:
+        with self.assertRaisesRegex(ValueError, "V5_RELEASE_KERNEL_BINDING_MISMATCH"):
             validate_release_execution_kernel_v5(
                 release=self.release, predecessor_v3=self.predecessor,
-                initialized_release_state=production, executor=executor)
-        validate.assert_called_once_with(executor)
+                initialized_release_state=handcrafted, executor=executor)
+
+    def test_timestamp_authority_disconnect_fails_before_kernel(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            times = [(datetime(2026, 1, 1) + timedelta(seconds=i)).isoformat() for i in range(2)]
+            cell, projection, timestamp, path = self._fixture(root, times)
+            bad_timestamp = type(timestamp)(
+                **{**timestamp.__dict__, "timestamp_vector_hash": "c" * 64}
+            )
+            with (
+                patch("paperworks.validation_v2.dg05_production_route_v5.validate_release_execution_kernel_v5"),
+                patch("paperworks.validation_v2.dg05_production_route_v5.execute_normal_method_v4") as kernel,
+                self.assertRaisesRegex(ValueError, "PROJECTION_TIMESTAMP_AUTHORITY_BINDING_MISMATCH"),
+            ):
+                execute_prediction_cell_v5(
+                    cell=cell, dispatch=self.dispatch, projection=projection, timestamp=bad_timestamp,
+                    release=self.release, predecessor_v3=self.predecessor,
+                    initialized_release_state=self.initialized, executor=self.executor,
+                    projection_path=path, output_directory=root / "out", source_commit=G,
+                    repository_root=Path.cwd(), invocation_census=KernelInvocationCensusV5())
+            kernel.assert_not_called()
 
 
 if __name__ == "__main__":
