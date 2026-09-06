@@ -76,7 +76,7 @@ def run_connected_preaccess_rehearsal_v5(
     normal_registry_path: Path, private_normal_manifest_path: Path,
     expected_private_manifest_hash: str, wrapper: OfficialEtaprV1,
     source_commit: str,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     """Run the full synthetic topology with exact frozen method assets."""
     work_root.mkdir(parents=True, exist_ok=False)
     release = _load(release_path, "dg05_production_release_manifest_v2")
@@ -391,7 +391,20 @@ def run_connected_preaccess_rehearsal_v5(
             expected_executable_hash=release["self_hash"]))
         surface_count += result["surface_count"]
 
-    return self_hashed({
+    root_replay = self_hashed({
+        "schema": "dg05_v5_root_to_result_replay_receipt_v1",
+        "status": "PASS",
+        "release_manifest_hash": release["self_hash"],
+        "verification_count": len(upstream_receipts),
+        "verification_hashes": [row["self_hash"] for row in upstream_receipts],
+        "per_root_replay": {
+            key: all(row["root_replay_flags"][key] for row in upstream_receipts)
+            for key in sorted(upstream_receipts[0]["root_replay_flags"])
+        },
+        "root_covered_surface_count": surface_count,
+        "source_commit": source_commit,
+    })
+    rehearsal = self_hashed({
         "schema": "connected_preaccess_dg05_rehearsal_evidence_v5", "status": "PASS",
         "release_manifest_hash": release["self_hash"], "release_initialization_hash": initialized["self_hash"],
         "authorized_data_mode": initialized["data_access_mode"],
@@ -404,7 +417,8 @@ def run_connected_preaccess_rehearsal_v5(
         "synthetic_scenarios": len(typed), "plural_interval_scenarios": len(typed),
         "metric_surface_count": surface_count, "root_covered_surface_count": surface_count,
         "root_verification_count": len(upstream_receipts),
-        "root_verification_hashes": [row["self_hash"] for row in upstream_receipts],
+        "root_to_result_replay_hash": root_replay["self_hash"],
+        "root_verification_hashes": root_replay["verification_hashes"],
         "all_root_replay_flags_true": all(all(row["root_replay_flags"].values()) for row in upstream_receipts),
         "independent_result_verification_count": len(oracle_receipts),
         "independent_result_verification_surface_count": sum(row["verified_surface_count"] for row in oracle_receipts),
@@ -420,6 +434,7 @@ def run_connected_preaccess_rehearsal_v5(
         "fixture_authority": "SYNTHETIC_ONLY_NON_RESULT_PRODUCING",
         "source_commit": source_commit,
     })
+    return rehearsal, kernel_doc, root_replay
 
 
 __all__ = ["DG05ConnectedRehearsalV5Error", "run_connected_preaccess_rehearsal_v5"]
