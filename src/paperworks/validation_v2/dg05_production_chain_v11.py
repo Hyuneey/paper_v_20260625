@@ -79,7 +79,8 @@ def build_v11_candidate_manifest(*, repository_root: Path, source_commit: str,
         raise DG05ProductionChainV11Error("V11_COMPLETE_ROOT_CENSUS_REQUIRED")
     required_implementation = {
         "scenario_adapter", "custodian", "production_route", "frozen_v5_kernel",
-        "fresh_process_launcher", "root_verifier", "release_gate",
+        "fresh_process_launcher", "root_verifier", "release_gate", "provenance_bridge",
+        "bridged_rehearsal",
     }
     if set(implementation_paths) != required_implementation:
         raise DG05ProductionChainV11Error("V11_COMPLETE_IMPLEMENTATION_CENSUS_REQUIRED")

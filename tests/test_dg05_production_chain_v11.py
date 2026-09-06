@@ -27,6 +27,8 @@ class ProductionChainV11Test(unittest.TestCase):
             "fresh_process_launcher": ROOT / "scripts/run_dg05_v11_preaccess_launcher.py",
             "root_verifier": ROOT / "src/paperworks/validation_v2/dg05_v11_root_verifier_v1.py",
             "release_gate": ROOT / "src/paperworks/validation_v2/dg05_production_chain_v11.py",
+            "provenance_bridge": ROOT / "src/paperworks/validation_v2/dg05_schedule_release_provenance_bridge_v11.py",
+            "bridged_rehearsal": ROOT / "src/paperworks/validation_v2/dg05_v11_bridged_rehearsal_v1.py",
         }
 
     def test_exact_mode_and_byte_replay_are_fail_closed(self) -> None:
