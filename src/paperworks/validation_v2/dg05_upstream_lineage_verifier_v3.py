@@ -523,6 +523,16 @@ def reconstruct_metric_primitive_from_roots_v3(
     release = _load(paths.release_manifest_path, "dg05_production_release_manifest_v2")
     if release["self_hash"] != expected_release_manifest_hash or release.get("source_commit") != source_commit:
         raise DG05UpstreamVerifierV3Error("RELEASE_MANIFEST_ROOT_MISMATCH")
+    nested = release.get("nested_authority_hashes")
+    if (
+        type(nested) is not dict
+        or release.get("semantic_binding_hash") != expected_dec031_binding_hash
+        or release.get("normal_burden_source_registry_hash") != expected_normal_source_registry_hash
+        or nested.get("full_process_scope") != expected_full_process_scope_hash
+        or nested.get("p1_custodian") != expected_p1_custodian_hash
+        or nested.get("attack_file_census") != physical.get("attack_file_census_authority_hash")
+    ):
+        raise DG05UpstreamVerifierV3Error("RELEASE_NESTED_ROOT_BINDING_MISMATCH")
     implementation_hashes = {
         row["logical_name"]: row["byte_hash"] for row in release.get("implementation_authorities", ())
     }

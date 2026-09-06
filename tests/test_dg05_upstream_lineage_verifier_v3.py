@@ -54,6 +54,19 @@ class RootReplayV3Tests(unittest.TestCase):
         custodian_impl_hash = sha256(Path(custodian_module.__file__).read_bytes()).hexdigest()
         launcher_path = Path(execution_module.__file__).parents[3] / "scripts" / "run_dg05_label_custodian_v2.py"
         launcher_hash = sha256(launcher_path.read_bytes()).hexdigest()
+        scope = self_hashed({
+            "schema": "full_process_scope_authority_v1",
+            "points": [{"dataset_version": "23.05", "canonical_identity": "P1_FCV01D",
+                        "official_process": "P1", "p1_membership": "YES", "evidence_hash": H,
+                        "authority_status": "OFFICIAL_EXACT_IDENTITY"}],
+            "official_manual_hash": H, "official_schema_hashes": {"23.05": H},
+            "source_commit": G, "version_counts": {"23.05": 1},
+            "declared_count_discrepancies": [], "official_identity_set_hashes": {},
+            "supplemental_authority_hashes": {}, "authority_mode": "SYNTHETIC_REHEARSAL",
+        })
+        scope_path = persist(root / "scope.json", scope)
+        registry = self_hashed({"schema": "normal_burden_source_registry_v2", "components": []})
+        registry_path = persist(root / "normal-registry.json", registry)
         release = self_hashed({
             "schema": "dg05_production_release_manifest_v2",
             "executable_version": "DG05_EXECUTABLE_V6",
@@ -63,6 +76,13 @@ class RootReplayV3Tests(unittest.TestCase):
                 {"logical_name": "projection_adapter", "relative_path": "fixture", "byte_hash": projection_impl_hash},
                 {"logical_name": "projection_parser", "relative_path": "fixture", "byte_hash": projection_parser_hash},
             ],
+            "semantic_binding_hash": H,
+            "normal_burden_source_registry_hash": registry["self_hash"],
+            "nested_authority_hashes": {
+                "full_process_scope": scope["self_hash"],
+                "p1_custodian": H,
+                "attack_file_census": FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
+            },
             "source_commit": G,
         })
         release_hash = release["self_hash"]
@@ -190,25 +210,12 @@ class RootReplayV3Tests(unittest.TestCase):
             "coordinator_environment_forwarding": "MINIMAL_ALLOWLIST_NO_PROVIDER_OR_CREDENTIAL_VARIABLES",
         })
         invocation_path = persist(root / "invocation.json", invocation)
-        scope = self_hashed({
-            "schema": "full_process_scope_authority_v1",
-            "points": [{"dataset_version": "23.05", "canonical_identity": "P1_FCV01D",
-                        "official_process": "P1", "p1_membership": "YES", "evidence_hash": H,
-                        "authority_status": "OFFICIAL_EXACT_IDENTITY"}],
-            "official_manual_hash": H, "official_schema_hashes": {"23.05": H},
-            "source_commit": G, "version_counts": {"23.05": 1},
-            "declared_count_discrepancies": [], "official_identity_set_hashes": {},
-            "supplemental_authority_hashes": {}, "authority_mode": "SYNTHETIC_REHEARSAL",
-        })
-        scope_path = persist(root / "scope.json", scope)
         scenario = _scenario_document(output=output, global_freeze_hash=freeze["self_hash"], source_commit=G)
         denominator = _denominator_document(scenario=scenario, scope=scope, p1_custodian_hash=H)
         scenario_path = persist(root / "scenario-authority.json", scenario)
         denominator_path = persist(root / "denominator-authority.json", denominator)
         asserted = self_hashed({"schema": "metric_surface_primitives_v2", "fixture": True})
         asserted_path = persist(root / "asserted.json", asserted)
-        registry = self_hashed({"schema": "normal_burden_source_registry_v2", "components": []})
-        registry_path = persist(root / "normal-registry.json", registry)
         intermediate = UpstreamPanelReplayPathsV2(
             manifest_path, freeze_path, scenario_path, denominator_path, {"F1": projection_path},
             {}, {}, registry_path, {}, asserted_path)
@@ -450,6 +457,21 @@ class RootReplayV3Tests(unittest.TestCase):
                 body["approved_sources"][0]["byte_hash"] = sha256(source_path.read_bytes()).hexdigest()
             self._rehash_custodian_chain(paths, roots, mutate_policy=update_source_hash)
             with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "RAW_SCENARIO_RECORD_SCHEMA_MISMATCH"):
+                self._run(panel, paths, roots, asserted)
+
+    def test_coherent_scope_swap_cannot_replace_release_root(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(Path(raw))
+            scope = _load_json(paths.full_process_scope_path)
+            scope["points"][0]["p1_membership"] = "NO"
+            scope["points"][0]["official_process"] = "P2"
+            scope = self_hashed({k: v for k, v in scope.items() if k != "self_hash"})
+            persist(paths.full_process_scope_path, scope)
+            scenario = _load_json(paths.intermediate.scenario_authority_path)
+            persist(paths.intermediate.denominator_authority_path,
+                    _denominator_document(scenario=scenario, scope=scope, p1_custodian_hash=H))
+            roots["scope"] = scope["self_hash"]
+            with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "RELEASE_NESTED_ROOT_BINDING_MISMATCH"):
                 self._run(panel, paths, roots, asserted)
 
 
