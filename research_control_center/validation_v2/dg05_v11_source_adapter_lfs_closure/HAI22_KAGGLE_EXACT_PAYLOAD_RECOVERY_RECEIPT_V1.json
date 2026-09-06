@@ -1,0 +1,141 @@
+{
+    "access_counters": {
+        "csv_parser_invocations": 0,
+        "feature_headers_inspected": 0,
+        "heldout_metrics_computed": 0,
+        "label_values_parsed": 0,
+        "label_values_inspected": 0,
+        "prediction_executions": 0,
+        "real_feature_rows_parsed": 0,
+        "real_feature_values_inspected": 0,
+        "real_scenario_records_accessed": 0
+    },
+    "attack_file_census_hash": "5018ba8d01e32a8a2ff4cf95cdb6ca75b51b006b812acf5cffe2b1d26b8a6a16",
+    "authentication": "NOT_REQUIRED_BY_PUBLIC_DATASET_ENDPOINT",
+    "branch_start": "validation-v2-dg05-v11-source-adapter-lfs-closure-001",
+    "commit_start": "385014242413ddff72842eaab3d0ae2d9f6a7330",
+    "credential_values_exposed": false,
+    "dataset_ref": "icsdataset/hai-security-dataset",
+    "dataset_version": 10,
+    "download_method": "OFFICIAL_KAGGLE_PUBLIC_API_SELECTIVE_FILE_DOWNLOAD",
+    "files": [
+        {
+            "actual_sha256": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+            "actual_size": 132946575,
+            "file_id": "hai-test2.csv",
+            "frozen_git_blob_oid": "3cdadd57fa32aa6b06fa4f7a2aac7a10ae4fd56d",
+            "lfs_oid": "b2b8dd295aefd87e39260fe43cb4c73ee86d6264b0ac4b0761e7efb0c2b545c3",
+            "panel_id": "HAI23_TEST2_PRIMARY_HELDOUT_V1",
+            "repository_relative_path": "hai-23.05/hai-test2.csv",
+            "status": "EXISTING_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "19627f5dac40c3a5039e7468cfd6c6e4ccd37a85055671e8c349b6bce5f50ed1",
+            "actual_size": 50536532,
+            "declared_size": 50536532,
+            "file_id": "test1.csv",
+            "frozen_git_blob_oid": "f2c8b0db9790a736acb1630eb0f76c19904e5864",
+            "kaggle_advertised_size": 50536532,
+            "lfs_oid": "19627f5dac40c3a5039e7468cfd6c6e4ccd37a85055671e8c349b6bce5f50ed1",
+            "panel_id": "HAI22_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-22.04/test1.csv",
+            "status": "MATERIALIZED_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "b2ba5d6665deee1c86870a3970417b51a3e640a2cc18b9f8de2d6d8a21979923",
+            "actual_size": 46616720,
+            "declared_size": 46616720,
+            "file_id": "test2.csv",
+            "frozen_git_blob_oid": "b6c485d2444b5390f47a5701d37fb50f8d961699",
+            "kaggle_advertised_size": 46616720,
+            "lfs_oid": "b2ba5d6665deee1c86870a3970417b51a3e640a2cc18b9f8de2d6d8a21979923",
+            "panel_id": "HAI22_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-22.04/test2.csv",
+            "status": "MATERIALIZED_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "f253f1c78a4a4654d843f8f670a24caa7a72ac91e4418b4505009822b3c55940",
+            "actual_size": 35066591,
+            "declared_size": 35066591,
+            "file_id": "test3.csv",
+            "frozen_git_blob_oid": "70c2b85886e8b3dae03f25c7860b2bce37daf411",
+            "kaggle_advertised_size": 35066591,
+            "lfs_oid": "f253f1c78a4a4654d843f8f670a24caa7a72ac91e4418b4505009822b3c55940",
+            "panel_id": "HAI22_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-22.04/test3.csv",
+            "status": "MATERIALIZED_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "2d2e99ed3364d75d27ab84f0a6523496f7295decf363c90b8a1b9b84e1070376",
+            "actual_size": 72931406,
+            "declared_size": 72931406,
+            "file_id": "test4.csv",
+            "frozen_git_blob_oid": "0732ad0c3cec1567678b32588271ca4cc8f7c6ab",
+            "kaggle_advertised_size": 72931406,
+            "lfs_oid": "2d2e99ed3364d75d27ab84f0a6523496f7295decf363c90b8a1b9b84e1070376",
+            "panel_id": "HAI22_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-22.04/test4.csv",
+            "status": "MATERIALIZED_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "532de41bed372206941609d05b763958f59abecfd63c8c123649f823452e445e",
+            "actual_size": 6149549,
+            "file_id": "test1.csv",
+            "frozen_git_blob_oid": "7dee74e72e440cbf2d18fd61fc8de3a7066dda29",
+            "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-21.03/test1.csv.gz",
+            "status": "EXISTING_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "c5572e0ed19906107ceb56c4b4f40e165153fc7ba87b3506230d53d2478c29bb",
+            "actual_size": 16765328,
+            "file_id": "test2.csv",
+            "frozen_git_blob_oid": "bef13733742259bbd54912cde2ee6ec5fcb2fe54",
+            "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-21.03/test2.csv.gz",
+            "status": "EXISTING_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "bff835894baff0c73871bc01ece4f5cf759d455a049e808b012128767420caaf",
+            "actual_size": 15477098,
+            "file_id": "test3.csv",
+            "frozen_git_blob_oid": "12d16f3c2d59250be667bb6a942a85137ccf35b6",
+            "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-21.03/test3.csv.gz",
+            "status": "EXISTING_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "51380fd28fd985b94a10cae3d8b80926becb3af9f233f2d3a38ab8be9482a482",
+            "actual_size": 5602841,
+            "file_id": "test4.csv",
+            "frozen_git_blob_oid": "9c9c5ae3a6a0586dc8398006cc31d1023fbbbce2",
+            "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-21.03/test4.csv.gz",
+            "status": "EXISTING_PAYLOAD_VERIFIED"
+        },
+        {
+            "actual_sha256": "f0d59308b167ed95d0e81fb3e27c906682c9b21d3dba0ab4c4d696565df35179",
+            "actual_size": 13199829,
+            "file_id": "test5.csv",
+            "frozen_git_blob_oid": "a63954461979734ca056e2f6aee3abf0397e36b4",
+            "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+            "repository_relative_path": "hai-21.03/test5.csv.gz",
+            "status": "EXISTING_PAYLOAD_VERIFIED"
+        }
+    ],
+    "frozen_official_git_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "kaggle_metadata_authority_hash": "561d07a5fe2269e5db2009cb41d30efdec16ac20076b3cbc965c621587f0f25e",
+    "newly_verified": 4,
+    "payload_bytes_committed": false,
+    "previous_blocker_receipt_hash": "016ef09604c4b529c1209e20fb3ff6db8ab5f5b1be032323b6f4c2c26861284b",
+    "previously_verified": 6,
+    "private_absolute_paths_published": false,
+    "private_exposures": 0,
+    "remaining_lfs_pointers": 0,
+    "schema": "hai22_kaggle_exact_payload_recovery_receipt_v1",
+    "scientific_authorities_changed": false,
+    "self_hash": "46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+    "status": "COMPLETE_QA_PASS",
+    "task_id": "DG05-HAI22-KAGGLE-EXACT-PAYLOAD-RECOVERY-001",
+    "total_verified": 10
+}
