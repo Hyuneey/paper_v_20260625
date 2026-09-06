@@ -16,7 +16,7 @@ from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
 OUT = ROOT / "research_control_center/validation_v2/dg05_v11_release_final"
 # Failed staging attempts remain intact.  Each retry uses a new append-only
 # namespace rather than deleting an earlier diagnostic package.
-STAGING = ROOT / "research_control_center/validation_v2/dg05_v11_release_staging_rerun1"
+STAGING = ROOT / "research_control_center/validation_v2/dg05_v11_release_staging_rerun2"
 V10 = ROOT / "research_control_center/validation_v2/dg05_v10_release"
 V4 = ROOT / "research_control_center/validation_v2/dg05_v4_release"
 V1 = ROOT / "research_control_center/validation_v2/dg05_exec_closure/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V1.json"
