@@ -873,7 +873,14 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     result.require(any(row["status"] == "SUPERSEDED" for row in data["decisions"]), "decision history lacks superseded decisions")
     result.require(any(row["status"] == "CONDITIONAL" for row in data["decisions"]), "decision history lacks conditional decisions")
     open_decisions = {row["decision_id"] for row in data["decisions"] if row["status"] == "OPEN"}
-    expected_open = ({"DEC-033"} if data['state'].get('dg05_executable_v10_closure')
+    decision_033 = next((row for row in data["decisions"] if row["decision_id"] == "DEC-033"), None)
+    v10_approved = bool(
+        decision_033
+        and decision_033["status"] == "ACTIVE"
+        and decision_033["user_approved"] == "true"
+        and decision_033["decision"] == "APPROVED_EXACT_DG05_EXECUTABLE_V10_FOR_DG05_REAL_ACCESS"
+    )
+    expected_open = (set() if v10_approved else {"DEC-033"} if data['state'].get('dg05_executable_v10_closure')
                      else {"DEC-032"} if data['state'].get('dg05_executable_v4_closure')
                      else {"DEC-031"} if data['state'].get('dg05_production_chain_closure') else set())
     result.require(open_decisions == expected_open, "decision registry contains an unexpected unresolved decision")
