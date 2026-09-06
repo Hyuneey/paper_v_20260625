@@ -241,3 +241,143 @@ def build_hai22_authority(official_root: Path) -> dict[str, Any]:
         "manual_file_binding_rule": "MANUAL_OCCURRENCE_BLOCK_CARDINALITY_PLUS_UNIQUE_START_TIME_DURATION_JOIN_TO_OFFICIAL_SUMMARY",
         "canonical_records": records,
     })
+
+
+def _minute(value: str) -> str:
+    point = datetime.fromisoformat(value)
+    return f"{point.hour}:{point.minute:02d}"
+
+
+def _hai21_compatible_pairs(
+    manual: list[dict[str, Any]], intervals: list[dict[str, Any]]
+) -> list[tuple[int, int]]:
+    """Return only exact, non-residual HAI21 corroborative pairings.
+
+    Manual timing is deliberately used here only as corroboration.  The
+    canonical physical interval is always carried by the official overall
+    attack-label range; DEC-035 supplies the explicitly fail-closed residual
+    rule for the two rows whose manual timing is not compatible.
+    """
+    pairs: list[tuple[int, int]] = []
+    used_intervals: set[int] = set()
+    for manual_index, occurrence in enumerate(manual):
+        candidates = [
+            interval_index
+            for interval_index, interval in enumerate(intervals)
+            if interval_index not in used_intervals
+            and _minute(interval["start"]) == occurrence["manual_start_minute"].lstrip("0")
+            and interval["duration_seconds"] == occurrence["manual_duration_seconds"] - 1
+        ]
+        if len(candidates) == 1:
+            used_intervals.add(candidates[0])
+            pairs.append((manual_index, candidates[0]))
+        elif len(candidates) > 1:
+            raise ValueError("HAI21_COMPATIBLE_OCCURRENCE_MAPPING_AMBIGUOUS")
+    return pairs
+
+
+def _residual_pair(
+    *,
+    manual: list[dict[str, Any]],
+    intervals: list[dict[str, Any]],
+    compatible: list[tuple[int, int]],
+    expected_id: str,
+) -> tuple[int, int, dict[str, Any]]:
+    matched_manual = {item[0] for item in compatible}
+    matched_intervals = {item[1] for item in compatible}
+    remaining_manual = [index for index in range(len(manual)) if index not in matched_manual]
+    remaining_intervals = [index for index in range(len(intervals)) if index not in matched_intervals]
+    if len(remaining_manual) != 1 or len(remaining_intervals) != 1:
+        raise ValueError("HAI21_RESIDUAL_OCCURRENCE_MAPPING_AMBIGUOUS")
+    manual_index, interval_index = remaining_manual[0], remaining_intervals[0]
+    if manual[manual_index]["official_occurrence_id"] != expected_id:
+        raise ValueError("HAI21_RESIDUAL_OCCURRENCE_MAPPING_AMBIGUOUS")
+    starts = [datetime.fromisoformat(item["start"]) for item in intervals]
+    interval_point = starts[interval_index]
+    # Chronological neighborhood is an independent guard: every accepted
+    # matched occurrence before/after the residual remains before/after it.
+    for left_manual, left_interval in compatible:
+        manual_order = left_manual < manual_index
+        interval_order = starts[left_interval] < interval_point
+        if manual_order != interval_order:
+            raise ValueError("HAI21_RESIDUAL_OCCURRENCE_MAPPING_AMBIGUOUS")
+    return manual_index, interval_index, {
+        "join_kind": "UNIQUE_RESIDUAL_OFFICIAL_SOURCE_BIJECTION",
+        "same_physical_file": True,
+        "manual_file_census": len(manual),
+        "label_range_census": len(intervals),
+        "compatible_pairs_preassigned": len(compatible),
+        "unmatched_manual_count": 1,
+        "unmatched_label_range_count": 1,
+        "chronological_neighborhood_noncontradictory": True,
+        "alternative_complete_bijections": 0,
+    }
+
+
+def build_hai21_authority(official_root: Path) -> dict[str, Any]:
+    """Freeze HAI21 source roles exactly as prospectively approved by DEC-035."""
+    manual = manual_records(official_root / "hai_dataset_technical_details.pdf", "21.03")
+    expected = {1: 5, 2: 20, 3: 8, 4: 5, 5: 12}
+    residual_ids = {2: "A209", 5: "A512"}
+    label_hashes: dict[str, str] = {}
+    canonical_records: list[dict[str, Any]] = []
+    residual_proofs: dict[str, dict[str, Any]] = {}
+    for number, count in expected.items():
+        label_path = official_root / "hai-21.03" / f"test{number}.csv.gz"
+        intervals = label_ranges(label_path)
+        file_manual = _manual_group(manual, number, count)
+        if len(intervals) != count:
+            raise ValueError("HAI21_OFFICIAL_LABEL_CENSUS_MISMATCH")
+        label_hashes[f"test{number}.csv.gz"] = sha256(label_path)
+        compatible = _hai21_compatible_pairs(file_manual, intervals)
+        matched: dict[int, tuple[int, dict[str, Any]]] = {
+            manual_index: (interval_index, {"join_kind": "UNIQUE_COMPATIBLE_MANUAL_LABEL_CORROBORATION"})
+            for manual_index, interval_index in compatible
+        }
+        if number in residual_ids:
+            manual_index, interval_index, proof = _residual_pair(
+                manual=file_manual,
+                intervals=intervals,
+                compatible=compatible,
+                expected_id=residual_ids[number],
+            )
+            matched[manual_index] = (interval_index, proof)
+            residual_proofs[residual_ids[number]] = proof
+        if len(matched) != count or len({item[0] for item in matched.values()}) != count:
+            raise ValueError("HAI21_RESIDUAL_OCCURRENCE_MAPPING_AMBIGUOUS")
+        for manual_index, occurrence in enumerate(file_manual):
+            interval_index, join_proof = matched[manual_index]
+            interval = intervals[interval_index]
+            canonical_records.append({
+                "dataset_version": "21.03",
+                "panel_id": "HAI21_EXTERNAL_REPLICATION_V1",
+                "physical_file_id": f"HAI21_TEST{number}",
+                "scenario_id": f"HAI21_03:{occurrence['official_occurrence_id']}",
+                "official_occurrence_id": occurrence["official_occurrence_id"],
+                "closed_intervals": [{"start": interval["start"], "end": interval["end"]}],
+                "attacked_identities": occurrence["attacked_identities"],
+                "explicit_affected_processes": [],
+                "manual_start_minute": occurrence["manual_start_minute"],
+                "manual_duration_seconds": occurrence["manual_duration_seconds"],
+                "label_duration_seconds": interval["duration_seconds"],
+                "scenario_components": occurrence["scenario_components"],
+                "target_controller_components": occurrence["target_controller_components"],
+                "join_proof": join_proof,
+            })
+    if len(canonical_records) != 50 or len({item["scenario_id"] for item in canonical_records}) != 50:
+        raise ValueError("HAI21_OFFICIAL_SCENARIO_CENSUS_MISMATCH")
+    return self_hashed({
+        "schema": "hai21_official_scenario_authority_private_v1",
+        "status": "PRIVATE_CANONICAL_AUTHORITY",
+        "decision": {"decision_id": "DEC-035", "role_amendment": "HAI21_OFFICIAL_SCENARIO_BOUNDARY_SOURCE_ROLE_AMENDMENT"},
+        "official_source": {"repository_commit": OFFICIAL_REPOSITORY_COMMIT, "manual_blob": MANUAL_BLOB, "manual_sha256": MANUAL_SHA256, "overall_attack_label_sha256": label_hashes},
+        "source_roles": {
+            "technical_manual": "SCENARIO_IDENTITY_AND_DIRECT_TARGET_AUTHORITY",
+            "overall_attack_label": "EXACT_PHYSICAL_INTERVAL_AUTHORITY",
+            "README": "PANEL_CENSUS_AUTHORITY",
+            "manual_start_and_duration": "CORROBORATIVE_OCCURRENCE_METADATA_NOT_INTERVAL_OVERRIDE",
+        },
+        "file_census": {f"test{number}.csv.gz": count for number, count in expected.items()},
+        "residual_bijection_proofs": residual_proofs,
+        "canonical_records": canonical_records,
+    })

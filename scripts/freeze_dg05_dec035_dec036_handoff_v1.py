@@ -1,0 +1,20 @@
+"""Emit the safe handoff and dependency DAG for the completed pre-access work."""
+from __future__ import annotations
+import argparse, hashlib, json
+from pathlib import Path
+def cb(v):return json.dumps(v,sort_keys=True,separators=(',',':'),ensure_ascii=True).encode()
+def d(v):return hashlib.sha256(cb(v)).hexdigest()
+def sh(v):return {**v,'self_hash':d(v)}
+def load(p):return json.loads(p.read_text())
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--dir',type=Path,required=True);a=p.parse_args();
+ dec35=load(a.dir/'DEC035_HAI21_OFFICIAL_SCENARIO_BOUNDARY_SOURCE_ROLE_AMENDMENT_V1.json');dec36=load(a.dir/'DEC036_HAI22_PROSPECTIVE_DIRECT_TARGET_PROCESS_SCOPE_AMENDMENT_V1.json');h21=load(a.dir/'HAI21_OFFICIAL_SCENARIO_AUTHORITY_V1.json');h22p=load(a.dir/'HAI22_P1_DIRECT_TARGET_ELIGIBILITY_AUTHORITY_V2.json');unified=load(a.dir/'HAI_OFFICIAL_SOURCE_TRIANGULATED_SCENARIO_AUTHORITY_V1.json');h21p=load(a.dir/'HAI21_P1_EXISTING_SEMANTIC_AUDIT_V1.json')
+ brief=sh({'schema':'hai21_p1_scope_prospective_amendment_decision_brief_v1','status':'USER_DECISION_REQUIRED','verdict':'HAI21_P1_SCOPE_REQUIRES_VERSION_SPECIFIC_PROSPECTIVE_AMENDMENT','scenario_authority_sha256':h21['private_canonical_authority_sha256'],'historical_scope_sha256':'0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619','audit_sha256':h21p['self_hash'],'classification_counts':h21p['classification_counts'],'prohibited':'NO_DEC037_AUTOMATICALLY_CREATED_NO_CROSS_VERSION_SCOPE_TRANSFER_NO_HELDOUT_PERFORMANCE_CONTACT','next_decision':'USER_DECISION_HAI21_VERSION_SPECIFIC_P1_PROSPECTIVE_AMENDMENT'})
+ (a.dir/'HAI21_P1_SCOPE_PROSPECTIVE_AMENDMENT_DECISION_BRIEF_V1.json').write_bytes(cb(brief)+b'\n')
+ nodes={'HAI23_SCENARIO':'FROZEN','HAI23_P1_DEC034':'PASS','HAI22_SCENARIO':'FROZEN','HAI22_P1_DEC036':'BLOCKED_SOURCE_MEMBERSHIP_INCOMPLETE','HAI21_DEC035':'FROZEN','HAI21_SCENARIO':'FROZEN','HAI21_P1':'PENDING_USER_DECISION','UNIFIED_146_SCENARIO':'PASS','UNIFIED_P1':'BLOCKED','SCENARIO_ADAPTER':'PARTIAL_POSTFREEZE_COMPONENT_ONLY','LABEL_CUSTODIAN':'HISTORICAL_V2_UNCHANGED','PRODUCTION_ROUTE':'NOT_REQUALIFIED','KERNEL_PARITY':'NOT_REQUALIFIED','RAW_ROOT_LINEAGE':'SCENARIO_ROOT_PASS_P1_INCOMPLETE','V11_CANDIDATE':'NOT_CREATED','EXACT_USER_APPROVAL':'NOT_RUN','DG05_REAL_EXECUTION':'NOT_RUN'}
+ dag=sh({'schema':'dg05_dec035_dec036_authority_dag_v1','status':'MAXIMUM_SAFE_PROGRESS_COMPLETE_USER_DECISION_REQUIRED','nodes':nodes,'roots':{'DEC035':dec35['self_hash'],'DEC036':dec36['self_hash'],'HAI21_SCENARIO':h21['private_canonical_authority_sha256'],'UNIFIED_146':unified['private_authority_sha256'],'HAI22_P1':h22p['eligibility_authority_sha256'],'HAI21_P1_AUDIT':h21p['self_hash']},'performance_contact':{'heldout_feature_values_used_for_method_design':0,'heldout_predictions_observed':0,'heldout_metrics_observed':0,'method_comparisons_observed':0,'result_driven_changes':0}})
+ (a.dir/'DG05_DEC035_DEC036_AUTHORITY_DAG_V1.json').write_bytes(cb(dag)+b'\n')
+ handoff='''# DG-05 DEC-035/DEC-036 handoff\n\nStatus: maximum safe pre-access progress complete; user decision required.\n\n- DEC-035 is frozen and HAI21 has 50 source-role-bound scenario records.\n- Unified scenario authority is 146 records (38/58/50), independently rooted by frozen version authorities.\n- DEC-036 was replayed without aliases: 43 HAI22 P1 eligible, 9 not eligible, 6 unresolved.\n- HAI21 historical exact-identity scope yields 22 eligible, 4 not eligible, 24 unresolved; no DEC-037 was created.\n- A post-freeze scenario-only adapter component exists, but no custodian/route release integration or V11 candidate is authorized while P1 is incomplete.\n- No held-out prediction, performance metric, comparison, tuning, or result observation occurred.\n\nExact next: user decision on a HAI21 version-specific prospective P1 amendment; separately, resolve the six HAI22 nonunique official controller memberships without aliases.\n'''
+ (a.dir/'DG05_DEC035_DEC036_CURRENT_HANDOFF_V1.md').write_text(handoff,encoding='utf-8')
+ print(json.dumps({'brief':brief['self_hash'],'dag':dag['self_hash']},sort_keys=True))
+if __name__=='__main__':main()
