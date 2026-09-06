@@ -308,7 +308,6 @@ def _load_hai23_normal(features: tuple[str, ...]) -> tuple[np.ndarray, list[str]
         path.is_symlink()
         or not path.resolve().is_relative_to(root.resolve())
         or row["sha256"] != public_row["sha256_git_lfs_oid"]
-        or row["row_count"] != public_row["row_count"]
         or sha256_file(path) != row["sha256"]
     ):
         raise RuntimeError("HAI23_TRAIN4_BYTE_MISMATCH")
@@ -398,7 +397,30 @@ def _fuse(detector: tuple[bool, ...], rule: tuple[bool, ...], trace: dict[str, A
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--seal-failed-attempt", action="store_true")
     args = parser.parse_args()
+    if args.seal_failed_attempt:
+        vault = _vault_root()
+        staging = vault / "dg05-dec031-normal-source-001.part"
+        failed = vault / "dg05-dec031-normal-source-001.attempt-001-failed"
+        if (
+            not staging.is_dir() or staging.is_symlink() or failed.exists()
+            or sorted(path.relative_to(staging).as_posix() for path in staging.rglob("*"))
+               != ["NORMAL_SOURCE_DISCOVERY_CENSUS_PRIVATE_V1.json"]
+        ):
+            raise RuntimeError("EXACT_FAILED_STAGING_ATTEMPT_REQUIRED")
+        receipt = self_hashed_v1({
+            "schema": "normal_source_materialization_failed_attempt_v1",
+            "attempt": 1, "status": "ENGINEERING_FAILURE_BEFORE_SCIENTIFIC_SCORING",
+            "source_commit": "7243f4d012ba712518d422864cf00ffa55891475",
+            "failure_code": "HAI23_PRIVATE_MANIFEST_ROW_COUNT_FIELD_ABSENT",
+            "scientific_scorer_invocations": 0, "attack_test_accesses": 0,
+            "label_scenario_accesses": 0, "provider_calls": 0,
+        })
+        _publish(staging / "FAILED_ATTEMPT_RECEIPT_V1.json", receipt)
+        os.rename(staging, failed)
+        print(json.dumps({"status": "FAILED_ATTEMPT_PRESERVED", "receipt_hash": receipt["self_hash"]}, sort_keys=True))
+        return
     if not args.execute:
         raise SystemExit("--execute required")
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).strip():
