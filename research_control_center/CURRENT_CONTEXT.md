@@ -1,7 +1,7 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8e4a7b67c3e882fba2802a58914c1557f13628428b46ebc0ed1e8392baafefc0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
-Last updated: 2026-09-05
+Last updated: 2026-09-06
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 Documentation overlay: `origin/task-039e3-r2r-thesis-draft-scaffold-v1` @ `ebc5a57bfdb7d8266f96f2990338effb9d0a2743`
 RCC version: `0.1.0`
@@ -122,13 +122,13 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- DEC-032 exact DG05 Executable V4 release reapproval
+- DEC-033 exact DG05 Executable V10 release reapproval
 - DG05 remains NO_GO; no attack/test/label/scenario access before exact approval
 - DG06 remains required for professor submission
 
-Exact next management task: **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**
+Exact next management task: **DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE**
 Following architecture task: **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지**
 
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
-DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

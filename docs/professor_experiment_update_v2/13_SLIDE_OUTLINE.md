@@ -1,4 +1,14 @@
-# 슬라이드 추가 — PRE-DG05 설계 동결
+# 슬라이드 추가 — DG05 Executable V10 사전접근 qualification
+
+- G1: connected route의 synthetic scorer 우회 재현 후 제거
+- 72/72 cell이 실제 frozen production scientific kernel을 호출; synthetic fallback 0
+- G2: intermediate artifact부터 시작하던 verifier gap 재현 후 raw-root replay로 교체
+- raw physical/scenario source → projection/custodian/scope/denominator → 228/228 result surface 독립 replay
+- 25개 invalid mutation 거부, 3개 DEC-031 valid edge case 수용
+- 실제 attack/test/label/scenario 접근 0; DEC-033 정확 V10 재승인 전 NO_GO
+- 교수 package `NOT_SUBMITTED`; DG-06 별도
+
+## 이전 슬라이드 — PRE-DG05 설계 동결
 
 - 세 버전, 다섯 primary method, version-separated reporting
 - 공식 scenario가 primary unit; P1 eligibility는 method-blind

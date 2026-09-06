@@ -179,8 +179,8 @@ class FrontReportingTests(unittest.TestCase):
             self.assertEqual(authority['byte_hash'], hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
             if path.startswith('src/'):
                 additions.add(path)
-        v8_root = RCC / 'validation_v2/dg05_v8_release'
-        v8_manifest = json.loads((v8_root / 'DG05_EXECUTABLE_AUTHORITY_MANIFEST_V8.json').read_text(encoding='utf-8'))
+        v8_root = RCC / 'validation_v2/dg05_v10_release'
+        v8_manifest = json.loads((v8_root / 'DG05_EXECUTABLE_AUTHORITY_MANIFEST_V10.json').read_text(encoding='utf-8'))
         v8_transitive = json.loads((v8_root / 'TRANSITIVE_IMPLEMENTATION_AUTHORITY_V1.json').read_text(encoding='utf-8'))
         self.assertEqual(
             v8_manifest['transitive_implementation_authority']['self_hash'],

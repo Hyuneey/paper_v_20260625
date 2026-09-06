@@ -45,7 +45,7 @@ class LiveReportingTests(unittest.TestCase):
         state = read(RCC / "registry/current_state.yaml")
         program = read(RCC / "validation_v2/PROGRAM_STATE.json")
         self.assertEqual(
-            "DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE" if state.get("dg05_executable_v4_closure") else ("DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION" if state.get("dg05_production_chain_closure") else ("DG-05 REAPPROVAL — EXECUTABLE V3" if state.get("dg05_executable_v3_closure") else ("DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001" if "DEC-030," in (RCC / "registry/decisions.csv").read_text(encoding="utf-8") else ("DG-05 REAPPROVAL — EXECUTABLE V2" if state.get("dg05_executable_closure") else ("DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access" if state.get("multipanel_pre_dg05") else ("MULTIPANEL-PRE-DG05-FREEZE-001" if state.get("xver_t2_execution") else ("DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001"))))))),
+            "DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE" if state.get("dg05_executable_v10_closure") else ("DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE" if state.get("dg05_executable_v4_closure") else ("DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION" if state.get("dg05_production_chain_closure") else ("DG-05 REAPPROVAL — EXECUTABLE V3" if state.get("dg05_executable_v3_closure") else ("DG-05 V2 METRIC VERIFIER CLOSURE — DG05-V2-METRIC-VERIFIER-CLOSURE-001" if "DEC-030," in (RCC / "registry/decisions.csv").read_text(encoding="utf-8") else ("DG-05 REAPPROVAL — EXECUTABLE V2" if state.get("dg05_executable_closure") else ("DG-05 — Multi-Panel Attack Feature + Conditional Label/Scenario Access" if state.get("multipanel_pre_dg05") else ("MULTIPANEL-PRE-DG05-FREEZE-001" if state.get("xver_t2_execution") else ("DG-XVER-PROVIDER" if state.get("xver_normal_execution") else "HAI-XVER-NORMAL-PREP-001")))))))),
             state["exact_next_task"],
         )
         self.assertEqual("COMPLETE_QA_PASS", state["exp03_execution"]["status"])
@@ -61,7 +61,9 @@ class LiveReportingTests(unittest.TestCase):
         self.assertEqual("PREPARED_DG03B_REVISED_PENDING",state['exp03b_preparation']['status'])
         self.assertFalse(program["held_out_authorized"])
         self.assertEqual(
-            "EXECUTABLE_V4_READY_EXACT_USER_REAPPROVAL_REQUIRED"
+            "EXECUTABLE_V10_READY_EXACT_USER_REAPPROVAL_REQUIRED"
+            if program.get("dg05_executable_v10_closure")
+            else "EXECUTABLE_V4_READY_EXACT_USER_REAPPROVAL_REQUIRED"
             if program.get("dg05_executable_v4_closure")
             else "HISTORICAL_APPROVALS_SUSPENDED_PRODUCTION_BINDINGS_AND_SOURCE_LINEAGE_REQUIRED"
             if program.get("dg05_production_chain_closure")

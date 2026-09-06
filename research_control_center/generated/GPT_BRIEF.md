@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8e4a7b67c3e882fba2802a58914c1557f13628428b46ebc0ed1e8392baafefc0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # GPT Brief — Research Control Center
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`.
@@ -34,7 +34,7 @@ Graph-guided, training-time agentic verified rule construction for explainable m
 
 ## Current phase
 
-**EVALUATION_SCOPE_EXPANSION** — DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+**EVALUATION_SCOPE_EXPANSION** — DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
 
 ## How to read RCC status
 
@@ -59,7 +59,7 @@ The frozen 14-scenario test1 result remains DEVELOPMENT_ONLY and will not be reo
 The prospective panels are HAI 23.05 test2 as PRIMARY_HELDOUT and HAI 22.04 plus
 HAI 21.03 as version-separated external replications. Their 146 nominal scenarios are
 not IID and one pooled Recall is prohibited as the primary result. DG-05 is mandatory
-before any new attack payload or label access. Current next gate: DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE.
+before any new attack payload or label access. Current next gate: DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE.
 
 ## Candidate-discovery boundary
 
@@ -145,6 +145,7 @@ observations, not new calculations.
 - **CLAIM-DG05-V3-METRIC-CLOSURE · SUPPORTED_IMPLEMENTATION** — Historical V3 independently replayed 228 synthetic surfaces;the PRE-DG05 audit found that current upstream production-source readiness was not thereby established.
 - **CLAIM-DG05-PRODUCTION-CLOSURE · NOT_SUPPORTED** — Prospective production-chain components are implemented but real access remains NO_GO pending scientific bindings normal-source lineage final route rehearsal and independent release review.
 - **CLAIM-DG05-V4-EXECUTABLE-CLOSURE · SUPPORTED_IMPLEMENTATION** — The exact V4 preaccess route and upstream normal-source lineage passed synthetic and authorized normal-only verification;real access remains unapproved.
+- **CLAIM-DG05-V10-EXECUTABLE-CLOSURE · SUPPORTED_IMPLEMENTATION** — The exact V10 preaccess route passed frozen-kernel and raw-root lineage qualification on synthetic and frozen normal-only authorities;real access remains unapproved.
 
 ## Current execution gates
 
@@ -154,16 +155,16 @@ professor submission awaits DG-06. Cross-version P1 compatibility remains unreso
 
 ## Top user TODO
 
-- DEC-032: exact DG05 Executable V4 release reapproval decision
+- DEC-033: exact DG05 Executable V10 release reapproval decision
 - Preserve the exact V4 manifest/closure and all frozen method, metric, custody, and single-copy private authorities
 - DG06: professor package submission decision
 
 ## Exact next task
 
-Management: **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**
+Management: **DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE**
 
 Following architecture review: **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
