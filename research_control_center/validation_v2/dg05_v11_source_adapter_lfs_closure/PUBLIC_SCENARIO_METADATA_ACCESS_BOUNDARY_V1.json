@@ -1,0 +1,51 @@
+{
+  "access_policy": {
+    "HELDOUT_FEATURE_VALUES_USED_FOR_METHOD_DESIGN": false,
+    "HELDOUT_METRICS_OBSERVED": 0,
+    "HELDOUT_PREDICTIONS_OBSERVED": 0,
+    "PUBLIC_OFFICIAL_SCENARIO_METADATA_ACCESS": "AUTHORIZED_AFTER_THIS_BOUNDARY",
+    "RESULT_DRIVEN_CHANGE": 0,
+    "SCIENTIFIC_METHOD_CHANGE_AFTER_METADATA_ACCESS": 0
+  },
+  "boundary_id": "PUBLIC_SCENARIO_METADATA_ACCESS_BOUNDARY_V1",
+  "boundary_purpose": "PUBLIC_OFFICIAL_METADATA_AUTHORITY_CONSTRUCTION_ONLY",
+  "created_before_additional_official_scenario_metadata_read": true,
+  "date": "2026-09-06",
+  "frozen_scientific_authorities": {
+    "DEC031": "e9706eb50391021ada69fe269be3f22bb50f591239daaedfaa6194a04275de62",
+    "GDN_AUTHORITY": "FROZEN_V10_RELEASE_MANIFEST_BOUND",
+    "Formal_V4": "074768ef863e481482337df4af16ee12c5ef36fb52c2129417d0ad39aa98dd14",
+    "Fusion": "587868f42fbdaedbd802541763e0390c09d2f04e4ba5944c45ad7e6e6593cbcc",
+    "Isolation_Forest": "c5f3f834435af6615e120f57c68c5d47eb66be8c07c4870c9f5fb0ee9cd832bb",
+    "META_STAT": "FROZEN_V10_RELEASE_MANIFEST_BOUND",
+    "P1_scope": "0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619",
+    "PCA": "c5f3f834435af6615e120f57c68c5d47eb66be8c07c4870c9f5fb0ee9cd832bb",
+    "T0_T2_portfolios": "074768ef863e481482337df4af16ee12c5ef36fb52c2129417d0ad39aa98dd14",
+    "V2A": "FROZEN_V10_RELEASE_MANIFEST_BOUND",
+    "feature_allowlist": "e49ba9ee3f6a2f1273666c41ac1584636a53d5b4334d6cb95e3eed0b17a2764b",
+    "metric_definitions": "f4eda42f0412db678f357c8791244106710fc1c8b0807d399c794e659920d7df",
+    "normal_source_registry": "35b34e0a33d99334bf7bbf9a31289221db052429c6710a216c53165711b84220",
+    "scientific_preregistration": "cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61"
+  },
+  "historical_audits_preserved": {
+    "HAI_OFFICIAL_SCENARIO_AUTHORITY_RECOVERY_AUDIT_V2": "d1bbb3c5cb9c88913b8f70ef5bfeaf77778ca9adbc0e6c2e14344f72b69f9644",
+    "HAI_OFFICIAL_SCENARIO_SOURCE_AUTHORITY_AUDIT_V1": "2c2989f9fba24d509d74e7b2e9512dfa10337b675e38b99fe9b9c8922731fc14",
+    "independent_review": "c92ca269197f3acc4f81b6d913562bd94bac32fbc2973e49b3dd71c9887b5004"
+  },
+  "prohibited_actions": [
+    "MODEL_CHANGE",
+    "RULE_CHANGE",
+    "THRESHOLD_CHANGE",
+    "FEATURE_ALLOWLIST_CHANGE",
+    "NORMAL_AUTHORITY_CHANGE",
+    "PREDICTION",
+    "METRIC_COMPUTATION",
+    "DG05_RESULT_EXECUTION",
+    "V11_RELEASE_FREEZE"
+  ],
+  "schema": "public_scenario_metadata_access_boundary_v1",
+  "self_hash": "cbbe39fe7dcfdfbfecbf374ce7c086930007e96d649b95a43ff84ff3a0fcf808",
+  "source_commit": "6d3b54c3ddd84e6a4c5b66a9dd558683d5ef294f",
+  "status": "FROZEN_BEFORE_PUBLIC_METADATA_ACCESS",
+  "task_id": "DG05-HAI-OFFICIAL-SOURCE-TRIANGULATION-AUTHORITY-CLOSURE-001"
+}
