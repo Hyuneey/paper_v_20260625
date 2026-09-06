@@ -227,6 +227,11 @@ def build_complete_metric_surface_v2(*, primitives: Mapping[str, Any], contract:
     panel = primitives["panel_id"]
     if primitives["authority_hashes"]["executable"] != executable_manifest_hash:
         raise MetricSurfaceV2Error("EXECUTABLE_AUTHORITY_MISMATCH")
+    if (
+        primitives["authority_hashes"]["normal_burden"] != contract.get("normal_source_registry_hash")
+        or primitives["authority_hashes"]["dec031"] != contract.get("dec031_binding_hash")
+    ):
+        raise MetricSurfaceV2Error("CONTRACT_UPSTREAM_SOURCE_BINDING_MISMATCH")
     bindings = {**primitives["authority_hashes"], **SCIENTIFIC_HASHES, "contract": contract["self_hash"]}
     surfaces: list[dict[str, Any]] = []
     method_hits: dict[str, list[dict[str, Any]]] = {}
