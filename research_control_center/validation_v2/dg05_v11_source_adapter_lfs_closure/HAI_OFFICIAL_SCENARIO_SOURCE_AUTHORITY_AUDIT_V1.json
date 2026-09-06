@@ -1,0 +1,142 @@
+{
+  "access_counters": {
+    "heldout_feature_rows_parsed": 0,
+    "heldout_feature_values_inspected": 0,
+    "heldout_label_values_parsed": 0,
+    "heldout_label_values_inspected": 0,
+    "heldout_predictions_executed": 0,
+    "heldout_scenario_records_accessed": 0,
+    "heldout_metrics_computed": 0,
+    "provider_calls": 0,
+    "credential_reads": 0
+  },
+  "audit_id": "HAI_OFFICIAL_SCENARIO_SOURCE_AUTHORITY_AUDIT_V1",
+  "blocker": "SCENARIO_ADAPTER_SOURCE_SCHEMA_AUTHORITY_MISSING",
+  "custody_replay": {
+    "receipt_hash": "46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+    "status": "PASS_10_OF_10"
+  },
+  "destination_contract": {
+    "implementation_file_sha256": "3b767802a9e188f57a37abdb3ac696aef62551f642c2ebc1606eeabdeb761c1e",
+    "implementation_identity": "dg05_label_custodian_v2.py",
+    "required_fields": [
+      "panel_id",
+      "dataset_version",
+      "file_id",
+      "scenario_id",
+      "closed_intervals",
+      "attacked_identities",
+      "explicit_affected_processes"
+    ],
+    "schema": "hai_official_scenario_metadata_raw_v2",
+    "status": "CANONICAL_DESTINATION_ONLY_NOT_AN_OFFICIAL_SOURCE_CONVERSION_AUTHORITY"
+  },
+  "implementation_started": false,
+  "official_documentation_authority": {
+    "git_snapshot_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "readme_git_blob_oid": "de19cf9f6466a049ece2c739a7216ddd6f044c32",
+    "readme_schema_finding": "TIMESTAMP_SCADA_AND_VERSION_DEPENDENT_ATTACK_LABEL_CONVENTIONS_ONLY",
+    "technical_manual_git_blob_oid": "18cb88514176e1c641f584cf24ac8e9559432b38",
+    "technical_manual_pages_reviewed_for_STRUCTURE_ONLY": [
+      2,
+      3
+    ],
+    "technical_manual_scenario_record_pages_opened": 0
+  },
+  "private_absolute_paths_published": false,
+  "private_exposures": 0,
+  "project_authorities": {
+    "attack_file_census_self_hash": "5018ba8d01e32a8a2ff4cf95cdb6ca75b51b006b812acf5cffe2b1d26b8a6a16",
+    "hai23_provenance_config_file_sha256": "69553bc22324f19cacfcf63f517ada6beade5cb054b2016facd5aeaf0ed56314",
+    "p1_eligibility_policy_file_sha256": "98b7a8190d6cc940eeb24059c77d3ccc383008dfe16c2f736de0ded92d0820cf"
+  },
+  "schema": "hai_official_scenario_source_authority_audit_v1",
+  "self_hash": "2c2989f9fba24d509d74e7b2e9512dfa10337b675e38b99fe9b9c8922731fc14",
+  "status": "BLOCKED_BEFORE_ADAPTER_IMPLEMENTATION",
+  "task_id": "DG05-V11-OFFICIAL-HAI-SCENARIO-ADAPTER-CLOSURE-001",
+  "version_findings": {
+    "HAI21_03": {
+      "candidate_official_sources": [
+        "HAI21_TEST_CONTAINERS_WITH_OVERALL_AND_PROCESS_SPECIFIC_ATTACK_LABEL_COLUMNS",
+        "OFFICIAL_TECHNICAL_MANUAL_ATTACK_SCENARIO_DOCUMENTATION"
+      ],
+      "classification": "NOT_RESOLVED",
+      "explicitly_established": [
+        "OVERALL_ATTACK_LABEL_EXISTS",
+        "PROCESS_SPECIFIC_ATTACK_LABELS_EXIST"
+      ],
+      "missing_authority": [
+        "OFFICIAL_SCENARIO_IDENTITY_AND_GROUPING_RULE",
+        "SCENARIO_TO_PHYSICAL_FILE_BINDING",
+        "MULTI_INTERVAL_OWNERSHIP_RULE",
+        "DIRECT_ATTACKED_IDENTITY_SOURCE_OR_MAPPING",
+        "EXPLICIT_AFFECTED_PROCESS_SOURCE_RULE"
+      ],
+      "prohibited_inference": "PROCESS_LABELS_OR_CONTIGUOUS_RUNS_MUST_NOT_BE_PROMOTED_TO_OFFICIAL_SCENARIOS"
+    },
+    "HAI22_04": {
+      "candidate_official_sources": [
+        {
+          "git_blob_oid": "5f5045e21f9c42b41f69ef5ee333bfb858f7d1da",
+          "source_id": "summary(test1.csv).txt"
+        },
+        {
+          "git_blob_oid": "bc86010200db80dc930b0b92433f472a39bd3352",
+          "source_id": "summary(test2.csv).txt"
+        },
+        {
+          "git_blob_oid": "5a4c8f1fd75c136f8f40eb62c0836709bf8c058d",
+          "source_id": "summary(test3.csv).txt"
+        },
+        {
+          "git_blob_oid": "a72af258c28fcc8affa07e3b2b7844e1265aea99",
+          "source_id": "summary(test4.csv).txt"
+        },
+        "OFFICIAL_TECHNICAL_MANUAL_ATTACK_SCENARIO_DOCUMENTATION"
+      ],
+      "classification": "NOT_RESOLVED",
+      "explicitly_established": [
+        "PROCESS_SPECIFIC_LABELS_REMOVED_FROM_HAI22_ONWARD",
+        "OFFICIAL_CONTROLLER_AND_POINT_TARGETS_REPLACE_PROCESS_SPECIFIC_LABELS",
+        "FOUR_VERSION_BOUND_SUMMARY_FILE_IDENTITIES_EXIST"
+      ],
+      "missing_authority": [
+        "SUMMARY_SERIALIZATION_GRAMMAR_AND_ENCODING",
+        "OFFICIAL_SCENARIO_ID_FIELD_OR_DETERMINISTIC_ID_RULE",
+        "SCENARIO_TO_PHYSICAL_FILE_BINDING_SEMANTICS",
+        "MULTI_INTERVAL_GROUPING_AND_ORDERING",
+        "TARGET_IDENTITY_LIST_PARSING",
+        "EXPLICIT_AFFECTED_PROCESS_MAPPING"
+      ],
+      "prohibited_inference": "HAI23_SUMMARY_FORMAT_MUST_NOT_BE_ASSUMED_FOR_HAI22"
+    },
+    "HAI23_05": {
+      "candidate_official_sources": [
+        {
+          "lfs_oid": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+          "source_id": "label-test2.csv"
+        },
+        {
+          "lfs_oid": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+          "source_id": "summary_label2.txt"
+        },
+        "OFFICIAL_TECHNICAL_MANUAL_ATTACK_SCENARIO_DOCUMENTATION"
+      ],
+      "classification": "NOT_RESOLVED",
+      "explicitly_established": [
+        "SEPARATE_LABEL_AND_SUMMARY_IDENTITIES_EXIST",
+        "EXPECTED_NOMINAL_SUMMARY_RECORD_COUNT_IS_38",
+        "OFFICIAL_CONTROLLER_AND_POINT_TARGETS_ARE_REFERENCED_BY_DOCUMENTATION"
+      ],
+      "missing_authority": [
+        "SUMMARY_SERIALIZATION_GRAMMAR_AND_ENCODING",
+        "OFFICIAL_SCENARIO_ID_FIELD_OR_DETERMINISTIC_ID_RULE",
+        "SCENARIO_TO_PHYSICAL_FILE_BINDING_SEMANTICS",
+        "MULTI_INTERVAL_GROUPING_AND_ORDERING",
+        "TARGET_IDENTITY_LIST_PARSING",
+        "EXPLICIT_AFFECTED_PROCESS_MAPPING"
+      ],
+      "prohibited_inference": "ROW_ORDER_LABEL_RUNS_OR_FREE_TEXT_MUST_NOT_DEFINE_OFFICIAL_SCENARIOS"
+    }
+  }
+}
