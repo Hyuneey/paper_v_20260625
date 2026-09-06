@@ -29,7 +29,11 @@ from scripts.freeze_dg05_execution_closure_v1 import build_detectors, build_disp
 from scripts.materialize_dg05_normal_sources_v2 import _vault_root
 
 
+VERSION_TAG = "V5"
+EXECUTABLE_VERSION = "DG05_EXECUTABLE_V5"
 OUT = ROOT / "research_control_center/validation_v2/dg05_v5_release"
+SUPERSEDED_CANDIDATE_HASH = None
+FREEZER_PATH = Path(__file__)
 DEC031 = ROOT / "research_control_center/validation_v2/dg05_dec031_binding/DEC031_BINDING_AUTHORITY_V1.json"
 NORMAL_REGISTRY = ROOT / "research_control_center/validation_v2/dg05_dec031_binding/NORMAL_BURDEN_SOURCE_REGISTRY_V2.json"
 NORMAL_CLOSURE = ROOT / "research_control_center/validation_v2/dg05_dec031_binding/NORMAL_SOURCE_CLOSURE_RECEIPT_V1.json"
@@ -91,7 +95,7 @@ def implementation_paths() -> dict[str, Path]:
         "dec031_semantics": ROOT / "src/paperworks/validation_v2/dg05_dec031_v1.py",
         "runtime_adapter": ROOT / "src/paperworks/validation_v2/dg05_runtime_adapter_v4.py",
         "custodian_process_entrypoint": ROOT / "scripts/run_dg05_label_custodian_v2.py",
-        "release_freezer": Path(__file__),
+        "release_freezer": FREEZER_PATH,
     }
 
 
@@ -108,7 +112,7 @@ def prepare() -> None:
     contract = build_metric_surface_contract_v2(
         source_commit=source_commit, dec031_binding_hash=dec031["self_hash"],
         normal_source_registry_hash=registry["self_hash"])
-    expected = self_hashed({"schema": "expected_result_surface_v3", "executable_version": "DG05_EXECUTABLE_V5",
+    expected = self_hashed({"schema": "expected_result_surface_v3", "executable_version": EXECUTABLE_VERSION,
         "metric_surface_contract_hash": contract["self_hash"], "surface_count": contract["required_surface_count"],
         "surface_ids": [row["surface_id"] for row in contract["surfaces"]], "source_commit": source_commit})
     OUT.mkdir(parents=True)
@@ -133,11 +137,13 @@ def prepare() -> None:
         nested_authority_hashes=nested, semantic_binding_hash=dec031["self_hash"],
         normal_burden_source_registry_hash=registry["self_hash"], source_commit=source_commit,
         scientific_preregistration_hash="cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61",
-        historical_execution_kernel_hash=historical["self_hash"])
-    release_path = OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V5.json"
+        historical_execution_kernel_hash=historical["self_hash"],
+        executable_version=EXECUTABLE_VERSION,
+        superseded_candidate_hash=SUPERSEDED_CANDIDATE_HASH)
+    release_path = OUT / f"DG05_EXECUTABLE_AUTHORITY_MANIFEST_{VERSION_TAG}.json"
     write(release_path, release)
     wrapper = OfficialEtaprV1(ETAPR_SOURCE)
-    with tempfile.TemporaryDirectory(prefix="dg05-v5-coordinator-") as raw:
+    with tempfile.TemporaryDirectory(prefix=f"dg05-{VERSION_TAG.lower()}-coordinator-") as raw:
         rehearsal, parity, roots = run_connected_preaccess_rehearsal_v5(
             repository_root=ROOT, work_root=Path(raw) / "route", release_path=release_path,
             predecessor_v4_path=V4, predecessor_v4_closure_path=V4_CLOSURE,
@@ -145,10 +151,10 @@ def prepare() -> None:
             normal_registry_path=NORMAL_REGISTRY, private_normal_manifest_path=private_manifest(closure["private_manifest_hash"]),
             expected_private_manifest_hash=closure["private_manifest_hash"], wrapper=wrapper,
             source_commit=source_commit)
-    write(OUT / "SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_V5.json", rehearsal)
+    write(OUT / f"SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_{VERSION_TAG}.json", rehearsal)
     write(OUT / "PRODUCTION_KERNEL_PARITY_V1.json", parity)
     write(OUT / "ROOT_TO_RESULT_REPLAY_V1.json", roots)
-    smoke = self_hashed({"schema": "frozen_method_smoke_v5", "status": "PASS",
+    smoke = self_hashed({"schema": f"frozen_method_smoke_{VERSION_TAG.lower()}", "status": "PASS",
         "evidence_kind": "CONNECTED_PREACCESS_FROZEN_PRODUCTION_KERNEL_EXECUTION",
         "release_manifest_hash": release["self_hash"], "kernel_parity_hash": parity["self_hash"],
         "normal_source_registry_hash": registry["self_hash"], "normal_source_closure_hash": closure["self_hash"],
@@ -156,7 +162,7 @@ def prepare() -> None:
         "frozen_methods": ["PCA", "ISOLATION_FOREST", "T0", "T2", "FUSION"],
         "new_fitting": 0, "gdn_runs": 0, "attack_test_accesses": 0,
         "label_scenario_accesses": 0, "provider_calls": 0, "source_commit": source_commit})
-    write(OUT / "FROZEN_METHOD_SMOKE_V5.json", smoke)
+    write(OUT / f"FROZEN_METHOD_SMOKE_{VERSION_TAG}.json", smoke)
 
     rows = [{"surface_id": row["surface_id"], "declared": True, "production_built": True,
              "root_to_result_replay": True, "independent_result_replay": True}
@@ -180,7 +186,7 @@ def prepare() -> None:
         "configured_never_formed_rule", "formed_never_evaluated_rule", "evaluated_system_error",
         "missing_rule_runtime_evidence", "synthetic_fallback_release_route",
     ]
-    mutations = self_hashed({"schema": "dg05_v5_mutation_evidence_v3", "status": "PASS",
+    mutations = self_hashed({"schema": f"dg05_{VERSION_TAG.lower()}_mutation_evidence_v3", "status": "PASS",
         "release_manifest_hash": release["self_hash"], "rejected_mutation_cases": rejected,
         "case_count": len(rejected), "gap_proof_hash": "820d7b278b1d45931727796a5b96bed49862db80c60c6c203e7ea0d9268fa1db",
         "unit_test_modules": ["tests.test_dg05_v5_gap_proof", "tests.test_dg05_production_route_v5",
@@ -195,19 +201,19 @@ def prepare() -> None:
 
 
 def replay() -> None:
-    release = load(OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V5.json")
+    release = load(OUT / f"DG05_EXECUTABLE_AUTHORITY_MANIFEST_{VERSION_TAG}.json")
     closure = load(NORMAL_CLOSURE)
     wrapper = OfficialEtaprV1(ETAPR_SOURCE)
-    with tempfile.TemporaryDirectory(prefix="dg05-v5-independent-") as raw:
+    with tempfile.TemporaryDirectory(prefix=f"dg05-{VERSION_TAG.lower()}-independent-") as raw:
         rehearsal, parity, roots = run_connected_preaccess_rehearsal_v5(
             repository_root=ROOT, work_root=Path(raw) / "route",
-            release_path=OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V5.json",
+            release_path=OUT / f"DG05_EXECUTABLE_AUTHORITY_MANIFEST_{VERSION_TAG}.json",
             predecessor_v4_path=V4, predecessor_v4_closure_path=V4_CLOSURE,
             historical_v1_manifest_path=V1, metric_contract_path=OUT / "METRIC_SURFACE_CONTRACT_V2.json",
             normal_registry_path=NORMAL_REGISTRY, private_normal_manifest_path=private_manifest(closure["private_manifest_hash"]),
             expected_private_manifest_hash=closure["private_manifest_hash"], wrapper=wrapper,
             source_commit=release["source_commit"])
-    frozen_rehearsal = load(OUT / "SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_V5.json")
+    frozen_rehearsal = load(OUT / f"SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_{VERSION_TAG}.json")
     frozen_parity = load(OUT / "PRODUCTION_KERNEL_PARITY_V1.json")
     frozen_roots = load(OUT / "ROOT_TO_RESULT_REPLAY_V1.json")
     for value in (frozen_rehearsal, frozen_parity, frozen_roots, rehearsal, parity, roots):
