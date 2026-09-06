@@ -75,6 +75,7 @@ def implementation_paths() -> dict[str, Path]:
     return {
         "release_initializer": chain, "production_orchestrator": connected,
         "state_machine": connected, "projection_adapter": execution,
+        "projection_parser": ROOT / "src/paperworks/data/hai_normal_projection_v2.py",
         "prediction_dispatch": route, "production_kernel_parity": route,
         "preaccess_kernel_adapter": ROOT / "src/paperworks/validation_v2/dg05_preaccess_kernel_v5.py",
         "global_manifest_builder": execution, "global_freeze_builder": execution,

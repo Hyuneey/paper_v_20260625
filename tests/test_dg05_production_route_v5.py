@@ -9,7 +9,9 @@ from paperworks.validation_v2.dg05_execution_closure_v1 import (
     DG05ProductionExecutorV1, PhysicalFileIdentityV2, digest, file_sha256,
     project_attack_feature_file_v1, self_hashed,
 )
-from paperworks.validation_v2.dg05_production_route_v5 import KernelInvocationCensusV5, execute_prediction_cell_v5
+from paperworks.validation_v2.dg05_production_route_v5 import (
+    KernelInvocationCensusV5, execute_prediction_cell_v5, validate_release_execution_kernel_v5,
+)
 from paperworks.validation_v2.multipanel_custody_v1 import frozen_feature_allowlist_authorities_v2
 
 
@@ -112,6 +114,22 @@ class ProductionRouteV5Tests(unittest.TestCase):
                         repository_root=Path.cwd(), invocation_census=KernelInvocationCensusV5())
                 self.assertEqual(receipt.status, "METHOD_FAILURE")
                 kernel.assert_not_called()
+
+    def test_approved_production_mode_uses_same_route_kernel_contract(self) -> None:
+        executor = object.__new__(DG05ProductionExecutorV1)
+        object.__setattr__(executor, "authority_mode", "PRODUCTION")
+        production = {
+            "release_manifest_hash": self.release["self_hash"],
+            "authority_mode": "PRODUCTION",
+            "data_access_mode": "PROTECTED_DATA_ACCESS_REQUIRES_EXACT_USER_APPROVAL",
+            "protected_access_authorized": True,
+            "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
+        }
+        with patch.object(DG05ProductionExecutorV1, "validate", autospec=True) as validate:
+            validate_release_execution_kernel_v5(
+                release=self.release, predecessor_v3=self.predecessor,
+                initialized_release_state=production, executor=executor)
+        validate.assert_called_once_with(executor)
 
 
 if __name__ == "__main__":

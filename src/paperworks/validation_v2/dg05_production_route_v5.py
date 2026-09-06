@@ -9,6 +9,7 @@ from typing import Any, Mapping
 from .dg05_dec031_v1 import build_physical_timeline_authority_v1, require_valid_physical_timeline_v1
 from .dg05_execution_closure_v1 import (
     DG05ClosureError,
+    DG05ProductionExecutorV1,
     MethodDispatchRegistryV1,
     PredictionTerminalReceiptV1,
     canonical_bytes,
@@ -86,10 +87,17 @@ class KernelInvocationCensusV5:
             "synthetic_fallback_invocation": False,
         })
 
-    def document(self, *, release_manifest_hash: str, source_commit: str) -> dict[str, Any]:
+    def document(
+        self, *, release_manifest_hash: str, source_commit: str,
+        executable_version: str = "DG05_EXECUTABLE_V5",
+    ) -> dict[str, Any]:
         rows = sorted(self.rows, key=lambda row: row["cell_id"])
         return self_hashed({
-            "schema": "dg05_v5_production_kernel_invocation_census_v1",
+            "schema": (
+                "dg05_v6_production_kernel_invocation_census_v1"
+                if executable_version == "DG05_EXECUTABLE_V6"
+                else "dg05_v5_production_kernel_invocation_census_v1"
+            ),
             "release_manifest_hash": release_manifest_hash,
             "invocation_count": len(rows),
             "production_kernel_invocation_count": sum(row["production_kernel_invocation"] for row in rows),
@@ -107,17 +115,30 @@ def validate_release_execution_kernel_v5(
                           (predecessor_v3, "dg05_executable_authority_manifest_v3")):
         if value.get("schema") != schema or value.get("self_hash") != digest({k: v for k, v in value.items() if k != "self_hash"}):
             raise DG05ProductionRouteV5Error("RELEASE_OR_PREDECESSOR_REPLAY_FAILED")
-    if (
-        release.get("executable_version") != "DG05_EXECUTABLE_V5"
+    common_invalid = (
+        release.get("executable_version") not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6"}
         or release.get("historical_execution_kernel_hash") is None
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
         or initialized_release_state.get("release_manifest_hash") != release["self_hash"]
-        or initialized_release_state.get("authority_mode") != PREACCESS_EXECUTION_MODE_V5
-        or initialized_release_state.get("data_access_mode") != "SYNTHETIC_ONLY_NO_PROTECTED_DISCOVERY"
-        or initialized_release_state.get("protected_access_authorized") is not False
         or initialized_release_state.get("execution_kernel_identity") != "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1"
-        or type(executor) is not PreaccessFrozenKernelExecutorV5
-    ):
+    )
+    mode = initialized_release_state.get("authority_mode")
+    if mode == PREACCESS_EXECUTION_MODE_V5:
+        mode_invalid = (
+            initialized_release_state.get("data_access_mode") != "SYNTHETIC_ONLY_NO_PROTECTED_DISCOVERY"
+            or initialized_release_state.get("protected_access_authorized") is not False
+            or type(executor) is not PreaccessFrozenKernelExecutorV5
+        )
+    elif mode == "PRODUCTION":
+        mode_invalid = (
+            initialized_release_state.get("data_access_mode") != "PROTECTED_DATA_ACCESS_REQUIRES_EXACT_USER_APPROVAL"
+            or initialized_release_state.get("protected_access_authorized") is not True
+            or type(executor) is not DG05ProductionExecutorV1
+            or getattr(executor, "authority_mode", None) != "PRODUCTION"
+        )
+    else:
+        mode_invalid = True
+    if common_invalid or mode_invalid:
         raise DG05ProductionRouteV5Error("V5_RELEASE_KERNEL_BINDING_MISMATCH")
     executor.validate()
 

@@ -28,6 +28,7 @@ REQUIRED_IMPLEMENTATION_ROLES_V5 = REQUIRED_IMPLEMENTATION_ROLES_V4 | frozenset(
         "preaccess_kernel_adapter",
         "production_kernel_parity",
         "root_to_result_verifier",
+        "projection_parser",
     }
 )
 
@@ -44,6 +45,8 @@ def build_production_release_manifest_v5(
     nested_authority_hashes: Mapping[str, str], semantic_binding_hash: str,
     normal_burden_source_registry_hash: str, source_commit: str,
     scientific_preregistration_hash: str, historical_execution_kernel_hash: str,
+    executable_version: str = "DG05_EXECUTABLE_V5",
+    superseded_candidate_hash: str | None = None,
 ) -> dict[str, Any]:
     predecessor = load_canonical_self_hashed_v1(
         predecessor_v4_manifest_path, "dg05_production_release_manifest_v1")
@@ -71,9 +74,15 @@ def build_production_release_manifest_v5(
         _sha(value, "SHA256_AUTHORITY_REQUIRED")
     if type(source_commit) is not str or len(source_commit) != 40:
         raise DG05ProductionChainV2Error("SOURCE_COMMIT_REQUIRED")
+    if executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6"}:
+        raise DG05ProductionChainV2Error("SUPPORTED_EXECUTABLE_VERSION_REQUIRED")
+    if executable_version == "DG05_EXECUTABLE_V6":
+        _sha(superseded_candidate_hash, "SUPERSEDED_V5_CANDIDATE_HASH_REQUIRED")
+    elif superseded_candidate_hash is not None:
+        raise DG05ProductionChainV2Error("V5_CANNOT_SUPERSEDE_ITSELF")
     return self_hashed_v1({
         "schema": "dg05_production_release_manifest_v2",
-        "executable_version": "DG05_EXECUTABLE_V5",
+        "executable_version": executable_version,
         "approval_status": "DG05_PRODUCTION_RELEASE_USER_REAPPROVAL_REQUIRED",
         "readiness": "READY_FOR_USER_REAPPROVAL",
         "predecessor_v4_manifest_hash": predecessor["self_hash"],
@@ -84,6 +93,11 @@ def build_production_release_manifest_v5(
         "normal_burden_source_registry_hash": normal_burden_source_registry_hash,
         "scientific_preregistration_hash": scientific_preregistration_hash,
         "historical_execution_kernel_hash": historical_execution_kernel_hash,
+        "superseded_candidate_hash": superseded_candidate_hash,
+        "superseded_candidate_disposition": (
+            "UNAPPROVED_FAILED_INDEPENDENT_RELEASE_QUALIFICATION"
+            if superseded_candidate_hash is not None else None
+        ),
         "nested_authority_hashes": dict(sorted(nested_authority_hashes.items())),
         "implementation_authorities": implementations,
         "decision_binding": "DEC-031",
@@ -100,6 +114,7 @@ def initialize_production_release_v5(
     predecessor_v4_manifest_path: Path, predecessor_v4_closure_path: Path,
     expected_release_hash: str, authority_mode: str,
     user_approved_release_hash: str | None = None,
+    expected_executable_version: str = "DG05_EXECUTABLE_V5",
 ) -> dict[str, Any]:
     release = load_canonical_self_hashed_v1(
         release_manifest_path, "dg05_production_release_manifest_v2")
@@ -112,13 +127,14 @@ def initialize_production_release_v5(
         or release.get("predecessor_v4_manifest_hash") != predecessor["self_hash"]
         or release.get("predecessor_v4_closure_hash") != closure["self_hash"]
         or closure.get("executable_manifest_hash") != predecessor["self_hash"]
-        or release.get("executable_version") != "DG05_EXECUTABLE_V5"
+        or release.get("executable_version") != expected_executable_version
+        or expected_executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6"}
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
     ):
         raise DG05ProductionChainV2Error("V5_RELEASE_ROOT_REPLAY_FAILED")
     root = repository_root.resolve()
     names = []
-    for row in release.get("implementation_authorities", ()): 
+    for row in release.get("implementation_authorities", ()):
         path = (root / row["relative_path"]).resolve()
         if root not in path.parents or not path.is_file() or path.is_symlink() or file_sha256_v1(path) != row["byte_hash"]:
             raise DG05ProductionChainV2Error("V5_IMPLEMENTATION_BYTE_REPLAY_FAILED")

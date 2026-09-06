@@ -85,7 +85,8 @@ def run_connected_preaccess_rehearsal_v5(
         predecessor_v4_manifest_path=predecessor_v4_path,
         predecessor_v4_closure_path=predecessor_v4_closure_path,
         expected_release_hash=release["self_hash"],
-        authority_mode="PREACCESS_FROZEN_KERNEL_REHEARSAL")
+        authority_mode="PREACCESS_FROZEN_KERNEL_REHEARSAL",
+        expected_executable_version=release["executable_version"])
     contract = _load(metric_contract_path, "metric_surface_contract_v2")
     normal_registry = _load(normal_registry_path, "normal_burden_source_registry_v2")
     historical = _typed_manifest(historical_v1_manifest_path)
@@ -203,7 +204,9 @@ def run_connected_preaccess_rehearsal_v5(
             trace_paths[receipt.cell_id] = trace_path
     if len(kernel_census.rows) != census["count"] or any(receipt.status != "SUCCESS" for receipt in receipts):
         raise DG05ConnectedRehearsalV5Error("PRODUCTION_KERNEL_REHEARSAL_INCOMPLETE")
-    kernel_doc = kernel_census.document(release_manifest_hash=release["self_hash"], source_commit=source_commit)
+    kernel_doc = kernel_census.document(
+        release_manifest_hash=release["self_hash"], source_commit=source_commit,
+        executable_version=release["executable_version"])
     kernel_path = work_root / "kernel-invocation-census.json"
     persist_canonical_v1(kernel_path, kernel_doc)
 
@@ -367,7 +370,8 @@ def run_connected_preaccess_rehearsal_v5(
             {file_id: projections[(panel, file_id)][1] for file_id in panel_files},
             prediction_paths, trace_paths, normal_registry_path, component_paths, primitive_path)
         roots = RootToResultReplayPathsV3(
-            intermediate=intermediate, physical_file_authority_path=physical_path,
+            intermediate=intermediate, release_manifest_path=release_path,
+            physical_file_authority_path=physical_path,
             raw_physical_paths={file_id: source_paths[(panel, file_id)] for file_id in panel_files},
             projection_authority_paths={file_id: projection_authority_paths[(panel, file_id)] for file_id in panel_files},
             timestamp_authority_paths={file_id: timestamp_authority_paths[(panel, file_id)] for file_id in panel_files},
@@ -392,7 +396,11 @@ def run_connected_preaccess_rehearsal_v5(
         surface_count += result["surface_count"]
 
     root_replay = self_hashed({
-        "schema": "dg05_v5_root_to_result_replay_receipt_v1",
+        "schema": (
+            "dg05_v6_root_to_result_replay_receipt_v1"
+            if release["executable_version"] == "DG05_EXECUTABLE_V6"
+            else "dg05_v5_root_to_result_replay_receipt_v1"
+        ),
         "status": "PASS",
         "release_manifest_hash": release["self_hash"],
         "verification_count": len(upstream_receipts),
@@ -405,7 +413,11 @@ def run_connected_preaccess_rehearsal_v5(
         "source_commit": source_commit,
     })
     rehearsal = self_hashed({
-        "schema": "connected_preaccess_dg05_rehearsal_evidence_v5", "status": "PASS",
+        "schema": (
+            "connected_preaccess_dg05_rehearsal_evidence_v6"
+            if release["executable_version"] == "DG05_EXECUTABLE_V6"
+            else "connected_preaccess_dg05_rehearsal_evidence_v5"
+        ), "status": "PASS",
         "release_manifest_hash": release["self_hash"], "release_initialization_hash": initialized["self_hash"],
         "authorized_data_mode": initialized["data_access_mode"],
         "execution_kernel_identity": initialized["execution_kernel_identity"],
