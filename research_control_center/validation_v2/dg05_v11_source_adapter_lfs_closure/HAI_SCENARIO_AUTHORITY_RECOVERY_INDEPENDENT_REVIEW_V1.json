@@ -1,0 +1,62 @@
+{
+  "audit_authority_hash": "d1bbb3c5cb9c88913b8f70ef5bfeaf77778ca9adbc0e6c2e14344f72b69f9644",
+  "custody_receipt_hash": "46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+  "date": "2026-09-06",
+  "integrity_checks": {
+    "audit_json_markdown_disposition_consistent": "PASS",
+    "audit_self_hash_replay": "PASS",
+    "cross_version_rule_transfer_absent": "PASS",
+    "historical_v1_preserved": "PASS",
+    "no_record_value_inference": "PASS",
+    "p1_gap_fail_closed": "PASS",
+    "privacy_scan": "PASS",
+    "third_party_rule_promoted_to_authority": "NO",
+    "ten_of_ten_custody_binding": "PASS"
+  },
+  "overall": "PASS_BLOCKER_DISPOSITION_NOT_READY_FOR_ADAPTER",
+  "per_version_review": {
+    "HAI21_03": {
+      "q01_every_transformation_rule_has_explicit_official_support": "FAIL",
+      "q02_any_rule_inferred_from_record_values": "PASS_NO_RULE_INFERRED",
+      "q03_any_rule_borrowed_from_another_version": "PASS_NO_RULE_BORROWED",
+      "q04_scenario_identity_deterministically_reproducible": "FAIL",
+      "q05_file_binding_deterministically_reproducible": "FAIL",
+      "q06_interval_ownership_and_grouping_reproducible": "FAIL",
+      "q07_attacked_identities_reproducible": "PARTIAL_TEMPLATE_LEVEL_ONLY",
+      "q08_process_mapping_officially_supported": "FAIL_OCCURRENCE_LEVEL",
+      "q09_nominal_census_consistent_with_authority": "PASS",
+      "q10_enough_to_implement_without_heldout_values": "FAIL",
+      "status": "AUTHORITY_INCOMPLETE"
+    },
+    "HAI22_04": {
+      "q01_every_transformation_rule_has_explicit_official_support": "FAIL",
+      "q02_any_rule_inferred_from_record_values": "PASS_NO_RULE_INFERRED",
+      "q03_any_rule_borrowed_from_another_version": "PASS_NO_RULE_BORROWED",
+      "q04_scenario_identity_deterministically_reproducible": "PARTIAL_MANUAL_ROW_ONLY",
+      "q05_file_binding_deterministically_reproducible": "PARTIAL_STRONG_SOURCE_FILE_BINDING_RECORD_JOIN_UNRESOLVED",
+      "q06_interval_ownership_and_grouping_reproducible": "FAIL",
+      "q07_attacked_identities_reproducible": "PARTIAL_TYPED_FIELDS_ONLY",
+      "q08_process_mapping_officially_supported": "FAIL",
+      "q09_nominal_census_consistent_with_authority": "PASS",
+      "q10_enough_to_implement_without_heldout_values": "FAIL",
+      "status": "AUTHORITY_INCOMPLETE"
+    },
+    "HAI23_05": {
+      "q01_every_transformation_rule_has_explicit_official_support": "FAIL",
+      "q02_any_rule_inferred_from_record_values": "PASS_NO_RULE_INFERRED",
+      "q03_any_rule_borrowed_from_another_version": "PASS_NO_RULE_BORROWED",
+      "q04_scenario_identity_deterministically_reproducible": "FAIL",
+      "q05_file_binding_deterministically_reproducible": "PARTIAL_VERSION_BOUND_SOURCES_JOIN_UNRESOLVED",
+      "q06_interval_ownership_and_grouping_reproducible": "FAIL",
+      "q07_attacked_identities_reproducible": "PARTIAL_CONCEPTUAL_ROLES_ONLY",
+      "q08_process_mapping_officially_supported": "FAIL",
+      "q09_nominal_census_consistent_with_authority": "PASS",
+      "q10_enough_to_implement_without_heldout_values": "FAIL",
+      "status": "AUTHORITY_INCOMPLETE"
+    }
+  },
+  "review_disposition": "INDEPENDENTLY_CONFIRMED_OFFICIAL_SCENARIO_AUTHORITY_INCOMPLETE",
+  "reviewer_role": "INDEPENDENT_READ_ONLY_REVIEWER_NOT_ARTIFACT_AUTHOR",
+  "schema": "hai_scenario_authority_recovery_independent_review_v1",
+  "self_hash": "c92ca269197f3acc4f81b6d913562bd94bac32fbc2973e49b3dd71c9887b5004"
+}
