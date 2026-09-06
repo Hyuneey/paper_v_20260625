@@ -397,23 +397,26 @@ def _fuse(detector: tuple[bool, ...], rule: tuple[bool, ...], trace: dict[str, A
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--execute", action="store_true")
-    parser.add_argument("--seal-failed-attempt", action="store_true")
+    parser.add_argument("--seal-failed-attempt", type=int)
+    parser.add_argument("--failure-code")
+    parser.add_argument("--failed-source-commit")
     args = parser.parse_args()
     if args.seal_failed_attempt:
         vault = _vault_root()
         staging = vault / "dg05-dec031-normal-source-001.part"
-        failed = vault / "dg05-dec031-normal-source-001.attempt-001-failed"
+        failed = vault / f"dg05-dec031-normal-source-001.attempt-{args.seal_failed_attempt:03d}-failed"
         if (
             not staging.is_dir() or staging.is_symlink() or failed.exists()
+            or not args.failure_code or not args.failed_source_commit
             or sorted(path.relative_to(staging).as_posix() for path in staging.rglob("*"))
                != ["NORMAL_SOURCE_DISCOVERY_CENSUS_PRIVATE_V1.json"]
         ):
             raise RuntimeError("EXACT_FAILED_STAGING_ATTEMPT_REQUIRED")
         receipt = self_hashed_v1({
             "schema": "normal_source_materialization_failed_attempt_v1",
-            "attempt": 1, "status": "ENGINEERING_FAILURE_BEFORE_SCIENTIFIC_SCORING",
-            "source_commit": "7243f4d012ba712518d422864cf00ffa55891475",
-            "failure_code": "HAI23_PRIVATE_MANIFEST_ROW_COUNT_FIELD_ABSENT",
+            "attempt": args.seal_failed_attempt, "status": "ENGINEERING_FAILURE_BEFORE_SCIENTIFIC_SCORING",
+            "source_commit": args.failed_source_commit,
+            "failure_code": args.failure_code,
             "scientific_scorer_invocations": 0, "attack_test_accesses": 0,
             "label_scenario_accesses": 0, "provider_calls": 0,
         })
