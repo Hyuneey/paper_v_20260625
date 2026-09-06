@@ -27,7 +27,6 @@ from .dg05_execution_closure_v1 import (
     digest,
     file_sha256,
     freeze_global_predictions_v1,
-    persist_prediction_receipt_v1,
     self_hashed,
 )
 from .dg05_metric_surface_execution_v2 import build_metric_primitives_from_frozen_execution_v2
@@ -37,7 +36,7 @@ from .dg05_normal_source_v2 import replay_normal_source_registry_v2
 from .dg05_preaccess_kernel_v5 import build_preaccess_frozen_kernel_executor_v5
 from .dg05_production_chain_v1 import launch_custodian_fresh_process_v2
 from .dg05_production_chain_v2 import initialize_production_release_v5
-from .dg05_production_route_v5 import KernelInvocationCensusV5, execute_prediction_cell_v5
+from .dg05_production_route_v5 import execute_prediction_schedule_v5
 from .dg05_upstream_lineage_verifier_v2 import UpstreamPanelReplayPathsV2
 from .dg05_upstream_lineage_verifier_v3 import RootToResultReplayPathsV3, verify_asserted_primitive_from_roots_v3
 from .etapr_exchange_v1 import OfficialEtaprV1
@@ -171,42 +170,24 @@ def run_connected_preaccess_rehearsal_v5(
         timestamp_authority_paths[(item.panel_id, item.file_id)] = timestamp_doc_path
 
     prediction_directory = work_root / "predictions"
-    receipts = []
-    artifacts = {}
-    prediction_paths: dict[str, Path] = {}
-    trace_paths: dict[str, Path] = {}
-    kernel_census = KernelInvocationCensusV5()
-    for cell in census["cells"]:
-        projection, projection_path = projections[(cell["panel_id"], cell["file_id"])]
-        receipt = execute_prediction_cell_v5(
-            cell=cell, dispatch=dispatch, projection=projection,
-            timestamp=timestamps[(cell["panel_id"], cell["file_id"])],
-            release=release, predecessor_v3=_load_v4(
-                repository_root / "research_control_center/validation_v2/dg05_metric_verifier_closure/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json",
-                "dg05_executable_authority_manifest_v3"),
-            initialized_release_state=initialized, executor=executor,
-            projection_path=projection_path, output_directory=prediction_directory,
-            source_commit=source_commit, repository_root=repository_root,
-            invocation_census=kernel_census)
-        receipts.append(receipt)
-        receipt_path = prediction_directory / f"{receipt.cell_id}.receipt.json"
-        persist_prediction_receipt_v1(receipt_path, receipt)
-        prediction_path = prediction_directory / f"{receipt.cell_id}.prediction.json"
-        trace_path = prediction_directory / f"{receipt.cell_id}.trace.json"
-        artifacts[receipt.cell_id] = (
-            prediction_path if receipt.status == "SUCCESS" else None,
-            trace_path if receipt.trace_status == "BOUND" else None,
-            receipt_path,
-        )
-        if receipt.status == "SUCCESS":
-            prediction_paths[receipt.cell_id] = prediction_path
-        if receipt.trace_status == "BOUND":
-            trace_paths[receipt.cell_id] = trace_path
-    if len(kernel_census.rows) != census["count"] or any(receipt.status != "SUCCESS" for receipt in receipts):
+    receipts, artifacts, prediction_paths, trace_paths, kernel_doc = execute_prediction_schedule_v5(
+        census=census,
+        physical=physical,
+        dispatch=dispatch,
+        projections=projections,
+        timestamps=timestamps,
+        release=release,
+        predecessor_v3=_load_v4(
+            repository_root / "research_control_center/validation_v2/dg05_metric_verifier_closure/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json",
+            "dg05_executable_authority_manifest_v3"),
+        initialized_release_state=initialized,
+        executor=executor,
+        output_directory=prediction_directory,
+        source_commit=source_commit,
+        repository_root=repository_root,
+    )
+    if kernel_doc["invocation_count"] != census["count"] or any(receipt.status != "SUCCESS" for receipt in receipts):
         raise DG05ConnectedRehearsalV5Error("PRODUCTION_KERNEL_REHEARSAL_INCOMPLETE")
-    kernel_doc = kernel_census.document(
-        release_manifest_hash=release["self_hash"], source_commit=source_commit,
-        executable_version=release["executable_version"])
     kernel_path = work_root / "kernel-invocation-census.json"
     persist_canonical_v1(kernel_path, kernel_doc)
 

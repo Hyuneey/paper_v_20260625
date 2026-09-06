@@ -13,9 +13,11 @@ from .dg05_execution_closure_v1 import (
     DG05ProductionExecutorV1,
     MethodDispatchRegistryV1,
     PredictionTerminalReceiptV1,
+    build_expected_prediction_cell_census_v1,
     canonical_bytes,
     digest,
     file_sha256,
+    persist_prediction_receipt_v1,
     publish_new,
     self_hashed,
 )
@@ -80,6 +82,14 @@ class KernelInvocationCensusV5:
             "executed_scientific_kernel_hash": kernel_hash,
             "frozen_production_scientific_kernel_hash": kernel_hash,
             "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
+            "connected_schedule_callable_id": (
+                "paperworks.validation_v2.dg05_production_route_v5."
+                "execute_prediction_schedule_v5"
+            ),
+            "cell_callable_id": (
+                "paperworks.validation_v2.dg05_production_route_v5."
+                "execute_prediction_cell_v5"
+            ),
             "data_access_mode": getattr(executor, "data_access_mode", "PROTECTED_PRODUCTION"),
             "prediction_output_schema": "dense_boolean_prediction_v1",
             "runtime_trace_schema": "rule_trace_artifact_v4" if role else "NOT_APPLICABLE",
@@ -114,7 +124,7 @@ def validate_release_execution_kernel_v5(
             raise DG05ProductionRouteV5Error("RELEASE_OR_PREDECESSOR_REPLAY_FAILED")
     selected_executor = executor.frozen if type(executor) is PreaccessFrozenKernelExecutorV5 else executor
     common_invalid = (
-        release.get("executable_version") not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7"}
+        release.get("executable_version") not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}
         or release.get("historical_execution_kernel_hash")
         != getattr(selected_executor, "executable_manifest_hash", None)
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
@@ -127,6 +137,8 @@ def validate_release_execution_kernel_v5(
         or initialized_release_state.get("predecessor_v4_manifest_hash") != release.get("predecessor_v4_manifest_hash")
         or initialized_release_state.get("implementation_authority_hash") != digest(release.get("implementation_authorities"))
         or initialized_release_state.get("nested_authority_hash") != digest(release.get("nested_authority_hashes"))
+        or initialized_release_state.get("transitive_implementation_authority_hash")
+        != release.get("transitive_implementation_authority", {}).get("self_hash")
     )
     mode = initialized_release_state.get("authority_mode")
     if mode == PREACCESS_EXECUTION_MODE_V5:
@@ -260,9 +272,93 @@ def execute_prediction_cell_v5(
     return receipt
 
 
+def execute_prediction_schedule_v5(
+    *, census: Mapping[str, Any], physical: Any, dispatch: MethodDispatchRegistryV1,
+    projections: Mapping[tuple[str, str], tuple[Any, Path]],
+    timestamps: Mapping[tuple[str, str], Any], release: Mapping[str, Any],
+    predecessor_v3: Mapping[str, Any], initialized_release_state: Mapping[str, Any],
+    executor: Any, output_directory: Path, source_commit: str,
+    repository_root: Path,
+) -> tuple[
+    list[PredictionTerminalReceiptV1],
+    dict[str, tuple[Path | None, Path | None, Path]],
+    dict[str, Path],
+    dict[str, Path],
+    dict[str, Any],
+]:
+    """Execute the canonical cell schedule in either approved data-access mode.
+
+    Resource discovery and projection happen before this boundary. Both the
+    protected production mode and the pre-access mode therefore invoke this
+    identical ordered dispatch and scientific-kernel route.
+    """
+    try:
+        expected_census = build_expected_prediction_cell_census_v1(
+            physical=physical,
+            dispatch=dispatch,
+        )
+    except (ValueError, DG05ClosureError) as exc:
+        raise DG05ProductionRouteV5Error("PREDICTION_CELL_CENSUS_ROOT_REPLAY_FAILED") from exc
+    if census != expected_census:
+        raise DG05ProductionRouteV5Error("PREDICTION_CELL_CENSUS_ROOT_REPLAY_FAILED")
+    cells = census.get("cells")
+    if type(cells) is not list or census.get("count") != len(cells):
+        raise DG05ProductionRouteV5Error("PREDICTION_CELL_CENSUS_INVALID")
+    receipts: list[PredictionTerminalReceiptV1] = []
+    artifacts: dict[str, tuple[Path | None, Path | None, Path]] = {}
+    prediction_paths: dict[str, Path] = {}
+    trace_paths: dict[str, Path] = {}
+    invocation_census = KernelInvocationCensusV5()
+    for cell in cells:
+        key = (str(cell["panel_id"]), str(cell["file_id"]))
+        if key not in projections or key not in timestamps:
+            raise DG05ProductionRouteV5Error("CELL_RESOURCE_AUTHORITY_MISSING")
+        projection, projection_path = projections[key]
+        receipt = execute_prediction_cell_v5(
+            cell=cell,
+            dispatch=dispatch,
+            projection=projection,
+            timestamp=timestamps[key],
+            release=release,
+            predecessor_v3=predecessor_v3,
+            initialized_release_state=initialized_release_state,
+            executor=executor,
+            projection_path=projection_path,
+            output_directory=output_directory,
+            source_commit=source_commit,
+            repository_root=repository_root,
+            invocation_census=invocation_census,
+        )
+        if receipt.cell_id in artifacts:
+            raise DG05ProductionRouteV5Error("DUPLICATE_PREDICTION_CELL")
+        receipts.append(receipt)
+        receipt_path = output_directory / f"{receipt.cell_id}.receipt.json"
+        persist_prediction_receipt_v1(receipt_path, receipt)
+        prediction_path = output_directory / f"{receipt.cell_id}.prediction.json"
+        trace_path = output_directory / f"{receipt.cell_id}.trace.json"
+        artifacts[receipt.cell_id] = (
+            prediction_path if receipt.status == "SUCCESS" else None,
+            trace_path if receipt.trace_status == "BOUND" else None,
+            receipt_path,
+        )
+        if receipt.status == "SUCCESS":
+            prediction_paths[receipt.cell_id] = prediction_path
+        if receipt.trace_status == "BOUND":
+            trace_paths[receipt.cell_id] = trace_path
+    if len(receipts) != len(cells) or len(artifacts) != len(cells):
+        raise DG05ProductionRouteV5Error("PREDICTION_CELL_SCHEDULE_INCOMPLETE")
+    kernel_document = invocation_census.document(
+        release_manifest_hash=release["self_hash"],
+        source_commit=source_commit,
+        executable_version=release["executable_version"],
+    )
+    return receipts, artifacts, prediction_paths, trace_paths, kernel_document
+
+
 __all__ = [
     "DG05ProductionRouteV5Error",
     "KernelInvocationCensusV5",
     "execute_prediction_cell_v5",
+    "execute_prediction_schedule_v5",
     "validate_release_execution_kernel_v5",
 ]

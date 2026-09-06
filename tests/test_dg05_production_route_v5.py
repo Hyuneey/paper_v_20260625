@@ -10,7 +10,8 @@ from paperworks.validation_v2.dg05_execution_closure_v1 import (
     project_attack_feature_file_v1, self_hashed,
 )
 from paperworks.validation_v2.dg05_production_route_v5 import (
-    KernelInvocationCensusV5, execute_prediction_cell_v5, validate_release_execution_kernel_v5,
+    KernelInvocationCensusV5, execute_prediction_cell_v5,
+    execute_prediction_schedule_v5, validate_release_execution_kernel_v5,
 )
 from paperworks.validation_v2.multipanel_custody_v1 import frozen_feature_allowlist_authorities_v2
 
@@ -48,6 +49,7 @@ class ProductionRouteV5Tests(unittest.TestCase):
             "historical_execution_kernel_hash": self.executor.executable_manifest_hash,
             "predecessor_v4_manifest_hash": H,
             "implementation_authorities": [], "nested_authority_hashes": {},
+            "transitive_implementation_authority": {"self_hash": H},
             "readiness": "READY_FOR_USER_REAPPROVAL", "source_commit": G,
         })
         self.initialized = self_hashed({
@@ -61,6 +63,7 @@ class ProductionRouteV5Tests(unittest.TestCase):
             "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
             "implementation_authority_hash": digest([]),
             "nested_authority_hash": digest({}),
+            "transitive_implementation_authority_hash": H,
             "attack_test_accesses": 0, "label_scenario_accesses": 0,
         })
 
@@ -139,6 +142,7 @@ class ProductionRouteV5Tests(unittest.TestCase):
             "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
             "implementation_authority_hash": digest([]),
             "nested_authority_hash": digest({}),
+            "transitive_implementation_authority_hash": H,
             "attack_test_accesses": 0, "label_scenario_accesses": 0,
         })
         with patch.object(DG05ProductionExecutorV1, "validate", autospec=True) as validate:
@@ -146,6 +150,19 @@ class ProductionRouteV5Tests(unittest.TestCase):
                 release=self.release, predecessor_v3=self.predecessor,
                 initialized_release_state=production, executor=executor)
         validate.assert_called_once_with(executor)
+
+    def test_route_rejects_transitive_implementation_state_disconnect(self) -> None:
+        bad = self_hashed({
+            **{key: value for key, value in self.initialized.items() if key != "self_hash"},
+            "transitive_implementation_authority_hash": "c" * 64,
+        })
+        with self.assertRaisesRegex(ValueError, "V5_RELEASE_KERNEL_BINDING_MISMATCH"):
+            validate_release_execution_kernel_v5(
+                release=self.release,
+                predecessor_v3=self.predecessor,
+                initialized_release_state=bad,
+                executor=self.executor,
+            )
 
     def test_handcrafted_unhashed_production_state_is_rejected(self) -> None:
         executor = object.__new__(DG05ProductionExecutorV1)
@@ -183,6 +200,50 @@ class ProductionRouteV5Tests(unittest.TestCase):
                     projection_path=path, output_directory=root / "out", source_commit=G,
                     repository_root=Path.cwd(), invocation_census=KernelInvocationCensusV5())
             kernel.assert_not_called()
+
+    def test_schedule_rejects_reorder_duplicate_and_dispatch_swap(self) -> None:
+        first = {"cell_id": "1", "panel_id": "P", "file_id": "F", "method_id": "M",
+                 "dispatch_authority_hash": H}
+        second = {**first, "cell_id": "2", "method_id": "N"}
+        expected = self_hashed({
+            "schema": "expected_prediction_cell_census_builder_v1",
+            "physical_file_authority_hash": H,
+            "dispatch_registry_hash": H,
+            "cells": [first, second],
+            "count": 2,
+        })
+        mutations = [
+            self_hashed({**{k: v for k, v in expected.items() if k not in {"self_hash", "cells"}},
+                         "cells": [second, first]}),
+            self_hashed({**{k: v for k, v in expected.items() if k not in {"self_hash", "cells"}},
+                         "cells": [first, first]}),
+            self_hashed({**{k: v for k, v in expected.items() if k not in {"self_hash", "dispatch_registry_hash"}},
+                         "dispatch_registry_hash": "c" * 64}),
+        ]
+        for mutation in mutations:
+            with (
+                self.subTest(mutation=mutation),
+                patch(
+                    "paperworks.validation_v2.dg05_production_route_v5."
+                    "build_expected_prediction_cell_census_v1",
+                    return_value=expected,
+                ),
+                self.assertRaisesRegex(ValueError, "PREDICTION_CELL_CENSUS_ROOT_REPLAY_FAILED"),
+            ):
+                execute_prediction_schedule_v5(
+                    census=mutation,
+                    physical=object(),
+                    dispatch=self.dispatch,
+                    projections={},
+                    timestamps={},
+                    release=self.release,
+                    predecessor_v3=self.predecessor,
+                    initialized_release_state=self.initialized,
+                    executor=self.executor,
+                    output_directory=Path("unused"),
+                    source_commit=G,
+                    repository_root=Path.cwd(),
+                )
 
 
 if __name__ == "__main__":

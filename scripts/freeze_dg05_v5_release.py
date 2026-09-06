@@ -23,6 +23,7 @@ from paperworks.validation_v2.dg05_connected_rehearsal_v5 import run_connected_p
 from paperworks.validation_v2.dg05_execution_closure_v1 import canonical_bytes, digest, file_sha256, self_hashed, validate_self_hashed
 from paperworks.validation_v2.dg05_metric_surface_v2 import build_metric_surface_contract_v2
 from paperworks.validation_v2.dg05_production_chain_v2 import build_production_release_manifest_v5
+from paperworks.validation_v2.dg05_implementation_closure_v1 import build_transitive_implementation_authority_v1
 from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
 from paperworks.validation_v2.multipanel_custody_v1 import FROZEN_ATTACK_FILE_CENSUS_HASH_V2, FROZEN_METHOD_BUNDLE_HASH_V2
 from scripts.freeze_dg05_execution_closure_v1 import build_detectors, build_dispatch, build_rule_runtime_registry, build_scope
@@ -77,7 +78,7 @@ def implementation_paths() -> dict[str, Path]:
     route = ROOT / "src/paperworks/validation_v2/dg05_production_route_v5.py"
     verifier = ROOT / "src/paperworks/validation_v2/dg05_upstream_lineage_verifier_v3.py"
     return {
-        "release_initializer": chain, "production_orchestrator": connected,
+        "release_initializer": chain, "production_orchestrator": route,
         "state_machine": connected, "projection_adapter": execution,
         "projection_parser": ROOT / "src/paperworks/data/hai_normal_projection_v2.py",
         "prediction_dispatch": route, "production_kernel_parity": route,
@@ -91,7 +92,7 @@ def implementation_paths() -> dict[str, Path]:
         "result_builder": ROOT / "src/paperworks/validation_v2/dg05_metric_surface_v2.py",
         "upstream_verifier": verifier, "root_to_result_verifier": verifier,
         "result_verifier": ROOT / "src/paperworks/validation_v2/dg05_metric_surface_oracle_v2.py",
-        "connected_production_route": connected,
+        "connected_production_route": route,
         "dec031_semantics": ROOT / "src/paperworks/validation_v2/dg05_dec031_v1.py",
         "runtime_adapter": ROOT / "src/paperworks/validation_v2/dg05_runtime_adapter_v4.py",
         "custodian_process_entrypoint": ROOT / "scripts/run_dg05_label_custodian_v2.py",
@@ -111,6 +112,7 @@ def implementation_paths() -> dict[str, Path]:
         "external_detector_kernel": ROOT / "src/paperworks/validation_v2/xver_detector_v1.py",
         "numeric_binding_contract": ROOT / "src/paperworks/validation_v2/exp02_bindings_v2a.py",
         "exp03b_contract": ROOT / "src/paperworks/validation_v2/exp03b_contract_v1.py",
+        "implementation_closure_builder": ROOT / "src/paperworks/validation_v2/dg05_implementation_closure_v1.py",
     }
 
 
@@ -134,6 +136,14 @@ def prepare() -> None:
     write(OUT / "METRIC_SURFACE_CONTRACT_V2.json", contract)
     write(OUT / "EXPECTED_RESULT_SURFACE_V3.json", expected)
 
+    transitive = build_transitive_implementation_authority_v1(
+        repository_root=ROOT,
+        root_paths=implementation_paths().values(),
+        source_commit=source_commit,
+    )
+    transitive_path = OUT / "TRANSITIVE_IMPLEMENTATION_AUTHORITY_V1.json"
+    write(transitive_path, transitive)
+
     detectors = build_detectors(); rules, _ = build_rule_runtime_registry(); dispatch = build_dispatch(detectors, rules); scope = build_scope()
     nested = {
         "method_bundle": FROZEN_METHOD_BUNDLE_HASH_V2, "metric_contract": contract["self_hash"],
@@ -149,6 +159,7 @@ def prepare() -> None:
     release = build_production_release_manifest_v5(
         repository_root=ROOT, predecessor_v4_manifest_path=V4,
         predecessor_v4_closure_path=V4_CLOSURE, implementation_paths=implementation_paths(),
+        transitive_implementation_authority_path=transitive_path,
         nested_authority_hashes=nested, semantic_binding_hash=dec031["self_hash"],
         normal_burden_source_registry_hash=registry["self_hash"], source_commit=source_commit,
         scientific_preregistration_hash="cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61",

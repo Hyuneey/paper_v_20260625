@@ -8,6 +8,9 @@ from .dg05_preaccess_kernel_v5 import (
     PREACCESS_DATA_ACCESS_MODE_V5,
     PREACCESS_EXECUTION_MODE_V5,
 )
+from .dg05_implementation_closure_v1 import (
+    replay_transitive_implementation_authority_v1,
+)
 from .dg05_production_chain_v1 import (
     REQUIRED_IMPLEMENTATION_ROLES_V4,
     REQUIRED_NESTED_AUTHORITY_ROLES_V1,
@@ -44,6 +47,7 @@ REQUIRED_IMPLEMENTATION_ROLES_V5 = REQUIRED_IMPLEMENTATION_ROLES_V4 | frozenset(
         "external_detector_kernel",
         "numeric_binding_contract",
         "exp03b_contract",
+        "implementation_closure_builder",
     }
 )
 
@@ -62,6 +66,7 @@ def build_production_release_manifest_v5(
     scientific_preregistration_hash: str, historical_execution_kernel_hash: str,
     executable_version: str = "DG05_EXECUTABLE_V5",
     superseded_candidate_hash: str | None = None,
+    transitive_implementation_authority_path: Path | None = None,
 ) -> dict[str, Any]:
     predecessor = load_canonical_self_hashed_v1(
         predecessor_v4_manifest_path, "dg05_production_release_manifest_v1")
@@ -89,12 +94,26 @@ def build_production_release_manifest_v5(
         _sha(value, "SHA256_AUTHORITY_REQUIRED")
     if type(source_commit) is not str or len(source_commit) != 40:
         raise DG05ProductionChainV2Error("SOURCE_COMMIT_REQUIRED")
-    if executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7"}:
+    if executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}:
         raise DG05ProductionChainV2Error("SUPPORTED_EXECUTABLE_VERSION_REQUIRED")
-    if executable_version in {"DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7"}:
+    if executable_version in {"DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}:
         _sha(superseded_candidate_hash, "SUPERSEDED_V5_CANDIDATE_HASH_REQUIRED")
     elif superseded_candidate_hash is not None:
         raise DG05ProductionChainV2Error("V5_CANNOT_SUPERSEDE_ITSELF")
+    if transitive_implementation_authority_path is None:
+        raise DG05ProductionChainV2Error("TRANSITIVE_IMPLEMENTATION_AUTHORITY_REQUIRED")
+    transitive_path = transitive_implementation_authority_path.resolve()
+    if root not in transitive_path.parents or not transitive_path.is_file() or transitive_path.is_symlink():
+        raise DG05ProductionChainV2Error("TRANSITIVE_IMPLEMENTATION_AUTHORITY_PATH_INVALID")
+    transitive = load_canonical_self_hashed_v1(
+        transitive_path, "dg05_transitive_implementation_authority_v1")
+    replay_transitive_implementation_authority_v1(
+        repository_root=root,
+        authority=transitive,
+        expected_root_paths=implementation_paths.values(),
+    )
+    if transitive.get("source_commit") != source_commit:
+        raise DG05ProductionChainV2Error("TRANSITIVE_IMPLEMENTATION_SOURCE_COMMIT_MISMATCH")
     return self_hashed_v1({
         "schema": "dg05_production_release_manifest_v2",
         "executable_version": executable_version,
@@ -115,6 +134,11 @@ def build_production_release_manifest_v5(
         ),
         "nested_authority_hashes": dict(sorted(nested_authority_hashes.items())),
         "implementation_authorities": implementations,
+        "transitive_implementation_authority": {
+            "relative_path": transitive_path.relative_to(root).as_posix(),
+            "self_hash": transitive["self_hash"],
+            "closure_count": transitive["closure_count"],
+        },
         "decision_binding": "DEC-031",
         "source_commit": source_commit,
         "attack_test_accesses": 0,
@@ -143,7 +167,7 @@ def initialize_production_release_v5(
         or release.get("predecessor_v4_closure_hash") != closure["self_hash"]
         or closure.get("executable_manifest_hash") != predecessor["self_hash"]
         or release.get("executable_version") != expected_executable_version
-        or expected_executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7"}
+        or expected_executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
     ):
         raise DG05ProductionChainV2Error("V5_RELEASE_ROOT_REPLAY_FAILED")
@@ -156,6 +180,25 @@ def initialize_production_release_v5(
         names.append(row["logical_name"])
     if set(names) != REQUIRED_IMPLEMENTATION_ROLES_V5 or len(names) != len(set(names)):
         raise DG05ProductionChainV2Error("V5_IMPLEMENTATION_CENSUS_FAILED")
+    transitive_ref = release.get("transitive_implementation_authority")
+    if type(transitive_ref) is not dict:
+        raise DG05ProductionChainV2Error("TRANSITIVE_IMPLEMENTATION_AUTHORITY_REQUIRED")
+    transitive_path = (root / transitive_ref.get("relative_path", "")).resolve()
+    if root not in transitive_path.parents or not transitive_path.is_file() or transitive_path.is_symlink():
+        raise DG05ProductionChainV2Error("TRANSITIVE_IMPLEMENTATION_AUTHORITY_PATH_INVALID")
+    transitive = load_canonical_self_hashed_v1(
+        transitive_path, "dg05_transitive_implementation_authority_v1")
+    if (
+        transitive.get("self_hash") != transitive_ref.get("self_hash")
+        or transitive.get("closure_count") != transitive_ref.get("closure_count")
+        or transitive.get("source_commit") != release.get("source_commit")
+    ):
+        raise DG05ProductionChainV2Error("TRANSITIVE_IMPLEMENTATION_AUTHORITY_BINDING_FAILED")
+    replay_transitive_implementation_authority_v1(
+        repository_root=root,
+        authority=transitive,
+        expected_root_paths=[root / row["relative_path"] for row in release["implementation_authorities"]],
+    )
     if authority_mode == PREACCESS_EXECUTION_MODE_V5:
         state = "PREACCESS_FROZEN_KERNEL_RELEASE_INITIALIZED"
         protected = False
@@ -178,6 +221,7 @@ def initialize_production_release_v5(
         "execution_kernel_identity": "FROZEN_PRODUCTION_SCIENTIFIC_KERNEL_V1",
         "protected_access_authorized": protected,
         "implementation_authority_hash": digest_v1(release["implementation_authorities"]),
+        "transitive_implementation_authority_hash": transitive["self_hash"],
         "nested_authority_hash": digest_v1(release["nested_authority_hashes"]),
         "attack_test_accesses": 0,
         "label_scenario_accesses": 0,
