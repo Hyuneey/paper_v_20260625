@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리가 어떤 데이터를 쓰고 있는가
 
 ## 한 문장 답
@@ -69,8 +69,8 @@ enforcement, train3 dual use, test1-informed D2 V2 때문에 “leakage impossib
 3. label-blind object와 durable prediction file은 서로 다른 보장이다.
 4. test1은 pilot이고 test2는 결과가 없다.
 
-다음 task는 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**이다.
+다음 task는 **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

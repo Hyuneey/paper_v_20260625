@@ -16,14 +16,18 @@ No test2 or other held-out access is authorized by this program.
 
 ## Current execution status
 
-- The current exact stop is DEC-031: consolidated scenario/time/runtime and
-  normal-source binding. Real DG05 is `NO_GO_FOR_REAL_DG05_ACCESS`.
+- DEC-031 is resolved and implemented: interval-local physical-time delay,
+  duplicate/non-unit-gap fail-closed timelines, four-way runtime identity census,
+  and source-derived normal burden.
 - The 16-file PRE-DG05 audit is preserved unchanged at `4719f3da`; prospective
   engineering and decision-record components at `814eabc` are not a complete release or approval.
+- The exact V4 release manifest is
+  `d31a726cb5c7b3620ed59dcff24ac75cd91e64028414931574fa33834a54a4b1` and its
+  closure is `db64804ca173418ed50448350493b95a2ce539a4dd9c8b273da0400ded4570af`.
 - Historical DEC-029/DEC-030 and V2/V3 executable packages must not be reused as
   current execution authority.
 - No primary held-out result exists. Attack/test/label/scenario access remains
-  prohibited until a new exact release and fresh user reapproval.
+  prohibited until DEC-032 explicitly reapproves the exact V4 release.
 
 - Shared V2 authority, custody, protocol, metric, and experiment-preparation
   contracts are frozen and synthetic-tested.

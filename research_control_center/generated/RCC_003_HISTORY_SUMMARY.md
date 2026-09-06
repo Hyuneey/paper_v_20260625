@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 우리 연구가 어떻게 여기까지 왔나
 
 ## 처음 무엇을 하려 했는가
@@ -50,8 +50,8 @@ pilot evidence일 뿐이다. Rule-only 실용성, D2 개선, GDN 고유 기여, 
 
 새 독립 사전등록 아래 더 많은 사건과 더 강한 다변량 탐지기 기준선으로 Rule-only와
 detector 비교를 확장해야 한다. GDN 안정성과 고유 기여, 실제 피드백이 발생하는 T2 비교,
-fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**이다.
+fresh-machine 재현도 별도로 검증해야 한다. 다음 관리 작업은 **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

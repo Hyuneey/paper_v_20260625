@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 어떻게 만들어지는가
 
 ## Evidence Pack
@@ -47,8 +47,8 @@ fail-closed outcome이며 runtime `abstain`과 다르다.
 T0는 frozen input에서 deterministic하다. LLM arms는 model/config, prompt, evidence, request,
 response와 ledger hash가 추적되지만 temperature 0.7, seed 없음이므로 bitwise deterministic하지 않다.
 
-다음 task는 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**이다.
+다음 task는 **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-031 — DG05_PRODUCTION_CHAIN_SCENARIO_TIME_RUNTIME_AND_NORMAL_SOURCE_BINDING
 
 ## Date
@@ -7,7 +7,7 @@
 
 ## Status
 
-`OPEN`
+`ACTIVE`
 
 ## Context
 
@@ -16,24 +16,23 @@ The preserved PRE-DG05 audit found plural-delay duplicate/gap runtime-census and
 ## Alternatives Considered
 
 - Keep historical V3 assumptions
-- choose one consolidated binding set
-- defer indefinitely
+- apply the exact approved fail-closed bindings and scoped source materialization
 
 ## Decision
 
-USER_DECISION_REQUIRED
+APPROVED_WITH_FAIL_CLOSED_TIME_AXIS_AND_SCOPED_NORMAL_SOURCE_MATERIALIZATION
 
 ## Why
 
-More than one scientifically meaningful implementation remains and complete method-specific normal source evidence is not demonstrated.
+The approved choices remove semantic ambiguity while preserving fail-closed physical-time and source-lineage requirements.
 
 ## Consequence
 
-Real DG05 access remains NO_GO;prospective engineering components may be reviewed but no executable release is approved.
+Real DG05 access remains NO_GO;binding and normal-only source closure proceed prospectively under a new executable release.
 
 ## Current Relevance
 
-CURRENT_EXACT_NEXT_DECISION
+DG05_DEC031_BINDINGS_AND_NORMAL_SOURCE_CLOSED
 
 ## Supersedes
 
@@ -45,11 +44,11 @@ NONE
 
 ## Evidence
 
-Source class: `LOCAL_PREACCESS_CLOSURE`
+Source class: `USER_APPROVED_VALIDATION_V2_POLICY`
 
-Reference: research_control_center/validation_v2/dg05_production_chain_closure/SCENARIO_TIME_RUNTIME_BINDING_DECISION_BRIEF_V1.md
+Reference: research_control_center/validation_v2/dg05_dec031_binding/DEC031_BINDING_AUTHORITY_V1.json
 
-Source commit: `814eabc49f9fb58205a5fa878eadd49bb0b0c8e3`
+Source commit: `NONE`
 
 ## Confidence
 

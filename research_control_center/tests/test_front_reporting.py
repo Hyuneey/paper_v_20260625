@@ -173,6 +173,12 @@ class FrontReportingTests(unittest.TestCase):
         for authority_key, path in v3_sources.items():
             self.assertEqual(v3_manifest['implementation_hashes'][authority_key], hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
             additions.add(path)
+        v4_manifest = json.loads((RCC / 'validation_v2/dg05_v4_release/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V4.json').read_text(encoding='utf-8'))
+        for authority in v4_manifest['implementation_authorities']:
+            path = authority['relative_path']
+            self.assertEqual(authority['byte_hash'], hashlib.sha256((RCC.parent/path).read_bytes()).hexdigest())
+            if path.startswith('src/'):
+                additions.add(path)
         self.assertEqual(
             {"src/paperworks/validation_v2/evaluation_expansion_v1.py",
              "src/paperworks/validation_v2/exp03_live_contract_v1.py",

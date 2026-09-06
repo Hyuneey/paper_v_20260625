@@ -1,19 +1,20 @@
-# DG05 production-chain closure — decision required / NO_GO
+# DG05 Executable V4 preaccess release — exact reapproval required / NO_GO
 
-`DG05-PRODUCTION-CHAIN-CLOSURE-001` preserved the 16-file PRE-DG05 NO_GO audit at
-`4719f3da01c47b61b85365f593a483872a8934a2`. Prospective exact-root replay,
-fresh-process multi-source custody, strict runtime census, source-derived normal
-burden, and upstream primitive reconstruction components are implemented at
-`814eabc49f9fb58205a5fa878eadd49bb0b0c8e3`; this is not a complete executable
-release and grants no data access.
+DEC-031 is implemented exactly: `HIT_INTERVAL_LOCAL_DELAY`, duplicate and
+non-unit-gap fail-closed physical timelines, the four-way configured/formed/
+evaluated/alarming runtime census, and source-derived normal burden from 30
+authorized components. The complete route uses the real projection/dispatch,
+global freeze, fresh-process custodian, scenario/denominator, metric/result
+builders, and an independent upstream verifier.
 
-Real DG05 remains `NO_GO_FOR_REAL_DG05_ACCESS`. DEC-031 is the single open
-decision covering multi-interval delay, duplicate timestamps, timestamp gaps /
-row-time semantics, runtime participation vocabulary, and—if the required
-method-specific frozen normal sources do not already exist—narrow normal-only
-source materialization. No attack/test/label/scenario/provider/credential
-resource was accessed. Professor package is `NOT_SUBMITTED`; backup remains
-`SINGLE_COPY_LOCAL_ONLY`.
+The exact V4 manifest is
+`d31a726cb5c7b3620ed59dcff24ac75cd91e64028414931574fa33834a54a4b1` and the
+closure authority is
+`db64804ca173418ed50448350493b95a2ce539a4dd9c8b273da0400ded4570af`.
+Independent preaccess QA passed. DEC-032 is the sole open decision. Real DG05
+remains `NO_GO_FOR_REAL_DG05_ACCESS`; no attack/test/label/scenario/provider/
+credential resource was accessed. Professor package is `NOT_SUBMITTED`; backup
+remains `SINGLE_COPY_LOCAL_ONLY`.
 
 ## Previous record — historical state
 

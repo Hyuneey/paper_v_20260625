@@ -1,5 +1,7 @@
 # 교수님 실험 업데이트 — VALIDATION V2
 
+현재 DG-05 실데이터 접근은 아직 승인되지 않았습니다. DEC-031 시간·runtime·정상 burden binding과 정확한 Executable V4 사전접근 release는 독립 QA를 통과했고, 다음 단계는 DEC-032의 정확 byte 재승인입니다. 교수 package는 `NOT_SUBMITTED`입니다.
+
 EXP-01·EXP-01B 및 EXP-02 정상 데이터 실행을 완료한 뒤, V2A 39-rule portfolio로 EXP-04 개발 평가와 실제 EXP-05 trace 전체 생성을 마쳤습니다. PILOT V1 source/artifact/result는 그대로 보존했습니다.
 
 | 방법 | Attack-event Recall | Normal FAR/hour | 정상 false episode |

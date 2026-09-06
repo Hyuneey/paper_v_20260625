@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Current Research Context
 
 Last updated: 2026-09-05
@@ -122,13 +122,13 @@ artifact custody and arithmetic, not generalization, superiority, causality, or 
 
 ## Current highest-priority work
 
-- Resolve the consolidated DG05 scenario/time/runtime binding and exact normal-source replay/materialization scope
-- DG05 remains NOT_APPROVED; no attack/test/label access
+- DEC-032 exact DG05 Executable V4 release reapproval
+- DG05 remains NO_GO; no attack/test/label/scenario access before exact approval
 - DG06 remains required for professor submission
 
-Exact next management task: **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**
+Exact next management task: **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**
 Following architecture task: **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지**
 
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Rule은 실제 시계열에서 어떻게 판단하는가
 
 ## 1. Rule은 언제 발동하는가?
@@ -70,8 +70,8 @@ synthetic path의 구조적 binding뿐이며 사람에게 유용한지는 **UNVA
 V4 frozen path와 canonical Rule/Trace 설명을 혼동하는 것, label 전 durable persistence가 없는 것,
 그리고 설명 구현이 frozen D1에 실제 연결된 것처럼 표현하는 것이 가장 중요한 위험이다.
 
-다음 task는 **DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**이다.
+다음 task는 **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**이다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

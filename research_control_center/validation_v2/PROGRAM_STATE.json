@@ -12,8 +12,8 @@
   "additional_detector_policy": "ISOLATION_FOREST_FIXED_NORMAL_ONLY",
   "test1_role": "DEVELOPMENT_ONLY",
   "held_out_authorized": false,
-  "current_stage": "DG05_PRODUCTION_CHAIN_PREACCESS_CLOSURE",
-  "program_status": "DECISION_REQUIRED_NO_GO_REAL_ACCESS",
+  "current_stage": "DG05_EXECUTABLE_V4_PREACCESS_RELEASE",
+  "program_status": "READY_FOR_USER_REAPPROVAL_NO_GO_REAL_ACCESS",
   "foundation_status": {
     "GAP-FIX-001": "PASS_FORMAL_V4",
     "GAP-FIX-002": "PASS_DURABLE_CUSTODY",
@@ -26,7 +26,7 @@
     "DG-02": "RESOLVED_ISOLATION_FOREST",
     "DG-03": "APPROVED_WITH_FIXED_SNAPSHOT_EXECUTED_QA_PASS",
     "DG-04": "APPROVED_WITH_SCOPED_AGENTIC_CLAIM",
-    "DG-05": "HISTORICAL_APPROVALS_SUSPENDED_PRODUCTION_BINDINGS_AND_SOURCE_LINEAGE_REQUIRED",
+    "DG-05": "EXECUTABLE_V4_READY_EXACT_USER_REAPPROVAL_REQUIRED",
     "DG-06": "PENDING",
     "DG-03B": "SUPERSEDED_BY_DG03B_REVISED",
     "DG-03B_REVISED": "APPROVED_EXECUTED",
@@ -393,10 +393,10 @@
     "next_gate": "DG-04",
     "scope": "REFERENCE_BOUND_CONSTRUCTION_NOT_DETECTION_OR_DISCOVERY"
   },
-  "exact_next_task": "DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION",
+  "exact_next_task": "DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE",
   "dg05_production_chain_closure": {
-    "task_id": "DG05-PRODUCTION-CHAIN-CLOSURE-001",
-    "status": "DECISION_REQUIRED",
+    "task_id": "DG05-DEC031-BINDING-NORMAL-SOURCE-CLOSURE-001",
+    "status": "COMPLETE_QA_PASS",
     "go_no_go": "NO_GO_FOR_REAL_DG05_ACCESS",
     "audit_commit": "4719f3da01c47b61b85365f593a483872a8934a2",
     "implementation_commit": "814eabc49f9fb58205a5fa878eadd49bb0b0c8e3",
@@ -407,16 +407,37 @@
       "SOURCE_DERIVED_NORMAL_BURDEN",
       "UPSTREAM_PRIMITIVE_RECONSTRUCTION"
     ],
-    "open_scientific_bindings": [
-      "MULTI_INTERVAL_DELAY",
-      "DUPLICATE_TIMESTAMPS",
-      "TIMESTAMP_GAPS_AND_ROW_TIME",
-      "RUNTIME_PARTICIPATION_VOCABULARY"
+    "resolved_scientific_bindings": [
+      "HIT_INTERVAL_LOCAL_DELAY",
+      "FAIL_FILE_ON_DUPLICATE_TIMESTAMP",
+      "FAIL_FILE_ON_NON_UNIT_GAP",
+      "FOUR_WAY_RUNTIME_IDENTITY_CENSUS"
     ],
-    "normal_burden_source_status": "EVIDENCE_MISSING_FOR_COMPLETE_PRODUCTION_REPLAY",
+    "normal_burden_source_status": "COMPLETE_SOURCE_DERIVED_INDEPENDENT_REPLAY_PASS",
     "held_out_accesses": 0,
     "label_scenario_accesses": 0,
     "provider_calls": 0
+  },
+  "dg05_executable_v4_closure": {
+    "task_id": "DG05-DEC031-BINDING-NORMAL-SOURCE-CLOSURE-001",
+    "status": "READY_FOR_USER_REAPPROVAL",
+    "decision_binding": "DEC-031",
+    "open_decision": "DEC-032",
+    "release_manifest_hash": "d31a726cb5c7b3620ed59dcff24ac75cd91e64028414931574fa33834a54a4b1",
+    "closure_authority_hash": "db64804ca173418ed50448350493b95a2ce539a4dd9c8b273da0400ded4570af",
+    "independent_qa_hash": "6fb6321988a33040c5dbc77f8df8a89fa86f1d6a70b042002bcb2bf22f604774",
+    "normal_source_registry_hash": "35b34e0a33d99334bf7bbf9a31289221db052429c6710a216c53165711b84220",
+    "normal_source_components": 30,
+    "synthetic_prediction_cells": 72,
+    "synthetic_scenarios": 146,
+    "verified_result_surfaces": 228,
+    "focused_tests": 43,
+    "held_out_accesses": 0,
+    "label_scenario_accesses": 0,
+    "provider_calls": 0,
+    "professor_package": "NOT_SUBMITTED",
+    "backup_status": "SINGLE_COPY_LOCAL_ONLY",
+    "exact_next": "DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE"
   },
   "exp03b_preparation": {
     "status": "PREPARED_DG03B_REVISED_PENDING",

@@ -1,6 +1,6 @@
 # 현재 의사결정 agenda
 
-연구 방법·지표·적격성·prediction custody는 PRE_DG05_FROZEN입니다. 남은 연구자 gate는 DG-05 공격 feature-only 접근과, 전역 prediction freeze가 검증된 뒤에만 열리는 조건부 label/scenario lease입니다. 교수 제출은 하지 않았으며 DG-06이 별도로 필요합니다.
+DEC-031 시간·runtime·정상 burden binding과 정확한 Executable V4 사전접근 release가 독립 QA를 통과했습니다. 남은 연구자 gate는 DEC-032의 exact-byte DG-05 재승인입니다. 승인 뒤에도 label/scenario lease는 전역 prediction freeze 검증 후에만 열립니다. 교수 제출은 하지 않았으며 DG-06이 별도로 필요합니다.
 
 # 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 

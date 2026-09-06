@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=44728c1e45e5fcf3b8f8ed8ec290b30fefff9299c838f80d7d3bfd677a1f5d16 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,7 +32,7 @@ Registry snapshot: `2026-09-05T10:16:36Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
 
 ## 상태를 읽는 방법
 
@@ -147,6 +147,7 @@ PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. P
 | EXP-DG05-CLOSURE | 구현 완료·미실행 | HISTORICAL_IMPLEMENTATION_AND_CUSTODY_ONLY_NO_ATTACK_RESULT |
 | EXP-DG05-V3-CLOSURE | 구현 완료·미실행 | HISTORICAL_EXECUTABLE_COMPLETENESS_ONLY_NO_ATTACK_RESULT |
 | EXP-DG05-PRODUCTION-CLOSURE | 구현 완료·미실행 | PREACCESS_IMPLEMENTATION_ONLY_NO_ATTACK_RESULT |
+| EXP-DG05-V4-CLOSURE | 구현 완료·미실행 | PREACCESS_EXECUTABLE_COMPLETENESS_ONLY_NO_ATTACK_RESULT |
 
 ## 공식 연구 주장
 
@@ -172,6 +173,7 @@ PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. P
 | CLAIM-DG05-EXEC-CLOSURE | 구현 근거로 지원됨 | Historical V2 synthetic rehearsal and replay are preserved;they do not establish the current production route. |
 | CLAIM-DG05-V3-METRIC-CLOSURE | 구현 근거로 지원됨 | Historical V3 independently replayed 228 synthetic surfaces;the PRE-DG05 audit found that current upstream production-source readiness was not thereby established. |
 | CLAIM-DG05-PRODUCTION-CLOSURE | 현재 근거로 지원되지 않음 | Prospective production-chain components are implemented but real access remains NO_GO pending scientific bindings normal-source lineage final route rehearsal and independent release review. |
+| CLAIM-DG05-V4-EXECUTABLE-CLOSURE | 구현 근거로 지원됨 | The exact V4 preaccess route and upstream normal-source lineage passed synthetic and authorized normal-only verification;real access remains unapproved. |
 
 ## 연구 상태의 서로 다른 차원
 
@@ -195,8 +197,8 @@ PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. P
 
 ## 정확한 다음 작업
 
-**DG-05 PRODUCTION CHAIN CONSOLIDATED BINDING DECISION**
+**DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-PRE-DG05 production-chain audit is preserved at 4719f3da with NO_GO unchanged. Prospective exact-root replay, fresh-process multi-source custody, strict runtime census, source-derived normal burden, and upstream primitive reconstruction are implemented and focused tests pass. Real DG05 remains NO_GO: plural-delay/time/runtime semantics require one consolidated user decision and complete method-specific normal-burden source lineage is not demonstrated. No real attack/test/label/scenario/provider/credential resource was accessed. Exact next: consolidated scenario/time/runtime and normal-source scope decision. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
