@@ -400,6 +400,7 @@ def main() -> None:
     parser.add_argument("--seal-failed-attempt", type=int)
     parser.add_argument("--failure-code")
     parser.add_argument("--failed-source-commit")
+    parser.add_argument("--scientific-scorer-invocations", type=int, default=0)
     args = parser.parse_args()
     if args.seal_failed_attempt:
         vault = _vault_root()
@@ -414,10 +415,14 @@ def main() -> None:
             raise RuntimeError("EXACT_FAILED_STAGING_ATTEMPT_REQUIRED")
         receipt = self_hashed_v1({
             "schema": "normal_source_materialization_failed_attempt_v1",
-            "attempt": args.seal_failed_attempt, "status": "ENGINEERING_FAILURE_BEFORE_SCIENTIFIC_SCORING",
+            "attempt": args.seal_failed_attempt,
+            "status": ("ENGINEERING_FAILURE_BEFORE_SCIENTIFIC_SCORING"
+                       if args.scientific_scorer_invocations == 0
+                       else "ENGINEERING_FAILURE_DURING_SCOPED_NORMAL_MATERIALIZATION"),
             "source_commit": args.failed_source_commit,
             "failure_code": args.failure_code,
-            "scientific_scorer_invocations": 0, "attack_test_accesses": 0,
+            "scientific_scorer_invocations": args.scientific_scorer_invocations,
+            "scientific_configuration_changed": False, "attack_test_accesses": 0,
             "label_scenario_accesses": 0, "provider_calls": 0,
         })
         _publish(staging / "FAILED_ATTEMPT_RECEIPT_V1.json", receipt)

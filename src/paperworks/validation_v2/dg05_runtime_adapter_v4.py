@@ -26,6 +26,31 @@ class DG05RuntimeAdapterV4Error(ValueError):
     """Raised when trace enrichment diverges from the frozen runtime."""
 
 
+def _execute_detector_v4(
+    *, executor: DG05ProductionExecutorV1, panel_id: str, detector_id: str,
+    feature_order: tuple[str, ...], matrix: Any, projection: Any,
+) -> tuple[bool, ...]:
+    """Use frozen scoring, correcting only the HAI23 IF field accessor."""
+    from .multipanel_custody_v1 import FROZEN_PANEL_ORDER_V2
+    if panel_id != FROZEN_PANEL_ORDER_V2[0] or detector_id != "ISOLATION_FOREST":
+        return executor._detector(panel_id, detector_id, feature_order, matrix, projection)[0]
+    from .dg05_execution_closure_v1 import _score_hai23_isolation_forest_v1
+    model, threshold, authority = executor._load_detector(panel_id, detector_id)
+    executor._validate_bound_implementation(authority)
+    if (
+        tuple(model.fit_receipt.feature_ids) != feature_order
+        or model.fit_receipt.self_hash != authority.fit_authority_hash
+        or threshold.self_hash != authority.threshold_authority_hash
+    ):
+        raise DG05RuntimeAdapterV4Error("HAI23_IF_AUTHORITY_REPLAY_MISMATCH")
+    try:
+        import numpy as np
+        scores = _score_hai23_isolation_forest_v1(model, matrix)
+        return tuple(bool(value) for value in np.asarray(scores > float(threshold.threshold), dtype=np.bool_))
+    except Exception as exc:
+        raise DG05RuntimeAdapterV4Error("BOUND_HAI23_IF_EXECUTION_FAILED") from exc
+
+
 def execute_rule_with_four_way_trace_v4(
     *,
     executor: DG05ProductionExecutorV1,
@@ -196,10 +221,11 @@ def execute_normal_method_v4(
     executor.validate()
     detector_id, role = _METHOD_RUNTIME_BINDING_V1[entry.method_id]
     detector = (
-        executor._detector(
-            entry.panel_id, detector_id, feature_order, matrix,
-            _NormalProjection(file_id, len(matrix), projection_hash),
-        )[0]
+        _execute_detector_v4(
+            executor=executor, panel_id=entry.panel_id, detector_id=detector_id,
+            feature_order=feature_order, matrix=matrix,
+            projection=_NormalProjection(file_id, len(matrix), projection_hash),
+        )
         if detector_id else None
     )
     rule, trace = (
