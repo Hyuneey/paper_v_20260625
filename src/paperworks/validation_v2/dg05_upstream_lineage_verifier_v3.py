@@ -46,6 +46,14 @@ class DG05UpstreamVerifierV3Error(ValueError):
     pass
 
 
+FROZEN_PRODUCTION_SCENARIO_COUNTS_V1 = {
+    "HAI23_TEST2_PRIMARY_HELDOUT_V1": 38,
+    "HAI22_EXTERNAL_REPLICATION_V1": 58,
+    "HAI21_EXTERNAL_REPLICATION_V1": 50,
+}
+FROZEN_PRODUCTION_SOURCE_VERSIONS_V1 = {"23.05", "22.04", "21.03"}
+
+
 @dataclass(frozen=True)
 class RootToResultReplayPathsV3:
     intermediate: UpstreamPanelReplayPathsV2
@@ -84,6 +92,14 @@ def _byte_hash(path: Path) -> str:
     return sha256(path.read_bytes()).hexdigest()
 
 
+def _is_sha256(value: Any) -> bool:
+    return (
+        type(value) is str
+        and len(value) == 64
+        and all(character in "0123456789abcdef" for character in value)
+    )
+
+
 def _inside(path: Path, root: Path) -> bool:
     return path == root or root in path.parents
 
@@ -100,7 +116,7 @@ def _mapping_keys(value: Any):
 
 def _validate_policy_request_semantics(
     *, policy: Mapping[str, Any], request: Mapping[str, Any],
-    expected_release_manifest_hash: str,
+    expected_release_manifest_hash: str, expected_source_commit: str,
 ) -> None:
     if set(policy) != POLICY_FIELDS or set(request) != REQUEST_FIELDS:
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_POLICY_OR_REQUEST_SCHEMA_MISMATCH")
@@ -112,6 +128,8 @@ def _validate_policy_request_semantics(
         or _inside(output_root, input_root)
         or any(_inside(input_root, root) or _inside(output_root, root) for root in forbidden)
         or policy.get("executable_manifest_hash") != expected_release_manifest_hash
+        or policy.get("source_commit") != expected_source_commit
+        or not _is_sha256(policy.get("resource_policy_contract_hash"))
         or policy.get("scenario_adapter_implementation_hash") != _byte_hash(
             Path(__file__).with_name("dg05_label_custodian_v2.py"))
     ):
@@ -129,6 +147,8 @@ def _validate_policy_request_semantics(
             path.is_symlink() or not path.is_file() or not _inside(path, input_root)
             or any(_inside(path, root) for root in forbidden)
             or contract is None or source["source_format"] != contract["source_format"]
+            or not _is_sha256(source.get("byte_hash"))
+            or not _is_sha256(source.get("official_source_hash"))
         ):
             raise DG05UpstreamVerifierV3Error("CUSTODIAN_SOURCE_POLICY_SEMANTICS_MISMATCH")
         registry[source["source_id"]] = source
@@ -164,8 +184,23 @@ def _validate_policy_request_semantics(
     nominal = request.get("nominal_counts")
     if type(nominal) is not dict or any(type(value) is not int or value < 0 for value in nominal.values()):
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_REQUEST_NOMINAL_CENSUS_MISMATCH")
+    if mode == "PRODUCTION" and (
+        nominal != FROZEN_PRODUCTION_SCENARIO_COUNTS_V1
+        or {registry[source_id]["dataset_version"] for source_id in source_ids}
+        != FROZEN_PRODUCTION_SOURCE_VERSIONS_V1
+    ):
+        raise DG05UpstreamVerifierV3Error("CUSTODIAN_PRODUCTION_AUTHORITY_MISMATCH")
     authorities = request.get("public_authority_hashes")
-    if type(authorities) is not list or not authorities or any(type(value) is not str or len(value) != 64 for value in authorities):
+    if (
+        type(authorities) is not list
+        or not authorities
+        or any(
+            type(value) is not str
+            or len(value) != 64
+            or any(character not in "0123456789abcdef" for character in value)
+            for value in authorities
+        )
+    ):
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_REQUEST_PUBLIC_AUTHORITY_MISMATCH")
     output_name = request.get("approved_output_name")
     if type(output_name) is not str or Path(output_name).name != output_name or output_name in {".", ".."}:
@@ -288,7 +323,10 @@ def _replay_custodian_roots(
         validate_self_hashed(lease)
     except ValueError as exc:
         raise DG05UpstreamVerifierV3Error("LEASE_SELF_HASH_REPLAY_FAILED") from exc
-    token_hash = sha256(str(request.get("opaque_lease", "")).encode("utf-8")).hexdigest()
+    opaque_lease = request.get("opaque_lease")
+    if type(opaque_lease) is not str or not opaque_lease:
+        raise DG05UpstreamVerifierV3Error("OPAQUE_LEASE_REQUIRED")
+    token_hash = sha256(opaque_lease.encode("utf-8")).hexdigest()
     implementation_hashes = {
         row["logical_name"]: row["byte_hash"] for row in release.get("implementation_authorities", ())
     }
@@ -353,8 +391,10 @@ def _replay_custodian_roots(
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_ROOT_REPLAY_FAILURE")
     _validate_policy_request_semantics(
         policy=policy, request=request,
-        expected_release_manifest_hash=expected_release_manifest_hash)
+        expected_release_manifest_hash=expected_release_manifest_hash,
+        expected_source_commit=release["source_commit"])
     forbidden = tuple(Path(value).resolve() for value in policy["forbidden_roots"])
+    output_root = Path(policy["output_root"]).resolve()
     prediction_paths = tuple(Path(value).resolve() for value in paths.intermediate.prediction_paths.values())
     trace_paths = tuple(Path(value).resolve() for value in paths.intermediate.trace_paths.values())
     protected_paths = prediction_paths + trace_paths
@@ -362,6 +402,15 @@ def _replay_custodian_roots(
         not any(_inside(path, root) for root in forbidden) for path in protected_paths
     ):
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_FORBIDDEN_PREDICTION_ROOT_MISMATCH")
+    if (
+        paths.lease_consumed_path.is_symlink()
+        or paths.custodian_output_path.is_symlink()
+        or paths.lease_consumed_path.resolve()
+        != output_root / f"lease-consumed-{token_hash}.json"
+        or paths.custodian_output_path.resolve()
+        != output_root / request["approved_output_name"]
+    ):
+        raise DG05UpstreamVerifierV3Error("CUSTODIAN_OUTPUT_NAMESPACE_MISMATCH")
     sources = policy.get("approved_sources")
     if type(sources) is not list or set(paths.raw_scenario_source_paths) != {row.get("source_id") for row in sources}:
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_SOURCE_CENSUS_MISMATCH")
@@ -453,12 +502,21 @@ def _replay_custodian_roots(
         source_receipts.append({"source_id": source["source_id"], "byte_hash": source["byte_hash"],
                                 "official_source_hash": source["official_source_hash"]})
     reconstructed.sort(key=lambda row: (row["panel_id"], row["file_id"], row["scenario_id"]))
+    actual_counts = {
+        panel: sum(row["panel_id"] == panel for row in reconstructed)
+        for panel in request["nominal_counts"]
+    }
     if (
         output.get("records") != reconstructed
         or output.get("source_receipts") != source_receipts
         or output.get("allowed_scenario_binding_hash") != sha256(canonical_bytes(request["allowed_scenario_bindings"])).hexdigest()
         or output.get("resource_policy_hash") != policy["self_hash"]
         or output.get("nominal_counts") != request.get("nominal_counts")
+        or actual_counts != request.get("nominal_counts")
+        or (
+            request.get("authority_mode") == "PRODUCTION"
+            and actual_counts != FROZEN_PRODUCTION_SCENARIO_COUNTS_V1
+        )
     ):
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_OUTPUT_ROOT_DIVERGENCE")
     return output, request, invocation
@@ -467,6 +525,8 @@ def _replay_custodian_roots(
 def _scenario_document(
     *, output: Mapping[str, Any], global_freeze_hash: str, source_commit: str,
 ) -> dict[str, Any]:
+    if len({(row["panel_id"], row["scenario_id"]) for row in output["records"]}) != len(output["records"]):
+        raise DG05UpstreamVerifierV3Error("CANONICAL_UNIQUE_SCENARIOS_REQUIRED")
     records = []
     for row in output["records"]:
         records.append(self_hashed({

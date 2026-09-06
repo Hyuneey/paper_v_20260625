@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import replace
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -57,6 +58,7 @@ class RootReplayV3Tests(unittest.TestCase):
         scenario_source_format: str = "SYNTHETIC_JSON_V2",
         scenario_source_schema: str = "synthetic_raw_official_scenario_fixture_v2",
         authority_mode: str = "SYNTHETIC_REHEARSAL",
+        production_census: bool = False,
     ):
         panel = FROZEN_PANEL_ORDER_V2[0]
         allowlist = frozen_feature_allowlist_authorities_v2()[panel]
@@ -129,28 +131,66 @@ class RootReplayV3Tests(unittest.TestCase):
                               "executable_approval_manifest_hash": release_hash})
         manifest_path = persist(root / "manifest.json", manifest)
         freeze_path = persist(root / "freeze.json", freeze)
-        source_id = "SYNTHETIC-23.05"
-        raw_scenario = {
-            "schema": scenario_source_schema,
-            "records": [{
-                "panel_id": panel, "dataset_version": "23.05", "file_id": TEST_FILE,
-                "scenario_id": "S1", "closed_intervals": [[timestamps[0], timestamps[-1]]],
+        source_specs = [("SYNTHETIC-23.05", panel, "23.05", TEST_FILE, 1)]
+        if production_census:
+            source_specs = [
+                ("OFFICIAL-23.05", "HAI23_TEST2_PRIMARY_HELDOUT_V1", "23.05", TEST_FILE, 38),
+                ("OFFICIAL-22.04", "HAI22_EXTERNAL_REPLICATION_V1", "22.04",
+                 FROZEN_ATTACK_FILE_IDS_V2["HAI22_EXTERNAL_REPLICATION_V1"][0], 58),
+                ("OFFICIAL-21.03", "HAI21_EXTERNAL_REPLICATION_V1", "21.03",
+                 FROZEN_ATTACK_FILE_IDS_V2["HAI21_EXTERNAL_REPLICATION_V1"][0], 50),
+            ]
+        approved_sources = []
+        raw_scenario_paths = {}
+        bindings = []
+        bound_records = []
+        nominal_counts = {}
+        source_receipts = []
+        for source_id, source_panel, version, file_id, count in source_specs:
+            records = [{
+                "panel_id": source_panel, "dataset_version": version, "file_id": file_id,
+                "scenario_id": f"S{index:03d}",
+                "closed_intervals": [[timestamps[0], timestamps[-1]]],
                 "attacked_identities": ["P1_FCV01D"], "explicit_affected_processes": [],
-            }],
-        }
-        scenario_source_path = persist(root / "incoming" / "scenario.json", raw_scenario)
+            } for index in range(1, count + 1)]
+            raw_scenario = {"schema": scenario_source_schema, "records": records}
+            scenario_source_path = persist(root / "incoming" / f"{source_id}.json", raw_scenario)
+            source_hash = sha256(scenario_source_path.read_bytes()).hexdigest()
+            approved_sources.append({
+                "source_id": source_id, "path": str(scenario_source_path.resolve()),
+                "byte_hash": source_hash, "official_source_hash": H,
+                "dataset_version": version, "source_format": scenario_source_format,
+                "adapter_id": scenario_adapter_id,
+            })
+            raw_scenario_paths[source_id] = scenario_source_path
+            physical_hash = projection.raw_physical_file_hash if source_panel == panel else H
+            timestamp_hash = timestamp.document()["self_hash"] if source_panel == panel else H
+            binding = {
+                "source_id": source_id, "panel_id": source_panel,
+                "dataset_version": version, "file_id": file_id,
+                "physical_file_authority_hash": physical_hash,
+                "timestamp_authority_hash": timestamp_hash, "official_source_hash": H,
+            }
+            bindings.append(binding)
+            bound_records.extend({
+                **record,
+                "physical_file_authority_hash": physical_hash,
+                "timestamp_authority_hash": timestamp_hash,
+                "official_source_hash": H,
+            } for record in records)
+            nominal_counts[source_panel] = count
+            source_receipts.append({
+                "source_id": source_id, "byte_hash": source_hash, "official_source_hash": H,
+            })
+        approved_sources.sort(key=lambda row: row["source_id"])
+        source_receipts.sort(key=lambda row: row["source_id"])
+        bound_records.sort(key=lambda row: (row["panel_id"], row["file_id"], row["scenario_id"]))
         policy = self_hashed({
             "schema": "custodian_resource_policy_authority_v2",
             "input_root": str((root / "incoming").resolve()),
             "output_root": str((root / "outgoing").resolve()),
             "forbidden_roots": [str((root / "predictions").resolve())],
-            "approved_sources": [{
-                "source_id": source_id, "path": str(scenario_source_path.resolve()),
-                "byte_hash": sha256(scenario_source_path.read_bytes()).hexdigest(),
-                "official_source_hash": H, "dataset_version": "23.05",
-                "source_format": scenario_source_format,
-                "adapter_id": scenario_adapter_id,
-            }],
+            "approved_sources": approved_sources,
             "executable_manifest_hash": release_hash, "scenario_adapter_implementation_hash": custodian_impl_hash,
             "resource_policy_contract_hash": H, "source_commit": G,
         })
@@ -173,19 +213,15 @@ class RootReplayV3Tests(unittest.TestCase):
             "lease_receipt_hash": lease["self_hash"], "lease_token_hash": token_hash,
         })
         issued_path = persist(root / "issued.json", issued)
-        binding = {
-            "source_id": source_id, "panel_id": panel, "dataset_version": "23.05", "file_id": TEST_FILE,
-            "physical_file_authority_hash": projection.raw_physical_file_hash,
-            "timestamp_authority_hash": timestamp.document()["self_hash"], "official_source_hash": H,
-        }
         request = {
             "schema": "isolated_label_scenario_custodian_request_v2", "opaque_lease": token,
             "lease_receipt": lease, "global_freeze_hash": freeze["self_hash"],
             "predecessor_state_hash": issued["self_hash"], "lease_issue_predecessor_hash": state_before["self_hash"],
-            "executable_manifest_hash": release_hash, "approved_source_ids": [source_id],
+            "executable_manifest_hash": release_hash,
+            "approved_source_ids": sorted(raw_scenario_paths),
             "approved_output_name": "scenario-output.json", "public_authority_hashes": [H],
-            "resource_policy_hash": policy["self_hash"], "allowed_scenario_bindings": [binding],
-            "authority_mode": authority_mode, "nominal_counts": {panel: 1},
+            "resource_policy_hash": policy["self_hash"], "allowed_scenario_bindings": bindings,
+            "authority_mode": authority_mode, "nominal_counts": nominal_counts,
         }
         request_path = root / "request.json"
         request_path.write_bytes(canonical_bytes(request) + b"\n")
@@ -195,25 +231,19 @@ class RootReplayV3Tests(unittest.TestCase):
             "executable_manifest_hash": release_hash, "resource_policy_hash": policy["self_hash"],
             "token_hash": token_hash, "consume_count": 1,
         })
-        consumed_path = persist(root / "consumed.json", consumed)
-        bound_record = {**raw_scenario["records"][0],
-                        "physical_file_authority_hash": projection.raw_physical_file_hash,
-                        "timestamp_authority_hash": timestamp.document()["self_hash"],
-                        "official_source_hash": H}
+        consumed_path = persist(root / "outgoing" / f"lease-consumed-{token_hash}.json", consumed)
         output = self_hashed({
             "schema": "isolated_label_scenario_custodian_output_v2",
             "lease_consumed_hash": consumed["self_hash"], "global_freeze_hash": freeze["self_hash"],
             "predecessor_state_hash": issued["self_hash"], "executable_manifest_hash": release_hash,
             "authority_mode": authority_mode, "resource_policy_hash": policy["self_hash"],
             "scenario_adapter_implementation_hash": custodian_impl_hash,
-            "source_receipts": [{"source_id": source_id,
-                                 "byte_hash": sha256(scenario_source_path.read_bytes()).hexdigest(),
-                                 "official_source_hash": H}],
-            "records": [bound_record], "nominal_counts": {panel: 1},
-            "allowed_scenario_binding_hash": sha256(canonical_bytes([binding])).hexdigest(),
+            "source_receipts": source_receipts,
+            "records": bound_records, "nominal_counts": nominal_counts,
+            "allowed_scenario_binding_hash": sha256(canonical_bytes(bindings)).hexdigest(),
             "prediction_capability": False,
         })
-        output_path = persist(root / "output.json", output)
+        output_path = persist(root / "outgoing" / "scenario-output.json", output)
         invocation = self_hashed({
             "schema": "dg05_fresh_process_custodian_invocation_v1", "launcher_byte_hash": launcher_hash,
             "request_byte_hash": sha256(request_path.read_bytes()).hexdigest(),
@@ -240,7 +270,7 @@ class RootReplayV3Tests(unittest.TestCase):
             {}, registry_path, {}, asserted_path)
         paths = RootToResultReplayPathsV3(
             intermediate, release_path, physical_path, {TEST_FILE: raw_path}, {TEST_FILE: projection_doc_path},
-            {TEST_FILE: timestamp_doc_path}, {source_id: scenario_source_path}, policy_path,
+            {TEST_FILE: timestamp_doc_path}, raw_scenario_paths, policy_path,
             request_path, issued_path, consumed_path, invocation_path, output_path, scope_path)
         roots = {
             "release": release_hash,
@@ -350,6 +380,7 @@ class RootReplayV3Tests(unittest.TestCase):
                 scenario_source_format="HAI_OFFICIAL_SCENARIO_METADATA_V2",
                 scenario_source_schema="hai_official_scenario_metadata_raw_v2",
                 authority_mode="PRODUCTION",
+                production_census=True,
             )
             primitive, flags = self._run(panel, paths, roots, asserted)
             self.assertEqual(primitive, asserted)
@@ -363,12 +394,101 @@ class RootReplayV3Tests(unittest.TestCase):
                 scenario_source_format="HAI_OFFICIAL_SCENARIO_METADATA_V2",
                 scenario_source_schema="synthetic_raw_official_scenario_fixture_v2",
                 authority_mode="PRODUCTION",
+                production_census=True,
             )
             with self.assertRaisesRegex(
                 DG05UpstreamVerifierV3Error,
                 "RAW_SCENARIO_SOURCE_SCHEMA_MISMATCH",
             ):
                 self._run(panel, paths, roots, asserted)
+
+    def test_production_custodian_requires_three_version_frozen_census(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(
+                Path(raw),
+                scenario_adapter_id="HAI_OFFICIAL_SCENARIO_METADATA_V2",
+                scenario_source_format="HAI_OFFICIAL_SCENARIO_METADATA_V2",
+                scenario_source_schema="hai_official_scenario_metadata_raw_v2",
+                authority_mode="PRODUCTION",
+            )
+            with self.assertRaisesRegex(
+                DG05UpstreamVerifierV3Error,
+                "CUSTODIAN_PRODUCTION_AUTHORITY_MISMATCH",
+            ):
+                self._run(panel, paths, roots, asserted)
+
+    def test_actual_scenario_census_must_match_nominal_census(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(Path(raw))
+            self._rehash_custodian_chain(
+                paths,
+                roots,
+                mutate_request=lambda body: body.update(
+                    nominal_counts={panel: 2}
+                ),
+                mutate_output=lambda body: body.update(
+                    nominal_counts={panel: 2}
+                ),
+            )
+            with self.assertRaisesRegex(
+                DG05UpstreamVerifierV3Error,
+                "CUSTODIAN_OUTPUT_ROOT_DIVERGENCE",
+            ):
+                self._run(panel, paths, roots, asserted)
+
+    def test_custodian_policy_source_commit_and_public_hash_syntax_are_bound(self):
+        cases = (
+            (
+                {"mutate_policy": lambda body: body.update(source_commit="c" * 40)},
+                "CUSTODIAN_RESOURCE_POLICY_SEMANTICS_MISMATCH",
+            ),
+            (
+                {"mutate_request": lambda body: body.update(public_authority_hashes=["z" * 64])},
+                "CUSTODIAN_REQUEST_PUBLIC_AUTHORITY_MISMATCH",
+            ),
+        )
+        for mutations, expected in cases:
+            with self.subTest(expected=expected), tempfile.TemporaryDirectory() as raw:
+                panel, paths, roots, asserted = self._fixture(Path(raw))
+                self._rehash_custodian_chain(paths, roots, **mutations)
+                with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, expected):
+                    self._run(panel, paths, roots, asserted)
+
+    def test_empty_opaque_lease_is_rejected(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(Path(raw))
+            self._rehash_custodian_chain(
+                paths, roots,
+                mutate_request=lambda body: body.update(opaque_lease=""),
+            )
+            with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "OPAQUE_LEASE_REQUIRED"):
+                self._run(panel, paths, roots, asserted)
+
+    def test_token_keyed_consumed_receipt_namespace_is_required(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(Path(raw))
+            wrong_path = Path(raw) / "outgoing" / "arbitrary-consumed.json"
+            wrong_path.write_bytes(paths.lease_consumed_path.read_bytes())
+            wrong_paths = replace(paths, lease_consumed_path=wrong_path)
+            with self.assertRaisesRegex(
+                DG05UpstreamVerifierV3Error,
+                "CUSTODIAN_OUTPUT_NAMESPACE_MISMATCH",
+            ):
+                self._run(panel, wrong_paths, roots, asserted)
+
+    def test_duplicate_scenario_identity_is_rejected(self):
+        duplicate = {
+            "panel_id": "HAI23_TEST2_PRIMARY_HELDOUT_V1",
+            "scenario_id": "S1",
+        }
+        output = {
+            "records": [duplicate, dict(duplicate)],
+        }
+        with self.assertRaisesRegex(
+            DG05UpstreamVerifierV3Error,
+            "CANONICAL_UNIQUE_SCENARIOS_REQUIRED",
+        ):
+            _scenario_document(output=output, global_freeze_hash=H, source_commit=G)
 
     def test_raw_source_projection_disconnect_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
