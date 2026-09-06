@@ -96,6 +96,21 @@ def implementation_paths() -> dict[str, Path]:
         "runtime_adapter": ROOT / "src/paperworks/validation_v2/dg05_runtime_adapter_v4.py",
         "custodian_process_entrypoint": ROOT / "scripts/run_dg05_label_custodian_v2.py",
         "release_freezer": FREEZER_PATH,
+        "release_freezer_core": ROOT / "scripts/freeze_dg05_v5_release.py",
+        "connected_rehearsal_support": ROOT / "src/paperworks/validation_v2/dg05_connected_rehearsal_v4.py",
+        "historical_authority_factory": ROOT / "scripts/freeze_dg05_execution_closure_v1.py",
+        "frozen_asset_loader": ROOT / "scripts/materialize_dg05_normal_sources_v2.py",
+        "upstream_intermediate_verifier": ROOT / "src/paperworks/validation_v2/dg05_upstream_lineage_verifier_v2.py",
+        "metric_surface_core": ROOT / "src/paperworks/validation_v2/dg05_metric_surface_v1.py",
+        "multipanel_custody_contract": ROOT / "src/paperworks/validation_v2/multipanel_custody_v1.py",
+        "etapr_exchange": ROOT / "src/paperworks/validation_v2/etapr_exchange_v1.py",
+        "formal_v4_runtime": ROOT / "src/paperworks/validation_v2/runtime_v1.py",
+        "metric_oracle_core": ROOT / "src/paperworks/validation_v2/dg05_metric_surface_oracle_v1.py",
+        "multipanel_etapr": ROOT / "src/paperworks/validation_v2/multipanel_etapr_v2.py",
+        "multipanel_metrics": ROOT / "src/paperworks/validation_v2/multipanel_metrics_v1.py",
+        "external_detector_kernel": ROOT / "src/paperworks/validation_v2/xver_detector_v1.py",
+        "numeric_binding_contract": ROOT / "src/paperworks/validation_v2/exp02_bindings_v2a.py",
+        "exp03b_contract": ROOT / "src/paperworks/validation_v2/exp03b_contract_v1.py",
     }
 
 

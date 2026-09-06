@@ -396,11 +396,7 @@ def run_connected_preaccess_rehearsal_v5(
         surface_count += result["surface_count"]
 
     root_replay = self_hashed({
-        "schema": (
-            "dg05_v6_root_to_result_replay_receipt_v1"
-            if release["executable_version"] == "DG05_EXECUTABLE_V6"
-            else "dg05_v5_root_to_result_replay_receipt_v1"
-        ),
+        "schema": f"dg05_{release['executable_version'].rsplit('_', 1)[-1].lower()}_root_to_result_replay_receipt_v1",
         "status": "PASS",
         "release_manifest_hash": release["self_hash"],
         "verification_count": len(upstream_receipts),
@@ -413,11 +409,8 @@ def run_connected_preaccess_rehearsal_v5(
         "source_commit": source_commit,
     })
     rehearsal = self_hashed({
-        "schema": (
-            "connected_preaccess_dg05_rehearsal_evidence_v6"
-            if release["executable_version"] == "DG05_EXECUTABLE_V6"
-            else "connected_preaccess_dg05_rehearsal_evidence_v5"
-        ), "status": "PASS",
+        "schema": f"connected_preaccess_dg05_rehearsal_evidence_{release['executable_version'].rsplit('_', 1)[-1].lower()}",
+        "status": "PASS",
         "release_manifest_hash": release["self_hash"], "release_initialization_hash": initialized["self_hash"],
         "authorized_data_mode": initialized["data_access_mode"],
         "execution_kernel_identity": initialized["execution_kernel_identity"],
