@@ -167,7 +167,8 @@ def prepare(private_manifest: Path) -> None:
             for row in contract["surfaces"]]
     csv_path = OUT / "RESULT_SURFACE_COVERAGE_MATRIX_V2.csv"
     with csv_path.open("x", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
+        writer.writeheader(); writer.writerows(rows)
     coverage = self_hashed({"schema": "result_surface_coverage_matrix_v2", "status": "PASS",
         "release_manifest_hash": release["self_hash"], "surface_count": len(rows),
         "covered_count": sum(all(value for key, value in row.items() if key != "surface_id") for row in rows),
