@@ -8,6 +8,7 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 sys.path[:0] = [str(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_source/af9e7aed35cfd160cbe0d04c8ec4c102502cb677"), str(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_dependencies")]
 from paperworks.validation_v2.dg05_production_chain_v11 import PREACCESS_MODE
