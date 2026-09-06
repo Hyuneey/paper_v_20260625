@@ -1,0 +1,95 @@
+{
+  "authority_id": "HAI23_OFFICIAL_RESOLUTION_AWARE_SCENARIO_AUTHORITY_V1",
+  "adversarial_qa": {
+    "cases": 15,
+    "detected_or_rejected": 15,
+    "unexpected_accepts": 0
+  },
+  "boundary_hash": "cbbe39fe7dcfdfbfecbf374ce7c086930007e96d649b95a43ff84ff3a0fcf808",
+  "canonical_endpoint_source": "OFFICIAL_ENUMERATED_SUMMARY_SECONDS",
+  "canonical_record_count": 38,
+  "declared_40_field": {
+    "canonical_object_effect": "NONE",
+    "cause": "UNKNOWN_NOT_CLAIMED",
+    "classification": "INTERNALLY_INCONSISTENT_NON_ENUMERATIVE_METADATA_FIELD",
+    "phantom_scenarios_created": 0
+  },
+  "historical_blockers": {
+    "HAI23_SUMMARY_CENSUS_MISMATCH": "PRESERVED_AS_HISTORICAL_PRE_ROLE_RESOLUTION_FINDING",
+    "HAI23_SUMMARY_LABEL_INTERVAL_MISMATCH": "PRESERVED_AS_HISTORICAL_EXACT_CROSS_PRECISION_COMPARISON_FINDING"
+  },
+  "independent_replay": {
+    "canonical_records": 38,
+    "manual_summary_unique": 38,
+    "native_resolution_matches": 38,
+    "receipt_hash": "ffe9df9a25d645cfa220f41f4c1f0edaae106855e9bb909c27cc23efff9341c5",
+    "test1_exact_matches": 14,
+    "verdict": "PASS"
+  },
+  "manual_binding": {
+    "blob": "18cb88514176e1c641f584cf24ac8e9559432b38",
+    "manual_ids": "A201-A238",
+    "manual_occurrences": 38,
+    "sha256": "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556",
+    "summary_unique_joins": 38
+  },
+  "native_resolution_corroboration": {
+    "coarse_unique_matches": 38,
+    "label_range_census": 38,
+    "label_precision": "MINUTE_NATIVE_COORDINATE",
+    "minute_to_second_conversion_used": false,
+    "summary_precision": "SECOND_EXPLICIT_ENDPOINTS",
+    "summary_records": 38
+  },
+  "no_precision_upsampling_performed": true,
+  "official_payloads": {
+    "README_sha256": "879a687b9c3b03c6ca869e7f953fd1775d95c40e098c4c89099a1e53e3f0194d",
+    "label_test1_sha256": "eaf69edb9c5834bc393afd7bf658b5e408d34fd7bfc3261f80516765fb818fbc",
+    "label_test2_sha256": "8090c44981176e39b0f01a7126a80248ac0b93355c00f9db4d4e2f2106452b92",
+    "summary_label1_sha256": "9d8fb32ee1e816c88f93c8d661f90a7736802582d3572a1e1ebd953783353da6",
+    "summary_label2_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1"
+  },
+  "private_canonical_authority": {
+    "canonical_record_hash": "314a188ec18f681e58e7e0c7322a281748ba2f4acb7e58f418e2c4fb8b766e91",
+    "custody": "PRIVATE_VAULT_HASH_VERIFIED",
+    "direct_target_tokens": 62,
+    "records_with_direct_targets": 38,
+    "unique_direct_target_tokens": 30
+  },
+  "repository_authority": {
+    "commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "identity": "official_icsdataset_hai"
+  },
+  "role_contract": {
+    "binary_label": "COARSE_GROUND_TRUTH_CORROBORATION_AUTHORITY",
+    "hash": "8f886a15d1a018f245dbd9a2f7811aadd249e1648a050bfe4d3c48a7c927d4d0",
+    "manual": "SCENARIO_IDENTITY_AUTHORITY",
+    "readme": "PANEL_CENSUS_AUTHORITY",
+    "summary": "EXACT_PHYSICAL_INTERVAL_AUTHORITY"
+  },
+  "schema": "hai23_official_resolution_aware_scenario_authority_v1",
+  "scientific_access_accounting": {
+    "HELDOUT_METRICS_OBSERVED": 0,
+    "HELDOUT_PREDICTIONS_OBSERVED": 0,
+    "RESULT_DRIVEN_CHANGE": 0,
+    "SCIENTIFIC_METHOD_CHANGE_AFTER_METADATA_ACCESS": 0
+  },
+  "self_hash": "c5563d902bb4a23de244b59e475344d0ad57bda130e435b51e3593aced98a8de",
+  "task_id": "DG05-HAI23-RESOLUTION-AWARE-AUTHORITY-CLOSURE-001",
+  "test1_control": {
+    "exact_correspondence": 14,
+    "label_ranges": 14,
+    "manual": 14,
+    "readme": 14,
+    "summary_declared": 14,
+    "summary_enumeration": 14,
+    "status": "PASS"
+  },
+  "test2_census": {
+    "label_ranges": 38,
+    "manual": 38,
+    "readme": 38,
+    "summary_declared": 40,
+    "summary_enumeration": 38
+  }
+}
