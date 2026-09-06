@@ -218,7 +218,8 @@ class RootReplayV3Tests(unittest.TestCase):
         asserted_path = persist(root / "asserted.json", asserted)
         intermediate = UpstreamPanelReplayPathsV2(
             manifest_path, freeze_path, scenario_path, denominator_path, {"F1": projection_path},
-            {}, {}, registry_path, {}, asserted_path)
+            {"CELL": persist(root / "predictions" / "cell.json", {"schema": "fixture_prediction"})},
+            {}, registry_path, {}, asserted_path)
         paths = RootToResultReplayPathsV3(
             intermediate, release_path, physical_path, {"F1": raw_path}, {"F1": projection_doc_path},
             {"F1": timestamp_doc_path}, {source_id: scenario_source_path}, policy_path,
@@ -245,7 +246,10 @@ class RootReplayV3Tests(unittest.TestCase):
                 expected_full_process_scope_hash=roots["scope"],
                 expected_p1_custodian_hash=H, source_commit=G)
 
-    def _rehash_custodian_chain(self, paths, roots, *, mutate_policy=None, mutate_invocation=None):
+    def _rehash_custodian_chain(
+        self, paths, roots, *, mutate_policy=None, mutate_request=None,
+        mutate_output=None, mutate_invocation=None,
+    ):
         policy = _load_json(paths.custodian_policy_path)
         policy_body = {k: v for k, v in policy.items() if k != "self_hash"}
         if mutate_policy is not None:
@@ -268,6 +272,8 @@ class RootReplayV3Tests(unittest.TestCase):
             "resource_policy_hash": policy["self_hash"],
             "predecessor_state_hash": issued["self_hash"],
         })
+        if mutate_request is not None:
+            mutate_request(request)
         paths.custodian_request_path.write_bytes(canonical_bytes(request) + b"\n")
         consumed = _load_json(paths.lease_consumed_path)
         consumed = self_hashed({
@@ -278,13 +284,16 @@ class RootReplayV3Tests(unittest.TestCase):
         })
         persist(paths.lease_consumed_path, consumed)
         output = _load_json(paths.custodian_output_path)
-        output = self_hashed({
+        output_body = {
             **{k: v for k, v in output.items() if k != "self_hash"},
             "lease_consumed_hash": consumed["self_hash"],
             "predecessor_state_hash": issued["self_hash"],
             "resource_policy_hash": policy["self_hash"],
             "scenario_adapter_implementation_hash": policy["scenario_adapter_implementation_hash"],
-        })
+        }
+        if mutate_output is not None:
+            mutate_output(output_body)
+        output = self_hashed(output_body)
         persist(paths.custodian_output_path, output)
         invocation = _load_json(paths.custodian_invocation_path)
         invocation_body = {
@@ -419,6 +428,15 @@ class RootReplayV3Tests(unittest.TestCase):
             with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "CUSTODIAN_RESOURCE_POLICY_SEMANTICS_MISMATCH"):
                 self._run(panel, paths, roots, asserted)
 
+    def test_forbidden_root_must_cover_prediction_namespace(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(Path(raw))
+            unrelated = str((Path(raw) / "unrelated").resolve())
+            self._rehash_custodian_chain(
+                paths, roots, mutate_policy=lambda body: body.update(forbidden_roots=[unrelated]))
+            with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "CUSTODIAN_FORBIDDEN_PREDICTION_ROOT_MISMATCH"):
+                self._run(panel, paths, roots, asserted)
+
     def test_coherently_rehashed_invocation_semantics_are_rejected(self):
         with tempfile.TemporaryDirectory() as raw:
             panel, paths, roots, asserted = self._fixture(Path(raw))
@@ -472,6 +490,24 @@ class RootReplayV3Tests(unittest.TestCase):
                     _denominator_document(scenario=scenario, scope=scope, p1_custodian_hash=H))
             roots["scope"] = scope["self_hash"]
             with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "RELEASE_NESTED_ROOT_BINDING_MISMATCH"):
+                self._run(panel, paths, roots, asserted)
+
+    def test_coherent_custodian_coordinate_disconnect_is_rejected(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(Path(raw))
+            fake_physical, fake_timestamp = "c" * 64, "d" * 64
+            def mutate_request(request):
+                request["allowed_scenario_bindings"][0]["physical_file_authority_hash"] = fake_physical
+                request["allowed_scenario_bindings"][0]["timestamp_authority_hash"] = fake_timestamp
+            def mutate_output(output):
+                output["records"][0]["physical_file_authority_hash"] = fake_physical
+                output["records"][0]["timestamp_authority_hash"] = fake_timestamp
+                output["allowed_scenario_binding_hash"] = sha256(
+                    canonical_bytes(_load_json(paths.custodian_request_path)["allowed_scenario_bindings"])
+                ).hexdigest()
+            self._rehash_custodian_chain(
+                paths, roots, mutate_request=mutate_request, mutate_output=mutate_output)
+            with self.assertRaisesRegex(DG05UpstreamVerifierV3Error, "CUSTODIAN_COORDINATE_ROOT_MISMATCH"):
                 self._run(panel, paths, roots, asserted)
 
 

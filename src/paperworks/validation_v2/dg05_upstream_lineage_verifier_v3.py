@@ -264,6 +264,7 @@ def _independent_projection(
 def _replay_custodian_roots(
     *, paths: RootToResultReplayPathsV3, expected_release_manifest_hash: str,
     expected_global_freeze_hash: str, expected_invocation_hash: str,
+    verified_coordinate_bindings: Mapping[tuple[str, str, str], tuple[str, str]],
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     release = _load(paths.release_manifest_path, "dg05_production_release_manifest_v2")
     policy = _load(paths.custodian_policy_path, "custodian_resource_policy_authority_v2")
@@ -351,6 +352,14 @@ def _replay_custodian_roots(
     _validate_policy_request_semantics(
         policy=policy, request=request,
         expected_release_manifest_hash=expected_release_manifest_hash)
+    forbidden = tuple(Path(value).resolve() for value in policy["forbidden_roots"])
+    prediction_paths = tuple(Path(value).resolve() for value in paths.intermediate.prediction_paths.values())
+    trace_paths = tuple(Path(value).resolve() for value in paths.intermediate.trace_paths.values())
+    protected_paths = prediction_paths + trace_paths
+    if not prediction_paths or any(
+        not any(_inside(path, root) for root in forbidden) for path in protected_paths
+    ):
+        raise DG05UpstreamVerifierV3Error("CUSTODIAN_FORBIDDEN_PREDICTION_ROOT_MISMATCH")
     sources = policy.get("approved_sources")
     if type(sources) is not list or set(paths.raw_scenario_source_paths) != {row.get("source_id") for row in sources}:
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_SOURCE_CENSUS_MISMATCH")
@@ -360,6 +369,15 @@ def _replay_custodian_roots(
     }
     if len(bindings) != len(request.get("allowed_scenario_bindings", ())):
         raise DG05UpstreamVerifierV3Error("CUSTODIAN_BINDING_DUPLICATE")
+    for binding in request.get("allowed_scenario_bindings", ()):
+        expected_coordinate = verified_coordinate_bindings.get(
+            (binding["panel_id"], binding["dataset_version"], binding["file_id"])
+        )
+        if expected_coordinate != (
+            binding.get("physical_file_authority_hash"),
+            binding.get("timestamp_authority_hash"),
+        ):
+            raise DG05UpstreamVerifierV3Error("CUSTODIAN_COORDINATE_ROOT_MISMATCH")
     reconstructed: list[dict[str, Any]] = []
     source_receipts = []
     for source in sorted(sources, key=lambda row: row["source_id"]):
@@ -536,6 +554,7 @@ def reconstruct_metric_primitive_from_roots_v3(
     implementation_hashes = {
         row["logical_name"]: row["byte_hash"] for row in release.get("implementation_authorities", ())
     }
+    verified_coordinates: dict[tuple[str, str, str], tuple[str, str]] = {}
     for file_id in sorted(file_ids):
         projection = _load(paths.projection_authority_paths[file_id], "feature_only_projection_authority_v1")
         timestamp = _load(paths.timestamp_authority_paths[file_id], "timestamp_coordinate_authority_v1")
@@ -545,10 +564,15 @@ def reconstruct_metric_primitive_from_roots_v3(
             physical=physical_rows[(panel_id, file_id)], projection=projection,
             timestamp=timestamp, panel_id=panel_id, source_commit=source_commit,
             implementation_hashes=implementation_hashes)
+        verified_coordinates[(panel_id, projection["dataset_version"], file_id)] = (
+            sha256(canonical_bytes(dict(physical_rows[(panel_id, file_id)]))).hexdigest(),
+            timestamp["self_hash"],
+        )
     output, _, _ = _replay_custodian_roots(
         paths=paths, expected_release_manifest_hash=expected_release_manifest_hash,
         expected_global_freeze_hash=expected_global_freeze_hash,
-        expected_invocation_hash=expected_custodian_invocation_hash)
+        expected_invocation_hash=expected_custodian_invocation_hash,
+        verified_coordinate_bindings=verified_coordinates)
     scenario_expected = _scenario_document(
         output=output, global_freeze_hash=expected_global_freeze_hash, source_commit=source_commit)
     scenario_actual = _load(paths.intermediate.scenario_authority_path, "frozen_scenario_authority_v1")
