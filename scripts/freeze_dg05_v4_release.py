@@ -129,6 +129,17 @@ def prepare(private_manifest: Path) -> None:
         "historical_execution_kernel_hash": historical["self_hash"]})
     release_path = OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V4.json"
     write(release_path, release)
+    attempts = self_hashed({"schema": "dg05_v4_prepare_attempt_census_v1",
+        "release_manifest_hash": release["self_hash"], "status": "APPEND_ONLY_CANDIDATE_CENSUS",
+        "attempts": [
+            {"attempt_id": 1, "release_hash": "76e18f5cca20cc01fde00891e6a088820c632014b83d97e86273ab6761fae1d9",
+             "disposition": "REJECTED_INDEPENDENT_QA_INCOMPLETE_EXECUTED_BYTE_BINDING"},
+            {"attempt_id": 2, "release_hash": "fb3082f554b8876c3cdb3afbe0f4e562b21a7a414541f178622980020d647292",
+             "disposition": "REJECTED_STALE_AFTER_FAIL_CLOSED_MODE_AND_UPSTREAM_ROOT_HARDENING"},
+            {"attempt_id": 3, "release_hash": release["self_hash"],
+             "disposition": "COORDINATOR_PREPARE_PASS_INDEPENDENT_QA_PENDING"},
+        ], "source_commit": source_commit})
+    write(OUT / "PREPARE_ATTEMPT_CENSUS_V1.json", attempts)
 
     wrapper = OfficialEtaprV1(ETAPR_SOURCE)
     with tempfile.TemporaryDirectory(prefix="dg05-v4-coordinator-") as raw:
@@ -174,7 +185,16 @@ def prepare(private_manifest: Path) -> None:
             "evaluated_system_error", "alarming_rule", "multiple_rules_same_second"],
         "evidence_interpretation": "PASS_MEANS_EXPECTED_ACCEPT_OR_REJECT_BEHAVIOR_WAS_ASSERTED_BY_NAMED_TESTS",
         "unit_test_modules": ["tests.test_dg05_dec031_v1", "tests.test_dg05_normal_source_v2",
-            "tests.test_dg05_metric_surface_v2", "tests.test_dg05_production_route_v4"],
+            "tests.test_dg05_metric_surface_v2", "tests.test_dg05_production_route_v4",
+            "tests.test_dg05_production_chain_v1"],
+        "case_evidence": {
+            "timeline_and_interval_semantics": "tests.test_dg05_dec031_v1",
+            "runtime_identity_and_episode_semantics": "tests.test_dg05_dec031_v1",
+            "source_bytes_exposure_and_method_swaps": "tests.test_dg05_normal_source_v2",
+            "t0_t2_rule_fusion_and_train5_train6_swaps": "tests.test_dg05_normal_source_v2",
+            "coherent_upstream_and_result_rehash": "tests.test_dg05_metric_surface_v2+tests.test_dg05_production_chain_v1",
+            "release_readiness_mode_and_predecessor_substitution": "tests.test_dg05_production_route_v4",
+        },
         "attack_test_accesses": 0, "real_label_scenario_accesses": 0, "source_commit": source_commit})
     write(OUT / "MUTATION_EVIDENCE_V2.json", mutations)
     print(json.dumps({"release_hash": release["self_hash"], "rehearsal_hash": rehearsal["self_hash"],

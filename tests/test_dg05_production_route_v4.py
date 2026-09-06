@@ -66,6 +66,7 @@ class ProductionRouteV4Tests(unittest.TestCase):
             "implementation_authority_hash": digest(implementations),
             "nested_authority_hash": digest(self.release["nested_authority_hashes"]),
             "authority_mode": "SYNTHETIC_REHEARSAL",
+            "protected_access_authorized": False,
         })
 
     def _fixture(self, root: Path, timestamps: list[str]):
@@ -143,11 +144,23 @@ class ProductionRouteV4Tests(unittest.TestCase):
                     projection_path=path, output_directory=root / "out", source_commit=G)
             bad_state = self_hashed({**{key: value for key, value in self.initialized.items() if key != "self_hash"},
                                      "state": "UNINITIALIZED"})
-            with self.assertRaisesRegex(ValueError, "INITIALIZED_RELEASE_STATE_REQUIRED"):
+            with self.assertRaisesRegex(ValueError, "RELEASE_EXECUTOR_MODE_BINDING_MISMATCH"):
                 execute_prediction_cell_v4(
                     cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
                     release=self.release, predecessor_v3=self.predecessor,
                     initialized_release_state=bad_state, executor=self.executor,
+                    projection_path=path, output_directory=root / "out", source_commit=G)
+            wrong_mode = self_hashed({
+                **{key: value for key, value in self.initialized.items() if key != "self_hash"},
+                "authority_mode": "PRODUCTION",
+                "state": "APPROVED_PRODUCTION_RELEASE_INITIALIZED",
+                "protected_access_authorized": True,
+            })
+            with self.assertRaisesRegex(ValueError, "RELEASE_EXECUTOR_MODE_BINDING_MISMATCH"):
+                execute_prediction_cell_v4(
+                    cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
+                    release=self.release, predecessor_v3=self.predecessor,
+                    initialized_release_state=wrong_mode, executor=self.executor,
                     projection_path=path, output_directory=root / "out", source_commit=G)
 
 

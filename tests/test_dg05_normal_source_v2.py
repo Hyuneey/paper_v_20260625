@@ -12,6 +12,7 @@ from paperworks.validation_v2.dg05_normal_source_v2 import (
     persist_normal_source_bundle_v2,
     replay_normal_source_registry_v2,
 )
+from paperworks.validation_v2.dg05_production_chain_v1 import digest_v1
 
 
 H = "a" * 64
@@ -101,6 +102,27 @@ class NormalSourceV2Tests(unittest.TestCase):
             source_commit=G,
         )
 
+    def _registry_many(self, rows: list[tuple[dict, dict]]) -> dict:
+        metadata = []
+        required = []
+        for _, bundle in rows:
+            item = {
+                "component_id": bundle["component_id"], "panel_id": bundle["panel_id"],
+                "dataset_version": bundle["dataset_version"], "method_id": bundle["method_id"],
+                "file_id": bundle["file_id"], "component_role": bundle["component_role"],
+                "authority_class": bundle["authority_class"],
+            }
+            required.append(dict(item))
+            metadata.append({**item,
+                "method_authority_hash": bundle["method_authority_hash"],
+                "physical_file_authority_hash": bundle["physical_file_authority_hash"],
+                "projection_authority_hash": bundle["projection_authority_hash"],
+                "timeline_authority_hash": bundle["timeline_authority"]["self_hash"],
+            })
+        return build_normal_source_registry_v2(
+            component_receipts=[receipt for receipt, _ in rows], component_metadata=metadata,
+            dec031_binding_hash=BINDING, required_components=required, source_commit=G)
+
     def test_persist_and_independently_replay_source_bytes(self) -> None:
         with TemporaryDirectory() as raw:
             path = Path(raw) / "source.json"
@@ -165,7 +187,6 @@ class NormalSourceV2Tests(unittest.TestCase):
             receipt = persist_normal_source_bundle_v2(path, bundle)
             registry = self._registry(receipt, bundle)
             registry["components"][0]["method_authority_hash"] = "d" * 64
-            from paperworks.validation_v2.dg05_production_chain_v1 import digest_v1
             registry["self_hash"] = digest_v1({k: v for k, v in registry.items() if k != "self_hash"})
             with self.assertRaisesRegex(DG05NormalSourceError, "method_authority_hash"):
                 replay_normal_source_registry_v2(
@@ -173,6 +194,58 @@ class NormalSourceV2Tests(unittest.TestCase):
                     component_paths={bundle["component_id"]: path},
                     expected_dec031_binding_hash=BINDING,
                 )
+
+    def test_exposure_mutation_and_cross_method_component_swaps_rejected(self) -> None:
+        with TemporaryDirectory() as raw:
+            root = Path(raw)
+            t0 = self._bundle(method="M1_T0_RULE_ONLY")
+            t2 = self._bundle(method="M2_T2_RULE_ONLY")
+            t0["component_id"] = "P|M1_T0_RULE_ONLY|F"
+            t0["self_hash"] = digest_v1({k: v for k, v in t0.items() if k != "self_hash"})
+            t2["component_id"] = "P|M2_T2_RULE_ONLY|F"
+            t2["self_hash"] = digest_v1({k: v for k, v in t2.items() if k != "self_hash"})
+            t0_path, t2_path = root / "t0.json", root / "t2.json"
+            t0_receipt = persist_normal_source_bundle_v2(t0_path, t0)
+            t2_receipt = persist_normal_source_bundle_v2(t2_path, t2)
+            registry = self._registry_many([(t0_receipt, t0), (t2_receipt, t2)])
+            with self.assertRaisesRegex(DG05NormalSourceError, "BYTE_HASH"):
+                replay_normal_source_registry_v2(
+                    registry=registry,
+                    component_paths={t0["component_id"]: t2_path, t2["component_id"]: t0_path},
+                    expected_dec031_binding_hash=BINDING)
+
+            changed = json.loads(t0_path.read_text(encoding="ascii"))
+            changed["exposure_seconds"] += 1
+            changed["self_hash"] = digest_v1({k: v for k, v in changed.items() if k != "self_hash"})
+            t0_path.write_text(json.dumps(changed, sort_keys=True, separators=(",", ":")) + "\n", encoding="ascii")
+            with self.assertRaisesRegex(DG05NormalSourceError, "BYTE_HASH"):
+                replay_normal_source_registry_v2(
+                    registry=registry,
+                    component_paths={t0["component_id"]: t0_path, t2["component_id"]: t2_path},
+                    expected_dec031_binding_hash=BINDING)
+
+    def test_hai22_train_role_swap_is_rejected(self) -> None:
+        with TemporaryDirectory() as raw:
+            root = Path(raw)
+            rows = []
+            paths = {}
+            for role in ("POST_FREEZE_TRAIN5_ROBUSTNESS", "POST_FREEZE_TRAIN6_STABILITY"):
+                bundle = build_normal_source_bundle_v2(
+                    component_id=f"P|M0|{role}", panel_id="P", dataset_version="22.04",
+                    method_id="M0_PCA_SPE", file_id=role, component_role=role,
+                    authority_class="POST_FREEZE_NORMAL_AUDIT", method_authority_hash=H,
+                    physical_file_authority_hash=H, projection_authority_hash=H,
+                    timestamps=_timestamps(), alarms=[False] * 6,
+                    configured_rule_sources=None, runtime_trace=None, source_commit=G)
+                path = root / f"{role}.json"
+                receipt = persist_normal_source_bundle_v2(path, bundle)
+                rows.append((receipt, bundle)); paths[bundle["component_id"]] = path
+            registry = self._registry_many(rows)
+            ids = [bundle["component_id"] for _, bundle in rows]
+            with self.assertRaisesRegex(DG05NormalSourceError, "BYTE_HASH"):
+                replay_normal_source_registry_v2(
+                    registry=registry, component_paths={ids[0]: paths[ids[1]], ids[1]: paths[ids[0]]},
+                    expected_dec031_binding_hash=BINDING)
 
     def test_exact_component_roster_rejects_omission_and_duplicate(self) -> None:
         with TemporaryDirectory() as raw:
@@ -215,7 +288,18 @@ class NormalSourceV2Tests(unittest.TestCase):
             runtime_trace=trace, source_commit=G,
         )
         with TemporaryDirectory() as raw:
-            persist_normal_source_bundle_v2(Path(raw) / "fusion.json", bundle)
+            root = Path(raw)
+            fusion_path = root / "fusion.json"
+            fusion_receipt = persist_normal_source_bundle_v2(fusion_path, bundle)
+            rule = self._bundle(method="M1_T0_RULE_ONLY")
+            rule_path = root / "rule.json"
+            rule_receipt = persist_normal_source_bundle_v2(rule_path, rule)
+            registry = self._registry_many([(fusion_receipt, bundle), (rule_receipt, rule)])
+            with self.assertRaisesRegex(DG05NormalSourceError, "BYTE_HASH"):
+                replay_normal_source_registry_v2(
+                    registry=registry,
+                    component_paths={bundle["component_id"]: rule_path, rule["component_id"]: fusion_path},
+                    expected_dec031_binding_hash=BINDING)
         forged = _rule_trace()
         forged.update({
             "rule_alarm_rows": [2], "rule_component_alarm_rows": [2],

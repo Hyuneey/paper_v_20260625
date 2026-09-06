@@ -397,7 +397,8 @@ def run_connected_synthetic_rehearsal_v4(
         upstream_receipts.append(verify_asserted_primitive_from_upstream_v2(
             panel_id=panel, paths=paths, expected_release_manifest_hash=release["self_hash"],
             expected_dec031_binding_hash=dec031_hash,
-            expected_normal_source_registry_hash=normal_registry["self_hash"], source_commit=source_commit))
+            expected_normal_source_registry_hash=normal_registry["self_hash"],
+            expected_global_freeze_hash=freeze["self_hash"], source_commit=source_commit))
         oracle_receipts.append(verify_complete_metric_surface_from_paths_v2(
             primitive_path=primitive_path, result_path=result_path, contract_path=metric_contract_path,
             wrapper=wrapper, expected_executable_hash=release["self_hash"]))
@@ -415,7 +416,7 @@ def run_connected_synthetic_rehearsal_v4(
         "normal_source_component_count": normal_registry["component_count"],
         "normal_source_bytes_reopened": normal_replay["source_bytes_reopened"],
         "upstream_verification_count": len(upstream_receipts),
-        "upstream_verification_hashes": [row["self_hash"] for row in upstream_receipts],
+        "upstream_verification_statuses": [row["status"] for row in upstream_receipts],
         "independent_result_verification_count": len(oracle_receipts),
         "independent_result_verification_surface_count": sum(row["verified_surface_count"] for row in oracle_receipts),
         "fresh_process_custodian": True, "custodian_pid_distinct": invocation["custodian_pid"] != invocation["custodian_parent_pid"],

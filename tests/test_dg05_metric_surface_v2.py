@@ -20,6 +20,11 @@ from paperworks.validation_v2.dg05_metric_surface_oracle_v2 import (
     MetricSurfaceOracleV2Error,
     verify_complete_metric_surface_from_paths_v2,
 )
+from paperworks.validation_v2.dg05_upstream_lineage_verifier_v2 import (
+    DG05UpstreamVerifierV2Error,
+    UpstreamPanelReplayPathsV2,
+    reconstruct_metric_primitive_from_upstream_v2,
+)
 from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
 
 
@@ -160,6 +165,40 @@ class MetricSurfaceV4Tests(unittest.TestCase):
         with self.assertRaisesRegex(MetricSurfaceV2Error, "FOUR_WAY_RUNTIME_CENSUS_REQUIRED"):
             build_complete_metric_surface_v2(primitives=self_hashed(body), contract=contract,
                 executable_manifest_hash=H, wrapper=self.wrapper, source_commit=G)
+
+    def test_coherently_rehashed_upstream_freeze_rejected_by_pinned_root(self):
+        import tempfile
+        from paperworks.validation_v2.dg05_metric_surface_v1 import canonical_bytes
+
+        manifest = self_hashed({"schema": "global_prediction_manifest_v3",
+                                "executable_approval_manifest_hash": H, "receipts": []})
+        original_freeze = self_hashed({"schema": "global_prediction_freeze_v3",
+                                       "manifest_hash": manifest["self_hash"],
+                                       "executable_approval_manifest_hash": H})
+        changed_freeze = self_hashed({**{key: value for key, value in original_freeze.items()
+                                        if key != "self_hash"}, "coherent_downstream_rehash": True})
+        scenario = self_hashed({"schema": "frozen_scenario_authority_v1",
+                                "global_freeze_hash": changed_freeze["self_hash"], "records": []})
+        denominator = self_hashed({"schema": "denominator_authority_v1",
+                                   "scenario_authority_hash": scenario["self_hash"], "records": []})
+        registry = self_hashed({"schema": "normal_burden_source_registry_v2",
+                                "status": "COMPLETE_SOURCE_LINEAGE", "dec031_binding_hash": "9" * 64,
+                                "required_components": [], "components": [], "component_count": 0})
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            docs = {"manifest": manifest, "freeze": changed_freeze, "scenario": scenario,
+                    "denominator": denominator, "registry": registry}
+            for name, value in docs.items():
+                (root / f"{name}.json").write_bytes(canonical_bytes(value) + b"\n")
+            paths = UpstreamPanelReplayPathsV2(
+                root / "manifest.json", root / "freeze.json", root / "scenario.json",
+                root / "denominator.json", {}, {}, {}, root / "registry.json", {}, root / "asserted.json")
+            with self.assertRaisesRegex(DG05UpstreamVerifierV2Error, "UPSTREAM_ROOT_AUTHORITY_MISMATCH"):
+                reconstruct_metric_primitive_from_upstream_v2(
+                    panel_id=FROZEN_PANEL_ORDER[0], paths=paths,
+                    expected_release_manifest_hash=H, expected_dec031_binding_hash="9" * 64,
+                    expected_normal_source_registry_hash=registry["self_hash"],
+                    expected_global_freeze_hash=original_freeze["self_hash"], source_commit=G)
 
 
 if __name__ == "__main__":

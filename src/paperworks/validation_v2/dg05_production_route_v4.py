@@ -61,12 +61,18 @@ def validate_release_execution_kernel_v4(
         != digest_v1(release["implementation_authorities"])
         or initialized_release_state.get("nested_authority_hash")
         != digest_v1(release["nested_authority_hashes"])
-        or initialized_release_state.get("state")
-        not in ("SYNTHETIC_RELEASE_INITIALIZED", "APPROVED_PRODUCTION_RELEASE_INITIALIZED")
-        or initialized_release_state.get("authority_mode")
-        not in ("SYNTHETIC_REHEARSAL", "PRODUCTION")
     ):
         raise DG05ProductionRouteV4Error("INITIALIZED_RELEASE_STATE_REQUIRED")
+    expected_state = {
+        "SYNTHETIC_REHEARSAL": ("SYNTHETIC_RELEASE_INITIALIZED", False),
+        "PRODUCTION": ("APPROVED_PRODUCTION_RELEASE_INITIALIZED", True),
+    }.get(executor.authority_mode)
+    if expected_state is None or (
+        initialized_release_state.get("authority_mode") != executor.authority_mode
+        or initialized_release_state.get("state") != expected_state[0]
+        or initialized_release_state.get("protected_access_authorized") is not expected_state[1]
+    ):
+        raise DG05ProductionRouteV4Error("RELEASE_EXECUTOR_MODE_BINDING_MISMATCH")
     executor.validate()
 
 

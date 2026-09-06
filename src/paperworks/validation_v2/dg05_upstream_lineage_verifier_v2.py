@@ -70,14 +70,16 @@ def _coordinates(path: Path, expected_hash: str, panel_id: str, file_id: str,
 def reconstruct_metric_primitive_from_upstream_v2(
     *, panel_id: str, paths: UpstreamPanelReplayPathsV2,
     expected_release_manifest_hash: str, expected_dec031_binding_hash: str,
-    expected_normal_source_registry_hash: str, source_commit: str,
+    expected_normal_source_registry_hash: str, expected_global_freeze_hash: str,
+    source_commit: str,
 ) -> dict[str, Any]:
     manifest = _load(paths.global_manifest_path, "global_prediction_manifest_v3", hashed=True)
     freeze = _load(paths.global_freeze_path, "global_prediction_freeze_v3", hashed=True)
     scenario = _load(paths.scenario_authority_path, "frozen_scenario_authority_v1", hashed=True)
     denominator = _load(paths.denominator_authority_path, "denominator_authority_v1", hashed=True)
     registry = _load(paths.normal_source_registry_path, "normal_burden_source_registry_v2", hashed=True)
-    if (manifest.get("executable_approval_manifest_hash") != expected_release_manifest_hash
+    if (freeze.get("self_hash") != expected_global_freeze_hash
+            or manifest.get("executable_approval_manifest_hash") != expected_release_manifest_hash
             or freeze.get("manifest_hash") != manifest["self_hash"]
             or freeze.get("executable_approval_manifest_hash") != expected_release_manifest_hash
             or scenario.get("global_freeze_hash") != freeze["self_hash"]
@@ -173,18 +175,21 @@ def reconstruct_metric_primitive_from_upstream_v2(
 def verify_asserted_primitive_from_upstream_v2(
     *, panel_id: str, paths: UpstreamPanelReplayPathsV2,
     expected_release_manifest_hash: str, expected_dec031_binding_hash: str,
-    expected_normal_source_registry_hash: str, source_commit: str,
+    expected_normal_source_registry_hash: str, expected_global_freeze_hash: str,
+    source_commit: str,
 ) -> dict[str, Any]:
     asserted = _load(paths.asserted_primitive_path, "metric_surface_primitives_v2", hashed=True)
     replayed = reconstruct_metric_primitive_from_upstream_v2(
         panel_id=panel_id, paths=paths, expected_release_manifest_hash=expected_release_manifest_hash,
         expected_dec031_binding_hash=expected_dec031_binding_hash,
         expected_normal_source_registry_hash=expected_normal_source_registry_hash,
+        expected_global_freeze_hash=expected_global_freeze_hash,
         source_commit=source_commit)
     if canonical_bytes(asserted) != canonical_bytes(replayed):
         raise DG05UpstreamVerifierV2Error("ASSERTED_PRIMITIVE_DISAGREES_WITH_FROZEN_UPSTREAM")
     return self_hashed({"schema": "dg05_upstream_metric_primitive_verification_v2", "status": "PASS",
                         "panel_id": panel_id, "asserted_primitive_hash": asserted["self_hash"],
+                        "global_prediction_freeze_hash": expected_global_freeze_hash,
                         "normal_source_registry_hash": expected_normal_source_registry_hash,
                         "source_bytes_reopened": True, "production_primitive_builder_called": False})
 
