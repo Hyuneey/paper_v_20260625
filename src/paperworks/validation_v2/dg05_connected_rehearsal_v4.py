@@ -34,7 +34,7 @@ from .dg05_metric_surface_execution_v2 import build_metric_primitives_from_froze
 from .dg05_metric_surface_oracle_v2 import verify_complete_metric_surface_from_paths_v2
 from .dg05_metric_surface_v2 import build_complete_metric_surface_v2, persist_canonical_v1
 from .dg05_normal_source_v2 import replay_normal_source_registry_v2
-from .dg05_production_chain_v1 import launch_custodian_fresh_process_v2
+from .dg05_production_chain_v1 import initialize_production_release_v1, launch_custodian_fresh_process_v2
 from .dg05_production_route_v4 import execute_prediction_cell_v4
 from .dg05_upstream_lineage_verifier_v2 import UpstreamPanelReplayPathsV2, verify_asserted_primitive_from_upstream_v2
 from .etapr_exchange_v1 import OfficialEtaprV1
@@ -42,6 +42,7 @@ from .multipanel_custody_v1 import (
     FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
     FROZEN_ATTACK_FILE_IDS_V2,
     FROZEN_AUTHORITY_SOURCE_COMMIT_V2,
+    FROZEN_METHOD_BUNDLE_HASH_V2,
     FROZEN_PANEL_ORDER_V2,
     FrozenPhysicalFileAuthorityV2,
     frozen_feature_allowlist_authorities_v2,
@@ -106,15 +107,17 @@ def _private_normal_paths(*, manifest_path: Path, registry: Mapping[str, Any],
         raise DG05ConnectedRehearsalV4Error("PRIVATE_NORMAL_MANIFEST_CENSUS_MISMATCH")
     output: dict[str, Path] = {}
     expected = {row["component_id"]: row for row in registry["components"]}
+    approved_root = manifest_path.resolve().parent
     for row in rows:
         component_id = row.get("component_id")
         if component_id in output or component_id not in expected:
             raise DG05ConnectedRehearsalV4Error("PRIVATE_NORMAL_COMPONENT_IDENTITY_MISMATCH")
         path = Path(str(row.get("path", ""))).resolve()
-        if not path.is_file() or path.is_symlink():
+        if approved_root not in path.parents or not path.is_file() or path.is_symlink():
             raise DG05ConnectedRehearsalV4Error("PRIVATE_NORMAL_COMPONENT_UNAVAILABLE")
         expected_row = expected[component_id]
         if (file_sha256(path) != expected_row["artifact_byte_hash"]
+                or path.stat().st_size != expected_row["artifact_byte_count"]
                 or row.get("artifact_byte_hash") != expected_row["artifact_byte_hash"]
                 or row.get("document_self_hash") != expected_row["document_self_hash"]):
             raise DG05ConnectedRehearsalV4Error("PRIVATE_NORMAL_COMPONENT_BYTE_MISMATCH")
@@ -134,7 +137,8 @@ def _state(*, state: str, release_hash: str, freeze_hash: str | None = None,
 
 def run_connected_synthetic_rehearsal_v4(
     *, repository_root: Path, work_root: Path, release_path: Path,
-    predecessor_v3_path: Path, historical_v1_manifest_path: Path,
+    predecessor_v3_path: Path, predecessor_v3_closure_path: Path,
+    historical_v1_manifest_path: Path,
     metric_contract_path: Path, normal_registry_path: Path,
     private_normal_manifest_path: Path, expected_private_manifest_hash: str,
     wrapper: OfficialEtaprV1, source_commit: str,
@@ -142,17 +146,18 @@ def run_connected_synthetic_rehearsal_v4(
     """Execute the complete synthetic route and return a public-safe receipt."""
     work_root.mkdir(parents=True, exist_ok=False)
     release = _load(release_path, "dg05_production_release_manifest_v1")
+    initialized_release_state = initialize_production_release_v1(
+        release_manifest_path=release_path,
+        repository_root=repository_root,
+        predecessor_v3_manifest_path=predecessor_v3_path,
+        predecessor_v3_closure_path=predecessor_v3_closure_path,
+        approved_release_hash=release["self_hash"],
+        authority_mode="SYNTHETIC_REHEARSAL",
+    )
     predecessor = _load(predecessor_v3_path, "dg05_executable_authority_manifest_v3")
     contract = _load(metric_contract_path, "metric_surface_contract_v2")
     normal_registry = _load(normal_registry_path, "normal_burden_source_registry_v2")
     dec031_hash = contract["dec031_binding_hash"]
-    component_paths = _private_normal_paths(
-        manifest_path=private_normal_manifest_path, registry=normal_registry,
-        expected_manifest_hash=expected_private_manifest_hash)
-    normal_replay = replay_normal_source_registry_v2(
-        registry=normal_registry, component_paths=component_paths,
-        expected_dec031_binding_hash=dec031_hash)
-
     # Reconstruct the exact historical execution objects from their public
     # authorities.  The builders themselves perform full frozen validation.
     from scripts.freeze_dg05_execution_closure_v1 import build_detectors, build_dispatch, build_rule_runtime_registry, build_scope
@@ -169,6 +174,36 @@ def run_connected_synthetic_rehearsal_v4(
         or scope.document()["self_hash"] != historical.full_process_scope_hash
     ):
         raise DG05ConnectedRehearsalV4Error("HISTORICAL_EXECUTION_AUTHORITY_REPLAY_FAILED")
+    expected_nested = {
+        "method_bundle": FROZEN_METHOD_BUNDLE_HASH_V2,
+        "metric_contract": contract["self_hash"],
+        "detector_registry": detectors.document()["self_hash"],
+        "rule_runtime_registry": rules.document()["self_hash"],
+        "dispatch_registry": dispatch.document()["self_hash"],
+        "full_process_scope": scope.document()["self_hash"],
+        "p1_custodian": historical.p1_custodian_v3_hash,
+        "attack_feature_allowlist": "e49ba9ee3f6a2f1273666c41ac1584636a53d5b4334d6cb95e3eed0b17a2764b",
+        "attack_file_census": FROZEN_ATTACK_FILE_CENSUS_HASH_V2,
+        "fusion": "587868f42fbdaedbd802541763e0390c09d2f04e4ba5944c45ad7e6e6593cbcc",
+        "etapr": "5381ceb1f19f25354a8feb36488dfaa85d3f2945770dc352f2bf8c18fd86cae4",
+        "statistical_contract": "cf90fee47e9294873e09aa516df8163328ee924d756c66b18a811c4ea2f9b463",
+    }
+    if (
+        release.get("nested_authority_hashes") != expected_nested
+        or release.get("semantic_binding_hash") != dec031_hash
+        or release.get("normal_burden_source_registry_hash") != normal_registry["self_hash"]
+        or contract.get("normal_source_registry_hash") != normal_registry["self_hash"]
+    ):
+        raise DG05ConnectedRehearsalV4Error("V4_NESTED_AUTHORITY_REPLAY_FAILED")
+
+    # Private normal-only custody is opened only after the prospective release,
+    # all executed code bytes, and every public nested root have replayed.
+    component_paths = _private_normal_paths(
+        manifest_path=private_normal_manifest_path, registry=normal_registry,
+        expected_manifest_hash=expected_private_manifest_hash)
+    normal_replay = replay_normal_source_registry_v2(
+        registry=normal_registry, component_paths=component_paths,
+        expected_dec031_binding_hash=dec031_hash)
     implementations = dict(historical.implementation_hashes)
     executor = DG05ProductionExecutorV1.synthetic_rehearsal(
         executable_manifest=historical, executable_manifest_hash=historical.document()["self_hash"],
@@ -216,6 +251,7 @@ def run_connected_synthetic_rehearsal_v4(
             cell=cell, dispatch=dispatch, projection=projection,
             timestamp=timestamps[(cell["panel_id"], cell["file_id"])],
             release=release, predecessor_v3=predecessor, executor=executor,
+            initialized_release_state=initialized_release_state,
             projection_path=projection_path, output_directory=prediction_directory,
             source_commit=source_commit)
         receipts.append(receipt)
@@ -230,7 +266,9 @@ def run_connected_synthetic_rehearsal_v4(
         if receipt.trace_status == "BOUND": trace_paths[receipt.cell_id] = trace_path
     global_manifest = build_global_prediction_manifest_v1(
         census=census, receipts=receipts, executable_manifest_hash=release["self_hash"], dispatch=dispatch)
-    freeze_predecessor = _state(state="PREDICTIONS_COMPLETE_LABEL_LOCKED", release_hash=release["self_hash"])
+    freeze_predecessor = _state(
+        state="PREDICTIONS_COMPLETE_LABEL_LOCKED", release_hash=release["self_hash"],
+        release_initialization_hash=initialized_release_state["self_hash"])
     freeze = freeze_global_predictions_v1(
         manifest=global_manifest, census=census, receipt_artifacts=artifacts,
         predecessor_state=freeze_predecessor)
@@ -367,6 +405,8 @@ def run_connected_synthetic_rehearsal_v4(
 
     return self_hashed({"schema": "connected_synthetic_dg05_rehearsal_evidence_v4",
         "status": "PASS", "release_manifest_hash": release["self_hash"],
+        "release_initialization_hash": initialized_release_state["self_hash"],
+        "release_initialization_state": initialized_release_state["state"],
         "historical_execution_kernel_hash": historical.document()["self_hash"],
         "derived_prediction_cells": census["count"], "successful_prediction_cells": global_manifest["success_count"],
         "method_failures": global_manifest["failure_count"], "missing_cells": 0, "duplicate_cells": 0,

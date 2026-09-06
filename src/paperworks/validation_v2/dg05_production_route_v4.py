@@ -24,15 +24,17 @@ from .dg05_execution_closure_v1 import (
     publish_new,
 )
 from .dg05_runtime_adapter_v4 import execute_normal_method_v4
-from .dg05_production_chain_v1 import digest_v1
+from .dg05_production_chain_v1 import REQUIRED_IMPLEMENTATION_ROLES_V4, digest_v1
 
 
 class DG05ProductionRouteV4Error(ValueError):
     pass
 
 
-def validate_release_execution_kernel_v4(*, release: Mapping[str, Any], predecessor_v3: Mapping[str, Any],
-                                         executor: DG05ProductionExecutorV1) -> None:
+def validate_release_execution_kernel_v4(
+    *, release: Mapping[str, Any], predecessor_v3: Mapping[str, Any],
+    initialized_release_state: Mapping[str, Any], executor: DG05ProductionExecutorV1,
+) -> None:
     for value, schema in ((release, "dg05_production_release_manifest_v1"),
                           (predecessor_v3, "dg05_executable_authority_manifest_v3")):
         if value.get("schema") != schema or value.get("self_hash") != digest_v1({key: item for key, item in value.items() if key != "self_hash"}):
@@ -40,6 +42,31 @@ def validate_release_execution_kernel_v4(*, release: Mapping[str, Any], predeces
     if (release.get("predecessor_v3_manifest_hash") != predecessor_v3["self_hash"]
             or predecessor_v3.get("historical_prediction_executable_manifest_hash") != executor.executable_manifest_hash):
         raise DG05ProductionRouteV4Error("RELEASE_EXECUTION_KERNEL_BINDING_MISMATCH")
+    implementation_names = [row.get("logical_name") for row in release.get("implementation_authorities", ())]
+    if (
+        release.get("executable_version") != "DG05_EXECUTABLE_V4"
+        or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
+        or release.get("semantic_binding_status") != "APPROVED"
+        or release.get("normal_burden_source_status") != "COMPLETE"
+        or len(implementation_names) != len(set(implementation_names))
+        or set(implementation_names) != REQUIRED_IMPLEMENTATION_ROLES_V4
+    ):
+        raise DG05ProductionRouteV4Error("V4_RELEASE_READINESS_REPLAY_FAILED")
+    if (
+        initialized_release_state.get("schema") != "dg05_production_chain_state_v1"
+        or initialized_release_state.get("self_hash")
+        != digest_v1({key: value for key, value in initialized_release_state.items() if key != "self_hash"})
+        or initialized_release_state.get("release_manifest_hash") != release["self_hash"]
+        or initialized_release_state.get("implementation_authority_hash")
+        != digest_v1(release["implementation_authorities"])
+        or initialized_release_state.get("nested_authority_hash")
+        != digest_v1(release["nested_authority_hashes"])
+        or initialized_release_state.get("state")
+        not in ("SYNTHETIC_RELEASE_INITIALIZED", "APPROVED_PRODUCTION_RELEASE_INITIALIZED")
+        or initialized_release_state.get("authority_mode")
+        not in ("SYNTHETIC_REHEARSAL", "PRODUCTION")
+    ):
+        raise DG05ProductionRouteV4Error("INITIALIZED_RELEASE_STATE_REQUIRED")
     executor.validate()
 
 
@@ -101,11 +128,16 @@ def _synthetic_four_way_trace(trace: Mapping[str, Any], *, file_id: str, timesta
 def execute_prediction_cell_v4(
     *, cell: Mapping[str, Any], dispatch: MethodDispatchRegistryV1, projection: Any,
     timestamp: Any, release: Mapping[str, Any], predecessor_v3: Mapping[str, Any],
-    executor: DG05ProductionExecutorV1, projection_path: Path, output_directory: Path,
+    initialized_release_state: Mapping[str, Any], executor: DG05ProductionExecutorV1,
+    projection_path: Path, output_directory: Path,
     source_commit: str,
 ) -> PredictionTerminalReceiptV1:
     """Execute one cell only after release and physical-time replay."""
-    validate_release_execution_kernel_v4(release=release, predecessor_v3=predecessor_v3, executor=executor)
+    validate_release_execution_kernel_v4(
+        release=release, predecessor_v3=predecessor_v3,
+        initialized_release_state=initialized_release_state, executor=executor)
+    if release.get("source_commit") != source_commit:
+        raise DG05ProductionRouteV4Error("RELEASE_SOURCE_COMMIT_MISMATCH")
     entry = dispatch.lookup(str(cell["panel_id"]), str(cell["method_id"]))
     expected_cell_id = digest({key: cell[key] for key in ("panel_id", "file_id", "method_id", "dispatch_authority_hash")})
     if cell.get("cell_id") != expected_cell_id or projection.panel_id != cell["panel_id"] or projection.file_id != cell["file_id"]:

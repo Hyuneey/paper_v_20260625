@@ -56,10 +56,11 @@ def git_head() -> str:
 def implementation_paths() -> dict[str, Path]:
     execution = ROOT / "src/paperworks/validation_v2/dg05_execution_closure_v1.py"
     chain = ROOT / "src/paperworks/validation_v2/dg05_production_chain_v1.py"
+    connected = ROOT / "src/paperworks/validation_v2/dg05_connected_rehearsal_v4.py"
     return {
         "release_initializer": chain,
-        "production_orchestrator": Path(__file__),
-        "state_machine": execution,
+        "production_orchestrator": connected,
+        "state_machine": connected,
         "projection_adapter": execution,
         "prediction_dispatch": ROOT / "src/paperworks/validation_v2/dg05_production_route_v4.py",
         "global_manifest_builder": execution,
@@ -73,6 +74,11 @@ def implementation_paths() -> dict[str, Path]:
         "result_builder": ROOT / "src/paperworks/validation_v2/dg05_metric_surface_v2.py",
         "upstream_verifier": ROOT / "src/paperworks/validation_v2/dg05_upstream_lineage_verifier_v2.py",
         "result_verifier": ROOT / "src/paperworks/validation_v2/dg05_metric_surface_oracle_v2.py",
+        "connected_production_route": connected,
+        "dec031_semantics": ROOT / "src/paperworks/validation_v2/dg05_dec031_v1.py",
+        "runtime_adapter": ROOT / "src/paperworks/validation_v2/dg05_runtime_adapter_v4.py",
+        "custodian_process_entrypoint": ROOT / "scripts/run_dg05_label_custodian_v2.py",
+        "release_freezer": Path(__file__),
     }
 
 
@@ -115,9 +121,10 @@ def prepare(private_manifest: Path) -> None:
         predecessor_v3_closure_path=V3_CLOSURE, implementation_paths=implementation_paths(),
         nested_authority_hashes=nested, semantic_binding_status="APPROVED",
         semantic_binding_hash=dec031["self_hash"], normal_burden_source_status="COMPLETE",
-        normal_burden_source_registry_hash=registry["self_hash"], source_commit=source_commit)
+        normal_burden_source_registry_hash=registry["self_hash"], source_commit=source_commit,
+        executable_version="DG05_EXECUTABLE_V4")
     release = self_hashed({**{key: value for key, value in release.items() if key != "self_hash"},
-        "executable_version": "DG05_EXECUTABLE_V4", "decision_binding": "DEC-031",
+        "decision_binding": "DEC-031",
         "scientific_preregistration_hash": "cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61",
         "historical_execution_kernel_hash": historical["self_hash"]})
     release_path = OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V4.json"
@@ -127,7 +134,8 @@ def prepare(private_manifest: Path) -> None:
     with tempfile.TemporaryDirectory(prefix="dg05-v4-coordinator-") as raw:
         rehearsal = run_connected_synthetic_rehearsal_v4(
             repository_root=ROOT, work_root=Path(raw) / "route", release_path=release_path,
-            predecessor_v3_path=V3, historical_v1_manifest_path=V1,
+            predecessor_v3_path=V3, predecessor_v3_closure_path=V3_CLOSURE,
+            historical_v1_manifest_path=V1,
             metric_contract_path=OUT / "METRIC_SURFACE_CONTRACT_V2.json", normal_registry_path=NORMAL_REGISTRY,
             private_normal_manifest_path=private_manifest,
             expected_private_manifest_hash=closure["private_manifest_hash"], wrapper=wrapper,
@@ -156,13 +164,15 @@ def prepare(private_manifest: Path) -> None:
     write(OUT / "RESULT_SURFACE_COVERAGE_MATRIX_V2.json", coverage)
     mutations = self_hashed({"schema": "dg05_v4_mutation_evidence_v2", "status": "PASS",
         "release_manifest_hash": release["self_hash"],
-        "rejected_cases": ["duplicate_timestamp", "non_unit_gap", "out_of_order_timestamp",
-            "alarm_in_inactive_interval_gap", "hit_in_second_interval", "overlapping_intervals",
-            "missing_rule_alarm_episodes", "configured_never_formed", "formed_never_evaluated",
-            "evaluated_system_error", "alarming_rule", "multiple_rules_same_second",
+        "rejected_mutation_cases": ["duplicate_timestamp", "non_unit_gap", "out_of_order_timestamp",
+            "missing_rule_alarm_episodes",
             "caller_burden_decimal_mutation", "coherent_upstream_primitive_rehash",
             "exposure_duration_mutation", "method_authority_swap", "t0_t2_bundle_swap",
             "rule_fusion_bundle_swap", "hai22_train5_train6_swap"],
+        "validated_semantic_edge_cases": ["alarm_in_inactive_interval_gap", "hit_in_second_interval",
+            "overlapping_intervals", "configured_never_formed", "formed_never_evaluated",
+            "evaluated_system_error", "alarming_rule", "multiple_rules_same_second"],
+        "evidence_interpretation": "PASS_MEANS_EXPECTED_ACCEPT_OR_REJECT_BEHAVIOR_WAS_ASSERTED_BY_NAMED_TESTS",
         "unit_test_modules": ["tests.test_dg05_dec031_v1", "tests.test_dg05_normal_source_v2",
             "tests.test_dg05_metric_surface_v2", "tests.test_dg05_production_route_v4"],
         "attack_test_accesses": 0, "real_label_scenario_accesses": 0, "source_commit": source_commit})
@@ -179,7 +189,8 @@ def replay(private_manifest: Path) -> None:
         receipt = run_connected_synthetic_rehearsal_v4(
             repository_root=ROOT, work_root=Path(raw) / "route",
             release_path=OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V4.json",
-            predecessor_v3_path=V3, historical_v1_manifest_path=V1,
+            predecessor_v3_path=V3, predecessor_v3_closure_path=V3_CLOSURE,
+            historical_v1_manifest_path=V1,
             metric_contract_path=OUT / "METRIC_SURFACE_CONTRACT_V2.json", normal_registry_path=NORMAL_REGISTRY,
             private_normal_manifest_path=private_manifest,
             expected_private_manifest_hash=closure["private_manifest_hash"], wrapper=wrapper,

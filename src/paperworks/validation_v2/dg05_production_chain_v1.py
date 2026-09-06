@@ -32,6 +32,15 @@ REQUIRED_IMPLEMENTATION_ROLES_V1 = frozenset(
         "result_verifier",
     }
 )
+REQUIRED_IMPLEMENTATION_ROLES_V4 = REQUIRED_IMPLEMENTATION_ROLES_V1 | frozenset(
+    {
+        "connected_production_route",
+        "dec031_semantics",
+        "runtime_adapter",
+        "custodian_process_entrypoint",
+        "release_freezer",
+    }
+)
 REQUIRED_NESTED_AUTHORITY_ROLES_V1 = frozenset(
     {
         "method_bundle", "metric_contract", "detector_registry",
@@ -102,6 +111,7 @@ def build_production_release_manifest_v1(
     normal_burden_source_status: str,
     normal_burden_source_registry_hash: str | None,
     source_commit: str,
+    executable_version: str | None = None,
 ) -> dict[str, Any]:
     """Build a prospective release root without a self-referential code hash."""
     predecessor_manifest = load_canonical_self_hashed_v1(predecessor_v3_manifest_path, "dg05_executable_authority_manifest_v3")
@@ -119,7 +129,12 @@ def build_production_release_manifest_v1(
         )
     if len(implementations) != len({row["logical_name"] for row in implementations}):
         raise DG05ProductionChainError("UNIQUE_IMPLEMENTATION_NAMES_REQUIRED")
-    if {row["logical_name"] for row in implementations} != REQUIRED_IMPLEMENTATION_ROLES_V1:
+    required_implementation_roles = (
+        REQUIRED_IMPLEMENTATION_ROLES_V4
+        if executable_version == "DG05_EXECUTABLE_V4"
+        else REQUIRED_IMPLEMENTATION_ROLES_V1
+    )
+    if {row["logical_name"] for row in implementations} != required_implementation_roles:
         raise DG05ProductionChainError("COMPLETE_PRODUCTION_IMPLEMENTATION_CENSUS_REQUIRED")
     if set(nested_authority_hashes) != REQUIRED_NESTED_AUTHORITY_ROLES_V1:
         raise DG05ProductionChainError("COMPLETE_NESTED_AUTHORITY_CENSUS_REQUIRED")
@@ -141,8 +156,7 @@ def build_production_release_manifest_v1(
         if semantic_binding_status == "APPROVED" and normal_burden_source_status == "COMPLETE"
         else "DECISION_OR_EVIDENCE_REQUIRED"
     )
-    return self_hashed_v1(
-        {
+    body = {
             "schema": "dg05_production_release_manifest_v1",
             "approval_status": "DG05_PRODUCTION_RELEASE_USER_REAPPROVAL_REQUIRED",
             "readiness": readiness,
@@ -160,7 +174,9 @@ def build_production_release_manifest_v1(
             "provider_calls": 0,
             "credential_reads": 0,
         }
-    )
+    if executable_version is not None:
+        body["executable_version"] = executable_version
+    return self_hashed_v1(body)
 
 
 def initialize_production_release_v1(
@@ -186,8 +202,16 @@ def initialize_production_release_v1(
         path = (root / row["relative_path"]).resolve()
         if root not in path.parents or not path.is_file() or path.is_symlink() or file_sha256_v1(path) != row["byte_hash"]:
             raise DG05ProductionChainError(f"IMPLEMENTATION_BYTE_REPLAY_MISMATCH:{row.get('logical_name')}")
+    implementation_names = [row.get("logical_name") for row in release.get("implementation_authorities", ())]
+    if len(implementation_names) != len(set(implementation_names)):
+        raise DG05ProductionChainError("UNIQUE_IMPLEMENTATION_NAMES_REQUIRED")
+    required_implementation_roles = (
+        REQUIRED_IMPLEMENTATION_ROLES_V4
+        if release.get("executable_version") == "DG05_EXECUTABLE_V4"
+        else REQUIRED_IMPLEMENTATION_ROLES_V1
+    )
     derived_ready = (
-        {row.get("logical_name") for row in release.get("implementation_authorities", ())} == REQUIRED_IMPLEMENTATION_ROLES_V1
+        set(implementation_names) == required_implementation_roles
         and set(release.get("nested_authority_hashes", {})) == REQUIRED_NESTED_AUTHORITY_ROLES_V1
         and release.get("semantic_binding_status") == "APPROVED"
         and release.get("normal_burden_source_status") == "COMPLETE"
@@ -218,6 +242,8 @@ def initialize_production_release_v1(
             "predecessor_v3_manifest_hash": predecessor_manifest["self_hash"],
             "protected_access_authorized": protected_access_authorized,
             "authority_mode": authority_mode,
+            "implementation_authority_hash": digest_v1(release.get("implementation_authorities", ())),
+            "nested_authority_hash": digest_v1(release.get("nested_authority_hashes", {})),
             "attack_test_accesses": 0,
             "label_scenario_accesses": 0,
         }

@@ -12,6 +12,7 @@ from paperworks.validation_v2.dg05_execution_closure_v1 import (
     project_attack_feature_file_v1,
     self_hashed,
 )
+from paperworks.validation_v2.dg05_production_chain_v1 import REQUIRED_IMPLEMENTATION_ROLES_V4
 from paperworks.validation_v2.dg05_production_route_v4 import execute_prediction_cell_v4
 from paperworks.validation_v2.multipanel_custody_v1 import FrozenPhysicalFileAuthorityV2, frozen_feature_allowlist_authorities_v2
 
@@ -43,8 +44,29 @@ class ProductionRouteV4Tests(unittest.TestCase):
             fusion_implementation_hash=implementations["fusion_runtime"])
         self.predecessor = self_hashed({"schema": "dg05_executable_authority_manifest_v3",
                                         "historical_prediction_executable_manifest_hash": self.manifest_hash})
-        self.release = self_hashed({"schema": "dg05_production_release_manifest_v1",
-                                    "predecessor_v3_manifest_hash": self.predecessor["self_hash"]})
+        implementations = [
+            {"logical_name": name, "relative_path": f"synthetic/{name}.py", "byte_hash": H}
+            for name in sorted(REQUIRED_IMPLEMENTATION_ROLES_V4)
+        ]
+        self.release = self_hashed({
+            "schema": "dg05_production_release_manifest_v1",
+            "executable_version": "DG05_EXECUTABLE_V4",
+            "predecessor_v3_manifest_hash": self.predecessor["self_hash"],
+            "readiness": "READY_FOR_USER_REAPPROVAL",
+            "semantic_binding_status": "APPROVED",
+            "normal_burden_source_status": "COMPLETE",
+            "implementation_authorities": implementations,
+            "nested_authority_hashes": {"synthetic": H},
+            "source_commit": G,
+        })
+        self.initialized = self_hashed({
+            "schema": "dg05_production_chain_state_v1",
+            "state": "SYNTHETIC_RELEASE_INITIALIZED",
+            "release_manifest_hash": self.release["self_hash"],
+            "implementation_authority_hash": digest(implementations),
+            "nested_authority_hash": digest(self.release["nested_authority_hashes"]),
+            "authority_mode": "SYNTHETIC_REHEARSAL",
+        })
 
     def _fixture(self, root: Path, timestamps: list[str]):
         panel = next(iter(frozen_feature_allowlist_authorities_v2()))
@@ -72,6 +94,7 @@ class ProductionRouteV4Tests(unittest.TestCase):
             receipt = execute_prediction_cell_v4(
                 cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
                 release=self.release, predecessor_v3=self.predecessor, executor=self.executor,
+                initialized_release_state=self.initialized,
                 projection_path=path, output_directory=root / "out", source_commit=G)
             self.assertEqual(receipt.status, "SUCCESS")
             self.assertEqual(receipt.executable_manifest_hash, self.release["self_hash"])
@@ -85,6 +108,7 @@ class ProductionRouteV4Tests(unittest.TestCase):
                 receipt = execute_prediction_cell_v4(
                     cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
                     release=self.release, predecessor_v3=self.predecessor, executor=self.executor,
+                    initialized_release_state=self.initialized,
                     projection_path=path, output_directory=root / "out", source_commit=G)
                 self.assertEqual((receipt.status, receipt.failure_code), ("METHOD_FAILURE", code))
                 self.assertFalse((root / "out").exists())
@@ -100,6 +124,30 @@ class ProductionRouteV4Tests(unittest.TestCase):
                 execute_prediction_cell_v4(
                     cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
                     release=self.release, predecessor_v3=changed, executor=self.executor,
+                    initialized_release_state=self.initialized,
+                    projection_path=path, output_directory=root / "out", source_commit=G)
+
+    def test_unready_release_and_uninitialized_state_are_rejected(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            cell, projection, timestamp, path = self._fixture(
+                root, ["2026-01-01T00:00:00", "2026-01-01T00:00:01"])
+            body = {key: value for key, value in self.release.items() if key != "self_hash"}
+            body["readiness"] = "DECISION_OR_EVIDENCE_REQUIRED"
+            unready = self_hashed(body)
+            with self.assertRaisesRegex(ValueError, "V4_RELEASE_READINESS_REPLAY_FAILED"):
+                execute_prediction_cell_v4(
+                    cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
+                    release=unready, predecessor_v3=self.predecessor,
+                    initialized_release_state=self.initialized, executor=self.executor,
+                    projection_path=path, output_directory=root / "out", source_commit=G)
+            bad_state = self_hashed({**{key: value for key, value in self.initialized.items() if key != "self_hash"},
+                                     "state": "UNINITIALIZED"})
+            with self.assertRaisesRegex(ValueError, "INITIALIZED_RELEASE_STATE_REQUIRED"):
+                execute_prediction_cell_v4(
+                    cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
+                    release=self.release, predecessor_v3=self.predecessor,
+                    initialized_release_state=bad_state, executor=self.executor,
                     projection_path=path, output_directory=root / "out", source_commit=G)
 
 
