@@ -1,4 +1,26 @@
-# DG05 Executable V4 preaccess release — exact reapproval required / NO_GO
+# DG05 Executable V10 preaccess release — exact reapproval required / NO_GO
+
+G1 and G2 were reproduced and closed prospectively. The connected preaccess
+route now dispatches all 72 synthetic method cells through the frozen production
+scientific kernel, uses zero synthetic fallback traces, and independently
+reopens the physical, projection, prediction, runtime, custody, scenario, P1
+scope, denominator, and normal-source roots for all 228 result surfaces.
+
+The exact V10 manifest is
+`a916c18afb628326c28037e678fc809779b888535aafe2d9fc0a54b8107a91fd`; the
+closure is `367dfb20df55d000396a248d22c26868c20143b8cfa9f52b6d39c2083c3f4776`;
+and independent QA is
+`39e294f9096c36203cb5db231b34bbd3ad9cf7c51905ccd318e79b14d95b62e0`.
+DEC-033 is the sole open decision. Real DG05 remains `NO_GO`; protected access
+was zero. The professor package is `NOT_SUBMITTED`, and backup remains
+`SINGLE_COPY_LOCAL_ONLY`.
+
+V4/DEC-032 remain historical and unapproved. V5 through V9 are preserved failed
+release candidates and cannot authorize access.
+
+## Previous record — historical unapproved V4 state
+
+# DG05 Executable V4 preaccess release — historical / unapproved
 
 DEC-031 is implemented exactly: `HIT_INTERVAL_LOCAL_DELAY`, duplicate and
 non-unit-gap fail-closed physical timelines, the four-way configured/formed/

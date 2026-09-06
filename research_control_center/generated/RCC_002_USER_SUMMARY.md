@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8e4a7b67c3e882fba2802a58914c1557f13628428b46ebc0ed1e8392baafefc0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,17 +66,17 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- DEC-032 exact DG05 Executable V4 release reapproval
+- DEC-033 exact DG05 Executable V10 release reapproval
 - DG05 remains NO_GO; no attack/test/label/scenario access before exact approval
 - DG06 remains required for professor submission
 
-관리 작업의 다음 단계는 **DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE** 이고, 이후 전체
 구조 검토는 **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DEC-032: exact DG05 Executable V4 release reapproval decision
+- DEC-033: exact DG05 Executable V10 release reapproval decision
 - Preserve the exact V4 manifest/closure and all frozen method, metric, custody, and single-copy private authorities
 - DG06: professor package submission decision
 
@@ -84,4 +84,4 @@ Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

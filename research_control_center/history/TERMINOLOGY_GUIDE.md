@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8e4a7b67c3e882fba2802a58914c1557f13628428b46ebc0ed1e8392baafefc0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # Historical Terminology Guide
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -22,4 +22,4 @@ Historical documents remain untouched. This guide controls current-facing interp
 
 ## 현재 외부 정상 준비 — 과학 결과와 분리
 
-DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

@@ -2,7 +2,7 @@
 
 HAI23 test2(38), HAI22(58), HAI21(50)은 버전별로 보고하고 146개를 IID로 합치지 않습니다. Primary는 공식 P1-eligible Scenario Recall과 정상 false episodes/hour이며, eTaPR·coverage·delay·paired contrast는 보조입니다. 모든 패널·방법 prediction을 label-blind로 전역 동결한 뒤에만 one-shot label/scenario lease를 엽니다. DG-05 승인 전 attack feature도 열지 않습니다.
 
-DEC-031의 interval-local physical-time delay, duplicate/non-unit-gap fail-closed timeline, four-way Rule runtime census, source-derived normal burden을 반영한 정확한 Executable V4 사전접근 release가 독립 QA를 통과했습니다. 현재는 DEC-032의 정확 byte 재승인이 필요하며 실제 attack/test/label/scenario 접근은 여전히 0입니다. 교수 package는 업데이트만 했고 `NOT_SUBMITTED`입니다.
+DEC-031의 interval-local physical-time delay, duplicate/non-unit-gap fail-closed timeline, four-way Rule runtime census, source-derived normal burden은 그대로입니다. Executable V10은 72/72 cell에서 실제 frozen production kernel을 사용하고 228/228 surface를 raw root부터 독립 replay했습니다. 현재 DEC-033의 정확 V10 byte 재승인이 필요하며 실제 attack/test/label/scenario 접근은 여전히 0입니다. V4/DEC-032는 미승인 역사 기록이고 교수 package는 업데이트만 했으며 `NOT_SUBMITTED`입니다.
 
 # 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 

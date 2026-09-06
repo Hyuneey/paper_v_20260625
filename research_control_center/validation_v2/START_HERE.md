@@ -21,13 +21,18 @@ No test2 or other held-out access is authorized by this program.
   and source-derived normal burden.
 - The 16-file PRE-DG05 audit is preserved unchanged at `4719f3da`; prospective
   engineering and decision-record components at `814eabc` are not a complete release or approval.
-- The exact V4 release manifest is
-  `d31a726cb5c7b3620ed59dcff24ac75cd91e64028414931574fa33834a54a4b1` and its
-  closure is `db64804ca173418ed50448350493b95a2ce539a4dd9c8b273da0400ded4570af`.
+- The exact current V10 release manifest is
+  `a916c18afb628326c28037e678fc809779b888535aafe2d9fc0a54b8107a91fd` and its
+  closure is `367dfb20df55d000396a248d22c26868c20143b8cfa9f52b6d39c2083c3f4776`.
+- V10 closes frozen production-kernel route parity and immutable raw-root replay
+  for 72/72 cells and 228/228 surfaces. This is preaccess engineering evidence,
+  not a held-out scientific result.
 - Historical DEC-029/DEC-030 and V2/V3 executable packages must not be reused as
   current execution authority.
 - No primary held-out result exists. Attack/test/label/scenario access remains
-  prohibited until DEC-032 explicitly reapproves the exact V4 release.
+  prohibited until DEC-033 explicitly reapproves the exact V10 release.
+- V4/DEC-032 are historical and unapproved; V5 through V9 are preserved failed
+  release candidates and grant no access.
 
 - Shared V2 authority, custody, protocol, metric, and experiment-preparation
   contracts are frozen and synthetic-tested.

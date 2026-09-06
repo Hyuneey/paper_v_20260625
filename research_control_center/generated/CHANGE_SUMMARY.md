@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8e4a7b67c3e882fba2802a58914c1557f13628428b46ebc0ed1e8392baafefc0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -7,7 +7,9 @@ Registry version: `0.1.0`
 ## Recorded timeline
 
 - **2026-09-06 — PRE-DG05 research state and production chain audit preserved** (`ACTIVE_CONTEXT`): The 16-file report-only audit is committed byte-identically with NO_GO;real access0
-- **2026-09-06 — DG05 Executable V4 exact preaccess release frozen** (`ACTIVE_CONTEXT`): DEC-031 bindings;30 normal components;72 synthetic cells;146 scenarios;228 surfaces;43 focused tests;fresh-process custody;independent QA PASS;real access0
+- **2026-09-06 — DG05 V5 through V9 failed release qualification preserved** (`HISTORICAL`): Successive fail-closed candidates exposed transitive implementation and custodian replay gaps;none was approved or used for real access.
+- **2026-09-06 — DG05 Executable V4 exact preaccess release frozen** (`HISTORICAL`): DEC-031 bindings;30 normal components;72 synthetic cells;146 scenarios;228 surfaces;43 focused tests;fresh-process custody;independent QA PASS;real access0
+- **2026-09-06 — DG05 Executable V10 exact preaccess release qualified** (`ACTIVE_CONTEXT`): G1 and G2 closed;72 production-kernel cells;228 root-covered surfaces;fresh-process custody;25 invalid mutations rejected;real access0.
 - **2026-09-06 — DG05 production-chain prospective closure reaches consolidated decision gate** (`CONDITIONAL`): Exact-root fresh-process custody strict runtime source-derived burden and upstream primitive replay implemented;semantic bindings and complete normal source lineage remain open;real access0
 - **2026-09-05 — 외부 버전 T2 정상-only 실행 및 포트폴리오 동결** (`ACTIVE_CONTEXT`): HAI22/21 provider 61 calls each;T2 retained 19/2 Rules;no attack access
 - **2026-09-05 — 외부 버전 정상-only 실행 및 provider Gate 준비** (`ACTIVE_CONTEXT`): 12 split-pure GDN runs;separate global/auxiliary;T0 portfolios;T2 packs;no provider or attack
@@ -56,8 +58,8 @@ Registry version: `0.1.0`
 
 ## Next
 
-**DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE**
+**DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

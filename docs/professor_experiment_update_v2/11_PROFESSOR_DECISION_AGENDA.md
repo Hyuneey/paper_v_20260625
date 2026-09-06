@@ -1,6 +1,6 @@
 # 현재 의사결정 agenda
 
-DEC-031 시간·runtime·정상 burden binding과 정확한 Executable V4 사전접근 release가 독립 QA를 통과했습니다. 남은 연구자 gate는 DEC-032의 exact-byte DG-05 재승인입니다. 승인 뒤에도 label/scenario lease는 전역 prediction freeze 검증 후에만 열립니다. 교수 제출은 하지 않았으며 DG-06이 별도로 필요합니다.
+DEC-031 binding은 유지되며 Executable V10이 frozen production-kernel parity와 raw-root-to-result 독립 replay를 통과했습니다. 남은 연구자 gate는 DEC-033의 exact-byte V10 DG-05 재승인입니다. V4/DEC-032 및 V5~V9는 접근 권한이 아닙니다. 승인 뒤에도 label/scenario lease는 전역 prediction freeze 검증 후에만 열립니다. 교수 제출은 하지 않았으며 DG-06이 별도로 필요합니다.
 
 # 이전 기록 — XVER-T2 외부 버전 정상-only 포트폴리오 동결 완료
 

@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=b7b86c33717de93afd73c7f3a207750a86613f7353839e196ba27f96cebbab7c authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=8e4a7b67c3e882fba2802a58914c1557f13628428b46ebc0ed1e8392baafefc0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 내가 해야 할 연구 검토
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 이 문서는 낮은 수준의 개발 작업이 아니라 연구 책임자가 확인하거나 결정할 항목을 모은다.
@@ -85,9 +85,9 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 - **ID:** USER-V2-005
   **우선순위:** 높음 (HIGH)
-  **할 일:** DEC-032에서 정확한 DG05 Executable V4 manifest와 closure의 실제 접근 재승인 여부를 결정한다.
-  **사용자 확인이 필요한 이유:** DEC-031 binding과 normal-source lineage는 닫혔지만 이전 DG-05 승인은 새 실행 바이트를 포괄하지 않는다.
-  **연결 문서:** research_control_center/validation_v2/dg05_v4_release/DG05_MULTI_PANEL_ATTACK_ACCESS_BRIEF_V4.md
+  **할 일:** DEC-033에서 정확한 DG05 Executable V10 manifest와 closure의 실제 접근 재승인 여부를 결정한다.
+  **사용자 확인이 필요한 이유:** V10은 G1/G2를 닫는 새 실행·검증 바이트이므로 과거 승인이나 DEC-032를 상속할 수 없다.
+  **연결 문서:** research_control_center/validation_v2/dg05_v10_release/DG05_MULTI_PANEL_ATTACK_ACCESS_BRIEF_V10.md
   **상태:** 미결정
 ## 검토 필요
 
@@ -102,4 +102,4 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
-DEC-031 is implemented exactly: interval-local physical-time delay, duplicate and non-unit-gap fail-closed timelines, four-way runtime identity census, and source-derived normal burden. The exact DG05 Executable V4 release and independent preaccess QA are frozen; real DG05 remains NO_GO until DEC-032 explicitly approves those exact bytes. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

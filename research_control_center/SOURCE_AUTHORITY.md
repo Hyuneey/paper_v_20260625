@@ -35,6 +35,7 @@ The PRE-DG05 NO_GO audit is preserved at
 `validation-v2-dg05-production-chain-closure-001@4719f3da01c47b61b85365f593a483872a8934a2`.
 Prospective closure components are recorded at
 `validation-v2-dg05-production-chain-closure-001@814eabc49f9fb58205a5fa878eadd49bb0b0c8e3`.
-Neither commit is an execution approval or a complete executable release.
-Frozen scientific authorities remain unchanged; DEC-031 must be resolved before
-a new exact release and DG05 reapproval package can be created.
+Those historical commits are not execution approval. DEC-031 is implemented,
+and DG05 Executable V10 is the current independently qualified preaccess
+release. Frozen scientific authorities remain unchanged; DEC-033 exact-release
+reapproval is required before any real DG05 access.

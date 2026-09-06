@@ -6,7 +6,7 @@
 | DG-02 Stronger detector | RESOLVED_ISOLATION_FOREST | No reusable eligible detector existed | Resolved for EXP-04 |
 | DG-03 Provider execution | HISTORICAL_RESOLVED | Exact approved provider executions are complete; any new call requires a new exact gate | No new provider call authorized |
 | DG-04 Contribution framing | RESOLVED_DEC_025 | Scoped Agentic claim and mandatory T0 limitation are frozen | No additional Agentic rescue |
-| DG-05 Held-out study | DEC-032 USER_REAPPROVAL_REQUIRED / NO_GO | DEC-031 bindings, normal-source lineage, exact V4 release, and independent preaccess QA are complete; approve exact V4 manifest and closure separately | All attack/test/label/scenario access |
+| DG-05 Held-out study | DEC-033 USER_REAPPROVAL_REQUIRED / NO_GO | V10 closes G1 frozen-kernel route parity and G2 immutable raw-root replay under DEC-031; approve exact V10 manifest and closure separately | All attack/test/label/scenario access |
 | DG-06 Professor submission | PENDING | After the professor package is complete | Sending or publishing only |
 
 Privacy or custody failure is a safety stop, not a scientific preference gate.
