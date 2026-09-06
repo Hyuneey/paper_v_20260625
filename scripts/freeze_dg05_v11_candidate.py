@@ -5,6 +5,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT)]
+sys.path[:0] = [str(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_source/af9e7aed35cfd160cbe0d04c8ec4c102502cb677"),
+                str(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_dependencies")]
 from paperworks.validation_v2.dg05_production_chain_v11 import build_v11_candidate_manifest, canonical_bytes, digest, load_self_hashed, self_hashed
 from paperworks.validation_v2.dg05_v11_root_verifier_v1 import verify_v11_roots
 from paperworks.validation_v2.dg05_v11_bridged_rehearsal_v1 import run_v11_bridged_rehearsal
