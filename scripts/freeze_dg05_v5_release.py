@@ -20,7 +20,7 @@ ETAPR_DEPS = ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_dependencies"
 sys.path[:0] = [str(ETAPR_SOURCE), str(ETAPR_DEPS)]
 
 from paperworks.validation_v2.dg05_connected_rehearsal_v5 import run_connected_preaccess_rehearsal_v5
-from paperworks.validation_v2.dg05_execution_closure_v1 import canonical_bytes, file_sha256, self_hashed
+from paperworks.validation_v2.dg05_execution_closure_v1 import canonical_bytes, digest, file_sha256, self_hashed, validate_self_hashed
 from paperworks.validation_v2.dg05_metric_surface_v2 import build_metric_surface_contract_v2
 from paperworks.validation_v2.dg05_production_chain_v2 import build_production_release_manifest_v5
 from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
@@ -206,13 +206,52 @@ def replay() -> None:
             normal_registry_path=NORMAL_REGISTRY, private_normal_manifest_path=private_manifest(closure["private_manifest_hash"]),
             expected_private_manifest_hash=closure["private_manifest_hash"], wrapper=wrapper,
             source_commit=release["source_commit"])
-    expected = [load(OUT / name)["self_hash"] for name in (
-        "SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_V5.json", "PRODUCTION_KERNEL_PARITY_V1.json",
-        "ROOT_TO_RESULT_REPLAY_V1.json")]
-    observed = [rehearsal["self_hash"], parity["self_hash"], roots["self_hash"]]
-    if observed != expected:
+    frozen_rehearsal = load(OUT / "SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_V5.json")
+    frozen_parity = load(OUT / "PRODUCTION_KERNEL_PARITY_V1.json")
+    frozen_roots = load(OUT / "ROOT_TO_RESULT_REPLAY_V1.json")
+    for value in (frozen_rehearsal, frozen_parity, frozen_roots, rehearsal, parity, roots):
+        validate_self_hashed(value)
+    # Process receipts contain fresh OS PIDs, so their cryptographic identities
+    # must differ between runs.  This explicit qualification fingerprint covers
+    # every scientific/control outcome while each run independently authenticates
+    # its own PID-bound invocation and root-verification receipt chain.
+    rehearsal_fields = (
+        "schema", "status", "release_manifest_hash", "release_initialization_hash",
+        "authorized_data_mode", "execution_kernel_identity", "production_kernel_parity_hash",
+        "production_kernel_invocation_count", "synthetic_fallback_invocation_count",
+        "derived_prediction_cells", "successful_prediction_cells", "method_failures",
+        "global_prediction_freeze", "synthetic_scenarios", "plural_interval_scenarios",
+        "metric_surface_count", "root_covered_surface_count", "root_verification_count",
+        "all_root_replay_flags_true", "independent_result_verification_count",
+        "independent_result_verification_surface_count", "normal_source_component_count",
+        "normal_source_bytes_reopened", "fresh_process_custodian", "custodian_pid_distinct",
+        "lease_issue_count", "lease_consume_count", "lease_reissue_count", "attack_test_accesses",
+        "real_label_scenario_accesses", "provider_calls", "credential_reads", "new_fitting",
+        "new_rule_generation", "new_scientific_experiments", "result_driven_changes",
+        "private_exposures", "fixture_authority", "source_commit",
+    )
+    rehearsal_fingerprint = lambda value: digest({key: value[key] for key in rehearsal_fields})
+    root_fingerprint = lambda value: digest({
+        "schema": value["schema"], "status": value["status"],
+        "release_manifest_hash": value["release_manifest_hash"],
+        "verification_count": value["verification_count"],
+        "per_root_replay": value["per_root_replay"],
+        "root_covered_surface_count": value["root_covered_surface_count"],
+        "source_commit": value["source_commit"],
+    })
+    if (
+        parity != frozen_parity
+        or rehearsal_fingerprint(rehearsal) != rehearsal_fingerprint(frozen_rehearsal)
+        or root_fingerprint(roots) != root_fingerprint(frozen_roots)
+        or not all(roots["per_root_replay"].values())
+        or not rehearsal["fresh_process_custodian"]
+        or not rehearsal["custodian_pid_distinct"]
+    ):
         raise RuntimeError("INDEPENDENT_CONNECTED_REPLAY_MISMATCH")
-    print(json.dumps({"status": "PASS", "replayed_hashes": observed}, sort_keys=True))
+    print(json.dumps({"status": "PASS", "frozen_hashes": [
+        frozen_rehearsal["self_hash"], frozen_parity["self_hash"], frozen_roots["self_hash"]],
+        "fresh_replay_hashes": [rehearsal["self_hash"], parity["self_hash"], roots["self_hash"]],
+        "fresh_process_pid_distinct": True}, sort_keys=True))
 
 
 def main() -> None:
