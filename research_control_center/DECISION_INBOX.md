@@ -35,3 +35,11 @@ EXP-03 V1 및 V2A·EXP04/05 보존. 추가 Agentic rescue 금지. DG-05 공격 �
 ## 현재 승인된 DG-04 및 실제 중단 지점
 
 DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+
+## DG-05 HAI21 scenario-boundary authority
+
+USER_DECISION_REQUIRED. HAI21 official manual and official overall-label roots
+agree on the frozen five-file 50-occurrence census, but two source-boundary
+records are incompatible under the existing no-normalization contract. No
+held-out predictions or metrics were observed. See
+`validation_v2/dg05_v11_source_adapter_lfs_closure/HAI21_SCENARIO_BOUNDARY_AUTHORITY_DECISION_BRIEF_V1.md`.
