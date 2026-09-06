@@ -69,7 +69,8 @@ def resolve_frozen_kernel_v11(repository_root: Path) -> dict[str, str]:
 def build_v11_candidate_manifest(*, repository_root: Path, source_commit: str,
                                 authority_hashes: Mapping[str, str],
                                 implementation_paths: Mapping[str, Path],
-                                qualification_hashes: Mapping[str, str]) -> dict[str, Any]:
+                                qualification_hashes: Mapping[str, str],
+                                status: str = "CANDIDATE_AWAITING_EXACT_USER_APPROVAL") -> dict[str, Any]:
     required_roots = {
         "physical_custody", "normal_registry", "scenario_authority", "unified_p1",
         "dec031", "dec034", "dec035", "dec036", "dec037", "scientific_preregistration",
@@ -95,10 +96,12 @@ def build_v11_candidate_manifest(*, repository_root: Path, source_commit: str,
     if set(qualification_hashes) != expected_qualification:
         raise DG05ProductionChainV11Error("V11_QUALIFICATION_CENSUS_REQUIRED")
     kernel = resolve_frozen_kernel_v11(root)
+    if status not in {"CANDIDATE_AWAITING_EXACT_USER_APPROVAL", "TECHNICAL_PREQUALIFICATION_ONLY"}:
+        raise DG05ProductionChainV11Error("V11_RELEASE_STATUS_REQUIRED")
     return self_hashed({
         "schema": "dg05_executable_v11_candidate_manifest_v1",
         "designation": "DG05_EXECUTABLE_V11",
-        "status": "CANDIDATE_AWAITING_EXACT_USER_APPROVAL",
+        "status": status,
         "approval_status": "NOT_APPROVED",
         "implementation_source_commit": source_commit,
         "authority_hashes": dict(sorted(authority_hashes.items())),
@@ -117,7 +120,7 @@ def initialize_v11_candidate(*, manifest_path: Path, repository_root: Path,
                              user_approved_release_hash: str | None = None) -> dict[str, Any]:
     manifest = load_self_hashed(manifest_path, "dg05_executable_v11_candidate_manifest_v1")
     root = repository_root.resolve()
-    if manifest.get("self_hash") != expected_hash or manifest.get("status") != "CANDIDATE_AWAITING_EXACT_USER_APPROVAL":
+    if manifest.get("self_hash") != expected_hash or manifest.get("status") not in {"CANDIDATE_AWAITING_EXACT_USER_APPROVAL", "TECHNICAL_PREQUALIFICATION_ONLY"}:
         raise DG05ProductionChainV11Error("V11_RELEASE_ROOT_REPLAY_FAILED")
     for item in manifest.get("implementation_authorities", []):
         path = (root / item["relative_path"]).resolve()
@@ -129,6 +132,8 @@ def initialize_v11_candidate(*, manifest_path: Path, repository_root: Path,
     if mode == PREACCESS_MODE:
         state, protected = "PREACCESS_V11_CANDIDATE_INITIALIZED", False
     elif mode == REAL_MODE:
+        if manifest.get("status") != "CANDIDATE_AWAITING_EXACT_USER_APPROVAL":
+            raise DG05ProductionChainV11Error("V11_TECHNICAL_PREQUALIFICATION_NOT_EXECUTABLE")
         if user_approved_release_hash != manifest["self_hash"]:
             raise DG05ProductionChainV11Error("EXACT_V11_USER_APPROVAL_REQUIRED")
         state, protected = "APPROVED_V11_REAL_EXECUTION_INITIALIZED", True
