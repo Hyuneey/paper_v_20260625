@@ -1,0 +1,32 @@
+{
+  "schema": "dg05_v5_executable_gap_proof_v1",
+  "status": "G1_G2_CONFIRMED_BEFORE_REMEDIATION",
+  "baseline_commit": "0a6d59270154ece399474a8cda72c65e80db76bf",
+  "g1": {
+    "release_qualified_frozen_kernel_invoked": false,
+    "synthetic_executor_invoked": true,
+    "synthetic_trace_reconstruction_invoked": true,
+    "counterexample_test": "tests.test_dg05_production_route_v4.ProductionRouteV4Tests.test_v4_release_rehearsal_counterexample_uses_synthetic_kernel"
+  },
+  "g2": {
+    "coherent_scenario_denominator_rehash_accepted": true,
+    "raw_physical_root_input_absent": true,
+    "custodian_root_inputs_absent": true,
+    "counterexample_tests": [
+      "tests.test_dg05_v5_gap_proof.V4GapProofTests.test_v4_accepts_coherent_scenario_and_denominator_rehash",
+      "tests.test_dg05_v5_gap_proof.V4GapProofTests.test_v4_raw_source_and_custodian_roots_are_not_verifier_inputs"
+    ]
+  },
+  "focused_tests_passed": 7,
+  "focused_tests_failed": 0,
+  "real_attack_test_accesses": 0,
+  "real_label_scenario_accesses": 0,
+  "provider_calls": 0,
+  "credential_reads": 0,
+  "new_fitting": 0,
+  "new_rule_generation": 0,
+  "new_scientific_experiments": 0,
+  "result_driven_changes": 0,
+  "private_exposures": 0,
+  "self_hash": "820d7b278b1d45931727796a5b96bed49862db80c60c6c203e7ea0d9268fa1db"
+}

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from paperworks.validation_v2.dg05_connected_rehearsal_v3 import _detectors, _dispatch, _manifest, _rules, _scope
 from paperworks.validation_v2.dg05_execution_closure_v1 import (
@@ -69,13 +70,12 @@ class ProductionRouteV4Tests(unittest.TestCase):
             "protected_access_authorized": False,
         })
 
-    def _fixture(self, root: Path, timestamps: list[str]):
+    def _fixture(self, root: Path, timestamps: list[str], method_id: str = "M0_PCA_SPE"):
         panel = next(iter(frozen_feature_allowlist_authorities_v2()))
         allowlist = frozen_feature_allowlist_authorities_v2()[panel]
         source = root / "source.csv"; write_csv(source, allowlist, timestamps)
         header = [allowlist.timestamp_id, *allowlist.feature_ids, "Attack"]
         physical_item = PhysicalFileIdentityV2(panel, "synthetic.csv", file_sha256(source), digest(header), H)
-        method_id = "M0_PCA_SPE"
         dispatch_hash = self.dispatch.document()["self_hash"]
         cell = {"panel_id": panel, "file_id": physical_item.file_id, "method_id": method_id,
                 "dispatch_authority_hash": dispatch_hash}
@@ -86,6 +86,29 @@ class ProductionRouteV4Tests(unittest.TestCase):
             panel_authority=allowlist, file_id=physical_item.file_id,
             adapter_implementation_hash=H, source_commit=G)
         return cell, projection, timestamp, destination
+
+    def test_v4_release_rehearsal_counterexample_uses_synthetic_kernel(self):
+        """Historical V4 proof: release rehearsal bypasses the frozen kernel."""
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            values = [(datetime(2026, 1, 1) + timedelta(seconds=index)).isoformat() for index in range(8)]
+            cell, projection, timestamp, path = self._fixture(root, values, "M1_T0_RULE_ONLY")
+            original_execute = DG05ProductionExecutorV1.execute
+            from paperworks.validation_v2 import dg05_production_route_v4 as route
+            with (
+                patch.object(DG05ProductionExecutorV1, "execute", autospec=True, wraps=original_execute) as synthetic,
+                patch.object(route, "execute_normal_method_v4", side_effect=AssertionError("frozen kernel invoked")) as frozen,
+                patch.object(route, "_synthetic_four_way_trace", wraps=route._synthetic_four_way_trace) as reconstruction,
+            ):
+                receipt = execute_prediction_cell_v4(
+                    cell=cell, dispatch=self.dispatch, projection=projection, timestamp=timestamp,
+                    release=self.release, predecessor_v3=self.predecessor, executor=self.executor,
+                    initialized_release_state=self.initialized,
+                    projection_path=path, output_directory=root / "out", source_commit=G)
+            self.assertEqual(receipt.status, "SUCCESS")
+            self.assertEqual(synthetic.call_count, 1)
+            self.assertEqual(frozen.call_count, 0)
+            self.assertEqual(reconstruction.call_count, 1)
 
     def test_release_bound_success_emits_v4_receipt(self):
         with tempfile.TemporaryDirectory() as raw:
