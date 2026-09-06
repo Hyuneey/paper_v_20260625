@@ -1,0 +1,222 @@
+{
+  "access_counters": {
+    "credential_reads": 0,
+    "metrics_computed": 0,
+    "predictions_executed": 0,
+    "private_exposures": 0,
+    "provider_calls": 0,
+    "real_attack_intervals_observed": 0,
+    "real_heldout_rows_parsed": 0,
+    "real_label_values_parsed": 0,
+    "real_scenario_records_accessed": 0
+  },
+  "audit_id": "HAI_OFFICIAL_SCENARIO_AUTHORITY_RECOVERY_AUDIT_V2",
+  "authority_sufficiency_dimensions": [
+    "SCENARIO_IDENTITY",
+    "PHYSICAL_FILE_BINDING",
+    "INTERVAL_EXTRACTION",
+    "MULTI_INTERVAL_GROUPING",
+    "ATTACKED_IDENTITY_REPRESENTATION",
+    "AFFECTED_PROCESS_MAPPING_OR_OFFICIAL_NOT_PROVIDED_SEMANTIC",
+    "NOMINAL_ATTACK_COUNT_RECONCILIATION",
+    "CANONICAL_ORDERING",
+    "DUPLICATE_AND_ERROR_POLICY"
+  ],
+  "complete_versions": [],
+  "custody_replay": {
+    "receipt_hash": "46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+    "status": "PASS_10_OF_10"
+  },
+  "date": "2026-09-06",
+  "disposition": "OFFICIAL_SCENARIO_AUTHORITY_INCOMPLETE",
+  "historical_audit": {
+    "audit_id": "HAI_OFFICIAL_SCENARIO_SOURCE_AUTHORITY_AUDIT_V1",
+    "preserved": true,
+    "self_hash": "2c2989f9fba24d509d74e7b2e9512dfa10337b675e38b99fe9b9c8922731fc14"
+  },
+  "official_history_audit": {
+    "branch_heads_observed": [
+      "refs/heads/master"
+    ],
+    "official_git_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "official_git_history_commit_count": 87,
+    "official_git_history_shallow": false,
+    "official_git_tags_observed": [],
+    "repository_release_assets_observed": 0,
+    "scenario_generator_or_parser_found_in_reachable_official_history": false
+  },
+  "p1_denominator_source_authority_gap": {
+    "HAI21_03": true,
+    "HAI22_04": true,
+    "HAI23_05": true,
+    "reason": "OCCURRENCE_LEVEL_ATTACKED_IDENTITY_AND_PROCESS_BINDINGS_CANNOT_BE_REPRODUCED_FROM_THE_RECOVERED_VALUE_BLIND_OFFICIAL_AUTHORITIES"
+  },
+  "schema": "hai_official_scenario_authority_recovery_audit_v2",
+  "scientific_immutability": {
+    "claims_changed": false,
+    "dec031_changed": false,
+    "metric_contract_changed": false,
+    "methods_changed": false,
+    "normal_authority_changed": false,
+    "p1_scope_changed": false,
+    "rules_changed": false,
+    "thresholds_changed": false
+  },
+  "self_hash": "d1bbb3c5cb9c88913b8f70ef5bfeaf77778ca9adbc0e6c2e14344f72b69f9644",
+  "status": "BLOCKED",
+  "task_id": "DG05-HAI-SCENARIO-AUTHORITY-RECOVERY-AUDIT-001",
+  "version_findings": {
+    "HAI21_03": {
+      "authority_status": "PARTIAL",
+      "canonical_ordering": "UNRESOLVED",
+      "confidence": "HIGH_THAT_NOMINAL_CENSUS_AND_DESIGN_PROVENANCE_ARE_OFFICIAL_HIGH_THAT_OCCURRENCE_GRAMMAR_REMAINS_UNRECOVERED",
+      "duplicate_and_error_policy": "UNRESOLVED",
+      "evaluation_and_generator_code": {
+        "author_maintained_etapr_commit": "af9e7aed35cfd160cbe0d04c8ec4c102502cb677",
+        "file_io_sha256": "83c8344390573831c470c19f6e584388d14d915ee63a7ffc2e80f721bc23bbf8",
+        "finding": "GENERIC_CONTIGUOUS_LABEL_RANGE_CONVERSION_IS_A_METRIC_INPUT_CONTRACT_NOT_OFFICIAL_HAI_SCENARIO_GROUPING"
+      },
+      "explicitly_established": [
+        "FIVE_TEST_FILES_HAVE_NOMINAL_COUNTS_5_20_8_5_12_TOTAL_50",
+        "FIFTY_ATTACKS_COMPRISE_25_SINGLE_AND_25_COMBINED_ATTACKS",
+        "ATTACK_AUTOMATION_STORED_TARGET_AND_TIME_METADATA_FOR_LABELING",
+        "ATTACKS_COULD_MANIPULATE_MULTIPLE_TARGETS_SEQUENTIALLY_OR_IN_PARALLEL",
+        "APPENDIX_A_DEFINES_AP01_TO_AP27_TEMPLATE_LEVEL_CONTROLLER_VARIABLE_AND_POINT_METADATA_ACROSS_EDITIONS",
+        "GLOBAL_AND_PROCESS_SPECIFIC_LABEL_COLUMNS_EXIST"
+      ],
+      "historical_sources": [
+        {
+          "identity": "HAI21_DATASET_ADDITION_COMMIT",
+          "revision": "b11becb9e6dfa486a868a0e4970ad753fd38078e"
+        },
+        {
+          "identity": "HAI21_RELEASE_README_COMMIT",
+          "revision": "cd8368e268403401e0b9bb65f807738eb13b2168"
+        },
+        {
+          "identity": "HAI_TECHNICAL_MANUAL_V2_COMMIT",
+          "revision": "eefc0ca0a37455d448b1c9c7e9ecd20eec2d5271"
+        }
+      ],
+      "missing_authority": [
+        "PUBLIC_OFFICIAL_50_OCCURRENCE_EXPORT_OR_CROSSWALK",
+        "STABLE_OCCURRENCE_SCENARIO_IDENTITIES",
+        "OCCURRENCE_TO_PHYSICAL_FILE_AND_INTERVAL_BINDING",
+        "REPEATED_AND_PLURAL_INTERVENTION_GROUPING",
+        "COMBINED_ATTACK_MEMBERSHIP_PER_OCCURRENCE",
+        "OCCURRENCE_TO_ATTACKED_POINT_AND_PROCESS_ATTRIBUTION",
+        "CANONICAL_ORDERING_AND_DUPLICATE_ERROR_POLICY"
+      ],
+      "nominal_count_authority": "OFFICIAL_README_5_PLUS_20_PLUS_8_PLUS_5_PLUS_12_EQUALS_50_AND_AUTHOR_PRESENTATION_25_SINGLE_PLUS_25_COMBINED",
+      "official_sources": [
+        "https://github.com/icsdataset/hai/blob/2a814cebc9a66b06c9e5cd545e2d72e65d383737/README.md",
+        "https://cset21.isi.edu/papers/cset21-1.pdf",
+        "https://cset21.isi.edu/cset21-1-pres.pdf",
+        "https://dacon.io/competitions/official/235624/overview/description",
+        "https://github.com/wshw4ng/eTaPR"
+      ],
+      "source_class": "OFFICIAL_TEST_CONTAINER_LABEL_DERIVATION_AUTHORITY",
+      "source_class_qualification": "DOCUMENTED_SOURCE_CLASS_EXISTS_BUT_THE_OFFICIAL_LABEL_TO_OCCURRENCE_TRANSFORMATION_RULE_IS_NOT_RECOVERED"
+    },
+    "HAI22_04": {
+      "authority_status": "PARTIAL",
+      "canonical_ordering": "MANUAL_TABLE_ORDER_IS_OFFICIAL_DESCRIPTIVE_ORDER_BUT_SUMMARY_TO_TABLE_JOIN_IS_UNRESOLVED",
+      "confidence": "HIGH_THAT_COUNTS_SOURCE_IDENTITIES_AND_STRUCTURAL_FIELDS_ARE_OFFICIAL_HIGH_THAT_EXECUTABLE_GRAMMAR_REMAINS_UNRECOVERED",
+      "duplicate_and_error_policy": "UNRESOLVED",
+      "evaluation_and_generator_code": {
+        "finding": "OFFICIAL_HAICON_AND_ETAPR_CODE_DEFINE_BINARY_SCORING_OR_GENERIC_RANGES_NOT_HAI22_SUMMARY_SCENARIO_CONSTRUCTION"
+      },
+      "explicitly_established": [
+        "FOUR_TEST_FILES_HAVE_NOMINAL_COUNTS_7_17_10_24_TOTAL_58",
+        "FIFTY_EIGHT_ATTACK_SITUATIONS_INCLUDE_32_PRIMITIVES_AND_26_SIMULTANEOUS_TWO_PRIMITIVE_COMBINATIONS",
+        "FOUR_EXACT_OFFICIAL_SUMMARY_FILES_EXIST_AND_FILENAMES_BIND_TO_TEST1_THROUGH_TEST4",
+        "ONE_NUMBERED_MANUAL_TABLE_ROW_IS_ONE_LISTED_ATTACK_SCENARIO_INCLUDING_A_COMBINED_SCENARIO",
+        "MANUAL_STRUCTURAL_FIELDS_INCLUDE_NUMBER_ID_START_TIME_SCENARIO_TARGET_CONTROLLER_TARGET_POINTS_AND_DURATION",
+        "CONTROLLER_AND_POINT_TARGETS_REPLACE_PROCESS_SPECIFIC_LABELS_FROM_HAI22"
+      ],
+      "historical_sources": [
+        {
+          "identity": "HAI22_RELEASE_COMMIT",
+          "revision": "4700346e62dc8879db6341ea20e013a3086aefe2"
+        },
+        {
+          "git_blob": "801b080ab567f2c26ee8ed202e6e6344db807e03",
+          "identity": "HAI_DATASET_TECHNICAL_DETAILS_V3_PDF"
+        },
+        {
+          "git_blob": "18cb88514176e1c641f584cf24ac8e9559432b38",
+          "identity": "CURRENT_HAI_DATASET_TECHNICAL_DETAILS_PDF"
+        }
+      ],
+      "missing_authority": [
+        "SUMMARY_SERIALIZATION_GRAMMAR_ENCODING_AND_FIELD_DELIMITERS",
+        "SUMMARY_RECORD_TO_MANUAL_ID_JOIN_RULE",
+        "CLOSED_INTERVAL_ENDPOINT_ARITHMETIC_TIMEZONE_AND_CROSS_MIDNIGHT_POLICY",
+        "MULTI_INTERVAL_OWNERSHIP_AND_GROUPING",
+        "TARGET_LIST_ESCAPING_MULTIPLICITY_AND_MISSING_FIELD_POLICY",
+        "EXPLICIT_AFFECTED_PROCESS_OR_OFFICIAL_NOT_PROVIDED_SEMANTIC",
+        "CONFLICT_PRECEDENCE_AND_DUPLICATE_ERROR_POLICY"
+      ],
+      "nominal_count_authority": "OFFICIAL_README_7_PLUS_17_PLUS_10_PLUS_24_EQUALS_58_AND_DATAON_CONFIRMS_58_SINGLE_AND_COMBINED_ATTACK_SITUATIONS",
+      "official_sources": [
+        "https://github.com/icsdataset/hai/blob/2a814cebc9a66b06c9e5cd545e2d72e65d383737/README.md",
+        "https://github.com/icsdataset/hai/tree/2a814cebc9a66b06c9e5cd545e2d72e65d383737/hai-22.04/summary",
+        "https://doi.org/10.22711/idr/977",
+        "https://dacon.io/en/competitions/official/235757/overview/rules",
+        "https://github.com/wshw4ng/eTaPR"
+      ],
+      "source_class": "OFFICIAL_SEPARATE_SCENARIO_METADATA",
+      "summary_file_git_blobs": {
+        "summary(test1.csv).txt": "5f5045e21f9c42b41f69ef5ee333bfb858f7d1da",
+        "summary(test2.csv).txt": "bc86010200db80dc930b0b92433f472a39bd3352",
+        "summary(test3.csv).txt": "5a4c8f1fd75c136f8f40eb62c0836709bf8c058d",
+        "summary(test4.csv).txt": "a72af258c28fcc8affa07e3b2b7844e1265aea99"
+      }
+    },
+    "HAI23_05": {
+      "authority_status": "PARTIAL",
+      "canonical_ordering": "UNRESOLVED_BEYOND_PUBLISHED_FILE_IDENTITY_AND_NOMINAL_COUNT",
+      "confidence": "HIGH_THAT_PROVENANCE_AND_COUNT_ARE_OFFICIAL_HIGH_THAT_EXECUTABLE_GRAMMAR_REMAINS_UNRECOVERED",
+      "duplicate_and_error_policy": "UNRESOLVED",
+      "evaluation_and_generator_code": {
+        "finding": "NO_SCENARIO_GENERATOR_OR_SUMMARY_PARSER_WAS_FOUND_IN_87_REACHABLE_OFFICIAL_COMMITS_AND_GENERIC_ETAPR_RANGE_CONVERSION_IS_NOT_HAI23_SCENARIO_AUTHORITY"
+      },
+      "explicitly_established": [
+        "LABEL_TEST2_AND_SUMMARY_LABEL2_ARE_SEPARATE_OFFICIAL_IDENTITIES",
+        "HAI_TEST2_HAS_PUBLISHED_NOMINAL_ATTACK_COUNT_38",
+        "CONTROLLER_AND_POINT_TARGETS_REPLACE_PROCESS_SPECIFIC_LABELS_FROM_HAI22"
+      ],
+      "historical_sources": [
+        {
+          "identity": "HAI23_FILE_INTRODUCTION_COMMIT",
+          "revision": "ebcd09bbb432a35be39dcfaf1d800083fd06777b"
+        },
+        {
+          "git_blob": "5bbca74ac5b25cbb2150d89eee2633a47056ecca",
+          "identity": "LABEL_TEST2_GIT_LFS_POINTER"
+        },
+        {
+          "git_blob": "ef02d5416b9ebd6e68b4624b6a1f69aa917d4fcb",
+          "identity": "SUMMARY_LABEL2_GIT_LFS_POINTER"
+        }
+      ],
+      "missing_authority": [
+        "SUMMARY_SERIALIZATION_GRAMMAR_ENCODING_FIELDS_AND_NULL_POLICY",
+        "OFFICIAL_OCCURRENCE_IDENTITY_AND_UNIQUENESS_SCOPE",
+        "SUMMARY_LABEL_AND_TEST_FILE_JOIN_RULE",
+        "CLOSED_INTERVAL_ENDPOINT_TIMEZONE_GROUPING_AND_OVERLAP_POLICY",
+        "REPEATED_OR_INTERRUPTED_INTERVENTION_OWNERSHIP",
+        "DIRECT_ATTACKED_IDENTITY_VERSUS_AFFECTED_POINT_SEMANTICS",
+        "EXPLICIT_AFFECTED_PROCESS_MAPPING",
+        "CANONICAL_ORDERING_AND_DUPLICATE_ERROR_POLICY"
+      ],
+      "nominal_count_authority": "OFFICIAL_PINNED_README_PUBLISHES_ATTACK_COUNT_38_FOR_HAI_TEST2",
+      "official_sources": [
+        "https://github.com/icsdataset/hai/blob/2a814cebc9a66b06c9e5cd545e2d72e65d383737/README.md",
+        "https://github.com/icsdataset/hai/commit/ebcd09bbb432a35be39dcfaf1d800083fd06777b",
+        "https://github.com/wshw4ng/eTaPR"
+      ],
+      "source_class": "OFFICIAL_SEPARATE_SCENARIO_METADATA"
+    }
+  }
+}
