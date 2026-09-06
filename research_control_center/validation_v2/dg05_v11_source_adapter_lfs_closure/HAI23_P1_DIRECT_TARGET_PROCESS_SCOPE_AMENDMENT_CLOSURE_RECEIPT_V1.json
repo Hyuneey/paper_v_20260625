@@ -1,0 +1,74 @@
+{
+  "access_accounting": {
+    "heldout_metrics": 0,
+    "heldout_predictions": 0,
+    "method_comparisons": 0,
+    "result_driven_changes": 0
+  },
+  "adversarial_qa": {
+    "cases": 20,
+    "rejected": 20,
+    "status": "PASS",
+    "unexpected_accepts": 0
+  },
+  "decision": {
+    "decision_id": "DEC-034",
+    "decision_sha256": "67a724b3b433d2b21904d587a1ce357090021dc654f212e667e0dd7a79c45ccd",
+    "status": "APPROVED_AND_FROZEN"
+  },
+  "historical_v1": {
+    "authority_id": "FULL_PROCESS_SCOPE_AUTHORITY_V1",
+    "authority_sha256": "0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619",
+    "bytes_changed": false,
+    "status": "HISTORICAL_SUPERSEDED_FOR_DG05_P1_ELIGIBILITY_NOT_INVALID"
+  },
+  "independent_replay": {
+    "authority_agreement": "PASS",
+    "receipt_sha256": "8200c45d25f605adce280876a160501fe6035af693b6fb1a1f8660b471e87387",
+    "scenario_agreement": "38_OF_38",
+    "status": "PASS"
+  },
+  "official_source_roots": {
+    "hai23_dcs_graph_authorities": [
+      "3cebccfed59f8f2da4fe90ea8b9055da64ace270133e8a8e281377ac37c7e602",
+      "d3f060df16c97a5dbf18907199d7e75f61cc58587100fe76b9d4f8a6be354fd6",
+      "c23f069441d6acfcd3201b224d56444699fb6f6de295f438dbdcee1f4f2c3939"
+    ],
+    "hai23_identity_schema_sha256": "95968d825d1c9caab778a857cec618b64674ec5a85d94e6952d99c2cab08d16a",
+    "official_repository_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "technical_manual_sha256": "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556"
+  },
+  "private_authorities": {
+    "eligibility_authority_sha256": "6467bd540a5a632346df4eab89fd6224fe98fcb2316d488120d629684797dc8d",
+    "scope_authority_sha256": "7a12015db573e2122e0a3535b7ce1723070cba77a437f388d16fe0fa61e138ef",
+    "target_process_authority_sha256": "0177a31df39b91f99807c7ad7b718c70a0849558a954a1add91abac631aaacc1"
+  },
+  "prospective_preregistration_amendment_sha256": "b07ec08d19e4c90e34763a371ed389e49c47374b6eef3bde2c61c527d1737556",
+  "scenario_authority": {
+    "changed": false,
+    "scenarios": 38,
+    "sha256": "314a188ec18f681e58e7e0c7322a281748ba2f4acb7e58f418e2c4fb8b766e91"
+  },
+  "schema": "dg05_hai23_p1_direct_target_process_scope_amendment_closure_receipt_v1",
+  "self_hash": "f901ba0ebb78b6672b9cee27bc451ddf49e2cecf609961f898f446ae1d781198",
+  "status": "COMPLETE_QA_PASS",
+  "target_process_authority_summary": {
+    "canonical_feature_identities": 16,
+    "heuristic_aliases": 0,
+    "noncanonical_other_official_identities": 14,
+    "official_source_rooted_memberships": 30,
+    "target_representations": 30
+  },
+  "task_id": "DG05-P1-DIRECT-TARGET-PROCESS-SCOPE-AMENDMENT-001",
+  "v2_eligibility": {
+    "P1_ELIGIBLE": 38,
+    "P1_NOT_ELIGIBLE": 0,
+    "UNRESOLVED": 0
+  },
+  "v2_semantic": {
+    "direct_target_membership": "AT_LEAST_ONE_DIRECT_OFFICIAL_TARGET_WITH_OFFICIAL_PROCESS_MEMBERSHIP_P1",
+    "multi_target_aggregation": "ANY_VERIFIED_P1_DIRECT_TARGET",
+    "unknown_handling": "UNRESOLVED_UNLESS_ANY_VERIFIED_P1_DIRECT_TARGET"
+  },
+  "verdict": "PROSPECTIVE_P1_DIRECT_TARGET_PROCESS_SCOPE_AMENDMENT_FROZEN"
+}

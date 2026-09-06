@@ -1,0 +1,25 @@
+{
+  "amendment_id": "DG05_P1_DIRECT_TARGET_PROCESS_SCOPE_PROSPECTIVE_AMENDMENT_V1",
+  "decision_binding": "67a724b3b433d2b21904d587a1ce357090021dc654f212e667e0dd7a79c45ccd",
+  "historical_preregistration_sha256": "cffa6f00dadee1bdd400cdbee545eb9cccd93dcf5da8c6bab3f67809644e8c61",
+  "outcome_access_before_amendment": {
+    "heldout_metrics_observed": 0,
+    "heldout_predictions_observed": 0,
+    "method_comparisons_observed": 0,
+    "result_driven_change": 0
+  },
+  "schema": "dg05_prospective_preregistration_amendment_v1",
+  "scope": "HAI23_ONLY",
+  "self_hash": "b07ec08d19e4c90e34763a371ed389e49c47374b6eef3bde2c61c527d1737556",
+  "statement": "This amendment was made after official held-out dataset metadata inspection revealed that exact feature-identity membership incompletely represented official direct P1 targets, and before any held-out detector predictions or performance metrics were observed.",
+  "status": "FROZEN",
+  "what_changed": "P1_ELIGIBILITY_DENOMINATOR_SOURCE_SEMANTIC_ONLY",
+  "what_did_not_change": [
+    "DETECTOR_METHOD",
+    "RULES",
+    "THRESHOLDS",
+    "FUSION",
+    "SCENARIO_INTERVALS",
+    "METRIC_FORMULAS"
+  ]
+}

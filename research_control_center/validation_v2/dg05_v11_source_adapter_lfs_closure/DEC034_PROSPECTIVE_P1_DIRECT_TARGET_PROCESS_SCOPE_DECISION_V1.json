@@ -1,0 +1,23 @@
+{
+  "access_boundary": {
+    "heldout_metrics_observed": 0,
+    "heldout_predictions_observed": 0,
+    "method_comparisons_observed": 0,
+    "result_driven_change": 0
+  },
+  "decision": "APPROVE_PROSPECTIVE_P1_DIRECT_TARGET_PROCESS_SCOPE_AMENDMENT",
+  "decision_id": "DEC-034",
+  "effective_scope": "HAI23_ONLY_DIRECT_OFFICIAL_TARGET_P1_ELIGIBILITY_DENOMINATOR",
+  "historical_v1": {
+    "authority_id": "FULL_PROCESS_SCOPE_AUTHORITY_V1",
+    "authority_sha256": "0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619",
+    "status": "HISTORICAL_SUPERSEDED_FOR_DG05_P1_ELIGIBILITY_NOT_INVALID"
+  },
+  "rationale": "OFFICIAL_HAI23_METADATA_ESTABLISHED_VALID_DIRECT_BOILER_P1_TARGETS_OUTSIDE_EXACT_CANONICAL_HAI_FEATURE_NAMESPACE",
+  "schema": "dg05_prospective_p1_direct_target_process_scope_decision_v1",
+  "scientific_effect": "DENOMINATOR_CLASSIFICATION_AUTHORITY_ONLY_NO_DETECTOR_METHOD_CHANGE",
+  "self_hash": "67a724b3b433d2b21904d587a1ce357090021dc654f212e667e0dd7a79c45ccd",
+  "status": "APPROVED_AND_FROZEN",
+  "timing": "SOURCE_DRIVEN_BEFORE_HELDOUT_PREDICTION_METRIC_OR_METHOD_COMPARISON",
+  "user_selected_option": "OPTION_2"
+}
