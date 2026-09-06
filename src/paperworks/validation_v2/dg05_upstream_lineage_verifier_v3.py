@@ -399,7 +399,13 @@ def _replay_custodian_roots(
             raw = json.loads(path.read_text(encoding="utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
             raise DG05UpstreamVerifierV3Error("RAW_SCENARIO_SOURCE_SCHEMA_MISMATCH") from exc
-        if type(raw) is not dict or set(raw) != {"schema", "records"} or raw.get("schema") != "synthetic_raw_official_scenario_fixture_v2":
+        adapter_contract = ADAPTER_CONTRACTS.get(source.get("adapter_id"))
+        if (
+            adapter_contract is None
+            or type(raw) is not dict
+            or set(raw) != {"schema", "records"}
+            or raw.get("schema") != adapter_contract["source_schema"]
+        ):
             raise DG05UpstreamVerifierV3Error("RAW_SCENARIO_SOURCE_SCHEMA_MISMATCH")
         if type(raw["records"]) is not list:
             raise DG05UpstreamVerifierV3Error("RAW_SCENARIO_SOURCE_SCHEMA_MISMATCH")

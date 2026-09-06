@@ -124,7 +124,7 @@ def validate_release_execution_kernel_v5(
             raise DG05ProductionRouteV5Error("RELEASE_OR_PREDECESSOR_REPLAY_FAILED")
     selected_executor = executor.frozen if type(executor) is PreaccessFrozenKernelExecutorV5 else executor
     common_invalid = (
-        release.get("executable_version") not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}
+        release.get("executable_version") not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8", "DG05_EXECUTABLE_V9"}
         or release.get("historical_execution_kernel_hash")
         != getattr(selected_executor, "executable_manifest_hash", None)
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"

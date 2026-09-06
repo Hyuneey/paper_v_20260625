@@ -94,9 +94,9 @@ def build_production_release_manifest_v5(
         _sha(value, "SHA256_AUTHORITY_REQUIRED")
     if type(source_commit) is not str or len(source_commit) != 40:
         raise DG05ProductionChainV2Error("SOURCE_COMMIT_REQUIRED")
-    if executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}:
+    if executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8", "DG05_EXECUTABLE_V9"}:
         raise DG05ProductionChainV2Error("SUPPORTED_EXECUTABLE_VERSION_REQUIRED")
-    if executable_version in {"DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}:
+    if executable_version in {"DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8", "DG05_EXECUTABLE_V9"}:
         _sha(superseded_candidate_hash, "SUPERSEDED_V5_CANDIDATE_HASH_REQUIRED")
     elif superseded_candidate_hash is not None:
         raise DG05ProductionChainV2Error("V5_CANNOT_SUPERSEDE_ITSELF")
@@ -167,7 +167,7 @@ def initialize_production_release_v5(
         or release.get("predecessor_v4_closure_hash") != closure["self_hash"]
         or closure.get("executable_manifest_hash") != predecessor["self_hash"]
         or release.get("executable_version") != expected_executable_version
-        or expected_executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8"}
+        or expected_executable_version not in {"DG05_EXECUTABLE_V5", "DG05_EXECUTABLE_V6", "DG05_EXECUTABLE_V7", "DG05_EXECUTABLE_V8", "DG05_EXECUTABLE_V9"}
         or release.get("readiness") != "READY_FOR_USER_REAPPROVAL"
     ):
         raise DG05ProductionChainV2Error("V5_RELEASE_ROOT_REPLAY_FAILED")

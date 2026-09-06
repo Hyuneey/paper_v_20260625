@@ -48,7 +48,16 @@ def persist(path: Path, value: dict) -> Path:
 
 
 class RootReplayV3Tests(unittest.TestCase):
-    def _fixture(self, root: Path, timestamps=None):
+    def _fixture(
+        self,
+        root: Path,
+        timestamps=None,
+        *,
+        scenario_adapter_id: str = "SYNTHETIC_OFFICIAL_SCENARIO_FIXTURE_V2",
+        scenario_source_format: str = "SYNTHETIC_JSON_V2",
+        scenario_source_schema: str = "synthetic_raw_official_scenario_fixture_v2",
+        authority_mode: str = "SYNTHETIC_REHEARSAL",
+    ):
         panel = FROZEN_PANEL_ORDER_V2[0]
         allowlist = frozen_feature_allowlist_authorities_v2()[panel]
         projection_impl_hash = sha256(Path(execution_module.__file__).read_bytes()).hexdigest()
@@ -122,7 +131,7 @@ class RootReplayV3Tests(unittest.TestCase):
         freeze_path = persist(root / "freeze.json", freeze)
         source_id = "SYNTHETIC-23.05"
         raw_scenario = {
-            "schema": "synthetic_raw_official_scenario_fixture_v2",
+            "schema": scenario_source_schema,
             "records": [{
                 "panel_id": panel, "dataset_version": "23.05", "file_id": TEST_FILE,
                 "scenario_id": "S1", "closed_intervals": [[timestamps[0], timestamps[-1]]],
@@ -139,8 +148,8 @@ class RootReplayV3Tests(unittest.TestCase):
                 "source_id": source_id, "path": str(scenario_source_path.resolve()),
                 "byte_hash": sha256(scenario_source_path.read_bytes()).hexdigest(),
                 "official_source_hash": H, "dataset_version": "23.05",
-                "source_format": "SYNTHETIC_JSON_V2",
-                "adapter_id": "SYNTHETIC_OFFICIAL_SCENARIO_FIXTURE_V2",
+                "source_format": scenario_source_format,
+                "adapter_id": scenario_adapter_id,
             }],
             "executable_manifest_hash": release_hash, "scenario_adapter_implementation_hash": custodian_impl_hash,
             "resource_policy_contract_hash": H, "source_commit": G,
@@ -148,7 +157,7 @@ class RootReplayV3Tests(unittest.TestCase):
         policy_path = persist(root / "policy.json", policy)
         state_before = self_hashed({"schema": "dg05_production_chain_state_v4", "state": "GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED",
                                     "release_manifest_hash": release_hash, "global_prediction_freeze_hash": freeze["self_hash"],
-                                    "authority_mode": "SYNTHETIC_REHEARSAL"})
+                                    "authority_mode": authority_mode})
         token = "opaque-token"
         token_hash = sha256(token.encode()).hexdigest()
         lease = self_hashed({
@@ -160,7 +169,7 @@ class RootReplayV3Tests(unittest.TestCase):
         issued = self_hashed({
             "schema": "dg05_production_chain_state_v4", "state": "LABEL_SCENARIO_LEASE_ISSUED",
             "release_manifest_hash": release_hash, "global_prediction_freeze_hash": freeze["self_hash"],
-            "authority_mode": "SYNTHETIC_REHEARSAL", "lease_issue_predecessor_hash": state_before["self_hash"],
+            "authority_mode": authority_mode, "lease_issue_predecessor_hash": state_before["self_hash"],
             "lease_receipt_hash": lease["self_hash"], "lease_token_hash": token_hash,
         })
         issued_path = persist(root / "issued.json", issued)
@@ -176,7 +185,7 @@ class RootReplayV3Tests(unittest.TestCase):
             "executable_manifest_hash": release_hash, "approved_source_ids": [source_id],
             "approved_output_name": "scenario-output.json", "public_authority_hashes": [H],
             "resource_policy_hash": policy["self_hash"], "allowed_scenario_bindings": [binding],
-            "authority_mode": "SYNTHETIC_REHEARSAL", "nominal_counts": {panel: 1},
+            "authority_mode": authority_mode, "nominal_counts": {panel: 1},
         }
         request_path = root / "request.json"
         request_path.write_bytes(canonical_bytes(request) + b"\n")
@@ -195,7 +204,7 @@ class RootReplayV3Tests(unittest.TestCase):
             "schema": "isolated_label_scenario_custodian_output_v2",
             "lease_consumed_hash": consumed["self_hash"], "global_freeze_hash": freeze["self_hash"],
             "predecessor_state_hash": issued["self_hash"], "executable_manifest_hash": release_hash,
-            "authority_mode": "SYNTHETIC_REHEARSAL", "resource_policy_hash": policy["self_hash"],
+            "authority_mode": authority_mode, "resource_policy_hash": policy["self_hash"],
             "scenario_adapter_implementation_hash": custodian_impl_hash,
             "source_receipts": [{"source_id": source_id,
                                  "byte_hash": sha256(scenario_source_path.read_bytes()).hexdigest(),
@@ -332,6 +341,34 @@ class RootReplayV3Tests(unittest.TestCase):
             primitive, flags = self._run(panel, paths, roots, asserted)
             self.assertEqual(primitive, asserted)
             self.assertTrue(all(flags.values()))
+
+    def test_complete_raw_root_replay_accepts_hai_adapter_schema(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(
+                Path(raw),
+                scenario_adapter_id="HAI_OFFICIAL_SCENARIO_METADATA_V2",
+                scenario_source_format="HAI_OFFICIAL_SCENARIO_METADATA_V2",
+                scenario_source_schema="hai_official_scenario_metadata_raw_v2",
+                authority_mode="PRODUCTION",
+            )
+            primitive, flags = self._run(panel, paths, roots, asserted)
+            self.assertEqual(primitive, asserted)
+            self.assertTrue(all(flags.values()))
+
+    def test_raw_scenario_schema_must_match_selected_adapter(self):
+        with tempfile.TemporaryDirectory() as raw:
+            panel, paths, roots, asserted = self._fixture(
+                Path(raw),
+                scenario_adapter_id="HAI_OFFICIAL_SCENARIO_METADATA_V2",
+                scenario_source_format="HAI_OFFICIAL_SCENARIO_METADATA_V2",
+                scenario_source_schema="synthetic_raw_official_scenario_fixture_v2",
+                authority_mode="PRODUCTION",
+            )
+            with self.assertRaisesRegex(
+                DG05UpstreamVerifierV3Error,
+                "RAW_SCENARIO_SOURCE_SCHEMA_MISMATCH",
+            ):
+                self._run(panel, paths, roots, asserted)
 
     def test_raw_source_projection_disconnect_rejected(self):
         with tempfile.TemporaryDirectory() as raw:

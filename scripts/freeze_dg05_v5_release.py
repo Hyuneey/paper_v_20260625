@@ -209,12 +209,20 @@ def prepare() -> None:
         "prediction_bytes_mutation", "rule_trace_mutation", "t0_t2_trace_source_swap",
         "rule_fusion_source_swap", "caller_burden_decimal_mutation", "normal_exposure_duration_mutation",
         "hai22_train5_train6_swap", "same_second_multi_rule_fail_inflation",
-        "configured_never_formed_rule", "formed_never_evaluated_rule", "evaluated_system_error",
         "missing_rule_runtime_evidence", "synthetic_fallback_release_route",
+    ]
+    accepted_edge_cases = [
+        "configured_never_formed_rule",
+        "formed_never_evaluated_rule",
+        "evaluated_system_error",
     ]
     mutations = self_hashed({"schema": f"dg05_{VERSION_TAG.lower()}_mutation_evidence_v3", "status": "PASS",
         "release_manifest_hash": release["self_hash"], "rejected_mutation_cases": rejected,
-        "case_count": len(rejected), "gap_proof_hash": "820d7b278b1d45931727796a5b96bed49862db80c60c6c203e7ea0d9268fa1db",
+        "accepted_semantic_edge_cases": accepted_edge_cases,
+        "rejected_mutation_count": len(rejected),
+        "accepted_semantic_edge_case_count": len(accepted_edge_cases),
+        "case_count": len(rejected) + len(accepted_edge_cases),
+        "gap_proof_hash": "820d7b278b1d45931727796a5b96bed49862db80c60c6c203e7ea0d9268fa1db",
         "unit_test_modules": ["tests.test_dg05_v5_gap_proof", "tests.test_dg05_production_route_v5",
             "tests.test_dg05_upstream_lineage_verifier_v3", "tests.test_dg05_dec031_v1",
             "tests.test_dg05_normal_source_v2", "tests.test_dg05_metric_surface_v2"],
