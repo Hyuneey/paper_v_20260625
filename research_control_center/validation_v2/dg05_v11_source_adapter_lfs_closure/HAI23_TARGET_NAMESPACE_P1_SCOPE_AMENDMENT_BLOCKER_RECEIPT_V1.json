@@ -1,0 +1,60 @@
+{
+  "access_accounting": {
+    "HELDOUT_METRICS_OBSERVED": 0,
+    "HELDOUT_PREDICTIONS_OBSERVED": 0,
+    "RESULT_DRIVEN_CHANGE": 0,
+    "SCIENTIFIC_METHOD_CHANGE_AFTER_METADATA_ACCESS": 0
+  },
+  "frozen_p1_contract": {
+    "authority_id": "FULL_PROCESS_SCOPE_AUTHORITY_V1",
+    "authority_sha256": "0e4fb08ca07cf713df2e5021d9e2fe1721ec99a308cf7656ac63894b40ffe619",
+    "canonical_identity_count_hai23": 86,
+    "multi_target_aggregation": "ANY_DIRECT_TARGET_P1_ELIGIBLE__ELSE_UNRESOLVED_IF_ANY_UNRESOLVED__ELSE_OUT_OF_SCOPE",
+    "p1_canonical_identity_count_hai23": 44,
+    "scope_changed": false,
+    "semantic_classification": "B_EXACT_MEMBERSHIP_IN_FINITE_FROZEN_CANONICAL_HAI_FEATURE_IDENTITY_SET",
+    "unknown_noncanonical_classification": "UNRESOLVED"
+  },
+  "hai23_scenario_authority_replay": {
+    "canonical_record_count": 38,
+    "independent_replay_receipt_sha256": "ffe9df9a25d645cfa220f41f4c1f0edaae106855e9bb909c27cc23efff9341c5",
+    "private_canonical_authority_sha256": "314a188ec18f681e58e7e0c7322a281748ba2f4acb7e58f418e2c4fb8b766e91",
+    "public_authority_receipt_sha256": "c5563d902bb4a23de244b59e475344d0ad57bda130e435b51e3593aced98a8de",
+    "status": "PASS"
+  },
+  "independent_blocker_replay": {
+    "authority_id": "HAI23_P1_SCOPE_AMENDMENT_BLOCKER_INDEPENDENT_REPLAY_V1",
+    "authority_sha256": "14e41a30666fb71f0c4d8de0387a62d4c2a6d51856218e69b3fe443bddc14ed4",
+    "status": "PASS"
+  },
+  "official_source_evidence": {
+    "manual_evidence": {
+      "page_25": "DIRECT_ATTACK_TARGETS_MAY_BE_INTERNAL_CONTROL_ALGORITHM_BLOCKS",
+      "page_32": "HAI23_ATTACK_OPERATION_TARGETS_BOILER_CONTROL_DCS",
+      "page_5": "P1_IS_BOILER_PROCESS",
+      "pages_13_to_24": "HAIEND_INTERNAL_DCS_POINTS_ARE_DISTINCT_FROM_HAI_DATA_POINTS"
+    },
+    "official_repository_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "technical_manual_blob": "18cb88514176e1c641f584cf24ac8e9559432b38",
+    "technical_manual_sha256": "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556"
+  },
+  "private_target_namespace_worksheet": {
+    "authority_id": "HAI23_PRIVATE_TARGET_NAMESPACE_P1_AUDIT_V1",
+    "authority_sha256": "001ad1198301fffa90e5579dc910ed01e5b1f6e6d5932a1685e1ee76b4e5b6d7",
+    "raw_values_publicly_exposed": false,
+    "scenarios_with_at_least_one_unresolved_target": 21,
+    "unresolved_representation_count": 14,
+    "unresolved_representation_set_sha256": "05a6a13fef0ca330856e885f64691a087b15c7c437b85e5f045002d34f60faec",
+    "unresolved_token_occurrences": 24
+  },
+  "required_disposition": {
+    "automatic_alias_or_scope_expansion": false,
+    "decision_required": "P1_SCOPE_REQUIRES_PROSPECTIVE_SOURCE_AMENDMENT",
+    "reason": "OFFICIAL_HAI23_DIRECT_TARGETS_INCLUDE_VALID_BOILER_P1_INTERNAL_OR_NONCANONICAL_REPRESENTATIONS_BUT_FROZEN_P1_ELIGIBILITY_ACCEPTS_ONLY_THE_86_MEMBER_CANONICAL_HAI23_FEATURE_SET"
+  },
+  "schema": "dg05_hai23_target_namespace_p1_scope_amendment_blocker_receipt_v1",
+  "self_hash": "ccd69d0d6dd0255ef604aef23ef0098d4dab888f75d2e80fe13d7f50feb581f2",
+  "status": "BLOCKED",
+  "task_id": "DG05-HAI23-OFFICIAL-TARGET-NAMESPACE-P1-CLOSURE-001",
+  "verdict": "P1_SCOPE_REQUIRES_PROSPECTIVE_SOURCE_AMENDMENT"
+}
