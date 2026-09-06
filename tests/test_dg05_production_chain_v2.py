@@ -12,18 +12,18 @@ from paperworks.validation_v2.dg05_production_chain_v2 import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "research_control_center/validation_v2/dg05_v8_release"
+OUT = ROOT / "research_control_center/validation_v2/dg05_v10_release"
 V4 = ROOT / "research_control_center/validation_v2/dg05_v4_release/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V4.json"
 V4_CLOSURE = ROOT / "research_control_center/validation_v2/dg05_v4_release/DG05_EXECUTABLE_CLOSURE_AUTHORITY_V4.json"
 
 
 class ProductionChainV2Tests(unittest.TestCase):
     def setUp(self) -> None:
-        self.path = OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V8.json"
+        self.path = OUT / "DG05_EXECUTABLE_AUTHORITY_MANIFEST_V10.json"
         self.release = json.loads(self.path.read_text(encoding="ascii"))
 
-    def test_v8_manifest_binds_complete_implementation_and_frozen_predecessor(self) -> None:
-        self.assertEqual(self.release["executable_version"], "DG05_EXECUTABLE_V8")
+    def test_v10_manifest_binds_complete_implementation_and_frozen_predecessor(self) -> None:
+        self.assertEqual(self.release["executable_version"], "DG05_EXECUTABLE_V10")
         self.assertEqual(
             {row["logical_name"] for row in self.release["implementation_authorities"]},
             REQUIRED_IMPLEMENTATION_ROLES_V5,
@@ -35,7 +35,7 @@ class ProductionChainV2Tests(unittest.TestCase):
             predecessor_v4_manifest_path=V4, predecessor_v4_closure_path=V4_CLOSURE,
             expected_release_hash=self.release["self_hash"],
             authority_mode="PREACCESS_FROZEN_KERNEL_REHEARSAL",
-            expected_executable_version="DG05_EXECUTABLE_V8",
+            expected_executable_version="DG05_EXECUTABLE_V10",
         )
         self.assertFalse(state["protected_access_authorized"])
         self.assertEqual(state["data_access_mode"], "SYNTHETIC_ONLY_NO_PROTECTED_DISCOVERY")
@@ -46,19 +46,19 @@ class ProductionChainV2Tests(unittest.TestCase):
                 release_manifest_path=self.path, repository_root=ROOT,
                 predecessor_v4_manifest_path=V4, predecessor_v4_closure_path=V4_CLOSURE,
                 expected_release_hash=self.release["self_hash"], authority_mode="PRODUCTION",
-                expected_executable_version="DG05_EXECUTABLE_V8",
+                expected_executable_version="DG05_EXECUTABLE_V10",
             )
         state = initialize_production_release_v5(
             release_manifest_path=self.path, repository_root=ROOT,
             predecessor_v4_manifest_path=V4, predecessor_v4_closure_path=V4_CLOSURE,
             expected_release_hash=self.release["self_hash"], authority_mode="PRODUCTION",
             user_approved_release_hash=self.release["self_hash"],
-            expected_executable_version="DG05_EXECUTABLE_V8",
+            expected_executable_version="DG05_EXECUTABLE_V10",
         )
         self.assertTrue(state["protected_access_authorized"])
 
     def test_public_execution_receipts_are_complete_and_fail_closed(self) -> None:
-        rehearsal = json.loads((OUT / "SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_V8.json").read_text(encoding="ascii"))
+        rehearsal = json.loads((OUT / "SYNTHETIC_DG05_PRODUCTION_ROUTE_REHEARSAL_V10.json").read_text(encoding="ascii"))
         parity = json.loads((OUT / "PRODUCTION_KERNEL_PARITY_V1.json").read_text(encoding="ascii"))
         roots = json.loads((OUT / "ROOT_TO_RESULT_REPLAY_V1.json").read_text(encoding="ascii"))
         self.assertEqual((rehearsal["derived_prediction_cells"], rehearsal["metric_surface_count"]), (72, 228))
@@ -66,6 +66,14 @@ class ProductionChainV2Tests(unittest.TestCase):
         self.assertEqual(parity["synthetic_fallback_invocation_count"], 0)
         self.assertTrue(all(roots["per_root_replay"].values()))
         self.assertEqual(roots["root_covered_surface_count"], 228)
+        mutations = json.loads((OUT / "MUTATION_EVIDENCE_V3.json").read_text(encoding="ascii"))
+        self.assertEqual(mutations["rejected_mutation_count"], 25)
+        self.assertEqual(mutations["accepted_semantic_edge_case_count"], 3)
+        self.assertEqual(mutations["case_count"], 28)
+        self.assertNotIn(
+            "evaluated_system_error",
+            mutations["rejected_mutation_cases"],
+        )
 
     def test_transitive_implementation_authority_is_exactly_bound(self) -> None:
         reference = self.release["transitive_implementation_authority"]
