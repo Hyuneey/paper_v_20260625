@@ -1,0 +1,67 @@
+{
+  "access_accounting": {
+    "HELDOUT_FEATURE_VALUES_USED_FOR_METHOD_DESIGN": false,
+    "HELDOUT_METRICS_OBSERVED": 0,
+    "HELDOUT_PREDICTIONS_OBSERVED": 0,
+    "PUBLIC_OFFICIAL_SCENARIO_METADATA_ACCESS": "YES",
+    "RESULT_DRIVEN_CHANGE": 0,
+    "SCIENTIFIC_METHOD_CHANGE_AFTER_METADATA_ACCESS": 0
+  },
+  "authority_boundary_hash": "cbbe39fe7dcfdfbfecbf374ce7c086930007e96d649b95a43ff84ff3a0fcf808",
+  "blocker": "HAI23_SUMMARY_CENSUS_MISMATCH",
+  "blocker_id": "HAI23_OFFICIAL_TRIANGULATION_CENSUS_MISMATCH_V1",
+  "census_observations": {
+    "evaluated_panel_expected_occurrences": 38,
+    "manual_qualified_occurrences": 38,
+    "manual_qualified_occurrence_id_range": "A201-A238",
+    "summary_declared_occurrences": 40,
+    "summary_listed_interval_records": 38
+  },
+  "conflict": "OFFICIAL_SUMMARY_DECLARED_COUNT_40_CONFLICTS_WITH_38_LISTED_INTERVAL_RECORDS_AND_38_MANUAL_PANEL_OCCURRENCES",
+  "disposition": "FAIL_CLOSED_BEFORE_OCCURRENCE_JOIN_OR_SCENARIO_AUTHORITY_CONSTRUCTION",
+  "historical_audits": {
+    "HAI_OFFICIAL_SCENARIO_AUTHORITY_RECOVERY_AUDIT_V2": "d1bbb3c5cb9c88913b8f70ef5bfeaf77778ca9adbc0e6c2e14344f72b69f9644",
+    "HAI_OFFICIAL_SCENARIO_SOURCE_AUTHORITY_AUDIT_V1": "2c2989f9fba24d509d74e7b2e9512dfa10337b675e38b99fe9b9c8922731fc14",
+    "independent_review": "c92ca269197f3acc4f81b6d913562bd94bac32fbc2973e49b3dd71c9887b5004",
+    "status": "PRESERVED_HISTORICALLY_VALID_UNDER_PRIOR_VALUE_FREE_ACCESS_CONDITION"
+  },
+  "independent_census_replay": {
+    "manual_extractor": "pdfplumber_page_text_count",
+    "manual_unique_occurrences": 38,
+    "summary_row_counter": "anchored_interval_record_line_count",
+    "summary_records": 38,
+    "verdict": "REPRODUCES_CONFLICT"
+  },
+  "manual_authority": {
+    "byte_size": 2929375,
+    "git_blob": "18cb88514176e1c641f584cf24ac8e9559432b38",
+    "repository_commit": "2a814cebc9a66b06c9e5cd545e2d72e65d383737",
+    "repository_identity": "official_icsdataset_hai",
+    "sha256": "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556",
+    "text_extraction_private_custody": {
+      "byte_size": 88237,
+      "sha256": "3dff230fd5f2b09323cdb8c4e553c86fc4ed9f4b9fefc6c5d1051154facbf025",
+      "status": "PRESENT_AND_HASH_VERIFIED"
+    }
+  },
+  "next_required_authority": "OFFICIAL_CORRECTION_OR_VERSION_BOUND_EXPLANATION_FOR_HAI23_SUMMARY_DECLARED_VERSUS_LISTED_CENSUS",
+  "not_performed_after_blocker": [
+    "HAI23_OCCURRENCE_JOIN",
+    "HAI22_RECONSTRUCTION",
+    "HAI21_LABEL_METADATA_ACCESS",
+    "P1_DENOMINATOR_RECONSTRUCTION",
+    "TRIANGULATED_146_SCENARIO_AUTHORITY_CONSTRUCTION",
+    "PREDICTION",
+    "METRIC_COMPUTATION",
+    "V11_RELEASE_FREEZE"
+  ],
+  "schema": "hai23_official_triangulation_census_mismatch_v1",
+  "self_hash": "e11e6ef7894c24e576facd4ecb8d33b22720724ac1ff64603babfd79881a332b",
+  "summary_authority": {
+    "byte_size": 2911,
+    "expected_lfs_oid_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+    "payload_sha256": "b564024a105981415a81dd1b338a48ad7ad5be511849884232540f1a6550e5c1",
+    "status": "EXACT_LFS_PAYLOAD_VERIFIED"
+  },
+  "task_id": "DG05-HAI-OFFICIAL-SOURCE-TRIANGULATION-AUTHORITY-CLOSURE-001"
+}
