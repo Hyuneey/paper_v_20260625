@@ -77,3 +77,18 @@ class ProductionChainV11Test(unittest.TestCase):
                 verify_v11_roots(repository_root=ROOT, manifest_path=manifest_path,
                                  scenario_path=scenario_path, p1_path=p1_path,
                                  expected_hash=manifest["self_hash"])
+
+    def test_technical_prequalification_can_never_authorize_real_mode(self) -> None:
+        roots = {name: "a" * 64 for name in ("physical_custody", "normal_registry", "scenario_authority", "unified_p1", "dec031", "dec034", "dec035", "dec036", "dec037", "scientific_preregistration")}
+        qual = {name: "b" * 64 for name in ("root_replay", "kernel_parity", "fresh_process", "independent_qa", "privacy", "adversarial", "rehearsal")}
+        manifest = build_v11_candidate_manifest(repository_root=ROOT, source_commit="0" * 40,
+                                                authority_hashes=roots, implementation_paths=self._paths(),
+                                                qualification_hashes=qual,
+                                                status="TECHNICAL_PREQUALIFICATION_ONLY")
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "manifest.json"
+            path.write_bytes(canonical_bytes(manifest) + b"\n")
+            with self.assertRaises(DG05ProductionChainV11Error):
+                initialize_v11_candidate(manifest_path=path, repository_root=ROOT,
+                                         expected_hash=manifest["self_hash"], mode=REAL_MODE,
+                                         user_approved_release_hash=manifest["self_hash"])
