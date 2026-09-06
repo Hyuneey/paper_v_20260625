@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=147db6053943fa7475df633aad0dd4d287f8e83d94aaf3ff3b80dca0b81828b0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f30310500017643b70d2ae719013c78eaa5cd88f637b58d5772bd586e3d160b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC 현재 연구 상태
 
 ## VALIDATION V2 개발 결과 · 결과 무결성 QA PASS
@@ -21,7 +21,7 @@ EXP-01·EXP-01B의 기존 음성 결과는 유지합니다. 전체 split에서 G
 14 contiguous attack-event units의 통계적 독립성, human usefulness, held-out 일반화는 미확인입니다.
 평가 계획은 HAI23 test2 primary held-out와 HAI22/21 external replication으로 확대됐습니다.
 146개 nominal scenario는 IID가 아니며 primary pooled Recall을 만들지 않습니다. 실제 P1 denominator는 아직 pending입니다.
-다음: DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
+다음: DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL. DG-03 provider 승인, DG-04 제목, DG-05 attack panel, DG-06 실제 제출은 서로 별도 Gate입니다.
 
 
 과학 source authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -32,7 +32,7 @@ Registry snapshot: `2026-09-05T10:16:36Z`
 
 **평가 범위 확장** (`EVALUATION_SCOPE_EXPANSION`)
 
-DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
 
 ## 상태를 읽는 방법
 
@@ -61,7 +61,7 @@ DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable ra
 - **Label 접근:** 정상 근거 구성은 label-blind다. PILOT V1 D1의 약한 in-memory 경계는 역사적 조건으로 유지하고, VALIDATION V2는 no-overwrite prediction freeze·replay·one-shot label lease·label 이후 byte 확인을 요구한다.
 - **정보 누출:** 확인된 정보 누출은 없다. PILOT V1의 D1 custody 조건은 유지되며 GAP-FIX-002가 향후 VALIDATION V2 custody gap을 닫았다. D2 V2는 여전히 test1-informed development다.
 - **Test1:** INNER 개발용 14개 연속 attack-event unit 예비 실험이다. 통계적 독립성은 확립되지 않았고 최종 검증이 아니다.
-- **Test2:** custody 단계의 file 접근 시도 1회가 byte read 전에 거부됐으며 held-out 결과는 없다.
+- **Test2:** DEC-033 exact V10 approval recorded. Raw-byte custody only: HAI23 pinned container hash replay PASS, HAI21 five pinned compressed blob identities PASS, HAI22 four payloads remain LFS pointers. Feature rows, labels, scenarios, predictions and results remain unopened/unavailable because CUSTODIAN_ROOT_REPLAY_FAILURE stopped execution.
 
 ## META provenance 점검
 
@@ -199,8 +199,8 @@ DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable ra
 
 ## 정확한 다음 작업
 
-**DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE**
+**DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

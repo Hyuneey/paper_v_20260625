@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=147db6053943fa7475df633aad0dd4d287f8e83d94aaf3ff3b80dca0b81828b0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f30310500017643b70d2ae719013c78eaa5cd88f637b58d5772bd586e3d160b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # RCC Change Summary
 
 Scientific authority: `origin/research-v6-thesis-checkpoint` @ `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
@@ -10,6 +10,7 @@ Registry version: `0.1.0`
 - **2026-09-06 — DG05 V5 through V9 failed release qualification preserved** (`HISTORICAL`): Successive fail-closed candidates exposed transitive implementation and custodian replay gaps;none was approved or used for real access.
 - **2026-09-06 — DG05 Executable V4 exact preaccess release frozen** (`HISTORICAL`): DEC-031 bindings;30 normal components;72 synthetic cells;146 scenarios;228 surfaces;43 focused tests;fresh-process custody;independent QA PASS;real access0
 - **2026-09-06 — DG05 Executable V10 exact preaccess release qualified** (`ACTIVE_CONTEXT`): G1 and G2 closed;72 production-kernel cells;228 root-covered surfaces;fresh-process custody;25 invalid mutations rejected;real access0.
+- **2026-09-06 — DG05 V10 exact approval recorded and real execution stopped fail closed** (`ACTIVE_CONTEXT`): Exact V10 preflight passed;raw-byte custody partial;feature projection0;prediction0;labels0;lease0;custodian canonical real source missing.
 - **2026-09-06 — DG05 production-chain prospective closure reaches consolidated decision gate** (`CONDITIONAL`): Exact-root fresh-process custody strict runtime source-derived burden and upstream primitive replay implemented;semantic bindings and complete normal source lineage remain open;real access0
 - **2026-09-05 — 외부 버전 T2 정상-only 실행 및 포트폴리오 동결** (`ACTIVE_CONTEXT`): HAI22/21 provider 61 calls each;T2 retained 19/2 Rules;no attack access
 - **2026-09-05 — 외부 버전 정상-only 실행 및 provider Gate 준비** (`ACTIVE_CONTEXT`): 12 split-pure GDN runs;separate global/auxiliary;T0 portfolios;T2 packs;no provider or attack
@@ -58,8 +59,8 @@ Registry version: `0.1.0`
 
 ## Next
 
-**DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE**
+**DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL**
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

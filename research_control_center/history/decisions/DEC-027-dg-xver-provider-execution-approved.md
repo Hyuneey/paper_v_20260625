@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=147db6053943fa7475df633aad0dd4d287f8e83d94aaf3ff3b80dca0b81828b0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f30310500017643b70d2ae719013c78eaa5cd88f637b58d5772bd586e3d160b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # DEC-027 — DG_XVER_PROVIDER_EXECUTION_APPROVED
 
 ## Date

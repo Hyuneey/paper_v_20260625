@@ -154,7 +154,12 @@ class DashboardGenerationTests(unittest.TestCase):
         self.assertIn("EVENT-013", data["history"]["dashboard_event_ids"])
         self.assertIn("연구 주요 단계", rendered)
         self.assertIn("History · Decision · Evidence", rendered)
-        for event in data["timeline"][-10:]:
+        current_events = sorted(
+            (event for event in data["timeline"] if event["date_precision"] == "DAY"),
+            key=lambda event: (event["date"], event["event_id"]),
+            reverse=True,
+        )
+        for event in current_events[:10]:
             self.assertIn(event["title"], rendered)
 
     def test_korean_first_ui_preserves_status_codes_and_pilot_numbers(self) -> None:

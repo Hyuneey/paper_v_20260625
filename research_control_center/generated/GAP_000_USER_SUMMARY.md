@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=147db6053943fa7475df633aad0dd4d287f8e83d94aaf3ff3b80dca0b81828b0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f30310500017643b70d2ae719013c78eaa5cd88f637b58d5772bd586e3d160b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 본격 실험 전에 무엇을 고쳐야 하는가
 
 ## 지금까지 감사 결과 한 문장
@@ -64,9 +64,9 @@ Runtime LLM, causal discovery, 복잡한 hierarchy/tree relation, multi-agent ru
 
 기억할 한 문장: **pilot은 보존하고, final validation에 꼭 필요한 authority와 custody만 먼저 고친다.**
 
-다음 task는 **DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE**이다. ARCH-011은 이 remediation이나 test2 access를
+다음 task는 **DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL**이다. ARCH-011은 이 remediation이나 test2 access를
 자동으로 허가하지 않는다.
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

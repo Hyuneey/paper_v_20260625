@@ -1,4 +1,4 @@
-<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=147db6053943fa7475df633aad0dd4d287f8e83d94aaf3ff3b80dca0b81828b0 authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
+<!-- RCC_GENERATED registry_version=0.1.0 registry_digest=2f30310500017643b70d2ae719013c78eaa5cd88f637b58d5772bd586e3d160b authority=2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e -->
 # 지금 연구는 어디까지 왔나
 
 ## 한 문장 상태
@@ -66,22 +66,22 @@ normal-only 수치 권한, 규칙 생성, 결정론적 검증기, COMMON-42 고�
 
 ## 다음에 해야 할 것
 
-- DEC-033 exact DG05 Executable V10 release reapproval
-- DG05 remains NO_GO; no attack/test/label/scenario access before exact approval
-- DG06 remains required for professor submission
+- Close CUSTODIAN_ROOT_REPLAY_FAILURE with a release-bound official HAI scenario-source adapter
+- Materialize and verify the exact four HAI22 Git-LFS payloads before any scientific prediction
+- Freeze and explicitly reapprove the successor executable release before real DG05 restarts
 
-관리 작업의 다음 단계는 **DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE** 이고, 이후 전체
+관리 작업의 다음 단계는 **DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL** 이고, 이후 전체
 구조 검토는 **고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지** 이다. 둘 다 사용자 승인 전에
 자동으로 시작하지 않는다.
 
 ## 내가 직접 확인할 것
 
-- DEC-033: exact DG05 Executable V10 release reapproval decision
-- Preserve the exact V4 manifest/closure and all frozen method, metric, custody, and single-copy private authorities
+- Close the exact real scenario-source adapter and HAI22 payload-custody blocker without changing frozen scientific semantics
+- Freeze and explicitly reapprove the successor executable release; DEC-033 does not transfer
 - DG06: professor package submission decision
 
 Scientific authority: `2dc7e6c23d5e9503bd4953a70e6bc20e39994b6e`
 
 ## 현재 DG-04 / 외부 준비 Gate
 
-DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.
+DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.

@@ -22,6 +22,10 @@ OVERLAY_COMMIT = "ebc5a57bfdb7d8266f96f2990338effb9d0a2743"
 OVERLAY_REF = "origin/task-039e3-r2r-thesis-draft-scaffold-v1"
 IMMUTABLE_TAG = "thesis-v1-post-push-audit"
 CURRENT_V2_SCIENTIFIC_SOURCES = {
+    "validation-v2-dg05-v10-real-heldout-execution-001": {
+        "1363cdb6aeffe716e8a6fbbf561157c81c697ebc",
+        "f2d8e0df3a656334d70932eb9a309c6ff615c5f0",
+    },
     "validation-v2-dg05-v4-route-upstream-lineage-closure-001": {
         "5f3a4218382dfbb8e1b74bfb35a3b5aaea51c9cd",
         "18ca8c6487a7f16da0067c0a825c44463be73710",
@@ -431,7 +435,8 @@ def _validate_authority(data: Mapping[str, Any], result: ValidationResult) -> No
                 result.require(xver.get('DG03C')=='NOT_READY' and xver.get('exact_provider_budget') is None,'No fabricated external provider budget')
                 result.require(xver.get('provider_calls')==0 and xver.get('attack_payload_accesses')==0,'XVER no calls/attack')
                 expected_xver_stop = (
-                    'DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE' if state.get('dg05_executable_v10_closure')
+                    'DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL' if state.get('dg05_v10_real_execution')
+                    else 'DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE' if state.get('dg05_executable_v10_closure')
                     else
                     'DG-05 REAPPROVAL — NEW EXACT EXECUTABLE RELEASE' if state.get('dg05_executable_v4_closure')
                     else
@@ -821,7 +826,11 @@ def _validate_history(data: Mapping[str, Any], result: ValidationResult, repo_ro
     if data['state'].get('dg05_executable_v10_closure'):
         result.require(len(v10_events)==1 and v10_events[0]['decision_refs']=='DEC-031;DEC-033'
                        and v10_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact DG05 V10 release event required')
-    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events)-len(dg05_v2_events)-len(dg05_v3_events)-len(preaudit_events)-len(closure_events)-len(v4_events)-len(v10_events) <= 36, "historical timeline plus explicitly validated new governance events")
+    v10_real_events=[row for row in data['timeline'] if row['event_id']=='EVENT-DG05-V10-REAL-EXEC-BLOCKER-001']
+    if data['state'].get('dg05_v10_real_execution'):
+        result.require(len(v10_real_events)==1 and v10_real_events[0]['decision_refs']=='DEC-033'
+                       and v10_real_events[0]['event_type']=='GOVERNANCE_MILESTONE','Exact DG05 V10 real-execution blocker event required')
+    result.require(15 <= len(data["timeline"])-len(dg04_events)-len(resumed)-len(context_events)-len(separated_events)-len(execution_events)-len(provider_events)-len(multipanel_events)-len(dg05_v2_events)-len(dg05_v3_events)-len(preaudit_events)-len(closure_events)-len(v4_events)-len(v10_events)-len(v10_real_events) <= 36, "historical timeline plus explicitly validated new governance events")
     result.require(10 <= len(data["decisions"]) <= 33, "decision registry including DG05 V10 exact reapproval request")
     amendment=[row for row in data['decisions'] if row['decision_id']=='DEC-026']
     result.require(len(amendment)==1 and amendment[0]['decision']=='APPROVED' and amendment[0]['title']=='NORMAL_DATA_CUSTODY_SCHEMA_ONLY_ALLOWLIST_PROJECTION','Exact DEC026 authority')

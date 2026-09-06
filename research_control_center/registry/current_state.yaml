@@ -34,7 +34,7 @@
     "EVALUATION_SCOPE_EXPANSION",
     "HYPOTHESIS_VALIDATION"
   ],
-  "current_phase_statement": "DG05 Executable V10 closes G1 production-kernel route parity and G2 immutable raw-root-to-result replay under DEC-031. The connected preaccess route executed 72/72 frozen-kernel cells and independently root-covered 228/228 result surfaces; real DG05 remains NO_GO until DEC-033 explicitly approves the exact V10 manifest and closure. No real attack/test/label/scenario/provider/credential resource was accessed. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
+  "current_phase_statement": "DEC-033 approved exact DG05 Executable V10 and production initialization passed. Execution stopped before projection/prediction at CUSTODIAN_ROOT_REPLAY_FAILURE: V10 has no bound official-source converter or materialized real hai_official_scenario_metadata_raw_v2 source. Four HAI22 payloads remain Git-LFS pointers. DG05 real access is NO_GO pending a successor release. Labels/scenarios parsed 0; predictions 0; lease 0; provider/credential access 0. Professor package NOT_SUBMITTED; backup SINGLE_COPY_LOCAL_ONLY.",
   "current_scope": {
     "dataset": "HAI 23.05",
     "process": "P1 Boiler",
@@ -79,7 +79,7 @@
     "label_access": "Normal construction is label-blind. PILOT V1 D1 retains its weaker in-memory boundary; VALIDATION V2 now requires durable no-overwrite prediction freeze replay one-shot label lease and post-label byte verification.",
     "leakage_status": "NO VERIFIED LEAKAGE FOUND. PILOT V1 retains its documented D1 custody qualification; GAP-FIX-002 closes the prospective VALIDATION V2 custody gap. D2 V2 remains test1-informed development.",
     "test1_status": "INNER development / 14 contiguous attack-event-unit pilot; statistical independence not established; not final validation",
-    "test2_status": "One custody-level file access attempt was rejected before byte read; held-out result unavailable.",
+    "test2_status": "DEC-033 exact V10 approval recorded. Raw-byte custody only: HAI23 pinned container hash replay PASS, HAI21 five pinned compressed blob identities PASS, HAI22 four payloads remain LFS pointers. Feature rows, labels, scenarios, predictions and results remain unopened/unavailable because CUSTODIAN_ROOT_REPLAY_FAILURE stopped execution.",
     "next_deep_review": "EXP04/05 개발 결과 QA 완료; EXP03 DG-03 및 DG-04/05/06 별도 결정."
   },
   "verifier_common42_authority": {
@@ -742,14 +742,14 @@
     "provider_calls": 122
   },
   "top_priorities": [
-    "DEC-033 exact DG05 Executable V10 release reapproval",
-    "DG05 remains NO_GO; no attack/test/label/scenario access before exact approval",
-    "DG06 remains required for professor submission"
+    "Close CUSTODIAN_ROOT_REPLAY_FAILURE with a release-bound official HAI scenario-source adapter",
+    "Materialize and verify the exact four HAI22 Git-LFS payloads before any scientific prediction",
+    "Freeze and explicitly reapprove the successor executable release before real DG05 restarts"
   ],
   "highest_priority_work": [
-    "DEC-033 exact DG05 Executable V10 release reapproval",
-    "DG05 remains NO_GO; no attack/test/label/scenario access before exact approval",
-    "DG06 remains required for professor submission"
+    "Close CUSTODIAN_ROOT_REPLAY_FAILURE with a release-bound official HAI scenario-source adapter",
+    "Materialize and verify the exact four HAI22 Git-LFS payloads before any scientific prediction",
+    "Freeze and explicitly reapprove the successor executable release before real DG05 restarts"
   ],
   "user_todo_items": [
     {
@@ -790,11 +790,11 @@
     },
     {
       "id": "USER-V2-005",
-      "category": "MANDATORY FUTURE GATE",
+      "category": "BLOCKER CLOSURE REQUIRED",
       "priority": "HIGH",
-      "task": "DEC-033에서 정확한 DG05 Executable V10 manifest와 closure의 실제 접근 재승인 여부를 결정한다.",
-      "why": "V10은 G1/G2를 닫는 새 실행·검증 바이트이므로 과거 승인이나 DEC-032를 상속할 수 없다.",
-      "linked": "research_control_center/validation_v2/dg05_v10_release/DG05_MULTI_PANEL_ATTACK_ACCESS_BRIEF_V10.md",
+      "task": "공식 HAI scenario source를 canonical custodian schema로 변환하는 release-bound adapter와 HAI22 exact payload custody를 닫고 새 실행 release를 재승인한다.",
+      "why": "DEC-033 exact V10 승인은 기록됐지만 V10에는 real canonical scenario source/converter가 없고 HAI22 payload는 LFS pointer 상태라서 실행이 prediction 전에 중단됐다.",
+      "linked": "research_control_center/validation_v2/dg05_v10_real_execution/DG05_V10_REAL_EXECUTION_BLOCKER_REPORT_V1.md",
       "status": "OPEN"
     },
     {
@@ -826,24 +826,24 @@
     }
   ],
   "top_user_todo": [
-    "DEC-033: exact DG05 Executable V10 release reapproval decision",
-    "Preserve the exact V4 manifest/closure and all frozen method, metric, custody, and single-copy private authorities",
+    "Close the exact real scenario-source adapter and HAI22 payload-custody blocker without changing frozen scientific semantics",
+    "Freeze and explicitly reapprove the successor executable release; DEC-033 does not transfer",
     "DG06: professor package submission decision"
   ],
   "scientific_result_status": "pilot_only",
   "held_out_generalization": "unconfirmed",
   "fresh_machine_reproducibility": "synthetic_pass_scientific_blocked",
-  "recommended_next_management_task": "DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE",
+  "recommended_next_management_task": "DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL",
   "recommended_next_architecture_task": "고정 아키텍처의 외부 버전 adapter; 새 모델·rescue 금지",
   "last_completed_task": "DG05-V4-PREACCESS-ROUTE-UPSTREAM-LINEAGE-CLOSURE-001 — COMPLETE_QA_PASS_READY_FOR_USER_REAPPROVAL",
-  "exact_next_task": "DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE",
+  "exact_next_task": "DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL",
   "dg05_production_chain_closure": {
     "task_id": "DG05-DEC031-BINDING-NORMAL-SOURCE-CLOSURE-001",
     "status": "COMPLETE_QA_PASS",
     "go_no_go": "NO_GO_FOR_REAL_DG05_ACCESS",
     "audit_commit": "4719f3da01c47b61b85365f593a483872a8934a2",
     "implementation_commit": "814eabc49f9fb58205a5fa878eadd49bb0b0c8e3",
-    "open_decision": "DEC-033",
+    "open_decision": "NONE_DEC033_APPROVED_V10_EXECUTION_STOPPED_ON_CUSTODIAN_ROOT_REPLAY_FAILURE",
     "normal_burden_source_status": "COMPLETE_SOURCE_DERIVED_INDEPENDENT_REPLAY_PASS",
     "held_out_accesses": 0,
     "label_scenario_accesses": 0,
@@ -2038,6 +2038,23 @@
     "credential_reads": 0,
     "professor_package": "NOT_SUBMITTED",
     "backup_status": "SINGLE_COPY_LOCAL_ONLY",
-    "exact_next": "DG-05 REAPPROVAL — DG05_EXECUTABLE_V10 EXACT RELEASE"
+    "exact_next": "DG-05 BLOCKER — CUSTODIAN_ROOT_REPLAY_FAILURE CLOSURE AND NEW EXACT RELEASE REAPPROVAL"
+  },
+  "dg05_v10_real_execution": {
+    "task_id": "DG05-V10-REAL-HELDOUT-EXECUTION-001",
+    "status": "STOPPED_CUSTODIAN_ROOT_REPLAY_FAILURE",
+    "decision": "DEC-033_APPROVED_EXACT_V10",
+    "preflight": "PASS",
+    "phase_a": "RAW_BYTE_CUSTODY_PARTIAL_ONLY",
+    "feature_projections": 0,
+    "prediction_cells": 0,
+    "global_freeze": "NOT_CREATED",
+    "label_scenario_accesses": 0,
+    "lease_issue_consume_reissue": "0_0_0",
+    "provider_calls": 0,
+    "credential_reads": 0,
+    "private_exposures": 0,
+    "blocker_receipt_hash": "b0c61e83340569abc40cfd1f71a34716fe49c4ed893c4c80ae15c15f9977e810",
+    "professor_package": "NOT_SUBMITTED"
   }
 }
