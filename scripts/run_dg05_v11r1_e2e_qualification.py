@@ -27,6 +27,7 @@ def _paths() -> dict[str, Path]:
         "shared_route_core": p / "dg05_v11r1_route_core.py",
         "terminal_chain": p / "dg05_v11r1_terminal_chain.py",
         "v5_compatibility": p / "dg05_v11r1_v5_compatibility.py",
+        "source_file_crosswalk": p / "dg05_v11r1_source_file_crosswalk.py",
         "postfreeze_metric_binding": p / "dg05_v11r1_postfreeze_metric_binding.py",
         "v11_bridge": p / "dg05_schedule_release_provenance_bridge_v11.py",
         "metric_primitives": p / "dg05_metric_surface_execution_v2.py",
