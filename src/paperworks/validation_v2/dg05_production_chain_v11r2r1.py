@@ -194,6 +194,9 @@ def initialize(
             "schema": "dg05_v11r2r1_initialized_state_v1",
             "mode": mode,
             "release_hash": manifest["self_hash"],
+            # The frozen V11 provenance bridge consumes this historical field
+            # name; it is an exact alias, not an independent release root.
+            "release_manifest_hash": manifest["self_hash"],
             "execution_binding_hash": manifest["execution_binding_hash"],
             "protected_access_authorized": authorized,
             "compatibility_authority": "OUTER_V11R2R1_APPROVAL_IS_SOLE_ACCESS_AUTHORITY",
