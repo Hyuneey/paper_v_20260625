@@ -22,6 +22,8 @@ def _paths() -> dict[str, Path]:
         "successor_gate": p / "dg05_production_chain_v11r1.py",
         "unified_runner": ROOT / "scripts/run_dg05_v11r1.py",
         "resource_loader": p / "dg05_v11r1_resource_loader.py",
+        "resource_materializer": p / "dg05_v11r1_resource_materializer.py",
+        "container_materializer": p / "dg05_v11r1_container_materializer.py",
         "resource_orchestrator": p / "dg05_real_resource_orchestrator_v11r1.py",
         "production_executor": p / "dg05_v11r1_production_executor.py",
         "shared_route_core": p / "dg05_v11r1_route_core.py",

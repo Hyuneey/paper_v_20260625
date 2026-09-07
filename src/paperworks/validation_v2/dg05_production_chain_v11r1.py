@@ -34,7 +34,8 @@ class DG05ProductionChainV11R1Error(ValueError):
 def build_manifest(*, repository_root: Path, source_commit: str,
                    implementation_paths: dict[str, Path]) -> dict[str, Any]:
     required = {
-        "successor_gate", "unified_runner", "shared_route_core", "resource_loader",
+        "successor_gate", "unified_runner", "shared_route_core", "resource_loader", "resource_materializer",
+        "container_materializer",
         "resource_orchestrator", "production_executor", "terminal_chain", "v11_bridge",
         "v5_compatibility", "source_file_crosswalk", "postfreeze_metric_binding", "metric_primitives",
         "metric_surface", "metric_oracle", "v11_route", "v11_custodian", "scenario_adapter", "v5_kernel",

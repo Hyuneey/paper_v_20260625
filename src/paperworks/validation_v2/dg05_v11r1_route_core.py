@@ -39,6 +39,7 @@ def _load_private(path: Path, schema: str) -> dict[str, Any]:
 
 def _synthetic_plan(*, repository_root: Path, source_root: Path) -> dict[str, Any]:
     """Produce the ten-file synthetic provider only; projection remains frozen."""
+    import gzip
     from .dg05_connected_rehearsal_v4 import _write_fixture
     from .dg05_execution_closure_v1 import digest, file_sha256
     from .multipanel_custody_v1 import FROZEN_ATTACK_FILE_IDS_V2, FROZEN_PANEL_ORDER_V2, frozen_feature_allowlist_authorities_v2
@@ -46,9 +47,15 @@ def _synthetic_plan(*, repository_root: Path, source_root: Path) -> dict[str, An
     for panel in FROZEN_PANEL_ORDER_V2:
         for file_id in FROZEN_ATTACK_FILE_IDS_V2[panel]:
             source=source_root/panel/file_id; _write_fixture(source,allowlists[panel])
+            container_type="IDENTITY"
+            if panel=="HAI21_EXTERNAL_REPLICATION_V1":
+                container=source.with_name(f"{source.name}.gz")
+                container.write_bytes(gzip.compress(source.read_bytes(),mtime=0))
+                source.unlink(); source=container; container_type="GZIP"
             rows.append({"panel_id":panel,"file_id":file_id,"path":str(source),"sha256":file_sha256(source),
                          "header_hash":digest([allowlists[panel].timestamp_id,*allowlists[panel].feature_ids,"Attack","unknown_field"]),
-                         "official_source_hash":digest([panel,file_id,"SYNTHETIC_QUALIFICATION_ONLY"])})
+                         "official_source_hash":digest([panel,file_id,"SYNTHETIC_QUALIFICATION_ONLY"]),
+                         "container_type":container_type})
     return {"schema":"dg05_v11r1_synthetic_resource_plan_v1","physical_custody_hash":digest("SYNTHETIC_QUALIFICATION_ONLY"),"files":rows}
 
 
@@ -94,7 +101,8 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
     if plan is None:
         raise DG05V11R1RouteCoreError("V11R1_VERIFIED_RESOURCE_PLAN_REQUIRED")
     resources=prepare_frozen_v5_resources_v11r1(verified_plan=plan,work_root=work_root/"resources",
-        adapter_implementation_hash=adapter_hash,source_commit=legacy["source_commit"],dispatch=dispatch)
+        adapter_implementation_hash=adapter_hash,source_commit=legacy["source_commit"],dispatch=dispatch,
+        permit_gzip_decode=mode in (PREACCESS_MODE,REAL_MODE))
     legacy_state=initialize_production_release_v5(release_manifest_path=legacy_release_path,repository_root=repository_root,
         predecessor_v4_manifest_path=predecessor_v4_path,predecessor_v4_closure_path=predecessor_v4_closure_path,
         expected_release_hash=legacy["self_hash"],authority_mode="PREACCESS_FROZEN_KERNEL_REHEARSAL",

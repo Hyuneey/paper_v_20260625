@@ -7,18 +7,29 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from .dg05_production_chain_v11 import file_hash, load_self_hashed, self_hashed
+from .dg05_v11r1_resource_materializer import load_exact_custody_receipt_v11r1
 
 
 class DG05V11R1ResourceError(ValueError):
     pass
 
 
-def verify_plan(*, plan_path: Path, custody_receipt_path: Path) -> dict[str, Any]:
-    receipt=load_self_hashed(custody_receipt_path,"hai22_kaggle_exact_payload_recovery_receipt_v1")
-    plan=load_self_hashed(plan_path,"dg05_v11r1_protected_resource_plan_v1")
+def verify_plan(*, custody_receipt_path: Path, plan_path: Path | None = None,
+                plan_document: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    # The historical recovery receipt is immutable/self-hashed but was not
+    # published in canonical one-line serialization; replay its documented
+    # byte-independent hash contract rather than requiring a packaging format.
+    receipt=load_exact_custody_receipt_v11r1(custody_receipt_path)
+    if (plan_path is None) == (plan_document is None):
+        raise DG05V11R1ResourceError("V11R1_EXACTLY_ONE_RUNTIME_PLAN_REQUIRED")
+    plan=load_self_hashed(plan_path,"dg05_v11r1_protected_resource_plan_v1") if plan_path is not None else dict(plan_document or {})
+    if plan_document is not None:
+        body={key:item for key,item in plan.items() if key!="self_hash"}
+        if plan.get("schema")!="dg05_v11r1_protected_resource_plan_v1" or plan.get("self_hash")!=self_hashed(body)["self_hash"]:
+            raise DG05V11R1ResourceError("V11R1_PRIVATE_RUNTIME_PLAN_REPLAY_FAILED")
     if plan.get("physical_custody_hash") != receipt["self_hash"] or len(plan.get("files",[])) != 10:
         raise DG05V11R1ResourceError("V11R1_PHYSICAL_CUSTODY_PLAN_MISMATCH")
     expected={(row["panel_id"],row["file_id"],row["actual_sha256"]) for row in receipt["files"]}
@@ -26,7 +37,7 @@ def verify_plan(*, plan_path: Path, custody_receipt_path: Path) -> dict[str, Any
     for row in plan["files"]:
         path=Path(row["path"])
         key=(row.get("panel_id"),row.get("file_id"),row.get("sha256"))
-        if key not in expected or not path.is_file() or file_hash(path) != row["sha256"]:
+        if key not in expected or path.is_symlink() or not path.is_file() or file_hash(path) != row["sha256"]:
             raise DG05V11R1ResourceError("V11R1_PHYSICAL_PAYLOAD_REPLAY_FAILED")
         observed.add(key)
     if observed != expected:

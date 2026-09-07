@@ -6,8 +6,9 @@ from typing import Any, Mapping
 
 from .dg05_execution_closure_v1 import (
     PhysicalFileIdentityV2, build_expected_prediction_cell_census_v1,
-    digest, file_sha256, project_attack_feature_file_v1,
+    csv_schema, digest, file_sha256, project_attack_feature_file_v1,
 )
+from .dg05_v11r1_container_materializer import materialize_execution_sources_v11r1
 from .dg05_metric_surface_v2 import persist_canonical_v1
 from .multipanel_custody_v1 import (
     FROZEN_ATTACK_FILE_CENSUS_HASH_V2, FROZEN_AUTHORITY_SOURCE_COMMIT_V2,
@@ -21,7 +22,8 @@ class DG05V11R1RealResourceOrchestratorError(ValueError):
 
 def prepare_frozen_v5_resources_v11r1(*, verified_plan: Mapping[str, Any],
                                       work_root: Path, adapter_implementation_hash: str,
-                                      source_commit: str, dispatch: Any) -> dict[str, Any]:
+                                      source_commit: str, dispatch: Any,
+                                      permit_gzip_decode: bool = False) -> dict[str, Any]:
     """Create only frozen physical/projection/timestamp authorities.
 
     The plan has already passed custody replay.  This function is deliberately
@@ -31,9 +33,13 @@ def prepare_frozen_v5_resources_v11r1(*, verified_plan: Mapping[str, Any],
     if work_root.exists():
         raise DG05V11R1RealResourceOrchestratorError("V11R1_OUTPUT_NAMESPACE_REUSE_REJECTED")
     work_root.mkdir(parents=True)
+    execution_plan, container_authority = materialize_execution_sources_v11r1(
+        plan=verified_plan, output_root=work_root / "execution-containers",
+        permit_gzip_decode=permit_gzip_decode,
+    )
     allowlists = frozen_feature_allowlist_authorities_v2()
     rows=[]; sources={}
-    for item in verified_plan["files"]:
+    for item in execution_plan["files"]:
         panel=str(item["panel_id"]); file_id=str(item["file_id"])
         if panel not in allowlists or (panel,file_id) in sources:
             raise DG05V11R1RealResourceOrchestratorError("V11R1_PLAN_IDENTITY_INVALID")
@@ -44,9 +50,16 @@ def prepare_frozen_v5_resources_v11r1(*, verified_plan: Mapping[str, Any],
         # columns (for example Attack) which the frozen adapter excludes.
         # The adapter independently enforces the allowlist when it parses the
         # source, so this orchestration layer must preserve the custody hash.
-        if type(item.get("header_hash")) is not str or len(item["header_hash"]) != 64:
-            raise DG05V11R1RealResourceOrchestratorError("V11R1_CUSTODY_HEADER_HASH_REQUIRED")
-        rows.append(PhysicalFileIdentityV2(panel,file_id,file_sha256(source),item["header_hash"],item["official_source_hash"]))
+        # The header is replayed by the frozen ``csv_schema`` helper after the
+        # approval/synthetic route has selected an exact source.  This reads
+        # only the CSV header and delegates all feature-row processing to the
+        # frozen positive-allowlist adapter below.
+        with source.open("rb") as incoming:
+            header, _ = csv_schema(incoming)
+        rows.append(PhysicalFileIdentityV2(
+            panel, file_id, file_sha256(source), digest(header),
+            item.get("official_source_hash", item["raw_container_sha256"]),
+        ))
         sources[(panel,file_id)]=source
     physical=FrozenPhysicalFileAuthorityV2(tuple(rows),FROZEN_ATTACK_FILE_CENSUS_HASH_V2,verified_plan["physical_custody_hash"],FROZEN_AUTHORITY_SOURCE_COMMIT_V2)
     physical.validate()
@@ -60,4 +73,6 @@ def prepare_frozen_v5_resources_v11r1(*, verified_plan: Mapping[str, Any],
         persist_canonical_v1(work_root/"projection-authorities"/item.panel_id/f"{item.file_id}.json",projection.document())
         persist_canonical_v1(work_root/"timestamp-authorities"/item.panel_id/f"{item.file_id}.json",timestamp.document())
     census=build_expected_prediction_cell_census_v1(physical=physical,dispatch=dispatch)
-    return {"physical":physical,"projections":projections,"timestamps":timestamps,"census":census,"projection_adapter":"project_attack_feature_file_v1"}
+    return {"physical":physical,"projections":projections,"timestamps":timestamps,"census":census,
+            "execution_container_authority":container_authority,
+            "projection_adapter":"project_attack_feature_file_v1"}
