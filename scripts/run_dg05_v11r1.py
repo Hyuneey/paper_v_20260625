@@ -62,11 +62,49 @@ def main() -> None:
                          user_approved_release_hash=a.user_approved_release_hash)
         plan,materialization,preflight=materialized_plan(state)
         framing=inspect_container_framing_v11r1(plan=plan)
+        # Complete every authority replay that is possible without opening a
+        # protected CSV row.  Projection and the schedule remain unreachable
+        # in this mode.
+        from paperworks.validation_v2.dg05_v11r1_route_core import _load_private
+        from paperworks.validation_v2.dg05_v11r1_source_file_crosswalk import derive_source_file_identity_crosswalk_v11r1
+        from paperworks.validation_v2.dg05_v11r1_production_executor import build_frozen_production_executor_v11r1
+        from paperworks.validation_v2.dg05_connected_rehearsal_v4 import _private_normal_paths, _typed_manifest
+        from paperworks.validation_v2.dg05_normal_source_v2 import replay_normal_source_registry_v2
+        from scripts.freeze_dg05_execution_closure_v1 import build_detectors, build_dispatch, build_rule_runtime_registry
+        outer=load_self_hashed(a.manifest,"dg05_executable_v11r1_candidate_manifest_v1")
+        scenario=_load_private(a.scenario_authority,"hai_official_source_triangulated_scenario_authority_private_v1")
+        p1=_load_private(a.p1_authority,"hai_p1_direct_target_denominator_authority_v2")
+        if scenario["self_hash"]!=outer["scenario_authority_hash"] or p1["self_hash"]!=outer["p1_authority_hash"]:
+            raise RuntimeError("V11R1_SCENARIO_P1_ROOT_REPLAY_FAILED")
+        if len(scenario.get("canonical_records",()))!=146 or len(p1.get("decisions",()))!=146:
+            raise RuntimeError("V11R1_SCENARIO_P1_CENSUS_FAILED")
+        if any(row.get("eligibility_status")=="UNRESOLVED" for row in p1["decisions"]):
+            raise RuntimeError("V11R1_P1_UNRESOLVED_REJECTED")
+        crosswalk=derive_source_file_identity_crosswalk_v11r1(unified_scenario=scenario,
+            physical_custody_hash=outer["physical_custody_hash"],
+            implementation_hash=__import__("paperworks.validation_v2.dg05_production_chain_v11",fromlist=["file_hash"]).file_hash(ROOT/"src/paperworks/validation_v2/dg05_v11r1_source_file_crosswalk.py"),
+            source_commit=outer["implementation_source_commit"])
+        if crosswalk["entry_count"]!=10:
+            raise RuntimeError("V11R1_SOURCE_FILE_CROSSWALK_CENSUS_FAILED")
+        historical=_typed_manifest(a.historical_v1_manifest); detectors=build_detectors()
+        rules,rule_sources=build_rule_runtime_registry(); dispatch=build_dispatch(detectors,rules)
+        executor=build_frozen_production_executor_v11r1(repository_root=ROOT,executable_manifest=historical,
+            detector_registry=detectors,dispatch_registry=dispatch,rule_runtime_registry=rules,rule_sources=rule_sources)
+        if executor.authority_mode!="PRODUCTION" or len(executor.detector_assets)!=6 or len(executor.rule_assets)!=7:
+            raise RuntimeError("V11R1_PRODUCTION_ASSET_PREFLIGHT_FAILED")
+        contract=load_self_hashed(a.metric_contract,"metric_surface_contract_v2")
+        registry=load_self_hashed(a.normal_registry,"normal_burden_source_registry_v2")
+        components=_private_normal_paths(manifest_path=a.private_normal_manifest,registry=registry,
+            expected_manifest_hash=a.expected_private_normal_hash)
+        replay_normal_source_registry_v2(registry=registry,component_paths=components,
+            expected_dec031_binding_hash=contract["dec031_binding_hash"])
         if a.output_root.exists(): raise RuntimeError("V11R1_OUTPUT_NAMESPACE_REUSE_REJECTED")
         a.output_root.parent.mkdir(parents=True,exist_ok=True)
         receipt={"schema":"dg05_v11r1_real_preflight_receipt_v1","status":"REAL_PREFLIGHT_PASS_NO_FEATURE_ACCESS",
                  "release_hash":state["release_hash"],"state_hash":state["self_hash"],"resource_preflight_hash":preflight["self_hash"],
                  "resource_materialization_hash":materialization.get("self_hash"),"container_framing_hash":framing["self_hash"],
+                 "production_assets":{"detectors":6,"rules":7},"scenario_records":146,"p1_decisions":146,
+                 "p1_unresolved":0,"crosswalk_entries":10,
                  "heldout_rows_parsed":0,"heldout_predictions":0,"heldout_metrics":0}
         a.output_root.write_bytes(canonical_bytes(receipt)+b"\n")
         print(json.dumps({"status":receipt["status"],"heldout_rows_parsed":0},sort_keys=True)); return
