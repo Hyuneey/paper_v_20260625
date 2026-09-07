@@ -45,6 +45,8 @@ def _paths() -> dict[str, Path]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", required=True, type=Path)
+    ap.add_argument("--existing-manifest", type=Path)
+    ap.add_argument("--expected-hash")
     ap.add_argument("--legacy-release", required=True, type=Path)
     ap.add_argument("--predecessor-v4-manifest", required=True, type=Path)
     ap.add_argument("--predecessor-v4-closure", required=True, type=Path)
@@ -59,10 +61,18 @@ def main() -> None:
     if args.output.exists():
         raise RuntimeError("V11R1_E2E_OUTPUT_APPEND_ONLY_CONFLICT")
     args.output.mkdir(parents=True)
-    head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-    manifest = build_manifest(repository_root=ROOT, source_commit=head, implementation_paths=_paths())
-    manifest_path = args.output / "V11R1_EXECUTION_BINDING_MANIFEST.json"
-    manifest_path.write_bytes(canonical_bytes(manifest) + b"\n")
+    if (args.existing_manifest is None) != (args.expected_hash is None):
+        raise RuntimeError("V11R1_EXISTING_MANIFEST_HASH_PAIR_REQUIRED")
+    if args.existing_manifest is not None:
+        manifest_path = args.existing_manifest
+        manifest = load_self_hashed(manifest_path, "dg05_executable_v11r1_candidate_manifest_v1")
+        if manifest["self_hash"] != args.expected_hash:
+            raise RuntimeError("V11R1_EXISTING_MANIFEST_HASH_MISMATCH")
+    else:
+        head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+        manifest = build_manifest(repository_root=ROOT, source_commit=head, implementation_paths=_paths())
+        manifest_path = args.output / "V11R1_EXECUTION_BINDING_MANIFEST.json"
+        manifest_path.write_bytes(canonical_bytes(manifest) + b"\n")
     command=[sys.executable,str(ROOT/"scripts/run_dg05_v11r1.py"),"--mode","PREACCESS_SYNTHETIC_QUALIFICATION",
         "--manifest",str(manifest_path),"--expected-hash",manifest["self_hash"],"--scenario-authority",str(args.scenario_authority),
         "--p1-authority",str(args.p1_authority),"--legacy-v10-release",str(args.legacy_release),
