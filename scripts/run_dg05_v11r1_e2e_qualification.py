@@ -29,6 +29,7 @@ def _paths() -> dict[str, Path]:
         "e2e_qualification": p / "dg05_v11r1_e2e_qualification.py",
         "terminal_chain": p / "dg05_v11r1_terminal_chain.py",
         "v5_compatibility": p / "dg05_v11r1_v5_compatibility.py",
+        "postfreeze_metric_binding": p / "dg05_v11r1_postfreeze_metric_binding.py",
         "v11_bridge": p / "dg05_schedule_release_provenance_bridge_v11.py",
         "connected_rehearsal": p / "dg05_connected_rehearsal_v5.py",
         "v5_kernel": p / "dg05_production_route_v5.py",
