@@ -30,7 +30,7 @@ PREDECESSOR_CLOSURE = "20b697bcb217e84171823fdc3142e7906863ad4dccdef088f1b347eaf
 # a future real route requires a successor release, rather than silently
 # expanding an already approved executable surface.
 _REQUIRED_IMPLEMENTATIONS = frozenset({
-    "successor_gate", "successor_runner", "complete_preflight", "preflight_receipt",
+    "successor_gate", "successor_runner", "runner_core", "complete_preflight", "preflight_receipt",
     "execution_binding", "execution_ledger",
     "shared_route_core", "resource_loader", "resource_materializer",
     "container_materializer", "resource_orchestrator", "production_executor",

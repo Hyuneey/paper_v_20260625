@@ -23,6 +23,7 @@ def _paths() -> dict[str, Path]:
     relative = {
         "successor_gate": "src/paperworks/validation_v2/dg05_production_chain_v11r2r1.py",
         "successor_runner": "scripts/run_dg05_v11r2r2.py",
+        "runner_core": "scripts/run_dg05_v11r2r1.py",
         "complete_preflight": "src/paperworks/validation_v2/dg05_v11r2r1_preflight.py",
         "preflight_receipt": "src/paperworks/validation_v2/dg05_v11r2r1_preflight_receipt.py",
         "execution_binding": "src/paperworks/validation_v2/dg05_v11r2r1_execution_binding.py",
