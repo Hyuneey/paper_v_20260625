@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Callable, Mapping
 
 from .dg05_production_chain_v11 import PREACCESS_MODE, REAL_MODE, file_hash, load_self_hashed, self_hashed
 from .dg05_production_chain_v11r1 import initialize
@@ -66,7 +66,10 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
                        metric_contract_path: Path, normal_registry_path: Path,
                        private_normal_manifest_path: Path, expected_private_normal_hash: str,
                        unified_scenario_path: Path, unified_p1_path: Path, wrapper: Any,
-                       resource_plan: Mapping[str, Any] | None = None) -> dict[str, Any]:
+                       resource_plan: Mapping[str, Any] | None = None,
+                       manifest_schema: str = "dg05_executable_v11r1_candidate_manifest_v1",
+                       initialize_fn: Callable[..., dict[str, Any]] = initialize,
+                       lifecycle: Any | None = None) -> dict[str, Any]:
     """Run the release-bound route after resource-provider selection.
 
     ``REAL_HELDOUT_EXECUTION`` callers supply a pre-verified resource plan
@@ -75,8 +78,8 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
     """
     if work_root.exists():
         raise DG05V11R1RouteCoreError("V11R1_OUTPUT_NAMESPACE_REUSE_REJECTED")
-    outer=load_self_hashed(manifest_path,"dg05_executable_v11r1_candidate_manifest_v1")
-    state=initialize(manifest_path=manifest_path,expected_hash=expected_hash,repository_root=repository_root,
+    outer=load_self_hashed(manifest_path,manifest_schema)
+    state=initialize_fn(manifest_path=manifest_path,expected_hash=expected_hash,repository_root=repository_root,
                      mode=mode,user_approved_release_hash=user_approved_release_hash)
     from .dg05_connected_rehearsal_v4 import _private_normal_paths, _typed_manifest
     from .dg05_execution_closure_v1 import build_global_prediction_manifest_v1, freeze_global_predictions_v1
@@ -100,6 +103,11 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
     plan=_synthetic_plan(repository_root=repository_root,source_root=work_root/"synthetic-sources") if mode==PREACCESS_MODE else resource_plan
     if plan is None:
         raise DG05V11R1RouteCoreError("V11R1_VERIFIED_RESOURCE_PLAN_REQUIRED")
+    # The R2 real lifecycle commits its durable scientific-contact marker at
+    # this exact boundary, before decompression, CSV header parsing, or the
+    # frozen projection adapter can observe a protected source.
+    if lifecycle is not None:
+        lifecycle.commit_contact_guard()
     resources=prepare_frozen_v5_resources_v11r1(verified_plan=plan,work_root=work_root/"resources",
         adapter_implementation_hash=adapter_hash,source_commit=legacy["source_commit"],dispatch=dispatch,
         permit_gzip_decode=mode in (PREACCESS_MODE,REAL_MODE))
@@ -132,6 +140,8 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
     persist_canonical_v1(work_root/"GLOBAL_PREDICTION_MANIFEST.json",manifest); persist_canonical_v1(work_root/"GLOBAL_PREDICTION_FREEZE.json",freeze)
     freeze=load_self_hashed(work_root/"GLOBAL_PREDICTION_FREEZE.json","global_prediction_freeze_v3")
     manifest=load_self_hashed(work_root/"GLOBAL_PREDICTION_MANIFEST.json","global_prediction_manifest_v3")
+    if lifecycle is not None:
+        lifecycle.mark_predictions_frozen()
     source_scenario=_load_private(unified_scenario_path,"hai_official_source_triangulated_scenario_authority_private_v1")
     source_p1=_load_private(unified_p1_path,"hai_p1_direct_target_denominator_authority_v2")
     from .dg05_production_route_v11 import initialize_prediction_schedule_v11
@@ -174,12 +184,17 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
         oracle_document=self_hashed({"schema":"v11r1_serialized_independent_metric_verification_v1","oracle":oracle})
         persist_canonical_v1(work_root/"metrics"/f"{panel}.oracle.json",oracle_document)
         primitive_hashes[panel]=primitive["self_hash"]; surface_hashes[panel]=result["self_hash"]; oracle_hashes[panel]=oracle_document["self_hash"]
+    if lifecycle is not None:
+        lifecycle.mark_metrics_frozen()
     root_to_terminal=self_hashed({"schema":"dg05_v11r1_root_to_terminal_replay_v1","status":"PASS","release_hash":outer["self_hash"],"v11_custodian_initialization_hash":self_hashed(custodian)["self_hash"],"v5_kernel_hash":kernel["self_hash"],"prediction_freeze_hash":freeze["self_hash"],"crosswalk_hash":crosswalk["self_hash"],"crosswalk_replay_hash":crosswalk_replay["self_hash"],"scenario_replay_hash":replay["self_hash"],"metric_surface_hashes":surface_hashes,"oracle_hashes":oracle_hashes})
     physical_source_hash=resources["physical"].document()["self_hash"]
     transition=None
-    for name in ("READY","REAL_EXECUTION_STARTED","PREDICTION_CONTACT_OCCURRED","PREDICTIONS_FROZEN","METRICS_FROZEN","TERMINAL_COMPLETE"):
-        transition=next_execution_state_v11r1(release_hash=outer["self_hash"],execution_binding_hash=outer["self_hash"],physical_source_set_hash=physical_source_hash,output_namespace=str(work_root),predecessor=transition,state=name)
-        write_new_state_v11r1(work_root/"execution-states"/f"{name}.json",transition)
+    if lifecycle is not None:
+        transition=lifecycle.mark_terminal_complete()
+    else:
+        for name in ("READY","REAL_EXECUTION_STARTED","PREDICTION_CONTACT_OCCURRED","PREDICTIONS_FROZEN","METRICS_FROZEN","TERMINAL_COMPLETE"):
+            transition=next_execution_state_v11r1(release_hash=outer["self_hash"],execution_binding_hash=outer.get("execution_binding_hash",outer["self_hash"]),physical_source_set_hash=physical_source_hash,output_namespace=str(work_root),predecessor=transition,state=name)
+            write_new_state_v11r1(work_root/"execution-states"/f"{name}.json",transition)
     terminal=build_terminal_package_v11r1(release_hash=outer["self_hash"],terminal_state=transition,physical_custody_hash=physical_source_hash,
         projection_timestamp_hash=scenario["timestamp_authority_aggregate_hash"],private_asset_custody_hash=self_hashed({"schema":"v11r1_production_asset_custody_v1","detectors":6,"rules":7})["self_hash"],
         prediction_freeze_hash=freeze["self_hash"],scenario_authority_hash=scenario["self_hash"],p1_authority_hash=denominator["self_hash"],metric_primitives_hashes=primitive_hashes,metric_surface_hashes=surface_hashes,independent_metric_verification_hashes=oracle_hashes,root_to_terminal_hash=root_to_terminal["self_hash"])
