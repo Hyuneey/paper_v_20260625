@@ -27,7 +27,7 @@ def replay_all_real_preconditions_v11r2r1(*, repository_root: Path, manifest: Ma
     legacy_release_path: Path, predecessor_v4_path: Path, predecessor_v4_closure_path: Path, historical_v1_manifest_path: Path,
     custody_receipt_path: Path, plan: Mapping[str,Any], metric_contract_path: Path, normal_registry_path: Path,
     normal_closure_path: Path, private_normal_manifest_path: Path, expected_private_normal_hash: str,
-    scenario_path: Path, p1_path: Path, ledger_root: Path, final_closure_hash: str) -> dict[str,Any]:
+    scenario_path: Path, p1_path: Path, crosswalk_path: Path, ledger_root: Path, final_closure_hash: str) -> dict[str,Any]:
     root=repository_root.resolve(); rows=[]
     for item in manifest['implementation_authorities']:
         p=(root/item['relative_path']).resolve()
@@ -95,8 +95,9 @@ def replay_all_real_preconditions_v11r2r1(*, repository_root: Path, manifest: Ma
         raise DG05V11R2R1PreflightError('SCENARIO_AUTHORITY_REPLAY_FAILED')
     if p1.get('self_hash') != _P1_HASH or len(p1.get('decisions', ())) != 146 or p1_counts != {'P1_ELIGIBLE':116,'OUT_OF_SCOPE':30,'UNRESOLVED':0}:
         raise DG05V11R2R1PreflightError('P1_AUTHORITY_REPLAY_FAILED')
-    cross=derive_source_file_identity_crosswalk_v11r1(unified_scenario=scenario,physical_custody_hash=manifest['physical_custody_hash'],implementation_hash=file_hash(root/'src/paperworks/validation_v2/dg05_v11r1_source_file_crosswalk.py'),source_commit=manifest['implementation_source_commit']); crossr=verify_source_file_identity_crosswalk_v11r1(crosswalk=cross,unified_scenario=scenario,physical_custody_hash=manifest['physical_custody_hash'])
-    if cross['self_hash'] != _CROSSWALK_HASH or len(cross.get('entries', ())) != 10:
+    cross=load_self_hashed(crosswalk_path, 'v11r1_source_file_identity_crosswalk_authority_v1')
+    crossr=verify_source_file_identity_crosswalk_v11r1(crosswalk=cross,unified_scenario=scenario,physical_custody_hash=manifest['physical_custody_hash'])
+    if cross['self_hash'] != manifest.get('source_file_crosswalk_hash') or len(cross.get('entries', ())) != 10:
         raise DG05V11R2R1PreflightError('SOURCE_FILE_CROSSWALK_REPLAY_FAILED')
     scope=execution_scope_id_v11r2(release_hash=manifest['self_hash'],final_closure_hash=final_closure_hash,execution_binding_hash=manifest['execution_binding_hash'])
     ledger_status = ledger_scope_status_v11r2(ledger_root=ledger_root, release_hash=manifest['self_hash'], final_closure_hash=final_closure_hash, execution_binding_hash=manifest['execution_binding_hash'])

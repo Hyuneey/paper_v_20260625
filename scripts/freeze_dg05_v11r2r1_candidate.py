@@ -14,6 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 from paperworks.validation_v2.dg05_production_chain_v11 import canonical_bytes, load_self_hashed
 from paperworks.validation_v2.dg05_production_chain_v11r2r1 import build_manifest
 from paperworks.validation_v2.dg05_v11r2r1_execution_binding import build_execution_binding_v11r2r1
+from paperworks.validation_v2.dg05_v11r1_route_core import _load_private
+from paperworks.validation_v2.dg05_v11r1_source_file_crosswalk import derive_source_file_identity_crosswalk_v11r1, verify_source_file_identity_crosswalk_v11r1
+from paperworks.validation_v2.dg05_v11r2r1_crosswalk_reconciliation import reconcile_crosswalk_lineage_v11r2r1
 
 
 def _paths() -> dict[str, Path]:
@@ -45,6 +48,8 @@ def _paths() -> dict[str, Path]:
         "legacy_v11_route": "src/paperworks/validation_v2/dg05_production_chain_v11.py",
         "legacy_v11_custodian": "src/paperworks/validation_v2/dg05_label_custodian_v3.py",
         "metric_contract": "src/paperworks/validation_v2/metric_contract_v1.py",
+        "multipanel_custody": "src/paperworks/validation_v2/multipanel_custody_v1.py",
+        "crosswalk_reconciliation": "src/paperworks/validation_v2/dg05_v11r2r1_crosswalk_reconciliation.py",
     }
     return {name: ROOT / path for name, path in relative.items()}
 
@@ -63,6 +68,7 @@ def main() -> None:
     parser.add_argument("--predecessor-v4-manifest", type=Path, required=True)
     parser.add_argument("--predecessor-v4-closure", type=Path, required=True)
     parser.add_argument("--historical-v1-manifest", type=Path, required=True)
+    parser.add_argument("--scenario-authority", type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists():
         raise RuntimeError("V11R2R1_ARTIFACT_NAMESPACE_REUSE_REJECTED")
@@ -74,6 +80,23 @@ def main() -> None:
         "historical_v1_manifest_hash": load_self_hashed(args.historical_v1_manifest, "dg05_executable_authority_manifest_v1")["self_hash"],
     }
     paths = _paths()
+    scenario = _load_private(args.scenario_authority, "hai_official_source_triangulated_scenario_authority_private_v1")
+    from paperworks.validation_v2.dg05_production_chain_v11 import file_hash
+    crosswalk = derive_source_file_identity_crosswalk_v11r1(
+        unified_scenario=scenario, physical_custody_hash="46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+        implementation_hash=file_hash(paths["source_file_crosswalk"]), source_commit=source_commit,
+    )
+    verify_source_file_identity_crosswalk_v11r1(crosswalk=crosswalk, unified_scenario=scenario,
+                                                  physical_custody_hash="46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa")
+    historical_qualification = derive_source_file_identity_crosswalk_v11r1(
+        unified_scenario=scenario, physical_custody_hash="46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+        implementation_hash=file_hash(paths["source_file_crosswalk"]), source_commit="38f6ef22e4697112aeb7704f38c4a19d84b54783")
+    historical_prefreeze = derive_source_file_identity_crosswalk_v11r1(
+        unified_scenario=scenario, physical_custody_hash="46b1319363731aeb050133b92aee0f5d37db0879cb6066ceaee70191cdd3fbaa",
+        implementation_hash=file_hash(paths["source_file_crosswalk"]), source_commit="be9ee15bb9d3417771ef4b7914dec5de63114c46")
+    reconciliation = reconcile_crosswalk_lineage_v11r2r1(
+        historical_qualification=historical_qualification, historical_prefreeze=historical_prefreeze,
+        final_crosswalk=crosswalk)
     rows = [{"logical_name": name, "relative_path": path.relative_to(ROOT).as_posix(),
              "byte_hash": __import__("paperworks.validation_v2.dg05_production_chain_v11", fromlist=["file_hash"]).file_hash(path)}
             for name, path in sorted(paths.items())]
@@ -85,7 +108,7 @@ def main() -> None:
         predecessor_execution_binding_hash="52ac10321b2db865f9630d1da659aa336ac94e908ed19510f4d96d7423770224",
     )
     manifest = build_manifest(repository_root=ROOT, source_commit=source_commit,
-                              implementation_paths=paths, execution_binding_hash=binding["self_hash"])
+                              implementation_paths=paths, execution_binding_hash=binding["self_hash"], source_file_crosswalk_hash=crosswalk["self_hash"])
     # Candidate authority hashes add the required predecessor bindings while
     # retaining the frozen scientific roots from its gate.
     manifest = {**manifest, "authority_hashes": {**manifest["authority_hashes"], **roots}}
@@ -101,9 +124,11 @@ def main() -> None:
         predecessor_execution_binding_hash=manifest["predecessor_execution_binding_hash"],
     )
     manifest = build_manifest(repository_root=ROOT, source_commit=source_commit,
-                              implementation_paths=paths, execution_binding_hash=binding["self_hash"])
+                              implementation_paths=paths, execution_binding_hash=binding["self_hash"], source_file_crosswalk_hash=crosswalk["self_hash"])
     manifest = self_hashed({key: value for key, value in {**manifest, "authority_hashes": {**manifest["authority_hashes"], **roots}}.items() if key != "self_hash"})
     _write(args.output / "V11R2R1_EXECUTION_BINDING_MANIFEST.json", binding)
+    _write(args.output / "DG05_V11R2R1_SOURCE_FILE_IDENTITY_CROSSWALK.json", crosswalk)
+    _write(args.output / "DG05_V11R2R1_CROSSWALK_LINEAGE_RECONCILIATION_V1.json", reconciliation)
     _write(args.output / "DG05_EXECUTABLE_V11R2R1_FINAL_MANIFEST.json", manifest)
     print(manifest["self_hash"])
 

@@ -81,6 +81,7 @@ def _arguments() -> argparse.Namespace:
     parser.add_argument("--resource-root", type=Path, action="append", default=[])
     parser.add_argument("--scenario-authority", type=Path, required=True)
     parser.add_argument("--p1-authority", type=Path, required=True)
+    parser.add_argument("--source-file-crosswalk", type=Path, required=True)
     parser.add_argument("--legacy-v10-release", type=Path, required=True)
     parser.add_argument("--predecessor-v4-manifest", type=Path, required=True)
     parser.add_argument("--predecessor-v4-closure", type=Path, required=True)
@@ -186,6 +187,7 @@ def _fresh_replay(*, args: argparse.Namespace, manifest: Mapping[str, Any], plan
         expected_private_normal_hash=args.expected_private_normal_hash,
         scenario_path=args.scenario_authority,
         p1_path=args.p1_authority,
+        crosswalk_path=args.source_file_crosswalk,
         ledger_root=args.execution_ledger_root,
         final_closure_hash=approval["final_closure_hash"],
     )
@@ -211,6 +213,7 @@ def _run_preaccess(args: argparse.Namespace) -> None:
         expected_private_normal_hash=args.expected_private_normal_hash,
         unified_scenario_path=args.scenario_authority,
         unified_p1_path=args.p1_authority,
+        source_file_crosswalk_path=args.source_file_crosswalk,
         wrapper=wrapper,
         manifest_schema="dg05_executable_v11r2r1_candidate_manifest_v1",
         initialize_fn=initialize,
@@ -294,6 +297,7 @@ def main() -> None:
             expected_private_normal_hash=args.expected_private_normal_hash,
             unified_scenario_path=args.scenario_authority,
             unified_p1_path=args.p1_authority,
+            source_file_crosswalk_path=args.source_file_crosswalk,
             wrapper=wrapper,
             resource_plan=plan,
             manifest_schema="dg05_executable_v11r2r1_candidate_manifest_v1",

@@ -66,6 +66,7 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
                        metric_contract_path: Path, normal_registry_path: Path,
                        private_normal_manifest_path: Path, expected_private_normal_hash: str,
                        unified_scenario_path: Path, unified_p1_path: Path, wrapper: Any,
+                       source_file_crosswalk_path: Path | None = None,
                        resource_plan: Mapping[str, Any] | None = None,
                        manifest_schema: str = "dg05_executable_v11r1_candidate_manifest_v1",
                        initialize_fn: Callable[..., dict[str, Any]] = initialize,
@@ -149,10 +150,15 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
         state=self_hashed({"schema":"dg05_v11r1_postfreeze_custodian_state_v1","state":"GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED","freeze_hash":freeze["self_hash"]}),repository_root=repository_root)
     if custodian["resolved_kernel"]["source_byte_hash"]!=outer["frozen_v5_kernel_hash"]:
         raise DG05V11R1RouteCoreError("V11R1_CUSTODIAN_KERNEL_REPLAY_FAILED")
-    crosswalk=derive_source_file_identity_crosswalk_v11r1(unified_scenario=source_scenario,
-        physical_custody_hash=outer["authority_hashes"]["physical_custody"],
-        implementation_hash=file_hash(repository_root/"src/paperworks/validation_v2/dg05_v11r1_source_file_crosswalk.py"),
-        source_commit=outer["implementation_source_commit"])
+    if source_file_crosswalk_path is None:
+        crosswalk=derive_source_file_identity_crosswalk_v11r1(unified_scenario=source_scenario,
+            physical_custody_hash=outer["authority_hashes"]["physical_custody"],
+            implementation_hash=file_hash(repository_root/"src/paperworks/validation_v2/dg05_v11r1_source_file_crosswalk.py"),
+            source_commit=outer["implementation_source_commit"])
+    else:
+        crosswalk=load_self_hashed(source_file_crosswalk_path,"v11r1_source_file_identity_crosswalk_authority_v1")
+        if crosswalk["self_hash"] != outer.get("source_file_crosswalk_hash"):
+            raise DG05V11R1RouteCoreError("V11R1_SOURCE_FILE_CROSSWALK_BINDING_REQUIRED")
     persist_canonical_v1(work_root/"V11R1_SOURCE_FILE_IDENTITY_CROSSWALK.json",crosswalk)
     crosswalk=load_self_hashed(work_root/"V11R1_SOURCE_FILE_IDENTITY_CROSSWALK.json","v11r1_source_file_identity_crosswalk_authority_v1")
     crosswalk_replay=verify_source_file_identity_crosswalk_v11r1(crosswalk=crosswalk,unified_scenario=source_scenario,

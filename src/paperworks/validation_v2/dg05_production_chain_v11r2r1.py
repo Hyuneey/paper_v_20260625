@@ -25,7 +25,6 @@ REAL_PREFLIGHT_ONLY = "REAL_PREFLIGHT_ONLY"
 PREDECESSOR_RELEASE = "440ee8aaad1790369f4f5012e43d7483e25b146c694e1446b0c1f42777d91897"
 PREDECESSOR_BINDING = "52ac10321b2db865f9630d1da659aa336ac94e908ed19510f4d96d7423770224"
 PREDECESSOR_CLOSURE = "1e782da29b1756f57b8e4341bb40e92f1a1a8a4192d3c004425f36dcf8e33fa1"
-SOURCE_FILE_CROSSWALK_HASH = "9f2c0d442fd92fb09a8f56389aa7a2bfde7bad74657577bef5460e5beb2d9554"
 
 # This is deliberately a closed *implementation* census.  Adding a helper to
 # a future real route requires a successor release, rather than silently
@@ -39,7 +38,8 @@ _REQUIRED_IMPLEMENTATIONS = frozenset({
     "v5_compatibility", "v11_bridge", "v5_kernel",
     "source_file_crosswalk", "postfreeze_metric_binding", "metric_primitives",
     "metric_surface", "metric_oracle", "terminal_chain",
-    "legacy_v11_route", "legacy_v11_custodian", "metric_contract",
+    "legacy_v11_route", "legacy_v11_custodian", "metric_contract", "multipanel_custody",
+    "crosswalk_reconciliation",
 })
 
 
@@ -53,10 +53,13 @@ def build_manifest(
     source_commit: str,
     implementation_paths: dict[str, Path],
     execution_binding_hash: str,
+    source_file_crosswalk_hash: str,
 ) -> dict[str, Any]:
     """Build a candidate only after the separately serialized binding exists."""
     if not isinstance(execution_binding_hash, str) or len(execution_binding_hash) != 64:
         raise DG05ProductionChainV11R2R1Error("EXECUTION_BINDING_HASH_REQUIRED")
+    if not isinstance(source_file_crosswalk_hash, str) or len(source_file_crosswalk_hash) != 64:
+        raise DG05ProductionChainV11R2R1Error("SOURCE_FILE_CROSSWALK_HASH_REQUIRED")
     if set(implementation_paths) != _REQUIRED_IMPLEMENTATIONS:
         raise DG05ProductionChainV11R2R1Error("V11R2R1_COMPLETE_IMPLEMENTATION_CENSUS_REQUIRED")
     root = repository_root.resolve()
@@ -92,7 +95,7 @@ def build_manifest(
             "scenario_authority_hash": AUTHORITY_HASHES["scenario_authority"],
             "p1_authority_hash": AUTHORITY_HASHES["unified_p1"],
             "physical_custody_hash": AUTHORITY_HASHES["physical_custody"],
-            "source_file_crosswalk_hash": SOURCE_FILE_CROSSWALK_HASH,
+            "source_file_crosswalk_hash": source_file_crosswalk_hash,
             "implementation_authorities": rows,
             "frozen_v5_kernel_hash": V5_SHA256,
             "frozen_kernel": resolve_frozen_kernel_v11(root),
@@ -215,5 +218,4 @@ __all__ = [
     "initialize",
     "load_candidate",
     "verify_runtime_approval_v11r2r1",
-    "SOURCE_FILE_CROSSWALK_HASH",
 ]
