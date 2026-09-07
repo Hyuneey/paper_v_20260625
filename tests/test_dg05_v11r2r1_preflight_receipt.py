@@ -35,11 +35,13 @@ class V11R2R1PreflightReceiptTests(unittest.TestCase):
         fields: dict[str, object] = {
             "schema": "dg05_v11r2r1_complete_real_preflight_authority_replay_v1", "status": "PASS",
             "implementation_replay_hash": h("2"), "execution_binding_hash": h("b"),
+            "execution_binding_replay_hash": h("c"),
             "v5_kernel_hash": h("3"), "legacy_hash": h("4"), "v4_hash": h("5"),
-            "v4_closure_hash": h("6"), "v1_hash": h("7"), "physical_hash": h("8"),
+            "v4_closure_hash": h("6"), "v1_hash": h("7"), "legacy_predecessor_replay_hash": h("8"), "physical_hash": h("8"),
             "framing_hash": h("9"), "production_executor_hash": h("0"), "normal_authority_hash": h("a"),
             "scenario_hash": h("d"), "p1_hash": h("e"), "crosswalk_hash": h("f"),
             "crosswalk_replay_hash": h("1"), "execution_scope_id": h("2"),
+            "ledger_status_hash": h("3"),
             "heldout_rows_parsed": 0, "heldout_predictions": 0, "heldout_metrics": 0,
         }
         fields.update(overrides)

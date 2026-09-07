@@ -27,6 +27,21 @@ PREDECESSOR_BINDING = "52ac10321b2db865f9630d1da659aa336ac94e908ed19510f4d96d742
 PREDECESSOR_CLOSURE = "1e782da29b1756f57b8e4341bb40e92f1a1a8a4192d3c004425f36dcf8e33fa1"
 SOURCE_FILE_CROSSWALK_HASH = "9f2c0d442fd92fb09a8f56389aa7a2bfde7bad74657577bef5460e5beb2d9554"
 
+# This is deliberately a closed *implementation* census.  Adding a helper to
+# a future real route requires a successor release, rather than silently
+# expanding an already approved executable surface.
+_REQUIRED_IMPLEMENTATIONS = frozenset({
+    "successor_gate", "successor_runner", "complete_preflight", "preflight_receipt",
+    "execution_binding", "runtime_approval_guard", "execution_ledger",
+    "shared_route_core", "resource_loader", "resource_materializer",
+    "container_materializer", "resource_orchestrator", "production_executor",
+    "execution_closure", "normal_source", "normal_materializer",
+    "v5_compatibility", "v11_bridge", "v5_kernel", "prediction_freeze",
+    "source_file_crosswalk", "postfreeze_metric_binding", "metric_primitives",
+    "metric_surface", "metric_oracle", "terminal_chain", "dg06_handoff",
+    "legacy_v11_route", "legacy_v11_custodian", "metric_contract",
+})
+
 
 class DG05ProductionChainV11R2R1Error(ValueError):
     """A release-bound V11R2R1 gate rejected its input."""
@@ -42,6 +57,8 @@ def build_manifest(
     """Build a candidate only after the separately serialized binding exists."""
     if not isinstance(execution_binding_hash, str) or len(execution_binding_hash) != 64:
         raise DG05ProductionChainV11R2R1Error("EXECUTION_BINDING_HASH_REQUIRED")
+    if set(implementation_paths) != _REQUIRED_IMPLEMENTATIONS:
+        raise DG05ProductionChainV11R2R1Error("V11R2R1_COMPLETE_IMPLEMENTATION_CENSUS_REQUIRED")
     root = repository_root.resolve()
     rows: list[dict[str, str]] = []
     for name, path in sorted(implementation_paths.items()):

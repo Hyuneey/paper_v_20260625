@@ -24,11 +24,13 @@ _BUNDLE_SCHEMA = "dg05_v11r2r1_complete_real_preflight_authority_replay_v1"
 _REQUIRED_BUNDLE_HASHES = (
     "implementation_replay_hash",
     "execution_binding_hash",
+    "execution_binding_replay_hash",
     "v5_kernel_hash",
     "legacy_hash",
     "v4_hash",
     "v4_closure_hash",
     "v1_hash",
+    "legacy_predecessor_replay_hash",
     "physical_hash",
     "framing_hash",
     "production_executor_hash",
@@ -38,6 +40,7 @@ _REQUIRED_BUNDLE_HASHES = (
     "crosswalk_hash",
     "crosswalk_replay_hash",
     "execution_scope_id",
+    "ledger_status_hash",
 )
 
 
@@ -120,6 +123,7 @@ def build_real_preflight_receipt_v11r2r1(*, manifest: Mapping[str, Any],
         "implementation_source_commit": manifest.get("implementation_source_commit"),
         "implementation_replay_receipt_hash": bundle["implementation_replay_hash"],
         "complete_replay_bundle_hash": bundle["self_hash"],
+        "execution_binding_replay_hash": bundle["execution_binding_replay_hash"],
         "v5_kernel_hash": bundle["v5_kernel_hash"],
         "legacy_predecessor_replay_hashes": {
             "legacy_release": bundle["legacy_hash"],
@@ -127,6 +131,7 @@ def build_real_preflight_receipt_v11r2r1(*, manifest: Mapping[str, Any],
             "predecessor_v4_closure": bundle["v4_closure_hash"],
             "historical_v1_manifest": bundle["v1_hash"],
         },
+        "legacy_predecessor_replay_hash": bundle["legacy_predecessor_replay_hash"],
         "physical_custody_replay_hash": bundle["physical_hash"],
         "container_framing_replay_hash": bundle["framing_hash"],
         "production_executor_replay_hash": bundle["production_executor_hash"],
