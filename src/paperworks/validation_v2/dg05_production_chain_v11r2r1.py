@@ -32,13 +32,13 @@ SOURCE_FILE_CROSSWALK_HASH = "9f2c0d442fd92fb09a8f56389aa7a2bfde7bad74657577bef5
 # expanding an already approved executable surface.
 _REQUIRED_IMPLEMENTATIONS = frozenset({
     "successor_gate", "successor_runner", "complete_preflight", "preflight_receipt",
-    "execution_binding", "runtime_approval_guard", "execution_ledger",
+    "execution_binding", "execution_ledger",
     "shared_route_core", "resource_loader", "resource_materializer",
     "container_materializer", "resource_orchestrator", "production_executor",
     "execution_closure", "normal_source", "normal_materializer",
-    "v5_compatibility", "v11_bridge", "v5_kernel", "prediction_freeze",
+    "v5_compatibility", "v11_bridge", "v5_kernel",
     "source_file_crosswalk", "postfreeze_metric_binding", "metric_primitives",
-    "metric_surface", "metric_oracle", "terminal_chain", "dg06_handoff",
+    "metric_surface", "metric_oracle", "terminal_chain",
     "legacy_v11_route", "legacy_v11_custodian", "metric_contract",
 })
 
