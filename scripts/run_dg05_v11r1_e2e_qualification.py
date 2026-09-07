@@ -12,7 +12,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src"),
                 str(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_source/af9e7aed35cfd160cbe0d04c8ec4c102502cb677"),
                 str(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_dependencies")]
 
-from paperworks.validation_v2.dg05_production_chain_v11 import canonical_bytes
+from paperworks.validation_v2.dg05_production_chain_v11 import canonical_bytes, load_self_hashed
 from paperworks.validation_v2.dg05_production_chain_v11r1 import build_manifest
 
 
@@ -68,9 +68,10 @@ def main() -> None:
     completed=subprocess.run(command,cwd=ROOT,text=True,capture_output=True,check=False)
     if completed.returncode != 0:
         raise RuntimeError("V11R1_UNIFIED_CLI_E2E_FAILED:"+completed.stderr[-1000:])
-    receipt_path=args.output/"unified-cli-route"/"DG06_INPUT_HANDOFF.json"
-    if not receipt_path.is_file(): raise RuntimeError("V11R1_UNIFIED_CLI_E2E_ARTIFACT_MISSING")
-    print(json.dumps({"status":"PASS","manifest":manifest["self_hash"],"cli_stdout":completed.stdout.strip(),
+    receipt_path=args.output/"unified-cli-route"/"V11R1_SHARED_ROUTE_RECEIPT.json"
+    receipt=load_self_hashed(receipt_path,"dg05_v11r1_shared_route_receipt_v1")
+    if not (args.output/"unified-cli-route"/"DG06_INPUT_HANDOFF.json").is_file(): raise RuntimeError("V11R1_UNIFIED_CLI_E2E_ARTIFACT_MISSING")
+    print(json.dumps({"status":"PASS","manifest":manifest["self_hash"],"receipt":receipt["self_hash"],"cli_stdout":completed.stdout.strip(),
                       "heldout_predictions":0,"heldout_metrics":0},sort_keys=True))
 
 

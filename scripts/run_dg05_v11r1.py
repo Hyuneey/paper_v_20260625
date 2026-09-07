@@ -62,6 +62,7 @@ def main() -> None:
         historical_v1_manifest_path=a.historical_v1_manifest,metric_contract_path=a.metric_contract,normal_registry_path=a.normal_registry,
         private_normal_manifest_path=a.private_normal_manifest,expected_private_normal_hash=a.expected_private_normal_hash,
         unified_scenario_path=a.scenario_authority,unified_p1_path=a.p1_authority,wrapper=wrapper,resource_plan=plan)
+    (a.output_root/"V11R1_SHARED_ROUTE_RECEIPT.json").write_bytes(canonical_bytes(receipt)+b"\n")
     print(json.dumps({"status":receipt["status"],"planned_cells":receipt["planned_cells"],"heldout_predictions":0,"heldout_metrics":0},sort_keys=True))
 
 
