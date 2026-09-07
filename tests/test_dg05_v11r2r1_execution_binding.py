@@ -37,7 +37,7 @@ class V11R2R1ExecutionBindingTests(unittest.TestCase):
             )
             path = root / "binding.json"; path.write_bytes(canonical_bytes(binding) + b"\n")
             candidate = {
-                "execution_binding_hash": binding["self_hash"], "designation": "DG05_EXECUTABLE_V11R2R1",
+                "execution_binding_hash": binding["self_hash"], "designation": "DG05_EXECUTABLE_V11R2R2",
                 "implementation_source_commit": "a" * 40, "authority_hashes": {"root": "b" * 64},
                 "frozen_v5_kernel_hash": V5, "predecessor_release_hash": "c" * 64,
                 "predecessor_closure_hash": "d" * 64, "predecessor_execution_binding_hash": "e" * 64,

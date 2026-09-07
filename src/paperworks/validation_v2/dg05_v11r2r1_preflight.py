@@ -14,6 +14,7 @@ from .dg05_v11r1_route_core import _load_private
 from .dg05_v11r1_source_file_crosswalk import derive_source_file_identity_crosswalk_v11r1, verify_source_file_identity_crosswalk_v11r1
 from .dg05_v11r2_execution_ledger import execution_scope_id_v11r2, ledger_scope_status_v11r2
 from .dg05_v11r2r1_execution_binding import replay_execution_binding_v11r2r1
+from .dg05_v11r2r2_runtime_plan_normalizer import verify_runtime_plan_canonical_order_v11r2r2
 
 _SCENARIO_HASH = "2bd2bb4d4a6b8eacf5caaa44b36b5d41e06514e9521ac08789cfe5d268245e38"
 _P1_HASH = "eda3cdc46e0fc044b38f6c1c3f1c45330b93d6a85d3e52a36381936fbb88a737"
@@ -63,6 +64,7 @@ def replay_all_real_preconditions_v11r2r1(*, repository_root: Path, manifest: Ma
                                      'predecessor_v4_closure_hash':expected_v4c,
                                      'historical_v1_manifest_hash':expected_v1,
                                  }.items() if value is not None}})
+    order = verify_runtime_plan_canonical_order_v11r2r2(plan=plan)
     physical=verify_plan(custody_receipt_path=custody_receipt_path,plan_document=plan); framing=inspect_container_framing_v11r1(plan=plan)
     from .dg05_connected_rehearsal_v4 import _private_normal_paths,_typed_manifest
     from .dg05_normal_source_v2 import replay_normal_source_registry_v2
@@ -102,4 +104,4 @@ def replay_all_real_preconditions_v11r2r1(*, repository_root: Path, manifest: Ma
     scope=execution_scope_id_v11r2(release_hash=manifest['self_hash'],final_closure_hash=final_closure_hash,execution_binding_hash=manifest['execution_binding_hash'])
     ledger_status = ledger_scope_status_v11r2(ledger_root=ledger_root, release_hash=manifest['self_hash'], final_closure_hash=final_closure_hash, execution_binding_hash=manifest['execution_binding_hash'])
     if ledger_status['status'] != 'UNUSED': raise DG05V11R2R1PreflightError('EXECUTION_LEDGER_SCOPE_CONSUMED')
-    return self_hashed({'schema':'dg05_v11r2r1_complete_real_preflight_authority_replay_v1','status':'PASS','implementation_replay_hash':impl['self_hash'],'execution_binding_hash':binding_replay['execution_binding_hash'],'execution_binding_replay_hash':binding_replay['self_hash'],'v5_kernel_hash':V5_SHA256,'legacy_hash':legacy['self_hash'],'v4_hash':v4['self_hash'],'v4_closure_hash':v4c['self_hash'],'v1_hash':v1['self_hash'],'legacy_predecessor_replay_hash':legacy_replay['self_hash'],'physical_hash':physical['self_hash'],'framing_hash':framing['self_hash'],'production_executor_hash':assets['self_hash'],'normal_authority_hash':norm['self_hash'],'scenario_hash':scenario['self_hash'],'p1_hash':p1['self_hash'],'crosswalk_hash':cross['self_hash'],'crosswalk_replay_hash':crossr['self_hash'],'execution_scope_id':scope,'ledger_status_hash':ledger_status['self_hash'],'heldout_rows_parsed':0,'heldout_predictions':0,'heldout_metrics':0})
+    return self_hashed({'schema':'dg05_v11r2r1_complete_real_preflight_authority_replay_v1','status':'PASS','implementation_replay_hash':impl['self_hash'],'execution_binding_hash':binding_replay['execution_binding_hash'],'execution_binding_replay_hash':binding_replay['self_hash'],'v5_kernel_hash':V5_SHA256,'legacy_hash':legacy['self_hash'],'v4_hash':v4['self_hash'],'v4_closure_hash':v4c['self_hash'],'v1_hash':v1['self_hash'],'legacy_predecessor_replay_hash':legacy_replay['self_hash'],'physical_hash':physical['self_hash'],'runtime_plan_order_normalization_hash':order['self_hash'],'framing_hash':framing['self_hash'],'production_executor_hash':assets['self_hash'],'normal_authority_hash':norm['self_hash'],'scenario_hash':scenario['self_hash'],'p1_hash':p1['self_hash'],'crosswalk_hash':cross['self_hash'],'crosswalk_replay_hash':crossr['self_hash'],'execution_scope_id':scope,'ledger_status_hash':ledger_status['self_hash'],'heldout_rows_parsed':0,'heldout_predictions':0,'heldout_metrics':0})

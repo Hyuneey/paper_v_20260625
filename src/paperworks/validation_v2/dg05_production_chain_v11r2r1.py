@@ -22,9 +22,9 @@ from .dg05_production_chain_v11r1 import AUTHORITY_HASHES, V5_SHA256
 PREACCESS_FROZEN_KERNEL_REHEARSAL = "PREACCESS_FROZEN_KERNEL_REHEARSAL"
 REAL_PREFLIGHT_ONLY = "REAL_PREFLIGHT_ONLY"
 
-PREDECESSOR_RELEASE = "440ee8aaad1790369f4f5012e43d7483e25b146c694e1446b0c1f42777d91897"
-PREDECESSOR_BINDING = "52ac10321b2db865f9630d1da659aa336ac94e908ed19510f4d96d7423770224"
-PREDECESSOR_CLOSURE = "1e782da29b1756f57b8e4341bb40e92f1a1a8a4192d3c004425f36dcf8e33fa1"
+PREDECESSOR_RELEASE = "5d030770c7d817fd61be108dea09ce4af12c7749d3d9120cb5bb00ec8fdd4560"
+PREDECESSOR_BINDING = "11ebae408e3449bc845e1009b949bf8f508307679ac9fba74277e48f54c0608f"
+PREDECESSOR_CLOSURE = "20b697bcb217e84171823fdc3142e7906863ad4dccdef088f1b347eafe02ca8e"
 
 # This is deliberately a closed *implementation* census.  Adding a helper to
 # a future real route requires a successor release, rather than silently
@@ -40,6 +40,7 @@ _REQUIRED_IMPLEMENTATIONS = frozenset({
     "metric_surface", "metric_oracle", "terminal_chain",
     "legacy_v11_route", "legacy_v11_custodian", "metric_contract", "multipanel_custody",
     "crosswalk_reconciliation",
+    "runtime_plan_normalizer",
 })
 
 
@@ -79,9 +80,9 @@ def build_manifest(
         raise DG05ProductionChainV11R2R1Error("FROZEN_V5_SCIENTIFIC_KERNEL_MUTATED")
     return self_hashed(
         {
-            "schema": "dg05_executable_v11r2r1_candidate_manifest_v1",
-            "designation": "DG05_EXECUTABLE_V11R2R1",
-            "release_class": "RUNTIME_SAFETY_PREFLIGHT_COMPLETENESS_REVISION",
+            "schema": "dg05_executable_v11r2r2_candidate_manifest_v1",
+            "designation": "DG05_EXECUTABLE_V11R2R2",
+            "release_class": "RUNTIME_PLAN_CANONICAL_ORDER_NORMALIZATION_SUCCESSOR",
             "scientific_method_version": "UNCHANGED_FROM_V11R1",
             "status": "CANDIDATE_AWAITING_EXACT_USER_APPROVAL",
             "approval_status": "NOT_APPROVED",
@@ -90,7 +91,7 @@ def build_manifest(
             "predecessor_release_hash": PREDECESSOR_RELEASE,
             "predecessor_execution_binding_hash": PREDECESSOR_BINDING,
             "predecessor_closure_hash": PREDECESSOR_CLOSURE,
-            "predecessor_disposition": "UNAPPROVED_SUPERSEDED_PREFLIGHT_AUTHORITY_REPLAY_INCOMPLETE",
+            "predecessor_disposition": "APPROVED_ONE_SHOT_CONSUMED_TERMINAL_FAILED_AFTER_SCIENTIFIC_CONTACT_BEFORE_FEATURE_ROW_PARSING",
             "authority_hashes": AUTHORITY_HASHES,
             "scenario_authority_hash": AUTHORITY_HASHES["scenario_authority"],
             "p1_authority_hash": AUTHORITY_HASHES["unified_p1"],
@@ -108,7 +109,7 @@ def build_manifest(
 
 
 def load_candidate(*, manifest_path: Path, expected_hash: str, repository_root: Path) -> dict[str, Any]:
-    manifest = load_self_hashed(manifest_path, "dg05_executable_v11r2r1_candidate_manifest_v1")
+    manifest = load_self_hashed(manifest_path, "dg05_executable_v11r2r2_candidate_manifest_v1")
     if manifest["self_hash"] != expected_hash:
         raise DG05ProductionChainV11R2R1Error("RELEASE_HASH_MISMATCH")
     if (
@@ -162,7 +163,7 @@ def verify_runtime_approval_v11r2r1(
         raise DG05ProductionChainV11R2R1Error("FINAL_CLOSURE_CONTACT_REJECTED")
     return self_hashed(
         {
-            "schema": "dg05_v11r2r1_runtime_approval_replay_v1",
+        "schema": "dg05_v11r2r2_runtime_approval_replay_v1",
             "status": "PASS",
             "release_hash": release_hash,
             "final_closure_hash": closure["self_hash"],
@@ -194,7 +195,7 @@ def initialize(
         raise DG05ProductionChainV11R2R1Error("MODE_REQUIRED")
     return self_hashed(
         {
-            "schema": "dg05_v11r2r1_initialized_state_v1",
+            "schema": "dg05_v11r2r2_initialized_state_v1",
             "mode": mode,
             "release_hash": manifest["self_hash"],
             # The frozen V11 provenance bridge consumes this historical field

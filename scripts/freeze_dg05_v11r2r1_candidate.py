@@ -22,7 +22,7 @@ from paperworks.validation_v2.dg05_v11r2r1_crosswalk_reconciliation import recon
 def _paths() -> dict[str, Path]:
     relative = {
         "successor_gate": "src/paperworks/validation_v2/dg05_production_chain_v11r2r1.py",
-        "successor_runner": "scripts/run_dg05_v11r2r1.py",
+        "successor_runner": "scripts/run_dg05_v11r2r2.py",
         "complete_preflight": "src/paperworks/validation_v2/dg05_v11r2r1_preflight.py",
         "preflight_receipt": "src/paperworks/validation_v2/dg05_v11r2r1_preflight_receipt.py",
         "execution_binding": "src/paperworks/validation_v2/dg05_v11r2r1_execution_binding.py",
@@ -50,6 +50,7 @@ def _paths() -> dict[str, Path]:
         "metric_contract": "src/paperworks/validation_v2/metric_contract_v1.py",
         "multipanel_custody": "src/paperworks/validation_v2/multipanel_custody_v1.py",
         "crosswalk_reconciliation": "src/paperworks/validation_v2/dg05_v11r2r1_crosswalk_reconciliation.py",
+        "runtime_plan_normalizer": "src/paperworks/validation_v2/dg05_v11r2r2_runtime_plan_normalizer.py",
     }
     return {name: ROOT / path for name, path in relative.items()}
 
@@ -103,9 +104,9 @@ def main() -> None:
     binding = build_execution_binding_v11r2r1(
         repository_root=ROOT, implementation_source_commit=source_commit,
         implementation_authorities=rows, authority_hashes={**roots, "release_engineering": "0" * 64},
-        predecessor_release_hash="440ee8aaad1790369f4f5012e43d7483e25b146c694e1446b0c1f42777d91897",
-        predecessor_closure_hash="1e782da29b1756f57b8e4341bb40e92f1a1a8a4192d3c004425f36dcf8e33fa1",
-        predecessor_execution_binding_hash="52ac10321b2db865f9630d1da659aa336ac94e908ed19510f4d96d7423770224",
+        predecessor_release_hash="5d030770c7d817fd61be108dea09ce4af12c7749d3d9120cb5bb00ec8fdd4560",
+        predecessor_closure_hash="20b697bcb217e84171823fdc3142e7906863ad4dccdef088f1b347eafe02ca8e",
+        predecessor_execution_binding_hash="11ebae408e3449bc845e1009b949bf8f508307679ac9fba74277e48f54c0608f",
     )
     manifest = build_manifest(repository_root=ROOT, source_commit=source_commit,
                               implementation_paths=paths, execution_binding_hash=binding["self_hash"], source_file_crosswalk_hash=crosswalk["self_hash"])
@@ -126,10 +127,10 @@ def main() -> None:
     manifest = build_manifest(repository_root=ROOT, source_commit=source_commit,
                               implementation_paths=paths, execution_binding_hash=binding["self_hash"], source_file_crosswalk_hash=crosswalk["self_hash"])
     manifest = self_hashed({key: value for key, value in {**manifest, "authority_hashes": {**manifest["authority_hashes"], **roots}}.items() if key != "self_hash"})
-    _write(args.output / "V11R2R1_EXECUTION_BINDING_MANIFEST.json", binding)
-    _write(args.output / "DG05_V11R2R1_SOURCE_FILE_IDENTITY_CROSSWALK.json", crosswalk)
-    _write(args.output / "DG05_V11R2R1_CROSSWALK_LINEAGE_RECONCILIATION_V1.json", reconciliation)
-    _write(args.output / "DG05_EXECUTABLE_V11R2R1_FINAL_MANIFEST.json", manifest)
+    _write(args.output / "V11R2R2_EXECUTION_BINDING_MANIFEST.json", binding)
+    _write(args.output / "DG05_V11R2R2_SOURCE_FILE_IDENTITY_CROSSWALK.json", crosswalk)
+    _write(args.output / "DG05_V11R2R2_CROSSWALK_LINEAGE_RECONCILIATION_V1.json", reconciliation)
+    _write(args.output / "DG05_EXECUTABLE_V11R2R2_FINAL_MANIFEST.json", manifest)
     print(manifest["self_hash"])
 
 

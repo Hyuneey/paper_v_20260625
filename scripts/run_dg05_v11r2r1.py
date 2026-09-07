@@ -38,6 +38,9 @@ from paperworks.validation_v2.dg05_v11r1_resource_materializer import (  # noqa:
     build_materialization_contract_v11r1,
     materialize_runtime_plan_v11r1,
 )
+from paperworks.validation_v2.dg05_v11r2r2_runtime_plan_normalizer import (  # noqa: E402
+    normalize_runtime_plan_to_frozen_panel_order_v11r2r2,
+)
 from paperworks.validation_v2.dg05_v11r1_route_core import execute_dg05_v11r1  # noqa: E402
 from paperworks.validation_v2.dg05_v11r2_execution_ledger import (  # noqa: E402
     append_contact_guard_v11r2,
@@ -115,7 +118,8 @@ def _require_real_inputs(args: argparse.Namespace) -> None:
 def _load_or_materialize_plan(args: argparse.Namespace, manifest: Mapping[str, Any]) -> Mapping[str, Any]:
     """Use a private runtime plan, never a path-bearing scientific authority."""
     if args.resource_plan is not None:
-        return load_self_hashed(args.resource_plan, "dg05_v11r1_protected_resource_plan_v1")
+        plan = load_self_hashed(args.resource_plan, "dg05_v11r1_protected_resource_plan_v1")
+        return normalize_runtime_plan_to_frozen_panel_order_v11r2r2(verified_plan=plan)[0]
     materializer_rows = [
         row for row in manifest["implementation_authorities"]
         if row["logical_name"] == "resource_materializer"
@@ -128,7 +132,9 @@ def _load_or_materialize_plan(args: argparse.Namespace, manifest: Mapping[str, A
         source_commit=manifest["implementation_source_commit"],
     )
     plan, _receipt = materialize_runtime_plan_v11r1(contract=contract, authorized_roots=args.resource_root)
-    return plan
+    # This successor-only precontact normalization is identity preserving.  It
+    # prevents a lexical locator order from reaching frozen custody validation.
+    return normalize_runtime_plan_to_frozen_panel_order_v11r2r2(verified_plan=plan)[0]
 
 
 class _RealLifecycle:
@@ -215,7 +221,7 @@ def _run_preaccess(args: argparse.Namespace) -> None:
         unified_p1_path=args.p1_authority,
         source_file_crosswalk_path=args.source_file_crosswalk,
         wrapper=wrapper,
-        manifest_schema="dg05_executable_v11r2r1_candidate_manifest_v1",
+        manifest_schema="dg05_executable_v11r2r2_candidate_manifest_v1",
         initialize_fn=initialize,
     )
     args.output_root.mkdir(parents=True, exist_ok=True)
@@ -300,7 +306,7 @@ def main() -> None:
             source_file_crosswalk_path=args.source_file_crosswalk,
             wrapper=wrapper,
             resource_plan=plan,
-            manifest_schema="dg05_executable_v11r2r1_candidate_manifest_v1",
+            manifest_schema="dg05_executable_v11r2r2_candidate_manifest_v1",
             initialize_fn=initialize,
             lifecycle=lifecycle,
         )
