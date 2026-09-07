@@ -105,9 +105,9 @@ def main() -> None:
     binding = build_execution_binding_v11r2r1(
         repository_root=ROOT, implementation_source_commit=source_commit,
         implementation_authorities=rows, authority_hashes={**roots, "release_engineering": "0" * 64},
-        predecessor_release_hash="5d030770c7d817fd61be108dea09ce4af12c7749d3d9120cb5bb00ec8fdd4560",
-        predecessor_closure_hash="20b697bcb217e84171823fdc3142e7906863ad4dccdef088f1b347eafe02ca8e",
-        predecessor_execution_binding_hash="11ebae408e3449bc845e1009b949bf8f508307679ac9fba74277e48f54c0608f",
+        predecessor_release_hash="4af1055fda01ebe7a1627064103b22b90eacc6fbd13f0242059725ed9b7376b0",
+        predecessor_closure_hash="4a1a072642239d78bba02e4b344c482f3a21a6ccd2ee84765154959ec42508fe",
+        predecessor_execution_binding_hash="29666118a08ac1ef7f0c420666e3df3a4cb649be881bf2fc4783e7c13db467a2",
     )
     manifest = build_manifest(repository_root=ROOT, source_commit=source_commit,
                               implementation_paths=paths, execution_binding_hash=binding["self_hash"], source_file_crosswalk_hash=crosswalk["self_hash"])
@@ -128,10 +128,10 @@ def main() -> None:
     manifest = build_manifest(repository_root=ROOT, source_commit=source_commit,
                               implementation_paths=paths, execution_binding_hash=binding["self_hash"], source_file_crosswalk_hash=crosswalk["self_hash"])
     manifest = self_hashed({key: value for key, value in {**manifest, "authority_hashes": {**manifest["authority_hashes"], **roots}}.items() if key != "self_hash"})
-    _write(args.output / "V11R2R2_EXECUTION_BINDING_MANIFEST.json", binding)
-    _write(args.output / "DG05_V11R2R2_SOURCE_FILE_IDENTITY_CROSSWALK.json", crosswalk)
-    _write(args.output / "DG05_V11R2R2_CROSSWALK_LINEAGE_RECONCILIATION_V1.json", reconciliation)
-    _write(args.output / "DG05_EXECUTABLE_V11R2R2_FINAL_MANIFEST.json", manifest)
+    _write(args.output / "V11R2R3_EXECUTION_BINDING_MANIFEST.json", binding)
+    _write(args.output / "DG05_V11R2R3_SOURCE_FILE_IDENTITY_CROSSWALK.json", crosswalk)
+    _write(args.output / "DG05_V11R2R3_CROSSWALK_LINEAGE_RECONCILIATION_V1.json", reconciliation)
+    _write(args.output / "DG05_EXECUTABLE_V11R2R3_FINAL_MANIFEST.json", manifest)
     print(manifest["self_hash"])
 
 

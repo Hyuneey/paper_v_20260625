@@ -221,7 +221,7 @@ def _run_preaccess(args: argparse.Namespace) -> None:
         unified_p1_path=args.p1_authority,
         source_file_crosswalk_path=args.source_file_crosswalk,
         wrapper=wrapper,
-        manifest_schema="dg05_executable_v11r2r2_candidate_manifest_v1",
+        manifest_schema="dg05_executable_v11r2r3_candidate_manifest_v1",
         initialize_fn=initialize,
     )
     args.output_root.mkdir(parents=True, exist_ok=True)
@@ -306,7 +306,7 @@ def main() -> None:
             source_file_crosswalk_path=args.source_file_crosswalk,
             wrapper=wrapper,
             resource_plan=plan,
-            manifest_schema="dg05_executable_v11r2r2_candidate_manifest_v1",
+            manifest_schema="dg05_executable_v11r2r3_candidate_manifest_v1",
             initialize_fn=initialize,
             lifecycle=lifecycle,
         )

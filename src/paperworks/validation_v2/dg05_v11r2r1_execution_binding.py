@@ -13,7 +13,7 @@ from .dg05_production_chain_v11 import digest, file_hash, load_self_hashed, self
 from .dg05_production_chain_v11r1 import V5_SHA256
 
 
-SCHEMA = "dg05_v11r2r2_execution_binding_manifest_v1"
+SCHEMA = "dg05_v11r2r3_execution_binding_manifest_v1"
 
 
 class DG05V11R2R1ExecutionBindingError(ValueError):
@@ -35,7 +35,7 @@ def build_execution_binding_v11r2r1(*, repository_root: Path, implementation_sou
         raise DG05V11R2R1ExecutionBindingError("FROZEN_V5_SCIENTIFIC_KERNEL_MUTATED")
     return self_hashed({
         "schema": SCHEMA,
-        "designation": "DG05_EXECUTABLE_V11R2R2",
+        "designation": "DG05_EXECUTABLE_V11R2R3",
         "status": "PREACCESS_EXECUTION_BINDING",
         "not_user_approvable": True,
         "implementation_source_commit": implementation_source_commit,
@@ -70,7 +70,7 @@ def replay_execution_binding_v11r2r1(*, repository_root: Path, binding_path: Pat
     if binding.get("frozen_v5_kernel_hash") != V5_SHA256:
         raise DG05V11R2R1ExecutionBindingError("FROZEN_V5_SCIENTIFIC_KERNEL_MUTATED")
     return self_hashed({
-        "schema": "dg05_v11r2r2_execution_binding_replay_receipt_v1",
+        "schema": "dg05_v11r2r3_execution_binding_replay_receipt_v1",
         "status": "PASS",
         "execution_binding_hash": binding["self_hash"],
         "implementation_source_commit": binding["implementation_source_commit"],
