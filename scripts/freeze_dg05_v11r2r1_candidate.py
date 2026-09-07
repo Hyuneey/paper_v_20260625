@@ -69,7 +69,7 @@ def main() -> None:
     source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     roots = {
         "legacy_v10_release_hash": load_self_hashed(args.legacy_v10_release, "dg05_production_release_manifest_v2")["self_hash"],
-        "predecessor_v4_manifest_hash": load_self_hashed(args.predecessor_v4_manifest, "dg05_executable_authority_manifest_v4")["self_hash"],
+        "predecessor_v4_manifest_hash": load_self_hashed(args.predecessor_v4_manifest, "dg05_production_release_manifest_v1")["self_hash"],
         "predecessor_v4_closure_hash": load_self_hashed(args.predecessor_v4_closure, "dg05_executable_closure_authority_v4")["self_hash"],
         "historical_v1_manifest_hash": load_self_hashed(args.historical_v1_manifest, "dg05_executable_authority_manifest_v1")["self_hash"],
     }

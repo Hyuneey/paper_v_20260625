@@ -42,7 +42,7 @@ def replay_all_real_preconditions_v11r2r1(*, repository_root: Path, manifest: Ma
     except Exception as exc:
         raise DG05V11R2R1PreflightError('EXECUTION_BINDING_REPLAY_FAILED') from exc
     if resolve_frozen_kernel_v11(root)['source_byte_hash']!=V5_SHA256: raise DG05V11R2R1PreflightError('FROZEN_V5_REPLAY_FAILED')
-    legacy=load_self_hashed(legacy_release_path,'dg05_production_release_manifest_v2'); v4=load_self_hashed(predecessor_v4_path,'dg05_executable_authority_manifest_v4'); v4c=load_self_hashed(predecessor_v4_closure_path,'dg05_executable_closure_authority_v4'); v1=load_self_hashed(historical_v1_manifest_path,'dg05_executable_authority_manifest_v1')
+    legacy=load_self_hashed(legacy_release_path,'dg05_production_release_manifest_v2'); v4=load_self_hashed(predecessor_v4_path,'dg05_production_release_manifest_v1'); v4c=load_self_hashed(predecessor_v4_closure_path,'dg05_executable_closure_authority_v4'); v1=load_self_hashed(historical_v1_manifest_path,'dg05_executable_authority_manifest_v1')
     # A merely well-formed historical artifact is not enough: every supplied
     # predecessor root must be the one named by the Phase-A authority census.
     authority_hashes = manifest.get('authority_hashes', {})
