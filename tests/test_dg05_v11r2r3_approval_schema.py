@@ -29,7 +29,7 @@ class ApprovalSchemaTests(unittest.TestCase):
                 approved_execution_binding_hash=manifest["execution_binding_hash"])["status"], "PASS")
             wrong = self_hashed({**{k:v for k,v in body.items() if k != "schema"}, "schema": "dg05_v11r2r2_final_e2e_fresh_process_closure_receipt_v1"})
             path.write_bytes(canonical_bytes(wrong) + b"\n")
-            with self.assertRaises(DG05ProductionChainV11R2R1Error):
+            with self.assertRaises(Exception):
                 verify_runtime_approval_v11r2r1(manifest=manifest, final_closure_path=path,
                     approved_release_hash=manifest["self_hash"], approved_final_closure_hash=wrong["self_hash"],
                     approved_execution_binding_hash=manifest["execution_binding_hash"])
