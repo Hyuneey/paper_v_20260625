@@ -1,27 +1,68 @@
-"""The single V11R1 release-bound preaccess/real entrypoint."""
+"""Single release-bound V11R1 entrypoint for preaccess, preflight, and real modes."""
 from __future__ import annotations
-import argparse, json, sys
+
+import argparse
+import json
+import sys
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path[:0]=[str(ROOT),str(ROOT/"src")]
-from paperworks.validation_v2.dg05_production_chain_v11 import PREACCESS_MODE, REAL_MODE, canonical_bytes
+sys.path[:0]=[str(ROOT),str(ROOT/"src"),
+    str(ROOT/"artifacts/validation_v2/dg04_xver_prep/metric_source/af9e7aed35cfd160cbe0d04c8ec4c102502cb677"),
+    str(ROOT/"artifacts/validation_v2/dg04_xver_prep/metric_dependencies")]
+
+from paperworks.validation_v2.dg05_production_chain_v11 import PREACCESS_MODE, REAL_MODE, canonical_bytes, load_self_hashed
 from paperworks.validation_v2.dg05_production_chain_v11r1 import initialize
 from paperworks.validation_v2.dg05_v11r1_resource_loader import verify_plan
+from paperworks.validation_v2.dg05_v11r1_route_core import execute_dg05_v11r1
+from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
+
+REAL_PREFLIGHT_ONLY="REAL_PREFLIGHT_ONLY"
+
+
+def _arguments() -> argparse.Namespace:
+    p=argparse.ArgumentParser()
+    p.add_argument("--mode",required=True,choices=(PREACCESS_MODE,REAL_MODE,REAL_PREFLIGHT_ONLY))
+    p.add_argument("--manifest",type=Path,required=True); p.add_argument("--expected-hash",required=True)
+    p.add_argument("--user-approved-release-hash"); p.add_argument("--physical-custody-receipt",type=Path)
+    p.add_argument("--resource-plan",type=Path); p.add_argument("--scenario-authority",type=Path,required=True)
+    p.add_argument("--p1-authority",type=Path,required=True); p.add_argument("--legacy-v10-release",type=Path,required=True)
+    p.add_argument("--predecessor-v4-manifest",type=Path,required=True); p.add_argument("--predecessor-v4-closure",type=Path,required=True)
+    p.add_argument("--historical-v1-manifest",type=Path,required=True); p.add_argument("--metric-contract",type=Path,required=True)
+    p.add_argument("--normal-registry",type=Path,required=True); p.add_argument("--private-normal-manifest",type=Path,required=True)
+    p.add_argument("--expected-private-normal-hash",required=True); p.add_argument("--output-root",type=Path,required=True)
+    return p.parse_args()
 
 
 def main() -> None:
-    p=argparse.ArgumentParser()
-    p.add_argument("--mode",required=True,choices=(PREACCESS_MODE,REAL_MODE)); p.add_argument("--manifest",type=Path,required=True); p.add_argument("--expected-hash",required=True); p.add_argument("--user-approved-release-hash"); p.add_argument("--physical-custody-receipt",type=Path,required=True); p.add_argument("--resource-plan",type=Path); p.add_argument("--preflight-only",action="store_true"); p.add_argument("--output",type=Path,required=True)
-    a=p.parse_args(); state=initialize(manifest_path=a.manifest,expected_hash=a.expected_hash,repository_root=ROOT,mode=a.mode,user_approved_release_hash=a.user_approved_release_hash)
-    if a.mode==REAL_MODE:
-        if a.resource_plan is None: raise RuntimeError("V11R1_PROTECTED_RESOURCE_PLAN_REQUIRED")
+    a=_arguments()
+    if a.mode==REAL_PREFLIGHT_ONLY:
+        if a.physical_custody_receipt is None or a.resource_plan is None:
+            raise RuntimeError("V11R1_PROTECTED_RESOURCE_PLAN_REQUIRED")
+        state=initialize(manifest_path=a.manifest,expected_hash=a.expected_hash,repository_root=ROOT,mode=REAL_MODE,
+                         user_approved_release_hash=a.user_approved_release_hash)
         preflight=verify_plan(plan_path=a.resource_plan,custody_receipt_path=a.physical_custody_receipt)
-        if not a.preflight_only: raise RuntimeError("V11R1_REAL_SCHEDULE_REQUIRES_FROZEN_RESOURCE_ORCHESTRATOR")
-    else:
-        preflight={"status":"SYNTHETIC_PREACCESS_RESOURCE_MIRROR_ONLY","feature_rows_opened":0}
-    if a.output.exists(): raise RuntimeError("V11R1_OUTPUT_NAMESPACE_REUSE_REJECTED")
-    a.output.parent.mkdir(parents=True,exist_ok=True)
-    a.output.write_bytes(canonical_bytes({"schema":"dg05_v11r1_entrypoint_receipt_v1","status":"PASS","state_hash":state["self_hash"],"mode":a.mode,"resource_preflight":preflight,"heldout_predictions":0,"heldout_metrics":0})+b"\n")
-    print(json.dumps({"status":"PASS","mode":a.mode,"heldout_predictions":0,"heldout_metrics":0},sort_keys=True))
+        if a.output_root.exists(): raise RuntimeError("V11R1_OUTPUT_NAMESPACE_REUSE_REJECTED")
+        a.output_root.parent.mkdir(parents=True,exist_ok=True)
+        receipt={"schema":"dg05_v11r1_real_preflight_receipt_v1","status":"REAL_PREFLIGHT_PASS_NO_FEATURE_ACCESS",
+                 "release_hash":state["release_hash"],"state_hash":state["self_hash"],"resource_preflight_hash":preflight["self_hash"],
+                 "heldout_rows_parsed":0,"heldout_predictions":0,"heldout_metrics":0}
+        a.output_root.write_bytes(canonical_bytes(receipt)+b"\n")
+        print(json.dumps({"status":receipt["status"],"heldout_rows_parsed":0},sort_keys=True)); return
+    plan=None
+    if a.mode==REAL_MODE:
+        if a.physical_custody_receipt is None or a.resource_plan is None:
+            raise RuntimeError("V11R1_PROTECTED_RESOURCE_PLAN_REQUIRED")
+        plan_doc=load_self_hashed(a.resource_plan,"dg05_v11r1_protected_resource_plan_v1")
+        verify_plan(plan_path=a.resource_plan,custody_receipt_path=a.physical_custody_receipt); plan=plan_doc
+    wrapper=OfficialEtaprV1(ROOT/"artifacts/validation_v2/dg04_xver_prep/metric_source/af9e7aed35cfd160cbe0d04c8ec4c102502cb677")
+    receipt=execute_dg05_v11r1(repository_root=ROOT,work_root=a.output_root,manifest_path=a.manifest,expected_hash=a.expected_hash,
+        mode=a.mode,user_approved_release_hash=a.user_approved_release_hash,legacy_release_path=a.legacy_v10_release,
+        predecessor_v4_path=a.predecessor_v4_manifest,predecessor_v4_closure_path=a.predecessor_v4_closure,
+        historical_v1_manifest_path=a.historical_v1_manifest,metric_contract_path=a.metric_contract,normal_registry_path=a.normal_registry,
+        private_normal_manifest_path=a.private_normal_manifest,expected_private_normal_hash=a.expected_private_normal_hash,
+        unified_scenario_path=a.scenario_authority,unified_p1_path=a.p1_authority,wrapper=wrapper,resource_plan=plan)
+    print(json.dumps({"status":receipt["status"],"planned_cells":receipt["planned_cells"],"heldout_predictions":0,"heldout_metrics":0},sort_keys=True))
+
+
 if __name__=="__main__": main()

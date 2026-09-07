@@ -49,9 +49,61 @@ def build_freeze_bound_authorities(*, unified_scenario: Mapping[str,Any], unifie
     denominator=self_hashed({"schema":"v11r1_freeze_bound_p1_denominator_authority_v1","status":"FREEZE_BOUND","scenario_authority_hash":scenario["self_hash"],"source_unified_p1_authority_hash":unified_p1["self_hash"],"global_freeze_hash":global_freeze["self_hash"],"v11r1_release_hash":release_hash,"records":sorted(denom,key=lambda r:(r["panel_id"],r["scenario_id"])),"classification_counts":census,"prediction_inputs":False,"adapter_implementation_hash":adapter_hash,"source_commit":source_commit})
     return scenario,denominator
 
-def verify_freeze_bound_authorities(*, scenario: Mapping[str,Any], denominator: Mapping[str,Any], expected_scenario_hash: str, expected_p1_hash: str, global_freeze_hash: str) -> dict[str,Any]:
-    _valid(scenario,"v11r1_freeze_bound_scenario_authority_v1"); _valid(denominator,"v11r1_freeze_bound_p1_denominator_authority_v1")
-    if scenario.get("source_unified_scenario_authority_hash")!=expected_scenario_hash or denominator.get("source_unified_p1_authority_hash")!=expected_p1_hash or scenario.get("global_freeze_hash")!=global_freeze_hash or denominator.get("global_freeze_hash")!=global_freeze_hash or denominator.get("scenario_authority_hash")!=scenario["self_hash"]: raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_ROOT_MISMATCH")
-    if len(scenario["records"])!=146 or len(denominator["records"])!=146 or denominator.get("classification_counts")!={"P1_ELIGIBLE":116,"OUT_OF_SCOPE":30,"UNRESOLVED":0}: raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_CENSUS_MISMATCH")
-    if {r["self_hash"] for r in scenario["records"]}!={r["scenario_record_hash"] for r in denominator["records"]}: raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_RECORD_BINDING_MISMATCH")
-    return self_hashed({"schema":"v11r1_freeze_bound_authority_independent_replay_v1","status":"PASS","scenario_authority_hash":scenario["self_hash"],"denominator_authority_hash":denominator["self_hash"],"records":146,"classification_counts":denominator["classification_counts"],"global_freeze_hash":global_freeze_hash,"legacy_full_scope_recomputation_used":False})
+def verify_freeze_bound_authorities(*, scenario: Mapping[str,Any], denominator: Mapping[str,Any],
+                                   unified_scenario: Mapping[str,Any], unified_p1: Mapping[str,Any],
+                                   global_freeze: Mapping[str,Any], physical: Any,
+                                   timestamps: Mapping[tuple[str,str],Any], release_hash: str) -> dict[str,Any]:
+    """Independently replay every source-to-freeze binding from immutable inputs.
+
+    This deliberately does not call ``build_freeze_bound_authorities``.  The
+    canonical source-record binding is ``digest(source_canonical_record)``;
+    it is a digest of the immutable source record alone, never of a derived
+    wrapper or a document which contains a mutable ``self_hash`` field.
+    """
+    _valid(scenario,"v11r1_freeze_bound_scenario_authority_v1")
+    _valid(denominator,"v11r1_freeze_bound_p1_denominator_authority_v1")
+    _valid(unified_scenario,"hai_official_source_triangulated_scenario_authority_private_v1")
+    _valid(unified_p1,"hai_p1_direct_target_denominator_authority_v2")
+    if global_freeze.get("self_hash") != digest({k:v for k,v in global_freeze.items() if k!="self_hash"}):
+        raise DG05V11R1PostfreezeBindingError("GLOBAL_FREEZE_REPLAY_FAILED")
+    physical_doc=_doc(physical)
+    tdocs={key:_doc(value) for key,value in timestamps.items()}
+    if scenario.get("source_unified_scenario_authority_hash")!=unified_scenario["self_hash"] or denominator.get("source_unified_p1_authority_hash")!=unified_p1["self_hash"] or scenario.get("global_freeze_hash")!=global_freeze["self_hash"] or denominator.get("global_freeze_hash")!=global_freeze["self_hash"] or denominator.get("scenario_authority_hash")!=scenario["self_hash"] or scenario.get("physical_authority_hash")!=physical_doc.get("self_hash") or scenario.get("v11r1_release_hash")!=release_hash or denominator.get("v11r1_release_hash")!=release_hash:
+        raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_ROOT_MISMATCH")
+    if len(unified_scenario.get("canonical_records",()))!=146 or len(unified_p1.get("decisions",()))!=146 or len(scenario.get("records",()))!=146 or len(denominator.get("records",()))!=146:
+        raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_CENSUS_MISMATCH")
+    derived_scenarios={(str(x["panel_id"]),str(x["scenario_id"])):x for x in scenario["records"]}
+    derived_denominators={(str(x["panel_id"]),str(x["scenario_id"])):x for x in denominator["records"]}
+    source_scenarios={(str(x["panel_id"]),str(x["scenario_id"])):x for x in unified_scenario["canonical_records"]}
+    decisions={(str(x["dataset_version"]),str(x["scenario_id"])):x for x in unified_p1["decisions"]}
+    if len(derived_scenarios)!=146 or len(derived_denominators)!=146 or len(source_scenarios)!=146 or len(decisions)!=146 or set(derived_scenarios)!=set(source_scenarios) or set(derived_denominators)!=set(source_scenarios):
+        raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_BIJECTION_MISMATCH")
+    for key, source in source_scenarios.items():
+        record=derived_scenarios[key]
+        panel,file_id=key[0],str(source["physical_file_id"])
+        timestamp=tdocs.get((panel,file_id))
+        if timestamp is None:
+            raise DG05V11R1PostfreezeBindingError("REPLAY_TIMESTAMP_BINDING_REQUIRED")
+        expected={
+            "panel_id":panel,"dataset_version":source["dataset_version"],"file_id":file_id,
+            "scenario_id":source["scenario_id"],"closed_intervals":source["closed_intervals"],
+            "attacked_identities":source["attacked_identities"],
+            "explicit_affected_processes":source["explicit_affected_processes"],
+            "physical_file_authority_hash":timestamp.get("physical_file_authority_hash"),
+            "timestamp_authority_hash":timestamp.get("self_hash"),
+            "official_source_hash":unified_scenario["version_roots"][str(source["dataset_version"])],
+            "source_unified_scenario_authority_hash":unified_scenario["self_hash"],
+            "source_scenario_record_hash":digest(source),
+        }
+        if any(record.get(name)!=value for name,value in expected.items()):
+            raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_SCENARIO_REPLAY_MISMATCH")
+        decision=decisions.get((str(source["dataset_version"]),str(source["scenario_id"])))
+        denominator_record=derived_denominators[key]
+        if decision is None or decision.get("eligibility_status") not in _STATUS:
+            raise DG05V11R1PostfreezeBindingError("REPLAY_P1_DECISION_LOOKUP_REQUIRED")
+        if denominator_record.get("scenario_record_hash")!=record.get("self_hash") or denominator_record.get("primary_status")!=_STATUS[decision["eligibility_status"]] or denominator_record.get("source_p1_decision_hash")!=digest(decision) or denominator_record.get("source_unified_p1_authority_hash")!=unified_p1["self_hash"]:
+            raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_P1_REPLAY_MISMATCH")
+    timestamp_hash=digest(sorted((p,f,x["self_hash"]) for (p,f),x in tdocs.items()))
+    if scenario.get("timestamp_authority_aggregate_hash")!=timestamp_hash or scenario.get("panel_counts")!=_PANELS or denominator.get("classification_counts")!={"P1_ELIGIBLE":116,"OUT_OF_SCOPE":30,"UNRESOLVED":0}:
+        raise DG05V11R1PostfreezeBindingError("FREEZE_BOUND_AGGREGATE_REPLAY_MISMATCH")
+    return self_hashed({"schema":"v11r1_freeze_bound_authority_independent_replay_v1","status":"PASS","scenario_authority_hash":scenario["self_hash"],"denominator_authority_hash":denominator["self_hash"],"source_unified_scenario_authority_hash":unified_scenario["self_hash"],"source_unified_p1_authority_hash":unified_p1["self_hash"],"records":146,"classification_counts":denominator["classification_counts"],"global_freeze_hash":global_freeze["self_hash"],"legacy_full_scope_recomputation_used":False})

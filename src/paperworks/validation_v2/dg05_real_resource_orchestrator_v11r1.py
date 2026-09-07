@@ -38,9 +38,14 @@ def prepare_frozen_v5_resources_v11r1(*, verified_plan: Mapping[str, Any],
         if panel not in allowlists or (panel,file_id) in sources:
             raise DG05V11R1RealResourceOrchestratorError("V11R1_PLAN_IDENTITY_INVALID")
         source=Path(item["path"])
-        expected_header=[allowlists[panel].timestamp_id,*allowlists[panel].feature_ids]
-        if item.get("header_hash") != digest(expected_header):
-            raise DG05V11R1RealResourceOrchestratorError("V11R1_FROZEN_HEADER_AUTHORITY_MISMATCH")
+        # ``header_hash`` is the exact full custody header, while the frozen
+        # positive allowlist below is the projection authority.  They are not
+        # interchangeable: official attack files may carry non-feature
+        # columns (for example Attack) which the frozen adapter excludes.
+        # The adapter independently enforces the allowlist when it parses the
+        # source, so this orchestration layer must preserve the custody hash.
+        if type(item.get("header_hash")) is not str or len(item["header_hash"]) != 64:
+            raise DG05V11R1RealResourceOrchestratorError("V11R1_CUSTODY_HEADER_HASH_REQUIRED")
         rows.append(PhysicalFileIdentityV2(panel,file_id,file_sha256(source),item["header_hash"],item["official_source_hash"]))
         sources[(panel,file_id)]=source
     physical=FrozenPhysicalFileAuthorityV2(tuple(rows),FROZEN_ATTACK_FILE_CENSUS_HASH_V2,verified_plan["physical_custody_hash"],FROZEN_AUTHORITY_SOURCE_COMMIT_V2)

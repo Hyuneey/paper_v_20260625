@@ -34,9 +34,10 @@ class DG05ProductionChainV11R1Error(ValueError):
 def build_manifest(*, repository_root: Path, source_commit: str,
                    implementation_paths: dict[str, Path]) -> dict[str, Any]:
     required = {
-        "successor_gate", "unified_runner", "resource_loader", "resource_orchestrator",
-        "production_executor", "e2e_qualification", "terminal_chain", "v11_bridge",
-        "v5_compatibility", "postfreeze_metric_binding", "connected_rehearsal", "v5_kernel",
+        "successor_gate", "unified_runner", "shared_route_core", "resource_loader",
+        "resource_orchestrator", "production_executor", "terminal_chain", "v11_bridge",
+        "v5_compatibility", "postfreeze_metric_binding", "metric_primitives",
+        "metric_surface", "metric_oracle", "v5_kernel",
     }
     if set(implementation_paths) != required:
         raise DG05ProductionChainV11R1Error("V11R1_IMPLEMENTATION_CENSUS_REQUIRED")

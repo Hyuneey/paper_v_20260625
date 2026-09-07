@@ -14,8 +14,6 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src"),
 
 from paperworks.validation_v2.dg05_production_chain_v11 import canonical_bytes
 from paperworks.validation_v2.dg05_production_chain_v11r1 import build_manifest
-from paperworks.validation_v2.dg05_v11r1_e2e_qualification import run_full_synthetic_e2e_v11r1
-from paperworks.validation_v2.etapr_exchange_v1 import OfficialEtaprV1
 
 
 def _paths() -> dict[str, Path]:
@@ -26,12 +24,14 @@ def _paths() -> dict[str, Path]:
         "resource_loader": p / "dg05_v11r1_resource_loader.py",
         "resource_orchestrator": p / "dg05_real_resource_orchestrator_v11r1.py",
         "production_executor": p / "dg05_v11r1_production_executor.py",
-        "e2e_qualification": p / "dg05_v11r1_e2e_qualification.py",
+        "shared_route_core": p / "dg05_v11r1_route_core.py",
         "terminal_chain": p / "dg05_v11r1_terminal_chain.py",
         "v5_compatibility": p / "dg05_v11r1_v5_compatibility.py",
         "postfreeze_metric_binding": p / "dg05_v11r1_postfreeze_metric_binding.py",
         "v11_bridge": p / "dg05_schedule_release_provenance_bridge_v11.py",
-        "connected_rehearsal": p / "dg05_connected_rehearsal_v5.py",
+        "metric_primitives": p / "dg05_metric_surface_execution_v2.py",
+        "metric_surface": p / "dg05_metric_surface_v2.py",
+        "metric_oracle": p / "dg05_metric_surface_oracle_v2.py",
         "v5_kernel": p / "dg05_production_route_v5.py",
     }
 
@@ -47,6 +47,8 @@ def main() -> None:
     ap.add_argument("--normal-registry", required=True, type=Path)
     ap.add_argument("--private-normal-manifest", required=True, type=Path)
     ap.add_argument("--expected-private-normal-hash", required=True)
+    ap.add_argument("--scenario-authority", required=True, type=Path)
+    ap.add_argument("--p1-authority", required=True, type=Path)
     args = ap.parse_args()
     if args.output.exists():
         raise RuntimeError("V11R1_E2E_OUTPUT_APPEND_ONLY_CONFLICT")
@@ -55,25 +57,20 @@ def main() -> None:
     manifest = build_manifest(repository_root=ROOT, source_commit=head, implementation_paths=_paths())
     manifest_path = args.output / "V11R1_EXECUTION_BINDING_MANIFEST.json"
     manifest_path.write_bytes(canonical_bytes(manifest) + b"\n")
-    wrapper = OfficialEtaprV1(ROOT / "artifacts/validation_v2/dg04_xver_prep/metric_source/af9e7aed35cfd160cbe0d04c8ec4c102502cb677")
-    legacy = json.loads(args.legacy_release.read_text(encoding="ascii"))
-    receipt = run_full_synthetic_e2e_v11r1(
-        repository_root=ROOT, work_root=args.output / "synthetic-route",
-        outer_manifest_path=manifest_path, expected_outer_hash=manifest["self_hash"],
-        legacy_release_path=args.legacy_release,
-        predecessor_v4_path=args.predecessor_v4_manifest,
-        predecessor_v4_closure_path=args.predecessor_v4_closure,
-        historical_v1_manifest_path=args.historical_v1_manifest,
-        metric_contract_path=args.metric_contract, normal_registry_path=args.normal_registry,
-        private_normal_manifest_path=args.private_normal_manifest,
-        expected_private_normal_hash=args.expected_private_normal_hash,
-        # The V5 schedule validates its frozen legacy source commit; the
-        # outer V11R1 manifest independently binds the current implementation.
-        wrapper=wrapper, source_commit=legacy["source_commit"],
-    )
-    (args.output / "V11R1_FULL_SYNTHETIC_E2E_RECEIPT.json").write_bytes(canonical_bytes(receipt) + b"\n")
-    print(json.dumps({"status": receipt["status"], "manifest": manifest["self_hash"], "receipt": receipt["self_hash"],
-                      "planned_cells": receipt["planned_cells"], "heldout_predictions": 0, "heldout_metrics": 0}, sort_keys=True))
+    command=[sys.executable,str(ROOT/"scripts/run_dg05_v11r1.py"),"--mode","PREACCESS_SYNTHETIC_QUALIFICATION",
+        "--manifest",str(manifest_path),"--expected-hash",manifest["self_hash"],"--scenario-authority",str(args.scenario_authority),
+        "--p1-authority",str(args.p1_authority),"--legacy-v10-release",str(args.legacy_release),
+        "--predecessor-v4-manifest",str(args.predecessor_v4_manifest),"--predecessor-v4-closure",str(args.predecessor_v4_closure),
+        "--historical-v1-manifest",str(args.historical_v1_manifest),"--metric-contract",str(args.metric_contract),
+        "--normal-registry",str(args.normal_registry),"--private-normal-manifest",str(args.private_normal_manifest),
+        "--expected-private-normal-hash",args.expected_private_normal_hash,"--output-root",str(args.output/"unified-cli-route")]
+    completed=subprocess.run(command,cwd=ROOT,text=True,capture_output=True,check=False)
+    if completed.returncode != 0:
+        raise RuntimeError("V11R1_UNIFIED_CLI_E2E_FAILED:"+completed.stderr[-1000:])
+    receipt_path=args.output/"unified-cli-route"/"DG06_INPUT_HANDOFF.json"
+    if not receipt_path.is_file(): raise RuntimeError("V11R1_UNIFIED_CLI_E2E_ARTIFACT_MISSING")
+    print(json.dumps({"status":"PASS","manifest":manifest["self_hash"],"cli_stdout":completed.stdout.strip(),
+                      "heldout_predictions":0,"heldout_metrics":0},sort_keys=True))
 
 
 if __name__ == "__main__":
