@@ -43,8 +43,8 @@ def _paths() -> dict[str, Path]:
         "metric_oracle": "src/paperworks/validation_v2/dg05_metric_surface_oracle_v2.py",
         "terminal_chain": "src/paperworks/validation_v2/dg05_v11r1_terminal_chain.py",
         "legacy_v11_route": "src/paperworks/validation_v2/dg05_production_chain_v11.py",
-        "legacy_v11_custodian": "src/paperworks/validation_v2/dg05_v11_custodian.py",
-        "metric_contract": "src/paperworks/validation_v2/dg05_metric_surface_contract_v2.py",
+        "legacy_v11_custodian": "src/paperworks/validation_v2/dg05_label_custodian_v3.py",
+        "metric_contract": "src/paperworks/validation_v2/metric_contract_v1.py",
     }
     return {name: ROOT / path for name, path in relative.items()}
 
