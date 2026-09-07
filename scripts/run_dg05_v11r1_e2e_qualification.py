@@ -33,6 +33,9 @@ def _paths() -> dict[str, Path]:
         "metric_primitives": p / "dg05_metric_surface_execution_v2.py",
         "metric_surface": p / "dg05_metric_surface_v2.py",
         "metric_oracle": p / "dg05_metric_surface_oracle_v2.py",
+        "v11_route": p / "dg05_production_route_v11.py",
+        "v11_custodian": p / "dg05_label_custodian_v3.py",
+        "scenario_adapter": p / "dg05_hai_scenario_adapter_v1.py",
         "v5_kernel": p / "dg05_production_route_v5.py",
     }
 

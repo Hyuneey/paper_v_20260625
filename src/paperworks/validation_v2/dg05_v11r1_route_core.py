@@ -103,6 +103,11 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
     if mode==PREACCESS_MODE:
         from .dg05_preaccess_kernel_v5 import PreaccessFrozenKernelExecutorV5
         schedule_executor=PreaccessFrozenKernelExecutorV5(executor); schedule_executor.validate()
+    else:
+        from .dg05_v11r1_v5_compatibility import derive_v5_compatibility_state_v11r1
+        legacy_state,_=derive_v5_compatibility_state_v11r1(outer_release=outer,outer_state=state,
+            legacy_release_path=legacy_release_path,predecessor_v4_manifest_path=predecessor_v4_path,
+            predecessor_v4_closure_path=predecessor_v4_closure_path,repository_root=repository_root)
     bridge_hash=file_hash(repository_root/"src/paperworks/validation_v2/dg05_schedule_release_provenance_bridge_v11.py")
     predecessor=load_self_hashed(repository_root/"research_control_center/validation_v2/dg05_metric_verifier_closure/DG05_EXECUTABLE_AUTHORITY_MANIFEST_V3.json","dg05_executable_authority_manifest_v3")
     receipts,artifacts,prediction_paths,trace_paths,kernel,bridged=invoke_frozen_v5_schedule_v11(repository_root=repository_root,
@@ -121,6 +126,11 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
     manifest=load_self_hashed(work_root/"GLOBAL_PREDICTION_MANIFEST.json","global_prediction_manifest_v3")
     source_scenario=_load_private(unified_scenario_path,"hai_official_source_triangulated_scenario_authority_private_v1")
     source_p1=_load_private(unified_p1_path,"hai_p1_direct_target_denominator_authority_v2")
+    from .dg05_production_route_v11 import initialize_prediction_schedule_v11
+    custodian=initialize_prediction_schedule_v11(unified_scenario=source_scenario,unified_p1=source_p1,
+        state=self_hashed({"schema":"dg05_v11r1_postfreeze_custodian_state_v1","state":"GLOBAL_PREDICTION_FROZEN_LABEL_LOCKED","freeze_hash":freeze["self_hash"]}),repository_root=repository_root)
+    if custodian["resolved_kernel"]["source_byte_hash"]!=outer["frozen_v5_kernel_hash"]:
+        raise DG05V11R1RouteCoreError("V11R1_CUSTODIAN_KERNEL_REPLAY_FAILED")
     crosswalk=derive_source_file_identity_crosswalk_v11r1(unified_scenario=source_scenario,
         physical_custody_hash=outer["authority_hashes"]["physical_custody"],
         implementation_hash=file_hash(repository_root/"src/paperworks/validation_v2/dg05_v11r1_source_file_crosswalk.py"),
@@ -156,7 +166,7 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
         oracle_document=self_hashed({"schema":"v11r1_serialized_independent_metric_verification_v1","oracle":oracle})
         persist_canonical_v1(work_root/"metrics"/f"{panel}.oracle.json",oracle_document)
         primitive_hashes[panel]=primitive["self_hash"]; surface_hashes[panel]=result["self_hash"]; oracle_hashes[panel]=oracle_document["self_hash"]
-    root_to_terminal=self_hashed({"schema":"dg05_v11r1_root_to_terminal_replay_v1","status":"PASS","release_hash":outer["self_hash"],"v5_kernel_hash":kernel["self_hash"],"prediction_freeze_hash":freeze["self_hash"],"crosswalk_hash":crosswalk["self_hash"],"crosswalk_replay_hash":crosswalk_replay["self_hash"],"scenario_replay_hash":replay["self_hash"],"metric_surface_hashes":surface_hashes,"oracle_hashes":oracle_hashes})
+    root_to_terminal=self_hashed({"schema":"dg05_v11r1_root_to_terminal_replay_v1","status":"PASS","release_hash":outer["self_hash"],"v11_custodian_initialization_hash":self_hashed(custodian)["self_hash"],"v5_kernel_hash":kernel["self_hash"],"prediction_freeze_hash":freeze["self_hash"],"crosswalk_hash":crosswalk["self_hash"],"crosswalk_replay_hash":crosswalk_replay["self_hash"],"scenario_replay_hash":replay["self_hash"],"metric_surface_hashes":surface_hashes,"oracle_hashes":oracle_hashes})
     physical_source_hash=resources["physical"].document()["self_hash"]
     transition=None
     for name in ("READY","REAL_EXECUTION_STARTED","PREDICTION_CONTACT_OCCURRED","PREDICTIONS_FROZEN","METRICS_FROZEN","TERMINAL_COMPLETE"):
@@ -167,7 +177,7 @@ def execute_dg05_v11r1(*, repository_root: Path, work_root: Path, manifest_path:
         prediction_freeze_hash=freeze["self_hash"],scenario_authority_hash=scenario["self_hash"],p1_authority_hash=denominator["self_hash"],metric_primitives_hashes=primitive_hashes,metric_surface_hashes=surface_hashes,independent_metric_verification_hashes=oracle_hashes,root_to_terminal_hash=root_to_terminal["self_hash"])
     handoff=build_dg06_handoff_v1(terminal_package=terminal,scientific_preregistration_hash=outer["authority_hashes"]["scientific_preregistration"])
     persist_canonical_v1(work_root/"DG05_TERMINAL_RESULT_PACKAGE.json",terminal); persist_canonical_v1(work_root/"DG06_INPUT_HANDOFF.json",handoff)
-    return self_hashed({"schema":"dg05_v11r1_shared_route_receipt_v1","status":"PASS","mode":mode,"release_hash":outer["self_hash"],"state_hash":state["self_hash"],"planned_cells":resources["census"]["count"],"v5_terminal_cells":len(receipts),"frozen_prediction_cells":manifest["success_count"],"fallback_cells":0,"unexercised_cells":0,"crosswalk_entries":crosswalk["entry_count"],"crosswalk_hash":crosswalk["self_hash"],"crosswalk_replay_hash":crosswalk_replay["self_hash"],"scenario_records":146,"p1_records":146,"p1_counts":denominator["classification_counts"],"adapter_replay_hash":replay["self_hash"],"metric_primitive_count":len(primitive_hashes),"metric_surface_count":sum(load_self_hashed(work_root/"metrics"/f"{p}.surface.json","complete_panel_metric_surface_v2")["surface_count"] for p in FROZEN_PANEL_ORDER_V2),"independent_panel_count":len(oracle_hashes),"kernel_hash":kernel["self_hash"],"prediction_freeze_hash":freeze["self_hash"],"terminal_package_hash":terminal["self_hash"],"dg06_handoff_hash":handoff["self_hash"],"root_to_terminal_hash":root_to_terminal["self_hash"],"heldout_rows_parsed":0,"heldout_predictions":0,"heldout_metrics":0,"result_driven_changes":0})
+    return self_hashed({"schema":"dg05_v11r1_shared_route_receipt_v1","status":"PASS","mode":mode,"release_hash":outer["self_hash"],"state_hash":state["self_hash"],"custodian_initialization_hash":self_hashed(custodian)["self_hash"],"planned_cells":resources["census"]["count"],"v5_terminal_cells":len(receipts),"frozen_prediction_cells":manifest["success_count"],"fallback_cells":0,"unexercised_cells":0,"crosswalk_entries":crosswalk["entry_count"],"crosswalk_hash":crosswalk["self_hash"],"crosswalk_replay_hash":crosswalk_replay["self_hash"],"scenario_records":146,"p1_records":146,"p1_counts":denominator["classification_counts"],"adapter_replay_hash":replay["self_hash"],"metric_primitive_count":len(primitive_hashes),"metric_surface_count":sum(load_self_hashed(work_root/"metrics"/f"{p}.surface.json","complete_panel_metric_surface_v2")["surface_count"] for p in FROZEN_PANEL_ORDER_V2),"independent_panel_count":len(oracle_hashes),"kernel_hash":kernel["self_hash"],"prediction_freeze_hash":freeze["self_hash"],"terminal_package_hash":terminal["self_hash"],"dg06_handoff_hash":handoff["self_hash"],"root_to_terminal_hash":root_to_terminal["self_hash"],"heldout_rows_parsed":0,"heldout_predictions":0,"heldout_metrics":0,"result_driven_changes":0})
 
 
 __all__=["DG05V11R1RouteCoreError","execute_dg05_v11r1"]
